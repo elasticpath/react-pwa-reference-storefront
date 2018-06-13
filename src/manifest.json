@@ -1,0 +1,21 @@
+{
+    "short_name": "Vestri",
+    "name": "elasticpath",
+    "icons": [
+      {
+        "src": "/images/icons/icons-192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/images/icons/icons-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#5bc0de",
+    "display": "standalone",
+    "scope": "./",
+    "theme_color": "#5bc0de"
+  }
