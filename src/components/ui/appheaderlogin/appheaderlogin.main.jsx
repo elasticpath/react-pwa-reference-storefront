@@ -19,19 +19,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 
-var Config = require('Config')
-// Then use in render: <span>{Config.skuImagesS3Url}</span>
-
-class CartPage extends React.Component {
+class AppHeaderLoginMain extends React.Component {
     render() {
         return (
-            <div>
-                <AppHeaderMain />
-            </div>
+            <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
+                <div className="auth-container">
+                    <div className="auth-container">
+                        <button className="global-nav-link global-nav-login btn-auth-menu" data-toggle="modal" data-target="#login-modal" data-i18n="" data-el-label="global.profile">
+                            Login
+                        </button>
+                        <div data-region="authMainRegion" className="auth-nav-container"></div>
+                    </div>
+                </div>
+            </li>
         );
     }
 }
 
-export default CartPage;
+export default AppHeaderLoginMain;

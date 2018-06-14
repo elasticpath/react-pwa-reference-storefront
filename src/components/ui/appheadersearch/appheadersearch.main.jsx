@@ -19,19 +19,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 
-var Config = require('Config')
-// Then use in render: <span>{Config.skuImagesS3Url}</span>
-
-class CartPage extends React.Component {
+class AppHeaderSearchMain extends React.Component {
     render() {
         return (
             <div>
-                <AppHeaderMain />
+                <div className="main-search-container" style={{ display: 'block' }}><form className="navbar-form">
+                    <div className="form-group">
+                        <input className="input-search header-search-input" type="text" placeholder="search" />
+                    </div>
+                    <button className="btn-header-search" data-toggle="collapse" data-target=".navbar-collapse"><span className="icon"></span>Search</button>
+                </form></div>
             </div>
         );
     }
 }
 
-export default CartPage;
+export default AppHeaderSearchMain;

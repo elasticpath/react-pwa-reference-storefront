@@ -15,15 +15,55 @@
  *
  *
  */
- 
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
+import AppHeaderSearchMain from '../appheadersearch/appheadersearch.main.jsx';
+import AppHeaderLoginMain from '../appheaderlogin/appheaderlogin.main.jsx';
+import AppHeaderNavigationMain from '../appheadernavigation/appheadernavigation.main.jsx';
 
 class AppHeaderMain extends React.Component {
+    goBack() {
+        window.history.back();
+    }
     render() {
         return (
             <div>
-	            <span>Hello!</span>
+                <header className="app-header navbar navbar -fixed-top navbar-inverse" data-region="appHeader" style={{ display: 'block' }}>
+                    <div className="container appheader-container">
+                        <div className="back-button-container" style={{ display: 'block' }}><div>
+                            <button type="button" className="navbar-back" data-region="backButtonRegion" data-el-label="navigation.back" onClick={this.goBack}>
+                                <span className="icon"></span>
+                            </button>
+                        </div></div>
+                        <div className="logo-container" style={{ display: 'block' }}>
+                            <div>
+                                <a href={`/`} className="cmd-home-logo">
+                                    <img src={require('../../images/Company-Logo-v1.png')} />
+                                </a>
+                            </div>
+                        </div>
+                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span className="icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse">
+                            <ul className="global-nav-container btn-group">
+                                <AppHeaderLoginMain />
+                                <li className="global-nav-cart-nav">
+                                    <Link to="/mycart">
+                                        <button className="global-nav-link global-nav-cart" data-toggle="collapse" data-target=".navbar-collapse">
+                                            <span className="icon"></span>
+                                        </button>
+                                    </Link>
+                                    <a className="global-nav-link" href={`mycart`}></a>
+                                </li>
+                            </ul>
+                            <AppHeaderSearchMain />
+                            <AppHeaderNavigationMain/>
+                        </div>
+                    </div>
+                </header>
             </div>
         );
     }

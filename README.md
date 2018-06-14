@@ -3,7 +3,7 @@
 Reference storefront demonstrating usage of Cortex in a modern UI progressive web application.
 
 ## Development Quick-Start
-Built with REACT.js and Webpack.
+Built with REACT.js, Bootstrap 4, and Webpack.
 
 ### Pre-req:
 If you haven’t already, you’ll need to install the following software:
