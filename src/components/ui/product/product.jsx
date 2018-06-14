@@ -15,14 +15,15 @@
  *
  *
  */
- 
+
 import React from 'react';
+import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 
 class Product extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: [{ id: 1, name: 'Test', main: {temp: 2} }]
+            products: [{ id: 1, name: 'Test', main: { temp: 2 } }]
         };
     }
     componentDidMount() {
@@ -65,10 +66,11 @@ class Product extends React.Component {
     render() {
         return (
             <div>
+                <AppHeaderMain />
                 <h3>Product List</h3>
                 <br />
-                Product name <input type="text" ref="keyword"/>
-                <input type="button" value="Search" onClick={this.search.bind(this)}/>
+                Product name <input type="text" ref="keyword" />
+                <input type="button" value="Search" onClick={this.search.bind(this)} />
                 <br />
                 <br />
                 <table>

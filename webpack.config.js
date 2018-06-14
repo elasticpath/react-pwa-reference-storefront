@@ -30,14 +30,14 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
   entry: {
-    'app': './src/index.js',
-    'libs': './src/common-imports/libs.js', //specifying bundle with js libraries
-    'styles-custom': './src/common-imports/styles-custom.js', //specifying bundle with custom css files
-    'styles-libs': './src/common-imports/styles-libs.js', //specifying bundle with css libraries
+    'app': './src/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'), //directory for output files
     filename: '[name].js' //using [name] will create a bundle with same file name as source
+  },
+  devServer: {
+    historyApiFallback: true
   },
   module: {
     rules: [

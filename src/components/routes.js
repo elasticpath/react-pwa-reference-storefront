@@ -21,9 +21,21 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Switch } from 'react-router-dom'
 
 import HomePage from './pages/HomePage/HomePage.jsx';
+import CartPage from './pages/CartPage/CartPage.jsx';
+import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage.jsx';
+import EditAddressPage from './pages/EditAddressPage/EditAddressPage.jsx';
+import ItemDetailPage from './pages/ItemDetailPage/ItemDetailPage.jsx';
+import NewAddressPage from './pages/NewAddressPage/NewAddressPage.jsx';
+import NewPaymentPage from './pages/NewPaymentPage/NewPaymentPage.jsx';
+import ProfilePage from './pages/ProfilePage/ProfilePage.jsx';
+import PurchaseHistoryPage from './pages/PurchaseHistoryPage/PurchaseHistoryPage.jsx';
+import PurchaseReceiptPage from './pages/PurchaseReceiptPage/PurchaseReceiptPage.jsx';
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage.jsx';
+import CheckoutAuthPage from './pages/CheckoutAuthPage/CheckoutAuthPage.jsx';
+
 import ProductMain from './ui/product/product.main.jsx';
 import Product from './ui/product/product.jsx';
-
 
 const router = [{
     path: '/',
@@ -31,6 +43,42 @@ const router = [{
 }, {
     path: '/products',
     component: Product,
+}, {
+    path: '/mycart',
+    component: CartPage,
+}, {
+    path: '/category',
+    component: CategoryPage,
+}, {
+    path: '/checkout',
+    component: CheckoutPage,
+}, {
+    path: '/editaddress',
+    component: EditAddressPage,
+}, {
+    path: '/itemdetail',
+    component: ItemDetailPage,
+}, {
+    path: '/newaddressform',
+    component: NewAddressPage,
+}, {
+    path: '/newpaymentform',
+    component: NewPaymentPage,
+}, {
+    path: '/profile',
+    component: ProfilePage,
+}, {
+    path: '/purchaseDetails',
+    component: PurchaseHistoryPage,
+}, {
+    path: '/purchaseReceipt',
+    component: PurchaseReceiptPage,
+}, {
+    path: '/registration',
+    component: RegistrationPage,
+}, {
+    path: '/signIn',
+    component: CheckoutAuthPage,
 }];
 
 export default router;

@@ -15,6 +15,23 @@
  *
  *
  */
- 
-// require('bootstrap/dist/css/bootstrap.css');
-//similarly import other css libraries you need in this bundle
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
+import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
+
+var Config = require('Config')
+// Then use in render: <span>{Config.skuImagesS3Url}</span>
+
+class CartPage extends React.Component {
+    render() {
+        return (
+            <div>
+                <AppHeaderMain />
+            </div>
+        );
+    }
+}
+
+export default CartPage;

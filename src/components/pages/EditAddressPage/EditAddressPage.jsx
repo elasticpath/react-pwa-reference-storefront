@@ -16,7 +16,22 @@
  *
  */
 
-require('../scripts/lib/require.js');
-require('../scripts/lib/underscore.js');
-require('../scripts/lib/base.dependency.config.js');
-//similarly import other js libraries you need in this bundle
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
+import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
+
+var Config = require('Config')
+// Then use in render: <span>{Config.skuImagesS3Url}</span>
+
+class EditAddressPage extends React.Component {
+    render() {
+        return (
+            <div>
+                <AppHeaderMain />
+            </div>
+        );
+    }
+}
+
+export default EditAddressPage;

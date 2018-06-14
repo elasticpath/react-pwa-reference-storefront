@@ -3,7 +3,7 @@
 Reference storefront demonstrating usage of Cortex in a modern UI progressive web application.
 
 ## Development Quick-Start
-Built with REACT.js and Webpack.
+Built with REACT.js, Bootstrap 4, and Webpack.
 
 ### Pre-req:
 If you haven’t already, you’ll need to install the following software:
@@ -25,13 +25,13 @@ Name of store to retreive data from Cortex.
 1. Clone/pull this repo to a directory of your choosing
 2. `cd ep-store`
 3. run `npm install` to install dependencies
-4. Configure `/src/ep.config.json` as required for your environment: [here](#Configuration)
+4. Configure `./src/ep.config.json` as required for your environment: [here](#configuration)
 5. run `npm start` to start the server
 6. navigate to `http://localhost:8080/` to see the running PWA
 
-## Unit Tests (TBD)
+## Unit Tests (TBA)
 * Test json data can be found in `tests`
 * run `npm test` to run tests
 
-## Contribution Guide (TBD)
+## Contribution Guide (TBA)
 * You may contribute to this repo by opening a pull request
