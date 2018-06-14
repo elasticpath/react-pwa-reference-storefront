@@ -37,7 +37,6 @@ import CheckoutAuthPage from './pages/CheckoutAuthPage/CheckoutAuthPage.jsx';
 import ProductMain from './ui/product/product.main.jsx';
 import Product from './ui/product/product.jsx';
 
-
 const router = [{
     path: '/',
     component: HomePage,
@@ -45,40 +44,40 @@ const router = [{
     path: '/products',
     component: Product,
 }, {
-    path: '/#mycart',
+    path: '/mycart',
     component: CartPage,
 }, {
-    path: '/#category',
+    path: '/category',
     component: CategoryPage,
 }, {
-    path: '/#checkout',
+    path: '/checkout',
     component: CheckoutPage,
 }, {
-    path: '/#editaddress',
+    path: '/editaddress',
     component: EditAddressPage,
 }, {
-    path: '/#itemdetail',
+    path: '/itemdetail',
     component: ItemDetailPage,
 }, {
-    path: '/#newaddressform',
+    path: '/newaddressform',
     component: NewAddressPage,
 }, {
-    path: '/#newpaymentform',
+    path: '/newpaymentform',
     component: NewPaymentPage,
 }, {
-    path: '/#profile',
+    path: '/profile',
     component: ProfilePage,
 }, {
-    path: '/#purchaseDetails',
+    path: '/purchaseDetails',
     component: PurchaseHistoryPage,
 }, {
-    path: '/#purchaseReceipt',
+    path: '/purchaseReceipt',
     component: PurchaseReceiptPage,
 }, {
-    path: '/#registration',
+    path: '/registration',
     component: RegistrationPage,
 }, {
-    path: '/#signIn',
+    path: '/signIn',
     component: CheckoutAuthPage,
 }];
 

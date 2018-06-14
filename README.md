@@ -25,7 +25,7 @@ Name of store to retreive data from Cortex.
 1. Clone/pull this repo to a directory of your choosing
 2. `cd ep-store`
 3. run `npm install` to install dependencies
-4. Configure `/src/ep.config.json` as required for your environment: [here](#configuration)
+4. Configure `./src/ep.config.json` as required for your environment: [here](#configuration)
 5. run `npm start` to start the server
 6. navigate to `http://localhost:8080/` to see the running PWA
 
