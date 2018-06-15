@@ -51,6 +51,7 @@ class AppHeaderNavigationMain extends React.Component {
                 this.setState({
                     navigations: res._element
                 });
+                console.log(this.state.navigations);
             })
             .catch(error => {
                 console.log(error)
@@ -60,7 +61,7 @@ class AppHeaderNavigationMain extends React.Component {
         return this.state.navigations.map(category => {
             return (
                 <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
-                    <a href={category.links[1].href} className="nav-item" data-toggle="collapse" data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></a>
+                    <Link to={"/category/"+encodeURIComponent(category.self.href)} className="nav-item" data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
                 </li>
             );
         })
