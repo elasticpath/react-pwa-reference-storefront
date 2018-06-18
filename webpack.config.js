@@ -34,7 +34,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'), //directory for output files
-    filename: '[name].js' //using [name] will create a bundle with same file name as source
+    filename: '[name].js', //using [name] will create a bundle with same file name as source
+    publicPath: '/'
   },
   devServer: {
     historyApiFallback: true

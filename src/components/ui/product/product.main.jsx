@@ -19,27 +19,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import { login } from '../../../utils/AuthService.js';
 
 var Config = require('Config')
 
 // Array of zoom parameters to pass to Cortex
 var zoomArray = [
-    'element'
+    'availability',
+    'addtocartform',
+    'price',
+    'rate',
+    'definition',
+    'definition:assets:element',
+    'code'
 ];
 
-class AppHeaderNavigationMain extends React.Component {
+class ProductMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigations: []
+            productData: undefined,
+            selfHref: this.props.productUrl
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
             login();
         }
-        fetch(Config.cortexApi.path + '/navigations/' + Config.cortexApi.scope + '?zoom=' + zoomArray.join(),
+        fetch(this.props.productUrl + '?zoom=' + zoomArray.join(),
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,41 +55,65 @@ class AppHeaderNavigationMain extends React.Component {
             .then(res => res.json())
             .then(res => {
                 this.setState({
-                    navigations: res._element
+                    productData: res
                 });
             })
             .catch(error => {
                 console.log(error)
             });
     }
-    renderCategories() {
-        return this.state.navigations.map(category => {
-            return (
-                <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
-                    <Link to={"/category/"+encodeURIComponent(category.self.href)} className="nav-item" data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
-                </li>
-            );
-        })
-    }
     render() {
-        return (
-            <div className="main-nav-container" data-region="mainNavRegion" style={{ display: 'block' }}>
-                <div>
-                    <nav className="main-nav">
-                        <button className="btn-main-nav-toggle btn-link-cmd" style={{ display: 'none' }}>
-                            Categories
-                                </button>
-                        <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">
-                            {this.renderCategories()}
-                            <li>
-                                <Link to="/products"><button>Products</button></Link>
+        if (this.state.productData) {
+            var listPrice = "n/a";
+            if (this.state.productData["_price"]) {
+                listPrice = this.state.productData["_price"][0]["purchase-price"][0].display;
+            }
+            var itemPrice = "n/a";
+            if (this.state.productData["_price"]) {
+                itemPrice = this.state.productData["_price"][0]["purchase-price"][0].display;
+            }
+            var availability = "n/a";
+            if (this.state.productData["_availability"].length >= 0) {
+                availability = this.state.productData["_availability"][0].state;
+            }
+            return (
+                <div className="category-item-inner" style={{ minHeight: '292px' }}>
+                    <div className="category-item-thumbnail-container">
+                        <img src={Config.skuImagesS3Url.replace("%sku%", this.state.productData["_code"][0].code)} onError={(e) => { e.target.src = "images/img-placeholder.png" }} alt="default-image" className="category-item-thumbnail img-responsive" title="" />
+                    </div>
+                    <div className="category-item-title" style={{ minHeight: '36px' }}>
+                        <Link to={"/itemdetail/" + encodeURIComponent(this.state.productData.self.href)}>{this.state.productData["_definition"][0]["display-name"]}</Link>
+                    </div>
+                    <div data-region="priceRegion" style={{ display: 'block' }}><div>
+                        <div data-region="itemPriceRegion" style={{ display: 'block' }}><ul className="category-item-price-container" style={{ minHeight: '33px' }}>
+                            <li className="category-item-list-price is-hidden" data-region="itemListPriceRegion">
+                                <label className="item-meta category-item-list-price-label">Original Price</label>
+                                <span className="item-meta category-item-list-price-value">{listPrice}</span>
                             </li>
-                        </ul>
-                    </nav>
+                            <li className="category-item-purchase-price">
+                                <label className="item-meta category-item-purchase-price-label">Price</label>
+                                <span className="item-meta category-item-purchase-price-value">{itemPrice}</span>
+                            </li>
+                        </ul></div>
+                        <div data-region="itemRateRegion"></div>
+                    </div></div>
+                    <div data-region="availabilityRegion" style={{ display: 'block' }}><ul className="category-item-availability-container">
+                        <li className="category-item-availability itemdetail-availability-state" data-i18n="AVAILABLE">
+                            <label><span className="icon"></span>{availability}</label>
+                        </li>
+                        <li className="category-item-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
+                            <label className="item-meta category-item-releaseDate-label">Expected Release Date: </label>
+                            <span className="item-meta category-item-releaseDate-value"></span>
+                        </li>
+                    </ul>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+        else {
+            return (<span>Loading...</span>)
+        }
     }
 }
 
-export default AppHeaderNavigationMain;
+export default ProductMain;
