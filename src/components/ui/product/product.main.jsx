@@ -15,17 +15,75 @@
  *
  *
  */
- 
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Product from './product.jsx';
+import { Link } from 'react-router-dom';
+import { login } from '../../../utils/AuthService.js';
 
-class ProductMain extends React.Component {
+var Config = require('Config')
+
+// Array of zoom parameters to pass to Cortex
+var zoomArray = [
+    'element'
+];
+
+class AppHeaderNavigationMain extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            navigations: []
+        };
+    }
+    componentWillMount() {
+        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
+            login();
+        }
+        fetch(Config.cortexApi.path + '/navigations/' + Config.cortexApi.scope + '?zoom=' + zoomArray.join(),
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                }
+            })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    navigations: res._element
+                });
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+    renderCategories() {
+        return this.state.navigations.map(category => {
+            return (
+                <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
+                    <Link to={"/category/"+encodeURIComponent(category.self.href)} className="nav-item" data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
+                </li>
+            );
+        })
+    }
     render() {
         return (
-            ReactDOM.render(<Product />, document.getElementById('root'))
+            <div className="main-nav-container" data-region="mainNavRegion" style={{ display: 'block' }}>
+                <div>
+                    <nav className="main-nav">
+                        <button className="btn-main-nav-toggle btn-link-cmd" style={{ display: 'none' }}>
+                            Categories
+                                </button>
+                        <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">
+                            {this.renderCategories()}
+                            <li>
+                                <Link to="/products"><button>Products</button></Link>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         );
     }
 }
 
-export default ProductMain;
+export default AppHeaderNavigationMain;

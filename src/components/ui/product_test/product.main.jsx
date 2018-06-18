@@ -15,25 +15,17 @@
  *
  *
  */
-
+ 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
-import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
-import ProductListMain from '../../ui/productlist/productlist.main.jsx';
+import Product from './product.jsx';
 
-var Config = require('Config')
-// Then use in render: <span>{Config.skuImagesS3Url}</span>
-
-class CategoryPage extends React.Component {
+class ProductMain extends React.Component {
     render() {
         return (
-            <div>
-                <AppHeaderMain />
-                <ProductListMain />
-            </div>
+            ReactDOM.render(<Product />, document.getElementById('root'))
         );
     }
 }
 
-export default CategoryPage;
+export default ProductMain;
