@@ -43,7 +43,6 @@ class ProductListMain extends React.Component {
             selfHref: this.props.categoryUrl
         };
     }
-
     fetchData(categoryUrl) {
         if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
             login();
@@ -66,17 +65,14 @@ class ProductListMain extends React.Component {
                 console.log(error)
         });
     }
-
     componentDidUpdate(prevProps) {
         if (this.state.selfHref !== this.props.categoryUrl) {
             this.fetchData(this.props.categoryUrl);
         }
-    }
-      
+    } 
     componentDidMount() {
         this.fetchData(this.props.categoryUrl);
     }
-
     renderProducts() {
         return this.state.categoryModel["_items"][0].links.map(product => {
             return (
@@ -86,7 +82,6 @@ class ProductListMain extends React.Component {
             );
         })
     }
-    
     render() {
         if(this.state.categoryModel._items.length > 0) {
         return (

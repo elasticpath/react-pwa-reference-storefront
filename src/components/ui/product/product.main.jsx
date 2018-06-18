@@ -63,7 +63,6 @@ class ProductMain extends React.Component {
             });
     }
     render() {
-        console.log(this.state.productData);
         if (this.state.productData) {
             var listPrice = "n/a";
             if (this.state.productData["_price"]) {

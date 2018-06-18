@@ -35,7 +35,7 @@ class AppHeaderNavigationMain extends React.Component {
             navigations: []
         };
     }
-    componentWillMount() {
+    fetchData() {
         if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
             login();
         }
@@ -56,11 +56,14 @@ class AppHeaderNavigationMain extends React.Component {
                 console.log(error)
             });
     }
+    componentWillMount() {
+        this.fetchData();
+    }
     renderCategories() {
         return this.state.navigations.map(category => {
             return (
                 <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
-                    <Link to={"/category/"+encodeURIComponent(category.self.href)} className="nav-item" data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
+                    <Link to={"/category/" + encodeURIComponent(category.self.href)} className="nav-item" data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
                 </li>
             );
         })
