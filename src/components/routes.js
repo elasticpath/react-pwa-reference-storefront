@@ -35,7 +35,7 @@ import RegistrationPage from './pages/RegistrationPage/RegistrationPage.jsx';
 import CheckoutAuthPage from './pages/CheckoutAuthPage/CheckoutAuthPage.jsx';
 
 import ProductMain from './ui/product/product.main.jsx';
-import Product from './ui/product/product.jsx';
+import Product from './ui/product_test/product.jsx';
 
 const router = [{
     path: '/',

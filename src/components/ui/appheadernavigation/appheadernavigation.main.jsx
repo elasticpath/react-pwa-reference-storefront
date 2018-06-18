@@ -51,7 +51,6 @@ class AppHeaderNavigationMain extends React.Component {
                 this.setState({
                     navigations: res._element
                 });
-                console.log(this.state.navigations);
             })
             .catch(error => {
                 console.log(error)
