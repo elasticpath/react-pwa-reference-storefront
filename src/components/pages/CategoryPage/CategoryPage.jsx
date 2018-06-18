@@ -30,7 +30,7 @@ class CategoryPage extends React.Component {
         return (
             <div>
                 <AppHeaderMain />
-                <ProductListMain />
+                <ProductListMain categoryUrl={decodeURIComponent(this.props.match.params.url)} />
             </div>
         );
     }

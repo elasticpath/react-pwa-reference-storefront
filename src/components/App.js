@@ -21,8 +21,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import './App.css';
 
-import ProductMain from './ui/product/product.main.jsx';
-import Product from './ui/product/product.jsx';
+import ProductMain from './ui/product_test/product.main.jsx';
+import Product from './ui/product_test/product.jsx';
 
 import router from './routes'
 
