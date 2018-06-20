@@ -35,15 +35,9 @@ import RegistrationPage from './pages/RegistrationPage/RegistrationPage.jsx';
 import CheckoutAuthPage from './pages/CheckoutAuthPage/CheckoutAuthPage.jsx';
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage.jsx';
 
-import ProductMain from './ui/product/product.main.jsx';
-import Product from './ui/product_test/product.jsx';
-
 const router = [{
     path: '/',
     component: HomePage,
-}, {
-    path: '/products',
-    component: Product,
 }, {
     path: '/mycart',
     component: CartPage,
