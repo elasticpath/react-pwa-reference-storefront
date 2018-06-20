@@ -78,9 +78,6 @@ class AppHeaderNavigationMain extends React.Component {
                                 </button>
                         <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">
                             {this.renderCategories()}
-                            <li>
-                                <Link to="/products"><button>Products</button></Link>
-                            </li>
                         </ul>
                     </nav>
                 </div>
