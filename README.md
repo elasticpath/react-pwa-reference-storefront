@@ -35,3 +35,7 @@ Name of store to retreive data from Cortex.
 
 ## Contribution Guide (TBA)
 * You may contribute to this repo by opening a pull request
+
+## License
+[EP Labs License](https://github.com/shaunmaharaj/ep-store/blob/master/EP_LICENSE)<br/>
+[Apache License](https://github.com/shaunmaharaj/ep-store/blob/master/LICENSE)
