@@ -33,7 +33,7 @@ var zoomArray = [
     'code'
 ];
 
-class ProductMain extends React.Component {
+class ProductListItemMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -116,4 +116,4 @@ class ProductMain extends React.Component {
     }
 }
 
-export default ProductMain;
+export default ProductListItemMain;

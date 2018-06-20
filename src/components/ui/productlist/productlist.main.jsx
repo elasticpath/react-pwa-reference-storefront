@@ -20,7 +20,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
-import ProductMain from '../product/product.main.jsx';
+import ProductListItemMain from '../productlistitem/productlistitem.main.jsx';
 
 var Config = require('Config')
 
@@ -65,19 +65,50 @@ class ProductListMain extends React.Component {
                 console.log(error)
         });
     }
+    fetchSearchData(event) {
+        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
+            login();
+        }
+        fetch(Config.cortexApi.path + '/searches/' + Config.cortexApi.scope + '/keywords/form',
+            {
+                method: 'post',
+                headers: {
+                    'Access-Control-Expose-Headers': 'Location',
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                },
+                body: JSON.stringify({
+                    keywords: this.state.keywords
+                })
+            })
+            .then(res => {
+                console.log(res.headers.get('Location'));
+                this.props.history.push('/search/' + this.props.match.params.searchKeywords);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        event.preventDefault();
+    }
     componentDidUpdate(prevProps) {
         if (this.state.selfHref !== this.props.categoryUrl) {
             this.fetchData(this.props.categoryUrl);
         }
     } 
     componentDidMount() {
-        this.fetchData(this.props.categoryUrl);
+        console.log(this.props.categoryUrl);
+        if(this.props.categoryUrl) {
+            this.fetchData(this.props.categoryUrl);
+        }
+        else if (this.props.searchKeyword) {
+            this.fetchSearchData(this.props.searchKeyword);
+        }
     }
     renderProducts() {
         return this.state.categoryModel["_items"][0].links.map(product => {
             return (
                 <li key={'_' + Math.random().toString(36).substr(2, 9)} className="category-item-container">
-                    <ProductMain productUrl={product.href}/>
+                    <ProductListItemMain productUrl={product.href}/>
                 </li>
             );
         })

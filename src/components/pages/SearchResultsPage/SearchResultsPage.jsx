@@ -20,18 +20,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
+import ProductListMain from '../../ui/productlist/productlist.main.jsx';
 
 var Config = require('Config')
 // Then use in render: <span>{Config.skuImagesS3Url}</span>
 
-class ItemDetailPage extends React.Component {
+class SearchResultsPage extends React.Component {
     render() {
         return (
             <div>
                 <AppHeaderMain />
+                <ProductListMain searchKeywords={decodeURIComponent(this.props.match.params.url)} />
             </div>
         );
     }
 }
 
-export default ItemDetailPage;
+export default SearchResultsPage;

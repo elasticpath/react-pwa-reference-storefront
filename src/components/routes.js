@@ -25,7 +25,7 @@ import CartPage from './pages/CartPage/CartPage.jsx';
 import CategoryPage from './pages/CategoryPage/CategoryPage.jsx';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage.jsx';
 import EditAddressPage from './pages/EditAddressPage/EditAddressPage.jsx';
-import ItemDetailPage from './pages/ItemDetailPage/ItemDetailPage.jsx';
+import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage.jsx';
 import NewAddressPage from './pages/NewAddressPage/NewAddressPage.jsx';
 import NewPaymentPage from './pages/NewPaymentPage/NewPaymentPage.jsx';
 import ProfilePage from './pages/ProfilePage/ProfilePage.jsx';
@@ -33,6 +33,7 @@ import PurchaseHistoryPage from './pages/PurchaseHistoryPage/PurchaseHistoryPage
 import PurchaseReceiptPage from './pages/PurchaseReceiptPage/PurchaseReceiptPage.jsx';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage.jsx';
 import CheckoutAuthPage from './pages/CheckoutAuthPage/CheckoutAuthPage.jsx';
+import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage.jsx';
 
 import ProductMain from './ui/product/product.main.jsx';
 import Product from './ui/product_test/product.jsx';
@@ -60,8 +61,11 @@ const router = [{
     component: EditAddressPage,
 }, {
     path: '/itemdetail',
-    component: ItemDetailPage,
+    component: ProductDetailPage,
 }, {
+    path: '/itemdetail/:url',
+    component: ProductDetailPage,
+},{
     path: '/newaddressform',
     component: NewAddressPage,
 }, {
@@ -82,6 +86,12 @@ const router = [{
 }, {
     path: '/signIn',
     component: CheckoutAuthPage,
+}, {
+    path: '/search',
+    component: SearchResultsPage,
+}, {
+    path: '/search/:keywords',
+    component: SearchResultsPage,
 }];
 
 export default router;
