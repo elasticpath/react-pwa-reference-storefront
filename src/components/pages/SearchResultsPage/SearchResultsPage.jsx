@@ -20,7 +20,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
-import ProductListMain from '../../ui/productlist/productlist.main.jsx';
+import ProductListSearchResultsMain from '../../ui/productlistsearchresults/productlistsearchresults.main.jsx';
 
 var Config = require('Config')
 // Then use in render: <span>{Config.skuImagesS3Url}</span>
@@ -30,7 +30,7 @@ class SearchResultsPage extends React.Component {
         return (
             <div>
                 <AppHeaderMain />
-                <ProductListMain searchKeywords={decodeURIComponent(this.props.match.params.url)} />
+                <ProductListSearchResultsMain searchKeywords={decodeURIComponent(this.props.match.params.keywords)} />
             </div>
         );
     }

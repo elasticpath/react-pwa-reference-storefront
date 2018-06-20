@@ -35,19 +35,20 @@ var zoomArray = [
     'element:code'
 ];
 
-class ProductListMain extends React.Component {
+class ProductListSearchResultsMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categoryModel: { _items: []},
-            selfHref: this.props.categoryUrl
+            searchResultsModel: {},
+            searchResultsUrl: this.props.searchResultsUrl,
+            searchKeywords: this.props.searchKeywords
         };
     }
-    fetchData(categoryUrl) {
+    fetchData(searchResultsUrl) {
         if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
             login();
         }
-        fetch(this.props.categoryUrl + '?zoom=items',
+        fetch(searchResultsUrl + '?zoom=' + zoomArray.join(),
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,24 +58,49 @@ class ProductListMain extends React.Component {
             .then(res => res.json())
             .then(res => {
                 this.setState({
-                    selfHref: this.props.categoryUrl,
-                    categoryModel: res
+                    searchResultsUrl: searchResultsUrl,
+                    searchResultsModel: res
                 });
             })
             .catch(error => {
                 console.log(error)
         });
     }
+    fetchSearchData(event) {
+        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
+            login();
+        }
+        fetch(Config.cortexApi.path + '/searches/' + Config.cortexApi.scope + '/keywords/form?followlocation',
+            {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                },
+                body: JSON.stringify({
+                    keywords: this.props.searchKeywords
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                this.fetchData(res.self.href);
+                this.props.history.push('/search/' + this.props.searchKeywords);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
     componentDidUpdate(prevProps) {
-        if (this.state.selfHref !== this.props.categoryUrl) {
-            this.fetchData(this.props.categoryUrl);
+        if (this.state.searchKeywords !== this.props.searchKeywords) {
+            this.fetchSearchData(this.props.searchKeywords);
         }
     } 
     componentDidMount() {
-        this.fetchData(this.props.categoryUrl);
+        this.fetchSearchData(this.props.searchKeywords);
     }
     renderProducts() {
-        return this.state.categoryModel["_items"][0].links.map(product => {
+        return this.state.searchResultsModel.links.map(product => {
             return (
                 <li key={'_' + Math.random().toString(36).substr(2, 9)} className="category-item-container">
                     <ProductListItemMain productUrl={product.href}/>
@@ -83,17 +109,17 @@ class ProductListMain extends React.Component {
         })
     }
     render() {
-        if(this.state.categoryModel._items.length > 0) {
+        if(this.state.searchResultsModel.links) {
         return (
             <div className="category-items-container container">
     <div data-region="categoryTitleRegion" style={{ display: 'block' }}><div>
-        <h1 className="view-title">{this.state.categoryModel["display-name"]}</h1>
+        <h1 className="view-title">{this.state.searchResultsModel["display-name"]}</h1>
     </div></div>
     <div data-region="categoryPaginationTopRegion" style={{ display: 'block' }}><div className="pagination-container">
         <div className="paging-total-results">
-            <span className="pagination-value pagination-total-results-value">{this.state.categoryModel["_items"][0].pagination.results}</span>
+            <span className="pagination-value pagination-total-results-value">{this.state.searchResultsModel.pagination.results}</span>
             <label className="pagination-label pagination-total-results-label">results</label>
-            ( <span className="pagination-value pagination-results-displayed-value">{this.state.categoryModel["_items"][0].pagination["results-on-page"]}</span>
+            ( <span className="pagination-value pagination-results-displayed-value">{this.state.searchResultsModel.pagination["results-on-page"]}</span>
             <label className="pagination-label">results on page</label> )
       
     </div>
@@ -102,9 +128,9 @@ class ProductListMain extends React.Component {
             <a className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" data-i18n="category.prev"> <span className="icon"></span>Previous</a>
             <span className="pagestate-summary">
                 <label className="pagination-label">page</label>
-                <span className="pagination-value pagination-curr-page-value">{this.state.categoryModel["_items"][0].pagination.current}</span>
+                <span className="pagination-value pagination-curr-page-value">{this.state.searchResultsModel.pagination.current}</span>
                 <label className="pagination-label">of</label>
-                <span className="pagination-value pagination-total-pages-value">{this.state.categoryModel["_items"][0].pagination.pages}</span>
+                <span className="pagination-value pagination-total-pages-value">{this.state.searchResultsModel.pagination.pages}</span>
 
             </span>
 
@@ -118,9 +144,9 @@ class ProductListMain extends React.Component {
     </div>
     <div data-region="categoryPaginationBottomRegion" style={{ display: 'block' }}><div className="pagination-container">
         <div className="paging-total-results">
-            <span className="pagination-value pagination-total-results-value">{this.state.categoryModel["_items"][0].pagination.results}</span>
+            <span className="pagination-value pagination-total-results-value">{this.state.searchResultsModel.pagination.results}</span>
             <label className="pagination-label pagination-total-results-label">results</label>
-            ( <span className="pagination-value pagination-results-displayed-value">{this.state.categoryModel["_items"][0].pagination["results-on-page"]}</span>
+            ( <span className="pagination-value pagination-results-displayed-value">{this.state.searchResultsModel.pagination["results-on-page"]}</span>
             <label className="pagination-label">results on page</label> )
       
     </div>
@@ -129,9 +155,9 @@ class ProductListMain extends React.Component {
             <a className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" data-i18n="category.prev"> <span className="icon"></span>Previous</a>
             <span className="pagestate-summary">
                 <label className="pagination-label">page</label>
-                <span className="pagination-value pagination-curr-page-value">{this.state.categoryModel["_items"][0].pagination.current}</span>
+                <span className="pagination-value pagination-curr-page-value">{this.state.searchResultsModel.pagination.current}</span>
                 <label className="pagination-label">of</label>
-                <span className="pagination-value pagination-total-pages-value">{this.state.categoryModel["_items"][0].pagination.pages}</span>
+                <span className="pagination-value pagination-total-pages-value">{this.state.searchResultsModel.pagination.pages}</span>
 
             </span>
 
@@ -145,4 +171,4 @@ else {
     }
 }
 
-export default ProductListMain;
+export default ProductListSearchResultsMain;
