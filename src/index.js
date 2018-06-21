@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App.js';
 
 // Import custom required styles
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './style/style.css';
 
 // Import custom required scripts

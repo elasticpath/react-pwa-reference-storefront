@@ -6301,6 +6301,7 @@ fieldset[disabled] .btn-auth-login.active {
 }
 .navbar.navbar-inverse .navbar-nav {
   border: 0;
+  flex-direction: inherit;
 }
 .navbar.navbar-inverse .navbar-nav .active a {
   background: rgba(0, 125, 170, 0.667);
@@ -6961,6 +6962,7 @@ textarea.header-search-input {
 }
 .appheader-container {
   position: relative;
+  display: block !important;
 }
 nav.main-nav {
   position: relative;
