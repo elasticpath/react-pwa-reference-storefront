@@ -9691,3 +9691,8 @@ ul {
     line-height: 21px;
   }
 }
+@media (min-width: 576px) {
+  .container {
+    max-width: 100%;
+  }
+}
