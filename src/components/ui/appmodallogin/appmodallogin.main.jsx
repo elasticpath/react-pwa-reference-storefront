@@ -48,6 +48,9 @@ class AppModalLoginMain extends React.Component {
                 if (res_status === 401) {
                     this.setState({ failedLogin: true });
                 }
+                if (res_status === 400) {
+                    this.setState({ failedLogin: true });
+                }
                 else if (res_status === 200) {
                     this.setState({ failedLogin: false });
                     document.getElementById("closeLoginModal").click();

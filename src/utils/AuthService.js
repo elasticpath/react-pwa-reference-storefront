@@ -94,6 +94,9 @@ export function loginRegistered(username, password) {
                 if (res.status === 401) {
                     resolve(401);
                 }
+                if (res.status === 400) {
+                    resolve(400);
+                }
                 else if (res.status === 200) {
                     return res.json();
                 }

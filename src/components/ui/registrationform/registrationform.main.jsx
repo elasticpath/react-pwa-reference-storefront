@@ -80,25 +80,39 @@ class RegistrationFormMain extends React.Component {
     }
     registerNewUser(event) {
         login().then(() => {
-            event.preventDefault();
-            fetch(Config.cortexApi.path + '/registrations/' + Config.cortexApi.scope + '/newaccount/form?followlocation', {
+            // event.preventDefault();
+            fetch(Config.cortexApi.path + '/registrations/' + Config.cortexApi.scope + '/newaccount/form', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
                 },
                 body: JSON.stringify({ 'family-name': this.state.lastname, 'given-name': this.state.firstname, 'username': this.state.username, 'password': this.state.password })
-            }).then(res => res.json())
-                .then(res => {
+            }).then(res => {
+                if (res.status === 409) {
+                    resolve(409);
+                }
+                if (res.status === 400) {
+                    resolve(400);
+                }
+                else if (res.status === 201) {
                     if (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'PUBLIC') {
-                        loginRegistered(this.state.username, this.state.password);
+                        loginRegistered(this.state.username, this.state.password).then(res_status => {
+                            if (res_status === 401) {
+                                this.setState({ failedLogin: true });
+                            }
+                            if (res_status === 400) {
+                                this.setState({ failedLogin: true });
+                            }
+                            else if (res_status === 200) {
+                                this.props.history.push('/');
+                            }
+                        });
                     }
-                    this.props.history.push('/');
-                    // event.preventDefault();
-                })
-                .catch(error => {
-                    console.log(error)
-                });
+                }
+            }).catch(error => {
+                console.log(error)
+            });
         });
     }
     render() {
@@ -109,7 +123,7 @@ class RegistrationFormMain extends React.Component {
                 <div className="feedback-label registration-form-feedback-container" data-region="registrationFeedbackMsgRegion"></div>
 
                 <div data-region="registrationFormRegion" style={{ display: 'block' }}><div className="container">
-                    <form role="form" onSubmit={this.registerNewUser} className="form-horizontal">
+                    <form className="form-horizontal">
                         <div className="form-group">
                             <label data-el-label="registrationForm.firstName" className="control-label registration-form-label">
                                 <span className="required-label">*</span> First Name
@@ -151,7 +165,7 @@ class RegistrationFormMain extends React.Component {
                             </div>
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary registration-save-btn" type="submit">Submit</button>
+                            <input className="btn btn-primary registration-save-btn" data-cmd="register" type="button" onClick={this.registerNewUser} value="Submit"></input>
                         </div>
                     </form>
                 </div></div>
