@@ -19,6 +19,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import { login } from '../../../utils/AuthService.js';
 import { withRouter } from 'react-router';
 
 var Config = require('Config')
@@ -35,51 +36,49 @@ class ProductDisplayItemMain extends React.Component {
         this.addToCart = this.addToCart.bind(this);
     }
     componentDidMount() {
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
-        }
-        fetch(this.props.productUrl,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                }
-            })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    productData: res
+        login().then(() => {
+            fetch(this.props.productUrl,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        productData: res
+                    });
+                })
+                .catch(error => {
+                    console.log(error)
                 });
-            })
-            .catch(error => {
-                console.log(error)
-            });
+        });
     }
     handleQuantityChange(event) {
         this.setState({ quantity: parseInt(event.target.value) });
     }
     addToCart(event) {
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
-        }
-        fetch(this.state.productData["_addtocartform"][0].self.href,
-            {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                },
-                body: JSON.stringify({
-                    quantity: this.state.quantity
+        login().then(() => {
+            fetch(this.state.productData["_addtocartform"][0].self.href,
+                {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                    },
+                    body: JSON.stringify({
+                        quantity: this.state.quantity
+                    })
                 })
-            })
-            .then(res => {
-                this.props.history.push('/mycart');
-            })
-            .catch(error => {
-                console.log(error)
-            });
-        event.preventDefault();
+                .then(res => {
+                    this.props.history.push('/mycart');
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+            event.preventDefault();
+        });
     }
     render() {
         if (this.state.productData) {

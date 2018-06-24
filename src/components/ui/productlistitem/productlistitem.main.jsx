@@ -19,6 +19,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import { login } from '../../../utils/AuthService.js';
 
 var Config = require('Config')
 
@@ -42,25 +43,24 @@ class ProductListItemMain extends React.Component {
         };
     }
     componentDidMount() {
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
-        }
-        fetch(this.props.productUrl + '?zoom=' + zoomArray.join(),
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                }
-            })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    productData: res
+        login().then(() => {
+            fetch(this.props.productUrl + '?zoom=' + zoomArray.join(),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        productData: res
+                    });
+                })
+                .catch(error => {
+                    console.log(error)
                 });
-            })
-            .catch(error => {
-                console.log(error)
-            });
+        });
     }
     render() {
         if (this.state.productData) {

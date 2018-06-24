@@ -19,6 +19,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import { login } from '../../../utils/AuthService.js';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 
 var Config = require('Config')
@@ -51,26 +52,25 @@ class CartPage extends React.Component {
         };
     }
     componentDidMount() {
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
-        }
-        fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(),
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                }
-            })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    cartData: res
+        login().then(() => {
+            fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        cartData: res
+                    });
+                    console.log(this.state.cartData);
+                })
+                .catch(error => {
+                    console.log(error)
                 });
-                console.log(this.state.cartData);
-            })
-            .catch(error => {
-                console.log(error)
-            });
+        });
     }
     render() {
         if (this.state.cartData) {

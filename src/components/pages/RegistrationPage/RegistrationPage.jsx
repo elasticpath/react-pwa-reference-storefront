@@ -20,6 +20,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
+import RegistrationFormMain from '../../ui/registrationform/registrationform.main.jsx';
 
 var Config = require('Config')
 // Then use in render: <span>{Config.skuImagesS3Url}</span>
@@ -29,6 +30,7 @@ class RegistrationPage extends React.Component {
         return (
             <div>
                 <AppHeaderMain />
+                <RegistrationFormMain />
             </div>
         );
     }
