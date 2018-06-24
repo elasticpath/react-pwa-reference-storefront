@@ -30,6 +30,7 @@ class AppHeaderLoginMain extends React.Component {
         logout().then(() => {
             login().then(() => {
                 this.props.history.push('/');
+                window.location.reload();
             })
         });
         event.preventDefault();
@@ -68,7 +69,7 @@ class AppHeaderLoginMain extends React.Component {
                 <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
                     <div className="auth-container">
                         <div className="auth-container">
-                            <button className="global-nav-link global-nav-login btn-auth-menu" data-toggle="modal" data-target="#login-modal" data-i18n="" data-el-label="global.profile">
+                            <button className="global-nav-link global-nav-login btn-auth-menu" data-toggle="modal" data-target="#login-modal">
                                 Login
                             </button>
                             <div data-region="authMainRegion" className="auth-nav-container"></div>

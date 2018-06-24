@@ -92,7 +92,7 @@ export function loginRegistered(username, password) {
                 body: user_formBody_string
             }).then(res => {
                 if (res.status === 401) {
-                    resolve(res);
+                    resolve(401);
                 }
                 else if (res.status === 200) {
                     return res.json();
@@ -102,7 +102,7 @@ export function loginRegistered(username, password) {
                 localStorage.setItem(Config.cortexApi.scope + '_oAuthScope', res.scope);
                 localStorage.setItem(Config.cortexApi.scope + '_oAuthToken', 'Bearer ' + res.access_token);
                 localStorage.setItem(Config.cortexApi.scope + '_oAuthUserName', registered_user_details['username']);
-                resolve(res);
+                resolve(200);
             }).catch(error => {
                 console.log(error)
                 reject(error);
