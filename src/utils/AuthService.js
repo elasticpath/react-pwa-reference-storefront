@@ -57,8 +57,7 @@ export function login() {
                     localStorage.setItem(Config.cortexApi.scope + '_oAuthToken', 'Bearer ' + res.access_token);
                     localStorage.setItem(Config.cortexApi.scope + '_oAuthUserName', public_user_details['username']);
                     resolve(res);
-                })
-                .catch(error => {
+                }).catch(error => {
                     console.log(error)
                     reject(error);
                 });
@@ -91,18 +90,23 @@ export function loginRegistered(username, password) {
                     'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
                 },
                 body: user_formBody_string
-            }).then(res => res.json())
-                .then(res => {
-                    localStorage.setItem(Config.cortexApi.scope + '_oAuthRole', res.role);
-                    localStorage.setItem(Config.cortexApi.scope + '_oAuthScope', res.scope);
-                    localStorage.setItem(Config.cortexApi.scope + '_oAuthToken', 'Bearer ' + res.access_token);
-                    localStorage.setItem(Config.cortexApi.scope + '_oAuthUserName', registered_user_details['username']);
+            }).then(res => {
+                if (res.status === 401) {
                     resolve(res);
-                })
-                .catch(error => {
-                    console.log(error)
-                    reject(error);
-                });
+                }
+                else if (res.status === 200) {
+                    return res.json();
+                }
+            }).then(res => {
+                localStorage.setItem(Config.cortexApi.scope + '_oAuthRole', res.role);
+                localStorage.setItem(Config.cortexApi.scope + '_oAuthScope', res.scope);
+                localStorage.setItem(Config.cortexApi.scope + '_oAuthToken', 'Bearer ' + res.access_token);
+                localStorage.setItem(Config.cortexApi.scope + '_oAuthUserName', registered_user_details['username']);
+                resolve(res);
+            }).catch(error => {
+                console.log(error)
+                reject(error);
+            });
         }
         else {
             resolve(user_formBody_string);
@@ -121,10 +125,9 @@ export function logout() {
             localStorage.removeItem(Config.cortexApi.scope + '_oAuthToken');
             localStorage.removeItem(Config.cortexApi.scope + '_oAuthUserName');
             resolve(res);
-        })
-            .catch(error => {
-                console.log(error)
-                reject(error);
-            });
+        }).catch(error => {
+            console.log(error)
+            reject(error);
+        });
     });
 }

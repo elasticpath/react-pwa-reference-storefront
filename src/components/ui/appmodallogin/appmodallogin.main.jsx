@@ -29,7 +29,8 @@ class AppModalLoginMain extends React.Component {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            failedLogin: false
         };
         this.setUsername = this.setUsername.bind(this);
         this.setPassword = this.setPassword.bind(this);
@@ -43,13 +44,17 @@ class AppModalLoginMain extends React.Component {
     }
     loginRegisteredUser(event) {
         if (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'PUBLIC') {
-            loginRegistered(this.state.username, this.state.password).then(() => {
-                document.getElementById("closeLoginModal").click();
-                this.props.history.push('/');
-                // event.preventDefault();
+            loginRegistered(this.state.username, this.state.password).then(res => {
+                if (res.status === 401) {
+                    this.setState({ failedLogin: true });
+                }
+                else if (res.status === 200) {
+                    console.log(res);
+                    this.setState({ failedLogin: false });
+                    document.getElementById("closeLoginModal").click();
+                    this.props.history.push('/');
+                }
             });
-            // document.getElementById("closeLoginModal").click();
-            // this.props.history.push('/');
             event.preventDefault();
         }
     }
@@ -69,7 +74,7 @@ class AppModalLoginMain extends React.Component {
                             <button type="button" id="closeLoginModal" className="close" data-dismiss="modal">&times;</button>
                         </div>
 
-                        <div className="auth-feedback-container" data-region="authLoginFormFeedbackRegion" data-i18n=""></div>
+                        <div className="auth-feedback-container" data-region="authLoginFormFeedbackRegion" data-i18n="">{this.state.failedLogin ? ('Your username or password is invalid.') : ('')}</div>
 
                         <div className="modal-body">
                             <form ref="form" onSubmit={this.loginRegisteredUser}>
