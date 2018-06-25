@@ -113,7 +113,7 @@ class ProductListMain extends React.Component {
     </div>
 
         <div className="pagination-navigation-container">
-            <a className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" data-i18n="category.prev"> <span className="icon"></span>Previous</a>
+            <a className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_top_link" data-i18n="category.prev"> <span className="icon"></span>Previous</a>
             <span className="pagestate-summary">
                 <label className="pagination-label">page</label>
                 <span className="pagination-value pagination-curr-page-value">{this.state.categoryModel["_items"][0].pagination.current}</span>
@@ -122,11 +122,11 @@ class ProductListMain extends React.Component {
 
             </span>
 
-            <a className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" data-i18n="category.next">Next<span className="icon"></span></a>
+            <a className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_top_link" data-i18n="category.next">Next<span className="icon"></span></a>
         </div>
     </div></div>
     <div data-region="categoryBrowseRegion" style={{ display: 'block' }}>
-    <ul className="category-items-listing equalize">
+    <ul className="category-items-listing equalize" id="category_items_listing">
         {this.renderProducts()}
     </ul>
     </div>
@@ -140,7 +140,7 @@ class ProductListMain extends React.Component {
     </div>
 
         <div className="pagination-navigation-container">
-            <a className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" data-i18n="category.prev"> <span className="icon"></span>Previous</a>
+            <a className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_bottom_link" data-i18n="category.prev"> <span className="icon"></span>Previous</a>
             <span className="pagestate-summary">
                 <label className="pagination-label">page</label>
                 <span className="pagination-value pagination-curr-page-value">{this.state.categoryModel["_items"][0].pagination.current}</span>
@@ -149,7 +149,7 @@ class ProductListMain extends React.Component {
 
             </span>
 
-            <a className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" data-i18n="category.next">Next<span className="icon"></span></a>
+            <a className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_bottom_link" data-i18n="category.next">Next<span className="icon"></span></a>
         </div>
     </div></div>
 </div>);}

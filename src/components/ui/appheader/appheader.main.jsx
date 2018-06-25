@@ -34,26 +34,26 @@ class AppHeaderMain extends React.Component {
                 <header className="app-header navbar navbar -fixed-top navbar-inverse" data-region="appHeader" style={{ display: 'block' }}>
                     <div className="container appheader-container">
                         <div className="back-button-container" style={{ display: 'block' }}><div>
-                            <button type="button" className="navbar-back" data-region="backButtonRegion" data-el-label="navigation.back" onClick={this.goBack}>
+                            <button type="button" id="header_mobile_back_button" className="navbar-back" data-region="backButtonRegion" data-el-label="navigation.back" onClick={this.goBack}>
                                 <span className="icon"></span>
                             </button>
                         </div></div>
                         <div className="logo-container" style={{ display: 'block' }}>
                             <div>
-                                <a href={`/`} className="cmd-home-logo">
+                                <a href={`/`} className="cmd-home-logo" id="header_home_logo_link">
                                     <img src={require('../../images/Company-Logo-v1.png')} />
                                 </a>
                             </div>
                         </div>
-                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" className="navbar-toggle" id="header_mobile_navbar_collapse_button" data-toggle="collapse" data-target=".navbar-collapse">
                             <span className="icon"></span>
                         </button>
                         <div className="collapse navbar-collapse">
-                            <ul className="global-nav-container btn-group">
+                            <ul className="global-nav-container btn-group" id="header_navbar_container">
                                 <AppHeaderLoginMain />
                                 <li className="global-nav-cart-nav">
                                     <Link to="/mycart">
-                                        <button className="global-nav-link global-nav-cart" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" data-toggle="collapse" data-target=".navbar-collapse">
                                             <span className="icon"></span>
                                         </button>
                                     </Link>
