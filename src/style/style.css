@@ -9616,6 +9616,9 @@ ul {
 .feedback-label {
   color: #ff0000;
 }
+.feedback-display-linebreak {
+  white-space: pre-line;
+}
 .required-label {
   color: red;
   font-size: 16px;

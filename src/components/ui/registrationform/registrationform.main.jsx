@@ -21,6 +21,8 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import { loginRegistered } from '../../../utils/AuthService.js';
+import { getRegistrationForm } from '../../../utils/AuthService.js';
+import { registerUser } from '../../../utils/AuthService.js';
 import { withRouter } from 'react-router';
 
 var Config = require('Config')
@@ -34,7 +36,10 @@ class RegistrationFormMain extends React.Component {
             username: "",
             password: "",
             passwordConfirmation: "",
-            registrationURL: ""
+            registrationURL: "",
+            failedLogin: false,
+            failedRegistration: false,
+            registrationErrors: ''
         };
         this.setFirstName = this.setFirstName.bind(this);
         this.setLastName = this.setLastName.bind(this);
@@ -45,22 +50,11 @@ class RegistrationFormMain extends React.Component {
     }
     componentDidMount() {
         login().then(() => {
-            fetch(Config.cortexApi.path + '/registrations/' + Config.cortexApi.scope + '/newaccount/form',
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                    }
-                })
-                .then(res => res.json())
-                .then(res => {
-                    this.setState({
-                        registrationURL: res.self.href
-                    });
-                })
-                .catch(error => {
-                    console.log(error)
+            getRegistrationForm().then(res_self_href => {
+                this.setState({
+                    registrationURL: res_self_href
                 });
+            });
         });
     }
     setFirstName(event) {
@@ -80,22 +74,9 @@ class RegistrationFormMain extends React.Component {
     }
     registerNewUser(event) {
         login().then(() => {
-            // event.preventDefault();
-            fetch(Config.cortexApi.path + '/registrations/' + Config.cortexApi.scope + '/newaccount/form', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                },
-                body: JSON.stringify({ 'family-name': this.state.lastname, 'given-name': this.state.firstname, 'username': this.state.username, 'password': this.state.password })
-            }).then(res => {
-                if (res.status === 409) {
-                    resolve(409);
-                }
-                if (res.status === 400) {
-                    resolve(400);
-                }
-                else if (res.status === 201) {
+            registerUser(this.state.lastname, this.state.firstname, this.state.username, this.state.password).then(res => {
+                if (res.status === 201) {
+                    this.setState({ failedRegistration: false });
                     if (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'PUBLIC') {
                         loginRegistered(this.state.username, this.state.password).then(res_status => {
                             if (res_status === 401) {
@@ -110,8 +91,15 @@ class RegistrationFormMain extends React.Component {
                         });
                     }
                 }
-            }).catch(error => {
-                console.log(error)
+                else {
+                    this.setState({ failedRegistration: true });
+                    var debug_messages = '';
+                    res.json().then(function (json) {
+                        for (var message in json.messages) {
+                            debug_messages = debug_messages.concat('- ' + json.messages[message]['debug-message'] + ' \n ');
+                        }
+                    }).then(() => this.setState({ registrationErrors: debug_messages }));
+                }
             });
         });
     }
@@ -120,7 +108,7 @@ class RegistrationFormMain extends React.Component {
             <div className="registration-container container">
                 <h3>Register a New Account</h3>
 
-                <div className="feedback-label registration-form-feedback-container" data-region="registrationFeedbackMsgRegion"></div>
+                <div className="feedback-label registration-form-feedback-container feedback-display-linebreak" data-region="registrationFeedbackMsgRegion">{this.state.failedRegistration ? (this.state.registrationErrors) : ('')}</div>
 
                 <div data-region="registrationFormRegion" style={{ display: 'block' }}><div className="container">
                     <form className="form-horizontal">

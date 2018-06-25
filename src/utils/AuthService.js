@@ -134,3 +134,41 @@ export function logout() {
         });
     });
 }
+
+export function getRegistrationForm() {
+    return new Promise(function (resolve, reject) {
+        fetch(Config.cortexApi.path + '/registrations/' + Config.cortexApi.scope + '/newaccount/form',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                }
+            })
+            .then(res => res.json())
+            .then(res => {
+                resolve(res.self.href);
+            })
+            .catch(error => {
+                console.log(error)
+                reject(error);
+            });
+    });
+}
+
+export function registerUser(lastname,  firstname, username, password) {
+    return new Promise(function (resolve, reject) {
+        fetch(Config.cortexApi.path + '/registrations/' + Config.cortexApi.scope + '/newaccount/form', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+            },
+            body: JSON.stringify({ 'family-name': lastname, 'given-name': firstname, 'username': username, 'password': password })
+        }).then(res => {
+            resolve(res);
+        }).catch(error => {
+            console.log(error)
+            reject(error);
+        });
+    });
+}
