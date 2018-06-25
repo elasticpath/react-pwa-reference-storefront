@@ -43,11 +43,32 @@ class ProductListMain extends React.Component {
             selfHref: this.props.categoryUrl
         };
     }
-    fetchData(categoryUrl) {
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
+    componentDidUpdate(prevProps) {
+        if (this.state.selfHref !== this.props.categoryUrl) {
+            login().then(() => {
+                fetch(this.props.categoryUrl + '?zoom=items',
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        selfHref: this.props.categoryUrl,
+                        categoryModel: res
+                    });
+                })
+                .catch(error => {
+                    console.log(error)
+            });
+            });
         }
-        fetch(this.props.categoryUrl + '?zoom=items',
+    } 
+    componentDidMount() {
+        login().then(() => {
+            fetch(this.props.categoryUrl + '?zoom=items',
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,14 +85,7 @@ class ProductListMain extends React.Component {
             .catch(error => {
                 console.log(error)
         });
-    }
-    componentDidUpdate(prevProps) {
-        if (this.state.selfHref !== this.props.categoryUrl) {
-            this.fetchData(this.props.categoryUrl);
-        }
-    } 
-    componentDidMount() {
-        this.fetchData(this.props.categoryUrl);
+        });
     }
     renderProducts() {
         return this.state.categoryModel["_items"][0].links.map(product => {

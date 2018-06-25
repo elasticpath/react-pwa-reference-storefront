@@ -29,6 +29,13 @@ class ProfilePage extends React.Component {
         return (
             <div>
                 <AppHeaderMain />
+                <div className="container">
+                    <div data-region="profileTitleRegion" style={{ display: 'block' }}>
+                        <h1>
+                            Profile
+                        </h1>
+                    </div>
+                </div>
             </div>
         );
     }

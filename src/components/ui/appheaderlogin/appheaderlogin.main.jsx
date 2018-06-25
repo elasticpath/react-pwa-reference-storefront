@@ -19,22 +19,66 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { login } from '../../../utils/AuthService.js';
+import { logout } from '../../../utils/AuthService.js';
+
+var Config = require('Config')
 
 class AppHeaderLoginMain extends React.Component {
+    logoutRegisteredUser() {
+        logout().then(() => {
+            login().then(() => {
+                this.props.history.push('/');
+                window.location.reload();
+            })
+        });
+        event.preventDefault();
+    }
+    isLoggedIn() {
+        return (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'REGISTERED') ? true : false;
+    }
     render() {
-        return (
-            <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
-                <div className="auth-container">
+        if (this.isLoggedIn()) {
+            return (
+                <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
                     <div className="auth-container">
-                        <button className="global-nav-link global-nav-login btn-auth-menu" data-toggle="modal" data-target="#login-modal" data-i18n="" data-el-label="global.profile">
-                            Login
-                        </button>
-                        <div data-region="authMainRegion" className="auth-nav-container"></div>
+                        <div className="auth-container dropdown">
+                            <button className="btn btn-secondary dropdown-toggle global-nav-link global-nav-login btn-auth-menu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {localStorage.getItem(Config.cortexApi.scope + '_oAuthUserName')}
+                            </button>
+                            <div data-region="authMainRegion" className="auth-nav-container dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                                <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
+                                    <li className="dropdown-item" >
+                                        <Link to={"/profile"}>
+                                            <span className="profile-link">Profile</span>
+                                        </Link>
+                                    </li>
+                                    <li className="dropdown-item" >
+                                        <button className="btn-cmd btn-auth-logout" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}><span className="icon"></span>Logout</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </li>
-        );
+                </li >
+            );
+        }
+        else {
+            return (
+                <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
+                    <div className="auth-container">
+                        <div className="auth-container">
+                            <button className="global-nav-link global-nav-login btn-auth-menu" data-toggle="modal" data-target="#login-modal">
+                                Login
+                            </button>
+                            <div data-region="authMainRegion" className="auth-nav-container"></div>
+                        </div>
+                    </div>
+                </li>
+            );
+        }
     }
 }
 
-export default AppHeaderLoginMain;
+export default withRouter(AppHeaderLoginMain);

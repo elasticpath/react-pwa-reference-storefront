@@ -44,11 +44,9 @@ class ProductListSearchResultsMain extends React.Component {
             searchKeywords: this.props.searchKeywords
         };
     }
-    fetchData(searchResultsUrl) {
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
-        }
-        fetch(searchResultsUrl + '?zoom=' + zoomArray.join(),
+    getSearchResults(searchResultsUrl) {
+        login().then(() => {
+            fetch(searchResultsUrl + '?zoom=' + zoomArray.join(),
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,13 +62,12 @@ class ProductListSearchResultsMain extends React.Component {
             })
             .catch(error => {
                 console.log(error)
+            });
         });
     }
-    fetchSearchData(event) {
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
-        }
-        fetch(Config.cortexApi.path + '/searches/' + Config.cortexApi.scope + '/keywords/form?followlocation',
+    getSearchData(event) {
+        login().then(() => {
+            fetch(Config.cortexApi.path + '/searches/' + Config.cortexApi.scope + '/keywords/form?followlocation',
             {
                 method: 'post',
                 headers: {
@@ -84,20 +81,21 @@ class ProductListSearchResultsMain extends React.Component {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
-                this.fetchData(res.self.href);
+                this.getSearchResults(res.self.href);
                 this.props.history.push('/search/' + this.props.searchKeywords);
             })
             .catch(error => {
                 console.log(error)
             });
+        });
     }
     componentDidUpdate(prevProps) {
         if (this.state.searchKeywords !== this.props.searchKeywords) {
-            this.fetchSearchData(this.props.searchKeywords);
+            this.getSearchData(this.props.searchKeywords);
         }
     } 
     componentDidMount() {
-        this.fetchSearchData(this.props.searchKeywords);
+        this.getSearchData(this.props.searchKeywords);
     }
     renderProducts() {
         return this.state.searchResultsModel.links.map(product => {

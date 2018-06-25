@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from '../appheadersearch/appheadersearch.main.jsx';
 import AppHeaderLoginMain from '../appheaderlogin/appheaderlogin.main.jsx';
+import AppModalLoginMain from '../appmodallogin/appmodallogin.main.jsx';
 import AppHeaderNavigationMain from '../appheadernavigation/appheadernavigation.main.jsx';
 
 class AppHeaderMain extends React.Component {
@@ -60,12 +61,13 @@ class AppHeaderMain extends React.Component {
                                 </li>
                             </ul>
                             <AppHeaderSearchMain />
-                            <AppHeaderNavigationMain/>
+                            <AppHeaderNavigationMain />
                         </div>
                     </div>
                 </header>
+                <AppModalLoginMain />
             </div>
-        );
+        ); 
     }
 }
 

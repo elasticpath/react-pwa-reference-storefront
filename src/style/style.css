@@ -6020,7 +6020,6 @@ td.visible-print {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 1.5rem;
-  width: 280px;
 }
 .auth-profile-menu-list button {
   width: 100%;
@@ -6327,6 +6326,9 @@ fieldset[disabled] .btn-auth-login.active {
   }
 }
 @media screen and (max-width: 768px) {
+  .navbar.navbar-inverse .navbar-nav {
+    flex-direction: column;
+  }
   .navbar.navbar-inverse .navbar-nav li a {
     font-size: 1.5rem;
     padding: 8px 15px;
@@ -6402,7 +6404,7 @@ fieldset[disabled] .btn-auth-login.active {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   border: 1px solid #040060;
-  margin-bottom: 1px;
+  margin-bottom: 5px;
 }
 @media (max-width: 768px) {
   .main-nav-container {
@@ -6463,6 +6465,10 @@ fieldset[disabled] .btn-auth-login.active {
 @media (min-width: 768px) and (max-width: 992px) {
   .logo-container {
     margin-top: 33px;
+    margin-left: 0px;
+  }
+  .global-nav-container {
+    margin-right: -20px;
   }
 }
 .global-nav-container {
@@ -6708,12 +6714,14 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
   padding-left: 10px !important;
 }
 @media (max-width: 768px) {
-  
+  .container {
+    max-width: 100%;
+  }
 }
 @media (min-width: 768px) and (max-width: 992px) {
   .main-search-container {
     top: 15px;
-    right: 170px;
+    right: 215px;
   }
 }
 @media (max-width: 768px) {
@@ -9607,6 +9615,9 @@ ul {
 /* Form Feedback */
 .feedback-label {
   color: #ff0000;
+}
+.feedback-display-linebreak {
+  white-space: pre-line;
 }
 .required-label {
   color: red;

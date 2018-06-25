@@ -35,29 +35,25 @@ class AppHeaderNavigationMain extends React.Component {
             navigations: []
         };
     }
-    fetchData() {
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
-        }
-        fetch(Config.cortexApi.path + '/navigations/' + Config.cortexApi.scope + '?zoom=' + zoomArray.join(),
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                }
-            })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    navigations: res._element
-                });
-            })
-            .catch(error => {
-                console.log(error)
-            });
-    }
     componentWillMount() {
-        this.fetchData();
+        login().then(() => {
+            fetch(Config.cortexApi.path + '/navigations/' + Config.cortexApi.scope + '?zoom=' + zoomArray.join(),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        navigations: res._element
+                    });
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        });
     }
     renderCategories() {
         return this.state.navigations.map(category => {
