@@ -53,7 +53,7 @@ class AppModalLoginMain extends React.Component {
                 }
                 else if (res_status === 200) {
                     this.setState({ failedLogin: false });
-                    document.getElementById("closeLoginModal").click();
+                    document.getElementById("login_modal_close_button").click();
                     this.props.history.push('/');
                 }
             });
@@ -61,8 +61,8 @@ class AppModalLoginMain extends React.Component {
         }
     }
     registerNewUser(event) {
-        if (document.getElementById("closeLoginModal")) {
-            document.getElementById("closeLoginModal").click();
+        if (document.getElementById("login_modal_close_button")) {
+            document.getElementById("login_modal_close_button").click();
         }
     }
     render() {
@@ -73,28 +73,28 @@ class AppModalLoginMain extends React.Component {
 
                         <div className="modal-header">
                             <h2 className="modal-title">Login</h2>
-                            <button type="button" id="closeLoginModal" className="close" data-dismiss="modal">&times;</button>
+                            <button type="button" id="login_modal_close_button" className="close" data-dismiss="modal">&times;</button>
                         </div>
 
-                        <div className="auth-feedback-container" data-region="authLoginFormFeedbackRegion" data-i18n="">{this.state.failedLogin ? ('Your username or password is invalid.') : ('')}</div>
+                        <div className="auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">{this.state.failedLogin ? ('Your username or password is invalid.') : ('')}</div>
 
                         <div className="modal-body">
-                            <form ref="form" onSubmit={this.loginRegisteredUser}>
+                            <form ref="form" id="login_modal_form" onSubmit={this.loginRegisteredUser}>
                                 <div className="form-group">
                                     <label>Username:</label>
-                                    <input className="form-control" type="text" onChange={this.setUsername} />
+                                    <input className="form-control" id="login_modal_username_input" type="text" onChange={this.setUsername} />
                                 </div>
                                 <div className="form-group">
                                     <label>Password:</label>
-                                    <input className="form-control" type="password" onChange={this.setPassword} />
+                                    <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} />
                                 </div>
                                 <div className="form-group action-row">
                                     <div className="login-cell">
-                                        <button className="btn-auth-login" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">Login</button>
+                                        <button className="btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">Login</button>
                                     </div>
                                     <div className="register-cell">
                                         <Link to="/registration">
-                                            <button className="btn-auth-register btn btn-link" data-toggle="collapse" data-target=".navbar-collapse" onClick={this.registerNewUser}>Register</button>
+                                            <button className="btn-auth-register btn btn-link" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" onClick={this.registerNewUser}>Register</button>
                                         </Link>
                                     </div>
                                 </div>

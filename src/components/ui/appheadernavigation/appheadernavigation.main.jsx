@@ -59,17 +59,17 @@ class AppHeaderNavigationMain extends React.Component {
         return this.state.navigations.map(category => {
             return (
                 <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
-                    <Link to={"/category/" + encodeURIComponent(category.self.href)} className="nav-item" data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
+                    <Link to={"/category/" + encodeURIComponent(category.self.href)} className="nav-item" id={"header_navbar_category_button_" + category.name} data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
                 </li>
             );
         })
     }
     render() {
         return (
-            <div className="main-nav-container" data-region="mainNavRegion" style={{ display: 'block' }}>
+            <div className="main-nav-container" id="header_navbar_container" data-region="mainNavRegion" style={{ display: 'block' }}>
                 <div>
                     <nav className="main-nav">
-                        <button className="btn-main-nav-toggle btn-link-cmd" style={{ display: 'none' }}>
+                        <button className="btn-main-nav-toggle btn-link-cmd" id="header_navbar_container_categories_button" style={{ display: 'none' }}>
                             Categories
                                 </button>
                         <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">

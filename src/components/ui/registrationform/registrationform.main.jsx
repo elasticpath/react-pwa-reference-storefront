@@ -108,7 +108,7 @@ class RegistrationFormMain extends React.Component {
             <div className="registration-container container">
                 <h3>Register a New Account</h3>
 
-                <div className="feedback-label registration-form-feedback-container feedback-display-linebreak" data-region="registrationFeedbackMsgRegion">{this.state.failedRegistration ? (this.state.registrationErrors) : ('')}</div>
+                <div className="feedback-label registration-form-feedback-container feedback-display-linebreak" id="registration_form_feedback_container" data-region="registrationFeedbackMsgRegion">{this.state.failedRegistration ? (this.state.registrationErrors) : ('')}</div>
 
                 <div data-region="registrationFormRegion" style={{ display: 'block' }}><div className="container">
                     <form className="form-horizontal">
@@ -117,7 +117,7 @@ class RegistrationFormMain extends React.Component {
                                 <span className="required-label">*</span> First Name
         </label>
                             <div className="registration-form-input">
-                                <input id="FirstName" name="given-name" className="form-control" type="text" onChange={this.setFirstName} />
+                                <input id="registration_form_firstName" name="given-name" className="form-control" type="text" onChange={this.setFirstName} />
                             </div>
                         </div>
                         <div className="form-group">
@@ -125,7 +125,7 @@ class RegistrationFormMain extends React.Component {
                                 <span className="required-label">*</span> Last Name
         </label>
                             <div className="registration-form-input">
-                                <input id="LastName" name="family-name" className="form-control" type="text" onChange={this.setLastName} />
+                                <input id="registration_form_lastName" name="family-name" className="form-control" type="text" onChange={this.setLastName} />
                             </div>
                         </div>
                         <div className="form-group">
@@ -133,7 +133,7 @@ class RegistrationFormMain extends React.Component {
                                 <span className="required-label">*</span> Email/Username
         </label>
                             <div className="registration-form-input">
-                                <input id="EmailUsername" name="username" className="form-control" type="text" onChange={this.setUsername} />
+                                <input id="registration_form_emailUsername" name="username" className="form-control" type="text" onChange={this.setUsername} />
                             </div>
                         </div>
                         <div className="form-group">
@@ -141,7 +141,7 @@ class RegistrationFormMain extends React.Component {
                                 <span className="required-label">*</span> Password
         </label>
                             <div className="registration-form-input">
-                                <input id="Password" name="password" className="form-control" type="password" onChange={this.setPassword} />
+                                <input id="registration_form_password" name="password" className="form-control" type="password" onChange={this.setPassword} />
                             </div>
                         </div>
                         <div className="form-group">
@@ -149,11 +149,11 @@ class RegistrationFormMain extends React.Component {
                                 <span className="required-label">*</span> Password Confirmation
         </label>
                             <div className="registration-form-input">
-                                <input id="PasswordConfirm" name="passwordConfirm" className="form-control" type="password" onChange={this.setPasswordConfirmation} />
+                                <input id="registration_form_passwordConfirm" name="passwordConfirm" className="form-control" type="password" onChange={this.setPasswordConfirmation} />
                             </div>
                         </div>
                         <div className="form-group">
-                            <input className="btn btn-primary registration-save-btn" data-cmd="register" type="button" onClick={this.registerNewUser} value="Submit"></input>
+                            <input className="btn btn-primary registration-save-btn" id="registration_form_register_button" data-cmd="register" type="button" onClick={this.registerNewUser} value="Submit"></input>
                         </div>
                     </form>
                 </div></div>

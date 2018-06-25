@@ -108,7 +108,7 @@ class ProductDisplayItemMain extends React.Component {
 
                         <div className="itemdetail-details">
                             <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}><div>
-                                <h1 className="itemdetail-title">{this.state.productData["_definition"][0]["display-name"]}</h1>
+                                <h1 className="itemdetail-title" id={"category_item_title_" + this.state.productData["_code"][0].code}>{this.state.productData["_definition"][0]["display-name"]}</h1>
                             </div>
                             </div>
                             <div className="itemdetail-price-container" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
@@ -116,11 +116,11 @@ class ProductDisplayItemMain extends React.Component {
                                     <div data-region="itemPriceRegion" style={{ display: 'block' }}><ul className="itemdetail-price-container">
                                         <li className="itemdetail-list-price is-hidden" data-region="itemListPriceRegion">
                                             <label className="itemdetail-list-price-label">Original Price</label>
-                                            <span className="itemdetail-list-price-value">{listPrice}</span>
+                                            <span className="itemdetail-list-price-value" id={"category_item_list_price_" + this.state.productData["_code"][0].code}>{listPrice}</span>
                                         </li>
                                         <li className="itemdetail-purchase-price">
                                             <label className="itemdetail-purchase-price-label">Price</label>
-                                            <span className="itemdetail-purchase-price-value">{itemPrice}</span>
+                                            <span className="itemdetail-purchase-price-value" id={"category_item_price_" + this.state.productData["_code"][0].code}>{itemPrice}</span>
                                         </li>
                                     </ul>
                                     </div>
@@ -130,11 +130,11 @@ class ProductDisplayItemMain extends React.Component {
                             <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
                                 <ul className="itemdetail-availability-container">
                                     <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                                        <label><span className="icon"></span>{availability}</label>
+                                        <label id={"category_item_availability_" + this.state.productData["_code"][0].code}><span className="icon"></span>{availability}</label>
                                     </li>
                                     <li className="itemdetail-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
-                                        <label className="itemdetail-release-date-label">Expected Release Date: </label>
-                                        <span className="itemdetail-release-date-value"></span>
+                                        <label className="itemdetail-release-date-label" >Expected Release Date: </label>
+                                        <span className="itemdetail-release-date-value" id={"category_item_release_date_" + this.state.productData["_code"][0].code}></span>
                                     </li>
                                 </ul>
                             </div>
@@ -170,23 +170,23 @@ class ProductDisplayItemMain extends React.Component {
                                             <label className="control-label col-sm-4">Quantity</label>
 
                                             <div className="form-content col-sm-8">
-                                                <select className="form-control" id="itemdetail-select-quantity" name="itemdetail-select-quantity" onChange={this.handleQuantityChange}>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
+                                                <select className="form-control" id="product_display_item_quantity_select" name="itemdetail-select-quantity" onChange={this.handleQuantityChange}>
+                                                    <option id="product_display_item_quantity_option_1" value="1">1</option>
+                                                    <option id="product_display_item_quantity_option_2" value="2">2</option>
+                                                    <option id="product_display_item_quantity_option_3" value="3">3</option>
+                                                    <option id="product_display_item_quantity_option_4" value="4">4</option>
+                                                    <option id="product_display_item_quantity_option_5" value="5">5</option>
+                                                    <option id="product_display_item_quantity_option_6" value="6">6</option>
+                                                    <option id="product_display_item_quantity_option_7" value="7">7</option>
+                                                    <option id="product_display_item_quantity_option_8" value="8">8</option>
+                                                    <option id="product_display_item_quantity_option_9" value="9">9</option>
+                                                    <option id="product_display_item_quantity_option_10" value="10">10</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="form-group form-group-submit">
                                             <div className="form-content form-content-submit col-sm-8 col-sm-offset-4">
-                                                <button className="btn-round btn btn-primary btn-itemdetail-addtocart" type="submit">Add to Cart</button>
+                                                <button className="btn-round btn btn-primary btn-itemdetail-addtocart" id="product_display_item_add_to_cart_button" type="submit">Add to Cart</button>
                                             </div>
                                         </div>
 

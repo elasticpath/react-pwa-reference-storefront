@@ -81,29 +81,29 @@ class ProductListItemMain extends React.Component {
                     <div className="category-item-thumbnail-container">
                         <img src={Config.skuImagesS3Url.replace("%sku%", this.state.productData["_code"][0].code)} onError={(e) => { e.target.src = "images/img-placeholder.png" }} alt="default-image" className="category-item-thumbnail img-responsive" title="" />
                     </div>
-                    <div className="category-item-title" style={{ minHeight: '36px' }}>
+                    <div className="category-item-title" id={"category_item_title_link_" + this.state.productData["_code"][0].code} style={{ minHeight: '36px' }}>
                         <Link to={"/itemdetail/" + encodeURIComponent(this.state.productData.self.href)}>{this.state.productData["_definition"][0]["display-name"]}</Link>
                     </div>
                     <div data-region="priceRegion" style={{ display: 'block' }}><div>
                         <div data-region="itemPriceRegion" style={{ display: 'block' }}><ul className="category-item-price-container" style={{ minHeight: '33px' }}>
                             <li className="category-item-list-price is-hidden" data-region="itemListPriceRegion">
                                 <label className="item-meta category-item-list-price-label">Original Price</label>
-                                <span className="item-meta category-item-list-price-value">{listPrice}</span>
+                                <span className="item-meta category-item-list-price-value" id={"category_item_list_price_" + this.state.productData["_code"][0].code}>{listPrice}</span>
                             </li>
                             <li className="category-item-purchase-price">
                                 <label className="item-meta category-item-purchase-price-label">Price</label>
-                                <span className="item-meta category-item-purchase-price-value">{itemPrice}</span>
+                                <span className="item-meta category-item-purchase-price-value" id={"category_item_price_" + this.state.productData["_code"][0].code}>{itemPrice}</span>
                             </li>
                         </ul></div>
                         <div data-region="itemRateRegion"></div>
                     </div></div>
                     <div data-region="availabilityRegion" style={{ display: 'block' }}><ul className="category-item-availability-container">
                         <li className="category-item-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                            <label><span className="icon"></span>{availability}</label>
+                            <label id={"category_item_availability_" + this.state.productData["_code"][0].code}><span className="icon"></span>{availability}</label>
                         </li>
                         <li className="category-item-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
                             <label className="item-meta category-item-releaseDate-label">Expected Release Date: </label>
-                            <span className="item-meta category-item-releaseDate-value"></span>
+                            <span className="item-meta category-item-releaseDate-value" id={"category_item_release_date_" + this.state.productData["_code"][0].code}></span>
                         </li>
                     </ul>
                     </div>
