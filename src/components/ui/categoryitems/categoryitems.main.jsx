@@ -90,7 +90,7 @@ class CategoryItemsMain extends React.Component {
                         </div>
                     </div>
                     <ProductListPaginationTop paginationData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel} />
-                    <ProductListMain callbackFromParent={this.updateCategoryUrl} productData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel}/>
+                    <ProductListMain productData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel}/>
                     <ProductListPaginationBottom paginationData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel} />
                 </div>
             );

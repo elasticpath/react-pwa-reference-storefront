@@ -31,19 +31,12 @@ class CategoryPage extends React.Component {
         this.state = {
             categoryUrl: ''
         };
-        this.updateCategoryUrl = this.updateCategoryUrl.bind(this);
-    }
-    updateCategoryUrl(updatedUrl){
-        // if from a pagination
-        // this.setState({ categoryUrl: updatedUrl });
-        // else 
-        // this.setState({ categoryUrl: this.props.match.params.url });
     }
     render() {
         return (
             <div>
                 <AppHeaderMain />
-                <CategoryItemsMain callbackFromParent={this.updateCategoryUrl} categoryUrl={decodeURIComponent(this.props.match.params.url)} />
+                <CategoryItemsMain categoryUrl={decodeURIComponent(this.props.match.params.url)} />
             </div>
         );
     }

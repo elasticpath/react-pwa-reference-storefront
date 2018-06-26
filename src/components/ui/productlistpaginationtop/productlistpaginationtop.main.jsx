@@ -36,63 +36,74 @@ class ProductListPaginationTop extends React.Component {
         };
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.paginationData);
-        this.setState({ paginationData: nextProps.paginationData });
-
-        if (this.state.paginationData) {
-            return this.state.paginationData.links.map(product => {
-                if (product.rel === "next") {
-                    paginationNextLink = product.href;
-                }
-            })
-        }
+        paginationPreviousLink = '';
+        paginationNextLink = '';
+        return nextProps.paginationData.links.map(product => {
+            if (product.rel === "previous") {
+                paginationPreviousLink = product.href
+                this.setState({
+                    paginationData: nextProps.paginationData
+                });
+            }
+            if (product.rel === "next") {
+                paginationNextLink = product.href
+                this.setState({
+                    paginationData: nextProps.paginationData
+                });
+            }
+        })
     }
-    clickedPaginationPrevious(paginationPreviousHref) {
-        this.setState({
-            prevSelfHref: this.state.selfHref,
-            selfHref: paginationPreviousHref
-        });
-        this.props.callbackFromParent(paginationPreviousHref);
-    }
-    clickedPaginationNext(paginationNextHref) {
-        this.setState({
-            prevSelfHref: this.state.selfHref,
-            selfHref: paginationNextHref
-        });
-        this.props.callbackFromParent(paginationNextHref);
+    componentDidMount() {
+        paginationPreviousLink = '';
+        paginationNextLink = '';
+        return this.state.paginationData.links.map(product => {
+            if (product.rel === "previous") {
+                paginationPreviousLink = product.href
+                this.setState({
+                    paginationData: this.state.paginationData
+                });
+            }
+            if (product.rel === "next") {
+                paginationNextLink = product.href
+                this.setState({
+                    paginationData: this.state.paginationData
+                });
+            }
+        })
     }
     render() {
-        if(this.state.paginationData.links.length > 0) {
-        return (    
-    <div data-region="categoryPaginationTopRegion" style={{ display: 'block' }}>
-    <div className="pagination-container">
-        <div className="paging-total-results">
-            <span className="pagination-value pagination-total-results-value">{this.state.paginationData.pagination.results}</span>
-            <label className="pagination-label pagination-total-results-label">&nbsp;results&nbsp;</label>
-            (&nbsp;<span className="pagination-value pagination-results-displayed-value">{this.state.paginationData.pagination["results-on-page"]}</span>
-            <label className="pagination-label">&nbsp;results on page</label> )
-      
-    </div>
-
-        <div className="pagination-navigation-container">
-            <button className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" onClick={() => this.clickedPaginationPrevious(paginationPreviousLink)} id="category_items_listing_pagination_previous_top_link" data-i18n="category.prev"> <span className="icon"></span>Previous</button>
-            <span className="pagestate-summary">
-                <label className="pagination-label">page&nbsp;</label>
-                <span className="pagination-value pagination-curr-page-value">{this.state.paginationData.pagination.current}</span>
-                <label className="pagination-label">&nbsp;of&nbsp;</label>
-                <span className="pagination-value pagination-total-pages-value">{this.state.paginationData.pagination.pages}</span>
-
-            </span>
-
-<Link to={"/category/" + encodeURIComponent(paginationNextLink)} className="nav-item" id="category_items_listing_pagination_next_top_link" role="button">Next<span className="icon"></span></Link>
-
-            <button className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_top_link" data-i18n="category.next">Next<span className="icon"></span></button>
-        </div>
-    </div>
-    </div>);}
-else {
-    return (<span>Loading or No Products Found...</span>)
-}
+        if (this.state.paginationData.links.length > 0) {
+            return (
+                <div data-region="categoryPaginationTopRegion" style={{ display: 'block' }}>
+                    <div className="pagination-container">
+                        <div className="paging-total-results">
+                            <span className="pagination-value pagination-total-results-value">{this.state.paginationData.pagination.results}</span>
+                            <label className="pagination-label pagination-total-results-label">&nbsp;results&nbsp;</label>
+                            (&nbsp;<span className="pagination-value pagination-results-displayed-value">{this.state.paginationData.pagination["results-on-page"]}</span>
+                            <label className="pagination-label">&nbsp;results on page</label> )
+                        </div>
+                        {paginationNextLink !== '' || paginationPreviousLink !== '' ?
+                            <div className="pagination-navigation-container">
+                                {paginationPreviousLink !== '' ?
+                                    <Link to={"/category/" + encodeURIComponent(paginationPreviousLink)} className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_top_link" role="button"><span className="icon"></span>Previous</Link>
+                                    : ("")}
+                                <span className="pagestate-summary">
+                                    <label className="pagination-label">page&nbsp;</label>
+                                    <span className="pagination-value pagination-curr-page-value">{this.state.paginationData.pagination.current}</span>
+                                    <label className="pagination-label">&nbsp;of&nbsp;</label>
+                                    <span className="pagination-value pagination-total-pages-value">{this.state.paginationData.pagination.pages}</span>
+                                </span>
+                                {paginationNextLink !== '' ?
+                                    <Link to={"/category/" + encodeURIComponent(paginationNextLink)} className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_top_link" role="button">Next<span className="icon"></span></Link>
+                                    : ("")}
+                            </div>
+                            : ("")}
+                    </div>
+                </div>);
+        }
+        else {
+            return (<span>Loading or No Products Found...</span>)
+        }
     }
 }
 
