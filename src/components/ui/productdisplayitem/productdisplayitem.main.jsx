@@ -119,7 +119,7 @@ class ProductDisplayItemMain extends React.Component {
                                             <span className="itemdetail-list-price-value" id={"category_item_list_price_" + this.state.productData["_code"][0].code}>{listPrice}</span>
                                         </li>
                                         <li className="itemdetail-purchase-price">
-                                            <label className="itemdetail-purchase-price-label">Price</label>
+                                            <label className="itemdetail-purchase-price-label">Price&nbsp;</label>
                                             <span className="itemdetail-purchase-price-value" id={"category_item_price_" + this.state.productData["_code"][0].code}>{itemPrice}</span>
                                         </li>
                                     </ul>

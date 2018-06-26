@@ -20,17 +20,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
-import ProductListMain from '../../ui/productlist/productlist.main.jsx';
+import CategoryItemsMain from '../../ui/categoryitems/categoryitems.main.jsx';
 
 var Config = require('Config')
 // Then use in render: <span>{Config.skuImagesS3Url}</span>
 
 class CategoryPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categoryUrl: ''
+        };
+        this.updateCategoryUrl = this.updateCategoryUrl.bind(this);
+    }
+    updateCategoryUrl(updatedUrl){
+        // if from a pagination
+        // this.setState({ categoryUrl: updatedUrl });
+        // else 
+        // this.setState({ categoryUrl: this.props.match.params.url });
+    }
     render() {
         return (
             <div>
                 <AppHeaderMain />
-                <ProductListMain categoryUrl={decodeURIComponent(this.props.match.params.url)} />
+                <CategoryItemsMain callbackFromParent={this.updateCategoryUrl} categoryUrl={decodeURIComponent(this.props.match.params.url)} />
             </div>
         );
     }

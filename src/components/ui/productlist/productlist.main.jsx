@@ -24,138 +24,41 @@ import ProductListItemMain from '../productlistitem/productlistitem.main.jsx';
 
 var Config = require('Config')
 
-// Array of zoom parameters to pass to Cortex
-var zoomArray = [
-    'element',
-    'element:availability',
-    'element:definition',
-    'element:definition:assets:element',
-    'element:price',
-    'element:rate',
-    'element:code'
-];
-
 class ProductListMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categoryModel: { _items: []},
-            selfHref: this.props.categoryUrl
+            categoryModel: this.props.productData
         };
     }
-    componentDidUpdate(prevProps) {
-        if (this.state.selfHref !== this.props.categoryUrl) {
-            login().then(() => {
-                fetch(this.props.categoryUrl + '?zoom=items',
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                    }
-                })
-                .then(res => res.json())
-                .then(res => {
-                    this.setState({
-                        selfHref: this.props.categoryUrl,
-                        categoryModel: res
-                    });
-                })
-                .catch(error => {
-                    console.log(error)
-            });
-            });
-        }
-    } 
-    componentDidMount() {
-        login().then(() => {
-            fetch(this.props.categoryUrl + '?zoom=items',
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                }
-            })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    selfHref: this.props.categoryUrl,
-                    categoryModel: res
-                });
-            })
-            .catch(error => {
-                console.log(error)
-        });
-        });
+    componentWillReceiveProps(nextProps) {
+        console.log(this.state.categoryModel);
+        this.setState({ categoryModel: nextProps.productData });
     }
     renderProducts() {
-        return this.state.categoryModel["_items"][0].links.map(product => {
-            return (
-                <li key={'_' + Math.random().toString(36).substr(2, 9)} className="category-item-container">
-                    <ProductListItemMain productUrl={product.href}/>
-                </li>
-            );
+        return this.state.categoryModel.links.map(product => {
+            if (product.rel === "element") {
+                return (
+                    <li key={'_' + Math.random().toString(36).substr(2, 9)} className="category-item-container">
+                        <ProductListItemMain productUrl={product.href} />
+                    </li>
+                );
+            }
         })
     }
     render() {
-        if(this.state.categoryModel._items.length > 0) {
-        return (
-            <div className="category-items-container container">
-    <div data-region="categoryTitleRegion" style={{ display: 'block' }}><div>
-        <h1 className="view-title">{this.state.categoryModel["display-name"]}</h1>
-    </div></div>
-    <div data-region="categoryPaginationTopRegion" style={{ display: 'block' }}><div className="pagination-container">
-        <div className="paging-total-results">
-            <span className="pagination-value pagination-total-results-value">{this.state.categoryModel["_items"][0].pagination.results}</span>
-            <label className="pagination-label pagination-total-results-label">results</label>
-            ( <span className="pagination-value pagination-results-displayed-value">{this.state.categoryModel["_items"][0].pagination["results-on-page"]}</span>
-            <label className="pagination-label">results on page</label> )
-      
-    </div>
-
-        <div className="pagination-navigation-container">
-            <a className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_top_link" data-i18n="category.prev"> <span className="icon"></span>Previous</a>
-            <span className="pagestate-summary">
-                <label className="pagination-label">page</label>
-                <span className="pagination-value pagination-curr-page-value">{this.state.categoryModel["_items"][0].pagination.current}</span>
-                <label className="pagination-label">of</label>
-                <span className="pagination-value pagination-total-pages-value">{this.state.categoryModel["_items"][0].pagination.pages}</span>
-
-            </span>
-
-            <a className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_top_link" data-i18n="category.next">Next<span className="icon"></span></a>
-        </div>
-    </div></div>
-    <div data-region="categoryBrowseRegion" style={{ display: 'block' }}>
-    <ul className="category-items-listing equalize" id="category_items_listing">
-        {this.renderProducts()}
-    </ul>
-    </div>
-    <div data-region="categoryPaginationBottomRegion" style={{ display: 'block' }}><div className="pagination-container">
-        <div className="paging-total-results">
-            <span className="pagination-value pagination-total-results-value">{this.state.categoryModel["_items"][0].pagination.results}</span>
-            <label className="pagination-label pagination-total-results-label">results</label>
-            ( <span className="pagination-value pagination-results-displayed-value">{this.state.categoryModel["_items"][0].pagination["results-on-page"]}</span>
-            <label className="pagination-label">results on page</label> )
-      
-    </div>
-
-        <div className="pagination-navigation-container">
-            <a className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_bottom_link" data-i18n="category.prev"> <span className="icon"></span>Previous</a>
-            <span className="pagestate-summary">
-                <label className="pagination-label">page</label>
-                <span className="pagination-value pagination-curr-page-value">{this.state.categoryModel["_items"][0].pagination.current}</span>
-                <label className="pagination-label">of</label>
-                <span className="pagination-value pagination-total-pages-value">{this.state.categoryModel["_items"][0].pagination.pages}</span>
-
-            </span>
-
-            <a className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_bottom_link" data-i18n="category.next">Next<span className="icon"></span></a>
-        </div>
-    </div></div>
-</div>);}
-else {
-    return (<span>Loading or No Products Found...</span>)
-}
+        if (this.state.categoryModel.links.length > 0) {
+            return (
+                <div data-region="categoryBrowseRegion" style={{ display: 'block' }}>
+                    <ul className="category-items-listing equalize" id="category_items_listing">
+                        {this.renderProducts()}
+                    </ul>
+                </div>
+            );
+        }
+        else {
+            return (<span>Loading or No Products Found...</span>)
+        }
     }
 }
 
