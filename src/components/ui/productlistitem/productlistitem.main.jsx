@@ -66,7 +66,7 @@ class ProductListItemMain extends React.Component {
         if (this.state.productData) {
             var listPrice = "n/a";
             if (this.state.productData["_price"]) {
-                listPrice = this.state.productData["_price"][0]["purchase-price"][0].display;
+                listPrice = this.state.productData["_price"][0]["list-price"][0].display;
             }
             var itemPrice = "n/a";
             if (this.state.productData["_price"]) {
