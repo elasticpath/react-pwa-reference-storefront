@@ -28,7 +28,7 @@ class App extends Component {
     const routeComponents = router.map(({path, component}, key) => <Route exact path={path} component={component} key={key} />);
     return (
       <Router>
-        <div>
+        <div id="root_router_div">
         {routeComponents}
         </div>
       </Router>

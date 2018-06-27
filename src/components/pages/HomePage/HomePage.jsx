@@ -28,19 +28,19 @@ var Config = require('Config')
 class HomePage extends React.Component {
     render() {
         return (
-            <div className="viewport ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
+            <div className="viewport ui-container home-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
                 <div>
-
                     <AppHeaderMain />
-
-                    <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
+                    <div className="app-main home-contant-container" data-region="appMain" style={{ display: 'block' }}>
                         <div>
-                            <div data-region="homeMainContentRegion" className="container" style={{ display: 'block' }}><div className="home-container">
-                                <div className="field-content">
-                                    <h2>Commerce software that powers the next generation of digital experience</h2>
+                            <div data-region="homeMainContentRegion" className="container" style={{ display: 'block' }}>
+                                <div className="home-container">
+                                    <div className="field-content">
+                                        <h2>Commerce software that powers the next generation of digital experience</h2>
+                                    </div>
+                                    <div data-region="EPWidgetOne"></div>
                                 </div>
-                                <div data-region="EPWidgetOne"></div>
-                            </div></div>
+                            </div>
                             <div className="sub-espot-container container">
                                 <div className="home-espot-1">
                                 </div>
