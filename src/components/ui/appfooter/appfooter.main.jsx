@@ -26,53 +26,51 @@ class AppFooterMain extends React.Component {
     }
     render() {
         return (
-            <div>
-                <footer className="app-footer page-footer font-small blue pt-4 mt-4">
-                    <div className="container-fluid text-center text-md-center">
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                <h5 className="text-uppercase">Vestri</h5>
-                                <p>Footer content here</p>
-                            </div>
-                            <hr className="clearfix d-md-none pb-3" />
-                            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                                <h5 className="text-uppercase">Assistance</h5>
-                                <ul className="list-unstyled">
-                                    <li>
-                                        <Link to="/aboutus" id="footer_assistance_about_us_link">About Us</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/contactus" id="footer_assistance_contact_us_link">Contact</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/termsandconditions" id="footer_assistance_terms_and_conditions_link">Terms &amp; Conditions</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-                                <h5 className="text-uppercase">Find us Online</h5>
-                                <ul className="list-unstyled">
-                                    <li>
-                                        <Link to="" id="footer_social_facebook_link">
-                                            <span className="share-icon-facebook"></span>facebook
+            <footer className="app-footer page-footer font-small blue pt-4 mt-4">
+                <div className="container-fluid text-center text-md-center">
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            <h5 className="text-uppercase">Vestri</h5>
+                            <p>Footer content here</p>
+                        </div>
+                        <hr className="clearfix d-md-none pb-3" />
+                        <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                            <h5 className="text-uppercase">Assistance</h5>
+                            <ul className="list-unstyled">
+                                <li>
+                                    <Link to="/aboutus" id="footer_assistance_about_us_link">About Us</Link>
+                                </li>
+                                <li>
+                                    <Link to="/contactus" id="footer_assistance_contact_us_link">Contact</Link>
+                                </li>
+                                <li>
+                                    <Link to="/termsandconditions" id="footer_assistance_terms_and_conditions_link">Terms &amp; Conditions</Link>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                            <h5 className="text-uppercase">Find us Online</h5>
+                            <ul className="list-unstyled">
+                                <li>
+                                    <Link to="" id="footer_social_facebook_link">
+                                        <span className="share-icon-facebook"></span>facebook
                                         </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="" id="footer_social_twitter_link">
-                                            <span className="share-icon-twitter"></span>twitter
+                                </li>
+                                <li>
+                                    <Link to="" id="footer_social_twitter_link">
+                                        <span className="share-icon-twitter"></span>twitter
                                         </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="" id="footer_social_instagram_link">
-                                            <span className="share-icon-instagram"></span>instagram
+                                </li>
+                                <li>
+                                    <Link to="" id="footer_social_instagram_link">
+                                        <span className="share-icon-instagram"></span>instagram
                                         </Link>
-                                    </li>
-                                </ul>
-                            </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
         );
     }
 }

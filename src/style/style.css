@@ -72,9 +72,16 @@ html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  /* height: 100%; */
 }
 body {
   margin: 0;
+  /* height: 100%; */
+}
+#root,
+#root_router_div,
+#root_router_div > div {
+  height: 100%;
 }
 a:focus {
   outline: thin dotted;
@@ -8289,6 +8296,35 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 .category-items-listing:after {
   clear: both;
 }
+.category-items-container,
+.home-contant-container,
+.cart-container {
+  min-height: 100%;
+  margin-bottom: 60px; 
+}
+.category-items-container:after, 
+.home-contant-container:after,
+.cart-container:after {
+  content: "";
+  display: block;
+}
+/* .app-footer, 
+.category-items-container:after,
+.home-contant-container:after,
+.cart-container:after {
+  height: 118px; 
+} */
+.home-ui-container > div {
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  .app-footer, 
+  .category-items-container:after,
+  .home-contant-container:after,
+  .cart-container:after {
+    height: 170px; 
+  }
+}
 @media (min-width: 992px) {
   .category-items-listing {
     margin-left: -15px;
@@ -9537,7 +9573,6 @@ ul {
 .app-footer {
   background-color: #040060;
   position:absolute;
-  bottom:0;
   width:100%;
 }
 .app-footer p {

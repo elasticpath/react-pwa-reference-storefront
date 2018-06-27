@@ -27,10 +27,10 @@ var Config = require('Config')
 class AboutUsPage extends React.Component {
     render() {
         return (
-            <div className="viewport ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
+            <div className="viewport ui-container static-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
                 <div>
                     <AppHeaderMain />
-                    <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
+                    <div className="app-main static-contant-container" data-region="appMain" style={{ display: 'block' }}>
                         <div>
                             <div className="static-container container">
                                 <div className="static-container-inner">

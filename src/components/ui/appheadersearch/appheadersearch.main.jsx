@@ -36,7 +36,9 @@ class AppHeaderSearchMain extends React.Component {
         this.setState({ keywords: event.target.value });
     }
     search(event) {
-        this.props.history.push('/search/' + this.state.keywords);
+        if (this.state.keywords !== "") {
+            this.props.history.push('/search/' + this.state.keywords);
+        }
         event.preventDefault();
     }
     render() {
@@ -45,7 +47,7 @@ class AppHeaderSearchMain extends React.Component {
                 <div className="main-search-container" style={{ display: 'block' }}>
                     <form className="navbar-form" id="header_navbar_search_container_form" ref="form" onSubmit={this.search}>
                         <div className="form-group">
-                            <input className="input-search header-search-input" id="header_navbar_search_container_input" type="text" onChange={ this.handleChange } placeholder="search" />
+                            <input className="input-search header-search-input" id="header_navbar_search_container_input" type="text" onChange={this.handleChange} placeholder="search" />
                         </div>
                         <button className="btn-header-search" id="header_navbar_search_container_button" data-toggle="collapse" data-target=".navbar-collapse" type="submit"><span className="icon"></span>Search</button>
                     </form>
