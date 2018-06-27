@@ -21,7 +21,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
-
+import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
 
 var Config = require('Config')
 
@@ -149,46 +149,47 @@ class ProfilePage extends React.Component {
                                                 <li className="address-name" data-el-value="address.name">{this.state.profileData['_addresses'][0]['_element'][0]['name']['given-name'] + " " + this.state.profileData['_addresses'][0]['_element'][0]['name']['family-name']}</li>
                                                 <li className="address-street-address" data-el-value="address.streetAddress">{this.state.profileData['_addresses'][0]['_element'][0]['address']['street-address']}</li>
                                                 <li className="address-extended-address" data-el-value="address.extendedAddress"></li>
-                                                    <li>
-                                                        <span className="address-city" data-el-value="address.city">{this.state.profileData['_addresses'][0]['_element'][0]['address']['locality'] + ", "}</span>
-                                                        <span className="address-region" data-el-value="address.region">{this.state.profileData['_addresses'][0]['_element'][0]['address']['region'] + ", "}</span>
-                                                        <span className="address-country" data-el-value="address.country">{this.state.profileData['_addresses'][0]['_element'][0]['address']['country-name'] + ", "}</span>
-                                                        <span className="address-postal-code" data-el-value="address.postalCode">{this.state.profileData['_addresses'][0]['_element'][0]['address']['postal-code']}</span>
-                                                    </li>
+                                                <li>
+                                                    <span className="address-city" data-el-value="address.city">{this.state.profileData['_addresses'][0]['_element'][0]['address']['locality'] + ", "}</span>
+                                                    <span className="address-region" data-el-value="address.region">{this.state.profileData['_addresses'][0]['_element'][0]['address']['region'] + ", "}</span>
+                                                    <span className="address-country" data-el-value="address.country">{this.state.profileData['_addresses'][0]['_element'][0]['address']['country-name'] + ", "}</span>
+                                                    <span className="address-postal-code" data-el-value="address.postalCode">{this.state.profileData['_addresses'][0]['_element'][0]['address']['postal-code']}</span>
+                                                </li>
                                             </ul>
                                         </div>
-                                            <button className="btn profile-edit-address-btn" data-el-label="profile.editAddressBtn">Edit</button>
-                                            <button className="btn profile-delete-address-btn" data-el-label="profile.deleteAddressBtn" data-actionlink="">Delete</button>
+                                        <button className="btn profile-edit-address-btn" data-el-label="profile.editAddressBtn">Edit</button>
+                                        <button className="btn profile-delete-address-btn" data-el-label="profile.deleteAddressBtn" data-actionlink="">Delete</button>
                                     </li>
                                 </ul>
 
-                                    <button className="btn btn-primary profile-new-address-btn" data-el-label="profile.addNewAddressBtn">Add a New Address</button>
+                                <button className="btn btn-primary profile-new-address-btn" data-el-label="profile.addNewAddressBtn">Add a New Address</button>
                             </div>
-                            </div>
-                            <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
-                                <div>
-                                    <h2>Payment Methods</h2>
-                                    <ul className="profile-payment-methods-listing">
-                                        <li className="profile-payment-method-container">
-                                            <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
-                                                <span data-el-value="payment.token" className="payment-method-container">
-                                                    {this.state.profileData['_paymentmethods'][0]['_element'][0]['display-name']}
-                                                </span>
-                                            </div>
-                                            <button className="btn profile-delete-payment-btn" data-el-label="profile.deletePaymentBtn">Delete</button>
-                                        </li>
-                                    </ul>
-                                    <button className="btn btn-primary profile-new-payment-btn" data-el-label="profile.addNewPaymentMethodBtn">Add a New Payment Method</button>
-                                </div>
+                        </div>
+                        <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
+                            <div>
+                                <h2>Payment Methods</h2>
+                                <ul className="profile-payment-methods-listing">
+                                    <li className="profile-payment-method-container">
+                                        <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
+                                            <span data-el-value="payment.token" className="payment-method-container">
+                                                {this.state.profileData['_paymentmethods'][0]['_element'][0]['display-name']}
+                                            </span>
+                                        </div>
+                                        <button className="btn profile-delete-payment-btn" data-el-label="profile.deletePaymentBtn">Delete</button>
+                                    </li>
+                                </ul>
+                                <button className="btn btn-primary profile-new-payment-btn" data-el-label="profile.addNewPaymentMethodBtn">Add a New Payment Method</button>
                             </div>
                         </div>
                     </div>
-                    );
-                }
+                    <AppFooterMain />
+                </div>
+            );
+        }
         else {
             return (<span>Loading...</span>)
-                }
-            }
         }
-        
+    }
+}
+
 export default ProfilePage;
