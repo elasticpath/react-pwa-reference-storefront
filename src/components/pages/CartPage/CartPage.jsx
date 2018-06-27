@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
+import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
 
 var Config = require('Config')
 
@@ -174,6 +175,7 @@ class CartPage extends React.Component {
 
                         </div>
                     </div>
+                    <AppFooterMain />
                 </div>
             );
         }

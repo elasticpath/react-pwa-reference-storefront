@@ -20,6 +20,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
+import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
 import ProductListSearchResultsMain from '../../ui/productlistsearchresults/productlistsearchresults.main.jsx';
 import SearchResultsItemsMain from '../../ui/searchresultsitems/searchresultsitems.main.jsx';
 
@@ -32,6 +33,7 @@ class SearchResultsPage extends React.Component {
             <div>
                 <AppHeaderMain />
                 <SearchResultsItemsMain searchKeywords={decodeURIComponent(this.props.match.params.keywords)} />
+                <AppFooterMain />
             </div>
         );
     }

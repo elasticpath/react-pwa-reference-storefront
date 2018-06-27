@@ -34,6 +34,9 @@ import PurchaseReceiptPage from './pages/PurchaseReceiptPage/PurchaseReceiptPage
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage.jsx';
 import CheckoutAuthPage from './pages/CheckoutAuthPage/CheckoutAuthPage.jsx';
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage.jsx';
+import AboutUsPage from './pages/AboutUsPage/AboutUsPage.jsx';
+import ContactUsPage from './pages/ContactUsPage/ContactUsPage.jsx';
+import TermsAndConditionsPage from './pages/TermsAndConditionsPage/TermsAndConditionsPage.jsx';
 
 const router = [{
     path: '/',
@@ -86,6 +89,15 @@ const router = [{
 }, {
     path: '/search/:keywords',
     component: SearchResultsPage,
+}, {
+    path: '/aboutus',
+    component: AboutUsPage,
+}, {
+    path: '/contactus',
+    component: ContactUsPage,
+}, {
+    path: '/termsandconditions',
+    component: TermsAndConditionsPage,
 }];
 
 export default router;

@@ -20,6 +20,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
+import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
 import ProductDisplayItemMain from '../../ui/productdisplayitem/productdisplayitem.main.jsx';
 
 var Config = require('Config')
@@ -31,6 +32,7 @@ class ProductDetailPage extends React.Component {
             <div>
                 <AppHeaderMain />
                 <ProductDisplayItemMain productUrl={decodeURIComponent(this.props.match.params.url)} />
+                <AppFooterMain />
             </div>
         );
     }

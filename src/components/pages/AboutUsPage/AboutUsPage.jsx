@@ -23,28 +23,27 @@ import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
 
 var Config = require('Config')
-// Then use in render: <span>{Config.skuImagesS3Url}</span>
 
-class HomePage extends React.Component {
+class AboutUsPage extends React.Component {
     render() {
         return (
             <div className="viewport ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
                 <div>
-
                     <AppHeaderMain />
-
                     <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
                         <div>
-                            <div data-region="homeMainContentRegion" className="container" style={{ display: 'block' }}><div className="home-container">
-                                <div className="field-content">
-                                    <h2>Commerce software that powers the next generation of digital experience</h2>
-                                </div>
-                                <div data-region="EPWidgetOne"></div>
-                            </div></div>
-                            <div className="sub-espot-container container">
-                                <div className="home-espot-1">
-                                </div>
-                                <div className="home-espot-2">
+                            <div className="static-container container">
+                                <div className="static-container-inner">
+                                    <div className="static-title-container" style={{ display: 'block' }}>
+                                        <div>
+                                            <h1 className="view-title">About Us</h1>
+                                        </div>
+                                    </div>
+                                    <div className="static-main-container" style={{ display: 'block' }}>
+                                        <div className="static-container">
+                                            <span className="static-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -56,4 +55,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default AboutUsPage;
