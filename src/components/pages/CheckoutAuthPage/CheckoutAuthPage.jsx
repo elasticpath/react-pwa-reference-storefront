@@ -19,6 +19,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import { loginRegistered } from '../../../utils/AuthService.js';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
 
@@ -26,10 +27,110 @@ var Config = require('Config')
 // Then use in render: <span>{Config.skuImagesS3Url}</span>
 
 class CheckoutAuthPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: "",
+            email: "",
+            failedLogin: false
+        };
+        this.setUsername = this.setUsername.bind(this);
+        this.setPassword = this.setPassword.bind(this);
+        this.setEmail = this.setEmail.bind(this);
+        this.loginRegisteredUser = this.loginRegisteredUser.bind(this);
+        this.submitEmail = this.submitEmail.bind(this);
+    }
+    setUsername(event) {
+        this.setState({ username: event.target.value });
+    }
+    setPassword(event) {
+        this.setState({ password: event.target.value });
+    }
+    setEmail(event) {
+        this.setState({ email: event.target.value });
+    }
+    loginRegisteredUser(event) {
+        event.preventDefault();
+        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'PUBLIC') {
+            loginRegistered(this.state.username, this.state.password).then(res_status => {
+                if (res_status === 401) {
+                    this.setState({ failedLogin: true });
+                }
+                if (res_status === 400) {
+                    this.setState({ failedLogin: true });
+                }
+                else if (res_status === 200) {
+                    this.setState({ failedLogin: false });
+                    this.props.history.push('/checkout');
+                }
+            });
+        }
+    }
+    submitEmail(event) {
+        event.preventDefault();
+        // TODO: submit the email to form, and validate it's actually an email (*@*.*)
+        console.log(this.props.history);
+    }
     render() {
         return (
             <div>
                 <AppHeaderMain />
+                <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
+                    <div className="container">
+                        <h3>Sign In to proceed to checkout</h3>
+                        <div className="checkout-auth-option-list equalize">
+                            <div data-region="checkoutAutRegisterOptionRegion" style={{ display: 'block' }}>
+                                <div className="checkout-auth-option-container" style={{ minHeight: '259px' }}>
+                                    <h3>Create an account</h3>
+                                    <p>Create an account with us to enjoy fast and easy checkout, online address book, purchase history and more!</p>
+                                    <button className="btn btn-primary checkout-auth-option-register-btn" data-el-label="checkoutAuthOption.register" onClick={() => { this.props.history.push('/registration', {returnPage: '/checkout'}); }}>
+                                        Register</button>
+                                </div>
+                            </div>
+                            <div data-region="checkoutAuthLoginOptionRegion" style={{ display: 'block' }}>
+                                <div className="checkout-auth-option-container" style={{ minHeight: '259px' }}>
+                                    <h3>I have an account</h3>
+                                    <form role="form" onSubmit={this.loginRegisteredUser}>
+                                        <div className="auth-feedback-container" data-region="authLoginFormFeedbackRegion">{this.state.failedLogin ? ('Your username or password is invalid.') : ('')}</div>
+
+                                        <div className="form-group checkout-auth-form-group">
+                                            <label htmlFor="OAuthUserName" data-el-label="checkoutAuthOption.username" className="control-label">
+                                                <span className="required-label">*</span> Username:
+                                            </label>
+                                            <input className="form-control" id="OAuthUserName" name="OAuthUserName" type="text" autoFocus="autofocus" onChange={this.setUsername} />
+                                        </div>
+                                        <div className="form-group checkout-auth-form-group">
+                                            <label htmlFor="OAuthPassword" data-el-label="checkoutAuthOption.password" className="control-label">
+                                                <span className="required-label">*</span> Password:
+                                            </label>
+                                            <input className="form-control" id="OAuthPassword" name="OAuthPassword" type="password" onChange={this.setPassword} />
+                                        </div>
+                                        <input id="OAuthScope" name="OAuthScope" list="oAuthScopeList" type="hidden" value="vestri" />
+                                        <input id="OAuthRole" name="OAuthRole" list="oAuthRoleList" type="hidden" value="REGISTERED" />
+                                        <button className="btn btn-primary checkout-auth-option-login-btn" data-el-label="checkoutAuthOption.login" type="submit">Login and continue</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div data-region="checkoutAuthAnonymousOptionRegion" style={{ display: 'block' }}>
+                                <div className="checkout-auth-option-container">
+                                    <h3>Continue without an account</h3>
+                                    <p>To proceed without setting up an account, please enter a valid email and click on "Continue to checkout" </p>
+                                    <form role="form" onSubmit={this.submitEmail}>
+                                        <div className="anonymous-checkout-feedback-container" data-region="anonymousCheckoutFeedbackRegion"></div>
+                                        <div className="form-group checkout-auth-form-group">
+                                            <label htmlFor="Email" data-el-label="checkoutAuthOption.email" className="control-label">
+                                                <span className="required-label">*</span> Email:
+                                            </label>
+                                            <input id="Email" name="Email" className="form-control" type="email" onChange={this.setEmail} />
+                                        </div>
+                                        <button className="btn btn-primary checkout-auth-option-anonymous-checkout-btn" data-el-label="checkoutAuthOption.anonymousCheckout" type="submit">Continue to checkout</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <AppFooterMain />
             </div>
         );

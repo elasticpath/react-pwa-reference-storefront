@@ -42,6 +42,7 @@ class CartMain extends React.Component {
                             <tr>
                                 <th className="cart-heading-product"><span className="lineitem-asset-col">Product</span></th>
                                 <th className="cart-heading-name">Name</th>
+                                <th className="cart-heading-options">Options</th>
                                 <th className="cart-heading-availability">Availability</th>
                                 <th className="cart-heading-item-price">Unit Price</th>
                                 <th className="cart-heading-quantity">Quantity</th>

@@ -19,6 +19,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import { login } from '../../../utils/AuthService.js';
 
 var Config = require('Config')
 
@@ -29,45 +30,100 @@ class CartLineItem extends React.Component {
             quantity: this.props.item.quantity
         }
         this.handleQuantityChange = this.handleQuantityChange.bind(this);
+        this.handleRemoveBtnClicked = this.handleRemoveBtnClicked.bind(this);
     }
     handleQuantityChange(event) {
         event.preventDefault();
+        let newQuantity = event.target.value;
 
-        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthToken') === null) {
-            login();
-        }
-        this.setState({ quantity: event.target.value }, () => {
+        login().then(() => {
+            this.setState({ quantity: newQuantity }, () => {
+                fetch(this.props.item.self.href,
+                    {
+                        method: 'put',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                        },
+                        body: JSON.stringify({
+                            quantity: this.state.quantity
+                        })
+                    })
+                    .then(() => {
+                        this.props.handleQuantityChange()
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    });
+            });
+        });
+    }
+    handleRemoveBtnClicked() {
+        login().then(() => {
             fetch(this.props.item.self.href,
                 {
-                    method: 'put',
+                    method: 'delete',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                    },
-                    body: JSON.stringify({
-                        quantity: this.state.quantity
-                    })
+                    }
                 })
-                .then(() =>{
+                .then(() => {
                     this.props.handleQuantityChange()
                 })
                 .catch(error => {
-                    console.log(error)
-                });
+                    console.log(error);
+                })
         });
     }
+    renderUnitPrice() {
+        var listPrice = this.props.item['_price'][0]['list-price'][0]['display'];
+        var purchasePrice = this.props.item['_price'][0]['purchase-price'][0]['display'];
+        if (listPrice !== purchasePrice) {
+            return (
+                <ul className="cart-lineitem-price-container">
+                    <li className="cart-unit-list-price" data-region="itemListPriceRegion">{listPrice}</li>
+                    <li className="cart-unit-purchase-price">{purchasePrice}</li>
+                </ul>
+            );
+        } else {
+            return (
+                <ul className="cart-lineitem-price-container">
+                    <li className="cart-unit-purchase-price">{purchasePrice}</li>
+                </ul>
+            );
+        }
+    }
+    renderOptions() {
+        var options = this.props.item['_item'][0]['_definition'][0]['_options'];
+        if (options) {
+            return (
+                options[0]['_element'].map((option) => {
+                    return (
+                        <li className="cart-lineitem-option" key={'_' + Math.random().toString(36).substr(2, 9)}>
+                            <label className="cart-lineitem-option-name">{option['display-name']}:&nbsp;</label>
+                            <span className="cart-lineitem-option-value">{option['_value'][0]['display-name']}</span>
+                        </li>
+                    );
+                })
+            );
+        }
+    }
     render() {
-        var stock = this.props.item["_availability"][0]["state"] === "AVAILABLE" ? "In Stock" : "Out of Stock";
+        var stock = this.props.item['_availability'][0]['state'] === "AVAILABLE" ? "In Stock" : "Out of Stock";
         return (
             <tr>
                 <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
-                    <img src={Config.skuImagesS3Url.replace("%sku%", this.props.item["_item"][0]["_code"][0]["code"])} onError={(e) => { e.target.src = "images/img-placeholder.png" }} alt="No Image Available" className="cart-lineitem-thumbnail" />
+                    <img src={Config.skuImagesS3Url.replace("%sku%", this.props.item['_item'][0]['_code'][0]['code'])} onError={(e) => { e.target.src = "images/img-placeholder.png" }} alt="No Image Available" className="cart-lineitem-thumbnail" />
                 </td>
-
                 <td className="cart-lineitem-title-col" data-el-value="lineItem.displayName">
-                    <Link to={"/itemdetail/" + encodeURIComponent(this.props.item["_item"][0]["self"]["href"])}>{this.props.item["_item"][0]["_definition"][0]["display-name"]}</Link>
+                    <Link to={"/itemdetail/" + encodeURIComponent(this.props.item['_item'][0]['self']['href'])}>{this.props.item['_item'][0]['_definition'][0]['display-name']}</Link>
                 </td>
-
+                <td className="cart-lineitem-options-col" style={{ display: 'table-cell' }}>
+                    <ul className="cart-lineitem-options-container">
+                        {this.renderOptions()}
+                    </ul>
+                </td>
                 <td className="cart-lineitem-availability-col" data-region="cartLineitemAvailabilityRegion" style={{ display: 'table-cell' }}>
                     <ul className="cart-lineitem-availability-container">
                         <li className="cart-lineitem-availability itemdetail-availability-state" data-i18n="AVAILABLE">
@@ -83,10 +139,7 @@ class CartLineItem extends React.Component {
                 <td className="cart-lineitem-unit-price-col" data-region="cartLineitemUnitPriceRegion" style={{ display: 'table-cell' }}>
                     <div>
                         <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
-                            <ul className="cart-lineitem-price-container">
-                                <li className="cart-unit-list-price is-hidden" data-region="itemListPriceRegion"></li>
-                                <li className="cart-unit-purchase-price">{this.props.item["_price"][0]["purchase-price"][0]["display"]}</li>
-                            </ul>
+                            {this.renderUnitPrice()}
                         </div>
                         <div data-region="itemUnitRateRegion"></div>
                     </div>
@@ -113,7 +166,7 @@ class CartLineItem extends React.Component {
                         <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
                             <ul className="cart-lineitem-price-container">
                                 <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion"></li>
-                                <li className="cart-total-purchase-price">{this.props.item["_total"][0]["cost"][0]["display"]}</li>
+                                <li className="cart-total-purchase-price">{this.props.item['_total'][0]['cost'][0]['display']}</li>
                             </ul>
                         </div>
                         <div data-region="itemTotalRateRegion"></div>
@@ -121,7 +174,7 @@ class CartLineItem extends React.Component {
                 </td>
 
                 <td className="cart-lineitem-remove-btn-col">
-                    <button className="btn btn-cart-removelineitem" data-el-label="lineItem.removeBtn" data-actionlink="">
+                    <button className="btn btn-cart-removelineitem" data-el-label="lineItem.removeBtn" onClick={this.handleRemoveBtnClicked}>
                         <span className="icon"></span>
                         <span className="btn-text">Remove</span>
                     </button>

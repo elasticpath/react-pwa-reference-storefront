@@ -29,21 +29,18 @@ var Config = require('Config')
 // Array of zoom parameters to pass to Cortex
 var zoomArray = [
     'total',
+    'appliedpromotions:element',
+    'discount',
     'lineitems:element',
-    'lineitems:element:price',
-    'lineitems:element:total',
-    'lineitems:element:rate',
     'lineitems:element:availability',
-    'lineitems:element:item',
-    'lineitems:element:item:definition',
-    'lineitems:element:item:definition:assets:element',
-    'lineitems:element:item:rate',
-    'lineitems:element:item:code',
+    'lineitems:element:price',
     'lineitems:element:appliedpromotions:element',
-    'appliedpromotions',
-    'order',
-    'order:purchaseform',
-    'order:deliveries:element:shippingoptioninfo'
+    'lineitems:element:total',
+    'lineitems:element:item:definition',
+    'lineitems:element:item:code',
+    'lineitems:element:item',
+    'lineitems:element:item:definition:options:element',
+    'lineitems:element:item:definition:options:element:value'
 ];
 
 class CartPage extends React.Component {
@@ -55,22 +52,22 @@ class CartPage extends React.Component {
     }
     fetchCartData() {
         login().then(() => {
-        fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(),
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                }
-            })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    cartData: res
-                }, () => { console.log(this.state.cartData) });
-            })
-            .catch(error => {
-                console.log(error)
-            });
+            fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                    }
+                })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        cartData: res
+                    }, () => { console.log(this.state.cartData) });
+                })
+                .catch(error => {
+                    console.log(error)
+                });
         });
     }
     componentDidMount() {
@@ -78,6 +75,38 @@ class CartPage extends React.Component {
     }
     handleQuantityChange() {
         this.fetchCartData();
+    }
+    renderPromotions() {
+        if (this.state.cartData['_appliedpromotions']) {
+            return (
+                <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
+                    <label className="cart-summary-label-col">Applied Promotions:&nbsp;</label>
+                    <br />
+                    {this.state.cartData['_appliedpromotions'][0]['_element'].map(promotion => {
+                        return(
+                            <span className="cart-summary-value-col cart-applied-promotions" key={'_' + Math.random().toString(36).substr(2, 9)} data-el-value="cart.appliedPromotions">&nbsp;&nbsp;{promotion['display-name']}</span>
+                        );
+                    })}
+                </li>
+            );
+        }
+    }
+    renderDiscount() {
+        if (this.state.cartData['_discount']) {
+            return (
+                <li className="cart-discount">
+                    <label className="cart-summary-label-col">Discount at Checkout:&nbsp;</label>
+                    <span className="cart-summary-value-col">{this.state.cartData['_discount'][0]['discount'][0]['display']}</span>
+                </li>
+            );
+        }
+    }
+    checkout() {
+        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'REGISTERED') {
+            this.props.history.push('/checkout');
+        } else {
+            this.props.history.push('/signIn'); 
+        }
     }
     render() {
         if (this.state.cartData) {
@@ -89,6 +118,7 @@ class CartPage extends React.Component {
                             <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
                                 <div>
                                     <h1 className="view-title">Shopping Cart</h1>
+                                    <button className="btn-cmd-continue-shopping" onClick={() => {this.props.history.push('/')}}>Continue Shopping</button>
                                 </div>
                             </div>
                             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
@@ -104,21 +134,18 @@ class CartPage extends React.Component {
                                                         <label className="cart-summary-label-col">Total Quantity:&nbsp;</label>
                                                         <span className="cart-summary-value-col" data-el-value="cart.totalQuantity">{this.state.cartData['total-quantity']}</span>
                                                     </li>
-                                                    <li className="cart-applied-promotions is-hidden" data-region="cartAppliedPromotionsRegion">
-                                                        <label className="cart-summary-label-col">Applied Promotions:&nbsp;</label>
-                                                        <br />
-                                                        <span className="cart-summary-value-col cart-applied-promotions" data-el-value="cart.appliedPromotions"></span>
-                                                    </li>
+                                                    {this.renderPromotions()}
                                                     <li className="cart-subtotal">
                                                         <label className="cart-summary-label-col">Today's Subtotal:&nbsp;</label>
                                                         <span className="cart-summary-value-col" data-el-value="cart.subTotal">{this.state.cartData['_total'][0].cost[0].display}</span>
                                                     </li>
+                                                    {this.renderDiscount()}
                                                 </ul>
                                             </div>
                                         </div>
                                         <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                                             <div>
-                                                <button className="btn-cmd-checkout" disabled={!this.state.cartData['total-quantity']}>Proceed to Checkout</button>
+                                                <button className="btn-cmd-checkout" disabled={!this.state.cartData['total-quantity']} onClick={() => {this.checkout()}}>Proceed to Checkout</button>
                                             </div>
                                         </div>
                                     </div>

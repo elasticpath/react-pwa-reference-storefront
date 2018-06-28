@@ -7214,6 +7214,32 @@ nav.main-nav {
 .cart-lineitem-quantity-select {
   min-width: 70px;
 }
+.btn-cmd-continue-shopping {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2px;
+  color: #ffffff;
+  background-color: #040060;
+  border-color: #040060;
+}
 .btn-cmd-checkout {
   display: inline-block;
   padding: 6px 12px;
@@ -7346,12 +7372,21 @@ fieldset[disabled] .btn-cmd-checkout.active {
 .static-title-container h1 {
   position: relative;
   float: left;
-  width: 100%;
+  width: 75%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   margin-top: 4rem;
   margin-bottom: 4rem;
+}
+.cart-title-container button {
+  position: relative;
+  float: right;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  margin-right: 2rem;
 }
 .cart-main-container,
 .static-main-container {
