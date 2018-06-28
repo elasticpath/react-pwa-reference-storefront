@@ -89,7 +89,9 @@ class CategoryItemsMain extends React.Component {
                             <h1 className="view-title">{this.state.categoryModel["display-name"]}</h1>
                         </div>
                     </div>
-                    <ProductListMain productData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel}/>
+                    <ProductListPaginationTop paginationData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel} />
+                    <ProductListMain productData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel} />
+                    <ProductListPaginationBottom paginationData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel} />
                 </div>
             );
         }
