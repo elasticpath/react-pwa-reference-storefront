@@ -7459,7 +7459,6 @@ fieldset[disabled] .btn-cmd-checkout.active {
 @media screen and (min-width: 992px) {
   .cart-sidebar .cart-sidebar-inner {
     width: 293.328px;
-    position: fixed;
     display: block;
   }
 }

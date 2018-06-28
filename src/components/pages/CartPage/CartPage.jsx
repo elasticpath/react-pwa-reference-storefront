@@ -63,7 +63,7 @@ class CartPage extends React.Component {
                 .then(res => {
                     this.setState({
                         cartData: res
-                    }, () => { console.log(this.state.cartData) });
+                    });
                 })
                 .catch(error => {
                     console.log(error)

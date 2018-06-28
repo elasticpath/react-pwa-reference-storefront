@@ -98,13 +98,13 @@ class CheckoutAuthPage extends React.Component {
                                             <label htmlFor="OAuthUserName" data-el-label="checkoutAuthOption.username" className="control-label">
                                                 <span className="required-label">*</span> Username:
                                             </label>
-                                            <input className="form-control" id="OAuthUserName" name="OAuthUserName" type="text" autoFocus="autofocus" onChange={this.setUsername} />
+                                            <input className="form-control" id="registration_form_emailUsername" name="OAuthUserName" type="text" autoFocus="autofocus" onChange={this.setUsername} />
                                         </div>
                                         <div className="form-group checkout-auth-form-group">
                                             <label htmlFor="OAuthPassword" data-el-label="checkoutAuthOption.password" className="control-label">
                                                 <span className="required-label">*</span> Password:
                                             </label>
-                                            <input className="form-control" id="OAuthPassword" name="OAuthPassword" type="password" onChange={this.setPassword} />
+                                            <input className="form-control" id="registration_form_password" name="OAuthPassword" type="password" onChange={this.setPassword} />
                                         </div>
                                         <input id="OAuthScope" name="OAuthScope" list="oAuthScopeList" type="hidden" value="vestri" />
                                         <input id="OAuthRole" name="OAuthRole" list="oAuthRoleList" type="hidden" value="REGISTERED" />
