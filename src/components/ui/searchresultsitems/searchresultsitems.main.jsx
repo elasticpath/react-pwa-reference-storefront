@@ -83,9 +83,7 @@ class SearchResultsItemsMain extends React.Component {
                 })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
                     this.getSearchResults(res.self.href);
-                    this.props.history.push('/search/' + this.props.searchKeywords);
                 })
                 .catch(error => {
                     console.log(error)

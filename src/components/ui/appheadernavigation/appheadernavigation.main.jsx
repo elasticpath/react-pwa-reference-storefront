@@ -25,7 +25,8 @@ var Config = require('Config')
 
 // Array of zoom parameters to pass to Cortex
 var zoomArray = [
-    'element'
+    'element',
+    'element:child'
 ];
 
 class AppHeaderNavigationMain extends React.Component {
@@ -57,11 +58,29 @@ class AppHeaderNavigationMain extends React.Component {
     }
     renderCategories() {
         return this.state.navigations.map(category => {
-            return (
-                <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
-                    <Link to={"/category/" + encodeURIComponent(category.self.href)} className="nav-item" id={"header_navbar_category_button_" + category.name} data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
-                </li>
-            );
+            if (category['_child']) {
+                return (
+                    <li className="nav-item dropdown" key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
+                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {category["display-name"]}
+                        </a>
+                        <div className="dropdown-menu sub-category-dropdown-menu" aria-labelledby="navbarDropdown">
+                            {category['_child'].map(subcategory => {
+                                return (
+                                    <Link to={"/category/" + encodeURIComponent(subcategory.self.href)} key={subcategory.name} className="dropdown-item" id={"header_navbar_sub_category_button_" + subcategory.name} data-target=".navbar-collapse" title={subcategory["display-name"]}><span>{subcategory["display-name"]}</span></Link>
+                                );
+                            })}
+                        </div>
+                    </li>
+                );
+            }
+            else {
+                return (
+                    <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
+                        <Link to={"/category/" + encodeURIComponent(category.self.href)} className="nav-item" id={"header_navbar_category_button_" + category.name} data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
+                    </li>
+                );
+            }
         })
     }
     render() {

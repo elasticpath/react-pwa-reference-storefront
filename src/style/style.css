@@ -9746,6 +9746,18 @@ ul {
   position: absolute;
   background-color: #ffffff;
 }
+.sub-category-dropdown-menu {
+  position: absolute !important;
+  text-align: center;
+  background-color: #040060;
+}
+@media (max-width: 768px) {
+  .sub-category-dropdown-menu {
+    position: static !important;
+    text-align: center;
+    background-color: #040060;
+  }
+}
 .oAuth-logout {
   display: none;
 }

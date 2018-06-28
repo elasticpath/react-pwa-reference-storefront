@@ -23,53 +23,55 @@ import { Link } from 'react-router-dom';
 
 var Config = require('Config')
 
-var paginationPreviousLink = '';
-var paginationNextLink = '';
+var paginationPreviousLinkVar = '';
+var paginationNextLinkVar = '';
 
 class ProductListPaginationBottom extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             paginationData: this.props.paginationData,
+            paginationPreviousLink: '',
+            paginationNextLink: '',
             selfHref: this.props.categoryUrl,
             prevSelfHref: ''
         };
     }
     componentWillReceiveProps(nextProps) {
-        paginationPreviousLink = '';
-        paginationNextLink = '';
-        return nextProps.paginationData.links.map(product => {
-            if (product.rel === "previous") {
-                paginationPreviousLink = product.href
-                this.setState({
-                    paginationData: nextProps.paginationData
-                });
+        paginationPreviousLinkVar = '';
+        paginationNextLinkVar = '';
+        for (var i = 0; i < nextProps.paginationData.links.length; i++) {
+            if (nextProps.paginationData.links[i].rel === "previous") {
+                paginationPreviousLinkVar = nextProps.paginationData.links[i].href
+
             }
-            if (product.rel === "next") {
-                paginationNextLink = product.href
-                this.setState({
-                    paginationData: nextProps.paginationData
-                });
+            if (nextProps.paginationData.links[i].rel === "next") {
+                paginationNextLinkVar = nextProps.paginationData.links[i].href
             }
-        })
+        }
+        this.setState({
+            paginationData: nextProps.paginationData,
+            paginationPreviousLink: paginationPreviousLinkVar,
+            paginationNextLink: paginationNextLinkVar
+        });
     }
     componentDidMount() {
-        paginationPreviousLink = '';
-        paginationNextLink = '';
-        return this.state.paginationData.links.map(product => {
-            if (product.rel === "previous") {
-                paginationPreviousLink = product.href
-                this.setState({
-                    paginationData: this.state.paginationData
-                });
+        paginationPreviousLinkVar = '';
+        paginationNextLinkVar = '';
+        for (var i = 0; i < this.state.paginationData.links.length; i++) {
+            if (this.state.paginationData.links[i].rel === "previous") {
+                paginationPreviousLinkVar = this.state.paginationData.links[i].href
+
             }
-            if (product.rel === "next") {
-                paginationNextLink = product.href
-                this.setState({
-                    paginationData: this.state.paginationData
-                });
+            if (this.state.paginationData.links[i].rel === "next") {
+                paginationNextLinkVar = this.state.paginationData.links[i].href
             }
-        })
+        }
+        this.setState({
+            paginationData: this.state.paginationData,
+            paginationPreviousLink: paginationPreviousLinkVar,
+            paginationNextLink: paginationNextLinkVar
+        });
     }
     render() {
         if (this.state.paginationData.links.length > 0) {
@@ -82,10 +84,10 @@ class ProductListPaginationBottom extends React.Component {
                             (&nbsp;<span className="pagination-value pagination-results-displayed-value">{this.state.paginationData.pagination["results-on-page"]}</span>
                             <label className="pagination-label">&nbsp;results on page</label> )
                         </div>
-                        {paginationNextLink !== '' || paginationPreviousLink !== '' ?
+                        {this.state.paginationNextLink !== '' || this.state.paginationPreviousLink !== '' ?
                             <div className="pagination-navigation-container">
-                                {paginationPreviousLink !== '' ?
-                                    <Link to={"/category/" + encodeURIComponent(paginationPreviousLink)} className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_bottom_link" role="button"><span className="icon"></span>Previous</Link>
+                                {this.state.paginationPreviousLink !== '' ?
+                                    <Link to={"/category/" + encodeURIComponent(this.state.paginationPreviousLink)} className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_bottom_link" role="button"><span className="icon"></span>Previous</Link>
                                     : ("")}
                                 <span className="pagestate-summary">
                                     <label className="pagination-label">page&nbsp;</label>
@@ -93,8 +95,8 @@ class ProductListPaginationBottom extends React.Component {
                                     <label className="pagination-label">&nbsp;of&nbsp;</label>
                                     <span className="pagination-value pagination-total-pages-value">{this.state.paginationData.pagination.pages}</span>
                                 </span>
-                                {paginationNextLink !== '' ?
-                                    <Link to={"/category/" + encodeURIComponent(paginationNextLink)} className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_bottom_link" role="button">Next<span className="icon"></span></Link>
+                                {this.state.paginationNextLink !== '' ?
+                                    <Link to={"/category/" + encodeURIComponent(this.state.paginationNextLink)} className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_bottom_link" role="button">Next<span className="icon"></span></Link>
                                     : ("")}
                             </div>
                             : ("")}
