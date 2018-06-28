@@ -32,7 +32,6 @@ class ProductListMain extends React.Component {
         };
     }
     componentWillReceiveProps(nextProps) {
-        console.log(this.state.categoryModel);
         this.setState({ categoryModel: nextProps.productData });
     }
     renderProducts() {
