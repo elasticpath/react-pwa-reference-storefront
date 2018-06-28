@@ -86,7 +86,11 @@ class RegistrationFormMain extends React.Component {
                                 this.setState({ failedLogin: true });
                             }
                             else if (res_status === 200) {
-                                this.props.history.push('/');
+                                if (this.props.location.state.returnPage) {
+                                    this.props.history.push(this.props.location.state.returnPage);
+                                } else {
+                                    this.props.history.push('/');
+                                }
                             }
                         });
                     }

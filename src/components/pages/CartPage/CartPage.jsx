@@ -22,27 +22,25 @@ import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
+import CartMain from '../../ui/cart/cart.main.jsx';
 
 var Config = require('Config')
 
 // Array of zoom parameters to pass to Cortex
 var zoomArray = [
     'total',
+    'appliedpromotions:element',
+    'discount',
     'lineitems:element',
-    'lineitems:element:price',
-    'lineitems:element:total',
-    'lineitems:element:rate',
     'lineitems:element:availability',
-    'lineitems:element:item',
-    'lineitems:element:item:definition',
-    'lineitems:element:item:definition:assets:element',
-    'lineitems:element:item:rate',
-    'lineitems:element:item:code',
+    'lineitems:element:price',
     'lineitems:element:appliedpromotions:element',
-    'appliedpromotions',
-    'order',
-    'order:purchaseform',
-    'order:deliveries:element:shippingoptioninfo'
+    'lineitems:element:total',
+    'lineitems:element:item:definition',
+    'lineitems:element:item:code',
+    'lineitems:element:item',
+    'lineitems:element:item:definition:options:element',
+    'lineitems:element:item:definition:options:element:value'
 ];
 
 class CartPage extends React.Component {
@@ -52,7 +50,7 @@ class CartPage extends React.Component {
             cartData: undefined
         };
     }
-    componentDidMount() {
+    fetchCartData() {
         login().then(() => {
             fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(),
                 {
@@ -66,113 +64,93 @@ class CartPage extends React.Component {
                     this.setState({
                         cartData: res
                     });
-                    console.log(this.state.cartData);
                 })
                 .catch(error => {
                     console.log(error)
                 });
         });
     }
+    componentDidMount() {
+        this.fetchCartData();
+    }
+    handleQuantityChange() {
+        this.fetchCartData();
+    }
+    renderPromotions() {
+        if (this.state.cartData['_appliedpromotions']) {
+            return (
+                <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
+                    <label className="cart-summary-label-col">Applied Promotions:&nbsp;</label>
+                    <br />
+                    {this.state.cartData['_appliedpromotions'][0]['_element'].map(promotion => {
+                        return(
+                            <span className="cart-summary-value-col cart-applied-promotions" key={'_' + Math.random().toString(36).substr(2, 9)} data-el-value="cart.appliedPromotions">&nbsp;&nbsp;{promotion['display-name']}</span>
+                        );
+                    })}
+                </li>
+            );
+        }
+    }
+    renderDiscount() {
+        if (this.state.cartData['_discount']) {
+            return (
+                <li className="cart-discount">
+                    <label className="cart-summary-label-col">Discount at Checkout:&nbsp;</label>
+                    <span className="cart-summary-value-col">{this.state.cartData['_discount'][0]['discount'][0]['display']}</span>
+                </li>
+            );
+        }
+    }
+    checkout() {
+        if (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'REGISTERED') {
+            this.props.history.push('/checkout');
+        } else {
+            this.props.history.push('/signIn'); 
+        }
+    }
     render() {
         if (this.state.cartData) {
             return (
                 <div>
                     <AppHeaderMain />
-
                     <div className="cart-container container">
                         <div className="cart-container-inner">
-
-                            <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}><div>
-                                <h1 className="view-title">Shopping Cart</h1>
-                            </div></div>
-
-                            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}><div className="cart-main-inner table-responsive">
-                                <table className="table">
-                                    <thead className="cart-lineitem-table-headings">
-                                        <tr>
-                                            <th className="cart-heading-product"><span className="lineitem-asset-col">Product</span></th>
-                                            <th className="cart-heading-name">Name</th>
-                                            <th className="cart-heading-availability">Availability</th>
-                                            <th className="cart-heading-item-price">Unit Price</th>
-                                            <th className="cart-heading-quantity">Quantity</th>
-                                            <th className="cart-heading-item-total">Total Price</th>
-                                            <th className="cart-heading-remove">Remove</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody><tr>
-                                        <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
-                                        </td>
-
-                                        <td className="cart-lineitem-title-col" data-el-value="lineItem.displayName">
-                                            <a href="#itemdetail/https%3A%2F%2Fforrester.epdemos.com%2Fcortex%2Fitems%2Fvestri%2Fqgqvhwjbkzcvgvcsjfpu2rkoknpucvcijrcviskdl5kfgscjkjkf6r2sl5ju2%3D">Product 1</a>
-                                        </td>
-
-                                        <td className="cart-lineitem-availability-col" data-region="cartLineitemAvailabilityRegion" style={{ display: 'none' }}><ul className="cart-lineitem-availability-container">
-                                            <li className="cart-lineitem-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                                                <label><span className="icon"></span>In Stock</label>
-                                            </li>
-                                            <li className="category-item-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
-                                                <label className="cart-lineitem-releasedate-label">Expected Release Date: </label>
-                                                <span className="cart-lineitem-release-date-value"></span>
-                                            </li>
-                                        </ul></td>
-
-                                        <td className="cart-lineitem-unit-price-col" data-region="cartLineitemUnitPriceRegion" style={{ display: 'none' }}><div>
-                                            <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}><ul className="cart-lineitem-price-container">
-                                                <li className="cart-unit-list-price is-hidden" data-region="itemListPriceRegion"></li>
-                                                <li className="cart-unit-purchase-price">$9.99</li>
-                                            </ul></div>
-                                            <div data-region="itemUnitRateRegion"></div>
-                                        </div></td>
-
-                                        <td className="cart-lineitem-quantity-col" data-el-value="lineItem.quantity">
-
-                                        </td>
-
-                                        <td className="cart-lineitem-total-price-col" data-region="cartLineitemTotalPriceRegion" style={{ display: 'none' }}><div>
-                                            <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}><ul className="cart-lineitem-price-container">
-                                                <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion"></li>
-                                                <li className="cart-total-purchase-price">$15.99</li>
-                                            </ul></div>
-                                            <div data-region="itemTotalRateRegion"></div>
-                                        </div></td>
-
-                                        <td className="cart-lineitem-remove-btn-col">
-                                            <button className="btn btn-cart-removelineitem" data-el-label="lineItem.removeBtn" data-actionlink="https://forrester.epdemos.com/cortex/carts/vestri/hfrteytbmy2toljsge2gcljugnrtallchezgeljrga4tezjsmizdcytfgm=/lineitems/mrstmzbvmu2wgllega2taljugrrwgllbmy3gmljtmfqwcyjxmizwkndbhe=">
-                                                <span className="icon"></span>
-                                                <span className="btn-text">Remove</span>
-                                            </button>
-                                        </td>
-                                    </tr></tbody>
-                                </table>
-                            </div></div>
-
-                            <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}><div>
-                                <div className="cart-sidebar-inner">
-                                    <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}><div>
-
-                                        <ul className="cart-summary-list">
-                                            <li className="cart-total-quantity">
-                                                <label className="cart-summary-label-col">Total Quantity: </label>
-                                                <span className="cart-summary-value-col" data-el-value="cart.totalQuantity">{this.state.cartData['total-quantity']}</span>
-                                            </li>
-                                            <li className="cart-applied-promotions is-hidden" data-region="cartAppliedPromotionsRegion">
-                                                <label className="cart-summary-label-col">Applied Promotions: </label> <br />
-                                                <span className="cart-summary-value-col cart-applied-promotions" data-el-value="cart.appliedPromotions"></span>
-                                            </li>
-                                            <li className="cart-subtotal">
-                                                <label className="cart-summary-label-col">Today's Subtotal: </label>
-                                                <span className="cart-summary-value-col" data-el-value="cart.subTotal">{this.state.cartData['_total'][0].cost[0].display}</span>
-                                            </li>
-                                        </ul>
-
-                                    </div></div>
-                                    <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}><div>
-                                        <button className="btn-cmd-checkout">Proceed to Checkout</button>
-                                    </div></div>
+                            <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
+                                <div>
+                                    <h1 className="view-title">Shopping Cart</h1>
+                                    <button className="btn-cmd-continue-shopping" onClick={() => {this.props.history.push('/')}}>Continue Shopping</button>
                                 </div>
-                            </div></div>
-
+                            </div>
+                            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+                                <CartMain empty={!this.state.cartData['total-quantity']} cartData={this.state.cartData} handleQuantityChange={() => { this.handleQuantityChange() }} />
+                            </div>
+                            <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
+                                <div>
+                                    <div className="cart-sidebar-inner">
+                                        <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
+                                            <div>
+                                                <ul className="cart-summary-list">
+                                                    <li className="cart-total-quantity">
+                                                        <label className="cart-summary-label-col">Total Quantity:&nbsp;</label>
+                                                        <span className="cart-summary-value-col" data-el-value="cart.totalQuantity">{this.state.cartData['total-quantity']}</span>
+                                                    </li>
+                                                    {this.renderPromotions()}
+                                                    <li className="cart-subtotal">
+                                                        <label className="cart-summary-label-col">Today's Subtotal:&nbsp;</label>
+                                                        <span className="cart-summary-value-col" data-el-value="cart.subTotal">{this.state.cartData['_total'][0].cost[0].display}</span>
+                                                    </li>
+                                                    {this.renderDiscount()}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
+                                            <div>
+                                                <button className="btn-cmd-checkout" disabled={!this.state.cartData['total-quantity']} onClick={() => {this.checkout()}}>Proceed to Checkout</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <AppFooterMain />
