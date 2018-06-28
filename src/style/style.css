@@ -3589,7 +3589,6 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-collapse {
-  max-height: 340px;
   overflow-x: visible;
   padding-right: 15px;
   padding-left: 15px;
@@ -6347,10 +6346,7 @@ fieldset[disabled] .btn-auth-login.active {
   .navbar.navbar-inverse .navbar-nav {
     flex-direction: column;
   }
-  .navbar.navbar-inverse .navbar-nav li a,
-  .app-footer h5,
-  .app-footer p,
-  .app-footer li a  {
+  .navbar.navbar-inverse .navbar-nav li a {
     font-size: 1.5rem;
     padding: 8px 15px;
     margin: 2px 0;
@@ -8297,7 +8293,6 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   clear: both;
 }
 .category-items-container,
-.home-contant-container,
 .cart-container {
   min-height: 100%;
   margin-bottom: 60px; 
@@ -8317,14 +8312,13 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 .home-ui-container > div {
   height: 100%;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .app-footer, 
   .category-items-container:after,
-  .home-contant-container:after,
   .cart-container:after {
     height: 170px; 
   }
-}
+} */
 @media (min-width: 992px) {
   .category-items-listing {
     margin-left: -15px;
@@ -9593,6 +9587,16 @@ ul {
 .app-footer li a {
   padding: 0;
 }
+.footerColumn {
+  width: 50%;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  #footer_container_column_1 > .footerColumn {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
 .share-icon-facebook,
 .share-icon-twitter,
 .share-icon-instagram {
@@ -9668,27 +9672,35 @@ ul {
   right: -18px;
   cursor: pointer;
 }
-.home-container {
-  background: url(images/Hero-Image-v2.jpg) no-repeat;
-  /* min-height: 500px; */
-  background-size: 100%;
-  text-align: center;
-}
 .home-espot-1 {
-  background: url(images/VESTRI_CR-550_Banner.jpeg) no-repeat;
-  min-height: 200px;
-  background-size: 100%;
-  width: 50%;
+  width: 100%;
   text-align: center;
-  float:left;
 }
 .home-espot-2 {
-  background: url(images/VESTRI_M-CLASS_3_Banner.jpeg) no-repeat;
-  min-height: 200px;
-  background-size: 100%;
+  padding-top: 10px;
+  padding-right: 5px;
   width: 50%;
   text-align: center;
   float:left;
+}
+.home-espot-3 {
+  padding-top: 10px;
+  padding-left: 5px;
+  width: 50%;
+  text-align: center;
+  float:left;
+}
+.home-espot-4 {
+  padding-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .home-espot-container,
+  .home-sub-espot-container1,
+  .home-sub-espot-container2 {
+    padding: 0px;
+  }
 }
 .field-content {
   max-width: 75rem;
