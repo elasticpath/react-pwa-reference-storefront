@@ -77,11 +77,11 @@ class ProductListItemMain extends React.Component {
                 availability = this.state.productData["_availability"][0].state;
             }
             return (
-                <div className="category-item-inner" style={{ minHeight: '292px' }}>
+                <div className="category-item-inner" style={{ minHeight: '316.59px' }}>
                     <div className="category-item-thumbnail-container">
                         <img src={Config.skuImagesS3Url.replace("%sku%", this.state.productData["_code"][0].code)} onError={(e) => { e.target.src = "images/img-placeholder.png" }} alt="default-image" className="category-item-thumbnail img-responsive" title="" />
                     </div>
-                    <div className="category-item-title" id={"category_item_title_link_" + this.state.productData["_code"][0].code} style={{ minHeight: '36px' }}>
+                    <div className="category-item-title" id={"category_item_title_link_" + this.state.productData["_code"][0].code} style={{ minHeight: '59px' }}>
                         <Link to={"/itemdetail/" + encodeURIComponent(this.state.productData.self.href)}>{this.state.productData["_definition"][0]["display-name"]}</Link>
                     </div>
                     <div data-region="priceRegion" style={{ display: 'block' }}><div>
