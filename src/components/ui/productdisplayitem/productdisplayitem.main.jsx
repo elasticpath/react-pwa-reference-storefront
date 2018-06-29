@@ -113,16 +113,21 @@ class ProductDisplayItemMain extends React.Component {
                             </div>
                             <div className="itemdetail-price-container" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
                                 <div>
-                                    <div data-region="itemPriceRegion" style={{ display: 'block' }}><ul className="itemdetail-price-container">
-                                        <li className="itemdetail-list-price is-hidden" data-region="itemListPriceRegion">
-                                            <label className="itemdetail-list-price-label">Original Price</label>
-                                            <span className="itemdetail-list-price-value" id={"category_item_list_price_" + this.state.productData["_code"][0].code}>{listPrice}</span>
-                                        </li>
-                                        <li className="itemdetail-purchase-price">
-                                            <label className="itemdetail-purchase-price-label">Price&nbsp;</label>
-                                            <span className="itemdetail-purchase-price-value" id={"category_item_price_" + this.state.productData["_code"][0].code}>{itemPrice}</span>
-                                        </li>
-                                    </ul>
+                                    <div data-region="itemPriceRegion" style={{ display: 'block' }}>
+                                        <ul className="itemdetail-price-container">
+                                            {
+                                                listPrice !== itemPrice ?
+                                                    <li className="itemdetail-list-price" data-region="itemListPriceRegion">
+                                                        <label className="itemdetail-list-price-label">Original Price&nbsp;</label>
+                                                        <span className="itemdetail-list-price-value" id={"category_item_list_price_" + this.state.productData["_code"][0].code}>{listPrice}</span>
+                                                    </li>
+                                                    : ("")
+                                            }
+                                            < li className="itemdetail-purchase-price">
+                                                <label className="itemdetail-purchase-price-label">Price&nbsp;</label>
+                                                <span className="itemdetail-purchase-price-value" id={"category_item_price_" + this.state.productData["_code"][0].code}>{itemPrice}</span>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div data-region="itemRateRegion"></div>
                                 </div>
@@ -195,7 +200,7 @@ class ProductDisplayItemMain extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div >
             );
         }
         else {
