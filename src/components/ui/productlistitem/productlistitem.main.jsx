@@ -72,9 +72,9 @@ class ProductListItemMain extends React.Component {
             if (this.state.productData["_price"]) {
                 itemPrice = this.state.productData["_price"][0]["purchase-price"][0].display;
             }
-            var availability = "n/a";
+            var availability = false;
             if (this.state.productData["_availability"].length >= 0) {
-                availability = this.state.productData["_availability"][0].state;
+                availability = (this.state.productData["_availability"][0].state === "AVAILABLE") ? true : false;
             }
             return (
                 <div className="category-item-inner" style={{ minHeight: '316.59px' }}>
@@ -99,7 +99,7 @@ class ProductListItemMain extends React.Component {
                     </div></div>
                     <div data-region="availabilityRegion" style={{ display: 'block' }}><ul className="category-item-availability-container">
                         <li className="category-item-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                            <label id={"category_item_availability_" + this.state.productData["_code"][0].code}><span className="icon"></span>{availability}</label>
+                            <label id={"category_item_availability_" + this.state.productData["_code"][0].code}>{(availability) ? <div><span className="icon"></span>In Stock</div> : <div>Out of Stock</div>}</label>
                         </li>
                         <li className="category-item-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
                             <label className="item-meta category-item-releaseDate-label">Expected Release Date: </label>

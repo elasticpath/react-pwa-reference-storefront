@@ -7209,6 +7209,9 @@ nav.main-nav {
 .cart-lineitem-quantity-select {
   min-width: 70px;
 }
+.cart-lineitem-availability {
+  min-width: 81px;
+}
 .btn-cmd-continue-shopping {
   display: inline-block;
   padding: 6px 12px;
