@@ -77,7 +77,7 @@ class ProductListItemMain extends React.Component {
                 availability = (this.state.productData["_availability"][0].state === "AVAILABLE") ? true : false;
             }
             return (
-                <div className="category-item-inner" style={{ minHeight: '316.59px' }}>
+                <div className="category-item-inner" style={{ minHeight: '348.59px' }}>
                     <div className="category-item-thumbnail-container">
                         <img src={Config.skuImagesS3Url.replace("%sku%", this.state.productData["_code"][0].code)} onError={(e) => { e.target.src = "images/img-placeholder.png" }} alt="default-image" className="category-item-thumbnail img-responsive" title="" />
                     </div>
@@ -86,10 +86,14 @@ class ProductListItemMain extends React.Component {
                     </div>
                     <div data-region="priceRegion" style={{ display: 'block' }}><div>
                         <div data-region="itemPriceRegion" style={{ display: 'block' }}><ul className="category-item-price-container" style={{ minHeight: '33px' }}>
-                            <li className="category-item-list-price is-hidden" data-region="itemListPriceRegion">
-                                <label className="item-meta category-item-list-price-label">Original Price</label>
-                                <span className="item-meta category-item-list-price-value" id={"category_item_list_price_" + this.state.productData["_code"][0].code}>{listPrice}</span>
-                            </li>
+                            {
+                                listPrice !== itemPrice ?
+                                    <li className="category-item-list-price" data-region="itemListPriceRegion">
+                                        <label className="item-meta category-item-list-price-label">Original Price</label>
+                                        <span className="item-meta category-item-list-price-value" id={"category_item_list_price_" + this.state.productData["_code"][0].code}>{listPrice}</span>
+                                    </li>
+                                    : ("")
+                            }
                             <li className="category-item-purchase-price">
                                 <label className="item-meta category-item-purchase-price-label">Price</label>
                                 <span className="item-meta category-item-purchase-price-value" id={"category_item_price_" + this.state.productData["_code"][0].code}>{itemPrice}</span>
