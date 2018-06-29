@@ -110,7 +110,7 @@ class CartLineItem extends React.Component {
         }
     }
     render() {
-        var stock = this.props.item['_availability'][0]['state'] === "AVAILABLE" ? "In Stock" : "Out of Stock";
+        var availability = (this.props.item['_availability'][0]['state'] === "AVAILABLE") ? true : false;
         return (
             <tr>
                 <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
@@ -127,7 +127,7 @@ class CartLineItem extends React.Component {
                 <td className="cart-lineitem-availability-col" data-region="cartLineitemAvailabilityRegion" style={{ display: 'table-cell' }}>
                     <ul className="cart-lineitem-availability-container">
                         <li className="cart-lineitem-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                            <label><span className="icon"></span>{stock}</label>
+                            {(availability) ? <label><span className="icon"></span>In Stock</label> : <label>Out of Stock</label>}
                         </li>
                         <li className="category-item-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
                             <label className="cart-lineitem-releasedate-label">Expected Release Date: </label>

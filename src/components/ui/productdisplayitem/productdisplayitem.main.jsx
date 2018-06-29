@@ -90,9 +90,9 @@ class ProductDisplayItemMain extends React.Component {
             if (this.state.productData["_price"]) {
                 itemPrice = this.state.productData["_price"][0]["purchase-price"][0].display;
             }
-            var availability = "n/a";
+            var availability = false;
             if (this.state.productData["_availability"].length >= 0) {
-                availability = this.state.productData["_availability"][0].state;
+                availability = (this.state.productData["_availability"][0].state === "AVAILABLE") ? true : false;
             }
             return (
                 <div className="container">
@@ -130,7 +130,7 @@ class ProductDisplayItemMain extends React.Component {
                             <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
                                 <ul className="itemdetail-availability-container">
                                     <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                                        <label id={"category_item_availability_" + this.state.productData["_code"][0].code}><span className="icon"></span>{availability}</label>
+                                        <label id={"category_item_availability_" + this.state.productData["_code"][0].code}>{(availability) ? <div><span className="icon"></span>In Stock</div> : <div>Out of Stock</div>}</label>
                                     </li>
                                     <li className="itemdetail-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
                                         <label className="itemdetail-release-date-label" >Expected Release Date: </label>
@@ -161,15 +161,15 @@ class ProductDisplayItemMain extends React.Component {
                             </div>
                         </div>
 
-                        <div className="itemdetail-addtocart">
+                        <div className="itemdetail-addtocart col-xs-12 col-sm-10 col-md-6 col-lg-3">
                             <div data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                                 <div>
                                     <form className="itemdetail-addtocart-form form-horizontal" ref="form" onSubmit={this.addToCart} role="form">
 
                                         <div className="form-group">
-                                            <label className="control-label col-sm-4">Quantity</label>
+                                            <label className="control-label">Quantity</label>
 
-                                            <div className="form-content col-sm-8">
+                                            <div className="form-content">
                                                 <select className="form-control" id="product_display_item_quantity_select" name="itemdetail-select-quantity" onChange={this.handleQuantityChange}>
                                                     <option id="product_display_item_quantity_option_1" value="1">1</option>
                                                     <option id="product_display_item_quantity_option_2" value="2">2</option>
