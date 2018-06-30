@@ -111,6 +111,27 @@ class CartLineItem extends React.Component {
     }
     render() {
         var availability = (this.props.item['_availability'][0]['state'] === "AVAILABLE") ? true : false;
+        var availability = false;
+        var availabilityString = '';
+        if (this.props.item["_availability"].length >= 0) {
+            if (this.props.item["_availability"][0].state === "AVAILABLE") {
+                availability = true;
+                availabilityString = 'In Stock';
+            }
+            else if (this.props.item["_availability"][0].state === "AVAILABLE_FOR_PRE_ORDER") {
+                availability = true;
+                availabilityString = 'Pre-order';
+            }
+            else if (this.props.item["_availability"][0].state === "AVAILABLE_FOR_BACK_ORDER") {
+                availability = true;
+                availabilityString = 'Back-order';
+            }
+            else {
+                availability = false;
+                availabilityString = 'Out of Stock';
+            }
+        }
+        console.log(this.props.item);
         return (
             <tr>
                 <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
@@ -127,11 +148,11 @@ class CartLineItem extends React.Component {
                 <td className="cart-lineitem-availability-col" data-region="cartLineitemAvailabilityRegion" style={{ display: 'table-cell' }}>
                     <ul className="cart-lineitem-availability-container">
                         <li className="cart-lineitem-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                            {(availability) ? <label><span className="icon"></span>In Stock</label> : <label>Out of Stock</label>}
+                            {(availability) ? <div><span className="icon"></span>{availabilityString}</div> : <div>{availabilityString}</div>}
                         </li>
-                        <li className="category-item-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
-                            <label className="cart-lineitem-releasedate-label">Expected Release Date: </label>
-                            <span className="cart-lineitem-release-date-value"></span>
+                        <li className={'category-item-release-date' + (this.props.item["_availability"][0]['release-date'] ? '' : ' is-hidden')} data-region="itemAvailabilityDescriptionRegion">
+                            <label className="cart-lineitem-releasedate-label">Expected Release Date:&nbsp;</label>
+                            <span className="cart-lineitem-release-date-value">{(this.props.item["_availability"][0]['release-date']) ? this.props.item["_availability"][0]['release-date']['display-value'] : ''}</span>
                         </li>
                     </ul>
                 </td>

@@ -91,8 +91,24 @@ class ProductDisplayItemMain extends React.Component {
                 itemPrice = this.state.productData["_price"][0]["purchase-price"][0].display;
             }
             var availability = false;
+            var availabilityString = '';
             if (this.state.productData["_availability"].length >= 0) {
-                availability = (this.state.productData["_availability"][0].state === "AVAILABLE") ? true : false;
+                if (this.state.productData["_availability"][0].state === "AVAILABLE") {
+                    availability = true;
+                    availabilityString = 'In Stock';
+                }
+                else if (this.state.productData["_availability"][0].state === "AVAILABLE_FOR_PRE_ORDER") {
+                    availability = true;
+                    availabilityString = 'Pre-order';
+                }
+                else if (this.state.productData["_availability"][0].state === "AVAILABLE_FOR_BACK_ORDER") {
+                    availability = true;
+                    availabilityString = 'Back-order';
+                }
+                else {
+                    availability = false;
+                    availabilityString = 'Out of Stock';
+                }
             }
             return (
                 <div className="container">
@@ -135,11 +151,11 @@ class ProductDisplayItemMain extends React.Component {
                             <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
                                 <ul className="itemdetail-availability-container">
                                     <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                                        <label id={"category_item_availability_" + this.state.productData["_code"][0].code}>{(availability) ? <div><span className="icon"></span>In Stock</div> : <div>Out of Stock</div>}</label>
+                                        <label id={"category_item_availability_" + this.state.productData["_code"][0].code}>{(availability) ? <div><span className="icon"></span>{availabilityString}</div> : <div>{availabilityString}</div>}</label>
                                     </li>
-                                    <li className="itemdetail-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
-                                        <label className="itemdetail-release-date-label" >Expected Release Date: </label>
-                                        <span className="itemdetail-release-date-value" id={"category_item_release_date_" + this.state.productData["_code"][0].code}></span>
+                                    <li className={'itemdetail-release-date' + (this.state.productData["_availability"][0]['release-date'] ? '' : ' is-hidden')} data-region="itemAvailabilityDescriptionRegion">
+                                        <label className="itemdetail-release-date-label" >Expected Release Date:&nbsp;</label>
+                                        <span className="itemdetail-release-date-value" id={"category_item_release_date_" + this.state.productData["_code"][0].code}>{this.state.productData["_availability"][0]['release-date'] ? this.state.productData["_availability"][0]['release-date']['display-value'] : ''}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -191,7 +207,7 @@ class ProductDisplayItemMain extends React.Component {
                                         </div>
                                         <div className="form-group form-group-submit">
                                             <div className="form-content form-content-submit col-sm-8 col-sm-offset-4">
-                                                <button className="btn-round btn btn-primary btn-itemdetail-addtocart" id="product_display_item_add_to_cart_button" type="submit">Add to Cart</button>
+                                                <button className={'btn-round btn btn-primary btn-itemdetail-addtocart' + (!availability ? ' disabled' : '')} id="product_display_item_add_to_cart_button" type="submit">Add to Cart</button>
                                             </div>
                                         </div>
 

@@ -73,8 +73,24 @@ class ProductListItemMain extends React.Component {
                 itemPrice = this.state.productData["_price"][0]["purchase-price"][0].display;
             }
             var availability = false;
+            var availabilityString = '';
             if (this.state.productData["_availability"].length >= 0) {
-                availability = (this.state.productData["_availability"][0].state === "AVAILABLE") ? true : false;
+                if (this.state.productData["_availability"][0].state === "AVAILABLE") {
+                    availability = true;
+                    availabilityString = 'In Stock';
+                }
+                else if (this.state.productData["_availability"][0].state === "AVAILABLE_FOR_PRE_ORDER") {
+                    availability = true;
+                    availabilityString = 'Pre-order';
+                }
+                else if (this.state.productData["_availability"][0].state === "AVAILABLE_FOR_BACK_ORDER") {
+                    availability = true;
+                    availabilityString = 'Back-order';
+                }
+                else {
+                    availability = false;
+                    availabilityString = 'Out of Stock';
+                }
             }
             return (
                 <div className="category-item-inner" style={{ minHeight: '348.59px' }}>
@@ -103,11 +119,11 @@ class ProductListItemMain extends React.Component {
                     </div></div>
                     <div data-region="availabilityRegion" style={{ display: 'block' }}><ul className="category-item-availability-container">
                         <li className="category-item-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                            <label id={"category_item_availability_" + this.state.productData["_code"][0].code}>{(availability) ? <div><span className="icon"></span>In Stock</div> : <div>Out of Stock</div>}</label>
+                            <label id={"category_item_availability_" + this.state.productData["_code"][0].code}>{(availability) ? <div><span className="icon"></span>{availabilityString}</div> : <div>{availabilityString}</div>}</label>
                         </li>
-                        <li className="category-item-release-date is-hidden" data-region="itemAvailabilityDescriptionRegion">
-                            <label className="item-meta category-item-releaseDate-label">Expected Release Date: </label>
-                            <span className="item-meta category-item-releaseDate-value" id={"category_item_release_date_" + this.state.productData["_code"][0].code}></span>
+                        <li className={'category-item-release-date' + (this.state.productData["_availability"][0]['release-date'] ? '' : ' is-hidden')} data-region="itemAvailabilityDescriptionRegion">
+                            <label className="item-meta category-item-releaseDate-label">Expected Release Date:&nbsp;</label>
+                            <span className="item-meta category-item-releaseDate-value" id={"category_item_release_date_" + this.state.productData["_code"][0].code}>{this.state.productData["_availability"][0]['release-date'] ? this.state.productData["_availability"][0]['release-date']['display-value'] : ''}</span>
                         </li>
                     </ul>
                     </div>
