@@ -30,7 +30,8 @@ class ProductDisplayItemMain extends React.Component {
         this.state = {
             productData: undefined,
             selfHref: this.props.productUrl,
-            quantity: 1
+            quantity: 1,
+            addToCartFailedMessage: ''
         };
         this.handleQuantityChange = this.handleQuantityChange.bind(this);
         this.addToCart = this.addToCart.bind(this);
@@ -72,7 +73,17 @@ class ProductDisplayItemMain extends React.Component {
                     })
                 })
                 .then(res => {
-                    this.props.history.push('/mycart');
+                    if (res.status === 200) {
+                        this.props.history.push('/mycart');
+                    }
+                    else {
+                        var debug_messages = '';
+                        res.json().then(function (json) {
+                            for (var message in json.messages) {
+                                debug_messages = debug_messages.concat('- ' + json.messages[message]['debug-message'] + ' \n ');
+                            }
+                        }).then(() => this.setState({ addToCartFailedMessage: debug_messages }));
+                    }
                 })
                 .catch(error => {
                     console.log(error)
@@ -210,6 +221,8 @@ class ProductDisplayItemMain extends React.Component {
                                                 <button className={'btn-round btn btn-primary btn-itemdetail-addtocart' + (!availability ? ' disabled' : '')} id="product_display_item_add_to_cart_button" type="submit">Add to Cart</button>
                                             </div>
                                         </div>
+
+                                        <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">{this.state.addToCartFailedMessage ? (this.state.addToCartFailedMessage) : ('')}</div>
 
                                     </form>
                                 </div>
