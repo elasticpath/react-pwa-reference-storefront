@@ -55,7 +55,6 @@ class ProfilePage extends React.Component {
                     this.setState({
                         profileData: res
                     });
-                    console.log(this.state.profileData);
                 })
                 .catch(error => {
                     console.log(error)

@@ -131,7 +131,6 @@ class CartLineItem extends React.Component {
                 availabilityString = 'Out of Stock';
             }
         }
-        console.log(this.props.item);
         return (
             <tr>
                 <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
