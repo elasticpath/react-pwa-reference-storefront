@@ -20,6 +20,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
+import img_placeholder from '../../images/img-placeholder.png';
 
 var Config = require('Config')
 
@@ -134,7 +135,7 @@ class CartLineItem extends React.Component {
         return (
             <tr>
                 <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
-                    <img src={Config.skuImagesS3Url.replace("%sku%", this.props.item['_item'][0]['_code'][0]['code'])} onError={(e) => { e.target.src = "images/img-placeholder.png" }} alt="No Image Available" className="cart-lineitem-thumbnail" />
+                    <img src={Config.skuImagesS3Url.replace("%sku%", this.props.item['_item'][0]['_code'][0]['code'])} onError={(e) => { e.target.src = img_placeholder }} alt="No Image Available" className="cart-lineitem-thumbnail" />
                 </td>
                 <td className="cart-lineitem-title-col" data-el-value="lineItem.displayName">
                     <Link to={"/itemdetail/" + encodeURIComponent(this.props.item['_item'][0]['self']['href'])}>{this.props.item['_item'][0]['_definition'][0]['display-name']}</Link>

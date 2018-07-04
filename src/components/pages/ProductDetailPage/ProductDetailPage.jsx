@@ -24,7 +24,6 @@ import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
 import ProductDisplayItemMain from '../../ui/productdisplayitem/productdisplayitem.main.jsx';
 
 var Config = require('Config')
-// Then use in render: <span>{Config.skuImagesS3Url}</span>
 
 class ProductDetailPage extends React.Component {
     render() {

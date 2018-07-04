@@ -20,6 +20,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
+import img_placeholder from '../../images/img-placeholder.png';
 
 var Config = require('Config')
 
@@ -31,6 +32,14 @@ var zoomArray = [
     'rate',
     'definition',
     'definition:assets:element',
+    'definition:options:element',
+    'definition:options:element:value',
+    'definition:options:element:selector:choice',
+    'definition:options:element:selector:chosen',
+    'definition:options:element:selector:choice:description',
+    'definition:options:element:selector:chosen:description',
+    'definition:options:element:selector:choice:selector',
+    'definition:options:element:selector:chosen:selector',
     'code'
 ];
 
@@ -95,7 +104,7 @@ class ProductListItemMain extends React.Component {
             return (
                 <div className="category-item-inner" style={{ minHeight: '348.59px' }}>
                     <div className="category-item-thumbnail-container">
-                        <img src={Config.skuImagesS3Url.replace("%sku%", this.state.productData["_code"][0].code)} onError={(e) => { e.target.src = "images/img-placeholder.png" }} alt="default-image" className="category-item-thumbnail img-responsive" title="" />
+                        <img src={Config.skuImagesS3Url.replace("%sku%", this.state.productData["_code"][0].code)} onError={(e) => { e.target.src = img_placeholder }} alt="default-image" className="category-item-thumbnail img-responsive" title="" />
                     </div>
                     <div className="category-item-title" id={"category_item_title_link_" + this.state.productData["_code"][0].code} style={{ minHeight: '59px' }}>
                         <Link to={"/itemdetail/" + encodeURIComponent(this.state.productData.self.href)}>{this.state.productData["_definition"][0]["display-name"]}</Link>
