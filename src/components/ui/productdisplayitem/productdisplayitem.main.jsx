@@ -118,17 +118,14 @@ class ProductDisplayItemMain extends React.Component {
                 })
                 .then(res => res.json())
                 .then(res => {
-                    this.setState({
-                        selfHref: res.self.href
+                    this.setState({ selfHref: res.self.href }, () => {
+                        this.props.history.push('/itemdetail/' + encodeURIComponent(res.self.href));
                     });
-                    this.props.history.push('/itemdetail/' + encodeURIComponent(res.self.href));
                 })
                 .catch(error => {
                     console.log(error)
                 });
         });
-        // this.setState({ selfHref: event.target.value });
-        // this.props.history.push('/itemdetail/' + encodeURIComponent(event.target.value));
     }
     addToCart(event) {
         login().then(() => {
@@ -163,23 +160,25 @@ class ProductDisplayItemMain extends React.Component {
         event.preventDefault();
     }
     renderSkuSelection() {
-        return this.state.productData['_definition'][0]['_options'][0]['_element'].map(options => {
-            return (
-                <div key={options.name} className="form-group">
-                    <label className="control-label">{options['display-name']}</label>
-                    <div className="form-content">
-                        <select className="form-control" id={'product_display_item_sku_select_' + options['name']} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
-                            <option key={options['_selector'][0]['_chosen'][0]['_description'][0]['name']} id={'product_display_item_sku_option_' + options['_selector'][0]['_chosen'][0]['_description'][0]['name']} value={(options['_selector'][0]['_chosen'][0]['_selectaction']) ? options['_selector'][0]['_chosen'][0]['_selectaction'][0].self.href : ''}>{options['_selector'][0]['_chosen'][0]['_description'][0]['display-name']}</option>
-                            {(options['_selector'][0]['_choice']) ? options['_selector'][0]['_choice'].map(skuChoice => {
-                                return (
-                                    <option key={skuChoice['_description'][0]['name']} id={'product_display_item_sku_option_' + skuChoice['_description'][0]['name']} value={(skuChoice['_selectaction']) ? skuChoice['_selectaction'][0].self.href : ''}>{skuChoice['_description'][0]['display-name']}</option>
-                                );
-                            }) : ''}
-                        </select>
+        if (this.state.productData['_definition'][0]['_options']) {
+            return this.state.productData['_definition'][0]['_options'][0]['_element'].map(options => {
+                return (
+                    <div key={options.name} className="form-group">
+                        <label className="control-label">{options['display-name']}</label>
+                        <div className="form-content">
+                            <select className="form-control" id={'product_display_item_sku_select_' + options['name']} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
+                                <option key={options['_selector'][0]['_chosen'][0]['_description'][0]['name']} id={'product_display_item_sku_option_' + options['_selector'][0]['_chosen'][0]['_description'][0]['name']} value={(options['_selector'][0]['_chosen'][0]['_selectaction']) ? options['_selector'][0]['_chosen'][0]['_selectaction'][0].self.href : ''}>{options['_selector'][0]['_chosen'][0]['_description'][0]['display-name']}</option>
+                                {(options['_selector'][0]['_choice']) ? options['_selector'][0]['_choice'].map(skuChoice => {
+                                    return (
+                                        <option key={skuChoice['_description'][0]['name']} id={'product_display_item_sku_option_' + skuChoice['_description'][0]['name']} value={(skuChoice['_selectaction']) ? skuChoice['_selectaction'][0].self.href : ''}>{skuChoice['_description'][0]['display-name']}</option>
+                                    );
+                                }) : ''}
+                            </select>
+                        </div>
                     </div>
-                </div>
-            );
-        })
+                );
+            })
+        }
     }
     render() {
         if (this.state.productData) {
