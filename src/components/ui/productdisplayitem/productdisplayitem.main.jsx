@@ -46,8 +46,6 @@ var zoomArray = [
     'code'
 ];
 
-var selfHref = '';
-
 class ProductDisplayItemMain extends React.Component {
     constructor(props) {
         super(props);
@@ -105,7 +103,7 @@ class ProductDisplayItemMain extends React.Component {
         this.setState({ quantity: parseInt(event.target.value) });
     }
     handleSkuSelection(event) {
-        selfHref = event.target.value;
+        const selfHref = event.target.value;
         login().then(() => {
             fetch(selfHref + '?followlocation&zoom=' + zoomArray.join(),
                 {
