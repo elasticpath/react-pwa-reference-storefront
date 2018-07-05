@@ -40,7 +40,15 @@ var zoomArray = [
     'lineitems:element:item:code',
     'lineitems:element:item',
     'lineitems:element:item:definition:options:element',
-    'lineitems:element:item:definition:options:element:value'
+    'lineitems:element:item:definition:options:element:value',
+    'lineitems:element:item:definition:options:element:selector:choice',
+    'lineitems:element:item:definition:options:element:selector:chosen',
+    'lineitems:element:item:definition:options:element:selector:choice:description',
+    'lineitems:element:item:definition:options:element:selector:chosen:description',
+    'lineitems:element:item:definition:options:element:selector:choice:selector',
+    'lineitems:element:item:definition:options:element:selector:chosen:selector',
+    'lineitems:element:item:definition:options:element:selector:choice:selectaction',
+    'lineitems:element:item:definition:options:element:selector:chosen:selectaction'
 ];
 
 class CartPage extends React.Component {

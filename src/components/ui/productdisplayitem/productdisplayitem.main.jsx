@@ -83,7 +83,7 @@ class ProductDisplayItemMain extends React.Component {
     }
     componentDidMount() {
         login().then(() => {
-            fetch(this.props.productUrl + zoomArray.join(),
+            fetch(this.props.productUrl + (this.props.productUrl.includes("zoom") ? '' : '?zoom=') + zoomArray.join(),
                 {
                     headers: {
                         'Content-Type': 'application/json',
