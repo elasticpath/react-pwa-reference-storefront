@@ -329,7 +329,7 @@ class CheckoutPage extends React.Component {
                 </div>
             );
         } else {
-            return (<span>Loading...</span>)
+            return (<div className="loader"></div>)
         }
     }
 }
