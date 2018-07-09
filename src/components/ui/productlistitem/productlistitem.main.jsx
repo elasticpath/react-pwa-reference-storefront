@@ -140,7 +140,7 @@ class ProductListItemMain extends React.Component {
             );
         }
         else {
-            return (<span>Loading...</span>)
+            return (<div class="loader"></div>)
         }
     }
 }
