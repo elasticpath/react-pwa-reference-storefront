@@ -1842,6 +1842,26 @@ textarea.input-lg {
     text-align: right;
   }
 }
+.checkout-delete-address-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background-color: red;
+}
 .btn {
   display: inline-block;
   padding: 6px 12px;
@@ -7414,9 +7434,11 @@ fieldset[disabled] .btn-cmd-checkout.active {
 .static-main-container h2 {
   margin-top: 0;
 }
+.checkout-summary-container
 .cart-summary-container {
   display: inline-block;
 }
+.checkout-submit-container
 .cart-checkout-container {
   margin-top: 2rem;
 }
@@ -7678,7 +7700,7 @@ Purchase Information
 @media screen and (min-width: 992px) {
   .checkout-sidebar .checkout-sidebar-inner {
     width: 293.328px;
-    position: fixed;
+    position: relative;
     display: block;
   }
 }
@@ -7705,6 +7727,7 @@ Purchase Information
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
+.checkout-summary-container,
 .cart-summary-container {
   display: inline-block;
 }
@@ -7715,6 +7738,7 @@ Purchase Information
   padding-left: 1rem;
   margin-bottom: 1rem;
 }
+.cart-summary-list,
 .checkout-summary-list {
   padding: 0;
 }
@@ -7807,8 +7831,7 @@ fieldset[disabled] .btn-cmd-submit-order.active {
   background-color: #040060;
   border-color: #040060;
 }
-.checkout-subtotal,
-.checkout-shipping {
+.checkout-subtotal {
   margin-bottom: 1.5rem;
 }
 .checkout-address-radio,

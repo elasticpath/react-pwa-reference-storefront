@@ -17,7 +17,6 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import img_placeholder from '../../images/img-placeholder.png';
