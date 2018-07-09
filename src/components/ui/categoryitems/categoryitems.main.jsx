@@ -81,7 +81,7 @@ class CategoryItemsMain extends React.Component {
         });
     }
     render() {
-        if (this.state.categoryModel.links.length > 0) {
+        if (this.state.categoryModel.links.length > 0 && this.state.selfHref == this.props.categoryUrl) {
             return (
                 <div className="category-items-container container">
                     <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
@@ -96,7 +96,7 @@ class CategoryItemsMain extends React.Component {
             );
         }
         else {
-            return (<span>Loading or No Products Found...</span>)
+            return (<div class="loader"></div>)
         }
     }
 }

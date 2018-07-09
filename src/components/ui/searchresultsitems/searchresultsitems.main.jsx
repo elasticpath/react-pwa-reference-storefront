@@ -60,7 +60,8 @@ class SearchResultsItemsMain extends React.Component {
                 .then(res => {
                     this.setState({
                         searchResultsUrl: searchResultsUrl,
-                        searchResultsModel: res
+                        searchResultsModel: res,
+                        searchKeywords: this.props.searchKeywords
                     });
                 })
                 .catch(error => {
@@ -99,7 +100,7 @@ class SearchResultsItemsMain extends React.Component {
         }
     }
     render() {
-        if (this.state.searchResultsModel.links.length > 0) {
+        if (this.state.searchResultsModel.links.length > 0 && this.state.searchKeywords == this.props.searchKeywords) {
             return (
                 <div className="category-items-container container">
                     <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
@@ -114,7 +115,7 @@ class SearchResultsItemsMain extends React.Component {
             );
         }
         else {
-            return (<span>Loading or No Products Found...</span>)
+            return (<div class="loader"></div>)
         }
     }
 }

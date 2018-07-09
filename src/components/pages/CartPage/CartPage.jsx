@@ -91,7 +91,7 @@ class CartPage extends React.Component {
                     <label className="cart-summary-label-col">Applied Promotions:&nbsp;</label>
                     <br />
                     {this.state.cartData['_appliedpromotions'][0]['_element'].map(promotion => {
-                        return(
+                        return (
                             <span className="cart-summary-value-col cart-applied-promotions" key={'_' + Math.random().toString(36).substr(2, 9)} data-el-value="cart.appliedPromotions">&nbsp;&nbsp;{promotion['display-name']}</span>
                         );
                     })}
@@ -113,7 +113,7 @@ class CartPage extends React.Component {
         if (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'REGISTERED') {
             this.props.history.push('/checkout');
         } else {
-            this.props.history.push('/signIn'); 
+            this.props.history.push('/signIn');
         }
     }
     render() {
@@ -126,7 +126,7 @@ class CartPage extends React.Component {
                             <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
                                 <div>
                                     <h1 className="view-title">Shopping Cart</h1>
-                                    <button className="btn-cmd-continue-shopping" onClick={() => {this.props.history.push('/')}}>Continue Shopping</button>
+                                    <button className="btn-cmd-continue-shopping" onClick={() => { this.props.history.push('/') }}>Continue Shopping</button>
                                 </div>
                             </div>
                             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
@@ -153,7 +153,7 @@ class CartPage extends React.Component {
                                         </div>
                                         <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                                             <div>
-                                                <button className="btn-cmd-checkout" disabled={!this.state.cartData['total-quantity']} onClick={() => {this.checkout()}}>Proceed to Checkout</button>
+                                                <button className="btn-cmd-checkout" disabled={!this.state.cartData['total-quantity']} onClick={() => { this.checkout() }}>Proceed to Checkout</button>
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +166,7 @@ class CartPage extends React.Component {
             );
         }
         else {
-            return (<span>Loading...</span>)
+            return (<div class="loader"></div>)
         }
     }
 }

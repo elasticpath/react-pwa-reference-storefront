@@ -32,7 +32,9 @@ class ProductListMain extends React.Component {
         };
     }
     componentWillReceiveProps(nextProps) {
-        this.setState({ categoryModel: nextProps.productData });
+        if (this.state.categoryModel.self.href !== nextProps.productData.self.href) {
+            this.setState({ categoryModel: nextProps.productData });
+        }
     }
     renderProducts() {
         return this.state.categoryModel.links.map(product => {
@@ -56,7 +58,7 @@ class ProductListMain extends React.Component {
             );
         }
         else {
-            return (<span>Loading or No Products Found...</span>)
+            return (<div class="loader"></div>)
         }
     }
 }
