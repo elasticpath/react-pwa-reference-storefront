@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import { withRouter } from 'react-router';
 import img_placeholder from '../../images/img-placeholder.png';
+import ProductRecommendationsDisplayMain from '../../ui/productrecommendations/productrecommendations.main.jsx';
 
 var Config = require('Config')
 
@@ -43,6 +44,12 @@ var zoomArray = [
     'definition:options:element:selector:chosen:selector',
     'definition:options:element:selector:choice:selectaction',
     'definition:options:element:selector:chosen:selectaction',
+    'recommendations',
+    'recommendations:crosssell',
+    'recommendations:recommendation',
+    'recommendations:replacement',
+    'recommendations:upsell',
+    'recommendations:warranty',
     'code'
 ];
 
@@ -278,6 +285,7 @@ class ProductDisplayItemMain extends React.Component {
                                 </tbody>
                             </table>
                             </div>
+                            <ProductRecommendationsDisplayMain productData={this.state.productData}/>
                         </div>
 
                         <div className="itemdetail-addtocart col-xs-12 col-sm-10 col-md-6 col-lg-3">
