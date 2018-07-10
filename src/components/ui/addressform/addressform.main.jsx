@@ -229,8 +229,9 @@ class AddressFormMain extends React.Component {
                 if (res.status === 400) {
                     this.setState({ failedSubmit: true });
                 } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-                    this.setState({ failedSubmit: false });
-                    this.cancel();
+                    this.setState({ failedSubmit: false }, () => {
+                        this.cancel();
+                    });
                 }
             }).catch(error => {
                 console.log(error);

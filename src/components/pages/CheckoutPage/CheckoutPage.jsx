@@ -67,7 +67,7 @@ class CheckoutPage extends React.Component {
                 .then(res => {
                     this.setState({
                         orderData: res
-                    }, () => { console.log(this.state.orderData) });
+                    });
                 })
                 .catch(error => {
                     console.log(error)
