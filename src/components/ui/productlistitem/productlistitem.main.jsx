@@ -48,12 +48,12 @@ class ProductListItemMain extends React.Component {
         super(props);
         this.state = {
             productData: undefined,
-            selfHref: this.props.productUrl
+            selfUri: this.props.productUrl
         };
     }
     componentDidMount() {
         login().then(() => {
-            fetch(this.props.productUrl + '?zoom=' + zoomArray.join(),
+            fetch(Config.cortexApi.path + this.props.productUrl + '?zoom=' + zoomArray.join(),
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ class ProductListItemMain extends React.Component {
                         <img src={Config.skuImagesS3Url.replace("%sku%", this.state.productData["_code"][0].code)} onError={(e) => { e.target.src = img_placeholder }} alt="default-image" className="category-item-thumbnail img-responsive" title="" />
                     </div>
                     <div className="category-item-title" id={"category_item_title_link_" + this.state.productData["_code"][0].code} style={{ minHeight: '59px' }}>
-                        <Link to={"/itemdetail/" + encodeURIComponent(this.state.productData.self.href)}>{this.state.productData["_definition"][0]["display-name"]}</Link>
+                        <Link to={"/itemdetail/" + encodeURIComponent(this.state.productData.self.uri)}>{this.state.productData["_definition"][0]["display-name"]}</Link>
                     </div>
                     <div data-region="priceRegion" style={{ display: 'block' }}><div>
                         <div data-region="itemPriceRegion" style={{ display: 'block' }}><ul className="category-item-price-container" style={{ minHeight: '33px' }}>

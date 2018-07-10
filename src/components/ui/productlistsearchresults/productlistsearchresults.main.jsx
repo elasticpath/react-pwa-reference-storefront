@@ -25,6 +25,9 @@ import ProductListItemMain from '../productlistitem/productlistitem.main.jsx';
 var Config = require('Config')
 
 // Array of zoom parameters to pass to Cortex
+var zoomArraySearchForm = [
+    'searches:keywordsearchform'
+];
 var zoomArray = [
     'element',
     'element:availability',
@@ -67,22 +70,34 @@ class ProductListSearchResultsMain extends React.Component {
     }
     getSearchData(event) {
         login().then(() => {
-            fetch(Config.cortexApi.path + '/searches/' + Config.cortexApi.scope + '/keywords/form?followlocation',
+            fetch(Config.cortexApi.path + zoomArraySearchForm.join(),
             {
-                method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                },
-                body: JSON.stringify({
-                    keywords: this.props.searchKeywords
-                })
+                }
             })
             .then(res => res.json())
             .then(res => {
-                console.log(res);
-                this.getSearchResults(res.self.href);
-                this.props.history.push('/search/' + this.props.searchKeywords);
+                fetch(res._searches[0]._keywordsearchform.self.href + '?followlocation',
+                {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                    },
+                    body: JSON.stringify({
+                        keywords: this.props.searchKeywords
+                    })
+                })
+                .then(res => res.json())
+                .then(res => {
+                    this.getSearchResults(res.self.href);
+                    this.props.history.push('/search/' + this.props.searchKeywords);
+                })
+                .catch(error => {
+                    console.log(error)
+                });
             })
             .catch(error => {
                 console.log(error)

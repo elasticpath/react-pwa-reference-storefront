@@ -25,8 +25,8 @@ var Config = require('Config')
 
 // Array of zoom parameters to pass to Cortex
 var zoomArray = [
-    'element',
-    'element:child'
+    'navigations:element',
+    'navigations:element:child'
 ];
 
 class AppHeaderNavigationMain extends React.Component {
@@ -38,7 +38,7 @@ class AppHeaderNavigationMain extends React.Component {
     }
     componentWillMount() {
         login().then(() => {
-            fetch(Config.cortexApi.path + '/navigations/' + Config.cortexApi.scope + '?zoom=' + zoomArray.join(),
+            fetch(Config.cortexApi.path + '?zoom=' + zoomArray.join(),
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ class AppHeaderNavigationMain extends React.Component {
                 .then(res => res.json())
                 .then(res => {
                     this.setState({
-                        navigations: res._element
+                        navigations: res['_navigations'][0]['_element']
                     });
                 })
                 .catch(error => {
@@ -67,7 +67,7 @@ class AppHeaderNavigationMain extends React.Component {
                         <div className="dropdown-menu sub-category-dropdown-menu" aria-labelledby="navbarDropdown">
                             {category['_child'].map(subcategory => {
                                 return (
-                                    <Link to={"/category/" + encodeURIComponent(subcategory.self.href)} key={subcategory.name} className="dropdown-item" id={"header_navbar_sub_category_button_" + subcategory.name} data-target=".navbar-collapse" title={subcategory["display-name"]}><span>{subcategory["display-name"]}</span></Link>
+                                    <Link to={"/category/" + encodeURIComponent(subcategory.self.uri)} key={subcategory.name} className="dropdown-item" id={"header_navbar_sub_category_button_" + subcategory.name} data-target=".navbar-collapse" title={subcategory["display-name"]}><span>{subcategory["display-name"]}</span></Link>
                                 );
                             })}
                         </div>
@@ -77,7 +77,7 @@ class AppHeaderNavigationMain extends React.Component {
             else {
                 return (
                     <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
-                        <Link to={"/category/" + encodeURIComponent(category.self.href)} className="nav-item" id={"header_navbar_category_button_" + category.name} data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
+                        <Link to={"/category/" + encodeURIComponent(category.self.uri)} className="nav-item" id={"header_navbar_category_button_" + category.name} data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
                     </li>
                 );
             }
