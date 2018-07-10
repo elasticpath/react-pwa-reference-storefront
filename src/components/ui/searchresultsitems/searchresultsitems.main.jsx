@@ -114,6 +114,23 @@ class SearchResultsItemsMain extends React.Component {
                 </div>
             );
         }
+        else if (this.state.searchResultsModel.links.length == 0 && this.state.searchResultsModel['pagination'] && this.state.searchKeywords == this.props.searchKeywords) {
+            return (
+                <div className="category-items-container container">
+                    <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
+                        <div>
+                            <h1 className="view-title">Search Results</h1>
+                        </div>
+                    </div>
+                    <br />
+                    <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
+                        <div>
+                            <h3>No results found</h3>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         else {
             return (<div className="loader"></div>)
         }
