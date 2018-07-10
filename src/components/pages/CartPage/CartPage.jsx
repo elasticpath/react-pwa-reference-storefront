@@ -151,7 +151,7 @@ class CartPage extends React.Component {
             );
         }
         else {
-            return (<div className="loader"></div>);
+          return (<div className="loader"></div>);
         }
     }
 }
