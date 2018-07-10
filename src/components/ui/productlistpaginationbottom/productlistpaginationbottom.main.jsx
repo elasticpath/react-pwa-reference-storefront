@@ -104,7 +104,7 @@ class ProductListPaginationBottom extends React.Component {
                 </div>);
         }
         else {
-            return (<div class="loader"></div>)
+            return (<div className="loader"></div>)
         }
     }
 }

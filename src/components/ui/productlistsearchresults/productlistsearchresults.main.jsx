@@ -164,7 +164,7 @@ class ProductListSearchResultsMain extends React.Component {
     </div></div>
 </div>);}
 else {
-    return (<div class="loader"></div>)
+    return (<div className="loader"></div>)
 }
     }
 }
