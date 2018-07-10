@@ -17,8 +17,6 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import { loginRegistered } from '../../../utils/AuthService.js';
 import { getRegistrationForm } from '../../../utils/AuthService.js';
@@ -86,7 +84,7 @@ class RegistrationFormMain extends React.Component {
                                 this.setState({ failedLogin: true });
                             }
                             else if (res_status === 200) {
-                                if (this.props.location.state.returnPage) {
+                                if (this.props.location.state && this.props.location.returnPage) {
                                     this.props.history.push(this.props.location.state.returnPage);
                                 } else {
                                     this.props.history.push('/');

@@ -17,8 +17,6 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import CartLineItem from './cart.lineitem.jsx';
 
 var Config = require('Config')

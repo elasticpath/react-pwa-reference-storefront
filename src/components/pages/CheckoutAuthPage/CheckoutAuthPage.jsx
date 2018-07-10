@@ -19,6 +19,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import { login } from '../../../utils/AuthService.js';
 import { loginRegistered } from '../../../utils/AuthService.js';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
@@ -33,7 +34,8 @@ class CheckoutAuthPage extends React.Component {
             username: "",
             password: "",
             email: "",
-            failedLogin: false
+            failedLogin: false,
+            badEmail: false
         };
         this.setUsername = this.setUsername.bind(this);
         this.setPassword = this.setPassword.bind(this);
@@ -69,8 +71,25 @@ class CheckoutAuthPage extends React.Component {
     }
     submitEmail(event) {
         event.preventDefault();
-        // TODO: submit the email to form, and validate it's actually an email (*@*.*)
-        console.log(this.props.history);
+        login().then(() => {
+            fetch(Config.cortexApi.path + '/emails/' + Config.cortexApi.scope + '/form', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                },
+                body: JSON.stringify({ 'email': this.state.email })
+            }).then(res => {
+                if (res.status === 400) {
+                    this.setState({badEmail: true});
+                } else if (res.status === 201) {
+                    this.setState({badEmail: false});
+                    this.props.history.push('/checkout');
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+        });
     }
     render() {
         return (
@@ -84,7 +103,7 @@ class CheckoutAuthPage extends React.Component {
                                 <div className="checkout-auth-option-container" style={{ minHeight: '259px' }}>
                                     <h3>Create an account</h3>
                                     <p>Create an account with us to enjoy fast and easy checkout, online address book, purchase history and more!</p>
-                                    <button className="btn btn-primary checkout-auth-option-register-btn" data-el-label="checkoutAuthOption.register" onClick={() => { this.props.history.push('/registration', {returnPage: '/checkout'}); }}>
+                                    <button className="btn btn-primary checkout-auth-option-register-btn" data-el-label="checkoutAuthOption.register" onClick={() => { this.props.history.push('/registration', { returnPage: '/checkout' }); }}>
                                         Register</button>
                                 </div>
                             </div>
@@ -117,7 +136,7 @@ class CheckoutAuthPage extends React.Component {
                                     <h3>Continue without an account</h3>
                                     <p>To proceed without setting up an account, please enter a valid email and click on "Continue to checkout" </p>
                                     <form role="form" onSubmit={this.submitEmail}>
-                                        <div className="anonymous-checkout-feedback-container" data-region="anonymousCheckoutFeedbackRegion"></div>
+                                        <div className="anonymous-checkout-feedback-container" data-region="anonymousCheckoutFeedbackRegion">{this.state.badEmail ? ("Your email is invalid/incomplete") : ("")}</div>
                                         <div className="form-group checkout-auth-form-group">
                                             <label htmlFor="Email" data-el-label="checkoutAuthOption.email" className="control-label">
                                                 <span className="required-label">*</span> Email:

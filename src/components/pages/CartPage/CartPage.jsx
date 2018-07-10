@@ -17,28 +17,27 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
 import AppFooterMain from '../../ui/appfooter/appfooter.main.jsx';
 import CartMain from '../../ui/cart/cart.main.jsx';
+import CheckoutSummaryList from '../../ui/checkout/checkout.summarylist.jsx';
 
 var Config = require('Config')
 
 // Array of zoom parameters to pass to Cortex
 var zoomArray = [
     'total',
-    'appliedpromotions:element',
     'discount',
+    'appliedpromotions:element',
     'lineitems:element',
-    'lineitems:element:availability',
-    'lineitems:element:price',
-    'lineitems:element:appliedpromotions:element',
     'lineitems:element:total',
-    'lineitems:element:item:definition',
-    'lineitems:element:item:code',
+    'lineitems:element:price',
+    'lineitems:element:availability',
+    'lineitems:element:appliedpromotions:element',
     'lineitems:element:item',
+    'lineitems:element:item:code',
+    'lineitems:element:item:definition',
     'lineitems:element:item:definition:options:element',
     'lineitems:element:item:definition:options:element:value',
     'lineitems:element:item:definition:options:element:selector:choice',
@@ -60,8 +59,7 @@ class CartPage extends React.Component {
     }
     fetchCartData() {
         login().then(() => {
-            fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(),
-                {
+            fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(), {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
@@ -136,20 +134,7 @@ class CartPage extends React.Component {
                                 <div>
                                     <div className="cart-sidebar-inner">
                                         <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                                            <div>
-                                                <ul className="cart-summary-list">
-                                                    <li className="cart-total-quantity">
-                                                        <label className="cart-summary-label-col">Total Quantity:&nbsp;</label>
-                                                        <span className="cart-summary-value-col" data-el-value="cart.totalQuantity">{this.state.cartData['total-quantity']}</span>
-                                                    </li>
-                                                    {this.renderPromotions()}
-                                                    <li className="cart-subtotal">
-                                                        <label className="cart-summary-label-col">Today's Subtotal:&nbsp;</label>
-                                                        <span className="cart-summary-value-col" data-el-value="cart.subTotal">{this.state.cartData['_total'][0].cost[0].display}</span>
-                                                    </li>
-                                                    {this.renderDiscount()}
-                                                </ul>
-                                            </div>
+                                            <CheckoutSummaryList data={this.state.cartData}/>
                                         </div>
                                         <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                                             <div>
@@ -166,7 +151,7 @@ class CartPage extends React.Component {
             );
         }
         else {
-            return (<div className="loader"></div>)
+          return (<div className="loader"></div>);
         }
     }
 }
