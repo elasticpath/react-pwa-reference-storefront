@@ -115,7 +115,7 @@ class SearchResultsItemsMain extends React.Component {
             );
         }
         else {
-            return (<div class="loader"></div>)
+            return (<div className="loader"></div>)
         }
     }
 }
