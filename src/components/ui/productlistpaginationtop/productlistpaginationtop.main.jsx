@@ -33,8 +33,8 @@ class ProductListPaginationTop extends React.Component {
             paginationData: this.props.paginationData,
             paginationPreviousLink: '',
             paginationNextLink: '',
-            selfHref: this.props.categoryUrl,
-            prevSelfHref: ''
+            selfUri: this.props.categoryUrl,
+            prevselfUri: ''
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -42,11 +42,11 @@ class ProductListPaginationTop extends React.Component {
         paginationNextLinkVar = '';
         for (var i = 0; i < nextProps.paginationData.links.length; i++) {
             if (nextProps.paginationData.links[i].rel === "previous") {
-                paginationPreviousLinkVar = nextProps.paginationData.links[i].href
+                paginationPreviousLinkVar = nextProps.paginationData.links[i].uri
 
             }
             if (nextProps.paginationData.links[i].rel === "next") {
-                paginationNextLinkVar = nextProps.paginationData.links[i].href
+                paginationNextLinkVar = nextProps.paginationData.links[i].uri
             }
         }
         this.setState({
@@ -60,11 +60,11 @@ class ProductListPaginationTop extends React.Component {
         paginationNextLinkVar = '';
         for (var i = 0; i < this.state.paginationData.links.length; i++) {
             if (this.state.paginationData.links[i].rel === "previous") {
-                paginationPreviousLinkVar = this.state.paginationData.links[i].href
+                paginationPreviousLinkVar = this.state.paginationData.links[i].uri
 
             }
             if (this.state.paginationData.links[i].rel === "next") {
-                paginationNextLinkVar = this.state.paginationData.links[i].href
+                paginationNextLinkVar = this.state.paginationData.links[i].uri
             }
         }
         this.setState({

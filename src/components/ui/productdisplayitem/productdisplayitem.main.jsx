@@ -58,7 +58,7 @@ class ProductDisplayItemMain extends React.Component {
         super(props);
         this.state = {
             productData: undefined,
-            selfHref: this.props.productUrl,
+            selfUri: this.props.productUrl,
             quantity: 1,
             addToCartFailedMessage: ''
         };
@@ -68,7 +68,7 @@ class ProductDisplayItemMain extends React.Component {
     }
     componentWillReceiveProps(nextProps) {
         login().then(() => {
-            fetch(nextProps.productUrl,
+            fetch(Config.cortexApi.path + nextProps.productUrl,
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ class ProductDisplayItemMain extends React.Component {
     }
     componentDidMount() {
         login().then(() => {
-            fetch(this.props.productUrl + (this.props.productUrl.includes("zoom") ? '' : '?zoom=') + zoomArray.join(),
+            fetch(Config.cortexApi.path + this.props.productUrl + (this.props.productUrl.includes("zoom") ? '' : '?zoom=') + zoomArray.join(),
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -110,9 +110,9 @@ class ProductDisplayItemMain extends React.Component {
         this.setState({ quantity: parseInt(event.target.value) });
     }
     handleSkuSelection(event) {
-        const selfHref = event.target.value;
+        const selfUri = event.target.value;
         login().then(() => {
-            fetch(selfHref + '?followlocation&zoom=' + zoomArray.join(),
+            fetch(Config.cortexApi.path + selfUri + '?followlocation&zoom=' + zoomArray.join(),
                 {
                     method: 'post',
                     headers: {
@@ -123,8 +123,8 @@ class ProductDisplayItemMain extends React.Component {
                 })
                 .then(res => res.json())
                 .then(res => {
-                    this.setState({ selfHref: res.self.href }, () => {
-                        this.props.history.push('/itemdetail/' + encodeURIComponent(res.self.href));
+                    this.setState({ selfUri: res.self.uri }, () => {
+                        this.props.history.push('/itemdetail/' + encodeURIComponent(res.self.uri));
                     });
                 })
                 .catch(error => {
@@ -172,10 +172,10 @@ class ProductDisplayItemMain extends React.Component {
                         <label className="control-label">{options['display-name']}</label>
                         <div className="form-content">
                             <select className="form-control" id={'product_display_item_sku_select_' + options['name']} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
-                                <option key={options['_selector'][0]['_chosen'][0]['_description'][0]['name']} id={'product_display_item_sku_option_' + options['_selector'][0]['_chosen'][0]['_description'][0]['name']} value={(options['_selector'][0]['_chosen'][0]['_selectaction']) ? options['_selector'][0]['_chosen'][0]['_selectaction'][0].self.href : ''}>{options['_selector'][0]['_chosen'][0]['_description'][0]['display-name']}</option>
+                                <option key={options['_selector'][0]['_chosen'][0]['_description'][0]['name']} id={'product_display_item_sku_option_' + options['_selector'][0]['_chosen'][0]['_description'][0]['name']} value={(options['_selector'][0]['_chosen'][0]['_selectaction']) ? options['_selector'][0]['_chosen'][0]['_selectaction'][0].self.uri : ''}>{options['_selector'][0]['_chosen'][0]['_description'][0]['display-name']}</option>
                                 {(options['_selector'][0]['_choice']) ? options['_selector'][0]['_choice'].map(skuChoice => {
                                     return (
-                                        <option key={skuChoice['_description'][0]['name']} id={'product_display_item_sku_option_' + skuChoice['_description'][0]['name']} value={(skuChoice['_selectaction']) ? skuChoice['_selectaction'][0].self.href : ''}>{skuChoice['_description'][0]['display-name']}</option>
+                                        <option key={skuChoice['_description'][0]['name']} id={'product_display_item_sku_option_' + skuChoice['_description'][0]['name']} value={(skuChoice['_selectaction']) ? skuChoice['_selectaction'][0].self.uri : ''}>{skuChoice['_description'][0]['display-name']}</option>
                                     );
                                 }) : ''}
                             </select>

@@ -32,13 +32,13 @@ class CategoryItemsMain extends React.Component {
         super(props);
         this.state = {
             categoryModel: { links: [] },
-            selfHref: '',
+            selfUri: '',
         };
     }
     componentWillReceiveProps(nextProps) {
-        if (this.state.selfHref !== nextProps.categoryUrl) {
+        if (Config.cortexApi.path + this.state.selfUri !== nextProps.categoryUrl) {
             login().then(() => {
-                fetch(nextProps.categoryUrl + '?zoom=items',
+                fetch(Config.cortexApi.path + nextProps.categoryUrl + '?zoom=items',
                     {
                         headers: {
                             'Content-Type': 'application/json',
@@ -48,8 +48,8 @@ class CategoryItemsMain extends React.Component {
                     .then(res => res.json())
                     .then(res => {
                         this.setState({
-                            selfHref: nextProps.categoryUrl,
-                            prevSelfHref: this.state.selfHref,
+                            selfUri: nextProps.categoryUrl,
+                            prevselfUri: this.state.selfUri,
                             categoryModel: res
                         });
                     })
@@ -61,7 +61,7 @@ class CategoryItemsMain extends React.Component {
     }
     componentDidMount() {
         login().then(() => {
-            fetch(this.props.categoryUrl + '?zoom=items',
+            fetch(Config.cortexApi.path + this.props.categoryUrl + '?zoom=items',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ class CategoryItemsMain extends React.Component {
                 .then(res => {
                     this.setState({
                         categoryModel: res,
-                        selfHref: this.props.categoryUrl
+                        selfUri: this.props.categoryUrl
                     });
                 })
                 .catch(error => {
@@ -81,7 +81,7 @@ class CategoryItemsMain extends React.Component {
         });
     }
     render() {
-        if (this.state.categoryModel.links.length > 0 && this.state.selfHref == this.props.categoryUrl) {
+        if (this.state.categoryModel.links.length > 0 && this.state.selfUri == this.props.categoryUrl) {
             return (
                 <div className="category-items-container container">
                     <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
