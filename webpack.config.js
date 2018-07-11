@@ -25,7 +25,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body'
 })
 
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
@@ -82,16 +82,7 @@ module.exports = {
   },
   plugins: [
     HtmlWebpackPluginConfig,
-    new SWPrecacheWebpackPlugin(
-      {
-        cacheId: 'my-domain-cache-id',
-        dontCacheBustUrlsMatching: /\.\w{8}\./,
-        filename: 'service-worker.js',
-        minify: true,
-        navigateFallback: '/index.html',
-        staticFileGlobsIgnorePatterns: [/\.map$/, /manifest\.json$/]
-      }
-    ),
+    new WorkboxPlugin.GenerateSW(),
     new WebpackPwaManifest({
       name: 'My Applications Friendly Name',
       short_name: 'Application',
