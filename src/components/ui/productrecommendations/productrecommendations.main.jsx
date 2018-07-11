@@ -44,7 +44,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
             if (product.rel === "element") {
                 return (
                     <li key={'_' + Math.random().toString(36).substr(2, 9)} className="category-item-container">
-                        <ProductListItemMain productUrl={product.href} />
+                        <ProductListItemMain productUrl={product.uri} />
                     </li>
                 );
             }
