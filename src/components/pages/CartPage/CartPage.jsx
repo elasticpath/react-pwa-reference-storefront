@@ -27,48 +27,51 @@ var Config = require('Config')
 
 // Array of zoom parameters to pass to Cortex
 var zoomArray = [
-    'total',
-    'discount',
-    'appliedpromotions:element',
-    'lineitems:element',
-    'lineitems:element:total',
-    'lineitems:element:price',
-    'lineitems:element:availability',
-    'lineitems:element:appliedpromotions:element',
-    'lineitems:element:item',
-    'lineitems:element:item:code',
-    'lineitems:element:item:definition',
-    'lineitems:element:item:definition:options:element',
-    'lineitems:element:item:definition:options:element:value',
-    'lineitems:element:item:definition:options:element:selector:choice',
-    'lineitems:element:item:definition:options:element:selector:chosen',
-    'lineitems:element:item:definition:options:element:selector:choice:description',
-    'lineitems:element:item:definition:options:element:selector:chosen:description',
-    'lineitems:element:item:definition:options:element:selector:choice:selector',
-    'lineitems:element:item:definition:options:element:selector:chosen:selector',
-    'lineitems:element:item:definition:options:element:selector:choice:selectaction',
-    'lineitems:element:item:definition:options:element:selector:chosen:selectaction'
+    'defaultcart',
+    'defaultcart:total',
+    'defaultcart:discount',
+    'defaultcart:appliedpromotions:element',
+    'defaultcart:lineitems:element',
+    'defaultcart:lineitems:element:total',
+    'defaultcart:lineitems:element:price',
+    'defaultcart:lineitems:element:availability',
+    'defaultcart:lineitems:element:appliedpromotions:element',
+    'defaultcart:lineitems:element:item',
+    'defaultcart:lineitems:element:item:code',
+    'defaultcart:lineitems:element:item:definition',
+    'defaultcart:lineitems:element:item:definition:options:element',
+    'defaultcart:lineitems:element:item:definition:options:element:value',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:choice',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:chosen',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:choice:description',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:choice:selector',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:selector',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:choice:selectaction',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:selectaction'
 ];
 
 class CartPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cartData: undefined
+            cartData: undefined,
+            isLoading: false
         };
     }
     fetchCartData() {
         login().then(() => {
-            fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(), {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                    }
-                })
+            fetch(Config.cortexApi.path + '/?zoom=' + zoomArray.join(), {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                }
+            })
                 .then(res => res.json())
                 .then(res => {
                     this.setState({
-                        cartData: res
+                        cartData: res['_defaultcart'][0],
+                        isLoading: false
                     });
                 })
                 .catch(error => {
@@ -80,6 +83,7 @@ class CartPage extends React.Component {
         this.fetchCartData();
     }
     handleQuantityChange() {
+        this.setState({ isLoading: true });
         this.fetchCartData();
     }
     renderPromotions() {
@@ -128,13 +132,13 @@ class CartPage extends React.Component {
                                 </div>
                             </div>
                             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
-                                <CartMain empty={!this.state.cartData['total-quantity']} cartData={this.state.cartData} handleQuantityChange={() => { this.handleQuantityChange() }} />
+                                <CartMain empty={!this.state.cartData['total-quantity']} cartData={this.state.cartData} isLoading={this.state.isLoading} handleQuantityChange={() => { this.handleQuantityChange() }} />
                             </div>
                             <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
                                 <div>
                                     <div className="cart-sidebar-inner">
                                         <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                                            <CheckoutSummaryList data={this.state.cartData}/>
+                                            <CheckoutSummaryList data={this.state.cartData} isLoading={this.state.isLoading} />
                                         </div>
                                         <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                                             <div>
@@ -151,7 +155,13 @@ class CartPage extends React.Component {
             );
         }
         else {
-          return (<div className="loader"></div>);
+            return (
+                <div>
+                    <AppHeaderMain />
+                    <div className="loader" />
+                    <AppFooterMain />
+                </div>
+            );
         }
     }
 }

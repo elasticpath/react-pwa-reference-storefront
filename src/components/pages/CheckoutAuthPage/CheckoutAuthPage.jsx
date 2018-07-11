@@ -17,8 +17,6 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import { login } from '../../../utils/AuthService.js';
 import { loginRegistered } from '../../../utils/AuthService.js';
 import AppHeaderMain from '../../ui/appheader/appheader.main.jsx';
@@ -63,8 +61,9 @@ class CheckoutAuthPage extends React.Component {
                     this.setState({ failedLogin: true });
                 }
                 else if (res_status === 200) {
-                    this.setState({ failedLogin: false });
-                    this.props.history.push('/checkout');
+                    this.setState({ failedLogin: false }, () => {
+                        this.props.history.push('/checkout');
+                    });
                 }
             });
         }
@@ -72,23 +71,38 @@ class CheckoutAuthPage extends React.Component {
     submitEmail(event) {
         event.preventDefault();
         login().then(() => {
-            fetch(Config.cortexApi.path + '/emails/' + Config.cortexApi.scope + '/form', {
-                method: 'post',
+            var emailForm;
+            fetch(Config.cortexApi.path + '/?zoom=defaultprofile:emails:emailform', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                },
-                body: JSON.stringify({ 'email': this.state.email })
-            }).then(res => {
-                if (res.status === 400) {
-                    this.setState({badEmail: true});
-                } else if (res.status === 201) {
-                    this.setState({badEmail: false});
-                    this.props.history.push('/checkout');
                 }
-            }).catch(error => {
-                console.log(error);
-            });
+            })
+                .then(res => res.json())
+                .then(res => {
+                    emailForm = res['_defaultprofile'][0]['_emails'][0]['_emailform'][0]['self']['href'];
+                })
+                .then(() => {
+                    fetch(emailForm, {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                        },
+                        body: JSON.stringify({ 'email': this.state.email })
+                    })
+                        .then(res => {
+                            if (res.status === 400) {
+                                this.setState({ badEmail: true });
+                            } else if (res.status === 201) {
+                                this.setState({ badEmail: false }, () => {
+                                    this.props.history.push('/checkout');
+                                });
+                            }
+                        }).catch(error => {
+                            console.log(error);
+                        });
+                })
         });
     }
     render() {

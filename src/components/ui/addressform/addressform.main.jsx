@@ -200,7 +200,7 @@ class AddressFormMain extends React.Component {
             link = this.props.location.state.address;
             method = 'put';
         } else {
-            link =(Config.cortexApi.path + '/addresses/' + Config.cortexApi.scope + '/form');
+            link = (Config.cortexApi.path + '/addresses/' + Config.cortexApi.scope + '/form');
             method = 'post';
         }
         event.preventDefault();

@@ -9901,8 +9901,17 @@ ul {
   margin: 0 auto;
   margin-top: 20px;
 }
-
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.miniLoader {
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #3498db; /* Blue */
+  width: 30px;
+  height: 30px !important;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+  margin: 0 auto;
+  margin-top: 10px;
 }

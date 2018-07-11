@@ -27,24 +27,25 @@ var Config = require('Config')
 
 // Array of zoom parameters to pass to Cortex
 var zoomArray = [
-    'total',
-    'discount',
-    'order',
-    'order:tax',
-    'order:total',
-    'appliedpromotions:element',
-    'order:billingaddressinfo:selector:choice',
-    'order:billingaddressinfo:selector:choice:description',
-    'order:billingaddressinfo:selector:chosen',
-    'order:billingaddressinfo:selector:chosen:description',
-    'order:deliveries:element:destinationinfo:selector:chosen',
-    'order:deliveries:element:destinationinfo:selector:chosen:description',
-    'order:deliveries:element:destinationinfo:selector:choice',
-    'order:deliveries:element:destinationinfo:selector:choice:description',
-    'order:deliveries:element:shippingoptioninfo:selector:chosen',
-    'order:deliveries:element:shippingoptioninfo:selector:chosen:description',
-    'order:deliveries:element:shippingoptioninfo:selector:choice',
-    'order:deliveries:element:shippingoptioninfo:selector:choice:description'
+    'defaultcart',
+    'defaultcart:total',
+    'defaultcart:discount',
+    'defaultcart:order',
+    'defaultcart:order:tax',
+    'defaultcart:order:total',
+    'defaultcart:appliedpromotions:element',
+    'defaultcart:order:billingaddressinfo:selector:choice',
+    'defaultcart:order:billingaddressinfo:selector:choice:description',
+    'defaultcart:order:billingaddressinfo:selector:chosen',
+    'defaultcart:order:billingaddressinfo:selector:chosen:description',
+    'defaultcart:order:deliveries:element:destinationinfo:selector:chosen',
+    'defaultcart:order:deliveries:element:destinationinfo:selector:chosen:description',
+    'defaultcart:order:deliveries:element:destinationinfo:selector:choice',
+    'defaultcart:order:deliveries:element:destinationinfo:selector:choice:description',
+    'defaultcart:order:deliveries:element:shippingoptioninfo:selector:chosen',
+    'defaultcart:order:deliveries:element:shippingoptioninfo:selector:chosen:description',
+    'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice',
+    'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice:description'
 ];
 
 class CheckoutPage extends React.Component {
@@ -56,7 +57,7 @@ class CheckoutPage extends React.Component {
     }
     fetchOrderData() {
         login().then(() => {
-            fetch(Config.cortexApi.path + '/carts/' + Config.cortexApi.scope + '/default?zoom=' + zoomArray.join(),
+            fetch(Config.cortexApi.path + '/?zoom=' + zoomArray.join(),
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ class CheckoutPage extends React.Component {
                 .then(res => res.json())
                 .then(res => {
                     this.setState({
-                        orderData: res
+                        orderData: res['_defaultcart'][0]
                     });
                 })
                 .catch(error => {
@@ -329,7 +330,13 @@ class CheckoutPage extends React.Component {
                 </div>
             );
         } else {
-            return (<div className="loader"></div>)
+            return (
+                <div>
+                    <AppHeaderMain />
+                    <div className="loader"></div>
+                    <AppFooterMain />
+                </div>
+            );
         }
     }
 }
