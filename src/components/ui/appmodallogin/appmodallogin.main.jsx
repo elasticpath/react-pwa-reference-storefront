@@ -30,7 +30,8 @@ class AppModalLoginMain extends React.Component {
         this.state = {
             username: "",
             password: "",
-            failedLogin: false
+            failedLogin: false,
+            isLoading: false
         };
         this.setUsername = this.setUsername.bind(this);
         this.setPassword = this.setPassword.bind(this);
@@ -43,13 +44,20 @@ class AppModalLoginMain extends React.Component {
         this.setState({ password: event.target.value });
     }
     loginRegisteredUser(event) {
+        this.setState({ isLoading: true });
         if (localStorage.getItem(Config.cortexApi.scope + '_oAuthRole') === 'PUBLIC') {
             loginRegistered(this.state.username, this.state.password).then(res_status => {
                 if (res_status === 401) {
-                    this.setState({ failedLogin: true });
+                    this.setState({
+                        failedLogin: true,
+                        isLoading: false
+                    });
                 }
                 if (res_status === 400) {
-                    this.setState({ failedLogin: true });
+                    this.setState({
+                        failedLogin: true,
+                        isLoading: false
+                    });
                 }
                 else if (res_status === 200) {
                     this.setState({ failedLogin: false });
@@ -89,6 +97,9 @@ class AppModalLoginMain extends React.Component {
                                     <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} />
                                 </div>
                                 <div className="form-group action-row">
+                                    {
+                                        (this.state.isLoading) ? <div className="miniLoader" /> : ("")
+                                    }
                                     <div className="login-cell">
                                         <button className="btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">Login</button>
                                     </div>
