@@ -42,7 +42,8 @@ class AddressFormMain extends React.Component {
             country: "",
             subCountry: "",
             postalCode: "",
-            failedSubmit: false
+            failedSubmit: false,
+            addressForm: undefined
         };
         this.setFirstName = this.setFirstName.bind(this);
         this.setLastName = this.setLastName.bind(this);
@@ -97,10 +98,28 @@ class AddressFormMain extends React.Component {
                 })
         });
     }
+    fetchAddressForm() {
+        login().then(() => {
+            fetch(Config.cortexApi.path + '/?zoom=defaultprofile:addresses:addressform', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
+                }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        addressForm: res['_defaultprofile'][0]['_addresses'][0]['_addressform'][0]['self']['href']
+                    })
+                })
+        })
+    }
     componentDidMount() {
         this.fetchGeoData();
         if (this.props.location.state && this.props.location.state.address) {
             this.fetchAddressData(this.props.location.state.address);
+        } else {
+            this.fetchAddressForm();
         }
     }
     setFirstName(event) {
@@ -200,7 +219,7 @@ class AddressFormMain extends React.Component {
             link = this.props.location.state.address;
             method = 'put';
         } else {
-            link =(Config.cortexApi.path + '/addresses/' + Config.cortexApi.scope + '/form');
+            link = this.state.addressForm;
             method = 'post';
         }
         event.preventDefault();

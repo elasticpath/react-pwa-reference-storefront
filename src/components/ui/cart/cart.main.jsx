@@ -51,7 +51,7 @@ class CartMain extends React.Component {
                         <tbody>
                             {this.props.cartData['_lineitems'][0]['_element'].map(product => {
                                 return (
-                                    <CartLineItem key={product['_item'][0]['_code'][0]['code']} item={product} handleQuantityChange={() => { this.props.handleQuantityChange() }} />
+                                    <CartLineItem key={product['_item'][0]['_code'][0]['code']} item={product} isLoading={this.props.isLoading} handleQuantityChange={() => { this.props.handleQuantityChange() }} />
                                 );
                             })}
                         </tbody>

@@ -53,7 +53,7 @@ class CheckoutSummaryList extends React.Component {
         if (this.props.data['_order'] && this.props.data['_order'][0]['_deliveries'] && this.props.data['_order'][0]['_deliveries'][0]['_element'][0]['_shippingoptioninfo']) {
             return (
                 <li className="checkout-shipping">
-                    <div data-region="checkoutShippingTotalRegion" style={{display: 'block'}}>
+                    <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
                         <div className="checkout-shipping-total">
                             <label data-el-label="checkout.shippingTotal">Today's Shipping Cost:&nbsp;</label>
                             <span data-el-value="checkout.shippingTotal">{this.props.data['_order'][0]['_deliveries'][0]['_element'][0]['_shippingoptioninfo'][0]['_selector'][0]['_chosen'][0]['_description'][0]['cost'][0]['display']}</span>
@@ -100,23 +100,29 @@ class CheckoutSummaryList extends React.Component {
         }
     }
     render() {
-        return (
-            <ul className="cart-summary-list">
-                <li className="cart-total-quantity">
-                    <label className="cart-summary-label-col">Total Quantity:&nbsp;</label>
-                    <span className="cart-summary-value-col">{this.props.data['total-quantity']}</span>
-                </li>
-                {this.renderPromotions()}
-                <li className="cart-subtotal">
-                    <label className="cart-summary-label-col">Today's Subtotal:&nbsp;</label>
-                    <span className="cart-summary-value-col">{this.props.data['_total'][0]['cost'][0]['display']}</span>
-                </li>
-                {this.renderDiscount()}
-                {this.renderShipping()}
-                {this.renderTax()}
-                {this.renderCheckoutTotal()}
-            </ul>
-        );
+        if (this.props.isLoading) {
+            return (
+                <div className="loader" />
+            );
+        } else {
+            return (
+                <ul className="cart-summary-list">
+                    <li className="cart-total-quantity">
+                        <label className="cart-summary-label-col">Total Quantity:&nbsp;</label>
+                        <span className="cart-summary-value-col">{this.props.data['total-quantity']}</span>
+                    </li>
+                    {this.renderPromotions()}
+                    <li className="cart-subtotal">
+                        <label className="cart-summary-label-col">Today's Subtotal:&nbsp;</label>
+                        <span className="cart-summary-value-col">{this.props.data['_total'][0]['cost'][0]['display']}</span>
+                    </li>
+                    {this.renderDiscount()}
+                    {this.renderShipping()}
+                    {this.renderTax()}
+                    {this.renderCheckoutTotal()}
+                </ul>
+            );
+        }
     }
 }
 

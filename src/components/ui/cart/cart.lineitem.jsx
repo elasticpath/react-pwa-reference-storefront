@@ -79,7 +79,11 @@ class CartLineItem extends React.Component {
     renderUnitPrice() {
         var listPrice = this.props.item['_price'][0]['list-price'][0]['display'];
         var purchasePrice = this.props.item['_price'][0]['purchase-price'][0]['display'];
-        if (listPrice !== purchasePrice) {
+        if (this.props.isLoading) {
+            return (
+                <div className="miniLoader" />
+            );
+        } else if (listPrice !== purchasePrice) {
             return (
                 <ul className="cart-lineitem-price-container">
                     <li className="cart-unit-list-price" data-region="itemListPriceRegion">{listPrice}</li>
@@ -90,6 +94,20 @@ class CartLineItem extends React.Component {
             return (
                 <ul className="cart-lineitem-price-container">
                     <li className="cart-unit-purchase-price">{purchasePrice}</li>
+                </ul>
+            );
+        }
+    }
+    renderTotalPrice() {
+        if (this.props.isLoading) {
+            return (
+                <div className="miniLoader" />
+            );
+        } else {
+            return (
+                <ul className="cart-lineitem-price-container">
+                    <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion"></li>
+                    <li className="cart-total-purchase-price">{this.props.item['_total'][0]['cost'][0]['display']}</li>
                 </ul>
             );
         }
@@ -166,7 +184,7 @@ class CartLineItem extends React.Component {
                 </td>
 
                 <td className="cart-lineitem-quantity-col" data-el-value="lineItem.quantity">
-                    <select className="cart-lineitem-quantity-select form-control" id="cart-lineItem-select-quantity" name="cart-lineItem-select-quantity" value={this.state.quantity} onChange={this.handleQuantityChange}>
+                    <select className="cart-lineitem-quantity-select form-control" id="cart-lineItem-select-quantity" name="cart-lineItem-select-quantity" disabled={this.props.isLoading} value={this.state.quantity} onChange={this.handleQuantityChange}>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -184,17 +202,14 @@ class CartLineItem extends React.Component {
                 <td className="cart-lineitem-total-price-col" data-region="cartLineitemTotalPriceRegion" style={{ display: 'table-cell' }}>
                     <div>
                         <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
-                            <ul className="cart-lineitem-price-container">
-                                <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion"></li>
-                                <li className="cart-total-purchase-price">{this.props.item['_total'][0]['cost'][0]['display']}</li>
-                            </ul>
+                            {this.renderTotalPrice()}
                         </div>
                         <div data-region="itemTotalRateRegion"></div>
                     </div>
                 </td>
 
                 <td className="cart-lineitem-remove-btn-col">
-                    <button className="btn btn-cart-removelineitem" data-el-label="lineItem.removeBtn" onClick={this.handleRemoveBtnClicked}>
+                    <button className="btn btn-cart-removelineitem" data-el-label="lineItem.removeBtn" disabled={this.props.isLoading} onClick={this.handleRemoveBtnClicked}>
                         <span className="icon"></span>
                         <span className="btn-text">Remove</span>
                     </button>
