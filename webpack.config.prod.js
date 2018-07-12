@@ -100,7 +100,7 @@ module.exports = {
       start_url: '/',
       icons: [
         {
-          src: path.resolve('src/components/images/icons/icons-192.png'),
+          src: path.resolve('src/images/icons/icons-192.png'),
           sizes: [96, 128, 192, 256, 384, 512],
           destination: path.join('assets', 'icons')
         }
