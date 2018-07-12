@@ -37,8 +37,15 @@ module.exports = {
     filename: '[name].js', //using [name] will create a bundle with same file name as source
     publicPath: '/'
   },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    compress: true
   },
   module: {
     rules: [
@@ -59,7 +66,7 @@ module.exports = {
         use: "babel-loader"
       },
       {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
+        test: /\.(png|jp(e*)g|svg|gif|jp2)$/,
         use: [{
           loader: 'url-loader',
           options: {
@@ -103,4 +110,4 @@ module.exports = {
   externals: {
     'Config': JSON.stringify(require('./src/ep.config.json'))
   }
-}
+};
