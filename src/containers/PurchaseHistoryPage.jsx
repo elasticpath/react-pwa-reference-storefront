@@ -15,24 +15,24 @@
  *
  *
  */
- 
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.js';
+import { Link } from 'react-router-dom';
+import AppHeaderMain from '../components/appheader.main.jsx';
+import AppFooterMain from '../components/appfooter.main.jsx';
 
-// Import custom required styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './style/style.css';
+var Config = require('Config')
 
-// Import custom required scripts
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-
-ReactDOM.render(<App />, document.getElementById('root'));
-
-(function () {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./service-worker.js', { scope: '/' })
-            .then(() => console.log('Service Worker registered successfully.'))
-            .catch(error => console.log('Service Worker registration failed:', error));
+class PurchaseHistoryPage extends React.Component {
+    render() {
+        return (
+            <div>
+                <AppHeaderMain />
+                <AppFooterMain />
+            </div>
+        );
     }
-})();
+}
+
+export default PurchaseHistoryPage;
