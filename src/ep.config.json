@@ -8,7 +8,7 @@
     "showInstrumentation":false
   },
   "cortexApi":{
-    "path":"cortex",
+    "path":"http://localhost:9080/cortex",
     "scope":"vestri"
   },
   "deployMode":"development",
