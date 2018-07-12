@@ -25,12 +25,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style/style.css';
 
 // Import custom required scripts
-import $ from 'jquery';
-import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import './scripts/lib/require.js';
-// import './scripts/lib/underscore.js';
-import './scripts/lib/base.dependency.config.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
