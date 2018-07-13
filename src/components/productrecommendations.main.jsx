@@ -101,10 +101,11 @@ class ProductRecommendationsDisplayMain extends React.Component {
 
     }
     render() {
-        if (this.state.productData.links.length > 0) {
-            console.log(this.state.productData['_recommendations'][0]['_crosssell'][0])
-            return (
-                <div data-region="categoryBrowseRegion" style={{ display: 'block' }}>
+        var data = [];
+        console.log(this.state.productData['_recommendations'][0]['_crosssell'][0].links.length);
+        if (this.state.productData['_recommendations'][0]['_crosssell'][0].links.length > 0) {
+            console.log(this.state.productData['_recommendations'][0]['_crosssell'][0]);
+            data.push (<div key = {'_' + Math.random().toString(36).substr(2, 9)}>
                     <label className="control-label">Product Recommendations</label>
                     <div className="col-md-12">
                         <div className="carousel slide" data-ride="carousel" id="theCarousel">
@@ -117,40 +118,30 @@ class ProductRecommendationsDisplayMain extends React.Component {
                         <a className="right carousel-control" href="#theCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>                           
                         </div>
                     </div>
+                    </div>
+                );
+        }
 
-                    {/* Copy this section to add new carousel */}
-                    <label className="control-label">Product Replacements</label>
+        if (this.state.productData['_recommendations'][0]['_replacement'][0].links.length > 0) {
+            console.log(this.state.productData['_recommendations'][0]['_replacement'][0]);
+            data.push (<div key = {'_' + Math.random().toString(36).substr(2, 9)}>
+                    <label className="control-label">Product Recommendations</label>
                     <div className="col-md-12">
-                        <div className="carousel slide" data-ride="carousel" id="theReplacementsCarousel">
+                        <div className="carousel slide" data-ride="carousel" id="the_replacementCarousel">
                         <div className="container">
                             <div className="carousel-inner">
                             {this.renderReplacement()}
                             </div>
                         </div> 
-                        <a className="left carousel-control" href="#theReplacementsCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
-                        <a className="right carousel-control" href="#theReplacementsCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>                           
+                        <a className="left carousel-control" href="#the_replacementCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
+                        <a className="right carousel-control" href="#the_replacementCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>                           
                         </div>
                     </div>
-                
-                    
-                    <label className="control-label">Product Upsell</label>
-                    <div className="col-md-12">
-                        <div className="carousel slide" data-ride="carousel" id="theUpsellCarousel">
-                        <div className="container">
-                            <div className="carousel-inner">
-                            {this.renderUpsell()}
-                            </div>
-                        </div> 
-                        <a className="left carousel-control" href="#theUpsellCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
-                        <a className="right carousel-control" href="#theUpsellCarousel" data-slide="next"><i className="glyphicon glyphicon-chevron-right"></i></a>                           
-                        </div>
                     </div>
-                </div>
-            );
+                );
         }
-        else {
-            return (<div className="loader"></div>)
-        }
+    
+    return (<div data-region="categoryBrowseRegion" style={{ display: 'block' } } key = {'_' + Math.random().toString(36).substr(2, 9)}>{data}</div>);
     }
 }
 
