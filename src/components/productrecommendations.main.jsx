@@ -58,7 +58,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
         const totalCount = length;
         const MaxItemsInOneCarouselView = 2;
         console.log("Total items to render: " + totalCount );
-        const maxViews = Math.ceil(totalCount / MaxItemsInOneCarouselView);
+        const maxViews = totalCount / MaxItemsInOneCarouselView;
         console.log("Total Views created: " + maxViews );
         var data = [];
         for(var CurrentView = 0, CurrentItem = 0; CurrentView < maxViews ; CurrentView ++, CurrentItem = CurrentItem + MaxItemsInOneCarouselView ){
@@ -125,7 +125,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
         if (this.state.productData['_recommendations'][0]['_replacement'][0].links.length > 0) {
             console.log(this.state.productData['_recommendations'][0]['_replacement'][0]);
             data.push (<div key = {'_' + Math.random().toString(36).substr(2, 9)}>
-                    <label className="control-label">Product Recommendations</label>
+                    <label className="control-label">Product Replacements</label>
                     <div className="col-md-12">
                         <div className="carousel slide" data-ride="carousel" id="the_replacementCarousel">
                         <div className="container">
