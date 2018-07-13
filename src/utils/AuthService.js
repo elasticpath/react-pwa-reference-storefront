@@ -18,51 +18,51 @@
 
 const Config = require('Config');
 
-let user_formBody = [];
-let user_formBody_string = '';
+let userFormBody = [];
+let userFormBodyString = '';
 
-function generateFormBody(user_details) {
-  for (const property in user_details) {
+function generateFormBody(userDetails) {
+  for (const property in userDetails) {
     const encodedKey = property;
-    const encodedValue = user_details[property];
-    user_formBody.push(`${encodedKey}=${encodedValue}`);
+    const encodedValue = userDetails[property];
+    userFormBody.push(`${encodedKey}=${encodedValue}`);
   }
-  user_formBody_string = user_formBody.join('&');
+  userFormBodyString = userFormBody.join('&');
 }
 
 export function login() {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
-      user_formBody_string = '';
-      user_formBody = [];
-      const public_user_details = {
+      userFormBodyString = '';
+      userFormBody = [];
+      const publicUserDetails = {
         username: '',
         password: '',
         grant_type: 'password',
         role: 'PUBLIC',
         scope: Config.cortexApi.scope,
       };
-      generateFormBody(public_user_details);
+      generateFormBody(publicUserDetails);
 
       fetch(`${Config.cortexApi.path}/oauth2/tokens`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
         },
-        body: user_formBody_string,
+        body: userFormBodyString,
       }).then(res => res.json())
         .then((res) => {
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res.access_token}`);
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, public_user_details.username);
+          localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
           resolve(res);
         }).catch((error) => {
           console.log(error);
           reject(error);
         });
     } else {
-      resolve(user_formBody_string);
+      resolve(userFormBodyString);
     }
   }));
 }
@@ -70,9 +70,9 @@ export function login() {
 export function loginRegistered(username, password) {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) != null) {
-      user_formBody_string = '';
-      user_formBody = [];
-      const registered_user_details = {
+      userFormBodyString = '';
+      userFormBody = [];
+      const registeredUserDetails = {
         username,
         password,
         grant_type: 'password',
@@ -80,7 +80,7 @@ export function loginRegistered(username, password) {
         scope: Config.cortexApi.scope,
       };
 
-      generateFormBody(registered_user_details);
+      generateFormBody(registeredUserDetails);
 
       fetch(`${Config.cortexApi.path}/oauth2/tokens`, {
         method: 'post',
@@ -88,7 +88,7 @@ export function loginRegistered(username, password) {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
-        body: user_formBody_string,
+        body: userFormBodyString,
       }).then((res) => {
         if (res.status === 401) {
           resolve(401);
@@ -102,14 +102,14 @@ export function loginRegistered(username, password) {
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res.access_token}`);
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registered_user_details.username);
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registeredUserDetails.username);
         resolve(200);
       }).catch((error) => {
         console.log(error);
         reject(error);
       });
     } else {
-      resolve(user_formBody_string);
+      resolve(userFormBodyString);
     }
   }));
 }
