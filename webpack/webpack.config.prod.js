@@ -19,18 +19,18 @@
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base.js');
 
-module.exports = merge(baseConfig,{
+module.exports = merge(baseConfig, {
   performance: {
-    hints: false
+    hints: false,
   },
   optimization: {
     runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all'
-    }
+      chunks: 'all',
+    },
   },
   devServer: {
     historyApiFallback: true,
-    compress: true
-  }
+    compress: true,
+  },
 });

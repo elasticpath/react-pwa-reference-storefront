@@ -9,7 +9,9 @@ Built with REACT.js, Bootstrap 4, and Webpack.
 If you haven’t already, you’ll need to install the following software:
 * Install [Git](https://git-scm.com/downloads)
 * Install [Node.js](https://nodejs.org/en/download/)
-* Install [Visual Studio Code](https://code.visualstudio.com/) from Microsoft and the [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension from Microsoft.
+* Install [Visual Studio Code](https://code.visualstudio.com/) from Microsoft and the following extensions:<br/>
+    * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
+    * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
 
 ### Configuration
 ##### `ep.config.json (options)`
@@ -36,6 +38,18 @@ Name of store to retreive data from Cortex.
 4. Configure `./src/ep.config.json` as required for your environment: [here](#configuration)
 5. run `npm run start-prod` to start the server in production node
 6. navigate to `http://localhost:8080/` to see the running PWA
+
+### Linting
+This project has been set up with ESLint as our linting utility.<br/>
+If you'd like to learn a bit more about ESLint check out their [documentation](https://eslint.org/)<br/>
+We're currently extending Airbnbs’ ESLint configuration because at this time the Airbnb Code Style and the according ESLint configuration are very popular and well accepted by developers.<br/>
+You can check out the style guide on [github](https://github.com/airbnb/javascript)<br/>
+* ESLint loader has been added to `webpack.config.dev.js` so it runs when you start the app in development mode.
+* To run the linter from your commandline first go to the project root directory and run the following command:
+    * `./node_modules/.bin/eslint [file|dir|glob]`
+* With the ESLint extension for Visual Studio Code you'll get feedback while you're writing the code under the `Problems` View 
+
+If you plan to check in your code, make sure to fix all your linting errors first!
 
 ## Unit Tests (TBA)
 * Test json data can be found in `tests`

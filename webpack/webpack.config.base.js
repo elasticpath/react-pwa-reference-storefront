@@ -19,41 +19,43 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './src/index.html',
   filename: 'index.html',
-  inject: 'body'
-})
+  inject: 'body',
+});
 
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const epConfig = require('../src/ep.config.json');
 
 module.exports = {
   entry: {
-    'app': './src/index.js'
+    app: './src/index.js',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'), //directory for output files
-    filename: '[name].js', //using [name] will create a bundle with same file name as source
-    publicPath: '/'
+    path: path.resolve(__dirname, 'dist'), // directory for output files
+    filename: '[name].js', // using [name] will create a bundle with same file name as source
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
-        ]
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+        ],
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: "babel-loader"
+        use: 'babel-loader',
       }, {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: "babel-loader"
+        use: 'babel-loader',
       },
       {
         test: /\.(png|jp(e*)g|svg|gif|jp2)$/,
@@ -61,9 +63,9 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8000, // Convert images < 8kb to base64 strings
-            name: 'images/[hash]-[name].[ext]'
-          }
-        }]
+            name: 'images/[hash]-[name].[ext]',
+          },
+        }],
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
@@ -71,11 +73,16 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'fonts/'
-          }
-        }]
-      }
-    ]
+            outputPath: 'fonts/',
+          },
+        }],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader', 'eslint-loader'],
+      },
+    ],
   },
   plugins: [
     HtmlWebpackPluginConfig,
@@ -92,12 +99,12 @@ module.exports = {
         {
           src: path.resolve('./src/images/icons/icons-192.png'),
           sizes: [96, 128, 192, 256, 384, 512],
-          destination: path.join('assets', 'icons')
-        }
-      ]
-    })
+          destination: path.join('assets', 'icons'),
+        },
+      ],
+    }),
   ],
   externals: {
-    'Config': JSON.stringify(require('../src/ep.config.json'))
-  }
-}
+    Config: JSON.stringify(epConfig),
+  },
+};

@@ -15,7 +15,7 @@
  *
  *
  */
- 
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.js';
@@ -30,9 +30,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 ReactDOM.render(<App />, document.getElementById('root'));
 
 (function () {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./service-worker.js', { scope: '/' })
-            .then(() => console.log('Service Worker registered successfully.'))
-            .catch(error => console.log('Service Worker registration failed:', error));
-    }
-})();
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js', { scope: '/' })
+      .then(() => console.log('Service Worker registered successfully.'))
+      .catch(error => console.log('Service Worker registration failed:', error));
+  }
+}());

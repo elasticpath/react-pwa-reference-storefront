@@ -17,8 +17,8 @@
  */
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 import HomePage from './containers/HomePage.jsx';
 import CartPage from './containers/CartPage.jsx';
@@ -39,65 +39,65 @@ import ContactUsPage from './containers/ContactUsPage.jsx';
 import TermsAndConditionsPage from './containers/TermsAndConditionsPage.jsx';
 
 const router = [{
-    path: '/',
-    component: HomePage,
+  path: '/',
+  component: HomePage,
 }, {
-    path: '/mycart',
-    component: CartPage,
+  path: '/mycart',
+  component: CartPage,
 }, {
-    path: '/category',
-    component: CategoryPage,
-},{
-    path: '/category/:url',
-    component: CategoryPage,
+  path: '/category',
+  component: CategoryPage,
 }, {
-    path: '/checkout',
-    component: CheckoutPage,
+  path: '/category/:url',
+  component: CategoryPage,
 }, {
-    path: '/editaddress',
-    component: EditAddressPage,
+  path: '/checkout',
+  component: CheckoutPage,
 }, {
-    path: '/itemdetail',
-    component: ProductDetailPage,
+  path: '/editaddress',
+  component: EditAddressPage,
 }, {
-    path: '/itemdetail/:url',
-    component: ProductDetailPage,
-},{
-    path: '/newaddressform',
-    component: NewAddressPage,
+  path: '/itemdetail',
+  component: ProductDetailPage,
 }, {
-    path: '/newpaymentform',
-    component: NewPaymentPage,
+  path: '/itemdetail/:url',
+  component: ProductDetailPage,
 }, {
-    path: '/profile',
-    component: ProfilePage,
+  path: '/newaddressform',
+  component: NewAddressPage,
 }, {
-    path: '/purchaseDetails',
-    component: PurchaseHistoryPage,
+  path: '/newpaymentform',
+  component: NewPaymentPage,
 }, {
-    path: '/purchaseReceipt',
-    component: PurchaseReceiptPage,
+  path: '/profile',
+  component: ProfilePage,
 }, {
-    path: '/registration',
-    component: RegistrationPage,
+  path: '/purchaseDetails',
+  component: PurchaseHistoryPage,
 }, {
-    path: '/signIn',
-    component: CheckoutAuthPage,
+  path: '/purchaseReceipt',
+  component: PurchaseReceiptPage,
 }, {
-    path: '/search',
-    component: SearchResultsPage,
+  path: '/registration',
+  component: RegistrationPage,
 }, {
-    path: '/search/:keywords',
-    component: SearchResultsPage,
+  path: '/signIn',
+  component: CheckoutAuthPage,
 }, {
-    path: '/aboutus',
-    component: AboutUsPage,
+  path: '/search',
+  component: SearchResultsPage,
 }, {
-    path: '/contactus',
-    component: ContactUsPage,
+  path: '/search/:keywords',
+  component: SearchResultsPage,
 }, {
-    path: '/termsandconditions',
-    component: TermsAndConditionsPage,
+  path: '/aboutus',
+  component: AboutUsPage,
+}, {
+  path: '/contactus',
+  component: ContactUsPage,
+}, {
+  path: '/termsandconditions',
+  component: TermsAndConditionsPage,
 }];
 
 export default router;

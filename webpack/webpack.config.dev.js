@@ -19,8 +19,8 @@
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base.js');
 
-module.exports = merge(baseConfig,{
+module.exports = merge(baseConfig, {
   devServer: {
-    historyApiFallback: true
-  }
-})
+    historyApiFallback: true,
+  },
+});

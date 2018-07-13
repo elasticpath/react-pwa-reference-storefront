@@ -17,8 +17,6 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import AppHeaderMain from '../components/appheader.main.jsx';
 import AppFooterMain from '../components/appfooter.main.jsx';
 import AddressFormMain from '../components/addressform.main.jsx';

@@ -15,16 +15,16 @@
  *
  *
  */
- 
+
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import router from './routes.js'
+import router from './routes.js';
 
 class App extends Component {
   render() {
-    const routeComponents = router.map(({path, component}, key) => <Route exact path={path} component={component} key={key} />);
+    const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
     return (
       <Router>
         <div id="root_router_div">
