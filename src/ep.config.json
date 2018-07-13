@@ -1,32 +1,7 @@
 {
-  "logging":{
-    "logInfo":true,
-    "logWarnings":true,
-    "logErrors":true
-  },
-  "debug":{
-    "showInstrumentation":false
-  },
   "cortexApi":{
     "path":"cortex",
     "scope":"vestri"
   },
-  "deployMode":"development",
-  "requireAuthToCheckout":true,
-  "viewFadeInValue":500,
-  "skuImagesS3Url":"https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png",
-  "routes": {
-    "cart":"#mycart",
-    "category":"#category",
-    "checkout" : "#checkout",
-    "editAddress": "#editaddress",
-    "itemDetail":"#itemdetail",
-    "newAddress":"#newaddressform",
-    "newPayment":"#newpaymentform",
-    "profile":"#profile",
-    "purchaseHistory": "#purchaseDetails",
-    "purchaseReceipt": "#purchaseReceipt",
-    "registration": "#registration",
-    "checkoutAuth": "#signIn"
-  }
+  "skuImagesS3Url":"https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png"
 }
