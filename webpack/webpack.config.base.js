@@ -37,16 +37,6 @@ module.exports = {
     filename: '[name].js', //using [name] will create a bundle with same file name as source
     publicPath: '/'
   },
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      chunks: 'all'
-    }
-  },
-  devServer: {
-    historyApiFallback: true,
-    compress: true
-  },
   module: {
     rules: [
       {
@@ -91,16 +81,16 @@ module.exports = {
     HtmlWebpackPluginConfig,
     new WorkboxPlugin.GenerateSW(),
     new WebpackPwaManifest({
-      name: 'My Applications Friendly Name',
-      short_name: 'Application',
-      description: 'Description!',
+      name: 'Vestri Reference Storefront',
+      short_name: 'Vestri',
+      description: 'EP Reference Storefront',
       background_color: '#01579b',
       theme_color: '#01579b',
       'theme-color': '#01579b',
       start_url: '/',
       icons: [
         {
-          src: path.resolve('src/images/icons/icons-192.png'),
+          src: path.resolve('./src/images/icons/icons-192.png'),
           sizes: [96, 128, 192, 256, 384, 512],
           destination: path.join('assets', 'icons')
         }
@@ -108,6 +98,6 @@ module.exports = {
     })
   ],
   externals: {
-    'Config': JSON.stringify(require('./src/ep.config.json'))
+    'Config': JSON.stringify(require('../src/ep.config.json'))
   }
-};
+}
