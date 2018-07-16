@@ -3,8 +3,29 @@
   "extends": [
     "airbnb"
   ],
+  "globals": {},
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack/webpack.config.base.js"
+      }
+    }
+  },
   "rules": {
-    "max-len": [1, 120, 2, {"ignoreComments": true}],
-    "react/prop-types": [2]
+    "max-len": [
+      "warn",
+      {
+        "code": 150,
+        "tabWidth": 2,
+        "ignoreComments": true
+      }
+    ],
+    "react/prop-types": "error",
+    "no-underscore-dangle": "off"
   }
 }
