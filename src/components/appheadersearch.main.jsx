@@ -17,44 +17,48 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-var Config = require('Config')
+const Config = require('Config');
 
 class AppHeaderSearchMain extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            keywords: ""
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.search = this.search.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      keywords: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.search = this.search.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ keywords: event.target.value });
+  }
+
+  search(event) {
+    if (this.state.keywords !== '') {
+      this.props.history.push(`/search/${this.state.keywords}`);
     }
-    handleChange(event) {
-        this.setState({ keywords: event.target.value });
-    }
-    search(event) {
-        if (this.state.keywords !== "") {
-            this.props.history.push('/search/' + this.state.keywords);
-        }
-        event.preventDefault();
-    }
-    render() {
-        return (
-            <div>
-                <div className="main-search-container" style={{ display: 'block' }}>
-                    <form className="navbar-form" id="header_navbar_search_container_form" ref="form" onSubmit={this.search}>
-                        <div className="form-group">
-                            <input className="input-search header-search-input" id="header_navbar_search_container_input" type="text" onChange={this.handleChange} placeholder="search" />
-                        </div>
-                        <button className="btn-header-search" id="header_navbar_search_container_button" data-toggle="collapse" data-target=".navbar-collapse" type="submit"><span className="icon"></span>Search</button>
-                    </form>
-                </div>
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="main-search-container" style={{ display: 'block' }}>
+          <form className="navbar-form" id="header_navbar_search_container_form" ref="form" onSubmit={this.search}>
+            <div className="form-group">
+              <input className="input-search header-search-input" id="header_navbar_search_container_input" type="text" onChange={this.handleChange} placeholder="search" />
             </div>
-        );
-    }
+            <button className="btn-header-search" id="header_navbar_search_container_button" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+              <span className="icon" />
+Search
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withRouter(AppHeaderSearchMain);

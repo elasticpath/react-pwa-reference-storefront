@@ -16,27 +16,23 @@
  *
  */
 
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Switch } from 'react-router-dom';
-
-import HomePage from './containers/HomePage.jsx';
-import CartPage from './containers/CartPage.jsx';
-import CategoryPage from './containers/CategoryPage.jsx';
-import CheckoutPage from './containers/CheckoutPage.jsx';
-import EditAddressPage from './containers/EditAddressPage.jsx';
-import ProductDetailPage from './containers/ProductDetailPage.jsx';
-import NewAddressPage from './containers/NewAddressPage.jsx';
-import NewPaymentPage from './containers/NewPaymentPage.jsx';
-import ProfilePage from './containers/ProfilePage.jsx';
-import PurchaseHistoryPage from './containers/PurchaseHistoryPage.jsx';
-import PurchaseReceiptPage from './containers/PurchaseReceiptPage.jsx';
-import RegistrationPage from './containers/RegistrationPage.jsx';
-import CheckoutAuthPage from './containers/CheckoutAuthPage.jsx';
-import SearchResultsPage from './containers/SearchResultsPage.jsx';
-import AboutUsPage from './containers/AboutUsPage.jsx';
-import ContactUsPage from './containers/ContactUsPage.jsx';
-import TermsAndConditionsPage from './containers/TermsAndConditionsPage.jsx';
+import HomePage from './containers/HomePage';
+import CartPage from './containers/CartPage';
+import CategoryPage from './containers/CategoryPage';
+import CheckoutPage from './containers/CheckoutPage';
+import EditAddressPage from './containers/EditAddressPage';
+import ProductDetailPage from './containers/ProductDetailPage';
+import NewAddressPage from './containers/NewAddressPage';
+import NewPaymentPage from './containers/NewPaymentPage';
+import ProfilePage from './containers/ProfilePage';
+import PurchaseHistoryPage from './containers/PurchaseHistoryPage';
+import PurchaseReceiptPage from './containers/PurchaseReceiptPage';
+import RegistrationPage from './containers/RegistrationPage';
+import CheckoutAuthPage from './containers/CheckoutAuthPage';
+import SearchResultsPage from './containers/SearchResultsPage';
+import AboutUsPage from './containers/AboutUsPage';
+import ContactUsPage from './containers/ContactUsPage';
+import TermsAndConditionsPage from './containers/TermsAndConditionsPage';
 
 const router = [{
   path: '/',

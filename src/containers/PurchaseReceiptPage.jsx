@@ -17,22 +17,20 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
-import AppHeaderMain from '../components/appheader.main.jsx';
-import AppFooterMain from '../components/appfooter.main.jsx';
+import AppHeaderMain from '../components/appheader.main';
+import AppFooterMain from '../components/appfooter.main';
 
-var Config = require('Config')
+const Config = require('Config');
 
 class PurchaseReceiptPage extends React.Component {
-    render() {
-        return (
-            <div>
-                <AppHeaderMain />
-                <AppFooterMain />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <AppHeaderMain />
+        <AppFooterMain />
+      </div>
+    );
+  }
 }
 
 export default PurchaseReceiptPage;

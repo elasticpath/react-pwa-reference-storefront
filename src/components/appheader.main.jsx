@@ -17,58 +17,60 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import AppHeaderSearchMain from './appheadersearch.main.jsx';
-import AppHeaderLoginMain from './appheaderlogin.main.jsx';
-import AppModalLoginMain from './appmodallogin.main.jsx';
-import AppHeaderNavigationMain from './appheadernavigation.main.jsx';
+import AppHeaderSearchMain from './appheadersearch.main';
+import AppHeaderLoginMain from './appheaderlogin.main';
+import AppModalLoginMain from './appmodallogin.main';
+import AppHeaderNavigationMain from './appheadernavigation.main';
 
 class AppHeaderMain extends React.Component {
-    goBack() {
-        window.history.back();
-    }
-    render() {
-        return (
-            <div>
-                <header className="app-header navbar navbar -fixed-top navbar-inverse" data-region="appHeader" style={{ display: 'block' }}>
-                    <div className="container appheader-container">
-                        <div className="back-button-container" style={{ display: 'block' }}><div>
-                            <button type="button" id="header_mobile_back_button" aria-label="Back" className="navbar-back" data-region="backButtonRegion" data-el-label="navigation.back" onClick={this.goBack}>
-                                <span className="icon"></span>
-                            </button>
-                        </div></div>
-                        <div className="logo-container" style={{ display: 'block' }}>
-                            <div>
-                                <a href={`/`} className="cmd-home-logo" id="header_home_logo_link" aria-label="Header home logo">
-                                    <img alt="Header logo" src={require('../images/Company-Logo-v1.png')} />
-                                </a>
-                            </div>
-                        </div>
-                        <button type="button" className="navbar-toggle" id="header_mobile_navbar_collapse_button" aria-label="Mobile nav bar collapse" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span className="icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse">
-                            <ul className="global-nav-container btn-group" id="header_navbar_container_buttons">
-                                <AppHeaderLoginMain />
-                                <li className="global-nav-cart-nav">
-                                    <Link to="/mycart">
-                                        <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" aria-label="Cart" data-toggle="collapse" data-target=".navbar-collapse">
-                                            <span className="icon"></span>
-                                        </button>
-                                    </Link>
-                                    <a className="global-nav-link" href={`mycart`}></a>
-                                </li>
-                            </ul>
-                            <AppHeaderSearchMain />
-                            <AppHeaderNavigationMain />
-                        </div>
-                    </div>
-                </header>
-                <AppModalLoginMain />
+  goBack() {
+    window.history.back();
+  }
+
+  render() {
+    return (
+      <div>
+        <header className="app-header navbar navbar -fixed-top navbar-inverse" data-region="appHeader" style={{ display: 'block' }}>
+          <div className="container appheader-container">
+            <div className="back-button-container" style={{ display: 'block' }}>
+              <div>
+                <button type="button" id="header_mobile_back_button" aria-label="Back" className="navbar-back" data-region="backButtonRegion" data-el-label="navigation.back" onClick={this.goBack}>
+                  <span className="icon" />
+                </button>
+              </div>
             </div>
-        ); 
-    }
+            <div className="logo-container" style={{ display: 'block' }}>
+              <div>
+                <a href="/" className="cmd-home-logo" id="header_home_logo_link" aria-label="Header home logo">
+                  <img alt="Header logo" src={require('../images/Company-Logo-v1.png')} />
+                </a>
+              </div>
+            </div>
+            <button type="button" className="navbar-toggle" id="header_mobile_navbar_collapse_button" aria-label="Mobile nav bar collapse" data-toggle="collapse" data-target=".navbar-collapse">
+              <span className="icon" />
+            </button>
+            <div className="collapse navbar-collapse">
+              <ul className="global-nav-container btn-group" id="header_navbar_container_buttons">
+                <AppHeaderLoginMain />
+                <li className="global-nav-cart-nav">
+                  <Link to="/mycart">
+                    <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" aria-label="Cart" data-toggle="collapse" data-target=".navbar-collapse">
+                      <span className="icon" />
+                    </button>
+                  </Link>
+                  <a className="global-nav-link" href="mycart" />
+                </li>
+              </ul>
+              <AppHeaderSearchMain />
+              <AppHeaderNavigationMain />
+            </div>
+          </div>
+        </header>
+        <AppModalLoginMain />
+      </div>
+    );
+  }
 }
 
 export default AppHeaderMain;

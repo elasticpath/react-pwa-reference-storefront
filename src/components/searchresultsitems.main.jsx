@@ -17,124 +17,131 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
-import { login } from '../utils/AuthService.js';
-import ProductListItemMain from './productlistitem.main.jsx';
-import ProductListMain from './productlist.main.jsx';
-import ProductListPaginationTop from './productlistpaginationtop.main.jsx';
-import ProductListPaginationBottom from './productlistpaginationbottom.main.jsx';
+import { login } from '../utils/AuthService';
+import ProductListMain from './productlist.main';
+import ProductListPaginationTop from './productlistpaginationtop.main';
+import ProductListPaginationBottom from './productlistpaginationbottom.main';
 
-var Config = require('Config')
+const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
-var zoomArray = [
-    'element',
-    'element:availability',
-    'element:definition',
-    'element:definition:assets:element',
-    'element:price',
-    'element:rate',
-    'element:code'
+const zoomArray = [
+  'element',
+  'element:availability',
+  'element:definition',
+  'element:definition:assets:element',
+  'element:price',
+  'element:rate',
+  'element:code',
 ];
 
 class SearchResultsItemsMain extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchResultsModel: { links: [] },
-            searchResultsUrl: this.props.searchResultsUrl,
-            searchKeywords: this.props.searchKeywords
-        };
-    }
-    getSearchResults(searchResultsUrl) {
-        login().then(() => {
-            fetch(searchResultsUrl + '?zoom=' + zoomArray.join(),
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                    }
-                })
-                .then(res => res.json())
-                .then(res => {
-                    this.setState({
-                        searchResultsUrl: searchResultsUrl,
-                        searchResultsModel: res,
-                        searchKeywords: this.props.searchKeywords
-                    });
-                })
-                .catch(error => {
-                    console.log(error)
-                });
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchResultsModel: { links: [] },
+      searchResultsUrl: this.props.searchResultsUrl,
+      searchKeywords: this.props.searchKeywords,
+    };
+  }
+
+  getSearchResults(searchResultsUrl) {
+    login().then(() => {
+      fetch(`${searchResultsUrl}?zoom=${zoomArray.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            searchResultsUrl,
+            searchResultsModel: res,
+            searchKeywords: this.props.searchKeywords,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-    }
-    getSearchData(event) {
-        login().then(() => {
-            fetch(Config.cortexApi.path + '/searches/' + Config.cortexApi.scope + '/keywords/form?followlocation',
-                {
-                    method: 'post',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                    },
-                    body: JSON.stringify({
-                        keywords: this.props.searchKeywords
-                    })
-                })
-                .then(res => res.json())
-                .then(res => {
-                    this.getSearchResults(res.self.href);
-                })
-                .catch(error => {
-                    console.log(error)
-                });
+    });
+  }
+
+  getSearchData(event) {
+    login().then(() => {
+      fetch(`${Config.cortexApi.path}/searches/${Config.cortexApi.scope}/keywords/form?followlocation`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            keywords: this.props.searchKeywords,
+          }),
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.getSearchResults(res.self.href);
+        })
+        .catch((error) => {
+          console.log(error);
         });
+    });
+  }
+
+  componentDidMount() {
+    this.getSearchData(this.props.searchKeywords);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.searchKeywords !== nextProps.searchKeywords) {
+      this.getSearchData(nextProps.searchKeywords);
     }
-    componentDidMount() {
-        this.getSearchData(this.props.searchKeywords);
+  }
+
+  render() {
+    if (this.state.searchResultsModel.links.length > 0 && this.state.searchKeywords == this.props.searchKeywords) {
+      return (
+        <div className="category-items-container container">
+          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
+            <div>
+              <h1 className="view-title">
+Search Results
+              </h1>
+            </div>
+          </div>
+          <ProductListPaginationTop paginationData={this.state.searchResultsModel._items ? this.state.searchResultsModel._items[0] : this.state.searchResultsModel} />
+          <ProductListMain productData={this.state.searchResultsModel._items ? this.state.searchResultsModel._items[0] : this.state.searchResultsModel} />
+          <ProductListPaginationBottom paginationData={this.state.searchResultsModel._items ? this.state.searchResultsModel._items[0] : this.state.searchResultsModel} />
+        </div>
+      );
     }
-    componentWillReceiveProps(nextProps) {
-        if (this.state.searchKeywords !== nextProps.searchKeywords) {
-            this.getSearchData(nextProps.searchKeywords);
-        }
+    if (this.state.searchResultsModel.links.length == 0 && this.state.searchResultsModel.pagination && this.state.searchKeywords == this.props.searchKeywords) {
+      return (
+        <div className="category-items-container container">
+          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
+            <div>
+              <h1 className="view-title">
+Search Results
+              </h1>
+            </div>
+          </div>
+          <br />
+          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
+            <div>
+              <h3>
+No results found
+              </h3>
+            </div>
+          </div>
+        </div>
+      );
     }
-    render() {
-        if (this.state.searchResultsModel.links.length > 0 && this.state.searchKeywords == this.props.searchKeywords) {
-            return (
-                <div className="category-items-container container">
-                    <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-                        <div>
-                            <h1 className="view-title">Search Results</h1>
-                        </div>
-                    </div>
-                    <ProductListPaginationTop paginationData={this.state.searchResultsModel["_items"] ? this.state.searchResultsModel["_items"][0] : this.state.searchResultsModel} />
-                    <ProductListMain productData={this.state.searchResultsModel["_items"] ? this.state.searchResultsModel["_items"][0] : this.state.searchResultsModel} />
-                    <ProductListPaginationBottom paginationData={this.state.searchResultsModel["_items"] ? this.state.searchResultsModel["_items"][0] : this.state.searchResultsModel} />
-                </div>
-            );
-        }
-        else if (this.state.searchResultsModel.links.length == 0 && this.state.searchResultsModel['pagination'] && this.state.searchKeywords == this.props.searchKeywords) {
-            return (
-                <div className="category-items-container container">
-                    <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-                        <div>
-                            <h1 className="view-title">Search Results</h1>
-                        </div>
-                    </div>
-                    <br />
-                    <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-                        <div>
-                            <h3>No results found</h3>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-        else {
-            return (<div className="loader"></div>)
-        }
-    }
+
+    return (<div className="loader" />);
+  }
 }
 
 export default SearchResultsItemsMain;

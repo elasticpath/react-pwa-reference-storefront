@@ -46,7 +46,8 @@ We're currently extending Airbnbs’ ESLint configuration because at this time t
 You can check out the style guide on [github](https://github.com/airbnb/javascript)<br/>
 * ESLint loader has been added to `webpack.config.dev.js` so it runs when you start the app in development mode.
 * To run the linter from your commandline first go to the project root directory and run the following command:
-    * `./node_modules/.bin/eslint [file|dir|glob]`
+    * `./node_modules/.bin/eslint --ext .js --ext .jsx [file|dir|glob]`
+        * Run on entire project: `./node_modules/.bin/eslint --ext .js --ext .jsx .`
 * With the ESLint extension for Visual Studio Code you'll get feedback while you're writing the code under the `Problems` View 
 
 If you plan to check in your code, make sure to fix all your linting errors first!

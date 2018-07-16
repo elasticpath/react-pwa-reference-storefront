@@ -17,88 +17,94 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import { login } from '../utils/AuthService.js';
+import { login } from '../utils/AuthService';
 
-var Config = require('Config')
+const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
-var zoomArray = [
-    'navigations:element',
-    'navigations:element:child'
+const zoomArray = [
+  'navigations:element',
+  'navigations:element:child',
 ];
 
 class AppHeaderNavigationMain extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            navigations: []
-        };
-    }
-    componentWillMount() {
-        login().then(() => {
-            fetch(Config.cortexApi.path + '?zoom=' + zoomArray.join(),
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                    }
-                })
-                .then(res => res.json())
-                .then(res => {
-                    this.setState({
-                        navigations: res['_navigations'][0]['_element']
-                    });
-                })
-                .catch(error => {
-                    console.log(error)
-                });
-        });
-    }
-    renderCategories() {
-        return this.state.navigations.map(category => {
-            if (category['_child']) {
-                return (
-                    <li className="nav-item dropdown" key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {category["display-name"]}
-                        </a>
-                        <div className="dropdown-menu sub-category-dropdown-menu" aria-labelledby="navbarDropdown">
-                            {category['_child'].map(subcategory => {
-                                return (
-                                    <Link to={"/category/" + encodeURIComponent(subcategory.self.uri)} key={subcategory.name} className="dropdown-item" id={"header_navbar_sub_category_button_" + subcategory.name} data-target=".navbar-collapse" title={subcategory["display-name"]}><span>{subcategory["display-name"]}</span></Link>
-                                );
-                            })}
-                        </div>
-                    </li>
-                );
-            }
-            else {
-                return (
-                    <li key={category.name} data-name={category["display-name"]} data-el-container="category-nav-item-container">
-                        <Link to={"/category/" + encodeURIComponent(category.self.uri)} className="nav-item" id={"header_navbar_category_button_" + category.name} data-target=".navbar-collapse" title={category["display-name"]}><span>{category["display-name"]}</span></Link>
-                    </li>
-                );
-            }
+  constructor(props) {
+    super(props);
+    this.state = {
+      navigations: [],
+    };
+  }
+
+  componentWillMount() {
+    login().then(() => {
+      fetch(`${Config.cortexApi.path}?zoom=${zoomArray.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
         })
-    }
-    render() {
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            navigations: res._navigations[0]._element,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  }
+
+  renderCategories() {
+    return this.state.navigations.map((category) => {
+      if (category._child) {
         return (
-            <div className="main-nav-container" id="header_navbar_container" data-region="mainNavRegion" style={{ display: 'block' }}>
-                <div>
-                    <nav className="main-nav">
-                        <button className="btn-main-nav-toggle btn-link-cmd" id="header_navbar_container_categories_button" style={{ display: 'none' }}>
-                            Categories
-                                </button>
-                        <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">
-                            {this.renderCategories()}
-                        </ul>
-                    </nav>
-                </div>
+          <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {category['display-name']}
+            </a>
+            <div className="dropdown-menu sub-category-dropdown-menu" aria-labelledby="navbarDropdown">
+              {category._child.map(subcategory => (
+                <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`header_navbar_sub_category_button_${subcategory.name}`} data-target=".navbar-collapse" title={subcategory['display-name']}>
+                  <span>
+                    {subcategory['display-name']}
+                  </span>
+                </Link>
+              ))}
             </div>
+          </li>
         );
-    }
+      }
+      return (
+        <li key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
+          <Link to={`/category/${encodeURIComponent(category.self.uri)}`} className="nav-item" id={`header_navbar_category_button_${category.name}`} data-target=".navbar-collapse" title={category['display-name']}>
+            <span>
+              {category['display-name']}
+            </span>
+          </Link>
+        </li>
+      );
+    });
+  }
+
+  render() {
+    return (
+      <div className="main-nav-container" id="header_navbar_container" data-region="mainNavRegion" style={{ display: 'block' }}>
+        <div>
+          <nav className="main-nav">
+            <button className="btn-main-nav-toggle btn-link-cmd" id="header_navbar_container_categories_button" style={{ display: 'none' }}>
+                            Categories
+            </button>
+            <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">
+              {this.renderCategories()}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default AppHeaderNavigationMain;

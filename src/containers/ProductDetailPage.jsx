@@ -17,24 +17,22 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
-import AppHeaderMain from '../components/appheader.main.jsx';
-import AppFooterMain from '../components/appfooter.main.jsx';
-import ProductDisplayItemMain from '../components/productdisplayitem.main.jsx';
+import AppHeaderMain from '../components/appheader.main';
+import AppFooterMain from '../components/appfooter.main';
+import ProductDisplayItemMain from '../components/productdisplayitem.main';
 
-var Config = require('Config')
+const Config = require('Config');
 
 class ProductDetailPage extends React.Component {
-    render() {
-        return (
-            <div>
-                <AppHeaderMain />
-                <ProductDisplayItemMain productUrl={decodeURIComponent(this.props.match.params.url)} />
-                <AppFooterMain />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <AppHeaderMain />
+        <ProductDisplayItemMain productUrl={decodeURIComponent(this.props.match.params.url)} />
+        <AppFooterMain />
+      </div>
+    );
+  }
 }
 
 export default ProductDetailPage;

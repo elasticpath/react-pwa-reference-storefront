@@ -17,25 +17,22 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
-import AppHeaderMain from '../components/appheader.main.jsx';
-import AppFooterMain from '../components/appfooter.main.jsx';
-import ProductListSearchResultsMain from '../components/productlistsearchresults.main.jsx';
-import SearchResultsItemsMain from '../components/searchresultsitems.main.jsx';
+import AppHeaderMain from '../components/appheader.main';
+import AppFooterMain from '../components/appfooter.main';
+import SearchResultsItemsMain from '../components/searchresultsitems.main';
 
-var Config = require('Config')
+const Config = require('Config');
 
 class SearchResultsPage extends React.Component {
-    render() {
-        return (
-            <div>
-                <AppHeaderMain />
-                <SearchResultsItemsMain searchKeywords={decodeURIComponent(this.props.match.params.keywords)} />
-                <AppFooterMain />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <AppHeaderMain />
+        <SearchResultsItemsMain searchKeywords={decodeURIComponent(this.props.match.params.keywords)} />
+        <AppFooterMain />
+      </div>
+    );
+  }
 }
 
 export default SearchResultsPage;

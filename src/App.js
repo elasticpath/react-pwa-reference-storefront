@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <Router>
         <div id="root_router_div">
-        {routeComponents}
+          {routeComponents}
         </div>
       </Router>
     );

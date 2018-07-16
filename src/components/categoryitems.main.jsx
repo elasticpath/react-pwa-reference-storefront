@@ -17,88 +17,89 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
-import { login } from '../utils/AuthService.js';
-import ProductListItemMain from './productlistitem.main.jsx';
-import ProductListMain from './productlist.main.jsx';
-import ProductListPaginationTop from './productlistpaginationtop.main.jsx';
-import ProductListPaginationBottom from './productlistpaginationbottom.main.jsx';
+import { login } from '../utils/AuthService';
+import ProductListMain from './productlist.main';
+import ProductListPaginationTop from './productlistpaginationtop.main';
+import ProductListPaginationBottom from './productlistpaginationbottom.main';
 
-var Config = require('Config')
+const Config = require('Config');
 
 class CategoryItemsMain extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            categoryModel: { links: [] },
-            selfUri: '',
-        };
-    }
-    componentWillReceiveProps(nextProps) {
-        if (Config.cortexApi.path + this.state.selfUri !== nextProps.categoryUrl) {
-            login().then(() => {
-                fetch(Config.cortexApi.path + nextProps.categoryUrl + '?zoom=items',
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(res => {
-                        this.setState({
-                            selfUri: nextProps.categoryUrl,
-                            prevselfUri: this.state.selfUri,
-                            categoryModel: res
-                        });
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    });
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryModel: { links: [] },
+      selfUri: '',
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (Config.cortexApi.path + this.state.selfUri !== nextProps.categoryUrl) {
+      login().then(() => {
+        fetch(`${Config.cortexApi.path + nextProps.categoryUrl}?zoom=items`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+          })
+          .then(res => res.json())
+          .then((res) => {
+            this.setState({
+              selfUri: nextProps.categoryUrl,
+              prevselfUri: this.state.selfUri,
+              categoryModel: res,
             });
-        }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
     }
-    componentDidMount() {
-        login().then(() => {
-            fetch(Config.cortexApi.path + this.props.categoryUrl + '?zoom=items',
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': localStorage.getItem(Config.cortexApi.scope + '_oAuthToken')
-                    }
-                })
-                .then(res => res.json())
-                .then(res => {
-                    this.setState({
-                        categoryModel: res,
-                        selfUri: this.props.categoryUrl
-                    });
-                })
-                .catch(error => {
-                    console.log(error)
-                });
+  }
+
+  componentDidMount() {
+    login().then(() => {
+      fetch(`${Config.cortexApi.path + this.props.categoryUrl}?zoom=items`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            categoryModel: res,
+            selfUri: this.props.categoryUrl,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
         });
+    });
+  }
+
+  render() {
+    if (this.state.categoryModel.links.length > 0 && this.state.selfUri == this.props.categoryUrl) {
+      return (
+        <div className="category-items-container container">
+          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
+            <div>
+              <h1 className="view-title">
+                {this.state.categoryModel['display-name']}
+              </h1>
+            </div>
+          </div>
+          <ProductListPaginationTop paginationData={this.state.categoryModel._items ? this.state.categoryModel._items[0] : this.state.categoryModel} />
+          <ProductListMain productData={this.state.categoryModel._items ? this.state.categoryModel._items[0] : this.state.categoryModel} />
+          <ProductListPaginationBottom paginationData={this.state.categoryModel._items ? this.state.categoryModel._items[0] : this.state.categoryModel} />
+        </div>
+      );
     }
-    render() {
-        if (this.state.categoryModel.links.length > 0 && this.state.selfUri == this.props.categoryUrl) {
-            return (
-                <div className="category-items-container container">
-                    <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-                        <div>
-                            <h1 className="view-title">{this.state.categoryModel["display-name"]}</h1>
-                        </div>
-                    </div>
-                    <ProductListPaginationTop paginationData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel} />
-                    <ProductListMain productData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel} />
-                    <ProductListPaginationBottom paginationData={this.state.categoryModel["_items"] ? this.state.categoryModel["_items"][0] : this.state.categoryModel} />
-                </div>
-            );
-        }
-        else {
-            return (<div className="loader"></div>)
-        }
-    }
+
+    return (<div className="loader" />);
+  }
 }
 
 export default CategoryItemsMain;

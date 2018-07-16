@@ -17,30 +17,29 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
-import AppHeaderMain from '../components/appheader.main.jsx';
-import CategoryItemsMain from '../components/categoryitems.main.jsx';
-import AppFooterMain from '../components/appfooter.main.jsx';
+import AppHeaderMain from '../components/appheader.main';
+import CategoryItemsMain from '../components/categoryitems.main';
+import AppFooterMain from '../components/appfooter.main';
 
-var Config = require('Config')
+const Config = require('Config');
 
 class CategoryPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            categoryUrl: ''
-        };
-    }
-    render() {
-        return (
-            <div>
-                <AppHeaderMain />
-                <CategoryItemsMain categoryUrl={decodeURIComponent(this.props.match.params.url)} />
-                <AppFooterMain />
-            </div>
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryUrl: '',
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <AppHeaderMain />
+        <CategoryItemsMain categoryUrl={decodeURIComponent(this.props.match.params.url)} />
+        <AppFooterMain />
+      </div>
+    );
+  }
 }
 
 export default CategoryPage;

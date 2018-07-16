@@ -17,50 +17,49 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
-import { login } from '../utils/AuthService.js';
-import ProductListItemMain from './productlistitem.main.jsx';
+import ProductListItemMain from './productlistitem.main';
 
-var Config = require('Config')
+const Config = require('Config');
 
 class ProductListMain extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            categoryModel: this.props.productData
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryModel: this.props.productData,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.categoryModel.self.href !== nextProps.productData.self.href) {
+      this.setState({ categoryModel: nextProps.productData });
     }
-    componentWillReceiveProps(nextProps) {
-        if (this.state.categoryModel.self.href !== nextProps.productData.self.href) {
-            this.setState({ categoryModel: nextProps.productData });
-        }
+  }
+
+  renderProducts() {
+    return this.state.categoryModel.links.map((product) => {
+      if (product.rel === 'element') {
+        return (
+          <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
+            <ProductListItemMain productUrl={product.uri} />
+          </li>
+        );
+      }
+    });
+  }
+
+  render() {
+    if (this.state.categoryModel.links.length > 0) {
+      return (
+        <div data-region="categoryBrowseRegion" style={{ display: 'block' }}>
+          <ul className="category-items-listing equalize" id="category_items_listing">
+            {this.renderProducts()}
+          </ul>
+        </div>
+      );
     }
-    renderProducts() {
-        return this.state.categoryModel.links.map(product => {
-            if (product.rel === "element") {
-                return (
-                    <li key={'_' + Math.random().toString(36).substr(2, 9)} className="category-item-container">
-                        <ProductListItemMain productUrl={product.uri} />
-                    </li>
-                );
-            }
-        })
-    }
-    render() {
-        if (this.state.categoryModel.links.length > 0) {
-            return (
-                <div data-region="categoryBrowseRegion" style={{ display: 'block' }}>
-                    <ul className="category-items-listing equalize" id="category_items_listing">
-                        {this.renderProducts()}
-                    </ul>
-                </div>
-            );
-        }
-        else {
-            return (<div className="loader"></div>)
-        }
-    }
+
+    return (<div className="loader" />);
+  }
 }
 
 export default ProductListMain;
