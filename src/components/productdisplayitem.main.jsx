@@ -191,6 +191,21 @@ class ProductDisplayItemMain extends React.Component {
     }
   }
 
+  renderAttributes() {
+    if (this.state.productData._definition[0].details) {
+      return this.state.productData._definition[0].details.map(attribute => (
+        <tr key={attribute.name}>
+          <td className="itemdetail-attribute-label-col">
+            {attribute['display-name']}
+          </td>
+          <td className="itemdetail-attribute-value-col">
+            {attribute['display-value']}
+          </td>
+        </tr>
+      ));
+    }
+  }
+
   render() {
     if (this.state.productData) {
       let listPrice = 'n/a';
@@ -243,22 +258,22 @@ class ProductDisplayItemMain extends React.Component {
                   <div data-region="itemPriceRegion" style={{ display: 'block' }}>
                     <ul className="itemdetail-price-container">
                       {
-                                                listPrice !== itemPrice
-                                                  ? (
-                                                    <li className="itemdetail-list-price" data-region="itemListPriceRegion">
-                                                      <label className="itemdetail-list-price-label">
-Original Price&nbsp;
+                        listPrice !== itemPrice
+                          ? (
+                            <li className="itemdetail-list-price" data-region="itemListPriceRegion">
+                              <label className="itemdetail-list-price-label">
+                                Original Price&nbsp;
                                                       </label>
-                                                      <span className="itemdetail-list-price-value" id={`category_item_list_price_${this.state.productData._code[0].code}`}>
-                                                        {listPrice}
-                                                      </span>
-                                                    </li>
-                                                  )
-                                                  : ('')
-                                            }
+                              <span className="itemdetail-list-price-value" id={`category_item_list_price_${this.state.productData._code[0].code}`}>
+                                {listPrice}
+                              </span>
+                            </li>
+                          )
+                          : ('')
+                      }
                       <li className="itemdetail-purchase-price">
                         <label className="itemdetail-purchase-price-label">
-Price&nbsp;
+                          Price&nbsp;
                         </label>
                         <span className="itemdetail-purchase-price-value" id={`category_item_price_${this.state.productData._code[0].code}`}>
                           {itemPrice}
@@ -279,15 +294,15 @@ Price&nbsp;
                           {availabilityString}
                         </div>
                       ) : (
-                        <div>
-                          {availabilityString}
-                        </div>
-                      )}
+                          <div>
+                            {availabilityString}
+                          </div>
+                        )}
                     </label>
                   </li>
                   <li className={`itemdetail-release-date${this.state.productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
                     <label className="itemdetail-release-date-label">
-Expected Release Date:&nbsp;
+                      Expected Release Date:&nbsp;
                     </label>
                     <span className="itemdetail-release-date-value" id={`category_item_release_date_${this.state.productData._code[0].code}`}>
                       {this.state.productData._availability[0]['release-date'] ? this.state.productData._availability[0]['release-date']['display-value'] : ''}
@@ -298,22 +313,7 @@ Expected Release Date:&nbsp;
               <div data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
                 <table className="table table-striped table-condensed">
                   <tbody>
-                    <tr>
-                      <td className="itemdetail-attribute-label-col">
-                        {this.state.productData._definition[0].details[0]['display-name']}
-                      </td>
-                      <td className="itemdetail-attribute-value-col">
-                        {this.state.productData._definition[0].details[0]['display-value']}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="itemdetail-attribute-label-col">
-                        {this.state.productData._definition[0].details[1]['display-name']}
-                      </td>
-                      <td className="itemdetail-attribute-value-col">
-                        {this.state.productData._definition[0].details[1]['display-value']}
-                      </td>
-                    </tr>
+                    {this.renderAttributes()}
                   </tbody>
                 </table>
               </div>
@@ -327,40 +327,40 @@ Expected Release Date:&nbsp;
                     {this.renderSkuSelection()}
                     <div className="form-group">
                       <label className="control-label">
-Quantity
+                        Quantity
                       </label>
 
                       <div className="form-content">
                         <select className="form-control" id="product_display_item_quantity_select" name="itemdetail-select-quantity" onChange={this.handleQuantityChange}>
                           <option id="product_display_item_quantity_option_1" value="1">
-1
+                            1
                           </option>
                           <option id="product_display_item_quantity_option_2" value="2">
-2
+                            2
                           </option>
                           <option id="product_display_item_quantity_option_3" value="3">
-3
+                            3
                           </option>
                           <option id="product_display_item_quantity_option_4" value="4">
-4
+                            4
                           </option>
                           <option id="product_display_item_quantity_option_5" value="5">
-5
+                            5
                           </option>
                           <option id="product_display_item_quantity_option_6" value="6">
-6
+                            6
                           </option>
                           <option id="product_display_item_quantity_option_7" value="7">
-7
+                            7
                           </option>
                           <option id="product_display_item_quantity_option_8" value="8">
-8
+                            8
                           </option>
                           <option id="product_display_item_quantity_option_9" value="9">
-9
+                            9
                           </option>
                           <option id="product_display_item_quantity_option_10" value="10">
-10
+                            10
                           </option>
                         </select>
                       </div>
@@ -368,7 +368,7 @@ Quantity
                     <div className="form-group form-group-submit">
                       <div className="form-content form-content-submit col-sm-8 col-sm-offset-4">
                         <button className={`btn-round btn btn-primary btn-itemdetail-addtocart${!availability ? ' disabled' : ''}`} id="product_display_item_add_to_cart_button" type="submit">
-Add to Cart
+                          Add to Cart
                         </button>
                       </div>
                     </div>
