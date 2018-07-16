@@ -56,8 +56,8 @@ If you plan to check in your code, make sure to fix all your linting errors firs
 * run `npm test` to run tests
 
 ## Contribution Guide
-* Contributions may be performed by developers at their choosing. Changes to this project must be reviewed and approved by an owner of this repository
-[See CONTRIBUTING.md](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md)<br/>
+* Contributions may be performed by developers at their choosing. Changes to this project must be reviewed and approved by an owner of this repository <br/>
+See [CONTRIBUTING.md](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md)<br/>
 
 ## License
 [EP Labs License](https://github.com/shaunmaharaj/ep-store/blob/master/EP_LICENSE)<br/>
