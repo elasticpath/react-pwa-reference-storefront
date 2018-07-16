@@ -690,11 +690,13 @@ pre code {
 }
 .carousel .container {
  
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.carousel{
   border-width:4px;
   border-style:solid;
   border-color:#e8e8e8;
-
- 
 }
 .container:before,
 .container:after {
@@ -9477,6 +9479,9 @@ fieldset[disabled] .search-results-item-inner .btn-addtocart.active {
 }
 .carousel .row {
   margin-bottom: 0rem;
+  margin-left: 0px;
+  margin-right: 0px;
+
 }
 
 hr {
@@ -9807,10 +9812,7 @@ ul {
     padding-left: 0px;
     padding-right: 0px;
   }
-  .carousel .container{
-   padding-left: 0px;
-   padding-right: 0px;
-  }
+ 
   .right.carousel-control .glyphicon.glyphicon-chevron-right{
     top: 40%;
     color: #333333;
@@ -9819,4 +9821,11 @@ ul {
    top: 40%;
    color: #333333;
  }
- 
+ .carousel-inner .col-4 {
+   padding-right: 5px;
+   padding-left: 5px;
+ }
+ .carousel-inner .col-6{
+  padding-right: 5px;
+  padding-left: 5px;
+}

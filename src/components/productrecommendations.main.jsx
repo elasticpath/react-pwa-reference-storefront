@@ -38,25 +38,11 @@ class ProductRecommendationsDisplayMain extends React.Component {
             this.setState({ categoryModel: nextProps.productData });
         }
     }
-    renderRecommendations(){
-        var product = this.state.productData['_recommendations'][0]['_crosssell'][0].links;
-        var length = this.state.productData['_recommendations'][0]['_crosssell'][0].links.length;
-        return this.renderProducts(product, length);
-    }
-    renderReplacement(){
-        var product = this.state.productData['_recommendations'][0]['_replacement'][0].links;
-        var length = this.state.productData['_recommendations'][0]['_replacement'][0].links.length;
-        return this.renderProducts(product, length);
-    }
-    renderUpsell(){
-        var product = this.state.productData['_recommendations'][0]['_upsell'][0].links;
-        var length = this.state.productData['_recommendations'][0]['_upsell'][0].links.length;
-        return this.renderProducts(product, length);
-    }
-    renderProducts(product,length) {
+
+    renderProducts(product,length,MaxItemsInOneCarouselView) {
         // Need to do this for all possible recommendations. Crosssell, Recommendation, Replacement, Upsell, Warranty.
         const totalCount = length;
-        const MaxItemsInOneCarouselView = 2;
+        //const MaxItemsInOneCarouselView = MaxItemsInOneCarouselView;
         console.log("Total items to render: " + totalCount );
         const maxViews = totalCount / MaxItemsInOneCarouselView;
         console.log("Total Views created: " + maxViews );
@@ -79,7 +65,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
         if ( currentItem < totalCount  && product[currentItem].rel === "element"){
             console.log("renderView: " + currentItem);
             data.push(  
-                    <div className="col-md-6 col-sm-6 col-6" key ={'_' + Math.random().toString(36).substr(2, 9)}  >
+                    <div className="col-6" key ={'_' + Math.random().toString(36).substr(2, 9)}  >
                         <ProductListItemMain productUrl={product[currentItem].uri} />
                     </div>    
                 );
@@ -90,7 +76,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
             if ((currentItem) < totalCount && product[(currentItem)].rel === "element"){
                 console.log("renderView: " + (currentItem));
                 data.push(
-                        <div className="col-md-6 col-sm-6 col-6" key = {'_' + Math.random().toString(36).substr(2, 9)} >
+                        <div className="col-6" key = {'_' + Math.random().toString(36).substr(2, 9)} >
                             <ProductListItemMain productUrl={product[(currentItem)].uri} />
                         </div>    
                     );
@@ -102,8 +88,11 @@ class ProductRecommendationsDisplayMain extends React.Component {
     }
     render() {
         var data = [];
-        console.log(this.state.productData['_recommendations'][0]['_crosssell'][0].links.length);
+
+        /* Copy this section to add Carousel to the view */
         if (this.state.productData['_recommendations'][0]['_crosssell'][0].links.length > 0) {
+            var product = this.state.productData['_recommendations'][0]['_crosssell'][0].links;
+            var length = this.state.productData['_recommendations'][0]['_crosssell'][0].links.length;
             console.log(this.state.productData['_recommendations'][0]['_crosssell'][0]);
             data.push (<div key = {'_' + Math.random().toString(36).substr(2, 9)}>
                     <label className="control-label">Product Recommendations</label>
@@ -111,7 +100,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
                         <div className="carousel slide" data-ride="carousel" id="theCarousel">
                         <div className="container">
                             <div className="carousel-inner">
-                            {this.renderRecommendations()}
+                            {this.renderProducts(product, length, 2)}
                             </div>
                         </div> 
                         <a className="left carousel-control" href="#theCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
@@ -123,6 +112,8 @@ class ProductRecommendationsDisplayMain extends React.Component {
         }
 
         if (this.state.productData['_recommendations'][0]['_replacement'][0].links.length > 0) {
+            var product = this.state.productData['_recommendations'][0]['_replacement'][0].links;
+            var length = this.state.productData['_recommendations'][0]['_replacement'][0].links.length;
             console.log(this.state.productData['_recommendations'][0]['_replacement'][0]);
             data.push (<div key = {'_' + Math.random().toString(36).substr(2, 9)}>
                     <label className="control-label">Product Replacements</label>
@@ -130,7 +121,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
                         <div className="carousel slide" data-ride="carousel" id="the_replacementCarousel">
                         <div className="container">
                             <div className="carousel-inner">
-                            {this.renderReplacement()}
+                            {this.renderProducts(product, length,2)}
                             </div>
                         </div> 
                         <a className="left carousel-control" href="#the_replacementCarousel" data-slide="prev"><i className="glyphicon glyphicon-chevron-left"></i></a>
@@ -139,10 +130,11 @@ class ProductRecommendationsDisplayMain extends React.Component {
                     </div>
                     </div>
                 );
-        }
+            }
     
     return (<div data-region="categoryBrowseRegion" style={{ display: 'block' } } key = {'_' + Math.random().toString(36).substr(2, 9)}>{data}</div>);
-    }
+
+}
 }
 
 export default withRouter(ProductRecommendationsDisplayMain);
