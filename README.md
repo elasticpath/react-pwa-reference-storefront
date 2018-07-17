@@ -17,9 +17,11 @@ If you haven’t already, you’ll need to install the following software:
 ##### `ep.config.json (options)`
 
  - `cortexApi.path`, **required**, *string*:
-Path to the actual Cortex service location. Set to `http://localhost:9080/cortex` for local development.
+Path the storefront should use to reach Cortex. Set to `http://localhost:8080/cortex` for local development to ensure redirection to proxy. Set to `cortex` for production.
  - `cortexApi.scope`, **required**, *string*:
 Name of store to retreive data from Cortex.
+ - `cortexApi.pathForProxy`, **required**, *string*:
+Path to the actual Cortex service location provided to the webpack proxy. URL consisting of hostname and port to actual running instance of Cortex.
  - `skuImagesS3Url`, **required**, *string*:
  Path to catalog images hosted on S3 bucket. Set this to the full URL of your S3 images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
 

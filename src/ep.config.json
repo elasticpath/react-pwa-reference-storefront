@@ -1,7 +1,8 @@
 {
   "cortexApi":{
-    "path":"cortex",
-    "scope":"vestri"
+    "path":"http://localhost:8080/cortex",
+    "scope":"vestri",
+    "pathForProxy":"http://localhost:9080"
   },
   "skuImagesS3Url":"https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png"
 }

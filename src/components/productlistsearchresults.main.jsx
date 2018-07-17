@@ -46,6 +46,16 @@ class ProductListSearchResultsMain extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.getSearchData(this.props.searchKeywords);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.state.searchKeywords !== this.props.searchKeywords) {
+      this.getSearchData(this.props.searchKeywords);
+    }
+  }
+
   getSearchResults(searchResultsUrl) {
     login().then(() => {
       fetch(`${searchResultsUrl}?zoom=${zoomArray.join()}`,
@@ -103,16 +113,6 @@ class ProductListSearchResultsMain extends React.Component {
           console.log(error);
         });
     });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.state.searchKeywords !== this.props.searchKeywords) {
-      this.getSearchData(this.props.searchKeywords);
-    }
-  }
-
-  componentDidMount() {
-    this.getSearchData(this.props.searchKeywords);
   }
 
   renderProducts() {

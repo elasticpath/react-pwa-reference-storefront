@@ -22,6 +22,7 @@ import AppHeaderSearchMain from './appheadersearch.main';
 import AppHeaderLoginMain from './appheaderlogin.main';
 import AppModalLoginMain from './appmodallogin.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
+import headerLogo from '../images/Company-Logo-v1.png';
 
 class AppHeaderMain extends React.Component {
   goBack() {
@@ -43,7 +44,7 @@ class AppHeaderMain extends React.Component {
             <div className="logo-container" style={{ display: 'block' }}>
               <div>
                 <a href="/" className="cmd-home-logo" id="header_home_logo_link" aria-label="Header home logo">
-                  <img alt="Header logo" src={require('../images/Company-Logo-v1.png')} />
+                  <img alt="Header logo" src={headerLogo} />
                 </a>
               </div>
             </div>
@@ -55,7 +56,7 @@ class AppHeaderMain extends React.Component {
                 <AppHeaderLoginMain />
                 <li className="global-nav-cart-nav">
                   <Link to="/mycart">
-                    <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" aria-label="Cart" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" aria-label="Cart" data-toggle="collapse" data-target=".navbar-collapse" type="button">
                       <span className="icon" />
                     </button>
                   </Link>

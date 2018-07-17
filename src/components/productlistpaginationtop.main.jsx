@@ -20,8 +20,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Config = require('Config');
-
 let paginationPreviousLinkVar = '';
 let paginationNextLinkVar = '';
 
@@ -35,24 +33,6 @@ class ProductListPaginationTop extends React.Component {
       selfUri: this.props.categoryUrl,
       prevselfUri: '',
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    paginationPreviousLinkVar = '';
-    paginationNextLinkVar = '';
-    for (let i = 0; i < nextProps.paginationData.links.length; i++) {
-      if (nextProps.paginationData.links[i].rel === 'previous') {
-        paginationPreviousLinkVar = nextProps.paginationData.links[i].uri;
-      }
-      if (nextProps.paginationData.links[i].rel === 'next') {
-        paginationNextLinkVar = nextProps.paginationData.links[i].uri;
-      }
-    }
-    this.setState({
-      paginationData: nextProps.paginationData,
-      paginationPreviousLink: paginationPreviousLinkVar,
-      paginationNextLink: paginationNextLinkVar,
-    });
   }
 
   componentDidMount() {
@@ -73,6 +53,24 @@ class ProductListPaginationTop extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    paginationPreviousLinkVar = '';
+    paginationNextLinkVar = '';
+    for (let i = 0; i < nextProps.paginationData.links.length; i++) {
+      if (nextProps.paginationData.links[i].rel === 'previous') {
+        paginationPreviousLinkVar = nextProps.paginationData.links[i].uri;
+      }
+      if (nextProps.paginationData.links[i].rel === 'next') {
+        paginationNextLinkVar = nextProps.paginationData.links[i].uri;
+      }
+    }
+    this.setState({
+      paginationData: nextProps.paginationData,
+      paginationPreviousLink: paginationPreviousLinkVar,
+      paginationNextLink: paginationNextLinkVar,
+    });
+  }
+
   render() {
     if (this.state.paginationData.links.length > 0) {
       return (
@@ -82,18 +80,18 @@ class ProductListPaginationTop extends React.Component {
               <span className="pagination-value pagination-total-results-value">
                 {this.state.paginationData.pagination.results}
               </span>
-              <label className="pagination-label pagination-total-results-label">
-&nbsp;results&nbsp;
+              <label htmlFor="pagination_total_results_label" className="pagination-label pagination-total-results-label">
+                &nbsp;results&nbsp;
               </label>
-                            (&nbsp;
+              (&nbsp;
               <span className="pagination-value pagination-results-displayed-value">
                 {this.state.paginationData.pagination['results-on-page']}
               </span>
-              <label className="pagination-label">
-&nbsp;results on page
+              <label htmlFor="pagination_label" className="pagination-label">
+                &nbsp;results on page
               </label>
               {' '}
-)
+              )
             </div>
             {this.state.paginationNextLink !== '' || this.state.paginationPreviousLink !== ''
               ? (
@@ -102,19 +100,19 @@ class ProductListPaginationTop extends React.Component {
                     ? (
                       <Link to={`/category/${encodeURIComponent(this.state.paginationPreviousLink)}`} className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_top_link" role="button">
                         <span className="icon" />
-Previous
+                        Previous
                       </Link>
                     )
                     : ('')}
                   <span className="pagestate-summary">
-                    <label className="pagination-label">
-page&nbsp;
+                    <label htmlFor="pagination_curr_page_label" className="pagination-label">
+                      page&nbsp;
                     </label>
                     <span className="pagination-value pagination-curr-page-value">
                       {this.state.paginationData.pagination.current}
                     </span>
-                    <label className="pagination-label">
-&nbsp;of&nbsp;
+                    <label htmlFor="pagination_total_pages_label" className="pagination-label">
+                      &nbsp;of&nbsp;
                     </label>
                     <span className="pagination-value pagination-total-pages-value">
                       {this.state.paginationData.pagination.pages}
@@ -123,7 +121,7 @@ page&nbsp;
                   {this.state.paginationNextLink !== ''
                     ? (
                       <Link to={`/category/${encodeURIComponent(this.state.paginationNextLink)}`} className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_top_link" role="button">
-Next
+                        Next
                         <span className="icon" />
                       </Link>
                     )

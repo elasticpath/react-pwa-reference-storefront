@@ -33,6 +33,28 @@ class CategoryItemsMain extends React.Component {
     };
   }
 
+  componentDidMount() {
+    login().then(() => {
+      fetch(`${Config.cortexApi.path + this.props.categoryUrl}?zoom=items`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            categoryModel: res,
+            selfUri: this.props.categoryUrl,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     if (Config.cortexApi.path + this.state.selfUri !== nextProps.categoryUrl) {
       login().then(() => {
@@ -56,28 +78,6 @@ class CategoryItemsMain extends React.Component {
           });
       });
     }
-  }
-
-  componentDidMount() {
-    login().then(() => {
-      fetch(`${Config.cortexApi.path + this.props.categoryUrl}?zoom=items`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            categoryModel: res,
-            selfUri: this.props.categoryUrl,
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
   }
 
   render() {

@@ -114,22 +114,22 @@ class ProductListItemMain extends React.Component {
               <div data-region="itemPriceRegion" style={{ display: 'block' }}>
                 <ul className="category-item-price-container" style={{ minHeight: '33px' }}>
                   {
-                                listPrice !== itemPrice
-                                  ? (
-                                    <li className="category-item-list-price" data-region="itemListPriceRegion">
-                                      <label className="item-meta category-item-list-price-label">
-Original Price
+                    listPrice !== itemPrice
+                      ? (
+                        <li className="category-item-list-price" data-region="itemListPriceRegion">
+                          <label htmlFor={`category_item_list_price_${this.state.productData._code[0].code}_label`} className="item-meta category-item-list-price-label">
+                            Original Price
                                       </label>
-                                      <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${this.state.productData._code[0].code}`}>
-                                        {listPrice}
-                                      </span>
-                                    </li>
-                                  )
-                                  : ('')
-                            }
+                          <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${this.state.productData._code[0].code}`}>
+                            {listPrice}
+                          </span>
+                        </li>
+                      )
+                      : ('')
+                  }
                   <li className="category-item-purchase-price">
-                    <label className="item-meta category-item-purchase-price-label">
-Price
+                    <label htmlFor={`category_item_price_${this.state.productData._code[0].code}_label`} className="item-meta category-item-purchase-price-label">
+                      Price
                     </label>
                     <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${this.state.productData._code[0].code}`}>
                       {itemPrice}
@@ -143,22 +143,22 @@ Price
           <div data-region="availabilityRegion" style={{ display: 'block' }}>
             <ul className="category-item-availability-container">
               <li className="category-item-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                <label id={`category_item_availability_${this.state.productData._code[0].code}`}>
+                <label htmlFor={`category_item_availability_${this.state.productData._code[0].code}`}>
                   {(availability) ? (
                     <div>
                       <span className="icon" />
                       {availabilityString}
                     </div>
                   ) : (
-                    <div>
-                      {availabilityString}
-                    </div>
-                  )}
+                      <div>
+                        {availabilityString}
+                      </div>
+                    )}
                 </label>
               </li>
               <li className={`category-item-release-date${this.state.productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                <label className="item-meta category-item-releaseDate-label">
-Expected Release Date:&nbsp;
+                <label htmlFor={`category_item_release_date_${this.state.productData._code[0].code}_label`} className="item-meta category-item-releaseDate-label">
+                  Expected Release Date:&nbsp;
                 </label>
                 <span className="item-meta category-item-releaseDate-value" id={`category_item_release_date_${this.state.productData._code[0].code}`}>
                   {this.state.productData._availability[0]['release-date'] ? this.state.productData._availability[0]['release-date']['display-value'] : ''}

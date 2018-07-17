@@ -99,12 +99,12 @@ class RegistrationFormMain extends React.Component {
           }
         } else {
           this.setState({ failedRegistration: true });
-          let debug_messages = '';
+          let debugMessages = '';
           res.json().then((json) => {
             for (const message in json.messages) {
-              debug_messages = debug_messages.concat(`- ${json.messages[message]['debug-message']} \n `);
+              debugMessages = debugMessages.concat(`- ${json.messages[message]['debug-message']} \n `);
             }
-          }).then(() => this.setState({ registrationErrors: debug_messages }));
+          }).then(() => this.setState({ registrationErrors: debugMessages }));
         }
       });
     });

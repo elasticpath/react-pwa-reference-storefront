@@ -23,6 +23,12 @@ import { loginRegistered } from '../utils/AuthService';
 const Config = require('Config');
 
 class AppModalLoginMain extends React.Component {
+  static registerNewUser() {
+    if (document.getElementById('login_modal_close_button')) {
+      document.getElementById('login_modal_close_button').click();
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -47,31 +53,25 @@ class AppModalLoginMain extends React.Component {
   loginRegisteredUser(event) {
     this.setState({ isLoading: true });
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-      loginRegistered(this.state.username, this.state.password).then((res_status) => {
-        if (res_status === 401) {
+      loginRegistered(this.state.username, this.state.password).then((resStatus) => {
+        if (resStatus === 401) {
           this.setState({
             failedLogin: true,
             isLoading: false,
           });
         }
-        if (res_status === 400) {
+        if (resStatus === 400) {
           this.setState({
             failedLogin: true,
             isLoading: false,
           });
-        } else if (res_status === 200) {
+        } else if (resStatus === 200) {
           this.setState({ failedLogin: false });
           document.getElementById('login_modal_close_button').click();
           this.props.history.push('/');
         }
       });
       event.preventDefault();
-    }
-  }
-
-  registerNewUser(event) {
-    if (document.getElementById('login_modal_close_button')) {
-      document.getElementById('login_modal_close_button').click();
     }
   }
 
@@ -83,10 +83,10 @@ class AppModalLoginMain extends React.Component {
 
             <div className="modal-header">
               <h2 className="modal-title">
-Login
+                Login
               </h2>
               <button type="button" id="login_modal_close_button" className="close" data-dismiss="modal">
-&times;
+                &times;
               </button>
             </div>
 
@@ -95,32 +95,32 @@ Login
             </div>
 
             <div className="modal-body">
-              <form ref="form" id="login_modal_form" onSubmit={this.loginRegisteredUser}>
+              <form id="login_modal_form" onSubmit={this.loginRegisteredUser}>
                 <div className="form-group">
-                  <label>
-Username:
-                  </label>
+                  <span>
+                    Username:
+                  </span>
                   <input className="form-control" id="login_modal_username_input" type="text" onChange={this.setUsername} />
                 </div>
                 <div className="form-group">
-                  <label>
-Password:
-                  </label>
+                  <span>
+                    Password:
+                  </span>
                   <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} />
                 </div>
                 <div className="form-group action-row">
                   {
-                                        (this.state.isLoading) ? <div className="miniLoader" /> : ('')
-                                    }
+                    (this.state.isLoading) ? <div className="miniLoader" /> : ('')
+                  }
                   <div className="login-cell">
                     <button className="btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
-Login
+                      Login
                     </button>
                   </div>
                   <div className="register-cell">
                     <Link to="/registration">
-                      <button className="btn-auth-register btn btn-link" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" onClick={this.registerNewUser}>
-Register
+                      <button className="btn-auth-register btn btn-link" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={this.registerNewUser}>
+                        Register
                       </button>
                     </Link>
                   </div>

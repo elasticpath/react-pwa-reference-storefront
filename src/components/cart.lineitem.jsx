@@ -129,7 +129,7 @@ class CartLineItem extends React.Component {
       return (
         options[0]._element.map(option => (
           <li className="cart-lineitem-option" key={`_${Math.random().toString(36).substr(2, 9)}`}>
-            <label className="cart-lineitem-option-name">
+            <label htmlFor={`cart_line_item_option_${option._value[0].name}_label`} className="cart-lineitem-option-name">
               {option['display-name']}
 :&nbsp;
             </label>
@@ -140,6 +140,7 @@ class CartLineItem extends React.Component {
         ))
       );
     }
+    return ('');
   }
 
   render() {
@@ -167,7 +168,7 @@ class CartLineItem extends React.Component {
           <img src={Config.skuImagesS3Url.replace('%sku%', this.props.item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="No Image Available" className="cart-lineitem-thumbnail" />
         </td>
         <td className="cart-lineitem-title-col" data-el-value="lineItem.displayName">
-          <Link to={`/itemdetail/${encodeURIComponent(this.props.item._item[0].self.href)}`}>
+          <Link to={`/itemdetail/${encodeURIComponent(this.props.item._item[0].self.uri)}`}>
             {this.props.item._item[0]._definition[0]['display-name']}
           </Link>
         </td>
