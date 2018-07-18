@@ -21,6 +21,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import router from './routes';
 
+// eslint-disable-next-line react/no-array-index-key
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
 function App() {

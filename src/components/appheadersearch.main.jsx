@@ -40,8 +40,10 @@ class AppHeaderSearchMain extends React.Component {
   }
 
   search(event) {
-    if (this.state.keywords !== '') {
-      this.props.history.push(`/search/${this.state.keywords}`);
+    const { history } = this.props;
+    const { keywords } = this.state;
+    if (keywords !== '') {
+      history.push(`/search/${keywords}`);
     }
     event.preventDefault();
   }

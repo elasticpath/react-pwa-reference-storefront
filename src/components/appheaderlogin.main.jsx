@@ -35,7 +35,8 @@ class AppHeaderLoginMain extends React.Component {
   logoutRegisteredUser() {
     logout().then(() => {
       login().then(() => {
-        this.props.history.push('/');
+        const { history } = this.props;
+        history.push('/');
         window.location.reload();
       });
     });

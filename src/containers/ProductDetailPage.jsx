@@ -25,6 +25,7 @@ function ProductDetailPage(props) {
   return (
     <div>
       <AppHeaderMain />
+      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
       <ProductDisplayItemMain productUrl={decodeURIComponent(props.match.params.url)} />
       <AppFooterMain />
     </div>

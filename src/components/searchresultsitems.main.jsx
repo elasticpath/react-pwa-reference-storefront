@@ -17,7 +17,6 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
@@ -37,57 +36,38 @@ const zoomArray = [
   'element:code',
 ];
 
+let searchForm;
+
 class SearchResultsItemsMain extends React.Component {
   static propTypes = {
-    searchKeywords: PropTypes.string.isRequired,
+    searchKeywordsProps: PropTypes.string.isRequired,
   }
 
   constructor(props) {
     super(props);
+    const { searchKeywordsProps } = this.props;
     this.state = {
       searchResultsModel: { links: [] },
-      searchKeywords: this.props.searchKeywords,
+      searchKeywords: searchKeywordsProps,
     };
   }
 
   componentDidMount() {
-    const { searchKeywords } = this.props;
-    this.getSearchData(searchKeywords);
+    const { searchKeywordsProps } = this.props;
+    this.getSearchData(searchKeywordsProps);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.searchKeywords !== nextProps.searchKeywords) {
-      this.getSearchData(nextProps.searchKeywords);
+    const { searchKeywords } = this.state;
+    if (searchKeywords !== nextProps.searchKeywordsProps) {
+      this.getSearchData(nextProps.searchKeywordsProps);
     }
   }
 
   getSearchData() {
+    const { searchKeywordsProps } = this.props;
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/searches/${Config.cortexApi.scope}/keywords/form?followlocation`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            keywords: this.props.searchKeywords,
-          }),
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.getSearchResults(res.self.href);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error);
-        });
-    });
-  }
-
-  getSearchResults(searchResultsUrl) {
-    login().then(() => {
-      fetch(`${searchResultsUrl}?zoom=${zoomArray.join()}`,
+      fetch(`${Config.cortexApi.path}/?zoom=searches:keywordsearchform&followlocation`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -96,10 +76,31 @@ class SearchResultsItemsMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.setState({
-            searchResultsModel: res,
-            searchKeywords: this.props.searchKeywords,
-          });
+          const searchLink = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction');
+          searchForm = searchLink.href;
+        }).then(() => {
+          fetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
+            {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+              body: JSON.stringify({
+                keywords: searchKeywordsProps,
+              }),
+            })
+            .then(res => res.json())
+            .then((res) => {
+              this.setState({
+                searchResultsModel: res,
+                searchKeywords: searchKeywordsProps,
+              });
+            })
+            .catch((error) => {
+              // eslint-disable-next-line no-console
+              console.error(error);
+            });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -109,7 +110,9 @@ class SearchResultsItemsMain extends React.Component {
   }
 
   render() {
-    if (this.state.searchResultsModel.links.length > 0 && this.state.searchKeywords === this.props.searchKeywords) {
+    const { searchKeywordsProps } = this.props;
+    const { searchResultsModel, searchKeywords } = this.state;
+    if (searchResultsModel.links.length > 0 && searchKeywords === searchKeywordsProps) {
       return (
         <div className="category-items-container container">
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
@@ -119,13 +122,13 @@ class SearchResultsItemsMain extends React.Component {
               </h1>
             </div>
           </div>
-          <ProductListPaginationTop paginationData={this.state.searchResultsModel._items ? this.state.searchResultsModel._items[0] : this.state.searchResultsModel} />
-          <ProductListMain productData={this.state.searchResultsModel._items ? this.state.searchResultsModel._items[0] : this.state.searchResultsModel} />
-          <ProductListPaginationBottom paginationData={this.state.searchResultsModel._items ? this.state.searchResultsModel._items[0] : this.state.searchResultsModel} />
+          <ProductListPaginationTop paginationDataProps={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
+          <ProductListMain productData={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
+          <ProductListPaginationBottom paginationDataProps={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
         </div>
       );
     }
-    if (this.state.searchResultsModel.links.length === 0 && this.state.searchResultsModel.pagination && this.state.searchKeywords === this.props.searchKeywords) {
+    if (searchResultsModel.links.length === 0 && searchResultsModel.pagination && searchKeywords === searchKeywordsProps) {
       return (
         <div className="category-items-container container">
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>

@@ -25,7 +25,8 @@ function SearchResultsPage(props) {
   return (
     <div>
       <AppHeaderMain />
-      <SearchResultsItemsMain searchKeywords={decodeURIComponent(props.match.params.keywords)} />
+      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
+      <SearchResultsItemsMain searchKeywordsProps={decodeURIComponent(props.match.params.keywords)} />
       <AppFooterMain />
     </div>
   );

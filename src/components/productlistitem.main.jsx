@@ -17,7 +17,7 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
@@ -45,7 +45,7 @@ const zoomArray = [
 
 class ProductListItemMain extends React.Component {
   static propTypes = {
-    // productUrl: ReactRouterPropTypes.productUrl.isRequired,
+    productUrl: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -56,8 +56,9 @@ class ProductListItemMain extends React.Component {
   }
 
   componentDidMount() {
+    const { productUrl } = this.props;
     login().then(() => {
-      fetch(`${Config.cortexApi.path + this.props.productUrl}?zoom=${zoomArray.join()}`,
+      fetch(`${Config.cortexApi.path + productUrl}?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -78,25 +79,26 @@ class ProductListItemMain extends React.Component {
   }
 
   render() {
-    if (this.state.productData) {
+    const { productData } = this.state;
+    if (productData) {
       let listPrice = 'n/a';
-      if (this.state.productData._price) {
-        listPrice = this.state.productData._price[0]['list-price'][0].display;
+      if (productData._price) {
+        listPrice = productData._price[0]['list-price'][0].display;
       }
       let itemPrice = 'n/a';
-      if (this.state.productData._price) {
-        itemPrice = this.state.productData._price[0]['purchase-price'][0].display;
+      if (productData._price) {
+        itemPrice = productData._price[0]['purchase-price'][0].display;
       }
       let availability = false;
       let availabilityString = '';
-      if (this.state.productData._availability.length >= 0) {
-        if (this.state.productData._availability[0].state === 'AVAILABLE') {
+      if (productData._availability.length >= 0) {
+        if (productData._availability[0].state === 'AVAILABLE') {
           availability = true;
           availabilityString = 'In Stock';
-        } else if (this.state.productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+        } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
           availability = true;
           availabilityString = 'Pre-order';
-        } else if (this.state.productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+        } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
           availability = true;
           availabilityString = 'Back-order';
         } else {
@@ -107,11 +109,11 @@ class ProductListItemMain extends React.Component {
       return (
         <div className="category-item-inner" style={{ minHeight: '348.59px' }}>
           <div className="category-item-thumbnail-container">
-            <img src={Config.skuImagesS3Url.replace('%sku%', this.state.productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
+            <img src={Config.skuImagesS3Url.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
           </div>
-          <div className="category-item-title" id={`category_item_title_link_${this.state.productData._code[0].code}`} style={{ minHeight: '59px' }}>
-            <Link to={`/itemdetail/${encodeURIComponent(this.state.productData.self.uri)}`}>
-              {this.state.productData._definition[0]['display-name']}
+          <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`} style={{ minHeight: '59px' }}>
+            <Link to={`/itemdetail/${encodeURIComponent(productData.self.uri)}`}>
+              {productData._definition[0]['display-name']}
             </Link>
           </div>
           <div data-region="priceRegion" style={{ display: 'block' }}>
@@ -122,10 +124,10 @@ class ProductListItemMain extends React.Component {
                     listPrice !== itemPrice
                       ? (
                         <li className="category-item-list-price" data-region="itemListPriceRegion">
-                          <label htmlFor={`category_item_list_price_${this.state.productData._code[0].code}_label`} className="item-meta category-item-list-price-label">
+                          <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="item-meta category-item-list-price-label">
                             Original Price
                           </label>
-                          <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${this.state.productData._code[0].code}`}>
+                          <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
                             {listPrice}
                           </span>
                         </li>
@@ -133,10 +135,10 @@ class ProductListItemMain extends React.Component {
                       : ('')
                   }
                   <li className="category-item-purchase-price">
-                    <label htmlFor={`category_item_price_${this.state.productData._code[0].code}_label`} className="item-meta category-item-purchase-price-label">
+                    <label htmlFor={`category_item_price_${productData._code[0].code}_label`} className="item-meta category-item-purchase-price-label">
                       Price
                     </label>
-                    <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${this.state.productData._code[0].code}`}>
+                    <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
                       {itemPrice}
                     </span>
                   </li>
@@ -148,7 +150,7 @@ class ProductListItemMain extends React.Component {
           <div data-region="availabilityRegion" style={{ display: 'block' }}>
             <ul className="category-item-availability-container">
               <li className="category-item-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                <label htmlFor={`category_item_availability_${this.state.productData._code[0].code}`}>
+                <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
                   {(availability) ? (
                     <div>
                       <span className="icon" />
@@ -161,12 +163,12 @@ class ProductListItemMain extends React.Component {
                   )}
                 </label>
               </li>
-              <li className={`category-item-release-date${this.state.productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                <label htmlFor={`category_item_release_date_${this.state.productData._code[0].code}_label`} className="item-meta category-item-releaseDate-label">
+              <li className={`category-item-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+                <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="item-meta category-item-releaseDate-label">
                   Expected Release Date:&nbsp;
                 </label>
-                <span className="item-meta category-item-releaseDate-value" id={`category_item_release_date_${this.state.productData._code[0].code}`}>
-                  {this.state.productData._availability[0]['release-date'] ? this.state.productData._availability[0]['release-date']['display-value'] : ''}
+                <span className="item-meta category-item-releaseDate-value" id={`category_item_release_date_${productData._code[0].code}`}>
+                  {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
                 </span>
               </li>
             </ul>

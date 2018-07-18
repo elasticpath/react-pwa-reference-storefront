@@ -17,24 +17,25 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import ProductListItemMain from './productlistitem.main';
 
 class ProductListMain extends React.Component {
   static propTypes = {
-    productData: PropTypes.array.isRequired,
+    productData: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   constructor(props) {
     super(props);
+    const { productData } = this.props;
     this.state = {
-      categoryModel: this.props.productData,
+      categoryModel: productData,
     };
   }
 
   renderProducts() {
-    return this.state.categoryModel.links.map((product) => {
+    const { categoryModel } = this.state;
+    return categoryModel.links.map((product) => {
       if (product.rel === 'element') {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
@@ -47,7 +48,8 @@ class ProductListMain extends React.Component {
   }
 
   render() {
-    if (this.state.categoryModel.links.length > 0) {
+    const { categoryModel } = this.state;
+    if (categoryModel.links.length > 0) {
       return (
         <div data-region="categoryBrowseRegion" style={{ display: 'block' }}>
           <ul className="category-items-listing equalize" id="category_items_listing">

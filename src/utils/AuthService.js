@@ -20,13 +20,13 @@ const Config = require('Config');
 
 let userFormBody = [];
 let userFormBodyString = '';
+let newaccountform = '';
 
 function generateFormBody(userDetails) {
-  for (const property in userDetails) {
-    const encodedKey = property;
-    const encodedValue = userDetails[property];
+  Object.keys(userDetails).forEach((encodedKey) => {
+    const encodedValue = userDetails[encodedKey];
     userFormBody.push(`${encodedKey}=${encodedValue}`);
-  }
+  });
   userFormBodyString = userFormBody.join('&');
 }
 
@@ -137,7 +137,7 @@ export function logout() {
 
 export function getRegistrationForm() {
   return new Promise(((resolve, reject) => {
-    fetch(`${Config.cortexApi.path}/registrations/${Config.cortexApi.scope}/newaccount/form`,
+    fetch(`${Config.cortexApi.path}/?zoom=newaccountform`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -146,7 +146,9 @@ export function getRegistrationForm() {
       })
       .then(res => res.json())
       .then((res) => {
-        resolve(res.self.href);
+        const registrationLink = res.links.find(link => link.rel === 'newaccountform');
+        newaccountform = registrationLink.href;
+        resolve(registrationLink.href);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -158,7 +160,7 @@ export function getRegistrationForm() {
 
 export function registerUser(lastname, firstname, username, password) {
   return new Promise(((resolve, reject) => {
-    fetch(`${Config.cortexApi.path}/registrations/${Config.cortexApi.scope}/newaccount/form`, {
+    fetch(newaccountform, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

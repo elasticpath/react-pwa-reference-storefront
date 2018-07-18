@@ -25,6 +25,7 @@ function CategoryPage(props) {
   return (
     <div>
       <AppHeaderMain />
+      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
       <CategoryItemsMain categoryUrl={decodeURIComponent(props.match.params.url)} />
       <AppFooterMain />
     </div>

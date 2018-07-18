@@ -20,7 +20,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import {
-  login, loginRegistered, registerUser,
+  login, loginRegistered, registerUser, getRegistrationForm,
 } from '../utils/AuthService';
 
 const Config = require('Config');
@@ -50,13 +50,9 @@ class RegistrationFormMain extends React.Component {
   }
 
   componentDidMount() {
-    // login().then(() => {
-    //   getRegistrationForm().then((resSelfHref) => {
-    //     this.setState({
-    //       registrationURL: resSelfHref,
-    //     });
-    //   });
-    // });
+    login().then(() => {
+      getRegistrationForm();
+    });
   }
 
   setFirstName(event) {
@@ -76,12 +72,16 @@ class RegistrationFormMain extends React.Component {
   }
 
   registerNewUser() {
+    const {
+      lastname, firstname, username, password,
+    } = this.state;
+    const { location, history } = this.props;
     login().then(() => {
-      registerUser(this.state.lastname, this.state.firstname, this.state.username, this.state.password).then((res) => {
+      registerUser(lastname, firstname, username, password).then((res) => {
         if (res.status === 201) {
           this.setState({ failedRegistration: false });
           if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-            loginRegistered(this.state.username, this.state.password).then((resStatus) => {
+            loginRegistered(username, password).then((resStatus) => {
               if (resStatus === 401) {
                 this.setState({ failedLogin: true });
                 let debugMessages = '';
@@ -100,10 +100,10 @@ class RegistrationFormMain extends React.Component {
                   }
                 }).then(() => this.setState({ registrationErrors: debugMessages }));
               } else if (resStatus === 200) {
-                if (this.props.location.state && this.props.location.returnPage) {
-                  this.props.history.push(this.props.location.state.returnPage);
+                if (location.state && location.returnPage) {
+                  history.push(location.state.returnPage);
                 } else {
-                  this.props.history.push('/');
+                  history.push('/');
                 }
               }
             });
@@ -122,6 +122,7 @@ class RegistrationFormMain extends React.Component {
   }
 
   render() {
+    const { failedRegistration, failedLogin, registrationErrors } = this.state;
     return (
       <div className="registration-container container">
         <h3>
@@ -129,7 +130,7 @@ class RegistrationFormMain extends React.Component {
         </h3>
 
         <div className="feedback-label registration-form-feedback-container feedback-display-linebreak" id="registration_form_feedback_container" data-region="registrationFeedbackMsgRegion">
-          {this.state.failedRegistration || this.state.failedLogin ? (this.state.registrationErrors) : ('')}
+          {failedRegistration || failedLogin ? (registrationErrors) : ('')}
         </div>
 
         <div data-region="registrationFormRegion" style={{ display: 'block' }}>

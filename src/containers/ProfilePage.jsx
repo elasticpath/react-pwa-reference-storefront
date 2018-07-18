@@ -25,11 +25,11 @@ const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
-  'subscriptions:element',
-  'purchases:element',
-  'addresses:element',
-  'addresses:billingaddresses:default',
-  'paymentmethods:element',
+  'defaultprofile:subscriptions:element',
+  'defaultprofile:purchases:element',
+  'defaultprofile:addresses:element',
+  'defaultprofile:addresses:billingaddresses:default',
+  'defaultprofile:paymentmethods:element',
 ];
 
 class ProfilePage extends React.Component {
@@ -42,7 +42,7 @@ class ProfilePage extends React.Component {
 
   componentDidMount() {
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/profiles/${Config.cortexApi.scope}/default?zoom=${zoomArray.join()}`,
+      fetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ class ProfilePage extends React.Component {
         .then(res => res.json())
         .then((res) => {
           this.setState({
-            profileData: res,
+            profileData: res._defaultprofile[0],
           });
         })
         .catch((error) => {
@@ -63,7 +63,8 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    if (this.state.profileData) {
+    const { profileData } = this.state;
+    if (profileData) {
       return (
         <div>
           <AppHeaderMain />
@@ -83,13 +84,13 @@ class ProfilePage extends React.Component {
                     First Name:
                   </dt>
                   <dd className="profile-personal-info-value" id="profile_personal_info_givenName" data-el-value="givenName">
-                    {this.state.profileData['given-name']}
+                    {profileData['given-name']}
                   </dd>
                   <dt className="profile-personal-info-label" data-el-label="profile.lastName">
                     Last Name:
                   </dt>
                   <dd className="profile-personal-info-value" id="profile_personal_info_familyName" data-el-value="familyName">
-                    {this.state.profileData['family-name']}
+                    {profileData['family-name']}
                   </dd>
                 </dl>
 
@@ -192,24 +193,24 @@ class ProfilePage extends React.Component {
                     <div data-region="profileAddressComponentRegion" style={{ display: 'block' }}>
                       <ul className="address-container">
                         <li className="address-name" data-el-value="address.name">
-                          {`${this.state.profileData._addresses[0]._element[0].name['given-name']} ${this.state.profileData._addresses[0]._element[0].name['family-name']}`}
+                          {`${profileData._addresses[0]._element[0].name['given-name']} ${profileData._addresses[0]._element[0].name['family-name']}`}
                         </li>
                         <li className="address-street-address" data-el-value="address.streetAddress">
-                          {this.state.profileData._addresses[0]._element[0].address['street-address']}
+                          {profileData._addresses[0]._element[0].address['street-address']}
                         </li>
                         <li className="address-extended-address" data-el-value="address.extendedAddress" />
                         <li>
                           <span className="address-city" data-el-value="address.city">
-                            {`${this.state.profileData._addresses[0]._element[0].address.locality}, `}
+                            {`${profileData._addresses[0]._element[0].address.locality}, `}
                           </span>
                           <span className="address-region" data-el-value="address.region">
-                            {`${this.state.profileData._addresses[0]._element[0].address.region}, `}
+                            {`${profileData._addresses[0]._element[0].address.region}, `}
                           </span>
                           <span className="address-country" data-el-value="address.country">
-                            {`${this.state.profileData._addresses[0]._element[0].address['country-name']}, `}
+                            {`${profileData._addresses[0]._element[0].address['country-name']}, `}
                           </span>
                           <span className="address-postal-code" data-el-value="address.postalCode">
-                            {this.state.profileData._addresses[0]._element[0].address['postal-code']}
+                            {profileData._addresses[0]._element[0].address['postal-code']}
                           </span>
                         </li>
                       </ul>
@@ -237,7 +238,7 @@ class ProfilePage extends React.Component {
                   <li className="profile-payment-method-container">
                     <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
                       <span data-el-value="payment.token" className="payment-method-container">
-                        {this.state.profileData._paymentmethods[0]._element[0]['display-name']}
+                        {profileData._paymentmethods[0]._element[0]['display-name']}
                       </span>
                     </div>
                     <button className="btn profile-delete-payment-btn" type="button" data-el-label="profile.deletePaymentBtn">

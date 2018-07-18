@@ -63,7 +63,7 @@ class ProductDisplayItemMain extends React.Component {
     super(props);
     this.state = {
       productData: undefined,
-      quantity: 1,
+      itemQuantity: 1,
       addToCartFailedMessage: '',
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -72,8 +72,9 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   componentDidMount() {
+    const { productUrl } = this.props;
     login().then(() => {
-      fetch(Config.cortexApi.path + this.props.productUrl + (this.props.productUrl.includes('zoom') ? '' : '?zoom=') + zoomArray.join(),
+      fetch(Config.cortexApi.path + productUrl + (productUrl.includes('zoom') ? '' : '?zoom=') + zoomArray.join(),
         {
           headers: {
             'Content-Type': 'application/json',
@@ -116,11 +117,12 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   handleQuantityChange(event) {
-    this.setState({ quantity: parseInt(event.target.value, 10) });
+    this.setState({ itemQuantity: parseInt(event.target.value, 10) });
   }
 
   handleSkuSelection(event) {
     const selfUri = event.target.value;
+    const { history } = this.props;
     login().then(() => {
       fetch(`${Config.cortexApi.path + selfUri}?followlocation&zoom=${zoomArray.join()}`,
         {
@@ -133,7 +135,7 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.props.history.push(`/itemdetail/${encodeURIComponent(res.self.uri)}`);
+          history.push(`/itemdetail/${encodeURIComponent(res.self.uri)}`);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -143,8 +145,10 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   addToCart(event) {
+    const { productData, itemQuantity } = this.state;
+    const { history } = this.props;
     login().then(() => {
-      const addToCartLink = this.state.productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+      const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
       fetch(addToCartLink.href,
         {
           method: 'post',
@@ -153,12 +157,12 @@ class ProductDisplayItemMain extends React.Component {
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
           body: JSON.stringify({
-            quantity: this.state.quantity,
+            quantity: itemQuantity,
           }),
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
-            this.props.history.push('/mycart');
+            history.push('/mycart');
           } else {
             let debugMessages = '';
             res.json().then((json) => {
@@ -177,8 +181,9 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   renderSkuSelection() {
-    if (this.state.productData._definition[0]._options) {
-      return this.state.productData._definition[0]._options[0]._element.map(options => (
+    const { productData } = this.state;
+    if (productData._definition[0]._options) {
+      return productData._definition[0]._options[0]._element.map(options => (
         <div key={options.name} className="form-group">
           <label htmlFor={`product_display_item_sku_${options.name}_label`} className="control-label">
             {options['display-name']}
@@ -202,8 +207,9 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   renderAttributes() {
-    if (this.state.productData._definition[0].details) {
-      return this.state.productData._definition[0].details.map(attribute => (
+    const { productData } = this.state;
+    if (productData._definition[0].details) {
+      return productData._definition[0].details.map(attribute => (
         <tr key={attribute.name}>
           <td className="itemdetail-attribute-label-col">
             {attribute['display-name']}
@@ -218,23 +224,24 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   render() {
-    if (this.state.productData) {
+    const { productData, addToCartFailedMessage } = this.state;
+    if (productData) {
       let listPrice = 'n/a';
-      if (this.state.productData._price) {
-        listPrice = this.state.productData._price[0]['list-price'][0].display;
+      if (productData._price) {
+        listPrice = productData._price[0]['list-price'][0].display;
       }
       let itemPrice = 'n/a';
-      if (this.state.productData._price) {
-        itemPrice = this.state.productData._price[0]['purchase-price'][0].display;
+      if (productData._price) {
+        itemPrice = productData._price[0]['purchase-price'][0].display;
       }
-      let availability = (this.state.productData._addtocartform[0].links.length > 0);
+      let availability = (productData._addtocartform[0].links.length > 0);
       let availabilityString = '';
-      if (this.state.productData._availability.length >= 0) {
-        if (this.state.productData._availability[0].state === 'AVAILABLE') {
+      if (productData._availability.length >= 0) {
+        if (productData._availability[0].state === 'AVAILABLE') {
           availabilityString = 'In Stock';
-        } else if (this.state.productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+        } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
           availabilityString = 'Pre-order';
-        } else if (this.state.productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+        } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
           availability = true;
           availabilityString = 'Back-order';
         } else {
@@ -248,7 +255,7 @@ class ProductDisplayItemMain extends React.Component {
             <div className="itemdetail-assets">
               <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
                 <div className="itemdetail-asset-container">
-                  <img src={Config.skuImagesS3Url.replace('%sku%', this.state.productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="None Available" className="itemdetail-main-img" />
+                  <img src={Config.skuImagesS3Url.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="None Available" className="itemdetail-main-img" />
                 </div>
               </div>
             </div>
@@ -256,8 +263,8 @@ class ProductDisplayItemMain extends React.Component {
             <div className="itemdetail-details">
               <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
                 <div>
-                  <h1 className="itemdetail-title" id={`category_item_title_${this.state.productData._code[0].code}`}>
-                    {this.state.productData._definition[0]['display-name']}
+                  <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
+                    {productData._definition[0]['display-name']}
                   </h1>
                 </div>
               </div>
@@ -269,10 +276,10 @@ class ProductDisplayItemMain extends React.Component {
                         listPrice !== itemPrice
                           ? (
                             <li className="itemdetail-list-price" data-region="itemListPriceRegion">
-                              <label htmlFor={`category_item_list_price_${this.state.productData._code[0].code}_label`} className="itemdetail-list-price-label">
+                              <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="itemdetail-list-price-label">
                                 Original Price&nbsp;
                               </label>
-                              <span className="itemdetail-list-price-value" id={`category_item_list_price_${this.state.productData._code[0].code}`}>
+                              <span className="itemdetail-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
                                 {listPrice}
                               </span>
                             </li>
@@ -280,10 +287,10 @@ class ProductDisplayItemMain extends React.Component {
                           : ('')
                       }
                       <li className="itemdetail-purchase-price">
-                        <label htmlFor={`category_item_price_${this.state.productData._code[0].code}_label`} className="itemdetail-purchase-price-label">
+                        <label htmlFor={`category_item_price_${productData._code[0].code}_label`} className="itemdetail-purchase-price-label">
                           Price&nbsp;
                         </label>
-                        <span className="itemdetail-purchase-price-value" id={`category_item_price_${this.state.productData._code[0].code}`}>
+                        <span className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
                           {itemPrice}
                         </span>
                       </li>
@@ -295,7 +302,7 @@ class ProductDisplayItemMain extends React.Component {
               <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
                 <ul className="itemdetail-availability-container">
                   <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                    <label htmlFor={`category_item_availability_${this.state.productData._code[0].code}`}>
+                    <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
                       {(availability) ? (
                         <div>
                           <span className="icon" />
@@ -308,12 +315,12 @@ class ProductDisplayItemMain extends React.Component {
                       )}
                     </label>
                   </li>
-                  <li className={`itemdetail-release-date${this.state.productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                    <label htmlFor={`category_item_release_date_${this.state.productData._code[0].code}_label`} className="itemdetail-release-date-label">
+                  <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+                    <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
                       Expected Release Date:&nbsp;
                     </label>
-                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${this.state.productData._code[0].code}`}>
-                      {this.state.productData._availability[0]['release-date'] ? this.state.productData._availability[0]['release-date']['display-value'] : ''}
+                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
+                      {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
                     </span>
                   </li>
                 </ul>
@@ -325,7 +332,7 @@ class ProductDisplayItemMain extends React.Component {
                   </tbody>
                 </table>
               </div>
-              <ProductRecommendationsDisplayMain productData={this.state.productData} />
+              <ProductRecommendationsDisplayMain productData={productData} />
             </div>
 
             <div className="itemdetail-addtocart col-xs-12 col-sm-10 col-md-6 col-lg-3">
@@ -382,7 +389,7 @@ class ProductDisplayItemMain extends React.Component {
                     </div>
 
                     <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
-                      {this.state.addToCartFailedMessage ? (this.state.addToCartFailedMessage) : ('')}
+                      {addToCartFailedMessage}
                     </div>
 
                   </form>

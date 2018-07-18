@@ -17,7 +17,6 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
@@ -40,8 +39,9 @@ class CategoryItemsMain extends React.Component {
   }
 
   componentDidMount() {
+    const { categoryUrl } = this.props;
     login().then(() => {
-      fetch(`${Config.cortexApi.path + this.props.categoryUrl}?zoom=items`,
+      fetch(`${Config.cortexApi.path + categoryUrl}?zoom=items`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ class CategoryItemsMain extends React.Component {
         .then((res) => {
           this.setState({
             categoryModel: res,
-            selfUri: this.props.categoryUrl,
+            selfUri: categoryUrl,
           });
         })
         .catch((error) => {
@@ -63,7 +63,8 @@ class CategoryItemsMain extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (Config.cortexApi.path + this.state.selfUri !== nextProps.categoryUrl) {
+    const { selfUri } = this.state;
+    if (Config.cortexApi.path + selfUri !== nextProps.categoryUrl) {
       login().then(() => {
         fetch(`${Config.cortexApi.path + nextProps.categoryUrl}?zoom=items`,
           {
@@ -88,19 +89,21 @@ class CategoryItemsMain extends React.Component {
   }
 
   render() {
-    if (this.state.categoryModel.links.length > 0 && this.state.selfUri === this.props.categoryUrl) {
+    const { categoryModel, selfUri } = this.state;
+    const { categoryUrl } = this.props;
+    if (categoryModel.links.length > 0 && selfUri === categoryUrl) {
       return (
         <div className="category-items-container container">
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
             <div>
               <h1 className="view-title">
-                {this.state.categoryModel['display-name']}
+                {categoryModel['display-name']}
               </h1>
             </div>
           </div>
-          <ProductListPaginationTop paginationData={this.state.categoryModel._items ? this.state.categoryModel._items[0] : this.state.categoryModel} />
-          <ProductListMain productData={this.state.categoryModel._items ? this.state.categoryModel._items[0] : this.state.categoryModel} />
-          <ProductListPaginationBottom paginationData={this.state.categoryModel._items ? this.state.categoryModel._items[0] : this.state.categoryModel} />
+          <ProductListPaginationTop paginationDataProps={categoryModel._items ? categoryModel._items[0] : categoryModel} />
+          <ProductListMain productData={categoryModel._items ? categoryModel._items[0] : categoryModel} />
+          <ProductListPaginationBottom paginationDataProps={categoryModel._items ? categoryModel._items[0] : categoryModel} />
         </div>
       );
     }
