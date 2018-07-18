@@ -58,7 +58,8 @@ export function login() {
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
           resolve(res);
         }).catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
           reject(error);
         });
     } else {
@@ -98,6 +99,7 @@ export function loginRegistered(username, password) {
         } else if (res.status === 200) {
           return res.json();
         }
+        return null;
       }).then((res) => {
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
@@ -105,7 +107,8 @@ export function loginRegistered(username, password) {
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registeredUserDetails.username);
         resolve(200);
       }).catch((error) => {
-        console.log(error);
+        // eslint-disable-next-line no-console
+        console.error(error);
         reject(error);
       });
     } else {
@@ -125,7 +128,8 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
       resolve(res);
     }).catch((error) => {
-      console.log(error);
+      // eslint-disable-next-line no-console
+      console.error(error);
       reject(error);
     });
   }));
@@ -145,7 +149,8 @@ export function getRegistrationForm() {
         resolve(res.self.href);
       })
       .catch((error) => {
-        console.log(error);
+        // eslint-disable-next-line no-console
+        console.error(error);
         reject(error);
       });
   }));
@@ -165,7 +170,8 @@ export function registerUser(lastname, firstname, username, password) {
     }).then((res) => {
       resolve(res);
     }).catch((error) => {
-      console.log(error);
+      // eslint-disable-next-line no-console
+      console.error(error);
       reject(error);
     });
   }));

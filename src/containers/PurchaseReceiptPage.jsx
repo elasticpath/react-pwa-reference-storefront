@@ -20,17 +20,13 @@ import React from 'react';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 
-const Config = require('Config');
-
-class PurchaseReceiptPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <AppHeaderMain />
-        <AppFooterMain />
-      </div>
-    );
-  }
+function PurchaseReceiptPage() {
+  return (
+    <div>
+      <AppHeaderMain />
+      <AppFooterMain />
+    </div>
+  );
 }
 
 export default PurchaseReceiptPage;

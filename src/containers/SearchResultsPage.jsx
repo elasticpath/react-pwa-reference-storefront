@@ -21,18 +21,14 @@ import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import SearchResultsItemsMain from '../components/searchresultsitems.main';
 
-const Config = require('Config');
-
-class SearchResultsPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <AppHeaderMain />
-        <SearchResultsItemsMain searchKeywords={decodeURIComponent(this.props.match.params.keywords)} />
-        <AppFooterMain />
-      </div>
-    );
-  }
+function SearchResultsPage(props) {
+  return (
+    <div>
+      <AppHeaderMain />
+      <SearchResultsItemsMain searchKeywords={decodeURIComponent(props.match.params.keywords)} />
+      <AppFooterMain />
+    </div>
+  );
 }
 
 export default SearchResultsPage;

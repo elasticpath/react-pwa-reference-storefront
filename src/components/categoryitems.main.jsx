@@ -17,6 +17,8 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
 import ProductListPaginationTop from './productlistpaginationtop.main';
@@ -25,6 +27,10 @@ import ProductListPaginationBottom from './productlistpaginationbottom.main';
 const Config = require('Config');
 
 class CategoryItemsMain extends React.Component {
+  static propTypes = {
+    categoryUrl: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +56,8 @@ class CategoryItemsMain extends React.Component {
           });
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
@@ -69,19 +76,19 @@ class CategoryItemsMain extends React.Component {
           .then((res) => {
             this.setState({
               selfUri: nextProps.categoryUrl,
-              prevselfUri: this.state.selfUri,
               categoryModel: res,
             });
           })
           .catch((error) => {
-            console.log(error);
+            // eslint-disable-next-line no-console
+            console.error(error);
           });
       });
     }
   }
 
   render() {
-    if (this.state.categoryModel.links.length > 0 && this.state.selfUri == this.props.categoryUrl) {
+    if (this.state.categoryModel.links.length > 0 && this.state.selfUri === this.props.categoryUrl) {
       return (
         <div className="category-items-container container">
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>

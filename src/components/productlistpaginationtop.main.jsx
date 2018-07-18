@@ -18,20 +18,24 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 let paginationPreviousLinkVar = '';
 let paginationNextLinkVar = '';
 
 class ProductListPaginationTop extends React.Component {
+  static propTypes = {
+    paginationData: PropTypes.array.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       paginationData: this.props.paginationData,
       paginationPreviousLink: '',
       paginationNextLink: '',
-      selfUri: this.props.categoryUrl,
-      prevselfUri: '',
     };
   }
 
@@ -47,7 +51,6 @@ class ProductListPaginationTop extends React.Component {
       }
     }
     this.setState({
-      paginationData: this.state.paginationData,
       paginationPreviousLink: paginationPreviousLinkVar,
       paginationNextLink: paginationNextLinkVar,
     });

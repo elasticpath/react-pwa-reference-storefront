@@ -17,22 +17,20 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import ProductListItemMain from './productlistitem.main';
 
-const Config = require('Config');
-
 class ProductListMain extends React.Component {
+  static propTypes = {
+    productData: PropTypes.array.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       categoryModel: this.props.productData,
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.categoryModel.self.href !== nextProps.productData.self.href) {
-      this.setState({ categoryModel: nextProps.productData });
-    }
   }
 
   renderProducts() {
@@ -44,6 +42,7 @@ class ProductListMain extends React.Component {
           </li>
         );
       }
+      return null;
     });
   }
 

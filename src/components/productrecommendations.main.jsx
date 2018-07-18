@@ -30,12 +30,6 @@ class ProductRecommendationsDisplayMain extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.productData.self.href !== nextProps.productData.self.href) {
-      this.setState({ categoryModel: nextProps.productData });
-    }
-  }
-
   renderProducts(product, length, MaxItemsInOneCarouselView) {
     // Need to do this for all possible recommendations. Crosssell, Recommendation, Replacement, Upsell, Warranty.
     const totalCount = length;
@@ -46,21 +40,25 @@ class ProductRecommendationsDisplayMain extends React.Component {
     const data = [];
     for (let CurrentView = 0, CurrentItem = 0; CurrentView < maxViews; CurrentView++, CurrentItem += MaxItemsInOneCarouselView) {
       if (CurrentView == 0) {
-        data.push(<div className="carousel-item active" key={(CurrentItem)}>
-          {' '}
-          <div className="row">
-            {this.renderCarouselView(CurrentItem, totalCount, product, MaxItemsInOneCarouselView)}
-          </div>
-          {' '}
-        </div>);
+        data.push(
+          <div className="carousel-item active" key={(CurrentItem)}>
+            {' '}
+            <div className="row">
+              {this.renderCarouselView(CurrentItem, totalCount, product, MaxItemsInOneCarouselView)}
+            </div>
+            {' '}
+          </div>,
+        );
       } else {
-        data.push(<div className="carousel-item " key={(CurrentItem + 1)}>
-          {' '}
-          <div className="row">
-            {this.renderCarouselView(CurrentItem, totalCount, product, MaxItemsInOneCarouselView)}
-          </div>
-          {' '}
-        </div>);
+        data.push(
+          <div className="carousel-item " key={(CurrentItem + 1)}>
+            {' '}
+            <div className="row">
+              {this.renderCarouselView(CurrentItem, totalCount, product, MaxItemsInOneCarouselView)}
+            </div>
+            {' '}
+          </div>,
+        );
       }
     }
 

@@ -56,7 +56,8 @@ class ProfilePage extends React.Component {
           });
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
@@ -69,50 +70,50 @@ class ProfilePage extends React.Component {
           <div className="container">
             <div data-region="profileTitleRegion" style={{ display: 'block' }}>
               <h1>
-                                Profile
+                Profile
               </h1>
             </div>
             <div data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
               <div>
                 <h2>
-Personal Information
+                  Personal Information
                 </h2>
                 <dl className="profile-personal-info-container container">
                   <dt className="profile-personal-info-label" data-el-label="profile.firstName">
-First Name:
+                    First Name:
                   </dt>
                   <dd className="profile-personal-info-value" id="profile_personal_info_givenName" data-el-value="givenName">
                     {this.state.profileData['given-name']}
                   </dd>
                   <dt className="profile-personal-info-label" data-el-label="profile.lastName">
-Last Name:
+                    Last Name:
                   </dt>
                   <dd className="profile-personal-info-value" id="profile_personal_info_familyName" data-el-value="familyName">
                     {this.state.profileData['family-name']}
                   </dd>
                 </dl>
 
-                <button className="btn btn-primary profile-personal-info-edit-btn" id="profile_personal_info_edit_button" data-el-label="profile.editPersonalInfoBtn">
-                                    Edit
+                <button className="btn btn-primary profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" data-el-label="profile.editPersonalInfoBtn">
+                  Edit
                 </button>
               </div>
             </div>
             <div data-region="profileSubscriptionSummaryRegion" style={{ display: 'none' }}>
               <div className="table-responsive">
                 <h2>
-Subscriptions
+                  Subscriptions
                 </h2>
                 <table className="table table-condensed striped-table">
                   <thead>
                     <tr>
                       <th>
-Subscription
+                        Subscription
                       </th>
                       <th>
-Quantity
+                        Quantity
                       </th>
                       <th>
-Next Billing Date
+                        Next Billing Date
                       </th>
                     </tr>
                   </thead>
@@ -124,22 +125,22 @@ Next Billing Date
             <div data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
               <div className="table-responsive">
                 <h2>
-Purchase History
+                  Purchase History
                 </h2>
                 <table className="table table-condensed striped-table">
                   <thead>
                     <tr>
                       <th>
-Purchase #
+                        Purchase #
                       </th>
                       <th>
-Date
+                        Date
                       </th>
                       <th>
-Total
+                        Total
                       </th>
                       <th>
-Status
+                        Status
                       </th>
                     </tr>
                   </thead>
@@ -148,33 +149,33 @@ Status
                     <tr>
                       <td data-el-value="purchase.number" className="profile-purchase-number">
                         <a href="#purchaseDetails/https%3A%2F%2Fforrester.epdemos.com%2Fcortex%2Fpurchases%2Fvestri%2Fgiydanjt%3D">
-20053
+                          20053
                         </a>
                       </td>
                       <td data-el-value="purchase.date" className="profile-purchase-date">
-June 21, 2018 4:26:39 PM
+                        June 21, 2018 4:26:39 PM
                       </td>
                       <td data-el-value="purchase.total" className="profile-purchase-total">
-$1,181.42
+                        $1,181.42
                       </td>
                       <td data-el-value="purchase.status" className="profile-purchase-status">
-In progress
+                        In progress
                       </td>
                     </tr>
                     <tr>
                       <td data-el-value="purchase.number" className="profile-purchase-number">
                         <a href="#purchaseDetails/https%3A%2F%2Fforrester.epdemos.com%2Fcortex%2Fpurchases%2Fvestri%2Fgiydanjs%3D">
-20052
+                          20052
                         </a>
                       </td>
                       <td data-el-value="purchase.date" className="profile-purchase-date">
-June 21, 2018 12:48:28 PM
+                        June 21, 2018 12:48:28 PM
                       </td>
                       <td data-el-value="purchase.total" className="profile-purchase-total">
-$1,071.19
+                        $1,071.19
                       </td>
                       <td data-el-value="purchase.status" className="profile-purchase-status">
-In progress
+                        In progress
                       </td>
                     </tr>
                   </tbody>
@@ -184,7 +185,7 @@ In progress
             <div data-region="profileAddressesRegion" style={{ display: 'block' }}>
               <div>
                 <h2>
-Addresses
+                  Addresses
                 </h2>
                 <ul className="profile-addresses-listing" data-el-container="profile.addresses">
                   <li className="profile-address-container">
@@ -213,24 +214,24 @@ Addresses
                         </li>
                       </ul>
                     </div>
-                    <button className="btn profile-edit-address-btn" data-el-label="profile.editAddressBtn">
-Edit
+                    <button className="btn profile-edit-address-btn" type="button" data-el-label="profile.editAddressBtn">
+                      Edit
                     </button>
-                    <button className="btn profile-delete-address-btn" data-el-label="profile.deleteAddressBtn" data-actionlink="">
-Delete
+                    <button className="btn profile-delete-address-btn" type="button" data-el-label="profile.deleteAddressBtn" data-actionlink="">
+                      Delete
                     </button>
                   </li>
                 </ul>
 
-                <button className="btn btn-primary profile-new-address-btn" data-el-label="profile.addNewAddressBtn">
-Add a New Address
+                <button className="btn btn-primary profile-new-address-btn" type="button" data-el-label="profile.addNewAddressBtn">
+                  Add a New Address
                 </button>
               </div>
             </div>
             <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
               <div>
                 <h2>
-Payment Methods
+                  Payment Methods
                 </h2>
                 <ul className="profile-payment-methods-listing">
                   <li className="profile-payment-method-container">
@@ -239,13 +240,13 @@ Payment Methods
                         {this.state.profileData._paymentmethods[0]._element[0]['display-name']}
                       </span>
                     </div>
-                    <button className="btn profile-delete-payment-btn" data-el-label="profile.deletePaymentBtn">
-Delete
+                    <button className="btn profile-delete-payment-btn" type="button" data-el-label="profile.deletePaymentBtn">
+                      Delete
                     </button>
                   </li>
                 </ul>
-                <button className="btn btn-primary profile-new-payment-btn" data-el-label="profile.addNewPaymentMethodBtn">
-Add a New Payment Method
+                <button className="btn btn-primary profile-new-payment-btn" type="button" data-el-label="profile.addNewPaymentMethodBtn">
+                  Add a New Payment Method
                 </button>
               </div>
             </div>

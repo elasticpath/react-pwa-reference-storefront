@@ -21,25 +21,14 @@ import AppHeaderMain from '../components/appheader.main';
 import CategoryItemsMain from '../components/categoryitems.main';
 import AppFooterMain from '../components/appfooter.main';
 
-const Config = require('Config');
-
-class CategoryPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categoryUrl: '',
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <AppHeaderMain />
-        <CategoryItemsMain categoryUrl={decodeURIComponent(this.props.match.params.url)} />
-        <AppFooterMain />
-      </div>
-    );
-  }
+function CategoryPage(props) {
+  return (
+    <div>
+      <AppHeaderMain />
+      <CategoryItemsMain categoryUrl={decodeURIComponent(props.match.params.url)} />
+      <AppFooterMain />
+    </div>
+  );
 }
 
 export default CategoryPage;

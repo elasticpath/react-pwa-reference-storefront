@@ -17,6 +17,8 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
 import ProductListPaginationTop from './productlistpaginationtop.main';
@@ -36,39 +38,30 @@ const zoomArray = [
 ];
 
 class SearchResultsItemsMain extends React.Component {
+  static propTypes = {
+    searchKeywords: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       searchResultsModel: { links: [] },
-      searchResultsUrl: this.props.searchResultsUrl,
       searchKeywords: this.props.searchKeywords,
     };
   }
 
-  getSearchResults(searchResultsUrl) {
-    login().then(() => {
-      fetch(`${searchResultsUrl}?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            searchResultsUrl,
-            searchResultsModel: res,
-            searchKeywords: this.props.searchKeywords,
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
+  componentDidMount() {
+    const { searchKeywords } = this.props;
+    this.getSearchData(searchKeywords);
   }
 
-  getSearchData(event) {
+  componentWillReceiveProps(nextProps) {
+    if (this.state.searchKeywords !== nextProps.searchKeywords) {
+      this.getSearchData(nextProps.searchKeywords);
+    }
+  }
+
+  getSearchData() {
     login().then(() => {
       fetch(`${Config.cortexApi.path}/searches/${Config.cortexApi.scope}/keywords/form?followlocation`,
         {
@@ -86,29 +79,43 @@ class SearchResultsItemsMain extends React.Component {
           this.getSearchResults(res.self.href);
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
 
-  componentDidMount() {
-    this.getSearchData(this.props.searchKeywords);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.state.searchKeywords !== nextProps.searchKeywords) {
-      this.getSearchData(nextProps.searchKeywords);
-    }
+  getSearchResults(searchResultsUrl) {
+    login().then(() => {
+      fetch(`${searchResultsUrl}?zoom=${zoomArray.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            searchResultsModel: res,
+            searchKeywords: this.props.searchKeywords,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
+    });
   }
 
   render() {
-    if (this.state.searchResultsModel.links.length > 0 && this.state.searchKeywords == this.props.searchKeywords) {
+    if (this.state.searchResultsModel.links.length > 0 && this.state.searchKeywords === this.props.searchKeywords) {
       return (
         <div className="category-items-container container">
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
             <div>
               <h1 className="view-title">
-Search Results
+                Search Results
               </h1>
             </div>
           </div>
@@ -118,13 +125,13 @@ Search Results
         </div>
       );
     }
-    if (this.state.searchResultsModel.links.length == 0 && this.state.searchResultsModel.pagination && this.state.searchKeywords == this.props.searchKeywords) {
+    if (this.state.searchResultsModel.links.length === 0 && this.state.searchResultsModel.pagination && this.state.searchKeywords === this.props.searchKeywords) {
       return (
         <div className="category-items-container container">
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
             <div>
               <h1 className="view-title">
-Search Results
+                Search Results
               </h1>
             </div>
           </div>
@@ -132,7 +139,7 @@ Search Results
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
             <div>
               <h3>
-No results found
+                No results found
               </h3>
             </div>
           </div>

@@ -17,12 +17,21 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { login, logout } from '../utils/AuthService';
 
 const Config = require('Config');
 
 class AppHeaderLoginMain extends React.Component {
+  static isLoggedIn() {
+    return (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
+  }
+
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+  }
+
   logoutRegisteredUser() {
     logout().then(() => {
       login().then(() => {
@@ -30,15 +39,10 @@ class AppHeaderLoginMain extends React.Component {
         window.location.reload();
       });
     });
-    event.preventDefault();
-  }
-
-  isLoggedIn() {
-    return (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
   }
 
   render() {
-    if (this.isLoggedIn()) {
+    if (AppHeaderLoginMain.isLoggedIn()) {
       return (
         <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
           <div className="auth-container">
@@ -46,19 +50,19 @@ class AppHeaderLoginMain extends React.Component {
               <button className="btn btn-secondary dropdown-toggle global-nav-link global-nav-login btn-auth-menu" type="button" id="header_navbar_loggedIn_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`)}
               </button>
-              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu" aria-labelledby="header_navbar_login_button">
+              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu" aria-label="header_navbar_login_button ">
                 <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
                   <li className="dropdown-item">
                     <Link to="/profile">
                       <span className="profile-link" id="header_navbar_login_menu_profile_link">
-Profile
+                        Profile
                       </span>
                     </Link>
                   </li>
                   <li className="dropdown-item">
-                    <button className="btn-cmd btn-auth-logout" id="header_navbar_login_menu_logout_button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
+                    <button className="btn-cmd btn-auth-logout" id="header_navbar_login_menu_logout_button" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                       <span className="icon" />
-Logout
+                      Logout
                     </button>
                   </li>
                 </ul>
@@ -73,8 +77,8 @@ Logout
       <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
         <div className="auth-container">
           <div className="auth-container">
-            <button className="global-nav-link global-nav-login btn-auth-menu" id="header_navbar_login_button" data-toggle="modal" data-target="#login-modal">
-                                Login
+            <button className="global-nav-link global-nav-login btn-auth-menu" id="header_navbar_login_button" type="button" data-toggle="modal" data-target="#login-modal">
+              Login
             </button>
             <div data-region="authMainRegion" className="auth-nav-container" />
           </div>

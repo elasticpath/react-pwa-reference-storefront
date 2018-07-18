@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { loginRegistered } from '../utils/AuthService';
 
@@ -27,6 +28,10 @@ class AppModalLoginMain extends React.Component {
     if (document.getElementById('login_modal_close_button')) {
       document.getElementById('login_modal_close_button').click();
     }
+  }
+
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
   }
 
   constructor(props) {
@@ -51,9 +56,11 @@ class AppModalLoginMain extends React.Component {
   }
 
   loginRegisteredUser(event) {
+    const { username, password } = this.state;
+    const { history } = this.props;
     this.setState({ isLoading: true });
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-      loginRegistered(this.state.username, this.state.password).then((resStatus) => {
+      loginRegistered(username, password).then((resStatus) => {
         if (resStatus === 401) {
           this.setState({
             failedLogin: true,
@@ -68,7 +75,7 @@ class AppModalLoginMain extends React.Component {
         } else if (resStatus === 200) {
           this.setState({ failedLogin: false });
           document.getElementById('login_modal_close_button').click();
-          this.props.history.push('/');
+          history.push('/');
         }
       });
       event.preventDefault();
@@ -76,6 +83,7 @@ class AppModalLoginMain extends React.Component {
   }
 
   render() {
+    const { failedLogin, isLoading } = this.state;
     return (
       <div className="modal" id="login-modal">
         <div className="modal-dialog">
@@ -91,7 +99,7 @@ class AppModalLoginMain extends React.Component {
             </div>
 
             <div className="auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
-              {this.state.failedLogin ? ('Your username or password is invalid.') : ('')}
+              {failedLogin ? ('Your username or password is invalid.') : ('')}
             </div>
 
             <div className="modal-body">
@@ -110,7 +118,7 @@ class AppModalLoginMain extends React.Component {
                 </div>
                 <div className="form-group action-row">
                   {
-                    (this.state.isLoading) ? <div className="miniLoader" /> : ('')
+                    (isLoading) ? <div className="miniLoader" /> : ('')
                   }
                   <div className="login-cell">
                     <button className="btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
@@ -119,7 +127,7 @@ class AppModalLoginMain extends React.Component {
                   </div>
                   <div className="register-cell">
                     <Link to="/registration">
-                      <button className="btn-auth-register btn btn-link" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={this.registerNewUser}>
+                      <button className="btn-auth-register btn btn-link" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={AppModalLoginMain.registerNewUser}>
                         Register
                       </button>
                     </Link>

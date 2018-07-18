@@ -17,6 +17,8 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
@@ -52,11 +54,15 @@ const zoomArray = [
 ];
 
 class ProductDisplayItemMain extends React.Component {
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+    productUrl: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       productData: undefined,
-      selfUri: this.props.productUrl,
       quantity: 1,
       addToCartFailedMessage: '',
     };
@@ -81,7 +87,8 @@ class ProductDisplayItemMain extends React.Component {
           });
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
@@ -102,7 +109,8 @@ class ProductDisplayItemMain extends React.Component {
           });
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
@@ -128,14 +136,16 @@ class ProductDisplayItemMain extends React.Component {
           this.props.history.push(`/itemdetail/${encodeURIComponent(res.self.uri)}`);
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
 
   addToCart(event) {
     login().then(() => {
-      fetch(this.state.productData._addtocartform[0].self.href,
+      const addToCartLink = this.state.productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+      fetch(addToCartLink.href,
         {
           method: 'post',
           headers: {
@@ -152,14 +162,15 @@ class ProductDisplayItemMain extends React.Component {
           } else {
             let debugMessages = '';
             res.json().then((json) => {
-              for (const message in json.messages) {
-                debugMessages = debugMessages.concat(`- ${json.messages[message]['debug-message']} \n `);
+              for (let i = 0; i < json.messages.length; i++) {
+                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
               }
             }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
           }
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
     event.preventDefault();
@@ -187,7 +198,7 @@ class ProductDisplayItemMain extends React.Component {
         </div>
       ));
     }
-    return ('');
+    return null;
   }
 
   renderAttributes() {
@@ -203,7 +214,7 @@ class ProductDisplayItemMain extends React.Component {
         </tr>
       ));
     }
-    return ('');
+    return null;
   }
 
   render() {
@@ -216,20 +227,17 @@ class ProductDisplayItemMain extends React.Component {
       if (this.state.productData._price) {
         itemPrice = this.state.productData._price[0]['purchase-price'][0].display;
       }
-      let availability = false;
+      let availability = (this.state.productData._addtocartform[0].links.length > 0);
       let availabilityString = '';
       if (this.state.productData._availability.length >= 0) {
         if (this.state.productData._availability[0].state === 'AVAILABLE') {
-          availability = true;
           availabilityString = 'In Stock';
         } else if (this.state.productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
-          availability = true;
           availabilityString = 'Pre-order';
         } else if (this.state.productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
           availability = true;
           availabilityString = 'Back-order';
         } else {
-          availability = false;
           availabilityString = 'Out of Stock';
         }
       }

@@ -60,6 +60,10 @@ class CartPage extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.fetchCartData();
+  }
+
   fetchCartData() {
     login().then(() => {
       fetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`, {
@@ -81,21 +85,41 @@ class CartPage extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.fetchCartData();
-  }
-
   handleQuantityChange() {
     this.setState({ isLoading: true });
     this.fetchCartData();
+  }
+
+  checkout() {
+    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
+      this.props.history.push('/checkout');
+    } else {
+      this.props.history.push('/signIn');
+    }
+  }
+
+  renderDiscount() {
+    if (this.state.cartData._discount) {
+      return (
+        <li className="cart-discount">
+          <label htmlFor="cart_summary_discount_label" className="cart-summary-label-col">
+            Discount at Checkout:&nbsp;
+          </label>
+          <span className="cart-summary-value-col">
+            {this.state.cartData._discount[0].discount[0].display}
+          </span>
+        </li>
+      );
+    }
+    return ('');
   }
 
   renderPromotions() {
     if (this.state.cartData._appliedpromotions) {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
-          <label className="cart-summary-label-col">
-Applied Promotions:&nbsp;
+          <label htmlFor="cart_summary_promotion_label" className="cart-summary-label-col">
+            Applied Promotions:&nbsp;
           </label>
           <br />
           {this.state.cartData._appliedpromotions[0]._element.map(promotion => (
@@ -106,29 +130,7 @@ Applied Promotions:&nbsp;
         </li>
       );
     }
-  }
-
-  renderDiscount() {
-    if (this.state.cartData._discount) {
-      return (
-        <li className="cart-discount">
-          <label className="cart-summary-label-col">
-Discount at Checkout:&nbsp;
-          </label>
-          <span className="cart-summary-value-col">
-            {this.state.cartData._discount[0].discount[0].display}
-          </span>
-        </li>
-      );
-    }
-  }
-
-  checkout() {
-    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
-      this.props.history.push('/checkout');
-    } else {
-      this.props.history.push('/signIn');
-    }
+    return ('');
   }
 
   render() {
@@ -141,10 +143,10 @@ Discount at Checkout:&nbsp;
               <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
                 <div>
                   <h1 className="view-title">
-Shopping Cart
+                    Shopping Cart
                   </h1>
-                  <button className="btn-cmd-continue-shopping" onClick={() => { this.props.history.push('/'); }}>
-Continue Shopping
+                  <button className="btn-cmd-continue-shopping" type="button" onClick={() => { this.props.history.push('/'); }}>
+                    Continue Shopping
                   </button>
                 </div>
               </div>
@@ -159,8 +161,8 @@ Continue Shopping
                     </div>
                     <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                       <div>
-                        <button className="btn-cmd-checkout" disabled={!this.state.cartData['total-quantity']} onClick={() => { this.checkout(); }}>
-Proceed to Checkout
+                        <button className="btn-cmd-checkout" disabled={!this.state.cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
+                          Proceed to Checkout
                         </button>
                       </div>
                     </div>

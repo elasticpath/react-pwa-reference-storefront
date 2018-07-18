@@ -29,10 +29,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-(function () {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js', { scope: '/' })
-      .then(() => console.log('Service Worker registered successfully.'))
-      .catch(error => console.log('Service Worker registration failed:', error));
-  }
-}());
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./service-worker.js', { scope: '/' })
+    // eslint-disable-next-line no-console
+    .then(() => console.log('Service Worker registered successfully.'))
+    // eslint-disable-next-line no-console
+    .catch(error => console.log('Service Worker registration failed:', error));
+}

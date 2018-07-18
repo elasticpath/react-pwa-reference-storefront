@@ -21,18 +21,14 @@ import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import ProductDisplayItemMain from '../components/productdisplayitem.main';
 
-const Config = require('Config');
-
-class ProductDetailPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <AppHeaderMain />
-        <ProductDisplayItemMain productUrl={decodeURIComponent(this.props.match.params.url)} />
-        <AppFooterMain />
-      </div>
-    );
-  }
+function ProductDetailPage(props) {
+  return (
+    <div>
+      <AppHeaderMain />
+      <ProductDisplayItemMain productUrl={decodeURIComponent(props.match.params.url)} />
+      <AppFooterMain />
+    </div>
+  );
 }
 
 export default ProductDetailPage;

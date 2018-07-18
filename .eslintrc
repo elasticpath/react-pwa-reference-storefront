@@ -20,7 +20,7 @@
     "max-len": [
       "warn",
       {
-        "code": 150,
+        "code": 350,
         "tabWidth": 2,
         "ignoreComments": true
       }
@@ -28,6 +28,7 @@
     "react/prop-types": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-underscore-dangle": "off",
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
     "jsx-a11y/label-has-for": [
       "error",
       {

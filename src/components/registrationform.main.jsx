@@ -17,14 +17,20 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import {
-  login, loginRegistered, getRegistrationForm, registerUser,
+  login, loginRegistered, registerUser,
 } from '../utils/AuthService';
 
 const Config = require('Config');
 
 class RegistrationFormMain extends React.Component {
+  static propTypes = {
+    location: ReactRouterPropTypes.location.isRequired,
+    history: ReactRouterPropTypes.history.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -32,8 +38,6 @@ class RegistrationFormMain extends React.Component {
       lastname: '',
       username: '',
       password: '',
-      passwordConfirmation: '',
-      registrationURL: '',
       failedLogin: false,
       failedRegistration: false,
       registrationErrors: '',
@@ -42,18 +46,17 @@ class RegistrationFormMain extends React.Component {
     this.setLastName = this.setLastName.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
-    this.setPasswordConfirmation = this.setPasswordConfirmation.bind(this);
     this.registerNewUser = this.registerNewUser.bind(this);
   }
 
   componentDidMount() {
-    login().then(() => {
-      getRegistrationForm().then((res_self_href) => {
-        this.setState({
-          registrationURL: res_self_href,
-        });
-      });
-    });
+    // login().then(() => {
+    //   getRegistrationForm().then((resSelfHref) => {
+    //     this.setState({
+    //       registrationURL: resSelfHref,
+    //     });
+    //   });
+    // });
   }
 
   setFirstName(event) {
@@ -72,23 +75,31 @@ class RegistrationFormMain extends React.Component {
     this.setState({ password: event.target.value });
   }
 
-  setPasswordConfirmation(event) {
-    this.setState({ passwordConfirmation: event.target.value });
-  }
-
-  registerNewUser(event) {
+  registerNewUser() {
     login().then(() => {
       registerUser(this.state.lastname, this.state.firstname, this.state.username, this.state.password).then((res) => {
         if (res.status === 201) {
           this.setState({ failedRegistration: false });
           if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-            loginRegistered(this.state.username, this.state.password).then((res_status) => {
-              if (res_status === 401) {
+            loginRegistered(this.state.username, this.state.password).then((resStatus) => {
+              if (resStatus === 401) {
                 this.setState({ failedLogin: true });
+                let debugMessages = '';
+                res.json().then((json) => {
+                  for (let i = 0; i < json.messages.length; i++) {
+                    debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
+                  }
+                }).then(() => this.setState({ registrationErrors: debugMessages }));
               }
-              if (res_status === 400) {
+              if (resStatus === 400) {
                 this.setState({ failedLogin: true });
-              } else if (res_status === 200) {
+                let debugMessages = '';
+                res.json().then((json) => {
+                  for (let i = 0; i < json.messages.length; i++) {
+                    debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
+                  }
+                }).then(() => this.setState({ registrationErrors: debugMessages }));
+              } else if (resStatus === 200) {
                 if (this.props.location.state && this.props.location.returnPage) {
                   this.props.history.push(this.props.location.state.returnPage);
                 } else {
@@ -101,8 +112,8 @@ class RegistrationFormMain extends React.Component {
           this.setState({ failedRegistration: true });
           let debugMessages = '';
           res.json().then((json) => {
-            for (const message in json.messages) {
-              debugMessages = debugMessages.concat(`- ${json.messages[message]['debug-message']} \n `);
+            for (let i = 0; i < json.messages.length; i++) {
+              debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
             }
           }).then(() => this.setState({ registrationErrors: debugMessages }));
         }
@@ -118,14 +129,14 @@ class RegistrationFormMain extends React.Component {
         </h3>
 
         <div className="feedback-label registration-form-feedback-container feedback-display-linebreak" id="registration_form_feedback_container" data-region="registrationFeedbackMsgRegion">
-          {this.state.failedRegistration ? (this.state.registrationErrors) : ('')}
+          {this.state.failedRegistration || this.state.failedLogin ? (this.state.registrationErrors) : ('')}
         </div>
 
         <div data-region="registrationFormRegion" style={{ display: 'block' }}>
           <div className="container">
             <form className="form-horizontal">
               <div className="form-group">
-                <label data-el-label="registrationForm.firstName" className="control-label registration-form-label">
+                <label htmlFor="registration_form_firstName_label" data-el-label="registrationForm.firstName" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -137,7 +148,7 @@ class RegistrationFormMain extends React.Component {
                 </div>
               </div>
               <div className="form-group">
-                <label data-el-label="registrationForm.lastName" className="control-label registration-form-label">
+                <label htmlFor="registration_form_lastName_label" data-el-label="registrationForm.lastName" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -149,7 +160,7 @@ class RegistrationFormMain extends React.Component {
                 </div>
               </div>
               <div className="form-group">
-                <label data-el-label="registrationForm.emailUsername" className="control-label registration-form-label">
+                <label htmlFor="registration_form_emailUsername_label" data-el-label="registrationForm.emailUsername" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -161,7 +172,7 @@ class RegistrationFormMain extends React.Component {
                 </div>
               </div>
               <div className="form-group">
-                <label data-el-label="registrationForm.password" className="control-label registration-form-label">
+                <label htmlFor="registration_form_password_label" data-el-label="registrationForm.password" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -173,7 +184,7 @@ class RegistrationFormMain extends React.Component {
                 </div>
               </div>
               <div className="form-group">
-                <label data-el-label="registrationForm.passwordConfirm" className="control-label registration-form-label">
+                <label htmlFor="registration_form_passwordConfirm_label" data-el-label="registrationForm.passwordConfirm" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>

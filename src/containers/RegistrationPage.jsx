@@ -21,18 +21,14 @@ import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import RegistrationFormMain from '../components/registrationform.main';
 
-const Config = require('Config');
-
-class RegistrationPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <AppHeaderMain />
-        <RegistrationFormMain />
-        <AppFooterMain />
-      </div>
-    );
-  }
+function RegistrationPage() {
+  return (
+    <div>
+      <AppHeaderMain />
+      <RegistrationFormMain />
+      <AppFooterMain />
+    </div>
+  );
 }
 
 export default RegistrationPage;

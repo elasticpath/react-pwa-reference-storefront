@@ -25,7 +25,7 @@ import AppHeaderNavigationMain from './appheadernavigation.main';
 import headerLogo from '../images/Company-Logo-v1.png';
 
 class AppHeaderMain extends React.Component {
-  goBack() {
+  static goBack() {
     window.history.back();
   }
 
@@ -36,7 +36,7 @@ class AppHeaderMain extends React.Component {
           <div className="container appheader-container">
             <div className="back-button-container" style={{ display: 'block' }}>
               <div>
-                <button type="button" id="header_mobile_back_button" aria-label="Back" className="navbar-back" data-region="backButtonRegion" data-el-label="navigation.back" onClick={this.goBack}>
+                <button type="button" id="header_mobile_back_button" aria-label="Back" className="navbar-back" data-region="backButtonRegion" data-el-label="navigation.back" onClick={AppHeaderMain.goBack}>
                   <span className="icon" />
                 </button>
               </div>
@@ -60,7 +60,6 @@ class AppHeaderMain extends React.Component {
                       <span className="icon" />
                     </button>
                   </Link>
-                  <a className="global-nav-link" href="mycart" />
                 </li>
               </ul>
               <AppHeaderSearchMain />

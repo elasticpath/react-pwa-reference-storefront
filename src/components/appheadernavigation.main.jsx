@@ -52,20 +52,22 @@ class AppHeaderNavigationMain extends React.Component {
           });
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
 
   renderCategories() {
-    return this.state.navigations.map((category) => {
+    const { navigations } = this.state;
+    return navigations.map((category) => {
       if (category._child) {
         return (
           <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
-            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {category['display-name']}
             </a>
-            <div className="dropdown-menu sub-category-dropdown-menu" aria-labelledby="navbarDropdown">
+            <div className="dropdown-menu sub-category-dropdown-menu" aria-label="navbarDropdown">
               {category._child.map(subcategory => (
                 <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`header_navbar_sub_category_button_${subcategory.name}`} data-target=".navbar-collapse" title={subcategory['display-name']}>
                   <span>
@@ -94,8 +96,8 @@ class AppHeaderNavigationMain extends React.Component {
       <div className="main-nav-container" id="header_navbar_container" data-region="mainNavRegion" style={{ display: 'block' }}>
         <div>
           <nav className="main-nav">
-            <button className="btn-main-nav-toggle btn-link-cmd" id="header_navbar_container_categories_button" style={{ display: 'none' }}>
-                            Categories
+            <button className="btn-main-nav-toggle btn-link-cmd" type="button" id="header_navbar_container_categories_button" style={{ display: 'none' }}>
+              Categories
             </button>
             <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">
               {this.renderCategories()}

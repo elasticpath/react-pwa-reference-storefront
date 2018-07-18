@@ -25,33 +25,29 @@ import homeEspot1 from '../images/VESTRI_CR-550_Banner.jpeg';
 import homeEspot2 from '../images/VESTRI_M-CLASS_3_Banner.jpeg';
 import homeEspot3 from '../images/VESTRI_X-CLASS_EL2_Banner.jpeg';
 
-const Config = require('Config');
-
-class HomePage extends React.Component {
-  render() {
-    return (
-      <div className="viewport ui-container home-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
-        <div>
-          <AppHeaderMain />
-          <div className="home-contant-container" style={{ display: 'block' }}>
-            <div>
-              <div data-region="homeMainContentRegion" className="home-espot-container container" style={{ display: 'block' }}>
-                <img alt="home-espot-1" className="home-espot-1" src={homeEspotMain} />
-              </div>
-              <div className="home-sub-espot-container1 container">
-                <img alt="home-espot-2" className="home-espot-2" src={homeEspot1} />
-                <img alt="home-espot-3" className="home-espot-3" src={homeEspot2} />
-              </div>
-              <div data-region="homeMainContentRegion" className="home-sub-espot-container2 container" style={{ display: 'block' }}>
-                <img alt="home-espot-4" className="home-espot-4" src={homeEspot3} />
-              </div>
+function HomePage() {
+  return (
+    <div className="viewport ui-container home-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
+      <div>
+        <AppHeaderMain />
+        <div className="home-contant-container" style={{ display: 'block' }}>
+          <div>
+            <div data-region="homeMainContentRegion" className="home-espot-container container" style={{ display: 'block' }}>
+              <img alt="home-espot-1" className="home-espot-1" src={homeEspotMain} />
+            </div>
+            <div className="home-sub-espot-container1 container">
+              <img alt="home-espot-2" className="home-espot-2" src={homeEspot1} />
+              <img alt="home-espot-3" className="home-espot-3" src={homeEspot2} />
+            </div>
+            <div data-region="homeMainContentRegion" className="home-sub-espot-container2 container" style={{ display: 'block' }}>
+              <img alt="home-espot-4" className="home-espot-4" src={homeEspot3} />
             </div>
           </div>
-          <AppFooterMain />
         </div>
+        <AppFooterMain />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default HomePage;

@@ -20,17 +20,13 @@ import React from 'react';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 
-const Config = require('Config');
-
-class PurchaseHistoryPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <AppHeaderMain />
-        <AppFooterMain />
-      </div>
-    );
-  }
+function PurchaseHistoryPage() {
+  return (
+    <div>
+      <AppHeaderMain />
+      <AppFooterMain />
+    </div>
+  );
 }
 
 export default PurchaseHistoryPage;
