@@ -44,7 +44,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
     const maxViews = totalCount / MaxItemsInOneCarouselView;
     console.log(`Total Views created: ${maxViews}`);
     const data = [];
-    for (let CurrentView = 0, CurrentItem = 0; CurrentView < maxViews; CurrentView++ , CurrentItem += MaxItemsInOneCarouselView) {
+    for (let CurrentView = 0, CurrentItem = 0; CurrentView < maxViews; CurrentView++, CurrentItem += MaxItemsInOneCarouselView) {
       if (CurrentView == 0) {
         data.push(<div className="carousel-item active" key={(CurrentItem)}>
           {' '}

@@ -31,7 +31,7 @@ class CartMain extends React.Component {
       return (
         <div className="cart-empty-container">
           <span className="cart-empty-message">
-Your shopping cart is empty.
+            Your shopping cart is empty.
           </span>
         </div>
       );
@@ -43,29 +43,29 @@ Your shopping cart is empty.
             <tr>
               <th className="cart-heading-product">
                 <span className="lineitem-asset-col">
-Product
+                  Product
                 </span>
               </th>
               <th className="cart-heading-name">
-Name
+                Name
               </th>
               <th className="cart-heading-options">
-Options
+                Options
               </th>
               <th className="cart-heading-availability">
-Availability
+                Availability
               </th>
               <th className="cart-heading-item-price">
-Unit Price
+                Unit Price
               </th>
               <th className="cart-heading-quantity">
-Quantity
+                Quantity
               </th>
               <th className="cart-heading-item-total">
-Total Price
+                Total Price
               </th>
               <th className="cart-heading-remove">
-Remove
+                Remove
               </th>
             </tr>
           </thead>

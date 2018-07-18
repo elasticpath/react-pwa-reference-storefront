@@ -21,18 +21,12 @@ import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import PaymentFormMain from '../components/paymentform.main';
 
-const Config = require('Config');
-
-class NewPaymentPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <AppHeaderMain />
-        <PaymentFormMain {...this.props} />
-        <AppFooterMain />
-      </div>
-    );
-  }
-}
+const NewPaymentPage = props => (
+  <div>
+    <AppHeaderMain />
+    <PaymentFormMain {...props} />
+    <AppFooterMain />
+  </div>
+);
 
 export default NewPaymentPage;

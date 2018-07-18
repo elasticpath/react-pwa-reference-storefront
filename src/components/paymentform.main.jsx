@@ -17,12 +17,19 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { login } from '../utils/AuthService';
 
 const Config = require('Config');
 
 const today = new Date();
 
 class PaymentFormMain extends React.Component {
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -32,6 +39,10 @@ class PaymentFormMain extends React.Component {
       expiryMonth: today.getMonth() + 1,
       expiryYear: today.getFullYear(),
       securityCode: '',
+      saveToProfile: false,
+      failedSubmit: false,
+      paymentForm: undefined,
+      orderPaymentForm: undefined,
     };
     this.setCardType = this.setCardType.bind(this);
     this.setCardHolderName = this.setCardHolderName.bind(this);
@@ -39,8 +50,13 @@ class PaymentFormMain extends React.Component {
     this.setExpiryMonth = this.setExpiryMonth.bind(this);
     this.setExpiryYear = this.setExpiryYear.bind(this);
     this.setSecurityCode = this.setSecurityCode.bind(this);
+    this.setSaveToProfile = this.setSaveToProfile.bind(this);
     this.submitPayment = this.submitPayment.bind(this);
     this.cancel = this.cancel.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchPaymentForms();
   }
 
   setCardType(event) {
@@ -67,57 +83,146 @@ class PaymentFormMain extends React.Component {
     this.setState({ securityCode: event.target.value });
   }
 
-  submitPayment() {
-    this.cancel();
+  setSaveToProfile(event) {
+    this.setState({ saveToProfile: event.target.checked });
+  }
+
+  submitPayment(event) {
+    event.preventDefault();
+    const {
+      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm,
+    } = this.state;
+    if (!cardHolderName || !cardNumber || !securityCode) {
+      this.setState({ failedSubmit: true });
+      return;
+    }
+    let link;
+    if (saveToProfile) {
+      link = paymentForm;
+    } else {
+      link = orderPaymentForm;
+    }
+    let card;
+    switch (cardType) {
+      case 'visa':
+        card = 'Visa';
+        break;
+      case 'master':
+        card = 'MasterCard';
+        break;
+      default:
+        card = 'American Express';
+    }
+    // set link based on savetoprofile
+    login().then(() => {
+      fetch(link, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({
+          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
+          token: Math.random().toString(36).substr(2, 9),
+          /* token is being randomly generated here to be passed to the demo payment gateway
+          ** in a true implementation this token should be received from the actual payment gateway
+          ** when doing so, make sure you're compliant with PCI DSS
+          */
+        }),
+      }).then((res) => {
+        if (res.status === 400) {
+          this.setState({ failedSubmit: true });
+        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+          this.setState({ failedSubmit: false }, () => {
+            this.cancel();
+          });
+        }
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      });
+    });
+  }
+
+  fetchPaymentForms() {
+    login().then(() => {
+      fetch(`${Config.cortexApi.path}/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          const paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
+            link => link.rel === 'createpaymenttokenaction',
+          );
+          const orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
+            link => link.rel === 'createpaymenttokenfororderaction',
+          );
+          this.setState({
+            paymentForm: paymentFormLink.href,
+            orderPaymentForm: orderPaymentFormLink.href,
+          });
+        });
+    });
   }
 
   cancel() {
-    if (this.props.location.state && this.props.location.state.returnPage) {
-      this.props.history.push(this.props.location.state.returnPage);
+    const { location, history } = this.props;
+    if (location.state && location.state.returnPage) {
+      history.push(location.state.returnPage);
     } else if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
-      this.props.history.push('/profile');
+      history.push('/profile');
     } else {
-      this.props.history.push('/');
+      history.push('/');
     }
   }
 
-  renderYears() {
+  static renderYears() {
     const options = [];
-    for (let i = 0; i < 10; i++) {
-      options.push(<option key={today.getFullYear() + i} value={today.getFullYear() + i}>
-        {today.getFullYear() + i}
-                   </option>);
+    for (let i = 0; i < 10; i += 1) {
+      options.push(
+        <option key={today.getFullYear() + i} value={today.getFullYear() + i}>
+          {today.getFullYear() + i}
+        </option>,
+      );
     }
     return options;
   }
 
   render() {
+    const {
+      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit,
+    } = this.state;
     return (
       <div>
         <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
           <div className="container">
             <h1>
-New Payment Method
+              New Payment Method
             </h1>
-            <div className="feedback-label address-form-feedback-container" data-region="componentPaymentFeedbackRegion" />
-            <form role="form" className="form-horizontal payment-method-form-container container" onSubmit={this.submitPayment}>
+            <div className="feedback-label address-form-feedback-container" data-region="componentPaymentFeedbackRegion">
+              {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
+            </div>
+            <form className="form-horizontal payment-method-form-container container" onSubmit={this.submitPayment}>
               <div className="form-group">
                 <label htmlFor="CardType" data-el-label="payment.cardType" className="control-label form-label">
                   <span className="required-label">
-*
+                    *
                   </span>
-Card Type
+                  Card Type
                 </label>
                 <div className="form-input">
-                  <select id="CardType" name="CardType" className="form-control" value={this.state.cardType} onChange={this.setCardType}>
+                  <select id="CardType" name="CardType" className="form-control" value={cardType} onChange={this.setCardType}>
                     <option value="amex">
-American Express
+                      American Express
                     </option>
                     <option value="master">
-Mastercard
+                      Mastercard
                     </option>
                     <option value="visa">
-Visa
+                      Visa
                     </option>
                   </select>
                 </div>
@@ -125,100 +230,103 @@ Visa
               <div className="form-group">
                 <label htmlFor="CardHolderName" data-el-label="payment.cardHolderName" className="control-label form-label">
                   <span className="required-label">
-*
+                    *
                   </span>
-Card Holder's Name
+                  Card Holder&apos;s Name
                 </label>
                 <div className="form-input">
-                  <input id="CardHolderName" name="CardHolderName" className="form-control" type="text" autoFocus="autofocus" value={this.state.cardHolderName} onChange={this.setCardHolderName} />
+                  {/* eslint-disable-next-line max-len */}
+                  <input id="CardHolderName" name="CardHolderName" className="form-control" type="text" value={cardHolderName} onChange={this.setCardHolderName} />
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="CardNumber" data-el-label="payment.cardNum" className="control-label form-label">
                   <span className="required-label">
-*
+                    *
                   </span>
-Credit Card Number
+                  Credit Card Number
                 </label>
                 <div className="form-input">
-                  <input id="CardNumber" name="CardNumber" className="form-control" type="text" value={this.state.cardNumber} onChange={this.setCardNumber} />
+                  <input id="CardNumber" name="CardNumber" className="form-control" type="text" value={cardNumber} onChange={this.setCardNumber} />
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="ExpiryMonth" data-el-label="payment.expiryDate" className="control-label form-label">
                   <span className="required-label">
-*
+                    *
                   </span>
-Expiry Date
+                  Expiry Date
                 </label>
                 <div className="form-inline">
-                  <select id="ExpiryMonth" name="ExpiryMonth" className="form-control expiry-date" value={this.state.expiryMonth} onChange={this.setExpiryMonth}>
+                  <select id="ExpiryMonth" name="ExpiryMonth" className="form-control expiry-date" value={expiryMonth} onChange={this.setExpiryMonth}>
                     <option value="1">
-1
+                      1
                     </option>
                     <option value="2">
-2
+                      2
                     </option>
                     <option value="3">
-3
+                      3
                     </option>
                     <option value="4">
-4
+                      4
                     </option>
                     <option value="5">
-5
+                      5
                     </option>
                     <option value="6">
-6
+                      6
                     </option>
                     <option value="7">
-7
+                      7
                     </option>
                     <option value="8">
-8
+                      8
                     </option>
                     <option value="9">
-9
+                      9
                     </option>
                     <option value="10">
-10
+                      10
                     </option>
                     <option value="11">
-11
+                      11
                     </option>
                     <option value="12">
-12
+                      12
                     </option>
                   </select>
-                                    &nbsp;/&nbsp;
-                  <select id="ExpiryYear" name="ExpiryYear" className="form-control expiry-date" value={this.state.expiryYear} onChange={this.setExpiryYear}>
-                    {this.renderYears()}
+                  &nbsp;/&nbsp;
+                  <select id="ExpiryYear" name="ExpiryYear" className="form-control expiry-date" value={expiryYear} onChange={this.setExpiryYear}>
+                    {PaymentFormMain.renderYears()}
                   </select>
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="SecurityCode" data-el-label="payment.securityCode" className="control-label form-label">
                   <span className="required-label">
-*
+                    *
                   </span>
-Security Code
+                  Security Code
                 </label>
                 <div className="form-input">
-                  <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength="4" type="text" value={this.state.securityCode} onChange={this.setSecurityCode} />
+                  {/* eslint-disable-next-line max-len */}
+                  <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength="4" type="text" value={securityCode} onChange={this.setSecurityCode} />
                 </div>
               </div>
               <div className="form-group" data-el-label="payment.saveToProfileFormGroup">
-                <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" />
+                {/* eslint-disable-next-line max-len */}
+                <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" checked={saveToProfile} onChange={this.setSaveToProfile} />
                 <label htmlFor="saveToProfile" className="control-label form-label">
-&nbsp;Save this payment method to my profile
+                  &nbsp;Save this payment method to my profile
                 </label>
               </div>
               <div className="form-group create-address-btn-container">
                 <button className="btn btn-primary payment-save-btn" data-el-label="paymentForm.save" type="submit">
-Continue
+                  Continue
                 </button>
                 <button className="btn payment-cancel-btn" data-el-label="paymentForm.cancel" type="button" onClick={() => { this.cancel(); }}>
-Cancel
+                  Cancel
                 </button>
               </div>
             </form>

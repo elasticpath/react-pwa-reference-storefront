@@ -21,18 +21,12 @@ import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import AddressFormMain from '../components/addressform.main';
 
-const Config = require('Config');
-
-class EditAddressPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <AppHeaderMain />
-        <AddressFormMain {...this.props} />
-        <AppFooterMain />
-      </div>
-    );
-  }
-}
+const EditAddressPage = props => (
+  <div>
+    <AppHeaderMain />
+    <AddressFormMain {...props} />
+    <AppFooterMain />
+  </div>
+);
 
 export default EditAddressPage;
