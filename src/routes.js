@@ -30,6 +30,7 @@ import PurchaseReceiptPage from './containers/PurchaseReceiptPage';
 import RegistrationPage from './containers/RegistrationPage';
 import CheckoutAuthPage from './containers/CheckoutAuthPage';
 import SearchResultsPage from './containers/SearchResultsPage';
+import MaintenancePage from './containers/MaintenancePage';
 import AboutUsPage from './containers/AboutUsPage';
 import ContactUsPage from './containers/ContactUsPage';
 import TermsAndConditionsPage from './containers/TermsAndConditionsPage';
@@ -88,6 +89,9 @@ const router = [{
 }, {
   path: '/aboutus',
   component: AboutUsPage,
+}, {
+  path: '/maintenance',
+  component: MaintenancePage,
 }, {
   path: '/contactus',
   component: ContactUsPage,

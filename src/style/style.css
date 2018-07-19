@@ -7402,7 +7402,8 @@ fieldset[disabled] .btn-cmd-checkout.active {
   clear: both;
 }
 .cart-title-container h1,
-.static-title-container h1 {
+.static-title-container h1,
+.static-title-container h3 {
   position: relative;
   float: left;
   width: 75%;
@@ -7411,6 +7412,21 @@ fieldset[disabled] .btn-cmd-checkout.active {
   padding-right: 15px;
   margin-top: 4rem;
   margin-bottom: 4rem;
+}
+.dog-view-title-message {
+  margin-top: 0 !important;
+}
+.dog-view-title-message-redirect {
+  text-decoration: underline;
+}
+.static-dog-name {
+  float: right;
+  margin-top: 0;
+  padding-right: 15px;
+}
+.dog-container {
+  max-width: 600px;
+  margin: 0 auto;
 }
 .cart-title-container button {
   position: relative;

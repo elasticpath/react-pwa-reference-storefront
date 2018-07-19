@@ -17,6 +17,8 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 
@@ -29,6 +31,10 @@ const zoomArray = [
 ];
 
 class AppHeaderNavigationMain extends React.Component {
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -44,6 +50,13 @@ class AppHeaderNavigationMain extends React.Component {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
+        })
+        .then((res) => {
+          if (res.status === 504) {
+            const { history } = this.props;
+            history.push('/maintenance');
+          }
+          return res;
         })
         .then(res => res.json())
         .then((res) => {
@@ -109,4 +122,4 @@ class AppHeaderNavigationMain extends React.Component {
   }
 }
 
-export default AppHeaderNavigationMain;
+export default withRouter(AppHeaderNavigationMain);

@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from './appheadersearch.main';
 import AppHeaderLoginMain from './appheaderlogin.main';
@@ -29,7 +30,16 @@ class AppHeaderMain extends React.Component {
     window.history.back();
   }
 
+  static propTypes = {
+    hideHeaderNavigation: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    hideHeaderNavigation: false,
+  };
+
   render() {
+    const { hideHeaderNavigation } = this.props;
     return (
       <div>
         <header className="app-header navbar navbar -fixed-top navbar-inverse" data-region="appHeader" style={{ display: 'block' }}>
@@ -51,20 +61,22 @@ class AppHeaderMain extends React.Component {
             <button type="button" className="navbar-toggle" id="header_mobile_navbar_collapse_button" aria-label="Mobile nav bar collapse" data-toggle="collapse" data-target=".navbar-collapse">
               <span className="icon" />
             </button>
-            <div className="collapse navbar-collapse">
-              <ul className="global-nav-container btn-group" id="header_navbar_container_buttons">
-                <AppHeaderLoginMain />
-                <li className="global-nav-cart-nav">
-                  <Link to="/mycart">
-                    <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" aria-label="Cart" data-toggle="collapse" data-target=".navbar-collapse" type="button">
-                      <span className="icon" />
-                    </button>
-                  </Link>
-                </li>
-              </ul>
-              <AppHeaderSearchMain />
-              <AppHeaderNavigationMain />
-            </div>
+            {(hideHeaderNavigation) ? '' : (
+              <div className="collapse navbar-collapse">
+                <ul className="global-nav-container btn-group" id="header_navbar_container_buttons">
+                  <AppHeaderLoginMain />
+                  <li className="global-nav-cart-nav">
+                    <Link to="/mycart">
+                      <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" aria-label="Cart" data-toggle="collapse" data-target=".navbar-collapse" type="button">
+                        <span className="icon" />
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+                <AppHeaderSearchMain />
+                <AppHeaderNavigationMain />
+              </div>
+            )}
           </div>
         </header>
         <AppModalLoginMain />
