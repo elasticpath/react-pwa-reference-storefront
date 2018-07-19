@@ -34,6 +34,7 @@ import MaintenancePage from './containers/MaintenancePage';
 import AboutUsPage from './containers/AboutUsPage';
 import ContactUsPage from './containers/ContactUsPage';
 import TermsAndConditionsPage from './containers/TermsAndConditionsPage';
+import OrderReviewPage from './containers/OrderReviewPage';
 
 const router = [{
   path: '/',
@@ -65,6 +66,9 @@ const router = [{
 }, {
   path: '/newpaymentform',
   component: NewPaymentPage,
+}, {
+  path: '/order',
+  component: OrderReviewPage,
 }, {
   path: '/profile',
   component: ProfilePage,

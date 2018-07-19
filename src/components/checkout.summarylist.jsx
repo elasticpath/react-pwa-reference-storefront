@@ -30,7 +30,7 @@ class CheckoutSummaryList extends React.Component {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
           <label className="cart-summary-label-col">
-Applied Promotions:&nbsp;
+            Applied Promotions:&nbsp;
           </label>
           <br />
           {this.props.data._appliedpromotions[0]._element.map(promotion => (
@@ -48,7 +48,7 @@ Applied Promotions:&nbsp;
       return (
         <li className="cart-discount">
           <label className="cart-summary-label-col">
-Today's Discount:&nbsp;
+            Today's Discount:&nbsp;
           </label>
           <span className="cart-summary-value-col">
             {this.props.data._discount[0].discount[0].display}
@@ -65,10 +65,10 @@ Today's Discount:&nbsp;
           <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
             <div className="checkout-shipping-total">
               <label data-el-label="checkout.shippingTotal">
-Today's Shipping Cost:&nbsp;
+                Today's Shipping Cost:&nbsp;
               </label>
               <span data-el-value="checkout.shippingTotal">
-                {this.props.data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._selector[0]._chosen[0]._description[0].cost[0].display}
+                {this.props.data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption[0].cost[0].display}
               </span>
             </div>
           </div>
@@ -84,7 +84,7 @@ Today's Shipping Cost:&nbsp;
           <div data-region="checkoutTaxTotalRegion" style={{ display: 'block' }}>
             <div className="checkout-tax-total">
               <label data-el-label="checkout.taxTotal">
-Today's Taxes:&nbsp;
+                Today's Taxes:&nbsp;
               </label>
               <span data-el-value="checkout.taxTotal">
                 {this.props.data._order[0]._tax[0].total.display}
@@ -97,7 +97,7 @@ Today's Taxes:&nbsp;
                 <li className="checkout-tax" key={tax.title}>
                   <label data-el-label="checkout.tax">
                     {tax.title}
-:&nbsp;
+                    :&nbsp;
                   </label>
                   <span data-el-value="checkout.tax">
                     {tax.display}
@@ -116,7 +116,7 @@ Today's Taxes:&nbsp;
       return (
         <li className="checkout-total">
           <label data-el-label="checkout.total">
-Today's Total:&nbsp;
+            Today's Total:&nbsp;
           </label>
           <span data-el-value="checkout.total">
             {this.props.data._order[0]._total[0].cost[0].display}
@@ -136,7 +136,7 @@ Today's Total:&nbsp;
       <ul className="cart-summary-list">
         <li className="cart-total-quantity">
           <label className="cart-summary-label-col">
-Total Quantity:&nbsp;
+            Total Quantity:&nbsp;
           </label>
           <span className="cart-summary-value-col">
             {this.props.data['total-quantity']}
@@ -145,7 +145,7 @@ Total Quantity:&nbsp;
         {this.renderPromotions()}
         <li className="cart-subtotal">
           <label className="cart-summary-label-col">
-Today's Subtotal:&nbsp;
+            Today's Subtotal:&nbsp;
           </label>
           <span className="cart-summary-value-col">
             {this.props.data._total[0].cost[0].display}

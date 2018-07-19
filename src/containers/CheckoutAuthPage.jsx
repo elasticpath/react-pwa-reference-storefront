@@ -82,10 +82,10 @@ class CheckoutAuthPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          emailForm = res._defaultprofile[0]._emails[0]._emailform[0].self.href;
+          emailForm = res._defaultprofile[0]._emails[0]._emailform[0].links.find(link => link.rel === 'createemailaction');
         })
         .then(() => {
-          fetch(emailForm, {
+          fetch(emailForm.href, {
             method: 'post',
             headers: {
               'Content-Type': 'application/json',

@@ -212,7 +212,7 @@ class AddressFormMain extends React.Component {
         .then((res) => {
           const addressFormLink = res._defaultprofile[0]._addresses[0]._addressform[0].links.find(link => link.rel === 'createaddressaction');
           this.setState({
-            addressForm: addressFormLink,
+            addressForm: addressFormLink.href,
           });
         });
     });

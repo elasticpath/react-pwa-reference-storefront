@@ -26,7 +26,15 @@
       }
     ],
     "react/prop-types": "error",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
     "no-underscore-dangle": "off",
     "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
     "jsx-a11y/label-has-for": [
