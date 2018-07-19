@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
@@ -24,10 +25,17 @@ import imgPlaceholder from '../images/img-placeholder.png';
 const Config = require('Config');
 
 class CartLineItem extends React.Component {
+  static propTypes = {
+    item: PropTypes.objectOf(PropTypes.any).isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    handleQuantityChange: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
+    const { item } = this.props;
     this.state = {
-      quantity: this.props.item.quantity,
+      quantity: item.quantity,
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleRemoveBtnClicked = this.handleRemoveBtnClicked.bind(this);
@@ -36,10 +44,11 @@ class CartLineItem extends React.Component {
   handleQuantityChange(event) {
     event.preventDefault();
     const newQuantity = event.target.value;
-
+    const { item, handleQuantityChange } = this.props;
+    const { quantity } = this.state;
     login().then(() => {
       this.setState({ quantity: newQuantity }, () => {
-        fetch(this.props.item.self.href,
+        fetch(item.self.href,
           {
             method: 'put',
             headers: {
@@ -47,22 +56,24 @@ class CartLineItem extends React.Component {
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
             },
             body: JSON.stringify({
-              quantity: this.state.quantity,
+              quantity,
             }),
           })
           .then(() => {
-            this.props.handleQuantityChange();
+            handleQuantityChange();
           })
           .catch((error) => {
-            console.log(error);
+            // eslint-disable-next-line no-console
+            console.error(error);
           });
       });
     });
   }
 
   handleRemoveBtnClicked() {
+    const { item, handleQuantityChange } = this.props;
     login().then(() => {
-      fetch(this.props.item.self.href,
+      fetch(item.self.href,
         {
           method: 'delete',
           headers: {
@@ -71,18 +82,20 @@ class CartLineItem extends React.Component {
           },
         })
         .then(() => {
-          this.props.handleQuantityChange();
+          handleQuantityChange();
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
 
   renderUnitPrice() {
-    const listPrice = this.props.item._price[0]['list-price'][0].display;
-    const purchasePrice = this.props.item._price[0]['purchase-price'][0].display;
-    if (this.props.isLoading) {
+    const { item, isLoading } = this.props;
+    const listPrice = item._price[0]['list-price'][0].display;
+    const purchasePrice = item._price[0]['purchase-price'][0].display;
+    if (isLoading) {
       return (
         <div className="miniLoader" />
       );
@@ -108,7 +121,8 @@ class CartLineItem extends React.Component {
   }
 
   renderTotalPrice() {
-    if (this.props.isLoading) {
+    const { isLoading, item } = this.props;
+    if (isLoading) {
       return (
         <div className="miniLoader" />
       );
@@ -117,21 +131,22 @@ class CartLineItem extends React.Component {
       <ul className="cart-lineitem-price-container">
         <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion" />
         <li className="cart-total-purchase-price">
-          {this.props.item._total[0].cost[0].display}
+          {item._total[0].cost[0].display}
         </li>
       </ul>
     );
   }
 
   renderOptions() {
-    const options = this.props.item._item[0]._definition[0]._options;
+    const { item } = this.props;
+    const options = item._item[0]._definition[0]._options;
     if (options) {
       return (
         options[0]._element.map(option => (
           <li className="cart-lineitem-option" key={`_${Math.random().toString(36).substr(2, 9)}`}>
-            <label className="cart-lineitem-option-name">
+            <label htmlFor="cart-lineitem-option-value" className="cart-lineitem-option-name">
               {option['display-name']}
-:&nbsp;
+              :&nbsp;
             </label>
             <span className="cart-lineitem-option-value">
               {option._value[0]['display-name']}
@@ -140,20 +155,22 @@ class CartLineItem extends React.Component {
         ))
       );
     }
+    return null;
   }
 
   render() {
-    var availability = (this.props.item._availability[0].state === 'AVAILABLE');
-    var availability = false;
+    const { item, isLoading } = this.props;
+    const { quantity } = this.state;
+    let availability = (item._availability[0].state === 'AVAILABLE');
     let availabilityString = '';
-    if (this.props.item._availability.length >= 0) {
-      if (this.props.item._availability[0].state === 'AVAILABLE') {
+    if (item._availability.length >= 0) {
+      if (item._availability[0].state === 'AVAILABLE') {
         availability = true;
         availabilityString = 'In Stock';
-      } else if (this.props.item._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+      } else if (item._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
         availability = true;
         availabilityString = 'Pre-order';
-      } else if (this.props.item._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+      } else if (item._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
         availability = true;
         availabilityString = 'Back-order';
       } else {
@@ -164,11 +181,11 @@ class CartLineItem extends React.Component {
     return (
       <tr>
         <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
-          <img src={Config.skuImagesS3Url.replace('%sku%', this.props.item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="No Image Available" className="cart-lineitem-thumbnail" />
+          <img src={Config.skuImagesS3Url.replace('%sku%', item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
         </td>
         <td className="cart-lineitem-title-col" data-el-value="lineItem.displayName">
-          <Link to={`/itemdetail/${encodeURIComponent(this.props.item._item[0].self.href)}`}>
-            {this.props.item._item[0]._definition[0]['display-name']}
+          <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.href)}`}>
+            {item._item[0]._definition[0]['display-name']}
           </Link>
         </td>
         <td className="cart-lineitem-options-col" style={{ display: 'table-cell' }}>
@@ -179,23 +196,17 @@ class CartLineItem extends React.Component {
         <td className="cart-lineitem-availability-col" data-region="cartLineitemAvailabilityRegion" style={{ display: 'table-cell' }}>
           <ul className="cart-lineitem-availability-container">
             <li className="cart-lineitem-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-              {(availability) ? (
-                <div>
-                  <span className="icon" />
-                  {availabilityString}
-                </div>
-              ) : (
-                <div>
-                  {availabilityString}
-                </div>
-              )}
+              <div>
+                {availability && <span className="icon" />}
+                {availabilityString}
+              </div>
             </li>
-            <li className={`category-item-release-date${this.props.item._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-              <label className="cart-lineitem-releasedate-label">
-Expected Release Date:&nbsp;
+            <li className={`category-item-release-date${item._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+              <label htmlFor="cart-lineitem-release-date-value" className="cart-lineitem-releasedate-label">
+                Expected Release Date:&nbsp;
               </label>
               <span className="cart-lineitem-release-date-value">
-                {(this.props.item._availability[0]['release-date']) ? this.props.item._availability[0]['release-date']['display-value'] : ''}
+                {(item._availability[0]['release-date']) ? item._availability[0]['release-date']['display-value'] : ''}
               </span>
             </li>
           </ul>
@@ -211,39 +222,39 @@ Expected Release Date:&nbsp;
         </td>
 
         <td className="cart-lineitem-quantity-col" data-el-value="lineItem.quantity">
-          <select className="cart-lineitem-quantity-select form-control" id="cart-lineItem-select-quantity" name="cart-lineItem-select-quantity" disabled={this.props.isLoading} value={this.state.quantity} onChange={this.handleQuantityChange}>
+          <select className="cart-lineitem-quantity-select form-control" id="cart-lineItem-select-quantity" name="cart-lineItem-select-quantity" disabled={isLoading} value={quantity} onChange={this.handleQuantityChange}>
             <option value="0">
-0
+              0
             </option>
             <option value="1">
-1
+              1
             </option>
             <option value="2">
-2
+              2
             </option>
             <option value="3">
-3
+              3
             </option>
             <option value="4">
-4
+              4
             </option>
             <option value="5">
-5
+              5
             </option>
             <option value="6">
-6
+              6
             </option>
             <option value="7">
-7
+              7
             </option>
             <option value="8">
-8
+              8
             </option>
             <option value="9">
-9
+              9
             </option>
             <option value="10">
-10
+              10
             </option>
           </select>
         </td>
@@ -258,10 +269,10 @@ Expected Release Date:&nbsp;
         </td>
 
         <td className="cart-lineitem-remove-btn-col">
-          <button className="btn btn-cart-removelineitem" data-el-label="lineItem.removeBtn" disabled={this.props.isLoading} onClick={this.handleRemoveBtnClicked}>
+          <button className="btn btn-cart-removelineitem" type="button" disabled={isLoading} onClick={this.handleRemoveBtnClicked}>
             <span className="icon" />
             <span className="btn-text">
-Remove
+              Remove
             </span>
           </button>
         </td>

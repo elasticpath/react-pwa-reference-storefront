@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
@@ -52,6 +53,10 @@ const zoomArray = [
 ];
 
 class CartPage extends React.Component {
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -80,7 +85,8 @@ class CartPage extends React.Component {
           });
         })
         .catch((error) => {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
         });
     });
   }
@@ -91,22 +97,24 @@ class CartPage extends React.Component {
   }
 
   checkout() {
+    const { history } = this.props;
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
-      this.props.history.push('/checkout');
+      history.push('/checkout');
     } else {
-      this.props.history.push('/signIn');
+      history.push('/signIn');
     }
   }
 
   renderDiscount() {
-    if (this.state.cartData._discount) {
+    const { cartData } = this.state;
+    if (cartData._discount) {
       return (
         <li className="cart-discount">
           <label htmlFor="cart_summary_discount_label" className="cart-summary-label-col">
             Discount at Checkout:&nbsp;
           </label>
           <span className="cart-summary-value-col">
-            {this.state.cartData._discount[0].discount[0].display}
+            {cartData._discount[0].discount[0].display}
           </span>
         </li>
       );
@@ -115,14 +123,15 @@ class CartPage extends React.Component {
   }
 
   renderPromotions() {
-    if (this.state.cartData._appliedpromotions) {
+    const { cartData } = this.state;
+    if (cartData._appliedpromotions) {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart_summary_promotion_label" className="cart-summary-label-col">
             Applied Promotions:&nbsp;
           </label>
           <br />
-          {this.state.cartData._appliedpromotions[0]._element.map(promotion => (
+          {cartData._appliedpromotions[0]._element.map(promotion => (
             <span className="cart-summary-value-col cart-applied-promotions" key={`_${Math.random().toString(36).substr(2, 9)}`} data-el-value="cart.appliedPromotions">&nbsp;&nbsp;
               {promotion['display-name']}
             </span>
@@ -134,7 +143,9 @@ class CartPage extends React.Component {
   }
 
   render() {
-    if (this.state.cartData) {
+    const { cartData, isLoading } = this.state;
+    const { history } = this.props;
+    if (cartData) {
       return (
         <div>
           <AppHeaderMain />
@@ -145,23 +156,23 @@ class CartPage extends React.Component {
                   <h1 className="view-title">
                     Shopping Cart
                   </h1>
-                  <button className="btn-cmd-continue-shopping" type="button" onClick={() => { this.props.history.push('/'); }}>
+                  <button className="btn-cmd-continue-shopping" type="button" onClick={() => { history.push('/'); }}>
                     Continue Shopping
                   </button>
                 </div>
               </div>
               <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
-                <CartMain empty={!this.state.cartData['total-quantity']} cartData={this.state.cartData} isLoading={this.state.isLoading} handleQuantityChange={() => { this.handleQuantityChange(); }} />
+                <CartMain empty={!cartData['total-quantity']} cartData={cartData} isLoading={isLoading} handleQuantityChange={() => { this.handleQuantityChange(); }} />
               </div>
               <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
                 <div>
                   <div className="cart-sidebar-inner">
                     <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                      <CheckoutSummaryList data={this.state.cartData} isLoading={this.state.isLoading} />
+                      <CheckoutSummaryList data={cartData} isLoading={isLoading} />
                     </div>
                     <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                       <div>
-                        <button className="btn-cmd-checkout" disabled={!this.state.cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
+                        <button className="btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
                           Proceed to Checkout
                         </button>
                       </div>

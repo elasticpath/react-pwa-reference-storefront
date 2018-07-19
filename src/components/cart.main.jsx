@@ -17,67 +17,68 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import CartLineItem from './cart.lineitem';
 
-const Config = require('Config');
 
-class CartMain extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    if (this.props.empty) {
-      return (
-        <div className="cart-empty-container">
-          <span className="cart-empty-message">
-            Your shopping cart is empty.
-          </span>
-        </div>
-      );
-    }
+const CartMain = (props) => {
+  const { empty, cartData, isLoading } = props;
+  if (empty) {
     return (
-      <div className="cart-main-inner table-responsive">
-        <table className="table">
-          <thead className="cart-lineitem-table-headings">
-            <tr>
-              <th className="cart-heading-product">
-                <span className="lineitem-asset-col">
-                  Product
-                </span>
-              </th>
-              <th className="cart-heading-name">
-                Name
-              </th>
-              <th className="cart-heading-options">
-                Options
-              </th>
-              <th className="cart-heading-availability">
-                Availability
-              </th>
-              <th className="cart-heading-item-price">
-                Unit Price
-              </th>
-              <th className="cart-heading-quantity">
-                Quantity
-              </th>
-              <th className="cart-heading-item-total">
-                Total Price
-              </th>
-              <th className="cart-heading-remove">
-                Remove
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.cartData._lineitems[0]._element.map(product => (
-              <CartLineItem key={product._item[0]._code[0].code} item={product} isLoading={this.props.isLoading} handleQuantityChange={() => { this.props.handleQuantityChange(); }} />
-            ))}
-          </tbody>
-        </table>
+      <div className="cart-empty-container">
+        <span className="cart-empty-message">
+          Your shopping cart is empty.
+        </span>
       </div>
     );
   }
-}
+  return (
+    <div className="cart-main-inner table-responsive">
+      <table className="table">
+        <thead className="cart-lineitem-table-headings">
+          <tr>
+            <th className="cart-heading-product">
+              <span className="lineitem-asset-col">
+                Product
+              </span>
+            </th>
+            <th className="cart-heading-name">
+              Name
+            </th>
+            <th className="cart-heading-options">
+              Options
+            </th>
+            <th className="cart-heading-availability">
+              Availability
+            </th>
+            <th className="cart-heading-item-price">
+              Unit Price
+            </th>
+            <th className="cart-heading-quantity">
+              Quantity
+            </th>
+            <th className="cart-heading-item-total">
+              Total Price
+            </th>
+            <th className="cart-heading-remove">
+              Remove
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartData._lineitems[0]._element.map(product => (
+            <CartLineItem key={product._item[0]._code[0].code} item={product} isLoading={isLoading} handleQuantityChange={() => { this.props.handleQuantityChange(); }} />
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+CartMain.propTypes = {
+  empty: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  cartData: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default CartMain;
