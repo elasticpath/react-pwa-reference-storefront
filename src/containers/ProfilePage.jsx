@@ -20,15 +20,22 @@ import React from 'react';
 import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
+import ProfileInfoMain from '../components/profileInfo.main';
+import OrderHistoryMain from '../components/orderhistory.main';
 
 const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
+  'defaultprofile',
+  'defaultprofile:subscriptions',
   'defaultprofile:subscriptions:element',
+  'defaultprofile:purchases',
   'defaultprofile:purchases:element',
+  'defaultprofile:addresses',
   'defaultprofile:addresses:element',
   'defaultprofile:addresses:billingaddresses:default',
+  'defaultprofile:paymentmethods',
   'defaultprofile:paymentmethods:element',
 ];
 
@@ -74,31 +81,7 @@ class ProfilePage extends React.Component {
                 Profile
               </h1>
             </div>
-            <div data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
-              <div>
-                <h2>
-                  Personal Information
-                </h2>
-                <dl className="profile-personal-info-container container">
-                  <dt className="profile-personal-info-label" data-el-label="profile.firstName">
-                    First Name:
-                  </dt>
-                  <dd className="profile-personal-info-value" id="profile_personal_info_givenName" data-el-value="givenName">
-                    {profileData['given-name']}
-                  </dd>
-                  <dt className="profile-personal-info-label" data-el-label="profile.lastName">
-                    Last Name:
-                  </dt>
-                  <dd className="profile-personal-info-value" id="profile_personal_info_familyName" data-el-value="familyName">
-                    {profileData['family-name']}
-                  </dd>
-                </dl>
-
-                <button className="btn btn-primary profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" data-el-label="profile.editPersonalInfoBtn">
-                  Edit
-                </button>
-              </div>
-            </div>
+            <ProfileInfoMain defaultProfile={profileData} />
             <div data-region="profileSubscriptionSummaryRegion" style={{ display: 'none' }}>
               <div className="table-responsive">
                 <h2>
@@ -123,66 +106,7 @@ class ProfilePage extends React.Component {
 
               </div>
             </div>
-            <div data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
-              <div className="table-responsive">
-                <h2>
-                  Purchase History
-                </h2>
-                <table className="table table-condensed striped-table">
-                  <thead>
-                    <tr>
-                      <th>
-                        Purchase #
-                      </th>
-                      <th>
-                        Date
-                      </th>
-                      <th>
-                        Total
-                      </th>
-                      <th>
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    <tr>
-                      <td data-el-value="purchase.number" className="profile-purchase-number">
-                        <a href="#purchaseDetails/https%3A%2F%2Fforrester.epdemos.com%2Fcortex%2Fpurchases%2Fvestri%2Fgiydanjt%3D">
-                          20053
-                        </a>
-                      </td>
-                      <td data-el-value="purchase.date" className="profile-purchase-date">
-                        June 21, 2018 4:26:39 PM
-                      </td>
-                      <td data-el-value="purchase.total" className="profile-purchase-total">
-                        $1,181.42
-                      </td>
-                      <td data-el-value="purchase.status" className="profile-purchase-status">
-                        In progress
-                      </td>
-                    </tr>
-                    <tr>
-                      <td data-el-value="purchase.number" className="profile-purchase-number">
-                        <a href="#purchaseDetails/https%3A%2F%2Fforrester.epdemos.com%2Fcortex%2Fpurchases%2Fvestri%2Fgiydanjs%3D">
-                          20052
-                        </a>
-                      </td>
-                      <td data-el-value="purchase.date" className="profile-purchase-date">
-                        June 21, 2018 12:48:28 PM
-                      </td>
-                      <td data-el-value="purchase.total" className="profile-purchase-total">
-                        $1,071.19
-                      </td>
-                      <td data-el-value="purchase.status" className="profile-purchase-status">
-                        In progress
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
             <div data-region="profileAddressesRegion" style={{ display: 'block' }}>
               <div>
                 <h2>

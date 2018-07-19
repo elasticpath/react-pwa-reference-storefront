@@ -19,14 +19,17 @@
 import React from 'react';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
+import OrderHistoryLineMain from '../components/orderhistoryline.main';
 
-function PurchaseHistoryPage() {
+function OrderHistoryPage(props) {
   return (
     <div>
       <AppHeaderMain />
+      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
+      <OrderHistoryLineMain orderHistoryLineUrlProps={decodeURIComponent(props.match.params.url)} />
       <AppFooterMain />
     </div>
   );
 }
 
-export default PurchaseHistoryPage;
+export default OrderHistoryPage;

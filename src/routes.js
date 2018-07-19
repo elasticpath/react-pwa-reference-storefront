@@ -25,7 +25,7 @@ import ProductDetailPage from './containers/ProductDetailPage';
 import NewAddressPage from './containers/NewAddressPage';
 import NewPaymentPage from './containers/NewPaymentPage';
 import ProfilePage from './containers/ProfilePage';
-import PurchaseHistoryPage from './containers/PurchaseHistoryPage';
+import OrderHistoryPage from './containers/OrderHistoryPage';
 import PurchaseReceiptPage from './containers/PurchaseReceiptPage';
 import RegistrationPage from './containers/RegistrationPage';
 import CheckoutAuthPage from './containers/CheckoutAuthPage';
@@ -73,8 +73,8 @@ const router = [{
   path: '/profile',
   component: ProfilePage,
 }, {
-  path: '/purchaseDetails',
-  component: PurchaseHistoryPage,
+  path: '/orderDetails/:url',
+  component: OrderHistoryPage,
 }, {
   path: '/purchaseReceipt',
   component: PurchaseReceiptPage,
