@@ -24,17 +24,18 @@ const Config = require('Config');
 
 class ProfileInfoMain extends React.Component {
   static propTypes = {
-    defaultProfile: PropTypes.objectOf(PropTypes.any).isRequired,
+    profileInfo: PropTypes.objectOf(PropTypes.any).isRequired,
+    onChange: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
-    const { defaultProfile } = this.props;
+    const { profileInfo } = this.props;
     this.state = {
-      profileInfo: defaultProfile,
       inEditMode: false,
-      firstName: defaultProfile['given-name'],
-      lastName: defaultProfile['family-name'],
+      failedSubmit: false,
+      firstName: profileInfo['given-name'],
+      lastName: profileInfo['family-name'],
     };
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
@@ -64,40 +65,67 @@ class ProfileInfoMain extends React.Component {
   submitPersonalInfoChange(event) {
     event.preventDefault();
     const {
-      profileInfo, firstName, lastName,
+      firstName, lastName,
     } = this.state;
     login().then(() => {
-      fetch(profileInfo.self.href, {
-        method: 'put',
+      fetch(`${Config.cortexApi.path}/`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
-        body: JSON.stringify({
-          name: {
-            'given-name': firstName,
-            'family-name': lastName,
-          },
-        }),
-      }).then((res) => {
-        if (res.status === 400) {
-          this.setState({ failedSubmit: true });
-        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-          this.setState({ failedSubmit: false }, () => {
-            this.cancel();
-          });
-        }
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
-      });
+      }).then(res => res.json())
+        .then((res) => {
+          const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
+          fetch(`${profileNameLink.href}?followlocation`, {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+          }).then(linkRes => linkRes.json())
+            .then((linkRes) => {
+              fetch(linkRes.self.href, {
+                method: 'put',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                },
+                body: JSON.stringify({
+                  'given-name': firstName,
+                  'family-name': lastName,
+                }),
+              }).then((response) => {
+                if (response.status === 400) {
+                  this.setState({ failedSubmit: true });
+                } else if (response.status === 201 || response.status === 200 || response.status === 204) {
+                  // this.setState({ failedSubmit: false }, () => {
+                  //   this.cancel();
+                  // });
+                  this.cancel();
+                  const { onChange } = this.props;
+                  onChange();
+                }
+              }).catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error);
+              });
+            }).catch((error) => {
+              // eslint-disable-next-line no-console
+              console.error(error);
+            });
+        }).catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
     });
   }
 
   render() {
     const {
-      profileInfo, inEditMode, failedSubmit,
+      inEditMode, failedSubmit,
     } = this.state;
+    const {
+      profileInfo,
+    } = this.props;
     if (inEditMode) {
       return (
         <div data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>

@@ -22,6 +22,8 @@ import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import ProfileInfoMain from '../components/profileInfo.main';
 import OrderHistoryMain from '../components/orderhistory.main';
+import ProfileAddressesMain from '../components/profileaddresses.main';
+import ProfilePaymentMethodsMain from '../components/profilepaymentmethods.main';
 
 const Config = require('Config');
 
@@ -45,9 +47,14 @@ class ProfilePage extends React.Component {
     this.state = {
       profileData: undefined,
     };
+    this.fetchProfileData = this.fetchProfileData.bind(this);
   }
 
   componentDidMount() {
+    this.fetchProfileData();
+  }
+
+  fetchProfileData() {
     login().then(() => {
       fetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
         {
@@ -71,6 +78,7 @@ class ProfilePage extends React.Component {
 
   render() {
     const { profileData } = this.state;
+    console.log(profileData)
     if (profileData) {
       return (
         <div>
@@ -81,100 +89,10 @@ class ProfilePage extends React.Component {
                 Profile
               </h1>
             </div>
-            <ProfileInfoMain defaultProfile={profileData} />
-            <div data-region="profileSubscriptionSummaryRegion" style={{ display: 'none' }}>
-              <div className="table-responsive">
-                <h2>
-                  Subscriptions
-                </h2>
-                <table className="table table-condensed striped-table">
-                  <thead>
-                    <tr>
-                      <th>
-                        Subscription
-                      </th>
-                      <th>
-                        Quantity
-                      </th>
-                      <th>
-                        Next Billing Date
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody />
-                </table>
-
-              </div>
-            </div>
+            <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
             <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
-            <div data-region="profileAddressesRegion" style={{ display: 'block' }}>
-              <div>
-                <h2>
-                  Addresses
-                </h2>
-                <ul className="profile-addresses-listing" data-el-container="profile.addresses">
-                  <li className="profile-address-container">
-                    <div data-region="profileAddressComponentRegion" style={{ display: 'block' }}>
-                      <ul className="address-container">
-                        <li className="address-name" data-el-value="address.name">
-                          {`${profileData._addresses[0]._element[0].name['given-name']} ${profileData._addresses[0]._element[0].name['family-name']}`}
-                        </li>
-                        <li className="address-street-address" data-el-value="address.streetAddress">
-                          {profileData._addresses[0]._element[0].address['street-address']}
-                        </li>
-                        <li className="address-extended-address" data-el-value="address.extendedAddress" />
-                        <li>
-                          <span className="address-city" data-el-value="address.city">
-                            {`${profileData._addresses[0]._element[0].address.locality}, `}
-                          </span>
-                          <span className="address-region" data-el-value="address.region">
-                            {`${profileData._addresses[0]._element[0].address.region}, `}
-                          </span>
-                          <span className="address-country" data-el-value="address.country">
-                            {`${profileData._addresses[0]._element[0].address['country-name']}, `}
-                          </span>
-                          <span className="address-postal-code" data-el-value="address.postalCode">
-                            {profileData._addresses[0]._element[0].address['postal-code']}
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <button className="btn profile-edit-address-btn" type="button" data-el-label="profile.editAddressBtn">
-                      Edit
-                    </button>
-                    <button className="btn profile-delete-address-btn" type="button" data-el-label="profile.deleteAddressBtn" data-actionlink="">
-                      Delete
-                    </button>
-                  </li>
-                </ul>
-
-                <button className="btn btn-primary profile-new-address-btn" type="button" data-el-label="profile.addNewAddressBtn">
-                  Add a New Address
-                </button>
-              </div>
-            </div>
-            <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
-              <div>
-                <h2>
-                  Payment Methods
-                </h2>
-                <ul className="profile-payment-methods-listing">
-                  <li className="profile-payment-method-container">
-                    <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
-                      <span data-el-value="payment.token" className="payment-method-container">
-                        {profileData._paymentmethods[0]._element[0]['display-name']}
-                      </span>
-                    </div>
-                    <button className="btn profile-delete-payment-btn" type="button" data-el-label="profile.deletePaymentBtn">
-                      Delete
-                    </button>
-                  </li>
-                </ul>
-                <button className="btn btn-primary profile-new-payment-btn" type="button" data-el-label="profile.addNewPaymentMethodBtn">
-                  Add a New Payment Method
-                </button>
-              </div>
-            </div>
+            <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
+            <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
           </div>
           <AppFooterMain />
         </div>
