@@ -143,7 +143,7 @@ class CartLineItem extends React.Component {
     if (options) {
       return (
         options[0]._element.map(option => (
-          <li className="cart-lineitem-option" key={`_${Math.random().toString(36).substr(2, 9)}`}>
+          <li className="cart-lineitem-option" key={option['display-name']}>
             <label htmlFor="cart-lineitem-option-value" className="cart-lineitem-option-name">
               {option['display-name']}
               :&nbsp;
@@ -184,7 +184,7 @@ class CartLineItem extends React.Component {
           <img src={Config.skuImagesS3Url.replace('%sku%', item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
         </td>
         <td className="cart-lineitem-title-col" data-el-value="lineItem.displayName">
-          <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.href)}`}>
+          <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.uri)}`}>
             {item._item[0]._definition[0]['display-name']}
           </Link>
         </td>
@@ -211,7 +211,6 @@ class CartLineItem extends React.Component {
             </li>
           </ul>
         </td>
-
         <td className="cart-lineitem-unit-price-col" data-region="cartLineitemUnitPriceRegion" style={{ display: 'table-cell' }}>
           <div>
             <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
@@ -220,7 +219,6 @@ class CartLineItem extends React.Component {
             <div data-region="itemUnitRateRegion" />
           </div>
         </td>
-
         <td className="cart-lineitem-quantity-col" data-el-value="lineItem.quantity">
           <select className="cart-lineitem-quantity-select form-control" id="cart-lineItem-select-quantity" name="cart-lineItem-select-quantity" disabled={isLoading} value={quantity} onChange={this.handleQuantityChange}>
             <option value="0">

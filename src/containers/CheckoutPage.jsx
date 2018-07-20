@@ -22,6 +22,9 @@ import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
+import AddressContainer from '../components/address.container';
+import ShippingOptionContainer from '../components/shippingoption.container';
+import PaymentMethodContainer from '../components/paymentmethod.container';
 
 const Config = require('Config');
 
@@ -178,34 +181,7 @@ class CheckoutPage extends React.Component {
                 <input type="radio" name="shipping" id="shippingOption" className="checkout-address-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 <label htmlFor="shippingOption">
                   <div data-region="checkoutAddressRegion" style={{ display: 'block' }}>
-                    <ul className="address-container">
-                      <li className="address-name" data-el-value="address.name">
-                        {name['given-name']}&nbsp;
-                        {name['family-name']}
-                      </li>
-                      <li className="address-street-address" data-el-value="address.streetAddress">
-                        {address['street-address']}
-                      </li>
-                      <li className="address-extended-address" data-el-value="address.extendedAddress">
-                        {address['extended-address']}
-                      </li>
-                      <li>
-                        <span className="address-city" data-el-value="address.city">
-                          {address.locality}
-                          ,&nbsp;
-                        </span>
-                        <span className="address-region" data-el-value="address.region">
-                          {address.region}
-                          ,&nbsp;
-                        </span>
-                        <span className="address-country" data-el-value="address.country">
-                          {address['country-name']}
-                        </span>
-                        <span className="address-postal-code" data-el-value="address.postalCode">
-                          {address['postal-code']}
-                        </span>
-                      </li>
-                    </ul>
+                    <AddressContainer name={name} address={address} />
                   </div>
                 </label>
               </div>
@@ -226,7 +202,7 @@ class CheckoutPage extends React.Component {
     }
     return (
       <div>
-        <p data-el-value="checkout.noShippingAddressesMsg">
+        <p>
           You have no saved shipping addresses.
         </p>
       </div>
@@ -278,15 +254,9 @@ class CheckoutPage extends React.Component {
             {/* eslint-disable-next-line max-len */}
             <input type="radio" name="shippingOption" id="shippingOption" className="shipping-option-radio" defaultChecked={option.checked} onChange={() => this.handleChange(option.selectaction)} />
             <label htmlFor="shippingOption">
-              <span data-el-value="shippingOptionDisplayName">
-                {option['display-name']}
-              </span>
-              <span data-el-value="shippingOptionCarrier">
-                {option.carrier}
-              </span>
-              <span data-el-value="shippingOptionCost">
-                {option.cost[0].display}
-              </span>
+              <div className="shipping-option-region" style={{ display: 'block' }}>
+                <ShippingOptionContainer option={option} />
+              </div>
             </label>
           </div>
         ))
@@ -294,7 +264,7 @@ class CheckoutPage extends React.Component {
     }
     return (
       <div>
-        <p data-el-value="checkout.noShippingOptionsMsg">
+        <p>
           There are no shipping options available for your chosen shipping address.
         </p>
       </div>
@@ -351,34 +321,7 @@ class CheckoutPage extends React.Component {
                 <input type="radio" name="billing" id="billingOption" className="checkout-address-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 <label htmlFor="billingOption">
                   <div data-region="checkoutAddressRegion" style={{ display: 'block' }}>
-                    <ul className="address-container">
-                      <li className="address-name" data-el-value="address.name">
-                        {name['given-name']}&nbsp;
-                        {name['family-name']}
-                      </li>
-                      <li className="address-street-address" data-el-value="address.streetAddress">
-                        {address['street-address']}
-                      </li>
-                      <li className="address-extended-address" data-el-value="address.extendedAddress">
-                        {address['extended-address']}
-                      </li>
-                      <li>
-                        <span className="address-city" data-el-value="address.city">
-                          {address.locality}
-                          ,&nbsp;
-                        </span>
-                        <span className="address-region" data-el-value="address.region">
-                          {address.region}
-                          ,&nbsp;
-                        </span>
-                        <span className="address-country" data-el-value="address.country">
-                          {address['country-name']}
-                        </span>
-                        <span className="address-postal-code" data-el-value="address.postalCode">
-                          {address['postal-code']}
-                        </span>
-                      </li>
-                    </ul>
+                    <AddressContainer name={name} address={address} />
                   </div>
                 </label>
               </div>
@@ -399,7 +342,7 @@ class CheckoutPage extends React.Component {
     }
     return (
       <div>
-        <p data-el-value="checkout.noBillingAddressesMsg">
+        <p>
           You have no saved billing addresses.
         </p>
       </div>
@@ -457,9 +400,7 @@ class CheckoutPage extends React.Component {
                 <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 <label htmlFor="paymentMethod">
                   <div data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
-                    <span className="payment-method-container">
-                      {displayName}
-                    </span>
+                    <PaymentMethodContainer displayName={displayName} />
                   </div>
                 </label>
               </div>
@@ -477,7 +418,7 @@ class CheckoutPage extends React.Component {
     }
     return (
       <div>
-        <p data-el-value="checkout.noPaymentMethodsMsg">
+        <p>
           You have no saved payment method.
         </p>
       </div>
@@ -535,7 +476,7 @@ class CheckoutPage extends React.Component {
                   <div>
                     <div className="checkout-sidebar-inner">
                       <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                        <CheckoutSummaryList data={orderData} />
+                        <CheckoutSummaryList data={orderData} isLoading={false} />
                       </div>
                       <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
                         <button className="btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>

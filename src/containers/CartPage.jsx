@@ -46,10 +46,6 @@ const zoomArray = [
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen',
   'defaultcart:lineitems:element:item:definition:options:element:selector:choice:description',
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:choice:selector',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:selector',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:choice:selectaction',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:selectaction',
 ];
 
 class CartPage extends React.Component {
