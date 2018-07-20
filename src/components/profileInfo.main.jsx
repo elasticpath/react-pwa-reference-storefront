@@ -97,9 +97,6 @@ class ProfileInfoMain extends React.Component {
                 if (response.status === 400) {
                   this.setState({ failedSubmit: true });
                 } else if (response.status === 201 || response.status === 200 || response.status === 204) {
-                  // this.setState({ failedSubmit: false }, () => {
-                  //   this.cancel();
-                  // });
                   this.cancel();
                   const { onChange } = this.props;
                   onChange();

@@ -78,7 +78,6 @@ class ProfilePage extends React.Component {
 
   render() {
     const { profileData } = this.state;
-    console.log(profileData)
     if (profileData) {
       return (
         <div>
