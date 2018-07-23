@@ -91,6 +91,27 @@ class CategoryItemsMain extends React.Component {
   render() {
     const { categoryModel, selfUri } = this.state;
     const { categoryUrl } = this.props;
+    if (categoryModel.links.length > 0 && categoryModel._items && categoryModel._items[0].links.length === 0 && selfUri === categoryUrl) {
+      return (
+        <div className="category-items-container container">
+          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
+            <div>
+              <h1 className="view-title">
+                {categoryModel['display-name']}
+              </h1>
+            </div>
+            <br />
+            <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
+              <div>
+                <h3>
+                  No products found
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
     if (categoryModel.links.length > 0 && selfUri === categoryUrl) {
       return (
         <div className="category-items-container container">
