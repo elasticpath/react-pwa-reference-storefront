@@ -70,7 +70,13 @@ class AppHeaderNavigationMain extends React.Component {
           const { history } = this.props;
           history.push('/maintenance');
         });
-    });
+    })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error);
+        const { history } = this.props;
+        history.push('/maintenance');
+      });
   }
 
   renderCategories() {
