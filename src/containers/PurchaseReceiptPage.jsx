@@ -17,16 +17,31 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
+import PurchaseDetailsMain from '../components/purchasedetails.main';
 
-function PurchaseReceiptPage() {
+const PurchaseReceiptPage = (props) => {
+  const { location } = props;
   return (
     <div>
       <AppHeaderMain />
+      <div className="app-main" style={{ display: 'block' }}>
+        <div className="container">
+          <h2>
+            Thank you! Your order has been processed.
+          </h2>
+          <PurchaseDetailsMain data={location.state.data} />
+        </div>
+      </div>
       <AppFooterMain />
     </div>
   );
-}
+};
+
+PurchaseReceiptPage.propTypes = {
+  location: ReactRouterPropTypes.location.isRequired,
+};
 
 export default PurchaseReceiptPage;

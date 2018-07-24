@@ -97,11 +97,22 @@ class OrderReviewPage extends React.Component {
   }
 
   completeOrder() {
+    const purchaseZoomArray = [
+      'paymentmeans:element',
+      'shipments:element:destination',
+      'shipments:element:shippingoption',
+      'billingaddress',
+      'discount',
+      'appliedpromotions:element',
+      'lineitems:element',
+      'lineitems:element:options:element',
+      'lineitems:element:options:element:value',
+    ];
     const { orderData } = this.state;
     const { history } = this.props;
     const purchaseform = orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').href;
     login().then(() => {
-      fetch(`${purchaseform}?followlocation`, {
+      fetch(`${purchaseform}?followlocation&zoom=${purchaseZoomArray.join()}`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

@@ -45,7 +45,6 @@ class CartLineItem extends React.Component {
     event.preventDefault();
     const newQuantity = event.target.value;
     const { item, handleQuantityChange } = this.props;
-    const { quantity } = this.state;
     login().then(() => {
       this.setState({ quantity: newQuantity }, () => {
         fetch(item.self.href,
@@ -56,7 +55,7 @@ class CartLineItem extends React.Component {
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
             },
             body: JSON.stringify({
-              quantity,
+              quantity: newQuantity,
             }),
           })
           .then(() => {

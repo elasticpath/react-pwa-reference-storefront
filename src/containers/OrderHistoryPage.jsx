@@ -17,19 +17,91 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
+import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
-import OrderHistoryLineMain from '../components/orderhistoryline.main';
+import PurchaseDetailsMain from '../components/purchasedetails.main';
 
-function OrderHistoryPage(props) {
-  return (
-    <div>
-      <AppHeaderMain />
-      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <OrderHistoryLineMain orderHistoryLineUrlProps={decodeURIComponent(props.match.params.url)} />
-      <AppFooterMain />
-    </div>
-  );
+const Config = require('Config');
+
+const zoomArray = [
+  'paymentmeans:element',
+  'shipments:element:destination',
+  'shipments:element:shippingoption',
+  'billingaddress',
+  'discount',
+  'appliedpromotions:element',
+  'lineitems:element',
+  'lineitems:element:options:element',
+  'lineitems:element:options:element:value',
+];
+
+class OrderHistoryPage extends React.Component {
+  static propTypes = {
+    match: PropTypes.objectOf(PropTypes.any).isRequired,
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      purchaseData: undefined,
+    };
+  }
+
+  componentDidMount() {
+    this.fetchPurchaseData();
+  }
+
+  fetchPurchaseData() {
+    const { match } = this.props;
+    const uri = decodeURIComponent(match.params.url);
+    login().then(() => {
+      fetch(`${Config.cortexApi.path + uri}?zoom=${zoomArray.join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            purchaseData: res,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
+    });
+  }
+
+  render() {
+    const { purchaseData } = this.state;
+    if (purchaseData) {
+      return (
+        <div>
+          <AppHeaderMain />
+          <div className="app-main" style={{ display: 'block' }}>
+            <div className="container">
+              <h2>
+                Purchase Details
+              </h2>
+              <PurchaseDetailsMain data={purchaseData} />
+            </div>
+          </div>
+          <AppFooterMain />
+        </div>
+      );
+    }
+    return (
+      <div>
+        <AppHeaderMain />
+        <div className="loader" />
+        <AppFooterMain />
+      </div>
+    );
+  }
 }
 
 export default OrderHistoryPage;
