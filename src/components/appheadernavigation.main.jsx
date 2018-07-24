@@ -43,34 +43,29 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   componentWillMount() {
-    login().then(() => {
-      fetch(`${Config.cortexApi.path}?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then((res) => {
-          if (res.status === 504) {
-            const { history } = this.props;
-            history.push('/maintenance');
-          }
-          return res;
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            navigations: res._navigations[0]._element,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error);
+    login()
+      .then(() =>
+        fetch(`${Config.cortexApi.path}?zoom=${zoomArray.join()}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+          })
+      )
+      .then((res) => {
+        if (res.status === 504) {
           const { history } = this.props;
           history.push('/maintenance');
+        }
+        return res;
+      })
+      .then(res => res.json())
+      .then((res) => {
+        this.setState({
+          navigations: res._navigations[0]._element,
         });
-    })
+      })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error);
