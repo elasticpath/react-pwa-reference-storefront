@@ -44,15 +44,13 @@ class AppHeaderNavigationMain extends React.Component {
 
   componentWillMount() {
     login()
-      .then(() =>
-        fetch(`${Config.cortexApi.path}?zoom=${zoomArray.join()}`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-          })
-      )
+      .then(() => fetch(`${Config.cortexApi.path}?zoom=${zoomArray.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        }))
       .then((res) => {
         if (res.status === 504) {
           const { history } = this.props;
