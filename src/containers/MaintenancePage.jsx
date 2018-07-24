@@ -52,7 +52,7 @@ function AboutUsPage() {
                     <img alt="home-espot-1" className="home-espot-1" src={doge} />
                   </div>
                   <h2 className="static-dog-name">
-                    Mokie
+                    Moki
                   </h2>
                 </div>
               </div>
