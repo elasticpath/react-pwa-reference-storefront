@@ -40,29 +40,37 @@ const PurchaseDetailsMain = (props) => {
   const orderTaxTotal = data['tax-total'].display;
   const orderPurchaseDate = data['purchase-date']['display-value'];
   const orderTotal = data['monetary-total'][0].display;
+  const shipments = data._shipments;
+
   const renderShippingOption = () => {
-    const [option] = data._shipments[0]._element[0]._shippingoption;
-    return (
-      <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
-        <h3>
-          Shipping Option
-        </h3>
-        <ShippingOptionContainer option={option} />
-      </div>
-    );
+    if (shipments) {
+      const [option] = data._shipments[0]._element[0]._shippingoption;
+      return (
+        <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
+          <h3>
+            Shipping Option
+          </h3>
+          <ShippingOptionContainer option={option} />
+        </div>
+      );
+    }
+    return null;
   };
 
   const renderShippingAddress = () => {
-    const [shippingAddress] = data._shipments[0]._element[0]._destination;
-    const { name, address } = shippingAddress;
-    return (
-      <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
-        <h3>
-          Shipping Address
-        </h3>
-        <AddressContainer name={name} address={address} />
-      </div>
-    );
+    if (shipments) {
+      const [shippingAddress] = data._shipments[0]._element[0]._destination;
+      const { name, address } = shippingAddress;
+      return (
+        <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
+          <h3>
+            Shipping Address
+          </h3>
+          <AddressContainer name={name} address={address} />
+        </div>
+      );
+    }
+    return null;
   };
 
   const renderBillingAddress = () => {

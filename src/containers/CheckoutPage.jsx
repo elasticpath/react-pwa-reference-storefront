@@ -210,21 +210,28 @@ class CheckoutPage extends React.Component {
   }
 
   renderShippingAddressSelector() {
-    return (
-      <div data-region="shippingAddressesRegion" style={{ display: 'block' }}>
-        <div>
-          <h2>
-            Shipping Address
-          </h2>
-          <div data-region="shippingAddressSelectorsRegion" className="checkout-region-inner-container">
-            {this.renderShippingAddress()}
+    const { orderData } = this.state;
+    const deliveries = orderData._order[0]._deliveries;
+    const { messages } = orderData._order[0];
+    const needShipmentDetails = messages.find(message => message.id === 'need.shipment.details');
+    if (needShipmentDetails || deliveries) {
+      return (
+        <div data-region="shippingAddressesRegion" style={{ display: 'block' }}>
+          <div>
+            <h2>
+              Shipping Address
+            </h2>
+            <div data-region="shippingAddressSelectorsRegion" className="checkout-region-inner-container">
+              {this.renderShippingAddress()}
+            </div>
+            <button className="btn btn-primary checkout-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
+              Add a New Address
+            </button>
           </div>
-          <button className="btn btn-primary checkout-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
-            Add a New Address
-          </button>
         </div>
-      </div>
-    );
+      );
+    }
+    return null;
   }
 
   renderShippingOptions() {
@@ -273,7 +280,10 @@ class CheckoutPage extends React.Component {
 
   renderShippingOptionsSelector() {
     const { orderData } = this.state;
-    if (orderData._order[0]._deliveries && orderData._order[0]._deliveries[0]._element[0]._destinationinfo) {
+    const deliveries = orderData._order[0]._deliveries;
+    const { messages } = orderData._order[0];
+    const needShipmentDetails = messages.find(message => message.id === 'need.shipment.details');
+    if (needShipmentDetails || (deliveries && deliveries[0]._element[0]._destinationinfo)) {
       return (
         <div>
           <h2>

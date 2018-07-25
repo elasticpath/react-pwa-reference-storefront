@@ -132,29 +132,37 @@ class OrderReviewPage extends React.Component {
 
   renderShippingOption() {
     const { orderData } = this.state;
-    const [option] = orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption;
-    return (
-      <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
-        <h3>
-          Shipping Option
-        </h3>
-        <ShippingOptionContainer option={option} />
-      </div>
-    );
+    const deliveries = orderData._order[0]._deliveries;
+    if (deliveries) {
+      const [option] = orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption;
+      return (
+        <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
+          <h3>
+            Shipping Option
+          </h3>
+          <ShippingOptionContainer option={option} />
+        </div>
+      );
+    }
+    return null;
   }
 
   renderShippingAddress() {
     const { orderData } = this.state;
-    const [shippingAddress] = orderData._order[0]._deliveries[0]._element[0]._destinationinfo[0]._destination;
-    const { name, address } = shippingAddress;
-    return (
-      <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
-        <h3>
-          Shipping Address
-        </h3>
-        <AddressContainer name={name} address={address} />
-      </div>
-    );
+    const deliveries = orderData._order[0]._deliveries;
+    if (deliveries) {
+      const [shippingAddress] = orderData._order[0]._deliveries[0]._element[0]._destinationinfo[0]._destination;
+      const { name, address } = shippingAddress;
+      return (
+        <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
+          <h3>
+            Shipping Address
+          </h3>
+          <AddressContainer name={name} address={address} />
+        </div>
+      );
+    }
+    return null;
   }
 
   renderBillingAddress() {
