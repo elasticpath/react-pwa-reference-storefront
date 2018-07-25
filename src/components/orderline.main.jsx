@@ -37,6 +37,18 @@ class OrderLine extends React.Component {
     const {
       purchase,
     } = this.state;
+    const { status } = purchase.status;
+    let statusString;
+    switch (status) {
+      case 'CANCELLED':
+        statusString = 'Cancelled';
+        break;
+      case 'COMPLETED':
+        statusString = 'Completed';
+        break;
+      default:
+        statusString = 'In Progress';
+    }
     return (
       <tr>
         <td data-el-value="purchase.number" className="profile-purchase-number">
@@ -51,7 +63,7 @@ class OrderLine extends React.Component {
           {purchase['monetary-total'][0].display}
         </td>
         <td data-el-value="purchase.status" className="profile-purchase-status">
-          {purchase.status.replace(/_/g, ' ').toLowerCase()}
+          {statusString}
         </td>
       </tr>
     );

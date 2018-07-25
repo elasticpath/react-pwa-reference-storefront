@@ -86,7 +86,19 @@ module.exports = {
   },
   plugins: [
     HtmlWebpackPluginConfig,
-    new WorkboxPlugin.GenerateSW(),
+    new WorkboxPlugin.GenerateSW({
+      exclude: [
+        /app\.js$/,
+        /runtime\.js$/,
+        /vendors~app\.js$/,
+      ],
+      runtimeCaching: [
+        {
+          urlPattern: /\.(?:js|css|html)$/,
+          handler: 'networkFirst',
+        },
+      ],
+    }),
     new WebpackPwaManifest({
       name: 'Vestri Reference Storefront',
       short_name: 'Vestri',
