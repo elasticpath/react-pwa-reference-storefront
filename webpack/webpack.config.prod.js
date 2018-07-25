@@ -36,7 +36,7 @@ module.exports = merge(baseConfig, {
     compress: true,
     proxy: {
       '/cortex': {
-        target: epConfig.cortexApi.proxyUrl,
+        target: epConfig.cortexApi.pathForProxy,
       },
     },
   },
