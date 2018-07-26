@@ -37,7 +37,7 @@ class OrderHistoryMain extends React.Component {
     const {
       purchases,
     } = this.state;
-    if (purchases.links.length > 0) {
+    if (purchases.links && purchases.links.length > 0) {
       return (
         <div data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
           <div className="table-responsive">
@@ -71,7 +71,20 @@ class OrderHistoryMain extends React.Component {
         </div>
       );
     }
-    return (<div className="loader" />);
+    return (
+      <div data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
+        <div className="table-responsive">
+          <h2>
+            Purchase History
+          </h2>
+          <div>
+            <p>
+              You have no previous purchases.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
