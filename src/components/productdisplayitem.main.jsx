@@ -332,7 +332,6 @@ class ProductDisplayItemMain extends React.Component {
                   </tbody>
                 </table>
               </div>
-              <ProductRecommendationsDisplayMain productData={productData} />
             </div>
 
             <div className="itemdetail-addtocart col-xs-12 col-sm-10 col-md-6 col-lg-3">
@@ -397,6 +396,7 @@ class ProductDisplayItemMain extends React.Component {
               </div>
             </div>
           </div>
+          <ProductRecommendationsDisplayMain productData={productData} />
         </div>
       );
     }

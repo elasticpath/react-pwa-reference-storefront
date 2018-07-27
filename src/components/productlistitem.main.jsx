@@ -107,7 +107,7 @@ class ProductListItemMain extends React.Component {
         }
       }
       return (
-        <div className="category-item-inner" style={{ minHeight: '348.59px' }}>
+        <div className="category-item-inner">
           <div className="category-item-thumbnail-container">
             <img src={Config.skuImagesS3Url.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
           </div>
