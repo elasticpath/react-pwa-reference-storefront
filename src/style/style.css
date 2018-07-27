@@ -8532,6 +8532,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   border-radius: 5px;
   border: 1px solid #dddddd;
   background: #eeeeee;
+  min-height: 348.59px;
   /* Old browsers */
 
   background: -moz-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
