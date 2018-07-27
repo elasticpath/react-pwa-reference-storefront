@@ -21,6 +21,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -44,7 +45,7 @@ class AppHeaderNavigationMain extends React.Component {
 
   componentWillMount() {
     login()
-      .then(() => fetch(`${Config.cortexApi.path}?zoom=${zoomArray.join()}`,
+      .then(() => cortexFetch(`${Config.cortexApi.path}?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',

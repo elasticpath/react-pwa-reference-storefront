@@ -19,6 +19,7 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { login } from '../utils/AuthService';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -115,7 +116,7 @@ class PaymentFormMain extends React.Component {
     }
     // set link based on savetoprofile
     login().then(() => {
-      fetch(link, {
+      cortexFetch(link, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -146,7 +147,7 @@ class PaymentFormMain extends React.Component {
 
   fetchPaymentForms() {
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform`, {
+      cortexFetch(`${Config.cortexApi.path}/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),

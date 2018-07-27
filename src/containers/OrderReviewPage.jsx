@@ -26,6 +26,7 @@ import ShippingOptionContainer from '../components/shippingoption.container';
 import AddressContainer from '../components/address.container';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import OrderTableMain from '../components/ordertable.main';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -76,7 +77,7 @@ class OrderReviewPage extends React.Component {
 
   fetchOrderData() {
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
+      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -112,7 +113,7 @@ class OrderReviewPage extends React.Component {
     const { history } = this.props;
     const purchaseform = orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').href;
     login().then(() => {
-      fetch(`${purchaseform}?followlocation&zoom=${purchaseZoomArray.join()}`, {
+      cortexFetch(`${purchaseform}?followlocation&zoom=${purchaseZoomArray.join()}`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

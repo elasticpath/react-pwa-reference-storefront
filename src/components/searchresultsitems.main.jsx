@@ -22,6 +22,7 @@ import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
 import ProductListPaginationTop from './productlistpaginationtop.main';
 import ProductListPaginationBottom from './productlistpaginationbottom.main';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -67,7 +68,7 @@ class SearchResultsItemsMain extends React.Component {
   getSearchData() {
     const { searchKeywordsProps } = this.props;
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/?zoom=searches:keywordsearchform&followlocation`,
+      cortexFetch(`${Config.cortexApi.path}/?zoom=searches:keywordsearchform&followlocation`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -79,7 +80,7 @@ class SearchResultsItemsMain extends React.Component {
           const searchLink = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction');
           searchForm = searchLink.href;
         }).then(() => {
-          fetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
+          cortexFetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
             {
               method: 'post',
               headers: {

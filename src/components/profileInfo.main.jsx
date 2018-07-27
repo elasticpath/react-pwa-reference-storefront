@@ -19,6 +19,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -68,7 +69,7 @@ class ProfileInfoMain extends React.Component {
       firstName, lastName,
     } = this.state;
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/`, {
+      cortexFetch(`${Config.cortexApi.path}/`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -76,14 +77,14 @@ class ProfileInfoMain extends React.Component {
       }).then(res => res.json())
         .then((res) => {
           const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
-          fetch(`${profileNameLink.href}?followlocation`, {
+          cortexFetch(`${profileNameLink.href}?followlocation`, {
             headers: {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
             },
           }).then(linkRes => linkRes.json())
             .then((linkRes) => {
-              fetch(linkRes.self.href, {
+              cortexFetch(linkRes.self.href, {
                 method: 'put',
                 headers: {
                   'Content-Type': 'application/json',

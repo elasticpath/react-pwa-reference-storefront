@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from './appheadersearch.main';
 import AppHeaderLoginMain from './appheaderlogin.main';
 import AppModalLoginMain from './appmodallogin.main';
+import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
 import headerLogo from '../images/Company-Logo-v1.png';
 
@@ -74,6 +75,7 @@ class AppHeaderMain extends React.Component {
                   </li>
                 </ul>
                 <AppHeaderSearchMain />
+                <AppHeaderLocaleMain />
                 <AppHeaderNavigationMain />
               </div>
             )}

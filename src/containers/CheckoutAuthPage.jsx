@@ -21,6 +21,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { login, loginRegistered } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -83,7 +84,7 @@ class CheckoutAuthPage extends React.Component {
     const { history } = this.props;
     login().then(() => {
       let emailForm;
-      fetch(`${Config.cortexApi.path}/?zoom=defaultprofile:emails:emailform`, {
+      cortexFetch(`${Config.cortexApi.path}/?zoom=defaultprofile:emails:emailform`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -94,7 +95,7 @@ class CheckoutAuthPage extends React.Component {
           emailForm = res._defaultprofile[0]._emails[0]._emailform[0].links.find(link => link.rel === 'createemailaction').href;
         })
         .then(() => {
-          fetch(emailForm, {
+          cortexFetch(emailForm, {
             method: 'post',
             headers: {
               'Content-Type': 'application/json',

@@ -22,6 +22,7 @@ import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
 import ProductListPaginationTop from './productlistpaginationtop.main';
 import ProductListPaginationBottom from './productlistpaginationbottom.main';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -41,7 +42,7 @@ class CategoryItemsMain extends React.Component {
   componentDidMount() {
     const { categoryUrl } = this.props;
     login().then(() => {
-      fetch(`${Config.cortexApi.path + categoryUrl}?zoom=items`,
+      cortexFetch(`${Config.cortexApi.path + categoryUrl}?zoom=items`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ class CategoryItemsMain extends React.Component {
     const { selfUri } = this.state;
     if (Config.cortexApi.path + selfUri !== nextProps.categoryUrl) {
       login().then(() => {
-        fetch(`${Config.cortexApi.path + nextProps.categoryUrl}?zoom=items`,
+        cortexFetch(`${Config.cortexApi.path + nextProps.categoryUrl}?zoom=items`,
           {
             headers: {
               'Content-Type': 'application/json',

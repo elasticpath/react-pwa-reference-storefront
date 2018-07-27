@@ -23,6 +23,7 @@ import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -74,7 +75,7 @@ class ProductDisplayItemMain extends React.Component {
   componentDidMount() {
     const { productUrl } = this.props;
     login().then(() => {
-      fetch(Config.cortexApi.path + productUrl + (productUrl.includes('zoom') ? '' : '?zoom=') + zoomArray.join(),
+      cortexFetch(Config.cortexApi.path + productUrl + (productUrl.includes('zoom') ? '' : '?zoom=') + zoomArray.join(),
         {
           headers: {
             'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ class ProductDisplayItemMain extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     login().then(() => {
-      fetch(Config.cortexApi.path + nextProps.productUrl,
+      cortexFetch(Config.cortexApi.path + nextProps.productUrl,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -124,7 +125,7 @@ class ProductDisplayItemMain extends React.Component {
     const selfUri = event.target.value;
     const { history } = this.props;
     login().then(() => {
-      fetch(`${Config.cortexApi.path + selfUri}?followlocation&zoom=${zoomArray.join()}`,
+      cortexFetch(`${Config.cortexApi.path + selfUri}?followlocation&zoom=${zoomArray.join()}`,
         {
           method: 'post',
           headers: {
@@ -149,7 +150,7 @@ class ProductDisplayItemMain extends React.Component {
     const { history } = this.props;
     login().then(() => {
       const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      fetch(addToCartLink.href,
+      cortexFetch(addToCartLink.href,
         {
           method: 'post',
           headers: {

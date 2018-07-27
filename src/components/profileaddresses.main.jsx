@@ -21,6 +21,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -43,7 +44,7 @@ class ProfileAddressesMain extends React.Component {
 
   handleDelete(link) {
     login().then(() => {
-      fetch(link, {
+      cortexFetch(link, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',

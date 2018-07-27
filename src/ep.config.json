@@ -1,8 +1,30 @@
 {
   "cortexApi":{
-    "path":"http://localhost:8080/cortex",
-    "scope":"vestri",
-    "pathForProxy":"http://localhost:9080"
+    "path":"http://localhost:7080/cortex",
+    "scope":"mobee",
+    "pathForProxy":"http://localhost:7080"
   },
+  "supportedLocales": [
+    {
+      "value": "en-CA",
+      "name": "English"
+    },
+    {
+      "value": "fr-FR",
+      "name": "French"
+    }
+  ],
+  "defaultLocaleValue": "en-CA",
+  "supportedCurrencies": [
+    {
+      "value": "CAD",
+      "name": "Canadian Dollar"
+    },
+    {
+      "value": "EUR",
+      "name": "Euro"
+    }
+  ],
+  "defaultCurrencyValue": "CAD",
   "skuImagesS3Url":"https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png"
 }

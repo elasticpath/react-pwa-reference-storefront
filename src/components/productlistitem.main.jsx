@@ -21,6 +21,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -58,7 +59,7 @@ class ProductListItemMain extends React.Component {
   componentDidMount() {
     const { productUrl } = this.props;
     login().then(() => {
-      fetch(`${Config.cortexApi.path + productUrl}?zoom=${zoomArray.join()}`,
+      cortexFetch(`${Config.cortexApi.path + productUrl}?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',

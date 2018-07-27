@@ -19,6 +19,7 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { login } from '../utils/AuthService';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -120,7 +121,7 @@ class AddressFormMain extends React.Component {
       methodType = 'post';
     }
     login().then(() => {
-      fetch(link, {
+      cortexFetch(link, {
         method: methodType,
         headers: {
           'Content-Type': 'application/json',
@@ -157,7 +158,7 @@ class AddressFormMain extends React.Component {
 
   fetchGeoData() {
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/geographies/${Config.cortexApi.scope}/countries?zoom=${zoomArray.join()}`, {
+      cortexFetch(`${Config.cortexApi.path}/geographies/${Config.cortexApi.scope}/countries?zoom=${zoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -178,7 +179,7 @@ class AddressFormMain extends React.Component {
 
   fetchAddressData(addressLink) {
     login().then(() => {
-      fetch(addressLink, {
+      cortexFetch(addressLink, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -202,7 +203,7 @@ class AddressFormMain extends React.Component {
 
   fetchAddressForm() {
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/?zoom=defaultprofile:addresses:addressform`, {
+      cortexFetch(`${Config.cortexApi.path}/?zoom=defaultprofile:addresses:addressform`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),

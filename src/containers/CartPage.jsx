@@ -23,6 +23,7 @@ import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import CartMain from '../components/cart.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -67,7 +68,7 @@ class CartPage extends React.Component {
 
   fetchCartData() {
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`, {
+      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),

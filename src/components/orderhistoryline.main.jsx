@@ -19,6 +19,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -62,7 +63,7 @@ class OrderHistoryLineMain extends React.Component {
   componentDidMount() {
     const { orderHistoryLineUrlProps } = this.props;
     login().then(() => {
-      fetch(`${Config.cortexApi.path + orderHistoryLineUrlProps}?zoom=${zoomArray.join()}`,
+      cortexFetch(`${Config.cortexApi.path + orderHistoryLineUrlProps}?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',

@@ -24,6 +24,7 @@ import ProfileInfoMain from '../components/profileInfo.main';
 import OrderHistoryMain from '../components/orderhistory.main';
 import ProfileAddressesMain from '../components/profileaddresses.main';
 import ProfilePaymentMethodsMain from '../components/profilepaymentmethods.main';
+import cortextFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -56,7 +57,7 @@ class ProfilePage extends React.Component {
 
   fetchProfileData() {
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
+      cortextFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',

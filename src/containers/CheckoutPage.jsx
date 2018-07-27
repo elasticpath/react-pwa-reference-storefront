@@ -25,6 +25,7 @@ import CheckoutSummaryList from '../components/checkout.summarylist';
 import AddressContainer from '../components/address.container';
 import ShippingOptionContainer from '../components/shippingoption.container';
 import PaymentMethodContainer from '../components/paymentmethod.container';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -74,7 +75,7 @@ class CheckoutPage extends React.Component {
 
   fetchOrderData() {
     login().then(() => {
-      fetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
+      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -106,7 +107,7 @@ class CheckoutPage extends React.Component {
 
   handleDelete(link) {
     login().then(() => {
-      fetch(link, {
+      cortexFetch(link, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',
@@ -123,7 +124,7 @@ class CheckoutPage extends React.Component {
 
   handleChange(link) {
     login().then(() => {
-      fetch(link, {
+      cortexFetch(link, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
