@@ -56,7 +56,7 @@
     "workbox-webpack-plugin": "^3.4.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --config=webpack/webpack.config.dev.js --mode development",
+    "start": "webpack-dev-server --config=webpack/webpack.config.dev.js --mode development --host 0.0.0.0",
     "start-prod": "webpack-dev-server --config=webpack/webpack.config.prod.js --mode production",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
