@@ -16,6 +16,8 @@
  *
  */
 
+import cortexFetch from './Cortex';
+
 const Config = require('Config');
 
 let userFormBody = [];
@@ -44,7 +46,7 @@ export function login() {
       };
       generateFormBody(publicUserDetails);
 
-      fetch(`${Config.cortexApi.path}/oauth2/tokens`, {
+      cortexFetch(`${Config.cortexApi.path}/oauth2/tokens`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -83,7 +85,7 @@ export function loginRegistered(username, password) {
 
       generateFormBody(registeredUserDetails);
 
-      fetch(`${Config.cortexApi.path}/oauth2/tokens`, {
+      cortexFetch(`${Config.cortexApi.path}/oauth2/tokens`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -119,7 +121,7 @@ export function loginRegistered(username, password) {
 
 export function logout() {
   return new Promise(((resolve, reject) => {
-    fetch(`${Config.cortexApi.path}/oauth2/tokens`, {
+    cortexFetch(`${Config.cortexApi.path}/oauth2/tokens`, {
       method: 'delete',
     }).then((res) => {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
@@ -137,7 +139,7 @@ export function logout() {
 
 export function getRegistrationForm() {
   return new Promise(((resolve, reject) => {
-    fetch(`${Config.cortexApi.path}/?zoom=newaccountform`,
+    cortexFetch(`${Config.cortexApi.path}/?zoom=newaccountform`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -160,7 +162,7 @@ export function getRegistrationForm() {
 
 export function registerUser(lastname, firstname, username, password) {
   return new Promise(((resolve, reject) => {
-    fetch(newaccountform, {
+    cortexFetch(newaccountform, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

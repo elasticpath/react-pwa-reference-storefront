@@ -22,6 +22,7 @@ import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
+import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -57,7 +58,7 @@ class OrderHistoryPage extends React.Component {
     const { match } = this.props;
     const uri = decodeURIComponent(match.params.url);
     login().then(() => {
-      fetch(`${Config.cortexApi.path + uri}?zoom=${zoomArray.join()}`, {
+      cortexFetch(`${Config.cortexApi.path + uri}?zoom=${zoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
