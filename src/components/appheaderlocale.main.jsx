@@ -59,7 +59,6 @@ class AppHeaderLocaleMain extends React.Component {
     const title = `${selectedLocale.name.substring(0, 2)}/${selectedCurrencyValue}`;
 
     return (
-      // <div className="v">f</div>
       <div className="main-locale-container">
         <Dropdown ref={this.dropdownRef}>
           <DropdownTrigger>
