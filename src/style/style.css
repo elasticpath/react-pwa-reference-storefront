@@ -3691,6 +3691,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   .container > .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
+    position: relative;
   }
 }
 .navbar-static-top {
@@ -6447,7 +6448,7 @@ fieldset[disabled] .btn-auth-login.active {
 }
 .main-nav-container {
   display: block;
-  position: absolute;
+  position: relative;
   left: 15px;
   right: 15px;
   bottom: 0;
@@ -6471,7 +6472,7 @@ fieldset[disabled] .btn-auth-login.active {
   }
 }
 .logo-container {
-  position: relative;
+  position: absolute;
   width: 200px;
   margin: 15px 0 0 41px;
   z-index: 1031;
@@ -6522,9 +6523,15 @@ fieldset[disabled] .btn-auth-login.active {
     margin-right: -20px;
   }
 }
+@media (max-width: 768px) {
+  .logo-container {
+    position: relative
+  }
+}
 .global-nav-container {
-  position: absolute;
+  position: relative;
   display: inline-block;
+  float: right;
   top: 12px;
   right: 15px;
   /*
@@ -6755,8 +6762,8 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
   content: "\e008";
 }
 .main-search-container {
-  position: absolute;
-  right: 240px;
+  position: relative;
+  float: right;
   top: 15px;
   margin: 0 0 0 0;
 }
@@ -6766,12 +6773,6 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
 @media (max-width: 768px) {
   .container {
     max-width: 100%;
-  }
-}
-@media (min-width: 768px) and (max-width: 992px) {
-  .main-search-container {
-    top: 15px;
-    right: 215px;
   }
 }
 @media (max-width: 768px) {

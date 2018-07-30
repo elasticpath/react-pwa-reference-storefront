@@ -6,6 +6,7 @@ email, or any other method before making a change.
 Please note we have a code of conduct, please follow it in all your interactions with the project. 👍
 
 ### Reporting Bugs
+Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). Create an issue and provide the following information by filling in [the template](ISSUE_TEMPLATE.md).
 Bugs are tracked as [Support tickets](https://support.elasticpath.com/support/). Create an issue and provide the following information by filling in [the template](ISSUE_TEMPLATE.md).
 
 Explain the problem and include additional details to help maintainers reproduce the problem:
@@ -35,7 +36,7 @@ Ensure to review [how to submit a good enhancement suggestion](#how-do-i-submit-
 
 #### How Do I Submit A (Good) Enhancement Suggestion?
 
-Enhancement suggestions are tracked as [Support tickets](https://support.elasticpath.com/support/).Create an issue and provide the following information:
+Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/).Create an issue and provide the following information:
 
 * **Use a clear and descriptive title** for the issue to identify the suggestion.
 * **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
