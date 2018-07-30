@@ -9880,3 +9880,6 @@ border: #fff;
 .display .category-item-inner{
   word-break: normal;
 }
+.display .card-deck{
+  display:block;
+}
