@@ -6520,7 +6520,7 @@ fieldset[disabled] .btn-auth-login.active {
     margin-left: 0px;
   }
   .global-nav-container {
-    margin-right: -20px;
+    margin-right: -10px;
   }
 }
 @media (max-width: 768px) {
@@ -6533,7 +6533,7 @@ fieldset[disabled] .btn-auth-login.active {
   display: inline-block;
   float: right;
   top: 12px;
-  right: 15px;
+  right: 75px;
   /*
   // on small screen move global nav under search
   @media (min-width: @screen-sm) and (max-width: @screen-md) {
@@ -6770,7 +6770,7 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
   position: relative;
   float: right;
   top: 15px;
-  margin: 0 0 0 0;
+  margin: 0 50px 0 0;
 }
 .global-nav-cart-nav {
   padding-left: 10px !important;
@@ -6981,118 +6981,39 @@ textarea.header-search-input {
 
 .main-locale-container {
   position: absolute;
-  right: 130px;
-  top: 22px;
-  /* margin: 0 0 0 0; */
-}
-@media (max-width: 768px) {
-  .container {
-    max-width: 100%;
-  }
-}
-@media (min-width: 768px) and (max-width: 992px) {
-  .main-locale-container {
-    right: 110px;
-  }
+  right: 20px;
+  top: 28px;
 }
 @media (max-width: 768px) {
   .main-locale-container {
-    position: absolute;
-    top: 26px;
-    right: 130px;
+    top: 18px;
   }
 }
 
-.main-locale-container .dropdown .dropdown__trigger .trigger-content {
-  color: #fff;
-  padding: 6px 8px;
-  border: 1px solid transparent;
+.main-locale-container .locale-dropdown .dropdown-toggle {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
   border-radius: 3px;
-  cursor: pointer;
+  padding: 1px 5px;
+  color: #ffffff;
+  background-color: #040060;
 }
 
-.main-locale-container .dropdown .dropdown__trigger .trigger-content:hover {
-  border: 1px solid #fff;
+.main-locale-container .locale-dropdown-btn .dropdown-menu {
+  right: 0;
+  left: auto;
 }
 
-.main-locale-container .dropdown.dropdown--active .dropdown__trigger .trigger-content {
-  background: #fff;
-  color: #444;
-  border: 1px solid #fff;
-  border-radius: 3px 3px 0px 0px;
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
 }
 
-.main-locale-container .dropdown__content {
-  display: none;
-  position: absolute;
-  background: #fff;
-  border-top: 0px;
-  z-index: 10;
-  right: 0px;
-  border-radius: 3px 0px 3px 3px;
-  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.2);
-  /* padding: 20px; */
+.main-locale-container .locale-dropdown .dropdown-item.selected {
+  color: #070ca6;
 }
 
-.main-locale-container .dropdown--active .dropdown__content {
-  display: block;
-}
-
-
-.main-locale-container .dropdown__content .locale-currency-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.main-locale-container .dropdown__content .locale-currency-container .options {
-  padding-bottom: 10px;
-}
-
-.main-locale-container .dropdown__content .locale-currency-container .locale-pane {
-  border-right: 1px dotted #ddd;
-  width: 120px;
-}
-
-.main-locale-container .dropdown__content .locale-currency-container .currency-pane {
-  width: 180px;
-}
-
-/* locale */
-
-.main-locale-container .dropdown__content .locale-currency-container .title {
-  padding: 10px 15px;
-  color: #aaa;
-  /* font-style: italic; */
-}
-
-.main-locale-container .dropdown__content .locale-currency-container button {
-  position: relative;
-  padding: 5px 20px 5px 40px;
-  background: #fff;
-  border: none;
-  width: 100%;
-  outline: none;
-  text-align: left;
-}
-
-.main-locale-container .dropdown__content .locale-currency-container button .icon {
-  position: absolute;
-  left: 20px;
-  top: 5px;
-}
-
-.main-locale-container .dropdown__content .locale-currency-container button.selected {
-  font-weight: bold;
-  cursor: default;
-}
-
-.main-locale-container .dropdown__content .locale-currency-container button.not-selected {
-  cursor: pointer;
-}
-
-.main-locale-container .dropdown__content .locale-currency-container button.not-selected:hover {
-  background-color: #eee;
-}
 
 /* ======================== */
 /* NAVBAR                   */
@@ -9891,6 +9812,11 @@ ul {
   position: absolute;
   background-color: #ffffff;
 }
+
+.dropdown-menu.ddd {
+  right: 0;
+}
+
 .sub-category-dropdown-menu {
   position: absolute !important;
   text-align: center;

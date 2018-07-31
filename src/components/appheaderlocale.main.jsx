@@ -17,8 +17,6 @@
  */
 
 import React from 'react';
-import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as UserPrefs from '../utils/UserPrefs';
 
 const Config = require('Config');
@@ -31,15 +29,12 @@ class AppHeaderLocaleMain extends React.Component {
       selectedLocaleValue: UserPrefs.getSelectedLocaleValue(),
       selectedCurrencyValue: UserPrefs.getSelectedCurrencyValue(),
     };
-
-    this.dropdownRef = React.createRef();
   }
 
   handleLocaleClick(newLocaleValue) {
     this.setState({
       selectedLocaleValue: newLocaleValue,
     });
-    this.dropdownRef.current.hide();
     UserPrefs.setSelectedLocaleValue(newLocaleValue);
     window.location.reload();
   }
@@ -48,7 +43,6 @@ class AppHeaderLocaleMain extends React.Component {
     this.setState({
       selectedCurrencyValue: newCurrencyValue,
     });
-    this.dropdownRef.current.hide();
     UserPrefs.setSelectedCurrencyValue(newCurrencyValue);
     window.location.reload();
   }
@@ -60,61 +54,44 @@ class AppHeaderLocaleMain extends React.Component {
 
     return (
       <div className="main-locale-container">
-        <Dropdown ref={this.dropdownRef}>
-          <DropdownTrigger>
-            <div className="trigger-content">
-              {title}
+        <div className="locale-dropdown">
+          <button id="locale-dropdown-trigger" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {title}
+          </button>
+          <div className="dropdown-menu dropdown-menu-right dropdown-margin-right">
+            <h6 className="dropdown-header">
+              Language
+            </h6>
+            {Config.supportedLocales.map(locale => (
+              <button
+                type="button"
+                key={locale.value}
+                id={`locale-${locale.value}`}
+                className={`dropdown-item ${locale.value === selectedLocaleValue ? 'selected disabled' : 'not-selected'}`}
+                onClick={() => locale.value !== selectedLocaleValue && this.handleLocaleClick(locale.value)}
+              >
+                {locale.name}
+              </button>
+            ))}
+
+            <div className="dropdown-divider" />
+
+            <div className="dropdown-header">
+              Currency
             </div>
-          </DropdownTrigger>
-          <DropdownContent>
-            <div className="locale-currency-container">
-              <div className="locale-pane">
-                <div className="title">
-                  Language
-                </div>
-                <div className="options">
-                  {Config.supportedLocales.map(locale => (
-                    <button
-                      type="button"
-                      key={locale.value}
-                      className={`locale-item ${locale.value === selectedLocaleValue ? 'selected' : 'not-selected'}`}
-                      onClick={() => locale.value !== selectedLocaleValue && this.handleLocaleClick(locale.value)}
-                    >
-                      {locale.name}
-                      {locale.value === selectedLocaleValue && (
-                        <div className="icon">
-                          <FontAwesomeIcon icon="check" />
-                        </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="currency-pane">
-                <div className="title">
-                  Currency
-                </div>
-                <div className="options">
-                  {Config.supportedCurrencies.map(currency => (
-                    <button
-                      type="button"
-                      key={currency.value}
-                      className={`locale-item ${currency.value === selectedCurrencyValue ? 'selected' : 'not-selected'}`}
-                      onClick={() => currency.value !== selectedCurrencyValue && this.handleCurrencyClick(currency.value)}
-                    >
-                      {currency.name}
-                      {currency.value === selectedCurrencyValue && (
-                        <div className="icon">
-                          <FontAwesomeIcon icon="check" />
-                        </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </DropdownContent>
-        </Dropdown>
+            {Config.supportedCurrencies.map(currency => (
+              <button
+                type="button"
+                key={currency.value}
+                id={`currency-${currency.value}`}
+                className={`dropdown-item locale-item ${currency.value === selectedCurrencyValue ? 'selected disabled' : 'not-selected'}`}
+                onClick={() => currency.value !== selectedCurrencyValue && this.handleCurrencyClick(currency.value)}
+              >
+                {currency.name}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
