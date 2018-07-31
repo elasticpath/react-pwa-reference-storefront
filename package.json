@@ -73,6 +73,7 @@
     "eslint-config-airbnb": "^17.0.0",
     "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-loader": "^2.0.0",
+    "eslint-plugin-header": "^1.2.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-react": "^7.10.0",
