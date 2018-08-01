@@ -6704,6 +6704,7 @@ fieldset[disabled] .global-nav-container .global-nav-cart.active {
   padding: 1px 5px;
   color: #ffffff;
   background-color: #040060;
+  min-width: 66px;
 }
 .global-nav-container .global-nav-login:hover,
 .global-nav-container .global-nav-login:focus,
