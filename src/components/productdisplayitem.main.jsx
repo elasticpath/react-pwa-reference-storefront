@@ -189,7 +189,7 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   renderSkuSelection() {
-    const { productData } = this.state;
+    const { productData, isLoading } = this.state;
     if (productData._definition[0]._options) {
       return productData._definition[0]._options[0]._element.map(options => (
         <div key={options.name} className="form-group">

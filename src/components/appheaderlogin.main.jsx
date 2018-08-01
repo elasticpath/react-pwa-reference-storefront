@@ -45,7 +45,7 @@ class AppHeaderLoginMain extends React.Component {
   render() {
     if (AppHeaderLoginMain.isLoggedIn()) {
       return (
-        <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
+        <li data-region="authMenuItemRegion" className="authMenuItemRegion">
           <div className="auth-container">
             <div className="auth-container dropdown">
               <button className="btn btn-secondary dropdown-toggle global-nav-link global-nav-login btn-auth-menu" type="button" id="header_navbar_loggedIn_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,7 +75,7 @@ class AppHeaderLoginMain extends React.Component {
     }
 
     return (
-      <li data-region="authMenuItemRegion" style={{ display: 'inline-block' }}>
+      <li data-region="authMenuItemRegion" className="authMenuItemRegion">
         <div className="auth-container">
           <div className="auth-container">
             <button className="global-nav-link global-nav-login btn-auth-menu" id="header_navbar_login_button" type="button" data-toggle="modal" data-target="#login-modal">

@@ -3785,9 +3785,6 @@ textarea.input-group-sm > .input-group-btn > .btn {
     display: none;
   }
 }
-.navbar-nav {
-  margin: 7.5px -15px;
-}
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -6346,6 +6343,7 @@ fieldset[disabled] .btn-auth-login.active {
 .navbar.navbar-inverse .navbar-nav {
   border: 0;
   flex-direction: inherit;
+  width: 100%;
 }
 .navbar.navbar-inverse .navbar-nav .active a {
   background: rgba(0, 125, 170, 0.667);
@@ -6516,7 +6514,6 @@ fieldset[disabled] .btn-auth-login.active {
 }
 @media (min-width: 768px) and (max-width: 992px) {
   .logo-container {
-    margin-top: 33px;
     margin-left: 0px;
   }
   .global-nav-container {
@@ -6533,7 +6530,6 @@ fieldset[disabled] .btn-auth-login.active {
   display: inline-block;
   float: right;
   top: 12px;
-  right: 75px;
   /*
   // on small screen move global nav under search
   @media (min-width: @screen-sm) and (max-width: @screen-md) {
@@ -6575,7 +6571,7 @@ fieldset[disabled] .btn-auth-login.active {
   }
 }
 .global-nav-container li {
-  display: inline-block;
+  display: block;
   margin: 0 0 0 -4px;
   padding: 0;
   list-style-type: none;
@@ -6762,6 +6758,19 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
   content: "\e008";
 }
 
+.authMenuItemRegion {
+  display: inline-block !important;
+}
+
+@media (max-width: 488px) {
+  .authMenuItemRegion {
+    display: block !important;
+  }
+  .main-locale-container {
+    float: right;
+  }
+}
+
 /* ======================== */
 /* MAIN SEARCH CONTAINER    */
 /* ======================== */
@@ -6774,6 +6783,7 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
 }
 .global-nav-cart-nav {
   padding-left: 10px !important;
+  float: right;
 }
 @media (max-width: 768px) {
   .container {
@@ -6980,14 +6990,8 @@ textarea.header-search-input {
 /* ======================== */
 
 .main-locale-container {
-  position: absolute;
-  right: 20px;
-  top: 28px;
-}
-@media (max-width: 768px) {
-  .main-locale-container {
-    top: 18px;
-  }
+  position: relative;
+  display: inline-block;
 }
 
 .main-locale-container .locale-dropdown .dropdown-toggle {
@@ -6998,6 +7002,7 @@ textarea.header-search-input {
   padding: 1px 5px;
   color: #ffffff;
   background-color: #040060;
+  box-shadow: none;
 }
 
 .main-locale-container .locale-dropdown-btn .dropdown-menu {
