@@ -68,7 +68,7 @@ class CartPage extends React.Component {
 
   fetchCartData() {
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`, {
+      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.sort().join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),

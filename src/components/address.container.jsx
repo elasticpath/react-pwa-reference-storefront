@@ -44,6 +44,7 @@ const AddressContainer = (props) => {
         </span>
         <span className="address-country">
           {address['country-name']}
+          &nbsp;
         </span>
         <span className="address-postal-code">
           {address['postal-code']}

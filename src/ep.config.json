@@ -26,5 +26,6 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesS3Url":"https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png"
+  "skuImagesS3Url":"https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png",
+  "enableOfflineMode": true
 }

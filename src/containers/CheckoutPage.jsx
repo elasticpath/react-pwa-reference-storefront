@@ -76,7 +76,7 @@ class CheckoutPage extends React.Component {
 
   fetchOrderData() {
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
+      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.sort().join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -290,9 +290,7 @@ class CheckoutPage extends React.Component {
   renderShippingOptionsSelector() {
     const { orderData } = this.state;
     const deliveries = orderData._order[0]._deliveries;
-    const { messages } = orderData._order[0];
-    const needShipmentDetails = messages.find(message => message.id === 'need.shipment.details');
-    if (needShipmentDetails || (deliveries && deliveries[0]._element[0]._destinationinfo)) {
+    if (deliveries && deliveries[0]._element[0]._destinationinfo) {
       return (
         <div>
           <h2>

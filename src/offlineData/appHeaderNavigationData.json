@@ -1,0 +1,208 @@
+{
+  "self": {
+    "type": "elasticpath.collections.links",
+    "uri": "/?zoom=navigations:element,navigations:element:child",
+    "href": "http://localhost:8080/cortex/?zoom=navigations:element,navigations:element:child"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "defaultcart",
+      "type": "carts.default-cart",
+      "uri": "/carts/vestri/default",
+      "href": "http://localhost:8080/cortex/carts/vestri/default"
+    },
+    {
+      "rel": "data-policies",
+      "type": "datapolicies.data-policies",
+      "uri": "/datapolicies/vestri",
+      "href": "http://localhost:8080/cortex/datapolicies/vestri"
+    },
+    {
+      "rel": "lookups",
+      "type": "lookups.lookups",
+      "uri": "/lookups/vestri",
+      "href": "http://localhost:8080/cortex/lookups/vestri"
+    },
+    {
+      "rel": "navigations",
+      "type": "navigations.navigations",
+      "uri": "/navigations/vestri",
+      "href": "http://localhost:8080/cortex/navigations/vestri"
+    },
+    {
+      "rel": "defaultprofile",
+      "type": "profiles.default-profile",
+      "uri": "/profiles/vestri/default",
+      "href": "http://localhost:8080/cortex/profiles/vestri/default"
+    },
+    {
+      "rel": "newaccountform",
+      "type": "registrations.new-account-registration-form",
+      "uri": "/registrations/vestri/newaccount/form",
+      "href": "http://localhost:8080/cortex/registrations/vestri/newaccount/form"
+    },
+    {
+      "rel": "searches",
+      "type": "searches.searches",
+      "uri": "/searches/vestri",
+      "href": "http://localhost:8080/cortex/searches/vestri"
+    },
+    {
+      "rel": "defaultwishlist",
+      "type": "wishlists.default-wishlist",
+      "uri": "/wishlists/vestri/default",
+      "href": "http://localhost:8080/cortex/wishlists/vestri/default"
+    }
+  ],
+  "_navigations": [
+    {
+      "_element": [
+        {
+          "self": {
+            "type": "navigations.navigation",
+            "uri": "/navigations/vestri/sgzfmrktkrjesx2binbuku2tj5jesrkt=",
+            "href": "http://localhost:8080/cortex/navigations/vestri/sgzfmrktkrjesx2binbuku2tj5jesrkt="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "top",
+              "type": "navigations.navigations",
+              "uri": "/navigations/vestri",
+              "href": "http://localhost:8080/cortex/navigations/vestri"
+            },
+            {
+              "rel": "items",
+              "type": "searches.navigation-search-result",
+              "uri": "/searches/vestri/navigations/vestri/sgzfmrktkrjesx2binbuku2tj5jesrkt=/1",
+              "href": "http://localhost:8080/cortex/searches/vestri/navigations/vestri/sgzfmrktkrjesx2binbuku2tj5jesrkt=/1"
+            }
+          ],
+          "display-name": "Accessories",
+          "name": "VESTRI_ACCESSORIES"
+        },
+        {
+          "self": {
+            "type": "navigations.navigation",
+            "uri": "/navigations/vestri/sgzvmrktkrjesx2nivhfgx2bkbiecusfjq=",
+            "href": "http://localhost:8080/cortex/navigations/vestri/sgzvmrktkrjesx2nivhfgx2bkbiecusfjq="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "top",
+              "type": "navigations.navigations",
+              "uri": "/navigations/vestri",
+              "href": "http://localhost:8080/cortex/navigations/vestri"
+            },
+            {
+              "rel": "items",
+              "type": "searches.navigation-search-result",
+              "uri": "/searches/vestri/navigations/vestri/sgzvmrktkrjesx2nivhfgx2bkbiecusfjq=/1",
+              "href": "http://localhost:8080/cortex/searches/vestri/navigations/vestri/sgzvmrktkrjesx2nivhfgx2bkbiecusfjq=/1"
+            }
+          ],
+          "display-name": "Mens",
+          "name": "VESTRI_MENS_APPAREL"
+        },
+        {
+          "self": {
+            "type": "navigations.navigation",
+            "uri": "/navigations/vestri/sg2vmrktkrjesx2mifcesrktl5avaucbkjcuy=",
+            "href": "http://localhost:8080/cortex/navigations/vestri/sg2vmrktkrjesx2mifcesrktl5avaucbkjcuy="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "top",
+              "type": "navigations.navigations",
+              "uri": "/navigations/vestri",
+              "href": "http://localhost:8080/cortex/navigations/vestri"
+            },
+            {
+              "rel": "items",
+              "type": "searches.navigation-search-result",
+              "uri": "/searches/vestri/navigations/vestri/sg2vmrktkrjesx2mifcesrktl5avaucbkjcuy=/1",
+              "href": "http://localhost:8080/cortex/searches/vestri/navigations/vestri/sg2vmrktkrjesx2mifcesrktl5avaucbkjcuy=/1"
+            }
+          ],
+          "display-name": "Womens",
+          "name": "VESTRI_LADIES_APPAREL"
+        },
+        {
+          "self": {
+            "type": "navigations.navigation",
+            "uri": "/navigations/vestri/sgzvmrktkrjesx2ljfcfgx2bkbiecusfjq=",
+            "href": "http://localhost:8080/cortex/navigations/vestri/sgzvmrktkrjesx2ljfcfgx2bkbiecusfjq="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "top",
+              "type": "navigations.navigations",
+              "uri": "/navigations/vestri",
+              "href": "http://localhost:8080/cortex/navigations/vestri"
+            },
+            {
+              "rel": "items",
+              "type": "searches.navigation-search-result",
+              "uri": "/searches/vestri/navigations/vestri/sgzvmrktkrjesx2ljfcfgx2bkbiecusfjq=/1",
+              "href": "http://localhost:8080/cortex/searches/vestri/navigations/vestri/sgzvmrktkrjesx2ljfcfgx2bkbiecusfjq=/1"
+            }
+          ],
+          "display-name": "Kids",
+          "name": "VESTRI_KIDS_APPAREL"
+        },
+        {
+          "self": {
+            "type": "navigations.navigation",
+            "uri": "/navigations/vestri/sgzfmrktkrjesx2jnzbwc4sbmrsg63tt=",
+            "href": "http://localhost:8080/cortex/navigations/vestri/sgzfmrktkrjesx2jnzbwc4sbmrsg63tt="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "top",
+              "type": "navigations.navigations",
+              "uri": "/navigations/vestri",
+              "href": "http://localhost:8080/cortex/navigations/vestri"
+            },
+            {
+              "rel": "items",
+              "type": "searches.navigation-search-result",
+              "uri": "/searches/vestri/navigations/vestri/sgzfmrktkrjesx2jnzbwc4sbmrsg63tt=/1",
+              "href": "http://localhost:8080/cortex/searches/vestri/navigations/vestri/sgzfmrktkrjesx2jnzbwc4sbmrsg63tt=/1"
+            }
+          ],
+          "display-name": "Addons",
+          "name": "VESTRI_InCarAddons"
+        },
+        {
+          "self": {
+            "type": "navigations.navigation",
+            "uri": "/navigations/vestri/sg7vmrktkrjesx2qjrau4tsfirpu2qkjjzkektsbjzbukx2ljfkfg=",
+            "href": "http://localhost:8080/cortex/navigations/vestri/sg7vmrktkrjesx2qjrau4tsfirpu2qkjjzkektsbjzbukx2ljfkfg="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "top",
+              "type": "navigations.navigations",
+              "uri": "/navigations/vestri",
+              "href": "http://localhost:8080/cortex/navigations/vestri"
+            },
+            {
+              "rel": "items",
+              "type": "searches.navigation-search-result",
+              "uri": "/searches/vestri/navigations/vestri/sg7vmrktkrjesx2qjrau4tsfirpu2qkjjzkektsbjzbukx2ljfkfg=/1",
+              "href": "http://localhost:8080/cortex/searches/vestri/navigations/vestri/sg7vmrktkrjesx2qjrau4tsfirpu2qkjjzkektsbjzbukx2ljfkfg=/1"
+            }
+          ],
+          "display-name": "Planned Maintenance Kits",
+          "name": "VESTRI_PLANNED_MAINTENANCE_KITS"
+        }
+      ]
+    }
+  ]
+}

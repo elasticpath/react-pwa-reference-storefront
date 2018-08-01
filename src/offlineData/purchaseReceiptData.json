@@ -1,0 +1,413 @@
+{
+  "self": {
+    "type": "purchases.purchase",
+    "uri": "/purchases/vestri/giydamjz=?zoom=appliedpromotions:element,billingaddress,discount,lineitems:element,lineitems:element:options:element,lineitems:element:options:element:value,paymentmeans:element,shipments:element:destination,shipments:element:shippingoption",
+    "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=?zoom=appliedpromotions:element,billingaddress,discount,lineitems:element,lineitems:element:options:element,lineitems:element:options:element:value,paymentmeans:element,shipments:element:destination,shipments:element:shippingoption"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "coupons",
+      "type": "coupons.purchase-coupon-list",
+      "uri": "/coupons/purchases/vestri/giydamjz=",
+      "href": "http://localhost:8080/cortex/coupons/purchases/vestri/giydamjz="
+    },
+    {
+      "rel": "discount",
+      "rev": "purchase",
+      "type": "discounts.discount-for-purchase",
+      "uri": "/discounts/purchases/vestri/giydamjz=",
+      "href": "http://localhost:8080/cortex/discounts/purchases/vestri/giydamjz="
+    },
+    {
+      "rel": "appliedpromotions",
+      "rev": "purchase",
+      "type": "promotions.applied-promotions-for-purchase",
+      "uri": "/promotions/purchases/vestri/giydamjz=/applied",
+      "href": "http://localhost:8080/cortex/promotions/purchases/vestri/giydamjz=/applied"
+    },
+    {
+      "rel": "billingaddress",
+      "rev": "purchase",
+      "type": "purchases.purchase-billingaddress",
+      "uri": "/purchases/vestri/giydamjz=/billingaddress",
+      "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/billingaddress"
+    },
+    {
+      "rel": "lineitems",
+      "rev": "purchase",
+      "type": "purchases.purchase-line-items",
+      "uri": "/purchases/vestri/giydamjz=/lineitems",
+      "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems"
+    },
+    {
+      "rel": "paymentmeans",
+      "rev": "purchase",
+      "type": "purchases.purchase-paymentmeans",
+      "uri": "/purchases/vestri/giydamjz=/paymentmeans",
+      "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/paymentmeans"
+    },
+    {
+      "rel": "list",
+      "type": "purchases.purchases",
+      "uri": "/purchases/vestri",
+      "href": "http://localhost:8080/cortex/purchases/vestri"
+    },
+    {
+      "rel": "shipments",
+      "rev": "purchase",
+      "type": "shipments.shipments",
+      "uri": "/shipments/purchases/vestri/giydamjz=",
+      "href": "http://localhost:8080/cortex/shipments/purchases/vestri/giydamjz="
+    }
+  ],
+  "_appliedpromotions": [
+    {
+      "_element": [
+        {
+          "self": {
+            "type": "promotions.purchase-promotion",
+            "uri": "/promotions/purchases/vestri/giydamjz=/gfsdsmjuheydsljvgvrtsljuhaydgllbgbqtqljtgyytozbtg4zggzlgmm=",
+            "href": "http://localhost:8080/cortex/promotions/purchases/vestri/giydamjz=/gfsdsmjuheydsljvgvrtsljuhaydgllbgbqtqljtgyytozbtg4zggzlgmm="
+          },
+          "messages": [],
+          "links": [],
+          "display-description": "",
+          "display-name": "Winter Charge Promotion",
+          "name": "wintercharge"
+        }
+      ]
+    }
+  ],
+  "_billingaddress": [
+    {
+      "self": {
+        "type": "purchases.purchase-billingaddress",
+        "uri": "/purchases/vestri/giydamjz=/billingaddress",
+        "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/billingaddress"
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "purchase",
+          "rev": "billingaddress",
+          "type": "purchases.purchase",
+          "uri": "/purchases/vestri/giydamjz=",
+          "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz="
+        }
+      ],
+      "address": {
+        "country-name": "US",
+        "locality": "Miama",
+        "postal-code": "123456",
+        "region": "FL",
+        "street-address": "123 Abc St"
+      },
+      "name": {
+        "family-name": "Clark",
+        "given-name": "John"
+      }
+    }
+  ],
+  "_discount": [
+    {
+      "self": {
+        "type": "discounts.discount-for-purchase",
+        "uri": "/discounts/purchases/vestri/giydamjz=",
+        "href": "http://localhost:8080/cortex/discounts/purchases/vestri/giydamjz="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "purchase",
+          "rev": "discount",
+          "type": "purchases.purchase",
+          "uri": "/purchases/vestri/giydamjz=",
+          "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz="
+        }
+      ],
+      "discount": [
+        {
+          "amount": 10.80,
+          "currency": "USD",
+          "display": "$10.80"
+        }
+      ]
+    }
+  ],
+  "_lineitems": [
+    {
+      "_element": [
+        {
+          "self": {
+            "type": "purchases.purchase-line-item",
+            "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=",
+            "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "options",
+              "rev": "lineitem",
+              "type": "purchases.purchase-line-item-options",
+              "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options",
+              "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options"
+            },
+            {
+              "rel": "list",
+              "type": "purchases.purchase-line-items",
+              "uri": "/purchases/vestri/giydamjz=/lineitems",
+              "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems"
+            },
+            {
+              "rel": "purchase",
+              "type": "purchases.purchase",
+              "uri": "/purchases/vestri/giydamjz=",
+              "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz="
+            }
+          ],
+          "_options": [
+            {
+              "_element": [
+                {
+                  "self": {
+                    "type": "purchases.purchase-line-item-option",
+                    "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6u2jljcvgx2wivjviusj=",
+                    "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6u2jljcvgx2wivjviusj="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "list",
+                      "type": "purchases.purchase-line-item-options",
+                      "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options",
+                      "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options"
+                    },
+                    {
+                      "rel": "value",
+                      "rev": "option",
+                      "type": "purchases.purchase-line-item-option-value",
+                      "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/jvcuiskvjvpvmrktkrjes=",
+                      "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/jvcuiskvjvpvmrktkrjes="
+                    }
+                  ],
+                  "_value": [
+                    {
+                      "self": {
+                        "type": "purchases.purchase-line-item-option-value",
+                        "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/jvcuiskvjvpvmrktkrjes=",
+                        "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/jvcuiskvjvpvmrktkrjes="
+                      },
+                      "messages": [],
+                      "links": [
+                        {
+                          "rel": "option",
+                          "rev": "value",
+                          "type": "purchases.purchase-line-item-option",
+                          "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6u2jljcvgx2wivjviusj=",
+                          "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6u2jljcvgx2wivjviusj="
+                        }
+                      ],
+                      "display-name": "Medium",
+                      "name": "MEDIUM_VESTRI"
+                    }
+                  ],
+                  "display-name": "Size",
+                  "name": "APPAREL_SIZES_VESTRI",
+                  "option-id": "APPAREL_SIZES_VESTRI",
+                  "selected-value-id": "MEDIUM_VESTRI"
+                },
+                {
+                  "self": {
+                    "type": "purchases.purchase-line-item-option",
+                    "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6q2pjrhvex2wivjviusj=",
+                    "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6q2pjrhvex2wivjviusj="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "list",
+                      "type": "purchases.purchase-line-item-options",
+                      "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options",
+                      "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options"
+                    },
+                    {
+                      "rel": "value",
+                      "rev": "option",
+                      "type": "purchases.purchase-line-item-option-value",
+                      "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/i5jecwk7kzcvgvcsje=",
+                      "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/i5jecwk7kzcvgvcsje="
+                    }
+                  ],
+                  "_value": [
+                    {
+                      "self": {
+                        "type": "purchases.purchase-line-item-option-value",
+                        "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/i5jecwk7kzcvgvcsje=",
+                        "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/i5jecwk7kzcvgvcsje="
+                      },
+                      "messages": [],
+                      "links": [
+                        {
+                          "rel": "option",
+                          "rev": "value",
+                          "type": "purchases.purchase-line-item-option",
+                          "uri": "/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6q2pjrhvex2wivjviusj=",
+                          "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/lineitems/shmsiyzwmnsdcmddgiwtemlggiwtim3fmqwwcntcgywteytdgq4wcmjtgztgkni=/options/ififaqksivgf6q2pjrhvex2wivjviusj="
+                        }
+                      ],
+                      "display-name": "Gray",
+                      "name": "GRAY_VESTRI"
+                    }
+                  ],
+                  "display-name": "Color",
+                  "name": "APPAREL_COLOR_VESTRI",
+                  "option-id": "APPAREL_COLOR_VESTRI",
+                  "selected-value-id": "GRAY_VESTRI"
+                }
+              ]
+            }
+          ],
+          "configuration": {},
+          "line-extension-amount": [
+            {
+              "amount": 54.00,
+              "currency": "USD",
+              "display": "$54.00"
+            }
+          ],
+          "line-extension-tax": [
+            {
+              "amount": 2.59,
+              "currency": "USD",
+              "display": "$2.59"
+            }
+          ],
+          "line-extension-total": [
+            {
+              "amount": 56.59,
+              "currency": "USD",
+              "display": "$56.59"
+            }
+          ],
+          "name": "Women's CR550 Polo",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "_paymentmeans": [
+    {
+      "_element": [
+        {
+          "self": {
+            "type": "purchases.purchase-paymentmean",
+            "uri": "/purchases/vestri/giydamjz=/paymentmeans/gizdambqga=",
+            "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/paymentmeans/gizdambqga="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "list",
+              "type": "purchases.purchase-paymentmeans",
+              "uri": "/purchases/vestri/giydamjz=/paymentmeans",
+              "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz=/paymentmeans"
+            },
+            {
+              "rel": "purchase",
+              "type": "purchases.purchase",
+              "uri": "/purchases/vestri/giydamjz=",
+              "href": "http://localhost:8080/cortex/purchases/vestri/giydamjz="
+            }
+          ],
+          "display-name": "John Clark's American Express ending in: ****3456"
+        }
+      ]
+    }
+  ],
+  "_shipments": [
+    {
+      "_element": [
+        {
+          "_destination": [
+            {
+              "self": {
+                "type": "shipments.purchase-shipment-shipping-address",
+                "uri": "/shipments/purchases/vestri/giydamjz=/giydamjzfuyq=/shippingaddress",
+                "href": "http://localhost:8080/cortex/shipments/purchases/vestri/giydamjz=/giydamjzfuyq=/shippingaddress"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "shipment",
+                  "rev": "destination",
+                  "type": "shipments.shipment",
+                  "uri": "/shipments/purchases/vestri/giydamjz=/giydamjzfuyq=",
+                  "href": "http://localhost:8080/cortex/shipments/purchases/vestri/giydamjz=/giydamjzfuyq="
+                }
+              ],
+              "address": {
+                "country-name": "US",
+                "locality": "Miama",
+                "postal-code": "123456",
+                "region": "FL",
+                "street-address": "123 Abc St"
+              },
+              "name": {
+                "family-name": "Clark",
+                "given-name": "John"
+              }
+            }
+          ],
+          "_shippingoption": [
+            {
+              "self": {
+                "type": "shipments.purchase-shipment-shipping-option",
+                "uri": "/shipments/purchases/vestri/giydamjz=/giydamjzfuyq=/shippingoption",
+                "href": "http://localhost:8080/cortex/shipments/purchases/vestri/giydamjz=/giydamjzfuyq=/shippingoption"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "shipment",
+                  "rev": "shippingoption",
+                  "type": "shipments.shipment",
+                  "uri": "/shipments/purchases/vestri/giydamjz=/giydamjzfuyq=",
+                  "href": "http://localhost:8080/cortex/shipments/purchases/vestri/giydamjz=/giydamjzfuyq="
+                }
+              ],
+              "carrier": "Fed Ex",
+              "cost": [
+                {
+                  "amount": 29.99,
+                  "currency": "USD",
+                  "display": "$29.99"
+                }
+              ],
+              "display-name": "FedEx Shipping",
+              "name": "FedExShipping"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "monetary-total": [
+    {
+      "amount": 77.58,
+      "currency": "USD",
+      "display": "$77.58"
+    }
+  ],
+  "purchase-date": {
+    "display-value": "August 1, 2018 1:49:46 PM",
+    "value": 1533145786000
+  },
+  "purchase-number": "20019",
+  "status": "IN_PROGRESS",
+  "tax-total": {
+    "amount": 4.39,
+    "currency": "USD",
+    "display": "$4.39"
+  }
+}

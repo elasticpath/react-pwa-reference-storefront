@@ -67,7 +67,7 @@ class ProductListItemMain extends React.Component {
   componentDidMount() {
     const { productUrl } = this.props;
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path + productUrl}?zoom=${zoomArray.join()}`,
+      cortexFetch(`${Config.cortexApi.path + productUrl}?zoom=${zoomArray.sort().join()}`,
         {
           headers: {
             'Content-Type': 'application/json',

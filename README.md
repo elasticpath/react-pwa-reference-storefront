@@ -24,6 +24,8 @@ Name of store to retreive data from Cortex.
 Path to the actual Cortex service location provided to the webpack proxy. URL consisting of hostname and port to actual running instance of Cortex.
  - `skuImagesS3Url`, **required**, *string*:
  Path to catalog images hosted on S3 bucket. Set this to the full URL of your S3 images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
+ - `enableOfflineMode`, **optional**, *bool*:
+  Option to enable offline mode. When in offline mode, requests are fetched from static data instead of Cortex. Check out [how it works](#offline-mode)
 
 ### Setup (Development):
 1. Clone/pull this repo to a directory of your choosing
@@ -50,9 +52,38 @@ You can check out the style guide on [github](https://github.com/airbnb/javascri
 * To run the linter from your commandline first go to the project root directory and run the following command:
     * `./node_modules/.bin/eslint --ext .js --ext .jsx [file|dir|glob]`
         * Run on entire project: `./node_modules/.bin/eslint --ext .js --ext .jsx .`
-* With the ESLint extension for Visual Studio Code you'll get feedback while you're writing the code under the `Problems` View 
+* With the ESLint extension for Visual Studio Code you'll get feedback while you're writing the code under the `Problems` View
 
 If you plan to check in your code, make sure to fix all your linting errors first!
+
+### Offline Mode
+You can enable offline Mode in [`./src/ep.config.json`](#configuration)<br/>
+##### How it works
+The *mock magic* is contained in `./src/utils/Mock.js`<br/>
+The *mock data files* are stored in `./src/offlineData`<br/>
+At a high level, **Mock.js** uses a map of Requests to Responses to send the mock data, given a Request. Instead of doing a fetch call to a url, it does a lookup in the map to retrieve/return the mock data. If mock data cannot be found for a request, an Error is thrown.<br/>
+##### How to add/edit data
+If you're looking to create/modify mock data:<br/>
+* Start *Online* and perform the *flow* that you want to mock.<br/>
+* In your browser using Dev Tools, view the Network tab for requests made by your *flow*. Filter your requests using the **XHRF** or **XHR and Fetch** filter.<br/>
+* Copy the response directly from your request into a *.json* file under the `./src/offlineData` directory.<br/>
+* In `.src/utils/Mock.js` add a variable for your data: `const myData = require('../offlineData/myData.json')`<br/>
+* Finally add your data into the map: `mockData.set(myData.self.href, { status: myStatusCode, data: myData}`<br/>
+    * In the case of a **followlocation** you'll want to create a new variable for the request url, and use that instead of `myData.self.href`. This is because the responses include the *followed* url instead of the *request* url.<br/>
+     * In the case of a request that doesn't have a response you can add the request url with a status code, and empty data. (Check out forms in Mock.js as an example)
+##### Verifying your data
+Now that you've mocked up the data for your *flow*, it's time to go offline and verify! Enable [Offline Mode](#configuration) and restart your server.<br/>
+Go through your *flow* and verify everything works the same as Online. If there was something missed, there will be an error thrown in your *browser console* which will include the request it could not find the mock data for. Mock that request and you'll be able to continue!
+##### Out of the box flows
+Out of the box you get some mock data for the following flows, give them a shot!<br/>
+* You can search for "water" in the search bar, and view the products returned.
+* You can browse to "Womens" category and view the products from that category.
+* Under the "Womens" category, you can add "Women's CR550 Polo" to cart. *Note:* Currently you can only add Medium Grey as the options. Try mocking up the other skus!
+* You can check out the cart, there's one product already in there for viewing. *Note:* You won't be able to modify the cart, as it's response is static. `./src/offlineData/cartData.json`
+* From Cart, *Proceed To Checkout*, currently you can only **Continue without an account**
+* On the Checkout page there is mock data for Billing and Shipping Address as well as a payment method, which allows you to complete the order!
+    * After completing the order you're brought to the Order Review Page, you can complete the purchase to see the Purchase Receipt Page
+    * Purchase Receipt Page has all the information for your order displayed!
 
 ## Unit Tests (TBA)
 * Test json data can be found in `tests`

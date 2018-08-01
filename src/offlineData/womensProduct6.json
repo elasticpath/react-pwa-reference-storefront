@@ -1,0 +1,619 @@
+{
+  "self": {
+    "type": "elasticpath.items.item",
+    "uri": "/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=?zoom=addtocartform,availability,code,definition,definition:assets:element,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:recommendation,recommendations:replacement,recommendations:upsell,recommendations:warranty",
+    "href": "http://localhost:8080/cortex/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=?zoom=addtocartform,availability,code,definition,definition:assets:element,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:recommendation,recommendations:replacement,recommendations:upsell,recommendations:warranty"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "availability",
+      "rev": "item",
+      "type": "availabilities.availability-for-item",
+      "uri": "/availabilities/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+      "href": "http://localhost:8080/cortex/availabilities/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+    },
+    {
+      "rel": "addtocartform",
+      "type": "carts.add-to-default-cart-form",
+      "uri": "/carts/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/form",
+      "href": "http://localhost:8080/cortex/carts/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/form"
+    },
+    {
+      "rel": "cartmemberships",
+      "type": "carts.read-cart-memberships",
+      "uri": "/carts/memberships/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+      "href": "http://localhost:8080/cortex/carts/memberships/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+    },
+    {
+      "rel": "definition",
+      "rev": "item",
+      "type": "elasticpath.itemdefinitions.item-definition",
+      "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+      "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+    },
+    {
+      "rel": "code",
+      "rev": "item",
+      "type": "lookups.code-for-item",
+      "uri": "/lookups/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+      "href": "http://localhost:8080/cortex/lookups/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+    },
+    {
+      "rel": "price",
+      "rev": "item",
+      "type": "prices.price-for-item",
+      "uri": "/prices/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+      "href": "http://localhost:8080/cortex/prices/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+    },
+    {
+      "rel": "appliedpromotions",
+      "rev": "item",
+      "type": "promotions.applied-promotions-for-item",
+      "uri": "/promotions/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/applied",
+      "href": "http://localhost:8080/cortex/promotions/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/applied"
+    },
+    {
+      "rel": "recommendations",
+      "type": "recommendations.item-recommendation-groups",
+      "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+      "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+    },
+    {
+      "rel": "addtowishlistform",
+      "type": "wishlists.add-item-to-wishlist-form",
+      "uri": "/wishlists/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/form",
+      "href": "http://localhost:8080/cortex/wishlists/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/form"
+    },
+    {
+      "rel": "wishlistmemberships",
+      "type": "wishlists.read-wishlist-memberships",
+      "uri": "/wishlists/memberships/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+      "href": "http://localhost:8080/cortex/wishlists/memberships/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+    }
+  ],
+  "_addtocartform": [
+    {
+      "self": {
+        "type": "carts.add-to-default-cart-form",
+        "uri": "/carts/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/form",
+        "href": "http://localhost:8080/cortex/carts/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/form"
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "addtodefaultcartaction",
+          "type": "carts.add-to-default-cart-form",
+          "uri": "/carts/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/form",
+          "href": "http://localhost:8080/cortex/carts/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/form"
+        }
+      ],
+      "configuration": {},
+      "quantity": 0
+    }
+  ],
+  "_availability": [
+    {
+      "self": {
+        "type": "availabilities.availability-for-item",
+        "uri": "/availabilities/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+        "href": "http://localhost:8080/cortex/availabilities/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "item",
+          "rev": "availability",
+          "type": "items.item",
+          "uri": "/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+          "href": "http://localhost:8080/cortex/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+        }
+      ],
+      "state": "AVAILABLE"
+    }
+  ],
+  "_code": [
+    {
+      "self": {
+        "type": "lookups.code-for-item",
+        "uri": "/lookups/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+        "href": "http://localhost:8080/cortex/lookups/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "item",
+          "rev": "code",
+          "type": "items.item",
+          "uri": "/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+          "href": "http://localhost:8080/cortex/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+        }
+      ],
+      "code": "VESTRI_STRUCTURED_HAT_WH"
+    }
+  ],
+  "_definition": [
+    {
+      "self": {
+        "type": "elasticpath.itemdefinitions.item-definition",
+        "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+        "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "item",
+          "rev": "definition",
+          "type": "elasticpath.items.item",
+          "uri": "/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+          "href": "http://localhost:8080/cortex/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+        },
+        {
+          "rel": "options",
+          "rev": "definition",
+          "type": "elasticpath.collections.links",
+          "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options",
+          "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options"
+        },
+        {
+          "rel": "fromprice",
+          "rev": "definition",
+          "type": "prices.price-for-itemdefinition",
+          "uri": "/prices/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+          "href": "http://localhost:8080/cortex/prices/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+        }
+      ],
+      "_options": [
+        {
+          "_element": [
+            {
+              "self": {
+                "type": "elasticpath.itemdefinitions.option",
+                "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=",
+                "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "value",
+                  "rev": "option",
+                  "type": "elasticpath.itemdefinitions.value",
+                  "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq=",
+                  "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq="
+                },
+                {
+                  "rel": "list",
+                  "type": "elasticpath.collections.links",
+                  "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options",
+                  "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options"
+                },
+                {
+                  "rel": "selector",
+                  "rev": "option",
+                  "type": "elasticpath.controls.selector",
+                  "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/selector",
+                  "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/selector"
+                }
+              ],
+              "_selector": [
+                {
+                  "_chosen": [
+                    {
+                      "self": {
+                        "type": "elasticpath.collections.links",
+                        "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq=/selector",
+                        "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq=/selector"
+                      },
+                      "messages": [],
+                      "links": [
+                        {
+                          "rel": "description",
+                          "type": "elasticpath.itemdefinitions.value",
+                          "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq=",
+                          "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq="
+                        },
+                        {
+                          "rel": "selector",
+                          "type": "elasticpath.controls.selector",
+                          "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/selector",
+                          "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/selector"
+                        }
+                      ],
+                      "_description": [
+                        {
+                          "self": {
+                            "type": "elasticpath.itemdefinitions.value",
+                            "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq=",
+                            "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq="
+                          },
+                          "messages": [],
+                          "links": [
+                            {
+                              "rel": "option",
+                              "type": "elasticpath.itemdefinitions.option",
+                              "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=",
+                              "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj="
+                            }
+                          ],
+                          "display-name": "White",
+                          "name": "WHITE_VESTRI"
+                        }
+                      ],
+                      "_selector": [
+                        {
+                          "self": {
+                            "type": "elasticpath.controls.selector",
+                            "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/selector",
+                            "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/selector"
+                          },
+                          "messages": [],
+                          "links": [
+                            {
+                              "rel": "chosen",
+                              "rev": "selector",
+                              "type": "elasticpath.collections.links",
+                              "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq=/selector",
+                              "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq=/selector"
+                            },
+                            {
+                              "rel": "option",
+                              "rev": "selector",
+                              "type": "elasticpath.itemdefinitions.option",
+                              "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=",
+                              "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj="
+                            }
+                          ],
+                          "name": "option-value-selector",
+                          "selection-rule": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "_value": [
+                {
+                  "self": {
+                    "type": "elasticpath.itemdefinitions.value",
+                    "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq=",
+                    "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/k5eesvcfl5leku2ukjeq="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "option",
+                      "type": "elasticpath.itemdefinitions.option",
+                      "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj=",
+                      "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6q2pjrhvex2wivjviusj="
+                    }
+                  ],
+                  "display-name": "White",
+                  "name": "WHITE_VESTRI"
+                }
+              ],
+              "display-name": "Color",
+              "name": "APPAREL_COLOR_VESTRI"
+            },
+            {
+              "self": {
+                "type": "elasticpath.itemdefinitions.option",
+                "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=",
+                "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "value",
+                  "rev": "option",
+                  "type": "elasticpath.itemdefinitions.value",
+                  "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=",
+                  "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj="
+                },
+                {
+                  "rel": "list",
+                  "type": "elasticpath.collections.links",
+                  "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options",
+                  "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options"
+                },
+                {
+                  "rel": "selector",
+                  "rev": "option",
+                  "type": "elasticpath.controls.selector",
+                  "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/selector",
+                  "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/selector"
+                }
+              ],
+              "_selector": [
+                {
+                  "_chosen": [
+                    {
+                      "self": {
+                        "type": "elasticpath.collections.links",
+                        "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=/selector",
+                        "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=/selector"
+                      },
+                      "messages": [],
+                      "links": [
+                        {
+                          "rel": "description",
+                          "type": "elasticpath.itemdefinitions.value",
+                          "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=",
+                          "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj="
+                        },
+                        {
+                          "rel": "selector",
+                          "type": "elasticpath.controls.selector",
+                          "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/selector",
+                          "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/selector"
+                        }
+                      ],
+                      "_description": [
+                        {
+                          "self": {
+                            "type": "elasticpath.itemdefinitions.value",
+                            "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=",
+                            "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj="
+                          },
+                          "messages": [],
+                          "links": [
+                            {
+                              "rel": "option",
+                              "type": "elasticpath.itemdefinitions.option",
+                              "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=",
+                              "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj="
+                            }
+                          ],
+                          "display-name": "Fits All",
+                          "name": "FITS_ALL_VESTRI"
+                        }
+                      ],
+                      "_selector": [
+                        {
+                          "self": {
+                            "type": "elasticpath.controls.selector",
+                            "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/selector",
+                            "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/selector"
+                          },
+                          "messages": [],
+                          "links": [
+                            {
+                              "rel": "chosen",
+                              "rev": "selector",
+                              "type": "elasticpath.collections.links",
+                              "uri": "/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=/selector",
+                              "href": "http://localhost:8080/cortex/itemselections/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=/selector"
+                            },
+                            {
+                              "rel": "option",
+                              "rev": "selector",
+                              "type": "elasticpath.itemdefinitions.option",
+                              "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=",
+                              "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj="
+                            }
+                          ],
+                          "name": "option-value-selector",
+                          "selection-rule": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "_value": [
+                {
+                  "self": {
+                    "type": "elasticpath.itemdefinitions.value",
+                    "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=",
+                    "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "option",
+                      "type": "elasticpath.itemdefinitions.option",
+                      "uri": "/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj=",
+                      "href": "http://localhost:8080/cortex/itemdefinitions/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/options/ififaqksivgf6u2jljcvgx2wivjviusj="
+                    }
+                  ],
+                  "display-name": "Fits All",
+                  "name": "FITS_ALL_VESTRI"
+                }
+              ],
+              "display-name": "Size",
+              "name": "APPAREL_SIZES_VESTRI"
+            }
+          ]
+        }
+      ],
+      "details": [
+        {
+          "display-name": "Summary",
+          "display-value": "The Structured Hat is constructed with style in mind.  'T' logo across the front and the 2-part Velcro strap closure features a rubber tab in Vestri’s signature red.  One size fits most.",
+          "name": "summary",
+          "value": "The Structured Hat is constructed with style in mind.  'T' logo across the front and the 2-part Velcro strap closure features a rubber tab in Vestri’s signature red.  One size fits most."
+        },
+        {
+          "display-name": "Tag",
+          "display-value": "vestri:Womens/Hats, vestri:Mens/Hats",
+          "name": "tag",
+          "value": [
+            "vestri:Womens/Hats",
+            "vestri:Mens/Hats"
+          ]
+        }
+      ],
+      "display-name": "Structured Hat"
+    }
+  ],
+  "_price": [
+    {
+      "self": {
+        "type": "prices.price-for-item",
+        "uri": "/prices/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+        "href": "http://localhost:8080/cortex/prices/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "item",
+          "rev": "price",
+          "type": "items.item",
+          "uri": "/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+          "href": "http://localhost:8080/cortex/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+        }
+      ],
+      "list-price": [
+        {
+          "amount": 24.00,
+          "currency": "USD",
+          "display": "$24.00"
+        }
+      ],
+      "purchase-price": [
+        {
+          "amount": 24.00,
+          "currency": "USD",
+          "display": "$24.00"
+        }
+      ]
+    }
+  ],
+  "_recommendations": [
+    {
+      "self": {
+        "type": "recommendations.item-recommendation-groups",
+        "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=",
+        "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "accessory",
+          "type": "recommendations.item-recommendation-group",
+          "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/accessory",
+          "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/accessory"
+        },
+        {
+          "rel": "crosssell",
+          "type": "recommendations.item-recommendation-group",
+          "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/crosssell",
+          "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/crosssell"
+        },
+        {
+          "rel": "recommendation",
+          "type": "recommendations.item-recommendation-group",
+          "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/recommendation",
+          "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/recommendation"
+        },
+        {
+          "rel": "replacement",
+          "type": "recommendations.item-recommendation-group",
+          "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/replacement",
+          "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/replacement"
+        },
+        {
+          "rel": "upsell",
+          "type": "recommendations.item-recommendation-group",
+          "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/upsell",
+          "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/upsell"
+        },
+        {
+          "rel": "warranty",
+          "type": "recommendations.item-recommendation-group",
+          "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/warranty",
+          "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/warranty"
+        }
+      ],
+      "_crosssell": [
+        {
+          "self": {
+            "type": "recommendations.paginated-recommendations",
+            "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/crosssell",
+            "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/crosssell"
+          },
+          "messages": [],
+          "links": [],
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ],
+      "_recommendation": [
+        {
+          "self": {
+            "type": "recommendations.paginated-recommendations",
+            "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/recommendation",
+            "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/recommendation"
+          },
+          "messages": [],
+          "links": [],
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ],
+      "_replacement": [
+        {
+          "self": {
+            "type": "recommendations.paginated-recommendations",
+            "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/replacement",
+            "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/replacement"
+          },
+          "messages": [],
+          "links": [],
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ],
+      "_upsell": [
+        {
+          "self": {
+            "type": "recommendations.paginated-recommendations",
+            "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/upsell",
+            "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/upsell"
+          },
+          "messages": [],
+          "links": [],
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ],
+      "_warranty": [
+        {
+          "self": {
+            "type": "recommendations.paginated-recommendations",
+            "uri": "/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/warranty",
+            "href": "http://localhost:8080/cortex/recommendations/items/vestri/qgqvhocwivjviusjl5jviusvinkfkusfirpuqqkul5luq=/warranty"
+          },
+          "messages": [],
+          "links": [],
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ]
+    }
+  ]
+}

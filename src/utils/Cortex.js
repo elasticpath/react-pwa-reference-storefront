@@ -17,6 +17,9 @@
  */
 
 import * as UserPrefs from './UserPrefs';
+import mockFetch from './Mock';
+
+const Config = require('Config');
 
 function cortextFetch(input, init) {
   const requestInit = init;
@@ -25,6 +28,9 @@ function cortextFetch(input, init) {
     requestInit.headers['x-ep-user-traits'] = `LOCALE=${UserPrefs.getSelectedLocaleValue()}, CURRENCY=${UserPrefs.getSelectedCurrencyValue()}`;
   }
 
+  if (Config.enableOfflineMode) {
+    return mockFetch(input, requestInit);
+  }
   return fetch(input, requestInit);
 }
 

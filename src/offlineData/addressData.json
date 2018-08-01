@@ -1,0 +1,33 @@
+{
+  "self": {
+    "type": "addresses.address",
+    "uri": "/addresses/vestri/gi3tayrxhe4wgljwmfrgiljumnqwmljzgjswmljzhazgmolbgvrteojtgy=",
+    "href": "http://localhost:8080/cortex/addresses/vestri/gi3tayrxhe4wgljwmfrgiljumnqwmljzgjswmljzhazgmolbgvrteojtgy="
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "list",
+      "type": "addresses.addresses",
+      "uri": "/addresses/vestri",
+      "href": "http://localhost:8080/cortex/addresses/vestri"
+    },
+    {
+      "rel": "profile",
+      "type": "profiles.profile",
+      "uri": "/profiles/vestri/gnrgimbtmnstcllfg5stiljugnsdmljyhftdilldmnsdcnztgu4tcnzyge=",
+      "href": "http://localhost:8080/cortex/profiles/vestri/gnrgimbtmnstcllfg5stiljugnsdmljyhftdilldmnsdcnztgu4tcnzyge="
+    }
+  ],
+  "address": {
+    "country-name": "US",
+    "locality": "Miama",
+    "postal-code": "123456",
+    "region": "FL",
+    "street-address": "123 Abc St"
+  },
+  "name": {
+    "family-name": "Clark",
+    "given-name": "John"
+  }
+}
