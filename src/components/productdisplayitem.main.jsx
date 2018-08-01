@@ -66,6 +66,7 @@ class ProductDisplayItemMain extends React.Component {
       productData: undefined,
       itemQuantity: 1,
       addToCartFailedMessage: '',
+      isLoading: false,
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
@@ -75,7 +76,7 @@ class ProductDisplayItemMain extends React.Component {
   componentDidMount() {
     const { productUrl } = this.props;
     login().then(() => {
-      cortexFetch(Config.cortexApi.path + productUrl + (productUrl.includes('zoom') ? '' : '?zoom=') + zoomArray.join(),
+      cortexFetch(Config.cortexApi.path + productUrl,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -124,8 +125,11 @@ class ProductDisplayItemMain extends React.Component {
   handleSkuSelection(event) {
     const selfUri = event.target.value;
     const { history } = this.props;
+    this.setState({
+      isLoading: true,
+    });
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path + selfUri}?followlocation&zoom=${zoomArray.join()}`,
+      cortexFetch(`${Config.cortexApi.path + selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
         {
           method: 'post',
           headers: {
@@ -136,6 +140,9 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
+          this.setState({
+            isLoading: false,
+          });
           history.push(`/itemdetail/${encodeURIComponent(res.self.uri)}`);
         })
         .catch((error) => {
@@ -190,7 +197,7 @@ class ProductDisplayItemMain extends React.Component {
             {options['display-name']}
           </label>
           <div className="form-content">
-            <select className="form-control" id={`product_display_item_sku_select_${options.name}`} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
+            <select className="form-control" id={`product_display_item_sku_select_${options.name}`} disabled={isLoading} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
               <option key={options._selector[0]._chosen[0]._description[0].name} id={`product_display_item_sku_option_${options._selector[0]._chosen[0]._description[0].name}`} value={(options._selector[0]._chosen[0]._selectaction) ? options._selector[0]._chosen[0]._selectaction[0].self.uri : ''}>
                 {options._selector[0]._chosen[0]._description[0]['display-name']}
               </option>
@@ -225,7 +232,7 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   render() {
-    const { productData, addToCartFailedMessage } = this.state;
+    const { productData, addToCartFailedMessage, isLoading } = this.state;
     if (productData) {
       let listPrice = 'n/a';
       if (productData._price) {
@@ -340,6 +347,9 @@ class ProductDisplayItemMain extends React.Component {
                 <div>
                   <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
                     {this.renderSkuSelection()}
+                    {
+                      (isLoading) ? (<div className="miniLoader" />) : ''
+                    }
                     <div className="form-group">
                       <label htmlFor="product_display_item_quantity_label" className="control-label">
                         Quantity

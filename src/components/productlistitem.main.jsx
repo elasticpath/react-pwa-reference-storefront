@@ -41,6 +41,14 @@ const zoomArray = [
   'definition:options:element:selector:chosen:description',
   'definition:options:element:selector:choice:selector',
   'definition:options:element:selector:chosen:selector',
+  'definition:options:element:selector:choice:selectaction',
+  'definition:options:element:selector:chosen:selectaction',
+  'recommendations',
+  'recommendations:crosssell',
+  'recommendations:recommendation',
+  'recommendations:replacement',
+  'recommendations:upsell',
+  'recommendations:warranty',
   'code',
 ];
 
