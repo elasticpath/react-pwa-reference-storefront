@@ -21,7 +21,7 @@ import mockFetch from './Mock';
 
 const Config = require('Config');
 
-function cortextFetch(input, init) {
+function cortexFetch(input, init) {
   const requestInit = init;
 
   if (requestInit && requestInit.headers) {
@@ -34,4 +34,4 @@ function cortextFetch(input, init) {
   return fetch(`${Config.cortexApi.path + input}`, requestInit);
 }
 
-export default cortextFetch;
+export default cortexFetch;
