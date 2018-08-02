@@ -1,13 +1,12 @@
 version: '1'
 services:
   store:
-    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/ep/ep-store:${DOCKER_IMAGE_TAG}
+    image: ${REGISTRY_ADDRESS}/${NAMESPACE}:${VERSION}
     container_name: store
     ports:
       - 8080:8080
     depends_on:
     volumes:
-      - /ep/logs:/root/ep/logs
     env_file:
       - docker-compose.env
     restart: always
