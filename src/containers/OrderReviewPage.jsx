@@ -68,6 +68,7 @@ class OrderReviewPage extends React.Component {
     super(props);
     this.state = {
       orderData: undefined,
+      isLoading: false,
     };
   }
 
@@ -98,6 +99,9 @@ class OrderReviewPage extends React.Component {
   }
 
   completeOrder() {
+    this.setState({
+      isLoading: true,
+    });
     const purchaseZoomArray = [
       'paymentmeans:element',
       'shipments:element:destination',
@@ -122,6 +126,9 @@ class OrderReviewPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
+          this.setState({
+            isLoading: false,
+          });
           history.push('/purchaseReceipt', { data: res });
         })
         .catch((error) => {
@@ -194,7 +201,7 @@ class OrderReviewPage extends React.Component {
   }
 
   render() {
-    const { orderData } = this.state;
+    const { orderData, isLoading } = this.state;
     return (
       <div>
         <AppHeaderMain />
@@ -230,6 +237,9 @@ class OrderReviewPage extends React.Component {
                         <button className="btn-cmd-submit-order" type="button" onClick={() => { this.completeOrder(); }}>
                           Complete Purchase
                         </button>
+                        {isLoading && (
+                          <div className="miniLoader" />
+                        )}
                       </div>
                     </div>
                   </div>
