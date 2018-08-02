@@ -76,7 +76,7 @@ class ProductDisplayItemMain extends React.Component {
   componentDidMount() {
     const { productUrl } = this.props;
     login().then(() => {
-      cortexFetch(productUrl + (productUrl.includes('zoom') ? '' : '?zoom=') + zoomArray.join(),
+      cortexFetch(productUrl + (productUrl.includes('zoom') ? '' : `?zoom=${zoomArray.sort().join()}`),
         {
           headers: {
             'Content-Type': 'application/json',
