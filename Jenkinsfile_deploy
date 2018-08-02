@@ -2,12 +2,8 @@ def dockerRegistryAddress = '648265802301.dkr.ecr.us-west-2.amazonaws.com'
 def dockerImageNamespace = 'ep/ep-store'
 def dockerImageTag = params.DOCKER_IMAGE_TAG 
 
-def boto3AwsAccessKeyId = params.BOTO3_AWS_ACCESS_KEY_ID
-def boto3AwsSecretAccessKey = params.BOTO3_AWS_SECRET_ACCESS_KEY
-def boto3AwsDefaultRegion = 'us-west-2'
 
-
-def ec2InstanceHost = 'db-provisioner.elasticpath.net'
+def ec2InstanceHost = '52.10.25.21'
 def ec2InstanceUser = 'ec2-user'
 def ec2InstanceSshKey = '/etc/ep/secure/ssh/ep-ec2.pem'
 
@@ -50,9 +46,6 @@ timestamps {
 					  export REGISTRY_ADDRESS=${dockerRegistryAddress}
 					  export NAMESPACE=${dockerImageNamespace}
 					  export VERSION=${dockerImageTag}
-					  export AWS_ACCESS_KEY_ID=${boto3AwsAccessKeyId}
-					  export AWS_SECRET_ACCESS_KEY=${boto3AwsSecretAccessKey}
-					  export AWS_DEFAULT_REGION=${boto3AwsDefaultRegion}
 
 					  cd ~/ref-store-service
 					  
