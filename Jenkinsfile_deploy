@@ -25,7 +25,7 @@ timestamps {
 
 					  if [ -d "~/ref-store-service" ]; then
 						cd ref-store-service
-						docker-compose down || true
+						sudo /usr/local/bin/docker-compose down || true
 						cd -
 					  fi
 
@@ -51,8 +51,8 @@ timestamps {
 					  
 					  eval '\$(aws ecr get-login --no-include-email)'
 
-					  /usr/local/bin/docker-compose pull
-					  /usr/local/bin/docker-compose up -d
+					  sudo /usr/local/bin/docker-compose pull
+					  sudo /usr/local/bin/docker-compose up -d
 					\"\"\"
 				"""
 
