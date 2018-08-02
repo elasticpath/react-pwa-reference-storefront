@@ -142,30 +142,32 @@ class CartPage extends React.Component {
   render() {
     const { cartData, isLoading } = this.state;
     const { history } = this.props;
-    if (cartData) {
-      return (
-        <div>
-          <AppHeaderMain />
-          <div className="cart-container container">
-            <div className="cart-container-inner">
-              <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
-                <div>
-                  <h1 className="view-title">
-                    Shopping Cart
-                  </h1>
-                  <button className="btn-cmd-continue-shopping" type="button" onClick={() => { history.push('/'); }}>
-                    Continue Shopping
-                  </button>
-                </div>
+    return (
+      <div>
+        <AppHeaderMain />
+        <div className="cart-container container">
+          <div className="cart-container-inner">
+            <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
+              <div>
+                <h1 className="view-title">
+                  Shopping Cart
+                </h1>
+                <button className="btn-cmd-continue-shopping" type="button" onClick={() => { history.push('/'); }}>
+                  Continue Shopping
+                </button>
               </div>
+            </div>
+            {cartData && !isLoading && (
               <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
-                <CartMain empty={!cartData['total-quantity']} cartData={cartData} isLoading={isLoading} handleQuantityChange={() => { this.handleQuantityChange(); }} />
+                <CartMain empty={!cartData['total-quantity']} cartData={cartData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
               </div>
+            )}
+            {cartData && !isLoading && (
               <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
                 <div>
                   <div className="cart-sidebar-inner">
                     <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                      <CheckoutSummaryList data={cartData} isLoading={isLoading} />
+                      <CheckoutSummaryList data={cartData} />
                     </div>
                     <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                       <div>
@@ -177,17 +179,12 @@ class CartPage extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
+            )}
+            {(!cartData || isLoading) && (
+              <div className="loader" />
+            )}
           </div>
-          <AppFooterMain />
         </div>
-      );
-    }
-
-    return (
-      <div>
-        <AppHeaderMain />
-        <div className="loader" />
         <AppFooterMain />
       </div>
     );

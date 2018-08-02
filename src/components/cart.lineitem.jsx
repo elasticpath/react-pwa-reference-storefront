@@ -28,7 +28,6 @@ const Config = require('Config');
 class CartLineItem extends React.Component {
   static propTypes = {
     item: PropTypes.objectOf(PropTypes.any).isRequired,
-    isLoading: PropTypes.bool.isRequired,
     handleQuantityChange: PropTypes.func.isRequired,
   }
 
@@ -92,14 +91,10 @@ class CartLineItem extends React.Component {
   }
 
   renderUnitPrice() {
-    const { item, isLoading } = this.props;
+    const { item } = this.props;
     const listPrice = item._price[0]['list-price'][0].display;
     const purchasePrice = item._price[0]['purchase-price'][0].display;
-    if (isLoading) {
-      return (
-        <div className="miniLoader" />
-      );
-    } if (listPrice !== purchasePrice) {
+    if (listPrice !== purchasePrice) {
       return (
         <ul className="cart-lineitem-price-container">
           <li className="cart-unit-list-price" data-region="itemListPriceRegion">
@@ -121,12 +116,7 @@ class CartLineItem extends React.Component {
   }
 
   renderTotalPrice() {
-    const { isLoading, item } = this.props;
-    if (isLoading) {
-      return (
-        <div className="miniLoader" />
-      );
-    }
+    const { item } = this.props;
     return (
       <ul className="cart-lineitem-price-container">
         <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion" />
@@ -159,7 +149,7 @@ class CartLineItem extends React.Component {
   }
 
   render() {
-    const { item, isLoading } = this.props;
+    const { item } = this.props;
     const { quantity } = this.state;
     let availability = (item._availability[0].state === 'AVAILABLE');
     let availabilityString = '';
@@ -220,7 +210,7 @@ class CartLineItem extends React.Component {
           </div>
         </td>
         <td className="cart-lineitem-quantity-col" data-el-value="lineItem.quantity">
-          <select className="cart-lineitem-quantity-select form-control" id="cart-lineItem-select-quantity" name="cart-lineItem-select-quantity" disabled={isLoading} value={quantity} onChange={this.handleQuantityChange}>
+          <select className="cart-lineitem-quantity-select form-control" id="cart-lineItem-select-quantity" name="cart-lineItem-select-quantity" value={quantity} onChange={this.handleQuantityChange}>
             <option value="0">
               0
             </option>
@@ -267,7 +257,7 @@ class CartLineItem extends React.Component {
         </td>
 
         <td className="cart-lineitem-remove-btn-col">
-          <button className="btn btn-cart-removelineitem" type="button" disabled={isLoading} onClick={this.handleRemoveBtnClicked}>
+          <button className="btn btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
             <span className="icon" />
             <span className="btn-text">
               Remove

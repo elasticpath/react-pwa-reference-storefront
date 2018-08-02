@@ -66,6 +66,7 @@ class CheckoutPage extends React.Component {
     super(props);
     this.state = {
       orderData: undefined,
+      isLoading: false,
     };
   }
 
@@ -86,6 +87,7 @@ class CheckoutPage extends React.Component {
         .then((res) => {
           this.setState({
             orderData: res._defaultcart[0],
+            isLoading: false,
           });
         })
         .catch((error) => {
@@ -106,6 +108,9 @@ class CheckoutPage extends React.Component {
   }
 
   handleDelete(link) {
+    this.setState({
+      isLoading: true,
+    });
     login().then(() => {
       cortexFetch(link, {
         method: 'delete',
@@ -123,6 +128,9 @@ class CheckoutPage extends React.Component {
   }
 
   handleChange(link) {
+    this.setState({
+      isLoading: true,
+    });
     login().then(() => {
       cortexFetch(link, {
         method: 'post',
@@ -453,8 +461,8 @@ class CheckoutPage extends React.Component {
   }
 
   render() {
-    const { orderData } = this.state;
-    if (orderData) {
+    const { orderData, isLoading } = this.state;
+    if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
       return (
         <div>
@@ -487,7 +495,7 @@ class CheckoutPage extends React.Component {
                   <div>
                     <div className="checkout-sidebar-inner">
                       <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                        <CheckoutSummaryList data={orderData} isLoading={false} />
+                        <CheckoutSummaryList data={orderData} />
                       </div>
                       <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
                         <button className="btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
@@ -507,7 +515,20 @@ class CheckoutPage extends React.Component {
     return (
       <div>
         <AppHeaderMain />
-        <div className="loader" />
+        <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
+          <div className="checkout-container container">
+            <div className="checkout-container-inner">
+              <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
+                <div>
+                  <h1 className="view-title">
+                    Checkout Summary
+                  </h1>
+                </div>
+              </div>
+              <div className="loader" />
+            </div>
+          </div>
+        </div>
         <AppFooterMain />
       </div>
     );

@@ -195,18 +195,18 @@ class OrderReviewPage extends React.Component {
 
   render() {
     const { orderData } = this.state;
-    if (orderData) {
-      return (
-        <div>
-          <AppHeaderMain />
-          <div className="app-main" style={{ display: 'block' }}>
-            <div className="order-container container">
-              <div className="order-container-inner">
-                <div className="order-title-container" style={{ display: 'block' }}>
-                  <h1 className="view-title">
-                    Review Your Order
-                  </h1>
-                </div>
+    return (
+      <div>
+        <AppHeaderMain />
+        <div className="app-main" style={{ display: 'block' }}>
+          <div className="order-container container">
+            <div className="order-container-inner">
+              <div className="order-title-container" style={{ display: 'block' }}>
+                <h1 className="view-title">
+                  Review Your Order
+                </h1>
+              </div>
+              {orderData && (
                 <div className="order-main-container" style={{ display: 'block' }}>
                   <div className="order-options-container" style={{ display: 'block', paddingBottom: '20px' }}>
                     {this.renderShippingOption()}
@@ -218,6 +218,8 @@ class OrderReviewPage extends React.Component {
                     <OrderTableMain data={orderData} />
                   </div>
                 </div>
+              )}
+              {orderData && (
                 <div className="checkout-sidebar" style={{ display: 'block' }}>
                   <div>
                     <div className="checkout-sidebar-inner">
@@ -232,17 +234,13 @@ class OrderReviewPage extends React.Component {
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
+              {!orderData && (
+                <div className="loader" />
+              )}
             </div>
           </div>
-          <AppFooterMain />
         </div>
-      );
-    }
-    return (
-      <div>
-        <AppHeaderMain />
-        <div className="loader" />
         <AppFooterMain />
       </div>
     );

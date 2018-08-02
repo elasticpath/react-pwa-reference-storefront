@@ -23,7 +23,7 @@ import CartLineItem from './cart.lineitem';
 
 const CartMain = (props) => {
   const {
-    empty, cartData, isLoading, handleQuantityChange,
+    empty, cartData, handleQuantityChange,
   } = props;
   if (empty) {
     return (
@@ -69,7 +69,7 @@ const CartMain = (props) => {
         </thead>
         <tbody>
           {cartData._lineitems[0]._element.map(product => (
-            <CartLineItem key={product._item[0]._code[0].code} item={product} isLoading={isLoading} handleQuantityChange={() => { handleQuantityChange(); }} />
+            <CartLineItem key={product._item[0]._code[0].code} item={product} handleQuantityChange={() => { handleQuantityChange(); }} />
           ))}
         </tbody>
       </table>
@@ -79,7 +79,6 @@ const CartMain = (props) => {
 
 CartMain.propTypes = {
   empty: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
   cartData: PropTypes.objectOf(PropTypes.any).isRequired,
   handleQuantityChange: PropTypes.func.isRequired,
 };

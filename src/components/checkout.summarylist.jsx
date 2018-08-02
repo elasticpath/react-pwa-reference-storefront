@@ -22,7 +22,6 @@ import PropTypes from 'prop-types';
 class CheckoutSummaryList extends React.Component {
   static propTypes = {
     data: PropTypes.objectOf(PropTypes.any).isRequired,
-    isLoading: PropTypes.bool.isRequired,
   }
 
   renderPromotions() {
@@ -137,12 +136,7 @@ class CheckoutSummaryList extends React.Component {
   }
 
   render() {
-    const { isLoading, data } = this.props;
-    if (isLoading) {
-      return (
-        <div className="loader" />
-      );
-    }
+    const { data } = this.props;
     return (
       <ul className="cart-summary-list">
         <li className="cart-total-quantity">
