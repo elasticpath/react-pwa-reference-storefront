@@ -6528,7 +6528,6 @@ fieldset[disabled] .btn-auth-login.active {
 .global-nav-container {
   position: relative;
   display: inline-block;
-  float: right;
   top: 12px;
   /*
   // on small screen move global nav under search
@@ -7663,7 +7662,7 @@ Purchase Information
     width: 100%;
   }
   .order-container table tbody tr,
-  .order-container table tbody tr {
+  .cart-container table tbody tr {
     display: block;
     width: 100%;
   }
