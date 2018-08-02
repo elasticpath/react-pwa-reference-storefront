@@ -68,8 +68,8 @@ If you're looking to create/modify mock data:<br/>
 * In your browser using Dev Tools, view the Network tab for requests made by your *flow*. Filter your requests using the **XHRF** or **XHR and Fetch** filter.<br/>
 * Copy the response directly from your request into a *.json* file under the `./src/offlineData` directory.<br/>
 * In `.src/utils/Mock.js` add a variable for your data: `const myData = require('../offlineData/myData.json')`<br/>
-* Finally add your data into the map: `mockData.set(myData.self.href, { status: myStatusCode, data: myData}`<br/>
-    * In the case of a **followlocation** you'll want to create a new variable for the request url, and use that instead of `myData.self.href`. This is because the responses include the *followed* url instead of the *request* url.<br/>
+* Finally add your data into the map: `mockData.set(myData.self.uri, { status: myStatusCode, data: myData}`<br/>
+    * In the case of a **followlocation** you'll want to create a new variable for the request uri, and use that instead of `myData.self.uri`. This is because the responses include the *followed* url instead of the *request* url.<br/>
      * In the case of a request that doesn't have a response you can add the request url with a status code, and empty data. (Check out forms in Mock.js as an example)
 ##### Verifying your data
 Now that you've mocked up the data for your *flow*, it's time to go offline and verify! Enable [Offline Mode](#configuration) and restart your server.<br/>

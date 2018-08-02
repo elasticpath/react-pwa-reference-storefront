@@ -84,7 +84,7 @@ class CheckoutAuthPage extends React.Component {
     const { history } = this.props;
     login().then(() => {
       let emailForm;
-      cortexFetch(`${Config.cortexApi.path}/?zoom=defaultprofile:emails:emailform`, {
+      cortexFetch('/?zoom=defaultprofile:emails:emailform', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -92,7 +92,7 @@ class CheckoutAuthPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          emailForm = res._defaultprofile[0]._emails[0]._emailform[0].links.find(link => link.rel === 'createemailaction').href;
+          emailForm = res._defaultprofile[0]._emails[0]._emailform[0].links.find(link => link.rel === 'createemailaction').uri;
         })
         .then(() => {
           cortexFetch(emailForm, {

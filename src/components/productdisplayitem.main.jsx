@@ -76,7 +76,7 @@ class ProductDisplayItemMain extends React.Component {
   componentDidMount() {
     const { productUrl } = this.props;
     login().then(() => {
-      cortexFetch(Config.cortexApi.path + productUrl + (productUrl.includes('zoom') ? '' : '?zoom=') + zoomArray.join(),
+      cortexFetch(productUrl + (productUrl.includes('zoom') ? '' : '?zoom=') + zoomArray.join(),
         {
           headers: {
             'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ class ProductDisplayItemMain extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     login().then(() => {
-      cortexFetch(Config.cortexApi.path + nextProps.productUrl,
+      cortexFetch(nextProps.productUrl,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ class ProductDisplayItemMain extends React.Component {
       isLoading: true,
     });
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path + selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
+      cortexFetch(`${selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
         {
           method: 'post',
           headers: {
@@ -157,7 +157,7 @@ class ProductDisplayItemMain extends React.Component {
     const { history } = this.props;
     login().then(() => {
       const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      cortexFetch(addToCartLink.href,
+      cortexFetch(addToCartLink.uri,
         {
           method: 'post',
           headers: {

@@ -69,7 +69,7 @@ class ProfilePaymentMethodsMain extends React.Component {
                     {displayName}
                   </span>
                 </div>
-                <button className="btn profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.href); }}>
+                <button className="btn profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
                   Delete
                 </button>
               </li>

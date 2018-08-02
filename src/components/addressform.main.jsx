@@ -158,7 +158,7 @@ class AddressFormMain extends React.Component {
 
   fetchGeoData() {
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/geographies/${Config.cortexApi.scope}/countries?zoom=${zoomArray.join()}`, {
+      cortexFetch(`/geographies/${Config.cortexApi.scope}/countries?zoom=${zoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -203,7 +203,7 @@ class AddressFormMain extends React.Component {
 
   fetchAddressForm() {
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/?zoom=defaultprofile:addresses:addressform`, {
+      cortexFetch('/?zoom=defaultprofile:addresses:addressform', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -211,9 +211,9 @@ class AddressFormMain extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          const addressFormLink = res._defaultprofile[0]._addresses[0]._addressform[0].links.find(link => link.rel === 'createaddressaction');
+          const addressFormLink = res._defaultprofile[0]._addresses[0]._addressform[0].links.find(link => link.rel === 'createaddressaction').uri;
           this.setState({
-            addressForm: addressFormLink.href,
+            addressForm: addressFormLink,
           });
         });
     });

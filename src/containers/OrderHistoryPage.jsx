@@ -58,7 +58,7 @@ class OrderHistoryPage extends React.Component {
     const { match } = this.props;
     const uri = decodeURIComponent(match.params.url);
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path + uri}?zoom=${zoomArray.join()}`, {
+      cortexFetch(`${uri}?zoom=${zoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),

@@ -76,7 +76,7 @@ class CheckoutPage extends React.Component {
 
   fetchOrderData() {
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.sort().join()}`,
+      cortexFetch(`/?zoom=${zoomArray.sort().join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ class CheckoutPage extends React.Component {
         const choices = selector[0]._choice;
         choices.map((choice) => {
           const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').href;
+          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
           description.checked = false;
           shippingAddresses.push(description);
           return description;
@@ -196,11 +196,11 @@ class CheckoutPage extends React.Component {
               </div>
               <div className="address-btn-cell">
                 {/* eslint-disable-next-line max-len */}
-                <button className="btn checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(shippingAddress.self.href); }}>
+                <button className="btn checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(shippingAddress.self.uri); }}>
                   Edit
                 </button>
                 {/* eslint-disable-next-line max-len */}
-                <button className="btn checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(shippingAddress.self.href); }}>
+                <button className="btn checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(shippingAddress.self.uri); }}>
                   Delete
                 </button>
               </div>
@@ -258,7 +258,7 @@ class CheckoutPage extends React.Component {
         const choices = selector[0]._choice;
         choices.map((choice) => {
           const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').href;
+          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
           description.checked = false;
           shippingOptions.push(description);
           return description;
@@ -320,7 +320,7 @@ class CheckoutPage extends React.Component {
         const choices = selector[0]._choice;
         choices.map((choice) => {
           const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').href;
+          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
           description.checked = false;
           billingAddresses.push(description);
           return description;
@@ -344,11 +344,11 @@ class CheckoutPage extends React.Component {
               </div>
               <div className="address-btn-cell">
                 {/* eslint-disable-next-line max-len */}
-                <button className="btn checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(billingAddr.self.href); }}>
+                <button className="btn checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(billingAddr.self.uri); }}>
                   Edit
                 </button>
                 {/* eslint-disable-next-line max-len */}
-                <button className="btn checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(billingAddr.self.href); }}>
+                <button className="btn checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(billingAddr.self.uri); }}>
                   Delete
                 </button>
               </div>
@@ -398,7 +398,7 @@ class CheckoutPage extends React.Component {
         const choices = selector[0]._choice;
         choices.map((choice) => {
           const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').href;
+          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
           description.checked = false;
           description.deletable = true;
           paymentMethods.push(description);
@@ -423,7 +423,7 @@ class CheckoutPage extends React.Component {
               </div>
               {deletable && (
                 <div className="payment-btn-cell">
-                  <button className="btn checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.href); }}>
+                  <button className="btn checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
                     Delete
                   </button>
                 </div>

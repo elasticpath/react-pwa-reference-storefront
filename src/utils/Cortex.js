@@ -31,7 +31,7 @@ function cortextFetch(input, init) {
   if (Config.enableOfflineMode) {
     return mockFetch(input, requestInit);
   }
-  return fetch(input, requestInit);
+  return fetch(`${Config.cortexApi.path + input}`, requestInit);
 }
 
 export default cortextFetch;

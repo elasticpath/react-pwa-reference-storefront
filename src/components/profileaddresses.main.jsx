@@ -96,10 +96,10 @@ class ProfileAddressesMain extends React.Component {
                     </li>
                   </ul>
                 </div>
-                <button className="btn profile-edit-address-btn" type="button" onClick={() => { this.editAddress(addressElement.self.href); }}>
+                <button className="btn profile-edit-address-btn" type="button" onClick={() => { this.editAddress(addressElement.self.uri); }}>
                   Edit
                 </button>
-                <button className="btn profile-delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.href); }} data-actionlink="">
+                <button className="btn profile-delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
                   Delete
                 </button>
               </li>

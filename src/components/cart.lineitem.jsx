@@ -47,7 +47,7 @@ class CartLineItem extends React.Component {
     const { item, handleQuantityChange } = this.props;
     login().then(() => {
       this.setState({ quantity: newQuantity }, () => {
-        cortexFetch(item.self.href,
+        cortexFetch(item.self.uri,
           {
             method: 'put',
             headers: {
@@ -72,7 +72,7 @@ class CartLineItem extends React.Component {
   handleRemoveBtnClicked() {
     const { item, handleQuantityChange } = this.props;
     login().then(() => {
-      cortexFetch(item.self.href,
+      cortexFetch(item.self.uri,
         {
           method: 'delete',
           headers: {

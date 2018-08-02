@@ -41,36 +41,36 @@ const womensProduct8 = require('../offlineData/womensProduct8.json');
 
 // followlocation
 // eslint-disable-next-line max-len
-const purchaseReceiptFollow = 'http://localhost:8080/cortex/purchases/orders/vestri/ga3wgmbxgi2wcljxga4taljuha4dcljymyzdcljrgnswgolggnqwkntdge=/form?followlocation&zoom=appliedpromotions:element,billingaddress,discount,lineitems:element,lineitems:element:options:element,lineitems:element:options:element:value,paymentmeans:element,shipments:element:destination,shipments:element:shippingoption';
-const searchFollow = 'http://localhost:8080/cortex/searches/vestri/keywords/form?zoom=element,element:availability,element:definition,element:definition:assets:element,element:price,element:rate,element:code&followlocation';
+const purchaseReceiptFollow = '/purchases/orders/vestri/ga3wgmbxgi2wcljxga4taljuha4dcljymyzdcljrgnswgolggnqwkntdge=/form?followlocation&zoom=appliedpromotions:element,billingaddress,discount,lineitems:element,lineitems:element:options:element,lineitems:element:options:element:value,paymentmeans:element,shipments:element:destination,shipments:element:shippingoption';
+const searchFollow = '/searches/vestri/keywords/form?zoom=element,element:availability,element:definition,element:definition:assets:element,element:price,element:rate,element:code&followlocation';
 
 // forms
-const addToCartForm = 'http://localhost:8080/cortex/carts/items/vestri/qgqvhwjakzcvgvcsjfpvot2nivhfgx2nj5cektc7lbpvat2mj5puous7jvca=/form';
-const emailForm = 'http://localhost:8080/cortex/emails/vestri/form';
+const addToCartForm = '/carts/items/vestri/qgqvhwjakzcvgvcsjfpvot2nivhfgx2nj5cektc7lbpvat2mj5puous7jvca=/form';
+const emailForm = '/emails/vestri/form';
 
 // map of request -> response
 const mockData = new Map();
-mockData.set(addressData.self.href, { status: 200, data: addressData });
-mockData.set(appHeaderNavigationData.self.href, { status: 200, data: appHeaderNavigationData });
-mockData.set(cartData.self.href, { status: 200, data: cartData });
-mockData.set(checkoutData.self.href, { status: 200, data: checkoutData });
-mockData.set(countryData.self.href, { status: 200, data: countryData });
-mockData.set(emailFormData.self.href, { status: 200, data: emailFormData });
-mockData.set(orderReviewData.self.href, { status: 200, data: orderReviewData });
+mockData.set(addressData.self.uri, { status: 200, data: addressData });
+mockData.set(appHeaderNavigationData.self.uri, { status: 200, data: appHeaderNavigationData });
+mockData.set(cartData.self.uri, { status: 200, data: cartData });
+mockData.set(checkoutData.self.uri, { status: 200, data: checkoutData });
+mockData.set(countryData.self.uri, { status: 200, data: countryData });
+mockData.set(emailFormData.self.uri, { status: 200, data: emailFormData });
+mockData.set(orderReviewData.self.uri, { status: 200, data: orderReviewData });
 mockData.set(purchaseReceiptFollow, { status: 200, data: purchaseReceiptData });
 mockData.set(searchFollow, { status: 201, data: searchData });
-mockData.set(searchFormData.self.href, { status: 200, data: searchFormData });
-mockData.set(searchProduct1.self.href, { status: 200, data: searchProduct1 });
-mockData.set(searchProduct2.self.href, { status: 200, data: searchProduct2 });
-mockData.set(womensCategoryItemsData.self.href, { status: 200, data: womensCategoryItemsData });
-mockData.set(womensProduct1.self.href, { status: 200, data: womensProduct1 });
-mockData.set(womensProduct2.self.href, { status: 200, data: womensProduct2 });
-mockData.set(womensProduct3.self.href, { status: 200, data: womensProduct3 });
-mockData.set(womensProduct4.self.href, { status: 200, data: womensProduct4 });
-mockData.set(womensProduct5.self.href, { status: 200, data: womensProduct5 });
-mockData.set(womensProduct6.self.href, { status: 200, data: womensProduct6 });
-mockData.set(womensProduct7.self.href, { status: 200, data: womensProduct7 });
-mockData.set(womensProduct8.self.href, { status: 200, data: womensProduct8 });
+mockData.set(searchFormData.self.uri, { status: 200, data: searchFormData });
+mockData.set(searchProduct1.self.uri, { status: 200, data: searchProduct1 });
+mockData.set(searchProduct2.self.uri, { status: 200, data: searchProduct2 });
+mockData.set(womensCategoryItemsData.self.uri, { status: 200, data: womensCategoryItemsData });
+mockData.set(womensProduct1.self.uri, { status: 200, data: womensProduct1 });
+mockData.set(womensProduct2.self.uri, { status: 200, data: womensProduct2 });
+mockData.set(womensProduct3.self.uri, { status: 200, data: womensProduct3 });
+mockData.set(womensProduct4.self.uri, { status: 200, data: womensProduct4 });
+mockData.set(womensProduct5.self.uri, { status: 200, data: womensProduct5 });
+mockData.set(womensProduct6.self.uri, { status: 200, data: womensProduct6 });
+mockData.set(womensProduct7.self.uri, { status: 200, data: womensProduct7 });
+mockData.set(womensProduct8.self.uri, { status: 200, data: womensProduct8 });
 mockData.set(addToCartForm, { status: 201, data: {} });
 mockData.set(emailForm, { status: 201, data: {} });
 

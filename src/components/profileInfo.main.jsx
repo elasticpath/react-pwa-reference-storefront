@@ -69,7 +69,7 @@ class ProfileInfoMain extends React.Component {
       firstName, lastName,
     } = this.state;
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/`, {
+      cortexFetch('/', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -77,14 +77,14 @@ class ProfileInfoMain extends React.Component {
       }).then(res => res.json())
         .then((res) => {
           const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
-          cortexFetch(`${profileNameLink.href}?followlocation`, {
+          cortexFetch(`${profileNameLink.uri}?followlocation`, {
             headers: {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
             },
           }).then(linkRes => linkRes.json())
             .then((linkRes) => {
-              cortexFetch(linkRes.self.href, {
+              cortexFetch(linkRes.self.uri, {
                 method: 'put',
                 headers: {
                   'Content-Type': 'application/json',

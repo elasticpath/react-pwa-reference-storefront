@@ -63,7 +63,7 @@ class OrderHistoryLineMain extends React.Component {
   componentDidMount() {
     const { orderHistoryLineUrlProps } = this.props;
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path + orderHistoryLineUrlProps}?zoom=${zoomArray.join()}`,
+      cortexFetch(`${orderHistoryLineUrlProps}?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',

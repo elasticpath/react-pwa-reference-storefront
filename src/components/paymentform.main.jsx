@@ -147,7 +147,7 @@ class PaymentFormMain extends React.Component {
 
   fetchPaymentForms() {
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform`, {
+      cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -162,8 +162,8 @@ class PaymentFormMain extends React.Component {
             link => link.rel === 'createpaymenttokenfororderaction',
           );
           this.setState({
-            paymentForm: paymentFormLink.href,
-            orderPaymentForm: orderPaymentFormLink.href,
+            paymentForm: paymentFormLink.uri,
+            orderPaymentForm: orderPaymentFormLink.uri,
           });
         });
     });

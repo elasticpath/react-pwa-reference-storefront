@@ -68,7 +68,7 @@ class SearchResultsItemsMain extends React.Component {
   getSearchData() {
     const { searchKeywordsProps } = this.props;
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/?zoom=searches:keywordsearchform`,
+      cortexFetch('/?zoom=searches:keywordsearchform',
         {
           headers: {
             'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ class SearchResultsItemsMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').href;
+          searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
         }).then(() => {
           cortexFetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
             {

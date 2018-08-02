@@ -45,7 +45,7 @@ class AppHeaderNavigationMain extends React.Component {
 
   componentWillMount() {
     login()
-      .then(() => cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
+      .then(() => cortexFetch(`/?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
