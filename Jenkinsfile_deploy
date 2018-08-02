@@ -3,7 +3,7 @@ def dockerImageNamespace = 'ep/ep-store'
 def dockerImageTag = params.DOCKER_IMAGE_TAG 
 
 
-def ec2InstanceHost = '10.11.12.187'
+def ec2InstanceHost = '10.11.12.95'
 def ec2InstanceUser = 'ec2-user'
 def ec2InstanceSshKey = '/etc/ep/secure/ssh/ep-ec2.pem'
 
