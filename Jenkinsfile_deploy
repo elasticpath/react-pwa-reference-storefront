@@ -43,13 +43,11 @@ timestamps {
 				// Deploy new version
 				sh """
 					ssh -i ${ec2InstanceSshKey} ${ec2InstanceUser}@${ec2InstanceHost} \"\"\"
-					  export REGISTRY_ADDRESS=${dockerRegistryAddress}
-					  export NAMESPACE=${dockerImageNamespace}
-					  export VERSION=${dockerImageTag}
+
 
 					  cd ~/ref-store-service
 					  
-					  eval '\$(aws ecr get-login --no-include-email)'
+					  sudo eval '\$(aws ecr get-login --no-include-email)'
 
 					  sudo /usr/local/bin/docker-compose pull
 					  sudo /usr/local/bin/docker-compose up -d
