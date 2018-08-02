@@ -6527,7 +6527,8 @@ fieldset[disabled] .btn-auth-login.active {
 }
 .global-nav-container {
   position: relative;
-  display: inline-block;
+  display: block;
+  float: right;
   top: 12px;
   /*
   // on small screen move global nav under search
