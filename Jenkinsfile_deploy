@@ -13,7 +13,9 @@ timestamps {
 		node('node-small') {
 			stage('SETUP') {
 				deleteDir()
-
+				dir('docker') {
+				git branch: "master", url: 'git@github.elasticpath.net:DevOps/Docker.git'
+			}
 				checkout scm
 			}
 			stage('UNDEPLOY_EXISTING') {
