@@ -82,7 +82,7 @@ services:
     image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/cortex:7.2.0
     container_name: cortex
     ports:
-      - 8080:8080
+      - 9080:8080
       - 1081:1081
     depends_on:
       - mysql_up
