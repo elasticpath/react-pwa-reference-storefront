@@ -14,7 +14,7 @@ timestamps {
 			stage('SETUP') {
 				deleteDir()
 				dir('docker') {
-				git branch: "master", url: 'git@github.elasticpath.net:DevOps/Docker.git'
+				git branch: "release/2.1.x", url: 'git@github.elasticpath.net:DevOps/Docker.git'
 			}
 				checkout scm
 			}
