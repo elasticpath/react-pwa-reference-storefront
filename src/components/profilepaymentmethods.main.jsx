@@ -51,7 +51,7 @@ class ProfilePaymentMethodsMain extends React.Component {
         onChange();
       }).catch((error) => {
         // eslint-disable-next-line no-console
-        console.error(error);
+        console.error(error.message);
       });
     });
   }

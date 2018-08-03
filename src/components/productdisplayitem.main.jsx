@@ -92,7 +92,7 @@ class ProductDisplayItemMain extends React.Component {
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
-          console.error(error);
+          console.error(error.message);
         });
     });
   }
@@ -114,7 +114,7 @@ class ProductDisplayItemMain extends React.Component {
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
-          console.error(error);
+          console.error(error.message);
         });
     });
   }
@@ -148,7 +148,7 @@ class ProductDisplayItemMain extends React.Component {
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
-          console.error(error);
+          console.error(error.message);
         });
     });
   }
@@ -183,7 +183,7 @@ class ProductDisplayItemMain extends React.Component {
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
-          console.error(error);
+          console.error(error.message);
         });
     });
     event.preventDefault();

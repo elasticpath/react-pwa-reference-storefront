@@ -61,7 +61,7 @@ export function login() {
           resolve(res);
         }).catch((error) => {
           // eslint-disable-next-line no-console
-          console.error(error);
+          console.error(error.message);
           reject(error);
         });
     } else {
@@ -110,7 +110,7 @@ export function loginRegistered(username, password) {
         resolve(200);
       }).catch((error) => {
         // eslint-disable-next-line no-console
-        console.error(error);
+        console.error(error.message);
         reject(error);
       });
     } else {
@@ -131,7 +131,7 @@ export function logout() {
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console
-      console.error(error);
+      console.error(error.message);
       reject(error);
     });
   }));
@@ -154,7 +154,7 @@ export function getRegistrationForm() {
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
-        console.error(error);
+        console.error(error.message);
         reject(error);
       });
   }));
@@ -175,7 +175,7 @@ export function registerUser(lastname, firstname, username, password) {
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console
-      console.error(error);
+      console.error(error.message);
       reject(error);
     });
   }));
