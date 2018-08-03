@@ -16,7 +16,9 @@ timestamps {
 				dir('docker') {
 				git branch: "release/2.1.x", url: 'git@github.elasticpath.net:DevOps/Docker.git'
 			}
-				checkout scm
+				dir('scm'){
+					checkout scm
+			}
 			}
 			stage('UNDEPLOY_EXISTING') {
 				sh """
@@ -39,7 +41,7 @@ timestamps {
 			stage('DEPLOY') {
 				// Copy over new deployment files
 				sh """
-					scp -i ${ec2InstanceSshKey} -r * ${ec2InstanceUser}@${ec2InstanceHost}:~/ref-store-service
+					scp -i ${ec2InstanceSshKey} -r scm/* ${ec2InstanceUser}@${ec2InstanceHost}:~/ref-store-service
 					scp -i ${ec2InstanceSshKey} -r ${env.WORKSPACE}/docker/EpImageBuilder/config/external-solrHome ${ec2InstanceUser}@${ec2InstanceHost}:/ep
 				"""
 
