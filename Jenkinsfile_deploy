@@ -40,6 +40,7 @@ timestamps {
 				// Copy over new deployment files
 				sh """
 					scp -i ${ec2InstanceSshKey} -r * ${ec2InstanceUser}@${ec2InstanceHost}:~/ref-store-service
+					scp -i ${ec2InstanceSshKey} -r ${env.WORKSPACE}/docker/EpImageBuilder/config/external-solrHome ${ec2InstanceUser}@\${ec2InstanceHost}:/ep
 				"""
 
 				// Deploy new version
@@ -52,7 +53,6 @@ timestamps {
 					  cd ~/ref-store-service
 					  
 					  eval '\$(aws ecr get-login --no-include-email)'
-
 					  /usr/local/bin/docker-compose pull
 					  /usr/local/bin/docker-compose up -d
 					\"\"\"
