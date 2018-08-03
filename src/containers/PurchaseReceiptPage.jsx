@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
@@ -30,7 +31,7 @@ const PurchaseReceiptPage = (props) => {
       <div className="app-main" style={{ display: 'block' }}>
         <div className="container">
           <h2>
-            Thank you! Your order has been processed.
+            {intl.get('order-processed-message')}
           </h2>
           <PurchaseDetailsMain data={location.state.data} />
         </div>

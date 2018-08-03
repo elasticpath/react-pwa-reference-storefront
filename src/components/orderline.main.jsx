@@ -18,6 +18,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 
 class OrderLine extends React.Component {
@@ -41,13 +42,13 @@ class OrderLine extends React.Component {
     let statusString;
     switch (status) {
       case 'CANCELLED':
-        statusString = 'Cancelled';
+        statusString = intl.get('cancelled');
         break;
       case 'COMPLETED':
-        statusString = 'Completed';
+        statusString = intl.get('completed');
         break;
       default:
-        statusString = 'In Progress';
+        statusString = intl.get('in-progress');
     }
     return (
       <tr>

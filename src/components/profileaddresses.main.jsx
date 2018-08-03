@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
@@ -97,10 +98,10 @@ class ProfileAddressesMain extends React.Component {
                   </ul>
                 </div>
                 <button className="btn profile-edit-address-btn" type="button" onClick={() => { this.editAddress(addressElement.self.uri); }}>
-                  Edit
+                  {intl.get('edit')}
                 </button>
                 <button className="btn profile-delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
-                  Delete
+                  {intl.get('delete')}
                 </button>
               </li>
             </ul>
@@ -111,7 +112,8 @@ class ProfileAddressesMain extends React.Component {
     return (
       <div>
         <p>
-          You have no saved addresses.
+          {intl.get('no-saved-address-message')}
+          .
         </p>
       </div>
     );
@@ -126,11 +128,11 @@ class ProfileAddressesMain extends React.Component {
         <div data-region="profileAddressesRegion" style={{ display: 'block' }}>
           <div>
             <h2>
-              Addresses
+              {intl.get('addresses')}
             </h2>
             {this.renderAddresses()}
             <button className="btn btn-primary profile-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
-              Add a New Address
+              {intl.get('add-new-address')}
             </button>
           </div>
         </div>

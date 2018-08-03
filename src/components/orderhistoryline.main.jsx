@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
 
@@ -89,7 +90,8 @@ class OrderHistoryLineMain extends React.Component {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart_summary_promotions_label" className="cart-summary-label-col">
-            Applied Promotions:&nbsp;
+            {intl.get('applied-promotions')}
+            :&nbsp;
           </label>
           <br />
           {orderModel._appliedpromotions[0]._element.map(promotion => (
@@ -109,7 +111,8 @@ class OrderHistoryLineMain extends React.Component {
       return (
         <li className="cart-discount">
           <label htmlFor="cart_summary_discount_label" className="cart-summary-label-col">
-            Today&#39;s Discount:&nbsp;
+            {intl.get('todays-discount')}
+            :&nbsp;
           </label>
           <span className="cart-summary-value-col">
             {orderModel._discount[0].discount[0].display}
@@ -128,7 +131,8 @@ class OrderHistoryLineMain extends React.Component {
           <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
             <div className="checkout-shipping-total">
               <label htmlFor="cart_summary_shipping_label" data-el-label="checkout.shippingTotal">
-                Today&#39;s Shipping Cost:&nbsp;
+                {intl.get('todays-shipping-cost')}
+                :&nbsp;
               </label>
               <span data-el-value="checkout.shippingTotal">
                 {orderModel._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._selector[0]._chosen[0]._description[0].cost[0].display}
@@ -149,7 +153,8 @@ class OrderHistoryLineMain extends React.Component {
           <div data-region="checkoutTaxTotalRegion" style={{ display: 'block' }}>
             <div className="checkout-tax-total">
               <label htmlFor="cart_summary_tax_total_label" data-el-label="checkout.taxTotal">
-                Today&#39;s Taxes:&nbsp;
+                {intl.get('todays-taxes')}
+                :&nbsp;
               </label>
               <span data-el-value="checkout.taxTotal">
                 {orderModel['tax-total'].display}
@@ -168,7 +173,7 @@ class OrderHistoryLineMain extends React.Component {
       return (
         <li className="checkout-total">
           <label htmlFor="cart_summary_total_label" data-el-label="checkout.total">
-            Today&#39;s Total:&nbsp;
+            {intl.get('todays-total')}
           </label>
           <span data-el-value="checkout.total">
             {orderModel['monetary-total'][0].display}
@@ -187,7 +192,8 @@ class OrderHistoryLineMain extends React.Component {
           {this.renderPromotions()}
           <li className="cart-subtotal">
             <label htmlFor="cart_summary_subtotal_label" className="cart-summary-label-col">
-              Today&#39;s Subtotal:&nbsp;
+              {intl.get('todays-subtotal')}
+              :&nbsp;
             </label>
             <span className="cart-summary-value-col">
               {orderModel['monetary-total'][0].display}

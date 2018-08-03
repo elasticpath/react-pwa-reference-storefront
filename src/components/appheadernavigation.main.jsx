@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
@@ -112,7 +113,7 @@ class AppHeaderNavigationMain extends React.Component {
         <div>
           <nav className="main-nav">
             <button className="btn-main-nav-toggle btn-link-cmd" type="button" id="header_navbar_container_categories_button" style={{ display: 'none' }}>
-              Categories
+              {intl.get('categories')}
             </button>
             <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">
               {this.renderCategories()}

@@ -19,6 +19,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
 let paginationPreviousLinkVar = '';
@@ -86,14 +87,17 @@ class ProductListPaginationBottom extends React.Component {
                 {paginationData.pagination.results}
               </span>
               <label htmlFor="pagination_total_results_label" className="pagination-label pagination-total-results-label">
-                &nbsp;results&nbsp;
+                &nbsp;
+                {intl.get('results')}
+                &nbsp;
               </label>
               (&nbsp;
               <span className="pagination-value pagination-results-displayed-value">
                 {paginationData.pagination['results-on-page']}
               </span>
               <label htmlFor="pagination_label" className="pagination-label">
-                &nbsp;results on page
+                &nbsp;
+                {intl.get('results-on-page')}
               </label>
               {' '}
               )
@@ -105,19 +109,22 @@ class ProductListPaginationBottom extends React.Component {
                     ? (
                       <Link to={`/category/${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_bottom_link" role="button">
                         <span className="icon" />
-                        Previous
+                        {intl.get('previous')}
                       </Link>
                     )
                     : ('')}
                   <span className="pagestate-summary">
                     <label htmlFor="pagination_curr_page_label" className="pagination-label">
-                      page&nbsp;
+                      {intl.get('page')}
+                      &nbsp;
                     </label>
                     <span className="pagination-value pagination-curr-page-value">
                       {paginationData.pagination.current}
                     </span>
                     <label htmlFor="pagination_total_pages_label" className="pagination-label">
-                      &nbsp;of&nbsp;
+                      &nbsp;
+                      {intl.get('of')}
+                      &nbsp;
                     </label>
                     <span className="pagination-value pagination-total-pages-value">
                       {paginationData.pagination.pages}
@@ -126,7 +133,7 @@ class ProductListPaginationBottom extends React.Component {
                   {paginationNextLink !== ''
                     ? (
                       <Link to={`/category/${encodeURIComponent(paginationNextLink)}`} className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_bottom_link" role="button">
-                        Next
+                        {intl.get('next')}
                         <span className="icon" />
                       </Link>
                     )

@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
@@ -70,7 +71,7 @@ class ProfilePaymentMethodsMain extends React.Component {
                   </span>
                 </div>
                 <button className="btn profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
-                  Delete
+                  {intl.get('delete')}
                 </button>
               </li>
             </ul>
@@ -81,7 +82,7 @@ class ProfilePaymentMethodsMain extends React.Component {
     return (
       <div>
         <p>
-          You have no saved paymentMethods.
+          {intl.get('no-payment-methods-message')}
         </p>
       </div>
     );
@@ -96,11 +97,11 @@ class ProfilePaymentMethodsMain extends React.Component {
         <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
           <div>
             <h2>
-              Payment Methods
+              {intl.get('payment-methods')}
             </h2>
             {this.renderPaymentMethods()}
             <button className="btn btn-primary profile-new-address-btn" type="button" onClick={() => { this.newPayment(); }}>
-              Add a New Payment Method
+              {intl.get('add-new-payment-method')}
             </button>
           </div>
         </div>

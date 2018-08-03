@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 
@@ -32,15 +33,14 @@ function AboutUsPage() {
                 <div className="static-title-container" style={{ display: 'block' }}>
                   <div>
                     <h1 className="view-title">
-                      About Us
+                      {intl.get('about-us')}
                     </h1>
                   </div>
                 </div>
                 <div className="static-main-container" style={{ display: 'block' }}>
                   <div className="static-container">
                     <span className="static-message">
-                      {/* eslint-disable-next-line max-len */}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      {intl.get('about-us-content')}
                     </span>
                   </div>
                 </div>

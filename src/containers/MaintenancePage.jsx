@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
@@ -35,13 +36,15 @@ function AboutUsPage() {
                 <div className="static-title-container" style={{ display: 'block' }}>
                   <div>
                     <h1>
-                      Oops! Something went wrong...
+                      {intl.get('something-went-wrong-message')}
                     </h1>
                     <h3 className="dog-view-title-message">
-                      Please go back and try again or&nbsp;
+                      {intl.get('try-again-message')}
+                      &nbsp;
                       <span className="dog-view-title-message-redirect">
                         <Link to="/">
-                          return home.
+                          {intl.get('return-home')}
+                          .
                         </Link>
                       </span>
                     </h3>
@@ -52,7 +55,7 @@ function AboutUsPage() {
                     <img alt="home-espot-1" className="home-espot-1" src={doge} />
                   </div>
                   <h2 className="static-dog-name">
-                    Moki
+                    {intl.get('name-moki')}
                   </h2>
                 </div>
               </div>

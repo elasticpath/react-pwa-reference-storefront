@@ -16,23 +16,16 @@
  *
  */
 
-import * as UserPrefs from './UserPrefs';
-import mockFetch from './Mock';
+const fs = require('fs');
+const path = require('path');
 
-const Config = require('Config');
+const enStr = fs.readFileSync(path.join(__dirname, './../src/localization/en-CA.json'), 'utf8');
+const enMessages = JSON.parse(enStr, null, 2);
+const frMessages = Object.keys(enMessages)
+  .reduce((collection, messageName) => ({
+    ...collection,
+    [messageName]: enMessages[messageName].split('').join('-'),
+  }), {});
 
-function cortexFetch(input, init) {
-  const requestInit = init;
-
-  if (requestInit && requestInit.headers) {
-    requestInit.headers['x-ep-user-traits'] = `LOCALE=${UserPrefs.getSelectedLocaleValue()}, CURRENCY=${UserPrefs.getSelectedCurrencyValue()}`;
-  }
-
-  if (Config.enableOfflineMode) {
-    return mockFetch(input, requestInit);
-  }
-
-  return fetch(`${Config.cortexApi.path + input}`, requestInit);
-}
-
-export default cortexFetch;
+const frStr = JSON.stringify(frMessages, null, 2);
+fs.writeFileSync(path.join(__dirname, './../src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');

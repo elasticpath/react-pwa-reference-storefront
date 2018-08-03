@@ -39,6 +39,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-intl-universal": "1.11.6",
     "react-motion": "^0.4.4",
     "react-onclickoutside": "^5.3.3",
     "react-overlays": "^0.6.6",

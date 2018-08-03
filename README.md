@@ -85,6 +85,12 @@ Out of the box you get some mock data for the following flows, give them a shot!
     * After completing the order you're brought to the Order Review Page, you can complete the purchase to see the Purchase Receipt Page
     * Purchase Receipt Page has all the information for your order displayed!
 
+### Localization
+This store supports multiple languages and currencies.
+Any front-end textual data should be added to the `localization/en-CA.json` as a resource string.
+Project includes two locales out of the box: `en-CA` and `fr-FR`.
+For development purpose run: `node tools/translate.js` which will run a pseudo translation from `en-CA` locale to `fr-FR`. In order to add a new locale add a new entry to `supportedLocales` array in `ep.config.json` and add an appropriate json file to `localization` folder. In addition you will have to configure language and currency for all products in Commerce Manager.
+
 ## Unit Tests (TBA)
 * Test json data can be found in `tests`
 * run `npm test` to run tests

@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
 import ProductListPaginationTop from './productlistpaginationtop.main';
@@ -105,7 +106,7 @@ class CategoryItemsMain extends React.Component {
             <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
               <div>
                 <h3>
-                  No products found
+                  {intl.get('no-products-found')}
                 </h3>
               </div>
             </div>

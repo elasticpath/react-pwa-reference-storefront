@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import { loginRegistered } from '../utils/AuthService';
 
@@ -91,7 +92,7 @@ class AppModalLoginMain extends React.Component {
 
             <div className="modal-header">
               <h2 className="modal-title">
-                Login
+                {intl.get('login')}
               </h2>
               <button type="button" id="login_modal_close_button" className="close" data-dismiss="modal">
                 &times;
@@ -99,20 +100,22 @@ class AppModalLoginMain extends React.Component {
             </div>
 
             <div className="auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
-              {failedLogin ? ('Your username or password is invalid.') : ('')}
+              {failedLogin ? (intl.get('invalid-username-or-password')) : ('')}
             </div>
 
             <div className="modal-body">
               <form id="login_modal_form" onSubmit={this.loginRegisteredUser}>
                 <div className="form-group">
                   <span>
-                    Username:
+                    {intl.get('username')}
+                    :
                   </span>
                   <input className="form-control" id="login_modal_username_input" type="text" onChange={this.setUsername} />
                 </div>
                 <div className="form-group">
                   <span>
-                    Password:
+                    {intl.get('password')}
+                    :
                   </span>
                   <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} />
                 </div>
@@ -122,13 +125,13 @@ class AppModalLoginMain extends React.Component {
                   }
                   <div className="login-cell">
                     <button className="btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
-                      Login
+                      {intl.get('login')}
                     </button>
                   </div>
                   <div className="register-cell">
                     <Link to="/registration">
                       <button className="btn-auth-register btn btn-link" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={AppModalLoginMain.registerNewUser}>
-                        Register
+                        {intl.get('register')}
                       </button>
                     </Link>
                   </div>

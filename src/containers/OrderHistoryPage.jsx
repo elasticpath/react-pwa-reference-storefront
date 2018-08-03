@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
@@ -86,7 +87,7 @@ class OrderHistoryPage extends React.Component {
           <div className="app-main" style={{ display: 'block' }}>
             <div className="container">
               <h2>
-                Purchase Details
+                {intl.get('purchase-details')}
               </h2>
               <PurchaseDetailsMain data={purchaseData} />
             </div>

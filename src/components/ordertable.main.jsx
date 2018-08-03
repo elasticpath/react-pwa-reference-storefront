@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import OrderTableLineItem from './ordertable.lineitem';
 
 const OrderTableMain = (props) => {
@@ -29,20 +30,20 @@ const OrderTableMain = (props) => {
           <tr>
             <th className="order-heading-product">
               <span className="lineitem-asset-col">
-                Product
+                {intl.get('product')}
               </span>
             </th>
             <th className="order-heading-name">
-              Name
+              {intl.get('name')}
             </th>
             <th className="order-heading-options">
-              Options
+              {intl.get('options')}
             </th>
             <th className="order-heading-quantity">
-              Quantity
+              {intl.get('quantity')}
             </th>
             <th className="order-heading-item-total">
-              Total Price
+              {intl.get('total-price')}
             </th>
           </tr>
         </thead>

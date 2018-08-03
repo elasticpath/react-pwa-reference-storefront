@@ -18,6 +18,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
+import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import ProductListItemMain from './productlistitem.main';
 
@@ -57,7 +58,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
       data.push(
         <div className="display" key={htmlFor}>
           <label className="control-label" htmlFor={htmlFor}>
-            Product Recommendations
+            {intl.get('product-recommendations')}
           </label>
           <div className="card-deck">
             {ProductRecommendationsDisplayMain.renderProductAssocitationView(product, maxItemsInView)}

@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import PaymentMethodContainer from './paymentmethod.container';
 import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
@@ -28,13 +29,13 @@ const PurchaseDetailsMain = (props) => {
   let statusString;
   switch (status) {
     case 'CANCELLED':
-      statusString = 'Cancelled';
+      statusString = intl.get('cancelled');
       break;
     case 'COMPLETED':
-      statusString = 'Completed';
+      statusString = intl.get('completed');
       break;
     default:
-      statusString = 'In Progress';
+      statusString = intl.get('in-progress');
   }
   const orderNumber = data['purchase-number'];
   const orderTaxTotal = data['tax-total'].display;
@@ -48,7 +49,7 @@ const PurchaseDetailsMain = (props) => {
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
           <h3>
-            Shipping Option
+            {intl.get('shipping-option')}
           </h3>
           <ShippingOptionContainer option={option} />
         </div>
@@ -64,7 +65,7 @@ const PurchaseDetailsMain = (props) => {
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
           <h3>
-            Shipping Address
+            {intl.get('shipping-address')}
           </h3>
           <AddressContainer name={name} address={address} />
         </div>
@@ -79,7 +80,7 @@ const PurchaseDetailsMain = (props) => {
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
         <h3>
-          Billing Address
+          {intl.get('billing-address')}
         </h3>
         <AddressContainer name={name} address={address} />
       </div>
@@ -91,7 +92,7 @@ const PurchaseDetailsMain = (props) => {
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
         <h3>
-          Payment Method
+          {intl.get('payment-method')}
         </h3>
         <PaymentMethodContainer displayName={displayName} />
       </div>
@@ -111,7 +112,8 @@ const PurchaseDetailsMain = (props) => {
             <tr>
               <td>
                 <label htmlFor="lineItemName">
-                  Name:
+                  {intl.get('name')}
+                  :
                 </label>
               </td>
               <td>
@@ -137,7 +139,8 @@ const PurchaseDetailsMain = (props) => {
             <tr>
               <td>
                 <label htmlFor="lineItemQuantity">
-                  Quantity:
+                  {intl.get('quantity')}
+                  :
                 </label>
               </td>
               <td>
@@ -149,7 +152,8 @@ const PurchaseDetailsMain = (props) => {
             <tr>
               <td>
                 <label htmlFor="lineItemAmount">
-                  Sub-total:
+                  {intl.get('sub-total')}
+                  :
                 </label>
               </td>
               <td>
@@ -161,7 +165,8 @@ const PurchaseDetailsMain = (props) => {
             <tr>
               <td>
                 <label htmlFor="lineItemTax">
-                  Tax:
+                  {intl.get('tax')}
+                  :
                 </label>
               </td>
               <td>
@@ -173,7 +178,8 @@ const PurchaseDetailsMain = (props) => {
             <tr>
               <td>
                 <label htmlFor="lineItemTotal">
-                  Item Total:
+                  {intl.get('item-total')}
+                  :
                 </label>
               </td>
               <td>
@@ -194,13 +200,14 @@ const PurchaseDetailsMain = (props) => {
         <div data-region="purchaseSummaryRegion" style={{ display: 'block' }}>
           <div>
             <h3>
-              Summary
+              {intl.get('summary')}
             </h3>
             <table className="table table-striped">
               <tbody>
                 <tr>
                   <td>
-                    Status:
+                    {intl.get('status')}
+                    :
                   </td>
                   <td data-el-value="status">
                     {statusString}
@@ -208,7 +215,8 @@ const PurchaseDetailsMain = (props) => {
                 </tr>
                 <tr data-el-container="purchaseNumber">
                   <td>
-                    Order Number:
+                    {intl.get('order-number')}
+                    :
                   </td>
                   <td data-el-value="purchaseNumber">
                     {orderNumber}
@@ -216,7 +224,8 @@ const PurchaseDetailsMain = (props) => {
                 </tr>
                 <tr data-el-container="taxTotal">
                   <td>
-                    Order Tax Total:
+                    {intl.get('order-tax-total')}
+                    :
                   </td>
                   <td data-el-value="taxTotal">
                     {orderTaxTotal}
@@ -224,7 +233,8 @@ const PurchaseDetailsMain = (props) => {
                 </tr>
                 <tr>
                   <td>
-                    Order Purchase Date:
+                    {intl.get('order-purchase-date')}
+                    :
                   </td>
                   <td data-el-value="purchaseDate">
                     {orderPurchaseDate}
@@ -232,7 +242,8 @@ const PurchaseDetailsMain = (props) => {
                 </tr>
                 <tr data-el-container="orderTotal">
                   <td>
-                    Order Total:
+                    {intl.get('order-total')}
+                    :
                   </td>
                   <td data-el-value="orderTotal">
                     {orderTotal}
@@ -249,7 +260,7 @@ const PurchaseDetailsMain = (props) => {
           {renderPaymentMethod()}
         </div>
         <h3>
-          Items
+          {intl.get('items')}
         </h3>
         <div data-region="purchaseLineItemsRegion" className="purchase-items-container" style={{ display: 'block' }}>
           <ul className="purchase-items-list">

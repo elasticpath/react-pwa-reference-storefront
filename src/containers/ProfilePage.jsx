@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
@@ -57,7 +58,7 @@ class ProfilePage extends React.Component {
 
   fetchProfileData() {
     login().then(() => {
-      cortexFetch(`${Config.cortexApi.path}/?zoom=${zoomArray.join()}`,
+      cortexFetch(`/?zoom=${zoomArray.join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -86,7 +87,7 @@ class ProfilePage extends React.Component {
           <div className="container">
             <div data-region="profileTitleRegion" style={{ display: 'block' }}>
               <h1>
-                Profile
+                {intl.get('profile')}
               </h1>
             </div>
             <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />

@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
@@ -146,7 +147,7 @@ class OrderReviewPage extends React.Component {
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
           <h3>
-            Shipping Option
+            {intl.get('shipping-option')}
           </h3>
           <ShippingOptionContainer option={option} />
         </div>
@@ -164,7 +165,7 @@ class OrderReviewPage extends React.Component {
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
           <h3>
-            Shipping Address
+            {intl.get('shipping-address')}
           </h3>
           <AddressContainer name={name} address={address} />
         </div>
@@ -180,7 +181,7 @@ class OrderReviewPage extends React.Component {
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
         <h3>
-          Billing Address
+          {intl.get('billing-address')}
         </h3>
         <AddressContainer name={name} address={address} />
       </div>
@@ -193,7 +194,7 @@ class OrderReviewPage extends React.Component {
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
         <h3>
-          Payment Method
+          {intl.get('payment-method')}
         </h3>
         <PaymentMethodContainer displayName={displayName} />
       </div>
@@ -210,7 +211,7 @@ class OrderReviewPage extends React.Component {
             <div className="order-container-inner">
               <div className="order-title-container" style={{ display: 'block' }}>
                 <h1 className="view-title">
-                  Review Your Order
+                  {intl.get('review-your-order')}
                 </h1>
               </div>
               {orderData && (
@@ -235,7 +236,7 @@ class OrderReviewPage extends React.Component {
                       </div>
                       <div className="checkout-submit-container" style={{ display: 'block' }}>
                         <button className="btn-cmd-submit-order" type="button" onClick={() => { this.completeOrder(); }}>
-                          Complete Purchase
+                          {intl.get('complete-purchase')}
                         </button>
                         {isLoading && (
                           <div className="miniLoader" />

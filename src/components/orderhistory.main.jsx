@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import OrderLine from './orderline.main';
 
 class OrderHistoryMain extends React.Component {
@@ -42,22 +43,22 @@ class OrderHistoryMain extends React.Component {
         <div data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
           <div className="table-responsive">
             <h2>
-              Purchase History
+              {intl.get('purchase-history')}
             </h2>
             <table className="table table-condensed striped-table">
               <thead>
                 <tr>
                   <th>
-                    Purchase #
+                    {intl.get('purchase-number')}
                   </th>
                   <th>
-                    Date
+                    {intl.get('date')}
                   </th>
                   <th>
-                    Total
+                    {intl.get('total')}
                   </th>
                   <th>
-                    Status
+                    {intl.get('status')}
                   </th>
                 </tr>
               </thead>
@@ -75,11 +76,11 @@ class OrderHistoryMain extends React.Component {
       <div data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
         <div className="table-responsive">
           <h2>
-            Purchase History
+            {intl.get('purchase-history')}
           </h2>
           <div>
             <p>
-              You have no previous purchases.
+              {intl.get('no-previous-purchase-message')}
             </p>
           </div>
         </div>

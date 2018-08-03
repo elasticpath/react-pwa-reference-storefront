@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
@@ -108,7 +109,8 @@ class CartPage extends React.Component {
       return (
         <li className="cart-discount">
           <label htmlFor="cart_summary_discount_label" className="cart-summary-label-col">
-            Discount at Checkout:&nbsp;
+            {intl.get('discount-at-checkout')}
+            :&nbsp;
           </label>
           <span className="cart-summary-value-col">
             {cartData._discount[0].discount[0].display}
@@ -125,7 +127,8 @@ class CartPage extends React.Component {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart_summary_promotion_label" className="cart-summary-label-col">
-            Applied Promotions:&nbsp;
+            {intl.get('applied-promotions')}
+            :&nbsp;
           </label>
           <br />
           {cartData._appliedpromotions[0]._element.map(promotion => (
@@ -150,10 +153,10 @@ class CartPage extends React.Component {
             <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
               <div>
                 <h1 className="view-title">
-                  Shopping Cart
+                  {intl.get('shopping-cart')}
                 </h1>
                 <button className="btn-cmd-continue-shopping" type="button" onClick={() => { history.push('/'); }}>
-                  Continue Shopping
+                  {intl.get('continue-shopping')}
                 </button>
               </div>
             </div>
@@ -172,7 +175,7 @@ class CartPage extends React.Component {
                     <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                       <div>
                         <button className="btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
-                          Proceed to Checkout
+                          {intl.get('proceed-to-checkout')}
                         </button>
                       </div>
                     </div>

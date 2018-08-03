@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import CartLineItem from './cart.lineitem';
 
 
@@ -29,7 +30,7 @@ const CartMain = (props) => {
     return (
       <div className="cart-empty-container">
         <span className="cart-empty-message">
-          Your shopping cart is empty.
+          {intl.get('shopping-card-empty-message')}
         </span>
       </div>
     );
@@ -41,29 +42,29 @@ const CartMain = (props) => {
           <tr>
             <th className="cart-heading-product">
               <span className="lineitem-asset-col">
-                Product
+                {intl.get('product')}
               </span>
             </th>
             <th className="cart-heading-name">
-              Name
+              {intl.get('name')}
             </th>
             <th className="cart-heading-options">
-              Options
+              {intl.get('options')}
             </th>
             <th className="cart-heading-availability">
-              Availability
+              {intl.get('availability')}
             </th>
             <th className="cart-heading-item-price">
-              Unit Price
+              {intl.get('unit-price')}
             </th>
             <th className="cart-heading-quantity">
-              Quantity
+              {intl.get('quantity')}
             </th>
             <th className="cart-heading-item-total">
-              Total Price
+              {intl.get('total-price')}
             </th>
             <th className="cart-heading-remove">
-              Remove
+              {intl.get('remove')}
             </th>
           </tr>
         </thead>

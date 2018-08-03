@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
@@ -246,14 +247,14 @@ class ProductDisplayItemMain extends React.Component {
       let availabilityString = '';
       if (productData._availability.length >= 0) {
         if (productData._availability[0].state === 'AVAILABLE') {
-          availabilityString = 'In Stock';
+          availabilityString = intl.get('in-stock');
         } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
-          availabilityString = 'Pre-order';
+          availabilityString = intl.get('pre-order');
         } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
           availability = true;
-          availabilityString = 'Back-order';
+          availabilityString = intl.get('back-order');
         } else {
-          availabilityString = 'Out of Stock';
+          availabilityString = intl.get('out-of-stock');
         }
       }
       return (
@@ -263,7 +264,7 @@ class ProductDisplayItemMain extends React.Component {
             <div className="itemdetail-assets">
               <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
                 <div className="itemdetail-asset-container">
-                  <img src={Config.skuImagesS3Url.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="None Available" className="itemdetail-main-img" />
+                  <img src={Config.skuImagesS3Url.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
                 </div>
               </div>
             </div>
@@ -285,7 +286,8 @@ class ProductDisplayItemMain extends React.Component {
                           ? (
                             <li className="itemdetail-list-price" data-region="itemListPriceRegion">
                               <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="itemdetail-list-price-label">
-                                Original Price&nbsp;
+                                {intl.get('original-price')}
+                                &nbsp;
                               </label>
                               <span className="itemdetail-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
                                 {listPrice}
@@ -296,7 +298,8 @@ class ProductDisplayItemMain extends React.Component {
                       }
                       <li className="itemdetail-purchase-price">
                         <label htmlFor={`category_item_price_${productData._code[0].code}_label`} className="itemdetail-purchase-price-label">
-                          Price&nbsp;
+                          {intl.get('price')}
+                          &nbsp;
                         </label>
                         <span className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
                           {itemPrice}
@@ -325,7 +328,8 @@ class ProductDisplayItemMain extends React.Component {
                   </li>
                   <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
                     <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
-                      Expected Release Date:&nbsp;
+                      {intl.get('expected-release-date')}
+                      :&nbsp;
                     </label>
                     <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
                       {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
@@ -352,7 +356,7 @@ class ProductDisplayItemMain extends React.Component {
                     }
                     <div className="form-group">
                       <label htmlFor="product_display_item_quantity_label" className="control-label">
-                        Quantity
+                        {intl.get('quantity')}
                       </label>
 
                       <div className="form-content">
@@ -393,7 +397,7 @@ class ProductDisplayItemMain extends React.Component {
                     <div className="form-group form-group-submit">
                       <div className="form-content form-content-submit col-sm-8 col-sm-offset-4">
                         <button className={`btn-round btn btn-primary btn-itemdetail-addtocart${!availability ? ' disabled' : ''}`} id="product_display_item_add_to_cart_button" type="submit">
-                          Add to Cart
+                          {intl.get('add-to-cart')}
                         </button>
                       </div>
                     </div>

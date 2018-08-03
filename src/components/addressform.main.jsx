@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
@@ -271,7 +272,7 @@ class AddressFormMain extends React.Component {
                   *
                 </span>
                 {' '}
-                Province
+                {intl.get('province')}
               </label>
               <div className="address-form-input activity-indicator-loading-region">
                 <select id="Region" name="Region" className="form-control" value={subCountry} onChange={this.setSubCountry}>
@@ -297,7 +298,7 @@ class AddressFormMain extends React.Component {
               *
             </span>
             {' '}
-            Province
+            {intl.get('province')}
           </label>
           <div className="address-form-input activity-indicator-loading-region">
             <select id="Region" name="Region" className="form-control" value={subCountry} onChange={this.setSubCountry}>
@@ -314,14 +315,14 @@ class AddressFormMain extends React.Component {
     const {
       failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
     } = this.state;
-    const newOrEdit = (location.state && location.state.address) ? 'Edit' : 'New';
+    const newOrEdit = (location.state && location.state.address) ? intl.get('edit') : intl.get('new');
     return (
       <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
         <div className="create-address-container container">
           <h3>
             {newOrEdit}
             {' '}
-            Address
+            {intl.get('address')}
           </h3>
           <form className="form-horizontal" onSubmit={this.submitAddress}>
             <div data-region="componentAddressFormRegion" style={{ display: 'block' }}>
@@ -335,7 +336,7 @@ class AddressFormMain extends React.Component {
                       *
                     </span>
                     {' '}
-                    First Name
+                    {intl.get('first-name')}
                   </label>
                   <div className="address-form-input">
                     {/* eslint-disable-next-line max-len */}
@@ -348,7 +349,7 @@ class AddressFormMain extends React.Component {
                       *
                     </span>
                     {' '}
-                    Last Name
+                    {intl.get('last-name')}
                   </label>
                   <div className="address-form-input">
                     {/* eslint-disable-next-line max-len */}
@@ -361,7 +362,7 @@ class AddressFormMain extends React.Component {
                       *
                     </span>
                     {' '}
-                    Street Address
+                    {intl.get('street-address')}
                   </label>
                   <div className="address-form-input">
                     <input id="StreetAddress" name="StreetAddress" className="form-control" type="text" value={address} onChange={this.setAddress} />
@@ -369,7 +370,7 @@ class AddressFormMain extends React.Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor="ExtendedAddress" data-el-label="addressForm.extendedAddress" className="control-label address-form-label">
-                    Extended Address
+                    {intl.get('extended-address')}
                   </label>
                   <div className="address-form-input">
                     {/* eslint-disable-next-line max-len */}
@@ -395,7 +396,7 @@ class AddressFormMain extends React.Component {
                         *
                       </span>
                       {' '}
-                      Country
+                      {intl.get('country')}
                     </label>
                     <div className="address-form-input">
                       <select id="Country" name="Country" className="form-control" value={country} onChange={this.setCountry}>
@@ -412,7 +413,7 @@ class AddressFormMain extends React.Component {
                       *
                     </span>
                     {' '}
-                    Postal Code
+                    {intl.get('postal-code')}
                   </label>
                   <div className="address-form-input">
                     <input id="PostalCode" name="PostalCode" className="form-control" type="text" value={postalCode} onChange={this.setPostalCode} />
@@ -422,10 +423,10 @@ class AddressFormMain extends React.Component {
             </div>
             <div className="form-group create-address-btn-container container">
               <button className="btn btn-primary address-save-btn" data-el-label="addressForm.save" type="submit">
-                Save
+                {intl.get('save')}
               </button>
               <button className="btn address-cancel-btn" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
-                Cancel
+                {intl.get('cancel')}
               </button>
             </div>
           </form>

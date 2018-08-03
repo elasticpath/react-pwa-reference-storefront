@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 
 import { withRouter } from 'react-router';
 
@@ -58,7 +59,7 @@ class AppHeaderSearchMain extends React.Component {
             </div>
             <button className="btn-header-search" id="header_navbar_search_container_button" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
               <span className="icon" />
-Search
+              {intl.get('search')}
             </button>
           </form>
         </div>

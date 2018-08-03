@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
 import ProductListPaginationTop from './productlistpaginationtop.main';
@@ -118,7 +119,7 @@ class SearchResultsItemsMain extends React.Component {
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
             <div>
               <h1 className="view-title">
-                Search Results
+                {intl.get('search-results')}
               </h1>
             </div>
           </div>
@@ -134,7 +135,7 @@ class SearchResultsItemsMain extends React.Component {
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
             <div>
               <h1 className="view-title">
-                Search Results
+                {intl.get('search-results')}
               </h1>
             </div>
           </div>
@@ -142,7 +143,7 @@ class SearchResultsItemsMain extends React.Component {
           <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
             <div>
               <h3>
-                No results found
+                {intl.get('no-results-found')}
               </h3>
             </div>
           </div>

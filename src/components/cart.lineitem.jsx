@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
@@ -156,16 +157,16 @@ class CartLineItem extends React.Component {
     if (item._availability.length >= 0) {
       if (item._availability[0].state === 'AVAILABLE') {
         availability = true;
-        availabilityString = 'In Stock';
+        availabilityString = intl.get('in-stock');
       } else if (item._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
         availability = true;
-        availabilityString = 'Pre-order';
+        availabilityString = intl.get('pre-order');
       } else if (item._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
         availability = true;
-        availabilityString = 'Back-order';
+        availabilityString = intl.get('back-order');
       } else {
         availability = false;
-        availabilityString = 'Out of Stock';
+        availabilityString = intl.get('out-of-stock');
       }
     }
     return (
@@ -195,7 +196,8 @@ class CartLineItem extends React.Component {
             </li>
             <li className={`category-item-release-date${item._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
               <label htmlFor="cart-lineitem-release-date-value" className="cart-lineitem-releasedate-label">
-                Expected Release Date:&nbsp;
+                {intl.get('expected-release-date')}
+                :&nbsp;
               </label>
               <span className="cart-lineitem-release-date-value">
                 {(item._availability[0]['release-date']) ? item._availability[0]['release-date']['display-value'] : ''}
@@ -262,7 +264,7 @@ class CartLineItem extends React.Component {
           <button className="btn btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
             <span className="icon" />
             <span className="btn-text">
-              Remove
+              {intl.get('remove')}
             </span>
           </button>
         </td>

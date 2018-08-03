@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
 
@@ -129,13 +130,13 @@ class ProfileInfoMain extends React.Component {
         <div data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <div>
             <h2>
-              Personal Information
+              {intl.get('personal-information')}
             </h2>
             <form className="form-horizontal" onSubmit={this.submitPersonalInfoChange}>
               <div data-region="componentAddressFormRegion" style={{ display: 'block' }}>
                 <div className="address-form-container">
                   <div className="feedback-label address-form-feedback-container" data-region="componentAddressFeedbackRegion">
-                    {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
+                    {failedSubmit ? intl.get('failed-to-save-message') : ''}
                   </div>
                   <div className="form-group">
                     <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label address-form-label">
@@ -143,7 +144,7 @@ class ProfileInfoMain extends React.Component {
                         *
                       </span>
                       {' '}
-                      First Name
+                      {intl.get('first-name')}
                     </label>
                     <div className="address-form-input">
                       {/* eslint-disable-next-line max-len */}
@@ -156,7 +157,7 @@ class ProfileInfoMain extends React.Component {
                         *
                       </span>
                       {' '}
-                      Last Name
+                      {intl.get('last-name')}
                     </label>
                     <div className="address-form-input">
                       {/* eslint-disable-next-line max-len */}
@@ -167,10 +168,10 @@ class ProfileInfoMain extends React.Component {
               </div>
               <div className="form-group create-address-btn-container container">
                 <button className="btn btn-primary address-save-btn" data-el-label="addressForm.save" type="submit">
-                  Save
+                  {intl.get('save')}
                 </button>
                 <button className="btn address-cancel-btn" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
-                  Cancel
+                  {intl.get('cancel')}
                 </button>
               </div>
             </form>
@@ -183,17 +184,19 @@ class ProfileInfoMain extends React.Component {
         <div data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <div>
             <h2>
-              Personal Information
+              {intl.get('personal-information')}
             </h2>
             <dl className="profile-personal-info-container container">
               <dt className="profile-personal-info-label" data-el-label="profile.firstName">
-                First Name:
+                {intl.get('first-name')}
+                :
               </dt>
               <dd className="profile-personal-info-value" id="profile_personal_info_givenName" data-el-value="givenName">
                 {profileInfo['given-name']}
               </dd>
               <dt className="profile-personal-info-label" data-el-label="profile.lastName">
-                Last Name:
+                {intl.get('last-name')}
+                :
               </dt>
               <dd className="profile-personal-info-value" id="profile_personal_info_familyName" data-el-value="familyName">
                 {profileInfo['family-name']}
@@ -201,7 +204,7 @@ class ProfileInfoMain extends React.Component {
             </dl>
 
             <button className="btn btn-primary profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" onClick={() => { this.editPersonalInfo(); }}>
-              Edit
+              {intl.get('edit')}
             </button>
           </div>
         </div>

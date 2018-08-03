@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
@@ -103,16 +104,16 @@ class ProductListItemMain extends React.Component {
       if (productData._availability.length >= 0) {
         if (productData._availability[0].state === 'AVAILABLE') {
           availability = true;
-          availabilityString = 'In Stock';
+          availabilityString = intl.get('in-stock');
         } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
           availability = true;
-          availabilityString = 'Pre-order';
+          availabilityString = intl.get('pre-order');
         } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
           availability = true;
-          availabilityString = 'Back-order';
+          availabilityString = intl.get('back-order');
         } else {
           availability = false;
-          availabilityString = 'Out of Stock';
+          availabilityString = intl.get('out-of-stock');
         }
       }
       return (
@@ -136,7 +137,7 @@ class ProductListItemMain extends React.Component {
                       ? (
                         <li className="category-item-list-price" data-region="itemListPriceRegion">
                           <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="item-meta category-item-list-price-label">
-                            Original Price
+                            {intl.get('original-price')}
                           </label>
                           <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
                             {listPrice}
@@ -147,7 +148,7 @@ class ProductListItemMain extends React.Component {
                   }
                   <li className="category-item-purchase-price">
                     <label htmlFor={`category_item_price_${productData._code[0].code}_label`} className="item-meta category-item-purchase-price-label">
-                      Price
+                      {intl.get('price')}
                     </label>
                     <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
                       {itemPrice}
@@ -176,7 +177,8 @@ class ProductListItemMain extends React.Component {
               </li>
               <li className={`category-item-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
                 <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="item-meta category-item-releaseDate-label">
-                  Expected Release Date:&nbsp;
+                  {intl.get('expected-release-date')}
+                  :&nbsp;
                 </label>
                 <span className="item-meta category-item-releaseDate-value" id={`category_item_release_date_${productData._code[0].code}`}>
                   {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}

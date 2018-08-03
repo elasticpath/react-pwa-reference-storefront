@@ -18,6 +18,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 
 class CheckoutSummaryList extends React.Component {
   static propTypes = {
@@ -30,7 +31,8 @@ class CheckoutSummaryList extends React.Component {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart-applied-promotions" className="cart-summary-label-col">
-            Applied Promotions:&nbsp;
+            {intl.get('applied-promotions')}
+            :&nbsp;
           </label>
           <br />
           {data._appliedpromotions[0]._element.map(promotion => (
@@ -50,7 +52,8 @@ class CheckoutSummaryList extends React.Component {
       return (
         <li className="cart-discount">
           <label htmlFor="cart-summary-value-col" className="cart-summary-label-col">
-            Today&apos;s Discount:&nbsp;
+            {intl.get('todays-discount')}
+            :&nbsp;
           </label>
           <span className="cart-summary-value-col">
             {data._discount[0].discount[0].display}
@@ -69,7 +72,8 @@ class CheckoutSummaryList extends React.Component {
           <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
             <div className="checkout-shipping-total">
               <label htmlFor="checkout-shipping-total">
-                Today&apos;s Shipping Cost:&nbsp;
+                {intl.get('todays-shipping-cost')}
+                :&nbsp;
               </label>
               <span>
                 {data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption[0].cost[0].display}
@@ -90,7 +94,8 @@ class CheckoutSummaryList extends React.Component {
           <div data-region="checkoutTaxTotalRegion" style={{ display: 'block' }}>
             <div className="checkout-tax-total">
               <label htmlFor="checkout-tax-total">
-                Today&apos;s Taxes:&nbsp;
+                {intl.get('todays-taxes')}
+                :&nbsp;
               </label>
               <span>
                 {data._order[0]._tax[0].total.display}
@@ -124,7 +129,8 @@ class CheckoutSummaryList extends React.Component {
       return (
         <li className="checkout-total">
           <label htmlFor="checkout-total">
-            Today&apos;s Total:&nbsp;
+            {intl.get('todays-total')}
+            :&nbsp;
           </label>
           <span data-el-value="checkout.total">
             {data._order[0]._total[0].cost[0].display}
@@ -141,7 +147,8 @@ class CheckoutSummaryList extends React.Component {
       <ul className="cart-summary-list">
         <li className="cart-total-quantity">
           <label htmlFor="cart-summary-value-col" className="cart-summary-label-col">
-            Total Quantity:&nbsp;
+            {intl.get('total-quantity')}
+            :&nbsp;
           </label>
           <span className="cart-summary-value-col">
             {data['total-quantity']}
@@ -150,7 +157,8 @@ class CheckoutSummaryList extends React.Component {
         {this.renderPromotions()}
         <li className="cart-subtotal">
           <label htmlFor="cart-summary-value-col" className="cart-summary-label-col">
-            Today&apos;s Subtotal:&nbsp;
+            {intl.get('todays-subtotal')}
+            :&nbsp;
           </label>
           <span className="cart-summary-value-col">
             {data._total[0].cost[0].display}

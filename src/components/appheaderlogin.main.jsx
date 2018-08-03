@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import { login, logout } from '../utils/AuthService';
 
@@ -56,14 +57,14 @@ class AppHeaderLoginMain extends React.Component {
                   <li className="dropdown-item">
                     <Link to="/profile">
                       <span className="profile-link" id="header_navbar_login_menu_profile_link">
-                        Profile
+                        {intl.get('profile')}
                       </span>
                     </Link>
                   </li>
                   <li className="dropdown-item">
                     <button className="btn-cmd btn-auth-logout" id="header_navbar_login_menu_logout_button" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                       <span className="icon" />
-                      Logout
+                      {intl.get('logout')}
                     </button>
                   </li>
                 </ul>
@@ -79,7 +80,7 @@ class AppHeaderLoginMain extends React.Component {
         <div className="auth-container">
           <div className="auth-container">
             <button className="global-nav-link global-nav-login btn-auth-menu" id="header_navbar_login_button" type="button" data-toggle="modal" data-target="#login-modal">
-              Login
+              {intl.get('login')}
             </button>
             <div data-region="authMainRegion" className="auth-nav-container" />
           </div>

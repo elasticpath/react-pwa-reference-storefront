@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import * as UserPrefs from '../utils/UserPrefs';
 
 const Config = require('Config');
@@ -60,7 +61,7 @@ class AppHeaderLocaleMain extends React.Component {
           </button>
           <div className="dropdown-menu dropdown-menu-right dropdown-margin-right">
             <h6 className="dropdown-header">
-              Language
+              {intl.get('language')}
             </h6>
             {Config.supportedLocales.map(locale => (
               <button
@@ -77,7 +78,7 @@ class AppHeaderLocaleMain extends React.Component {
             <div className="dropdown-divider" />
 
             <div className="dropdown-header">
-              Currency
+              {intl.get('currency')}
             </div>
             {Config.supportedCurrencies.map(currency => (
               <button

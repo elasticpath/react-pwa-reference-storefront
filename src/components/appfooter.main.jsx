@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
 function AppFooterMain() {
@@ -27,10 +28,10 @@ function AppFooterMain() {
           <div id="footer_container_column_1" className="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-xs-center text-sm-center text-md-left text-lg-left">
             <div className="footerColumn">
               <h5 className="text-uppercase">
-                Vestri
+                {intl.get('vestri')}
               </h5>
               <p>
-                Commerce software that powers the next generation of digital experience
+                {intl.get('store-description-message')}
               </p>
             </div>
           </div>
@@ -38,22 +39,22 @@ function AppFooterMain() {
           <div id="footer_container_column_2" className="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-left">
             <div className="footerColumn">
               <h5 className="text-uppercase">
-                Assistance
+                {intl.get('assistance')}
               </h5>
               <ul className="list-unstyled">
                 <li>
                   <Link to="/aboutus" id="footer_assistance_about_us_link">
-                    About Us
+                    {intl.get('about-us')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/contactus" id="footer_assistance_contact_us_link">
-                    Contact
+                    {intl.get('contact')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/termsandconditions" id="footer_assistance_terms_and_conditions_link">
-                    Terms &amp; Conditions
+                    {intl.get('terms-and-conditions')}
                   </Link>
                 </li>
               </ul>
@@ -62,25 +63,25 @@ function AppFooterMain() {
           <div id="footer_container_column_3" className="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-left">
             <div className="footerColumn">
               <h5 className="text-uppercase">
-                Find us Online
+                {intl.get('find-us-online')}
               </h5>
               <ul className="list-unstyled">
                 <li>
                   <Link to=" " id="footer_social_facebook_link">
                     <span className="share-icon-facebook" />
-                    facebook
+                    {intl.get('facebook')}
                   </Link>
                 </li>
                 <li>
                   <Link to=" " id="footer_social_twitter_link">
                     <span className="share-icon-twitter" />
-                    twitter
+                    {intl.get('twitter')}
                   </Link>
                 </li>
                 <li>
                   <Link to=" " id="footer_social_instagram_link">
                     <span className="share-icon-instagram" />
-                    instagram
+                    {intl.get('instagram')}
                   </Link>
                 </li>
               </ul>

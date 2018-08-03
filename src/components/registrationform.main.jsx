@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
 import {
   login, loginRegistered, registerUser, getRegistrationForm,
@@ -126,7 +127,7 @@ class RegistrationFormMain extends React.Component {
     return (
       <div className="registration-container container">
         <h3>
-          Register a New Account
+          {intl.get('register-new-account')}
         </h3>
 
         <div className="feedback-label registration-form-feedback-container feedback-display-linebreak" id="registration_form_feedback_container" data-region="registrationFeedbackMsgRegion">
@@ -142,7 +143,7 @@ class RegistrationFormMain extends React.Component {
                     *
                   </span>
                   {' '}
-                  First Name
+                  {intl.get('first-name')}
                 </label>
                 <div className="registration-form-input">
                   <input id="registration_form_firstName" name="given-name" className="form-control" type="text" onChange={this.setFirstName} />
@@ -154,7 +155,7 @@ class RegistrationFormMain extends React.Component {
                     *
                   </span>
                   {' '}
-                  Last Name
+                  {intl.get('last-name')}
                 </label>
                 <div className="registration-form-input">
                   <input id="registration_form_lastName" name="family-name" className="form-control" type="text" onChange={this.setLastName} />
@@ -166,7 +167,7 @@ class RegistrationFormMain extends React.Component {
                     *
                   </span>
                   {' '}
-                  Email/Username
+                  {intl.get('email-slash-username')}
                 </label>
                 <div className="registration-form-input">
                   <input id="registration_form_emailUsername" name="username" className="form-control" type="text" onChange={this.setUsername} />
@@ -178,7 +179,7 @@ class RegistrationFormMain extends React.Component {
                     *
                   </span>
                   {' '}
-                  Password
+                  {intl.get('password')}
                 </label>
                 <div className="registration-form-input">
                   <input id="registration_form_password" name="password" className="form-control" type="password" onChange={this.setPassword} />
@@ -190,7 +191,7 @@ class RegistrationFormMain extends React.Component {
                     *
                   </span>
                   {' '}
-                  Password Confirmation
+                  {intl.get('password-confirmation')}
                 </label>
                 <div className="registration-form-input">
                   <input id="registration_form_passwordConfirm" name="passwordConfirm" className="form-control" type="password" onChange={this.setPasswordConfirmation} />

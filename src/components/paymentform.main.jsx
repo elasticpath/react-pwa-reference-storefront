@@ -18,6 +18,7 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
 
@@ -201,10 +202,10 @@ class PaymentFormMain extends React.Component {
         <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
           <div className="container">
             <h1>
-              New Payment Method
+              {intl.get('new-payment-method')}
             </h1>
             <div className="feedback-label address-form-feedback-container" data-region="componentPaymentFeedbackRegion">
-              {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
+              {failedSubmit ? intl.get('failed-to-save-message') : ''}
             </div>
             <form className="form-horizontal payment-method-form-container container" onSubmit={this.submitPayment}>
               <div className="form-group">
@@ -212,18 +213,18 @@ class PaymentFormMain extends React.Component {
                   <span className="required-label">
                     *
                   </span>
-                  Card Type
+                  {intl.get('card-type')}
                 </label>
                 <div className="form-input">
                   <select id="CardType" name="CardType" className="form-control" value={cardType} onChange={this.setCardType}>
                     <option value="amex">
-                      American Express
+                      {intl.get('american-express')}
                     </option>
                     <option value="master">
-                      Mastercard
+                      {intl.get('mastercard')}
                     </option>
                     <option value="visa">
-                      Visa
+                      {intl.get('visa')}
                     </option>
                   </select>
                 </div>
@@ -233,7 +234,7 @@ class PaymentFormMain extends React.Component {
                   <span className="required-label">
                     *
                   </span>
-                  Card Holder&apos;s Name
+                  {intl.get('card-holders-name')}
                 </label>
                 <div className="form-input">
                   {/* eslint-disable-next-line max-len */}
@@ -245,7 +246,7 @@ class PaymentFormMain extends React.Component {
                   <span className="required-label">
                     *
                   </span>
-                  Credit Card Number
+                  {intl.get('credit-card-number')}
                 </label>
                 <div className="form-input">
                   <input id="CardNumber" name="CardNumber" className="form-control" type="text" value={cardNumber} onChange={this.setCardNumber} />
@@ -256,7 +257,7 @@ class PaymentFormMain extends React.Component {
                   <span className="required-label">
                     *
                   </span>
-                  Expiry Date
+                  {intl.get('expiry-date')}
                 </label>
                 <div className="form-inline">
                   <select id="ExpiryMonth" name="ExpiryMonth" className="form-control expiry-date" value={expiryMonth} onChange={this.setExpiryMonth}>
@@ -308,7 +309,7 @@ class PaymentFormMain extends React.Component {
                   <span className="required-label">
                     *
                   </span>
-                  Security Code
+                  {intl.get('security-code')}
                 </label>
                 <div className="form-input">
                   {/* eslint-disable-next-line max-len */}
@@ -319,15 +320,16 @@ class PaymentFormMain extends React.Component {
                 {/* eslint-disable-next-line max-len */}
                 <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" checked={saveToProfile} onChange={this.setSaveToProfile} />
                 <label htmlFor="saveToProfile" className="control-label form-label">
-                  &nbsp;Save this payment method to my profile
+                  &nbsp;
+                  {intl.get('save-payment-to-profile')}
                 </label>
               </div>
               <div className="form-group create-address-btn-container">
                 <button className="btn btn-primary payment-save-btn" data-el-label="paymentForm.save" type="submit">
-                  Continue
+                  {intl.get('continue')}
                 </button>
                 <button className="btn payment-cancel-btn" data-el-label="paymentForm.cancel" type="button" onClick={() => { this.cancel(); }}>
-                  Cancel
+                  {intl.get('cancel')}
                 </button>
               </div>
             </form>
