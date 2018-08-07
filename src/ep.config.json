@@ -1,8 +1,8 @@
 {
   "cortexApi":{
-    "path":"http://10.11.12.95:8080/cortex",
+    "path":"http://localhost:8080/cortex",
     "scope":"vestri",
-    "pathForProxy":"http://10.11.12.95:9080"
+    "pathForProxy":"http://localhost:9080"
   },
   "supportedLocales": [
     {

@@ -1,5 +1,5 @@
 def dockerRegistryAddress = '648265802301.dkr.ecr.us-west-2.amazonaws.com'
-def dockerImageNamespace = 'ep/ep-store'
+def dockerImageNamespace = 'ep'
 def dockerImageTag = params.DOCKER_IMAGE_TAG 
 
 
