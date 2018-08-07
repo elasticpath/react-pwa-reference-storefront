@@ -1,8 +1,7 @@
 {
   "cortexApi":{
-    "path":"http://localhost:8080/cortex",
-    "scope":"mobee",
-    "pathForProxy":"http://localhost:9080"
+    "path":"http://localhost:9080/cortex",
+    "scope":"mobee"
   },
   "supportedLocales": [
     {
