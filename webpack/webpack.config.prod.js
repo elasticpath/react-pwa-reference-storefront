@@ -34,5 +34,10 @@ module.exports = merge(baseConfig, {
   devServer: {
     historyApiFallback: true,
     compress: true,
+    proxy: {
+      '/cortex': {
+        target: epConfig.cortexApi.pathForProxy,
+      },
+    },
   },
 });
