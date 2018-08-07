@@ -1,6 +1,6 @@
 {
   "cortexApi":{
-    "path":"http://10.11.12.95/:9080/cortex",
+    "path":"http://10.11.12.95:9080/cortex",
     "scope":"mobee"
   },
   "supportedLocales": [
