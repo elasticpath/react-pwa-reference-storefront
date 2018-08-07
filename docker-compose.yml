@@ -1,7 +1,7 @@
 version: '2'
 services:
   store:
-    image: ${REGISTRY_ADDRESS}/${NAMESPACE}:${VERSION}
+    image: ${REGISTRY_ADDRESS}/${NAMESPACE}/ep-store:${VERSION}
     container_name: store
     ports:
       - 8080:8080
@@ -21,9 +21,7 @@ services:
   mysql_up:
     image: alpine
     container_name: mysql_up
-    command: sh -c "while ! nc -z db 3306 > /dev/null; do echo waiting for mysql; sleep 3; done"
-    links:
-    - mysql:db
+    command: sh -c "while ! nc -z mysql 3306 > /dev/null; do echo waiting for mysql; sleep 3; done"
     env_file:
       - docker-compose.env
   activemq:
