@@ -223,7 +223,7 @@ class CheckoutPage extends React.Component {
     const { orderData } = this.state;
     const deliveries = orderData._order[0]._deliveries;
     const { messages } = orderData._order[0];
-    const needShipmentDetails = messages.find(message => message.id === 'need.shipment.details');
+    const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
     if (needShipmentDetails || deliveries) {
       return (
         <div data-region="shippingAddressesRegion" style={{ display: 'block' }}>

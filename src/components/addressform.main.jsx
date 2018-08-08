@@ -26,9 +26,9 @@ const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
-  'element',
-  'element:regions',
-  'element:regions:element',
+  'countries:element',
+  'countries:element:regions',
+  'countries:element:regions:element',
 ];
 
 class AddressFormMain extends React.Component {
@@ -159,7 +159,7 @@ class AddressFormMain extends React.Component {
 
   fetchGeoData() {
     login().then(() => {
-      cortexFetch(`/geographies/${Config.cortexApi.scope}/countries?zoom=${zoomArray.join()}`, {
+      cortexFetch(`/?zoom=${zoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -168,7 +168,7 @@ class AddressFormMain extends React.Component {
         .then(res => res.json())
         .then((res) => {
           this.setState({
-            geoData: res,
+            geoData: res._countries[0],
           });
         })
         .catch((error) => {
