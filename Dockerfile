@@ -11,6 +11,8 @@ FROM node:10.5.0
 ARG BUILD_DATE
 ARG VERSION
 ARG VCS_REF
+ARG CORTEX_IP
+ARG STORE
 
 LABEL build-date="$BUILD_DATE"
 LABEL name="ep/ep-store"
@@ -33,6 +35,8 @@ RUN npm install
 
 # Bundle app source
 COPY . .
+RUN sed -i.bak s/localhost/${CORTEX_IP}/ ./src/ep.config.json
+RUN sed -i.bak s/vestri/${STORE}/ ./src/ep.config.json
 
 EXPOSE 8080
 
