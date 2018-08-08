@@ -6036,6 +6036,7 @@ td.visible-print {
 @media only screen and (max-width: 47rem) {
   .auth-nav-container {
     right: 1rem;
+    left: -95px;
   }
 }
 .auth-profile-menu-list {
@@ -6766,6 +6767,7 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
 @media (max-width: 488px) {
   .authMenuItemRegion {
     display: block !important;
+    padding-top: 65px !important;
   }
   .main-locale-container {
     float: right;
