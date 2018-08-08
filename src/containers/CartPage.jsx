@@ -184,7 +184,9 @@ class CartPage extends React.Component {
               </div>
             )}
             {(!cartData || isLoading) && (
-              <div className="loader" />
+              <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+                <div className="loader" />
+              </div>
             )}
           </div>
         </div>

@@ -247,7 +247,9 @@ class OrderReviewPage extends React.Component {
                 </div>
               )}
               {!orderData && (
-                <div className="loader" />
+                <div className="order-main-container" style={{ display: 'block' }}>
+                  <div className="loader" />
+                </div>
               )}
             </div>
           </div>

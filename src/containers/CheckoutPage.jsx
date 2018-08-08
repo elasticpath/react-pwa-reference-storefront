@@ -524,7 +524,9 @@ class CheckoutPage extends React.Component {
                   </h1>
                 </div>
               </div>
-              <div className="loader" />
+              <div className="checkout-main-container">
+                <div className="loader" />
+              </div>
             </div>
           </div>
         </div>
