@@ -1,6 +1,7 @@
 def dockerRegistryAddress = '648265802301.dkr.ecr.us-west-2.amazonaws.com'
 def dockerImageNamespace = 'ep'
 def dockerImageTag = params.DOCKER_IMAGE_TAG 
+def VERSION = params.VERSION
 
 
 def ec2InstanceHost = '10.11.12.95'
@@ -50,7 +51,8 @@ timestamps {
 					ssh -i ${ec2InstanceSshKey} ${ec2InstanceUser}@${ec2InstanceHost} \"\"\"
 					  export REGISTRY_ADDRESS=${dockerRegistryAddress}
 					  export NAMESPACE=${dockerImageNamespace}
-					  export VERSION=${dockerImageTag}
+					  export VERSION=${VERSION}
+					  export DOCKER_IMAGE_TAG=${dockerImageTag}
 
 					  cd ~/ref-store-service
 					  
