@@ -6995,7 +6995,7 @@ textarea.header-search-input {
 .main-locale-container {
   position: relative;
   display: inline-block;
-  max-width: 110px;
+  max-width: 80px;
 }
 
 .main-locale-container .locale-dropdown .dropdown-toggle {
