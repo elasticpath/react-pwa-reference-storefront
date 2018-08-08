@@ -6467,7 +6467,7 @@ fieldset[disabled] .btn-auth-login.active {
     background: none;
     border: none;
     margin-bottom: 0px;
-    margin-top: 101px;
+    margin-top: 130px;
   }
 }
 .logo-container {
@@ -6995,6 +6995,7 @@ textarea.header-search-input {
 .main-locale-container {
   position: relative;
   display: inline-block;
+  max-width: 110px;
 }
 
 .main-locale-container .locale-dropdown .dropdown-toggle {
