@@ -40,4 +40,4 @@ RUN sed -i.bak s/vestri/${STORE}/ ./src/ep.config.json
 
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "start-prod" ]
