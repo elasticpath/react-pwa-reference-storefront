@@ -5,6 +5,8 @@ services:
     container_name: store
     ports:
       - 8080:8080
+    volumes:
+      - /etc:/etc
     env_file:
       - docker-compose.env
     restart: always
