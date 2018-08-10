@@ -11,7 +11,7 @@ services:
       - docker-compose.env
     restart: always
   mysql:
-    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/mysql-ep-data:7.2.0
+    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/mysql-ep-data:${DOCKER_IMAGE_TAG}
     container_name: mysql
     ports:
       - 3306:3306
@@ -27,7 +27,7 @@ services:
     env_file:
       - docker-compose.env
   activemq:
-    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/activemq:7.2.0
+    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/activemq:${DOCKER_IMAGE_TAG}
     container_name: activemq
     ports:
       - 61616:61616
@@ -37,7 +37,7 @@ services:
       - docker-compose.env
     restart: always
   batch:
-    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/batch:7.2.0
+    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/batch:${DOCKER_IMAGE_TAG}
     container_name: batch
     ports:
       - 8084:8080
@@ -51,7 +51,7 @@ services:
       - docker-compose.env
     restart: always
   integration:
-    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/integration:7.2.0
+    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/integration:${DOCKER_IMAGE_TAG}
     container_name: integration
     ports:
       - 8083:8080
@@ -65,7 +65,7 @@ services:
       - docker-compose.env
     restart: always
   search:
-    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/search:7.2.0
+    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/search:${DOCKER_IMAGE_TAG}
     container_name: search
     ports:
       - 8082:8082
@@ -79,7 +79,7 @@ services:
       - docker-compose.env
     restart: always
   cortex:
-    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/cortex:7.2.0
+    image: 648265802301.dkr.ecr.us-west-2.amazonaws.com/wilma/cortex:${DOCKER_IMAGE_TAG}
     container_name: cortex
     ports:
       - 9080:8080
