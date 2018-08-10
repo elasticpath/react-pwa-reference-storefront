@@ -66,8 +66,7 @@ class SearchResultsItemsMain extends React.Component {
     }
   }
 
-  getSearchData() {
-    const { searchKeywordsProps } = this.props;
+  getSearchData(searchKeywordsProps) {
     login().then(() => {
       cortexFetch('/?zoom=searches:keywordsearchform',
         {
