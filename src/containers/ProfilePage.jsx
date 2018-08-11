@@ -56,6 +56,10 @@ class ProfilePage extends React.Component {
     this.fetchProfileData();
   }
 
+  componentWillReceiveProps() {
+    this.fetchProfileData();
+  }
+
   fetchProfileData() {
     login().then(() => {
       cortexFetch(`/?zoom=${zoomArray.join()}`,

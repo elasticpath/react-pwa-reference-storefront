@@ -67,6 +67,10 @@ class CartPage extends React.Component {
     this.fetchCartData();
   }
 
+  componentWillReceiveProps() {
+    this.fetchCartData();
+  }
+
   fetchCartData() {
     login().then(() => {
       cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
