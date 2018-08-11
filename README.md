@@ -1,6 +1,24 @@
-# Elastic Path's reference storefront in REACT.js
+# Elastic Path's reference storefront experience
 
 Reference storefront demonstrating usage of Cortex in a modern UI progressive web application.
+
+
+Table of contents
+=================
+
+<!--ts-->
+   * [Development Quick-Start](#gh-md-toc)
+      * [Pre-req](#pre-req)
+      * [Configuration](#configuration)
+      * [Setup (Development)](#setup-development)
+      * [Setup (Production)](#setup-production)
+   * [Linting](#linting)
+   * [Offline Mode](#offline-mode)
+   * [Localization](#localization)
+   * [Unit Tests](#unit-tests)
+   * [Contribution Guide](#contribution-guide)
+   * [License](#license)
+<!--te-->
 
 ## Development Quick-Start
 Built with REACT.js, Bootstrap 4, Babel, and Webpack.
@@ -17,11 +35,11 @@ If you haven’t already, you’ll need to install the following software:
 ##### `ep.config.json (options)`
 
  - `cortexApi.path`, **required**, *string*:
-Path the storefront should use to reach Cortex. Set to `http://localhost:8080/cortex` for local development to ensure redirection to proxy. Set to `cortex` for production.
+URL consisting of hostname and port which the storefront will use to reach Cortex. A web proxy is configured in this project's Webpack config for your local development convenience. Set this value to `http://localhost:8080/cortex` for local development to redirect Cortex calls to the local proxy. Set to `cortex` for production.
  - `cortexApi.scope`, **required**, *string*:
 Name of store to retreive data from Cortex.
  - `cortexApi.pathForProxy`, **required**, *string*:
-Path to the actual Cortex service location provided to the webpack proxy. URL consisting of hostname and port to actual running instance of Cortex.
+The path the webpack proxy will route storefront Cortex calls to. URL consisting of hostname and port to actual running instance of Cortex.
  - `skuImagesS3Url`, **required**, *string*:
  Path to catalog images hosted on S3 bucket. Set this to the full URL of your S3 images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
  - `enableOfflineMode`, **optional**, *bool*:
@@ -43,7 +61,7 @@ Path to the actual Cortex service location provided to the webpack proxy. URL co
 5. run `npm run start-prod` to start the server in production node
 6. navigate to `http://localhost:8080/` to see the running PWA
 
-### Linting
+## Linting
 This project has been set up with ESLint as our linting utility.<br/>
 If you'd like to learn a bit more about ESLint check out their [documentation](https://eslint.org/)<br/>
 We're currently extending Airbnbs’ ESLint configuration because at this time the Airbnb Code Style and the according ESLint configuration are very popular and well accepted by developers.<br/>
@@ -56,7 +74,7 @@ You can check out the style guide on [github](https://github.com/airbnb/javascri
 
 If you plan to check in your code, make sure to fix all your linting errors first!
 
-### Offline Mode
+## Offline Mode
 You can enable offline Mode in [`./src/ep.config.json`](#configuration)<br/>
 ##### How it works
 The *mock magic* is contained in `./src/utils/Mock.js`<br/>
@@ -85,13 +103,13 @@ Out of the box you get some mock data for the following flows, give them a shot!
     * After completing the order you're brought to the Order Review Page, you can complete the purchase to see the Purchase Receipt Page
     * Purchase Receipt Page has all the information for your order displayed!
 
-### Localization
+## Localization
 This store supports multiple languages and currencies.
 Any front-end textual data should be added to the `localization/en-CA.json` as a resource string.
 Project includes two locales out of the box: `en-CA` and `fr-FR`.
 For development purpose run: `node tools/translate.js` which will run a pseudo translation from `en-CA` locale to `fr-FR`. In order to add a new locale add a new entry to `supportedLocales` array in `ep.config.json` and add an appropriate json file to `localization` folder. In addition you will have to configure language and currency for all products in Commerce Manager.
 
-## Unit Tests (TBA)
+## Unit Tests
 * Test json data can be found in `tests`
 * run `npm test` to run tests
 

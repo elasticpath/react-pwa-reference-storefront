@@ -52,7 +52,7 @@ You may contribute to this repo by opening a pull request
 3. Create a git branch
 4. Setup the development environment and install required dependencies outlined [here](README.md#setup-development)
 5. Perform your changes and commit them to your newly created branch. Ensure that your code is clear and comprehensible.
-6. Execute the local Unit Tests and ensure successful passing tests outlined [here](README.md#unit-tests-tba). If your code introduces new features/components that require additionl unit tests, ensure that your code has an appropriate set of unit tests which all pass.
+6. Execute the local Unit Tests and ensure successful passing tests outlined [here](README.md#unit-tests). If your code introduces new features/components that require additionl unit tests, ensure that your code has an appropriate set of unit tests which all pass.
 7. Open a Pull Request (PR)
 8. Patiently wait for your code to be reviewed by an owner of this repository. If the reviewer has comments, please address them in your PR.
 9. Once approved, your work will be merged!
