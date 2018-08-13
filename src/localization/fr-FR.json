@@ -144,5 +144,6 @@
   "email-slash-username": "E-m-a-i-l-/-U-s-e-r-n-a-m-e",
   "password-confirmation": "P-a-s-s-w-o-r-d- -C-o-n-f-i-r-m-a-t-i-o-n",
   "search-results": "S-e-a-r-c-h- -R-e-s-u-l-t-s",
-  "no-results-found": "N-o- -r-e-s-u-l-t-s- -f-o-u-n-d"
+  "no-results-found": "N-o- -r-e-s-u-l-t-s- -f-o-u-n-d",
+  "network-offline": "N-e-t-w-o-r-k- -O-f-f-l-i-n-e"
 }

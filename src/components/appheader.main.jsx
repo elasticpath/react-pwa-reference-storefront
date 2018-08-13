@@ -19,6 +19,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import intl from 'react-intl-universal';
 import AppHeaderSearchMain from './appheadersearch.main';
 import AppHeaderLoginMain from './appheaderlogin.main';
 import AppModalLoginMain from './appmodallogin.main';
@@ -39,8 +40,22 @@ class AppHeaderMain extends React.Component {
     hideHeaderNavigation: false,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOffline: false,
+    };
+  }
+
+  handleIsOffline = (isOfflineValue) => {
+    this.setState({
+      isOffline: isOfflineValue,
+    });
+  }
+
   render() {
     const { hideHeaderNavigation } = this.props;
+    const { isOffline } = this.state;
     return (
       <div>
         <header className="app-header navbar navbar -fixed-top navbar-inverse" data-region="appHeader" style={{ display: 'block' }}>
@@ -76,12 +91,19 @@ class AppHeaderMain extends React.Component {
                   <AppHeaderLocaleMain />
                 </ul>
                 <AppHeaderSearchMain />
-                <AppHeaderNavigationMain />
+                <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} />
               </div>
             )}
           </div>
         </header>
         <AppModalLoginMain />
+        {(isOffline) ? (
+          <div className="alert alert-primary fade in alert-dismissible">
+            <strong className="text-center">
+              {intl.get('network-offline')}
+            </strong>
+          </div>
+        ) : ''}
       </div>
     );
   }

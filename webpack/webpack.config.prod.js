@@ -19,8 +19,6 @@
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base.js');
 
-const epConfig = require('../src/ep.config.json');
-
 module.exports = merge(baseConfig, {
   performance: {
     hints: false,
@@ -34,10 +32,5 @@ module.exports = merge(baseConfig, {
   devServer: {
     historyApiFallback: true,
     compress: true,
-    proxy: {
-      '/cortex': {
-        target: epConfig.cortexApi.pathForProxy,
-      },
-    },
   },
 });

@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
@@ -35,6 +36,7 @@ const zoomArray = [
 class AppHeaderNavigationMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    isOfflineCheck: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -74,15 +76,20 @@ class AppHeaderNavigationMain extends React.Component {
         this.setState({
           navigations: res._navigations[0]._element,
         });
+        this.handleIsOffline(false);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
         if (error.message.includes('Failed to fetch')) {
-          const { history } = this.props;
-          history.push('/maintenance');
+          this.handleIsOffline(true);
         }
       });
+  }
+
+  handleIsOffline = (isOfflineValue) => {
+    const { isOfflineCheck } = this.props;
+    isOfflineCheck(isOfflineValue);
   }
 
   renderCategories() {

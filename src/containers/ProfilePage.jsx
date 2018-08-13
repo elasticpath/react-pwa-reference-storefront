@@ -84,27 +84,27 @@ class ProfilePage extends React.Component {
 
   render() {
     const { profileData } = this.state;
-    if (profileData) {
-      return (
-        <div>
-          <AppHeaderMain />
-          <div className="container">
-            <div data-region="profileTitleRegion" style={{ display: 'block' }}>
-              <h1>
-                {intl.get('profile')}
-              </h1>
-            </div>
-            <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
-            <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
-            <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
-            <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
+    return (
+      <div>
+        <AppHeaderMain />
+        <div className="container">
+          <div data-region="profileTitleRegion" style={{ display: 'block' }}>
+            <h1>
+              {intl.get('profile')}
+            </h1>
           </div>
-          <AppFooterMain />
+          {profileData ? (
+            <div>
+              <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+              <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
+              <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
+              <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
+            </div>
+          ) : <div className="loader" />}
         </div>
-      );
-    }
-
-    return (<div className="loader" />);
+        <AppFooterMain />
+      </div>
+    );
   }
 }
 
