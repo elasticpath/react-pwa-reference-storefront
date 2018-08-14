@@ -30,6 +30,8 @@ If you haven’t already, you’ll need to install the following software:
 * Install [Visual Studio Code](https://code.visualstudio.com/) from Microsoft and the following extensions:<br/>
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
+* Install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) for executing unit tests.
+* Install [IntelliJ IDEA](https://www.jetbrains.com/idea/) optionally for creating/running unit tests.
 
 ### Configuration
 ##### `ep.config.json (options)`
@@ -110,8 +112,31 @@ Project includes two locales out of the box: `en-CA` and `fr-FR`.
 For development purpose run: `node tools/translate.js` which will run a pseudo translation from `en-CA` locale to `fr-FR`. In order to add a new locale add a new entry to `supportedLocales` array in `ep.config.json` and add an appropriate json file to `localization` folder. In addition you will have to configure language and currency for all products in Commerce Manager.
 
 ## Unit Tests
-* Test json data can be found in `tests`
-* run `npm test` to run tests
+Test data can be found in `tests`
+
+**Running Tests:**<br/>
+Run all Tests: `mvn clean install -Dcucumber.options="--tags @smoketest"`<br/>
+Run Sanity Tests: `@sanity`<br/>
+
+*Maven Options:*
+* `-Dcucumber.options="--tags @smoketest"` - You can replace the tag with your own tag.
+* `-Dfailsafe.fork.count="1"` - This is the number of parallel tests run at the same time. Default is 1 and can be changed to other values depending on number of TestsIT classes.
+* `-Premote -Dremote.web.driver.url="<REMOTE DRIVER IP>"` - The `remote` parameter triggers tests to be executed using a remote VM. The `remote.web.driver.url` specifies the URL of the remote VM. e.g. `http://<IP_ADDRESS>:4444/wd/hub`
+    * Note: You have to have selenium grid setup in order to use this feature. Please refer to official documentation on Selenium Grid.
+
+**Running subset of tests:**
+* You can run a subset of tests in IntelliJ by right clicking and running any one of TestsIT classes under `/selenium/src/test/java/com/elasticpath/cucumber/`
+* You can create your own local runner class to run your own tagged tests. E.g. RunLocalTestsIT.java which runs your own tagged tests @local
+    * Do not commit the local runner class and tags as they are only for your local testing purpose.
+
+*Updating Browser Driver Versions*
+* You can download the latest browser driver from web. e.g. chromedriver.
+* Update the RepositoryMap.xml for the driver version.
+* Has value can be found locally if you run following in bash command locally.
+```
+openssl sha1 <filename>
+```
+* Example: https://github.com/Ardesco/Selenium-Maven-Template/blob/master/src/test/resources/RepositoryMap.xml
 
 ## Contribution Guide
 * Contributions may be performed by developers at their choosing. Changes to this project must be reviewed and approved by an owner of this repository <br/>

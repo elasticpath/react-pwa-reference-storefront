@@ -1,0 +1,24 @@
+# Common rules for all environments
+# ---------------------------------
+
+# Ignored files #
+*.class
+*.orig
+*.~
+*.bak
+*.iml
+.classpath
+.project
+.springBeans
+.checkstyle
+.metadata
+.pmd
+.pmdruleset
+.ruleset
+rebel.xml
+pom.xml.versionsBackup
+
+# Ignored directories #
+.idea/
+.settings/
+target/
