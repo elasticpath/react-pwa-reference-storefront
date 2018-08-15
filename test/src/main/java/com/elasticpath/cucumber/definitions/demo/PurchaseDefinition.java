@@ -1,3 +1,21 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *
+ */
+
 package com.elasticpath.cucumber.definitions.demo;
 
 import java.util.List;
@@ -20,6 +38,7 @@ import com.elasticpath.selenium.pages.NewPaymentMethodPage;
 import com.elasticpath.selenium.pages.OrderConfirmationPage;
 import com.elasticpath.selenium.pages.ProductPage;
 import com.elasticpath.selenium.pages.PurchaseReceiptPage;
+import com.elasticpath.selenium.pages.PurchaseDetailsPage;
 import com.elasticpath.selenium.pages.RegisterPage;
 import com.elasticpath.selenium.pages.ProfilePage;
 import com.elasticpath.util.CustomerInfo;
@@ -38,6 +57,7 @@ public class PurchaseDefinition {
 	private CartPage cartPage;
 	private OrderConfirmationPage orderConfirmationPage;
 	private PurchaseReceiptPage purchaseReceiptPage;
+	private PurchaseDetailsPage	purchaseDetailsPage;
 	private CheckoutSignInPage checkoutSignInPage;
 	private RegisterPage registerPage;
 	private ProfilePage profilePage;
@@ -121,9 +141,16 @@ public class PurchaseDefinition {
 
 	@Then("^the purchase status should be (.+)$")
 	public void verifyPurchaseStatus(final String purchaseStatus) {
-		// purchaseReceiptPage.verifyPurchaseStatus(purchaseStatus);
-		headerPage.clickProfileMenuLink();
-		// profilePage.selectPurchase();
+		purchaseReceiptPage.verifyPurchaseStatus(purchaseStatus);
+	}
+
+	@Then("^the purchase status in my purchase history should be (.+)$")
+	public void verifyPurchaseHistoryStatus(final String purchaseStatus) {
+		purchaseReceiptPage.verifyPurchaseStatus(purchaseStatus);
+		String purchaseNumber = purchaseReceiptPage.getPurchaseNumber();
+		profilePage = headerPage.clickProfileMenuLink();
+		purchaseDetailsPage = profilePage.selectPurchase(purchaseNumber);
+		purchaseDetailsPage.verifyPurchaseStatus(purchaseStatus);
 	}
 
 	private void navigateToCheckoutPage() {

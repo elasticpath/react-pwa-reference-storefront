@@ -6,7 +6,7 @@ Feature: Purchase
       | productCategory | productSubCategory             | productName                |
       | M-Class         | Wheels, Tires, and Tire Covers | M Class Red Brake Calipers |
     And I complete the purchase as a new registered shopper
-    Then the purchase status should be In Progress
+    Then the purchase status in my purchase history should be In Progress
 
   Scenario: Purchase physical item as an anonymous shopper
     When I add following items to my cart
@@ -23,7 +23,7 @@ Feature: Purchase
     And I complete the purchase with following registered shopper
       | username | john@ep.com |
       | password | password    |
-    Then the purchase status should be In Progress
+    Then the purchase status in my purchase history should be In Progress
 
   @clearCart
   Scenario: Purchase digital item as an existing shopper
@@ -34,7 +34,7 @@ Feature: Purchase
       | productCategory | productSubCategory | productName      |
       | Addons          |                    | 407n Transponder |
     And I complete the purchase
-    Then the purchase status should be Completed
+    Then the purchase status in my purchase history should be Completed
 
   @clearCart
   Scenario: Purchase physical and digital items as existing shopper
@@ -46,7 +46,7 @@ Feature: Purchase
       | M-Class         | Wheels, Tires, and Tire Covers | M Class Red Brake Calipers |
       | Addons          |                                | 407n Transponder           |
     When I complete the purchase
-    Then the purchase status should be In Progress
+    Then the purchase status in my purchase history should be In Progress
 
   @clearCart
   Scenario Outline: Cart merge from anonymous shopper to registered shopper
@@ -74,7 +74,7 @@ Feature: Purchase
       | <product-3> |
       | <product-4> |
     When I complete the purchase
-    Then the purchase status should be In Progress
+    Then the purchase status in my purchase history should be In Progress
 
     Examples:
       | product-1                  | product-2      | product-3                        | product-4        |
@@ -87,6 +87,6 @@ Feature: Purchase
     And I select sku option Size and choose Small
     And I select quantity 2 and add product to my cart
     When I complete the purchase as a new registered shopper
-    Then the purchase status should be In Progress
+    Then the purchase status in my purchase history should be In Progress
 
 #    TODO verify the sku options in purchase receipt

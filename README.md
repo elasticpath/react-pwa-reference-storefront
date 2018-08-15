@@ -132,7 +132,7 @@ Run Sanity Tests: `@sanity`<br/>
 *Updating Browser Driver Versions*
 * You can download the latest browser driver from web. e.g. chromedriver.
 * Update the RepositoryMap.xml for the driver version.
-* Has value can be found locally if you run following in bash command locally.
+* Hash value can be found locally if you run following in bash command locally.
 ```
 openssl sha1 <filename>
 ```

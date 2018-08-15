@@ -1,3 +1,21 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *
+ */
+
 package com.elasticpath.selenium.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,16 +30,22 @@ public class ProfilePage extends AbstractPageObject {
 	@FindBy(css = "div[data-region='profilePersonalInfoRegion']")
 	private WebElement profilePersonalInfoRegion;
 
+	@FindBy(css = "div[data-region='componentAddressFeedbackRegion']")
+	private WebElement componentAddressFeedbackRegion;
+
 	@FindBy(css = "div[data-region='profilePersonalInfoRegion'] button.profile-personal-info-edit-btn")
 	private WebElement editPersonalInfoButton;
 
 	@FindBy(id = "registration_form_firstName")
 	private WebElement firstName;
 
+	@FindBy(id = "profile_personal_info_givenName")
+	private WebElement personalInfoFirstName;
+
 	@FindBy(id = "registration_form_lastName")
 	private WebElement lastName;
 
-	@FindBy(css = "div[data-region='create-streetAddress-btn-container'] button.streetAddress-save-btn")
+	@FindBy(css = "button[data-el-label='addressForm.save']")
 	private WebElement savePersonalInfoButton;
 
 	@FindBy(css = "div[data-region='profilePurchaseHistoryRegion']")
@@ -30,17 +54,16 @@ public class ProfilePage extends AbstractPageObject {
 	@FindBy(css = "td[data-el-value='purchaseNumber']")
 	private WebElement purchaseNumber;
 
+	@FindBy(css = "div[data-region='profileAddressesRegion']")
+	private WebElement profileAddressesRegion;
+
 	@FindBy(css = "div[data-region='profileAddressesRegion'] button.profile-new-address-btn")
 	private WebElement addProfileNewAddress;
 
 	@FindBy(css = "div[data-region='paymentMethodsRegion'] button.profile-new-address-btn")
 	private WebElement addProfileNewPaymentMethod;
 
-	@FindBy(id = "profile_purchase_number_link_20014")
-	private WebElement purchaseIdLink;
-
 	private final static String PURCHASE_ID_LINK_CSS = "a[id='profile_purchase_number_link_%1s']";
-
 
 	private final WebDriver driver;
 
@@ -96,12 +119,24 @@ public class ProfilePage extends AbstractPageObject {
 	}
 
 	public PurchaseDetailsPage selectPurchase(final String orderNumber) {
-		getDriver().findElement(By.cssSelector(String.format(PURCHASE_ID_LINK_CSS, orderNumber))).click();
+		profilePurchaseHistoryRegion.findElement(By.cssSelector(String.format(PURCHASE_ID_LINK_CSS, orderNumber))).click();
 		return new PurchaseDetailsPage(driver);
 	}
 
-	public void verifyPurchaseHistoryExist() {
+	public void verifyPurchaseHistory() {
 		assertThat(profilePurchaseHistoryRegion.isDisplayed())
+				.as("Failed to verify Profile page")
+				.isTrue();
+	}
+
+	public void verifyPesonalInfoUpdateRegionExist() {
+		assertThat(componentAddressFeedbackRegion.isDisplayed())
+				.as("Failed to verify Profile page")
+				.isTrue();
+	}
+
+	public void verifyProfileAddressesRegion() {
+		assertThat(profileAddressesRegion.isDisplayed())
 				.as("Failed to verify Profile page")
 				.isTrue();
 	}
@@ -110,6 +145,15 @@ public class ProfilePage extends AbstractPageObject {
 		assertThat(this.purchaseNumber.getText())
 				.as("Failed to verify Profile page")
 				.isEqualTo(purchaseNumber);
+	}
+
+	public void verifyPersonalInfoUpdated(final String firstname) {
+		getWaitDriver().waitForPageToLoad();
+		setWebDriverImplicitWait(5);
+		assertThat(this.personalInfoFirstName.getText())
+				.as("Failed to verify Profile page")
+				.isEqualTo(firstname);
+		setWebDriverImplicitWaitToDefault();
 	}
 
 }
