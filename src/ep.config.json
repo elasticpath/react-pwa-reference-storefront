@@ -28,5 +28,5 @@
   "defaultCurrencyValue": "CAD",
   "skuImagesS3Url": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png",
   "enableOfflineMode": false,
-  "gaTrackingId": ""
+  "gaTrackingId": "UA-21412082-4"
 }

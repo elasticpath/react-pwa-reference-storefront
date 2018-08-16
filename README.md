@@ -145,5 +145,4 @@ openssl sha1 <filename>
 See [CONTRIBUTING.md](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md)<br/>
 
 ## License
-[EP Labs License](https://github.com/shaunmaharaj/ep-store/blob/master/EP_LICENSE)<br/>
-[Apache License](https://github.com/shaunmaharaj/ep-store/blob/master/LICENSE)
+[GPLv3 License](https://github.com/shaunmaharaj/ep-store/blob/master/LICENSE)
