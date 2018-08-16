@@ -67,19 +67,19 @@ function AppFooterMain() {
               </h5>
               <ul className="list-unstyled">
                 <li>
-                  <Link to=" " id="footer_social_facebook_link">
+                  <Link to="/" id="footer_social_facebook_link">
                     <span className="share-icon-facebook" />
                     {intl.get('facebook')}
                   </Link>
                 </li>
                 <li>
-                  <Link to=" " id="footer_social_twitter_link">
+                  <Link to="/" id="footer_social_twitter_link">
                     <span className="share-icon-twitter" />
                     {intl.get('twitter')}
                   </Link>
                 </li>
                 <li>
-                  <Link to=" " id="footer_social_instagram_link">
+                  <Link to="/" id="footer_social_instagram_link">
                     <span className="share-icon-instagram" />
                     {intl.get('instagram')}
                   </Link>

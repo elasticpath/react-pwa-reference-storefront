@@ -1,8 +1,8 @@
 {
-  "cortexApi":{
-    "path":"http://localhost:8080/cortex",
-    "scope":"vestri",
-    "pathForProxy":"http://localhost:9080"
+  "cortexApi": {
+    "path": "http://localhost:8080/cortex",
+    "scope": "vestri",
+    "pathForProxy": "http://localhost:9080"
   },
   "supportedLocales": [
     {
@@ -26,6 +26,7 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesS3Url":"https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png",
-  "enableOfflineMode": false
+  "skuImagesS3Url": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png",
+  "enableOfflineMode": false,
+  "gaTrackingId": ""
 }

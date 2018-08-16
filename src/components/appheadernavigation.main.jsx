@@ -81,9 +81,7 @@ class AppHeaderNavigationMain extends React.Component {
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
-        if (error.message.includes('Failed to fetch') || error.message.includes('Failed to load resource') || error.message.includes('Could not connect') || error.message.includes('Cannot load') || error.message.includes('NetworkError')) {
-          this.handleIsOffline(true);
-        }
+        this.handleIsOffline(true);
       });
   }
 

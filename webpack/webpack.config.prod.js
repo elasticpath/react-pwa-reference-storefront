@@ -19,18 +19,43 @@
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base.js');
 
-module.exports = merge(baseConfig, {
-  performance: {
-    hints: false,
-  },
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      chunks: 'all',
+const epConfig = require('../src/ep.config.json');
+
+if (epConfig.cortexApi.pathForProxy !== '') {
+  module.exports = merge(baseConfig, {
+    performance: {
+      hints: false,
     },
-  },
-  devServer: {
-    historyApiFallback: true,
-    compress: true,
-  },
-});
+    optimization: {
+      runtimeChunk: 'single',
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
+    devServer: {
+      historyApiFallback: true,
+      compress: true,
+      proxy: {
+        '/cortex': {
+          target: epConfig.cortexApi.pathForProxy,
+        },
+      },
+    },
+  });
+} else {
+  module.exports = merge(baseConfig, {
+    performance: {
+      hints: false,
+    },
+    optimization: {
+      runtimeChunk: 'single',
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
+    devServer: {
+      historyApiFallback: true,
+      compress: true,
+    },
+  });
+}

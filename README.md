@@ -37,15 +37,17 @@ If you haven’t already, you’ll need to install the following software:
 ##### `ep.config.json (options)`
 
  - `cortexApi.path`, **required**, *string*:
-URL consisting of hostname and port which the storefront will use to reach Cortex. A web proxy is configured in this project's Webpack config for your local development convenience. Set this value to `http://localhost:8080/cortex` for local development to redirect Cortex calls to the local proxy. Set to `cortex` for production.
+URL consisting of hostname and port which the storefront will use to reach Cortex. A web proxy is configured in this project's Webpack config for your convenience. Set this value to `http://localhost:8080/cortex` for local development to redirect Cortex calls to the local proxy. Set to `cortex` for production.
  - `cortexApi.scope`, **required**, *string*:
 Name of store to retreive data from Cortex.
  - `cortexApi.pathForProxy`, **required**, *string*:
-The path the webpack proxy will route storefront Cortex calls to. URL consisting of hostname and port to actual running instance of Cortex.
+The path the webpack proxy will route storefront Cortex calls to. URL consisting of hostname and port to actual running instance of Cortex. Leave this value empty to disable the proxy.
  - `skuImagesS3Url`, **required**, *string*:
  Path to catalog images hosted on S3 bucket. Set this to the full URL of your S3 images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
  - `enableOfflineMode`, **optional**, *bool*:
   Option to enable offline mode. When in offline mode, requests are fetched from static data instead of Cortex. Check out [how it works](#offline-mode)
+ - `gaTrackingId`, **optional**, *string*:
+ Google Analytics tracking ID to integrate with Google Analytics Suite and track user activity as it happens on your site.
 
 ### Setup (Development):
 1. Clone/pull this repo to a directory of your choosing

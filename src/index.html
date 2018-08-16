@@ -15,7 +15,7 @@
 -->
 
 <!DOCTYPE html>
-<html>
+<html manifest="manifest.appcache">
 
 <head>
 
@@ -77,6 +77,7 @@
       body {
         overflow: hidden;
       }
+
       .noscript-overlay {
         background-color: white;
         bottom: 0;
@@ -86,6 +87,7 @@
         right: 0;
         z-index: 2000;
       }
+
       .noscript-contain {
         height: 200px;
         left: 50%;
@@ -95,10 +97,12 @@
         top: 50%;
         width: 600px;
       }
+
       .ep-style-wrapper .regular,
       .ep-style-wrapper p {
         font-weight: 400;
       }
+
       .ep-style-wrapper .font-xl {
         font-size: 32px;
         line-height: 36px;
@@ -106,11 +110,13 @@
     </style>
     <div class="noscript-overlay">
       <div class="noscript-contain ep-style-wrapper">
-        <span class="font-xl regular colour-dark-blue margin-s-bottom block" style="display: block;">This website requires JavaScript
+        <span class="font-xl regular colour-dark-blue margin-s-bottom block" style="display: block;">This website requires
+          JavaScript
         </span>
-        <p class="font-xs margin-s-bottom">The features of this website require JavasScript to function. Please check your browser settings and turn on JavaScript.</p>
-        <p class="font-xs">If you can't find the setting, try searching the web for your browser name (Chrome, Firefox, etc.) and "turning on
-          JavaScript".
+        <p class="font-xs margin-s-bottom">The features of this website require JavasScript to function. Please check your
+          browser settings and turn on JavaScript.</p>
+        <p class="font-xs">If you can't find the setting, try searching the web for your browser name (Chrome, Firefox, etc.)
+          and "turning on JavaScript".
         </p>
       </div>
     </div>

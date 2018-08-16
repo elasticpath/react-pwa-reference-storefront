@@ -17,21 +17,30 @@
  */
 
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import withAnalytics, { initAnalytics } from 'react-with-analytics';
+import {
+  BrowserRouter as Router, Switch, withRouter, Route,
+} from 'react-router-dom';
 import router from './routes';
+
+const Config = require('Config');
+
+initAnalytics(Config.gaTrackingId);
 
 // eslint-disable-next-line react/no-array-index-key
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
-function App() {
-  return (
-    <Router>
-      <div id="root_router_div">
-        {routeComponents}
-      </div>
-    </Router>
-  );
-}
-
-export default App;
+const Root = () => (
+  <div id="root_router_div">
+    <Switch>
+      {routeComponents}
+    </Switch>
+  </div>
+);
+const App = withRouter(withAnalytics(Root));
+const AppWithRouter = () => (
+  <Router>
+    <App />
+  </Router>
+);
+export default AppWithRouter;
