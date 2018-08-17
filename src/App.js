@@ -20,15 +20,11 @@
  */
 
 import React from 'react';
-import withAnalytics, { initAnalytics } from 'react-with-analytics';
 import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
 import router from './routes';
-
-const Config = require('Config');
-
-initAnalytics(Config.gaTrackingId);
+import withAnalytics from './utils/Analytics';
 
 // eslint-disable-next-line react/no-array-index-key
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
