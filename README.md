@@ -31,6 +31,7 @@ If you haven’t already, you’ll need to install the following software:
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
 * Install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) for executing unit tests.
+* Install [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/) for executing unit tests.
 * Install [IntelliJ IDEA](https://www.jetbrains.com/idea/) optionally for creating/running unit tests.
 
 ### Configuration

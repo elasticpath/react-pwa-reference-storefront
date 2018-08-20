@@ -26,7 +26,7 @@ import ga from 'react-ga';
 const Config = require('Config');
 
 ga.initialize(Config.gaTrackingId);
-ga.plugin.require('ecommerce');
+ga.plugin.require('ec');
 export default Component => class WithAnalytics extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
@@ -58,10 +58,19 @@ export default Component => class WithAnalytics extends React.Component {
 };
 
 export function trackAddItemAnalytics(idInput, nameInput, skuInput, priceInput, categoryInput, quantityInput) {
-  ga.plugin.execute('ecommerce', 'addItem', {
-    id: idInput,
+  ga.plugin.execute('ec', 'addProduct', {
+    id: skuInput,
     name: nameInput,
-    sku: skuInput,
+    price: priceInput,
+    category: categoryInput,
+    quantity: quantityInput,
+  });
+}
+
+export function trackAddImpression(nameInput, skuInput, priceInput, categoryInput, quantityInput) {
+  ga.plugin.execute('ec', 'addImpression', {
+    id: skuInput,
+    name: nameInput,
     price: priceInput,
     category: categoryInput,
     quantity: quantityInput,
@@ -69,7 +78,7 @@ export function trackAddItemAnalytics(idInput, nameInput, skuInput, priceInput, 
 }
 
 export function trackAddTransactionAnalytics(idInput, revenueInput, shippingInput, taxInput) {
-  ga.plugin.execute('ecommerce', 'addTransaction', {
+  ga.plugin.execute('ec', 'setAction', 'purchase', {
     id: idInput, // Should be same ID as trackAddItemAnalytics to connect the transaction
     revenue: revenueInput, // Total cost of transaction
     shipping: shippingInput,
@@ -77,8 +86,28 @@ export function trackAddTransactionAnalytics(idInput, revenueInput, shippingInpu
   });
 }
 
+export function setDetailAnalytics() {
+  ga.plugin.execute('ec', 'setAction', 'detail');
+}
+
+export function setAddAnalytics() {
+  ga.plugin.execute('ec', 'setAction', 'add');
+}
+
+export function setRemoveAnalytics() {
+  ga.plugin.execute('ec', 'setAction', 'remove');
+}
+
+export function sendAddToCartAnalytics() {
+  ga.plugin.execute('send', 'event', 'UX', 'click', 'add to cart');
+}
+
+export function sendRemoveFromCartAnalytics() {
+  ga.plugin.execute('send', 'event', 'UX', 'click', 'remove from cart');
+}
+
 export function sendAnalytics() {
-  ga.plugin.execute('ecommerce', 'send');
+  ga.plugin.execute('send', 'pageview');
 }
 
 export const trackUser = userId => ga.set({ userId });
