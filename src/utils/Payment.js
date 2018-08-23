@@ -73,7 +73,6 @@ let options = {
 };
 let paymentRequest;
 let addressForm;
-let failedSubmit = false;
 
 export function fetchAddressForm() {
   login().then(() => {
@@ -128,9 +127,11 @@ export function submitAddress(firstName, lastName, address, extendedAddress, cit
           }),
         }).then((res2) => {
           if (res2.status === 400) {
-            failedSubmit = true;
+            // eslint-disable-next-line no-console
+            console.log('fail');
           } else if (res2.status === 201 || res2.status === 200 || res2.status === 204) {
-            failedSubmit = false;
+            // eslint-disable-next-line no-console
+            console.log('success');
           }
         }).catch((error) => {
           // eslint-disable-next-line no-console
@@ -182,6 +183,7 @@ export function setPaymentTotalDetails(cartDataLineItems, paymentAmountCurrency 
       value: paymentAmountValue,
     },
   };
+  // eslint-disable-next-line no-console
   console.log(paymentDetails);
 }
 
@@ -209,6 +211,7 @@ export function submitEmail(email) {
             body: JSON.stringify({ email }),
           })
             .then((res) => {
+              // eslint-disable-next-line no-console
               console.log(res);
               resolve(res);
             }).catch((error) => {
@@ -254,6 +257,7 @@ export function submitPayment(methodName, details, payerName) {
               }),
             });
           }).then((res2) => {
+            // eslint-disable-next-line no-console
             console.log(res2);
             resolve(res2);
           }).catch((error) => {
@@ -293,6 +297,7 @@ export function completeOrder(paymentResponse) {
             })
               .then(res => res.json())
               .then((res) => {
+                // eslint-disable-next-line no-console
                 console.log(res);
               })
               .catch((error) => {
@@ -313,6 +318,7 @@ export function setPaymentOptions() {
 export function setGlobalShippingOptions() {
   return new Promise(((resolve, reject) => {
     fetchOrderData().then((orderData) => {
+      // eslint-disable-next-line no-console
       console.log(orderData);
       globalShippingOptions = [];
       orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption.forEach((option) => {
@@ -327,7 +333,8 @@ export function setGlobalShippingOptions() {
         resolve(globalShippingOptions);
       });
     }).then(() => {
-      console.log("test");
+      // eslint-disable-next-line no-console
+      console.log('test');
     });
   }));
 }

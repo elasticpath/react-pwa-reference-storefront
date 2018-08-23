@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import QuickOrderMain from '../components/quickorder.main';
 import {
-  setPaymentDisplayItem, setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
+  setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
 } from '../utils/Payment';
 import CartMain from '../components/cart.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
@@ -178,7 +178,8 @@ class CartPage extends React.Component {
   render() {
     const { cartData, isLoading } = this.state;
     const { history } = this.props;
-    console.log(cartData)
+    // eslint-disable-next-line no-console
+    console.log(cartData);
     return (
       <div className="cart-container container">
         <div className="cart-container-inner">

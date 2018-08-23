@@ -24,7 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import {
-  setPaymentDisplayItem, setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
+  setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
 } from '../utils/Payment';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import AddressContainer from '../components/address.container';
@@ -539,7 +539,8 @@ class CheckoutPage extends React.Component {
   render() {
     const { orderData, isLoading, profileData } = this.state;
     if (orderData && !isLoading) {
-      console.log(orderData)
+      // eslint-disable-next-line no-console
+      console.log(orderData);
       const { messages } = orderData._order[0];
       let debugMessages = '';
       const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
