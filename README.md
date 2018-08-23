@@ -49,7 +49,7 @@ The path the webpack proxy will route storefront Cortex calls to. URL consisting
  - `enableOfflineMode`, **optional**, *bool*:
   Option to enable offline mode. When in offline mode, requests are fetched from static data instead of Cortex. Check out [how it works](#offline-mode)
  - `gaTrackingId`, **optional**, *string*:
- Google Analytics tracking ID to integrate with Google Analytics Suite and track user activity as it happens on your site.
+ Google Analytics tracking ID to integrate with Google Analytics Suite and track enhanced ecommerce activity as it happens on your site.
 
 ### Sample Data:
 This project includes a set of sample data for your convenience, and assumes you have a valid Elastic Path development environment.<br/>
