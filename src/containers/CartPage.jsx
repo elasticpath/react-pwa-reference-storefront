@@ -24,7 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import {
-  setPaymentDisplayItem, setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
+  setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
 } from '../utils/Payment';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
@@ -191,7 +191,8 @@ class CartPage extends React.Component {
   render() {
     const { cartData, isLoading } = this.state;
     const { history } = this.props;
-    console.log(cartData)
+    // eslint-disable-next-line no-console
+    console.log(cartData);
     return (
       <div>
         <AppHeaderMain />

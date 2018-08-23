@@ -24,7 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import {
-  setPaymentDisplayItem, setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
+  setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
 } from '../utils/Payment';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
@@ -493,7 +493,8 @@ class CheckoutPage extends React.Component {
   render() {
     const { orderData, isLoading } = this.state;
     if (orderData && !isLoading) {
-      console.log(orderData)
+      // eslint-disable-next-line no-console
+      console.log(orderData);
       const { messages } = orderData._order[0];
       return (
         <div>
