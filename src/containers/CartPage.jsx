@@ -23,6 +23,9 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
+import {
+  setPaymentDisplayItem, setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
+} from '../utils/Payment';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 import CartMain from '../components/cart.main';
@@ -36,7 +39,26 @@ const zoomArray = [
   'defaultcart',
   'defaultcart:total',
   'defaultcart:discount',
+  'defaultcart:order',
+  'defaultcart:order:tax',
+  'defaultcart:order:total',
   'defaultcart:appliedpromotions:element',
+  // zooms for billing address
+  'defaultcart:order:billingaddressinfo:billingaddress',
+  'defaultcart:order:billingaddressinfo:selector:choice',
+  'defaultcart:order:billingaddressinfo:selector:choice:description',
+  // zooms for shipping address
+  'defaultcart:order:deliveries:element:destinationinfo:destination',
+  'defaultcart:order:deliveries:element:destinationinfo:selector:choice',
+  'defaultcart:order:deliveries:element:destinationinfo:selector:choice:description',
+  // zooms for shipping options
+  'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
+  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice',
+  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice:description',
+  // zooms for payment methods
+  'defaultcart:order:paymentmethodinfo:paymentmethod',
+  'defaultcart:order:paymentmethodinfo:selector:choice',
+  'defaultcart:order:paymentmethodinfo:selector:choice:description',
   'defaultcart:lineitems:element',
   'defaultcart:lineitems:element:total',
   'defaultcart:lineitems:element:price',
@@ -110,6 +132,23 @@ class CartPage extends React.Component {
     }
   }
 
+  checkoutPaymentRequest() {
+    // const { history } = this.props;
+    const { cartData } = this.state;
+    // if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
+    // history.push('/checkout');
+    // orderData._lineitems[0]._element.map((product) => {
+    //   const test = 'test';
+    //   return (setPaymentDisplayItem(product._item[0]._definition[0]['display-name'], product._price[0]['purchase-price'][0].currency, product._price[0]['purchase-price'][0].amount));
+    // });
+    setPaymentTotalDetails(cartData._lineitems, cartData._total[0].cost[0].currency, cartData._order[0]._total[0].cost[0].amount);
+    newPaymentRequest();
+    showPaymentRequest();
+    // } else {
+    //   history.push('/signIn');
+    // }
+  }
+
   renderDiscount() {
     const { cartData } = this.state;
     if (cartData._discount) {
@@ -152,6 +191,7 @@ class CartPage extends React.Component {
   render() {
     const { cartData, isLoading } = this.state;
     const { history } = this.props;
+    console.log(cartData)
     return (
       <div>
         <AppHeaderMain />
@@ -184,6 +224,15 @@ class CartPage extends React.Component {
                         <button className="btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
                           {intl.get('proceed-to-checkout')}
                         </button>
+                        {(isPaymentRequestAvailable)
+                          ? (
+                            <div>
+                              <button className="btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkoutPaymentRequest(); }}>
+                                {intl.get('ep-pay')}
+                              </button>
+                            </div>
+                          ) : ''
+                        }
                       </div>
                     </div>
                   </div>
