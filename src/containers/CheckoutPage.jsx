@@ -23,6 +23,9 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
+import {
+  setPaymentDisplayItem, setPaymentTotalDetails, showPaymentRequest, newPaymentRequest, isPaymentRequestAvailable,
+} from '../utils/Payment';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import AddressContainer from '../components/address.container';
 import ShippingOptionContainer from '../components/shippingoption.container';
@@ -71,6 +74,14 @@ const zoomArray = [
   'defaultcart:order:paymentmethodinfo:paymentmethod',
   'defaultcart:order:paymentmethodinfo:selector:choice',
   'defaultcart:order:paymentmethodinfo:selector:choice:description',
+  // zooms for line items
+  'defaultcart:lineitems:element',
+  'defaultcart:lineitems:element:total',
+  'defaultcart:lineitems:element:price',
+  'defaultcart:lineitems:element:availability',
+  'defaultcart:lineitems:element:item',
+  'defaultcart:lineitems:element:item:code',
+  'defaultcart:lineitems:element:item:definition',
 ];
 
 class CheckoutPage extends React.Component {
@@ -200,6 +211,23 @@ class CheckoutPage extends React.Component {
   reviewOrder() {
     const { history } = this.props;
     history.push('/order');
+  }
+
+  checkoutPaymentRequest() {
+    // const { history } = this.props;
+    const { orderData } = this.state;
+    // if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
+    // history.push('/checkout');
+    // orderData._lineitems[0]._element.map((product) => {
+    //   const test = 'test';
+    //   return (setPaymentDisplayItem(product._item[0]._definition[0]['display-name'], product._price[0]['purchase-price'][0].currency, product._price[0]['purchase-price'][0].amount));
+    // });
+    setPaymentTotalDetails(orderData._lineitems, orderData._total[0].cost[0].currency, orderData._order[0]._total[0].cost[0].amount);
+    newPaymentRequest();
+    showPaymentRequest();
+    // } else {
+    //   history.push('/signIn');
+    // }
   }
 
   renderShippingAddress() {
@@ -511,6 +539,7 @@ class CheckoutPage extends React.Component {
   render() {
     const { orderData, isLoading, profileData } = this.state;
     if (orderData && !isLoading) {
+      console.log(orderData)
       const { messages } = orderData._order[0];
       let debugMessages = '';
       const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
@@ -560,6 +589,15 @@ class CheckoutPage extends React.Component {
                     <button className="ep-btn primary wide btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
                       {intl.get('complete-order')}
                     </button>
+                    {(isPaymentRequestAvailable)
+                      ? (
+                        <div>
+                          <button className="btn-cmd-checkout" disabled={!orderData['total-quantity']} type="button" onClick={() => { this.checkoutPaymentRequest(); }}>
+                            {intl.get('ep-pay')}
+                          </button>
+                        </div>
+                      ) : ''
+                    }
                   </div>
                 </div>
               </div>
