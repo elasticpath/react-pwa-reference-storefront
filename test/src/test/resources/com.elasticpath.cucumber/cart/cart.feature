@@ -9,11 +9,11 @@ Feature: Shopping Cart
     And I select sku option Size and choose Small
     And I select quantity <quantity> and add product to my cart
     When I update cart lineitem quantity to 2 for product <product>
-    Then the expected cart lineitem total price is $358.00 for product <product>
+    Then the expected cart lineitem total price is $319.98 for product <product>
 
     Examples:
       | category | product                 | quantity | unit_price |
-      | Mens     | Men's Soft Shell Jacket | 1        | $179.00    |
+      | Mens     | Men's Soft Shell Jacket | 1        | $159.00    |
 
   Scenario Outline: Remove cart line item
     Given I add following items to my cart
