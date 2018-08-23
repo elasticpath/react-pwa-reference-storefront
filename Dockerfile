@@ -35,7 +35,7 @@ RUN npm install
 
 # Bundle app source
 COPY . .
-RUN sed -i.bak s/localhost/${CORTEX_IP}/ ./src/ep.config.json
+RUN sed -i.bak "s/\"pathForProxy\":[[:blank:]]*\"[^\"]*\"/\"pathForProxy\": \"${CORTEX_IP}\"/" ./src/ep.config.json
 RUN sed -i.bak s/vestri/${STORE}/ ./src/ep.config.json
 
 EXPOSE 8080
