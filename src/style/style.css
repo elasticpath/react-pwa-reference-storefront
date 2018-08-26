@@ -8441,6 +8441,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   margin-right: -7.5px;
   margin-bottom: 0px;
   padding-bottom: 0px;
+  padding-top: 0px;
 }
 .category-items-listing:before,
 .category-items-listing:after {
@@ -8560,11 +8561,9 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 }
 .category-item-inner {
   padding: 5px;
-  border-radius: 5px;
   border: 1px solid #dddddd;
   background: #eeeeee;
   min-height: 317px;
-
   height: 100%;
 }
 @media (min-width: 320px) {
@@ -8600,7 +8599,6 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   overflow: hidden;
   margin-bottom: 1rem;
   background: #fff;
-  border-radius: 3px;
 }
 .category-item-inner ul {
   padding: 0;
@@ -8706,7 +8704,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 .category-item-availability span.item-meta,
 .category-item-release-date span.item-meta {
   padding: 5px 0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #333333;
 }
 .category-item-list-price label.item-meta,
@@ -8795,11 +8793,6 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 
   background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
   /* W3C */
-
-  -webkit-box-shadow: inset 0px 0px 0 2px rgba(255, 255, 255, 0);
-  box-shadow: inset 0px 0px 0 2px rgba(255, 255, 255, 0);
-  -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin: 10px 0;
 }
