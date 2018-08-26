@@ -21,7 +21,6 @@
 
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import intl from 'react-intl-universal';
 
 import { withRouter } from 'react-router';
 
@@ -58,11 +57,10 @@ class AppHeaderSearchMain extends React.Component {
         <div className="main-search-container" style={{ display: 'block' }}>
           <form className="navbar-form" id="header_navbar_search_container_form" onSubmit={this.search}>
             <div className="form-group">
-              <input className="input-search header-search-input" id="header_navbar_search_container_input" type="text" onChange={this.handleChange} placeholder="search" />
+              <input className="input-search header-search-input" id="header_navbar_search_container_input" type="text" onChange={this.handleChange} placeholder="Search" />
             </div>
-            <button className="btn-header-search" id="header_navbar_search_container_button" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+            <button className="btn-header-search" id="header_navbar_search_container_button" type="submit">
               <span className="icon" />
-              {intl.get('search')}
             </button>
           </form>
         </div>

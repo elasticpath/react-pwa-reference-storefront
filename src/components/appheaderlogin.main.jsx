@@ -53,10 +53,15 @@ class AppHeaderLoginMain extends React.Component {
           <div className="auth-container">
             <div className="auth-container dropdown">
               <button className="btn btn-secondary dropdown-toggle global-nav-link global-nav-login btn-auth-menu" type="button" id="header_navbar_loggedIn_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`)}
+                <span className="icon" />
               </button>
-              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu" aria-label="header_navbar_login_button ">
+              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
                 <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
+                  <li className="dropdown-item">
+                    <h6 className="dropdown-header auth-profile-menu-list-header" id="header_navbar_login_menu_username">
+                      {localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`)}
+                    </h6>
+                  </li>
                   <li className="dropdown-item">
                     <Link to="/profile">
                       <span className="profile-link" id="header_navbar_login_menu_profile_link">

@@ -23,10 +23,10 @@ import React from 'react';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 
-import homeEspotMain from '../images/Hero-Image-v2.jpg';
-import homeEspot1 from '../images/VESTRI_CR-550_Banner.jpeg';
-import homeEspot2 from '../images/VESTRI_M-CLASS_3_Banner.jpeg';
-import homeEspot3 from '../images/VESTRI_X-CLASS_EL2_Banner.jpeg';
+import homeEspotMain from '../images/homepage-banner.jpg';
+import homeEspot2 from '../images/brake-icon.jpg';
+import homeEspot3 from '../images/charging-icon.png';
+import homeEspot4 from '../images/warranty-graphic.jpg';
 
 function HomePage() {
   return (
@@ -39,11 +39,57 @@ function HomePage() {
               <img alt="home-espot-1" className="home-espot-1" src={homeEspotMain} />
             </div>
             <div className="home-sub-espot-container1 container">
-              <img alt="home-espot-2" className="home-espot-2" src={homeEspot1} />
-              <img alt="home-espot-3" className="home-espot-3" src={homeEspot2} />
+              <div className="home-sub-espot-container1-sub">
+                <span className="home-sub-espot-container1-first-line">
+                  Find all the right accessories to live the Vestri brand.
+                </span>
+                <span className="home-sub-espot-container1-second-line">
+                  Choose from dozens of clothing options to fit your specific needs.
+                </span>
+                <button className="home-sub-espot-container1-button" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+                  VIEW OUR PRODUCTS
+                </button>
+              </div>
             </div>
-            <div data-region="homeMainContentRegion" className="home-sub-espot-container2 container" style={{ display: 'block' }}>
-              <img alt="home-espot-4" className="home-espot-4" src={homeEspot3} />
+            <div className="home-sub-espot-container2 container">
+              <div className="home-sub-espot-container2-sub">
+                <img alt="home-espot-2" className="home-espot-2" src={homeEspot2} />
+                <div className="home-sub-espot-container2-text">
+                  <span className="home-sub-espot-container2-first-line">
+                    Fully automated braking system
+                  </span>
+                  <span className="home-sub-espot-container2-second-line">
+                    Take advantage of our patented Brake-Smart™ technology across all of our vehicles to avoid accidents and drive smart in all weather conditions.
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="home-sub-espot-container3 container">
+              <div className="home-sub-espot-container3-sub">
+                <img alt="home-espot-3" className="home-espot-3-mobile" src={homeEspot3} />
+                <div className="home-sub-espot-container3-text">
+                  <span className="home-sub-espot-container3-first-line">
+                    Effortless plug-and-play charging
+                  </span>
+                  <span className="home-sub-espot-container3-second-line">
+                    Just download our app, book a charging session from one of thousands of authorized charging location, plug in your car and you’re good to go!
+                  </span>
+                </div>
+                <img alt="home-espot-3" className="home-espot-3" src={homeEspot3} />
+              </div>
+            </div>
+            <div className="home-sub-espot-container4 container">
+              <div className="home-sub-espot-container4-sub">
+                <img alt="home-espot-4" className="home-espot-4" src={homeEspot4} />
+                <div className="home-sub-espot-container4-text">
+                  <span className="home-sub-espot-container4-first-line">
+                    Unlimited km warranty
+                  </span>
+                  <span className="home-sub-espot-container4-second-line">
+                    No matter how far you drive, we’re there for you. Bring your car into the nearest dealer location and we’ll give your electric engine the tune-up it needs - regardless of the time since your last appointment.
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
