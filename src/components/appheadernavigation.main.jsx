@@ -59,7 +59,7 @@ class AppHeaderNavigationMain extends React.Component {
           },
         }))
       .then((res) => {
-        if (res.status === 504) {
+        if (res.status === 504 || res.status === 503) {
           const { history } = this.props;
           history.push('/maintenance');
         }
@@ -82,9 +82,14 @@ class AppHeaderNavigationMain extends React.Component {
         this.handleIsOffline(false);
       })
       .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        this.handleIsOffline(true);
+        if (error.status === 504 || error.status === 503) {
+          const { history } = this.props;
+          history.push('/maintenance');
+        } else {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          this.handleIsOffline(true);
+        }
       });
   }
 

@@ -135,24 +135,16 @@ class ProductListItemMain extends React.Component {
             <div>
               <div data-region="itemPriceRegion" style={{ display: 'block' }}>
                 <ul className="category-item-price-container" style={{ minHeight: '33px' }}>
-                  {
-                    listPrice !== itemPrice
-                      ? (
-                        <li className="category-item-list-price" data-region="itemListPriceRegion">
-                          <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="item-meta category-item-list-price-label">
-                            {intl.get('original-price')}
-                          </label>
+                  <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
+                    {
+                      listPrice !== itemPrice
+                        ? (
                           <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
                             {listPrice}
                           </span>
-                        </li>
-                      )
-                      : ('')
-                  }
-                  <li className="category-item-purchase-price">
-                    <label htmlFor={`category_item_price_${productData._code[0].code}_label`} className="item-meta category-item-purchase-price-label">
-                      {intl.get('price')}
-                    </label>
+                        )
+                        : ('')
+                    }
                     <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
                       {itemPrice}
                     </span>
@@ -189,7 +181,7 @@ class ProductListItemMain extends React.Component {
               </li>
             </ul>
           </div>
-        </div>
+        </div >
       );
     }
 

@@ -8416,6 +8416,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
  */
 .category-item-list-price-value {
   text-decoration: line-through;
+  color: #808080 !important;
 }
 .category-item-purchase-price,
 .category-item-rate-container {
@@ -8424,9 +8425,6 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 .category-item-title {
   font-size: 1.4rem;
   word-wrap: break-word;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #ddd;
 }
 @media screen and (min-width: 768px) {
   .category-item-title {
@@ -8441,6 +8439,8 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   padding: 4rem 0;
   margin-left: -7.5px;
   margin-right: -7.5px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 .category-items-listing:before,
 .category-items-listing:after {
@@ -8469,7 +8469,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 .category-items-container,
 .cart-container {
   min-height: 100%;
-  margin-bottom: 60px;
+  margin-bottom: 0px;
 }
 .category-items-container:after,
 .home-contant-container:after,
@@ -8526,7 +8526,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 .category-item-container {
   margin-bottom: 3rem;
   float: left;
-  width: 100%;
+  width: 50%;
   position: relative;
   min-height: 1px;
   padding-left: 7.5px;
@@ -8559,37 +8559,28 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   }
 }
 .category-item-inner {
-  background-color: #eee;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #dddddd;
   background: #eeeeee;
-  min-height: 348.59px;
-  /* Old browsers */
+  min-height: 317px;
 
-  background: -moz-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
-  /* FF3.6+ */
-
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #eeeeee), color-stop(100%, #e5e5e5));
-  /* Chrome,Safari4+ */
-
-  background: -webkit-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -o-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
-  /* Opera 11.10+ */
-
-  background: -ms-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
-  /* IE10+ */
-
-  background: linear-gradient(135deg, #eeeeee 0%, #e5e5e5 100%);
-  /* W3C */
-
-  -webkit-box-shadow: inset 0px 0px 6px 2px rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0px 0px 6px 2px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
   height: 100%;
+}
+@media (min-width: 320px) {
+  .category-item-inner {
+    min-height: 240px;
+  }
+}
+@media (min-width: 769px) {
+  .category-item-inner {
+    min-height: 305px;
+  }
+}
+@media (min-width: 992px) {
+  .category-item-inner {
+    min-height: 327px;
+  }
 }
 .category-item-thumbnail {
   display: block;
@@ -8610,38 +8601,6 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   margin-bottom: 1rem;
   background: #fff;
   border-radius: 3px;
-}
-.category-item-inner {
-  background-color: #eee;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #dddddd;
-  background: #eeeeee;
-  /* Old browsers */
-
-  background: -moz-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
-  /* FF3.6+ */
-
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #eeeeee), color-stop(100%, #e5e5e5));
-  /* Chrome,Safari4+ */
-
-  background: -webkit-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -o-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
-  /* Opera 11.10+ */
-
-  background: -ms-linear-gradient(-45deg, #eeeeee 0%, #e5e5e5 100%);
-  /* IE10+ */
-
-  background: linear-gradient(135deg, #eeeeee 0%, #e5e5e5 100%);
-  /* W3C */
-
-  -webkit-box-shadow: inset 0px 0px 6px 2px rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0px 0px 6px 2px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
-  height: 100%;
 }
 .category-item-inner ul {
   padding: 0;
@@ -8750,18 +8709,6 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   font-size: 1.2rem;
   color: #333333;
 }
-.category-item-list-price label.item-meta:nth-of-type(2n),
-.category-item-purchase-price label.item-meta:nth-of-type(2n),
-.category-item-rate-container label.item-meta:nth-of-type(2n),
-.category-item-availability label.item-meta:nth-of-type(2n),
-.category-item-release-date label.item-meta:nth-of-type(2n),
-.category-item-list-price span.item-meta:nth-of-type(2n),
-.category-item-purchase-price span.item-meta:nth-of-type(2n),
-.category-item-rate-container span.item-meta:nth-of-type(2n),
-.category-item-availability span.item-meta:nth-of-type(2n),
-.category-item-release-date span.item-meta:nth-of-type(2n) {
-  background-color: #aaa;
-}
 .category-item-list-price label.item-meta,
 .category-item-purchase-price label.item-meta,
 .category-item-rate-container label.item-meta,
@@ -8769,7 +8716,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 .category-item-release-date label.item-meta {
   position: relative;
   float: left;
-  width: 41.66666666666667%;
+  width: 30%;
   min-height: 1px;
   padding-left: 0;
   padding-right: 0;
@@ -8781,11 +8728,13 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 .category-item-availability span.item-meta,
 .category-item-release-date span.item-meta {
   position: relative;
-  float: left;
-  width: 58.333333333333336%;
+  width: 80%;
   min-height: 1px;
   padding-left: 8px;
   padding-right: 8px;
+}
+.category-item-list-price span.item-meta {
+  width: 20%;
 }
 .category-item-list-price:last-child label.item-meta,
 .category-item-purchase-price:last-child label.item-meta,
@@ -8801,6 +8750,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 }
 .category-item-list-price-value {
   text-decoration: line-through;
+  color: #808080 !important;
 }
 /*
  * Copyright © 2014 Elastic Path Software Inc. All rights reserved.
@@ -8825,8 +8775,6 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   display: inline-block;
   background-color: #eee;
   padding: 15px;
-  border-radius: 5px;
-  border: 1px solid #dddddd;
   background: #ffffff;
   /* Old browsers */
 
@@ -8882,8 +8830,6 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   -o-user-select: none;
   user-select: none;
   border-radius: 2px;
-  -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
   margin-bottom: 2px;
   color: #ffffff;
   background-color: #040060;
