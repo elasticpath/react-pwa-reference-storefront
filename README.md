@@ -56,10 +56,10 @@ This project includes a set of sample data for your convenience, and assumes you
 1. Extract and copy the sample catalog data contents from this project `ep-store/data` into your `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
 2. Update `ep-commerce/extensions/database/ext-data/src/main/resources/data/liquibase-changelog.xml`.<br/>
 Add the following sample data to the file. Note that it should be the only sample data included within the sample data blocks: `<include file="ep-blueprint-data/liquibase-changelog.xml" relativeToChangelogFile="true" />`
-2. Update `extensions/database/ext-data/src/main/resources/environments/local/data-population.properties`. Append `ep-blueprint` to the liquibase.contexts property.
-3. In the command line, navigate to the `extensions/database` module.
-4. To run the Data Population tool, run the following command: `mvn clean install -Preset-db`
-5. For further information, refer to Elastic Path's developer documentation [Populate the Database](https://developers.elasticpath.com/commerce/7.3/Core-Commerce-Development/Setting-up-your-Developer-Environment/Populate-the-Database#ConfigureDemoDataSets)
+3. Update `ep-commerce/extensions/database/ext-data/src/main/resources/environments/local/data-population.properties`. Set the liquibase.contexts property to `default,ep-blueprint`.
+4. In the command line, navigate to the `extensions/database` module.
+5. To run the Data Population tool, run the following command: `mvn clean install -Preset-db`
+6. For further information, refer to Elastic Path's developer documentation [Populate the Database](https://developers.elasticpath.com/commerce/7.3/Core-Commerce-Development/Setting-up-your-Developer-Environment/Populate-the-Database#ConfigureDemoDataSets)
 
 ### Setup (Development):
 1. Clone/pull this repo to a directory of your choosing
