@@ -34,6 +34,7 @@ const Config = require('Config');
 const zoomArray = [
   'navigations:element',
   'navigations:element:child',
+  'navigations:element:child:child',
 ];
 
 class AppHeaderNavigationMain extends React.Component {
@@ -108,13 +109,34 @@ class AppHeaderNavigationMain extends React.Component {
               {category['display-name']}
             </a>
             <div className="dropdown-menu sub-category-dropdown-menu" aria-label="navbarDropdown">
-              {category._child.map(subcategory => (
-                <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`header_navbar_sub_category_button_${subcategory.name}`} data-target=".navbar-collapse" title={subcategory['display-name']}>
-                  <span>
-                    {subcategory['display-name']}
-                  </span>
-                </Link>
-              ))}
+              {category._child.map((subcategory) => {
+                if (subcategory._child) {
+                  return (
+                    <li className="nav-item dropdown" key={subcategory.name} data-name={subcategory['display-name']} data-el-container="category-nav-item-container">
+                      <a className="nav-link dropdown-toggle" href="/" id="navbarSubDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {subcategory['display-name']}
+                      </a>
+                      {subcategory._child.map((subsubcategory) => {
+                        return (
+                          <Link to={`/category/${encodeURIComponent(subsubcategory.self.uri)}`} key={subsubcategory.name} className="dropdown-item subsubcategory" id={`header_navbar_sub_category_button_${subsubcategory.name}`} data-target=".navbar-collapse" title={subsubcategory['display-name']}>
+                            <span>
+                              {subsubcategory['display-name']}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </li>
+                  );
+                }
+                return (
+                  <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`header_navbar_sub_category_button_${subcategory.name}`} data-target=".navbar-collapse" title={subcategory['display-name']}>
+                    <span>
+                      {subcategory['display-name']}
+                    </span>
+                  </Link>
+                );
+              })
+              }
             </div>
           </li>
         );
