@@ -9,6 +9,7 @@
 # production
 /build
 /dist
+/webpack/dist
 
 # misc
 .DS_Store

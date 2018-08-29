@@ -1,0 +1,6 @@
+web:
+  image: $DOCKER_REPO
+  volumes:
+   - ./nginx.conf:/etc/nginx/nginx.conf
+  ports:
+   - "80:80"

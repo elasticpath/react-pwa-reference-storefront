@@ -63,19 +63,24 @@ Add the following sample data to the file. Note that it should be the only sampl
 
 ### Setup (Development):
 1. Clone/pull this repo to a directory of your choosing
-2. run `cd ep-store`
-3. run `npm install` to install dependencies
+2. Run `cd ep-store`
+3. Run `npm install` to install dependencies
 4. Configure `./src/ep.config.json` as required for your environment: [here](#configuration)
-5. run `npm start` to start the server in development node
-6. navigate to `http://localhost:8080/` to see the running PWA
+5. Run `npm start` to start the server in development node
+6. Navigate to `http://localhost:8080/` to see the running PWA
 
 ### Setup (Production):
 1. Clone/pull this repo to a directory of your choosing
-2. run `cd ep-store`
-3. run `npm install` to install dependencies
-4. Configure `./src/ep.config.json` as required for your environment: [here](#configuration)
-5. run `npm run start-prod` to start the server in production node
-6. navigate to `http://localhost:8080/` to see the running PWA
+2. Run `cd ep-store`
+3. Run `docker build -t ep-store -f ./docker/prod/Dockerfile .`
+4. Push `ep-store` image to your docker repo.
+
+##### On a host computer:
+
+5. Pull `ep-store` from your docker repo.
+6. Copy provided `docker-compose.yaml` and `nginx.conf` files from `docker/prod/` in this repo to a folder on the remote host.
+7. Replace `$CORTEX_URL` in `nginx.conf` with a URL of your cortex server as well as `$DOCKER_REPO` in `docker-compose.yaml` with `ep-store`.
+8. Run `docker-compose up -d`
 
 ## Linting
 This project has been set up with ESLint as our linting utility.<br/>
