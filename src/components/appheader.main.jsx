@@ -83,6 +83,7 @@ class AppHeaderMain extends React.Component {
             {(hideHeaderNavigation) ? '' : (
               <div className="collapse navbar-collapse">
                 <ul className="global-nav-container btn-group" id="header_navbar_container_buttons">
+                  <AppHeaderLoginMain />
                   <li className="global-nav-cart-nav">
                     <Link to="/mycart">
                       <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" aria-label="Cart" data-toggle="collapse" data-target=".navbar-collapse" type="button">
@@ -90,7 +91,6 @@ class AppHeaderMain extends React.Component {
                       </button>
                     </Link>
                   </li>
-                  <AppHeaderLoginMain />
                   <AppHeaderLocaleMain />
                 </ul>
                 <AppHeaderSearchMain />

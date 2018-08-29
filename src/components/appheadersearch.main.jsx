@@ -57,11 +57,8 @@ class AppHeaderSearchMain extends React.Component {
         <div className="main-search-container" style={{ display: 'block' }}>
           <form className="navbar-form" id="header_navbar_search_container_form" onSubmit={this.search}>
             <div className="form-group">
-              <input className="input-search header-search-input" id="header_navbar_search_container_input" type="text" onChange={this.handleChange} placeholder="Search" />
+              <input className="input-search header-search-input" id="header_navbar_search_container_input" type="search" onChange={this.handleChange} />
             </div>
-            <button className="btn-header-search" id="header_navbar_search_container_button" type="submit">
-              <span className="icon" />
-            </button>
           </form>
         </div>
       </div>

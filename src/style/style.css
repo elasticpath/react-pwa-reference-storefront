@@ -6567,9 +6567,8 @@ fieldset[disabled] .btn-auth-login.active {
 .global-nav-container li {
   display: inline-block;
   margin: 0 0 0 -4px;
-  padding: 0;
   list-style-type: none;
-  top: 12px;
+  top: 7px;
 }
 .global-nav-container li:first-child .global-nav-link {
   border-top-right-radius: 0px;
@@ -6578,6 +6577,9 @@ fieldset[disabled] .btn-auth-login.active {
 .global-nav-container li:last-child .global-nav-link {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+}
+.global-nav-cart-nav {
+  padding-right: 30px;
 }
 .global-nav-container .global-nav-link {
   display: inline-block;
@@ -6672,21 +6674,18 @@ fieldset[disabled] .global-nav-container .global-nav-cart.active {
 }
 .global-nav-container .global-nav-cart .icon {
   position: relative;
-  top: 1px;
+  top: 5px;
+  width: 23px;
+  height: 30px;
   display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
   margin-right: 5px;
+  background: #ffffff00 url(../images/bag-icon.png) no-repeat 0px center;
 }
 .global-nav-container .global-nav-cart .icon:before {
-  content: "\e116";
+  background: #ffffff00 url(../images/bag-icon.png) no-repeat 0px center;
 }
 .global-nav-container .global-nav-login .icon:before {
-  content: "\e008";
+  background: #ffffff00 url(../images/account-icon.png) no-repeat 0px center;
 }
 @media screen and (max-width: 768px) {
   .global-nav-container .global-nav-cart {
@@ -6703,6 +6702,9 @@ fieldset[disabled] .global-nav-container .global-nav-cart.active {
   color: #ffffff;
   background-color: #040060;
   min-width: 50px;
+}
+.global-nav-container #header_navbar_loggedIn_button {
+  font-size: 15px;
 }
 .global-nav-container .global-nav-login:hover,
 .global-nav-container .global-nav-login:focus,
@@ -6744,32 +6746,24 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
 }
 .global-nav-container .global-nav-login .icon {
   position: relative;
-  top: 1px;
   display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
   margin-right: 4px;
+  width: 19px;
+  height: 18px;
+  background: #ffffff00 url(../images/account-icon.png) no-repeat 0px center;
 }
-.global-nav-container .global-nav-login .icon:before {
-  content: "\e008";
-}
-
 .authMenuItemRegion {
   position: relative;
   display: inline-block !important;
   margin-right: 5px !important;
 }
 
-@media (max-width: 488px) {
-  .authMenuItemRegion {
-    display: block !important;
-    margin-top: 48px !important;
-  }
+@media (max-width: 768px) {
   .main-locale-container {
-    float: right;
+    display: block !important;
+  }
+  .global-nav-cart-nav {
+    padding-right: 0px;
   }
 }
 
@@ -6780,12 +6774,11 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
 .main-search-container {
   position: relative;
   float: right;
-  top: 12px;
-  margin: 0 35px 0 0;
+  top: 10px;
+  margin: 0 10px 0 0;
 }
-.global-nav-cart-nav {
-  padding-left: 10px !important;
-  float: right;
+.main-locale-container {
+  padding-left: 20px !important;
 }
 @media (max-width: 768px) {
   .container {
@@ -6829,7 +6822,8 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
   padding-right: 0;
   margin-right: 0;
 }
-.btn-header-search {
+.btn-header-search,
+.header-search-icon{
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -6854,7 +6848,7 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
   line-height: 1.5;
   border-radius: 3px;
   color: #9c9c9c;
-  background-color: #ffffff;
+  background-color: #ffffff00;
   height: 22px;
   padding: 0px 5px;
   vertical-align: top;
@@ -6893,7 +6887,8 @@ fieldset[disabled] .btn-header-search.active {
   background-color: #040060;
   border-color: #040060;
 }
-.btn-header-search .icon {
+.btn-header-search .icon,
+.header-search-icon .icon {
   position: relative;
   top: 1px;
   display: inline-block;
@@ -6902,8 +6897,10 @@ fieldset[disabled] .btn-header-search.active {
   font-weight: normal;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+  color: white
 }
-.btn-header-search .icon:before {
+.btn-header-search .icon:before,
+.header-search-icon .icon:before {
   content: "\e003";
 }
 .header-search-input {
@@ -9851,7 +9848,7 @@ border: #fff;
 .home-sub-espot-container1 {
   height: 260px;
   text-align: center;
-  background-color: #04045f;
+  background-color: #f7f7f7;
   display: table;
 }
 
@@ -9871,7 +9868,7 @@ border: #fff;
   line-height: normal;
   letter-spacing: -0.6px;
   text-align: center;
-  color: #ffffff;
+  color: #4a4a4a;
 }
 
 .home-sub-espot-container1-second-line {
@@ -9885,12 +9882,12 @@ border: #fff;
   line-height: normal;
   letter-spacing: -0.3px;
   text-align: center;
-  color: #ffffff;
+  color: #4a4a4a;
   margin-top: 5px
 }
 
 .home-sub-espot-container1-button {
-  width: 194px;
+  width: 300px;
   height: 40px;
   background-color: #40b1f3;
 
@@ -10025,4 +10022,53 @@ border: #fff;
   .home-sub-espot-container4-second-line   {
     width: auto;
   }
+}
+input {
+	outline: none;
+}
+input[type=search] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+}
+input[type=search] {
+	background: #ffffff00 url('../images/magnifying-glass.png') no-repeat 9px center;
+  padding: 9px 10px 9px 32px;
+	width: 55px;
+
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+  transition: all .5s;
+}
+input[type=search]:focus {
+	width: 130px;
+}
+input:-moz-placeholder {
+	color: #999;
+}
+input::-webkit-input-placeholder {
+	color: #999;
+}
+#header_navbar_search_container_form input[type=search] {
+	width: 15px;
+	padding-left: 10px;
+	color: transparent;
+  cursor: pointer;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#header_navbar_search_container_form input[type=search]:focus {
+	width: 130px;
+	padding-left: 37px;
+	color: #fff;
+  cursor: auto;
+  border-bottom: 1px solid white;
+  background: #ffffff00 url('../images/magnifying-glass.png') no-repeat 9px center;
+}
+#header_navbar_search_container_form input:-moz-placeholder {
+	color: transparent;
+}
+#header_navbar_search_container_form input::-webkit-input-placeholder {
+	color: transparent;
 }

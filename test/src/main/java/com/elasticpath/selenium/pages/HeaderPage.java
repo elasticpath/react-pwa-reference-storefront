@@ -25,6 +25,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.Keys;
 
 public class HeaderPage extends AbstractPageObject {
 
@@ -94,7 +95,7 @@ public class HeaderPage extends AbstractPageObject {
 	public SearchResultsPage searchForKeyword(final String keyword) {
 		clearAndType(SEARCH_INPUT_CSS, keyword);
 		getWaitDriver().waitForPageToLoad();
-		getDriver().findElement(By.cssSelector(SEARCH_BUTTON_CSS)).click();
+		getDriver().findElement(By.cssSelector(SEARCH_INPUT_CSS)).sendKeys(Keys.RETURN);
 		return new SearchResultsPage(driver);
 	}
 
