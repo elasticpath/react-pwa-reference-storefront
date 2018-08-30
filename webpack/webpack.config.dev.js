@@ -24,21 +24,16 @@ const baseConfig = require('./webpack.config.base.js');
 
 const epConfig = require('../src/ep.config.json');
 
-if (epConfig.cortexApi.pathForProxy !== '') {
-  module.exports = merge(baseConfig, {
-    devServer: {
-      historyApiFallback: true,
+module.exports = merge(baseConfig, {
+  devtool: 'source-map',
+  devServer: {
+    historyApiFallback: true,
+    ...(epConfig.cortexApi.pathForProxy !== '' ? {
       proxy: {
         '/cortex': {
           target: epConfig.cortexApi.pathForProxy,
         },
       },
-    },
-  });
-} else {
-  module.exports = merge(baseConfig, {
-    devServer: {
-      historyApiFallback: true,
-    },
-  });
-}
+    } : {}),
+  },
+});
