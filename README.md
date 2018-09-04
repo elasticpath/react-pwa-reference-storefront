@@ -17,6 +17,7 @@ Table of contents
    * [Offline Mode](#offline-mode)
    * [Localization](#localization)
    * [Unit Tests](#unit-tests)
+   * [Jenkins Pipeline](#jenkins-pipeline)
    * [Contribution Guide](#contribution-guide)
    * [License](#license)
 <!--te-->
@@ -97,11 +98,13 @@ If you plan to check in your code, make sure to fix all your linting errors firs
 
 ## Offline Mode
 You can enable offline Mode in [`./src/ep.config.json`](#configuration)<br/>
-##### How it works
+
+**How it works**<br/>
 The *mock magic* is contained in `./src/utils/Mock.js`<br/>
 The *mock data files* are stored in `./src/offlineData`<br/>
 At a high level, **Mock.js** uses a map of Requests to Responses to send the mock data, given a Request. Instead of doing a fetch call to a url, it does a lookup in the map to retrieve/return the mock data. If mock data cannot be found for a request, an Error is thrown.<br/>
-##### How to add/edit data
+
+**How to add/edit data**<br/>
 If you're looking to create/modify mock data:<br/>
 * Start *Online* and perform the *flow* that you want to mock.<br/>
 * In your browser using Dev Tools, view the Network tab for requests made by your *flow*. Filter your requests using the **XHRF** or **XHR and Fetch** filter.<br/>
@@ -110,10 +113,12 @@ If you're looking to create/modify mock data:<br/>
 * Finally add your data into the map: `mockData.set(myData.self.uri, { status: myStatusCode, data: myData}`<br/>
     * In the case of a **followlocation** you'll want to create a new variable for the request uri, and use that instead of `myData.self.uri`. This is because the responses include the *followed* url instead of the *request* url.<br/>
      * In the case of a request that doesn't have a response you can add the request url with a status code, and empty data. (Check out forms in Mock.js as an example)
-##### Verifying your data
+
+**Verifying your data**<br/>
 Now that you've mocked up the data for your *flow*, it's time to go offline and verify! Enable [Offline Mode](#configuration) and restart your server.<br/>
 Go through your *flow* and verify everything works the same as Online. If there was something missed, there will be an error thrown in your *browser console* which will include the request it could not find the mock data for. Mock that request and you'll be able to continue!
-##### Out of the box flows
+
+**Out of the box flows**<br/>
 Out of the box you get some mock data for the following flows, give them a shot!<br/>
 * You can search for "water" in the search bar, and view the products returned.
 * You can browse to "Womens" category and view the products from that category.
@@ -156,6 +161,46 @@ Run Sanity Tests: `@sanity`<br/>
 openssl sha1 <filename>
 ```
 * Example: https://github.com/Ardesco/Selenium-Maven-Template/blob/master/src/test/resources/RepositoryMap.xml
+
+## Jenkins Pipeline
+This project includes a Jenkinsfile for a Scripted Pipeline which builds a store docker image from this project, deploys it to AWS and then runs the Unit Tests from this project. For using this pipeline you'll need to create an EC2 instance for the pipeline to deploy your store + cortex
+
+**Configuring the Pipeline**<br/>
+Create a new Jenkins Pipeline and configure it with the following:
+* Give your pipeline a name
+* Set this project to be parameterised and include the following parameters:
+  * `DOCKER_REGISTRY_ADDRESS` - *Path to AWS ECR* ie: `${awsAccountID}.dkr.ecr.${region}.amazonaws.com`
+  * `CORTEX_NAMESPACE` - *The namespace for your cortex images (activemq, batch, integration, search, cortex)*
+  * `DOCKER_IMAGE_TAG` - *The tag used for your cortex images*
+  * `STORE_NAMESPACE` - *The namespace for your store image and db image*
+  * `STORE_IMAGE_TAG` - *The tag for your store images (store + db)*
+  * `STORE_NAME` - *The name of the store in your data* ie: `vestri`
+  * `EC2_INSTANCE_HOST` - *The ip of your EC2 host for deploying this pipeline*
+  * `EC2_INSTANCE_USER` - *The user of your EC2 instance*
+  * `EC2_INSTANCE_SSH_KEY` - *The path in Jenkins node to your ec2.pem file*
+  * `SOLR_HOME_GIT_URL` - *The git url to your project containing your SOLR HOME Config*
+  * `SOLR_HOME_BRANCH` - *The branch name for your SOLR HOME Config*
+  * `SOLR_HOME_PATH` - *The path in your git project to your SOLR HOME Config*
+* Set Build Triggers to **Poll SCM** and choose a schedule
+* Set Pipeline with the following:
+  * **Definition** to *Pipeline script from SCM*
+  * **SCM** to *Git*
+  * **Repository URL** to your Repository for this project
+  * **Branches to build** specifier to *\*/master*
+  * **Script Path** to *Jenkinsfile*
+* **Save** your configuration<br/>
+
+You now have a pipeline that triggers on commits to master based on your chosen schedule. Check out the next section for more on the logic to the pipeline
+
+**How it works**<br/>
+The Stages:
+* `SETUP` - The setup stage pulls from this project and the project containing SOLR HOME Config
+* `BUILD` - The build stage builds the store docker from the `docker/dev/Dockerfile` in this project and then pushes it to AWS
+  * The dev docker that is created uses an `entrypoint.sh` to replace the path to CORTEX and the STORE name in `ep.config.json` and then starts the project in dev mode using `npm install`
+* `UNDEPLOY_EXISTING` - The undeploy stage will clean up the working directory if it exists and then remove any docker containers and images
+* `DEPLOY` - The deploy stage starts by creating the working directory, copying over files from this project, and copying over the SOLR HOME Config. Then exporting environment variables used in the compose file and then deploys the store and cortex with docker-compose
+* `TEST` - The test stage sets environment variables for JAVA_HOME, and adds JAVA + MAVEN to path. These are pulled from your Jenkins tools. This stage will then use a script from [intoli](https://intoli.com/blog/installing-google-chrome-on-centos) for installing google chrome to use for headless tests. The script downloads `google-chrome-stable` so we rename it to `google-chrome` so that chromedriver will find it for the tests. Before running the tests we need to replace the `selenium.session.baseurl` in the `pom.xml`. The tests are then run in a try-finally block so that the cucumber reports are added even if one fails. This uses the Jenkins Cucumber Plugin for viewing reports in Jenkins UI
+
 
 ## Contribution Guide
 * Contributions may be performed by developers at their choosing. Changes to this project must be reviewed and approved by an owner of this repository <br/>

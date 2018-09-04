@@ -4,13 +4,8 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>com.elasticpath</groupId>
-		<artifactId>bill-of-materials</artifactId>
-		<version>0.0.0-SNAPSHOT</version>
-		<relativePath/>
-	</parent>
 
+	<groupId>com.elasticpath</groupId>
 	<name>EP Store Selenium Cucumber Tests</name>
 	<artifactId>ep-store-selenium-test</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
@@ -20,16 +15,18 @@
 		<info.cukes.version>1.2.5</info.cukes.version>
 		<selenium.version>3.4.0</selenium.version>
 		<ep.selenium.framework.version>1.5.2</ep.selenium.framework.version>
+		<code.checking.rules.version>77</code.checking.rules.version>
+		<junit.version>4.12</junit.version>
+		<slf4j.version>1.7.25</slf4j.version>
+		<assertj.version>3.5.2</assertj.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<selenium.session.baseurl>http://localhost:8080</selenium.session.baseurl>
-		<!--<selenium.session.baseurl>http://vestriqa.epdemos.com/content/ElasticPath/en.html</selenium.session.baseurl>-->
 		<selenium.take.screenshot>true</selenium.take.screenshot>
 		<author.user.name>admin</author.user.name>
 		<author.password>admin</author.password>
 		<default.customer.username>john@ep.com</default.customer.username>
 		<default.customer.password>password</default.customer.password>
-		<!--<author_password>TinyTim22</author_password>-->
 		<remote.web.driver.url>http://10.10.2.000:4444/wd/hub</remote.web.driver.url>
 		<failsafe.fork.count>1</failsafe.fork.count>
 		<selenium.waitdriver.timeout>15</selenium.waitdriver.timeout>
@@ -80,6 +77,7 @@
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
+			<version>${assertj.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -95,6 +93,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -104,6 +103,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -113,6 +113,12 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/filtered-resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>com.lazerycode.selenium</groupId>
@@ -137,13 +143,20 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.16</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.16</version>
 				<executions>
 					<execution>
 						<goals>
@@ -173,6 +186,14 @@
 			</activation>
 			<properties>
 				<selenium.session.browser>chrome</selenium.session.browser>
+			</properties>
+		</profile>
+		<profile>
+			<id>headlesschrome</id>
+			<properties>
+				<selenium.session.browser>headlesschrome</selenium.session.browser>
+				<selenium.chrome.window.width>1920</selenium.chrome.window.width>
+				<selenium.chrome.window.height>1080</selenium.chrome.window.height>
 			</properties>
 		</profile>
 	</profiles>

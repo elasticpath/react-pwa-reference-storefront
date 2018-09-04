@@ -14,9 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this license. If not, see
  *
- *     https://www.gnu.org/licenses/
- *
- *
+ * https://www.gnu.org/licenses/
  */
 
 package com.elasticpath.selenium;
@@ -47,6 +45,8 @@ public final class SetUp {
 	private static final Object LOCKOBJ = new Object();
 	private static final PropertyManager PROPERTY_MANAGER = PropertyManager.getInstance();
 
+	private static final String browser = PROPERTY_MANAGER.getProperty("selenium.session.browser");
+
 	/**
 	 * Private constructor.
 	 */
@@ -58,7 +58,7 @@ public final class SetUp {
 	 * Can be used to (add chrome options and chrome capabilities) OR (setting new Chrome Capabilities).
 	 */
 	public static void setUpChrome() {
-		addChromeCapabilities();
+		setNewChromeCapabilties();
 	}
 
 	/**
@@ -86,8 +86,12 @@ public final class SetUp {
 		ChromeWebDriverFactory.setEnableDefaultCapabilities(false);
 
 		ChromeOptions options = ChromeWebDriverFactory.getOptions();
-		options.addArguments("disable-infobars");
-		options.addArguments("--start-fullscreen");
+		if ("headlesschrome".equals(browser)) {
+			options.addArguments("--headless");
+		} else {
+			options.addArguments("disable-infobars");
+			options.addArguments("--start-fullscreen");
+		}
 		System.setProperty("webdriver.chrome.driver", PROPERTY_MANAGER.getProperty("selenium.chrome.driver.path"));
 
 		Map<String, Object> prefs = new HashMap<String, Object>();

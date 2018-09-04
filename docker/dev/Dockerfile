@@ -1,18 +1,20 @@
 # Build Command
-#
+# Run from project root
 # docker build \
 #   --tag ep/ep-store:$(jq -r .version package.json) \
 #   --build-arg "BUILD_DATE"="$(date --rfc-3339=seconds)" \
 #   --build-arg "VERSION"="$(jq -r .version package.json)" \
-#   --build-arg "VCS_REF"="$(git rev-parse HEAD)" .
+#   --build-arg "VCS_REF"="$(git rev-parse HEAD)"
+#   -f ./docker/dev/Dockerfile .
 
 FROM node:10.5.0
 
 ARG BUILD_DATE
 ARG VERSION
 ARG VCS_REF
-ARG CORTEX_IP
-ARG STORE
+
+ENV CORTEX=http://localhost:9080
+ENV STORE=vestri
 
 LABEL build-date="$BUILD_DATE"
 LABEL name="ep/ep-store"
@@ -30,14 +32,12 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install
-# If you are building your code for production
-# RUN npm install --only=production
 
 # Bundle app source
 COPY . .
-RUN sed -i.bak "s/\"pathForProxy\":[[:blank:]]*\"[^\"]*\"/\"pathForProxy\": \"${CORTEX_IP}\"/" ./src/ep.config.json
-RUN sed -i.bak s/vestri/${STORE}/ ./src/ep.config.json
+RUN chmod +x ./docker/dev/entrypoint.sh
 
 EXPOSE 8080
 
+ENTRYPOINT [ "./docker/dev/entrypoint.sh" ]
 CMD [ "npm", "start" ]
