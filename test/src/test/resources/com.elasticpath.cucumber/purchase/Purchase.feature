@@ -78,7 +78,7 @@ Feature: Purchase
 
     Examples:
       | product-1                  | product-2      | product-3                        | product-4        |
-      | M Class Red Brake Calipers | Structured Hat | Carbon Fiber Center Console Trim | Men's S/S Hanley |
+      | M Class Red Brake Calipers | Structured Hat | Carbon Fiber Center Console Trim | Men's Tech Vest  |
 
   Scenario: Purchase multi-sku item as a registered shopper
     Given I select category Mens
