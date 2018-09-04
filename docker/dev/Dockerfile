@@ -35,7 +35,6 @@ RUN npm install
 
 # Bundle app source
 COPY . .
-RUN chmod +x ./docker/dev/entrypoint.sh
 
 EXPOSE 8080
 

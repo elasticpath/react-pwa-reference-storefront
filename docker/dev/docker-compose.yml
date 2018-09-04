@@ -1,7 +1,7 @@
 version: '2.3'
 services:
   store:
-    image: ${REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-store:${STORE_IMAGE_TAG}
+    image: ${REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:${STORE_IMAGE_TAG}
     container_name: store
     ports:
       - 8080:8080
