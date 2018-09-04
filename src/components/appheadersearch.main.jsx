@@ -53,14 +53,12 @@ class AppHeaderSearchMain extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="main-search-container" style={{ display: 'block' }}>
-          <form className="navbar-form" id="header_navbar_search_container_form" onSubmit={this.search}>
-            <div className="form-group">
-              <input className="input-search header-search-input" id="header_navbar_search_container_input" type="search" onChange={this.handleChange} />
-            </div>
-          </form>
-        </div>
+      <div className="main-search-container">
+        <form className="navbar-form header_navbar_search_container_form" onSubmit={this.search}>
+          <div className="form-group">
+            <input className="input-search header-search-input header_navbar_search_container_input" type="search" onChange={this.handleChange} />
+          </div>
+        </form>
       </div>
     );
   }

@@ -57,46 +57,44 @@ class AppHeaderLocaleMain extends React.Component {
     const title = `${selectedLocale.name.substring(0, 2)}/${selectedCurrencyValue}`;
 
     return (
-      <li className="main-locale-container">
-        <div className="locale-dropdown">
-          <button id="locale-dropdown-trigger" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {title}
-          </button>
-          <div className="dropdown-menu dropdown-menu-right dropdown-margin-right">
-            <h6 className="dropdown-header">
-              {intl.get('language')}
-            </h6>
-            {Config.supportedLocales.map(locale => (
-              <button
-                type="button"
-                key={locale.value}
-                id={`locale-${locale.value}`}
-                className={`dropdown-item ${locale.value === selectedLocaleValue ? 'selected disabled' : 'not-selected'}`}
-                onClick={() => locale.value !== selectedLocaleValue && this.handleLocaleClick(locale.value)}
-              >
-                {locale.name}
-              </button>
-            ))}
+      <div className="locale-dropdown">
+        <button id="locale-dropdown-trigger" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {title}
+        </button>
+        <div className="dropdown-menu dropdown-menu-right dropdown-margin-right">
+          <h6 className="dropdown-header">
+            {intl.get('language')}
+          </h6>
+          {Config.supportedLocales.map(locale => (
+            <button
+              type="button"
+              key={locale.value}
+              id={`locale-${locale.value}`}
+              className={`dropdown-item ${locale.value === selectedLocaleValue ? 'selected disabled' : 'not-selected'}`}
+              onClick={() => locale.value !== selectedLocaleValue && this.handleLocaleClick(locale.value)}
+            >
+              {locale.name}
+            </button>
+          ))}
 
-            <div className="dropdown-divider" />
+          <div className="dropdown-divider" />
 
-            <div className="dropdown-header">
-              {intl.get('currency')}
-            </div>
-            {Config.supportedCurrencies.map(currency => (
-              <button
-                type="button"
-                key={currency.value}
-                id={`currency-${currency.value}`}
-                className={`dropdown-item locale-item ${currency.value === selectedCurrencyValue ? 'selected disabled' : 'not-selected'}`}
-                onClick={() => currency.value !== selectedCurrencyValue && this.handleCurrencyClick(currency.value)}
-              >
-                {currency.name}
-              </button>
-            ))}
+          <div className="dropdown-header">
+            {intl.get('currency')}
           </div>
+          {Config.supportedCurrencies.map(currency => (
+            <button
+              type="button"
+              key={currency.value}
+              id={`currency-${currency.value}`}
+              className={`dropdown-item locale-item ${currency.value === selectedCurrencyValue ? 'selected disabled' : 'not-selected'}`}
+              onClick={() => currency.value !== selectedCurrencyValue && this.handleCurrencyClick(currency.value)}
+            >
+              {currency.name}
+            </button>
+          ))}
         </div>
-      </li>
+      </div>
     );
   }
 }

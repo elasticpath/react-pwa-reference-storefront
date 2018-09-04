@@ -82,7 +82,11 @@ class AppHeaderMain extends React.Component {
             </button>
             {(hideHeaderNavigation) ? '' : (
               <div className="collapse navbar-collapse">
+                <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} />
                 <ul className="global-nav-container btn-group" id="header_navbar_container_buttons">
+                  <li>
+                    <AppHeaderSearchMain />
+                  </li>
                   <AppHeaderLoginMain />
                   <li className="global-nav-cart-nav">
                     <Link to="/mycart">
@@ -91,10 +95,10 @@ class AppHeaderMain extends React.Component {
                       </button>
                     </Link>
                   </li>
-                  <AppHeaderLocaleMain />
+                  <li className="main-locale-container">
+                    <AppHeaderLocaleMain />
+                  </li>
                 </ul>
-                <AppHeaderSearchMain />
-                <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} />
               </div>
             )}
           </div>

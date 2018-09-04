@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
@@ -34,6 +35,11 @@ class AppHeaderLoginMain extends React.Component {
 
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    isMobileView: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isMobileView: false,
   }
 
   logoutRegisteredUser() {
@@ -47,17 +53,23 @@ class AppHeaderLoginMain extends React.Component {
   }
 
   render() {
+    const { isMobileView } = this.props;
     if (AppHeaderLoginMain.isLoggedIn()) {
       return (
         <li data-region="authMenuItemRegion" className="authMenuItemRegion">
           <div className="auth-container">
             <div className="auth-container dropdown">
               <button className="btn btn-secondary dropdown-toggle global-nav-link global-nav-login btn-auth-menu" type="button" id="header_navbar_loggedIn_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span className="icon" />
+                {(isMobileView)
+                  ? (
+                    intl.get('account-logged-in')
+                  ) : (
+                    <span className="icon" />
+                  )}
               </button>
               <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
                 <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
-                  <li className="dropdown-item">
+                  <li>
                     <h6 className="dropdown-header auth-profile-menu-list-header" id="header_navbar_login_menu_username">
                       {localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`)}
                     </h6>
@@ -88,7 +100,12 @@ class AppHeaderLoginMain extends React.Component {
         <div className="auth-container">
           <div className="auth-container">
             <button className="global-nav-link global-nav-login btn-auth-menu" id="header_navbar_login_button" type="button" data-toggle="modal" data-target="#login-modal">
-              {intl.get('login')}
+              {(isMobileView)
+                ? (
+                  intl.get('account-login')
+                ) : (
+                  intl.get('login')
+                )}
             </button>
             <div data-region="authMainRegion" className="auth-nav-container" />
           </div>

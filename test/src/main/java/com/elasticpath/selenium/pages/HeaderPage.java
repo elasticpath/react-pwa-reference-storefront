@@ -36,7 +36,7 @@ public class HeaderPage extends AbstractPageObject {
 	private final static String CART_LINK_CSS = "#header_navbar_cart_button";
 	private final static String PARENT_CATEGORY_CSS = "li[data-name='%1s']";
 	private final static String SUB_CATEGORY_CSS = PARENT_CATEGORY_CSS + " > div[aria-label='navbarDropdown'] > a[title='%2s']";
-	private final static String SEARCH_INPUT_CSS = "#header_navbar_search_container_input";
+	private final static String SEARCH_INPUT_CSS = ".global-nav-container .header_navbar_search_container_input";
 	private final static String SEARCH_BUTTON_CSS = "#header_navbar_search_container_button";
 	private final static String LOGIN_BUTTON_CSS = "button[id='header_navbar_login_button']";
 	private final static String LOGGEDIN_BUTTON_CSS = "button[id='header_navbar_loggedIn_button']";
