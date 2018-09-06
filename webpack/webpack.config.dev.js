@@ -19,12 +19,14 @@
  *
  */
 
+const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base.js');
 
 const epConfig = require('../src/ep.config.json');
 
-module.exports = merge(baseConfig, {
+module.exports = merge.smart(baseConfig, {
+  mode: 'development',
   devtool: 'source-map',
   devServer: {
     historyApiFallback: true,
@@ -35,5 +37,24 @@ module.exports = merge(baseConfig, {
         },
       },
     } : {}),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader', options: { sourceMap: true } },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader', options: { sourceMap: true } },
+          { loader: 'less-loader', options: { sourceMap: true, paths: [path.resolve(__dirname, 'node_modules')] } },
+        ],
+      },
+    ],
   },
 });

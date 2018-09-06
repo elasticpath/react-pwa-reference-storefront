@@ -53,6 +53,14 @@ module.exports = {
         ],
       },
       {
+        test: /\.less$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'less-loader' },
+        ],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader',
@@ -84,7 +92,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: [
+          'babel-loader',
+          'eslint-loader',
+        ],
       },
     ],
   },
