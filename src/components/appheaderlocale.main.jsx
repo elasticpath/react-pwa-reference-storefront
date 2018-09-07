@@ -23,6 +23,8 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import * as UserPrefs from '../utils/UserPrefs';
 
+import './appheaderlocale.main.less';
+
 const Config = require('Config');
 
 class AppHeaderLocaleMain extends React.Component {

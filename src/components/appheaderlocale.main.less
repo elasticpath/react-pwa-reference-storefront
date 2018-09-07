@@ -1,0 +1,68 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.main-locale-container {
+  position: relative;
+  display: inline-block;
+  max-width: 80px;
+
+  .locale-dropdown {
+    .dropdown-toggle {
+      padding: 5px 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      border-radius: 3px;
+      padding: 1px 5px;
+      color: #ffffff;
+      background-color: #040060;
+      box-shadow: none;
+    }
+
+    .dropdown-item.selected {
+      color: #070ca6;
+    }
+  }
+
+  .locale-dropdown-btn .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+
+  @media (max-width: @tabletWidth) {
+    top: 0;
+
+    .locale-dropdown {
+      .dropdown-toggle {
+        background-color: #f7f7f7;
+        color: #040060;
+        font-size: 14px;
+        margin-top: 0px;
+        float: right;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+      }
+    }
+  }
+}

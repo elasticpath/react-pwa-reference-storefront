@@ -7088,13 +7088,14 @@ textarea.header-search-input {
 /* MAIN LOCALE CONTAINER    */
 /* ======================== */
 
-.main-locale-container {
+/* 
+.main-locale-container-old {
   position: relative;
   display: inline-block;
   max-width: 80px;
 }
 
-.main-locale-container .locale-dropdown .dropdown-toggle {
+.main-locale-container-old .locale-dropdown .dropdown-toggle {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
@@ -7106,35 +7107,35 @@ textarea.header-search-input {
 }
 
 @media (max-width: 1092px) {
-  .main-locale-container {
+  .main-locale-container-old {
     top: 0;
   }
-  .main-locale-container .locale-dropdown .dropdown-toggle {
+  .main-locale-container-old .locale-dropdown .dropdown-toggle {
     background-color: #f7f7f7;
     color: #040060;
     font-size: 14px;
     margin-top: 0px;
     float: right;
   }
-  .main-locale-container .locale-dropdown .dropdown-menu {
+  .main-locale-container-old .locale-dropdown .dropdown-menu {
     position: absolute;
   }
 }
 
-.main-locale-container .locale-dropdown-btn .dropdown-menu {
+.main-locale-container-old .locale-dropdown-btn .dropdown-menu {
   right: 0;
   left: auto;
 }
 
-.dropdown-menu-right {
+.dropdown-menu-right-old {
   right: 0;
   left: auto;
 }
 
-.main-locale-container .locale-dropdown .dropdown-item.selected {
+.main-locale-container-old .locale-dropdown .dropdown-item.selected {
   color: #070ca6;
 }
-
+ */
 
 /* ======================== */
 /* NAVBAR                   */
