@@ -5962,8 +5962,7 @@ td.visible-print {
  *
  * Storefront components  styles
  */
-.shipping-option-container,
-.address-container {
+.shipping-option-container /*, .address-container*/ {
   padding-left: 5px;
 }
 .address-form-label {
