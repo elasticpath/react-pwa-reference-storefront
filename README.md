@@ -54,7 +54,7 @@ The path the webpack proxy will route storefront Cortex calls to. URL consisting
 
 ### Sample Data:
 This project includes a set of sample data for your convenience, and assumes you have a valid Elastic Path development environment.<br/>
-1. Extract and copy the sample catalog data contents from this project `ep-store/data` into your `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
+1. Extract the sample catalog data contents from this project `ep-store/data` into your `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
 2. Update `ep-commerce/extensions/database/ext-data/src/main/resources/data/liquibase-changelog.xml`.<br/>
 Add the following sample data to the file. Note that it should be the only sample data included within the sample data blocks: `<include file="ep-blueprint-data/liquibase-changelog.xml" relativeToChangelogFile="true" />`
 3. Update `ep-commerce/extensions/database/ext-data/src/main/resources/environments/local/data-population.properties`. Set the liquibase.contexts property to `default,ep-blueprint`.
