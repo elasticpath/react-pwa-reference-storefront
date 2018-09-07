@@ -27,7 +27,7 @@ import * as UserPrefs from './utils/UserPrefs';
 
 // Import custom required styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style/style.css';
+import './style/style.less';
 
 // Import custom required scripts
 import 'bootstrap/dist/js/bootstrap.bundle.min';
