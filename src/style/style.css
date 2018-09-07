@@ -5965,7 +5965,7 @@ td.visible-print {
 .shipping-option-container /*, .address-container*/ {
   padding-left: 5px;
 }
-.address-form-label {
+/* .address-form-label {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -5992,7 +5992,7 @@ td.visible-print {
 .address-form-feedback-container {
   padding-top: 3rem;
   padding-bottom: 2rem;
-}
+} */
 .error-list {
   list-style: circle;
 }
