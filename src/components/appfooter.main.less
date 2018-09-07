@@ -1,0 +1,78 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.app-footer {
+  background-color: @mainColor;
+  position: absolute;
+  width: 100%;
+
+  h5,
+  p,
+  li a {
+    -webkit-transition: all ease-in-out 0.2s;
+    border-bottom: 1px solid transparent;
+    color: white;
+    font-size: 1.3rem;
+    padding: 7px 7px;
+    transition: all ease-in-out 0.2s;
+
+    @media screen and (min-width: @mobileWidth) and (max-width: @tabletWidth) {
+      font-size: 1.2rem;
+      padding: 7px 6px;
+    }
+
+    @media screen and (max-width: @tabletWidth) {
+      li a:hover {
+        color: @mainColor;
+        background: none;
+        border-color: @mainColor;
+        text-decoration: none;
+      }
+    }
+  }
+
+  ul {
+    margin-bottom: 0px;
+  }
+
+  hr {
+    margin-bottom: 0px;
+    margin-top: 25px;
+    margin: 0 auto;
+    text-align: center;
+    width: 90%;
+  }
+
+  .footer-column {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  @media (max-width: 768px) {
+    #footer_container_column_1 > .footer-column {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+}
+

@@ -6343,9 +6343,9 @@ fieldset[disabled] .btn-auth-login.active {
   padding-right: 20px;
 }
 .navbar.navbar-inverse .navbar-nav li a,
-.app-footer h5,
-.app-footer p,
-.app-footer li a {
+.app-footer-old h5,
+.app-footer-old p,
+.app-footer-old li a {
   color: white;
   padding: 7px 7px;
   font-size: 1.3rem;
@@ -6374,9 +6374,9 @@ fieldset[disabled] .btn-auth-login.active {
 }
 @media screen and (max-width: 992px) and (min-width: 768px) {
   .navbar.navbar-inverse .navbar-nav li a,
-  .app-footer h5,
-  .app-footer p,
-  .app-footer li a  {
+  .app-footer-old h5,
+  .app-footer-old p,
+  .app-footer-old li a  {
     font-size: 1.2rem;
     padding: 7px 6px;
   }
@@ -6496,7 +6496,7 @@ fieldset[disabled] .btn-auth-login.active {
   .navbar.navbar-inverse .navbar-nav li button:hover,
   .navbar.navbar-inverse .navbar-nav .authentication-nav-mobile li.dropdown-item:hover,
   .navbar.navbar-inverse .navbar-nav .authentication-nav-mobile li button.btn-auth-menu .btn-cmd:hover,
-  .app-footer li a:hover {
+  .app-footer-old li a:hover {
     color: #040060;
     border-color: #040060;
     text-decoration: none;
@@ -8622,7 +8622,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   content: "";
   display: block;
 }
-/* .app-footer,
+/* .app-footer-old,
 .category-items-container:after,
 .home-contant-container:after,
 .cart-container:after {
@@ -8632,7 +8632,7 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
   height: 100%;
 }
 /* @media screen and (max-width: 768px) {
-  .app-footer,
+  .app-footer-old,
   .category-items-container:after,
   .cart-container:after {
     height: 170px;
@@ -9702,27 +9702,27 @@ ul {
 .app-main {
   padding-bottom: 6rem;
 }
-.app-footer {
+.app-footer-old {
   background-color: #040060;
   position:absolute;
   width:100%;
 }
-.app-footer p {
+.app-footer-old p {
   margin-bottom: 10px;
 }
-.app-footer ul {
+.app-footer-old ul {
   margin-bottom: 0px;
 }
-.app-footer hr {
+.app-footer-old hr {
   margin-top: 25px;
   margin-bottom: 0px;
   text-align: center;
   margin: 0 auto;
   width: 90%;
 }
-.app-footer h5,
-.app-footer p,
-.app-footer li a {
+.app-footer-old h5,
+.app-footer-old p,
+.app-footer-old li a {
   padding: 0;
 }
 .footerColumn {

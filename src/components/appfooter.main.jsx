@@ -23,13 +23,15 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
+import './appfooter.main.less';
+
 function AppFooterMain() {
   return (
     <footer className="app-footer page-footer font-small blue pt-4 mt-4">
       <div id="footer_container" className="container-fluid text-center text-md-center">
         <div className="row">
           <div id="footer_container_column_1" className="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-xs-center text-sm-center text-md-left text-lg-left">
-            <div className="footerColumn">
+            <div className="footer-column">
               <h5 className="text-uppercase">
                 {intl.get('vestri')}
               </h5>
@@ -40,7 +42,7 @@ function AppFooterMain() {
           </div>
           <hr className="clearfix d-md-none pb-3" />
           <div id="footer_container_column_2" className="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-left">
-            <div className="footerColumn">
+            <div className="footer-column">
               <h5 className="text-uppercase">
                 {intl.get('assistance')}
               </h5>
@@ -64,7 +66,7 @@ function AppFooterMain() {
             </div>
           </div>
           <div id="footer_container_column_3" className="col-xs-6 col-sm-6 col-md-4 col-lg-4 text-left">
-            <div className="footerColumn">
+            <div className="footer-column">
               <h5 className="text-uppercase">
                 {intl.get('find-us-online')}
               </h5>
