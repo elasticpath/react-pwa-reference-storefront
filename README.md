@@ -35,6 +35,7 @@ If you haven’t already, you’ll need to install the following software:
 * Install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) for executing unit tests.
 * Install [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/) for executing unit tests.
 * Install [IntelliJ IDEA](https://www.jetbrains.com/idea/) optionally for creating/running unit tests.
+* Ensure you have a valid Elastic Path development environment.
 
 ### Configuration
 ##### `ep.config.json (options)`
@@ -48,7 +49,7 @@ The path the webpack proxy will route storefront Cortex calls to. URL consisting
  - `skuImagesUrl`, **required**, *string*:
  Path to catalog images hosted on an external CMS. Set this to the full URL of your images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
   - `siteImagesUrl`, **optional**, *string*:
- Path to site content and marketing images hosted on an external CMS. Set this to the full URL of your images, replacing the file-name and file-extension with the string `%fileName%`. This value will be populated during pageload with values set in your components and use locally available assets as the fallback.
+ Path to site content and marketing images hosted on an external CMS. Set this to the full URL of your images, replacing the file-name and file-extension with the string `%fileName%`. This value will be populated during pageload with values set in your components and use assets locally available in `./src/images/site-images` as the fallback.
  - `enableOfflineMode`, **optional**, *bool*:
   Option to enable offline mode. When in offline mode, requests are fetched from static data instead of Cortex. Check out [how it works](#offline-mode)
  - `gaTrackingId`, **optional**, *string*:
@@ -103,7 +104,7 @@ You can enable offline Mode in [`./src/ep.config.json`](#configuration)<br/>
 
 **How it works**<br/>
 The *mock magic* is contained in `./src/utils/Mock.js`<br/>
-The *mock data files* are stored in `./src/offlineData`<br/>
+The *mock data files* are expected to be stored in `./src/offlineData`<br/>
 At a high level, **Mock.js** uses a map of Requests to Responses to send the mock data, given a Request. Instead of doing a fetch call to a url, it does a lookup in the map to retrieve/return the mock data. If mock data cannot be found for a request, an Error is thrown.<br/>
 
 **How to add/edit data**<br/>
@@ -113,7 +114,7 @@ If you're looking to create/modify mock data:<br/>
 * Copy the response directly from your request into a *.json* file under the `./src/offlineData` directory.<br/>
 * In `.src/utils/Mock.js` add a variable for your data: `const myData = require('../offlineData/myData.json')`<br/>
 * Finally add your data into the map: `mockData.set(myData.self.uri, { status: myStatusCode, data: myData}`<br/>
-    * In the case of a **followlocation** you'll want to create a new variable for the request uri, and use that instead of `myData.self.uri`. This is because the responses include the *followed* url instead of the *request* url.<br/>
+    * In the case of a **followlocation** you'll want to create a new variable for the request uri, and use that instead of `myData.self.uri`. This is because the responses include the *followed* url instead of the *request* url.<br/>z
      * In the case of a request that doesn't have a response you can add the request url with a status code, and empty data. (Check out forms in Mock.js as an example)
 
 **Verifying your data**<br/>

@@ -6188,13 +6188,13 @@ fieldset[disabled] .global-nav-container .global-nav-cart.active {
   height: 30px;
   display: inline-block;
   margin-right: 5px;
-  background: #ffffff00 url(../images/bag-icon.png) no-repeat 0px center;
+  background: #ffffff00 url(../images/header-icons/bag-icon.png) no-repeat 0px center;
 }
 .global-nav-container .global-nav-cart .icon:before {
-  background: #ffffff00 url(../images/bag-icon.png) no-repeat 0px center;
+  background: #ffffff00 url(../images/header-icons/bag-icon.png) no-repeat 0px center;
 }
 .global-nav-container .global-nav-login .icon:before {
-  background: #ffffff00 url(../images/account-icon.png) no-repeat 0px center;
+  background: #ffffff00 url(../images/header-icons/account-icon.png) no-repeat 0px center;
 }
 @media screen and (max-width: 768px) {
   .global-nav-container .global-nav-cart {
@@ -6260,7 +6260,7 @@ fieldset[disabled] .global-nav-container .global-nav-login.active {
   margin-right: 4px;
   width: 19px;
   height: 18px;
-  background: #ffffff00 url(../images/account-icon.png) no-repeat 0px center;
+  background: #ffffff00 url(../images/header-icons/account-icon.png) no-repeat 0px center;
 }
 .authMenuItemRegion {
   position: relative;
@@ -6468,7 +6468,7 @@ textarea.header-search-input {
 /* MAIN LOCALE CONTAINER    */
 /* ======================== */
 
-/* 
+/*
 .main-locale-container-old {
   position: relative;
   display: inline-block;
@@ -9570,7 +9570,7 @@ input[type=search] {
 	font-size: 100%;
 }
 input[type=search] {
-	background: #ffffff00 url('../images/magnifying-glass.png') no-repeat 9px center;
+	background: #ffffff00 url('../images/header-icons/magnifying-glass.png') no-repeat 9px center;
   padding: 9px 10px 9px 32px;
 	width: 55px;
 
@@ -9603,7 +9603,7 @@ input::-webkit-input-placeholder {
 	color: #fff;
   cursor: auto;
   border-bottom: 1px solid white;
-  background: #ffffff00 url('../images/magnifying-glass.png') no-repeat 9px center;
+  background: #ffffff00 url('../images/header-icons/magnifying-glass.png') no-repeat 9px center;
 }
 .header_navbar_search_container_form input:-moz-placeholder {
 	color: transparent;

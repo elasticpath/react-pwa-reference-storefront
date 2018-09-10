@@ -24,10 +24,10 @@ import intl from 'react-intl-universal';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 
-import homeEspotMain from '../images/homepage-banner.jpg';
-import homeEspot2 from '../images/brake-icon.jpg';
-import homeEspot3 from '../images/charging-icon.png';
-import homeEspot4 from '../images/warranty-graphic.jpg';
+import homeEspotMain from '../images/site-images/homepage-banner.jpg';
+import homeEspot2 from '../images/site-images/brake-icon.jpg';
+import homeEspot3 from '../images/site-images/charging-icon.png';
+import homeEspot4 from '../images/site-images/warranty-graphic.jpg';
 
 const Config = require('Config');
 

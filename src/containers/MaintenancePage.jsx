@@ -25,7 +25,7 @@ import { Link } from 'react-router-dom';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 
-import doge from '../images/HikingDog.png';
+import doge from '../images/site-images/HikingDog.png';
 
 const Config = require('Config');
 

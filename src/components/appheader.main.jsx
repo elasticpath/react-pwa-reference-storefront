@@ -28,7 +28,7 @@ import AppHeaderLoginMain from './appheaderlogin.main';
 import AppModalLoginMain from './appmodallogin.main';
 import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
-import headerLogo from '../images/Company-Logo-v1.png';
+import headerLogo from '../images/site-images/Company-Logo-v1.png';
 
 const Config = require('Config');
 
