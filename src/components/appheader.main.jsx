@@ -30,6 +30,10 @@ import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
 import headerLogo from '../images/Company-Logo-v1.png';
 
+const Config = require('Config');
+
+const headerLogoFileName = 'Company-Logo-v1.png';
+
 class AppHeaderMain extends React.Component {
   static goBack() {
     window.history.back();
@@ -73,7 +77,7 @@ class AppHeaderMain extends React.Component {
             <div className="logo-container" style={{ display: 'block' }}>
               <div>
                 <a href="/" className="cmd-home-logo" id="header_home_logo_link" aria-label="Header home logo">
-                  <img alt="Header logo" src={headerLogo} />
+                  <img alt="Header logo" src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)} onError={(e) => { e.target.src = headerLogo; }} />
                 </a>
               </div>
             </div>

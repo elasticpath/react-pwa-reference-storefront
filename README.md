@@ -45,8 +45,10 @@ URL consisting of hostname and port which the storefront will use to reach Corte
 Name of store to retreive data from Cortex.
  - `cortexApi.pathForProxy`, **required**, *string*:
 The path the webpack proxy will route storefront Cortex calls to. URL consisting of hostname and port to actual running instance of Cortex. Leave this value empty to disable the proxy.
- - `skuImagesS3Url`, **required**, *string*:
- Path to catalog images hosted on S3 bucket. Set this to the full URL of your S3 images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
+ - `skuImagesUrl`, **required**, *string*:
+ Path to catalog images hosted on an external CMS. Set this to the full URL of your images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
+  - `siteImagesUrl`, **optional**, *string*:
+ Path to site content and marketing images hosted on an external CMS. Set this to the full URL of your images, replacing the file-name and file-extension with the string `%fileName%`. This value will be populated during pageload with values set in your components and use locally available assets as the fallback.
  - `enableOfflineMode`, **optional**, *bool*:
   Option to enable offline mode. When in offline mode, requests are fetched from static data instead of Cortex. Check out [how it works](#offline-mode)
  - `gaTrackingId`, **optional**, *string*:
