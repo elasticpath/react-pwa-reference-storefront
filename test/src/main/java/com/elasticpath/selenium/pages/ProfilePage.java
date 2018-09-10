@@ -33,8 +33,8 @@ public class ProfilePage extends AbstractPageObject {
 	@FindBy(css = "div[data-region='profilePersonalInfoRegion']")
 	private WebElement profilePersonalInfoRegion;
 
-	@FindBy(css = "div[data-region='componentAddressFeedbackRegion']")
-	private WebElement componentAddressFeedbackRegion;
+	@FindBy(css = "div[data-region='componentAddressFormRegion']")
+	private WebElement componentAddressFormRegion;
 
 	@FindBy(css = "div[data-region='profilePersonalInfoRegion'] button.profile-personal-info-edit-btn")
 	private WebElement editPersonalInfoButton;
@@ -133,7 +133,7 @@ public class ProfilePage extends AbstractPageObject {
 	}
 
 	public void verifyPesonalInfoUpdateRegionExist() {
-		assertThat(componentAddressFeedbackRegion.isDisplayed())
+		assertThat(componentAddressFormRegion.isDisplayed())
 				.as("Failed to verify Profile page")
 				.isTrue();
 	}
