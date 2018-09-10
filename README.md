@@ -2,4 +2,4 @@ This is the code of the GitHub Pages site containing documentation for Elastic P
 
 The GitHub Pages site can be found at:
 
-http://elasticpath.github.io/html5-reference-storefront/
+http://shaunmaharaj.github.io/ep-store/

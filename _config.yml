@@ -1,4 +1,4 @@
-baseurl: /html5-reference-storefront
+baseurl: /ep-store
 exclude: [node_modules, non-distributable]
 relative_permalinks: false
-repository: https://github.com/elasticpath/html5-reference-storefront
+repository: https://github.com/shaunmaharaj/ep-store
