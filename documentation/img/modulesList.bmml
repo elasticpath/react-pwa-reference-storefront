@@ -1,0 +1,14 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="823" measuredH="473" mockupW="815" mockupH="473">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Tree" x="8" y="0" w="815" h="473" measuredW="300" measuredH="474" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <markup>true</markup>
+        <state>up</state>
+        <text>F%20ui-storefront%0A%20f%20documentation%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20//documentation%20source%20files%0A%20F%20public%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20//web%20server%20accessible%20files%0A%20%20f%20helpers%09%09%09//collection%20of%20utilities%20used%20in%20the%20Storefront%0A%20%20f%20locales%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20//i18n%20files%0A%20%20F%20modules%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20//MVC%20modules%0A%20%20%20F%20base%09%09%09//contains%20the%20Storefront%27s%20base%20modules%0A%20%20%20%20f%20app%09%09%09//initializes%20the%20Storefront%27s%20main%20regions%20%28appHeader%2C%20appMain%2C%20appFooter%29%20%20%09%09%09%0A%20%20%20%20f%20appheader%20%09%09//initidalizes%20the%20Storefront%27s%20appHeader%20region%0A%20%20%20%20f%20auth%09%09%09//authentication%20%28login%2Clogout%29%0A%20%20%20%20f%20cart%09%09%09//customer%27s%20cart%20%28view%20cart%2C%20update%20cart%29%20%0A%20%20%20%20f%20category%09%09//categories%20%28show%20categories%2C%20show%20items%20in%20categories%29%0A%20%20%20%20f%20checkout%09%09//checkout%20workflow%20%28select%20billing/shipping%20address%2C%20show%20checkout%20summary%2C%20submit%20order%29%0A%20%20%20%20F%20components%09%09//components%20-%20reusable%20code%20components%0A%20%20%20%20%20f%20address%09%09//customer%27s%20addresses%20%28create%20address%2C%20view%20address%29%20%0A%20%20%20%20%20f%20payment%09%09//customer%27s%20payment%20method%20%28view%20payment%20method%29%0A%20%20%20%20f%20home%09%09%09//initializes%20the%20Storefront%27s%20main%20page%0A%20%20%20%20f%20ia%09%09%09//navigations%20%28show%20navigations%2C%20show%20navigation%20items%29%0A%20%20%20%20f%20item%09%09//items%20%28show%20item%20details%2C%20add%20item%20to%20cart%29%0A%20%20%20%20f%20profile%09%09//profile%20%28show%20profile%20details%2C%20show%20addresses%2C%20show%20payment%20methods%2C%20update%20address%29%0A%20%20%20%20f%20receipt%09%09//receipt%20%28show%20purchase%20receipt%29%0A%20%20%20%20f%20search%09%09//search%20%28this%20module%20is%20currently%20under%20development%29</text>
+        <value>0</value>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

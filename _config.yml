@@ -1,0 +1,4 @@
+baseurl: /html5-reference-storefront
+exclude: [node_modules, non-distributable]
+relative_permalinks: false
+repository: https://github.com/elasticpath/html5-reference-storefront
