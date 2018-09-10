@@ -1,28 +1,28 @@
 # Elastic Path's reference storefront experience
 
-Reference storefront demonstrating usage of Cortex in a modern UI progressive web application.
+The Reference storefront demonstrating usage of Cortex in a modern UI progressive web application.
 
 
 Table of contents
 =================
 
 <!--ts-->
-   * [Development Quick-Start](#gh-md-toc)
-      * [Pre-req](#pre-req)
+   * [Development quick start](#gh-md-toc)
+      * [Prerequisites](#pre-req)
       * [Configuration](#configuration)
       * [Sample Data](#sample-data)
       * [Setup (Development)](#setup-development)
       * [Setup (Production)](#setup-production)
    * [Linting](#linting)
-   * [Offline Mode](#offline-mode)
+   * [Offline mode](#offline-mode)
    * [Localization](#localization)
-   * [Unit Tests](#unit-tests)
-   * [Jenkins Pipeline](#jenkins-pipeline)
-   * [Contribution Guide](#contribution-guide)
+   * [Unit tests](#unit-tests)
+   * [Jenkins pipeline](#jenkins-pipeline)
+   * [Contribution guide](#contribution-guide)
    * [License](#license)
 <!--te-->
 
-## Development Quick-Start
+## Development quick start
 Built with REACT.js, Bootstrap 4, Babel, and Webpack.
 
 ### Prerequisites:
@@ -52,7 +52,7 @@ The path the webpack proxy routes storefront Cortex calls to. The URL consisting
  - `gaTrackingId`, **optional**, *string*:
  The Google Analytics tracking ID to integrate with Google Analytics Suite. Track enhanced ecommerce activity as it happens on your site.
 
-### Sample Data:
+### Sample data:
 The project includes a set of sample data for your convenience. **Note:** You must have a valid Elastic Path development environment prior to using the sample data.<br/>
 1. Extract the sample catalog data contents from this project `ep-store/data` into your `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
 2. Update `ep-commerce/extensions/database/ext-data/src/main/resources/data/liquibase-changelog.xml`.<br/>
@@ -96,8 +96,8 @@ For more infomation on the style guide, see [github](https://github.com/airbnb/j
 
 If you plan to check in your code, make sure to fix all your linting errors first.
 
-## Offline Mode
-You can enable offline Mode in [`./src/ep.config.json`](#configuration).<br/>
+## Offline mode
+You can enable offline mode in [`./src/ep.config.json`](#configuration).<br/>
 
 **How it works**<br/>
 The *mock magic* is contained in `./src/utils/Mock.js`.<br/>
@@ -135,14 +135,14 @@ Any front-end textual data must be added to the `localization/en-CA.json` as a r
 The project includes two locales out of the box: `en-CA` and `fr-FR`.
 For development purpose, run: `node tools/translate.js`. This runs a pseudo translation from `en-CA` locale to `fr-FR`. To add a new locale, add an entry to the `supportedLocales` array in `ep.config.json` and add an appropriate json file to the `localization` folder. You also have to configure the language and currency for all products in the Commerce Manager.
 
-## Unit Tests
+## Unit tests
 Test data can be found in `tests`.
 
-**Running Tests:**<br/>
+**Running tests:**<br/>
 Run all Tests: `mvn clean install -Dcucumber.options="--tags @smoketest"`<br/>
 Run Sanity Tests: `@sanity`<br/>
 
-*Maven Options:*
+*Maven options:*
 * `-Dcucumber.options="--tags @smoketest"` - You can replace the tag with your own tag.
 * `-Dfailsafe.fork.count="1"` - The number of parallel tests run at the same time. The default is 1 and can be changed to other values depending on number of TestsIT classes.
 * `-Premote -Dremote.web.driver.url="<REMOTE DRIVER IP>"` - The `remote` parameter triggers tests to be executed using a remote VM. The `remote.web.driver.url` specifies the URL of the remote VM, for example `http://<IP_ADDRESS>:4444/wd/hub`.
@@ -153,7 +153,7 @@ Run Sanity Tests: `@sanity`<br/>
 * Create your own local runner class to run your own tagged tests. For example, RunLocalTestsIT.java runs your own tagged tests @local.
     * Do not commit the local runner class and tags. These are only for your local testing purposes.
 
-*Updating Browser Driver Versions*
+*Updating browser driver versions*
 * Download the latest browser driver from web. For example, chromedriver.
 * Update the RepositoryMap.xml for the driver version.
 * Hash value can be found locally if you run following in bash command locally.
@@ -165,7 +165,7 @@ openssl sha1 <filename>
 ## Jenkins Pipeline
 The project includes a Jenkinsfile for a Scripted Pipeline. It builds a store docker image from this project, deploys it to AWS, and then runs the Unit Tests from this project. If using this pipeline, you'll need to create an EC2 instance for the pipeline to deploy your store + cortex.
 
-**Configuring the Pipeline**<br/>
+**Configuring the pipeline**<br/>
 Create a new Jenkins Pipeline and configure it with the following:
 * Give your pipeline a name.
 * Set the project to be parameterised and include the following parameters:
@@ -202,7 +202,7 @@ The Stages:
 * `TEST` - The test stage sets environment variables for JAVA_HOME, and adds JAVA + MAVEN to the path. These are pulled from your Jenkins tools. This stage uses a script from [intoli](https://intoli.com/blog/installing-google-chrome-on-centos) for installing Google Chrome to use for headless tests. The script downloads `google-chrome-stable`. It is renamed to `google-chrome` so that chromedriver finds it for the tests. Before you run the tests, replace the `selenium.session.baseurl` in the `pom.xml`. The tests are run in a try-finally block so the cucumber reports are added even if one fails. This uses the Jenkins Cucumber Plugin for viewing reports in Jenkins UI.
 
 
-## Contribution Guide
+## Contribution guide
 * Contributions might be performed by developers at their choosing. Changes to this project must be reviewed and approved by an owner of this repository. <br/>
 For more information about contributing, see [CONTRIBUTING.md](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md).<br/>
 
