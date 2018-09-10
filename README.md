@@ -10,7 +10,7 @@ Table of contents
    * [Development quick start](#gh-md-toc)
       * [Prerequisites](#pre-req)
       * [Configuration](#configuration)
-      * [Sample Data](#sample-data)
+      * [Sample data](#sample-data)
       * [Setup (Development)](#setup-development)
       * [Setup (Production)](#setup-production)
    * [Linting](#linting)
@@ -26,7 +26,7 @@ Table of contents
 Built with REACT.js, Bootstrap 4, Babel, and Webpack.
 
 ### Prerequisites:
-If you haven’t already, you’ll must install the following software:
+If you haven’t already, install the following software:
 * Install [Git](https://git-scm.com/downloads).
 * Install [Node.js](https://nodejs.org/en/download/).
 * Install [Visual Studio Code](https://code.visualstudio.com/) from Microsoft and the following extensions:<br/>
