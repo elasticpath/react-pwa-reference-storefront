@@ -6,7 +6,7 @@ weight: 4
 ---
 Theming
 ====================
-Theming allows you to change the HTML5 Reference Storefront's look and feel without having to modify the JavaScript.
+Theming allows you to change the REACT Reference Storefront's look and feel without having to modify the JavaScript.
 Themes take advantage of [{less}](http://lesscss.org/), a powerful dynamic stylesheet language, chosen for its ease of use, dynamism, and widespread adoption.
 
 Each theme is a set of individual [{less}](http://lesscss.org/) files, which, on demand, are compiled into a single `style.css`.
@@ -28,7 +28,7 @@ Compiling Themes
 
 **To compile your {less} files:**
 
-* In a command line, navigate to the HTML5 Reference Storefront root, and run one of the following:
+* In a command line, navigate to the REACT Reference Storefront root, and run one of the following:
 
 <table>
 <tbody>
@@ -50,7 +50,7 @@ Compiling Themes
 By default, {less} files compile to `ui-storefront/public/style/style.css`
 
 **TROUBLESHOOTING NOTE:** Grunt {less} compilation issues: *throw new TypeError('Arguments to path.resolve must be strings');*
-This may be related to a version conflict.   
+This may be related to a version conflict.
 
 * Try cleaning and reinstalling grunt. In your command line, navigate to the HTML5 Storefront's root directory, and run the following
 
@@ -60,7 +60,7 @@ This may be related to a version conflict.
       npm install -g grunt-cli
       npm install grunt
 
-* Alternatively, you may need to reinstall your HTML5 Reference Storefront. In your command line, navigate to the HTML5 Storefront's root directory, and run
+* Alternatively, you may need to reinstall your REACT Reference Storefront. In your command line, navigate to the HTML5 Storefront's root directory, and run
 `npm install`
 
 ## <a name="tutorialTheme"> </a>Tutorial: Creating a Theme
@@ -91,7 +91,7 @@ To develop your own theme, we recommend copying the core theme and then customiz
     }}</pre>
 
 5. Code your CSS.
-6. Compile and run the HTML5 Reference Storefront.
+6. Compile and run the REACT Reference Storefront.
 
 Keep in mind:
 

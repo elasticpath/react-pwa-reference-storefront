@@ -60,7 +60,7 @@ To learn more about Cortex API, see our [Developer Portal](http://touchpoint-dev
 ![Cortex]({{ site.baseurl }}/documentation/img/cortex-page-diagram.png)
 
 
-HTML5 Reference Storefront Features
+REACT Reference Storefront Features
 ---------------------
 ![Feature Guide]({{ site.baseurl }}/documentation/img/featureSupport.png)
 
@@ -78,7 +78,7 @@ for knowledgeable front-end developers who are extending/customizing HTML5 Store
 
 Audience
 ---------------------
-This document is written for experienced JavaScript developers and front-end UI developers who want to learn how to customize/extend HTML5 Reference Storefront.
+This document is written for experienced JavaScript developers and front-end UI developers who want to learn how to customize/extend REACT Reference Storefront.
 
 * * *
 
@@ -88,7 +88,7 @@ This document is written for experienced JavaScript developers and front-end UI 
 >  + Registration link on purchase receipt page for anonymous users <sub>ref. CU-283</sub>
 >  + Grunt task to launch a web server, proxy and Node app in one command to replace Apache <sub>ref. CU-250</sub>
 >  + Improved storefront documentation <sub>ref. CU-255, CU-288</sub>
->  
+>
 >##### Bug fixes:
 >  + Improved handling of HTTP 500 errors from Cortex API <sub>ref. CU-223</sub>
 >  + Fix for broken locale strings on PhoneGap iOS app <sub>ref. CU-275</sub>
@@ -104,6 +104,6 @@ This document is written for experienced JavaScript developers and front-end UI 
 >  + Checkout page
 >  + Item detail page
 >  + Profile page with purchase history
->  + Purchase receipt   
+>  + Purchase receipt
 
 {% include legal.html %}

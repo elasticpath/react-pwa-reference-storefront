@@ -6,23 +6,23 @@ weight: 2
 ---
 Installing and Running
 ====================
-The HTML5 Reference Storefront requires the following installed:
+The REACT Reference Storefront requires the following installed:
 
 <ul>
 <li><a href="http://git-scm.com/downloads" target="_blank">GIT Client <img src="{{ site.baseurl }}/documentation/img/extlink.png" /></a></li>
 <li><a href="http://nodejs.org/" target="_blank">Node.js <img src="{{ site.baseurl }}/documentation/img/extlink.png" /></a></li>
 </ul>
 
-Once those are installed, proceed to [Install HTML5 Reference Storefront Sources](#installing-html5-reference-storefront-sources) and then run the Storefront either
-**[locally](#running-html5-reference-storefront-locally)** or **[remotely](#running-html5-reference-storefront-remotely)**.
+Once those are installed, proceed to [Install REACT Reference Storefront Sources](#installing-react-reference-storefront-sources) and then run the Storefront either
+**[locally](#running-react-reference-storefront-locally)** or **[remotely](#running-react-reference-storefront-remotely)**.
 
-### <a name="installing-html5-reference-storefront-sources"> </a> Installing HTML5 Reference Storefront Sources
-1. Fetch HTML5 Reference Storefront sources:   
+### <a name="installing-react-reference-storefront-sources"> </a> Installing REACT Reference Storefront Sources
+1. Fetch REACT Reference Storefront sources:
 `{{ site.repository }}`
-2. Install the Storefront's dependencies by navigating to HTML5 Reference Storefront directory and running:   
+2. Install the Storefront's dependencies by navigating to REACT Reference Storefront directory and running:
 `npm install`
 
-### <a name="running-html5-reference-storefront-locally"> </a>Running HTML5 Reference Storefront Locally
+### <a name="running-react-reference-storefront-locally"> </a>Running REACT Reference Storefront Locally
 Running locally means all your applications, Cortex API, Search, HTML5 Storefront, etc, are running on your local computer on these ports:
 
 <ul>
@@ -45,16 +45,16 @@ Running locally means all your applications, Cortex API, Search, HTML5 Storefron
 
 * **Start the app**
 
-  * Open a command line, navigate to your HTML5 Storefront directory, and run   
+  * Open a command line, navigate to your HTML5 Storefront directory, and run
     `grunt start`
 
-* **Access HTML5 Reference Storefront**
+* **Access REACT Reference Storefront**
 
-  * Open your browser and navigate to   
+  * Open your browser and navigate to
     `localhost:3007/html5storefront/`
 
-### <a name="running-html5-reference-storefront-remotely"> </a>Running HTML5 Reference Storefront Remotely
-Running remotely means your HTML5 Reference Storefront runs locally on port `3008`, but Cortex API, Search, Commerce Engine, etc, run on an external server.
+### <a name="running-react-reference-storefront-remotely"> </a>Running REACT Reference Storefront Remotely
+Running remotely means your REACT Reference Storefront runs locally on port `3008`, but Cortex API, Search, Commerce Engine, etc, run on an external server.
 When running remotely, we expect your Cortex API is using Elastic Path Integrator, see [http://docs.elasticpath.com](http://docs.elasticpath.com) for more information on Integrator.
 
 ![localSetup]({{ site.baseurl }}/documentation/img/remote_proxy_setup.png)
@@ -70,12 +70,12 @@ When running remotely, we expect your Cortex API is using Elastic Path Integrato
 
   * **Start the app**
 
-    * Open a command line, navigate to your HTML5 Storefront directory, and run   
+    * Open a command line, navigate to your HTML5 Storefront directory, and run
     `grunt start`
 
-  * **Access HTML5 Reference Storefront**
+  * **Access REACT Reference Storefront**
 
-    * Open your browser and navigate to   
+    * Open your browser and navigate to
     `localhost:3007/html5storefront/`
 
 {% include legal.html %}

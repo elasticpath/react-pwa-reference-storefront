@@ -24,7 +24,7 @@ Technology Stack
 </tr>
 <tr>
 	<td><strong><a href="http://marionettejs.com/">Marionette.js</a></strong></td>
-	<td>JavaScript library extending Backbone.js, which manages the HTML5 Reference Storefront views.
+	<td>JavaScript library extending Backbone.js, which manages the REACT Reference Storefront views.
 	Provides common design and implementation patterns for the Storefront.</td>
 	<td>v1.0.0-rc6</td>
 </tr>

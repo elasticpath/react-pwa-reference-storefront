@@ -6,7 +6,7 @@ weight: 4
 ---
 Customizing Features
 ====================
-HTML5 Reference Storefront functionality is divided into modules. For example, profile, cart, authentication, checkout, and so on are all separate modules.
+REACT Reference Storefront functionality is divided into modules. For example, profile, cart, authentication, checkout, and so on are all separate modules.
 An HTML5 Storefront module is the view, plus the code backing the view. This means that each module is its own Model View Controller (MVC) component.
 For example, the profile module contains all code to retrieve and update a customer's profile data (Model and Controller) and contains the HTML and JS code to show the customer's profile data in the Storefront (View).
 
@@ -14,9 +14,9 @@ HTML5 Storefront's Modular Design Benefits:
 * Customizable - Add a new feature by creating a new module and adding it to the `module` folder, as opposed to modifying multiple pieces of code throughout the Storefront to create the functionality.
 * Maintainable - The Storefront's modular architecture enables you to make changes, i.e. add new functionality and enhance existing functionality, without breaking the entire system.
 * Debuggable - Debug individual modules to isolate HTML5 Storefront issues, rather than debugging vast amounts of JS code.
-* Updatable - The HTML5 Reference Storefront is under continual development. With your customized features and enhancements coded in distinct modules, you can more easily update the out-of-the-box code without overwriting your custom code.
+* Updatable - The REACT Reference Storefront is under continual development. With your customized features and enhancements coded in distinct modules, you can more easily update the out-of-the-box code without overwriting your custom code.
 
-**HTML5 Reference Storefront Modules**
+**REACT Reference Storefront Modules**
 
 ![List of Modules]({{ site.baseurl }}/documentation/img/modulesList.png)
 
@@ -35,13 +35,13 @@ the functionality you are building based on your needs.
 
 Keep in mind Elastic Path's Guidelines for Creating New Modules:
 
-- **Base the module around a view**   
+- **Base the module around a view**
 We base our modules around views. For example, the `cart` module contains the complete view of the cart, including the cart's lineitems, costs of the cart's contents, total quantity in the cart, and so on.
 Designing the module around a view helps you encapsulate HTML5 Storefront functionality.
-- **Design the module to be self-contained**   
+- **Design the module to be self-contained**
 We design our modules so they are complete units of functionality. This means all the functionality for a given feature is encapsulated in the module.
 For example, all the profiles functionality, view profile, update profile, and so on is defined in the `profile` module.
-This may seem kind of obvious, but we're mentioning it as a reminder for you to try and keep your code modularized. The HTML5 Reference Storefront is on a rapid-release schedule, meaning that the code is frequently updated.
+This may seem kind of obvious, but we're mentioning it as a reminder for you to try and keep your code modularized. The REACT Reference Storefront is on a rapid-release schedule, meaning that the code is frequently updated.
 If your customized code is all over the place, you will have issues upgrading your code base.
 
 ## <a name="module-basics"> </a> Module Basics
@@ -224,7 +224,7 @@ Namespaces are defined in the module's controller.
 
 Tutorial: Creating a New Module
 ---------------------
-This tutorial walks you through the process of creating a HTML5 Reference Storefront module.
+This tutorial walks you through the process of creating a REACT Reference Storefront module.
 The basics concepts of how a module works are described in the section above, [Module Basics](#module-basics)
 Please reference this section when building your modules.
 
@@ -265,8 +265,8 @@ To Create a New Module:
 	               });
 	             },
 
-The HTML5 Reference Storefront has 3 main regions:
-![regions]({{ site.baseurl  }}/documentation/img/regions.png)   
+The REACT Reference Storefront has 3 main regions:
+![regions]({{ site.baseurl  }}/documentation/img/regions.png)
 7. Code your module.
 
 Further Reading
