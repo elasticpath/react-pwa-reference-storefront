@@ -2,4 +2,4 @@ This is the code of the GitHub Pages site containing documentation for Elastic P
 
 The GitHub Pages site can be found at:
 
-http://shaunmaharaj.github.io/ep-store/
+https://elasticpath.github.io/react-pwa-reference-storefront/

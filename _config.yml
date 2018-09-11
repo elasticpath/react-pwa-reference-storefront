@@ -1,4 +1,4 @@
-baseurl: /ep-store
+baseurl: /react-pwa-reference-storefront
 exclude: [node_modules, non-distributable]
 relative_permalinks: false
-repository: https://github.com/shaunmaharaj/ep-store
+repository: https://github.com/elasticpath/react-pwa-reference-storefront
