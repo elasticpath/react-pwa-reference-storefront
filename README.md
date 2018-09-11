@@ -60,18 +60,18 @@ Add the following sample data to the file. **Note:** It should be the only sampl
 3. Update `ep-commerce/extensions/database/ext-data/src/main/resources/environments/local/data-population.properties`. Set the liquibase.contexts property to `default,ep-blueprint`.
 4. In the command line, navigate to the `extensions/database` module.
 5. To run the Data Population tool, use the following command: `mvn clean install -Preset-db`.
-6. For information on how to populate this sample database, see Elastic Path's developer documentation [Populate the Database](https://developers.elasticpath.com/commerce/7.3/Core-Commerce-Development/Setting-up-your-Developer-Environment/Populate-the-Database#ConfigureDemoDataSets).
+6. For information on how to populate this sample database, see the developer documentation [Populate the Database](https://developers.elasticpath.com/commerce/7.3/Core-Commerce-Development/Setting-up-your-Developer-Environment/Populate-the-Database#ConfigureDemoDataSets).
 
 ### Setup (Development):
 1. Clone or pull this repository to a directory of your choosing.
 2. Run `cd ep-store`.
 3. Run `npm install` to install any dependencies.
-4. Configure `./src/ep.config.json` as required for your environment: [here](#configuration)
+4. Configure the `./src/ep.config.json` file as required for your environment: [here](#configuration)
 5. Run `npm start` to start the server in development node. 
 6. Navigate to `http://localhost:8080/` to see the running Progressive Web Application (PWA).
 
 ### Setup (Production):
-1. Clone or pull this repo to a directory of your choosing.
+1. Clone or pull this repository to a directory of your choosing.
 2. Run `cd ep-store`.
 3. Run `docker build -t ep-store -f ./docker/prod/Dockerfile .`
 4. Push `ep-store` image to your docker repository.
@@ -85,16 +85,16 @@ Add the following sample data to the file. **Note:** It should be the only sampl
 
 ## Linting
 The project has been set up with ESLint as our linting utility.<br/>
-For more infoarmtion about ESLint, see [documentation](https://eslint.org/).<br/>
+For more infoarmtion about ESLint, see [ESLint documentation](https://eslint.org/).<br/>
 We're currently extending Airbnbs’ ESLint configuration. Currently, the Airbnb Code Style and the ESLint configuration are very popular and well accepted by developers.<br/>
-For more infomation on the style guide, see [github](https://github.com/airbnb/javascript).<br/>
+For more infomation on the style guide, see the [Airbnb GitHub](https://github.com/airbnb/javascript).<br/>
 * The ESLint loader is already added to`webpack.config.dev.js`. When you start the application in development mode, the ESLint loader automatically runs.
 * To run the linter from your commandline, go to the project root directory. Run the following command:
     * `./node_modules/.bin/eslint --ext .js --ext .jsx [file|dir|glob]`
         * Run on entire project: `./node_modules/.bin/eslint --ext .js --ext .jsx .`
 * With the ESLint extension for Visual Studio Code, you'll get feedback while you're writing the code under the `Problems` View.
 
-If you plan to check in your code, make sure to fix all your linting errors first.
+If you plan to check in your code, ensure that you fix all of your linting errors first.
 
 ## Offline mode
 You can enable offline mode in [`./src/ep.config.json`](#configuration).<br/>
