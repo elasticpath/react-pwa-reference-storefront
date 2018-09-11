@@ -20,17 +20,13 @@
  */
 
 import React from 'react';
-import AppHeaderMain from '../components/appheader.main';
 import CategoryItemsMain from '../components/categoryitems.main';
-import AppFooterMain from '../components/appfooter.main';
 
 function CategoryPage(props) {
   return (
     <div>
-      <AppHeaderMain />
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
       <CategoryItemsMain categoryUrl={decodeURIComponent(props.match.params.url)} />
-      <AppFooterMain />
     </div>
   );
 }

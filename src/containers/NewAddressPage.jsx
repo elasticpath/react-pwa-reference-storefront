@@ -20,15 +20,11 @@
  */
 
 import React from 'react';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import AddressFormMain from '../components/addressform.main';
 
 const NewAddressPage = props => (
   <div>
-    <AppHeaderMain />
     <AddressFormMain {...props} />
-    <AppFooterMain />
   </div>
 );
 

@@ -22,8 +22,6 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import ProfileInfoMain from '../components/profileInfo.main';
 import OrderHistoryMain from '../components/orderhistory.main';
 import ProfileAddressesMain from '../components/profileaddresses.main';
@@ -89,7 +87,6 @@ class ProfilePage extends React.Component {
     const { profileData } = this.state;
     return (
       <div>
-        <AppHeaderMain />
         <div className="container">
           <div data-region="profileTitleRegion" style={{ display: 'block' }}>
             <h1>
@@ -105,7 +102,6 @@ class ProfilePage extends React.Component {
             </div>
           ) : <div className="loader" />}
         </div>
-        <AppFooterMain />
       </div>
     );
   }

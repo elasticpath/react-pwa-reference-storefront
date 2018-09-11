@@ -20,15 +20,11 @@
  */
 
 import React from 'react';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import PaymentFormMain from '../components/paymentform.main';
 
 const NewPaymentPage = props => (
   <div>
-    <AppHeaderMain />
     <PaymentFormMain {...props} />
-    <AppFooterMain />
   </div>
 );
 

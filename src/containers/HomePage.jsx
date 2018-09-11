@@ -21,8 +21,6 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 
 import homeEspotMain from '../images/site-images/homepage-banner.jpg';
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
@@ -40,7 +38,6 @@ function HomePage() {
   return (
     <div className="viewport ui-container home-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
       <div>
-        <AppHeaderMain />
         <div className="home-contant-container" style={{ display: 'block' }}>
           <div>
             <div data-region="homeMainContentRegion" className="home-espot-container container" style={{ display: 'block' }}>
@@ -101,7 +98,6 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <AppFooterMain />
       </div>
     </div>
   );

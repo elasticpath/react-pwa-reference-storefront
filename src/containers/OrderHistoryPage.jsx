@@ -23,8 +23,6 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
 import cortexFetch from '../utils/Cortex';
 
@@ -86,7 +84,6 @@ class OrderHistoryPage extends React.Component {
     if (purchaseData) {
       return (
         <div>
-          <AppHeaderMain />
           <div className="app-main" style={{ display: 'block' }}>
             <div className="container">
               <h2>
@@ -95,15 +92,12 @@ class OrderHistoryPage extends React.Component {
               <PurchaseDetailsMain data={purchaseData} />
             </div>
           </div>
-          <AppFooterMain />
         </div>
       );
     }
     return (
       <div>
-        <AppHeaderMain />
         <div className="loader" />
-        <AppFooterMain />
       </div>
     );
   }

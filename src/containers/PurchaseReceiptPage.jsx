@@ -22,15 +22,12 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
 
 const PurchaseReceiptPage = (props) => {
   const { location } = props;
   return (
     <div>
-      <AppHeaderMain />
       <div className="app-main" style={{ display: 'block' }}>
         <div className="container">
           <h2>
@@ -39,7 +36,6 @@ const PurchaseReceiptPage = (props) => {
           <PurchaseDetailsMain data={location.state.data} />
         </div>
       </div>
-      <AppFooterMain />
     </div>
   );
 };

@@ -23,8 +23,6 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login, loginRegistered } from '../utils/AuthService';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
@@ -128,7 +126,6 @@ class CheckoutAuthPage extends React.Component {
     const { failedLogin, badEmail } = this.state;
     return (
       <div>
-        <AppHeaderMain />
         <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
           <div className="container">
             <h3>
@@ -221,7 +218,6 @@ class CheckoutAuthPage extends React.Component {
             </div>
           </div>
         </div>
-        <AppFooterMain />
       </div>
     );
   }
