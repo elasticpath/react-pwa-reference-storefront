@@ -24,8 +24,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { trackAddItemAnalytics, trackAddTransactionAnalytics, sendAnalytics } from '../utils/Analytics';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import PaymentMethodContainer from '../components/paymentmethod.container';
 import ShippingOptionContainer from '../components/shippingoption.container';
 import AddressContainer from '../components/address.container';
@@ -217,7 +215,6 @@ class OrderReviewPage extends React.Component {
     const { orderData, isLoading } = this.state;
     return (
       <div>
-        <AppHeaderMain />
         <div className="app-main" style={{ display: 'block' }}>
           <div className="order-container container">
             <div className="order-container-inner">
@@ -266,7 +263,6 @@ class OrderReviewPage extends React.Component {
             </div>
           </div>
         </div>
-        <AppFooterMain />
       </div>
     );
   }

@@ -20,17 +20,13 @@
  */
 
 import React from 'react';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import SearchResultsItemsMain from '../components/searchresultsitems.main';
 
 function SearchResultsPage(props) {
   return (
     <div>
-      <AppHeaderMain />
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
       <SearchResultsItemsMain searchKeywordsProps={decodeURIComponent(props.match.params.keywords)} />
-      <AppFooterMain />
     </div>
   );
 }

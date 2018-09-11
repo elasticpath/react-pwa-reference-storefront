@@ -23,8 +23,6 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import AddressContainer from '../components/address.container';
 import ShippingOptionContainer from '../components/shippingoption.container';
@@ -468,7 +466,6 @@ class CheckoutPage extends React.Component {
       const { messages } = orderData._order[0];
       return (
         <div>
-          <AppHeaderMain />
           <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
             <div className="checkout-container container">
               <div className="checkout-container-inner">
@@ -510,13 +507,11 @@ class CheckoutPage extends React.Component {
               </div>
             </div>
           </div>
-          <AppFooterMain />
         </div>
       );
     }
     return (
       <div>
-        <AppHeaderMain />
         <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
           <div className="checkout-container container">
             <div className="checkout-container-inner">
@@ -533,7 +528,6 @@ class CheckoutPage extends React.Component {
             </div>
           </div>
         </div>
-        <AppFooterMain />
       </div>
     );
   }

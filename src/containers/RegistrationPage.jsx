@@ -20,16 +20,12 @@
  */
 
 import React from 'react';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import RegistrationFormMain from '../components/registrationform.main';
 
 function RegistrationPage() {
   return (
     <div>
-      <AppHeaderMain />
       <RegistrationFormMain />
-      <AppFooterMain />
     </div>
   );
 }

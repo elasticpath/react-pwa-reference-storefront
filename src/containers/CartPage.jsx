@@ -23,8 +23,6 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 import CartMain from '../components/cart.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import cortexFetch from '../utils/Cortex';
@@ -154,7 +152,6 @@ class CartPage extends React.Component {
     const { history } = this.props;
     return (
       <div>
-        <AppHeaderMain />
         <div className="cart-container container">
           <div className="cart-container-inner">
             <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
@@ -197,7 +194,6 @@ class CartPage extends React.Component {
             )}
           </div>
         </div>
-        <AppFooterMain />
       </div>
     );
   }
