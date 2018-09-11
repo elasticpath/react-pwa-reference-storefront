@@ -25,7 +25,11 @@ import { Link } from 'react-router-dom';
 import AppHeaderMain from '../components/appheader.main';
 import AppFooterMain from '../components/appfooter.main';
 
-import doge from '../images/HikingDog.png';
+import doge from '../images/site-images/HikingDog.png';
+
+const Config = require('Config');
+
+const dogeFileName = 'HikingDog.png';
 
 function AboutUsPage() {
   return (
@@ -55,7 +59,7 @@ function AboutUsPage() {
                 </div>
                 <div className="static-container dog-container" style={{ display: 'block' }}>
                   <div className="container" style={{ display: 'block' }}>
-                    <img alt="home-espot-1" className="home-espot-1" src={doge} />
+                    <img alt="home-espot-1" className="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', dogeFileName)} onError={(e) => { e.target.src = doge; }} />
                   </div>
                   <h2 className="static-dog-name">
                     {intl.get('name-moki')}

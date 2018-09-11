@@ -57,7 +57,7 @@ const OrderTableLineItem = (props) => {
   return (
     <tr>
       <td className="order-lineitem-thumbnail-col">
-        <img className="order-lineitem-thumbnail" src={Config.skuImagesS3Url.replace('%sku%', code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" />
+        <img className="order-lineitem-thumbnail" src={Config.skuImagesUrl.replace('%sku%', code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" />
       </td>
       <td className="order-lineitem-title-col">
         <Link to={`/itemdetails/${encodeURIComponent(uri)}`}>

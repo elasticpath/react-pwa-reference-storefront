@@ -22,6 +22,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './address.container.less';
+
 const AddressContainer = (props) => {
   const { name, address } = props;
   return (

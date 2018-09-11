@@ -282,7 +282,7 @@ class ProductDisplayItemMain extends React.Component {
             <div className="itemdetail-assets">
               <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
                 <div className="itemdetail-asset-container">
-                  <img src={Config.skuImagesS3Url.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+                  <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
                 </div>
               </div>
             </div>

@@ -1,0 +1,31 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+// Remove import of legacy style.css once all the styles have been refactored to individual .less files
+@import './style.css';
+@import './icon-fonts.less';
+
+// Fix for Bootstrap issue with dropdowns outside of navbars
+// https://github.com/twbs/bootstrap/issues/23553
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}

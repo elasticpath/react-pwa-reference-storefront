@@ -25,6 +25,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
 
+import './addressform.main.less';
+
 const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
@@ -324,7 +326,7 @@ class AddressFormMain extends React.Component {
     } = this.state;
     const newOrEdit = (location.state && location.state.address) ? intl.get('edit') : intl.get('new');
     return (
-      <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
+      <div className="address-form-component" data-region="appMain" style={{ display: 'block' }}>
         <div className="create-address-container container">
           <h3>
             {newOrEdit}

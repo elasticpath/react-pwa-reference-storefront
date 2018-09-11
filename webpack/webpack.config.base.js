@@ -53,6 +53,14 @@ module.exports = {
         ],
       },
       {
+        test: /\.less$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'less-loader' },
+        ],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader',
@@ -84,7 +92,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: [
+          'babel-loader',
+          'eslint-loader',
+        ],
       },
     ],
   },
@@ -113,7 +124,7 @@ module.exports = {
       start_url: '/',
       icons: [
         {
-          src: path.resolve('./src/images/icons/icons-192.png'),
+          src: path.resolve('./src/images/manifest-images/icons-192.png'),
           sizes: [96, 128, 192, 256, 384, 512],
           destination: path.join('assets', 'icons'),
         },

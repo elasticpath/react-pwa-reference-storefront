@@ -103,9 +103,9 @@ If you plan to check in your code, ensure that you fix all of your linting error
 You can enable offline mode in [`./src/ep.config.json`](#configuration).<br/>
 
 **How it works**<br/>
-The *mock magic* is contained in `./src/utils/Mock.js`.<br/>
-The *mock data files* are expected to be stored in `./src/offlineData`.<br/>
-At a high level, **Mock.js** uses a map of **Requests to Responses** to send the mock data, given a Request. Instead of doing a fetch call to a url, it does a lookup in the map to retrieve/return the mock data. If mock data cannot be found for a request, an error is thrown.<br/>
+The *mock magic* is contained in `./src/utils/Mock.js`<br/>
+The *mock data files* are expected to be stored in `./src/offlineData`<br/>
+At a high level, **Mock.js** uses a map of Requests to Responses to send the mock data, given a Request. Instead of doing a fetch call to a url, it does a lookup in the map to retrieve/return the mock data. If mock data cannot be found for a request, an Error is thrown.<br/>
 
 **How to add/edit data**<br/>
 If you're looking to create or modify mock data:<br/>
