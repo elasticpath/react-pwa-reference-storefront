@@ -113,9 +113,11 @@ class AppHeaderNavigationMain extends React.Component {
             <div className="dropdown-menu sub-category-dropdown-menu" aria-label="navbarDropdown">
               {category._child.map(subcategory => (
                 <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`header_navbar_sub_category_button_${subcategory.name}`} data-target=".navbar-collapse" title={subcategory['display-name']}>
-                  <span>
-                    {subcategory['display-name']}
-                  </span>
+                  <div data-toggle="collapse" data-target=".navbar-collapse">
+                    <span>
+                      {subcategory['display-name']}
+                    </span>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -124,10 +126,12 @@ class AppHeaderNavigationMain extends React.Component {
       }
       return (
         <li key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
-          <Link to={`/category/${encodeURIComponent(category.self.uri)}`} className="nav-item" id={`header_navbar_category_button_${category.name}`} data-target=".navbar-collapse" title={category['display-name']}>
-            <span>
-              {category['display-name']}
-            </span>
+          <Link to={`/category/${encodeURIComponent(category.self.uri)}`} className="nav-item" id={`header_navbar_category_button_${category.name}`} title={category['display-name']}>
+            <div data-toggle="collapse" data-target=".navbar-collapse">
+              <span>
+                {category['display-name']}
+              </span>
+            </div>
           </Link>
         </li>
       );
