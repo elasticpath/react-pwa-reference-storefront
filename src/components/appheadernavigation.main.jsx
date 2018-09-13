@@ -153,9 +153,11 @@ class AppHeaderNavigationMain extends React.Component {
               </li>
               <li key="shopping-cart-mobile" className="shopping-cart-mobile">
                 <Link to="/mycart" className="nav-item shopping-cart-mobile-link">
-                  <span>
-                    {intl.get('shopping-cart')}
-                  </span>
+                  <div data-toggle="collapse" data-target=".navbar-collapse">
+                    <span>
+                      {intl.get('shopping-cart')}
+                    </span>
+                  </div>
                 </Link>
               </li>
               {this.renderCategories()}
