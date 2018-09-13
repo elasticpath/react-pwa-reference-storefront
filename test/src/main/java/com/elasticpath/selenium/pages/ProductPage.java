@@ -49,6 +49,7 @@ public class ProductPage extends AbstractPageObject {
 	}
 
 	public CartPage clickAddToCartButton() {
+		getWaitDriver().waitForPageToLoad();
 		clickButton(ADD_TO_CART_BUTTON_CSS);
 		return new CartPage(driver);
 	}
