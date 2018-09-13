@@ -52,6 +52,7 @@ public class PurchaseReceiptPage extends AbstractPageObject {
 
 	@Override
 	public void verifyCorrectPageIsDisplayed() {
+		getWaitDriver().waitForPageToLoad();
 		assertThat(purchaseInformationContainer.isDisplayed())
 				.as("Failed to verify Purchase Receipt page")
 				.isTrue();
