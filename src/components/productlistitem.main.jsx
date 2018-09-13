@@ -104,7 +104,7 @@ class ProductListItemMain extends React.Component {
       }
       let availability = false;
       let availabilityString = '';
-      if (productData._availability.length >= 0) {
+      if (productData._availability && productData._availability.length >= 0) {
         if (productData._availability[0].state === 'AVAILABLE') {
           availability = true;
           availabilityString = intl.get('in-stock');

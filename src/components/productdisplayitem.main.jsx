@@ -26,7 +26,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import {
-  trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
+  isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
@@ -95,10 +95,12 @@ class ProductDisplayItemMain extends React.Component {
           this.setState({
             productData: res,
           });
-          const { productData, itemQuantity } = this.state;
-          const categoryTag = productData._definition[0].details.find(detail => detail['display-name'] === 'Tag');
-          trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, categoryTag['display-value'], itemQuantity);
-          setDetailAnalytics();
+          if (isAnalyticsConfigured) {
+            const { productData, itemQuantity } = this.state;
+            const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+            trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+            setDetailAnalytics();
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -121,10 +123,12 @@ class ProductDisplayItemMain extends React.Component {
           this.setState({
             productData: res,
           });
-          const { productData, itemQuantity } = this.state;
-          const categoryTag = productData._definition[0].details.find(detail => detail['display-name'] === 'Tag');
-          trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, categoryTag['display-value'], itemQuantity);
-          setDetailAnalytics();
+          if (isAnalyticsConfigured) {
+            const { productData, itemQuantity } = this.state;
+            const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+            trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+            setDetailAnalytics();
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -185,10 +189,12 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
-            const categoryTag = productData._definition[0].details.find(detail => detail['display-name'] === 'Tag');
-            trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, categoryTag['display-value'], itemQuantity);
-            setAddAnalytics();
-            sendAddToCartAnalytics();
+            if (isAnalyticsConfigured) {
+              const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+              trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+              setAddAnalytics();
+              sendAddToCartAnalytics();
+            }
             history.push('/mycart');
           } else {
             let debugMessages = '';
