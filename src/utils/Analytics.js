@@ -57,6 +57,13 @@ export default Component => class WithAnalytics extends React.Component {
   }
 };
 
+export function isAnalyticsConfigured() {
+  if (Config.gaTrackingId !== '') {
+    return true;
+  }
+  return false;
+}
+
 export function trackAddItemAnalytics(idInput, nameInput, skuInput, priceInput, categoryInput, quantityInput) {
   ga.plugin.execute('ec', 'addProduct', {
     id: skuInput,
