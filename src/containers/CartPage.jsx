@@ -26,6 +26,7 @@ import { login } from '../utils/AuthService';
 import CartMain from '../components/cart.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import cortexFetch from '../utils/Cortex';
+import './CartPage.less';
 
 const Config = require('Config');
 
