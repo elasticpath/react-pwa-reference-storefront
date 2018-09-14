@@ -7,11 +7,11 @@ weight: 2
 Installing and Running
 ====================
 
-To get started using the REACT Reference Storefront, select the how to install your instance, either locally or remotely. The prerequisites are the same for both local and remote instances.
+To get started using the REACT Reference Storefront, select the how you want to install your instance, either locally or remotely. The prerequisites are the same for both local and remote instances.
 
 ### Prerequisites
 
-The REACT Reference Storefront requires the following applications before you can run the instance:
+The REACT Reference Storefront requires the following applications before you can install the instance:
 
 <ul>
 <li><a href="http://git-scm.com/downloads" target="_blank">GIT Client <img src="{{ site.baseurl }}/documentation/img/extlink.png" /></a></li>
