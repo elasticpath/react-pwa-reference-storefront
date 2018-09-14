@@ -22,6 +22,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
+import './checkout.summarylist.less';
 
 class CheckoutSummaryList extends React.Component {
   static propTypes = {

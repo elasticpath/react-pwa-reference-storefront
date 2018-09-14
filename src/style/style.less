@@ -23,6 +23,18 @@
 @import './style.css';
 @import './icon-fonts.less';
 
+.container:before,
+.container:after {
+  content: " ";
+
+  display: table;
+
+}
+
+.container:after {
+  clear: both;
+}
+
 a {
   color: #333333;
   text-decoration: none;
@@ -53,6 +65,47 @@ body {
   flex-direction: column;
 }
 
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  @media screen and (max-width: 768px) {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    margin-top: 8px;
+  }
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #040060;
+  border-color: #040060;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .table { 
   thead > tr > th,
   tbody > tr > th,
@@ -67,6 +120,15 @@ body {
   }
 }
 
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 4px 0 0;
+  margin-top: 1px \9;
+  /* IE8-9 */
+
+  line-height: normal;
+}
+
 .is-hidden {
   display: none;
 }
@@ -74,12 +136,70 @@ body {
 h1,
 .h1 {
   font-size: 36px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h2,
+.h2 {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h3,
+.h3 {
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h4,
+.h4 {
+  font-size: 18px;
+}
+
+h5,
+.h5 {
+  font-size: 14px;
+}
+
+h6,
+.h6 {
+  font-size: 12px;
+}
+
+h1 small,
+.h1 small {
+  font-size: 24px;
+}
+
+h2 small,
+.h2 small {
+  font-size: 18px;
+}
+
+h3 small,
+.h3 small,
+h4 small,
+.h4 small {
+  font-size: 14px;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 label {
   display: inline-block;
   margin-bottom: 5px;
   font-weight: bold;
+}
+
+.app-main {
+  padding-bottom: 64px;
 }
 
 .form-control {
@@ -97,6 +217,12 @@ label {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
 }
 
 // Fix for Bootstrap issue with dropdowns outside of navbars

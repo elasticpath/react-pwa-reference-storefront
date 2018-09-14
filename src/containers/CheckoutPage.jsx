@@ -28,6 +28,7 @@ import AddressContainer from '../components/address.container';
 import ShippingOptionContainer from '../components/shippingoption.container';
 import PaymentMethodContainer from '../components/paymentmethod.container';
 import cortexFetch from '../utils/Cortex';
+import './CheckoutPage.less';
 
 const Config = require('Config');
 
