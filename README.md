@@ -2,6 +2,8 @@
 
 The Reference storefront demonstrating usage of Cortex in a modern UI progressive web application.
 
+Please see our documentation site at: https://elasticpath.github.io/react-pwa-reference-storefront/
+
 
 Table of contents
 =================
