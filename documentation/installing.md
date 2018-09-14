@@ -7,11 +7,11 @@ weight: 2
 Installing and Running
 ====================
 
-To get started using the REACT Reference Storefront, select the how you want to install your instance, either locally or remotely. The prerequisites are the same for both local and remote instances.
+To get started using the REACT Reference Storefront, select the how to install your instance, either locally or remotely. The prerequisites are the same for both local and remote instances.
 
 ### Prerequisites
 
-The REACT Reference Storefront requires the following applications before you can install the instance:
+The REACT Reference Storefront requires the following applications before you can run the instance:
 
 <ul>
 <li><a href="http://git-scm.com/downloads" target="_blank">GIT Client <img src="{{ site.baseurl }}/documentation/img/extlink.png" /></a></li>
@@ -22,7 +22,7 @@ When the prerequisites are installed, proceed to [Install REACT Reference Storef
 **[locally](#running-react-reference-storefront-locally)** or **[remotely](#running-react-reference-storefront-remotely)**.
 
 ### <a name="installing-react-reference-storefront-sources"> </a> Install the REACT Reference Storefront Sources
-1. Navigate to the REACT Reference Storefront sources. Go to 
+1. Navigate to the REACT Reference Storefront sources. Go to
 `{{ site.repository }}`.
 2. Install the dependencies by navigating to the REACT Reference Storefront directory. Run
 `npm install`.
@@ -43,7 +43,7 @@ To use the REACT Reference Storefront locally, run all of your applications, Cor
 
 * **Set the Cortex End-point Configuration to Point to your local Cortex Instance.**
 
-  * Open `ui-storefront/Gruntfile.js`. 
+  * Open `ui-storefront/Gruntfile.js`.
   * Change the `CORTEX_HOST` and `CORTEX_PORT` variables:
 
         var CORTEX_HOST = 'localhost';
@@ -57,12 +57,12 @@ To use the REACT Reference Storefront locally, run all of your applications, Cor
 * **Access REACT Reference Storefront.**
 
   * Open your browser and navigate to
-    `localhost:3007/html5storefront/`.
+    `localhost:8080/`.
 
 ### <a name="running-react-reference-storefront-remotely"> </a>Remote REACT Reference Storefront Instance
-The remote REACT Reference Storefront instance runs locally on port `3008`. Cortex API, Search, Commerce Engine, etc., run on an external server.
-**Note:** When you run the instance remotely, it's assumed your Cortex API uses Elastic Path Integrator. For more information on the Elastic Path Integrator, see [http://docs.elasticpath.com](http://docs.elasticpath.com).
+The remote REACT Reference Storefront instance runs locally on port `8080`. Cortex API, Search, Commerce Engine, etc, run on an external server.
 Use these ports to run the REACT Reference Storefront locally:
+**Note:** When you run the instance remotely, it's assumed your Cortex API uses Elastic Path Integrator. For more information on the Elastic Path Integrator, see [http://docs.elasticpath.com](http://docs.elasticpath.com).
 
 ![localSetup]({{ site.baseurl }}/documentation/img/remote_proxy_setup.png)
 
@@ -70,7 +70,7 @@ Use these ports to run the REACT Reference Storefront locally:
 
 * **Set the Cortex End-point Configuration to Point to a Remote Cortex Instance.**
 
-  * Open `ui-storefront/Gruntfile.js`. 
+  * Open `ui-storefront/Gruntfile.js`.
   * Change the `CORTEX_HOST` and `CORTEX_PORT` variables:
 
           var CORTEX_HOST = '54.213.124.208';
@@ -84,6 +84,6 @@ Use these ports to run the REACT Reference Storefront locally:
   * **Access REACT Reference Storefront.**
 
     * Open your browser and navigate to
-    `localhost:3007/html5storefront/`.
+    `localhost:8080/`.
 
 {% include legal.html %}
