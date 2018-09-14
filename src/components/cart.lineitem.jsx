@@ -110,7 +110,7 @@ class CartLineItem extends React.Component {
     const purchasePrice = item._price[0]['purchase-price'][0].display;
     if (listPrice !== purchasePrice) {
       return (
-        <ul className="cart-lineitem-price-container">
+        <ul className="price-container">
           <li className="cart-unit-list-price" data-region="itemListPriceRegion">
             {listPrice}
           </li>
@@ -121,7 +121,7 @@ class CartLineItem extends React.Component {
       );
     }
     return (
-      <ul className="cart-lineitem-price-container">
+      <ul className="price-container">
         <li className="cart-unit-purchase-price">
           {purchasePrice}
         </li>
@@ -132,7 +132,7 @@ class CartLineItem extends React.Component {
   renderTotalPrice() {
     const { item } = this.props;
     return (
-      <ul className="cart-lineitem-price-container">
+      <ul className="price-container">
         <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion" />
         <li className="cart-total-purchase-price">
           {item._total[0].cost[0].display}
@@ -147,12 +147,12 @@ class CartLineItem extends React.Component {
     if (options) {
       return (
         options[0]._element.map(option => (
-          <li className="cart-lineitem-option" key={option['display-name']}>
-            <label htmlFor="cart-lineitem-option-value" className="cart-lineitem-option-name">
+          <li className="option" key={option['display-name']}>
+            <label htmlFor="option-value" className="option-name">
               {option['display-name']}
               :&nbsp;
             </label>
-            <span className="cart-lineitem-option-value">
+            <span className="option-value">
               {option._value[0]['display-name']}
             </span>
           </li>
@@ -183,42 +183,42 @@ class CartLineItem extends React.Component {
       }
     }
     return (
-      <tr className="cart-lineitem-rows">
-        <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
+      <tr className="cart-lineitem-row">
+        <td className="thumbnail-col" data-el-value="lineItem.thumbnail">
           <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.uri)}`}>
             <img src={Config.skuImagesUrl.replace('%sku%', item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
           </Link>
         </td>
-        <td className="cart-lineitem-title-col" data-el-value="lineItem.displayName">
+        <td className="title-col" data-el-value="lineItem.displayName">
           <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.uri)}`}>
             {item._item[0]._definition[0]['display-name']}
           </Link>
         </td>
-        <td className="cart-lineitem-options-col" style={{ display: 'table-cell' }}>
-          <ul className="cart-lineitem-options-container">
+        <td className="options-col" style={{ display: 'table-cell' }}>
+          <ul className="options-container">
             {this.renderOptions()}
           </ul>
         </td>
-        <td className="cart-lineitem-availability-col" data-region="cartLineitemAvailabilityRegion" style={{ display: 'table-cell' }}>
-          <ul className="cart-lineitem-availability-container">
-            <li className="cart-lineitem-availability itemdetail-availability-state" data-i18n="AVAILABLE">
+        <td className="availability-col" data-region="cartLineitemAvailabilityRegion" style={{ display: 'table-cell' }}>
+          <ul className="availability-container">
+            <li className="availability itemdetail-availability-state" data-i18n="AVAILABLE">
               <div>
                 {availability && <span className="icon" />}
                 {availabilityString}
               </div>
             </li>
             <li className={`category-item-release-date${item._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-              <label htmlFor="cart-lineitem-release-date-value" className="cart-lineitem-releasedate-label">
+              <label htmlFor="release-date-value" className="releasedate-label">
                 {intl.get('expected-release-date')}
                 :&nbsp;
               </label>
-              <span className="cart-lineitem-release-date-value">
+              <span className="release-date-value">
                 {(item._availability[0]['release-date']) ? item._availability[0]['release-date']['display-value'] : ''}
               </span>
             </li>
           </ul>
         </td>
-        <td className="cart-lineitem-unit-price-col" data-region="cartLineitemUnitPriceRegion" style={{ display: 'table-cell' }}>
+        <td className="unit-price-col" data-region="cartLineitemUnitPriceRegion" style={{ display: 'table-cell' }}>
           <div>
             <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
               {this.renderUnitPrice()}
@@ -226,8 +226,8 @@ class CartLineItem extends React.Component {
             <div data-region="itemUnitRateRegion" />
           </div>
         </td>
-        <td className="cart-lineitem-quantity-col" data-el-value="lineItem.quantity">
-          <select className="cart-lineitem-quantity-select form-control" id="cart-lineItem-select-quantity" name="cart-lineItem-select-quantity" value={quantity} onChange={this.handleQuantityChange}>
+        <td className="quantity-col" data-el-value="lineItem.quantity">
+          <select className="quantity-select form-control" id="select-quantity" name="select-quantity" value={quantity} onChange={this.handleQuantityChange}>
             <option value="0">
               0
             </option>
@@ -264,7 +264,7 @@ class CartLineItem extends React.Component {
           </select>
         </td>
 
-        <td className="cart-lineitem-total-price-col" data-region="cartLineitemTotalPriceRegion" style={{ display: 'table-cell' }}>
+        <td className="total-price-col" data-region="cartLineitemTotalPriceRegion" style={{ display: 'table-cell' }}>
           <div>
             <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
               {this.renderTotalPrice()}
@@ -273,7 +273,7 @@ class CartLineItem extends React.Component {
           </div>
         </td>
 
-        <td className="cart-lineitem-remove-btn-col">
+        <td className="remove-btn-col">
           <button className="btn btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
             <span className="icon" />
             <span className="btn-text">
