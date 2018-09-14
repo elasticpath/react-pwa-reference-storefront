@@ -82,7 +82,14 @@ html {
 }
 body {
   margin: 0;
-  /* height: 100%; */
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 171px;
+}
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 257px;
+  }
 }
 #root,
 #root_router_div,
