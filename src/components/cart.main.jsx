@@ -23,7 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import CartLineItem from './cart.lineitem';
-
+import './cart.main.less';
 
 const CartMain = (props) => {
   const {
@@ -40,7 +40,7 @@ const CartMain = (props) => {
   }
   return (
     <div className="cart-main-inner table-responsive">
-      <table className="table">
+      <table className="cart-table table">
         <thead className="cart-lineitem-table-headings">
           <tr>
             <th className="cart-heading-product">
