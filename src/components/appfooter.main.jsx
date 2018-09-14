@@ -27,7 +27,7 @@ import './appfooter.main.less';
 
 function AppFooterMain() {
   return (
-    <footer className="app-footer page-footer font-small blue pt-4 mt-4">
+    <footer className="app-footer page-footer font-small blue">
       <div id="footer_container" className="container-fluid text-center text-md-center">
         <div className="row">
           <div id="footer_container_column_1" className="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-xs-center text-sm-center text-md-left text-lg-left">
