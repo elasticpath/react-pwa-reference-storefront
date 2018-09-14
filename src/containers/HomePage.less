@@ -1,0 +1,154 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.home-page-component {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+
+  .section {
+    max-width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    text-align: center;
+    display: table;
+    min-height: 260px;
+
+    .line {
+      display: block;
+    }
+
+    .line-1 {
+      font-size: 18px;
+      color: #000;
+    }
+
+    .line-2 {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #070707;
+      margin-top: 15px;
+    }
+
+    .sub-section {
+      vertical-align: middle;
+      display: table-cell;
+
+      .text-block {
+        width: 364px;
+        display: inline-block;
+        text-align: left;
+        vertical-align: inherit;
+        padding-left: 20px;
+      }
+    }
+  }
+
+  .small-image {
+    width: 161px;
+    height: 161px;
+    margin-left: 30px;
+  }
+
+  .section-1 {
+    min-height: 0px;
+
+    .cover {
+      width: 100%;
+    }
+  }
+
+  .section-2 {
+    background-color: #f7f7f7;
+
+    .line-1 {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: -0.6px;
+      text-align: center;
+      color: #4a4a4a;
+    }
+
+    .line-2 {
+      font-size: 12px;
+      letter-spacing: -0.3px;
+      color: #4a4a4a;
+      margin-top: 5px
+    }
+
+    .btn-accessories {
+      width: 300px;
+      height: 40px;
+      background-color: #40b1f3;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffffff;
+      border: 0;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .section-4 {
+    background-color: #f7f7f7;
+  }
+
+  @media (max-width: @mobileWidth - 1px) {
+    .section {
+      min-height: 0px;
+
+      .small-image {
+        margin-top: 20px;
+      }
+
+      .line {
+        text-align: center;
+      }
+
+      .line-1 {
+        margin-top: 20px;
+      }
+
+      .line-2 {
+        margin-bottom: 20px;
+      }
+
+      .btn-accessories {
+        margin-top: 20px;
+      }
+    }
+
+    .section-4 {
+      .small-image.image-2 {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: @mobileWidth) {
+    .section-4 {
+      .small-image.image-1 {
+        display: none;
+      }
+    }
+  }
+}
