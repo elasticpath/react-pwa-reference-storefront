@@ -8006,10 +8006,12 @@ fieldset[disabled] .btn-itemdetail-addtocart.active {
 }
 .category-items-container:after,
 /* .home-contant-container:after, */
+.home-contant-container:after,
 .cart-container-OLD:after {
   content: "";
   display: block;
 }
+
 /* .app-footer-old,
 .category-items-container:after,
 .home-contant-container:after,
