@@ -60,9 +60,9 @@ To use the REACT Reference Storefront locally, run all of your applications, Cor
     `localhost:3007/html5storefront/`.
 
 ### <a name="running-react-reference-storefront-remotely"> </a>Remote REACT Reference Storefront Instance
-The remote REACT Reference Storefront instance runs locally on port `3008`. Cortex API, Search, Commerce Engine, etc, run on an external server.
-Use these ports to run the REACT Reference Storefront locally:
+The remote REACT Reference Storefront instance runs locally on port `3008`. Cortex API, Search, Commerce Engine, etc., run on an external server.
 **Note:** When you run the instance remotely, it's assumed your Cortex API uses Elastic Path Integrator. For more information on the Elastic Path Integrator, see [http://docs.elasticpath.com](http://docs.elasticpath.com).
+Use these ports to run the REACT Reference Storefront locally:
 
 ![localSetup]({{ site.baseurl }}/documentation/img/remote_proxy_setup.png)
 
