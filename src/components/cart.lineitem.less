@@ -1,0 +1,169 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+ @import './../style/common.less';
+
+.cart-lineitem-rows {
+  td {
+    font-size: 1.3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #fff;
+    border-top: none;
+  }
+
+  td.cart-lineitem-title-col {
+    font-size: 1.4rem;
+  }
+
+  td.cart-lineitem-remove-btn-col {
+    font-size: 13px;
+  }
+
+  td.cart-lineitem-remove-btn-col .btn-cart-removelineitem {
+    text-shadow: none;
+    padding: 0;
+    color: #eeeeee;
+    background-color: #999999;
+    border: none;
+    border-radius: 2px;
+    text-align: middle;
+    box-shadow: none;
+    border-bottom: none;
+  }
+
+  td.cart-lineitem-remove-btn-col .btn-cart-removelineitem:hover {
+    background-color: #d9534f;
+    color: #fff;
+  }
+
+  td.cart-lineitem-remove-btn-col .btn-cart-removelineitem .icon {
+    position: relative;
+    top: 1px;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin: auto;
+    padding: 2px 0 0 0;
+    display: inline-block;
+    clear: none;
+  }
+
+  td.cart-lineitem-remove-btn-col .btn-cart-removelineitem {
+    .icon:before {
+      content: "\e014";
+    }
+
+    .btn-text {
+      display: inline-block;
+    }
+  } 
+
+  th:last-child,
+  td:last-child {
+    text-align: center;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 30px;
+  }
+
+  .cart-lineitem-thumbnail-col img {
+    max-width: 60px;
+    background-color: #eee;
+    padding: 2px;
+    border-radius: 2px;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    /* Old browsers */
+
+    background: -moz-linear-gradient(-45deg, #ffffff 0%, #ffffff 100%);
+    /* FF3.6+ */
+
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #ffffff));
+    /* Chrome,Safari4+ */
+
+    background: -webkit-linear-gradient(-45deg, #ffffff 0%, #ffffff 100%);
+    /* Chrome10+,Safari5.1+ */
+
+    background: -o-linear-gradient(-45deg, #ffffff 0%, #ffffff 100%);
+    /* Opera 11.10+ */
+
+    background: -ms-linear-gradient(-45deg, #ffffff 0%, #ffffff 100%);
+    /* IE10+ */
+
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    /* W3C */
+
+    -webkit-box-shadow: inset 0px 0px 6px 2px rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0px 0px 6px 2px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+  }
+
+  .cart-lineitem-quantity-col,
+  .cart-lineitem-availability-col {
+    text-align: center;
+  }
+
+  .cart-lineitem-quantity-select {
+    min-width: 70px;
+  }
+
+  .cart-lineitem-availability {
+    min-width: 81px;
+  }
+
+  .cart-lineitem-table-headings {
+    border: none;
+  }
+
+  .cart-unit-purchase-price,
+  .cart-total-purchase-price,{
+    font-weight: bold;
+  }
+
+  @media (max-width: @mobileWidth - 1) {
+    td.cart-lineitem-remove-btn-col .btn-cart-removelineitem {
+      padding: 8px;
+      white-space: nowrap;
+      height: auto;
+      display: inline-block;
+    }
+  }
+
+  @media (min-width: @mobileWidth) {
+    td.cart-lineitem-remove-btn-col .btn-cart-removelineitem {
+      height: 21px;
+      width: 21px;
+    }
+  }
+
+  @media (min-width: @mobileWidth) {
+    td.cart-lineitem-remove-btn-col .btn-cart-removelineitem .btn-text {
+      display: none;
+    }
+  }
+}

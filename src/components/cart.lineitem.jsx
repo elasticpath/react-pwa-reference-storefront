@@ -29,6 +29,7 @@ import {
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
 import cortexFetch from '../utils/Cortex';
+import './cart.lineitem.less';
 
 const Config = require('Config');
 
@@ -182,7 +183,7 @@ class CartLineItem extends React.Component {
       }
     }
     return (
-      <tr>
+      <tr className="cart-lineitem-rows">
         <td className="cart-lineitem-thumbnail-col" data-el-value="lineItem.thumbnail">
           <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.uri)}`}>
             <img src={Config.skuImagesUrl.replace('%sku%', item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
