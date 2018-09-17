@@ -25,8 +25,7 @@ Table of contents
 <!--te-->
 
 ## Development quick start
-Built with REACT.js, Bootstrap 4, Babel, and Webpack.
-
+Built with REACT.js, Bootstrap 4, Babel, Workbox, and Webpack.
 ### Prerequisites:
 If you haven’t already, install the following software:
 * Install [Git](https://git-scm.com/downloads).
@@ -46,9 +45,8 @@ If you haven’t already, install the following software:
 The URL containing the hostname and port for the storefront to use to reach Cortex. For your convenience, a web proxy is configured in this project's Webpack configuration. Set the value to `/cortex` for local development to redirect Cortex calls to the local proxy.
  - `cortexApi.scope`, **required**, *string*:
 Name of store to retreive data from Cortex.
- - `cortexApi.pathForProxy`, **required**, *string*:
-
-The path the webpack proxy will route storefront Cortex calls to. URL consisting of hostname and port to actual running instance of Cortex. Leave this value empty to disable the proxy.
+ - `cortexApi.pathForProxy`, **required**, *string*:=
+ The path the webpack proxy will route storefront Cortex calls to. URL consisting of hostname and port to actual running instance of Cortex. Leave this value empty to disable the proxy.
  - `skuImagesUrl`, **required**, *string*:
  Path to catalog images hosted on an external CMS. Set this to the full URL of your images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
   - `siteImagesUrl`, **optional**, *string*:
