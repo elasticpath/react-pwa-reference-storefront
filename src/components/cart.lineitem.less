@@ -113,6 +113,40 @@
   .quantity-col,
   .availability-col {
     text-align: center;
+
+    .availability-container {
+      .itemdetail-availability-state {
+        padding: 0;
+
+        .label {
+          display: inline-block;
+          font-size: 1rem;
+          text-transform: uppercase;
+          border-radius: 1rem;
+          color: #fff;
+          background-color: #040060;
+          padding: 5px 8px;
+          line-height: 10px;
+        }
+
+        .icon {
+          position: relative;
+          top: 1px;
+          display: inline-block;
+          font-family: 'Glyphicons Halflings';
+          font-style: normal;
+          font-weight: normal;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+          margin-right: 6px;
+          margin-top: -4px;
+        }
+
+        .icon:before {
+          content: "\e013";
+        }
+      }
+    }
   }
 
   .quantity-select {

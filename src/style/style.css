@@ -74,7 +74,7 @@ audio:not([controls]) {
 [hidden] {
   display: none;
 }
-html {
+html-OLD {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -307,11 +307,11 @@ table {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-html {
+html-OLD {
   font-size: 62.5%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-body {
+body-OLD {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
@@ -332,7 +332,7 @@ select[multiple],
 textarea {
   background-image: none;
 }
-a {
+a-OLD {
   color: #333333;
   text-decoration: none;
 }
@@ -479,10 +479,10 @@ h6 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-h1,
+/* h1,
 .h1 {
   font-size: 36px;
-}
+} */
 h2,
 .h2 {
   font-size: 30px;
@@ -1353,7 +1353,7 @@ th {
   width: 100%;
   margin-bottom: 20px;
 }
-.table thead > tr > th,
+/* .table thead > tr > th,
 .table tbody > tr > th,
 .table tfoot > tr > th,
 .table thead > tr > td,
@@ -1363,7 +1363,7 @@ th {
   line-height: 1.428571429;
   vertical-align: top;
   border-top: 1px solid #dddddd;
-}
+} */
 .table thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #dddddd;
@@ -1563,7 +1563,7 @@ legend {
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
-label {
+label-OLD {
   display: inline-block;
   margin-bottom: 5px;
   font-weight: bold;
@@ -1621,7 +1621,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .form-control::-webkit-input-placeholder {
   color: #999999;
 }
-.form-control {
+.form-control-OLD {
   display: block;
   width: 100%;
   height: 34px;
@@ -6832,7 +6832,7 @@ nav.main-nav {
 .cart-lineitem-OLD-availability {
   min-width: 81px;
 }
-.btn-cmd-continue-shopping {
+.btn-cmd-continue-shopping-OLD {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -6995,7 +6995,7 @@ fieldset[disabled] .btn-cmd-checkout.active {
   clear: both;
 }
 .order-title-container h1,
-.cart-title-container h1,
+.cart-title-container-OLD h1,
 .static-title-container h1,
 .static-title-container h3 {
   position: relative;
@@ -9327,7 +9327,7 @@ ul {
 .itemdetail-availability-state .icon:before {
   content: "\e013";
 }
-.is-hidden {
+.is-hidden-OLD {
   display: none;
 }
 /* Custom field styling for credit card expiry dates */
