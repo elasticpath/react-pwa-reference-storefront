@@ -1,0 +1,153 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+ @import './../style/common.less';
+
+.cart-container {
+  min-height: 100%;
+  margin-bottom: 0px;
+
+  .cart-main-container {
+    float: left;
+    width: 100%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 2em;
+
+    @media (min-width: @tabletWidth) {
+      float: left;
+      width: 66.66666666666666%;
+    }
+
+    @media (min-width: @mobileWidth) {
+        float: left;
+        width: 75%;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+
+  .cart-container-inner {
+    .btn-cmd-continue-shopping {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.428571429;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+      border-radius: 2px;
+      -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2px;
+      color: #ffffff;
+      background-color: #040060;
+      border-color: #040060;
+    }
+
+    .cart-title-container {
+      button {
+        position: relative;
+        float: right;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        margin-right: 2rem;
+      }
+
+      h1 {
+        position: relative;
+        float: left;
+        width: 75%;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+      }
+    }
+
+    .cart-sidebar {
+      float: left;
+      width: 100%;
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      @media (min-width: 992px) {
+          float: left;
+          width: 33.33333333333333%;
+      }
+
+      @media (min-width: 1200px) {
+          float: left;
+          width: 25%;
+      }
+
+      @media screen and (min-width: 992px) {
+          text-align: right;
+      }
+
+      .cart-sidebar-inner {
+        display: inline-block;
+        padding: 2rem;
+        border: 3px solid #040060;
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 0.6);
+        text-align: left;
+        position: relative;
+
+        @media screen and (min-width: 992px) {
+          width: 293.328px;
+          display: block;
+        }
+
+        @media screen and (min-width: 1200px) {
+          width: 262.5px;
+        }
+
+        @media screen and (max-width: 768px) {
+          width: 100%;
+        }
+
+        h3 {
+          margin: 0 0 2rem 0;
+        }
+      }
+    }
+  }
+}

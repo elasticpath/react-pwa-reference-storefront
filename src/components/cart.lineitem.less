@@ -1,0 +1,190 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.cart-lineitem-row {
+  td {
+    font-size: 1.3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #fff;
+    border-top: none;
+  }
+
+  .title-col {
+    font-size: 1.4rem;
+  }
+
+  .remove-btn-col {
+    font-size: 13px;
+  }
+
+  .remove-btn-col {
+    .btn-cart-removelineitem {
+      text-shadow: none;
+      padding: 0;
+      color: #eeeeee;
+      background-color: #999999;
+      border: none;
+      border-radius: 2px;
+      text-align: middle;
+      box-shadow: none;
+      border-bottom: none;
+    }
+  }
+
+  .remove-btn-col {
+    .btn-cart-removelineitem:hover {
+      background-color: #d9534f;
+      color: #fff;
+    }
+  }
+
+  .remove-btn-col {
+    .btn-cart-removelineitem {
+      .icon {
+        position: relative;
+        top: 1px;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        margin: auto;
+        padding: 2px 0 0 0;
+        display: inline-block;
+        clear: none;
+      }
+    }
+  }
+
+  .remove-btn-col {
+    .btn-cart-removelineitem {
+      .icon:before {
+        content: "\e014";
+      }
+
+      .btn-text {
+        display: inline-block;
+      }
+    }
+  } 
+
+  th:last-child,
+  td:last-child {
+    text-align: center;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 30px;
+  }
+
+  .thumbnail-col {
+    img {
+      max-width: 60px;
+      padding: 2px;
+      border-radius: 2px;
+      border: 1px solid #dddddd;
+      background: #ffffff;
+      box-shadow: none;
+    }
+  }
+
+  .quantity-col,
+  .availability-col {
+    text-align: center;
+
+    .availability-container {
+      .itemdetail-availability-state {
+        padding: 0;
+
+        .label {
+          display: inline-block;
+          font-size: 1rem;
+          text-transform: uppercase;
+          border-radius: 1rem;
+          color: #fff;
+          background-color: #040060;
+          padding: 5px 8px;
+          line-height: 10px;
+        }
+
+        .icon {
+          position: relative;
+          top: 1px;
+          display: inline-block;
+          font-family: 'Glyphicons Halflings';
+          font-style: normal;
+          font-weight: normal;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+          margin-right: 6px;
+          margin-top: -4px;
+        }
+
+        .icon:before {
+          content: "\e013";
+        }
+      }
+    }
+  }
+
+  .quantity-select {
+    min-width: 70px;
+  }
+
+  .cart-unit-purchase-price,
+  .cart-total-purchase-price,{
+    font-weight: bold;
+  }
+
+  @media (max-width: @mobileWidth - 1px) {
+    .remove-btn-col {
+      .btn-cart-removelineitem {
+        padding: 8px;
+        white-space: nowrap;
+        height: auto;
+        display: inline-block;
+      }
+    }
+  }
+
+  @media (min-width: @mobileWidth) {
+    .remove-btn-col {
+      .btn-cart-removelineitem {
+        height: 21px;
+        width: 21px;
+      }
+    }
+  }
+
+  @media (min-width: @mobileWidth) {
+    .remove-btn-col {
+      .btn-cart-removelineitem {
+        .btn-text {
+          display: none;
+        }
+      }
+    }
+  }
+}
