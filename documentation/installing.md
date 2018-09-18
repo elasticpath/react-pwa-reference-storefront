@@ -21,13 +21,13 @@ The REACT Reference Storefront requires the following applications before you ca
 When the prerequisites are installed, proceed to [Install REACT Reference Storefront Sources](#installing-react-reference-storefront-sources). You can run the Storefront either
 **[locally](#running-react-reference-storefront-locally)** or **[remotely](#running-react-reference-storefront-remotely)**.
 
-### <a name="installing-react-reference-storefront-sources"> </a> Install the REACT Reference Storefront Sources
+## <a name="installing-react-reference-storefront-sources"> </a> Installing the REACT Reference Storefront Sources
 1. Navigate to the REACT Reference Storefront sources. Go to
 `{{ site.repository }}`.
 2. Install the dependencies by navigating to the REACT Reference Storefront directory. Run
 `npm install`.
 
-### <a name="running-react-reference-storefront-locally"> </a>Local REACT Reference Storefront instance
+### <a name="running-react-reference-storefront-locally"> </a>Installing a Local REACT Reference Storefront instance
 To use the REACT Reference Storefront locally, run all of your applications, Cortex API, Search, Storefront, etc., on your local computer. Use these ports to run the REACT Reference Storefront locally:
 
 <ul>
@@ -57,11 +57,10 @@ To use the REACT Reference Storefront locally, run all of your applications, Cor
 * **Access REACT Reference Storefront.**
 
   * Open your browser and navigate to
-    `localhost:8080/`.
+    `http://localhost:8080/`.
 
-### <a name="running-react-reference-storefront-remotely"> </a>Remote REACT Reference Storefront Instance
-The remote REACT Reference Storefront instance runs locally on port `8080`. Cortex API, Search, Commerce Engine, etc, run on an external server.
-Use these ports to run the REACT Reference Storefront locally:
+### <a name="running-react-reference-storefront-remotely"> </a>Installing a Remote REACT Reference Storefront Instance
+The remote REACT Reference Storefront instance runs locally on port `3008`. Cortex API, Search, Commerce Engine, etc., run on an external server.
 **Note:** When you run the instance remotely, it's assumed your Cortex API uses Elastic Path Integrator. For more information on the Elastic Path Integrator, see [http://docs.elasticpath.com](http://docs.elasticpath.com).
 Use these ports to run the REACT Reference Storefront locally:
 
@@ -85,6 +84,6 @@ Use these ports to run the REACT Reference Storefront locally:
   * **Access REACT Reference Storefront.**
 
     * Open your browser and navigate to
-    `localhost:8080/`.
+    `http://localhost:8080/`.
 
 {% include legal.html %}
