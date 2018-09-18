@@ -28,18 +28,21 @@ import withAnalytics from './utils/Analytics';
 import AppHeaderMain from './components/appheader.main';
 import AppFooterMain from './components/appfooter.main';
 
+import './App.less';
+
 // eslint-disable-next-line react/no-array-index-key
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
-const Root = () => (
-  <div id="root_router_div">
-    <AppHeaderMain />
+const Root = () => [
+  <AppHeaderMain />,
+  <div className="app-content">
     <Switch>
       {routeComponents}
     </Switch>
-    <AppFooterMain />
-  </div>
-);
+  </div>,
+  <AppFooterMain />,
+];
+
 const App = withRouter(withAnalytics(Root));
 const AppWithRouter = () => (
   <Router>
