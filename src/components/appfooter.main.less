@@ -23,26 +23,24 @@
 
 .app-footer {
   background-color: @mainColor;
-  position: absolute;
   width: 100%;
-  bottom: -5px;
+  padding: 20px 0px;
 
   h5,
   p,
   li a {
-    -webkit-transition: all ease-in-out 0.2s;
     border-bottom: 1px solid transparent;
     color: white;
     font-size: 1.3rem;
     padding: 7px 7px;
     transition: all ease-in-out 0.2s;
 
-    @media screen and (min-width: @mobileWidth) and (max-width: @tabletWidth) {
+    @media screen and (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
       font-size: 1.2rem;
       padding: 7px 6px;
     }
 
-    @media screen and (max-width: @tabletWidth) {
+    @media screen and (max-width: @tabletWidth - 1px) {
       li a:hover {
         color: @mainColor;
         background: none;
