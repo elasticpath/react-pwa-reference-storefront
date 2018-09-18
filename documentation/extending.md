@@ -6,15 +6,12 @@ weight: 4
 ---
 Customizing Features
 ====================
-REACT Reference Storefront functionality is divided into modules. For example, profile, cart, authentication, checkout, and so on are all separate modules.
-An HTML5 Storefront module is the view, plus the code backing the view. This means that each module is its own Model View Controller (MVC) component.
-For example, the profile module contains all code to retrieve and update a customer's profile data (Model and Controller) and contains the HTML and JS code to show the customer's profile data in the Storefront (View).
 
-HTML5 Storefront's Modular Design Benefits:
-* Customizable - Add a new feature by creating a new module and adding it to the `module` folder, as opposed to modifying multiple pieces of code throughout the Storefront to create the functionality.
-* Maintainable - The Storefront's modular architecture enables you to make changes, i.e. add new functionality and enhance existing functionality, without breaking the entire system.
-* Debuggable - Debug individual modules to isolate HTML5 Storefront issues, rather than debugging vast amounts of JS code.
-* Updatable - The REACT Reference Storefront is under continual development. With your customized features and enhancements coded in distinct modules, you can more easily update the out-of-the-box code without overwriting your custom code.
+REACT Reference Storefront's Modular Design Benefits:
+* Customize - Add a feature by creating a new module and adding it to the `module` folder, instead of modifying multiple pieces of code throughout the Storefront to create the functionality.
+* Maintainable - The Storefront's modular architecture enables you to make changes. For example, you can add functionality and enhance existing functionality, without breaking the entire system.
+* Debug - Debug individual modules to isolate any REACT Reference Storefront issues, instead of debugging vast amounts of JS code.
+* Update - The REACT Reference Storefront is under continual development. With your customized features and enhancements coded in distinct modules, you can easily update the default code without overwriting your custom code.
 
 **REACT Reference Storefront Modules**
 
@@ -22,25 +19,23 @@ HTML5 Storefront's Modular Design Benefits:
 
 **Components vs Modules**
 
-You'll notice the `modules` folder also contains a `components` folder.
-Components are very similar to modules, but their purpose is slightly different. Modules are complete, stand-alone units of functionality, which include a Model, View, and Controller.
-Components are units of code that are designed for reuse in other modules. In most cases, components just contain the View and the Controller, not the Model, which is passed to it by the module using the component.
+The `modules` folder also contains a `components` folder. Components are very similar to modules, but their purpose is slightly different. Modules are complete, stand-alone units of functionality, which include a Model, View, and Controller.
+Components are units of code that are designed for reuse in other modules. In most cases, components just contain the View and the Controller and not the Model. The Model is passed by the module using the component.
 For example, the `address` component provides the Controller and View to create, retrieve, and view customer addresses.
-`address` is reused in the `profile` and `receipt` modules to allow customers to create, update, and view their addresses through these module's views.
+`address` is reused in the `profile` and `receipt` modules to let customers create, update, and view their addresses through these module's views.
 
 **Module Creation Guidelines**
 
-We don't have any hard and fast rules for when to create a module, we just have guidelines. You need to determine whether or not to create a new module for
-the functionality you are building based on your needs.
+You determine whether or not to create a module for the functionality that you are building based on your needs.
 
-Keep in mind Elastic Path's Guidelines for Creating New Modules:
+####Elastic Path's Guidelines for Creating New Modules:####
 
 - **Base the module around a view**
-We base our modules around views. For example, the `cart` module contains the complete view of the cart, including the cart's lineitems, costs of the cart's contents, total quantity in the cart, and so on.
-Designing the module around a view helps you encapsulate HTML5 Storefront functionality.
+Modules are based around views. Designing the module around a view helps you encapsulate REACT Reference Storefront functionality. For example, the `cart` module contains the complete view of the cart, including the cart's lineitems, the costs of the cart's contents, the total quantity in the cart, etc.
+
 - **Design the module to be self-contained**
-We design our modules so they are complete units of functionality. This means all the functionality for a given feature is encapsulated in the module.
-For example, all the profiles functionality, view profile, update profile, and so on is defined in the `profile` module.
+We design our modules so they are complete units of functionality. This means all of the functionality for a given feature is encapsulated in the module.
+For example, all the profiles functionality, view profile, update profile are defined in the `profile` module.
 This may seem kind of obvious, but we're mentioning it as a reminder for you to try and keep your code modularized. The REACT Reference Storefront is on a rapid-release schedule, meaning that the code is frequently updated.
 If your customized code is all over the place, you will have issues upgrading your code base.
 
@@ -48,7 +43,7 @@ If your customized code is all over the place, you will have issues upgrading yo
 
 This section provides an overview of the basic components for a Storefront module using our template module, found in `modules/_templates`, as an example.
 
-**NOTE:** Some of the Cortex API concepts used in the modules, Zoom, Cortex Resources, URIs, Forms, Selectors, ?followLocation, and others are described in the <a href="http://api-cortex-developers.docs.elasticpath.com/drupal/">Cortex API Client Developer Documentation</a>
+**NOTE:** Some of the Cortex API concepts used in the modules, Zoom, Cortex Resources, URIs, Forms, Selectors, ?followLocation, and others are described in the <a href="http://api-cortex-developers.docs.elasticpath.com/drupal/">Cortex API Client Developer Documentation</a>.
 
 *Module Components*
 
@@ -58,12 +53,12 @@ This section provides an overview of the basic components for a Storefront modul
 
 The controller orchestrates the creation and population of the module's view and model. The following lists the standard tasks performed by a Storefront module's controller:
 
-* Loads the module's dependencies
-* Imports the module's Model and View
-* Executes the model's fetch to populate the model's data
-* Sets the module's views
-* Creates a namespace for the model for reference in the module's template.html
-* Sets the model's listeners (if any)
+* Loads the module's dependencies.
+* Imports the module's Model and View.
+* Executes the model's fetch to populate the model's data.
+* Sets the module's views.
+* Creates a namespace for the model for reference in the module's template.html.
+* Sets the model's listeners (if any).
 
 		define(function (require) {
 		    var ep = require('ep');                 // import global app functions and variables
@@ -172,11 +167,11 @@ The module's controller calls `fetch` when the model is instantiated.
 
 **base.profile.views.js**
 
-A view defines the regions where the model's data will render. To better understand what regions are, think of the layout of an e-commerce web page. The login, search, title bar, and so on are all regions on the page.
+A view defines the regions where the model's data renders. To understand what regions are, think of the layout of an e-commerce web page. The login, search, title bar, are all examples of regions on the page.
 Each region can be comprised of multiple subregions.
 The data in the view's regions is populated by the module's model.
 
-**NOTE:** A view defines the regions, not the Storefront's look and feel, which is defined in an HTML5 Storefront [Theme]({{ site.baseurl  }}/documentation/theming/).
+**NOTE:** A view defines the regions, not the Storefront's look and feel. The Storefront's look and feel is defined in an REACT Reference Storefront [Theme]({{ site.baseurl  }}/documentation/theming/).
 
 A view's regions extend Marionette.Layout.
 <a href="https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md">Marionette.layout</a> provides a set of functionality to define regions, nest layouts, render layouts, organize UI elements, and configure events for the region.
@@ -209,7 +204,7 @@ A view's regions extend Marionette.Layout.
 
 **tmpl.templates.html**
 
-Templates contain the view's regions whose data is populated by the module's model. `<%= E %>` is the model's namespace, from there you can access its values and view helpers.
+Templates contain the view's regions whose data is populated by the module's model. `<%= E %>` is the model's namespace, where you can access its values and view helpers.
 Namespaces are defined in the module's controller.
 
 	<div id="[tmpl]TemplateContainer">
@@ -226,11 +221,11 @@ Tutorial: Creating a New Module
 ---------------------
 This tutorial walks you through the process of creating a REACT Reference Storefront module.
 The basics concepts of how a module works are described in the section above, [Module Basics](#module-basics)
-Please reference this section when building your modules.
+Reference this section when building your modules.
 
 To Create a New Module:
 
-1. Create a new folder for your module in `public/modules`
+1. Create a new folder for your module in `public/modules`.
 2. Copy `tmpl.controller.js`, `tmpl.models.js`, `tmpl.templates.html`, and `tmpl.views.js` from `public/modules/_templates` and paste them into your new module's folder.
 3. Rename your new module's files to the name of your module.
 4. Define your modules is `public/main.js`, so RequireJS can handle and load your module when required.
@@ -243,7 +238,7 @@ To Create a New Module:
 	                  'tmpl.views': 'modules/newModule/tmpl.views.js',
 	      };
 
-5. Add your module to `public/router.js` to allow Marionette to route events to it.
+5. Add your module to `public/router.js` to let Marionette to route events to it.
 
 	    var router = Marionette.AppRouter.extend({
 	          appRoutes:{
@@ -267,12 +262,13 @@ To Create a New Module:
 
 The REACT Reference Storefront has 3 main regions:
 ![regions]({{ site.baseurl  }}/documentation/img/regions.png)
+
 7. Code your module.
 
 Further Reading
 ---------------------
 Elastic Path uses third party technologies, which are not covered thoroughly in this document.
-Below is a list of documents to further your education on these technologies.
+The following is a list of documents to further your education on these technologies.
 
 * JSONPath - [http://goessner.net/articles/JsonPath/](http://goessner.net/articles/JsonPath/)
 * Backbone Tutorials - [http://backbonetutorials.com/](http://backbonetutorials.com/)
