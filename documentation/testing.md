@@ -1,6 +1,6 @@
 Testing
 ====================
-Introduction to hour our storefront testing framework.
+This is an introduction to the REACT Reference Storefront testing framework. You can invoke tests directly on the same development environment that you use to implement the REACT Reference Storefront.  
 
 
 Technology
@@ -15,15 +15,15 @@ Technology
 
 Overview
 ---------------------
-All test files are located within `tests` folder with exception of `testem.json`, which is located in project root folder
+All of the test files are located within the `tests` folder. The exception is `testem.json`, which is located in project root folder.
 <test folder structure>
 
 
-Configuration to add a new test
+Configuration to Add a New Test
 ---------------------
-* define dependency path inside `test.config.js` under `paths` property.
-* create the test file inside `specs` folder
-* adds the test file in `testrunner.html` as below
+* Define the dependency path inside `test.config.js`, under `paths` property.
+* Create the test file inside `specs` folder.
+* Add the following test file in `testrunner.html`:
 
      <script type="text/javascript" charset="utf-8">
        require([

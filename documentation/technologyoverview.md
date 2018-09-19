@@ -6,8 +6,8 @@ weight: 3
 ---
 Technology
 ====================
-HTML5 Storefront technologies were chosen for their robustness, popularity, and extensibility.
-The idea is that your JavaScript developers and front-end developers already know these technologies, so they can start extending and customizing your HTML5 Storefront as quickly as possible.
+The REACT Reference Storefront technologies were chosen for their robustness, popularity, and extensibility.
+The idea is that your JavaScript developers and front-end developers already know these technologies, so they can start extending and customizing your storefront quickly.
 
 ## <a name="platformArchitecture"> </a> Platform Architecture
 ![codeStructure]({{ site.baseurl  }}/documentation/img/architecture.png)
@@ -24,49 +24,49 @@ Technology Stack
 </tr>
 <tr>
 	<td><strong><a href="http://marionettejs.com/">Marionette.js</a></strong></td>
-	<td>JavaScript library extending Backbone.js, which manages the REACT Reference Storefront views.
+	<td>A JavaScript library extending Backbone.js, which manages the REACT Reference Storefront views.
 	Provides common design and implementation patterns for the Storefront.</td>
 	<td>v1.0.0-rc6</td>
 </tr>
 <tr>
 	<td><strong><a href="http://requirejs.org/">Require.js</a></strong></td>
-	<td>JavaScript library facilitating asynchronous module definition <a href="http://en.wikipedia.org/wiki/Asynchronous_module_definition">(AMD)</a> .
+	<td>A JavaScript library facilitating asynchronous module definition <a href="http://en.wikipedia.org/wiki/Asynchronous_module_definition">(AMD)</a> .
 	</td>
 	<td>2.0</td>
 </tr>
 <tr>
 	<td><strong><a href="http://jquery.com/">jQuery</a></strong></td>
-	<td>Fast, feature rich JavaScript library used for the base DOM abstraction layer.</td>
+	<td>A fast, feature rich JavaScript library used for the base DOM abstraction layer.</td>
 	<td>1.8</td>
 </tr>
 <tr>
 	<td><strong><a href="http://underscorejs.org/">underscore.js</a></strong></td>
-	<td>Lightweight JavaScript utility and template framework.</td>
+	<td>A lightweight JavaScript utility and template framework.</td>
 	<td>1.4.4</td>
 </tr>
 <tr>
 	<td><strong><a href="http://backbonejs.org/">Backbone.js</a></strong></td>
 	<td>
-		<p>Foundation UI framework. Provides the core UI elements such as Models, Views, and Events.</p>
+		<p>The foundation UI framework. Provides the core UI elements such as Models, Views, and Events.</p>
 	</td>
 	<td>1.0.0</td>
 </tr>
 <tr>
 	<td><strong><a href="http://nodejs.org/">node.js</a></strong></td>
-	<td>Simple, lightweight web server implementation, acting as a proxy server to facilitate <em>cross-domain</em> communication with the Cortex API.</td>
+	<td>A simple, lightweight web server implementation, acting as a proxy server to facilitate <em>cross-domain</em> communication with the Cortex API.</td>
 	<td>0.8.x</td>
 </tr>
 <tr>
 	<td><strong><a href="http://gruntjs.com/">grunt.js</a></strong></td>
 	<td>
-		<p>Build and configuration tool.</p>
+		<p>A build and configuration tool.</p>
 	</td>
 	<td>0.4.x</td>
 </tr>
 <tr>
 	<td><strong><a href="http://lesscss.org/">{less}</a></strong></td>
 	<td>
-		<p>Extends CSS with dynamic behavior, utilizing variables, mixins, operations, and functions.</p>
+		<p>Extends the CSS with dynamic behavior, utilizing variables, mixins, operations, and functions.</p>
 	</td>
 	<td>1.3.3</td>
 </tr>
@@ -85,28 +85,28 @@ Testing Frameworks
 </tr>
 <tr>
 	<td><strong><a href="http://visionmedia.github.io/mocha/">Mocha</a></strong></td>
-	<td>JavaScript test framework running on node.js.</td>
+	<td>The JavaScript test framework running on node.js.</td>
 	<td>1.10.0</td>
 </tr>
 <tr>
 	<td><strong><a href="http://chaijs.com/">Chai</a></strong></td>
-	<td>Assertion library for node.js.</td>
+	<td>The assertion library for node.js.</td>
 	<td>1.6.1</td>
 </tr>
 <tr>
 	<td><strong><a href="http://www.seleniumhq.org/projects/webdriver/">Selenium</a></strong></td>
-	<td>Automated browser component testing.</td>
+	<td>An automated browser component testing.</td>
 	<td>2.35.0</td>
 </tr>
 <tr>
 	<td><strong><a href="http://sinonjs.org/">Sinon.JS</a></strong></td>
-	<td>Standalone test framework for JavaScript unit testing.</td>
+	<td>A standalone test framework for JavaScript unit testing.</td>
 	<td>1.7.3</td>
 </tr>
 </tbody>
 </table>
 
-HTML5 Code Structure
+REACT Reference Storefront Code Structure
 ---------------------
 ![codeStructure]({{ site.baseurl  }}/documentation/img/fileStructure.png)
 
@@ -163,6 +163,6 @@ Platform Support
 
 \*<b>Certified</b> - Officially Supported and Tested
 
-\*\***Compatible** - Base functionality works - Not tested.
+\*\***Compatible** - Base functionality works, but is not tested.
 
 {% include legal.html %}
