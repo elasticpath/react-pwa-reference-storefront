@@ -1,6 +1,6 @@
 Testing
 ====================
-This is an introduction to the REACT Reference Storefront testing framework. 
+This is an introduction to the REACT Reference Storefront testing framework. You can invoke tests directly on the same development environment that you use to implement the REACT Reference Storefront.  
 
 
 Technology
