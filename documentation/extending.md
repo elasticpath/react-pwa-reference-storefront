@@ -7,272 +7,68 @@ weight: 4
 Customizing Features
 ====================
 
-REACT Reference Storefront's Modular Design Benefits:
-* Customize - Add a feature by creating a new module and adding it to the `module` folder, instead of modifying multiple pieces of code throughout the Storefront to create the functionality.
-* Maintainable - The Storefront's modular architecture enables you to make changes. For example, you can add functionality and enhance existing functionality, without breaking the entire system.
-* Debug - Debug individual modules to isolate any REACT Reference Storefront issues, instead of debugging vast amounts of JS code.
-* Update - The REACT Reference Storefront is under continual development. With your customized features and enhancements coded in distinct modules, you can easily update the default code without overwriting your custom code.
+The Reference Storefront is divided into Containers (Pages) and React Components. For example, Home, Cart, Categories, Checkout, Registration, and so on are all separate Pages. Those pages consist of various components such as Navigation, Footer, Product List, Product, and so on. This means that each page is comprised of various components to accomplish the page's required purpose.
 
-**REACT Reference Storefront Modules**
+**Page/Component Creation Guidelines**
 
-![List of Modules]({{ site.baseurl }}/documentation/img/modulesList.png)
+There are no concrete rules to creating a Page/component, however the following are best practices to following in consumption of this reference storefront.
 
-**Components vs Modules**
+Keep in mind Elastic Path’s Guidelines for Creating New Components and Containers:
 
-The `modules` folder also contains a `components` folder. Components are very similar to modules, but their purpose is slightly different. Modules are complete, stand-alone units of functionality, which include a Model, View, and Controller.
-Components are units of code that are designed for reuse in other modules. In most cases, components just contain the View and the Controller and not the Model. The Model is passed by the module using the component.
-For example, the `address` component provides the Controller and View to create, retrieve, and view customer addresses.
-`address` is reused in the `profile` and `receipt` modules to let customers create, update, and view their addresses through these module's views.
+* **Base the Page as the page to be visited in the shoppers flow**
+We base our pages as the full page a shopper will visit in the storefront.
+* **Design the components to be fragments of a page**
+We design our components as they are units of functionality. This means all functionality for a component (including references to child components) are handled from within the actual component. Components may also accept properties/parameters to perform various actions if required. For example, a shopper will navigate to a category page to list products. That category page contains a component responsible for displaying the products within the category, and that component contains a component for each of the products being displayed. The same component responsible for displaying products in a category view may be used to display products on the search results page as there are common elements of functionality between the two shopper flows.
+Theming allows you to change the REACT Reference Storefront’s look and feel without having to modify the JavaScript. Themes take advantage of `{less}`, a powerful dynamic stylesheet language, chosen for its ease of use, dynamism, and widespread adoption.
 
-**Module Creation Guidelines**
+Each theme is a set of individual `{less}` files, which, on demand, are compiled into a single `style.css`. The core theme’s `{less}` files are organized according to the views, which are output representations of the REACT Reference Storefront's features.
+For example, `CartPage.less` contains the CSS for the cart’s container page, `cart.main.less` contains the CSS for the cart pages main component, and so on.
 
-You determine whether or not to create a module for the functionality that you are building based on your needs.
+By modifying the `{less}` files you can change the Storefront’s look and feel and create your own themes.
 
-####Elastic Path's Guidelines for Creating New Modules:####
+## Tutorial: Creating a New Container (Page)
+This tutorial walks you through the process of creating a Reference Storefront Page in REACT.
 
-- **Base the module around a view**
-Modules are based around views. Designing the module around a view helps you encapsulate REACT Reference Storefront functionality. For example, the `cart` module contains the complete view of the cart, including the cart's lineitems, the costs of the cart's contents, the total quantity in the cart, etc.
+To Create a New Container:
 
-- **Design the module to be self-contained**
-We design our modules so they are complete units of functionality. This means all of the functionality for a given feature is encapsulated in the module.
-For example, all the profiles functionality, view profile, update profile are defined in the `profile` module.
-This may seem kind of obvious, but we're mentioning it as a reminder for you to try and keep your code modularized. The REACT Reference Storefront is on a rapid-release schedule, meaning that the code is frequently updated.
-If your customized code is all over the place, you will have issues upgrading your code base.
+1. Create a new folder for your page in `src/containers`
+2. Name the directory the name of your intended page. ex. `MyPage`
+3. Create a new jsx file for your page in the previously created directory `src/containers/MyPage.jsx`
+4. Copy the contents of any existing page to your newly created page to populate the page with the required structure
+5. Name the class of your page to the desired name of your page
+6. Within `src/components/routes.js`
+	* Import your newly created page
+	* Define your desired routing path for your newly created page
+7. Within your newly created page jsx file
+	* Update the export of your page to export the desired name of your page
+	* Proceed with adding any other components or desired content for your newly created page
+8. Add any custom CSS to style your component in `src/containers/MyPage.less`
 
-## <a name="module-basics"> </a> Module Basics
+## Tutorial: Creating a New Component
+This tutorial walks you through the process of creating a Reference Storefront component in REACT.
 
-This section provides an overview of the basic components for a Storefront module using our template module, found in `modules/_templates`, as an example.
+To Create a New Component:
 
-**NOTE:** Some of the Cortex API concepts used in the modules, Zoom, Cortex Resources, URIs, Forms, Selectors, ?followLocation, and others are described in the <a href="http://api-cortex-developers.docs.elasticpath.com/drupal/">Cortex API Client Developer Documentation</a>.
-
-*Module Components*
-
-![templateModule]({{ site.baseurl  }}/documentation/img/profileModule.png)
-
-**tmpl.controller.js**
-
-The controller orchestrates the creation and population of the module's view and model. The following lists the standard tasks performed by a Storefront module's controller:
-
-* Loads the module's dependencies.
-* Imports the module's Model and View.
-* Executes the model's fetch to populate the model's data.
-* Sets the module's views.
-* Creates a namespace for the model for reference in the module's template.html.
-* Sets the model's listeners (if any).
-
-		define(function (require) {
-		    var ep = require('ep');                 // import global app functions and variables
-		    var EventBus = require('eventbus');     // import event-bus communicating within module
-		    var Mediator = require('mediator');     // import global event-bus mediating communication between modules
-
-		    var pace = require('pace');             // import activity indicator function
-
-		    // import the module's model, view and template
-		    var Model = require('modules/_template/tmpl.models');
-		    var View = require('modules/_template/tmpl.views');
-		    var template = require('text!modules/base/_template/base.tmpl.templates.html');
-
-		    // Inject the template into TemplateContainer for the module's views to reference
-		    $('#TemplateContainer').append(template);
-
-		    // Create a namespace for the template to reference the model and the viewHelpers
-		    _.templateSettings.variable = 'E';
-
-		    /**
-		     * Renders the DefaultLayout of template module and fetches the model from the backend.
-		     * Upon successfully fetching the model, the views are rendered in the designated regions.
-		     */
-		    var defaultView = function(){
+1. Create a new folder for your page in `src/components`
+2. Name the directory the name of your intended component. ex. `mycomponent`
+3. Create a new jsx file for your page in the previously created directory `src/components/mycomponent.main.jsx`
+4. Copy the contents of any existing component to your newly created component to populate it with the required structure
+5. Name the class of your component to the desired name of your component
+6. Within your newly created component jsx file
+	* Update the export of your page to export the desired name of your component
+	* Proceed with adding any other components or desired content for your newly created component
+	* Proceed with importing your component to other components/pages as needed
+7. Add any custom CSS to style your component in `src/components/mycomponent.main.less`
 
-		        //instantiate the module's View and Model
-		        var defaultLayout = new View.DefaultLayout();
-		        var templateModel = new Model.TmplModel();
+## Further Reading
 
-		        //Fetch is a Backbone.Model functionality.
-		        //Fetch resets the model's state and retrieves data from Cortex API using an jQuery jqXHR Object.
-		        templateModel.fetch({
-
-		            //on success, do something with the retrieved data, like render a view, set values, and so on
-		            success: function (response) {
-		            },
-		            //account for error conditions
-		            error: function (response) {
-		            }
-		        });
-		    };
-
-		    return {
-		      DefaultView:defaultView
-		    };
-		  }
-		);
-
-**tmpl.models.js**
-
-The model represents a set of Cortex API data and contains the logic to Create Read Update and Delete the data.
-Models extend Backbone.model.
-[Backbone.Model](http://backbonejs.org/#Model) provides a basic set of functionality for managing changes in your models, such as `Backbone.model.fetch`.
- `fetch` uses the model's `url:`'s parameters to determine where the model's data is located.
-The module's controller calls `fetch` when the model is instantiated.
-
-`base.cortex.controller.js`
-
-	define(function (require) {
-	    var Backbone = require('backbone');
-	    var ModelHelper = require('modelHelpers');
-
-	    // Array of zoom parameters to pass to Cortex
-	    var zoomArray = [
-	      'addresses:element',
-	      'paymentmethods:element'
-	    ];
-
-	    var tmplModel = Backbone.Model.extend({
-	      // url to READ data from cortex, includes the zoom
-	      // ep.app.config.cortexApi.path   prefix contex path to request to Cortex (e.g. integrator, cortex), configured in ep.config.json,
-	      // ep.app.config.cortexApi.scope  store scope (e.g. mobee, telcooperative), configured in ep.config.json,
-	      url: ep.io.getApiContext() + '/CORTEX_RESOURCE_NAME/' + ep.app.config.cortexApi.scope + '/default?zoom=' + zoomArray.join(),
-
-	      parse: function (response) {
-	        // parsing the raw JSON data from Cortex using JSONPath and set your model values
-	       var tmplObj = {
-	           data: undefined
-	       };
-	          if(response)
-	          {
-	              tmplObj.propertyName = jsonPath(response, 'propertyName')[0];
-	          }
-	          //log the error
-	          else {
-	              ep.logger.error("tmpl model wasn't able to fetch valid data for parsing.");
-	          }
-
-	          //return the object
-	          return tmplObj;
-	      }
-	    });
-
-	    /**
-	     * Collection of helper functions to parse the model.
-	     * @type Object collection of modelHelper functions
-	     */
-	    var modelHelpers = ModelHelper.extend({});
-
-	    //return the model
-	    return {
-	      TmplModel: tmplModel
-	    };
-	  }
-	);
-
-**base.profile.views.js**
-
-A view defines the regions where the model's data renders. To understand what regions are, think of the layout of an e-commerce web page. The login, search, title bar, are all examples of regions on the page.
-Each region can be comprised of multiple subregions.
-The data in the view's regions is populated by the module's model.
-
-**NOTE:** A view defines the regions, not the Storefront's look and feel. The Storefront's look and feel is defined in an REACT Reference Storefront [Theme]({{ site.baseurl  }}/documentation/theming/).
-
-A view's regions extend Marionette.Layout.
-<a href="https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.layout.md">Marionette.layout</a> provides a set of functionality to define regions, nest layouts, render layouts, organize UI elements, and configure events for the region.
-
-	define(function (require) {
-	    var Marionette = require('marionette');
-	    var ViewHelpers = require('viewHelpers');
-
-
-	    /**
-	     * Template helper functions
-	     */
-	    var viewHelpers = ViewHelpers.extend({});
-
-	    var defaultLayout = Marionette.Layout.extend({
-	      template:'#[tmpl]MainTemplate',
-	      regions:{
-	        templateRegion:'[data-region="ATemplateExampleRegion"]'
-	      },
-	      className:'container',
-	      templateHelpers:viewHelpers
-	    });
-
-
-	    return {
-	      DefaultLayout: defaultLayout
-	    };
-	  }
-	);
-
-**tmpl.templates.html**
-
-Templates contain the view's regions whose data is populated by the module's model. `<%= E %>` is the model's namespace, where you can access its values and view helpers.
-Namespaces are defined in the module's controller.
-
-	<div id="[tmpl]TemplateContainer">
-
-	  <script type="text/template" id="[tmpl]MainTemplate">
-
-	    <div class="[tmpl]-container" data-region="ATemplateExampleRegion"><%= E.propertyName %></div>
-
-	  </script>
-
-	</div>
-
-Tutorial: Creating a New Module
----------------------
-This tutorial walks you through the process of creating a REACT Reference Storefront module.
-The basics concepts of how a module works are described in the section above, [Module Basics](#module-basics)
-Reference this section when building your modules.
-
-To Create a New Module:
-
-1. Create a new folder for your module in `public/modules`.
-2. Copy `tmpl.controller.js`, `tmpl.models.js`, `tmpl.templates.html`, and `tmpl.views.js` from `public/modules/_templates` and paste them into your new module's folder.
-3. Rename your new module's files to the name of your module.
-4. Define your modules is `public/main.js`, so RequireJS can handle and load your module when required.
-
-	      var dependencies = config.baseDependencyConfig;
-	      var basePaths = config.baseDependencyConfig.paths;
-	      var extensionPaths = {
-	                  'tmpl': 'modules/newModule/tmpl.controller.js',
-	                  'tmpl.models': 'modules/newModule/tmpl.models.js',
-	                  'tmpl.views': 'modules/newModule/tmpl.views.js',
-	      };
-
-5. Add your module to `public/router.js` to let Marionette to route events to it.
-
-	    var router = Marionette.AppRouter.extend({
-	          appRoutes:{
-	            '': 'index',
-	            'home': 'index',
-	            'category' : 'category',
-	            ...
-	            'newModule' : 'newModule'
-
-6. Define the region where your module's view displays in `public/loadRegionContentEvents`.
-
-	     var loadRegionContentEvents = {
-	     ...
-	         tmpl: function() {
-	               EventBus.trigger('layout.loadRegionContentRequest',{
-	                 region:'appMainRegion',
-	                 module:'tmpl',
-	                 view:'DefaultView'
-	               });
-	             },
-
-The REACT Reference Storefront has 3 main regions:
-![regions]({{ site.baseurl  }}/documentation/img/regions.png)
-
-7. Code your module.
-
-Further Reading
----------------------
-Elastic Path uses third party technologies, which are not covered thoroughly in this document.
-The following is a list of documents to further your education on these technologies.
-
-* JSONPath - [http://goessner.net/articles/JsonPath/](http://goessner.net/articles/JsonPath/)
-* Backbone Tutorials - [http://backbonetutorials.com/](http://backbonetutorials.com/)
-* Backbone Documentation - [http://backbonejs.org/](http://backbonejs.org/)
-* Backbone Marionette Documentation - [https://github.com/marionettejs/backbone.marionette](https://github.com/marionettejs/backbone.marionette)
+Elastic Path uses third party technologies, which are not covered thoroughly in this document. Below is a list of documents to further your education on these technologies.
+
+* React - [https://reactjs.org/](https://reactjs.org/)
+* Bootstrap 4 - [https://getbootstrap.com/docs/4.0/getting-started/introduction/](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+* Webpack - [https://webpack.js.org/](https://webpack.js.org/)
+* Babel - [https://babeljs.io/](https://babeljs.io/)
+* Workbox - [https://developers.google.com/web/tools/workbox/](https://developers.google.com/web/tools/workbox/)
+
 
 {% include legal.html %}

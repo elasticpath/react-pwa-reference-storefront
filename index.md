@@ -45,7 +45,7 @@ Storefront's engine controller every time a module is added or changed.
 ####Presentation Layer
 
 HTML5 Storefront has a simple Presentation Layer (html/css), allowing front-end developers to customize the look and feel without having to touch the JS code.
-Front-end developers can create themes to give HTML5 Storefront different look and feels. For more information on creating a theme, see the [Theming Tutorial]({{ site.baseurl }}/documentation/theming/#tutorialTheme).
+Front-end developers can create themes to give HTML5 Storefront different look and feels. For more information on creating a theme, see the [Theming Tutorial]({{ site.baseurl }}/documentation/practices/#tutorialTheme).
 
 
 
