@@ -26,6 +26,8 @@ import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import { login, logout } from '../utils/AuthService';
 
+import './appheaderlogin.main.less';
+
 const Config = require('Config');
 
 class AppHeaderLoginMain extends React.Component {
@@ -56,63 +58,55 @@ class AppHeaderLoginMain extends React.Component {
     const { isMobileView } = this.props;
     if (AppHeaderLoginMain.isLoggedIn()) {
       return (
-        <li data-region="authMenuItemRegion" className="authMenuItemRegion">
-          <div className="auth-container">
-            <div className="auth-container dropdown">
-              <button className="btn btn-secondary dropdown-toggle global-nav-link global-nav-login btn-auth-menu" type="button" id="header_navbar_loggedIn_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {(isMobileView)
-                  ? (
-                    intl.get('account-logged-in')
-                  ) : (
+        <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
+          <div className="auth-container dropdown">
+            <button className="dropdown-toggle btn-auth-menu" type="button" id="header_navbar_loggedIn_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {(isMobileView)
+                ? (
+                  intl.get('account-logged-in')
+                ) : (
+                  <span className="icon" />
+                )}
+            </button>
+            <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
+              <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
+                <li className="dropdown-header">
+                  {localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`)}
+                </li>
+                <li className="dropdown-item">
+                  <Link to="/profile">
+                    <div data-toggle="collapse" data-target=".navbar-collapse">
+                      <span className="profile-link" id="header_navbar_login_menu_profile_link">
+                        {intl.get('profile')}
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+                <li className="dropdown-item">
+                  <button className="btn-cmd btn-auth-logout" id="header_navbar_login_menu_logout_button" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                     <span className="icon" />
-                  )}
-              </button>
-              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
-                <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
-                  <li>
-                    <h6 className="dropdown-header auth-profile-menu-list-header" id="header_navbar_login_menu_username">
-                      {localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`)}
-                    </h6>
-                  </li>
-                  <li className="dropdown-item">
-                    <Link to="/profile">
-                      <div data-toggle="collapse" data-target=".navbar-collapse">
-                        <span className="profile-link" id="header_navbar_login_menu_profile_link">
-                          {intl.get('profile')}
-                        </span>
-                      </div>
-                    </Link>
-                  </li>
-                  <li className="dropdown-item">
-                    <button className="btn-cmd btn-auth-logout" id="header_navbar_login_menu_logout_button" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
-                      <span className="icon" />
-                      {intl.get('logout')}
-                    </button>
-                  </li>
-                </ul>
-              </div>
+                    {intl.get('logout')}
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
-        </li>
+        </div>
       );
     }
 
     return (
-      <li data-region="authMenuItemRegion" className="authMenuItemRegion">
-        <div className="auth-container">
-          <div className="auth-container">
-            <button className="global-nav-link global-nav-login btn-auth-menu" id="header_navbar_login_button" type="button" data-toggle="modal" data-target="#login-modal">
-              {(isMobileView)
-                ? (
-                  intl.get('account-login')
-                ) : (
-                  intl.get('login')
-                )}
-            </button>
-            <div data-region="authMainRegion" className="auth-nav-container" />
-          </div>
-        </div>
-      </li>
+      <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
+        <button className="login-btn" id="header_navbar_login_button" type="button" data-toggle="modal" data-target="#login-modal">
+          {(isMobileView)
+            ? (
+              intl.get('account-login')
+            ) : (
+              intl.get('login')
+            )}
+        </button>
+        <div data-region="authMainRegion" className="auth-nav-container" />
+      </div>
     );
   }
 }

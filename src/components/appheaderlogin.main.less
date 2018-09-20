@@ -1,0 +1,106 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.app-login-component {
+  .login-btn {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .dropdown {
+
+    .btn-auth-menu {
+      font-size: 14px;
+      color: #fff;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:focus {
+        background-color: transparent;
+      }
+
+      .icon {
+        display: inline-block;
+
+        &:before {
+          content: " ";
+          display: inline-block;
+          width: 19px;
+          height: 18px;
+          background: #ffffff00 url(../images/header-icons/account-icon.png) no-repeat 0px center;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      .dropdown-item {
+        .dropdown-header {
+          // text-align: left;
+          border-bottom: 1px solid #eee;
+        }
+      }
+    }
+  }
+
+  &.mobile-view {
+
+    .login-btn {
+      color: @mainColor;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      .btn-auth-menu {
+        display: inline-block;
+        color: @mainColor;
+        font-size: 19px;
+        font-weight: bold;
+      }
+
+      .dropdown-menu {
+        text-align: center;
+        float: none;
+        position: static !important;
+        margin: 0;
+        border: 0;
+        background-color: transparent;
+        transform: none !important;
+        font-size: 17px !important;
+
+        .dropdown-item {
+          .dropdown-header {
+            font-size: 17px !important;
+          }
+        }
+      }
+    }
+  }
+}

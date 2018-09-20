@@ -21,55 +21,47 @@
 
 @import './../style/common.less';
 
-.main-locale-container {
-  position: relative;
-  display: inline-block;
-  max-width: 80px;
+.main-search-container {
+  width: 170px;
+  text-align: right;
 
-  .dropdown-toggle {
-    font-size: 13px;
-    border: 0;
-    background-color: transparent;
+  .input-search {
+    background: #ffffff00 url('../images/header-icons/magnifying-glass.png') no-repeat 9px center;
+    padding: 2px 5px 2px 35px;
+    width: 35px;
+    transition: width 0.5s ease,
+                border-color 0.5s,
+                padding 0.5s ease-in;
     color: #fff;
     cursor: pointer;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    font-weight: 300;
 
     &:focus {
-      box-shadow: none;
-    }
-  }
-
-  .dropdown-menu {
-    .dropdown-item {
-      cursor: pointer;
-    }
-  }
-
-  @media (max-width: @tabletWidth - 1px) {
-    top: 0;
-
-    .locale-dropdown {
-      .dropdown-toggle {
-        background-color: #f7f7f7;
-        color: #040060;
-        font-size: 14px;
-        margin-top: 0px;
-        float: right;
-      }
-
-      .dropdown-menu {
-        position: absolute;
-      }
+      width: 170px;
+      padding-left: 40px;
+      border-bottom: 1px solid #fff;
+      cursor: auto;
     }
   }
 
   &.mobile-view {
-    .dropdown-toggle {
-      font-size: 14px;
-      color: @mainColor;
-      border: 1px solid transparent;
+    width: 100%;
+    border-bottom: 1px solid @mainColor;
+
+    .input-search {
+      width: 100%;
+      transition: none;
+      color: #ccc;
+      font-size: 18px;
+      padding-left: 40px;
+      border-bottom: 0;
+      filter: invert(100%);
 
       &:focus {
-        border: 1px solid @mainColor;
+        border-bottom: 0;
       }
     }
   }

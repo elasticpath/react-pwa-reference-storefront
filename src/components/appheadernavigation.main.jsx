@@ -22,14 +22,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { login, logout } from '../utils/AuthService';
-import AppHeaderSearchMain from './appheadersearch.main';
-import AppHeaderLoginMain from './appheaderlogin.main';
-import AppHeaderLocaleMain from './appheaderlocale.main';
 import cortexFetch from '../utils/Cortex';
+
+import './appheadernavigation.main.less';
 
 const Config = require('Config');
 
@@ -43,6 +41,7 @@ class AppHeaderNavigationMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
     isOfflineCheck: PropTypes.func.isRequired,
+    isMobileView: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -101,72 +100,48 @@ class AppHeaderNavigationMain extends React.Component {
     isOfflineCheck(isOfflineValue);
   }
 
-  renderCategories() {
-    const { navigations } = this.state;
-    return navigations.map((category) => {
-      if (category._child) {
-        return (
-          <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
-            <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {category['display-name']}
-            </a>
-            <div className="dropdown-menu sub-category-dropdown-menu" aria-label="navbarDropdown">
-              {category._child.map(subcategory => (
-                <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`header_navbar_sub_category_button_${subcategory.name}`} data-target=".navbar-collapse" title={subcategory['display-name']}>
-                  <div data-toggle="collapse" data-target=".navbar-collapse">
-                    <span>
-                      {subcategory['display-name']}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </li>
-        );
-      }
-      return (
-        <li key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
-          <Link to={`/category/${encodeURIComponent(category.self.uri)}`} className="nav-item" id={`header_navbar_category_button_${category.name}`} title={category['display-name']}>
-            <div data-toggle="collapse" data-target=".navbar-collapse">
-              <span>
-                {category['display-name']}
-              </span>
-            </div>
-          </Link>
-        </li>
-      );
-    });
-  }
-
   render() {
+    const { navigations } = this.state;
+    const { isMobileView } = this.props;
+
     return (
-      <div className="main-nav-container" id="header_navbar_container" data-region="mainNavRegion" style={{ display: 'block' }}>
-        <div>
-          <AppHeaderSearchMain />
-          <nav className="main-nav">
-            <button className="btn-main-nav-toggle btn-link-cmd" type="button" id="header_navbar_container_categories_button" style={{ display: 'none' }}>
-              {intl.get('categories')}
-            </button>
-            <ul className="main-nav-list nav navbar-nav" data-region="mainNavList">
-              <li key="locale-nav-mobile" className="locale-nav-mobile main-locale-container">
-                <AppHeaderLocaleMain />
-              </li>
-              <li key="shopping-cart-mobile" className="shopping-cart-mobile">
-                <Link to="/mycart" className="nav-item shopping-cart-mobile-link">
-                  <div data-toggle="collapse" data-target=".navbar-collapse">
-                    <span>
-                      {intl.get('shopping-cart')}
-                    </span>
+      <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
+        <ul className="navbar-nav nav mr-auto mt-2 mt-lg-0">
+          {navigations.map(category => (
+            category._child
+              ? (
+                <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
+                  <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {category['display-name']}
+                  </a>
+                  <div className="dropdown-menu sub-category-dropdown-menu" aria-label="navbarDropdown">
+                    {category._child.map(subcategory => (
+                      <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
+                        <div
+                          data-toggle="collapse"
+                          data-target={isMobileView ? '.collapsable-container' : ''}
+                        >
+                          {subcategory['display-name']}
+                        </div>
+                      </Link>
+                    ))}
                   </div>
-                </Link>
-              </li>
-              {this.renderCategories()}
-              <div className="authentication-nav-mobile">
-                <AppHeaderLoginMain isMobileView />
-              </div>
-            </ul>
-          </nav>
-        </div>
+                </li>
+              )
+              : (
+                <li className="nav-item" key={category.name} data-toggle="collapse" data-target=".navbar-collapse">
+                  <Link className="nav-link" to={`/category/${encodeURIComponent(category.self.uri)}`}>
+                    <div
+                      data-toggle="collapse"
+                      data-target={isMobileView ? '.collapsable-container' : ''}
+                    >
+                      {category['display-name']}
+                    </div>
+                  </Link>
+                </li>
+              )
+          ))}
+        </ul>
       </div>
     );
   }

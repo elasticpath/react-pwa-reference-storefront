@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
@@ -36,6 +37,7 @@ class AppModalLoginMain extends React.Component {
 
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    isMobileView: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -88,8 +90,10 @@ class AppModalLoginMain extends React.Component {
 
   render() {
     const { failedLogin, isLoading } = this.state;
+    const { isMobileView } = this.props;
+
     return (
-      <div className="modal" id="login-modal">
+      <div className="modal" id={`login-modal${isMobileView ? '-mobile' : ''}`}>
         <div className="modal-dialog">
           <div className="modal-content" id="simplemodal-container">
 
