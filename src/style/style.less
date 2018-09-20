@@ -22,6 +22,7 @@
 // Remove import of legacy style.css once all the styles have been refactored to individual .less files
 @import './style.css';
 @import './icon-fonts.less';
+@import './common.less';
 
 .container:before,
 .container:after {
@@ -84,7 +85,7 @@ body {
   -o-user-select: none;
   user-select: none;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: @mobileWidth) {
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
@@ -95,8 +96,8 @@ body {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #040060;
-  border-color: #040060;
+  background-color: @mainColor;
+  border-color: @mainColor;
 }
 
 .container {
