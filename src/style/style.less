@@ -24,21 +24,6 @@
 @import './icon-fonts.less';
 @import './common.less';
 
-.container:before,
-.container:after {
-  content: " ";
-  display: table;
-}
-
-.container:after {
-  clear: both;
-}
-
-a {
-  color: #333333;
-  text-decoration: none;
-}
-
 html {
   height: 100%;
   font-family: sans-serif;
@@ -64,130 +49,12 @@ body {
   flex-direction: column;
 }
 
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.table { 
-  thead > tr > th,
-  tbody > tr > th,
-  tfoot > tr > th,
-  thead > tr > td,
-  tbody > tr > td,
-  tfoot > tr > td {
-    padding: 8px;
-    line-height: 1.428571429;
-    vertical-align: top;
-    border-top: 1px solid #dddddd;
-  }
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-  margin: 4px 0 0;
-  margin-top: 1px \9;
-  /* IE8-9 */
-
-  line-height: normal;
-}
-
 .is-hidden {
   display: none;
 }
 
-h1,
-.h1 {
-  font-size: 36px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-h2,
-.h2 {
-  font-size: 30px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-h3,
-.h3 {
-  font-size: 24px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-h4,
-.h4 {
-  font-size: 18px;
-}
-
-h5,
-.h5 {
-  font-size: 14px;
-}
-
-h6,
-.h6 {
-  font-size: 12px;
-}
-
-h1 small,
-.h1 small {
-  font-size: 24px;
-}
-
-h2 small,
-.h2 small {
-  font-size: 18px;
-}
-
-h3 small,
-.h3 small,
-h4 small,
-.h4 small {
-  font-size: 14px;
-}
-
-ul,
-ol {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-label {
-  display: inline-block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
 .app-main {
   padding-bottom: 64px;
-}
-
-.form-control {
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #555555;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1170px;
-  }
 }
 
 // Fix for Bootstrap issue with dropdowns outside of navbars
