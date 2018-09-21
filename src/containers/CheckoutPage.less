@@ -19,7 +19,7 @@
  *
  */
 
- @import './../style/common.less';
+@import './../style/common.less';
  
 .checkout-container {
   position: relative;
@@ -56,21 +56,21 @@
 
     .checkout-sidebar {
       float: left;
-      width: 100%;
+      width: 25%;
       position: relative;
       min-height: 1px;
       padding-left: 15px;
       padding-right: 15px;
 
-      @media (min-width: @tabletWidth) {
+      @media (max-width: @tabletWidth - 1px) {
         float: left;
         width: 33.33333333333333%;
         text-align: right;
       }
 
-      @media (min-width: @desktopWidth) {
+      @media (max-width: @mobileWidth - 1px) {
         float: left;
-        width: 25%;
+        width: 100%;
       }
 
       .checkout-sidebar-inner {
@@ -155,10 +155,6 @@
           display: block;
         }
 
-        @media screen and (min-width: @desktopWidth) {
-          width: 263px;
-        }
-
         @media screen and (max-width: @mobileWidth - 1px) {
           width: 100%;
         }
@@ -172,13 +168,63 @@
 
   .checkout-main-container {
     float: left;
-    width: 100%;
+    width: 75%;
     position: relative;
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 32px;
 
+    @media (max-width: @tabletWidth - 1px) {
+      float: left;
+      width: 66%;
+    }
+
+    @media (max-width: @mobileWidth) {
+      float: left;
+      width: 100%;
+    }
+
+    .checkout-new-address-btn,
+    .checkout-new-payment-btn,
+    {
+      color: #ffffff;
+      background-color: @mainColor;
+      border-color: @mainColor;
+    }
+
+    .checkout-new-address-btn,
+    .checkout-new-payment-btn,
+    .checkout-edit-address-btn,
+    .checkout-delete-address-btn,
+     {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.428571429;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+    
+      @media screen and (max-width: @mobileWidth - 1px) {
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+        margin-top: 8px;
+      }
+    }
+    
     .checkout-new-address-btn,
     .checkout-new-payment-btn {
       float: left;
@@ -227,7 +273,7 @@
       padding-left: 0;
       padding-right: 0;
 
-      @media (min-width: @desktopWidth) {
+      @media (min-width: @tabletWidth) {
         float: left;
         width: 33.33333333333333%;
       }
@@ -259,16 +305,6 @@
           width: 66.66666666666666%;
         }
       }
-    }
-
-    @media (min-width: @tabletWidth) {
-      float: left;
-      width: 66.66666666666666%;
-    }
-
-    @media (min-width: @desktopWidth) {
-      float: left;
-      width: 75%;
     }
 
     .checkout-shipping-container {
