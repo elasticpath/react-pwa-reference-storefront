@@ -483,7 +483,7 @@ h6 {
 .h1 {
   font-size: 36px;
 } */
-h2,
+/* h2,
 .h2 {
   font-size: 30px;
 }
@@ -516,17 +516,17 @@ h3 small,
 h4 small,
 .h4 small {
   font-size: 14px;
-}
+} */
 .page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee;
 }
-ul,
+/* ul,
 ol {
   margin-top: 0;
   margin-bottom: 10px;
-}
+} */
 ul ul,
 ol ul,
 ul ol,
@@ -695,12 +695,12 @@ pre code {
   max-height: 340px;
   overflow-y: scroll;
 }
-.container {
+/* .container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-}
+} */
 .carousel .container {
 
   padding-left: 0px;
@@ -763,7 +763,7 @@ pre code {
 .row:after {
   clear: both;
 }
-.col-xs-1,
+/* .col-xs-1,
 .col-xs-2,
 .col-xs-3,
 .col-xs-4,
@@ -1341,7 +1341,7 @@ pre code {
   .col-lg-offset-11 {
     margin-left: 91.66666666666666%;
   }
-}
+} */
 table {
   max-width: 100%;
   background-color: transparent;
@@ -1578,14 +1578,14 @@ input[type="search"] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-input[type="radio"],
+/* input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   /* IE8-9 */
 
-  line-height: normal;
-}
+  /* line-height: normal;
+} */
 input[type="file"] {
   display: block;
 }
@@ -1867,7 +1867,7 @@ textarea.input-lg {
     text-align: right;
   }
 }
-.checkout-delete-address-btn {
+/* .checkout-delete-address-btn {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -1886,8 +1886,8 @@ textarea.input-lg {
   -o-user-select: none;
   user-select: none;
   background-color: red;
-}
-.btn {
+} */
+/* .btn {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -1905,7 +1905,7 @@ textarea.input-lg {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-}
+} */
 .btn:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
@@ -1970,11 +1970,11 @@ fieldset[disabled] .btn-default.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.btn-primary {
+/* .btn-primary {
   color: #ffffff;
   background-color: #040060;
   border-color: #040060;
-}
+} */
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -6682,7 +6682,7 @@ nav.main-nav {
   box-shadow: none;
   border-bottom: none;
 }
-.cart-applied-promotions {
+.cart-applied-promotions-OLD {
   display: inline-block;
   margin-bottom: 5px;
 }
@@ -7245,7 +7245,7 @@ Purchase Information
  * Storefront Checkout styles
  */
 .order-main-container,
-.checkout-main-container {
+.checkout-main-container-OLD{
   float: left;
   width: 100%;
   position: relative;
@@ -7256,24 +7256,24 @@ Purchase Information
 }
 @media (min-width: 992px) {
   .order-main-container,
-  .checkout-main-container {
+  .checkout-main-container-OLD{
     float: left;
     width: 66.66666666666666%;
   }
 }
 @media (min-width: 1200px) {
   .order-main-container,
-  .checkout-main-container {
+  .checkout-main-container-OLD{
     float: left;
     width: 75%;
   }
 }
 .order-container,
-.checkout-container {
+.checkout-container-OLD {
   position: relative;
 }
 .order-container-inner,
-.checkout-container-inner {
+.checkout-container-inner-OLD {
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -7309,11 +7309,11 @@ Purchase Information
 }
 @media screen and (max-width: 768px) {
   .order-container-inner,
-  .checkout-container-inner {
+  .checkout-container-inner-OLD {
     font-size: 1.6rem;
   }
 }
-.checkout-sidebar {
+/* .checkout-sidebar {
   float: left;
   width: 100%;
   position: relative;
@@ -7337,8 +7337,8 @@ Purchase Information
   .checkout-sidebar {
     text-align: right;
   }
-}
-.checkout-sidebar .checkout-sidebar-inner {
+} */
+/* .checkout-sidebar .checkout-sidebar-inner {
   display: inline-block;
   padding: 2rem;
   border: 3px solid #040060;
@@ -7366,9 +7366,9 @@ Purchase Information
 }
 .checkout-sidebar .checkout-sidebar-inner h3 {
   margin: 0 0 2rem 0;
-}
+} */
 .order-title-container h1,
-.checkout-title-container h1 {
+.checkout-title-container-OLD h1 {
   position: relative;
   float: left;
   width: 100%;
@@ -7385,11 +7385,11 @@ Purchase Information
 .submit-order-container {
   margin-top: 2rem;
 }
-.checkout-tax-list {
+.checkout-tax-list-old {
   padding-left: 1rem;
   margin-bottom: 1rem;
 }
-.cart-summary-list,
+.cart-summary-list-OLD,
 .checkout-summary-list {
   padding: 0;
 }
@@ -7397,7 +7397,7 @@ Purchase Information
   display: inline-block;
   margin-bottom: 5px;
 }
-.btn-cmd-submit-order {
+/* .btn-cmd-submit-order {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -7484,19 +7484,19 @@ fieldset[disabled] .btn-cmd-submit-order.active {
 }
 .checkout-subtotal {
   margin-bottom: 1.5rem;
-}
-.checkout-address-radio,
+} */
+/* .checkout-address-radio,
 .shipping-option-radio,
 .payment-option-radio {
   vertical-align: top;
   margin-right: 1rem;
-}
-.checkout-new-address-btn,
+} */
+/* .checkout-new-address-btn,
 .checkout-new-payment-btn {
   float: left !important;
   clear: both;
-}
-.address-ctrl-cell {
+} */
+/* .address-ctrl-cell {
   float: left;
   width: 100%;
   position: relative;
@@ -7513,10 +7513,10 @@ fieldset[disabled] .btn-cmd-submit-order.active {
 .address-ctrl-cell:before,
 .address-ctrl-cell:after {
   content: " ";
-  /* 1 */
+  
 
   display: table;
-  /* 2 */
+  
 
 }
 .address-ctrl-cell:after {
@@ -7525,10 +7525,10 @@ fieldset[disabled] .btn-cmd-submit-order.active {
 .address-ctrl-cell:before,
 .address-ctrl-cell:after {
   content: " ";
-  /* 1 */
+  
 
   display: table;
-  /* 2 */
+  
 
 }
 .address-ctrl-cell:after {
@@ -7536,8 +7536,8 @@ fieldset[disabled] .btn-cmd-submit-order.active {
 }
 .address-ctrl-cell label {
   width: 90%;
-}
-.address-btn-cell {
+} */
+/* .address-btn-cell {
   float: left;
   width: 100%;
   position: relative;
@@ -7550,8 +7550,8 @@ fieldset[disabled] .btn-cmd-submit-order.active {
     float: left;
     width: 33.33333333333333%;
   }
-}
-[data-region="billingAddressesRegion"],
+} */
+/* [data-region="billingAddressesRegion"],
 [data-region="paymentMethodsRegion"] {
   margin-bottom: 3rem;
   position: relative;
@@ -7571,34 +7571,34 @@ fieldset[disabled] .btn-cmd-submit-order.active {
 [data-region="billingAddressesRegion"] h2,
 [data-region="paymentMethodsRegion"] h2 {
   margin-top: 0;
-}
-.checkout-shipping-container {
+} */
+/*.checkout-shipping-container {
   margin-left: -15px;
   margin-right: -15px;
   clear: both;
-}
-.checkout-shipping-container:before,
+}*/
+/* .checkout-shipping-container:before,
 .checkout-shipping-container:after {
   content: " ";
-  /* 1 */
+ 
 
   display: table;
-  /* 2 */
+  
 
-}
-.checkout-shipping-container:after {
+}*/
+/* .checkout-shipping-container:after {
   clear: both;
 }
 .checkout-shipping-container:before,
 .checkout-shipping-container:after {
   content: " ";
-  /* 1 */
+  
 
   display: table;
-  /* 2 */
+  
 
-}
-.checkout-shipping-container:after {
+}  */
+/* .checkout-shipping-container:after {
   clear: both;
 }
 .checkout-shipping-container [data-region="shippingAddressesRegion"] {
@@ -7616,8 +7616,8 @@ fieldset[disabled] .btn-cmd-submit-order.active {
     float: left;
     width: 58.333333333333336%;
   }
-}
-.checkout-shipping-container [data-region="shippingOptionsRegion"] {
+} */
+/* .checkout-shipping-container [data-region="shippingOptionsRegion"] {
   float: left;
   width: 100%;
   position: relative;
@@ -7639,7 +7639,7 @@ fieldset[disabled] .btn-cmd-submit-order.active {
 }
 .checkout-shipping-container [data-region="shippingOptionsRegion"] span {
   display: block;
-}
+} */
 .payment-ctrl-cell {
   float: left;
   width: 58.333333333333336%;
@@ -7696,16 +7696,16 @@ fieldset[disabled] .btn-cmd-submit-order.active {
     width: 33.33333333333333%;
   }
 }
-[data-region="billingAddressesRegion"],
+/* [data-region="billingAddressesRegion"],
 [data-region="shippingAddressesRegion"],
 [data-region="shippingOptionsRegion"],
 [data-region="paymentMethodSelectorsRegion"] {
   position: relative;
-}
-.checkout-region-inner-container {
+} */
+/* .checkout-region-inner-container {
   float: left;
   width: 100%;
-}
+} */
 /*
  * Copyright © 2014 Elastic Path Software Inc. All rights reserved.
  *
@@ -9034,11 +9034,11 @@ fieldset[disabled] .search-results-item-inner .btn-addtocart.active {
     width: 50%;
   }
 }
-.profile-delete-payment-btn {
+/* .profile-delete-payment-btn {
   margin-top: .75rem;
   margin-bottom: 1rem;
-}
-@media screen and (max-width: 768px) {
+} */
+/* @media screen and (max-width: 768px) {
   .btn {
     padding: 5px 10px;
     font-size: 12px;
@@ -9046,14 +9046,14 @@ fieldset[disabled] .search-results-item-inner .btn-addtocart.active {
     border-radius: 3px;
     margin-top: 8px;
   }
-}
-.btn,
+} */
+/* .btn,
 .btn-lg {
   border-radius: 2px;
   -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
   margin-bottom: 2px;
-}
+} */
 .btn.btn-link {
   border-radius: 0;
   -webkit-box-shadow: none;

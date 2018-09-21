@@ -1,0 +1,389 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+ 
+.checkout-container {
+  position: relative;
+  
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    /* IE8-9 */
+
+    line-height: normal;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .checkout-container-inner {
+    margin-left: -15px;
+    margin-right: -15px;
+
+    .view-title {
+      color: #000000;
+      text-transform: capitalize;
+
+      @media screen and (max-width: @mobileWidth - 1px) {
+        text-align: center;
+      }
+    }
+
+    .checkout-title-container {
+      h1 {
+        position: relative;
+        float: left;
+        width: 100%;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 64px;
+        margin-bottom: 64px;
+      }
+    }
+
+    @media screen and (max-width: @mobileWidth - 1px) {
+      font-size: 16px;
+    }
+
+    .checkout-sidebar {
+      float: left;
+      width: 25%;
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      @media (max-width: @tabletWidth - 1px) {
+        float: left;
+        width: 33.33333333333333%;
+        text-align: right;
+      }
+
+      @media (max-width: @mobileWidth - 1px) {
+        float: left;
+        width: 100%;
+      }
+
+      .checkout-sidebar-inner {
+        display: inline-block;
+        padding: 32px;
+        border: 3px solid @mainColor;
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 0.6);
+        text-align: left;
+        position: relative;
+
+        .btn-cmd-submit-order {
+          display: inline-block;
+          padding: 8px 14px;
+          margin-bottom: 0;
+          font-size: 14px;
+          text-align: center;
+          vertical-align: middle;
+          cursor: pointer;
+          border-radius: 4px;
+          white-space: nowrap;
+          user-select: none;
+          border-radius: 2px;
+          margin-bottom: 2px;
+          color: #ffffff;
+          background-color: @mainColor;
+
+          &:focus {
+            outline: thin dotted #333;
+            outline: 5px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+          }
+
+          &:hover,
+          &:focus {
+            color: #333333;
+            text-decoration: none;
+          }
+
+          &:active,
+          &.active {
+            outline: 0;
+            background-image: none;
+            -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+          }
+
+          &.disabled,
+          &[disabled],
+          fieldset[disabled] & {
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.65;
+            filter: alpha(opacity=65);
+            -webkit-box-shadow: none;
+            box-shadow: none;
+          }
+
+          &:hover,
+          &:focus,
+          &:active,
+          &.active,
+          .open .dropdown-toggle& {
+            color: #ffffff;
+            background-color: @mainColor;
+            border-color: @mainColor;
+          }
+
+          &[disabled] {
+            background-color: @mainColor;
+            border-color: @mainColor;
+          }
+        }
+
+        .checkout-subtotal {
+          margin-bottom: 24px;
+        }
+
+        @media screen and (min-width: @tabletWidth) {
+          width: 293px;
+          position: relative;
+          display: block;
+        }
+
+        @media screen and (max-width: @mobileWidth - 1px) {
+          width: 100%;
+        }
+
+        h3 {
+          margin: 0 0 32px 0;
+        }
+      }
+    }
+  }
+
+  .checkout-main-container {
+    float: left;
+    width: 75%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 32px;
+
+    @media (max-width: @tabletWidth - 1px) {
+      float: left;
+      width: 66%;
+    }
+
+    @media (max-width: @mobileWidth) {
+      float: left;
+      width: 100%;
+    }
+
+    .checkout-new-address-btn,
+    .checkout-new-payment-btn,
+    {
+      color: #ffffff;
+      background-color: @mainColor;
+      border-color: @mainColor;
+    }
+
+    .checkout-new-address-btn,
+    .checkout-new-payment-btn,
+    .checkout-edit-address-btn,
+    .checkout-delete-address-btn,
+     {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.428571429;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+    
+      @media screen and (max-width: @mobileWidth - 1px) {
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+        margin-top: 8px;
+      }
+    }
+    
+    .checkout-new-address-btn,
+    .checkout-new-payment-btn {
+      float: left;
+      clear: both;
+    }
+
+    .checkout-address-radio,
+    .shipping-option-radio,
+    .payment-option-radio {
+      vertical-align: top;
+      margin-right: 16px;
+    }
+
+    [data-region="billingAddressesRegion"],
+    [data-region="shippingAddressesRegion"],
+    [data-region="shippingOptionsRegion"],
+    [data-region="paymentMethodSelectorsRegion"] {
+      position: relative;
+    }
+
+    [data-region="billingAddressesRegion"],
+    [data-region="paymentMethodsRegion"] {
+      margin-bottom: 48px;
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-left: 0;
+      padding-right: 0;
+
+      h2 {
+        margin-top: 0;
+      }
+
+      @media (min-width: @tabletWidth) {
+        float: left;
+        width: 58.333333333333336%;
+      }
+    }
+    
+    .address-btn-cell {
+      float: left;
+      width: 100%;
+      position: relative;
+      min-height: 1px;
+      padding-left: 0;
+      padding-right: 0;
+
+      @media (min-width: @tabletWidth) {
+        float: left;
+        width: 33.33333333333333%;
+      }
+
+      .checkout-delete-address-btn {
+        border: 1px solid transparent;
+        background-color: red;
+      }
+    }
+
+    .checkout-region-inner-container {
+      float: left;
+      width: 100%;
+
+      .address-ctrl-cell {
+        float: left;
+        width: 100%;
+        position: relative;
+        min-height: 1px;
+        padding-left: 0;
+        padding-right: 0;
+
+        label {
+          width: 90%;
+        }
+
+        @media (min-width: @tabletWidth) {
+          float: left;
+          width: 66.66666666666666%;
+        }
+      }
+    }
+
+    .checkout-shipping-container {
+      margin-left: -15px;
+      margin-right: -15px;
+      clear: both;
+
+      &:after {
+        clear: both;
+      }
+      &:before,
+      &:after {
+        content: " ";    
+        display: table;
+      } 
+
+      [data-region="shippingAddressesRegion"] {
+        margin-bottom: 48px;
+      }
+
+      [data-region="shippingAddressesRegion"] {
+        position: relative;
+        min-height: 1px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-left: 15px;
+
+        @media (min-width: @tabletWidth) {
+          float: left;
+          width: 58.333333333333336%;
+        }
+      }
+
+      [data-region="shippingOptionsRegion"] {
+        float: left;
+        width: 100%;
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        @media (min-width: @tabletWidth) {
+          float: left;
+          width: 41.66666666666667%;
+          padding-left: 30px;
+          padding-right: 0;
+        }
+
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+}
