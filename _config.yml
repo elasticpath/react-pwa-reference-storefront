@@ -1,4 +1,6 @@
 baseurl: /react-pwa-reference-storefront
 exclude: [node_modules, non-distributable]
 relative_permalinks: false
-repository: https://github.com/elasticpath/react-pwa-reference-storefront
+github:
+  url: https://github.com/
+repository: elasticpath/react-pwa-reference-storefront
