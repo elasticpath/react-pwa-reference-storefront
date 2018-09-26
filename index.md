@@ -6,30 +6,31 @@ weight: 1
 ---
 
 The REACT PWA Reference Storefront is a flexible e-commerce website backed by Elastic Path’s Cortex API.
-It is comprised of the latest technologies, is designed for extensibility.
+It is comprised of the latest technologies, and is designed for extensibility.
 
 E-commerce functionality (cart, authentication, profile, search, etc.) is separated from the website’s
 presentation, allowing
 front-end developers to work on the CSS without having to touch the JavaScript, while JavaScript developers
 can develop
 functionality without having to touch the front end. Each customization layer is separated from the core
-code, so
-neither developer has to touch the Storefront’s engine.
+code into it's own layer, so
+neither developer has to touch the Storefront’s utility engine.
+<br/><br/>
 
 What is the Cortex API?
 -------------------
 Cortex API is Elastic Path's powerful [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) e-commerce API.
-The API can surface up data from any e-commerce backend system in a RESTful manner.
+The API can surface up data from Elastic Path's backend system in a RESTful manner.
 
 To learn more about Cortex API, see our [Developer Portal](http://touchpoint-developers.elasticpath.com/).
 
 ![Cortex]({{ site.baseurl }}/documentation/img/cortex-page-diagram.png)
-
+<br/><br/>
 
 REACT Reference Storefront Features
 ---------------------
 ![Feature Guide]({{ site.baseurl }}/documentation/img/featureSupport.png)
-
+<br/><br/>
 
 About the Documentation
 ---------------------
@@ -41,6 +42,7 @@ for knowledgeable front-end developers. This document is not a primer for JavaSc
 * jQuery.js
 * Bootstrap.js
 * CSS/{less}
+<br/><br/>
 
 Audience
 ---------------------

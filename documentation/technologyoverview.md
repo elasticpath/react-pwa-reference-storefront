@@ -10,9 +10,11 @@ The REACT Reference Storefront technologies were chosen for their robustness, po
 The idea is that your JavaScript developers and front-end developers already know these technologies, so they can start extending and customizing your storefront quickly.
 
 The Reference Storefront can be loaded by various clients - Tablet, Mobile, Desktop/Laptops. The design is for an open source Mobile PWA capable of local browser storage page caching, and persistent session management. The PWA is built using React.js, Bootstrap4, and Babel. Webpack and node.js will aid to serve up the application by means of a configurable web server.
+<br/>
 
 ## Platform Architecture
 Image TBA
+<br/>
 
 #### Presentation Layer
 * Includes UI management capabilities using a modern UI framework
@@ -46,7 +48,7 @@ Image TBA
 #### API Layer
 * Cortex API
 * The services being interacted with by the PWA
-
+<br/><br/>
 
 Technology Stack
 ---------------------
@@ -95,6 +97,7 @@ Technology Stack
 </tr>
 </tbody>
 </table>
+<br/>
 
 Testing Frameworks
 ---------------------
@@ -118,11 +121,12 @@ Testing Frameworks
 </tr>
 </tbody>
 </table>
+<br/>
 
 REACT Reference Storefront Code Structure
 ---------------------
-Image TBA
-
+![Cortex]({{ site.baseurl }}/documentation/img/directory_structure.png)
+<br/><br/>
 
 Platform Support
 ---------------------
