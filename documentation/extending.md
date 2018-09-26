@@ -25,6 +25,7 @@ Each theme is a set of individual `{less}` files, which, on demand, are compiled
 For example, `CartPage.less` contains the CSS for the cart’s container page, `cart.main.less` contains the CSS for the cart pages main component, and so on.
 
 By modifying the `{less}` files you can change the Storefront’s look and feel and create your own themes.
+<br/><br/>
 
 ## Tutorial: Creating a New Container (Page)
 This tutorial walks you through the process of creating a Reference Storefront Page in REACT.
@@ -43,6 +44,7 @@ To Create a New Container:
 	* Update the export of your page to export the desired name of your page
 	* Proceed with adding any other components or desired content for your newly created page
 8. Add any custom CSS to style your component in `src/containers/MyPage.less`
+<br/><br/>
 
 ## Tutorial: Creating a New Component
 This tutorial walks you through the process of creating a Reference Storefront component in REACT.
@@ -59,6 +61,7 @@ To Create a New Component:
 	* Proceed with adding any other components or desired content for your newly created component
 	* Proceed with importing your component to other components/pages as needed
 7. Add any custom CSS to style your component in `src/components/mycomponent.main.less`
+<br/><br/>
 
 ## Further Reading
 
