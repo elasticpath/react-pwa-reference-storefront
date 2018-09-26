@@ -125,7 +125,7 @@ Testing Frameworks
 
 REACT Reference Storefront Code Structure
 ---------------------
-![Cortex]({{ site.baseurl }}/documentation/img/directory_structure.png)
+![Directory Structure]({{ site.baseurl }}/documentation/img/directory_structure.png)
 <br/><br/>
 
 Platform Support
