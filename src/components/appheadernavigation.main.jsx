@@ -129,7 +129,7 @@ class AppHeaderNavigationMain extends React.Component {
                 </li>
               )
               : (
-                <li className="nav-item" key={category.name} data-toggle="collapse" data-target=".navbar-collapse">
+                <li className="nav-item" key={category.name} data-name={category['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
                   <Link className="nav-link" to={`/category/${encodeURIComponent(category.self.uri)}`}>
                     <div
                       data-toggle="collapse"

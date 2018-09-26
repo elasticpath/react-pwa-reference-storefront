@@ -74,16 +74,16 @@ class AppHeaderLoginMain extends React.Component {
                   {localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`)}
                 </li>
                 <li className="dropdown-item">
-                  <Link to="/profile">
+                  <Link to="/profile" className="profile-link">
                     <div data-toggle="collapse" data-target=".navbar-collapse">
-                      <span className="profile-link" id="header_navbar_login_menu_profile_link">
+                      <span id="header_navbar_login_menu_profile_link">
                         {intl.get('profile')}
                       </span>
                     </div>
                   </Link>
                 </li>
                 <li className="dropdown-item">
-                  <button className="btn-cmd btn-auth-logout" id="header_navbar_login_menu_logout_button" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
+                  <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                     <span className="icon" />
                     {intl.get('logout')}
                   </button>

@@ -29,19 +29,18 @@ import org.openqa.selenium.Keys;
 
 public class HeaderPage extends AbstractPageObject {
 
-	@FindBy(id = "header_navbar_container")
+	@FindBy(css = ".app-header")
 	private WebElement navigationBar;
 
 	private final WebDriver driver;
-	private final static String CART_LINK_CSS = "#header_navbar_cart_button";
-	private final static String PARENT_CATEGORY_CSS = "li[data-name='%1s']";
+	private final static String CART_LINK_CSS = ".cart-link";
+	private final static String PARENT_CATEGORY_CSS = ".app-header-navigation-component li[data-name='%1s']";
 	private final static String SUB_CATEGORY_CSS = PARENT_CATEGORY_CSS + " > div[aria-label='navbarDropdown'] > a[title='%2s']";
-	private final static String SEARCH_INPUT_CSS = ".global-nav-container .header_navbar_search_container_input";
-	private final static String SEARCH_BUTTON_CSS = "#header_navbar_search_container_button";
-	private final static String LOGIN_BUTTON_CSS = "#header_navbar_container_buttons .auth-container .global-nav-login";
-	private final static String LOGGEDIN_BUTTON_CSS = "#header_navbar_container_buttons .auth-container .global-nav-login";
-	private final static String PROFILE_CSS = "#header_navbar_container_buttons span[id='header_navbar_login_menu_profile_link']";
-	private final static String LOGOUT_CSS = "#header_navbar_container_buttons .btn-auth-logout";
+	private final static String SEARCH_INPUT_CSS = "input.input-search";
+	private final static String LOGIN_BUTTON_CSS = ".app-login-component .login-btn";
+	private final static String LOGGEDIN_BUTTON_CSS = ".app-login-component .btn-auth-menu";
+	private final static String PROFILE_CSS = ".app-login-component .profile-link";
+	private final static String LOGOUT_CSS = ".app-login-component .logout-link";
 
 	/**
 	 * Constructor.
