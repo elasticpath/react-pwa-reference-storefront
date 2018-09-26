@@ -34,13 +34,13 @@ import './App.less';
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
 const Root = () => [
-  <AppHeaderMain />,
-  <div className="app-content">
+  <AppHeaderMain key="AppHeaderMain" />,
+  <div key="app-content" className="app-content">
     <Switch>
       {routeComponents}
     </Switch>
   </div>,
-  <AppFooterMain />,
+  <AppFooterMain key="AppFooterMain" />,
 ];
 
 const App = withRouter(withAnalytics(Root));
