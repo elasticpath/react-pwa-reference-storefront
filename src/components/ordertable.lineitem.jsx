@@ -23,6 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import imgPlaceholder from '../images/img-placeholder.png';
+import './ordertable.lineitem.less';
 
 const Config = require('Config');
 
@@ -55,28 +56,28 @@ const OrderTableLineItem = (props) => {
   };
 
   return (
-    <tr>
-      <td className="order-lineitem-thumbnail-col">
-        <img className="order-lineitem-thumbnail" src={Config.skuImagesUrl.replace('%sku%', code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" />
+    <tr className="order-lineitem-row">
+      <td className="thumbnail-col">
+        <img className="thumbnail" src={Config.skuImagesUrl.replace('%sku%', code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" />
       </td>
-      <td className="order-lineitem-title-col">
+      <td className="title-col">
         <Link to={`/itemdetails/${encodeURIComponent(uri)}`}>
           {displayName}
         </Link>
       </td>
-      <td className="order-lineitem-options-col" style={{ display: 'table-cell' }}>
-        <ul className="order-lineitem-options-container">
+      <td className="options-col" style={{ display: 'table-cell' }}>
+        <ul className="options-container">
           {renderOptions()}
         </ul>
       </td>
-      <td className="order-lineitem-quantity-col">
-        <span className="order-lineitem-quantity-val">
+      <td className="quantity-col">
+        <span className="quantity-val">
           {quantity}
         </span>
       </td>
-      <td className="order-lineitem-total-price-col" style={{ display: 'table-cell' }}>
+      <td className="total-price-col" style={{ display: 'table-cell' }}>
         <div style={{ display: 'block' }}>
-          <span className="order-total-purchase-price">
+          <span className="purchase-price">
             {totalPrice}
           </span>
         </div>

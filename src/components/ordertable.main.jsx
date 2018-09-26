@@ -23,29 +23,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import OrderTableLineItem from './ordertable.lineitem';
+import './ordertable.main.less';
 
 const OrderTableMain = (props) => {
   const { data } = props;
   return (
     <div className="order-main-inner table-responsive">
-      <table className="table">
-        <thead className="order-lineitem-table-headings">
+      <table className="table order-table">
+        <thead className="table-headings">
           <tr>
-            <th className="order-heading-product">
+            <th className="heading-product">
               <span className="lineitem-asset-col">
                 {intl.get('product')}
               </span>
             </th>
-            <th className="order-heading-name">
+            <th className="heading-name">
               {intl.get('name')}
             </th>
-            <th className="order-heading-options">
+            <th className="heading-options">
               {intl.get('options')}
             </th>
-            <th className="order-heading-quantity">
+            <th className="heading-quantity">
               {intl.get('quantity')}
             </th>
-            <th className="order-heading-item-total">
+            <th className="item-total">
               {intl.get('total-price')}
             </th>
           </tr>

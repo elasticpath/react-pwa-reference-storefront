@@ -32,6 +32,7 @@ import AddressContainer from '../components/address.container';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import OrderTableMain from '../components/ordertable.main';
 import cortexFetch from '../utils/Cortex';
+import './OrderReviewPage.less';
 
 const Config = require('Config');
 
