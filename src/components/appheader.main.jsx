@@ -56,7 +56,7 @@ class AppHeaderMain extends React.Component {
   render() {
     const { isOffline } = this.state;
     return [
-      <header className="app-header">
+      <header key="app-header" className="app-header">
 
         <div className="main-container">
 
@@ -84,11 +84,11 @@ class AppHeaderMain extends React.Component {
           </div>
 
           <div className="search-container">
-            <AppHeaderSearchMain />
+            <AppHeaderSearchMain isMobileView={false} />
           </div>
 
           <div className="login-container">
-            <AppHeaderLoginMain />
+            <AppHeaderLoginMain isMobileView={false} />
           </div>
 
           <div className="cart-link-container">
@@ -96,7 +96,7 @@ class AppHeaderMain extends React.Component {
           </div>
 
           <div className="locale-container">
-            <AppHeaderLocaleMain />
+            <AppHeaderLocaleMain isMobileView={false} />
           </div>
 
           <div className="toggle-btn-container">
@@ -142,7 +142,7 @@ class AppHeaderMain extends React.Component {
           </div>
         ) : ''}
       </header>,
-      <AppModalLoginMain />,
+      <AppModalLoginMain key="app-modal-login-main" />,
     ];
   }
 }
