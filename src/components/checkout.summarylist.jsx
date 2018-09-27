@@ -75,7 +75,7 @@ class CheckoutSummaryList extends React.Component {
         <li className="checkout-shipping">
           <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
             <div className="checkout-shipping-total">
-              <label htmlFor="checkout-shipping-total">
+              <label className="cart-summary-label-col" htmlFor="checkout-shipping-total">
                 {intl.get('todays-shipping-cost')}
                 :&nbsp;
               </label>
@@ -97,7 +97,7 @@ class CheckoutSummaryList extends React.Component {
         <li className="checkout-tax">
           <div data-region="checkoutTaxTotalRegion" style={{ display: 'block' }}>
             <div className="checkout-tax-total">
-              <label htmlFor="checkout-tax-total">
+              <label className="cart-summary-label-col" htmlFor="checkout-tax-total">
                 {intl.get('todays-taxes')}
                 :&nbsp;
               </label>
@@ -110,7 +110,7 @@ class CheckoutSummaryList extends React.Component {
             <ul className="checkout-tax-list">
               {data._order[0]._tax[0].cost.map(tax => (
                 <li className="checkout-tax" key={tax.title}>
-                  <label htmlFor="checkout-tax">
+                  <label className="cart-summary-label-col" htmlFor="checkout-tax">
                     {tax.title}
                     :&nbsp;
                   </label>
@@ -132,7 +132,7 @@ class CheckoutSummaryList extends React.Component {
     if (data._order) {
       return (
         <li className="checkout-total">
-          <label htmlFor="checkout-total">
+          <label className="cart-summary-label-col" htmlFor="checkout-total">
             {intl.get('todays-total')}
             :&nbsp;
           </label>

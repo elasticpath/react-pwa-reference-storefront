@@ -20,11 +20,11 @@
  */
 
 @import './../style/common.less';
- 
+
 .checkout-container {
   position: relative;
-  
-  label {
+
+  .cart-summary-label-col {
     display: inline-block;
     margin-bottom: 5px;
     font-weight: bold;
@@ -242,7 +242,7 @@
       -ms-user-select: none;
       -o-user-select: none;
       user-select: none;
-    
+
       @media screen and (max-width: @mobileWidth - 1px) {
         padding: 5px 10px;
         font-size: 12px;
@@ -251,7 +251,7 @@
         margin-top: 8px;
       }
     }
-    
+
     .checkout-new-address-btn,
     .checkout-new-payment-btn {
       float: left;
@@ -291,7 +291,7 @@
         width: 58.333333333333336%;
       }
     }
-    
+
     .address-btn-cell {
       float: left;
       width: 100%;
@@ -344,9 +344,9 @@
       }
       &:before,
       &:after {
-        content: " ";    
+        content: " ";
         display: table;
-      } 
+      }
 
       [data-region="shippingAddressesRegion"] {
         margin-bottom: 48px;
