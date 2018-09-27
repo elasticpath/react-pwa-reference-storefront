@@ -24,12 +24,14 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
 
+import './PurchaseReceiptPage.less';
+
 const PurchaseReceiptPage = (props) => {
   const { location } = props;
   return (
     <div>
       <div className="app-main" style={{ display: 'block' }}>
-        <div className="container">
+        <div className="container purchase-receipt-container">
           <h2>
             {intl.get('order-processed-message')}
           </h2>

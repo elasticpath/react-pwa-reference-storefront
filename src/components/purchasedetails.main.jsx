@@ -25,6 +25,7 @@ import intl from 'react-intl-universal';
 import PaymentMethodContainer from './paymentmethod.container';
 import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
+import './purchasedetails.main.less';
 
 const PurchaseDetailsMain = (props) => {
   const { data } = props;

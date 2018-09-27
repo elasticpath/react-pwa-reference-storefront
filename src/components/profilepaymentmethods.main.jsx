@@ -26,6 +26,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
+import './profilepaymentmethods.main.less';
 
 const Config = require('Config');
 
@@ -97,13 +98,13 @@ class ProfilePaymentMethodsMain extends React.Component {
     } = this.props;
     if (paymentMethods) {
       return (
-        <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
+        <div className="paymentMethodsRegions" data-region="paymentMethodsRegion" style={{ display: 'block' }}>
           <div>
             <h2>
               {intl.get('payment-methods')}
             </h2>
             {this.renderPaymentMethods()}
-            <button className="btn btn-primary profile-new-address-btn" type="button" onClick={() => { this.newPayment(); }}>
+            <button className="btn btn-primary new-payment-btn" type="button" onClick={() => { this.newPayment(); }}>
               {intl.get('add-new-payment-method')}
             </button>
           </div>

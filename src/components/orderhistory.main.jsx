@@ -23,6 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import OrderLine from './orderline.main';
+import './orderhistory.main.less';
 
 class OrderHistoryMain extends React.Component {
   static propTypes = {
@@ -43,7 +44,7 @@ class OrderHistoryMain extends React.Component {
     } = this.state;
     if (purchases.links && purchases.links.length > 0) {
       return (
-        <div data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
+        <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
           <div className="table-responsive">
             <h2>
               {intl.get('purchase-history')}
@@ -76,11 +77,11 @@ class OrderHistoryMain extends React.Component {
       );
     }
     return (
-      <div data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
+      <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
         <div className="table-responsive">
-          <h2>
+          <h3>
             {intl.get('purchase-history')}
-          </h2>
+          </h3>
           <div>
             <p>
               {intl.get('no-previous-purchase-message')}

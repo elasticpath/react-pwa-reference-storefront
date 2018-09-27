@@ -24,6 +24,7 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
+import './profileInfo.main.less';
 
 const Config = require('Config');
 
@@ -130,7 +131,7 @@ class ProfileInfoMain extends React.Component {
     } = this.props;
     if (inEditMode) {
       return (
-        <div data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
+        <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <div>
             <h2>
               {intl.get('personal-information')}
@@ -184,24 +185,24 @@ class ProfileInfoMain extends React.Component {
     }
     if (profileInfo.links.length > 0) {
       return (
-        <div data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
+        <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <div>
             <h2>
               {intl.get('personal-information')}
             </h2>
-            <dl className="profile-personal-info-container container">
-              <dt className="profile-personal-info-label" data-el-label="profile.firstName">
+            <dl className="personal-info-container container">
+              <dt className="info-label" data-el-label="profile.firstName">
                 {intl.get('first-name')}
                 :
               </dt>
-              <dd className="profile-personal-info-value" id="profile_personal_info_givenName" data-el-value="givenName">
+              <dd className="info-value" id="profile_personal_info_givenName" data-el-value="givenName">
                 {profileInfo['given-name']}
               </dd>
-              <dt className="profile-personal-info-label" data-el-label="profile.lastName">
+              <dt className="info-label" data-el-label="profile.lastName">
                 {intl.get('last-name')}
                 :
               </dt>
-              <dd className="profile-personal-info-value" id="profile_personal_info_familyName" data-el-value="familyName">
+              <dd className="info-value" id="profile_personal_info_familyName" data-el-value="familyName">
                 {profileInfo['family-name']}
               </dd>
             </dl>
