@@ -20,13 +20,16 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-
 import { withRouter } from 'react-router';
+
+import './appheadersearch.main.less';
 
 class AppHeaderSearchMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    isMobileView: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -52,12 +55,12 @@ class AppHeaderSearchMain extends React.Component {
   }
 
   render() {
+    const { isMobileView } = this.props;
+
     return (
-      <div className="main-search-container">
-        <form className="navbar-form header_navbar_search_container_form" onSubmit={this.search}>
-          <div className="form-group">
-            <input className="input-search header-search-input header_navbar_search_container_input" type="search" onChange={this.handleChange} />
-          </div>
+      <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
+        <form className="search-form" onSubmit={this.search}>
+          <input className="input-search" type="search" onChange={this.handleChange} />
         </form>
       </div>
     );

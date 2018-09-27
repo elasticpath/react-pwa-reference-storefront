@@ -88,6 +88,7 @@ class AppModalLoginMain extends React.Component {
 
   render() {
     const { failedLogin, isLoading } = this.state;
+
     return (
       <div className="modal" id="login-modal">
         <div className="modal-dialog">

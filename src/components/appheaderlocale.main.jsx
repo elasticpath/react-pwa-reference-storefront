@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import * as UserPrefs from '../utils/UserPrefs';
 
@@ -28,6 +29,10 @@ import './appheaderlocale.main.less';
 const Config = require('Config');
 
 class AppHeaderLocaleMain extends React.Component {
+  static propTypes = {
+    isMobileView: PropTypes.bool.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -57,16 +62,17 @@ class AppHeaderLocaleMain extends React.Component {
     const { selectedLocaleValue, selectedCurrencyValue } = this.state;
     const selectedLocale = Config.supportedLocales.filter(l => l.value === selectedLocaleValue)[0];
     const title = `${selectedLocale.name.substring(0, 2)}/${selectedCurrencyValue}`;
+    const { isMobileView } = this.props;
 
     return (
-      <div className="locale-dropdown">
-        <button id="locale-dropdown-trigger" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div className={`main-locale-container ${isMobileView ? 'mobile-view' : ''}`}>
+        <button id="locale-dropdown-trigger" type="button" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {title}
         </button>
         <div className="dropdown-menu dropdown-menu-right dropdown-margin-right">
-          <h6 className="dropdown-header">
+          <div className="dropdown-header">
             {intl.get('language')}
-          </h6>
+          </div>
           {Config.supportedLocales.map(locale => (
             <button
               type="button"

@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import AppHeaderSearchMain from './appheadersearch.main';
@@ -30,6 +29,8 @@ import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
 import headerLogo from '../images/site-images/Company-Logo-v1.png';
 
+import './appheader.main.less';
+
 const Config = require('Config');
 
 const headerLogoFileName = 'Company-Logo-v1.png';
@@ -38,14 +39,6 @@ class AppHeaderMain extends React.Component {
   static goBack() {
     window.history.back();
   }
-
-  static propTypes = {
-    hideHeaderNavigation: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    hideHeaderNavigation: false,
-  };
 
   constructor(props) {
     super(props);
@@ -61,53 +54,86 @@ class AppHeaderMain extends React.Component {
   }
 
   render() {
-    const { hideHeaderNavigation } = this.props;
     const { isOffline } = this.state;
-    return (
-      <div>
-        <header className="app-header navbar navbar -fixed-top navbar-inverse" data-region="appHeader" style={{ display: 'block' }}>
-          <div className="container appheader-container">
-            <div className="back-button-container" style={{ display: 'block' }}>
-              <div>
-                <button type="button" id="header_mobile_back_button" aria-label="Back" className="navbar-back" data-region="backButtonRegion" data-el-label="navigation.back" onClick={AppHeaderMain.goBack}>
-                  <span className="icon" />
-                </button>
-              </div>
-            </div>
-            <div className="logo-container" style={{ display: 'block' }}>
-              <div>
-                <a href="/" className="cmd-home-logo" id="header_home_logo_link" aria-label="Header home logo">
-                  <img alt="Header logo" src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)} onError={(e) => { e.target.src = headerLogo; }} />
-                </a>
-              </div>
-            </div>
-            <button type="button" className="navbar-toggle" id="header_mobile_navbar_collapse_button" aria-label="Mobile nav bar collapse" data-toggle="collapse" data-target=".navbar-collapse">
-              <span className="icon" />
+    return [
+      <header key="app-header" className="app-header">
+
+        <div className="main-container">
+
+          <div className="back-btn-container">
+            <button className="back-btn" type="button" onClick={AppHeaderMain.goBack}>
+              <span className="icon glyphicon glyphicon-chevron-left" />
             </button>
-            {(hideHeaderNavigation) ? '' : (
-              <div className="collapse navbar-collapse">
-                <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} />
-                <ul className="global-nav-container btn-group" id="header_navbar_container_buttons">
-                  <li>
-                    <AppHeaderSearchMain />
-                  </li>
-                  <AppHeaderLoginMain />
-                  <li className="global-nav-cart-nav">
-                    <Link to="/mycart">
-                      <button className="global-nav-link global-nav-cart" id="header_navbar_cart_button" aria-label="Cart" data-toggle="collapse" data-target=".navbar-collapse" type="button">
-                        <span className="icon" />
-                      </button>
-                    </Link>
-                  </li>
-                  <li className="main-locale-container">
-                    <AppHeaderLocaleMain />
-                  </li>
-                </ul>
-              </div>
-            )}
           </div>
-        </header>
-        <AppModalLoginMain />
+
+          <div className="logo-container">
+            <Link to="/" className="logo">
+              <img
+                className="logo-image"
+                alt="Header logo"
+                src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)}
+                onError={(e) => { e.target.src = headerLogo; }}
+              />
+            </Link>
+          </div>
+
+          <div className="central-container">
+            <div className="horizontal-menu">
+              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView={false} />
+            </div>
+          </div>
+
+          <div className="search-container">
+            <AppHeaderSearchMain isMobileView={false} />
+          </div>
+
+          <div className="login-container">
+            <AppHeaderLoginMain isMobileView={false} />
+          </div>
+
+          <div className="cart-link-container">
+            <Link className="cart-link" to="/mycart" />
+          </div>
+
+          <div className="locale-container">
+            <AppHeaderLocaleMain isMobileView={false} />
+          </div>
+
+          <div className="toggle-btn-container">
+            <button
+              className="toggle-btn"
+              type="button"
+              data-toggle="collapse"
+              data-target=".collapsable-container"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="icon glyphicon glyphicon-list" />
+            </button>
+          </div>
+
+        </div>
+
+        <div className="collapsable-container collapse collapsed">
+          <div className="mobile-search-container">
+            <AppHeaderSearchMain isMobileView />
+          </div>
+          <div className="mobile-locale-container">
+            <AppHeaderLocaleMain isMobileView />
+          </div>
+          <div className="mobile-cart-link-container">
+            <Link className="cart-link" to="/mycart">
+              Shopping Cart
+            </Link>
+          </div>
+          <div className="mobile-navigation-container">
+            <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
+          </div>
+          <div className="mobile-login-container">
+            <AppHeaderLoginMain isMobileView />
+          </div>
+        </div>
+
         {(isOffline) ? (
           <div className="alert alert-primary fade in alert-dismissible">
             <strong className="text-center">
@@ -115,8 +141,9 @@ class AppHeaderMain extends React.Component {
             </strong>
           </div>
         ) : ''}
-      </div>
-    );
+      </header>,
+      <AppModalLoginMain key="app-modal-login-main" />,
+    ];
   }
 }
 

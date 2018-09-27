@@ -1,0 +1,198 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.app-header {
+  z-index: 5;
+
+  .main-container {
+    display: flex;
+    width: 100%;
+    padding-right: 10px;
+    background-color: @mainColor;
+
+    .back-btn-container {
+      display: none;
+
+      .back-btn {
+        border: 0;
+        background-color: transparent;
+        padding: 16px 10px 10px;
+        cursor: pointer;
+
+        .icon {
+          color: #fff;
+          font-size: 20px;
+        }
+      }
+    }
+
+    .logo-container {
+      padding-left: 30px;
+      padding-top: 10px;
+
+      .logo {
+        padding: 15px;
+        display: block;
+
+        .logo-image {
+          height: 25px;
+        }
+      }
+    }
+
+    .central-container {
+      flex: 1;
+      text-align: left;
+      padding: 22px 20px 4px;
+    }
+
+    .search-container {
+      padding-top: 25px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    .login-container {
+      padding-top: 27px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    .cart-link-container {
+      padding-top: 26px;
+      padding-left: 5px;
+      padding-right: 5px;
+
+      .cart-link {
+        display: block;
+        width: 36px;
+        padding: 10px;
+        height: 24px;
+        background: #ffffff00 url(../images/header-icons/bag-icon.png) no-repeat 0px;
+        background-position: center top;
+      }
+    }
+
+    .locale-container {
+      width: 120px;
+      text-align: right;
+      padding-top: 27px;
+      padding-right: 20px;
+    }
+
+    .toggle-btn-container {
+      display: none;
+
+      .toggle-btn {
+        border: 0;
+        background-color: transparent;
+        padding: 14px 10px 10px;
+        cursor: pointer;
+
+        .icon {
+          color: #fff;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .collapsable-container {
+    display: none;
+  }
+
+  @media (max-width: @tabletWidth - 1px) {
+    .main-container {
+      .back-btn-container {
+        display: block;
+      }
+
+      .logo-container {
+        padding-left: 0px;
+        padding-top: 0px;
+      }
+
+      .central-container {
+        .horizontal-menu {
+          display: none;
+        }
+      }
+
+      .search-container {
+        display: none;
+      }
+
+      .login-container {
+        display: none;
+      }
+
+      .cart-link-container {
+        display: none;
+      }
+
+      .locale-container {
+        display: none;
+      }
+
+      .toggle-btn-container {
+        display: block;
+      }
+    }
+
+    .collapsable-container {
+      display: block;
+      background-color: #f7f7f7;
+      padding: 20px;
+      box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+
+      .mobile-locale-container {
+        text-align: right;
+        padding-top: 20px;
+      }
+
+      .mobile-cart-link-container {
+        text-align: center;
+        border-bottom: 2px solid @mainColor;
+        padding: 30px;
+
+        a {
+          color: @mainColor;
+          font-size: 19px;
+          font-weight: bold;
+          display: block;
+        }
+      }
+
+      .mobile-navigation-container {
+        padding: 30px;
+        border-bottom: 2px solid @mainColor;
+      }
+
+      .mobile-login-container {
+        text-align: center;
+        padding: 30px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}

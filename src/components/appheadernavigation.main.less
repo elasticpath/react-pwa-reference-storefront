@@ -1,0 +1,104 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.app-header-navigation-component {
+  .navbar-nav {
+    display: block;
+
+    .nav-item {
+      display: inline-block;
+      white-space: nowrap;
+      padding-bottom: 1px;
+      padding-right: 21px;
+      font-size: 13px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+
+      .nav-link {
+        color: #fff;
+        padding: 7px;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+          border-bottom: 1px solid #fff;
+        }
+      }
+
+      .dropdown-menu {
+        box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+
+        .dropdown-item {
+          font-size: 1.3rem;
+          color: #555;
+          padding-top: 7px;
+          padding-bottom: 7px;
+          border-bottom: 1px solid transparent;
+          transition: border-color 0.2s;
+
+          &:hover {
+            background-color: transparent;
+            border-bottom: 1px solid @mainColor;
+          }
+
+          &:active {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  &.mobile-view {
+    .navbar-nav {
+      .nav-item {
+        text-align: center;
+        display: block;
+        padding: 0;
+
+        .nav-link {
+          color: @mainColor;
+          font-size: 19px;
+
+          &:hover {
+            border-bottom: 1px solid @mainColor;
+          }
+        }
+
+        .sub-category-dropdown-menu {
+          position: static !important;
+          margin: 0;
+          border: 0;
+          background-color: transparent;
+          transform: none !important;
+          box-shadow: none;
+
+          .dropdown-item {
+            text-align: center;
+            font-size: 15px;
+            color: @mainColor;
+          }
+        }
+      }
+    }
+  }
+}
