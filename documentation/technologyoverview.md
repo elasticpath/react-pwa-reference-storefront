@@ -4,12 +4,11 @@ permalink: /documentation/technologyoverview/
 title: Technology
 weight: 3
 ---
-Technology
-====================
-The REACT Reference Storefront technologies were chosen for their robustness, popularity, and extensibility.
-The idea is that your JavaScript developers and front-end developers already know these technologies, so they can start extending and customizing your storefront quickly.
+## Requirements and Specifications
 
-The Reference Storefront can be loaded by various clients - Tablet, Mobile, Desktop/Laptops. The design is for an open source Mobile PWA capable of local browser storage page caching, and persistent session management. The PWA is built using React.js, Bootstrap4, and Babel. Webpack and node.js will aid to serve up the application by means of a configurable web server.
+The React Reference Storefront technologies are robust and extensible. With these technologies, JavaScript developers and the front-end developers can customize storefront with ease and quickly.
+
+
 <br/>
 
 
