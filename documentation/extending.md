@@ -1,7 +1,7 @@
 ---
 layout: master
 permalink: /documentation/extending/
-title: Customize
+title: Customization
 weight: 4
 ---
 Customizing Features
@@ -63,15 +63,7 @@ To Create a New Component:
 7. Add any custom CSS to style your component in `src/components/mycomponent.main.less`
 <br/><br/>
 
-## Further Reading
 
-Elastic Path uses third party technologies, which are not covered thoroughly in this document. Below is a list of documents to further your education on these technologies.
-
-* React - [https://reactjs.org/](https://reactjs.org/)
-* Bootstrap 4 - [https://getbootstrap.com/docs/4.0/getting-started/introduction/](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
-* Webpack - [https://webpack.js.org/](https://webpack.js.org/)
-* Babel - [https://babeljs.io/](https://babeljs.io/)
-* Workbox - [https://developers.google.com/web/tools/workbox/](https://developers.google.com/web/tools/workbox/)
 
 
 {% include legal.html %}

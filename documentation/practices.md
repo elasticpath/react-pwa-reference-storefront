@@ -1,7 +1,7 @@
 ---
 layout: master
 permalink: /documentation/practices/
-title: Best Practices
+title: Troubleshooting
 weight: 4
 ---
 
@@ -40,9 +40,10 @@ Zoom queries can be constructed in the simple manner of populating an array with
 <br/><br/>
 
 ## Analytics
+
 The Reference Storefront is pre-configured for integration with the Google Analytics enhanced ecommerce plugin. The handlers for integrating with Google Analytics allow for routes (pre-configured in App.js) to be logged as pageviews in the sites real-time traffic data. Further configuration in Google Analytics will enable measurements for conversion rates based on the pages viewed in the web traffic. The checkout flow is pre-configured to log purchases through Google Analytics' basic Ecommerce capabilities, and will submit transaction/purchase amounts along with cart information where it may be further analyzed in Google Analytics under Conversions > Ecommerce. The product and cart pages are configured to submit information when a product is viewed, added to cart, or removed from the cart.
 
-Analytics.js contains the functions used for logging pageviews with ReactGA (React library for invoking Google Analytics functions), and functions for invoking the enhanced Ecommerce capabilities.
+Analytics.js contains the functions used for logging page views with ReactGA (React library for invoking Google Analytics functions), and functions for invoking the enhanced Ecommerce capabilities.
 
 The Google Analytics handlers use the global product attribute "Tag" and expect the formatted value of store-name:category to submit category information to Google Analytics.
 ex. "vestri:Accessories"
@@ -50,6 +51,7 @@ If this global attribute is not set for each product in the catalog, an empty va
 <br/><br/>
 
 ## Content management for assets and Catalog Images
+
 The Reference Storefront is pre-configured for integration with various Content Management solutions by externalizing the content URLs through the storefront application configurations. The default URLs are configured to reference images located on Amazon S3, however other CMS providers may be used as preferred.
 Configuration properties for content URLs are defined as follows:
 
@@ -58,7 +60,8 @@ Configuration properties for content URLs are defined as follows:
 
 If usage of another CMS is required, the configurations must simply be updated to reflect the public URLs of the content being retrieved by the particular content provider.
 
-**Example: Integration with IBM Watson Content Hub (WCH) as an external Content Management System.**<br/>
+** Integration with IBM Watson Content Hub (WCH) as an external Content Management System.**
+<br/>
 IBM Watson Content Hub is a cloud-based CMS with an embedded content delivery network that lets marketers update content faster, and provides services with IBM Watson such as cognitive tagging to help transform assets into a searchable library of content.
 Catalog images and site content images may be uploaded to WCH using the wchtools command-line utility. Uploaded assets will be scanned using Watson's Visual Image recognition service, and tagged based on content to create a searchable library. Once images have been uploaded, the content delivery url must be provided in the reference storefront's configuration for both the skuImagesUrl and siteImagesUrl with the appropriate sku/file-name placeholders.
 ex. Certain fields below will be populated based on the tenant ID of the WCH account being used, and the directory structure of the assets uploaded.
@@ -66,8 +69,5 @@ ex. Certain fields below will be populated based on the tenant ID of the WCH acc
 `"siteImagesUrl": "https://my11.digitalexperience.ibm.com/<wch_tenant_identifier>/dxdam/<site_images>/%fileName%",`
 <br/><br/>
 
-**References:**<br/>
-Watson Content Hub login to digital experience dashboard: [http://digitalexperience.ibm.com/](http://digitalexperience.ibm.com/)
-wchtools github repository: [https://github.com/ibm-wch/wchtools-cli](https://github.com/ibm-wch/wchtools-cli)
 
 {% include legal.html %}

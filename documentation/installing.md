@@ -1,7 +1,7 @@
 ---
 layout: master
 permalink: /documentation/installing/
-title: Installing
+title: Installation
 weight: 2
 ---
 Installing and Running
