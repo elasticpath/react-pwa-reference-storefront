@@ -26,6 +26,7 @@ import { withRouter } from 'react-router';
 import {
   login, loginRegistered, registerUser, getRegistrationForm,
 } from '../utils/AuthService';
+import './registrationform.main.less';
 
 const Config = require('Config');
 
