@@ -66,6 +66,7 @@ class ProductListItemMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       productData: undefined,
     };
   }
@@ -73,7 +74,6 @@ class ProductListItemMain extends React.Component {
   componentDidMount() {
     const { productUrl } = this.props;
     login().then(() => {
-console.log(111);
       cortexFetch(`${productUrl}?zoom=${zoomArray.sort().join()}`,
         {
           headers: {
@@ -83,13 +83,11 @@ console.log(111);
         })
         .then(res => res.json())
         .then((res) => {
-console.log(222);
           this.setState({
             productData: res,
           });
         })
         .catch((error) => {
-console.log(333);
           // eslint-disable-next-line no-console
           console.error(error.message);
         });

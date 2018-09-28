@@ -51,6 +51,7 @@ class SearchResultsItemsMain extends React.Component {
     super(props);
     const { searchKeywordsProps } = this.props;
     this.state = {
+      isLoading: true,
       searchResultsModel: { links: [] },
       searchKeywords: searchKeywordsProps,
     };
@@ -62,88 +63,88 @@ class SearchResultsItemsMain extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { searchKeywords } = this.state;
-    if (searchKeywords !== nextProps.searchKeywordsProps) {
-      this.getSearchData(nextProps.searchKeywordsProps);
-    }
+    const { searchKeywordsProps } = nextProps;
+    this.getSearchData(searchKeywordsProps);
   }
 
   getSearchData(searchKeywordsProps) {
-    login().then(() => {
-      cortexFetch('/?zoom=searches:keywordsearchform',
+    this.setState({
+      isLoading: true,
+      searchKeywords: searchKeywordsProps
+    });
+
+    login()
+      .then(() => cortexFetch('/?zoom=searches:keywordsearchform',
         {
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
-        }).then(() => {
-          cortexFetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
-            {
-              method: 'post',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-              },
-              body: JSON.stringify({
-                keywords: searchKeywordsProps,
-              }),
-            })
-            .then(res => res.json())
-            .then((res) => {
-              this.setState({
-                searchResultsModel: res,
-                searchKeywords: searchKeywordsProps,
-              });
-            })
-            .catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+        }))
+      .then(res => res.json())
+      .then((res) => {
+        searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
+      })
+      .then(() => cortexFetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            keywords: searchKeywordsProps,
+          }),
+        }))
+      .then(res => res.json())
+      .then((res) => {
+        this.setState({
+          isLoading: false,
+          searchResultsModel: res,
+          searchKeywords: searchKeywordsProps,
         });
-    });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   render() {
-    const { searchKeywordsProps } = this.props;
-    const { searchResultsModel, searchKeywords } = this.state;
-    const isLoading = searchResultsModel.links.length === 0 || searchKeywords !== searchKeywordsProps;
-
-    if (isLoading) {
-      return (
-        <div className="loader" />
-      );
-    }
-
+    const { isLoading, searchResultsModel } = this.state;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0;
+
 
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
-          {(noProducts) ? (
-            <h3>
-              {intl.get('no-products-found')}
-            </h3>
-          ) : (
-            <div>
-              <h1 className="view-title">
-                {searchResultsModel['display-name']}
-              </h1>
-              <div className="products-container">
-                <ProductListPagination paginationDataProps={products} />
-                <ProductListMain productData={products} />
-                <ProductListPagination paginationDataProps={products} />
+          <h1 className="view-title">
+            {intl.get('search-results-for', { searchKeywords: this.state.searchKeywords })}
+          </h1>
+          {(() => {
+            if (isLoading) {
+              return (<div className="loader" />);
+            }
+
+            if (noProducts) {
+              return (
+                <h3>
+                  {intl.get('no-products-found')}
+                </h3>
+              );
+            }
+
+            return (
+              <div>
+                <div className="products-container">
+                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListMain productData={products} />
+                  <ProductListPagination paginationDataProps={products} />
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
         </div>
       </div>
     );
