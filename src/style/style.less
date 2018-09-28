@@ -20,7 +20,7 @@
  */
 
 // Remove import of legacy style.css once all the styles have been refactored to individual .less files
-@import './style.css';
+// @import './style.css';
 @import './icon-fonts.less';
 @import './common.less';
 
@@ -80,4 +80,42 @@ body {
 .dropdown-header {
   font-size: 1.3rem !important;
   // padding-left: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px !important;
+  animation: spin 0.5s linear infinite;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.container-3 {
+  width: 1070px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (max-width: @mobileWidth - 1px) {
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
+    width: 100%;
+  }
+}
+
+.view-title {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

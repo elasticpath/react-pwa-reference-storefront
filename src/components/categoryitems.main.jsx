@@ -24,8 +24,7 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
-import ProductListPaginationTop from './productlistpaginationtop.main';
-import ProductListPaginationBottom from './productlistpaginationbottom.main';
+import ProductListPagination from './productlistpagination.main';
 import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
@@ -96,45 +95,39 @@ class CategoryItemsMain extends React.Component {
   render() {
     const { categoryModel, selfUri } = this.state;
     const { categoryUrl } = this.props;
-    if (categoryModel.links.length > 0 && categoryModel._items && categoryModel._items[0].links.length === 0 && selfUri === categoryUrl) {
+    const isLoading = categoryModel.links.length === 0 || selfUri !== categoryUrl;
+
+    if (isLoading) {
       return (
-        <div className="category-items-container container">
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                {categoryModel['display-name']}
-              </h1>
-            </div>
-            <br />
-            <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-              <div>
-                <h3>
-                  {intl.get('no-products-found')}
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    if (categoryModel.links.length > 0 && selfUri === categoryUrl) {
-      return (
-        <div className="category-items-container container">
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                {categoryModel['display-name']}
-              </h1>
-            </div>
-          </div>
-          <ProductListPaginationTop paginationDataProps={categoryModel._items ? categoryModel._items[0] : categoryModel} />
-          <ProductListMain productData={categoryModel._items ? categoryModel._items[0] : categoryModel} />
-          <ProductListPaginationBottom paginationDataProps={categoryModel._items ? categoryModel._items[0] : categoryModel} />
-        </div>
+        <div className="loader" />
       );
     }
 
-    return (<div className="loader" />);
+    const products = categoryModel._items ? categoryModel._items[0] : categoryModel;
+    const noProducts = !products || products.links.length === 0;
+
+    return (
+      <div className="category-items-container container-3">
+        <div data-region="categoryTitleRegion">
+          {(noProducts) ? (
+            <h3>
+              {intl.get('no-products-found')}
+            </h3>
+          ) : (
+            <div>
+              <h1 className="view-title">
+                {categoryModel['display-name']}
+              </h1>
+              <div className="products-container">
+                <ProductListPagination paginationDataProps={products} />
+                <ProductListMain productData={products} />
+                <ProductListPagination paginationDataProps={products} />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
   }
 }
 

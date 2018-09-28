@@ -24,8 +24,7 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
-import ProductListPaginationTop from './productlistpaginationtop.main';
-import ProductListPaginationBottom from './productlistpaginationbottom.main';
+import ProductListPagination from './productlistpagination.main';
 import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
@@ -115,45 +114,39 @@ class SearchResultsItemsMain extends React.Component {
   render() {
     const { searchKeywordsProps } = this.props;
     const { searchResultsModel, searchKeywords } = this.state;
-    if (searchResultsModel.links.length > 0 && searchKeywords === searchKeywordsProps) {
+    const isLoading = searchResultsModel.links.length === 0 || searchKeywords !== searchKeywordsProps;
+
+    if (isLoading) {
       return (
-        <div className="category-items-container container">
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                {intl.get('search-results')}
-              </h1>
-            </div>
-          </div>
-          <ProductListPaginationTop paginationDataProps={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
-          <ProductListMain productData={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
-          <ProductListPaginationBottom paginationDataProps={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
-        </div>
-      );
-    }
-    if (searchResultsModel.links.length === 0 && searchResultsModel.pagination && searchKeywords === searchKeywordsProps) {
-      return (
-        <div className="category-items-container container">
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                {intl.get('search-results')}
-              </h1>
-            </div>
-          </div>
-          <br />
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h3>
-                {intl.get('no-results-found')}
-              </h3>
-            </div>
-          </div>
-        </div>
+        <div className="loader" />
       );
     }
 
-    return (<div className="loader" />);
+    const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
+    const noProducts = !products || products.links.length === 0;
+
+    return (
+      <div className="category-items-container container-3">
+        <div data-region="categoryTitleRegion">
+          {(noProducts) ? (
+            <h3>
+              {intl.get('no-products-found')}
+            </h3>
+          ) : (
+            <div>
+              <h1 className="view-title">
+                {searchResultsModel['display-name']}
+              </h1>
+              <div className="products-container">
+                <ProductListPagination paginationDataProps={products} />
+                <ProductListMain productData={products} />
+                <ProductListPagination paginationDataProps={products} />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
   }
 }
 

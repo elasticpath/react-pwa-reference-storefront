@@ -25,10 +25,12 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
+import './productlistpagination.less';
+
 let paginationPreviousLinkVar = '';
 let paginationNextLinkVar = '';
 
-class ProductListPaginationTop extends React.Component {
+class ProductListPagination extends React.Component {
   static propTypes = {
     paginationDataProps: PropTypes.objectOf(PropTypes.any).isRequired,
   }
@@ -83,68 +85,61 @@ class ProductListPaginationTop extends React.Component {
     const { paginationData, paginationNextLink, paginationPreviousLink } = this.state;
     if (paginationData.links.length > 0) {
       return (
-        <div data-region="categoryPaginationTopRegion" style={{ display: 'block' }}>
-          <div className="pagination-container">
-            <div className="paging-total-results">
-              <span className="pagination-value pagination-total-results-value">
-                {paginationData.pagination.results}
-              </span>
-              <label htmlFor="pagination_total_results_label" className="pagination-label pagination-total-results-label">
-                &nbsp;
-                {intl.get('results')}
-                &nbsp;
-              </label>
-              (&nbsp;
-              <span className="pagination-value pagination-results-displayed-value">
-                {paginationData.pagination['results-on-page']}
-              </span>
-              <label htmlFor="pagination_label" className="pagination-label">
-                &nbsp;
-                {intl.get('results-on-page')}
-              </label>
-              {' '}
+        <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
+          <div className="total-results">
+            <span className="total-results-value">
+              {paginationData.pagination.results}
+              &nbsp;
+              {intl.get('results')}
+            </span>
+            &nbsp;
+            <span className="results-displayed-value">
+              (
+              {paginationData.pagination['results-on-page']}
+              &nbsp;
+              {intl.get('results-on-page')}
               )
-            </div>
-            {paginationNextLink !== '' || paginationPreviousLink !== ''
-              ? (
-                <div className="pagination-navigation-container">
-                  {paginationPreviousLink !== ''
-                    ? (
-                      <Link to={`/category/${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination btn-pagination-prev pagination-link pagination-link-disabled" id="category_items_listing_pagination_previous_top_link" role="button">
-                        <span className="icon" />
-                        {intl.get('previous')}
-                      </Link>
-                    )
-                    : ('')}
-                  <span className="pagestate-summary">
-                    <label htmlFor="pagination_curr_page_label" className="pagination-label">
-                      {intl.get('page')}
-                      &nbsp;
-                    </label>
-                    <span className="pagination-value pagination-curr-page-value">
-                      {paginationData.pagination.current}
-                    </span>
-                    <label htmlFor="pagination_total_pages_label" className="pagination-label">
-                      &nbsp;
-                      {intl.get('of')}
-                      &nbsp;
-                    </label>
-                    <span className="pagination-value pagination-total-pages-value">
-                      {paginationData.pagination.pages}
-                    </span>
-                  </span>
-                  {paginationNextLink !== ''
-                    ? (
-                      <Link to={`/category/${encodeURIComponent(paginationNextLink)}`} className="btn-pagination btn-pagination-next pagination-link pagination-link-disabled" id="category_items_listing_pagination_next_top_link" role="button">
-                        {intl.get('next')}
-                        <span className="icon" />
-                      </Link>
-                    )
-                    : ('')}
-                </div>
-              )
-              : ('')}
+            </span>
           </div>
+          {paginationNextLink !== '' || paginationPreviousLink !== ''
+            ? (
+              <div className="pagination-navigation-container">
+                {paginationPreviousLink !== ''
+                  ? (
+                    <Link to={`/category/${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination prev" role="button">
+                      <span className="icon" />
+                      {intl.get('previous')}
+                    </Link>
+                  )
+                  : ('')}
+                <span className="pagestate-summary">
+                  <label htmlFor="pagination_curr_page_label" className="pagination-label">
+                    {intl.get('page')}
+                    &nbsp;
+                  </label>
+                  <span className="pagination-value pagination-curr-page-value">
+                    {paginationData.pagination.current}
+                  </span>
+                  <label htmlFor="pagination_total_pages_label" className="pagination-label">
+                    &nbsp;
+                    {intl.get('of')}
+                    &nbsp;
+                  </label>
+                  <span className="pagination-value pagination-total-pages-value">
+                    {paginationData.pagination.pages}
+                  </span>
+                </span>
+                {paginationNextLink !== ''
+                  ? (
+                    <Link to={`/category/${encodeURIComponent(paginationNextLink)}`} className="btn-pagination next" role="button">
+                      {intl.get('next')}
+                      <span className="icon" />
+                    </Link>
+                  )
+                  : ('')}
+              </div>
+            )
+            : ('')}
         </div>);
     }
 
@@ -152,4 +147,4 @@ class ProductListPaginationTop extends React.Component {
   }
 }
 
-export default ProductListPaginationTop;
+export default ProductListPagination;

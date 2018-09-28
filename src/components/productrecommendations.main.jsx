@@ -25,6 +25,8 @@ import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import ProductListItemMain from './productlistitem.main';
 
+import './productrecommendations.main.less';
+
 class ProductRecommendationsDisplayMain extends React.Component {
   static propTypes = {
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -70,7 +72,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
       );
     }
     return (
-      <div data-region="categoryBrowseRegion" key="categoryBrowseRegion">
+      <div className="product-recomentations-component" data-region="categoryBrowseRegion" key="categoryBrowseRegion">
         {data}
       </div>
     );
