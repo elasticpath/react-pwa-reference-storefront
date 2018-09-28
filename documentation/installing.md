@@ -7,17 +7,17 @@ weight: 2
 Installing and Running
 ====================
 
-To get started using the REACT Reference Storefront, select the how you want to install your instance.
+Get started using the REACT Reference Storefront easily. Select the how you want to install your instance, either locally or remotely.
 
-### Running REACT Reference Storefront Locally
-Running locally means all your applications, Cortex API, Search, REACT PWA Storefront, etc, are running on your local computer on these ports:
+### Running REACT Reference Storefront
+Use the following ports to run your applications, Cortex API, Search, REACT PWA Storefront, and so on:
 
 * Cortex API - Port `9080`
 * Search Server - Port `8082`
 * Webpack Store Server - Port `8080`
-* Commerce Engine
+* Commerce Manager - Port `8081`
 
-**Refer to the README in the Github Repository for additional information** <br/>
+**Refer to the README in the Github Repository for additional information on how to install the REACT Reference Storefront** <br/>
 [https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/README.md](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/README.md)
 
 {% include legal.html %}

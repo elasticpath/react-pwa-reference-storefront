@@ -24,7 +24,7 @@ Technology Stack
 </tr>
 <tr>
 	<td><strong>React.js</strong></td>
-	<td>JavaScript library for building a UI using components for single page applications</td>
+	<td>A JavaScript library for building a UI using components for single page applications.</td>
 	<td>16.4.1</td>
 </tr>
 <tr>
@@ -34,17 +34,17 @@ Technology Stack
 </tr>
 <tr>
 	<td><strong>jQuery</strong></td>
-	<td>Fast, feature rich JavaScript library used for the base DOM abstraction layer.</td>
+	<td>A fast, feature rich JavaScript library used for the base DOM abstraction layer.</td>
 	<td>3.3.1</td>
 </tr>
 <tr>
 	<td><strong>Babel</strong></td>
-	<td>Javascript compiler</td>
+	<td>A Javascript compiler.</td>
 	<td>6.26.3</td>
 </tr>
 <tr>
 	<td><strong>Bootstrap.js</strong></td>
-	<td>A free and open-source front-end framework for designing websites and web applications</td>
+	<td>A free and open-source front-end framework for designing websites and web applications.</td>
 	<td>4.4.1</td>
 </tr>
 <tr>
@@ -54,7 +54,7 @@ Technology Stack
 </tr>
 <tr>
 	<td><strong>Workbox</strong></td>
-	<td>JavaScript Libraries for adding offline support to web apps</td>
+	<td>JavaScript Libraries for adding offline support to web apps.</td>
 	<td>3.4.1</td>
 </tr>
 </tbody>
@@ -73,7 +73,7 @@ Testing Frameworks
 </tr>
 <tr>
 	<td><strong>Selenium</strong></td>
-	<td>Framework for testing web applications using browser automation</td>
+	<td>A framework for testing web applications using browser automation.</td>
 	<td>3.4.0</td>
 </tr>
 <tr>
