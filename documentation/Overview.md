@@ -8,10 +8,17 @@
 
 ## Overview
 
+The Reference Storefront is divided into containers (Pages) and React components. Each page in the storefront is composed of various components that fulfills the purpose of the page. For example, Home, Cart, Categories, Checkout, and Registration are separate Pages. Each page consists of various components, such as Navigation, Footer, Product List, or Products.
 
 You can access the React Reference Storefront on various devices, such as tablets, mobile phones, or computers. The Storefront is designed as an open source Mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enables the application layer interactions through configurable web server.
 
+With theming, you can change the presentation of the React Reference Storefront without modifying the JavaScript. React Reference Storefront uses the dynamic stylesheet language, [less](http://lesscss.org/), to changes the themes. You can change the look and feel of the storefront by modifying the corresponding `{less}` files.
+
+Each theme is a set of `{less}` files, which can be compiled into a `style.css` file. The `{less}` files for each theme are organized in the same order as the storefront is presented.
+For example, `CartPage.less` contains the CSS for the cart’s container page, and  `cart.main.less` contains the CSS for the main component in the cart page.
+
 ### Features
+
 
 
 ## Platform Architecture
@@ -49,7 +56,7 @@ The component layer provides the components to be loaded within each page. The c
 
 Web Server Layer enables the interaction between the application and the service layer. This layer is composed of:
 * [node.js](https://nodejs.org/en/) - The web server implementation that loads the React PWA.
-* [Webpack](https://webpack.js.org/) - The  javascripts module bundler that captures the modules with dependencies and generate static assets for the modules.
+* [Webpack](https://webpack.js.org/) - The  javascript module bundler that captures the modules with dependencies and generate static assets for the modules.
 
 ### API Layer
 

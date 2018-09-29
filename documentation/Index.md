@@ -11,10 +11,10 @@
       * _Local_
       * _Remote_
   * [Customizing React Reference Storefront]
-      * [Creating New Containers]
-      * [Creating New Components]      
+      * [Creating New Containers](/documentation/extending.md#creating_new_containers_in_react)
+      * [Creating New Components](/documentation/extending.md#creating_new_components_in_react)     
   * [Examples]
-      * [Analaytics example goes here]
-      * [Contnet management example goes here]
+      * [Analytics example goes here]
+      * [Content management example goes here]
       *
   * [Related Resources]
