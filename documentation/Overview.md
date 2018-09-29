@@ -2,22 +2,22 @@
 layout: master
 permalink: /documentation/overview/
 title: Overview
-weight: 6
+weight: 2
 ---
-
-# Contents
-
-[Overview]()
-[Technical Architecture]()
-
-
 # REACT Reference Storefront
+
+### Contents
+- [Overview](/documentation/Overview.md#Overview)
+- [Technical Architecture](/documentation/Overview.md#platform_architecture)
+
 
 ## Overview
 
-The Reference Storefront is divided into containers (Pages) and React components. Each page in the storefront is composed of various components that fulfills the purpose of the page. For example, Home, Cart, Categories, Checkout, and Registration are separate Pages. Each page consists of various components, such as Navigation, Footer, Product List, or Products.
+The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) e-commerce API,  [Cortex API](https://developers.elasticpath.com/commerce/7.3/Cortex-API-Front-End-Development/Getting-Started/Introduction).Through Cortex API, the storefront get to use the ecommerce capabilities provided Elastic Path Commerce and get data in a RESTful manner.
 
-You can access the React Reference Storefront on various devices, such as tablets, mobile phones, or computers. The Storefront is designed as an open source Mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enables the application layer interactions through configurable web server.
+React Reference Storefront is divided into containers(Pages) and React components. Each page in the storefront is composed of various components that fulfills the purpose of the page. For example, home, cart, categories, checkout, and registration are separate Pages. Each page consists of various components, such as navigation, footer, product List, or products.
+
+The Storefront is designed as an open source Mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enables the application layer interactions through configurable web server.
 
 With theming, you can change the presentation of the React Reference Storefront without modifying the JavaScript. React Reference Storefront uses the dynamic stylesheet language, [less](http://lesscss.org/), to changes the themes. You can change the look and feel of the storefront by modifying the corresponding `{less}` files.
 
@@ -26,9 +26,16 @@ For example, `CartPage.less` contains the CSS for the cart’s container page, a
 
 ### Features
 
+In React Reference Storefront, e-commerce functionality, such as cart, authentication, profile, or search, and the website presentation are separated. The front-end developers need not change JavaScript to update the CSS files to change the presentation and the JavaScript developers can develop functionality without changing front-end. Each customization layer is separated into it's own layer from the core code into it's own layer, so developers need not change the Storefront’s utility engine.
+
+You can access the React Reference Storefront on various devices, such as tablets, mobile phones, or computers.
+
+![Feature Guide]({{ site.baseurl }}/documentation/img/featureSupport.png)
+<br/><br/>
 
 
 ## Platform Architecture
+
 ![Reference Store Architecture]({{ site.baseurl }}/documentation/img/Ref_Store_Architecture.png)
 <br/>
 
@@ -68,4 +75,20 @@ Web Server Layer enables the interaction between the application and the service
 ### API Layer
 
 The application layer of React Reference Storefront is built on [Cortex API](https://developers.elasticpath.com/commerce/7.3/Cortex-API-Front-End-Development/Getting-Started/Introduction). Through Cortex API, the storefront get to use the ecommerce capabilities provided Elastic Path Commerce. PWA interacts with the required services through this layer.
+
+## Cortex Integration
+
+The Reference Storefront invokes Cortex APIs to ensure that the best practices of consuming hypermedia APIs are followed.
+
+![Cortex]({{ site.baseurl }}/documentation/img/cortex-page-diagram.png)
+
+For your convenience, the fetch call invoking the REST HTTP request is wrapped to allow for modifications or customizations to the basic fetch being performed.
+
+The top-level root is always invoked first to retrieve the top most APIs that can be invoked. Upon retrieving the root level, subsequent actions are performed against Cortex on children of the root, depending on the action intended to be performed by the REACT Component initiating the REST request. It's important to note that REST requests should be made to URLs returned by Cortex, and not constructed by the UI itself, with the exception of the oauth authentication services. This is to ensure that the UI remains unconstrained to URIs and does not regress in the case of any API naming updates in the future. Due to the possibility of URL nouns and verbs changing in future releases, it's important to note that the consumption of a URL directly through Cortex' response must be avoided and instead rels must be retrieved from Cortex' response.
+
+`Cortex.js` contains the wrapper for fetch requests made to Cortex. You can include additional headers or generic request modifications in the cortexFetch() function if you choose, as part of your implementation. This includes x-headers and the ability to add any additional headers.
+
+`AuthService.js` contains the authentication functions used to authenticate a user/shopper with Cortex using oauth2. OAuth tokens are saved to the web application's local storage where they can be retrieved and injected into the header for authenticating subsequent Cortex requests.
+`
+Zoom queries can be constructed in the simple manner of populating an array with all required queries and appending it to the request to Cortex. The basic construct for creating zoom queries is to only request the additional data needed by the component consuming it. Avoid requesting data which is not required, and avoid circular zooms as these may have impacts to performance.
 <br/><br/>

@@ -2,7 +2,7 @@
 layout: master
 permalink: /documentation/extending/
 title: Customization
-weight: 4
+weight: 5
 ---
 # Extending React Reference Storefront
 
@@ -42,14 +42,6 @@ weight: 4
 <br/><br/>
 
 
-## Best Practices for Extending React Reference Storefront
-
-Elastic Path recommends following the best practices listed in this section. However, Elastic Path does not recommend any specific rule for creating a page or component.
-
-[comment]: <> (I don't quite understand the following lines.)
-- Base the Page as the page to be visited in the shoppers flow**
-We base our pages as the full page a shopper will visit in the storefront.
-- Design a page to have a component corresponding to each functionality in the page. The functionality for a component, including references to the child components, are are configured within the component. You can customize components with properties and parameters to perform various actions if required. For example, a shopper can navigate to a category page to view product lists. This category page can have a component to display the products within the category, and that component can have another component for each of the products in the list. The component that displays the products in a category view can be used to display products on the search results page because of the similar functionality between the workflows.
 <br/><br/>
 
 
