@@ -1,3 +1,10 @@
+---
+layout: master
+permalink: /documentation/resources/
+title: Resources
+weight: 7
+---
+
 # Related Resources
 
 ## Elastic Path Commerce Resources

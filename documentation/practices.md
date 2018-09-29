@@ -2,7 +2,7 @@
 layout: master
 permalink: /documentation/practices/
 title: Troubleshooting
-weight: 4
+weight: 5
 ---
 
 ## Developer Best Practices

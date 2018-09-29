@@ -2,15 +2,13 @@
 layout: master
 permalink: /documentation/installing/
 title: Installation
-weight: 2
+weight: 3
 ---
 # Installing React Reference Storefront
 
 ## Prerequisite
 
-Ensure that the correct installation option is selected for the instance your instance. The options are:
-- Locally
-- Remotely
+Ensure that the correct installation option is selected for the instance your instance.
 
 ### Running React Reference Storefront
 

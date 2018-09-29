@@ -1,3 +1,10 @@
+---
+layout: master
+permalink: /documentation/overview/
+title: Overview
+weight: 6
+---
+
 # Contents
 
 [Overview]()
@@ -22,7 +29,7 @@ For example, `CartPage.less` contains the CSS for the cart’s container page, a
 
 
 ## Platform Architecture
-Image TBA
+![Reference Store Architecture]({{ site.baseurl }}/documentation/img/Ref_Store_Architecture.png)
 <br/>
 
 ### Presentation Layer

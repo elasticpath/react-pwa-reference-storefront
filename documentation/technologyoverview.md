@@ -2,7 +2,7 @@
 layout: master
 permalink: /documentation/technologyoverview/
 title: Technology
-weight: 3
+weight: 2
 ---
 ## Requirements and Specifications
 
