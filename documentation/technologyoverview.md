@@ -6,8 +6,29 @@ weight: 3
 ---
 ## Requirements and Specifications
 
-The React Reference Storefront technologies are robust and extensible. With these technologies, JavaScript developers and the front-end developers can customize storefront with ease and quickly.
+For installing and customizing React Reference Storefront, in addition to a valid Elastic Path development environment, the following software are required:
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/en/download/)
+- [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:
+	- [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)</br>
+	- [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)
+- [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/)
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
+## Supported Platforms
+
+ Elastic Path recommends using certified platforms, which are used for the regression and performance testing, for the product configuration.
+ Elastic Path products might function correctly when deployed with compatible platforms, however, these platforms are not tested with the products. Elastic Path does not provide recommendations or best practices for these technologies.
+
+ || Certified|Compatible|
+|--|--|--|
+|** Browsers **| Internet Explorer(10 or later)<br/>Google Chrome<br/>Safari|Mozilla Firefox|
+|** Devices **|Android tablets (10 and 7 ins)</br>iOS tablets (10 and 7 ins)|Android Phones<br/>iOS Phones |
+
+## Technology Stack
+
+The React Reference Storefront technologies are robust and extensible. With these technologies, JavaScript developers and the front-end developers can customize storefront with ease and quickly.
 
 |  Technology| Description|Version|Domain|
 |--|--|--|--|
@@ -22,15 +43,6 @@ The React Reference Storefront technologies are robust and extensible. With thes
 |Cucumber|Runs automated acceptance tests written in a behaviour-driven development style.|1.2.5|QA|
 
 
-## Supported Platforms
-
- Elastic Path recommends using certified platforms, which are used for the regression and performance testing, for the product configuration.
- Elastic Path products might function correctly when deployed with compatible platforms, however, these platforms are not tested with the products. Elastic Path does not provide recommendations or best practices for these technologies.
-
- || Certified|Compatible|
-|--|--|--|
-|** Browsers ** | Internet Explorer(10 or later)<br/>Google Chrome<br/>Safari|Mozilla Firefox|
-|** Devices **|Android tablets (10 and 7 ins)</br>iOS tablets (10 and 7 ins)|Android Phones<br/>iOS Phones |
 
 
 {% include legal.html %}
