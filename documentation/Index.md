@@ -16,8 +16,8 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
 * React Reference Storefront
   * [Overview]({{ site.baseurl }}/documentation/overview)
       * [Features]({{ site.baseurl }}/documentation/overview#features)
-      * [Architecture Overview]({{ site.baseurl }}/documentation/overview#platform-architecture)
-      * [Cortex Integration]({{ site.baseurl }}/documentation/overview#cortex_integration)
+  * [Architecture Overview]({{ site.baseurl }}/documentation/Architecture_storefront.md)
+      * [Cortex Integration]({{ site.baseurl }}/documentation/Architecture_storefront#cortex_integration)
   * [Requirements and Specifications]({{ site.baseurl }}/documentation/technologyoverview)
   * [Installing and Configuring React Reference Storefront]({{ site.baseurl }}/documentation/installing)
       *  [Running React Reference Storefront]({{ site.baseurl }}/documentation/installing#running-react-reference-storefront)
