@@ -2,7 +2,7 @@
 layout: master
 permalink: /documentation/practices/
 title: Best Practices
-weight: 6
+weight: 7
 ---
 # Examples and Best Practices
 

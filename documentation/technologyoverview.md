@@ -2,7 +2,7 @@
 layout: master
 permalink: /documentation/technologyoverview/
 title: Technology
-weight: 3
+weight: 4
 ---
 ## Requirements and Specifications
 
@@ -32,7 +32,7 @@ For extending and customizing the storefront, knowledge in the following technol
  Elastic Path recommends using certified platforms, which are used for the regression and performance testing, for the product configuration.
  Elastic Path products might function correctly when deployed with compatible platforms, however, these platforms are not tested with the products. Elastic Path does not provide recommendations or best practices for these technologies.
 
- || **Certified** | **Compatible** |
+|| **Certified** | **Compatible** |
 |--|--|--|
 |** Browsers **| Internet Explorer(10 or later)<br/>Google Chrome<br/>Safari|Mozilla Firefox|
 |** Devices **|Android tablets (10 and 7 ins)</br>iOS tablets (10 and 7 ins)|Android Phones<br/>iOS Phones |

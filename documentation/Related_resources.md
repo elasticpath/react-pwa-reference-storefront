@@ -2,9 +2,8 @@
 layout: master
 permalink: /documentation/resources/
 title: Resources
-weight: 7
+weight: 8
 ---
-
 # Related Resources
 
 ## Elastic Path Commerce Resources

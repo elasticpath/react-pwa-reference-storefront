@@ -2,7 +2,7 @@
 layout: master
 permalink: /documentation/installing/
 title: Installation
-weight: 4
+weight: 5
 ---
 # Installing React Reference Storefront
 

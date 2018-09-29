@@ -2,7 +2,7 @@
 layout: master
 permalink: /documentation/extending/
 title: Customization
-weight: 5
+weight: 6
 ---
 # Extending React Reference Storefront
 
