@@ -15,9 +15,9 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
 
 * React Reference Storefront
   * [Overview]({{ site.baseurl }}/documentation/overview)
-      * [Features]({{ site.baseurl }}/documentation/overview.md#features)
-      * [Architecture Overview]({{ site.baseurl }}/documentation/overview.md#platform-architecture)
-      * [Cortex Integration]({{ site.baseurl }}/documentation/overview.md#cortex_integration)
+      * [Features]({{ site.baseurl }}/documentation/overview#features)
+      * [Architecture Overview]({{ site.baseurl }}/documentation/overview#platform-architecture)
+      * [Cortex Integration]({{ site.baseurl }}/documentation/overview#cortex_integration)
   * [Requirements and Specifications]({{ site.baseurl }}/documentation/technologyoverview)
   * [Installing and Configuring React Reference Storefront]({{ site.baseurl }}/documentation/installing)
       *  [Running React Reference Storefront]({{ site.baseurl }}/documentation/installing#running-react-reference-storefront)
@@ -32,7 +32,5 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
       * [Content management for assets and Catalog Images Integration Example]({{ site.baseurl }}/documentation/practices#content-management-for-assets-and-catalog-images_integration_example)
       * [External Content Management System Integration Example]({{ site.baseurl }}/documentation/practices#content-management-for-assets-and-catalog-images_integration_example)
   * [Related Resources]({{ site.baseurl }}/documentation/resources)
-
-
 
 {% include legal.html %}

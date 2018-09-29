@@ -14,7 +14,6 @@ weight: 7
 - [Cortex API Developer Documentation](https://developers.elasticpath.com/commerce/api-server-home/)
 - [Elastic Path Commerce Documentation](https://developers.elasticpath.com/commerce/core-home)
 
-
 ## References
 
 The following resources provide more information  the third-party technologies that Elastic Path uses for developing React Reference Storefront:
@@ -26,3 +25,5 @@ The following resources provide more information  the third-party technologies t
 * [Workbox](https://developers.google.com/web/tools/workbox/)
 * [Watson Content Hub Login to Digital Experience Dashboard](http://digitalexperience.ibm.com/)
 * [IBM Watson Content Hub Developer Tools CLI Repository](https://github.com/ibm-wch/wchtools-cli)
+
+{% include legal.html %}

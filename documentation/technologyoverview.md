@@ -53,7 +53,4 @@ The React Reference Storefront technologies are robust and extensible. With thes
 |[**Selenium**](https://en.wikipedia.org/wiki/Selenium_software)|The framework for testing web applications using browser automation.|3.4.0|QA|
 |[**Cucumber**](https://cucumber.io/)|The framework that runs automated acceptance tests.|1.2.5|QA|
 
-
-
-
 {% include legal.html %}

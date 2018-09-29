@@ -8,7 +8,6 @@ weight: 5
 
 ## React Reference Storefront Code Structure
 
-
 ![Directory Structure]({{ site.baseurl }}/documentation/img/directory_structure.png)
 <br/><br/>
 
@@ -39,10 +38,5 @@ weight: 5
 	* dd all required components and content for the component.
 	* Import the component to other components or pages as required.
 7. In the `src/components/mycomponent.main.jsx` file, add the required custom CSS.
-<br/><br/>
-
-
-<br/><br/>
-
 
 {% include legal.html %}

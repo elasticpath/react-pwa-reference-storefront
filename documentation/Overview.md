@@ -90,4 +90,5 @@ The top-level root is always invoked first to retrieve the top most APIs that ca
 `AuthService.js` contains the authentication functions used to authenticate a user/shopper with Cortex using oauth2. OAuth tokens are saved to the web application's local storage where they can be retrieved and injected into the header for authenticating subsequent Cortex requests.
 `
 Zoom queries can be constructed in the simple manner of populating an array with all required queries and appending it to the request to Cortex. The basic construct for creating zoom queries is to only request the additional data needed by the component consuming it. Avoid requesting data which is not required, and avoid circular zooms as these may have impacts to performance.
-<br/><br/>
+
+{% include legal.html %}
