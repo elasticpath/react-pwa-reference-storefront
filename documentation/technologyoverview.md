@@ -11,7 +11,7 @@ For installing and customizing React Reference Storefront, in addition to a vali
 - [Git](https://git-scm.com/downloads)
 - [Node.js](https://nodejs.org/en/download/)
 - [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:
-	- [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)</br>
+	- [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
 	- [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)
 - [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/)
@@ -23,7 +23,7 @@ For extending and customizing the storefront, knowledge in the following technol
 
 * [React](https://reactjs.org/)
 * [jQuery](https://jquery.com/)
-* [Bootstrap.js]([Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+* [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
 * [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 * [less](http://lesscss.org/)
 
@@ -50,7 +50,7 @@ The React Reference Storefront technologies are robust and extensible. With thes
 | [**Bootstrap.js**]([Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) | A free and open-source front-end framework for designing websites and web applications. |  4.4.1|Development |
 |[**node.js**](https://nodejs.org/en/)|An open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side.|8.11.2|Development |
 |[**Workbox**](https://developers.google.com/web/tools/workbox/)|The JavaScript libraries for adding offline support to web applications|3.4.1|Development |
-|[**Selenium**](https://en.wikipedia.org/wiki/Selenium_(software)|The framework for testing web applications using browser automation.|3.4.0|QA|
+|[**Selenium**](https://en.wikipedia.org/wiki/Selenium_software)|The framework for testing web applications using browser automation.|3.4.0|QA|
 |[**Cucumber**](https://cucumber.io/)|The framework that runs automated acceptance tests.|1.2.5|QA|
 
 

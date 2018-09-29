@@ -7,9 +7,8 @@ weight: 2
 # REACT Reference Storefront
 
 ### Contents
-- [Overview](/documentation/Overview.md#Overview)
+- [Overview](/documentation/Overview.md#overview)
 - [Technical Architecture](/documentation/Overview.md#platform_architecture)
-
 
 ## Overview
 
