@@ -34,8 +34,8 @@ For extending and customizing the storefront, knowledge in the following technol
 
 || **Certified** | **Compatible** |
 |--|--|--|
-|** Browsers **| Internet Explorer(10 or later)<br/>Google Chrome<br/>Safari|Mozilla Firefox|
-|** Devices **|Android tablets (10 and 7 ins)</br>iOS tablets (10 and 7 ins)|Android Phones<br/>iOS Phones |
+|**Browsers**| Internet Explorer(10 or later)<br/>Google Chrome<br/>Safari|Mozilla Firefox|
+|**Devices**|Android tablets (10 and 7 ins)<br/>iOS tablets (10 and 7 ins)|Android Phones<br/>iOS Phones |
 
 ## Technology Stack
 
@@ -47,7 +47,7 @@ The React Reference Storefront technologies are robust and extensible. With thes
 |[**Webpack**](https://webpack.js.org/)| An open-source JavaScript module bundler. Webpack takes modules with dependencies and generates static assets for the modules. |4.16.0|Development |
 |  [**jQuery**](https://jquery.com/) | The JavaScript library used for the base DOM abstraction layer. | 3.3.1 |Development |
 | [**Babel**](https://babeljs.io/) |The Javascript compiler. | 6.26.3 |Development |
-| [**Bootstrap.js**]([Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) | A free and open-source front-end framework for designing websites and web applications. |  4.4.1|Development |
+| [**Bootstrap.js**](https://getbootstrap.com/docs/4.0/getting-started/introduction/) | A free and open-source front-end framework for designing websites and web applications. |  4.4.1|Development |
 |[**node.js**](https://nodejs.org/en/)|An open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side.|8.11.2|Development |
 |[**Workbox**](https://developers.google.com/web/tools/workbox/)|The JavaScript libraries for adding offline support to web applications|3.4.1|Development |
 |[**Selenium**](https://en.wikipedia.org/wiki/Selenium_software)|The framework for testing web applications using browser automation.|3.4.0|QA|
