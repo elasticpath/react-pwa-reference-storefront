@@ -941,7 +941,7 @@ footer .input-group-btn .btn{
 
 @media (min-width: 1200px){
     .container {
-        width: 970px;
+        width: 1080px;
     }
 }
 
@@ -954,7 +954,7 @@ footer .input-group-btn .btn{
 
 
 /* Extra small devices Phones */
-@media (max-width: 767px) {
+@media (max-width: 1080px) {
 
     .carousel {
         height: 380px;

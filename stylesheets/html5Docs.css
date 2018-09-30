@@ -4,7 +4,7 @@
 */
 
 /* Fix to prevent wrapping menu overlapping page header */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1080px) {
     .navbar-nav {
         margin-right: -15px;
     }
@@ -36,13 +36,13 @@ img {
 }
 
 /* Prevent fly-out menu floating right at smaller resolutions */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1080px) {
     #navbar .navbar-nav {
         float: none;
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1080px) {
     .repo-link {
         display: block;
         margin: 40px 15px 20px 0;
@@ -54,7 +54,7 @@ img {
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1080px) {
     .repo-link, .repo-link:hover {
         margin: -10px 0 20px 0;
     }

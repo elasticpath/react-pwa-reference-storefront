@@ -29,7 +29,8 @@ We base our pages as the full page a shopper will visit in the storefront.
 
 ## Analytics Example
 
-** Google Analytics Integration** </br>
+**Google Analytics Integration**
+
 The Reference Storefront is pre-configured for integration with the Google Analytics enhanced ecommerce plugin. The handlers for integrating with Google Analytics allow for routes (pre-configured in App.js) to be logged as pageviews in the sites real-time traffic data. Further configuration in Google Analytics will enable measurements for conversion rates based on the pages viewed in the web traffic. The checkout flow is pre-configured to log purchases through Google Analytics' basic Ecommerce capabilities, and will submit transaction/purchase amounts along with cart information where it may be further analyzed in Google Analytics under Conversions > Ecommerce. The product and cart pages are configured to submit information when a product is viewed, added to cart, or removed from the cart.
 
 `Analytics.js` contains the functions used for logging page views with ReactGA (React library for invoking Google Analytics functions), and functions for invoking the enhanced Ecommerce capabilities.
@@ -49,7 +50,7 @@ If you use another CMS, you must update the configurations to reflect the public
 
 ## External Content Management System Integration Example
 
-** IBM Watson Content Hub (WCH) Integration **
+**IBM Watson Content Hub (WCH) Integration**
 
 IBM Watson Content Hub is a cloud-based CMS with an embedded content delivery network that lets marketers update content faster. It also provides services with IBM Watson such as cognitive tagging, to help transform assets into a searchable library of content.
 Catalog images and site content images can be uploaded to WCH using the wchtools command-line utility. Uploaded assets are scanned using Watson's Visual Image recognition service, and tagged based on content to create a searchable library. After images are uploaded, the content delivery url must be provided in the reference storefront's configuration for both the skuImagesUrl and siteImagesUrl with the appropriate sku/file-name placeholders. For example, certain fields in the following examples are populated based on the tenant ID of the WCH account being used, and the directory structure of the assets uploaded.
