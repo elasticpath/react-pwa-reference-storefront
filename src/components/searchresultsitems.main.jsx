@@ -70,7 +70,7 @@ class SearchResultsItemsMain extends React.Component {
   getSearchData(searchKeywordsProps) {
     this.setState({
       isLoading: true,
-      searchKeywords: searchKeywordsProps
+      searchKeywords: searchKeywordsProps,
     });
 
     login()
@@ -114,13 +114,13 @@ class SearchResultsItemsMain extends React.Component {
     const { isLoading, searchResultsModel } = this.state;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0;
-
+    const { searchKeywords } = this.state;
 
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
           <h1 className="view-title">
-            {intl.get('search-results-for', { searchKeywords: this.state.searchKeywords })}
+            {intl.get('search-results-for', { searchKeywords })}
           </h1>
           {(() => {
             if (isLoading) {

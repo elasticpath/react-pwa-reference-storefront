@@ -66,7 +66,6 @@ class ProductListItemMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
       productData: undefined,
     };
   }
