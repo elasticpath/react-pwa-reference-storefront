@@ -45,18 +45,11 @@ img {
 @media screen and (min-width: 1080px) {
     .repo-link {
         display: block;
-        margin: 40px 15px 20px 0;
         padding-bottom: 9px;
         text-align: right;
         position: absolute;
         top:0;
         right: 10px;
-    }
-}
-
-@media screen and (max-width: 1080px) {
-    .repo-link, .repo-link:hover {
-        margin: -10px 0 20px 0;
     }
 }
 

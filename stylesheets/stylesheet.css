@@ -1260,12 +1260,15 @@ pre code {
         margin-left: 91.666666666667%;
     }
 }
-.navbar .container {
-    margin-top: 20px;
-}
 @media screen and (min-width: 1081px) {
     .navbar .container {
         max-width: 720px;
+    }
+    .section-header .col-sm-4 {
+        float: right;
+    }
+    .section-header {
+        margin-top: -20px;
     }
 }
 @media screen and (min-width: 992px) {
@@ -6434,7 +6437,7 @@ body ul {
     display: block;
 }
 .section-header {
-    margin-top: -20px;
+    margin-top: 20px;
 }
 .section-header h1 span {
     margin-top: 5px;
