@@ -24,6 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import { loginRegistered } from '../utils/AuthService';
+import './appmodallogin.main.less';
 
 const Config = require('Config');
 
@@ -90,7 +91,7 @@ class AppModalLoginMain extends React.Component {
     const { failedLogin, isLoading } = this.state;
 
     return (
-      <div className="modal" id="login-modal">
+      <div className="modal login-modal-content" id="login-modal">
         <div className="modal-dialog">
           <div className="modal-content" id="simplemodal-container">
 
