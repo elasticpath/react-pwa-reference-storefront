@@ -23,6 +23,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductListItemMain from './productlistitem.main';
 
+import './productlist.main.less';
+
 class ProductListMain extends React.Component {
   static propTypes = {
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -54,7 +56,7 @@ class ProductListMain extends React.Component {
     const { categoryModel } = this.state;
     if (categoryModel.links.length > 0) {
       return (
-        <div data-region="categoryBrowseRegion" style={{ display: 'block' }}>
+        <div className="product-list-container" data-region="categoryBrowseRegion">
           <ul className="category-items-listing equalize" id="category_items_listing">
             {this.renderProducts()}
           </ul>

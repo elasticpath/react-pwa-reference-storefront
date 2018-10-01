@@ -32,6 +32,8 @@ import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
 import cortexFetch from '../utils/Cortex';
 
+import './productdisplayitem.main.less';
+
 const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
@@ -282,156 +284,153 @@ class ProductDisplayItemMain extends React.Component {
         }
       }
       return (
-        <div className="container">
-          <div className="itemdetail-container row">
-
-            <div className="itemdetail-assets">
-              <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
-                <div className="itemdetail-asset-container">
-                  <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
-                </div>
+        <div className="itemdetail-component container-3">
+          <div className="itemdetail-assets">
+            <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
+              <div className="itemdetail-asset-container">
+                <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
               </div>
             </div>
+          </div>
 
-            <div className="itemdetail-details">
-              <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
-                <div>
-                  <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
-                    {productData._definition[0]['display-name']}
-                  </h1>
-                </div>
-              </div>
-              <div className="itemdetail-price-container" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
-                <div>
-                  <div data-region="itemPriceRegion" style={{ display: 'block' }}>
-                    <ul className="itemdetail-price-container">
-                      {
-                        listPrice !== itemPrice
-                          ? (
-                            <li className="itemdetail-list-price" data-region="itemListPriceRegion">
-                              <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="itemdetail-list-price-label">
-                                {intl.get('original-price')}
-                                &nbsp;
-                              </label>
-                              <span className="itemdetail-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
-                                {listPrice}
-                              </span>
-                            </li>
-                          )
-                          : ('')
-                      }
-                      <li className="itemdetail-purchase-price">
-                        <label htmlFor={`category_item_price_${productData._code[0].code}_label`} className="itemdetail-purchase-price-label">
-                          {intl.get('price')}
-                          &nbsp;
-                        </label>
-                        <span className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                          {itemPrice}
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div data-region="itemRateRegion" />
-                </div>
-              </div>
-              <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
-                <ul className="itemdetail-availability-container">
-                  <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                    <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
-                      {(availability) ? (
-                        <div>
-                          <span className="icon" />
-                          {availabilityString}
-                        </div>
-                      ) : (
-                        <div>
-                          {availabilityString}
-                        </div>
-                      )}
-                    </label>
-                  </li>
-                  <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                    <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
-                      {intl.get('expected-release-date')}
-                      :&nbsp;
-                    </label>
-                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
-                      {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
-                <table className="table table-striped table-condensed">
-                  <tbody>
-                    {this.renderAttributes()}
-                  </tbody>
-                </table>
+          <div className="itemdetail-details">
+            <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
+              <div>
+                <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
+                  {productData._definition[0]['display-name']}
+                </h1>
               </div>
             </div>
-
-            <div className="itemdetail-addtocart col-xs-12 col-sm-10 col-md-6 col-lg-3">
-              <div data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
-                <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
-                    {this.renderSkuSelection()}
+            <div className="itemdetail-price-container" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
+              <div>
+                <div data-region="itemPriceRegion" style={{ display: 'block' }}>
+                  <ul className="itemdetail-price-container">
                     {
-                      (isLoading) ? (<div className="miniLoader" />) : ''
+                      listPrice !== itemPrice
+                        ? (
+                          <li className="itemdetail-list-price" data-region="itemListPriceRegion">
+                            <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="itemdetail-list-price-label">
+                              {intl.get('original-price')}
+                              &nbsp;
+                            </label>
+                            <span className="itemdetail-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
+                              {listPrice}
+                            </span>
+                          </li>
+                        )
+                        : ('')
                     }
-                    <div className="form-group">
-                      <label htmlFor="product_display_item_quantity_label" className="control-label">
-                        {intl.get('quantity')}
+                    <li className="itemdetail-purchase-price">
+                      <label htmlFor={`category_item_price_${productData._code[0].code}_label`} className="itemdetail-purchase-price-label">
+                        {intl.get('price')}
+                        &nbsp;
                       </label>
-
-                      <div className="form-content">
-                        <select className="form-control" id="product_display_item_quantity_select" name="itemdetail-select-quantity" onChange={this.handleQuantityChange}>
-                          <option id="product_display_item_quantity_option_1" value="1">
-                            1
-                          </option>
-                          <option id="product_display_item_quantity_option_2" value="2">
-                            2
-                          </option>
-                          <option id="product_display_item_quantity_option_3" value="3">
-                            3
-                          </option>
-                          <option id="product_display_item_quantity_option_4" value="4">
-                            4
-                          </option>
-                          <option id="product_display_item_quantity_option_5" value="5">
-                            5
-                          </option>
-                          <option id="product_display_item_quantity_option_6" value="6">
-                            6
-                          </option>
-                          <option id="product_display_item_quantity_option_7" value="7">
-                            7
-                          </option>
-                          <option id="product_display_item_quantity_option_8" value="8">
-                            8
-                          </option>
-                          <option id="product_display_item_quantity_option_9" value="9">
-                            9
-                          </option>
-                          <option id="product_display_item_quantity_option_10" value="10">
-                            10
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="form-group form-group-submit">
-                      <div className="form-content form-content-submit col-sm-8 col-sm-offset-4">
-                        <button className={`btn-round btn btn-primary btn-itemdetail-addtocart${!availability ? ' disabled' : ''}`} id="product_display_item_add_to_cart_button" type="submit">
-                          {intl.get('add-to-cart')}
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
-                      {addToCartFailedMessage}
-                    </div>
-
-                  </form>
+                      <span className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                        {itemPrice}
+                      </span>
+                    </li>
+                  </ul>
                 </div>
+                <div data-region="itemRateRegion" />
+              </div>
+            </div>
+            <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
+              <ul className="itemdetail-availability-container">
+                <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
+                  <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
+                    {(availability) ? (
+                      <div>
+                        <span className="icon" />
+                        {availabilityString}
+                      </div>
+                    ) : (
+                      <div>
+                        {availabilityString}
+                      </div>
+                    )}
+                  </label>
+                </li>
+                <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+                  <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
+                    {intl.get('expected-release-date')}
+                    :&nbsp;
+                  </label>
+                  <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
+                    {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
+              <table className="table table-striped table-condensed">
+                <tbody>
+                  {this.renderAttributes()}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="itemdetail-addtocart">
+            <div data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
+              <div>
+                <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
+                  {this.renderSkuSelection()}
+                  {
+                    (isLoading) ? (<div className="miniLoader" />) : ''
+                  }
+                  <div className="form-group">
+                    <label htmlFor="product_display_item_quantity_label" className="control-label">
+                      {intl.get('quantity')}
+                    </label>
+
+                    <div className="form-content">
+                      <select className="form-control" id="product_display_item_quantity_select" name="itemdetail-select-quantity" onChange={this.handleQuantityChange}>
+                        <option id="product_display_item_quantity_option_1" value="1">
+                          1
+                        </option>
+                        <option id="product_display_item_quantity_option_2" value="2">
+                          2
+                        </option>
+                        <option id="product_display_item_quantity_option_3" value="3">
+                          3
+                        </option>
+                        <option id="product_display_item_quantity_option_4" value="4">
+                          4
+                        </option>
+                        <option id="product_display_item_quantity_option_5" value="5">
+                          5
+                        </option>
+                        <option id="product_display_item_quantity_option_6" value="6">
+                          6
+                        </option>
+                        <option id="product_display_item_quantity_option_7" value="7">
+                          7
+                        </option>
+                        <option id="product_display_item_quantity_option_8" value="8">
+                          8
+                        </option>
+                        <option id="product_display_item_quantity_option_9" value="9">
+                          9
+                        </option>
+                        <option id="product_display_item_quantity_option_10" value="10">
+                          10
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="form-group form-group-submit">
+                    <div className="form-content form-content-submit col-sm-8 col-sm-offset-4">
+                      <button className={`btn-round btn btn-primary btn-itemdetail-addtocart${!availability ? ' disabled' : ''}`} id="product_display_item_add_to_cart_button" type="submit">
+                        {intl.get('add-to-cart')}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
+                    {addToCartFailedMessage}
+                  </div>
+
+                </form>
               </div>
             </div>
           </div>

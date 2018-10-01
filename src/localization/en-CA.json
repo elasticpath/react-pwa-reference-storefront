@@ -144,6 +144,7 @@
   "email-slash-username": "Email/Username",
   "password-confirmation": "Password Confirmation",
   "search-results": "Search Results",
+  "search-results-for": "Search results for: '{searchKeywords}'",
   "no-results-found": "No results found",
   "network-offline": "Network Offline",
   "account-login": "Account Login",

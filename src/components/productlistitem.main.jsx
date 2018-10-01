@@ -27,6 +27,8 @@ import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
 import cortexFetch from '../utils/Cortex';
 
+import './productlistitem.main.less';
+
 const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
@@ -131,36 +133,34 @@ class ProductListItemMain extends React.Component {
               {productData._definition[0]['display-name']}
             </Link>
           </div>
-          <div data-region="priceRegion" style={{ display: 'block' }}>
-            <div>
-              <div data-region="itemPriceRegion" style={{ display: 'block' }}>
-                <ul className="category-item-price-container" style={{ minHeight: '33px' }}>
-                  <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
-                    {
-                      listPrice !== itemPrice
-                        ? (
-                          <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
-                            {listPrice}
-                          </span>
-                        )
-                        : ('')
-                    }
-                    <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                      {itemPrice}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div data-region="itemRateRegion" />
+          <div data-region="priceRegion">
+            <div data-region="itemPriceRegion">
+              <ul className="category-item-price-container" style={{ minHeight: '33px' }}>
+                <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
+                  {
+                    listPrice !== itemPrice
+                      ? (
+                        <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
+                          {listPrice}
+                        </span>
+                      )
+                      : ('')
+                  }
+                  <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                    {itemPrice}
+                  </span>
+                </li>
+              </ul>
             </div>
+            <div data-region="itemRateRegion" />
           </div>
-          <div data-region="availabilityRegion" style={{ display: 'block' }}>
+          <div data-region="availabilityRegion">
             <ul className="category-item-availability-container">
               <li className="category-item-availability itemdetail-availability-state" data-i18n="AVAILABLE">
                 <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
                   {(availability) ? (
                     <div>
-                      <span className="icon" />
+                      <span className="icon glyphicon glyphicon-ok" />
                       {availabilityString}
                     </div>
                   ) : (

@@ -274,7 +274,7 @@ class AddressFormMain extends React.Component {
             return -1;
           });
         return (
-          <div data-region="addressRegionsRegion" className="form-group" style={{ overflow: 'hidden', display: 'block' }}>
+          <div data-region="addressRegionsRegion" className="form-group">
             <div>
               <label htmlFor="Region" data-el-label="addressForm.region" className="control-label address-form-label">
                 <span className="required-label">
@@ -300,7 +300,7 @@ class AddressFormMain extends React.Component {
       return null;
     }
     return (
-      <div data-region="addressRegionsRegion" className="form-group" style={{ overflow: 'hidden', display: 'block' }}>
+      <div data-region="addressRegionsRegion" className="form-group">
         <div>
           <label htmlFor="Region" data-el-label="addressForm.region" className="control-label address-form-label">
             <span className="required-label">

@@ -24,8 +24,7 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
-import ProductListPaginationTop from './productlistpaginationtop.main';
-import ProductListPaginationBottom from './productlistpaginationbottom.main';
+import ProductListPagination from './productlistpagination.main';
 import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
@@ -38,15 +37,38 @@ class CategoryItemsMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       categoryModel: { links: [] },
-      selfUri: '',
     };
   }
 
   componentDidMount() {
     const { categoryUrl } = this.props;
+    this.setState({ isLoading: true });
+    login().then(() => cortexFetch(`${categoryUrl}?zoom=items`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      }))
+      .then(res => res.json())
+      .then((res) => {
+        this.setState({
+          isLoading: false,
+          categoryModel: res,
+        });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ isLoading: true });
     login().then(() => {
-      cortexFetch(`${categoryUrl}?zoom=items`,
+      cortexFetch(`${nextProps.categoryUrl}?zoom=items`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -56,8 +78,8 @@ class CategoryItemsMain extends React.Component {
         .then(res => res.json())
         .then((res) => {
           this.setState({
+            isLoading: false,
             categoryModel: res,
-            selfUri: categoryUrl,
           });
         })
         .catch((error) => {
@@ -67,74 +89,43 @@ class CategoryItemsMain extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { selfUri } = this.state;
-    if (Config.cortexApi.path + selfUri !== nextProps.categoryUrl) {
-      login().then(() => {
-        cortexFetch(`${nextProps.categoryUrl}?zoom=items`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-          })
-          .then(res => res.json())
-          .then((res) => {
-            this.setState({
-              selfUri: nextProps.categoryUrl,
-              categoryModel: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
-    }
-  }
-
   render() {
-    const { categoryModel, selfUri } = this.state;
-    const { categoryUrl } = this.props;
-    if (categoryModel.links.length > 0 && categoryModel._items && categoryModel._items[0].links.length === 0 && selfUri === categoryUrl) {
-      return (
-        <div className="category-items-container container">
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                {categoryModel['display-name']}
-              </h1>
-            </div>
-            <br />
-            <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-              <div>
+    const { isLoading, categoryModel } = this.state;
+    const products = categoryModel._items ? categoryModel._items[0] : categoryModel;
+    const noProducts = !products || products.links.length === 0;
+
+    return (
+      <div className="category-items-container container-3">
+        <div data-region="categoryTitleRegion">
+          {(() => {
+            if (isLoading) {
+              return (<div className="loader" />);
+            }
+
+            if (noProducts) {
+              return (
                 <h3>
                   {intl.get('no-products-found')}
                 </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    if (categoryModel.links.length > 0 && selfUri === categoryUrl) {
-      return (
-        <div className="category-items-container container">
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                {categoryModel['display-name']}
-              </h1>
-            </div>
-          </div>
-          <ProductListPaginationTop paginationDataProps={categoryModel._items ? categoryModel._items[0] : categoryModel} />
-          <ProductListMain productData={categoryModel._items ? categoryModel._items[0] : categoryModel} />
-          <ProductListPaginationBottom paginationDataProps={categoryModel._items ? categoryModel._items[0] : categoryModel} />
-        </div>
-      );
-    }
+              );
+            }
 
-    return (<div className="loader" />);
+            return (
+              <div>
+                <h1 className="view-title">
+                  {categoryModel['display-name']}
+                </h1>
+                <div className="products-container">
+                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListMain productData={products} />
+                  <ProductListPagination paginationDataProps={products} />
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      </div>
+    );
   }
 }
 

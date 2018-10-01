@@ -1,0 +1,95 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.itemdetail-component {
+  padding-top: 30px;
+
+  .itemdetail-assets {
+    width: 250px;
+    vertical-align: top;
+    display: inline-block;
+
+    .itemdetail-asset-container {
+      img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .itemdetail-details {
+    vertical-align: top;
+    padding: 30px;
+    display: inline-block;
+    width: 500px;
+  }
+
+  .itemdetail-addtocart {
+    width: 250px;
+    padding: 30px 10px;
+    vertical-align: top;
+    display: inline-block;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+
+  @media (max-width: @mobileWidth - 1px) {
+    .itemdetail-assets {
+      display: block;
+      width: 100%;
+    }
+
+    .itemdetail-details {
+      display: block;
+      width: 100%;
+    }
+
+    .itemdetail-addtocart {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
+    .itemdetail-assets {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .itemdetail-details {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .itemdetail-addtocart {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

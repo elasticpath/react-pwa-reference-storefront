@@ -24,8 +24,7 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
-import ProductListPaginationTop from './productlistpaginationtop.main';
-import ProductListPaginationBottom from './productlistpaginationbottom.main';
+import ProductListPagination from './productlistpagination.main';
 import cortexFetch from '../utils/Cortex';
 
 const Config = require('Config');
@@ -52,6 +51,7 @@ class SearchResultsItemsMain extends React.Component {
     super(props);
     const { searchKeywordsProps } = this.props;
     this.state = {
+      isLoading: true,
       searchResultsModel: { links: [] },
       searchKeywords: searchKeywordsProps,
     };
@@ -63,97 +63,91 @@ class SearchResultsItemsMain extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { searchKeywords } = this.state;
-    if (searchKeywords !== nextProps.searchKeywordsProps) {
-      this.getSearchData(nextProps.searchKeywordsProps);
-    }
+    const { searchKeywordsProps } = nextProps;
+    this.getSearchData(searchKeywordsProps);
   }
 
   getSearchData(searchKeywordsProps) {
-    login().then(() => {
-      cortexFetch('/?zoom=searches:keywordsearchform',
+    this.setState({
+      isLoading: true,
+      searchKeywords: searchKeywordsProps,
+    });
+
+    login()
+      .then(() => cortexFetch('/?zoom=searches:keywordsearchform',
         {
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
-        }).then(() => {
-          cortexFetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
-            {
-              method: 'post',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-              },
-              body: JSON.stringify({
-                keywords: searchKeywordsProps,
-              }),
-            })
-            .then(res => res.json())
-            .then((res) => {
-              this.setState({
-                searchResultsModel: res,
-                searchKeywords: searchKeywordsProps,
-              });
-            })
-            .catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+        }))
+      .then(res => res.json())
+      .then((res) => {
+        searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
+      })
+      .then(() => cortexFetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            keywords: searchKeywordsProps,
+          }),
+        }))
+      .then(res => res.json())
+      .then((res) => {
+        this.setState({
+          isLoading: false,
+          searchResultsModel: res,
+          searchKeywords: searchKeywordsProps,
         });
-    });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   render() {
-    const { searchKeywordsProps } = this.props;
-    const { searchResultsModel, searchKeywords } = this.state;
-    if (searchResultsModel.links.length > 0 && searchKeywords === searchKeywordsProps) {
-      return (
-        <div className="category-items-container container">
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                {intl.get('search-results')}
-              </h1>
-            </div>
-          </div>
-          <ProductListPaginationTop paginationDataProps={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
-          <ProductListMain productData={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
-          <ProductListPaginationBottom paginationDataProps={searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel} />
-        </div>
-      );
-    }
-    if (searchResultsModel.links.length === 0 && searchResultsModel.pagination && searchKeywords === searchKeywordsProps) {
-      return (
-        <div className="category-items-container container">
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                {intl.get('search-results')}
-              </h1>
-            </div>
-          </div>
-          <br />
-          <div data-region="categoryTitleRegion" style={{ display: 'block' }}>
-            <div>
-              <h3>
-                {intl.get('no-results-found')}
-              </h3>
-            </div>
-          </div>
-        </div>
-      );
-    }
+    const { isLoading, searchResultsModel } = this.state;
+    const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
+    const noProducts = !products || products.links.length === 0;
+    const { searchKeywords } = this.state;
 
-    return (<div className="loader" />);
+    return (
+      <div className="category-items-container container-3">
+        <div data-region="categoryTitleRegion">
+          <h1 className="view-title">
+            {intl.get('search-results-for', { searchKeywords })}
+          </h1>
+          {(() => {
+            if (isLoading) {
+              return (<div className="loader" />);
+            }
+
+            if (noProducts) {
+              return (
+                <h3>
+                  {intl.get('no-products-found')}
+                </h3>
+              );
+            }
+
+            return (
+              <div>
+                <div className="products-container">
+                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListMain productData={products} />
+                  <ProductListPagination paginationDataProps={products} />
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      </div>
+    );
   }
 }
 
