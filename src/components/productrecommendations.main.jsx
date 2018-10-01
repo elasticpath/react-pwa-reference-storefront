@@ -73,6 +73,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
     }
     return (
       <div className="product-recomentations-component" data-region="categoryBrowseRegion" key="categoryBrowseRegion">
+        {data.length > 0 ? <hr /> : ''}
         {data}
       </div>
     );

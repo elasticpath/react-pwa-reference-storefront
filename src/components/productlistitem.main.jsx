@@ -128,7 +128,7 @@ class ProductListItemMain extends React.Component {
               <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
             </Link>
           </div>
-          <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`} style={{ minHeight: '59px' }}>
+          <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`} style={{ minHeight: '50px' }}>
             <Link to={`/itemdetail/${encodeURIComponent(productData.self.uri)}`}>
               {productData._definition[0]['display-name']}
             </Link>
