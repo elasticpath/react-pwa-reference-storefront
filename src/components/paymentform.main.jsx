@@ -24,6 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
+import './paymentform.main.less';
 
 const Config = require('Config');
 
@@ -203,7 +204,7 @@ class PaymentFormMain extends React.Component {
     return (
       <div>
         <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
-          <div className="container">
+          <div className="container payment-method-container">
             <h1>
               {intl.get('new-payment-method')}
             </h1>

@@ -27,6 +27,7 @@ import OrderHistoryMain from '../components/orderhistory.main';
 import ProfileAddressesMain from '../components/profileaddresses.main';
 import ProfilePaymentMethodsMain from '../components/profilepaymentmethods.main';
 import cortexFetch from '../utils/Cortex';
+import './ProfilePage.less';
 
 const Config = require('Config');
 
@@ -87,7 +88,7 @@ class ProfilePage extends React.Component {
     const { profileData } = this.state;
     return (
       <div>
-        <div className="container">
+        <div className="container profile-container">
           <div data-region="profileTitleRegion" style={{ display: 'block' }}>
             <h1>
               {intl.get('profile')}

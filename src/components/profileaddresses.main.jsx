@@ -26,6 +26,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
+import './profileaddresses.main.less';
 
 const Config = require('Config');
 
@@ -100,10 +101,10 @@ class ProfileAddressesMain extends React.Component {
                     </li>
                   </ul>
                 </div>
-                <button className="btn profile-edit-address-btn" type="button" onClick={() => { this.editAddress(addressElement.self.uri); }}>
+                <button className="btn edit-address-btn" type="button" onClick={() => { this.editAddress(addressElement.self.uri); }}>
                   {intl.get('edit')}
                 </button>
-                <button className="btn profile-delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
+                <button className="btn delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
                   {intl.get('delete')}
                 </button>
               </li>
@@ -128,7 +129,7 @@ class ProfileAddressesMain extends React.Component {
     } = this.props;
     if (addresses) {
       return (
-        <div data-region="profileAddressesRegion" style={{ display: 'block' }}>
+        <div className="profile-addresses-container" data-region="profileAddressesRegion" style={{ display: 'block' }}>
           <div>
             <h2>
               {intl.get('addresses')}
