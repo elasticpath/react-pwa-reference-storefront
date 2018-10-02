@@ -22,17 +22,20 @@
 @import './../style/common.less';
 
 .itemdetail-component {
+  line-height: 2.14;
   padding-top: 30px;
+  text-align: center;
 
   .itemdetail-assets {
-    width: 250px;
+    width: 380px;
     vertical-align: top;
     display: inline-block;
 
     .itemdetail-asset-container {
       img {
-        width: 250px;
-        height: 250px;
+        max-width: 380px;
+        max-height: 380px;
+        width: 100%;
         object-fit: cover;
       }
     }
@@ -40,23 +43,110 @@
 
   .itemdetail-details {
     vertical-align: top;
-    padding: 30px;
+    padding-top: 30px;
+    margin-left: 50px;
     display: inline-block;
-    width: 500px;
+    width: 280px;
+    font-size: 12px;
+    line-height: normal;
+    text-align: left;
+
+    .itemdetail-title,
+    .itemdetail-price-container {
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .itemdetail-addtocart {
+      vertical-align: top;
+      display: inline-block;
+
+      .btn-itemdetail-addtocart {
+        width: 280px;
+        height: 40px;
+        background-color: #40b1f3;
+        font-size: 12px;
+        font-weight: bold;
+        color: #ffffff;
+        border: 0;
+        border-radius: 0;
+        text-transform: uppercase;
+        margin-top: 10px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+
+        .control-label {
+          margin-top: .75rem;
+          color: #8a8a8a;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .form-content {
+          float: right;
+
+          .form-control {
+            border: solid 1px #8a8a8a;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: normal;
+            appearance: none;
+            -webkit-appearance: none;
+            border-radius: 0px;
+            -webkit-border-radius: 0px;
+            width: 180px;
+            height: 30px;
+            background: url(../images/header-icons/down-arrow.png) no-repeat 96% 0;
+            background-position: 152px;
+            background-size: 16px 9px;
+          }
+        }
+      }
+    }
+
+    .itemdetail-attribute:nth-of-type(1) {
+      border-bottom: solid 1px #d0d0d0;
+      padding-bottom: 25px;
+    }
+
+    .itemdetail-attribute-label-col {
+      font-size: 14px;
+      font-weight: 600;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .itemdetail-attribute-value-col {
+      line-height: 1.5;
+      color: #8a8a8a;
+      font-weight: 600;
+    }
   }
 
-  .itemdetail-addtocart {
-    width: 250px;
-    padding: 30px 10px;
-    vertical-align: top;
-    display: inline-block;
-    background-color: #eee;
-    border: 1px solid #ddd;
-    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+  @media (min-width: @mobileWidth - 100px) and (max-width: @tabletWidth - 350px) {
+    .itemdetail-assets {
+      width: 50%;
+      height: 100%;
+    }
+
+    .itemdetail-assets .itemdetail-asset-container img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .itemdetail-details {
+      margin-left: 39px;
+    }
+
+    .itemdetail-details .itemdetail-addtocart .btn-itemdetail-addtocart {
+      display: block;
+      width: 100%;
+    }
   }
 
-  @media (max-width: @mobileWidth - 1px) {
+  @media (max-width: @mobileWidth - 100px) {
     .itemdetail-assets {
       display: block;
       width: 100%;
@@ -65,31 +155,34 @@
     .itemdetail-details {
       display: block;
       width: 100%;
+      margin: 0;
     }
 
-    .itemdetail-addtocart {
+    .itemdetail-details .itemdetail-addtocart .btn-itemdetail-addtocart {
       display: block;
       width: 100%;
     }
   }
 
-  @media (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
-    .itemdetail-assets {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+  .itemdetail-availability-container {
+    padding-top: 10px;
+    padding-bottom: 2px;
 
-    .itemdetail-details {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .itemdetail-availability-state {
+      label {
+        background-color: #fff;
+        border-radius: 10px;
+        border: solid @mainColor;
+        border-width: 1px 1px;
+        color: @mainColor;
+        padding: 3px 10px;
+        font-size: 10px;
+        text-transform: uppercase;
 
-    .itemdetail-addtocart {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+        .icon {
+          margin-right: 6px;
+        }
+      }
     }
   }
 }

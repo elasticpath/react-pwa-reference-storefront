@@ -245,14 +245,14 @@ class ProductDisplayItemMain extends React.Component {
     const { productData } = this.state;
     if (productData._definition[0].details) {
       return productData._definition[0].details.map(attribute => (
-        <tr key={attribute.name}>
-          <td className="itemdetail-attribute-label-col">
+        <ul className="itemdetail-attribute" key={attribute.name}>
+          <li className="itemdetail-attribute-label-col">
             {attribute['display-name']}
-          </td>
-          <td className="itemdetail-attribute-value-col">
+          </li>
+          <li className="itemdetail-attribute-value-col">
             {attribute['display-value']}
-          </td>
-        </tr>
+          </li>
+        </ul>
       ));
     }
     return null;
@@ -321,13 +321,9 @@ class ProductDisplayItemMain extends React.Component {
                         : ('')
                     }
                     <li className="itemdetail-purchase-price">
-                      <label htmlFor={`category_item_price_${productData._code[0].code}_label`} className="itemdetail-purchase-price-label">
-                        {intl.get('price')}
-                        &nbsp;
-                      </label>
-                      <span className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                      <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
                         {itemPrice}
-                      </span>
+                      </h1>
                     </li>
                   </ul>
                 </div>
@@ -340,7 +336,7 @@ class ProductDisplayItemMain extends React.Component {
                   <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
                     {(availability) ? (
                       <div>
-                        <span className="icon" />
+                        <span className="icon glyphicon glyphicon-ok" />
                         {availabilityString}
                       </div>
                     ) : (
@@ -361,17 +357,8 @@ class ProductDisplayItemMain extends React.Component {
                 </li>
               </ul>
             </div>
-            <div data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
-              <table className="table table-striped table-condensed">
-                <tbody>
-                  {this.renderAttributes()}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div className="itemdetail-addtocart">
-            <div data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
+            <hr />
+            <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
               <div>
                 <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
                   {this.renderSkuSelection()}
@@ -418,8 +405,8 @@ class ProductDisplayItemMain extends React.Component {
                       </select>
                     </div>
                   </div>
-                  <div className="form-group form-group-submit">
-                    <div className="form-content form-content-submit col-sm-8 col-sm-offset-4">
+                  <div className="form-group-submit">
+                    <div className="form-content form-content-submit col-sm-offset-4">
                       <button className={`btn-round btn btn-primary btn-itemdetail-addtocart${!availability ? ' disabled' : ''}`} id="product_display_item_add_to_cart_button" type="submit">
                         {intl.get('add-to-cart')}
                       </button>
@@ -432,6 +419,9 @@ class ProductDisplayItemMain extends React.Component {
 
                 </form>
               </div>
+            </div>
+            <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
+              {this.renderAttributes()}
             </div>
           </div>
           <ProductRecommendationsDisplayMain productData={productData} />

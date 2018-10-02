@@ -33,6 +33,11 @@ let paginationNextLinkVar = '';
 class ProductListPagination extends React.Component {
   static propTypes = {
     paginationDataProps: PropTypes.objectOf(PropTypes.any).isRequired,
+    isTop: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isTop: false,
   }
 
   constructor(props) {
@@ -83,25 +88,29 @@ class ProductListPagination extends React.Component {
 
   render() {
     const { paginationData, paginationNextLink, paginationPreviousLink } = this.state;
+    const { isTop } = this.props;
     if (paginationData.links.length > 0) {
       return (
         <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
-          <div className="total-results">
-            <span className="total-results-value">
-              {paginationData.pagination.results}
-              &nbsp;
-              {intl.get('results')}
-            </span>
-            &nbsp;
-            <span className="results-displayed-value">
-              (
-              {paginationData.pagination['results-on-page']}
-              &nbsp;
-              {intl.get('results-on-page')}
-              )
-            </span>
-          </div>
-          {paginationNextLink !== '' || paginationPreviousLink !== ''
+          {
+            isTop ? (
+              <div className="total-results">
+                <span className="total-results-value">
+                  {paginationData.pagination.results}
+                  &nbsp;
+                  {intl.get('results')}
+                </span>
+                &nbsp;
+                <span className="results-displayed-value">
+                    (
+                  {paginationData.pagination['results-on-page']}
+                    &nbsp;
+                  {intl.get('results-on-page')}
+                    )
+                </span>
+              </div>
+            ) : ('')}
+          {!isTop && (paginationNextLink !== '' || paginationPreviousLink !== '')
             ? (
               <div className="pagination-navigation-container">
                 {paginationPreviousLink !== ''

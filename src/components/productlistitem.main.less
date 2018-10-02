@@ -21,71 +21,84 @@
 
 @import './../style/common.less';
 
-.category-item-inner {
-  width: 100%;
-  overflow: hidden;
-  padding: 5px;
-  background-color: #eee;
-  border: 1px solid #ccc;
+.category-item-container {
+  border: none !important;
 
-  .category-item-thumbnail-container {
-    border: 1px solid #ccc;
+  .category-item-inner {
+    width: 100%;
+    overflow: hidden;
+    padding: 5px;
 
-    a {
-      display: block;
-      width: 100%;
-      padding-top: 100%;
-      position: relative;
-
-      img {
-        position: absolute;
+    .category-item-thumbnail-container {
+      a {
         display: block;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: 50% 0;
+        padding-top: 100%;
+        position: relative;
+
+        img {
+          position: absolute;
+          display: block;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: 50% 0;
+        }
       }
     }
-  }
 
-  .category-item-title {
-    padding-top: 10px;
-    min-height: 70px;
-    font-size: 14px;
-  }
+    .category-item-title {
+      padding-top: 10px;
+      min-height: 70px;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.5;
+      color: #000000;
 
-  .category-item-price-container {
-    font-weight: bold;
-    border-bottom: 1px solid #ddd;
-
-    .category-item-list-price-value {
-      text-decoration: line-through;
-      color: #888;
-      margin-right: 15px;
+      a {
+        color: #000000;
+      }
     }
-  }
 
-  .category-item-availability-container {
-    padding-top: 10px;
-    padding-bottom: 2px;
+    .category-item-price-container {
+      font-weight: bold;
+      font-weight: 600;
+      line-height: 1.29;
+      color: #000000;
 
-    .itemdetail-availability-state {
-      label {
-        background-color: @mainColor;
-        border-radius: 10px;
-        color: #fff;
-        padding: 3px 10px;
-        font-size: 10px;
-        text-transform: uppercase;
+      .category-item-list-price-value {
+        text-decoration: line-through;
+        color: #888;
+        margin-right: 15px;
+      }
+    }
 
-        .icon {
-          margin-right: 6px;
+    .category-item-availability-container {
+      display: none;
+      padding-top: 10px;
+      padding-bottom: 2px;
+
+      .itemdetail-availability-state {
+        label {
+          background-color: #fff;
+          border-radius: 10px;
+          border: solid @mainColor;
+          border-width: 1px 1px;
+          color: @mainColor;
+          padding: 3px 10px;
+          font-size: 10px;
+          text-transform: uppercase;
+
+          .icon {
+            margin-right: 6px;
+          }
         }
       }
     }
   }
+
 }

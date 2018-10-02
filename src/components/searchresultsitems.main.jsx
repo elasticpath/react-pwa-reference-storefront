@@ -138,7 +138,7 @@ class SearchResultsItemsMain extends React.Component {
             return (
               <div>
                 <div className="products-container">
-                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListPagination paginationDataProps={products} isTop />
                   <ProductListMain productData={products} />
                   <ProductListPagination paginationDataProps={products} />
                 </div>

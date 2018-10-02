@@ -22,12 +22,33 @@
 @import './../style/common.less';
 
 .product-list-container {
+  text-align: left;
+
   .category-items-listing {
     .category-item-container {
       display: inline-block;
       width: 240px;
       padding-right: 20px;
       padding-bottom: 30px;
+
+      .category-item-inner {
+        .category-item-availability-container {
+          display: block;
+        }
+
+        .category-item-title {
+          padding-top: 10px;
+          min-height: 70px;
+          font-size: 14px;
+          font-weight: 800;
+          line-height: 1.13;
+          color: #40b1f3;
+
+          a {
+            color: #40b1f3;
+          }
+        }
+      }
 
       @media (max-width: @tabletWidth - 1px) {
         width: 33%;
