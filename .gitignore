@@ -5,6 +5,10 @@
 
 # testing
 /coverage
+/test
+
+# _site directory
+/_site
 
 # production
 /build
