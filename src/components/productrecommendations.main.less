@@ -30,14 +30,25 @@
   }
 
   .card-deck {
-    width: 250px;
+    width: 100%;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+
+    .card {
+      max-width: 160px;
+    }
+
+    .category-item-price-container {
+      font-weight: 300;
+    }
 
     @media (max-width: @mobileWidth - 1px) {
-      width: 50%;
+      // width: 50%;
     }
 
     @media (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
-      width: 33%;
+      // width: 33%;
     }
   }
 }

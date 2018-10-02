@@ -116,7 +116,7 @@ class CategoryItemsMain extends React.Component {
                   {categoryModel['display-name']}
                 </h1>
                 <div className="products-container">
-                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListPagination paginationDataProps={products} isTop />
                   <ProductListMain productData={products} />
                   <ProductListPagination paginationDataProps={products} />
                 </div>

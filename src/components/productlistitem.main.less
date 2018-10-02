@@ -30,8 +30,6 @@
     padding: 5px;
 
     .category-item-thumbnail-container {
-      border: 1px solid #ccc;
-
       a {
         display: block;
         width: 100%;
@@ -57,10 +55,21 @@
       padding-top: 10px;
       min-height: 70px;
       font-size: 14px;
+      font-weight: 800;
+      line-height: 1.5;
+      color: #000000;
+
+      a {
+        color: #000000;
+      }
     }
 
     .category-item-price-container {
       font-weight: bold;
+      font-family: Montserrat;
+      font-weight: 600;
+      line-height: 1.29;
+      color: #000000;
 
       .category-item-list-price-value {
         text-decoration: line-through;
@@ -76,9 +85,11 @@
 
       .itemdetail-availability-state {
         label {
-          background-color: @mainColor;
+          background-color: #fff;
           border-radius: 10px;
-          color: #fff;
+          border: solid @mainColor;
+          border-width: 1px 1px;
+          color: @mainColor;
           padding: 3px 10px;
           font-size: 10px;
           text-transform: uppercase;
