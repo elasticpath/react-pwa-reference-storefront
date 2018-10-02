@@ -6,6 +6,9 @@
 # testing
 /coverage
 
+# _site directory
+/_site
+
 # production
 /build
 /dist
