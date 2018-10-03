@@ -49,7 +49,7 @@
           transition: border-color 0.2s;
 
           &:hover {
-            background-color: transparent;
+            background-color: #e2e2e2;
           }
 
           &:active {
@@ -73,6 +73,17 @@
           padding-bottom: 10px;
           font-size: 19px;
           text-transform: uppercase;
+
+          &:active {
+            background-color: #ccc;
+          }
+        }
+
+        &.show {
+          .nav-link {
+            font-weight: bold;
+            background-color: #eee;
+          }
         }
 
         .sub-category-dropdown-menu {
@@ -82,6 +93,7 @@
           background-color: transparent;
           transform: none !important;
           box-shadow: none;
+          background-color: #eee;
 
           .dropdown-item {
             padding-top: 15px;
@@ -89,6 +101,10 @@
             text-align: center;
             font-size: 15px;
             color: @mainColor;
+
+            &:active {
+              background-color: #ccc;
+            }
           }
         }
       }
