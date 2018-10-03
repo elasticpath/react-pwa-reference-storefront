@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-  * REACT PWA Reference Storefront
+  * React PWA Reference Storefront
       * [Documentation Introduction](#documentation-introduction)
       * [Related Resources](#related-resources)
   * [Overview](#overview)
@@ -27,7 +27,7 @@
       * [Jenkins Pipeline Workflow](#jenkins-pipeline-workflow)
   * [Terms And Conditions](#terms-and-conditions)
 
-## REACT PWA Reference Storefront
+## React PWA Reference Storefront
 
 ### Documentation Introduction
 
@@ -55,16 +55,16 @@ The Storefront is designed as an open source mobile Progressive Web Application 
 
 ### Prerequisites
 
-Ensure that the following software are installed :
+Ensure that the following software are installed:
 
 * [Git](https://git-scm.com/downloads)
 * [Node.js](https://nodejs.org/en/download/)
 * [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:<br/>
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
-* [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)(for unit testing, optional)
-* [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/)(for unit testing, optional)
-* [IntelliJ IDEA](https://www.jetbrains.com/idea/)(for unit testing, optional)
+* [Java JDK 8] (http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)(for unit testing, optional)
+* [Maven 3.5.2] (https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/)(for unit testing, optional)
+* [IntelliJ IDEA] (https://www.jetbrains.com/idea/)(for unit testing, optional)
 * A valid Elastic Path development environment. For more information, see
 [The Starting Construction Guide](https://developers.elasticpath.com/commerce/construction-home).
 
@@ -77,7 +77,7 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`cortexApi.path`| Required| String| The URL, which is composed of the hostname and port, to access Cortex. By default, a web proxy is configured in the [Webpack](https://webpack.js.org/) configuration of the project. For local development, set this value to `/cortex` to redirect Cortex calls to the local proxy.|
 |`cortexApi.scope`| Required| String| Name of the store from which Cortex retrieves data.|
 |`cortexApi.pathForProxy`|Required|String| The path to which the [Webpack](https://webpack.js.org/) proxy routes the Cortex calls from the storefront. This value is a URL that consists of hostname and port of a running instance of Cortex. Leave this field blank to disable proxy.|
-|`skuImagesUrl`| Required| String| The URL that consists of the path to catalog images hosted on an external CMS. Set this parameter to the complete URL of the images by replacing the `sku/file-name` with the `%sku%` string . This value is populated when the page is loaded with values retrieved by Cortex.|
+|`skuImagesUrl`| Required| String| The URL that consists of the path to catalog images hosted on an external CMS. Set this parameter to the complete URL of the images by replacing the `sku/file-name` with the `%sku%` string. This value is populated when the page is loaded with values retrieved by Cortex.|
 |`siteImagesUrl`| Optional| String| The path to the site content and marketing images hosted on an external CMS. Set this parameter to the complete URL of the images by replacing the filename and file extension with `%fileName%`. This parameter is populated with the values set in the components when the page is loaded, and uses the assets locally available in the `./src/images/site-images` directory.|
 |`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
 
@@ -153,7 +153,8 @@ Test data are provided in the `tests` directory.
 |`-Dcucumber.options="--tags @smoketest"`| Specifies that you can replace the tag with a tag that you define.|
 |`-Dfailsafe.fork.count="<no of testes>"`| Specifies the number of tests that can be run at the same time. The default value is 1. You can change this value depending on number of TestsIT classes. |
 |`-Premote -Dremote.web.driver.url="<REMOTE DRIVER IP>"`| Specifies that the tests are executed using a remote VM. The `remote.web.driver.url` attribute specifies the URL of the remote VM. For example, `http://<IP_ADDRESS>:4444/wd/hub`.
-  **Note:** You must set up the selenium grid to use this feature.For more information, see [Selenium](https://www.seleniumhq.org/docs/07_selenium_grid.jsp) documentation.
+
+**Note:** You must set up the selenium grid to use this feature.For more information, see [Selenium](https://www.seleniumhq.org/docs/07_selenium_grid.jsp) documentation.
 
 ### Running Subset of Tests
 1.  In the `/selenium/src/test/java/com/elasticpath/cucumber/` module, right-click a TestsIT class and click **Run**.
@@ -192,7 +193,7 @@ The storefront project includes a Jenkinsfile template to configure a Jenkins jo
 |`DOCKER_IMAGE_TAG`|The tag used for the Cortex images.|
 | `STORE_NAMESPACE`| The namespace for the store image and database image.|
 |`STORE_IMAGE_TAG` | The tag for the store images, which are store image and database image.|
-|`STORE_NAME` | The name of the store. For example, `vestri`|
+|`STORE_NAME` | The name of the store. For example, `vestri`.|
 |`EC2_INSTANCE_HOST`| The IP address of the AWS EC2 host to deploy Jenkins pipeline.|
 |`EC2_INSTANCE_USER` | The user credentials of the AWS EC2 instance.|
 | `EC2_INSTANCE_SSH_KEY`|The path in Jenkins node that redirects to `ec2.pem file`.|
