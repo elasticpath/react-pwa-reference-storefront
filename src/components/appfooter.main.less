@@ -26,52 +26,130 @@
   width: 100%;
   padding: 20px 0px;
 
-  h5,
-  p,
-  li a {
-    border-bottom: 1px solid transparent;
-    color: white;
-    font-size: 1.3rem;
-    padding: 7px 7px;
-    transition: all ease-in-out 0.2s;
+  .footer-container {
+    padding: 50px;
 
-    @media screen and (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
-      font-size: 1.2rem;
-      padding: 7px 6px;
-    }
+    .footer-column {
+      .social-text,
+      .assistance-text {
+        color: #dedefc;
+        text-decoration: none !important;
+        text-transform: uppercase;
+      }
 
-    @media screen and (max-width: @tabletWidth - 1px) {
-      li a:hover {
-        color: @mainColor;
-        background: none;
-        border-color: @mainColor;
-        text-decoration: none;
+      .store-description,
+      .text-uppercase {
+        border-bottom: 1px solid transparent;
+        color: white;
+        padding: 10px;
+        transition: all ease-in-out 0.2s;
+
+        @media screen and (min-width: @mobileWidth) {
+          font-size: 18px;
+        }
+
+        @media screen and (max-width: @mobileWidth - 1px) {
+          font-size: 14px;
+        }
+      }
+
+      .store-description,
+      .store-description-title {
+        @media screen and (min-width: @tabletWidth - 1px) {
+          margin-left: 75px;
+          max-width: 375px;
+        }
+
+        @media screen and (max-width: @mobileWidth - 1px) {
+          max-width: 250px;
+          min-width: 150px;
+        }
+      }
+
+      .social-list,
+      .assistance-list {
+        .social-item {
+          padding: 3px 7px;
+          transition: all ease-in-out 0.2s;
+
+          @media screen and (min-width: @mobileWidth) {
+            font-size: 14px;
+          }
+
+          @media screen and (max-width: @mobileWidth - 1px) {
+            font-size: 0px;
+            padding: 20px;
+          }
+        }
+
+        .assistance-item {
+          padding: 10px 7px;
+          transition: all ease-in-out 0.2s;
+
+          @media screen and (min-width: @mobileWidth) {
+            font-size: 14px;
+          }
+
+          @media screen and (max-width: @mobileWidth - 1px) {
+            font-size: 7px;
+          }
+        }
+      }
+
+      @media screen and (max-width: @mobileWidth - 1px) {
+        .social-title {
+          text-align:center;
+        }
+
+        .social-list {
+          text-align: center;
+          margin: 0 0 10px 5px;
+
+          .social-item{
+            display: inline-block;
+            padding: 2px;
+          }
+
+          .social-text {
+            display: none;
+          }
+        }
+      }
+
+      .share-icon-facebook,
+      .share-icon-twitter,
+      .share-icon-instagram {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Font Awesome 5 Brands';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20pt;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        color: #fff;
+
+        @media (min-width: @mobileWidth) {
+          margin: 0 25px 0 5px;
+        }
+
+        @media (max-width: @mobileWidth - 1px) {
+          margin: 5px 10px;
+        }
+      }
+
+      .share-icon-facebook:before {
+        content: "\f082";
+      }
+
+      .share-icon-twitter:before {
+        content: "\f081";
+      }
+
+      .share-icon-instagram:before {
+        content: "\f16d";
       }
     }
   }
-
-  ul {
-    margin-bottom: 0px;
-  }
-
-  hr {
-    margin-bottom: 0px;
-    margin-top: 25px;
-    margin: 0 auto;
-    text-align: center;
-    width: 90%;
-  }
-
-  .footer-column {
-    margin: 0 auto;
-    width: 50%;
-  }
-
-  @media (max-width: 768px - 1px) {
-    #footer_container_column_1 > .footer-column {
-      width: 100%;
-      margin: 0 auto;
-    }
-  }
 }
-
