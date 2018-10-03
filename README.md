@@ -47,7 +47,7 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
 
 ## Overview
 
-The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s RESTful e-commerce API, Cortex API.Through the Cortex API, the storefront uses the e-commerce capabilities provided by Elastic Path Commerce and gets data in a RESTful manner. For more information about the storefront, see [REACT PWA Reference Storefront documentation](https://elasticpath.github.io/react-pwa-reference-storefront/).
+The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s RESTful e-commerce API, Cortex API. Through the Cortex API, the storefront uses the e-commerce capabilities provided by Elastic Path Commerce and gets data in a RESTful manner. For more information about the storefront, see [REACT PWA Reference Storefront documentation](https://elasticpath.github.io/react-pwa-reference-storefront/).
 
 The Storefront is designed as an open source mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enable the application layer interactions through the configurable web server. For more information about the software requirements, see the [Requirements and Specifications](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/technologyoverview/) section.
 
@@ -62,9 +62,9 @@ Ensure that the following software are installed :
 * [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:<br/>
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
-* [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)
-* [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/)
-* [IntelliJ IDEA](https://www.jetbrains.com/idea/)(optional)
+* [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)(for unit testing, optional)
+* [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/)(for unit testing, optional)
+* [IntelliJ IDEA](https://www.jetbrains.com/idea/)(for unit testing, optional)
 * A valid Elastic Path development environment. For more information, see
 [The Starting Construction Guide](https://developers.elasticpath.com/commerce/construction-home).
 
@@ -97,8 +97,8 @@ For more information about populating database, see the [Populating the Database
 ### Setting up a Development Environment
 
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
-2. Run the `cd ep-store` command.
-3. To install dependencies, if any, run the `npm install` command.
+2. Run the `cd react-pwa-reference-storefront` command.
+3. To install dependencies, run the `npm install` command.
 4. Configure the `./src/ep.config.json` file as required for the environment.<br/> For more information, see the [Configuration Parameter Descriptions](#configuration_parameter_descriptions) section.
 5. To start the server in development mode, run the `npm start` command.
 6. To see the running Progressive Web Application (PWA), navigate to `http://localhost:8080/` .
@@ -106,7 +106,7 @@ For more information about populating database, see the [Populating the Database
 ### Setting up a Production Environment
 
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
-2. Run the `cd ep-store` command.
+2. Run the `cd react-pwa-reference-storefront` command.
 3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile` command.
 4. Push the `ep-store` image to the docker repository.
 
@@ -121,7 +121,7 @@ For more information about populating database, see the [Populating the Database
 
 ## Running a Linter
 
-The storefront project is set up with the linting utility, [ESLint](https://eslint.org/). For the storefront project, Elastic Path uses and extends ESLint configuration provided by Airbnb. For more information on the style guide, see the [Airbnb GitHub](https://github.com/airbnb/javascript) page.<br/>
+The storefront project is set up with the linting utility, [ESLint](https://eslint.org/). For the storefront project, Elastic Path uses and extends the ESLint configuration provided by Airbnb. For more information on the style guide, see the [Airbnb GitHub](https://github.com/airbnb/javascript) page.<br/>
 By default, the ESLint loader is added to the `webpack.config.dev.js` file. When you start the application in the development mode, the ESLint loader automatically runs.
 1. To run the linter from the command line, navigate to the project root directory.
 2. Run the following command:
@@ -145,7 +145,7 @@ The reference storefront supports multiple languages and currencies. Add all fro
 Test data are provided in the `tests` directory.
 
 1. To run all tests, run the following command:<br/> `mvn clean install -Dcucumber.options="--tags @smoketest"`<br/>
-2. To run sanity test, run the following command:<br/>`@sanity`<br/>
+2. To run sanity test, run the following command:<br/>`mvn clean install -Dcucumber.options="--tags @sanity`<br/>
 
 ### Maven Options to Run the Unit Tests
 
