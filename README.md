@@ -3,29 +3,29 @@
 ## Table of Contents
 
   * REACT PWA Reference Storefront
-      * [Documentation Introduction](#documentation_introduction)
-      * [Related Resources](#related_resources)
+      * [Documentation Introduction](#documentation-introduction)
+      * [Related Resources](#related-resources)
   * [Overview](#overview)
-  * [Setting up the Storefront](#setting_up_the_storefront)
+  * [Setting up the Storefront](#setting-up-the-storefront)
       * [Prerequisites](#prerequisites)
       * [Configuration Parameter Descriptions](#configuration#parameter#descriptions)
-      * [Configuring Sample Data](#configuring_sample_data)
-      * [Setting up a Development Environment](#setting_up_a_development_environment)
-      * [Setting up a Production Environment](#setting_up_a_production_environment)
-      * [Setting up a Remote Production Environment](#setting_up_a_remote_production_environment)
-  * [Running a Linter](#running_a_linter)
-  * [Adding New Locales](#adding_new_locales)
-  * [Running Unit Tests](#running#unit#tests)
-      * [Maven Options to Run the Unit Tests](#maven_options_to_run_the_unit_tests)
+      * [Configuring Sample Data](#configuring-sample-data)
+      * [Setting up a Development Environment](#setting-up-a-development-environment)
+      * [Setting up a Production Environment](#setting-up-a-production-environment)
+      * [Setting up a Remote Production Environment](#setting-up-a-remote-production-environment)
+  * [Running a Linter](#running-a-linter)
+  * [Adding New Locales](#adding-new-locales)
+  * [Running Unit Tests](#running-unit-tests)
+      * [Maven Options to Run the Unit Tests](#maven-options-to-run-the-unit-tests)
       * [Running Subset of Tests](#running#subset#of#tests)
-      * [Updating Browser Driver Versions](#updating_browser_driver_versions)
+      * [Updating Browser Driver Versions](#updating-browser-driver-versions)
   * [Configuring Jenkins Pipeline](#configuring#jenkins#pipeline)
       * [Prerequisites](#prerequisites)
-      * [Configuring the Jenkinfile](#configuring_the_jenkinfile)
-      * [Jenkins Pipeline Parameter Descriptions](jenkins_pipeline_parameter_descriptions)
-      * [Configuring the Jenkins Job](#configuring_the_jenkins_job)
-      * [Jenkins Pipeline Workflow](#jenkins_pipeline_workflow)
-  * [Terms And Conditions](#terms_and_conditions)
+      * [Configuring the Jenkinfile](#configuring-the-jenkinfile)
+      * [Jenkins Pipeline Parameter Descriptions](jenkins-pipeline-parameter-descriptions)
+      * [Configuring the Jenkins Job](#configuring-the-jenkins-job)
+      * [Jenkins Pipeline Workflow](#jenkins-pipeline-workflow)
+  * [Terms And Conditions](#terms-and-conditions)
 
 ## REACT PWA Reference Storefront
 
@@ -79,7 +79,6 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`cortexApi.pathForProxy`|Required|String| The path to which the [Webpack](https://webpack.js.org/) proxy routes the Cortex calls from the storefront. This value is a URL that consists of hostname and port of a running instance of Cortex. Leave this field blank to disable proxy.|
 |`skuImagesUrl`| Required| String| The URL that consists of the path to catalog images hosted on an external CMS. Set this parameter to the complete URL of the images by replacing the `sku/file-name` with the `%sku%` string . This value is populated when the page is loaded with values retrieved by Cortex.|
 |`siteImagesUrl`| Optional| String| The path to the site content and marketing images hosted on an external CMS. Set this parameter to the complete URL of the images by replacing the filename and file extension with `%fileName%`. This parameter is populated with the values set in the components when the page is loaded, and uses the assets locally available in the `./src/images/site-images` directory.|
-|`enableOfflineMode`| Optional| String| The option to enable offline mode to fetch requests static data instead of Cortex. For more information, see [offline mode](#offline_mode).|
 |`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
 
 ### Configuring Sample Data
@@ -99,7 +98,7 @@ For more information about populating database, see the [Populating the Database
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
 2. Run the `cd react-pwa-reference-storefront` command.
 3. To install dependencies, run the `npm install` command.
-4. Configure the `./src/ep.config.json` file as required for the environment.<br/> For more information, see the [Configuration Parameter Descriptions](#configuration_parameter_descriptions) section.
+4. Configure the `./src/ep.config.json` file as required for the environment.<br/> For more information, see the [Configuration Parameter Descriptions](#configuration-parameter-descriptions) section.
 5. To start the server in development mode, run the `npm start` command.
 6. To see the running Progressive Web Application (PWA), navigate to `http://localhost:8080/` .
 
@@ -181,7 +180,7 @@ The storefront project includes a Jenkinsfile template to configure a Jenkins jo
 ### Configuring the Jenkinfile
 
 1. Open the Jenkisfile included in the project directory.
-2. Configure Jenkins job with the required parameters as described in the [Jenkins Pipeline Parameter Descriptions](#jenkins_pipeline_parameter_descriptions) section.
+2. Configure Jenkins job with the required parameters as described in the [Jenkins Pipeline Parameter Descriptions](#jenkins-pipeline-parameter-descriptions) section.
 3. Save the changes.
 
 ### Jenkins Pipeline Parameter Descriptions
@@ -195,7 +194,7 @@ The storefront project includes a Jenkinsfile template to configure a Jenkins jo
 |`STORE_IMAGE_TAG` | The tag for the store images, which are store image and database image.|
 |`STORE_NAME` | The name of the store. For example, `vestri`|
 |`EC2_INSTANCE_HOST`| The IP address of the AWS EC2 host to deploy Jenkins pipeline.|
-|`EC2_INSTANCE_USER` | The user credentials of the AWS EC2 instance.|  
+|`EC2_INSTANCE_USER` | The user credentials of the AWS EC2 instance.|
 | `EC2_INSTANCE_SSH_KEY`|The path in Jenkins node that redirects to `ec2.pem file`.|
 |`SOLR_HOME_GIT_URL` |The git URL to the project containing the solr home configuration.|
 |`SOLR_HOME_BRANCH` |The branch name of the solr home configuration.|
@@ -215,7 +214,7 @@ The storefront project includes a Jenkinsfile template to configure a Jenkins jo
 7. Click **Apply**.
 8. Click **Save**.
 
-You can configure all other setting as required for the project. This Jenkins job triggers commits to the master at the scheduled time. For more information about the pipeline, see the [Jenkins Pipeline Workflow](#jenkins_pipeline_workflow) section.
+You can configure all other setting as required for the project. This Jenkins job triggers commits to the master at the scheduled time. For more information about the pipeline, see the [Jenkins Pipeline Workflow](#jenkins-pipeline-workflow) section.
 
 
 ### Jenkins Pipeline Workflow
@@ -231,5 +230,5 @@ When you run the the Jenkins job, the job operates in the following sequence:
 
 ## Terms And Conditions
 
-- Any changes to this project must be reviewed and approved by the repository owner. For more information about contributing, see the [Contribution Guide](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md).
-- For more information about the license, see [GPLv3 License](https://github.com/shaunmaharaj/ep-store/blob/master/LICENSE).
+- Any changes to this project must be reviewed and approved by the repository owner. For more information about contributing, see the [Contribution Guide](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/CONTRIBUTING.md).
+- For more information about the license, see [GPLv3 License](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/LICENSE).
