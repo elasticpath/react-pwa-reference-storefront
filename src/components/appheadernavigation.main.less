@@ -31,17 +31,11 @@
       padding-bottom: 1px;
       padding-right: 21px;
       font-size: 13px;
-      border-bottom: 1px solid transparent;
       transition: border-color 0.2s;
 
       .nav-link {
         color: #fff;
         padding: 7px;
-        border-bottom: 1px solid transparent;
-
-        &:hover {
-          border-bottom: 1px solid #fff;
-        }
       }
 
       .dropdown-menu {
@@ -52,12 +46,10 @@
           color: #555;
           padding-top: 7px;
           padding-bottom: 7px;
-          border-bottom: 1px solid transparent;
           transition: border-color 0.2s;
 
           &:hover {
             background-color: transparent;
-            border-bottom: 1px solid @mainColor;
           }
 
           &:active {
@@ -77,11 +69,10 @@
 
         .nav-link {
           color: @mainColor;
+          padding-top: 10px;
+          padding-bottom: 10px;
           font-size: 19px;
-
-          &:hover {
-            border-bottom: 1px solid @mainColor;
-          }
+          text-transform: uppercase;
         }
 
         .sub-category-dropdown-menu {
@@ -93,6 +84,8 @@
           box-shadow: none;
 
           .dropdown-item {
+            padding-top: 15px;
+            padding-top: 15px;
             text-align: center;
             font-size: 15px;
             color: @mainColor;
