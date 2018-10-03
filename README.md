@@ -1,213 +1,234 @@
-# Elastic Path's reference storefront experience
+# REACT PWA Reference Storefront Quick Start Guide
 
-The Reference storefront demonstrating usage of Cortex in a modern UI progressive web application.
+## Table of Contents
 
-Please see our documentation site at: https://elasticpath.github.io/react-pwa-reference-storefront/
+  * REACT PWA Reference Storefront
+      * [Documentation Introduction](#documentation-introduction)
+      * [Related Resources](#related-resources)
+  * [Overview](#overview)
+  * [Setting up the Storefront](#setting-up-the-storefront)
+      * [Prerequisites](#prerequisites)
+      * [Configuration Parameter Descriptions](#configuration#parameter#descriptions)
+      * [Configuring Sample Data](#configuring-sample-data)
+      * [Setting up a Development Environment](#setting-up-a-development-environment)
+      * [Setting up a Production Environment](#setting-up-a-production-environment)
+      * [Setting up a Remote Production Environment](#setting-up-a-remote-production-environment)
+  * [Running a Linter](#running-a-linter)
+  * [Adding New Locales](#adding-new-locales)
+  * [Running Unit Tests](#running-unit-tests)
+      * [Maven Options to Run the Unit Tests](#maven-options-to-run-the-unit-tests)
+      * [Running Subset of Tests](#running#subset#of#tests)
+      * [Updating Browser Driver Versions](#updating-browser-driver-versions)
+  * [Configuring Jenkins Pipeline](#configuring#jenkins#pipeline)
+      * [Prerequisites](#prerequisites)
+      * [Configuring the Jenkinfile](#configuring-the-jenkinfile)
+      * [Jenkins Pipeline Parameter Descriptions](jenkins-pipeline-parameter-descriptions)
+      * [Configuring the Jenkins Job](#configuring-the-jenkins-job)
+      * [Jenkins Pipeline Workflow](#jenkins-pipeline-workflow)
+  * [Terms And Conditions](#terms-and-conditions)
 
+## REACT PWA Reference Storefront
 
-Table of contents
-=================
+### Documentation Introduction
 
-<!--ts-->
-   * [Development quick start](#gh-md-toc)
-      * [Prerequisites](#pre-req)
-      * [Configuration](#configuration)
-      * [Sample data](#sample-data)
-      * [Setup (Development)](#setup-development)
-      * [Setup (Production)](#setup-production)
-   * [Linting](#linting)
-   * [Offline mode](#offline-mode)
-   * [Localization](#localization)
-   * [Unit tests](#unit-tests)
-   * [Jenkins pipeline](#jenkins-pipeline)
-   * [Contribution guide](#contribution-guide)
-   * [License](#license)
-<!--te-->
+This document provides guidelines for knowledgeable JavaScript developers and front-end developers to extend and customize React PWA Reference Storefront components. However, this document is not a primer for JavaScript or CSS and is intended for professionals who are familiar with the following technologies:
 
-## Development quick start
-Built with REACT.js, Bootstrap 4, Babel, Workbox, and Webpack.
-### Prerequisites:
-If you haven’t already, install the following software:
-* Install [Git](https://git-scm.com/downloads).
-* Install [Node.js](https://nodejs.org/en/download/).
-* Install [Visual Studio Code](https://code.visualstudio.com/) from Microsoft and the following extensions:<br/>
+  * [React](https://reactjs.org/)
+  * [jQuery](https://jquery.com/)
+  * [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+  * [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+  * [less](http://lesscss.org/)
+
+### Related Resources
+
+- [REACT PWA Reference Storefront Overview](https://developers.elasticpath.com/reference-experiences)
+- [REACT PWA Reference Storefront Installation Guide](https://elasticpath.github.io/react-pwa-reference-storefront/)
+- [Requirements and Specifications](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/technologyoverview/)
+
+## Overview
+
+The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s RESTful e-commerce API, Cortex API. Through the Cortex API, the storefront uses the e-commerce capabilities provided by Elastic Path Commerce and gets data in a RESTful manner. For more information about the storefront, see [REACT PWA Reference Storefront documentation](https://elasticpath.github.io/react-pwa-reference-storefront/).
+
+The Storefront is designed as an open source mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enable the application layer interactions through the configurable web server. For more information about the software requirements, see the [Requirements and Specifications](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/technologyoverview/) section.
+
+## Setting up the Storefront
+
+### Prerequisites
+
+Ensure that the following software are installed :
+
+* [Git](https://git-scm.com/downloads)
+* [Node.js](https://nodejs.org/en/download/)
+* [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:<br/>
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
-* Install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) for executing unit tests.
-* Install [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/) for executing unit tests.
-* Install [IntelliJ IDEA](https://www.jetbrains.com/idea/) optionally for creating/running unit tests.
-* Ensure you have a valid Elastic Path development environment.
+* [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)(for unit testing, optional)
+* [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/)(for unit testing, optional)
+* [IntelliJ IDEA](https://www.jetbrains.com/idea/)(for unit testing, optional)
+* A valid Elastic Path development environment. For more information, see
+[The Starting Construction Guide](https://developers.elasticpath.com/commerce/construction-home).
 
-### Configuration
-##### `ep.config.json (options)`
+### Configuration Parameter Descriptions
 
- - `cortexApi.path`, **required**, *string*:
-The URL containing the hostname and port for the storefront to use to reach Cortex. For your convenience, a web proxy is configured in this project's Webpack configuration. Set the value to `/cortex` for local development to redirect Cortex calls to the local proxy.
- - `cortexApi.scope`, **required**, *string*:
-Name of store to retreive data from Cortex.
- - `cortexApi.pathForProxy`, **required**, *string*:=
- The path the webpack proxy will route storefront Cortex calls to. URL consisting of hostname and port to actual running instance of Cortex. Leave this value empty to disable the proxy.
- - `skuImagesUrl`, **required**, *string*:
- Path to catalog images hosted on an external CMS. Set this to the full URL of your images, replacing the sku/file-name with the string `%sku%`. This value will be populated during pageload with values retreived by Cortex.
-  - `siteImagesUrl`, **optional**, *string*:
- Path to site content and marketing images hosted on an external CMS. Set this to the full URL of your images, replacing the file-name and file-extension with the string `%fileName%`. This value will be populated during pageload with values set in your components and use assets locally available in `./src/images/site-images` as the fallback.
- - `enableOfflineMode`, **optional**, *bool*:
-  The option to enable offline mode. During offline mode, requests are fetched from static data instead of Cortex. For more information on offline mode, see [how it works](#offline-mode).
- - `gaTrackingId`, **optional**, *string*:
- The Google Analytics tracking ID to integrate with Google Analytics Suite. Track enhanced ecommerce activity as it happens on your site.
+You must configure the following parameters in the `./src/ep.config.json` file:
 
-### Sample data:
-The project includes a set of sample data for your convenience. **Note:** You must have a valid Elastic Path development environment prior to using the sample data.<br/>
-1. Extract the sample catalog data contents from this project `ep-store/data` into your `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
-2. Update `ep-commerce/extensions/database/ext-data/src/main/resources/data/liquibase-changelog.xml`.<br/>
-Add the following sample data to the file. **Note:** It should be the only sample data included within the sample data blocks: `<include file="ep-blueprint-data/liquibase-changelog.xml" relativeToChangelogFile="true" />`
-3. Update `ep-commerce/extensions/database/ext-data/src/main/resources/environments/local/data-population.properties`. Set the liquibase.contexts property to `default,ep-blueprint`.
+|  Parameter| Importance|Type|Description|
+|--|--|--|--|
+|`cortexApi.path`| Required| String| The URL, which is composed of the hostname and port, to access Cortex. By default, a web proxy is configured in the [Webpack](https://webpack.js.org/) configuration of the project. For local development, set this value to `/cortex` to redirect Cortex calls to the local proxy.|
+|`cortexApi.scope`| Required| String| Name of the store from which Cortex retrieves data.|
+|`cortexApi.pathForProxy`|Required|String| The path to which the [Webpack](https://webpack.js.org/) proxy routes the Cortex calls from the storefront. This value is a URL that consists of hostname and port of a running instance of Cortex. Leave this field blank to disable proxy.|
+|`skuImagesUrl`| Required| String| The URL that consists of the path to catalog images hosted on an external CMS. Set this parameter to the complete URL of the images by replacing the `sku/file-name` with the `%sku%` string . This value is populated when the page is loaded with values retrieved by Cortex.|
+|`siteImagesUrl`| Optional| String| The path to the site content and marketing images hosted on an external CMS. Set this parameter to the complete URL of the images by replacing the filename and file extension with `%fileName%`. This parameter is populated with the values set in the components when the page is loaded, and uses the assets locally available in the `./src/images/site-images` directory.|
+|`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
+
+### Configuring Sample Data
+
+Elastic Path provides a set of sample data with the storefront project.<br/> **Note:** A valid Elastic Path development environment is required to access the sample data.
+
+1. From the `ep-store/data` directory, extract the sample catalog data contents into the `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
+2. In the `ep-commerce/extensions/database/ext-data/src/main/resources/data/` directory, update the `liquibase-changelog.xml` file with the following sample data:<br/>`<include file="ep-blueprint-data/liquibase-changelog.xml" relativeToChangelogFile="true" />`
+**Note:** This data must be the only sample data included within the sample data block.
+3. In the  `ep-commerce/extensions/database/ext-data/src/main/resources/environments/local/data-population.properties` file, set the `liquibase.contexts` property to `default,ep-blueprint`.
 4. In the command line, navigate to the `extensions/database` module.
-5. To run the Data Population tool, use the following command: `mvn clean install -Preset-db`.
-6. For information on how to populate this sample database, see the developer documentation [Populate the Database](https://developers.elasticpath.com/commerce/7.3/Core-Commerce-Development/Setting-up-your-Developer-Environment/Populate-the-Database#ConfigureDemoDataSets).
+5. To run the Data Population tool, run the following command:<br/> `mvn clean install -Preset-db`.
+For more information about populating database, see the [Populating the Database](https://developers.elasticpath.com/commerce/7.3/Core-Commerce-Development/Setting-up-your-Developer-Environment/Populate-the-Database#ConfigureDemoDataSets) section.
 
-### Setup (Development):
-1. Clone or pull this repository to a directory of your choosing.
-2. Run `cd ep-store`.
-3. Run `npm install` to install any dependencies.
-4. Configure the `./src/ep.config.json` file as required for your environment: [here](#configuration)
-5. Run `npm start` to start the server in development node.
-6. Navigate to `http://localhost:8080/` to see the running Progressive Web Application (PWA).
+### Setting up a Development Environment
 
-### Setup (Production):
-1. Clone or pull this repository to a directory of your choosing.
-2. Run `cd ep-store`.
-3. Run `docker build -t ep-store -f ./docker/prod/Dockerfile .`
-4. Push `ep-store` image to your docker repository.
+1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
+2. Run the `cd react-pwa-reference-storefront` command.
+3. To install dependencies, run the `npm install` command.
+4. Configure the `./src/ep.config.json` file as required for the environment.<br/> For more information, see the [Configuration Parameter Descriptions](#configuration-parameter-descriptions) section.
+5. To start the server in development mode, run the `npm start` command.
+6. To see the running Progressive Web Application (PWA), navigate to `http://localhost:8080/` .
 
-##### On a host computer:
-5. Pull `ep-store` from your docker repository.
-6. In the repository, navigate to `docker/prod/`. Copy the provided `docker-compose.yaml` and `nginx.conf` files to a folder on the remote host.
-7. Replace `$CORTEX_URL` in `nginx.conf` with a URL of your cortex server as well as `$DOCKER_REPO` in `docker-compose.yaml` with `ep-store`.
-8. Run `docker-compose up -d`.
+### Setting up a Production Environment
 
-## Linting
-The project has been set up with ESLint as our linting utility.<br/>
-For more infoarmtion about ESLint, see [ESLint documentation](https://eslint.org/).<br/>
-We're currently extending Airbnbs’ ESLint configuration. Currently, the Airbnb Code Style and the ESLint configuration are very popular and well accepted by developers.<br/>
-For more infomation on the style guide, see the [Airbnb GitHub](https://github.com/airbnb/javascript).<br/>
-* The ESLint loader is already added to`webpack.config.dev.js`. When you start the application in development mode, the ESLint loader automatically runs.
-* To run the linter from your commandline, go to the project root directory. Run the following command:
-    * `./node_modules/.bin/eslint --ext .js --ext .jsx [file|dir|glob]`
-        * Run on entire project: `./node_modules/.bin/eslint --ext .js --ext .jsx .`
-* With the ESLint extension for Visual Studio Code, you'll get feedback while you're writing the code under the `Problems` View.
+1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
+2. Run the `cd react-pwa-reference-storefront` command.
+3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile` command.
+4. Push the `ep-store` image to the docker repository.
 
-If you plan to check in your code, ensure that you fix all of your linting errors first.
+### Setting up a Remote Production Environment
 
-## Offline mode
-You can enable offline mode in [`./src/ep.config.json`](#configuration).<br/>
+1. Pull the `ep-store` repository from your docker repository.
+2. In the repository, navigate to the `docker/prod/` directory.
+3. Copy the `docker-compose.yaml` and `nginx.conf` files to a folder on the remote host.
+4. Replace the `$CORTEX_URL` parameter in the `nginx.conf` file with a Cortex server URL.
+5. Replace the `$DOCKER_REPO` parameter in the `docker-compose.yaml` file with `ep-store`.
+5. Run the `docker-compose up -d` command.
 
-**How it works**<br/>
-The *mock magic* is contained in `./src/utils/Mock.js`<br/>
-The *mock data files* are expected to be stored in `./src/offlineData`<br/>
-At a high level, **Mock.js** uses a map of Requests to Responses to send the mock data, given a Request. Instead of doing a fetch call to a url, it does a lookup in the map to retrieve/return the mock data. If mock data cannot be found for a request, an Error is thrown.<br/>
+## Running a Linter
 
-**How to add/edit data**<br/>
-If you're looking to create or modify mock data:<br/>
-* Start *Online* and perform the *flow* that you want to mock.<br/>
-* In your browser using the Developer Tools, view the **Network** tab for requests made by your *flow*. Filter your requests using the **XHRF** or **XHR and Fetch** filter.<br/>
-* Copy the response directly from your request into a *.json* file under the `./src/offlineData` directory.<br/>
-* In `.src/utils/Mock.js` add a variable for your data: `const myData = require('../offlineData/myData.json')`<br/>
-* Add your data into the map: `mockData.set(myData.self.uri, { status: myStatusCode, data: myData}`<br/>
-    * In the case of a **followlocation** you'll want to create a new variable for the request uri, and use that instead of `myData.self.uri`. This is because the responses include the *followed* url instead of the *request* url.<br/>
-     * In the case of a request that doesn't have a response, you can add the request url with a status code and empty data. For example, see forms in *Mock.js*.
+The storefront project is set up with the linting utility, [ESLint](https://eslint.org/). For the storefront project, Elastic Path uses and extends the ESLint configuration provided by Airbnb. For more information on the style guide, see the [Airbnb GitHub](https://github.com/airbnb/javascript) page.<br/>
+By default, the ESLint loader is added to the `webpack.config.dev.js` file. When you start the application in the development mode, the ESLint loader automatically runs.
+1. To run the linter from the command line, navigate to the project root directory.
+2. Run the following command:
+    `./node_modules/.bin/eslint --ext .js --ext .jsx [file|dir|glob]`
+3. Run the following command for the entire project:
+ `./node_modules/.bin/eslint --ext .js --ext .jsx `
+With the ESLint extension for Visual Studio Code, you can view feedback when you write the code in the `Problems` view.
 
-**Verifying your data**<br/>
-After you've mocked up the data for your *flow*, you can now go offline and verify. Enable [Offline Mode](#configuration) and restart your server.<br/>
-Go through your *flow* and verify everything works the same as Online. If there was something missed, an error is thrown in your *browser console* which includes the request it could not find the mock data for. Mock that request and you'll be able to continue.
+**Note:** When you check in the code, ensure that all linting errors are resolved.
 
-**Default flows**<br/>
-By default, there is some mock data for the following flows:<br/>
-* Search for "water" in the search bar, and view the products returned.
-* Browse to "Womens" category, and view the products from that category.
-* Under the "Womens" category, you can add "Women's CR550 Polo" to cart. *Note:* The only option currently is Medium Grey. Try mocking up the other sku.
-* Check out the cart. There's currently one product in there for viewing. *Note:* You can't modify the cart. The response is static. `./src/offlineData/cartData.json`
-* From the Cart, *Proceed To Checkout*, currently you can only **Continue without an account**.
-* On the Checkout page, there is mock data for Billing and Shipping Address and a payment method. With this you can complete the order.
-    * After you complete the order, you're brought to the **Order Review** page. Complete the purchase to view the **Purchase Receipt** page.
-    * The **Purchase Receipt** page displays all of the order information.
+## Adding New Locales
 
-## Localization
-The store supports multiple languages and currencies.
-Any front-end textual data must be added to the `localization/en-CA.json` as a resource string.
-The project includes two locales out of the box: `en-CA` and `fr-FR`.
-For development purpose, run: `node tools/translate.js`. This runs a pseudo translation from `en-CA` locale to `fr-FR`. To add a new locale, add an entry to the `supportedLocales` array in `ep.config.json` and add an appropriate json file to the `localization` folder. You also have to configure the language and currency for all products in the Commerce Manager.
+The reference storefront supports multiple languages and currencies. Add all front-end textual data in the `localization/en-CA.json` file as a resource string. By default,  `en-CA` and `fr-FR` locales are provided in the project.
 
-## Unit tests
-Test data can be found in `tests`.
+1. For development purpose, run:<br/> `node tools/translate.js`.<br/>This runs a pseudo translation from `en-CA` locale to `fr-FR`.
+2. To add a new locale, add an entry to the `supportedLocales` array in the `ep.config.json` file and add an appropriate `.json` file to the `localization` folder.
+3. Configure the language and currency for all products in Commerce Manager.
 
-**Running tests:**<br/>
-Run all Tests: `mvn clean install -Dcucumber.options="--tags @smoketest"`<br/>
-Run Sanity Tests: `@sanity`<br/>
+## Running Unit Tests
 
-*Maven options:*
-* `-Dcucumber.options="--tags @smoketest"` - You can replace the tag with your own tag.
-* `-Dfailsafe.fork.count="1"` - The number of parallel tests run at the same time. The default is 1 and can be changed to other values depending on number of TestsIT classes.
-* `-Premote -Dremote.web.driver.url="<REMOTE DRIVER IP>"` - The `remote` parameter triggers tests to be executed using a remote VM. The `remote.web.driver.url` specifies the URL of the remote VM, for example `http://<IP_ADDRESS>:4444/wd/hub`.
-    * **Note:** The selenium grid must be setup so you can use this feature. Refer to the official documentation on the Selenium Grid.
+Test data are provided in the `tests` directory.
 
-**Running subset of tests:**
-* Run a subset of tests in IntelliJ. Using the right mouse button (right-click), run any one of the TestsIT classes under `/selenium/src/test/java/com/elasticpath/cucumber/`.
-* Create your own local runner class to run your own tagged tests. For example, RunLocalTestsIT.java runs your own tagged tests @local.
-    * Do not commit the local runner class and tags. These are only for your local testing purposes.
+1. To run all tests, run the following command:<br/> `mvn clean install -Dcucumber.options="--tags @smoketest"`<br/>
+2. To run sanity test, run the following command:<br/>`mvn clean install -Dcucumber.options="--tags @sanity`<br/>
 
-*Updating browser driver versions*
-* Download the latest browser driver from web. For example, chromedriver.
-* Update the RepositoryMap.xml for the driver version.
-* Hash value can be found locally if you run following in bash command locally.
-```
-openssl sha1 <filename>
-```
-* Example: https://github.com/Ardesco/Selenium-Maven-Template/blob/master/src/test/resources/RepositoryMap.xml
+### Maven Options to Run the Unit Tests
 
-## Jenkins Pipeline
-The project includes a Jenkinsfile for a Scripted Pipeline. It builds a store docker image from this project, deploys it to AWS, and then runs the Unit Tests from this project. If using this pipeline, you'll need to create an EC2 instance for the pipeline to deploy your store + cortex.
+|  Option| Description|
+|--|--|
+|`-Dcucumber.options="--tags @smoketest"`| Specifies that you can replace the tag with a tag that you define.|
+|`-Dfailsafe.fork.count="<no of testes>"`| Specifies the number of tests that can be run at the same time. The default value is 1. You can change this value depending on number of TestsIT classes. |
+|`-Premote -Dremote.web.driver.url="<REMOTE DRIVER IP>"`| Specifies that the tests are executed using a remote VM. The `remote.web.driver.url` attribute specifies the URL of the remote VM. For example, `http://<IP_ADDRESS>:4444/wd/hub`.
+  **Note:** You must set up the selenium grid to use this feature.For more information, see [Selenium](https://www.seleniumhq.org/docs/07_selenium_grid.jsp) documentation.
 
-**Configuring the pipeline**<br/>
-Create a new Jenkins Pipeline and configure it with the following:
-* Give your pipeline a name.
-* Set the project to be parameterised and include the following parameters:
-  * `DOCKER_REGISTRY_ADDRESS` - *Path to AWS ECR* ie: `${awsAccountID}.dkr.ecr.${region}.amazonaws.com`
-  * `CORTEX_NAMESPACE` - *The namespace for your cortex images (activemq, batch, integration, search, cortex)*
-  * `DOCKER_IMAGE_TAG` - *The tag used for your cortex images*
-  * `STORE_NAMESPACE` - *The namespace for your store image and db image*
-  * `STORE_IMAGE_TAG` - *The tag for your store images (store + db)*
-  * `STORE_NAME` - *The name of the store in your data* ie: `vestri`
-  * `EC2_INSTANCE_HOST` - *The ip of your EC2 host for deploying this pipeline*
-  * `EC2_INSTANCE_USER` - *The user of your EC2 instance*
-  * `EC2_INSTANCE_SSH_KEY` - *The path in Jenkins node to your ec2.pem file*
-  * `SOLR_HOME_GIT_URL` - *The git url to your project containing your SOLR HOME Config*
-  * `SOLR_HOME_BRANCH` - *The branch name for your SOLR HOME Config*
-  * `SOLR_HOME_PATH` - *The path in your git project to your SOLR HOME Config*
-* Set Build Triggers to **Poll SCM** and choose a schedule.
-* Set Pipeline with the following:
-  * **Definition** to *Pipeline script from SCM*
-  * **SCM** to *Git*
-  * **Repository URL** to your Repository for this project
-  * **Branches to build** specifier to *\*/master*
-  * **Script Path** to *Jenkinsfile*
-* **Save** your configuration.<br/>
+### Running Subset of Tests
+1.  In the `/selenium/src/test/java/com/elasticpath/cucumber/` module, right-click a TestsIT class and click **Run**.
+You can create your own local runner class to run your own tagged tests. For example, `RunLocalTestsIT.java` runs your own tagged tests at local.
+    **Note**  Do not commit the local runner class and tags that are only for the local testing purpose.
 
-You now have a pipeline that triggers on commits to the master based on your chosen schedule. See **How it works** section for more on the logic to the pipeline.
+### Updating browser driver versions
 
-**How it works**<br/>
-The Stages:
-* `SETUP` - The setup stage pulls from this project and the project containing SOLR HOME Config.
-* `BUILD` - The build stage builds the store docker from the `docker/dev/Dockerfile` in this project and then pushes it to AWS.
-  * The dev docker that is created uses an `entrypoint.sh` to replace the path to CORTEX and the STORE name in `ep.config.json` and then starts the project in dev mode using `npm start`.
-* `UNDEPLOY_EXISTING` - The undeploy stage cleans up the working directory if it exists, and then remove any docker containers and images.
-* `DEPLOY` - The deploy stage starts by creating the working directory, copying over files from this project, and copying over the SOLR HOME Config. Then, it exports the environment variables used in the compose file and deploys the store and cortex with docker-compose.
-* `TEST` - The test stage sets environment variables for JAVA_HOME, and adds JAVA + MAVEN to the path. These are pulled from your Jenkins tools. This stage uses a script from [intoli](https://intoli.com/blog/installing-google-chrome-on-centos) for installing Google Chrome to use for headless tests. The script downloads `google-chrome-stable`. It is renamed to `google-chrome` so that chromedriver finds it for the tests. Before you run the tests, replace the `selenium.session.baseurl` in the `pom.xml`. The tests are run in a try-finally block so the cucumber reports are added even if one fails. This uses the Jenkins Cucumber Plugin for viewing reports in Jenkins UI.
+1. Download the latest browser driver and update the `/selenium/src/test/resources/RepositoryMap.xml` file with the driver version.
+2. Update the `RepositoryMap.xml`  with the bash value of the browser driver:
+    - To get the bash values, run the `openssl sha1 <filename>` command.
+      The <filename> specifies the <filelocation> in the `RepositoryMap.xml` file.
+  For example, https://github.com/Ardesco/Selenium-Maven-Template/blob/master/src/test/resources/RepositoryMap.xml
 
 
-## Contribution guide
-* Contributions might be performed by developers at their choosing. Changes to this project must be reviewed and approved by an owner of this repository. <br/>
-For more information about contributing, see [CONTRIBUTING.md](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md).<br/>
+## Configuring Jenkins Pipeline
 
-## License
-[GPLv3 License](https://github.com/shaunmaharaj/ep-store/blob/master/LICENSE)
+The storefront project includes a Jenkinsfile template to configure a Jenkins job to build a Docker image for store from the project, deploy the Docker image to AWS, and run the unit tests.
+
+### Prerequisites
+
+- Ensure that an AWS EC2 instance is created for the pipeline to deploy the store and Cortex.
+
+### Configuring the Jenkinfile
+
+1. Open the Jenkisfile included in the project directory.
+2. Configure Jenkins job with the required parameters as described in the [Jenkins Pipeline Parameter Descriptions](#jenkins-pipeline-parameter-descriptions) section.
+3. Save the changes.
+
+### Jenkins Pipeline Parameter Descriptions
+
+| **Parameter** | **Description** |
+|--|--|
+|`DOCKER_REGISTRY_ADDRESS`|The path to AWS ECR. For example, `${awsAccountID}.dkr.ecr.${region}.amazonaws.com`. |
+|`CORTEX_NAMESPACE`|The namespace for the Cortex images, such as Activemq, batch server, integration server, search server ,and Cortex server.|
+|`DOCKER_IMAGE_TAG`|The tag used for the Cortex images.|
+| `STORE_NAMESPACE`| The namespace for the store image and database image.|
+|`STORE_IMAGE_TAG` | The tag for the store images, which are store image and database image.|
+|`STORE_NAME` | The name of the store. For example, `vestri`|
+|`EC2_INSTANCE_HOST`| The IP address of the AWS EC2 host to deploy Jenkins pipeline.|
+|`EC2_INSTANCE_USER` | The user credentials of the AWS EC2 instance.|
+| `EC2_INSTANCE_SSH_KEY`|The path in Jenkins node that redirects to `ec2.pem file`.|
+|`SOLR_HOME_GIT_URL` |The git URL to the project containing the solr home configuration.|
+|`SOLR_HOME_BRANCH` |The branch name of the solr home configuration.|
+|`SOLR_HOME_PATH` |The path to the solr home configuration that is provided in the git project.|
+
+### Configuring the Jenkins Job
+
+1. Navigate to the Jenkins job console and select the Jenkins job to configure.
+2. In the left pane, select **Configuration**.
+3. In the **Build Triggers** tab, select **Poll SCM**.<br/> The **Schedule** field is displayed.
+4. In the **Schedule** field, set the time to run the job periodically.<br/> The default setting is `1 min`.
+6. In the **Advanced Project Options** tab, do the following:
+    1. In the **Definition** field, select **Pipeline script from SCM**.
+    2. In the **SCM** field, select **Git**.
+    3. In the **Repository URL** and **Branches to build** fields, enter the appropriate settings.
+    4. In the **Script Path** filed, select **Jenkinsfile**
+7. Click **Apply**.
+8. Click **Save**.
+
+You can configure all other setting as required for the project. This Jenkins job triggers commits to the master at the scheduled time. For more information about the pipeline, see the [Jenkins Pipeline Workflow](#jenkins-pipeline-workflow) section.
+
+
+### Jenkins Pipeline Workflow
+
+When you run the the Jenkins job, the job operates in the following sequence:
+
+* `SETUP` - Pulls the project and the project containing solr home configuration to a repository.
+* `BUILD` - Builds the store Docker image from the `docker/dev/Dockerfile` directory in the project and pushes the changes to AWS.
+  * The development Docker runs the `entrypoint.sh` script to replace the path to Cortex and the store in the `ep.config.json` file and starts the project in development by running the `npm start` command.
+* `UNDEPLOY_EXISTING` - Cleans up the working directory and removes docker containers and images, if any.
+* `DEPLOY` - Creates the working directory, copies the files from the project and solr home configuration, exports the environment variables used in the compose file, and deploys the store and Cortex with Docker-compose.
+* `TEST` - Sets the environment variables for JAVA_HOME and adds Java and Maven to the path. The variables are pulled from the Jenkins tools. For headless tests, installs Google Chrome by running the script at [intoli](https://intoli.com/blog/installing-google-chrome-on-centos) and downloading `google-chrome-stable` and renames it to `google-chrome` to enable chromedriver to find it for tests. Before you run the tests, replace the `selenium.session.baseurl` in the `pom.xml`. For viewing reports in Jenkins UI, Jenkins Cucumber plugin is used.
+
+## Terms And Conditions
+
+- Any changes to this project must be reviewed and approved by the repository owner. For more information about contributing, see the [Contribution Guide](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/CONTRIBUTING.md).
+- For more information about the license, see [GPLv3 License](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/LICENSE).
