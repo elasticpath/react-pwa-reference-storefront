@@ -9,7 +9,7 @@ weight: 7
 ## Best Practices for Developers
 
 * Pull from the external Git repository to contribute or use the storefront.
-* Follow the guidelines in the [Contribution Guide](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md) of the repository.
+* Follow the guidelines in the [Contribution Guide](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/CONTRIBUTING.md) of the repository.
 
 ## Best Practices for QA
 
