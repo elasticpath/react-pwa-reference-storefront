@@ -3,28 +3,28 @@
 ## Table of Contents
 
   * REACT PWA Reference Storefront
-        * [Documentation Introduction](#documentation_introduction)
-        * [Related Resources](#related_resources)
-   * [Overview](#overview)
-   * [Setting up the Storefront](#setting_up_the_storefront)
-        * [Prerequisites](#prerequisites)
-        * [Configuration Parameter Descriptions](#configuration#parameter#descriptions)
-        * [Configuring Sample Data](#configuring_sample_data)
-        * [Setting up a Development Environment](#setting_up_a_development_environment)
-        * [Setting up a Production Environment](Setting up a Production Environment)
-        * [Setting up a Remote Production Environment](#setting_up_a_remote_production_environment)
-   * [Running a Linter](#running_a_linter)
-   * [Adding New Locales](#adding_new_locales)
-   * [Running Unit Tests](#running#unit#tests)
-        * [Maven Options to Run the Unit Tests](#maven_options_to_run_the_unit_tests)
-        * [Running Subset of Tests](#running#subset#of#tests)
-        * [Updating Browser Driver Versions](#updating_browser_driver_versions)
+      * [Documentation Introduction](#documentation_introduction)
+      * [Related Resources](#related_resources)
+  * [Overview](#overview)
+  * [Setting up the Storefront](#setting_up_the_storefront)
+      * [Prerequisites](#prerequisites)
+      * [Configuration Parameter Descriptions](#configuration#parameter#descriptions)
+      * [Configuring Sample Data](#configuring_sample_data)
+      * [Setting up a Development Environment](#setting_up_a_development_environment)
+      * [Setting up a Production Environment](#setting_up_a_production_environment)
+      * [Setting up a Remote Production Environment](#setting_up_a_remote_production_environment)
+  * [Running a Linter](#running_a_linter)
+  * [Adding New Locales](#adding_new_locales)
+  * [Running Unit Tests](#running#unit#tests)
+      * [Maven Options to Run the Unit Tests](#maven_options_to_run_the_unit_tests)
+      * [Running Subset of Tests](#running#subset#of#tests)
+      * [Updating Browser Driver Versions](#updating_browser_driver_versions)
   * [Configuring Jenkins Pipeline](#configuring#jenkins#pipeline)
-        * [Prerequisites](#prerequisites)
-        * [Configuring the Jenkinfile](#configuring_the_jenkinfile)
-        * [Jenkins Pipeline Parameter Descriptions](jenkins_pipeline_parameter_descriptions)
-        * [Configuring the Jenkins Job](#configuring_the_jenkins_job)
-        * [Jenkins Pipeline Workflow](#jenkins_pipeline_workflow)
+      * [Prerequisites](#prerequisites)
+      * [Configuring the Jenkinfile](#configuring_the_jenkinfile)
+      * [Jenkins Pipeline Parameter Descriptions](jenkins_pipeline_parameter_descriptions)
+      * [Configuring the Jenkins Job](#configuring_the_jenkins_job)
+      * [Jenkins Pipeline Workflow](#jenkins_pipeline_workflow)
   * [Terms And Conditions](#terms_and_conditions)
 
 ## REACT PWA Reference Storefront
@@ -57,8 +57,8 @@ The Storefront is designed as an open source mobile Progressive Web Application 
 
 Ensure that the following software are installed :
 
-* [Git](https://git-scm.com/downloads).
-* [Node.js](https://nodejs.org/en/download/).
+* [Git](https://git-scm.com/downloads)
+* [Node.js](https://nodejs.org/en/download/)
 * [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:<br/>
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
@@ -99,7 +99,7 @@ For more information about populating database, see the [Populating the Database
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
 2. Run the `cd ep-store` command.
 3. To install dependencies, if any, run the `npm install` command.
-4. Configure the `./src/ep.config.json` file as required for the environment.<br/> For more information, see the [Configuration Parameter Descriptions](#configuration) section.
+4. Configure the `./src/ep.config.json` file as required for the environment.<br/> For more information, see the [Configuration Parameter Descriptions](#configuration_parameter_descriptions) section.
 5. To start the server in development mode, run the `npm start` command.
 6. To see the running Progressive Web Application (PWA), navigate to `http://localhost:8080/` .
 
@@ -121,7 +121,7 @@ For more information about populating database, see the [Populating the Database
 
 ## Running a Linter
 
-The storefront project is set up with the linting utility, [ESLint]((https://eslint.org/). For the storefront project, Elastic Path uses and extends ESLint configuration provided by Airbnb. For more information on the style guide, see the [Airbnb GitHub](https://github.com/airbnb/javascript) page.<br/>
+The storefront project is set up with the linting utility, [ESLint](https://eslint.org/). For the storefront project, Elastic Path uses and extends ESLint configuration provided by Airbnb. For more information on the style guide, see the [Airbnb GitHub](https://github.com/airbnb/javascript) page.<br/>
 By default, the ESLint loader is added to the `webpack.config.dev.js` file. When you start the application in the development mode, the ESLint loader automatically runs.
 1. To run the linter from the command line, navigate to the project root directory.
 2. Run the following command:
@@ -154,7 +154,7 @@ Test data are provided in the `tests` directory.
 |`-Dcucumber.options="--tags @smoketest"`| Specifies that you can replace the tag with a tag that you define.|
 |`-Dfailsafe.fork.count="<no of testes>"`| Specifies the number of tests that can be run at the same time. The default value is 1. You can change this value depending on number of TestsIT classes. |
 |`-Premote -Dremote.web.driver.url="<REMOTE DRIVER IP>"`| Specifies that the tests are executed using a remote VM. The `remote.web.driver.url` attribute specifies the URL of the remote VM. For example, `http://<IP_ADDRESS>:4444/wd/hub`.
-     **Note:** You must set up the selenium grid to use this feature.For more information, see [Selenium](https://www.seleniumhq.org/docs/07_selenium_grid.jsp) documentation.
+  **Note:** You must set up the selenium grid to use this feature.For more information, see [Selenium](https://www.seleniumhq.org/docs/07_selenium_grid.jsp) documentation.
 
 ### Running Subset of Tests
 1.  In the `/selenium/src/test/java/com/elasticpath/cucumber/` module, right-click a TestsIT class and click **Run**.
@@ -231,5 +231,5 @@ When you run the the Jenkins job, the job operates in the following sequence:
 
 ## Terms And Conditions
 
--Any changes to this project must be reviewed and approved by the repository owner. For more information about contributing, see the [Contribution Guide](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md).
+- Any changes to this project must be reviewed and approved by the repository owner. For more information about contributing, see the [Contribution Guide](https://github.com/shaunmaharaj/ep-store/blob/master/CONTRIBUTING.md).
 - For more information about the license, see [GPLv3 License](https://github.com/shaunmaharaj/ep-store/blob/master/LICENSE).
