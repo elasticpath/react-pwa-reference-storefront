@@ -1,95 +1,83 @@
 # Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via issue,
-email, or any other method before making a change.
+Before contributing to this repository, discuss the changes through an issue,
+email, or any mode of communciation.
 
-Please note we have a code of conduct, please follow it in all your interactions with the project. 👍
+Follow the code of conduct follow in all interactions with the project.
 
 ### Reporting Bugs
-Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). Create an issue and provide the following information by filling in [the template](ISSUE_TEMPLATE.md).
-Bugs are tracked as [Support tickets](https://support.elasticpath.com/support/). Create an issue and provide the following information by filling in [the template](ISSUE_TEMPLATE.md).
 
-Explain the problem and include additional details to help maintainers reproduce the problem:
+Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 
-* **Use a clear and descriptive title** for the issue to identify the problem.
-* **Describe the exact steps which reproduce the problem** in as many details as possible. When listing steps, **don't just say what you did, but explain how you did it**.
-* **Provide specific examples to demonstrate the steps**. Include links to files, or copy/pasteable snippets, which you use in those examples. If you're providing snippets in the issue, use [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
-* **Describe the behavior you observed after following the steps** and point out what exactly is the problem with that behavior.
-* **Explain which behavior you expected to see instead and why.**
-* **Include screenshots** which show you following the described steps and clearly demonstrate the problem.
-
-Include details about your configuration and environment:
-
-* **Which versions of Node and NPM are you using?** You can get the exact version by running `node --version` and `npm --version` in your terminal.
-* **What's the name and version of the OS you're using**?
-* **Which packages do you have installed?** You can get the list by reviewing your package.json. Ensure you have added any new packages correctly during development.
-* **What properties have you passed into the application?** `ep.config.json` Provide the contents of the file, preferably in a [code block](https://help.github.com/articles/markdown-basics/#multiple-lines) or with a link to a [gist](https://gist.github.com/).
-* **Which keyboard layout are you using?** Are you using a US layout or some other layout?
+1. Create an issue and provide the required information in the [issue template](ISSUE_TEMPLATE.md).
+2. Describe the problem with the following details:
+  - A self-explanatory title.
+  - Steps to reproduce the problem. Provide the steps with details such as, what is the step and how is it done.
+  - Examples to demonstrate the steps. Include links to files or reusable snippets that are used in the examples. For providing snippets in the issue, use [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
+  - Describe the result you get when you follow the steps, and state the issues, if any.
+  - Explain the expected result and the reason.
+  - Add screenshots of the results of each step.
+3. Add the following configuration and environment details:
+  - Versions of Node and NPM that you use. Run the  `node --version` and `npm --version` command in the terminal to get the correct version.
+  - Name version of the operating system that you use.
+  - Packages installed on your machine. Review your `package.json` file to get the list. Ensure that new packages are installed successfully during development.
+  - Properties that you add to the application. The `ep.config.json` file  provides the contents of the file, in a [code block](https://help.github.com/articles/markdown-basics/#multiple-lines) or with a link to a [gist](https://gist.github.com/).
+  - The keyboard layout. For example, US layout.
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion, including completely new features and minor improvements to existing functionality. Following these guidelines helps maintainers and the community understand your suggestion.
+This section provides guideline to submit an enhancement suggestion, such as new features or improvements to existing features.
 
-When you are creating an enhancement suggestion, please fill in [the template](ISSUE_TEMPLATE.md), including the steps that you imagine you would take if the feature you're requesting existed.
+- When you create an enhancement suggestion, populate the [issue template](ISSUE_TEMPLATE.md) and provide the steps to implement the enhancement .
+- Review the[How Do I Submit A (Good) Enhancement Suggestion?](#how-do-i-submit-a-good-enhancement-suggestion) section.
 
-Ensure to review [how to submit a good enhancement suggestion](#how-do-i-submit-a-good-enhancement-suggestion).
+#### How Do I Submit Enhancement Suggestions?
 
-#### How Do I Submit A (Good) Enhancement Suggestion?
+Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 
-Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/).Create an issue and provide the following information:
+1. Create an issue and provide the following information:
 
-* **Use a clear and descriptive title** for the issue to identify the suggestion.
-* **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
-* **Provide specific examples to demonstrate the steps**. Include copy/pasteable snippets which you use in those examples, as [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
-* **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
-* **Explain why this enhancement would be useful**
+- A self-explanatory title.
+- Detailed instructions to implement the enhancement and to understand the enhancement suggestion.
+- Examples to demonstrate the steps. Include links to files or reusable snippets that are used in the examples. For providing snippets in the issue, use [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
+- Describe the current functionality and the expected functionality with enhancement and provide the reason.
+- Explain the benefits of the enhancement.
 
 ### Pull Request Process
-You may contribute to this repo by opening a pull request
 
-1. Fork the repository into your own Github account
-2. Clone the fork locally
-3. Create a git branch
-4. Setup the development environment and install required dependencies outlined [here](README.md#setup-development)
-5. Perform your changes and commit them to your newly created branch. Ensure that your code is clear and comprehensible.
-6. Execute the local Unit Tests and ensure successful passing tests outlined [here](README.md#unit-tests). If your code introduces new features/components that require additionl unit tests, ensure that your code has an appropriate set of unit tests which all pass.
-7. Open a Pull Request (PR)
-8. Patiently wait for your code to be reviewed by an owner of this repository. If the reviewer has comments, please address them in your PR.
-9. Once approved, your work will be merged!
+You can contribute to this project by creating a pull request in the repository.
 
-### Our Standards
+1. Fork the repository into your Github account.
+2. Clone the fork locally.
+3. Create a git branch.
+4. Setup the development environment and install the required dependencies. For more information, see [Setting up a Development Environment](README.md#setting-up-a-development-environment).
+5. Make the changes and commit the changes to your new branch. Ensure that the code is clear and comprehensible.
+6. Run the local unit tests by following the instruction in the [Running Unit Tests](README.md#running-unit-tests) section. If you add new features or components that require additional unit tests, ensure that the code is tested and verified with appropriate unit tests.
+7. Create a Pull Request(PR).
+8. Incorporate the review comments provided by the repository owner, if any,  and get approval.
+The repository owner merges all approved PRs to the repository.
 
-Examples of behavior that contributes to creating a positive environment
-include:
+### Elastic Path Code of Conduct
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+Elastic Path suggests following code of conduct in all communications. For example:
 
-### Our Responsibilities
+* Use welcoming and inclusive language
+* Respect others viewpoints and experiences
+* Accept constructive criticism
 
-Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
+The contributors must follow the code of conduct in the project and public spaces
+when they represent the project or the community. For examples, when you use an official project e-mail
+address, official social media account, or
+represent the community at an online or offline event.
 
-Project maintainers have the right and responsibility to remove, edit, or
-reject comments, commits, code, wiki edits, issues, and other contributions
-that are not aligned to this Code of Conduct, or to ban temporarily or
-permanently any contributor for other behaviors that they deem inappropriate,
-threatening, offensive, or harmful.
+### Rights of the Repository Owners
 
-### Scope
+- Define, implement, and assure code of conduct and take action if anyone breaches the standards.
+- Remove, edit, or reject comments, commits, code, wiki edits, issues, or  other contributions that does not aligned to code of conduct.
+- Restrict the access of contributors temporarily or permanently when the code of conduct is violated.
+-Define and clarify the representation of a project further.
 
-This Code of Conduct applies both within project spaces and in public spaces
-when an individual is representing the project or its community. Examples of
-representing a project or community include using an official project e-mail
-address, posting via an official social media account, or acting as an appointed
-representative at an online or offline event. Representation of a project may be
-further defined and clarified by project maintainers.
 
 ### Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at [http://contributor-covenant.org/version/1/4][version]
+Elastic Path code of conduct is adapted from the [Contributor Covenant](http://contributor-covenant.org/version/1/4) 1.4.
