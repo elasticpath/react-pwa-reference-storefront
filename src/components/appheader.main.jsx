@@ -123,7 +123,7 @@ class AppHeaderMain extends React.Component {
           </div>
           <div className="mobile-cart-link-container">
             <Link className="cart-link" to="/mycart">
-              Shopping Cart
+              {intl.get('shopping-bag-nav')}
             </Link>
           </div>
           <div className="mobile-navigation-container">
