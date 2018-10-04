@@ -32,7 +32,7 @@
     display: inline-block;
     font-family: 'Font Awesome 5 Brands';
     font-size: 18px;
-    margin-right: 5px;
+    margin-right: 10px;
 
     &.facebook:before {
       content: "\f082";
@@ -47,6 +47,13 @@
     }
   }
 
+  .title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
   .first-row {
     display: flex;
     flex-direction: row;
@@ -57,20 +64,14 @@
       max-width: 250px;
       margin: 20px;
 
-      .title {
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 16px;
-        margin-bottom: 20px;
-      }
-
       .content {
+        color: #dedefc;
+
         a {
           display: block;
-          color: #fff;
+          color: inherit;
         }
       }
-
     }
   }
 
@@ -86,11 +87,12 @@
     .second-row {
       display: block;
       text-align: center;
+      padding-top: 20px;
 
       .share-icon {
         font-size: 24px;
         color: #fff;
-        margin: 20px;
+        margin: 0 20px;
       }
     }
   }

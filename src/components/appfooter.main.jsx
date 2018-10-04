@@ -55,7 +55,7 @@ function AppFooterMain() {
         </div>
         <div className="footer-column social">
           <div className="title">
-            {intl.get('vestri')}
+            {intl.get('find-us-online')}
           </div>
           <div className="content">
             <Link to="/">
@@ -74,6 +74,9 @@ function AppFooterMain() {
         </div>
       </div>
       <div className="second-row">
+        <div className="title">
+          {intl.get('find-us-online')}
+        </div>
         <Link to="/">
           <span className="share-icon facebook" />
         </Link>
