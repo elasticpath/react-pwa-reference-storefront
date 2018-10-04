@@ -104,7 +104,7 @@ class CategoryItemsMain extends React.Component {
 
             if (noProducts) {
               return (
-                <h3>
+                <h3 className="view-title">
                   {intl.get('no-products-found')}
                 </h3>
               );
