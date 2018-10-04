@@ -28,7 +28,7 @@ Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 
 This section provides guideline to submit an enhancement suggestion, such as new features or improvements to existing features.
 
-- When you create an enhancement suggestion, populate the [issue  template](ISSUE_TEMPLATE.md) and provide the steps to implement the enhancement .
+- When you create an enhancement suggestion, populate the [issue template](ISSUE_TEMPLATE.md) and provide the steps to implement the enhancement .
 - Review the[How Do I Submit A (Good) Enhancement Suggestion?](#how-do-i-submit-a-good-enhancement-suggestion) section.
 
 #### How Do I Submit Enhancement Suggestions?
