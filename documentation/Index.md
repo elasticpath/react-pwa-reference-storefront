@@ -4,7 +4,7 @@ permalink: /
 title: Home
 weight: 1
 ---
-# React Reference Storefront
+# Elastic Path React Reference Storefront
 
 ## Abstract
 

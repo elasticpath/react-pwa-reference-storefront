@@ -8,7 +8,7 @@ weight: 5
 
 ## Prerequisite
 
-Ensure that the correct installation option is selected for the instance.
+Ensure that the correct installation option is selected for the instance your instance.
 
 ### Running React Reference Storefront
 
@@ -21,6 +21,7 @@ Ensure that the correct installation option is selected for the instance.
 |Webpack Store Server|8080|
 |Commerce Manager|8081|
 
-For more information on installing the React Reference Storefront, see the [Readme](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/README.md) file.
+<br/>
+For more information on installing the REACT Reference Storefront, see the [Readme](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/README.md) file.
 
 {% include legal.html %}

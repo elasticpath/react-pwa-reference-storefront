@@ -34,12 +34,12 @@ For extending and customizing the storefront, knowledge in the following technol
 
 || **Certified** | **Compatible** |
 |--|--|--|
-|**Browsers**| Internet Explorer (10 or later)<br/>Google Chrome<br/>Safari|Mozilla Firefox|
-|**Devices**|Android tablets (10 and 7 ins)<br/>iOS tablets (10 and 7 ins)|Android phones<br/>iOS phones |
+|**Browsers**| Internet Explorer(10 or later)<br/>Google Chrome<br/>Safari|Mozilla Firefox|
+|**Devices**|Android tablets (10 and 7 ins)<br/>iOS tablets (10 and 7 ins)|Android Phones<br/>iOS Phones |
 
 ## Technology Stack
 
-The React Reference Storefront technologies are robust and extensible. With these technologies, JavaScript developers and the front-end developers can customize storefront quickly with ease.
+The React Reference Storefront technologies are robust and extensible. With these technologies, JavaScript developers and the front-end developers can customize storefront with ease and quickly.
 
 |  Technology| Description|Version|Domain|
 |--|--|--|--|
