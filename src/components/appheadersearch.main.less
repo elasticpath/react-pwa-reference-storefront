@@ -25,25 +25,45 @@
   width: 170px;
   text-align: right;
 
-  .input-search {
-    background: #ffffff00 url('../images/header-icons/magnifying-glass.png') no-repeat 9px center;
-    padding: 2px 5px 2px 35px;
-    width: 35px;
-    transition: width 0.5s ease,
-                border-color 0.5s,
-                padding 0.5s ease-in;
-    color: #fff;
-    cursor: pointer;
-    outline: 0;
-    border: 0;
-    border-bottom: 1px solid transparent;
-    font-weight: 300;
+  .search-form {
+    position: relative;
+    display: inline-block;
 
-    &:focus {
-      width: 170px;
-      padding-left: 40px;
-      border-bottom: 1px solid #fff;
-      cursor: auto;
+    .input-search {
+      background: transparent;
+      padding: 2px 5px 2px 35px;
+      width: 35px;
+      transition: width 0.5s ease,
+                  border-color 0.5s,
+                  padding 0.5s ease-in;
+      color: #fff;
+      cursor: pointer;
+      outline: 0;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      font-weight: 300;
+
+      &::placeholder {
+        opacity: 0.3;
+        color: #fff;
+      }
+
+      &:focus {
+        width: 170px;
+        padding-left: 40px;
+        border-bottom: 1px solid #fff;
+        cursor: auto;
+      }
+    }
+
+    .search-icon {
+      background: #ffffff00 url('../images/header-icons/magnifying-glass.png') no-repeat 9px center;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 35px;
+      height: 20px;
+      pointer-events: none;
     }
   }
 
@@ -51,17 +71,35 @@
     width: 100%;
     border-bottom: 1px solid @mainColor;
 
-    .input-search {
-      width: 100%;
-      transition: none;
-      color: #ccc;
-      font-size: 18px;
-      padding-left: 40px;
-      border-bottom: 0;
-      filter: invert(100%);
+    .search-form {
+      display: block;
 
-      &:focus {
+      .input-search {
+        color: #333;
+        background-color: #fff;
+        width: 100%;
+        transition: none;
+        font-size: 18px;
+        padding: 10px;
+        padding-left: 20px;
         border-bottom: 0;
+
+        &::placeholder {
+          opacity: 0.3;
+          color: #000;
+        }
+
+        &:focus {
+          border-bottom: 0;
+        }
+      }
+
+      .search-icon {
+        filter: invert(100%);
+        opacity: 0.5;
+        left: auto;
+        right: 10px;
+        top: 12px;
       }
     }
   }

@@ -21,6 +21,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import intl from 'react-intl-universal';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 
@@ -60,7 +61,8 @@ class AppHeaderSearchMain extends React.Component {
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={this.search}>
-          <input className="input-search" type="search" onChange={this.handleChange} />
+          <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} />
+          <div className="search-icon" />
         </form>
       </div>
     );

@@ -22,76 +22,105 @@
  @import './../style/common.less';
 
 .payment-method-container {
-  h1 {
-    position: relative;
-    width: 75%;
-    margin-top: 32px;
-    margin-bottom: 64px;
-    font-size: 36px;
+
+  .title {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 
-  .form-control {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.428571429;
-    color: #555555;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  }
-
-  .payment-method-form-container {
-    .control-label {
-      color: #6f6f6f;
-    }
-
-    .required-label {
-      color: red;
-      font-size: 16px;
-      font-weight: bold;
-    }
+  .feedback-container {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
   }
 
   .form-horizontal {
-    label {
-      display: inline-block;
-      margin-bottom: 5px;
-      font-weight: bold;
+    .form-group {
+      &:before, &:after {
+        content: " ";
+        display: block;
+        clear: both;
+      }
+    }
+
+    .form-inline {
+      // max-width: 160px;
+
+      .form-control {
+        width: 100px;
+      }
     }
 
     .control-label {
-      margin-top: 0;
-      margin-bottom: 0;
-      padding-top: 7px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 14px;
-      font-weight: normal;
-      line-height: 1.428571429;
-      text-align: center;
-      vertical-align: middle;
-      cursor: pointer;
-      border: 1px solid #999;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      color: #ffffff;
-      background-color: @mainColor;
-      border-color: @mainColor;
       position: relative;
+      min-height: 1px;
       padding-left: 15px;
       padding-right: 15px;
+
+      .required-label {
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      @media (min-width: @mobileWidth) {
+        float: left;
+        width: 25%;
+      }
+    }
+
+    .form-input {
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      @media (min-width: @mobileWidth) {
+        float: left;
+        width: 50%;
+      }
+
+      .form-control {
+        display: block;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px !important;
+        color: #555555;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      }
+
+      &.btn-container {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        .btn {
+          width: 100px;
+          margin-right: 10px;
+          display: inline-block;
+          padding: 6px 12px;
+          font-size: 14px;
+          font-weight: normal;
+          line-height: 1.428571429;
+          text-align: center;
+          vertical-align: middle;
+          cursor: pointer;
+          border: 1px solid #999;
+          border-radius: 4px;
+          white-space: nowrap;
+
+          &.btn-primary {
+            color: #ffffff;
+            background-color: @mainColor;
+            border-color: @mainColor;
+            position: relative;
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+        }
+      }
     }
   }
 }

@@ -31,17 +31,11 @@
       padding-bottom: 1px;
       padding-right: 21px;
       font-size: 13px;
-      border-bottom: 1px solid transparent;
       transition: border-color 0.2s;
 
       .nav-link {
         color: #fff;
         padding: 7px;
-        border-bottom: 1px solid transparent;
-
-        &:hover {
-          border-bottom: 1px solid #fff;
-        }
       }
 
       .dropdown-menu {
@@ -52,12 +46,10 @@
           color: #555;
           padding-top: 7px;
           padding-bottom: 7px;
-          border-bottom: 1px solid transparent;
           transition: border-color 0.2s;
 
           &:hover {
-            background-color: transparent;
-            border-bottom: 1px solid @mainColor;
+            background-color: #e2e2e2;
           }
 
           &:active {
@@ -77,10 +69,20 @@
 
         .nav-link {
           color: @mainColor;
+          padding-top: 10px;
+          padding-bottom: 10px;
           font-size: 19px;
+          text-transform: uppercase;
 
-          &:hover {
-            border-bottom: 1px solid @mainColor;
+          &:active {
+            background-color: #ccc;
+          }
+        }
+
+        &.show {
+          .nav-link {
+            font-weight: bold;
+            background-color: #eee;
           }
         }
 
@@ -91,11 +93,18 @@
           background-color: transparent;
           transform: none !important;
           box-shadow: none;
+          background-color: #eee;
 
           .dropdown-item {
+            padding-top: 15px;
+            padding-top: 15px;
             text-align: center;
             font-size: 15px;
             color: @mainColor;
+
+            &:active {
+              background-color: #ccc;
+            }
           }
         }
       }

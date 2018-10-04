@@ -30,7 +30,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class NewAddressPage extends AbstractPageObject {
 
-	@FindBy(className = "create-address-container")
+	@FindBy(className = "address-form-component")
 	private WebElement createAddressContainer;
 
 	@FindBy(id = "registration_form_firstName")

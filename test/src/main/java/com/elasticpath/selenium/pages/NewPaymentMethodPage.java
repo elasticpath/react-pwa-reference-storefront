@@ -30,7 +30,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class NewPaymentMethodPage extends AbstractPageObject {
 
-	@FindBy(className = "payment-method-form-container")
+	@FindBy(className = "payment-method-container")
 	private WebElement paymentMethodFormContainer;
 
 	@FindBy(id = "CardType")

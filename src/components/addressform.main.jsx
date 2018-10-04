@@ -276,14 +276,14 @@ class AddressFormMain extends React.Component {
         return (
           <div data-region="addressRegionsRegion" className="form-group">
             <div>
-              <label htmlFor="Region" data-el-label="addressForm.region" className="control-label address-form-label">
+              <label htmlFor="Region" data-el-label="addressForm.region" className="control-label">
                 <span className="required-label">
                   *
                 </span>
                 {' '}
                 {intl.get('province')}
               </label>
-              <div className="address-form-input activity-indicator-loading-region">
+              <div className="form-input activity-indicator-loading-region">
                 <select id="Region" name="Region" className="form-control" value={subCountry} onChange={this.setSubCountry}>
                   <option value="" />
                   {sortedRegions.map(region => (
@@ -302,14 +302,14 @@ class AddressFormMain extends React.Component {
     return (
       <div data-region="addressRegionsRegion" className="form-group">
         <div>
-          <label htmlFor="Region" data-el-label="addressForm.region" className="control-label address-form-label">
+          <label htmlFor="Region" data-el-label="addressForm.region" className="control-label">
             <span className="required-label">
               *
             </span>
             {' '}
             {intl.get('province')}
           </label>
-          <div className="address-form-input activity-indicator-loading-region">
+          <div className="form-input activity-indicator-loading-region">
             <select id="Region" name="Region" className="form-control" value={subCountry} onChange={this.setSubCountry}>
               <option value="" />
             </select>
@@ -326,111 +326,106 @@ class AddressFormMain extends React.Component {
     } = this.state;
     const newOrEdit = (location.state && location.state.address) ? intl.get('edit') : intl.get('new');
     return (
-      <div className="address-form-component" data-region="appMain" style={{ display: 'block' }}>
-        <div className="create-address-container container">
-          <h3>
-            {newOrEdit}
-            {' '}
-            {intl.get('address')}
-          </h3>
-          <form className="form-horizontal" onSubmit={this.submitAddress}>
-            <div data-region="componentAddressFormRegion" style={{ display: 'block' }}>
-              <div className="address-form-container">
-                <div className="feedback-label address-form-feedback-container" data-region="componentAddressFeedbackRegion">
-                  {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label address-form-label">
-                    <span className="required-label">
-                      *
-                    </span>
-                    {' '}
-                    {intl.get('first-name')}
-                  </label>
-                  <div className="address-form-input">
-                    {/* eslint-disable-next-line max-len */}
-                    <input id="registration_form_firstName" name="FirstName" className="form-control" type="text" value={firstName} onChange={this.setFirstName} />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="LastName" data-el-label="addressForm.lastName" className="control-label address-form-label">
-                    <span className="required-label">
-                      *
-                    </span>
-                    {' '}
-                    {intl.get('last-name')}
-                  </label>
-                  <div className="address-form-input">
-                    {/* eslint-disable-next-line max-len */}
-                    <input id="registration_form_lastName" name="LastName" className="form-control" type="text" value={lastName} onChange={this.setLastName} />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="StreetAddress" data-el-label="addressForm.streetAddress" className="control-label address-form-label">
-                    <span className="required-label">
-                      *
-                    </span>
-                    {' '}
-                    {intl.get('street-address')}
-                  </label>
-                  <div className="address-form-input">
-                    <input id="StreetAddress" name="StreetAddress" className="form-control" type="text" value={address} onChange={this.setAddress} />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="ExtendedAddress" data-el-label="addressForm.extendedAddress" className="control-label address-form-label">
-                    {intl.get('extended-address')}
-                  </label>
-                  <div className="address-form-input">
-                    {/* eslint-disable-next-line max-len */}
-                    <input id="ExtendedAddress" name="ExtendedAddress" className="form-control" type="text" value={extendedAddress} onChange={this.setExtendedAddress} />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="City" data-el-label="addressForm.city" className="control-label address-form-label">
-                    <span className="required-label">
-                      *
-                    </span>
-                    {' '}
-                    City
-                  </label>
-                  <div className="address-form-input">
-                    <input id="City" name="City" className="form-control" type="text" value={city} onChange={this.setCity} />
-                  </div>
-                </div>
-                <div data-region="addressCountryRegion" className="form-group" style={{ display: 'block' }}>
-                  <div>
-                    <label htmlFor="Country" data-el-label="addressForm.country" className="control-label address-form-label">
-                      <span className="required-label">
-                        *
-                      </span>
-                      {' '}
-                      {intl.get('country')}
-                    </label>
-                    <div className="address-form-input">
-                      <select id="Country" name="Country" className="form-control" value={country} onChange={this.setCountry}>
-                        <option value="" />
-                        {this.renderCountries()}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                {this.renderSubCountries()}
-                <div className="form-group">
-                  <label htmlFor="PostalCode" data-el-label="addressForm.postalCode" className="control-label address-form-label">
-                    <span className="required-label">
-                      *
-                    </span>
-                    {' '}
-                    {intl.get('postal-code')}
-                  </label>
-                  <div className="address-form-input">
-                    <input id="PostalCode" name="PostalCode" className="form-control" type="text" value={postalCode} onChange={this.setPostalCode} />
-                  </div>
-                </div>
-              </div>
+      <div className="address-form-component container" data-region="appMain">
+        <div className="title">
+          {newOrEdit}
+          {' '}
+          {intl.get('address')}
+        </div>
+        <div className="feedback-label feedback-container" data-region="componentAddressFeedbackRegion">
+          {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
+        </div>
+        <form className="form-horizontal" onSubmit={this.submitAddress}>
+          <div className="form-group">
+            <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label">
+              <span className="required-label">
+                *
+              </span>
+              {' '}
+              {intl.get('first-name')}
+            </label>
+            <div className="form-input">
+              {/* eslint-disable-next-line max-len */}
+              <input id="registration_form_firstName" name="FirstName" className="form-control" type="text" value={firstName} onChange={this.setFirstName} />
             </div>
-            <div className="form-group create-address-btn-container container">
+          </div>
+          <div className="form-group">
+            <label htmlFor="LastName" data-el-label="addressForm.lastName" className="control-label">
+              <span className="required-label">
+                *
+              </span>
+              {' '}
+              {intl.get('last-name')}
+            </label>
+            <div className="form-input">
+              {/* eslint-disable-next-line max-len */}
+              <input id="registration_form_lastName" name="LastName" className="form-control" type="text" value={lastName} onChange={this.setLastName} />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="StreetAddress" data-el-label="addressForm.streetAddress" className="control-label">
+              <span className="required-label">
+                *
+              </span>
+              {' '}
+              {intl.get('street-address')}
+            </label>
+            <div className="form-input">
+              <input id="StreetAddress" name="StreetAddress" className="form-control" type="text" value={address} onChange={this.setAddress} />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="ExtendedAddress" data-el-label="addressForm.extendedAddress" className="control-label">
+              {intl.get('extended-address')}
+            </label>
+            <div className="form-input">
+              {/* eslint-disable-next-line max-len */}
+              <input id="ExtendedAddress" name="ExtendedAddress" className="form-control" type="text" value={extendedAddress} onChange={this.setExtendedAddress} />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="City" data-el-label="addressForm.city" className="control-label">
+              <span className="required-label">
+                *
+              </span>
+              {' '}
+              City
+            </label>
+            <div className="form-input">
+              <input id="City" name="City" className="form-control" type="text" value={city} onChange={this.setCity} />
+            </div>
+          </div>
+          <div data-region="addressCountryRegion" className="form-group" style={{ display: 'block' }}>
+            <label htmlFor="Country" data-el-label="addressForm.country" className="control-label">
+              <span className="required-label">
+                *
+              </span>
+              {' '}
+              {intl.get('country')}
+            </label>
+            <div className="form-input">
+              <select id="Country" name="Country" className="form-control" value={country} onChange={this.setCountry}>
+                <option value="" />
+                {this.renderCountries()}
+              </select>
+            </div>
+          </div>
+          {this.renderSubCountries()}
+          <div className="form-group">
+            <label htmlFor="PostalCode" data-el-label="addressForm.postalCode" className="control-label">
+              <span className="required-label">
+                *
+              </span>
+              {' '}
+              {intl.get('postal-code')}
+            </label>
+            <div className="form-input">
+              <input id="PostalCode" name="PostalCode" className="form-control" type="text" value={postalCode} onChange={this.setPostalCode} />
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="control-label" />
+            <div className="form-input btn-container">
               <button className="btn btn-primary address-save-btn" data-el-label="addressForm.save" type="submit">
                 {intl.get('save')}
               </button>
@@ -438,8 +433,8 @@ class AddressFormMain extends React.Component {
                 {intl.get('cancel')}
               </button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     );
   }
