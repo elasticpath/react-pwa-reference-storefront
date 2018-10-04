@@ -164,7 +164,7 @@ class CheckoutAuthPage extends React.Component {
                         {intl.get('username')}
                         :
                       </label>
-                      <input className="form-control" id="registration_form_emailUsername" name="OAuthUserName" type="text" onChange={this.setUsername} />
+                      <input className="form-control" id="registration_form_emailUsername" name="OAuthUserName" type="email" onChange={this.setUsername} />
                     </div>
                     <div className="form-group checkout-auth-form-group">
                       <label htmlFor="OAuthPassword" data-el-label="checkoutAuthOption.password" className="control-label">

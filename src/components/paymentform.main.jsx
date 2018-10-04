@@ -251,7 +251,7 @@ class PaymentFormMain extends React.Component {
               {intl.get('credit-card-number')}
             </label>
             <div className="form-input">
-              <input id="CardNumber" name="CardNumber" className="form-control" type="text" value={cardNumber} onChange={this.setCardNumber} />
+              <input id="CardNumber" name="CardNumber" className="form-control" type="text" pattern="\d*" value={cardNumber} onChange={this.setCardNumber} />
             </div>
           </div>
           <div className="form-group">
@@ -315,7 +315,7 @@ class PaymentFormMain extends React.Component {
             </label>
             <div className="form-input">
               {/* eslint-disable-next-line max-len */}
-              <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength="4" type="text" value={securityCode} onChange={this.setSecurityCode} />
+              <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength="4" type="text" pattern="\d*" value={securityCode} onChange={this.setSecurityCode} />
             </div>
           </div>
           <div className="form-group" data-el-label="payment.saveToProfileFormGroup">

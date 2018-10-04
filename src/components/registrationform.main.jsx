@@ -174,7 +174,7 @@ class RegistrationFormMain extends React.Component {
                   {intl.get('email-slash-username')}
                 </label>
                 <div className="registration-form-input">
-                  <input id="registration_form_emailUsername" name="username" className="form-control" type="text" onChange={this.setUsername} />
+                  <input id="registration_form_emailUsername" name="username" className="form-control" type="email" onChange={this.setUsername} />
                 </div>
               </div>
               <div className="form-group">
