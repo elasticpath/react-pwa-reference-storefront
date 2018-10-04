@@ -62,9 +62,9 @@ Ensure that the following software are installed:
 * [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:<br/>
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
-* [Java JDK 8] (http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html)(for unit testing, optional)
-* [Maven 3.5.2] (https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/)(for unit testing, optional)
-* [IntelliJ IDEA] (https://www.jetbrains.com/idea/)(for unit testing, optional)
+* [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) (for unit testing, optional)
+* [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/) (for unit testing, optional)
+* [IntelliJ IDEA](https://www.jetbrains.com/idea/) (for unit testing, optional)
 * A valid Elastic Path development environment. For more information, see
 [The Starting Construction Guide](https://developers.elasticpath.com/commerce/construction-home).
 
