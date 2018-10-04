@@ -10,7 +10,7 @@ weight: 2
 
 The React PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s [RESTful](http://en.wikipedia.org/wiki/Representational_state_transfer) e-commerce API,  [Cortex API](https://developers.elasticpath.com/commerce/7.3/Cortex-API-Front-End-Development/Getting-Started/Introduction). Through Cortex API, the storefront get to use the e-commerce capabilities provided by Elastic Path Commerce and get data in a RESTful manner.
 
-React Reference Storefront is composed of containers (pages) and React components. Each page in the storefront is composed of various components that fulfills the purpose of the page. For example, home, cart, categories, checkout, and registration are separate pages. Each page consists of various components, such as navigation, footer, product List, or products.
+React Reference Storefront is composed of containers (pages) and React components. Each page in the storefront is composed of various components that fulfills the purpose of the page. For example, home, cart, categories, checkout, and registration are separate pages. Each page consists of various components, such as navigation, footer, product list, or products.
 
 The Storefront is designed as an open source mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enable the application layer interactions through configurable web server.
 
