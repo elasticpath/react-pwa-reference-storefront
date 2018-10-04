@@ -15,7 +15,7 @@ weight: 8
 
 ## References
 
-The following resources provide more information  the third-party technologies that Elastic Path uses for developing React Reference Storefront:
+The following resources provide more information on the third-party technologies that Elastic Path uses for developing React Reference Storefront:
 
 * [React](https://reactjs.org/)
 * [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
