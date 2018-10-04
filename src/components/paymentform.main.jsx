@@ -230,132 +230,6 @@ class PaymentFormMain extends React.Component {
                 </option>
               </select>
             </div>
-            <form className="form-horizontal payment-method-form-container container" onSubmit={this.submitPayment}>
-              <div className="form-group">
-                <label htmlFor="CardType" data-el-label="payment.cardType" className="control-label form-label">
-                  <span className="required-label">
-                    *
-                  </span>
-                  {intl.get('card-type')}
-                </label>
-                <div className="form-input">
-                  <select id="CardType" name="CardType" className="form-control" value={cardType} onChange={this.setCardType}>
-                    <option value="amex">
-                      {intl.get('american-express')}
-                    </option>
-                    <option value="master">
-                      {intl.get('mastercard')}
-                    </option>
-                    <option value="visa">
-                      {intl.get('visa')}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="CardHolderName" data-el-label="payment.cardHolderName" className="control-label form-label">
-                  <span className="required-label">
-                    *
-                  </span>
-                  {intl.get('card-holders-name')}
-                </label>
-                <div className="form-input">
-                  {/* eslint-disable-next-line max-len */}
-                  <input id="CardHolderName" name="CardHolderName" className="form-control" type="text" value={cardHolderName} onChange={this.setCardHolderName} />
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="CardNumber" data-el-label="payment.cardNum" className="control-label form-label">
-                  <span className="required-label">
-                    *
-                  </span>
-                  {intl.get('credit-card-number')}
-                </label>
-                <div className="form-input">
-                  <input id="CardNumber" name="CardNumber" className="form-control" type="text" pattern="\d*" value={cardNumber} onChange={this.setCardNumber} />
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="ExpiryMonth" data-el-label="payment.expiryDate" className="control-label form-label">
-                  <span className="required-label">
-                    *
-                  </span>
-                  {intl.get('expiry-date')}
-                </label>
-                <div className="form-inline">
-                  <select id="ExpiryMonth" name="ExpiryMonth" className="form-control expiry-date" value={expiryMonth} onChange={this.setExpiryMonth}>
-                    <option value="1">
-                      1
-                    </option>
-                    <option value="2">
-                      2
-                    </option>
-                    <option value="3">
-                      3
-                    </option>
-                    <option value="4">
-                      4
-                    </option>
-                    <option value="5">
-                      5
-                    </option>
-                    <option value="6">
-                      6
-                    </option>
-                    <option value="7">
-                      7
-                    </option>
-                    <option value="8">
-                      8
-                    </option>
-                    <option value="9">
-                      9
-                    </option>
-                    <option value="10">
-                      10
-                    </option>
-                    <option value="11">
-                      11
-                    </option>
-                    <option value="12">
-                      12
-                    </option>
-                  </select>
-                  &nbsp;/&nbsp;
-                  <select id="ExpiryYear" name="ExpiryYear" className="form-control expiry-date" value={expiryYear} onChange={this.setExpiryYear}>
-                    {PaymentFormMain.renderYears()}
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="SecurityCode" data-el-label="payment.securityCode" className="control-label form-label">
-                  <span className="required-label">
-                    *
-                  </span>
-                  {intl.get('security-code')}
-                </label>
-                <div className="form-input">
-                  {/* eslint-disable-next-line max-len */}
-                  <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength="4" type="text" pattern="\d*" value={securityCode} onChange={this.setSecurityCode} />
-                </div>
-              </div>
-              <div className="form-group" data-el-label="payment.saveToProfileFormGroup">
-                {/* eslint-disable-next-line max-len */}
-                <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" checked={saveToProfile} onChange={this.setSaveToProfile} />
-                <label htmlFor="saveToProfile" className="control-label form-label">
-                  &nbsp;
-                  {intl.get('save-payment-to-profile')}
-                </label>
-              </div>
-              <div className="form-group create-address-btn-container">
-                <button className="btn btn-primary payment-save-btn" data-el-label="paymentForm.save" type="submit">
-                  {intl.get('continue')}
-                </button>
-                <button className="btn payment-cancel-btn" data-el-label="paymentForm.cancel" type="button" onClick={() => { this.cancel(); }}>
-                  {intl.get('cancel')}
-                </button>
-              </div>
-            </form>
           </div>
           <div className="form-group">
             <label htmlFor="CardHolderName" data-el-label="payment.cardHolderName" className="control-label form-label">
@@ -377,7 +251,7 @@ class PaymentFormMain extends React.Component {
               {intl.get('credit-card-number')}
             </label>
             <div className="form-input">
-              <input id="CardNumber" name="CardNumber" className="form-control" type="text" value={cardNumber} onChange={this.setCardNumber} />
+              <input id="CardNumber" name="CardNumber" className="form-control" type="text" pattern="\d*" value={cardNumber} onChange={this.setCardNumber} />
             </div>
           </div>
           <div className="form-group">
@@ -441,7 +315,7 @@ class PaymentFormMain extends React.Component {
             </label>
             <div className="form-input">
               {/* eslint-disable-next-line max-len */}
-              <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength="4" type="text" value={securityCode} onChange={this.setSecurityCode} />
+              <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength="4" type="text" pattern="\d*" value={securityCode} onChange={this.setSecurityCode} />
             </div>
           </div>
           <div className="form-group" data-el-label="payment.saveToProfileFormGroup">
