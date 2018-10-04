@@ -183,23 +183,23 @@ class CartLineItem extends React.Component {
       }
     }
     return (
-      <tr className="cart-lineitem-row">
-        <td className="thumbnail-col" data-el-value="lineItem.thumbnail">
+      <div className="cart-lineitem-row">
+        <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
           <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.uri)}`}>
             <img src={Config.skuImagesUrl.replace('%sku%', item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
           </Link>
-        </td>
-        <td className="title-col" data-el-value="lineItem.displayName">
+        </div>
+        <div className="title-col" data-el-value="lineItem.displayName">
           <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.uri)}`}>
             {item._item[0]._definition[0]['display-name']}
           </Link>
-        </td>
-        <td className="options-col" style={{ display: 'table-cell' }}>
+        </div>
+        <div className="options-col">
           <ul className="options-container">
             {this.renderOptions()}
           </ul>
-        </td>
-        <td className="availability-col" data-region="cartLineitemAvailabilityRegion" style={{ display: 'table-cell' }}>
+        </div>
+        <div className="availability-col" data-region="cartLineitemAvailabilityRegion">
           <ul className="availability-container">
             <li className="availability itemdetail-availability-state" data-i18n="AVAILABLE">
               <div>
@@ -217,16 +217,23 @@ class CartLineItem extends React.Component {
               </span>
             </li>
           </ul>
-        </td>
-        <td className="unit-price-col" data-region="cartLineitemUnitPriceRegion" style={{ display: 'table-cell' }}>
+        </div>
+        <div className="unit-price-col" data-region="cartLineitemUnitPriceRegion">
           <div>
             <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
               {this.renderUnitPrice()}
             </div>
-            <div data-region="itemUnitRateRegion" />
           </div>
-        </td>
-        <td className="quantity-col" data-el-value="lineItem.quantity">
+        </div>
+        <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
+          <div>
+            <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
+              {this.renderTotalPrice()}
+            </div>
+            <div data-region="itemTotalRateRegion" />
+          </div>
+        </div>
+        <div className="quantity-col" data-el-value="lineItem.quantity">
           <select className="quantity-select form-control" id="select-quantity" name="select-quantity" value={quantity} onChange={this.handleQuantityChange}>
             <option value="0">
               0
@@ -262,26 +269,15 @@ class CartLineItem extends React.Component {
               10
             </option>
           </select>
-        </td>
-
-        <td className="total-price-col" data-region="cartLineitemTotalPriceRegion" style={{ display: 'table-cell' }}>
-          <div>
-            <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
-              {this.renderTotalPrice()}
-            </div>
-            <div data-region="itemTotalRateRegion" />
-          </div>
-        </td>
-
-        <td className="remove-btn-col">
+        </div>
+        <div className="remove-btn-col">
           <button className="btn btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
-            <span className="icon" />
             <span className="btn-text">
               {intl.get('remove')}
             </span>
           </button>
-        </td>
-      </tr>
+        </div>
+      </div>
     );
   }
 }
