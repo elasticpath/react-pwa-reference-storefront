@@ -23,135 +23,74 @@
 
 .app-footer {
   background-color: @mainColor;
-  width: 100%;
-  padding: 15px 0px;
+  color: #fff;
+  padding: 30px 30px 40px;
 
-  .footer-container {
-    padding: 25px;
+  .share-icon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Brands';
+    font-size: 18px;
+    margin-right: 5px;
+
+    &.facebook:before {
+      content: "\f082";
+    }
+
+    &.twitter:before {
+      content: "\f081";
+    }
+
+    &.instagram:before {
+      content: "\f16d";
+    }
+  }
+
+  .first-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 
     .footer-column {
-      .social-text,
-      .assistance-text {
-        color: #dedefc;
-        text-decoration: none !important;
+      flex: 1;
+      max-width: 250px;
+      margin: 20px;
+
+      .title {
         text-transform: uppercase;
-      }
-
-      .store-description {
-        border-bottom: 1px solid transparent;
-        color: white;
-        padding: 10px;
-        transition: all ease-in-out 0.2s;
-
-        @media screen and (min-width: @mobileWidth) {
-          font-size: 14px;
-        }
-
-        @media screen and (max-width: @mobileWidth - 1px) {
-          font-size: 11px;
-        }
-      }
-
-      .store-description-title,
-      .text-uppercase {
-        border-bottom: 1px solid transparent;
-        color: white;
-        padding: 10px;
-        transition: all ease-in-out 0.2s;
         font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
 
-        @media screen and (min-width: @mobileWidth) {
-          font-size: 18px;
-        }
-
-        @media screen and (max-width: @mobileWidth - 1px) {
-          font-size: 14px;
+      .content {
+        a {
+          display: block;
+          color: #fff;
         }
       }
 
-      .social-list,
-      .assistance-list {
-        .social-item {
-          padding: 3px 7px;
-          transition: all ease-in-out 0.2s;
+    }
+  }
 
-          @media screen and (min-width: @mobileWidth) {
-            font-size: 14px;
-          }
+  .second-row {
+    display: none;
+  }
 
-          @media screen and (max-width: @mobileWidth - 1px) {
-            font-size: 0px;
-            padding: 20px;
-          }
-        }
+  @media (max-width: @mobileWidth - 1px) {
+    .footer-column.social {
+      display: none;
+    }
 
-        .assistance-item {
-          padding: 10px 7px;
-          transition: all ease-in-out 0.2s;
+    .second-row {
+      display: block;
+      text-align: center;
 
-          @media screen and (min-width: @mobileWidth) {
-            font-size: 14px;
-          }
-
-          @media screen and (max-width: @mobileWidth - 1px) {
-            font-size: 11px;
-          }
-        }
-      }
-
-      @media screen and (max-width: @mobileWidth - 1px) {
-        .social-title {
-          text-align:center;
-        }
-
-        .social-list {
-          text-align: center;
-          margin: 0 0 10px 5px;
-
-          .social-item{
-            display: inline-block;
-            padding: 2px;
-          }
-
-          .social-text {
-            display: none;
-          }
-        }
-      }
-
-      .share-icon-facebook,
-      .share-icon-twitter,
-      .share-icon-instagram {
-        position: relative;
-        top: 1px;
-        display: inline-block;
-        font-family: 'Font Awesome 5 Brands';
-        font-style: normal;
-        font-weight: normal;
-        font-size: 20pt;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
+      .share-icon {
+        font-size: 24px;
         color: #fff;
-
-        @media (min-width: @mobileWidth) {
-          margin: 0 25px 0 5px;
-        }
-
-        @media (max-width: @mobileWidth - 1px) {
-          margin: 5px 10px;
-        }
-      }
-
-      .share-icon-facebook:before {
-        content: "\f082";
-      }
-
-      .share-icon-twitter:before {
-        content: "\f081";
-      }
-
-      .share-icon-instagram:before {
-        content: "\f16d";
+        margin: 20px;
       }
     }
   }

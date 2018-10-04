@@ -27,84 +27,62 @@ import './appfooter.main.less';
 
 function AppFooterMain() {
   return (
-    <footer className="app-footer page-footer font-small blue">
-      <div id="footer_container" className="container-fluid text-center text-md-center footer-container">
-        <div className="row">
-          <div id="footer_container_column_1" className="col-7 col-md-4 col-lg-6 text-xs-center text-sm-center text-md-left text-lg-left">
-            <div className="footer-column">
-              <h5 className="text-uppercase store-description-title">
-                {intl.get('vestri')}
-              </h5>
-              <p className="store-description">
-                {intl.get('store-description-message')}
-              </p>
-            </div>
+    <footer className="app-footer">
+      <div className="first-row">
+        <div className="footer-column">
+          <div className="title">
+            {intl.get('vestri')}
           </div>
-          <hr className="clearfix d-md-none pb-3" />
-          <div id="footer_container_column_2" className="col-5 col-md-4 col-lg-3 text-left">
-            <div className="footer-column">
-              <h5 className="text-uppercase">
-                {intl.get('assistance')}
-              </h5>
-              <ul className="list-unstyled assistance-list">
-                <li className="assistance-item">
-                  <Link to="/aboutus" id="footer_assistance_about_us_link">
-                    <span className="assistance-text">
-                      {intl.get('about-us')}
-                    </span>
-                  </Link>
-                </li>
-                <li className="assistance-item">
-                  <Link to="/contactus" id="footer_assistance_contact_us_link">
-                    <span className="assistance-text">
-                      {intl.get('contact')}
-                    </span>
-                  </Link>
-                </li>
-                <li className="assistance-item">
-                  <Link to="/termsandconditions" id="footer_assistance_terms_and_conditions_link">
-                    <span className="assistance-text">
-                      {intl.get('terms-and-conditions')}
-                    </span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div id="footer_container_column_3" className="col-12 col-md-4 col-lg-3 text-left">
-            <div className="footer-column">
-              <h5 className="text-uppercase social-title">
-                {intl.get('find-us-online')}
-              </h5>
-              <ul className="list-unstyled social-list">
-                <li className="social-item">
-                  <Link to="/" id="footer_social_facebook_link">
-                    <span className="share-icon-facebook" />
-                    <span className="social-text">
-                      {intl.get('facebook')}
-                    </span>
-                  </Link>
-                </li>
-                <li className="social-item">
-                  <Link to="/" id="footer_social_twitter_link">
-                    <span className="share-icon-twitter" />
-                    <span className="social-text">
-                      {intl.get('twitter')}
-                    </span>
-                  </Link>
-                </li>
-                <li className="social-item">
-                  <Link to="/" id="footer_social_instagram_link">
-                    <span className="share-icon-instagram" />
-                    <span className="social-text">
-                      {intl.get('instagram')}
-                    </span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="content">
+            {intl.get('store-description-message')}
           </div>
         </div>
+        <div className="footer-column">
+          <div className="title">
+            {intl.get('assistance')}
+          </div>
+          <div className="content">
+            <Link to="/aboutus">
+              {intl.get('about-us')}
+            </Link>
+            <Link to="/contactus">
+              {intl.get('contact')}
+            </Link>
+            <Link to="/termsandconditions">
+              {intl.get('terms-and-conditions')}
+            </Link>
+          </div>
+        </div>
+        <div className="footer-column social">
+          <div className="title">
+            {intl.get('vestri')}
+          </div>
+          <div className="content">
+            <Link to="/">
+              <span className="share-icon facebook" />
+              {intl.get('facebook')}
+            </Link>
+            <Link to="/">
+              <span className="share-icon twitter" />
+              {intl.get('twitter')}
+            </Link>
+            <Link to="/">
+              <span className="share-icon instagram" />
+              {intl.get('instagram')}
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="second-row">
+        <Link to="/">
+          <span className="share-icon facebook" />
+        </Link>
+        <Link to="/">
+          <span className="share-icon twitter" />
+        </Link>
+        <Link to="/">
+          <span className="share-icon instagram" />
+        </Link>
       </div>
     </footer>
   );
