@@ -21,14 +21,11 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import AppHeaderMain from '../components/appheader.main';
-import AppFooterMain from '../components/appfooter.main';
 
 function ContactUsPage() {
   return (
     <div className="viewport ui-container static-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
       <div>
-        <AppHeaderMain />
         <div className="app-main static-contant-container" data-region="appMain" style={{ display: 'block' }}>
           <div>
             <div className="static-container container">
@@ -52,7 +49,6 @@ function ContactUsPage() {
             </div>
           </div>
         </div>
-        <AppFooterMain />
       </div>
     </div>
   );
