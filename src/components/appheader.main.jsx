@@ -114,7 +114,7 @@ class AppHeaderMain extends React.Component {
 
         </div>
 
-        <div className="collapsable-container collapse collapsed">
+        <div className="collapsable-container collapse">
           <div className="mobile-search-container">
             <AppHeaderSearchMain isMobileView />
           </div>
