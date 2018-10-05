@@ -75,7 +75,7 @@ class AppHeaderLoginMain extends React.Component {
                 </li>
                 <li className="dropdown-item">
                   <Link to="/profile" className="profile-link">
-                    <div data-toggle="collapse" data-target=".navbar-collapse">
+                    <div data-toggle="collapse" data-target=".collapsable-container">
                       <span id="header_navbar_login_menu_profile_link">
                         {intl.get('profile')}
                       </span>
