@@ -68,6 +68,8 @@
   }
 
   &.mobile-view {
+    padding: 10px 0px;
+
     .login-btn {
       color: @mainColor;
       font-size: 19px;
@@ -75,11 +77,19 @@
     }
 
     .dropdown {
-      .btn-auth-menu {
+      padding-top: 10px;
+
+      &.show {
+        background-color: #eee;
+      }
+
+      .dropdown-toggle {
         display: inline-block;
         color: @mainColor;
         font-size: 19px;
         font-weight: bold;
+        outline: none;
+        text-transform: uppercase;
       }
 
       .dropdown-menu {
@@ -91,14 +101,34 @@
         background-color: transparent;
         transform: none !important;
         font-size: 17px !important;
+        padding: 0;
 
         .dropdown-item {
+          cursor: pointer;
+
+          &:hover {
+            background-color: #e2e2e2;
+          }
+
           .dropdown-header {
             font-size: 17px !important;
           }
 
+          .profile-link {
+            display: block;
+            padding: 5px 0px;
+            color: @mainColor;
+            text-transform: uppercase;
+            text-decoration: none;
+          }
+
           .logout-link {
+            padding: 5px 0px;
             text-align: center;
+            border: none;
+            background-color: transparent;
+            color: @mainColor;
+            text-transform: uppercase;
           }
         }
       }
