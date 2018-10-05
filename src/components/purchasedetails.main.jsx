@@ -257,7 +257,7 @@ const PurchaseDetailsMain = (props) => {
             </table>
           </div>
         </div>
-        <div className="order-options-container" style={{ display: 'block', paddingBottom: '20px' }}>
+        <div className="order-options-container" style={{ display: 'block', paddingBottom: 'px' }}>
           {renderShippingOption()}
           {renderShippingAddress()}
           {renderBillingAddress()}

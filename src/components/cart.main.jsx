@@ -33,50 +33,16 @@ const CartMain = (props) => {
     return (
       <div className="cart-empty-container">
         <span className="cart-empty-message">
-          {intl.get('shopping-card-empty-message')}
+          {intl.get('shopping-cart-empty-message')}
         </span>
       </div>
     );
   }
   return (
     <div className="cart-main-inner table-responsive">
-      <table className="cart-table table">
-        <thead className="cart-lineitem-table-headings">
-          <tr>
-            <th className="cart-heading-product">
-              <span className="lineitem-asset-col">
-                {intl.get('product')}
-              </span>
-            </th>
-            <th className="cart-heading-name">
-              {intl.get('name')}
-            </th>
-            <th className="cart-heading-options">
-              {intl.get('options')}
-            </th>
-            <th className="cart-heading-availability">
-              {intl.get('availability')}
-            </th>
-            <th className="cart-heading-item-price">
-              {intl.get('unit-price')}
-            </th>
-            <th className="cart-heading-quantity">
-              {intl.get('quantity')}
-            </th>
-            <th className="cart-heading-item-total">
-              {intl.get('total-price')}
-            </th>
-            <th className="cart-heading-remove">
-              {intl.get('remove')}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {cartData._lineitems[0]._element.map(product => (
-            <CartLineItem key={product._item[0]._code[0].code} item={product} handleQuantityChange={() => { handleQuantityChange(); }} />
-          ))}
-        </tbody>
-      </table>
+      {cartData._lineitems[0]._element.map(product => (
+        <CartLineItem key={product._item[0]._code[0].code} item={product} handleQuantityChange={() => { handleQuantityChange(); }} />
+      ))}
     </div>
   );
 };

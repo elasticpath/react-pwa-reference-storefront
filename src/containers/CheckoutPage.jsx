@@ -419,7 +419,7 @@ class CheckoutPage extends React.Component {
               <div className="payment-ctrl-cell" data-region="paymentSelector">
                 <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 <label htmlFor="paymentMethod">
-                  <div data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
+                  <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
                     <PaymentMethodContainer displayName={displayName} />
                   </div>
                 </label>
@@ -466,43 +466,39 @@ class CheckoutPage extends React.Component {
     if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
       return (
-        <div>
-          <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
-            <div className="checkout-container container">
-              <div className="checkout-container-inner">
-                <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
-                  <div>
-                    <h1 className="view-title">
-                      {intl.get('checkout-summary')}
-                    </h1>
-                  </div>
+        <div className="checkout-container container">
+          <div className="checkout-container-inner">
+            <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
+              <div>
+                <h1 className="view-title">
+                  {intl.get('checkout-summary')}
+                </h1>
+              </div>
+            </div>
+            <div className="checkout-main-container">
+              <div data-region="billingAddressesRegion" style={{ display: 'block' }}>
+                {this.renderBillingAddressSelector()}
+              </div>
+              <div className="checkout-shipping-container">
+                {this.renderShippingAddressSelector()}
+                <div data-region="shippingOptionsRegion">
+                  {this.renderShippingOptionsSelector()}
                 </div>
-                <div className="checkout-main-container">
-                  <div data-region="billingAddressesRegion" style={{ display: 'block' }}>
-                    {this.renderBillingAddressSelector()}
+              </div>
+              <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
+                {this.renderPaymentSelector()}
+              </div>
+            </div>
+            <div className="checkout-sidebar" data-region="checkoutOrderRegion" style={{ display: 'block' }}>
+              <div>
+                <div className="checkout-sidebar-inner">
+                  <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
+                    <CheckoutSummaryList data={orderData} />
                   </div>
-                  <div className="checkout-shipping-container">
-                    {this.renderShippingAddressSelector()}
-                    <div data-region="shippingOptionsRegion">
-                      {this.renderShippingOptionsSelector()}
-                    </div>
-                  </div>
-                  <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
-                    {this.renderPaymentSelector()}
-                  </div>
-                </div>
-                <div className="checkout-sidebar" data-region="checkoutOrderRegion" style={{ display: 'block' }}>
-                  <div>
-                    <div className="checkout-sidebar-inner">
-                      <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                        <CheckoutSummaryList data={orderData} />
-                      </div>
-                      <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
-                        <button className="btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
-                          {intl.get('complete-order')}
-                        </button>
-                      </div>
-                    </div>
+                  <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
+                    <button className="btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
+                      {intl.get('complete-order')}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -512,21 +508,17 @@ class CheckoutPage extends React.Component {
       );
     }
     return (
-      <div>
-        <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
-          <div className="checkout-container container">
-            <div className="checkout-container-inner">
-              <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
-                <div>
-                  <h1 className="view-title">
-                    Checkout Summary
-                  </h1>
-                </div>
-              </div>
-              <div className="checkout-main-container">
-                <div className="loader" />
-              </div>
+      <div className="checkout-container container">
+        <div className="checkout-container-inner">
+          <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
+            <div>
+              <h1 className="view-title">
+                Checkout Summary
+              </h1>
             </div>
+          </div>
+          <div className="checkout-main-container">
+            <div className="loader" />
           </div>
         </div>
       </div>

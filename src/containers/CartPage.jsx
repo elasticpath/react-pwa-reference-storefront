@@ -152,48 +152,59 @@ class CartPage extends React.Component {
     const { cartData, isLoading } = this.state;
     const { history } = this.props;
     return (
-      <div>
-        <div className="cart-container container">
-          <div className="cart-container-inner">
-            <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
-              <div>
+      <div className="cart-container container">
+        <div className="cart-container-inner">
+          <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
+            <div>
+              {cartData && !isLoading && (
                 <h1 className="view-title">
                   {intl.get('shopping-cart')}
+                  &nbsp;
+                  (
+                    {cartData['total-quantity']}
+                  )
                 </h1>
-                <button className="btn-cmd-continue-shopping" type="button" onClick={() => { history.push('/'); }}>
-                  {intl.get('continue-shopping')}
-                </button>
-              </div>
+              )}
+              {(!cartData || isLoading) && (
+                <h1 className="view-title">
+                  {intl.get('shopping-cart')}
+                  &nbsp;
+                </h1>
+              )}
+              <button className="btn-cmd-continue-shopping" type="button" onClick={() => { history.push('/'); }}>
+                X
+                { /* intl.get('continue-shopping') */}
+              </button>
             </div>
-            {cartData && !isLoading && (
-              <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
-                <CartMain empty={!cartData['total-quantity']} cartData={cartData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
-              </div>
-            )}
-            {cartData && !isLoading && (
-              <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
-                <div>
-                  <div className="cart-sidebar-inner">
-                    <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                      <CheckoutSummaryList data={cartData} />
-                    </div>
-                    <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
-                      <div>
-                        <button className="btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
-                          {intl.get('proceed-to-checkout')}
-                        </button>
-                      </div>
+          </div>
+          {cartData && !isLoading && (
+            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+              <CartMain empty={!cartData['total-quantity']} cartData={cartData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
+            </div>
+          )}
+          {cartData && !isLoading && (
+            <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
+              <div>
+                <div className="cart-sidebar-inner">
+                  <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
+                    <CheckoutSummaryList data={cartData} />
+                  </div>
+                  <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
+                    <div>
+                      <button className="btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
+                        {intl.get('proceed-to-checkout')}
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            )}
-            {(!cartData || isLoading) && (
-              <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
-                <div className="loader" />
-              </div>
-            )}
-          </div>
+            </div>
+          )}
+          {(!cartData || isLoading) && (
+            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+              <div className="loader" />
+            </div>
+          )}
         </div>
       </div>
     );

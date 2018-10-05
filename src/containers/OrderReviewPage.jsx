@@ -230,7 +230,7 @@ class OrderReviewPage extends React.Component {
               </div>
               {orderData && (
                 <div className="order-main-container" style={{ display: 'block' }}>
-                  <div className="order-options-container" style={{ display: 'block', paddingBottom: '20px' }}>
+                  <div className="order-options-container" style={{ display: 'block' }}>
                     {this.renderShippingOption()}
                     {this.renderShippingAddress()}
                     {this.renderBillingAddress()}
