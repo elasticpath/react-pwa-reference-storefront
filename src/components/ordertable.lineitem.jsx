@@ -75,7 +75,7 @@ const OrderTableLineItem = (props) => {
           {quantity}
         </span>
       </td>
-      <td className="total-price-col" style={{ display: 'table-cell' }}>
+      <td className="total-price-col" style={{ display: 'inline-block' }}>
         <div style={{ display: 'block' }}>
           <span className="purchase-price">
             {totalPrice}

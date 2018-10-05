@@ -21,7 +21,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import intl from 'react-intl-universal';
 import OrderTableLineItem from './ordertable.lineitem';
 import './ordertable.main.less';
 
@@ -29,28 +28,7 @@ const OrderTableMain = (props) => {
   const { data } = props;
   return (
     <div className="order-main-inner table-responsive">
-      <table className="table order-table">
-        <thead className="table-headings">
-          <tr>
-            <th className="heading-product">
-              <span className="lineitem-asset-col">
-                {intl.get('product')}
-              </span>
-            </th>
-            <th className="heading-name">
-              {intl.get('name')}
-            </th>
-            <th className="heading-options">
-              {intl.get('options')}
-            </th>
-            <th className="heading-quantity">
-              {intl.get('quantity')}
-            </th>
-            <th className="item-total">
-              {intl.get('total-price')}
-            </th>
-          </tr>
-        </thead>
+      <table className="table table-borderless order-table">
         <tbody>
           {data._lineitems[0]._element.map(product => (
             <OrderTableLineItem key={product._item[0]._code[0].code} item={product} />

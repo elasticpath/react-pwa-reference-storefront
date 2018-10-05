@@ -25,6 +25,10 @@
   min-height: 100%;
   margin-bottom: 0px;
 
+  .cart-total-quantity {
+    display: none;
+  }
+
   .cart-main-container {
     float: left;
     width: 100%;
@@ -32,21 +36,28 @@
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
-    margin-bottom: 32px;
+    margin-bottom: 0px;
 
     h2 {
       margin-top: 0;
+    }
+
+    .cart-empty-container {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      text-align: center;
     }
   }
 
   .cart-container-inner {
     .cart-title-container {
-      border-bottom: 2px solid gray;
+      border-bottom: 1px solid #d0d0d0;
       position: -webkit-sticky;
       position: sticky;
       top: 0;
       z-index: 10;
       background: #ffffff;
+      z-index: 4;
 
       .btn-cmd-continue-shopping {
         display: none;
@@ -88,41 +99,39 @@
       display: block;
       width: 100%;
       min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px;
       margin-bottom: 20px;
 
       .cart-sidebar-inner {
         display: inline-block;
         padding: 32px;
-        border: 3px solid @mainColor;
-        border-radius: 6px;
+        border-top: 1px solid #d0d0d0;
+        border-radius: 0;
         background-color: rgba(255, 255, 255, 0.6);
-        text-align: left;
+        text-align: center;
         position: -webkit-sticky;
         position: sticky;
         bottom: 0;
         background: #ffffff;
+        font-weight: bold;
+        width: 100%;
 
         h3 {
           margin: 0 0 32px 0;
         }
 
         .btn-cmd-checkout {
-          display: inline-block;
           padding: 8px 14px;
-          margin-bottom: 0;
-          font-size: 14px;
-          text-align: center;
-          vertical-align: middle;
-          cursor: pointer;
-          border-radius: 4px;
-          white-space: nowrap;
-          user-select: none;
-          border-radius: 2px;
-          margin-bottom: 2px;
+          width: 100%;
+          height: 40px;
+          background-color: #40b1f3;
+          font-size: 12px;
+          font-weight: bold;
           color: #ffffff;
-          background-color: @mainColor;
+          border: 0;
+          border-radius: 0;
+          text-transform: uppercase;
+          margin-top: 10px;
+          max-width: 280px;
 
           &.disabled,
           &[disabled],

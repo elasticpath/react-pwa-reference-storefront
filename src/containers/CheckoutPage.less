@@ -46,44 +46,39 @@
   }
 
   h2 {
-    font-size: 30px;
+    font-size: 18px;
     margin-top: 20px;
     margin-bottom: 10px;
   }
 
   .checkout-container-inner {
-    margin-left: -15px;
-    margin-right: -15px;
-
     .view-title {
       color: #000000;
       text-transform: capitalize;
-
-      @media screen and (max-width: @mobileWidth - 1px) {
-        text-align: center;
-      }
     }
 
     .checkout-title-container {
       h1 {
-        position: relative;
         float: left;
-        width: 100%;
+        position: relative;
+        width: 70%;
         min-height: 1px;
         padding-left: 15px;
-        padding-right: 15px;
-        margin-top: 64px;
-        margin-bottom: 64px;
+        padding-right: 5px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: gray;
+        width: 100%;
+        border-bottom: 1px solid #d0d0d0;
+        background: #ffffff;
+        z-index: 4;
       }
-    }
-
-    @media screen and (max-width: @mobileWidth - 1px) {
-      font-size: 16px;
     }
 
     .checkout-sidebar {
       float: left;
-      width: 25%;
+      width: 100%;
       position: relative;
       min-height: 1px;
       padding-left: 15px;
@@ -91,8 +86,8 @@
 
       @media (max-width: @tabletWidth - 1px) {
         float: left;
-        width: 33.33333333333333%;
-        text-align: right;
+        width: 100%;
+        text-align: center;
       }
 
       @media (max-width: @mobileWidth - 1px) {
@@ -101,29 +96,32 @@
       }
 
       .checkout-sidebar-inner {
+        display: block;
+        position: relative;
         display: inline-block;
         padding: 32px;
-        border: 3px solid @mainColor;
-        border-radius: 6px;
+        border-top: 1px solid #d0d0d0;
+        border-radius: 0;
         background-color: rgba(255, 255, 255, 0.6);
-        text-align: left;
-        position: relative;
+        text-align: center;
+        bottom: 0;
+        background: #ffffff;
+        font-weight: bold;
+        width: 100%;
 
         .btn-cmd-submit-order {
-          display: inline-block;
           padding: 8px 14px;
-          margin-bottom: 0;
-          font-size: 14px;
-          text-align: center;
-          vertical-align: middle;
-          cursor: pointer;
-          border-radius: 4px;
-          white-space: nowrap;
-          user-select: none;
-          border-radius: 2px;
-          margin-bottom: 2px;
+          width: 100%;
+          height: 40px;
+          background-color: #40b1f3;
+          font-size: 12px;
+          font-weight: bold;
           color: #ffffff;
-          background-color: @mainColor;
+          border: 0;
+          border-radius: 0;
+          text-transform: uppercase;
+          margin-top: 10px;
+          max-width: 280px;
 
           &:focus {
             outline: thin dotted #333;
@@ -158,7 +156,6 @@
           &.active,
           .open .dropdown-toggle& {
             color: #ffffff;
-            background-color: @mainColor;
             border-color: @mainColor;
           }
 
@@ -173,7 +170,6 @@
         }
 
         @media screen and (min-width: @tabletWidth) {
-          width: 293px;
           position: relative;
           display: block;
         }
@@ -191,12 +187,13 @@
 
   .checkout-main-container {
     float: left;
-    width: 75%;
+    width: 100%;
     position: relative;
     min-height: 1px;
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 32px;
+    margin-top: 32px;
 
     @media (max-width: @tabletWidth - 1px) {
       float: left;
@@ -218,22 +215,19 @@
 
     .checkout-new-address-btn,
     .checkout-new-payment-btn,
-    .checkout-edit-address-btn,
-    .checkout-delete-address-btn,
      {
-      display: inline-block;
-      padding: 6px 12px;
-      margin-bottom: 0;
-      font-size: 14px;
-      font-weight: normal;
-      line-height: 1.428571429;
-      text-align: center;
-      vertical-align: middle;
-      cursor: pointer;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      white-space: nowrap;
-      user-select: none;
+      padding: 8px 14px;
+      width: 100%;
+      height: 40px;
+      background-color: #40b1f3;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffffff;
+      border: 0;
+      border-radius: 0;
+      text-transform: uppercase;
+      margin-top: 10px;
+      max-width: 280px;
 
       @media screen and (max-width: @mobileWidth - 1px) {
         padding: 5px 10px;
@@ -242,6 +236,24 @@
         border-radius: 3px;
         margin-top: 8px;
       }
+    }
+
+    .checkout-edit-address-btn,
+    .checkout-delete-address-btn,
+    .checkout-delete-payment-btn,
+    {
+      text-shadow: none;
+      color: #00a3dd;
+      background-color: #ffffff;
+      border: solid 1px #00a3dd;
+      border-radius: 0;
+      text-align: middle;
+      box-shadow: none;
+      white-space: nowrap;
+      height: auto;
+      display: inline-block;
+      width: 90px;
+      height: 30px;
     }
 
     .checkout-new-address-btn,
@@ -280,7 +292,6 @@
 
       @media (min-width: @tabletWidth) {
         float: left;
-        width: 58.333333333333336%;
       }
     }
 
@@ -294,12 +305,6 @@
 
       @media (min-width: @tabletWidth) {
         float: left;
-        width: 33.33333333333333%;
-      }
-
-      .checkout-delete-address-btn {
-        border: 1px solid transparent;
-        background-color: red;
       }
     }
 
@@ -321,7 +326,12 @@
 
         @media (min-width: @tabletWidth) {
           float: left;
-          width: 66.66666666666666%;
+        }
+      }
+
+      .paymentMethodComponentRegion {
+        @media screen and (max-width: @mobileWidth - 1px) {
+          width: 230px;
         }
       }
     }
@@ -354,7 +364,6 @@
 
         @media (min-width: @tabletWidth) {
           float: left;
-          width: 58.333333333333336%;
         }
       }
 
@@ -365,11 +374,11 @@
         min-height: 1px;
         padding-left: 15px;
         padding-right: 15px;
+        margin-bottom: 10px;
 
         @media (min-width: @tabletWidth) {
           float: left;
-          width: 41.66666666666667%;
-          padding-left: 30px;
+          margin-bottom: 48px;
           padding-right: 0;
         }
 
