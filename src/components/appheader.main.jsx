@@ -122,7 +122,12 @@ class AppHeaderMain extends React.Component {
             <AppHeaderLocaleMain isMobileView />
           </div>
           <div className="mobile-cart-link-container">
-            <Link className="cart-link" to="/mycart">
+          <Link
+              className="cart-link"
+              to="/mycart"
+              data-toggle="collapse"
+              data-target=".collapsable-container"
+            >
               {intl.get('shopping-bag-nav')}
             </Link>
           </div>
