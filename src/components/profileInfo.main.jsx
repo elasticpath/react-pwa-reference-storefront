@@ -138,43 +138,43 @@ class ProfileInfoMain extends React.Component {
             </h2>
             <form className="form-horizontal" onSubmit={this.submitPersonalInfoChange}>
               <div data-region="componentAddressFormRegion" style={{ display: 'block' }}>
-                <div className="address-form-container">
+                <div className="address-form-container profile-info-edit-container">
                   <div className="feedback-label address-form-feedback-container" data-region="componentAddressFeedbackRegion">
                     {failedSubmit ? intl.get('failed-to-save-message') : ''}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label address-form-label">
+                    <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label address-form-label profile-info-firstname-form-label">
                       <span className="required-label">
                         *
                       </span>
                       {' '}
                       {intl.get('first-name')}
                     </label>
-                    <div className="address-form-input">
+                    <div className="address-form-input profile-info-firstname-form-input">
                       {/* eslint-disable-next-line max-len */}
                       <input id="registration_form_firstName" name="FirstName" className="form-control" type="text" defaultValue={profileInfo['given-name']} onChange={this.setFirstName} />
                     </div>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="LastName" data-el-label="addressForm.lastName" className="control-label address-form-label">
+                    <label htmlFor="LastName" data-el-label="addressForm.lastName" className="control-label address-form-label profile-info-lastname-form-label">
                       <span className="required-label">
                         *
                       </span>
                       {' '}
                       {intl.get('last-name')}
                     </label>
-                    <div className="address-form-input">
+                    <div className="address-form-input profile-info-lastname-form-input">
                       {/* eslint-disable-next-line max-len */}
                       <input id="registration_form_lastName" name="LastName" className="form-control" type="text" defaultValue={profileInfo['family-name']} onChange={this.setLastName} />
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="form-group create-address-btn-container container">
-                <button className="btn btn-primary address-save-btn" data-el-label="addressForm.save" type="submit">
+              <div className="form-group create-address-btn-container profile-info-btn-container">
+                <button className="btn address-save-btn profile-info-save-btn" data-el-label="addressForm.save" type="submit">
                   {intl.get('save')}
                 </button>
-                <button className="btn address-cancel-btn" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
+                <button className="btn address-cancel-btn profile-info-cancel-btn" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
                   {intl.get('cancel')}
                 </button>
               </div>
@@ -207,7 +207,7 @@ class ProfileInfoMain extends React.Component {
               </dd>
             </dl>
 
-            <button className="btn btn-primary profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" onClick={() => { this.editPersonalInfo(); }}>
+            <button className="btn profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" onClick={() => { this.editPersonalInfo(); }}>
               {intl.get('edit')}
             </button>
           </div>

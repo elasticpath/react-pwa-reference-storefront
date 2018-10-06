@@ -23,39 +23,73 @@
 
 .profile-container {
   h1 {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    font-size: 36px;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: gray;
+    border-bottom: 1px solid #d0d0d0;
   }
 
   h2 {
-    font-size: 30px;
+    font-size: 18px;
     margin-top: 20px;
     margin-bottom: 10px;
   }
 
-  .btn {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.428571429;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid #999;
-    border-radius: 4px;
+  .btn,
+  .profile-personal-info-edit-btn,
+  .edit-address-btn,
+  .delete-address-btn,
+  .profile-delete-payment-btn,
+  {
+    text-shadow: none;
+    color: #00a3dd;
+    background-color: #ffffff;
+    border: solid 1px #00a3dd;
+    border-radius: 0;
+    text-align: middle;
+    box-shadow: none;
     white-space: nowrap;
+    height: auto;
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    margin-right: 10px;
   }
 
   .btn-primary {
-    font-size: 14px;
+    padding: 8px 14px;
+    width: 100%;
+    height: 40px;
+    background-color: #40b1f3;
+    font-size: 12px;
+    font-weight: bold;
     color: #ffffff;
-    background-color: @mainColor;
-    border-color: @mainColor;
-    position: relative;
-    padding-left: 15px;
-    padding-right: 15px;
+    border: 0;
+    border-radius: 0;
+    text-transform: uppercase;
+    margin-top: 10px;
+    max-width: 280px;
+  }
+
+  .profile-payment-method-label-container {
+    margin-bottom: 5px;
+  }
+
+  .profile-info-save-btn {
+    padding: 8px 14px;
+    background-color: #40b1f3;
+    font-weight: bold;
+    color: #ffffff;
+    border: 0;
+    border-radius: 0;
+    text-transform: uppercase;
+    max-width: 280px;
   }
 }
