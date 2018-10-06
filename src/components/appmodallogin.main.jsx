@@ -128,14 +128,12 @@ class AppModalLoginMain extends React.Component {
                   {
                     (isLoading) ? <div className="miniLoader" /> : ('')
                   }
-                  <div className="login-cell">
-                    <button className="btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+                  <div className="form-input btn-container">
+                    <button className="btn-auth-login btn btn-primary" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {intl.get('login')}
                     </button>
-                  </div>
-                  <div className="register-cell">
                     <Link to="/registration">
-                      <button className="btn-auth-register btn btn-link" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={AppModalLoginMain.registerNewUser}>
+                      <button className="btn-auth-register btn" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={AppModalLoginMain.registerNewUser}>
                         {intl.get('register')}
                       </button>
                     </Link>
