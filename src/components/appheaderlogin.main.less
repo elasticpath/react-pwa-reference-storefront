@@ -22,6 +22,10 @@
 @import './../style/common.less';
 
 .app-login-component {
+  .auth-profile-menu-list {
+    margin-bottom: 0;
+  }
+
   .login-btn {
     background-color: transparent;
     border: 0;
@@ -58,8 +62,32 @@
       }
     }
 
+    .logout-link,
+    .profile-link, {
+      padding: 5px 0px;
+      text-align: left;
+      border: none;
+      background-color: transparent;
+      color: #555;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .profile-link, {
+      div {
+        padding: 5px 0px;
+      }
+    }
+
+    .dropdown-item:hover {
+      background-color: #e2e2e2;
+    }
+
     .dropdown-menu {
       .dropdown-item {
+        height: 38px;
+        vertical-align: middle;
+
         .dropdown-header {
           border-bottom: 1px solid #eee;
         }
@@ -77,7 +105,8 @@
     }
 
     .dropdown {
-      padding-top: 10px;
+      padding-top: 15px;
+      padding-bottom: 15px;
 
       &.show {
         background-color: #eee;
@@ -122,6 +151,7 @@
             text-decoration: none;
           }
 
+          .profile-link,
           .logout-link {
             padding: 5px 0px;
             text-align: center;
@@ -129,6 +159,12 @@
             background-color: transparent;
             color: @mainColor;
             text-transform: uppercase;
+          }
+
+          .profile-link, {
+            div {
+              padding: 0px;
+            }
           }
         }
       }

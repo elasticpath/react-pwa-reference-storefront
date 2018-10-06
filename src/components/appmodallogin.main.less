@@ -28,6 +28,18 @@
       margin-bottom: 5px;
       font-weight: bold;
     }
+
+    .form-control {
+      display: block;
+      height: 34px;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: #555555;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
   }
 
   #simplemodal-container {
@@ -36,21 +48,43 @@
     padding: 12px;
   }
 
-  .btn-auth-login {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid @mainColor;
-    border-radius: 4px;
+  #login_modal_close_button {
+    font-size: 30px;
+  }
+
+  .form-input.btn-container {
+    padding-top: 15px;
+  }
+
+  .btn-auth-login,
+  .btn {
+    width: 100px;
+    margin-right: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    text-shadow: none;
+    color: @complimentBlueColor;
+    background-color: #ffffff;
+    border: solid 1px @complimentBlueColor;
+    border-radius: 0;
+    text-align: middle;
+    box-shadow: none;
     white-space: nowrap;
-    user-select: none;
-    padding: 10px 16px;
-    font-size: 18px;
-    border-radius: 2px;
-    margin-bottom: 2px;
-    color: #ffffff;
-    background-color: @mainColor;
+    height: auto;
+    display: inline-block;
+
+    &.btn-primary {
+      padding: 8px 14px;
+      background-color: @mainBlueColor;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffffff;
+      border: 0;
+      border-radius: 0;
+      text-transform: uppercase;
+      max-width: 280px;
+    }
   }
 
   .btn-auth-login {
@@ -91,7 +125,7 @@
   }
 
   .btn-link {
-    color: #00a3dd;
+    color: @complimentBlueColor;
     font-size: 14px;
     cursor: pointer;
 

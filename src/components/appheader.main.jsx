@@ -114,7 +114,7 @@ class AppHeaderMain extends React.Component {
 
         </div>
 
-        <div className="collapsable-container collapse">
+        <div className="collapsable-container collapse collapsed">
           <div className="mobile-search-container">
             <AppHeaderSearchMain isMobileView />
           </div>
@@ -125,15 +125,17 @@ class AppHeaderMain extends React.Component {
             <Link
               className="cart-link"
               to="/mycart"
-              data-toggle="collapse"
-              data-target=".collapsable-container"
             >
-              {intl.get('shopping-bag-nav')}
+              <div data-toggle="collapse" data-target=".collapsable-container">
+                {intl.get('shopping-bag-nav')}
+              </div>
             </Link>
           </div>
+          <hr className="mobile-navigation-separator" />
           <div className="mobile-navigation-container">
             <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
           </div>
+          <hr className="mobile-navigation-separator" />
           <div className="mobile-login-container">
             <AppHeaderLoginMain isMobileView />
           </div>
