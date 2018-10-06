@@ -50,6 +50,7 @@ class AppHeaderSearchMain extends React.Component {
     const { history } = this.props;
     const { keywords } = this.state;
     if (keywords !== '') {
+      document.querySelector('.collapsable-container').classList.remove('show');
       history.push(`/search/${keywords}`);
     }
     event.preventDefault();
