@@ -99,25 +99,30 @@
         .btn {
           width: 100px;
           margin-right: 10px;
-          display: inline-block;
           padding: 6px 12px;
           font-size: 14px;
           font-weight: normal;
-          line-height: 1.428571429;
-          text-align: center;
-          vertical-align: middle;
-          cursor: pointer;
-          border: 1px solid #999;
-          border-radius: 4px;
+          text-shadow: none;
+          color: #00a3dd;
+          background-color: #ffffff;
+          border: solid 1px #00a3dd;
+          border-radius: 0;
+          text-align: middle;
+          box-shadow: none;
           white-space: nowrap;
+          height: auto;
+          display: inline-block;
 
           &.btn-primary {
+            padding: 8px 14px;
+            background-color: #40b1f3;
+            font-size: 12px;
+            font-weight: bold;
             color: #ffffff;
-            background-color: @mainColor;
-            border-color: @mainColor;
-            position: relative;
-            padding-left: 15px;
-            padding-right: 15px;
+            border: 0;
+            border-radius: 0;
+            text-transform: uppercase;
+            max-width: 280px;
           }
         }
       }

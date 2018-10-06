@@ -90,7 +90,7 @@ class ProfilePage extends React.Component {
       <div>
         <div className="container profile-container">
           <div data-region="profileTitleRegion" style={{ display: 'block' }}>
-            <h1>
+            <h1 className="view-title">
               {intl.get('profile')}
             </h1>
           </div>

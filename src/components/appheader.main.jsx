@@ -122,7 +122,7 @@ class AppHeaderMain extends React.Component {
             <AppHeaderLocaleMain isMobileView />
           </div>
           <div className="mobile-cart-link-container">
-          <Link
+            <Link
               className="cart-link"
               to="/mycart"
               data-toggle="collapse"

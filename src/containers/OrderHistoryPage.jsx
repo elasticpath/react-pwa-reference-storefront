@@ -25,6 +25,7 @@ import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
 import cortexFetch from '../utils/Cortex';
+import './OrderHistoryPage.less';
 
 const Config = require('Config');
 
@@ -86,7 +87,7 @@ class OrderHistoryPage extends React.Component {
         <div>
           <div className="app-main" style={{ display: 'block' }}>
             <div className="container">
-              <h2>
+              <h2 className="view-title">
                 {intl.get('purchase-details')}
               </h2>
               <PurchaseDetailsMain data={purchaseData} />
