@@ -24,6 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login, loginRegistered } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
+import './CheckoutAuthPage.less';
 
 const Config = require('Config');
 
@@ -128,15 +129,15 @@ class CheckoutAuthPage extends React.Component {
       <div>
         <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
           <div className="container">
-            <h3>
+            <h3 className="view-title">
               {intl.get('sign-in-to-proceed')}
             </h3>
             <div className="checkout-auth-option-list equalize">
-              <div data-region="checkoutAutRegisterOptionRegion" style={{ display: 'block' }}>
-                <div className="checkout-auth-option-container" style={{ minHeight: '259px' }}>
-                  <h3>
+              <div className="checkoutAutRegisterOptionRegion" data-region="checkoutAutRegisterOptionRegion" style={{ display: 'block' }}>
+                <div className="checkout-auth-option-container">
+                  <h2>
                     {intl.get('create-an-account')}
-                  </h3>
+                  </h2>
                   <p>
                     {intl.get('create-an-account-message')}
                   </p>
@@ -145,11 +146,11 @@ class CheckoutAuthPage extends React.Component {
                   </button>
                 </div>
               </div>
-              <div data-region="checkoutAuthLoginOptionRegion" style={{ display: 'block' }}>
-                <div className="checkout-auth-option-container" style={{ minHeight: '259px' }}>
-                  <h3>
+              <div className="checkoutAuthLoginOptionRegion" data-region="checkoutAuthLoginOptionRegion" style={{ display: 'block' }}>
+                <div className="checkout-auth-option-container">
+                  <h2>
                     {intl.get('i-have-an-account')}
-                  </h3>
+                  </h2>
                   <form onSubmit={this.loginRegisteredUser}>
                     <div className="auth-feedback-container" data-region="authLoginFormFeedbackRegion">
                       {failedLogin ? intl.get('invalid-username-or-password') : ''}
@@ -185,11 +186,11 @@ class CheckoutAuthPage extends React.Component {
                   </form>
                 </div>
               </div>
-              <div data-region="checkoutAuthAnonymousOptionRegion" style={{ display: 'block' }}>
+              <div className="checkoutAuthAnonymousOptionRegion" data-region="checkoutAuthAnonymousOptionRegion" style={{ display: 'block' }}>
                 <div className="checkout-auth-option-container">
-                  <h3>
+                  <h2>
                     {intl.get('continue-without-account')}
-                  </h3>
+                  </h2>
                   <p>
                     {intl.get('continue-without-account-message')}
                     {' '}
