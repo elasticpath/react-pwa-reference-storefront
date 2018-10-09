@@ -62,6 +62,6 @@ For example, when a customer views a product, adds a product to the cart, or rem
 * The product and cart pages submit this information for further analysis by Google Analytics’ in a separate request.
 
 ### Global Product Attribute
-Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as "vestri:Accessories" to submit the product category information. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product's category to Google Analytics. 
+Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as `vestri:Accessories` to submit the product category information. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product's category to Google Analytics. 
 
 {% include legal.html %}
