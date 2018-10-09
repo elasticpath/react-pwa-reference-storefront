@@ -7,7 +7,7 @@ weight: 7
 # Examples and Best Practices 
 
 ## Best Practices for Contributing Code
-For an optimal experience, developers should follow these guidelines:
+For an optimal experience, developers must follow these guidelines:
 1. Pull the code from the external Git repository. 
 2. Follow the guidelines outlined in the [Contribution Guide](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/CONTRIBUTING.md) of the repository.
 
@@ -22,8 +22,8 @@ When you create unit tests:
 ## Best Practices for Extending React Reference Storefront
 Elastic Path recommends following the best practices listed in this section. However, Elastic Path does not recommend any specific rule for creating a page or component.
 
-- Base the storefront page as the actual page your shoppers visit in the storefront. 
-- Design a page to have a component corresponding to each functionality in the page. The functionality for a component, including references to the child components, are are configured within the component. You can customize components with properties and parameters to perform various actions, if required. <br>
+* Base the storefront page as the actual page your shoppers visit in the storefront. 
+* Design a page to have a component corresponding to each functionality in the page. The functionality for a component, including references to the child components, are are configured within the component. You can customize components with properties and parameters to perform various actions, if required. <br>
 For example, a shopper can navigate to a category page to view product lists. This category page can have a component to display the products within the category, and that component can have another component for each of the products in the list. The component that displays the products in a category view can be used to display products on the search results page because of the similar functionality between the workflows.
 
 ## Content Management for Assets and Catalog Images Integration Example
@@ -52,13 +52,13 @@ You can upload catalog images and site content images to WCH using the wchtools 
 The React PWA Reference Storefront is pre-configured for integration with the Google Analytics enhanced e-commerce plugin. 
 
 ### Route/Page Views
-In the `App.js` file, integration handlers for Google Analytics are pre-configured to allow for routes to be logged as pageviews in a sites real-time traffic data. Any further measurements for conversion rates based on the page views in the web traffic must be configured in Google Analytics.
-The `Analytics.js` file contains the functions used for logging page views with the React library for invoking Google Analytics functions (ReactGA), and enhanced e-commerce capabilities.
+In the `App.js` file, integration handlers for Google Analytics are pre-configured to log routes as pageviews in a sites real-time traffic data. Configure Google Analytics for additional measurements for conversion rates based on the page views in the web traffic. 
+The `Analytics.js` file contains the functions used for logging page views with a React library for invoking Google Analytics functions (ReactGA), and enhanced e-commerce capabilities.
 
 ### Checkout Flow
-The check-out flow is pre-configured to log purchases through Google Analytics' basic e-commerce capabilities. When a customer completes a transaction, Google Analytics analyzes the logged transaction/purchase amounts and cart information under **Conversions > Ecommerce**. When a customer views a product, adds a product to the cart, or removes a product from the cart, the product and cart pages submit this information for further analysis. 
+The check-out flow is pre-configured to log purchases through Google Analytics' basic e-commerce capabilities. Upon successful completion of a transaction, the storefront sends another request to submit the transaction and purchase amounts along with cart information. It is submitted under **Conversions > Ecommerce**, where Google Analytics analyzes the information. When you view a product, add a product to the cart, or remove a product from the cart, the product and cart pages submit this information for further analysis. 
 
 ### Global Product Attribute
-Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as "vestri:Accessories" to submit the product category information. The global attribute must be set for each product in the catalog. If not, an empty value is submitted to Google Analytics as the product's category.
+Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as "vestri:Accessories" to submit the product category information. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product's category to Google Analytics. 
 
 {% include legal.html %}
