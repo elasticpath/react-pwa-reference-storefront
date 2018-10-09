@@ -9,7 +9,7 @@ weight: 7
 ## Best Practices for Contributing Code
 For an optimal experience, developers must follow these guidelines:
 1. Pull the code from the external Git repository. 
-2. Follow the guidelines outlined in the [Contribution Guide](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/CONTRIBUTING.md) of the repository.
+2. Follow the guidelines outlined in the [Contribution Guide](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/.github/CONTRIBUTING.md) of the repository.
 
 ## Best Practices for Testing
 By default, Elastic Path provides automated unit tests for various integration flows of the React PWA Reference Storefront. You can run the tests directly on the development environment that is being used to implement the Reference Storefront. For configuring and executing tests,follow the instructions provided in the `Readme` file for the project.
