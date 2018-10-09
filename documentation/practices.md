@@ -56,7 +56,7 @@ In the `App.js` file, integration handlers for Google Analytics are pre-configur
 The `Analytics.js` file contains the functions used for logging page views with a React library for invoking Google Analytics functions (ReactGA), and enhanced e-commerce capabilities.
 
 ### Checkout Flow
-Along with the configurations for submitting transaction information to Cortex, the check-out flow is pre-configured to log purchases through Google Analytics’ basic e-commerce capabilities. When a customer completes a transaction, storefront provides the transaction details for Google Analytics to analyze the logged transaction or purchase amounts and cart information in the *Conversions > Ecommerce* section. 
+Along with the configurations for submitting transaction information to Cortex, the storefront's check-out flow submits purchase details through Google Analytics' enhanced e-commerce capabilities where the transactions are logged.  When a customer completes a transaction, the storefront provides the transaction details for Google Analytics to analyze the logged transaction and purchase amounts and cart information in the *Conversions > Ecommerce* section.
 For example, when a customer views a product, adds a product to the cart, or removes a product from the cart:
 * The product and cart pages submit this information to Cortex.
 * The product and cart pages submit this information for further analysis by Google Analytics’ in a separate request.
