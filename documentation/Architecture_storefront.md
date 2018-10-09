@@ -16,9 +16,9 @@ The React PWA Reference Storefront is composed of layers that work together to p
     * `index.js` - The javascript file that contains the import instructions for the required frameworks, such as bootstrap, React, and renders the `App.js` file. This file also registers the PWA service worker.
     * CSS - The file that consists of the custom stylesheets and static page assets for the storefront front-end presentation.
 * Route/Page Layer: Routes browser requests to the subsequent pages. This layer consists of:
-    *`routes.js` - The javascript file that contains routes and mappings to the `.jsx` React pages.
-    * Pages - The top-level pages that loads the required components for each page.
-    * Service worker - A service worker created using Workbox to manage caching and PWA capabilities.
+    *  `routes.js` - The javascript file that contains routes and mappings to the `.jsx` React pages.
+    *  Pages - The top-level pages that loads the required components for each page.
+    *  Service worker - A service worker created using Workbox to manage caching and PWA capabilities.
 * Component Layer: Provides the components to be loaded within each page. The components are created depending on the functionality of the item that the pages interact with or loads. For example, the component layer provides the login component for the home page.
 * Web Server Layer: Enables the interaction between the application and the service layer. 
 * API Layer: The application layer of React PWA Reference Storefront is built on [Cortex API](https://developers.elasticpath.com/commerce/7.3/Cortex-API-Front-End-Development/Getting-Started/Introduction). Through the Cortex API, the storefront get to use the e-commerce capabilities provided by Elastic Path Commerce. PWA interacts with the required services through this layer.

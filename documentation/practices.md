@@ -56,7 +56,10 @@ In the `App.js` file, integration handlers for Google Analytics are pre-configur
 The `Analytics.js` file contains the functions used for logging page views with a React library for invoking Google Analytics functions (ReactGA), and enhanced e-commerce capabilities.
 
 ### Checkout Flow
-The check-out flow is pre-configured to log purchases through Google Analytics' basic e-commerce capabilities. Upon successful completion of a transaction, the storefront sends another request to submit the transaction and purchase amounts along with cart information. It is submitted under **Conversions > Ecommerce**, where Google Analytics analyzes the information. When you view a product, add a product to the cart, or remove a product from the cart, the product and cart pages submit this information for further analysis. 
+Along with the configurations for submitting transaction information to Cortex, the check-out flow is pre-configured to log purchases through Google Analytics’ basic e-commerce capabilities. When a customer completes a transaction, storefront provides the transaction details for Google Analytics to analyze the logged transaction or purchase amounts and cart information in the *Conversions > Ecommerce* section. 
+For example, when a customer views a product, adds a product to the cart, or removes a product from the cart:
+* The product and cart pages submit this information to Cortex.
+* The product and cart pages submit this information for further analysis by Google Analytics’ in a separate request.
 
 ### Global Product Attribute
 Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as "vestri:Accessories" to submit the product category information. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product's category to Google Analytics. 
