@@ -8,6 +8,8 @@
   * OS version: _____
   * Storefront pulled version: _____
   * Node version: _____
+  * Docker version: _____
+  * Docker Compose version: _____
 
 ### Step 3: Describe the problem:
 
