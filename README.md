@@ -106,7 +106,7 @@ For more information about populating database, see the [Populating the Database
 
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
 2. Run the `cd react-pwa-reference-storefront` command.
-3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile` command.
+3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile .` command.
 4. Push the `ep-store` image to the docker repository.
 
 ### Setting up a Remote Production Environment
@@ -126,7 +126,7 @@ By default, the ESLint loader is added to the `webpack.config.dev.js` file. When
 2. Run the following command:
     `./node_modules/.bin/eslint --ext .js --ext .jsx [file|dir|glob]`
 3. Run the following command for the entire project:
- `./node_modules/.bin/eslint --ext .js --ext .jsx `
+ `./node_modules/.bin/eslint --ext .js --ext .jsx .`
 With the ESLint extension for Visual Studio Code, you can view feedback when you write the code in the `Problems` view.
 
 **Note:** When you check in the code, ensure that all linting errors are resolved.
