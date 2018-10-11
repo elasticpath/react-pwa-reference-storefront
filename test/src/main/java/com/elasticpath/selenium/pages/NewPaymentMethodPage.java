@@ -101,12 +101,14 @@ public class NewPaymentMethodPage extends AbstractPageObject {
 	}
 
 	public CheckoutPage addDefaultPaymentMethod() {
+		getWaitDriver().waitForPageToLoad();
 		addDefaultPM();
 		continueButton.click();
 		return new CheckoutPage(driver);
 	}
 
 	public void addProfileDefaultPaymentMethod() {
+		getWaitDriver().waitForPageToLoad();
 		addDefaultPM();
 		saveToProfile.click();
 	}

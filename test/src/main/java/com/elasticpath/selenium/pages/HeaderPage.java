@@ -58,15 +58,18 @@ public class HeaderPage extends AbstractPageObject {
 	}
 
 	public CategoryPage selectCategory(final String categoryName) {
+		getWaitDriver().waitForPageToLoad();
 		navigationBar.findElement(By.cssSelector(String.format(PARENT_CATEGORY_CSS, categoryName))).click();
 		return new CategoryPage(driver);
 	}
 
 	public void selectParentCategory(final String parentCategoryName) {
+		getWaitDriver().waitForPageToLoad();
 		navigationBar.findElement(By.cssSelector(String.format(PARENT_CATEGORY_CSS, parentCategoryName))).click();
 	}
 
 	public CategoryPage selectSubCategory(final String parentCategory, final String subCategoryName) {
+		getWaitDriver().waitForPageToLoad();
 		navigationBar.findElement(By.cssSelector(String.format(SUB_CATEGORY_CSS, parentCategory, subCategoryName))).click();
 		return new CategoryPage(driver);
 	}
