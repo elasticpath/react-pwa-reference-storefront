@@ -85,7 +85,7 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 
 Elastic Path provides a set of sample data with the storefront project.<br/> **Note:** A valid Elastic Path development environment is required to access the sample data.
 
-1. From the `ep-store/data` directory, extract the sample catalog data contents into the `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
+1. From the `react-pwa-reference-storefront/data` directory, extract the sample catalog data contents into the `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
 2. In the `ep-commerce/extensions/database/ext-data/src/main/resources/data/` directory, update the `liquibase-changelog.xml` file with the following sample data:<br/>`<include file="ep-blueprint-data/liquibase-changelog.xml" relativeToChangelogFile="true" />`
 **Note:** This data must be the only sample data included within the sample data block.
 3. In the  `ep-commerce/extensions/database/ext-data/src/main/resources/environments/local/data-population.properties` file, set the `liquibase.contexts` property to `default,ep-blueprint`.
@@ -111,7 +111,7 @@ For more information about populating database, see the [Populating the Database
 
 ### Setting up a Remote Production Environment
 
-1. Pull the `ep-store` repository from your docker repository.
+1. Pull the `react-pwa-reference-storefront` repository from your docker repository.
 2. In the repository, navigate to the `docker/prod/` directory.
 3. Copy the `docker-compose.yaml` and `nginx.conf` files to a folder on the remote host.
 4. Replace the `$CORTEX_URL` parameter in the `nginx.conf` file with a Cortex server URL.
