@@ -142,7 +142,7 @@ class AppHeaderMain extends React.Component {
         </div>
 
         {(isOffline) ? (
-          <div className="alert alert-primary fade in alert-dismissible">
+          <div className="network-offline alert alert-primary fade in">
             <strong className="text-center">
               {intl.get('network-offline')}
             </strong>
