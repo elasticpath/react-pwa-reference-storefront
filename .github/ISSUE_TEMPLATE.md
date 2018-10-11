@@ -5,6 +5,10 @@
 
 ### Step 2: Describe your environment
 
+  ```
+  Issues submitted without sufficient information will be rejected.
+  ```
+
   * Device: _____
   * OS version: _____
   * Storefront pulled version: _____
