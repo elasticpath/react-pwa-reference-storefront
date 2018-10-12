@@ -30,6 +30,15 @@ const Config = require('Config');
 
 const today = new Date();
 
+const paymentZoomArray = [
+  'defaultcart:order:paymentmethodinfo:paymenttokenform',
+  'defaultprofile:paymentmethods:paymenttokenform',
+  'defaultcart:order:paymentmethods:element',
+  'defaultprofile:paymentmethods:element',
+  'defaultcart:order:paymentmethods:element:paymentinstrumentform',
+  'defaultprofile:paymentmethods:element:paymentinstrumentform',
+];
+
 class PaymentFormMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
@@ -152,7 +161,7 @@ class PaymentFormMain extends React.Component {
 
   fetchPaymentForms() {
     login().then(() => {
-      cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
+      cortexFetch(`/?zoom=${paymentZoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -160,12 +169,33 @@ class PaymentFormMain extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          const paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenaction',
-          );
-          const orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenfororderaction',
-          );
+          console.log(res);
+          let paymentFormLink = '';
+          let orderPaymentFormLink = '';
+          if (res._defaultprofile[0]._paymentmethods[0]._paymenttokenform) {
+            // 7.3 Payments
+            paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
+              link => link.rel === 'createpaymenttokenaction',
+            );
+            orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
+              link => link.rel === 'createpaymenttokenfororderaction',
+            );
+          }
+          else {
+            // 7.4 Payments
+            const defaultPaymentProfile = res._defaultprofile[0]._paymentmethods[0]._element.find(
+              element => element.name === 'Gift Certificate',
+            );
+            paymentFormLink = defaultPaymentProfile._paymentinstrumentform[0].links.find(
+              link => link.rel === 'createpaymentinstrumentaction',
+            );
+            const defaultPaymentOrder = res._defaultprofile[0]._paymentmethods[0]._element.find(
+              element => element.name === 'Gift Certificate',
+            );
+            orderPaymentFormLink = defaultPaymentOrder._paymentinstrumentform[0].links.find(
+              link => link.rel === 'createpaymentinstrumentaction',
+            );
+          }
           this.setState({
             paymentForm: paymentFormLink.uri,
             orderPaymentForm: orderPaymentFormLink.uri,
