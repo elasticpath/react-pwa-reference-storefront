@@ -102,19 +102,20 @@ For more information about populating database, see the [Populating the Database
 5. To start the server in development mode, run the `npm start` command.
 6. To see the running Progressive Web Application (PWA), navigate to `http://localhost:8080/` .
 
-To Build a Production Docker Image:<br>
+### Setting up a Production Environment
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
-2. Run the `cd react-pwa-reference-storefront` command.
-3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile .` command.
-4. Push the `ep-store` image to the docker repository.
+2. Build a Production Docker Image:
+    1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
+    2. Run the `cd react-pwa-reference-storefront` command.
+    3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile .` command.
+    4. Push the `ep-store` image to the docker repository.
 
-To Run a Production Docker Image:<br>
-1. Pull the `react-pwa-reference-storefront` repository from your docker repository.
-2. In the repository, navigate to the `docker/prod/` directory.
-3. Copy the `docker-compose.yaml` and `nginx.conf` files to a folder on the remote host.
-4. Replace the `$CORTEX_URL` parameter in the `nginx.conf` file with a Cortex server URL.
-5. Replace the `$DOCKER_REPO` parameter in the `docker-compose.yaml` file with `ep-store`.
-5. Run the `docker-compose up -d` command.
+3. Run a Production Docker Image:
+    1. In the repository, navigate to the `docker/prod/` directory.
+    2. Copy the `docker-compose.yaml` and `nginx.conf` files to a folder on the remote host.
+    3. Replace the `$CORTEX_URL` parameter in the `nginx.conf` file with a Cortex server URL.
+    4. Replace the `$DOCKER_REPO` parameter in the `docker-compose.yaml` file with `ep-store`.
+    5. Run the `docker-compose up -d` command.
 
 ## Running a Linter
 
