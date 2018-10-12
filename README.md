@@ -8,7 +8,7 @@
   * [Overview](#overview)
   * [Setting up the Storefront](#setting-up-the-storefront)
       * [Prerequisites](#prerequisites)
-      * [Configuration Parameter Descriptions](#configuration#parameter#descriptions)
+      * [Configuration Parameter Descriptions](#configuration-parameter-descriptions)
       * [Configuring Sample Data](#configuring-sample-data)
       * [Setting up a Development Environment](#setting-up-a-development-environment)
       * [Setting up a Production Environment](#setting-up-a-production-environment)
@@ -17,9 +17,9 @@
   * [Adding New Locales](#adding-new-locales)
   * [Running Unit Tests](#running-unit-tests)
       * [Maven Options to Run the Unit Tests](#maven-options-to-run-the-unit-tests)
-      * [Running Subset of Tests](#running#subset#of#tests)
+      * [Running Subset of Tests](#running-subset-of-tests)
       * [Updating Browser Driver Versions](#updating-browser-driver-versions)
-  * [Configuring Jenkins Pipeline](#configuring#jenkins#pipeline)
+  * [Configuring Jenkins Pipeline](#configuring-jenkins-pipeline)
       * [Prerequisites](#prerequisites)
       * [Configuring the Jenkinfile](#configuring-the-jenkinfile)
       * [Jenkins Pipeline Parameter Descriptions](jenkins-pipeline-parameter-descriptions)
@@ -102,15 +102,13 @@ For more information about populating database, see the [Populating the Database
 5. To start the server in development mode, run the `npm start` command.
 6. To see the running Progressive Web Application (PWA), navigate to `http://localhost:8080/` .
 
-### Setting up a Production Environment
-
+To Build a Production Docker Image:<br>
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
 2. Run the `cd react-pwa-reference-storefront` command.
 3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile .` command.
 4. Push the `ep-store` image to the docker repository.
 
-### Setting up a Remote Production Environment
-
+To Run a Production Docker Image:<br>
 1. Pull the `react-pwa-reference-storefront` repository from your docker repository.
 2. In the repository, navigate to the `docker/prod/` directory.
 3. Copy the `docker-compose.yaml` and `nginx.conf` files to a folder on the remote host.
