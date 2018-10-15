@@ -30,14 +30,7 @@ const Config = require('Config');
 
 class AddPromotionContainer extends React.Component {
   static propTypes = {
-    // data: PropTypes.objectOf(PropTypes.any).isRequired,
-    onSubmittedPromotion: PropTypes.func,
-    renderAddPromotion: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    renderAddPromotion: false,
-    onSubmittedPromotion: null,
+    onSubmittedPromotion: PropTypes.func.isRequired,
   }
 
   constructor() {
@@ -128,8 +121,7 @@ class AddPromotionContainer extends React.Component {
       isPromotionFormOpen,
       failedPromotion,
     } = this.state;
-    const { renderAddPromotion } = this.props;
-    if (renderAddPromotion && isPromotionFormOpen) {
+    if (isPromotionFormOpen) {
       return (
         <div className="add-promotion-container">
           <h2>
@@ -147,10 +139,10 @@ class AddPromotionContainer extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <button className="btn btn-add-promotion" type="submit">
+              <button id="apply_promotion" className="btn btn-add-promotion" type="submit">
                 {intl.get('apply-promotion')}
               </button>
-              <button className="btn btn-add-promotion" type="button" onClick={() => { this.closePromotionForm(); }}>
+              <button id="cancel_add_promotion" className="btn btn-add-promotion" type="button" onClick={() => { this.closePromotionForm(); }}>
                 {intl.get('cancel')}
               </button>
             </div>
@@ -158,16 +150,13 @@ class AddPromotionContainer extends React.Component {
         </div>
       );
     }
-    if (renderAddPromotion) {
-      return (
-        <div className="add-promotion-container">
-          <button className="btn btn-add-promotion" type="button" id="open_promotion_form_button" onClick={() => { this.openPromotionForm(); }}>
-            {intl.get('add-promotion')}
-          </button>
-        </div>
-      );
-    }
-    return null;
+    return (
+      <div className="add-promotion-container">
+        <button className="btn btn-add-promotion" type="button" id="open_promotion_form_button" onClick={() => { this.openPromotionForm(); }}>
+          {intl.get('add-promotion')}
+        </button>
+      </div>
+    );
   }
 }
 export default AddPromotionContainer;
