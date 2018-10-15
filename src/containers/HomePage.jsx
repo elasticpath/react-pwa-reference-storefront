@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 
 import homeEspotMain from '../images/site-images/homepage-banner.jpg';
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
-import homeEspot3 from '../images/site-images/charging-icon.png';
+import homeEspot3 from '../images/site-images/charging-icon.jpg';
 import homeEspot4 from '../images/site-images/warranty-graphic.jpg';
 
 import './HomePage.less';
@@ -33,7 +33,7 @@ const Config = require('Config');
 
 const homeEspotMainFileName = 'homepage-banner.jpg';
 const homeEspot2FileName = 'brake-icon.jpg';
-const homeEspot3FileName = 'charging-icon.png';
+const homeEspot3FileName = 'charging-icon.jpg';
 const homeEspot4FileName = 'warranty-graphic.jpg';
 
 function HomePage() {

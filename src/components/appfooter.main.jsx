@@ -58,15 +58,15 @@ function AppFooterMain() {
             {intl.get('find-us-online')}
           </div>
           <div className="content">
-            <Link to="/">
+            <Link to="/" aria-label="share facebook">
               <span className="share-icon facebook" />
               {intl.get('facebook')}
             </Link>
-            <Link to="/">
+            <Link to="/" aria-label="share twitter">
               <span className="share-icon twitter" />
               {intl.get('twitter')}
             </Link>
-            <Link to="/">
+            <Link to="/" alt="share instagram">
               <span className="share-icon instagram" />
               {intl.get('instagram')}
             </Link>
@@ -77,13 +77,13 @@ function AppFooterMain() {
         <div className="title">
           {intl.get('find-us-online')}
         </div>
-        <Link to="/">
+        <Link to="/" aria-label="share facebook">
           <span className="share-icon facebook" />
         </Link>
-        <Link to="/">
+        <Link to="/" aria-label="share twitter">
           <span className="share-icon twitter" />
         </Link>
-        <Link to="/">
+        <Link to="/" aria-label="share instagram">
           <span className="share-icon instagram" />
         </Link>
       </div>

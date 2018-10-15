@@ -111,12 +111,12 @@ class AppHeaderNavigationMain extends React.Component {
             category._child
               ? (
                 <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
-                  <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a className="nav-link dropdown-toggle" href="/" id={`${isMobileView ? 'mobile_' : ''}navbarDropdown_${category.name}`} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {category['display-name']}
                   </a>
-                  <div className="dropdown-menu sub-category-dropdown-menu" aria-label="navbarDropdown">
+                  <div className="dropdown-menu sub-category-dropdown-menu" aria-label={`navbarDropdown_${category.name}`}>
                     {category._child.map(subcategory => (
-                      <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
+                      <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
                         <div
                           data-toggle="collapse"
                           data-target={isMobileView ? '.collapsable-container' : ''}
