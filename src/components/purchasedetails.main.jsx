@@ -44,6 +44,7 @@ const PurchaseDetailsMain = (props) => {
   const orderNumber = data['purchase-number'];
   const orderTaxTotal = data['tax-total'].display;
   const orderPurchaseDate = data['purchase-date']['display-value'];
+  const orderDiscount = data._discount[0].discount[0].display;
   const orderTotal = data['monetary-total'][0].display;
   const shipments = data._shipments;
 
@@ -242,6 +243,15 @@ const PurchaseDetailsMain = (props) => {
                   </td>
                   <td data-el-value="purchaseDate">
                     {orderPurchaseDate}
+                  </td>
+                </tr>
+                <tr data-el-container="orderDiscount">
+                  <td>
+                    {intl.get('todays-discount')}
+                    :
+                  </td>
+                  <td data-el-value="orderDiscount">
+                    {orderDiscount}
                   </td>
                 </tr>
                 <tr data-el-container="orderTotal">
