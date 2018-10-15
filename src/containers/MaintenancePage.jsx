@@ -22,6 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
+import './MaintenancePage.less';
 
 import doge from '../images/site-images/HikingDog.png';
 
@@ -39,7 +40,7 @@ function AboutUsPage() {
               <div className="static-container-inner">
                 <div className="static-title-container" style={{ display: 'block' }}>
                   <div>
-                    <h1>
+                    <h1 className="view-title-maintenance view-title">
                       {intl.get('something-went-wrong-message')}
                     </h1>
                     <h3 className="dog-view-title-message">
@@ -56,7 +57,7 @@ function AboutUsPage() {
                 </div>
                 <div className="static-container dog-container" style={{ display: 'block' }}>
                   <div className="container" style={{ display: 'block' }}>
-                    <img alt="home-espot-1" className="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', dogeFileName)} onError={(e) => { e.target.src = doge; }} />
+                    <img alt="dog-espot-1" className="dog-espot-1" src={Config.siteImagesUrl.replace('%fileName%', dogeFileName)} onError={(e) => { e.target.src = doge; }} />
                   </div>
                   <h2 className="static-dog-name">
                     {intl.get('name-moki')}
