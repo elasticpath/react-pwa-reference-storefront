@@ -141,7 +141,7 @@ class OrderReviewPage extends React.Component {
             trackAddTransactionAnalytics(orderData.self.uri.split(`/carts/${Config.cortexApi.scope}/`)[1], orderData._order[0]._total[0].cost[0].amount, deliveries, orderData._order[0]._tax[0].total.display);
             orderData._lineitems[0]._element.map((product) => {
               const categoryTag = (product._item[0]._definition[0].details) ? (product._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-              return (trackAddItemAnalytics(orderData.self.uri.split(`/carts/${Config.cortexApi.scope}/`)[1], product._item[0]._definition[0]['display-name'], product._item[0]._code[0].code, product._item[0]._price[0]['purchase-price'][0].display, (categoryTag !== '') ? categoryTag['display-value'] : '', product.quantity));
+              return (trackAddItemAnalytics(orderData.self.uri.split(`/carts/${Config.cortexApi.scope}/`)[1], product._item[0]._definition[0]['display-name'], product._item[0]._code[0].code, product._item[0]._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', product.quantity));
             });
             sendAnalytics();
           }
