@@ -61,7 +61,7 @@ class AppHeaderMain extends React.Component {
         <div className="main-container">
 
           <div className="back-btn-container">
-            <button className="back-btn" type="button" onClick={AppHeaderMain.goBack}>
+            <button className="back-btn" aria-label="back button" type="button" onClick={AppHeaderMain.goBack}>
               <span className="icon glyphicon glyphicon-chevron-left" />
             </button>
           </div>

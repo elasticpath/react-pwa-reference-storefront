@@ -60,7 +60,7 @@ class AppHeaderLoginMain extends React.Component {
       return (
         <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
           <div className="auth-container dropdown">
-            <button className="dropdown-toggle btn-auth-menu" type="button" id="header_navbar_loggedIn_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button className="dropdown-toggle btn-auth-menu" type="button" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {(isMobileView)
                 ? (
                   intl.get('account-logged-in')
@@ -97,7 +97,7 @@ class AppHeaderLoginMain extends React.Component {
 
     return (
       <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <button className="login-btn" id="header_navbar_login_button" type="button" data-toggle="modal" data-target="#login-modal">
+        <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button" data-toggle="modal" data-target="#login-modal">
           {(isMobileView)
             ? (
               intl.get('account-login')

@@ -66,7 +66,7 @@ class AppHeaderLocaleMain extends React.Component {
 
     return (
       <div className={`main-locale-container ${isMobileView ? 'mobile-view' : ''}`}>
-        <button id="locale-dropdown-trigger" type="button" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button id={`${isMobileView ? 'mobile_' : ''}locale-dropdown-trigger`} type="button" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {title}
         </button>
         <div className="dropdown-menu dropdown-menu-right dropdown-margin-right">
@@ -77,7 +77,7 @@ class AppHeaderLocaleMain extends React.Component {
             <button
               type="button"
               key={locale.value}
-              id={`locale-${locale.value}`}
+              id={`${isMobileView ? 'mobile_' : ''}locale-${locale.value}`}
               className={`dropdown-item ${locale.value === selectedLocaleValue ? 'selected disabled' : 'not-selected'}`}
               onClick={() => locale.value !== selectedLocaleValue && this.handleLocaleClick(locale.value)}
             >
@@ -94,7 +94,7 @@ class AppHeaderLocaleMain extends React.Component {
             <button
               type="button"
               key={currency.value}
-              id={`currency-${currency.value}`}
+              id={`${isMobileView ? 'mobile_' : ''}currency-${currency.value}`}
               className={`dropdown-item locale-item ${currency.value === selectedCurrencyValue ? 'selected disabled' : 'not-selected'}`}
               onClick={() => currency.value !== selectedCurrencyValue && this.handleCurrencyClick(currency.value)}
             >
