@@ -39,7 +39,7 @@ class AddPromotionContainer extends React.Component {
       isPromotionFormOpen: false,
       failedPromotion: false,
       promotionCode: '',
-      couponFormLink: 'default',
+      couponFormLink: '',
     };
     this.setPromotionCode = this.setPromotionCode.bind(this);
     this.submitPromotionCode = this.submitPromotionCode.bind(this);
