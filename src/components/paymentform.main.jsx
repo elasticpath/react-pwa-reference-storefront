@@ -184,13 +184,13 @@ class PaymentFormMain extends React.Component {
           else {
             // 7.4 Payments
             const defaultPaymentProfile = res._defaultprofile[0]._paymentmethods[0]._element.find(
-              element => element.name === 'Gift Certificate',
+              element => element.name === 'Saveable Payment Method',
             );
             paymentFormLink = defaultPaymentProfile._paymentinstrumentform[0].links.find(
               link => link.rel === 'createpaymentinstrumentaction',
             );
             const defaultPaymentOrder = res._defaultprofile[0]._paymentmethods[0]._element.find(
-              element => element.name === 'Gift Certificate',
+              element => element.name === 'Saveable Payment Method',
             );
             orderPaymentFormLink = defaultPaymentOrder._paymentinstrumentform[0].links.find(
               link => link.rel === 'createpaymentinstrumentaction',
