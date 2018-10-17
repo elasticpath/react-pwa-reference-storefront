@@ -25,6 +25,7 @@ import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import CartMain from '../components/cart.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
+import AddPromotionContainer from '../components/add.promotion.container';
 import cortexFetch from '../utils/Cortex';
 import './CartPage.less';
 
@@ -187,6 +188,7 @@ class CartPage extends React.Component {
               <div>
                 <div className="cart-sidebar-inner">
                   <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
+                    <AddPromotionContainer onSubmittedPromotion={() => { this.fetchCartData(); }} />
                     <CheckoutSummaryList data={cartData} />
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
