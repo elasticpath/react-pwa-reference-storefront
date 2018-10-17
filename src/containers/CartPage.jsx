@@ -37,10 +37,12 @@ const zoomArray = [
   'defaultcart:total',
   'defaultcart:discount',
   'defaultcart:appliedpromotions:element',
+  'defaultcart:order:couponinfo:coupon',
   'defaultcart:lineitems:element',
   'defaultcart:lineitems:element:total',
   'defaultcart:lineitems:element:price',
   'defaultcart:lineitems:element:availability',
+  'defaultcart:lineitems:element:appliedpromotions',
   'defaultcart:lineitems:element:appliedpromotions:element',
   'defaultcart:lineitems:element:item',
   'defaultcart:lineitems:element:item:code',
@@ -122,27 +124,6 @@ class CartPage extends React.Component {
           <span className="cart-summary-value-col">
             {cartData._discount[0].discount[0].display}
           </span>
-        </li>
-      );
-    }
-    return ('');
-  }
-
-  renderPromotions() {
-    const { cartData } = this.state;
-    if (cartData._appliedpromotions) {
-      return (
-        <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
-          <label htmlFor="cart_summary_promotion_label" className="cart-summary-label-col">
-            {intl.get('applied-promotions')}
-            :&nbsp;
-          </label>
-          <br />
-          {cartData._appliedpromotions[0]._element.map(promotion => (
-            <span className="cart-summary-value-col cart-applied-promotions" key={`_${Math.random().toString(36).substr(2, 9)}`} data-el-value="cart.appliedPromotions">&nbsp;&nbsp;
-              {promotion['display-name']}
-            </span>
-          ))}
         </li>
       );
     }

@@ -29,8 +29,39 @@ class CheckoutSummaryList extends React.Component {
     data: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
+  deletePromotionCode(event) {
+    event.preventDefault();
+    const { onSubmittedPromotion } = this.props;
+    const { couponFormLink, promotionCode } = this.state;
+    login().then(() => {
+      cortexFetch(couponFormLink, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({
+          code: promotionCode,
+        }),
+      }).then((res) => {
+        if (res.status === 409) {
+          this.setState({ failedPromotion: true });
+        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+          this.setState({ failedPromotion: false }, () => {
+            this.closePromotionForm();
+            onSubmittedPromotion();
+          });
+        }
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+    });
+  }
+
   renderPromotions() {
     const { data } = this.props;
+    console.log(data);
     if (data._appliedpromotions) {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
@@ -42,6 +73,13 @@ class CheckoutSummaryList extends React.Component {
           {data._appliedpromotions[0]._element.map(promotion => (
             <span className="cart-summary-value-col cart-applied-promotions" key={promotion.name}>&nbsp;&nbsp;
               {promotion['display-name']}
+              &nbsp;&nbsp;
+              {(data._order[0])._couponinfo[0]._coupon[0]
+                ? (
+                  <button type="button" className="cart-remove-promotion" onClick={() => { this.deletePromotionCode(); }}>
+                    remove
+                  </button>)
+                : ('')}
             </span>
           ))}
         </li>
@@ -70,7 +108,7 @@ class CheckoutSummaryList extends React.Component {
 
   renderShipping() {
     const { data } = this.props;
-    if (data._order && data._order[0]._deliveries && data._order[0]._deliveries[0]._element[0]._shippingoptioninfo) {
+    if (data._order[0]._deliveries && data._order[0]._deliveries[0]._element[0]._shippingoptioninfo) {
       return (
         <li className="checkout-shipping">
           <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
@@ -92,7 +130,7 @@ class CheckoutSummaryList extends React.Component {
 
   renderTax() {
     const { data } = this.props;
-    if (data._order && data._order[0]._tax[0].cost.length) {
+    if (data._order[0]._tax && data._order[0]._tax[0].cost.length) {
       return (
         <li className="checkout-tax">
           <div data-region="checkoutTaxTotalRegion" style={{ display: 'block' }}>
@@ -129,7 +167,7 @@ class CheckoutSummaryList extends React.Component {
 
   renderCheckoutTotal() {
     const { data } = this.props;
-    if (data._order) {
+    if (data._order[0]._total) {
       return (
         <li className="checkout-total">
           <label className="cart-summary-label-col" htmlFor="checkout-total">
