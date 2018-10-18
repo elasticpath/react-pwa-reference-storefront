@@ -170,7 +170,7 @@ class CartPage extends React.Component {
                 <div className="cart-sidebar-inner">
                   <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
                     <AddPromotionContainer onSubmittedPromotion={() => { this.fetchCartData(); }} />
-                    <CheckoutSummaryList data={cartData} />
+                    <CheckoutSummaryList data={cartData} onChange={() => { this.fetchCartData(); }} />
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                     <div>
