@@ -20,7 +20,6 @@
  */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ChatBot, { Loading } from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
 
@@ -28,7 +27,10 @@ import imgPlaceholder from '../images/img-placeholder.png';
 
 import './chatbot.main.less';
 
-class DBPedia extends Component {
+const url = 'https://gateway.watsonplatform.net/assistant/api/v1/workspaces/ea9a8569-e4e0-46be-9440-5ba98465d915/message?version=2018-09-20';
+const userAuth = '01c1efab-67b8-4952-8bd3-214ed36c36dd:uibLNrVJ8ciY';
+
+class WatsonChat extends Component {
   constructor(props) {
     super(props);
 
@@ -36,49 +38,11 @@ class DBPedia extends Component {
       loading: true,
       result: '',
       results: [],
-      trigger: false,
     };
-
-    this.triggetNext = this.triggetNext.bind(this);
   }
 
   componentWillMount() {
-    // const self = this;
-    // const { steps } = this.props;
-    // const search = steps.search.value;
-    // const endpoint = encodeURI('https://dbpedia.org');
-    // const query = encodeURI(`
-    //   select * where {
-    //   ?x rdfs:label "${search}"@en .
-    //   ?x rdfs:comment ?comment .
-    //   FILTER (lang(?comment) = 'en')
-    //   } LIMIT 100
-    // `);
-
-    // const queryUrl = `https://dbpedia.org/sparql/?default-graph-uri=${endpoint}&query=${query}&format=json`;
-
-    // const xhr = new XMLHttpRequest();
-
-    // function readyStateChange() {
-    //   if (this.readyState === 4) {
-    //     const data = JSON.parse(this.responseText);
-    //     const bindings = data.results.bindings;
-    //     if (bindings && bindings.length > 0) {
-    //       self.setState({ loading: false, result: bindings[0].comment.value });
-    //     } else {
-    //       self.setState({ loading: false, result: 'Not found.' });
-    //     }
-    //   }
-    // }
-
-    // xhr.addEventListener('readystatechange', readyStateChange);
-
-    // xhr.open('POST', queryUrl);
-    // xhr.send();
-
-    const url = 'https://gateway.watsonplatform.net/assistant/api/v1/workspaces/ea9a8569-e4e0-46be-9440-5ba98465d915/message?version=2018-09-20';
-    const userAuth = '01c1efab-67b8-4952-8bd3-214ed36c36dd' + ':' + 'uibLNrVJ8ciY';
-    const apiAuth = 'Basic ' + btoa(userAuth);
+    const apiAuth = `Basic ${btoa(userAuth)}`;
     const { steps } = this.props;
     const chatInput = steps.search.value;
     fetch(url, {
@@ -89,42 +53,40 @@ class DBPedia extends Component {
         Authorization: apiAuth,
       },
       body: JSON.stringify({
-        "input": {
-          "text": chatInput
-        }
+        input: {
+          text: chatInput,
+        },
       }),
     })
       .then(res => res.json())
       .then((res) => {
-        console.log(res)
-        let replyText = res.output.text[0];
+        // eslint-disable-next-line no-console
+        console.log(res);
+        const outputText = res.output.text[0];
         if (res.entities && res.entities.length > 0) {
-          var matches = res.output.text[0].match(/\[(.*?)\]/);
+          const matches = outputText.match(/\[(.*?)\]/);
+          let resultText = outputText;
           if (matches) {
-            var submatch = matches[1];
-            this.setState({
-              loading: false,
-              results: res.entities, //submatch.split('<br>'),
-              result: res.output.text[0].replace(matches[1], '').slice(0, -2),
-              trigger: true,
-            }, () => {
-              this.props.triggerNextStep();
-            });
+            resultText = outputText.replace(matches[1], '').slice(0, -2);
           }
-        }
-        else {
           this.setState({
             loading: false,
-            result: replyText,
+            results: res.entities,
+            result: resultText,
+          }, () => {
+            const { triggerNextStep } = this.props;
+            triggerNextStep();
+          });
+        } else {
+          this.setState({
+            loading: false,
+            result: outputText,
+          }, () => {
+            const { triggerNextStep } = this.props;
+            triggerNextStep();
           });
         }
       });
-  }
-
-  triggetNext() {
-    this.setState({ trigger: true }, () => {
-      this.props.triggerNextStep();
-    });
   }
 
   sentenceCase(str) {
@@ -137,51 +99,37 @@ class DBPedia extends Component {
   }
 
   render() {
-    const { trigger, loading, result, results } = this.state;
+    const { loading, result, results } = this.state;
 
     if (results.length > 0) {
       return (
         <div className="chatbot">
-          <p className="chatbot-result-title"> {result} </p>
+          <p className="chatbot-result-title">
+            {result}
+          </p>
           {
             results.map(resultsEntry => (
-              <div className="chatbot-results">
-                <a href="https://www.dropbox.com/sh/w4zeyp7m65qlapw/AAA5iG_qfUkJ3lrS0yR0hj6aa?dl=0&preview=VESTRI_ROADSTER_CARBON_FIBER_SPOILER.usdz" rel="ar">
+              <div key={resultsEntry.value} className="chatbot-results">
+                <a href={'https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz'.replace('%sku%', resultsEntry.value)} rel="ar">
                   <img
-                    src={"https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png".replace('%sku%', resultsEntry.value)}
+                    src={'https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png'.replace('%sku%', resultsEntry.value)}
                     onError={(e) => { e.target.src = imgPlaceholder; }}
                     alt="default"
                     className="category-item-thumbnail img-responsive"
                     title=""
                   />
                 </a>
-                <label>
+                <label htmlFor="chatbot results entry" className="chatbot-results-entry">
                   {this.sentenceCase(resultsEntry.value.replace(/_/g, ' '))}
                 </label>
               </div>
             ))
           }
-          {/* <div
-            style={{
-              textAlign: 'center',
-              marginTop: 20,
-            }}
-          >
-            {
-              !trigger &&
-              <button
-                onClick={() => this.triggetNext()}
-              >
-                Search Again
-            </button>
-            }
-          </div> */}
         </div>
       );
-    }
-    else {
+    } else {
       return (
-        <div className="dbpedia"
+        <div className="watson-chat"
           style={{
             color: '#000',
           }}>
@@ -194,14 +142,6 @@ class DBPedia extends Component {
                 marginTop: 20,
               }}
             >
-              {
-                !trigger &&
-                <button
-                  onClick={() => this.triggetNext()}
-                >
-                  Search Again
-            </button>
-              }
             </div>
           }
         </div>
@@ -209,16 +149,6 @@ class DBPedia extends Component {
     }
   }
 }
-
-DBPedia.propTypes = {
-  steps: PropTypes.object,
-  triggerNextStep: PropTypes.func,
-};
-
-DBPedia.defaultProps = {
-  steps: undefined,
-  triggerNextStep: undefined,
-};
 
 const theme = {
   background: '#f5f8fb',
@@ -232,11 +162,12 @@ const theme = {
   userFontColor: '#4a4a4a',
 };
 
-const ExampleDBPedia = () => (
+const WatsonChatWrapper = () => (
   <ThemeProvider theme={theme}>
     <ChatBot
       floating
       hideBotAvatar
+      headerTitle="Ask Arlene using Watson"
       steps={[
         {
           id: '1',
@@ -250,7 +181,7 @@ const ExampleDBPedia = () => (
         },
         {
           id: '3',
-          component: <DBPedia />,
+          component: <WatsonChat />,
           waitAction: true,
           trigger: '1',
         },
@@ -259,4 +190,4 @@ const ExampleDBPedia = () => (
   </ThemeProvider>
 );
 
-export default ExampleDBPedia;
+export default WatsonChatWrapper;

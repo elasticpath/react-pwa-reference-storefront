@@ -22,14 +22,14 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import ExampleDBPedia from './chatbot.main';
+import WatsonChatWrapper from './chatbot.main';
 
 import './appfooter.main.less';
 
 function AppFooterMain() {
   return (
     <footer className="app-footer">
-      <ExampleDBPedia />
+      <WatsonChatWrapper />
       <div className="first-row">
         <div className="footer-column">
           <div className="title">
