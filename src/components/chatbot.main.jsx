@@ -110,7 +110,7 @@ class WatsonChat extends Component {
           {
             results.map(resultsEntry => (
               <div key={resultsEntry.value} className="chatbot-results">
-                <a href={'https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz'.replace('%sku%', resultsEntry.value)} rel="ar">
+                <a href="https://s3.amazonaws.com/referenceexp/ar/VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY.usdz" rel="ar">
                   <img
                     src={'https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png'.replace('%sku%', resultsEntry.value)}
                     onError={(e) => { e.target.src = imgPlaceholder; }}
@@ -168,6 +168,7 @@ const WatsonChatWrapper = () => (
       floating
       hideBotAvatar
       headerTitle="Ask Arlene using Watson"
+      enableMobileAutoFocus
       steps={[
         {
           id: '1',
