@@ -57,20 +57,25 @@ class CheckoutSummaryList extends React.Component {
     const { data } = this.props;
     if (data._order && data._order[0]) {
       return (
-        <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
+        <li className="cart-coupons" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart-applied-promotions" className="cart-summary-label-col">
             {intl.get('applied-coupons')}
             :&nbsp;
           </label>
           <br />
           {data._order[0]._couponinfo[0]._coupon.map(coupon => (
-            <span className="cart-summary-value-col cart-applied-promotions" key={coupon.code}>&nbsp;&nbsp;
-              {coupon.code}
-              &nbsp;&nbsp;
-              <button type="button" className="cart-remove-promotion" onClick={() => { this.deletePromotionCode(coupon.self.uri); }} data-actionlink="">
-                remove
-              </button>
-            </span>
+            <div className="promotions-table" key={coupon.code}>
+              <div className="row">
+                <div className="col-6 promotion-display">
+                  {coupon.code}
+                </div>
+                <div className="col-6 promotion-remove">
+                  <button type="button" className="cart-remove-promotion" onClick={() => { this.deletePromotionCode(coupon.self.uri); }} data-actionlink="">
+                    {intl.get('remove')}
+                  </button>
+                </div>
+              </div>
+            </div>
           ))}
         </li>
       );
@@ -80,7 +85,6 @@ class CheckoutSummaryList extends React.Component {
 
   renderPromotions() {
     const { data } = this.props;
-    console.log(data);
     if (data._appliedpromotions) {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
