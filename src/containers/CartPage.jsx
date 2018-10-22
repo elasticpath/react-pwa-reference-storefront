@@ -37,10 +37,12 @@ const zoomArray = [
   'defaultcart:total',
   'defaultcart:discount',
   'defaultcart:appliedpromotions:element',
+  'defaultcart:order:couponinfo:coupon',
   'defaultcart:lineitems:element',
   'defaultcart:lineitems:element:total',
   'defaultcart:lineitems:element:price',
   'defaultcart:lineitems:element:availability',
+  'defaultcart:lineitems:element:appliedpromotions',
   'defaultcart:lineitems:element:appliedpromotions:element',
   'defaultcart:lineitems:element:item',
   'defaultcart:lineitems:element:item:code',
@@ -128,27 +130,6 @@ class CartPage extends React.Component {
     return ('');
   }
 
-  renderPromotions() {
-    const { cartData } = this.state;
-    if (cartData._appliedpromotions) {
-      return (
-        <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
-          <label htmlFor="cart_summary_promotion_label" className="cart-summary-label-col">
-            {intl.get('applied-promotions')}
-            :&nbsp;
-          </label>
-          <br />
-          {cartData._appliedpromotions[0]._element.map(promotion => (
-            <span className="cart-summary-value-col cart-applied-promotions" key={`_${Math.random().toString(36).substr(2, 9)}`} data-el-value="cart.appliedPromotions">&nbsp;&nbsp;
-              {promotion['display-name']}
-            </span>
-          ))}
-        </li>
-      );
-    }
-    return ('');
-  }
-
   render() {
     const { cartData, isLoading } = this.state;
     const { history } = this.props;
@@ -189,7 +170,7 @@ class CartPage extends React.Component {
                 <div className="cart-sidebar-inner">
                   <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
                     <AddPromotionContainer onSubmittedPromotion={() => { this.fetchCartData(); }} />
-                    <CheckoutSummaryList data={cartData} />
+                    <CheckoutSummaryList data={cartData} onChange={() => { this.fetchCartData(); }} />
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                     <div>
