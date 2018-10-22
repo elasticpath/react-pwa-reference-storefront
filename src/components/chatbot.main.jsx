@@ -35,8 +35,13 @@ const userAuth = '01c1efab-67b8-4952-8bd3-214ed36c36dd:uibLNrVJ8ciY';
 
 class WatsonChat extends Component {
   static propTypes = {
-    triggerNextStep: PropTypes.func.isRequired,
-    steps: PropTypes.objectOf(PropTypes.any).isRequired,
+    triggerNextStep: PropTypes.func,
+    steps: PropTypes.objectOf(PropTypes.any),
+  }
+
+  static defaultProps = {
+    triggerNextStep: () => {},
+    steps: {},
   }
 
   constructor(props) {
@@ -151,10 +156,9 @@ class WatsonChat extends Component {
 
 const theme = {
   background: '#f5f8fb',
-  fontFamily: 'Helvetica Neue',
   headerBgColor: '#40b1f3',
   headerFontColor: '#fff',
-  headerFontSize: '15px',
+  headerFontSize: '20px',
   botBubbleColor: '#40b1f3',
   botFontColor: '#fff',
   userBubbleColor: '#fff',
