@@ -41,7 +41,9 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #040060;
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
 }
 
 #root {
@@ -49,6 +51,7 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
 }
 
 .is-hidden {
