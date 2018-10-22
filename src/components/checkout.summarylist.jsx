@@ -32,7 +32,11 @@ const Config = require('Config');
 class CheckoutSummaryList extends React.Component {
   static propTypes = {
     data: PropTypes.objectOf(PropTypes.any).isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onChange: () => {},
   }
 
   deletePromotionCode(link) {
@@ -55,7 +59,7 @@ class CheckoutSummaryList extends React.Component {
 
   renderCoupons() {
     const { data } = this.props;
-    if (data._order && data._order[0]) {
+    if (data._order && data._order[0] && data._order[0]._couponinfo) {
       return (
         <li className="cart-coupons" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart-applied-promotions" className="cart-summary-label-col">
