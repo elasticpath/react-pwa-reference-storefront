@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ChatBot, { Loading } from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
 
@@ -27,10 +28,17 @@ import imgPlaceholder from '../images/img-placeholder.png';
 
 import './chatbot.main.less';
 
+const Config = require('Config');
+
 const url = 'https://gateway.watsonplatform.net/assistant/api/v1/workspaces/ea9a8569-e4e0-46be-9440-5ba98465d915/message?version=2018-09-20';
 const userAuth = '01c1efab-67b8-4952-8bd3-214ed36c36dd:uibLNrVJ8ciY';
 
 class WatsonChat extends Component {
+  static propTypes = {
+    triggerNextStep: PropTypes.func.isRequired,
+    steps: PropTypes.objectOf(PropTypes.any).isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -90,12 +98,8 @@ class WatsonChat extends Component {
   }
 
   sentenceCase(str) {
-    if ((str === null) || (str === ''))
-      return false;
-    else
-      str = str.toString();
-
-    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    this.funcName = 'sentenceCase';
+    return str.toLowerCase().split(' ').map(word => (word.charAt(0).toUpperCase() + word.slice(1))).join(' ');
   }
 
   render() {
@@ -112,7 +116,7 @@ class WatsonChat extends Component {
               <div key={resultsEntry.value} className="chatbot-results">
                 <a href="https://s3.amazonaws.com/referenceexp/ar/VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY.usdz" rel="ar">
                   <img
-                    src={'https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png'.replace('%sku%', resultsEntry.value)}
+                    src={Config.skuImagesUrl.replace('%sku%', resultsEntry.value)}
                     onError={(e) => { e.target.src = imgPlaceholder; }}
                     alt="default"
                     className="category-item-thumbnail img-responsive"
@@ -127,26 +131,21 @@ class WatsonChat extends Component {
           }
         </div>
       );
-    } else {
-      return (
-        <div className="watson-chat"
-          style={{
-            color: '#000',
-          }}>
-          {loading ? <Loading /> : result}
-          {
-            !loading &&
-            <div
-              style={{
-                textAlign: 'center',
-                marginTop: 20,
-              }}
-            >
-            </div>
-          }
-        </div>
-      );
     }
+    return (
+      <div
+        className="chatbot"
+      >
+        {loading ? <Loading /> : result}
+        {
+          !loading
+          && (
+            <div
+              className="chat-bot-loading"
+            />)
+        }
+      </div>
+    );
   }
 }
 
