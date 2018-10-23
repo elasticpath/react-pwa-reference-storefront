@@ -53,6 +53,7 @@ const zoomArray = [
   'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
   // zoom for payment method
   'defaultcart:order:paymentmethodinfo:paymentmethod',
+  'defaultcart:order:paymentinstruments:element',
   // zooms for table items
   'defaultcart:lineitems:element',
   'defaultcart:lineitems:element:total',
@@ -205,7 +206,13 @@ class OrderReviewPage extends React.Component {
 
   renderPaymentMethod() {
     const { orderData } = this.state;
-    const displayName = orderData._order[0]._paymentmethodinfo[0]._paymentmethod[0]['display-name'];
+    let displayName = '';
+    // 7.3 Payments or 7.4 Payments
+    if (orderData._order[0]._paymentmethodinfo[0]) {
+      displayName = orderData._order[0]._paymentmethodinfo[0]._paymentmethod[0]['display-name'];
+    } else {
+      displayName = orderData._order[0].paymentinstruments[0].data.from;
+    }
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
         <h3>

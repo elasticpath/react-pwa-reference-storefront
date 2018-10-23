@@ -93,7 +93,7 @@ const PurchaseDetailsMain = (props) => {
   };
 
   const renderPaymentMethod = () => {
-    const displayName = data._paymentmeans[0]._element[0]['display-name'];
+    const displayName = data._paymentmeans[0]._element[0].data.from ? data._paymentmeans[0]._element[0].data.from : data._paymentmeans[0]._element[0]['display-name'];
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
         <h3>

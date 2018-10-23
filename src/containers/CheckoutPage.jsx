@@ -58,6 +58,8 @@ const zoomArray = [
   'defaultcart:order:paymentmethodinfo:paymentmethod',
   'defaultcart:order:paymentmethodinfo:selector:choice',
   'defaultcart:order:paymentmethodinfo:selector:choice:description',
+  'defaultcart:order:paymentinstruments:element',
+  'defaultprofile:paymentinstruments:element',
 ];
 
 class CheckoutPage extends React.Component {
@@ -387,16 +389,19 @@ class CheckoutPage extends React.Component {
 
   renderPayments() {
     const { orderData } = this.state;
-    if (orderData._order[0]._paymentmethodinfo) {
+    // 7.3 Payments or 7.4 Payments
+    if (orderData._order[0]._paymentmethodinfo || orderData._order[0]._paymentinstruments) {
       const paymentMethods = [];
-      const paymentMethod = orderData._order[0]._paymentmethodinfo[0]._paymentmethod;
+      // 7.4 Payments or 7.3 Payments
+      const paymentMethod = orderData._order[0]._paymentinstruments ? orderData._order[0]._paymentinstruments[0]._paymentmethod : orderData._order[0]._paymentmethodinfo[0]._paymentmethod;
       if (paymentMethod) {
         const [description] = paymentMethod;
         description.checked = true;
         description.deletable = false;
         paymentMethods.push(description);
       }
-      const selector = orderData._order[0]._paymentmethodinfo[0]._selector;
+      // 7.4 Payments or 7.3 Payments
+      const selector = orderData._order[0]._paymentinstruments ? orderData._order[0]._paymentinstruments[0]._selector : orderData._order[0]._paymentmethodinfo[0]._selector;
       if (selector) {
         const choices = selector[0]._choice;
         choices.map((choice) => {
@@ -413,7 +418,7 @@ class CheckoutPage extends React.Component {
           const {
             checked, deletable, selectaction,
           } = payment;
-          const displayName = payment['display-name'];
+          const displayName = payment.data.from ? payment.data.from : payment['display-name'];
           return (
             <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
               <div className="payment-ctrl-cell" data-region="paymentSelector">

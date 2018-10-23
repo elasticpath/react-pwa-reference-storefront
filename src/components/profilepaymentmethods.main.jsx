@@ -65,7 +65,7 @@ class ProfilePaymentMethodsMain extends React.Component {
     if (paymentMethods._element) {
       return (
         paymentMethods._element.map((paymentElement) => {
-          const displayName = paymentElement['display-name'];
+          const displayName = (paymentElement.data.from) ? (paymentElement.data.from) : paymentElement['display-name'];
           return (
             <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
               <li className="profile-payment-method-container">

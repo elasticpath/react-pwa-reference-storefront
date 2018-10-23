@@ -85,7 +85,7 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 
 Elastic Path provides a set of sample data with the storefront project.<br/> **Note:** A valid Elastic Path development environment is required to access the sample data.
 
-1. From the `react-pwa-reference-storefront/data` directory, extract the sample catalog data contents into the `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
+1. From the `react-pwa-reference-storefront/data` directory, extract the sample catalog data contents matching your version of EP into the `ep-commerce/extensions/database/ext-data/src/main/resources/data` directory.
 2. In the `ep-commerce/extensions/database/ext-data/src/main/resources/data/` directory, update the `liquibase-changelog.xml` file with the following sample data:<br/>`<include file="ep-blueprint-data/liquibase-changelog.xml" relativeToChangelogFile="true" />`
 **Note:** This data must be the only sample data included within the sample data block.
 3. In the  `ep-commerce/extensions/database/ext-data/src/main/resources/environments/local/data-population.properties` file, set the `liquibase.contexts` property to `default,ep-blueprint`.

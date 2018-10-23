@@ -58,6 +58,7 @@ class PaymentFormMain extends React.Component {
       failedSubmit: false,
       paymentForm: undefined,
       orderPaymentForm: undefined,
+      paymentNewVersion: false,
     };
     this.setCardType = this.setCardType.bind(this);
     this.setCardHolderName = this.setCardHolderName.bind(this);
@@ -105,7 +106,7 @@ class PaymentFormMain extends React.Component {
   submitPayment(event) {
     event.preventDefault();
     const {
-      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm,
+      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm, paymentNewVersion,
     } = this.state;
     if (!cardHolderName || !cardNumber || !securityCode) {
       this.setState({ failedSubmit: true });
@@ -128,6 +129,31 @@ class PaymentFormMain extends React.Component {
       default:
         card = 'American Express';
     }
+    let paymentDataBody = {};
+    const displayString = `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`;
+    const randomToken = Math.random().toString(36).substr(2, 9);
+    /* token is being randomly generated here to be passed to the demo payment gateway
+          ** in a true implementation this token should be received from the actual payment gateway
+          ** when doing so, make sure you're compliant with PCI DSS
+          */
+    if (paymentNewVersion) {
+      // 7.4 Payments
+      paymentDataBody = JSON.stringify({
+        configuration: {
+          'save-on-profile': saveToProfile,
+        },
+        data: {
+          from: displayString,
+          'Null Provider Code': randomToken,
+        },
+      });
+    } else {
+      // 7.3 Payments
+      paymentDataBody = JSON.stringify({
+        'display-name': displayString,
+        token: randomToken,
+      });
+    }
     // set link based on savetoprofile
     login().then(() => {
       cortexFetch(link, {
@@ -136,14 +162,7 @@ class PaymentFormMain extends React.Component {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
-        body: JSON.stringify({
-          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-          token: Math.random().toString(36).substr(2, 9),
-          /* token is being randomly generated here to be passed to the demo payment gateway
-          ** in a true implementation this token should be received from the actual payment gateway
-          ** when doing so, make sure you're compliant with PCI DSS
-          */
-        }),
+        body: paymentDataBody,
       }).then((res) => {
         if (res.status === 400) {
           this.setState({ failedSubmit: true });
@@ -169,7 +188,6 @@ class PaymentFormMain extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          console.log(res);
           let paymentFormLink = '';
           let orderPaymentFormLink = '';
           if (res._defaultprofile[0]._paymentmethods[0]._paymenttokenform) {
@@ -180,8 +198,7 @@ class PaymentFormMain extends React.Component {
             orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
               link => link.rel === 'createpaymenttokenfororderaction',
             );
-          }
-          else {
+          } else {
             // 7.4 Payments
             const defaultPaymentProfile = res._defaultprofile[0]._paymentmethods[0]._element.find(
               element => element.name === 'Saveable Payment Method',
@@ -195,6 +212,9 @@ class PaymentFormMain extends React.Component {
             orderPaymentFormLink = defaultPaymentOrder._paymentinstrumentform[0].links.find(
               link => link.rel === 'createpaymentinstrumentaction',
             );
+            this.setState({
+              paymentNewVersion: true,
+            });
           }
           this.setState({
             paymentForm: paymentFormLink.uri,

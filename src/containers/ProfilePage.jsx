@@ -43,6 +43,7 @@ const zoomArray = [
   'defaultprofile:addresses:billingaddresses:default',
   'defaultprofile:paymentmethods',
   'defaultprofile:paymentmethods:element',
+  'defaultprofile:paymentinstruments:element',
 ];
 
 class ProfilePage extends React.Component {
@@ -99,7 +100,7 @@ class ProfilePage extends React.Component {
               <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
               <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
               <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
-              <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
+              <ProfilePaymentMethodsMain paymentMethods={(profileData._paymentinstruments[0]) ? (profileData._paymentinstruments[0]) : (profileData._paymentmethods[0])} onChange={this.fetchProfileData} />
             </div>
           ) : <div className="loader" />}
         </div>
