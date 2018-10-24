@@ -96,12 +96,18 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.urlExists(Config.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+          if (Config.arKit.enable) {
+            this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+              this.setState({
+                productData: res,
+                arFileExists: exists,
+              });
+            });
+          } else {
             this.setState({
               productData: res,
-              arFileExists: exists,
             });
-          });
+          }
           if (isAnalyticsConfigured) {
             const { productData, itemQuantity } = this.state;
             const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
@@ -127,12 +133,18 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.urlExists(Config.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+          if (Config.arKit.enable) {
+            this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+              this.setState({
+                productData: res,
+                arFileExists: exists,
+              });
+            });
+          } else {
             this.setState({
               productData: res,
-              arFileExists: exists,
             });
-          });
+          }
           if (isAnalyticsConfigured) {
             const { productData, itemQuantity } = this.state;
             const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
@@ -278,7 +290,7 @@ class ProductDisplayItemMain extends React.Component {
     const { productData, arFileExists } = this.state;
     if (arFileExists) {
       return (
-        <a href={Config.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
+        <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
           <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
         </a>
       );
