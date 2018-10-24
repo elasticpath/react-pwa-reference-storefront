@@ -5,7 +5,6 @@ WORKDIR /project
 ADD ./package.json /project
 ADD ./package-lock.json /project
 RUN npm install
-ADD ./react-simple-chatbot.js /project/node_modules/react-simple-chatbot/dist
 ADD ./ /project
 RUN npm run build
 
