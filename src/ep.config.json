@@ -28,6 +28,7 @@
   "defaultCurrencyValue": "CAD",
   "skuImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png",
   "siteImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%fileName%",
+  "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz",
   "enableOfflineMode": false,
   "gaTrackingId": ""
 }

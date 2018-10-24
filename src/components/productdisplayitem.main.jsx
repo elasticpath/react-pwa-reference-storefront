@@ -76,10 +76,12 @@ class ProductDisplayItemMain extends React.Component {
       itemQuantity: 1,
       addToCartFailedMessage: '',
       isLoading: false,
+      arFileExists: false,
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.renderProductImage = this.renderProductImage.bind(this);
   }
 
   componentDidMount() {
@@ -94,8 +96,11 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.setState({
-            productData: res,
+          this.urlExists(Config.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+            this.setState({
+              productData: res,
+              arFileExists: exists,
+            });
           });
           if (isAnalyticsConfigured) {
             const { productData, itemQuantity } = this.state;
@@ -122,8 +127,11 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.setState({
-            productData: res,
+          this.urlExists(Config.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+            this.setState({
+              productData: res,
+              arFileExists: exists,
+            });
           });
           if (isAnalyticsConfigured) {
             const { productData, itemQuantity } = this.state;
@@ -215,6 +223,31 @@ class ProductDisplayItemMain extends React.Component {
     event.preventDefault();
   }
 
+  urlExists(url, callback) {
+    this.funcName = 'UrlExists';
+    fetch(url)
+      .then((res) => {
+        callback(res.ok);
+      });
+  }
+
+  renderAttributes() {
+    const { productData } = this.state;
+    if (productData._definition[0].details) {
+      return productData._definition[0].details.map(attribute => (
+        <ul className="itemdetail-attribute" key={attribute.name}>
+          <li className="itemdetail-attribute-label-col">
+            {attribute['display-name']}
+          </li>
+          <li className="itemdetail-attribute-value-col">
+            {attribute['display-value']}
+          </li>
+        </ul>
+      ));
+    }
+    return null;
+  }
+
   renderSkuSelection() {
     const { productData, isLoading } = this.state;
     if (productData._definition[0]._options) {
@@ -241,21 +274,18 @@ class ProductDisplayItemMain extends React.Component {
     return null;
   }
 
-  renderAttributes() {
-    const { productData } = this.state;
-    if (productData._definition[0].details) {
-      return productData._definition[0].details.map(attribute => (
-        <ul className="itemdetail-attribute" key={attribute.name}>
-          <li className="itemdetail-attribute-label-col">
-            {attribute['display-name']}
-          </li>
-          <li className="itemdetail-attribute-value-col">
-            {attribute['display-value']}
-          </li>
-        </ul>
-      ));
+  renderProductImage() {
+    const { productData, arFileExists } = this.state;
+    if (arFileExists) {
+      return (
+        <a href={Config.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
+          <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+        </a>
+      );
     }
-    return null;
+    return (
+      <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+    );
   }
 
   render() {
@@ -288,7 +318,7 @@ class ProductDisplayItemMain extends React.Component {
           <div className="itemdetail-assets">
             <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
               <div className="itemdetail-asset-container">
-                <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+                {this.renderProductImage()}
               </div>
             </div>
           </div>
