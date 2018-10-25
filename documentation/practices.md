@@ -68,13 +68,12 @@ Google Analytics handlers use the global product attribute `Tag`. Use the format
 
 **Apple ARKit Augmented Reality Quick Look Integration**
 
-The React PWA Reference Storefront is pre-configured for integration with Apple's ARKit web integration. As of iOS 12, you may place 3D objects in the real world using AR Quick Look directly through your Safari web browser when visiting a product's display page.
-For more information on ARKit, see the following: [https://developer.apple.com/arkit/](https://developer.apple.com/arkit/)
+The React PWA Reference Storefront is pre-configured for integration with Apple's ARKit web integration. As of iOS 12, you can incorporate 3D objects in to the real world using AR Quick Look directly through your Safari web browser when you visit a product's display page that supports the functionality. For more information on ARKit, see [Get ready for ARKit 2](https://developer.apple.com/arkit/).
 
-The location of the required ARKit USDZ files are externalized through content URLs within the storefront application configurations. The default URLs are configured to reference USDZ files, which are located on Amazon S3. However, you may use other CMS providers as you prefer. The required USDZ files are retreived on a per-sku basis if available on Amazon S3, and the storefront will only display the required AR tags if the file exists - skus which do not have a corresponding USDZ file will not display the AR tag on the product display page..
+The location of the required ARKit USDZ files are externalized through content URLs within the storefront application configurations. The default URLs are configured to reference the USDZ files, which are located on Amazon S3. However, you can use other CMS providers to suit your requirements. When the image is called to the storefront, the required USDZ files are retrieved on a per-SKU basis as they are available from the CMS provider. The storefront only displays the required AR tags, if the file exists. Any SKUs that do not have a corresponding USDZ file do not display the AR tag on the product display page.
 
 Configuration properties for content URLs are defined as follows:
-* `arKit.enable`: The enablement toggle to load elements on the product display page for ARKit Quick Look capability. When enabled, product images that have ARKit USDZ files hosted for them will be wrapped with an anchor tag referencing the file hosted on an external CMS.
+* `arKit.enable`: Enable elements for ARKit's Quick Look capability to load on a product display page. When `arKit.enable` is enabled, any product images that have hosted ARKit USDZ files are wrapped with an anchor tag referencing the file hosted on an external CMS.
 * `arKit.skuArImagesUrl`: The path to the USDZ files hosted on an external CMS used for ARKit Quick Look. Set this parameter to the complete URL of the files by replacing the `sku/file-name` with `%sku%`. This value is populated when the page is loaded with values retrieved by Cortex.
 
 If you use another CMS, you must update the configurations to reflect the public URLs of the files being retrieved by the particular content provider.
