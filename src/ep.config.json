@@ -29,5 +29,9 @@
   "skuImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png",
   "siteImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%fileName%",
   "enableOfflineMode": false,
-  "gaTrackingId": ""
+  "gaTrackingId": "",
+  "arKit": {
+    "enable": true,
+    "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"
+  }
 }
