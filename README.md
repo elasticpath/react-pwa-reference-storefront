@@ -12,7 +12,6 @@
       * [Configuring Sample Data](#configuring-sample-data)
       * [Setting up a Development Environment](#setting-up-a-development-environment)
       * [Setting up a Production Environment](#setting-up-a-production-environment)
-      * [Setting up a Remote Production Environment](#setting-up-a-remote-production-environment)
   * [Running a Linter](#running-a-linter)
   * [Adding New Locales](#adding-new-locales)
   * [Running Unit Tests](#running-unit-tests)
