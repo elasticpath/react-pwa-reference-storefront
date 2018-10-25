@@ -74,7 +74,7 @@ class ProfilePaymentMethodsMain extends React.Component {
                     {displayName}
                   </span>
                 </div>
-                <button className="btn profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
+                <button className="vestri-btn small" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
                   {intl.get('delete')}
                 </button>
               </li>
@@ -104,7 +104,7 @@ class ProfilePaymentMethodsMain extends React.Component {
               {intl.get('payment-methods')}
             </h2>
             {this.renderPaymentMethods()}
-            <button className="btn btn-primary new-payment-btn" type="button" onClick={() => { this.newPayment(); }}>
+            <button className="vestri-btn primary wide" type="button" onClick={() => { this.newPayment(); }}>
               {intl.get('add-new-payment-method')}
             </button>
           </div>

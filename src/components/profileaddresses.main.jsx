@@ -101,10 +101,10 @@ class ProfileAddressesMain extends React.Component {
                     </li>
                   </ul>
                 </div>
-                <button className="btn edit-address-btn" type="button" onClick={() => { this.editAddress(addressElement.self.uri); }}>
+                <button className="vestri-btn small" type="button" onClick={() => { this.editAddress(addressElement.self.uri); }}>
                   {intl.get('edit')}
                 </button>
-                <button className="btn delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
+                <button className="vestri-btn small" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
                   {intl.get('delete')}
                 </button>
               </li>
@@ -135,7 +135,7 @@ class ProfileAddressesMain extends React.Component {
               {intl.get('addresses')}
             </h2>
             {this.renderAddresses()}
-            <button className="btn btn-primary profile-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
+            <button className="vestri-btn primary wide profile-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
               {intl.get('add-new-address')}
             </button>
           </div>

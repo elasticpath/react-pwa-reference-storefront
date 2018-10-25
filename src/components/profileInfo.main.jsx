@@ -171,10 +171,10 @@ class ProfileInfoMain extends React.Component {
                 </div>
               </div>
               <div className="form-group create-address-btn-container profile-info-btn-container">
-                <button className="btn address-save-btn profile-info-save-btn" data-el-label="addressForm.save" type="submit">
+                <button className="vestri-btn primary small profile-info-save-btn" data-el-label="addressForm.save" type="submit">
                   {intl.get('save')}
                 </button>
-                <button className="btn address-cancel-btn profile-info-cancel-btn" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
+                <button className="vestri-btn small" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
                   {intl.get('cancel')}
                 </button>
               </div>
@@ -207,7 +207,7 @@ class ProfileInfoMain extends React.Component {
               </dd>
             </dl>
 
-            <button className="btn profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" onClick={() => { this.editPersonalInfo(); }}>
+            <button className="vestri-btn small profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" onClick={() => { this.editPersonalInfo(); }}>
               {intl.get('edit')}
             </button>
           </div>

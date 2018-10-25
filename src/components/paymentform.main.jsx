@@ -331,10 +331,10 @@ class PaymentFormMain extends React.Component {
           <div className="form-group">
             <div className="control-label" />
             <div className="form-input btn-container">
-              <button className="btn btn-primary payment-save-btn" data-el-label="paymentForm.save" type="submit">
+              <button className="vestri-btn primary" data-el-label="paymentForm.save" type="submit">
                 {intl.get('continue')}
               </button>
-              <button className="btn payment-cancel-btn" data-el-label="paymentForm.cancel" type="button" onClick={() => { this.cancel(); }}>
+              <button className="vestri-btn" data-el-label="paymentForm.cancel" type="button" onClick={() => { this.cancel(); }}>
                 {intl.get('cancel')}
               </button>
             </div>

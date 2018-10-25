@@ -407,9 +407,79 @@ class ProductDisplayItemMain extends React.Component {
                   </div>
                   <div className="form-group-submit">
                     <div className="form-content form-content-submit col-sm-offset-4">
-                      <button className={`btn-round btn btn-primary btn-itemdetail-addtocart${!availability ? ' disabled' : ''}`} id="product_display_item_add_to_cart_button" type="submit">
+                      <button
+                        className="vestri-btn primary wide"
+                        disabled={!availability}
+                        id="product_display_item_add_to_cart_button"
+                        type="submit"
+                      >
                         {intl.get('add-to-cart')}
                       </button>
+
+                      <button className="vestri-btn" type="button">
+                        vestri-btn
+                      </button>
+
+                      <button className="vestri-btn" disabled type="button">
+                        vestri-btn disabled
+                      </button>
+
+                      <button className="vestri-btn primary" type="button">
+                        vestri-btn primary
+                      </button>
+
+                      <button className="vestri-btn primary" disabled type="button">
+                        vestri-btn primary disabled
+                      </button>
+
+                      <button className="vestri-btn small" type="button">
+                        vestri-btn small
+                      </button>
+
+                      <button className="vestri-btn small" disabled type="button">
+                        vestri-btn small disabled
+                      </button>
+
+                      <button className="vestri-btn small primary" type="button">
+                        vestri-btn small primary
+                      </button>
+
+                      <button className="vestri-btn small primary" disabled type="button">
+                        vestri-btn small primary disabled
+                      </button>
+
+                      <button className="vestri-btn wide" type="button">
+                        vestri-btn wide
+                      </button>
+
+                      <button className="vestri-btn wide" disabled type="button">
+                        vestri-btn wide disabled
+                      </button>
+
+                      <button className="vestri-btn wide primary" type="button">
+                        vestri-btn wide primary
+                      </button>
+
+                      <button className="vestri-btn wide primary" disabled type="button">
+                        vestri-btn wide primary disabled
+                      </button>
+
+                      <button className="vestri-btn wide small" type="button">
+                        vestri-btn wide small
+                      </button>
+
+                      <button className="vestri-btn wide small" disabled type="button">
+                        vestri-btn wide small disabled
+                      </button>
+
+                      <button className="vestri-btn wide small primary" type="button">
+                        vestri-btn wide small primary
+                      </button>
+
+                      <button className="vestri-btn wide small primary" disabled type="button">
+                        vestri-btn wide small primary disabled
+                      </button>
+
                     </div>
                   </div>
 

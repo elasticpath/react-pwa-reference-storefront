@@ -121,3 +121,83 @@ body {
   padding-bottom: 20px;
   font-weight: bold;
 }
+
+.vestri-btn {
+  // width: 100%;
+  min-height: 40px;
+  min-width: 100px;
+  margin-right: 10px;
+  border: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  transition: 0.1s;
+  background-color: #fff;
+  border: 1px solid @mainBlueColor;
+  color: @mainBlueColor;
+  cursor: pointer;
+
+  &:hover {
+    background-color: @mainBlueColor;
+    color: #fff;
+  }
+
+  &:focus {
+    outline: 2px solid #007bff80;
+  }
+
+  &:active {
+    background-color: #0062cc;
+  }
+
+  &:disabled {
+    color: lighten(@mainBlueColor, 25%);
+    border-color: lighten(@mainBlueColor, 25%);
+    cursor: default;
+
+    &:hover {
+      background-color: #fff;
+    }
+
+    &:focus, &:active {
+      outline: none;
+      background-color: #fff;
+    }
+  }
+
+  &.primary {
+    border: 0;
+    color: #fff;
+    background-color: @mainBlueColor;
+
+    &:focus {
+      outline: 2px solid #007bff80;
+    }
+
+    &:active {
+      background-color: #0062cc;
+    }
+
+    &:disabled {
+      cursor: default;
+      background-color: lighten(@mainBlueColor, 25%);
+      outline: 0;
+    }
+  }
+
+  &.wide {
+    width: 280px;
+
+    @media (max-width: @mobileWidth) {
+      width: 100%;
+    }
+  }
+
+  &.small {
+    min-height: 30px;
+  }
+}

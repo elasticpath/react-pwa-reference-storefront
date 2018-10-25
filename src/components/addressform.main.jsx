@@ -426,10 +426,10 @@ class AddressFormMain extends React.Component {
           <div className="form-group">
             <div className="control-label" />
             <div className="form-input btn-container">
-              <button className="btn btn-primary address-save-btn" data-el-label="addressForm.save" type="submit">
+              <button className="vestri-btn primary address-save-btn" data-el-label="addressForm.save" type="submit">
                 {intl.get('save')}
               </button>
-              <button className="btn address-cancel-btn" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
+              <button className="vestri-btn address-cancel-btn" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
                 {intl.get('cancel')}
               </button>
             </div>

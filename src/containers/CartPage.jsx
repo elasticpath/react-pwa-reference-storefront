@@ -150,7 +150,6 @@ class CartPage extends React.Component {
 
   render() {
     const { cartData, isLoading } = this.state;
-    const { history } = this.props;
     return (
       <div className="cart-container container">
         <div className="cart-container-inner">
@@ -171,10 +170,6 @@ class CartPage extends React.Component {
                   &nbsp;
                 </h1>
               )}
-              <button className="btn-cmd-continue-shopping" type="button" onClick={() => { history.push('/'); }}>
-                X
-                { /* intl.get('continue-shopping') */}
-              </button>
             </div>
           </div>
           {cartData && !isLoading && (
@@ -191,7 +186,7 @@ class CartPage extends React.Component {
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                     <div>
-                      <button className="btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
+                      <button className="vestri-btn primary wide btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
                         {intl.get('proceed-to-checkout')}
                       </button>
                     </div>

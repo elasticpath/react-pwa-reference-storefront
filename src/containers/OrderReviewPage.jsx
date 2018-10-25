@@ -249,7 +249,7 @@ class OrderReviewPage extends React.Component {
                         <CheckoutSummaryList data={orderData} isLoading={false} />
                       </div>
                       <div className="checkout-submit-container" style={{ display: 'block' }}>
-                        <button className="btn-cmd-submit-order" type="button" onClick={() => { this.completeOrder(); }}>
+                        <button className="vestri-btn primary wide" type="button" onClick={() => { this.completeOrder(); }}>
                           {intl.get('complete-purchase')}
                         </button>
                         {isLoading && (
