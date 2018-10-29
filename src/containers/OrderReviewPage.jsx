@@ -137,7 +137,7 @@ class OrderReviewPage extends React.Component {
             isLoading: false,
           });
           const deliveries = (orderData._order[0]._deliveries) ? orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption[0].cost[0].display : '';
-          if (isAnalyticsConfigured) {
+          if (isAnalyticsConfigured()) {
             trackAddTransactionAnalytics(orderData.self.uri.split(`/carts/${Config.cortexApi.scope}/`)[1], orderData._order[0]._total[0].cost[0].amount, deliveries, orderData._order[0]._tax[0].total.display);
             orderData._lineitems[0]._element.map((product) => {
               const categoryTag = (product._item[0]._definition[0].details) ? (product._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';

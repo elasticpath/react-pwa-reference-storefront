@@ -92,14 +92,25 @@ body {
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
+  border: 16px solid @complimentGrey;
+  border-top: 16px solid @complimentBlueColor;
   border-radius: 50%;
   width: 120px;
   height: 120px !important;
   animation: spin 0.5s linear infinite;
   margin: 0 auto;
   margin-top: 20px;
+}
+
+.miniLoader {
+  border: 10px solid @complimentGrey;
+  border-top: 10px solid @complimentBlueColor;
+  width: 30px;
+  height: 30px !important;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+  margin: 0 auto;
+  margin-top: 10px;
 }
 
 .container-3 {
