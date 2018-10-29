@@ -108,7 +108,7 @@ class ProductDisplayItemMain extends React.Component {
               productData: res,
             });
           }
-          if (isAnalyticsConfigured) {
+          if (isAnalyticsConfigured()) {
             const { productData, itemQuantity } = this.state;
             const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
             trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
@@ -145,7 +145,7 @@ class ProductDisplayItemMain extends React.Component {
               productData: res,
             });
           }
-          if (isAnalyticsConfigured) {
+          if (isAnalyticsConfigured()) {
             const { productData, itemQuantity } = this.state;
             const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
             trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
@@ -211,7 +211,7 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
-            if (isAnalyticsConfigured) {
+            if (isAnalyticsConfigured()) {
               const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
               trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
               setAddAnalytics();
