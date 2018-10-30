@@ -41,7 +41,7 @@ If you use another CMS, you must update the configurations to reflect the public
 
 IBM Watson Content Hub is a cloud-based CMS. It also provides services with IBM Watson, such as cognitive tagging, to help transform assets into a searchable library of content.
 
-You can upload catalog images and site content images to WCH using the wchtools command-line utility. Uploaded assets are scanned using Watson's Visual Image recognition service, and tagged based on the content to create a searchable library. After the images are uploaded, the content delivery URL must be provided in the Reference Storefront's configuration for both `skuImagesUrl` and `siteImagesUrl`, with the appropriate sku/file name placeholders. In the following examples, a few fields are populated based on the tenant ID of the WCH account and the directory structure of the assets:
+You can upload catalog images and site content images to WCH using the wchtools command-line utility. Uploaded assets are scanned using the Watson's Visual Recognition service, which are tagged based on the content, to create a searchable library. After uploading the images, provide the content delivery URL with the appropriate sku/file name placeholders in the Reference Storefront's configuration for both `skuImagesUrl` and `siteImagesUrl`. In the following examples, a few fields are populated based on the tenant ID of the WCH account and the directory structure of the assets:
 `"skuImagesUrl": "https://my11.digitalexperience.ibm.com/<wch_tenant_identifier>/dxdam/<catalog_directory>/%sku%.jpeg",`
 `"siteImagesUrl": "https://my11.digitalexperience.ibm.com/<wch_tenant_identifier>/dxdam/<site_images>/%fileName%",`
 
@@ -52,7 +52,7 @@ You can upload catalog images and site content images to WCH using the wchtools 
 The React PWA Reference Storefront is pre-configured for integration with the Google Analytics enhanced e-commerce plugin.
 
 ### Route/Page Views
-In the `App.js` file, integration handlers for Google Analytics are pre-configured to log routes as pageviews in a sites real-time traffic data. Configure Google Analytics for additional measurements for conversion rates based on the page views in the web traffic.
+In the `App.js` file, integration handlers for Google Analytics are pre-configured to log routes as page views in a sites real-time traffic data. Configure Google Analytics for additional measurements for conversion rates based on the page views in the web traffic.
 The `Analytics.js` file contains the functions used for logging page views with a React library for invoking Google Analytics functions (ReactGA), and enhanced e-commerce capabilities.
 
 ### Checkout Flow
@@ -62,21 +62,21 @@ For example, when a customer views a product, adds a product to the cart, or rem
 * The product and cart pages submit this information for further analysis by Google Analytics’ in a separate request.
 
 ### Global Product Attribute
-Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as `vestri:Accessories` to submit the product category information. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product's category to Google Analytics.
+Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as `vestri:Accessories`, to submit the product category information. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product's category to Google Analytics.
 
 ## ARKit Quick Look Example
 
 **Apple ARKit Augmented Reality Quick Look Integration**
 
-The React PWA Reference Storefront is pre-configured for integration with Apple's ARKit web integration. As of iOS 12, you can incorporate 3D objects in to the real world using AR Quick Look directly through your Safari web browser when you visit a product's display page that supports the functionality. For more information on ARKit, see [Get ready for ARKit 2](https://developer.apple.com/arkit/).
+The React PWA Reference Storefront is pre-configured for integration with Apple's ARKit web integration. For iOS 12 or later versions, you can incorporate 3D objects into the real world using AR Quick Look directly through the Safari web browser when you visit a product's display page that supports the functionality. For more information on ARKit, see [Get ready for ARKit 2](https://developer.apple.com/arkit/).
 
-The location of the required ARKit USDZ files are externalized through content URLs within the storefront application configurations. The default URLs are configured to reference the USDZ files, which are located on Amazon S3. However, you can use other CMS providers to suit your requirements. When the image is called to the storefront, the required USDZ files are retrieved on a per-SKU basis as they are available from the CMS provider. The storefront only displays the required AR tags, if the file exists. Any SKUs that do not have a corresponding USDZ file do not display the AR tag on the product display page.
+ARKit USDZ files are externalized through content URLs within the storefront application configuration. The default URLs are configured to reference the USDZ files, which are located on Amazon S3. However, you can use other CMS providers as you prefer. When the image is called to the storefront, the required USDZ files are retrieved on a per-SKU basis as they are available from the CMS provider. The storefront only displays the required AR tags, if the file exists. Any SKUs without a corresponding USDZ file will not have an AR tag displayed on the product display page.
 
-Configuration properties for content URLs are defined as follows:
+Configuration properties for content URLs are:
 * `arKit.enable`: Enable elements for ARKit's Quick Look capability to load on a product display page. When `arKit.enable` is enabled, any product images that have hosted ARKit USDZ files are wrapped with an anchor tag referencing the file hosted on an external CMS.
-* `arKit.skuArImagesUrl`: The path to the USDZ files hosted on an external CMS used for ARKit Quick Look. Set this parameter to the complete URL of the files by replacing the `sku/file-name` with `%sku%`. This value is populated when the page is loaded with values retrieved by Cortex.
+* `arKit.skuArImagesUrl`: The path to the USDZ files hosted on an external CMS used for ARKit Quick Look. Set this parameter to the complete URL of the files by replacing the `sku/file-name` parameter with `%sku%`. This parameter is populated when the page is loaded with values retrieved by Cortex.
 
-If you use another CMS, you must update the configurations to reflect the public URLs of the files being retrieved by the particular content provider.
+For any other CMS, you must update the configurations to reflect the public URLs of the files being retrieved by the particular content provider.
 
 
 {% include legal.html %}
