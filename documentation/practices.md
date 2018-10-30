@@ -41,7 +41,7 @@ If you use another CMS, you must update the configurations to reflect the public
 
 IBM Watson Content Hub is a cloud-based CMS. It also provides services with IBM Watson, such as cognitive tagging, to help transform assets into a searchable library of content.
 
-You can upload catalog images and site content images to WCH using the wchtools command-line utility. Uploaded assets are scanned using Watson's Visual Recognition service tagged based on the content to create a searchable library. After the images are uploaded, provide the content delivery URL with the appropriate sku/file name placeholders in the Reference Storefront's configuration for both `skuImagesUrl` and `siteImagesUrl`. In the following examples, a few fields are populated based on the tenant ID of the WCH account and the directory structure of the assets:
+You can upload catalog images and site content images to WCH using the wchtools command-line utility. Uploaded assets are scanned using the Watson's Visual Recognition service, which are tagged based on the content, to create a searchable library. After uploading the images, provide the content delivery URL with the appropriate sku/file name placeholders in the Reference Storefront's configuration for both `skuImagesUrl` and `siteImagesUrl`. In the following examples, a few fields are populated based on the tenant ID of the WCH account and the directory structure of the assets:
 `"skuImagesUrl": "https://my11.digitalexperience.ibm.com/<wch_tenant_identifier>/dxdam/<catalog_directory>/%sku%.jpeg",`
 `"siteImagesUrl": "https://my11.digitalexperience.ibm.com/<wch_tenant_identifier>/dxdam/<site_images>/%fileName%",`
 
