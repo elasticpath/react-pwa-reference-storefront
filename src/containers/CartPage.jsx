@@ -186,7 +186,7 @@ class CartPage extends React.Component {
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                     <div>
-                      <button className="vestri-btn primary wide btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
+                      <button className="ep-btn primary wide btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
                         {intl.get('proceed-to-checkout')}
                       </button>
                     </div>

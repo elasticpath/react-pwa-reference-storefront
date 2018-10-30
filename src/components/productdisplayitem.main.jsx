@@ -408,7 +408,7 @@ class ProductDisplayItemMain extends React.Component {
                   <div className="form-group-submit">
                     <div className="form-content form-content-submit col-sm-offset-4">
                       <button
-                        className="vestri-btn primary wide"
+                        className="ep-btn primary wide btn-itemdetail-addtocart"
                         disabled={!availability}
                         id="product_display_item_add_to_cart_button"
                         type="submit"

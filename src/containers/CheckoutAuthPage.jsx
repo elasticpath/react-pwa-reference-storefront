@@ -141,7 +141,7 @@ class CheckoutAuthPage extends React.Component {
                   <p>
                     {intl.get('create-an-account-message')}
                   </p>
-                  <button className="vestri-btn primary wide" type="button" onClick={() => { history.push('/registration', { returnPage: '/checkout' }); }}>
+                  <button className="ep-btn primary wide checkout-auth-option-register-btn" type="button" onClick={() => { history.push('/registration', { returnPage: '/checkout' }); }}>
                     {intl.get('register')}
                   </button>
                 </div>
@@ -180,7 +180,7 @@ class CheckoutAuthPage extends React.Component {
                     </div>
                     <input id="OAuthScope" name="OAuthScope" list="oAuthScopeList" type="hidden" value="vestri" />
                     <input id="OAuthRole" name="OAuthRole" list="oAuthRoleList" type="hidden" value="REGISTERED" />
-                    <button className="vestri-btn primary wide checkout-auth-option-login-btn" data-el-label="checkoutAuthOption.login" type="submit">
+                    <button className="ep-btn primary wide checkout-auth-option-login-btn" data-el-label="checkoutAuthOption.login" type="submit">
                       {intl.get('login-and-continue')}
                     </button>
                   </form>
@@ -210,7 +210,7 @@ class CheckoutAuthPage extends React.Component {
                       </label>
                       <input id="Email" name="Email" className="form-control" type="email" onChange={this.setEmail} />
                     </div>
-                    <button className="vestri-btn primary wide checkout-auth-option-anonymous-checkout-btn" data-el-label="checkoutAuthOption.anonymousCheckout" type="submit">
+                    <button className="ep-btn primary wide checkout-auth-option-anonymous-checkout-btn" data-el-label="checkoutAuthOption.anonymousCheckout" type="submit">
                       {intl.get('continue-to-checkout')}
                     </button>
                   </form>

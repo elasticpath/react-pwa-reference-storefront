@@ -51,7 +51,7 @@ function HomePage() {
             {intl.get('home-sub-espot-container1-second-line')}
           </span>
           <span className="line line-3">
-            <button className="vestri-btn primary wide" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+            <button className="ep-btn primary wide btn-accessories" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
               {intl.get('home-sub-espot-container1-button')}
             </button>
           </span>
