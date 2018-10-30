@@ -32,8 +32,8 @@ public class CartPage extends AbstractPageObject {
 
 	private final static String REMOVE_BUTTON_CSS = "button.btn-cart-removelineitem";
 	private final static String EMPTY_CART_CONTAINER_CSS = ".cart-empty-container";
-	private final static String CART_CONTAINER_CSS = "div.cart-container container";
-	private final static String CHECKOUT_BUTTON_CSS = "button.btn-cmd-checkout";
+	private final static String CART_CONTAINER_CSS = "div[class='cart-container container']";
+	private final static String CHECKOUT_BUTTON_CSS = "button[class='ep-btn primary wide btn-cmd-checkout']";
 	private final static String QUANTITY_SELECT_CSS = "select[id='select-quantity']";
 	private final static String CART_LINE_ITEM_PRICE_CSS = "div[data-region='itemTotalPriceRegion'] .cart-total-purchase-price";
 	private final static String REMOVE_LINEITEM_BUTTON_CSS = "button.btn-cart-removelineitem";
