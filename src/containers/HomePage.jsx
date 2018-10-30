@@ -50,9 +50,11 @@ function HomePage() {
           <span className="line line-2">
             {intl.get('home-sub-espot-container1-second-line')}
           </span>
-          <button className="btn-accessories" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
-            {intl.get('home-sub-espot-container1-button')}
-          </button>
+          <span className="line line-3">
+            <button className="ep-btn primary wide btn-accessories" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+              {intl.get('home-sub-espot-container1-button')}
+            </button>
+          </span>
         </div>
       </div>
       <div className="section section-3 container">

@@ -271,7 +271,7 @@ class CartLineItem extends React.Component {
           </select>
         </div>
         <div className="remove-btn-col">
-          <button className="btn btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
+          <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
             <span className="btn-text">
               {intl.get('remove')}
             </span>

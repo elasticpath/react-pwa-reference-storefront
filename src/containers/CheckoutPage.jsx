@@ -199,11 +199,11 @@ class CheckoutPage extends React.Component {
               </div>
               <div className="address-btn-cell">
                 {/* eslint-disable-next-line max-len */}
-                <button className="btn checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(shippingAddress.self.uri); }}>
+                <button className="ep-btn small checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(shippingAddress.self.uri); }}>
                   {intl.get('edit')}
                 </button>
                 {/* eslint-disable-next-line max-len */}
-                <button className="btn checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(shippingAddress.self.uri); }}>
+                <button className="ep-btn small checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(shippingAddress.self.uri); }}>
                   {intl.get('delete')}
                 </button>
               </div>
@@ -236,7 +236,7 @@ class CheckoutPage extends React.Component {
             <div data-region="shippingAddressSelectorsRegion" className="checkout-region-inner-container">
               {this.renderShippingAddress()}
             </div>
-            <button className="btn btn-primary checkout-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
+            <button className="ep-btn primary wide checkout-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
               {intl.get('add-new-address')}
             </button>
           </div>
@@ -347,11 +347,11 @@ class CheckoutPage extends React.Component {
               </div>
               <div className="address-btn-cell">
                 {/* eslint-disable-next-line max-len */}
-                <button className="btn checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(billingAddr.self.uri); }}>
+                <button className="ep-btn small checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(billingAddr.self.uri); }}>
                   {intl.get('edit')}
                 </button>
                 {/* eslint-disable-next-line max-len */}
-                <button className="btn checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(billingAddr.self.uri); }}>
+                <button className="ep-btn small checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(billingAddr.self.uri); }}>
                   {intl.get('delete')}
                 </button>
               </div>
@@ -378,7 +378,7 @@ class CheckoutPage extends React.Component {
         <div data-region="billingAddressSelectorsRegion" className="checkout-region-inner-container">
           {this.renderBillingAddress()}
         </div>
-        <button className="btn btn-primary checkout-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
+        <button className="ep-btn primary wide checkout-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
           {intl.get('add-new-address')}
         </button>
       </div>
@@ -426,7 +426,7 @@ class CheckoutPage extends React.Component {
               </div>
               {deletable && (
                 <div className="payment-btn-cell">
-                  <button className="btn checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
+                  <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
                     Delete
                   </button>
                 </div>
@@ -454,7 +454,7 @@ class CheckoutPage extends React.Component {
         <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
           {this.renderPayments()}
         </div>
-        <button className="btn btn-primary checkout-new-payment-btn" type="button" onClick={() => { this.newPayment(); }}>
+        <button className="ep-btn primary wide checkout-new-payment-btn" type="button" onClick={() => { this.newPayment(); }}>
           {intl.get('add-new-payment-method')}
         </button>
       </div>
@@ -496,7 +496,7 @@ class CheckoutPage extends React.Component {
                     <CheckoutSummaryList data={orderData} />
                   </div>
                   <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
-                    <button className="btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
+                    <button className="ep-btn primary wide btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
                       {intl.get('complete-order')}
                     </button>
                   </div>

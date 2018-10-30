@@ -449,7 +449,12 @@ class ProductDisplayItemMain extends React.Component {
                   </div>
                   <div className="form-group-submit">
                     <div className="form-content form-content-submit col-sm-offset-4">
-                      <button className={`btn-round btn btn-primary btn-itemdetail-addtocart${!availability ? ' disabled' : ''}`} id="product_display_item_add_to_cart_button" type="submit">
+                      <button
+                        className="ep-btn primary wide btn-itemdetail-addtocart"
+                        disabled={!availability}
+                        id="product_display_item_add_to_cart_button"
+                        type="submit"
+                      >
                         {intl.get('add-to-cart')}
                       </button>
                     </div>
