@@ -68,7 +68,7 @@ Google Analytics handlers use the global product attribute `Tag`. Use the format
 
 **Apple ARKit Augmented Reality Quick Look Integration**
 
-The React PWA Reference Storefront is pre-configured for integration with Apple's ARKit web integration. For iOS 12 or later versions, you can incorporate 3D objects into the real world using AR Quick Look directly through the Safari web browser. For more information on ARKit, see [Get ready for ARKit 2](https://developer.apple.com/arkit/).
+The React PWA Reference Storefront is pre-configured for integration with Apple's ARKit web integration. For iOS 12 or later versions, you can incorporate 3D objects into the real world using AR Quick Look directly through the Safari web browser when you visit a product's display page that supports the functionality. For more information on ARKit, see [Get ready for ARKit 2](https://developer.apple.com/arkit/).
 
 ARKit USDZ files are externalized through content URLs within the storefront application configuration. The default URLs are configured to reference the USDZ files, which are located on Amazon S3. However, you can use other CMS providers as you prefer. When the image is called to the storefront, the required USDZ files are retrieved on a per-SKU basis as they are available from the CMS provider. The storefront only displays the required AR tags, if the file exists. Any SKUs without a corresponding USDZ file will not have an AR tag displayed on the product display page.
 

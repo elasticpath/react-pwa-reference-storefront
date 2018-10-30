@@ -6,27 +6,17 @@ https://elasticpath.github.io/react-pwa-reference-storefront/
 
 
 ### Setting Up Documentation Locally
-*Prerequisites:* 
+**Prerequisites** 
 Ensure that Xcode and Command Line Tools are installed.
 
-1. Run the following command to install the latest version of rvm:
+1. To install the latest version of rvm, run the following command:
 `\curl -sSL https://get.rvm.io | bash -s stable`
-2. Run the following command to install the latest version of ruby with rvm:
+2. To install the latest version of ruby with rvm, run the following command:
 `rvm install ruby --latest`
-<<<<<<< Updated upstream
-3. Install the GitHub pages and Jekyll:
-  a). Run `gem install github-pages`
-  b). Run `gem install bundler jekyll`
-  c). Run `bundle install`
-  d). Run `jekyll build`
-  e). Run `jekyll serve`
+3. Install the GitHub pages and Jekyll. Run the following commands in order:
+  a). `gem install github-pages`
+  b). `gem install bundler jekyll`
+  c). `bundle install`
+  d). `jekyll build`
+  e). `jekyll serve`
 The documentation is now available locally at `http://127.0.0.1:4000/react-pwa-reference-storefront/`.
-=======
-3. Run following gem commands to install github pages and jekyll:
-  a. `gem install github-pages`
-  b. `gem install bundler jekyll`
-  c. `bundle install`
-  d. `jekyll build`
-  e. `jekyll serve`
-The documentation appears locally at `http://127.0.0.1:4000/react-pwa-reference-storefront/`.
->>>>>>> Stashed changes
