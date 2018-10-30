@@ -30,6 +30,9 @@ import {
 import imgPlaceholder from '../images/img-placeholder.png';
 import cortexFetch from '../utils/Cortex';
 import './cart.lineitem.less';
+import epConfig from '../ep.config.json';
+
+const configurationPrefix = epConfig.cartItemModifier.prefix;
 
 const Config = require('Config');
 
@@ -141,6 +144,25 @@ class CartLineItem extends React.Component {
     );
   }
 
+  renderConfiguration() {
+    const { item } = this.props;
+    const keys = Object.keys(item.configuration);
+    if (keys) {
+      return keys.map(key => (
+        <li className="configuration" key={key.split(configurationPrefix)[1]}>
+          <label className="option-name">
+            {key.split(configurationPrefix)[1]}
+            :&nbsp;
+          </label>
+          <span>
+            {item.configuration[key]}
+          </span>
+        </li>
+      ));
+    }
+    return null;
+  }
+
   renderOptions() {
     const { item } = this.props;
     const options = item._item[0]._definition[0]._options;
@@ -197,6 +219,7 @@ class CartLineItem extends React.Component {
         <div className="options-col">
           <ul className="options-container">
             {this.renderOptions()}
+            {this.renderConfiguration()}
           </ul>
         </div>
         <div className="availability-col" data-region="cartLineitemAvailabilityRegion">
