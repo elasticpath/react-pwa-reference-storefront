@@ -48,7 +48,7 @@ public class ProfilePage extends AbstractPageObject {
 	@FindBy(id = "registration_form_lastName")
 	private WebElement lastName;
 
-	@FindBy(css = "button[data-el-label='addressForm.save']")
+	@FindBy(className = "profile-info-save-btn")
 	private WebElement savePersonalInfoButton;
 
 	@FindBy(css = "div[data-region='profilePurchaseHistoryRegion']")
@@ -63,7 +63,7 @@ public class ProfilePage extends AbstractPageObject {
 	@FindBy(css = "div[data-region='profileAddressesRegion'] button.profile-new-address-btn")
 	private WebElement addProfileNewAddress;
 
-	@FindBy(css = "div[data-region='paymentMethodsRegion'] button.new-payment-btn")
+	@FindBy(className = "new-payment-btn")
 	private WebElement addProfileNewPaymentMethod;
 
 	private final static String PURCHASE_ID_LINK_CSS = "a[id='profile_purchase_number_link_%1s']";
