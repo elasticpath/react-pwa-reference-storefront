@@ -150,7 +150,7 @@ class CartLineItem extends React.Component {
     if (keys) {
       return keys.map(key => (
         <li className="configuration" key={key.split(configurationPrefix)[1]}>
-          <label className="option-name">
+          <label htmlFor="option-name" className="option-name">
             {key.split(configurationPrefix)[1]}
             :&nbsp;
           </label>
