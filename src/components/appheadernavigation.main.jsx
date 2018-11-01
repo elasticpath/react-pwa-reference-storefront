@@ -35,6 +35,13 @@ const Config = require('Config');
 const zoomArray = [
   'navigations:element',
   'navigations:element:child',
+  'navigations:element:child:child',
+  'navigations:element:child:child:child',
+  'navigations:element:child:child:child:child',
+  'navigations:element:child:child:child:child:child',
+  'navigations:element:child:child:child:child:child:child',
+  'navigations:element:child:child:child:child:child:child:child',
+  'navigations:element:child:child:child:child:child:child:child:child',
 ];
 
 class AppHeaderNavigationMain extends React.Component {
@@ -100,51 +107,132 @@ class AppHeaderNavigationMain extends React.Component {
     isOfflineCheck(isOfflineValue);
   }
 
-  render() {
+  renderSubCategories(subCategoryChildArray) {
+    const { isMobileView } = this.props;
+    return subCategoryChildArray.map((subcategoryChild) => {
+      const {
+        navigations,
+      } = this.state;
+      return (
+        subcategoryChild._child
+          ? (
+            <li className="dropdown-submenu" key={subcategoryChild.name} data-name={subcategoryChild['display-name']} data-el-container="category-nav-item-container">
+              <label className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}navbarDropdown_${subcategoryChild.name}`}>
+                {subcategoryChild['display-name']}
+              </label>
+              <ul className="dropdown-menu sub-category-dropdown-menu" role="menu" aria-label={`navbarDropdown_${subcategoryChild.name}`}>
+                {subcategoryChild._child.map(subcategory => this.renderSubCategories([subcategory]))}
+              </ul>
+            </li>
+          )
+          : (
+            <li className="dropdown-item" key={subcategoryChild.name} data-name={subcategoryChild['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
+              <Link className="nav-link dropdown-item" to={`/category/${encodeURIComponent(subcategoryChild.self.uri)}`}>
+                <div
+                  data-toggle="collapse"
+                  data-target={isMobileView ? '.collapsable-container' : ''}
+                >
+                  {subcategoryChild['display-name']}
+                </div>
+              </Link>
+            </li>
+          )
+
+      );
+    });
+  }
+
+  renderCategories() {
     const { navigations } = this.state;
     const { isMobileView } = this.props;
+    console.log(navigations);
+    if (navigations) {
+      return navigations.map((category) => {
+        if (category._child) {
+          return (
+            <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
+              <label className="nav-link dropdown-toggle" id={`${isMobileView ? 'mobile_' : ''}navbarDropdown_${category.name}`} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {category['display-name']}
+              </label>
+              <ul className="dropdown-menu sub-category-dropdown-menu" role="menu" aria-label={`navbarDropdown_${category.name}`}>
+                {this.renderSubCategories(category._child)}
+              </ul>
+            </li>
+          );
+        }
+        return (
+          <li className="nav-item" key={category.name} data-name={category['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
+            <Link className="nav-link" to={`/category/${encodeURIComponent(category.self.uri)}`}>
+              <div
+                data-toggle="collapse"
+                data-target={isMobileView ? '.collapsable-container' : ''}
+              >
+                {category['display-name']}
+              </div>
+            </Link>
+          </li>
+        );
+      });
+    }
+    return null;
+  }
 
+  render() {
+    const { isMobileView } = this.props;
     return (
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
         <ul className="navbar-nav nav mr-auto mt-2 mt-lg-0">
-          {navigations.map(category => (
-            category._child
-              ? (
-                <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
-                  <a className="nav-link dropdown-toggle" href="/" id={`${isMobileView ? 'mobile_' : ''}navbarDropdown_${category.name}`} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {category['display-name']}
-                  </a>
-                  <div className="dropdown-menu sub-category-dropdown-menu" aria-label={`navbarDropdown_${category.name}`}>
-                    {category._child.map(subcategory => (
-                      <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
-                        <div
-                          data-toggle="collapse"
-                          data-target={isMobileView ? '.collapsable-container' : ''}
-                        >
-                          {subcategory['display-name']}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </li>
-              )
-              : (
-                <li className="nav-item" key={category.name} data-name={category['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
-                  <Link className="nav-link" to={`/category/${encodeURIComponent(category.self.uri)}`}>
-                    <div
-                      data-toggle="collapse"
-                      data-target={isMobileView ? '.collapsable-container' : ''}
-                    >
-                      {category['display-name']}
-                    </div>
-                  </Link>
-                </li>
-              )
-          ))}
+          {this.renderCategories()}
         </ul>
       </div>
     );
   }
+
+  // render() {
+  //   const { navigations } = this.state;
+  //   const { isMobileView } = this.props;
+
+  //   return (
+  //     <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
+  //       <ul className="navbar-nav nav mr-auto mt-2 mt-lg-0">
+  //         {navigations.map(category => (
+  //           category._child
+  //             ? (
+  //               <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
+  //                 <a className="nav-link dropdown-toggle" href="/" id={`${isMobileView ? 'mobile_' : ''}navbarDropdown_${category.name}`} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  //                   {category['display-name']}
+  //                 </a>
+  //                 <div className="dropdown-menu sub-category-dropdown-menu" aria-label={`navbarDropdown_${category.name}`}>
+  //                   {category._child.map(subcategory => (
+  //                     <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
+  //                       <div
+  //                         data-toggle="collapse"
+  //                         data-target={isMobileView ? '.collapsable-container' : ''}
+  //                       >
+  //                         {subcategory['display-name']}
+  //                       </div>
+  //                     </Link>
+  //                   ))}
+  //                 </div>
+  //               </li>
+  //             )
+  //             : (
+  //               <li className="nav-item" key={category.name} data-name={category['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
+  //                 <Link className="nav-link" to={`/category/${encodeURIComponent(category.self.uri)}`}>
+  //                   <div
+  //                     data-toggle="collapse"
+  //                     data-target={isMobileView ? '.collapsable-container' : ''}
+  //                   >
+  //                     {category['display-name']}
+  //                   </div>
+  //                 </Link>
+  //               </li>
+  //             )
+  //         ))}
+  //       </ul>
+  //     </div>
+  //   );
+  // }
 }
 
 export default withRouter(AppHeaderNavigationMain);
