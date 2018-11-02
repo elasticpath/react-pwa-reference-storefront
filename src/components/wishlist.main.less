@@ -1,0 +1,188 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.cart-main-inner {
+  min-height: 100%;
+  margin-bottom: 0px;
+
+  a {
+    color: @mainTextColor;
+    text-decoration: none;
+  }
+
+  .table {
+    thead > tr > th,
+    tbody > tr > th,
+    tfoot > tr > th,
+    thead > tr > td,
+    tbody > tr > td,
+    tfoot > tr > td {
+      padding: 8px;
+      line-height: 1.428571429;
+      vertical-align: top;
+      border-top: 1px solid #dddddd;
+    }
+  }
+
+  .form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  }
+
+  .cart-table {
+    margin-bottom: 0;
+
+    thead {
+      background: @mainColor;
+    }
+
+    thead th:first-child {
+      border-top-left-radius: 6px;
+    }
+
+    thead th:last-child {
+      border-top-right-radius: 6px;
+    }
+
+    tr {
+      border: none;
+
+      th {
+        font-size: 1.3rem;
+        color: #fff;
+        font-weight: 400;
+      }
+
+      th:last-child {
+        text-align: right;
+      }
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  @media screen and (max-width: @mobileWidth - 1) {
+    .cart-table {
+      display: block;
+      width: 100%;
+
+      thead {
+        display: block;
+        width: 100%;
+      }
+
+      tbody {
+        display: block;
+        width: 100%;
+
+        tr {
+          display: block;
+          width: 100%;
+
+          td {
+            display: block !important;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .cart-main-inner .cart-table {
+      border: 1px solid #ddd;
+    }
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr {
+      border: 1px solid #eee;
+      margin-bottom: 30px;
+    }
+
+    tr:last-child {
+      margin: 0;
+    }
+
+    td {
+      /* Behave  like a "row" */
+
+      border: 0 !important;
+      position: relative;
+      text-align: center;
+      word-wrap: break-word;
+      padding: 6px !important;
+
+      a {
+        word-wrap: break-word !important;
+        white-space: normal !important;
+      }
+    }
+
+    td:before {
+      /* Now like a table header */
+
+      position: absolute;
+      /* Top/left values mimic padding */
+
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+  }
+
+  h1 {
+    margin: 0 0 3rem 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  .cart-table > tbody > tr:nth-child(odd) > td,
+  .cart-table > tbody > tr:nth-child(odd) > th {
+    background-color: #e9e9e9;
+  }
+}

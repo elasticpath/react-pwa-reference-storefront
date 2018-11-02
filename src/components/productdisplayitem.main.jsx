@@ -40,6 +40,7 @@ const Config = require('Config');
 const zoomArray = [
   'availability',
   'addtocartform',
+  'addtowishlistform',
   'price',
   'rate',
   'definition',
@@ -81,6 +82,7 @@ class ProductDisplayItemMain extends React.Component {
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
   }
 
@@ -218,6 +220,42 @@ class ProductDisplayItemMain extends React.Component {
               sendAddToCartAnalytics();
             }
             history.push('/mycart');
+          } else {
+            let debugMessages = '';
+            res.json().then((json) => {
+              for (let i = 0; i < json.messages.length; i++) {
+                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
+              }
+            }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+    event.preventDefault();
+  }
+
+  addToWishList(event) {
+    const { productData, itemQuantity } = this.state;
+    const { history } = this.props;
+    login().then(() => {
+      const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
+      cortexFetch(addToWishListLink.uri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            quantity: itemQuantity,
+          }),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            history.push('/wishlists');
           } else {
             let debugMessages = '';
             res.json().then((json) => {
@@ -464,6 +502,20 @@ class ProductDisplayItemMain extends React.Component {
                     {addToCartFailedMessage}
                   </div>
 
+                </form>
+                <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.addToWishList}>
+                  <div className="form-group-submit">
+                    <div className="form-content form-content-submit col-sm-offset-4">
+                      <button
+                        className="ep-btn primary wide btn-itemdetail-addtowishlist"
+                        disabled={!availability}
+                        id="product_display_item_add_to_wish_list_button"
+                        type="submit"
+                      >
+                        {intl.get('add-to-wish-list')}
+                      </button>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
