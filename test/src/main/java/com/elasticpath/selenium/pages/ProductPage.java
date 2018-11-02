@@ -29,6 +29,7 @@ public class ProductPage extends AbstractPageObject {
 
 	private final static String SKU_OPTION_SELECT_CSS = "select[id*='product_display_item_sku_select_'][id*='%s']";
 	private final static String ADD_TO_CART_BUTTON_CSS = "button[id='product_display_item_add_to_cart_button']";
+	private final static String ADD_TO_WISHLIST_BUTTON_CSS = "button[id='product_display_item_add_to_wish_list_button']";
 	private final static String QUANTITY_SELECT_CSS = "select[id='product_display_item_quantity_select']";
 
 	private final WebDriver driver;
@@ -52,6 +53,12 @@ public class ProductPage extends AbstractPageObject {
 		getWaitDriver().waitForPageToLoad();
 		clickButton(ADD_TO_CART_BUTTON_CSS);
 		return new CartPage(driver);
+	}
+
+	public WishListPage clickAddToWishListButton() {
+		getWaitDriver().waitForPageToLoad();
+		clickButton(ADD_TO_WISHLIST_BUTTON_CSS);
+		return new WishListPage(driver);
 	}
 
 	public void selectQuantity(final String quantity) {

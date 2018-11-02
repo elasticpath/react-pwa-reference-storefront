@@ -20,7 +20,9 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
@@ -35,6 +37,7 @@ const Config = require('Config');
 
 class CartLineItem extends React.Component {
   static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
     item: PropTypes.objectOf(PropTypes.any).isRequired,
     handleQuantityChange: PropTypes.func.isRequired,
   }
@@ -46,6 +49,7 @@ class CartLineItem extends React.Component {
       quantity: item.quantity,
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.handleMoveToCartBtnClicked = this.handleMoveToCartBtnClicked.bind(this);
     this.handleRemoveBtnClicked = this.handleRemoveBtnClicked.bind(this);
   }
 
@@ -74,6 +78,33 @@ class CartLineItem extends React.Component {
             console.error(error.message);
           });
       });
+    });
+  }
+
+  handleMoveToCartBtnClicked() {
+    const { item, history } = this.props;
+    login().then(() => {
+      const moveToCartLink = item._movetocartform[0].links.find(link => link.rel === 'movetocartaction');
+      cortexFetch(moveToCartLink.uri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            quantity: 1,
+          }),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            history.push('/mycart');
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     });
   }
 
@@ -106,8 +137,9 @@ class CartLineItem extends React.Component {
 
   renderUnitPrice() {
     const { item } = this.props;
-    const listPrice = item._price[0]['list-price'][0].display;
-    const purchasePrice = item._price[0]['purchase-price'][0].display;
+    const itemPrice = ((item._price) ? (item._price) : (item._item[0]._price));
+    const listPrice = itemPrice[0]['list-price'][0].display;
+    const purchasePrice = itemPrice[0]['purchase-price'][0].display;
     if (listPrice !== purchasePrice) {
       return (
         <ul className="price-container">
@@ -131,11 +163,12 @@ class CartLineItem extends React.Component {
 
   renderTotalPrice() {
     const { item } = this.props;
+    const itemTotal = ((item._total) ? (item._total[0].cost[0].display) : (''));
     return (
       <ul className="price-container">
         <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion" />
         <li className="cart-total-purchase-price">
-          {item._total[0].cost[0].display}
+          {itemTotal}
         </li>
       </ul>
     );
@@ -165,16 +198,17 @@ class CartLineItem extends React.Component {
   render() {
     const { item } = this.props;
     const { quantity } = this.state;
-    let availability = (item._availability[0].state === 'AVAILABLE');
+    const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
+    let availability = (itemAvailability[0].state === 'AVAILABLE');
     let availabilityString = '';
-    if (item._availability.length >= 0) {
-      if (item._availability[0].state === 'AVAILABLE') {
+    if (itemAvailability.length >= 0) {
+      if (itemAvailability[0].state === 'AVAILABLE') {
         availability = true;
         availabilityString = intl.get('in-stock');
-      } else if (item._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+      } else if (itemAvailability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
         availability = true;
         availabilityString = intl.get('pre-order');
-      } else if (item._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+      } else if (itemAvailability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
         availability = true;
         availabilityString = intl.get('back-order');
       } else {
@@ -207,13 +241,13 @@ class CartLineItem extends React.Component {
                 {availabilityString}
               </div>
             </li>
-            <li className={`category-item-release-date${item._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+            <li className={`category-item-release-date${itemAvailability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
               <label htmlFor="release-date-value" className="releasedate-label">
                 {intl.get('expected-release-date')}
                 :&nbsp;
               </label>
               <span className="release-date-value">
-                {(item._availability[0]['release-date']) ? item._availability[0]['release-date']['display-value'] : ''}
+                {(itemAvailability[0]['release-date']) ? itemAvailability[0]['release-date']['display-value'] : ''}
               </span>
             </li>
           </ul>
@@ -234,41 +268,40 @@ class CartLineItem extends React.Component {
           </div>
         </div>
         <div className="quantity-col" data-el-value="lineItem.quantity">
-          <select className="quantity-select form-control" id="select-quantity" name="select-quantity" value={quantity} onChange={this.handleQuantityChange}>
-            <option value="0">
-              0
-            </option>
-            <option value="1">
-              1
-            </option>
-            <option value="2">
-              2
-            </option>
-            <option value="3">
-              3
-            </option>
-            <option value="4">
-              4
-            </option>
-            <option value="5">
-              5
-            </option>
-            <option value="6">
-              6
-            </option>
-            <option value="7">
-              7
-            </option>
-            <option value="8">
-              8
-            </option>
-            <option value="9">
-              9
-            </option>
-            <option value="10">
-              10
-            </option>
-          </select>
+          {(quantity > 0) ? (
+            <select className="quantity-select form-control" id="select-quantity" name="select-quantity" value={quantity} onChange={this.handleQuantityChange}>
+              <option value="1">
+                1
+              </option>
+              <option value="2">
+                2
+              </option>
+              <option value="3">
+                3
+              </option>
+              <option value="4">
+                4
+              </option>
+              <option value="5">
+                5
+              </option>
+              <option value="6">
+                6
+              </option>
+              <option value="7">
+                7
+              </option>
+              <option value="8">
+                8
+              </option>
+              <option value="9">
+                9
+              </option>
+              <option value="10">
+                10
+              </option>
+            </select>
+          ) : ('')}
         </div>
         <div className="remove-btn-col">
           <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
@@ -277,9 +310,19 @@ class CartLineItem extends React.Component {
             </span>
           </button>
         </div>
+        {(item._movetocartform) ? (
+          <div className="move-to-cart-btn-col">
+            <button className="ep-btn primary small btn-cart-moveToCart" type="button" onClick={this.handleMoveToCartBtnClicked}>
+              <span className="btn-text">
+                {intl.get('move-to-cart')}
+              </span>
+            </button>
+          </div>
+        ) : ('')
+        }
       </div>
     );
   }
 }
 
-export default CartLineItem;
+export default withRouter(CartLineItem);

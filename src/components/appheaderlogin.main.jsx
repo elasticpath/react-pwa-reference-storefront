@@ -83,6 +83,15 @@ class AppHeaderLoginMain extends React.Component {
                   </Link>
                 </li>
                 <li className="dropdown-item">
+                  <Link to="/wishlists" className="wishlist-link">
+                    <div data-toggle="collapse" data-target=".collapsable-container">
+                      <span id="header_navbar_login_menu_wishlist_link">
+                        {intl.get('wishlists')}
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+                <li className="dropdown-item">
                   <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                     <span className="icon" />
                     {intl.get('logout')}

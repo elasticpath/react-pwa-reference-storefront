@@ -35,6 +35,7 @@ const Config = require('Config');
 const zoomArray = [
   'availability',
   'addtocartform',
+  'addtowishlistform',
   'price',
   'rate',
   'definition',

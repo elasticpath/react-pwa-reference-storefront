@@ -40,6 +40,7 @@ public class HeaderPage extends AbstractPageObject {
 	private final static String LOGIN_BUTTON_CSS = ".app-login-component .login-btn";
 	private final static String LOGGEDIN_BUTTON_CSS = ".app-login-component .btn-auth-menu";
 	private final static String PROFILE_CSS = ".app-login-component .profile-link";
+	private final static String WISHLIST_CSS = ".app-login-component .wishlist-link";
 	private final static String LOGOUT_CSS = ".app-login-component .logout-link";
 
 	/**
@@ -82,6 +83,12 @@ public class HeaderPage extends AbstractPageObject {
 		clickLoggedInLink();
 		getDriver().findElement(By.cssSelector(PROFILE_CSS)).click();
 		return new ProfilePage(driver);
+	}
+
+	public WishListPage clickWishListMenuLink() {
+		clickLoggedInLink();
+		getDriver().findElement(By.cssSelector(WISHLIST_CSS)).click();
+		return new WishListPage(driver);
 	}
 
 	public LoginPage clickLoginLink() {
