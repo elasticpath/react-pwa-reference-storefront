@@ -31,7 +31,6 @@ import {
 import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
 import cortexFetch from '../utils/Cortex';
-import epConfig from '../ep.config.json';
 
 import './productdisplayitem.main.less';
 
@@ -63,8 +62,6 @@ const zoomArray = [
   'recommendations:warranty',
   'code',
 ];
-
-const configurationPrefix = epConfig.cartItemModifier.prefix;
 
 class ProductDisplayItemMain extends React.Component {
   static propTypes = {
@@ -169,10 +166,7 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   handleConfiguration(configuration, event) {
-    let { itemConfiguration } = this.state;
-    if (!itemConfiguration) {
-      itemConfiguration = {};
-    }
+    const { itemConfiguration } = this.state;
     itemConfiguration[configuration] = event.target.value;
     this.setState({ itemConfiguration });
   }
@@ -212,6 +206,11 @@ class ProductDisplayItemMain extends React.Component {
     const { history } = this.props;
     login().then(() => {
       const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+      const body = {};
+      body.quantity = itemQuantity;
+      if (itemConfiguration) {
+        body.configuration = itemConfiguration;
+      }
       cortexFetch(addToCartLink.uri,
         {
           method: 'post',
@@ -219,10 +218,7 @@ class ProductDisplayItemMain extends React.Component {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-          body: JSON.stringify({
-            quantity: itemQuantity,
-            configuration: itemConfiguration,
-          }),
+          body: JSON.stringify(body),
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
@@ -307,11 +303,11 @@ class ProductDisplayItemMain extends React.Component {
       const keys = Object.keys(productData._addtocartform[0].configuration);
       return keys.map(key => (
         <div key={key} className="form-group">
-          <label htmlFor={`product_display_item_configuration_${key.split(configurationPrefix)[1]}_label`} className="control-label">
-            {key.split(configurationPrefix)[1]}
+          <label htmlFor={`product_display_item_configuration_${key}_label`} className="control-label">
+            {key}
           </label>
           <div className="form-content">
-            <input className="form-control form-control-text" disabled={isLoading} onChange={e => this.handleConfiguration(key, e)} id={`product_display_item_configuration_${key.split(configurationPrefix)[1]}_label`} value={productData._addtocartform[0].configuration.key} />
+            <input className="form-control form-control-text" disabled={isLoading} onChange={e => this.handleConfiguration(key, e)} id={`product_display_item_configuration_${key}_label`} value={productData._addtocartform[0].configuration.key} />
           </div>
         </div>
       ));

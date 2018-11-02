@@ -33,8 +33,5 @@
   "arKit": {
     "enable": true,
     "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"
-  },
-  "cartItemModifier": {
-    "prefix": "SIG_"
   }
 }

@@ -30,9 +30,6 @@ import {
 import imgPlaceholder from '../images/img-placeholder.png';
 import cortexFetch from '../utils/Cortex';
 import './cart.lineitem.less';
-import epConfig from '../ep.config.json';
-
-const configurationPrefix = epConfig.cartItemModifier.prefix;
 
 const Config = require('Config');
 
@@ -149,9 +146,9 @@ class CartLineItem extends React.Component {
     const keys = Object.keys(item.configuration);
     if (keys) {
       return keys.map(key => (
-        <li className="configuration" key={key.split(configurationPrefix)[1]}>
+        <li className="configuration" key={key}>
           <label htmlFor="option-name" className="option-name">
-            {key.split(configurationPrefix)[1]}
+            {key}
             :&nbsp;
           </label>
           <span>
