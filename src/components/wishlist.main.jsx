@@ -31,15 +31,15 @@ const WishListMain = (props) => {
   } = props;
   if (empty) {
     return (
-      <div className="cart-empty-container">
-        <span className="cart-empty-message">
+      <div className="wish-list-empty-container">
+        <span className="wish-list-empty-message">
           {intl.get('wish-list-empty-message')}
         </span>
       </div>
     );
   }
   return (
-    <div className="cart-main-inner table-responsive">
+    <div className="wish-list-main-inner table-responsive">
       {wishListData._lineitems[0]._element.map(product => (
         <CartLineItem key={product._item[0]._code[0].code} item={product} handleQuantityChange={() => { handleQuantityChange(); }} />
       ))}

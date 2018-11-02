@@ -96,9 +96,9 @@ class WishListsPage extends React.Component {
   render() {
     const { wishListData, isLoading } = this.state;
     return (
-      <div className="cart-container container">
-        <div className="cart-container-inner">
-          <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
+      <div className="wish-list-container container">
+        <div className="wish-list-container-inner">
+          <div data-region="wishListTitleRegion" className="wish-list-title-container" style={{ display: 'block' }}>
             <div>
               {wishListData && !isLoading && (
                 <h1 className="view-title">
@@ -113,12 +113,12 @@ class WishListsPage extends React.Component {
             </div>
           </div>
           {wishListData && !isLoading && (
-            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+            <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
               <WishListMain empty={!wishListData._lineitems[0]._element} wishListData={wishListData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
             </div>
           )}
           {(!wishListData || isLoading) && (
-            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+            <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
               <div className="loader" />
             </div>
           )}

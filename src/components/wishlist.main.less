@@ -21,7 +21,7 @@
 
 @import './../style/common.less';
 
-.cart-main-inner {
+.wish-list-main-inner {
   min-height: 100%;
   margin-bottom: 0px;
 
@@ -60,7 +60,7 @@
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   }
 
-  .cart-table {
+  .wish-list-table {
     margin-bottom: 0;
 
     thead {
@@ -95,7 +95,7 @@
   }
 
   @media screen and (max-width: @mobileWidth - 1) {
-    .cart-table {
+    .wish-list-table {
       display: block;
       width: 100%;
 
@@ -120,7 +120,7 @@
       }
     }
 
-    .cart-main-inner .cart-table {
+    .wish-list-main-inner .wish-list-table {
       border: 1px solid #ddd;
     }
 
@@ -181,8 +181,8 @@
     list-style-type: none;
   }
 
-  .cart-table > tbody > tr:nth-child(odd) > td,
-  .cart-table > tbody > tr:nth-child(odd) > th {
+  .wish-list-table > tbody > tr:nth-child(odd) > td,
+  .wish-list-table > tbody > tr:nth-child(odd) > th {
     background-color: #e9e9e9;
   }
 }

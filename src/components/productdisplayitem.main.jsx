@@ -65,6 +65,10 @@ const zoomArray = [
 ];
 
 class ProductDisplayItemMain extends React.Component {
+  static isLoggedIn() {
+    return (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
+  }
+
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
     productUrl: PropTypes.string.isRequired,
@@ -503,20 +507,23 @@ class ProductDisplayItemMain extends React.Component {
                   </div>
 
                 </form>
-                <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.addToWishList}>
-                  <div className="form-group-submit">
-                    <div className="form-content form-content-submit col-sm-offset-4">
-                      <button
-                        className="ep-btn primary wide btn-itemdetail-addtowishlist"
-                        disabled={!availability}
-                        id="product_display_item_add_to_wish_list_button"
-                        type="submit"
-                      >
-                        {intl.get('add-to-wish-list')}
-                      </button>
+                {(ProductDisplayItemMain.isLoggedIn()) ? (
+                  <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.addToWishList}>
+                    <div className="form-group-submit">
+                      <div className="form-content form-content-submit col-sm-offset-4">
+                        <button
+                          className="ep-btn wide btn-itemdetail-addtowishlist"
+                          disabled={!availability}
+                          id="product_display_item_add_to_wish_list_button"
+                          type="submit"
+                        >
+                          {intl.get('add-to-wish-list')}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                ) : ('')
+                }
               </div>
             </div>
             <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>

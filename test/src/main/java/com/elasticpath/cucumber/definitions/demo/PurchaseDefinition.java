@@ -43,6 +43,7 @@ import com.elasticpath.selenium.pages.ProductPage;
 import com.elasticpath.selenium.pages.PurchaseReceiptPage;
 import com.elasticpath.selenium.pages.PurchaseDetailsPage;
 import com.elasticpath.selenium.pages.RegisterPage;
+import com.elasticpath.selenium.pages.WishListPage;
 import com.elasticpath.selenium.pages.ProfilePage;
 import com.elasticpath.util.CustomerInfo;
 import com.elasticpath.util.ProductInfo;
@@ -58,6 +59,7 @@ public class PurchaseDefinition {
 	private NewPaymentMethodPage newPaymentMethodPage;
 	private CheckoutPage checkoutPage;
 	private CartPage cartPage;
+	private WishListPage WishListPage;
 	private OrderConfirmationPage orderConfirmationPage;
 	private PurchaseReceiptPage purchaseReceiptPage;
 	private PurchaseDetailsPage	purchaseDetailsPage;
@@ -91,6 +93,28 @@ public class PurchaseDefinition {
 		categoryPage = new CategoryPage(driver);
 		productPage = categoryPage.selectProduct(productName);
 		productPage.clickAddToCartButton();
+	}
+
+	@Given("^I add following items? to my wishlist$")
+	public void addItemsToWishList(List<ProductInfo> productInfoList) {
+		this.productInfoList = productInfoList;
+		for (ProductInfo productInfo : this.productInfoList) {
+			if (productInfo.getProductSubCategory() != null && productInfo.getProductSubCategory().length() > 0) {
+				headerPage.selectParentCategory(productInfo.getProductCategory());
+				categoryPage = headerPage.selectSubCategory(productInfo.getProductCategory(), productInfo.getProductSubCategory());
+			} else {
+				categoryPage = headerPage.selectCategory(productInfo.getProductCategory());
+			}
+			productPage = categoryPage.selectProduct(productInfo.getProductName());
+			productPage.clickAddToWishListButton();
+		}
+	}
+
+	@When("^I add product (.+) to wishlist$")
+	public void addItemsToWishList(final String productName) {
+		categoryPage = new CategoryPage(driver);
+		productPage = categoryPage.selectProduct(productName);
+		productPage.clickAddToWishListButton();
 	}
 
 	@When("^I click the purchase button$")
