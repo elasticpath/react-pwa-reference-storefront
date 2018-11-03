@@ -105,6 +105,8 @@ public class NewPaymentMethodPage extends AbstractPageObject {
 
 	public CheckoutPage addDefaultPaymentMethod() {
 		getWaitDriver().waitForPageToLoad();
+		WebDriverWait wait=new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(paymentMethodFormContainer));
 		addDefaultPM();
 		continueButton.click();
 		return new CheckoutPage(driver);
