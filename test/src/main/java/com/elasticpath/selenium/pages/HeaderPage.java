@@ -26,6 +26,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.Keys;
+import java.util.concurrent.TimeUnit;
 
 public class HeaderPage extends AbstractPageObject {
 
@@ -60,12 +61,14 @@ public class HeaderPage extends AbstractPageObject {
 
 	public CategoryPage selectCategory(final String categoryName) {
 		getWaitDriver().waitForPageToLoad();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		navigationBar.findElement(By.cssSelector(String.format(PARENT_CATEGORY_CSS, categoryName))).click();
 		return new CategoryPage(driver);
 	}
 
 	public void selectParentCategory(final String parentCategoryName) {
 		getWaitDriver().waitForPageToLoad();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		navigationBar.findElement(By.cssSelector(String.format(PARENT_CATEGORY_CSS, parentCategoryName))).click();
 	}
 
@@ -80,6 +83,7 @@ public class HeaderPage extends AbstractPageObject {
 	}
 
 	public ProfilePage clickProfileMenuLink() {
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		clickLoggedInLink();
 		getDriver().findElement(By.cssSelector(PROFILE_CSS)).click();
 		return new ProfilePage(driver);
