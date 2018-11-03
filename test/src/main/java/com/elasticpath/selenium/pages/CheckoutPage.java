@@ -56,16 +56,19 @@ public class CheckoutPage extends AbstractPageObject {
 	}
 
 	public NewAddressPage clickNewAddressButton() {
+		getWaitDriver().waitForPageToLoad();
 		clickButton(getDriver().findElement(By.cssSelector(ADD_NEW_BILLING_ADDRESS_CSS)));
 		return new NewAddressPage(driver);
 	}
 
 	public NewPaymentMethodPage clickNewPaymentMethodButton() {
+		getWaitDriver().waitForPageToLoad();
 		clickButton(getDriver().findElement(By.cssSelector(ADD_NEW_PAYMENT_CSS)));
 		return new NewPaymentMethodPage(driver);
 	}
 
 	public OrderConfirmationPage clickCompleteOrderButton() {
+		getWaitDriver().waitForPageToLoad();
 		clickButton(getDriver().findElement(By.cssSelector(COMPLETE_ORDER_BUTTON_CSS)));
 		return new OrderConfirmationPage(driver);
 	}

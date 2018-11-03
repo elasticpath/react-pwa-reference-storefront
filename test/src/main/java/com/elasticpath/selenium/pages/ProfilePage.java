@@ -104,6 +104,7 @@ public class ProfilePage extends AbstractPageObject {
 	}
 
 	public void updatePersonalInfo(final String firstName, final String... lastName) {
+		getWaitDriver().waitForPageToLoad();
 		enterFirstName(firstName);
 		if (lastName != null && lastName.length > 0) {
 			enterLastName(lastName[0]);
@@ -112,39 +113,46 @@ public class ProfilePage extends AbstractPageObject {
 	}
 
 	public NewAddressPage clickProfileNewAddressButton() {
+		getWaitDriver().waitForPageToLoad();
 		clickButton(addProfileNewAddress);
 		return new NewAddressPage(driver);
 	}
 
 	public NewPaymentMethodPage clickProfileNewPaymentMethodButton() {
+		getWaitDriver().waitForPageToLoad();
 		clickButton(addProfileNewPaymentMethod);
 		return new NewPaymentMethodPage(driver);
 	}
 
 	public PurchaseDetailsPage selectPurchase(final String orderNumber) {
+		getWaitDriver().waitForPageToLoad();
 		profilePurchaseHistoryRegion.findElement(By.cssSelector(String.format(PURCHASE_ID_LINK_CSS, orderNumber))).click();
 		return new PurchaseDetailsPage(driver);
 	}
 
 	public void verifyPurchaseHistory() {
+		getWaitDriver().waitForPageToLoad();
 		assertThat(profilePurchaseHistoryRegion.isDisplayed())
 				.as("Failed to verify Profile page")
 				.isTrue();
 	}
 
 	public void verifyPesonalInfoUpdateRegionExist() {
+		getWaitDriver().waitForPageToLoad();
 		assertThat(componentAddressFormRegion.isDisplayed())
 				.as("Failed to verify Profile page")
 				.isTrue();
 	}
 
 	public void verifyProfileAddressesRegion() {
+		getWaitDriver().waitForPageToLoad();
 		assertThat(profileAddressesRegion.isDisplayed())
 				.as("Failed to verify Profile page")
 				.isTrue();
 	}
 
 	public void verifyPurchaseNumber(final String purchaseNumber) {
+		getWaitDriver().waitForPageToLoad();
 		assertThat(this.purchaseNumber.getText())
 				.as("Failed to verify Profile page")
 				.isEqualTo(purchaseNumber);

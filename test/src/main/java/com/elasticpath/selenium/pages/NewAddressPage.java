@@ -116,14 +116,17 @@ public class NewAddressPage extends AbstractPageObject {
 	}
 
 	public void addDefaultAddress_CA() {
+		getWaitDriver().waitForPageToLoad();
 		enterDefaultAddress("V1V 2R2", "Vancouver", "British Columbia", "Canada");
 	}
 
 	public void addDefaultAddress_US() {
+		getWaitDriver().waitForPageToLoad();
 		enterDefaultAddress("12345", "Seattle", "Washington", "United States");
 	}
 
 	public void addDefaultProfileAddress_US() {
+		getWaitDriver().waitForPageToLoad();
 		enterProfileDefaultAddress("12345", "Seattle", "Washington", "United States");
 	}
 
