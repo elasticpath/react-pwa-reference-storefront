@@ -25,8 +25,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.Keys;
-import java.util.concurrent.TimeUnit;
 
 public class HeaderPage extends AbstractPageObject {
 
@@ -61,14 +62,16 @@ public class HeaderPage extends AbstractPageObject {
 
 	public CategoryPage selectCategory(final String categoryName) {
 		getWaitDriver().waitForPageToLoad();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		WebDriverWait wait=new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(String.format(PARENT_CATEGORY_CSS, categoryName))));
 		navigationBar.findElement(By.cssSelector(String.format(PARENT_CATEGORY_CSS, categoryName))).click();
 		return new CategoryPage(driver);
 	}
 
 	public void selectParentCategory(final String parentCategoryName) {
 		getWaitDriver().waitForPageToLoad();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		WebDriverWait wait=new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(String.format(PARENT_CATEGORY_CSS, parentCategoryName))));
 		navigationBar.findElement(By.cssSelector(String.format(PARENT_CATEGORY_CSS, parentCategoryName))).click();
 	}
 
@@ -83,15 +86,14 @@ public class HeaderPage extends AbstractPageObject {
 	}
 
 	public ProfilePage clickProfileMenuLink() {
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		clickLoggedInLink();
-		getDriver().findElement(By.cssSelector(PROFILE_CSS)).click();
+		getWaitDriver().waitForElementToBeClickable(By.cssSelector(PROFILE_CSS)).click();
 		return new ProfilePage(driver);
 	}
 
 	public WishListPage clickWishListMenuLink() {
 		clickLoggedInLink();
-		getDriver().findElement(By.cssSelector(WISHLIST_CSS)).click();
+		getWaitDriver().waitForElementToBeClickable(By.cssSelector(WISHLIST_CSS)).click();
 		return new WishListPage(driver);
 	}
 
@@ -101,14 +103,13 @@ public class HeaderPage extends AbstractPageObject {
 	}
 
 	public CartPage clickCartLink() {
-		getDriver().findElement(By.cssSelector(CART_LINK_CSS)).click();
+		getWaitDriver().waitForElementToBeClickable(By.cssSelector(CART_LINK_CSS)).click();
 		return new CartPage(driver);
 	}
 
 	public SearchResultsPage searchForKeyword(final String keyword) {
 		clearAndType(SEARCH_INPUT_CSS, keyword);
-		getWaitDriver().waitForPageToLoad();
-		getDriver().findElement(By.cssSelector(SEARCH_INPUT_CSS)).sendKeys(Keys.RETURN);
+		getWaitDriver().waitForElementToBeClickable(By.cssSelector(SEARCH_INPUT_CSS)).sendKeys(Keys.RETURN);
 		return new SearchResultsPage(driver);
 	}
 
