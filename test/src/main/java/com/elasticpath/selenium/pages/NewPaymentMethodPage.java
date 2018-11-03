@@ -26,6 +26,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.Select;
 
 public class NewPaymentMethodPage extends AbstractPageObject {
@@ -67,6 +69,7 @@ public class NewPaymentMethodPage extends AbstractPageObject {
 	public NewPaymentMethodPage(final WebDriver driver) {
 		super(driver);
 		this.driver = driver;
+		getWaitDriver().waitForPageToLoad();
 	}
 
 	@Override
@@ -102,6 +105,8 @@ public class NewPaymentMethodPage extends AbstractPageObject {
 
 	public CheckoutPage addDefaultPaymentMethod() {
 		getWaitDriver().waitForPageToLoad();
+		WebDriverWait wait=new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(paymentMethodFormContainer));
 		addDefaultPM();
 		continueButton.click();
 		return new CheckoutPage(driver);
@@ -109,6 +114,8 @@ public class NewPaymentMethodPage extends AbstractPageObject {
 
 	public void addProfileDefaultPaymentMethod() {
 		getWaitDriver().waitForPageToLoad();
+		WebDriverWait wait=new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(paymentMethodFormContainer));
 		addDefaultPM();
 		saveToProfile.click();
 	}
