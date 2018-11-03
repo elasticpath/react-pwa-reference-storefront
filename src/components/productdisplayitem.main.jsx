@@ -82,9 +82,11 @@ class ProductDisplayItemMain extends React.Component {
       addToCartFailedMessage: '',
       isLoading: false,
       arFileExists: false,
+      itemConfiguration: {},
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
+    this.handleConfiguration = this.handleConfiguration.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
@@ -169,6 +171,12 @@ class ProductDisplayItemMain extends React.Component {
     this.setState({ itemQuantity: parseInt(event.target.value, 10) });
   }
 
+  handleConfiguration(configuration, event) {
+    const { itemConfiguration } = this.state;
+    itemConfiguration[configuration] = event.target.value;
+    this.setState({ itemConfiguration });
+  }
+
   handleSkuSelection(event) {
     const selfUri = event.target.value;
     const { history } = this.props;
@@ -200,10 +208,15 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   addToCart(event) {
-    const { productData, itemQuantity } = this.state;
+    const { productData, itemQuantity, itemConfiguration } = this.state;
     const { history } = this.props;
     login().then(() => {
       const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+      const body = {};
+      body.quantity = itemQuantity;
+      if (itemConfiguration) {
+        body.configuration = itemConfiguration;
+      }
       cortexFetch(addToCartLink.uri,
         {
           method: 'post',
@@ -211,9 +224,7 @@ class ProductDisplayItemMain extends React.Component {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-          body: JSON.stringify({
-            quantity: itemQuantity,
-          }),
+          body: JSON.stringify(body),
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
@@ -321,6 +332,24 @@ class ProductDisplayItemMain extends React.Component {
                 </option>
               )) : ''}
             </select>
+          </div>
+        </div>
+      ));
+    }
+    return null;
+  }
+
+  renderConfiguration() {
+    const { productData, isLoading } = this.state;
+    if (productData._addtocartform[0].configuration) {
+      const keys = Object.keys(productData._addtocartform[0].configuration);
+      return keys.map(key => (
+        <div key={key} className="form-group">
+          <label htmlFor={`product_display_item_configuration_${key}_label`} className="control-label">
+            {key}
+          </label>
+          <div className="form-content">
+            <input className="form-control form-control-text" disabled={isLoading} onChange={e => this.handleConfiguration(key, e)} id={`product_display_item_configuration_${key}_label`} value={productData._addtocartform[0].configuration.key} />
           </div>
         </div>
       ));
@@ -446,9 +475,7 @@ class ProductDisplayItemMain extends React.Component {
               <div>
                 <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
                   {this.renderSkuSelection()}
-                  {
-                    (isLoading) ? (<div className="miniLoader" />) : ''
-                  }
+                  {this.renderConfiguration()}
                   <div className="form-group">
                     <label htmlFor="product_display_item_quantity_label" className="control-label">
                       {intl.get('quantity')}
@@ -488,6 +515,9 @@ class ProductDisplayItemMain extends React.Component {
                         </option>
                       </select>
                     </div>
+                    {
+                      (isLoading) ? (<div className="miniLoader" />) : ''
+                    }
                   </div>
                   <div className="form-group-submit">
                     <div className="form-content form-content-submit col-sm-offset-4">

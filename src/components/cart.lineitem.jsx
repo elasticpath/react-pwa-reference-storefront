@@ -174,6 +174,25 @@ class CartLineItem extends React.Component {
     );
   }
 
+  renderConfiguration() {
+    const { item } = this.props;
+    const keys = Object.keys(item.configuration);
+    if (keys) {
+      return keys.map(key => (
+        <li className="configuration" key={key}>
+          <label htmlFor="option-name" className="option-name">
+            {key}
+            :&nbsp;
+          </label>
+          <span>
+            {item.configuration[key]}
+          </span>
+        </li>
+      ));
+    }
+    return null;
+  }
+
   renderOptions() {
     const { item } = this.props;
     const options = item._item[0]._definition[0]._options;
@@ -231,6 +250,7 @@ class CartLineItem extends React.Component {
         <div className="options-col">
           <ul className="options-container">
             {this.renderOptions()}
+            {this.renderConfiguration()}
           </ul>
         </div>
         <div className="availability-col" data-region="cartLineitemAvailabilityRegion">
