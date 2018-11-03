@@ -130,6 +130,7 @@ class CheckoutSummaryList extends React.Component {
   renderShipping() {
     const { data } = this.props;
     if (data._order && data._order[0]._deliveries && data._order[0]._deliveries[0]._element[0]._shippingoptioninfo) {
+      const shippingOption = (data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption) ? (data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption[0].cost[0].display) : ('');
       return (
         <li className="checkout-shipping">
           <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
@@ -139,7 +140,7 @@ class CheckoutSummaryList extends React.Component {
                 :&nbsp;
               </label>
               <span>
-                {data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption[0].cost[0].display}
+                {shippingOption}
               </span>
             </div>
           </div>

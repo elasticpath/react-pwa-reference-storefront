@@ -257,7 +257,7 @@ class CheckoutPage extends React.Component {
         shippingOptions.push(description);
       }
       const selector = orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._selector;
-      if (selector) {
+      if (selector && selector[0]._choice) {
         const choices = selector[0]._choice;
         choices.map((choice) => {
           const [description] = choice._description;
