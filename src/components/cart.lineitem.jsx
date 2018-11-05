@@ -235,9 +235,17 @@ class CartLineItem extends React.Component {
         availabilityString = intl.get('out-of-stock');
       }
     }
+    const featuredProductAttribute = (item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return (
       <div className="cart-lineitem-row">
         <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
+          {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
+            ? (
+              <div className="featured">
+                {intl.get('featured')}
+              </div>)
+            : ('')
+          }
           <Link to={`/itemdetail/${encodeURIComponent(item._item[0].self.uri)}`}>
             <img src={Config.skuImagesUrl.replace('%sku%', item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
           </Link>

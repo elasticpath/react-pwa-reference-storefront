@@ -396,11 +396,19 @@ class ProductDisplayItemMain extends React.Component {
           availabilityString = intl.get('out-of-stock');
         }
       }
+      const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       return (
         <div className="itemdetail-component container-3">
           <div className="itemdetail-assets">
             <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
               <div className="itemdetail-asset-container">
+                {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
+                  ? (
+                    <div className="featured">
+                      {intl.get('featured')}
+                    </div>)
+                  : ('')
+                }
                 {this.renderProductImage()}
               </div>
             </div>
