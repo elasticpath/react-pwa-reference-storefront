@@ -47,6 +47,7 @@ const zoomArray = [
   'defaultcart:lineitems:element:item',
   'defaultcart:lineitems:element:item:code',
   'defaultcart:lineitems:element:item:definition',
+  'defaultcart:lineitems:element:item:definition:details',
   'defaultcart:lineitems:element:item:definition:options:element',
   'defaultcart:lineitems:element:item:definition:options:element:value',
   'defaultcart:lineitems:element:item:definition:options:element:selector:choice',

@@ -122,9 +122,17 @@ class ProductListItemMain extends React.Component {
           availabilityString = intl.get('out-of-stock');
         }
       }
+      const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       return (
         <div className="category-item-inner">
           <div className="category-item-thumbnail-container">
+            {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
+              ? (
+                <div className="featured">
+                  {intl.get('featured')}
+                </div>)
+              : ('')
+            }
             <Link to={`/itemdetail/${encodeURIComponent(productData.self.uri)}`}>
               <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
             </Link>
