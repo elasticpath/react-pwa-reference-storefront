@@ -42,10 +42,10 @@ class ProductRecommendationsDisplayMain extends React.Component {
   static renderProductAssocitationView(product, maxItemsInView) {
     const data = [];
     product.forEach((element, index) => {
-      if (index < maxItemsInView && element.rel === 'element') {
+      if (index < maxItemsInView && element._code) {
         data.push(
           <div className="category-item-container card" key={`_${Math.random().toString(36).substr(2, 9)}`}>
-            <ProductListItemMain productUrl={element.uri} />
+            <ProductListItemMain productId={element._code[0].code} />
           </div>,
         );
       }
@@ -57,8 +57,8 @@ class ProductRecommendationsDisplayMain extends React.Component {
     const data = [];
     const { productData } = this.props;
     const { maxItemsInView } = this.state;
-    const product = productData._recommendations[0]._crosssell[0].links;
-    if (product.length > 0) {
+    const product = productData._recommendations[0]._crosssell[0]._element;
+    if (product && product.length > 0) {
       const htmlFor = 'Recommendations';
       data.push(
         <div className="display" key={htmlFor}>

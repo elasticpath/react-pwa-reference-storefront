@@ -24,44 +24,16 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
+import { itemLookup } from '../utils/CortexLookup';
 import imgPlaceholder from '../images/img-placeholder.png';
-import cortexFetch from '../utils/Cortex';
 
 import './productlistitem.main.less';
 
 const Config = require('Config');
 
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'availability',
-  'addtocartform',
-  'addtowishlistform',
-  'price',
-  'rate',
-  'definition',
-  'definition:assets:element',
-  'definition:options:element',
-  'definition:options:element:value',
-  'definition:options:element:selector:choice',
-  'definition:options:element:selector:chosen',
-  'definition:options:element:selector:choice:description',
-  'definition:options:element:selector:chosen:description',
-  'definition:options:element:selector:choice:selector',
-  'definition:options:element:selector:chosen:selector',
-  'definition:options:element:selector:choice:selectaction',
-  'definition:options:element:selector:chosen:selectaction',
-  'recommendations',
-  'recommendations:crosssell',
-  'recommendations:recommendation',
-  'recommendations:replacement',
-  'recommendations:upsell',
-  'recommendations:warranty',
-  'code',
-];
-
 class ProductListItemMain extends React.Component {
   static propTypes = {
-    productUrl: PropTypes.string.isRequired,
+    productId: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -72,16 +44,9 @@ class ProductListItemMain extends React.Component {
   }
 
   componentDidMount() {
-    const { productUrl } = this.props;
+    const { productId } = this.props;
     login().then(() => {
-      cortexFetch(`${productUrl}?zoom=${zoomArray.sort().join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
+      itemLookup(productId)
         .then((res) => {
           this.setState({
             productData: res,
@@ -133,12 +98,12 @@ class ProductListItemMain extends React.Component {
                 </div>)
               : ('')
             }
-            <Link to={`/itemdetail/${encodeURIComponent(productData.self.uri)}`}>
+            <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
               <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
             </Link>
           </div>
           <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`} style={{ minHeight: '43px' }}>
-            <Link to={`/itemdetail/${encodeURIComponent(productData.self.uri)}`}>
+            <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
               {productData._definition[0]['display-name']}
             </Link>
           </div>

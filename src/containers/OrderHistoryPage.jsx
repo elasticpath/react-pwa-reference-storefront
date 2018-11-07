@@ -23,23 +23,9 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
+import { purchaseLookup } from '../utils/CortexLookup';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
-import cortexFetch from '../utils/Cortex';
 import './OrderHistoryPage.less';
-
-const Config = require('Config');
-
-const zoomArray = [
-  'paymentmeans:element',
-  'shipments:element:destination',
-  'shipments:element:shippingoption',
-  'billingaddress',
-  'discount',
-  'appliedpromotions:element',
-  'lineitems:element',
-  'lineitems:element:options:element',
-  'lineitems:element:options:element:value',
-];
 
 class OrderHistoryPage extends React.Component {
   static propTypes = {
@@ -59,15 +45,9 @@ class OrderHistoryPage extends React.Component {
 
   fetchPurchaseData() {
     const { match } = this.props;
-    const uri = decodeURIComponent(match.params.url);
+    const orderId = decodeURIComponent(match.params.url);
     login().then(() => {
-      cortexFetch(`${uri}?zoom=${zoomArray.join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
+      purchaseLookup(orderId)
         .then((res) => {
           this.setState({
             purchaseData: res,

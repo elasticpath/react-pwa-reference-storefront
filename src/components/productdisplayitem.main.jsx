@@ -25,6 +25,7 @@ import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
+import { itemLookup } from '../utils/CortexLookup';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
 } from '../utils/Analytics';
@@ -61,6 +62,11 @@ const zoomArray = [
   'recommendations:replacement',
   'recommendations:upsell',
   'recommendations:warranty',
+  'recommendations:crosssell:element:code',
+  'recommendations:recommendation:element:code',
+  'recommendations:replacement:element:code',
+  'recommendations:upsell:element:code',
+  'recommendations:warranty:element:code',
   'code',
 ];
 
@@ -71,7 +77,7 @@ class ProductDisplayItemMain extends React.Component {
 
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
-    productUrl: PropTypes.string.isRequired,
+    productId: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -93,16 +99,9 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   componentDidMount() {
-    const { productUrl } = this.props;
+    const { productId } = this.props;
     login().then(() => {
-      cortexFetch(productUrl + (productUrl.includes('zoom') ? '' : `?zoom=${zoomArray.sort().join()}`),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
+      itemLookup(productId)
         .then((res) => {
           if (Config.arKit.enable) {
             this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
@@ -132,14 +131,7 @@ class ProductDisplayItemMain extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     login().then(() => {
-      cortexFetch(nextProps.productUrl,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
+      itemLookup(nextProps.productId)
         .then((res) => {
           if (Config.arKit.enable) {
             this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
@@ -198,7 +190,7 @@ class ProductDisplayItemMain extends React.Component {
           this.setState({
             isLoading: false,
           });
-          history.push(`/itemdetail/${encodeURIComponent(res.self.uri)}`);
+          history.push(`/itemdetail/${encodeURIComponent(res._code[0].code)}`);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

@@ -40,11 +40,11 @@ class ProductListMain extends React.Component {
 
   renderProducts() {
     const { categoryModel } = this.state;
-    return categoryModel.links.map((product) => {
-      if (product.rel === 'element') {
+    return categoryModel._element.map((product) => {
+      if (product._code) {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain productUrl={product.uri} />
+            <ProductListItemMain productId={product._code[0].code} />
           </li>
         );
       }
@@ -54,7 +54,7 @@ class ProductListMain extends React.Component {
 
   render() {
     const { categoryModel } = this.state;
-    if (categoryModel.links.length > 0) {
+    if (categoryModel._element.length > 0) {
       return (
         <div className="product-list-container" data-region="categoryBrowseRegion">
           <ul className="category-items-listing equalize" id="category_items_listing">

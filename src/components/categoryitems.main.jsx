@@ -23,15 +23,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
+import { navigationLookup } from '../utils/CortexLookup';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
-import cortexFetch from '../utils/Cortex';
-
-const Config = require('Config');
 
 class CategoryItemsMain extends React.Component {
   static propTypes = {
-    categoryUrl: PropTypes.string.isRequired,
+    categoryId: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -43,39 +41,27 @@ class CategoryItemsMain extends React.Component {
   }
 
   componentDidMount() {
-    const { categoryUrl } = this.props;
+    const { categoryId } = this.props;
     this.setState({ isLoading: true });
-    login().then(() => cortexFetch(`${categoryUrl}?zoom=items`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }))
-      .then(res => res.json())
-      .then((res) => {
-        this.setState({
-          isLoading: false,
-          categoryModel: res,
+    login().then(() => {
+      navigationLookup(categoryId)
+        .then((res) => {
+          this.setState({
+            isLoading: false,
+            categoryModel: res,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
         });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ isLoading: true });
     login().then(() => {
-      cortexFetch(`${nextProps.categoryUrl}?zoom=items`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
+      navigationLookup(nextProps.categoryId)
         .then((res) => {
           this.setState({
             isLoading: false,
