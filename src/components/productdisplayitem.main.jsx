@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
-import { itemLookup } from '../utils/CortexLookup';
+import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
 } from '../utils/Analytics';
@@ -101,31 +101,32 @@ class ProductDisplayItemMain extends React.Component {
   componentDidMount() {
     const { productId } = this.props;
     login().then(() => {
-      itemLookup(productId)
-        .then((res) => {
-          if (Config.arKit.enable) {
-            this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+      cortexFetchItemLookupForm()
+        .then(() => itemLookup(productId)
+          .then((res) => {
+            if (Config.arKit.enable) {
+              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+                this.setState({
+                  productData: res,
+                  arFileExists: exists,
+                });
+              });
+            } else {
               this.setState({
                 productData: res,
-                arFileExists: exists,
               });
-            });
-          } else {
-            this.setState({
-              productData: res,
-            });
-          }
-          if (isAnalyticsConfigured()) {
-            const { productData, itemQuantity } = this.state;
-            const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-            trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
-            setDetailAnalytics();
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
+            }
+            if (isAnalyticsConfigured()) {
+              const { productData, itemQuantity } = this.state;
+              const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+              trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+              setDetailAnalytics();
+            }
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          }));
     });
   }
 
@@ -453,10 +454,10 @@ class ProductDisplayItemMain extends React.Component {
                         {availabilityString}
                       </div>
                     ) : (
-                      <div>
-                        {availabilityString}
-                      </div>
-                    )}
+                        <div>
+                          {availabilityString}
+                        </div>
+                      )}
                   </label>
                 </li>
                 <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">

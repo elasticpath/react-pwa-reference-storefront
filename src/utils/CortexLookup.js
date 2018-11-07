@@ -96,15 +96,16 @@ export function cortexFetchNavigationLookupForm() {
         .then((res) => {
           const navigationForm = res._lookups[0]._navigationlookupform[0].links.find(link => link.rel === 'navigationlookupaction').uri;
           localStorage.setItem(`${Config.cortexApi.scope}_navigationLookupForm`, navigationForm);
-          resolve(navigationForm);
+          resolve();
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
           reject(error);
         });
+    } else {
+      resolve();
     }
-    resolve();
   }));
 }
 
@@ -121,15 +122,16 @@ export function cortexFetchItemLookupForm() {
         .then((res) => {
           const itemForm = res._lookups[0]._itemlookupform[0].links.find(link => link.rel === 'itemlookupaction').uri;
           localStorage.setItem(`${Config.cortexApi.scope}_itemLookupForm`, itemForm);
-          resolve(itemForm);
+          resolve();
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
           reject(error);
         });
+    } else {
+      resolve();
     }
-    resolve();
   }));
 }
 
@@ -146,15 +148,16 @@ export function cortexFetchPurchaseLookupForm() {
         .then((res) => {
           const purchaseForm = res._lookups[0]._purchaselookupform[0].links.find(link => link.rel === 'purchaselookupaction').uri;
           localStorage.setItem(`${Config.cortexApi.scope}_purchaseLookupForm`, purchaseForm);
-          resolve(purchaseForm);
+          resolve();
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
           reject(error);
         });
+    } else {
+      resolve();
     }
-    resolve();
   }));
 }
 
@@ -184,21 +187,23 @@ export function navigationLookup(navigationLookupCode) {
           reject(error);
         });
     } else {
-      cortexFetchNavigationLookupForm()
-        .then(() => cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_navigationLookupForm`)}?zoom=${navigationFormZoomArray.join()}&followlocation`,
-          {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify({
-              code: navigationLookupCode,
-            }),
-          }))
+      cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_navigationLookupForm`)}?zoom=${navigationFormZoomArray.join()}&followlocation`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            code: navigationLookupCode,
+          }),
+        })
         .then((res) => {
           if (res.status === 504 || res.status === 503) {
             reject(res);
+          }
+          if (res.status === 404 || res.status === 403) {
+            localStorage.removeItem(`${Config.cortexApi.scope}_navigationLookupForm`);
           }
           return res;
         })
@@ -217,21 +222,23 @@ export function navigationLookup(navigationLookupCode) {
 
 export function itemLookup(itemLookupCode) {
   return new Promise(((resolve, reject) => {
-    cortexFetchItemLookupForm()
-      .then(() => cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${itemFormZoomArray.join()}&followlocation`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            code: itemLookupCode,
-          }),
-        }))
+    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${itemFormZoomArray.join()}&followlocation`,
+      {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({
+          code: itemLookupCode,
+        }),
+      })
       .then((res) => {
         if (res.status === 504 || res.status === 503) {
           reject(res);
+        }
+        if (res.status === 404 || res.status === 403) {
+          localStorage.removeItem(`${Config.cortexApi.scope}_itemLookupForm`);
         }
         return res;
       })
@@ -264,6 +271,9 @@ export function purchaseLookup(purchaseLookupCode) {
       .then((res) => {
         if (res.status === 504 || res.status === 503) {
           reject(res);
+        }
+        if (res.status === 404 || res.status === 403) {
+          localStorage.removeItem(`${Config.cortexApi.scope}_purchaseLookupForm`);
         }
         return res;
       })

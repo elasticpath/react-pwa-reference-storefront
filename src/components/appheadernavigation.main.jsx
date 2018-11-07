@@ -78,15 +78,9 @@ class AppHeaderNavigationMain extends React.Component {
         return res;
       })
       .then((res) => {
-        cortexFetchNavigationLookupForm();
-        return res;
-      })
-      .then((res) => {
-        cortexFetchItemLookupForm();
-        return res;
-      })
-      .then((res) => {
-        cortexFetchPurchaseLookupForm();
+        cortexFetchNavigationLookupForm()
+          .then(() => cortexFetchItemLookupForm())
+          .then(() => cortexFetchPurchaseLookupForm());
         return res;
       })
       .then(res => res.json())
