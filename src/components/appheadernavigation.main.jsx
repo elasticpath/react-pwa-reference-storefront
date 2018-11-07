@@ -25,6 +25,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { login, logout } from '../utils/AuthService';
+import { cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
 import cortexFetch from '../utils/Cortex';
 
 import './appheadernavigation.main.less';
@@ -76,6 +77,12 @@ class AppHeaderNavigationMain extends React.Component {
         }
         return res;
       })
+      .then((res) => {
+        cortexFetchNavigationLookupForm()
+          .then(() => cortexFetchItemLookupForm())
+          .then(() => cortexFetchPurchaseLookupForm());
+        return res;
+      })
       .then(res => res.json())
       .then((res) => {
         this.setState({
@@ -116,7 +123,7 @@ class AppHeaderNavigationMain extends React.Component {
                   </a>
                   <div className="dropdown-menu sub-category-dropdown-menu" aria-label={`navbarDropdown_${category.name}`}>
                     {category._child.map(subcategory => (
-                      <Link to={`/category/${encodeURIComponent(subcategory.self.uri)}`} key={subcategory.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
+                      <Link to={`/category/${encodeURIComponent(subcategory.name)}`} key={subcategory.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
                         <div
                           data-toggle="collapse"
                           data-target={isMobileView ? '.collapsable-container' : ''}
@@ -130,7 +137,7 @@ class AppHeaderNavigationMain extends React.Component {
               )
               : (
                 <li className="nav-item" key={category.name} data-name={category['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
-                  <Link className="nav-link" to={`/category/${encodeURIComponent(category.self.uri)}`}>
+                  <Link className="nav-link" to={`/category/${encodeURIComponent(category.name)}`}>
                     <div
                       data-toggle="collapse"
                       data-target={isMobileView ? '.collapsable-container' : ''}

@@ -56,7 +56,7 @@ class OrderLine extends React.Component {
     return (
       <tr>
         <td data-el-value="purchase.number" className="profile-purchase-number">
-          <Link to={`/orderDetails/${encodeURIComponent(purchase.self.uri)}`} id={`profile_purchase_number_link_${purchase['purchase-number']}`} className={`profile_purchase_number_link_${purchase['purchase-number']}`}>
+          <Link to={`/orderDetails/${encodeURIComponent(purchase['purchase-number'])}`} id={`profile_purchase_number_link_${purchase['purchase-number']}`} className={`profile_purchase_number_link_${purchase['purchase-number']}`}>
             {purchase['purchase-number']}
           </Link>
         </td>

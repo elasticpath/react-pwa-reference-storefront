@@ -30,7 +30,6 @@ const Config = require('Config');
 const OrderTableLineItem = (props) => {
   const { item } = props;
   const { code } = item._item[0]._code[0];
-  const { uri } = item._item[0].self;
   const displayName = item._item[0]._definition[0]['display-name'];
   const options = item._item[0]._definition[0]._options;
   const { quantity } = item;
@@ -61,7 +60,7 @@ const OrderTableLineItem = (props) => {
         <img className="thumbnail" src={Config.skuImagesUrl.replace('%sku%', code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" />
       </td>
       <td className="title-col">
-        <Link to={`/itemdetails/${encodeURIComponent(uri)}`}>
+        <Link to={`/itemdetail/${encodeURIComponent(code)}`}>
           {displayName}
         </Link>
       </td>

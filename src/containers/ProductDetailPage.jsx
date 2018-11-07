@@ -26,7 +26,7 @@ function ProductDetailPage(props) {
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <ProductDisplayItemMain productUrl={decodeURIComponent(props.match.params.url)} />
+      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} />
     </div>
   );
 }
