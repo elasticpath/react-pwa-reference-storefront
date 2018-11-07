@@ -139,10 +139,10 @@ class ProductListItemMain extends React.Component {
                       {availabilityString}
                     </div>
                   ) : (
-                      <div>
-                        {availabilityString}
-                      </div>
-                    )}
+                    <div>
+                      {availabilityString}
+                    </div>
+                  )}
                 </label>
               </li>
               <li className={`category-item-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
