@@ -64,7 +64,7 @@ For example, when a customer views a product, adds a product to the cart, or rem
 ### Global Product Attribute
 Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as `vestri:Accessories`, to submit the product category information. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product's category to Google Analytics.
 
-Featured Product handlers use the global product attribute `Featured`. Use the boolean value of this tag to indicate that a product is considered a Featured product. You can set the global attribute for each product in the catalog within Commerce Manager. The React PWA Reference Storefront will use this tag to display a customizable banner for the featured product.
+Featured Product handlers use the global product attribute `Featured`. Use the attribute's boolean value to indicate when a product is designated a featured product. You can set the global attribute for each product in the catalog within the Commerce Manager. The React PWA Reference Storefront uses the tag to display a customizable banner for the featured product.
 
 ## ARKit Quick Look Example
 
