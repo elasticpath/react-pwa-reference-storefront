@@ -21,10 +21,12 @@
 
 import React from 'react';
 import SearchResultsItemsMain from '../components/searchresultsitems.main';
+import SearchFacetNavigationMain from '../components/searchfacetnavigation.main';
 
 function SearchResultsPage(props) {
   return (
     <div>
+      <SearchFacetNavigationMain searchKeywordsProps={decodeURIComponent(props.match.params.keywords)} />
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
       <SearchResultsItemsMain searchKeywordsProps={decodeURIComponent(props.match.params.keywords)} />
     </div>
