@@ -2,5 +2,8 @@ web:
   image: $DOCKER_REPO
   volumes:
    - ./nginx.conf:/etc/nginx/nginx.conf
+   - $SSL_CERT_PATH:$SSL_CERT_PATH
+   - $SSL_KEY_PATH:$SSL_KEY_PATH
   ports:
    - "80:80"
+   - "443:443"
