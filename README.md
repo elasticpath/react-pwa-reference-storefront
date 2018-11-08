@@ -114,8 +114,12 @@ For more information about populating database, see the [Populating the Database
 3. Run a Production Docker Image:
     1. In the repository, navigate to the `docker/prod/` directory.
     2. Copy the `docker-compose.yaml` and `nginx.conf` files to a folder on the remote host.
-    3. Replace the `$CORTEX_URL` parameter in the `nginx.conf` file with a Cortex server URL.
-    4. Replace the `$DOCKER_REPO` parameter in the `docker-compose.yaml` file with `ep-store`.
+    3. On a remote host search and replace the following parameters in `docker-compose.yaml` and `nginx.conf` files:
+        - Replace the `$CORTEX_URL` parameter in the `nginx.conf` file with a Cortex server URL.
+        - Replace the `$DOCKER_REPO` parameter in the `docker-compose.yaml` file with `ep-store`.
+        - Replace the `$DOMAIN` parameter in `nginx.conf` with the domain name (excluding the `http://` part, eg. `www.domain.com`) where you plan to host the site.
+        - Replace the `$SSL_CERT_PATH` in `nginx.conf` and `docker-compose.yaml` with the path of the certificate file on the remove server (eg. `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`).
+        - Replace the `$SSL_KEY_PATH` in `nginx.conf` and `docker-compose.yaml` with the path of the private key on the remote server (eg. `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`).
     5. Run the `docker-compose up -d` command.
 
 ## Running a Linter
