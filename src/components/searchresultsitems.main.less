@@ -19,16 +19,8 @@
  *
  */
 
-import React from 'react';
-import SearchResultsItemsMain from '../components/searchresultsitems.main';
+@import './../style/common.less';
 
-function SearchResultsPage(props) {
-  return (
-    <div>
-      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <SearchResultsItemsMain searchKeywordsProps={decodeURIComponent(props.match.params.keywords)} />
-    </div>
-  );
+.products-container {
+  display: table;
 }
-
-export default SearchResultsPage;

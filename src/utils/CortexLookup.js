@@ -81,6 +81,39 @@ const purchaseFormZoomArray = [
   'lineitems:element:options:element:value',
 ];
 
+// Array of zoom parameters to pass to Cortex for searchDetails
+const searchFormZoomArray = [
+  'element',
+  'element:availability',
+  'element:definition',
+  'element:definition:assets:element',
+  'element:price',
+  'element:rate',
+  'element:code',
+  'element',
+  'element:availability',
+  'element:definition',
+  'element:definition:assets:element',
+  'element:pricerange',
+  'element:items',
+  'element:items:element',
+  'element:items:element:availability',
+  'element:items:element:definition',
+  'element:items:element:definition:assets:element',
+  'element:items:element:price',
+  'element:items:element:rate',
+  'element:items:element:code',
+  'facets',
+  'facets:element',
+  'facets:element:facetselector',
+  'facets:element:facetselector:choice:description',
+  'facets:element:facetselector:choice:selector',
+  'facets:element:facetselector:choice:selectaction',
+  'facets:element:facetselector:chosen:description',
+  'facets:element:facetselector:chosen:selector',
+  'facets:element:facetselector:chosen:selectaction',
+];
+
 const Config = require('Config');
 
 export function cortexFetchNavigationLookupForm() {
@@ -148,6 +181,37 @@ export function cortexFetchPurchaseLookupForm() {
         .then((res) => {
           const purchaseForm = res._lookups[0]._purchaselookupform[0].links.find(link => link.rel === 'purchaselookupaction').uri;
           localStorage.setItem(`${Config.cortexApi.scope}_purchaseLookupForm`, purchaseForm);
+          resolve();
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          reject(error);
+        });
+    } else {
+      resolve();
+    }
+  }));
+}
+
+export function cortexFetchSearchLookupForm() {
+  return new Promise(((resolve, reject) => {
+    if (localStorage.getItem(`${Config.cortexApi.scope}_searchLookupForm`) === null) {
+      cortexFetch('/?zoom=searches:keywordsearchform,searches:offersearchform', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          let searchForm = '';
+          if (res._searches[0]._offersearchform) {
+            searchForm = res._searches[0]._offersearchform[0].links.find(link => link.rel === 'offersearchaction').uri;
+          } else {
+            searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
+          }
+          localStorage.setItem(`${Config.cortexApi.scope}_searchLookupForm`, searchForm);
           resolve();
         })
         .catch((error) => {
@@ -271,5 +335,66 @@ export function purchaseLookup(purchaseLookupCode) {
         console.error(error.message);
         reject(error);
       });
+  }));
+}
+
+export function searchLookup(searchKeyword) {
+  return new Promise(((resolve, reject) => {
+    if (searchKeyword.includes('/')) {
+      cortexFetch(`${searchKeyword}?zoom=${searchFormZoomArray.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then((res) => {
+          if (res.status === 504 || res.status === 503) {
+            reject(res);
+          }
+          return res;
+        })
+        .then(res => res.json())
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          reject(error);
+        });
+    } else {
+      cortexFetchPurchaseLookupForm()
+        .then(() => cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_searchLookupForm`)}?zoom=${searchFormZoomArray.join()}&followlocation`,
+          {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+            body: JSON.stringify({
+              keywords: searchKeyword,
+              'page-size': 20,
+            }),
+          }))
+        .then((res) => {
+          if (res.status === 504 || res.status === 503) {
+            reject(res);
+          }
+          if (res.status === 404 || res.status === 403) {
+            localStorage.removeItem(`${Config.cortexApi.scope}_searchLookupForm`);
+          }
+          return res;
+        })
+        .then(res => res.json())
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          reject(error);
+        });
+    }
   }));
 }

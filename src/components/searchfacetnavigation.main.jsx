@@ -20,115 +20,175 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
-import intl from 'react-intl-universal';
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
-import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
+import cortexFetch from '../utils/Cortex';
 
 import './searchfacetnavigation.main.less';
 
 const Config = require('Config');
 
+// Array of zoom parameters to pass to Cortex for searchDetails
+const zoomArray = [
+  'element',
+  'element:availability',
+  'element:definition',
+  'element:definition:assets:element',
+  'element:price',
+  'element:rate',
+  'element:code',
+  'element',
+  'element:availability',
+  'element:definition',
+  'element:definition:assets:element',
+  'element:pricerange',
+  'element:items',
+  'element:items:element',
+  'element:items:element:availability',
+  'element:items:element:definition',
+  'element:items:element:definition:assets:element',
+  'element:items:element:price',
+  'element:items:element:rate',
+  'element:items:element:code',
+  'facets',
+  'facets:element',
+  'facets:element:facetselector',
+  'facets:element:facetselector:choice:description',
+  'facets:element:facetselector:choice:selector',
+  'facets:element:facetselector:choice:selectaction',
+  'facets:element:facetselector:chosen:description',
+  'facets:element:facetselector:chosen:selector',
+  'facets:element:facetselector:chosen:selectaction',
+];
+
 class SearchFacetNavigationMain extends React.Component {
   static propTypes = {
-    productId: PropTypes.string.isRequired,
+    history: ReactRouterPropTypes.history.isRequired,
+    productData: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   constructor(props) {
     super(props);
+    const { productData } = this.props;
     this.state = {
-      productData: undefined,
+      facetModel: productData,
+      isLoading: false,
     };
+    this.handleFacetSelection = this.handleFacetSelection.bind(this);
   }
 
-  componentDidMount() {
-    const { productId } = this.props;
+  handleFacetSelection(facetUri) {
+    const { history } = this.props;
+    this.setState({
+      isLoading: true,
+    });
     login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId)
-          .then((res) => {
-            this.setState({
-              productData: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
+      cortexFetch(`${decodeURIComponent(facetUri)}?followlocation&zoom=offer-search-result`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({}),
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            isLoading: false,
+          });
+          history.push(`/search/${encodeURIComponent(res['_offer-search-result'][0].self.uri)}`);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
+  renderFacetSelectorsChosen(facetselector) {
+    this.funcName = 'renderFacetSelectors';
+    if (facetselector[0]._chosen) {
+      return facetselector[0]._chosen.map((chosen) => {
+        if (chosen._description && chosen._selector) {
+          return (
+            <div className="list-group-item facet">
+              <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(encodeURIComponent(chosen._selectaction[0].self.uri))}>
+                {chosen._description[0].value}
+              </button>
+            </div>
+          );
+        }
+        return null;
+      });
+    }
+    return null;
+  }
+
+  renderFacetSelectors(facetselector) {
+    this.funcName = 'renderFacetSelectors';
+    if (facetselector[0]._choice) {
+      return facetselector[0]._choice.map((choice) => {
+        if (choice._description && choice._selector) {
+          return (
+            <div className="list-group-item facet">
+              <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(encodeURIComponent(choice._selectaction[0].self.uri))}>
+                {choice._description[0].value}
+              </button>
+            </div>
+          );
+        }
+        return null;
+      });
+    }
+    return null;
+  }
+
+  renderFacets() {
+    const { facetModel } = this.state;
+    return facetModel._facets[0]._element.map((facet) => {
+      if (facet.value) {
+        return (
+          <div className="card">
+            <div className="card-header">
+              <h4 className="card-title">
+                <a data-toggle="collapse" href="#facets-2">
+                  <span className="glyphicon glyphicon-tag" />
+                  {facet.value}
+                </a>
+              </h4>
+            </div>
+            <div id="facets-2" className="collapse navbar-collapse in">
+              <ul className="list-group list-group-flush">
+                {this.renderFacetSelectorsChosen(facet._facetselector)}
+                {this.renderFacetSelectors(facet._facetselector)}
+              </ul>
+            </div>
+          </div>
+        );
+      }
+      return null;
     });
   }
 
   render() {
-    const { productData } = this.state;
-    if (true) {
+    const { facetModel } = this.state;
+    if (facetModel._facets.length > 0) {
       return (
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-3 col-md-3">
-              <div className="card-group" id="accordion">
-                <div className="card card-default">
-                  <div className="card-header">
-                    <h4 className="card-title">
-                      <a data-toggle="collapse" href="#facets-1"><span className="glyphicon glyphicon-tag"></span> Taille</a>
-                    </h4>
-                  </div>
-                  <div id="facets-1" className="card-collapse collapse in">
-                    <ul className="list-group list-group-flush">
-                      <div className="list-group-item checkbox checkbox-circle">
-                        <input type="checkbox" name="size" id="size1" />
-                        <label for="size1">100 Ko à 1 Mo</label>
-                      </div>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="card card-default">
-                <div className="card-header">
-                  <h4 className="card-title">
-                    <a data-toggle="collapse" href="#facets-2"><span className="glyphicon glyphicon-tag"></span> Créé</a>
-                  </h4>
-                </div>
-                <div id="facets-2" className="card-collapse collapse in">
-                  <ul className="list-group list-group-flush">
-                    <div className="list-group-item checkbox checkbox-circle">
-                      <input type="checkbox" name="created" id="created1" />
-                      <label for="created1">Ce mois <span className="badge">1</span></label>
-                    </div>
-                    <div className="list-group-item checkbox checkbox-circle">
-                      <input type="checkbox" name="created" id="created2" />
-                      <label for="created2">Au cours des 6 derniers mois <span className="badge">1</span></label>
-                    </div>
-                    <div className="list-group-item checkbox checkbox-circle">
-                      <input type="checkbox" name="created" id="created3" />
-                      <label for="created3">Cette année <span className="badge">1</span></label>
-                    </div>
-                  </ul>
-                </div>
-              </div>
-              <div className="card card-default">
-                <div className="card-header">
-                  <h4 className="card-title">
-                    <a data-toggle="collapse" href="#collapse-2"><span className="glyphicon glyphicon-tag"></span> Créateur</a>
-                  </h4>
-                </div>
-                <div id="collapse-2" className="card-collapse collapse in">
-                  <ul className="list-group list-group-flush">
-                    <div className="list-group-item checkbox checkbox-circle">
-                      <input type="checkbox" name="createdBy" id="createdBy1" />
-                      <label for="createdBy1">Moi <span className="badge">1</span></label>
-                    </div>
-                  </ul>
-                </div>
-              </div>
+        <div className="product-list-facet-navigation-component">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div className="card-stack" id="accordion">
+              {this.renderFacets()}
             </div>
           </div>
         </div>
       );
     }
-
     return (<div className="loader" />);
   }
 }
 
-export default SearchFacetNavigationMain;
+export default withRouter(SearchFacetNavigationMain);

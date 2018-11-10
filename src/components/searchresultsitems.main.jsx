@@ -23,24 +23,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
+import { searchLookup, cortexFetchSearchLookupForm } from '../utils/CortexLookup';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
-import cortexFetch from '../utils/Cortex';
+import SearchFacetNavigationMain from './searchfacetnavigation.main';
 
-const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'element',
-  'element:availability',
-  'element:definition',
-  'element:definition:assets:element',
-  'element:price',
-  'element:rate',
-  'element:code',
-];
-
-let searchForm;
+import './searchresultsitems.main.less';
 
 class SearchResultsItemsMain extends React.Component {
   static propTypes = {
@@ -73,41 +61,21 @@ class SearchResultsItemsMain extends React.Component {
       searchKeywords: searchKeywordsProps,
     });
 
-    login()
-      .then(() => cortexFetch('/?zoom=searches:keywordsearchform',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        }))
-      .then(res => res.json())
-      .then((res) => {
-        searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
-      })
-      .then(() => cortexFetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            keywords: searchKeywordsProps,
-          }),
-        }))
-      .then(res => res.json())
-      .then((res) => {
-        this.setState({
-          isLoading: false,
-          searchResultsModel: res,
-          searchKeywords: searchKeywordsProps,
-        });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+    login().then(() => {
+      cortexFetchSearchLookupForm()
+        .then(() => searchLookup(searchKeywordsProps)
+          .then((res) => {
+            this.setState({
+              isLoading: false,
+              searchResultsModel: res,
+              searchKeywords: searchKeywordsProps,
+            });
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          }));
+    });
   }
 
   render() {
@@ -119,9 +87,16 @@ class SearchResultsItemsMain extends React.Component {
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
-          <h1 className="view-title">
-            {intl.get('search-results-for', { searchKeywords })}
-          </h1>
+          {
+            (searchKeywords.includes('/')) ? (
+              <h1 className="view-title">
+                {intl.get('search-results')}
+              </h1>
+            ) : (
+              <h1 className="view-title">
+                {intl.get('search-results-for', { searchKeywords })}
+              </h1>
+            )}
           {(() => {
             if (isLoading) {
               return (<div className="loader" />);
@@ -134,9 +109,9 @@ class SearchResultsItemsMain extends React.Component {
                 </h3>
               );
             }
-
             return (
               <div>
+                <SearchFacetNavigationMain productData={products} />
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} isTop />
                   <ProductListMain productData={products} />
