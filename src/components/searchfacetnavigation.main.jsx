@@ -23,46 +23,12 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import cortexFetch from '../utils/Cortex';
 
 import './searchfacetnavigation.main.less';
 
 const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex for searchDetails
-const zoomArray = [
-  'element',
-  'element:availability',
-  'element:definition',
-  'element:definition:assets:element',
-  'element:price',
-  'element:rate',
-  'element:code',
-  'element',
-  'element:availability',
-  'element:definition',
-  'element:definition:assets:element',
-  'element:pricerange',
-  'element:items',
-  'element:items:element',
-  'element:items:element:availability',
-  'element:items:element:definition',
-  'element:items:element:definition:assets:element',
-  'element:items:element:price',
-  'element:items:element:rate',
-  'element:items:element:code',
-  'facets',
-  'facets:element',
-  'facets:element:facetselector',
-  'facets:element:facetselector:choice:description',
-  'facets:element:facetselector:choice:selector',
-  'facets:element:facetselector:choice:selectaction',
-  'facets:element:facetselector:chosen:description',
-  'facets:element:facetselector:chosen:selector',
-  'facets:element:facetselector:chosen:selectaction',
-];
 
 class SearchFacetNavigationMain extends React.Component {
   static propTypes = {
@@ -75,16 +41,12 @@ class SearchFacetNavigationMain extends React.Component {
     const { productData } = this.props;
     this.state = {
       facetModel: productData,
-      isLoading: false,
     };
     this.handleFacetSelection = this.handleFacetSelection.bind(this);
   }
 
   handleFacetSelection(facetUri) {
     const { history } = this.props;
-    this.setState({
-      isLoading: true,
-    });
     login().then(() => {
       cortexFetch(`${decodeURIComponent(facetUri)}?followlocation&zoom=offer-search-result`,
         {
@@ -97,9 +59,6 @@ class SearchFacetNavigationMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
           history.push(`/search/${encodeURIComponent(res['_offer-search-result'][0].self.uri)}`);
         })
         .catch((error) => {
