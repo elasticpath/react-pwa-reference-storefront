@@ -120,12 +120,7 @@ class CartLineItem extends React.Component {
           },
         })
         .then(() => {
-          if (isAnalyticsConfigured()) {
-            const categoryTag = (item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-            trackAddItemAnalytics(item._item[0].self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], item._item[0]._definition[0]['display-name'], item._item[0]._code[0].code, item._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', item.quantity);
-            setRemoveAnalytics();
-            sendRemoveFromCartAnalytics();
-          }
+          this.trackAddItemAnalytics();
           handleQuantityChange();
         })
         .catch((error) => {
@@ -133,6 +128,16 @@ class CartLineItem extends React.Component {
           console.error(error.message);
         });
     });
+  }
+
+  trackAddItemAnalytics() {
+    const { item } = this.props;
+    if (isAnalyticsConfigured()) {
+      const categoryTag = (item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+      trackAddItemAnalytics(item._item[0].self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], item._item[0]._definition[0]['display-name'], item._item[0]._code[0].code, item._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', item.quantity);
+      setRemoveAnalytics();
+      sendRemoveFromCartAnalytics();
+    }
   }
 
   renderUnitPrice() {

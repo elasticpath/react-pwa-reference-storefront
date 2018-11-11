@@ -110,17 +110,13 @@ class ProductDisplayItemMain extends React.Component {
                   productData: res,
                   arFileExists: exists,
                 });
+                this.trackImpressionAnalytics();
               });
             } else {
               this.setState({
                 productData: res,
               });
-            }
-            if (isAnalyticsConfigured()) {
-              const { productData, itemQuantity } = this.state;
-              const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-              trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
-              setDetailAnalytics();
+              this.trackImpressionAnalytics();
             }
           })
           .catch((error) => {
@@ -140,17 +136,13 @@ class ProductDisplayItemMain extends React.Component {
                 productData: res,
                 arFileExists: exists,
               });
+              this.trackImpressionAnalytics();
             });
           } else {
             this.setState({
               productData: res,
             });
-          }
-          if (isAnalyticsConfigured()) {
-            const { productData, itemQuantity } = this.state;
-            const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-            trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
-            setDetailAnalytics();
+            this.trackImpressionAnalytics();
           }
         })
         .catch((error) => {
@@ -158,6 +150,15 @@ class ProductDisplayItemMain extends React.Component {
           console.error(error.message);
         });
     });
+  }
+
+  trackImpressionAnalytics() {
+    if (isAnalyticsConfigured()) {
+      const { productData, itemQuantity } = this.state;
+      const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+      trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+      setDetailAnalytics();
+    }
   }
 
   handleQuantityChange(event) {
