@@ -74,7 +74,7 @@ class SearchFacetNavigationMain extends React.Component {
       return facetselector[0]._chosen.map((chosen) => {
         if (chosen._description && chosen._selector) {
           return (
-            <div className="list-group-item facet">
+            <div className="list-group-item facet" key={chosen._description[0].value}>
               <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(encodeURIComponent(chosen._selectaction[0].self.uri))}>
                 {chosen._description[0].value}
               </button>
@@ -93,7 +93,7 @@ class SearchFacetNavigationMain extends React.Component {
       return facetselector[0]._choice.map((choice) => {
         if (choice._description && choice._selector) {
           return (
-            <div className="list-group-item facet">
+            <div className="list-group-item facet" key={choice._description[0].value}>
               <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(encodeURIComponent(choice._selectaction[0].self.uri))}>
                 {choice._description[0].value}
               </button>
@@ -111,7 +111,7 @@ class SearchFacetNavigationMain extends React.Component {
     return facetModel._facets[0]._element.map((facet) => {
       if (facet.value) {
         return (
-          <div className="card">
+          <div className="card" key={facet.value}>
             <div className="card-header">
               <h4 className="card-title">
                 <a data-toggle="collapse" href="#facets-2">
@@ -135,7 +135,7 @@ class SearchFacetNavigationMain extends React.Component {
 
   render() {
     const { facetModel } = this.state;
-    if (facetModel._facets.length > 0) {
+    if (facetModel._facets && facetModel._facets.length > 0 && facetModel._element) {
       return (
         <div className="product-list-facet-navigation-component">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">

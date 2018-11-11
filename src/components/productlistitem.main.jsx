@@ -33,7 +33,13 @@ const Config = require('Config');
 
 class ProductListItemMain extends React.Component {
   static propTypes = {
-    productId: PropTypes.string.isRequired,
+    productId: PropTypes.string,
+    offerData: PropTypes.objectOf(PropTypes.any),
+  }
+
+  static defaultProps = {
+    productId: '',
+    offerData: {},
   }
 
   constructor(props) {
@@ -44,32 +50,45 @@ class ProductListItemMain extends React.Component {
   }
 
   componentDidMount() {
-    const { productId } = this.props;
-    login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId)
-          .then((res) => {
-            this.setState({
-              productData: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+    const { productId, offerData } = this.props;
+    if (productId !== '') {
+      login().then(() => {
+        cortexFetchItemLookupForm()
+          .then(() => itemLookup(productId)
+            .then((res) => {
+              this.setState({
+                productData: res,
+              });
+            })
+            .catch((error) => {
+              // eslint-disable-next-line no-console
+              console.error(error.message);
+            }));
+      });
+    }
+    if (offerData._items) {
+      this.setState({
+        productData: offerData._items[0]._element[0],
+      });
+    }
   }
 
   render() {
     const { productData } = this.state;
+    const { offerData } = this.props;
     if (productData) {
       let listPrice = 'n/a';
-      if (productData._price) {
-        listPrice = productData._price[0]['list-price'][0].display;
-      }
       let itemPrice = 'n/a';
-      if (productData._price) {
-        itemPrice = productData._price[0]['purchase-price'][0].display;
+      if (offerData._pricerange) {
+        listPrice = offerData._pricerange[0]['purchase-price-range']['from-price'][0].display;
+        itemPrice = offerData._pricerange[0]['purchase-price-range']['to-price'][0].display;
+      } else {
+        if (productData._price) {
+          listPrice = productData._price[0]['list-price'][0].display;
+        }
+        if (productData._price) {
+          itemPrice = productData._price[0]['purchase-price'][0].display;
+        }
       }
       let availability = false;
       let availabilityString = '';
@@ -88,7 +107,7 @@ class ProductListItemMain extends React.Component {
           availabilityString = intl.get('out-of-stock');
         }
       }
-      const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
+      const featuredProductAttribute = (productData._definition && productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       return (
         <div className="category-item-inner">
           <div className="category-item-thumbnail-container">
@@ -111,20 +130,30 @@ class ProductListItemMain extends React.Component {
           <div data-region="priceRegion">
             <div data-region="itemPriceRegion">
               <ul className="category-item-price-container">
-                <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
-                  {
-                    listPrice !== itemPrice
-                      ? (
-                        <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
-                          {listPrice}
-                        </span>
-                      )
-                      : ('')
-                  }
-                  <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                    {itemPrice}
-                  </span>
-                </li>
+                {(offerData._pricerange)
+                  ? (
+                    <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
+                      <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                        {`${listPrice} - ${itemPrice}`}
+                      </span>
+                    </li>
+                  ) : (
+                    <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
+                      {
+                        listPrice !== itemPrice
+                          ? (
+                            <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
+                              {listPrice}
+                            </span>
+                          )
+                          : ('')
+                      }
+                      <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                        {itemPrice}
+                      </span>
+                    </li>
+                  )
+                }
               </ul>
             </div>
             <div data-region="itemRateRegion" />
@@ -139,10 +168,10 @@ class ProductListItemMain extends React.Component {
                       {availabilityString}
                     </div>
                   ) : (
-                    <div>
-                      {availabilityString}
-                    </div>
-                  )}
+                      <div>
+                        {availabilityString}
+                      </div>
+                    )}
                 </label>
               </li>
               <li className={`category-item-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
@@ -156,7 +185,7 @@ class ProductListItemMain extends React.Component {
               </li>
             </ul>
           </div>
-        </div>
+        </div >
       );
     }
 
