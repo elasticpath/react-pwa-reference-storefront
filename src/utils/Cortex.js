@@ -47,9 +47,6 @@ function cortexFetch(input, init) {
     .catch((error) => {
       // eslint-disable-next-line no-console
       console.error(error.message);
-      if (window.location.href.indexOf('/maintenance') === -1) {
-        window.location.pathname = '/maintenance';
-      }
     });
 }
 
