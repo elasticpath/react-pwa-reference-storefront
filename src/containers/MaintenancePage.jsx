@@ -30,7 +30,7 @@ const Config = require('Config');
 
 const dogeFileName = 'HikingDog.png';
 
-function AboutUsPage() {
+function MaintenancePage() {
   return (
     <div className="viewport ui-container static-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
       <div>
@@ -72,4 +72,4 @@ function AboutUsPage() {
   );
 }
 
-export default AboutUsPage;
+export default MaintenancePage;

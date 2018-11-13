@@ -55,11 +55,6 @@ export function login() {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
         },
         body: userFormBodyString,
-      }).then((res) => {
-        if (res.status === 504 || res.status === 503) {
-          reject(res);
-        }
-        return res;
       }).then(res => res.json())
         .then((res) => {
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
