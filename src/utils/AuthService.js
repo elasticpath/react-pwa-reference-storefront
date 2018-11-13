@@ -378,7 +378,7 @@ export function fetchOrderHistory(uri) {
 export function submitPayment(cardHolderName, card, cardNumber, saveToProfile) {
   const zoomArray = [
     'defaultcart:order:paymentmethodinfo:paymenttokenform',
-    'defaultprofile:paymentmethods:paymenttokenform'
+    'defaultprofile:paymentmethods:paymenttokenform',
   ];
 
   return login().then(() => cortexFetch(`/?zoom=${zoomArray.join()}`, {
