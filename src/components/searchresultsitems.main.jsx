@@ -22,25 +22,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
+import { searchProducts } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
-import cortexFetch from '../utils/Cortex';
-
-const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'element',
-  'element:availability',
-  'element:definition',
-  'element:definition:assets:element',
-  'element:price',
-  'element:rate',
-  'element:code',
-];
-
-let searchForm;
 
 class SearchResultsItemsMain extends React.Component {
   static propTypes = {
@@ -49,11 +33,9 @@ class SearchResultsItemsMain extends React.Component {
 
   constructor(props) {
     super(props);
-    const { searchKeywordsProps } = this.props;
     this.state = {
       isLoading: true,
       searchResultsModel: { links: [] },
-      searchKeywords: searchKeywordsProps,
     };
   }
 
@@ -68,40 +50,13 @@ class SearchResultsItemsMain extends React.Component {
   }
 
   getSearchData(searchKeywordsProps) {
-    this.setState({
-      isLoading: true,
-      searchKeywords: searchKeywordsProps,
-    });
+    this.setState({ isLoading: true });
 
-    login()
-      .then(() => cortexFetch('/?zoom=searches:keywordsearchform',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        }))
-      .then(res => res.json())
-      .then((res) => {
-        searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
-      })
-      .then(() => cortexFetch(`${searchForm}?zoom=${zoomArray.join()}&followlocation`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            keywords: searchKeywordsProps,
-          }),
-        }))
-      .then(res => res.json())
+    searchProducts(searchKeywordsProps)
       .then((res) => {
         this.setState({
           isLoading: false,
           searchResultsModel: res,
-          searchKeywords: searchKeywordsProps,
         });
       })
       .catch((error) => {
@@ -114,13 +69,13 @@ class SearchResultsItemsMain extends React.Component {
     const { isLoading, searchResultsModel } = this.state;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0;
-    const { searchKeywords } = this.state;
+    const { searchKeywordsProps } = this.props;
 
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
           <h1 className="view-title">
-            {intl.get('search-results-for', { searchKeywords })}
+            {intl.get('search-results-for', { searchKeywords: searchKeywordsProps })}
           </h1>
           {(() => {
             if (isLoading) {

@@ -265,7 +265,7 @@ export function createAddress(firstName, lastName, address, extendedAddress, cit
     }));
 }
 
-export function deleteAddress(uri) {
+export function deleteUri(uri) {
   return login()
     .then(() => cortexFetch(uri, {
       method: 'delete',
@@ -587,4 +587,37 @@ export function fetchCategories() {
       },
     }))
     .then(res => Promise.all([res, res.status === 200 ? res.json() : {}]));
+}
+
+export function searchProducts(searchKeywords) {
+  const zoomArray = [
+    'element',
+    'element:availability',
+    'element:definition',
+    'element:definition:assets:element',
+    'element:price',
+    'element:rate',
+    'element:code',
+  ];
+
+  return login()
+    .then(() => cortexFetch('/?zoom=searches:keywordsearchform', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json())
+    .then(body => body._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri)
+    .then(uri => cortexFetch(`${uri}?zoom=${zoomArray.join()}&followlocation`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        keywords: searchKeywords,
+      }),
+    }))
+    .then(res => res.json());
 }
