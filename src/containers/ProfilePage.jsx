@@ -21,15 +21,12 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
+import { fetchUri } from '../utils/AuthService';
 import ProfileInfoMain from '../components/profileInfo.main';
 import OrderHistoryMain from '../components/orderhistory.main';
 import ProfileAddressesMain from '../components/profileaddresses.main';
 import ProfilePaymentMethodsMain from '../components/profilepaymentmethods.main';
-import cortexFetch from '../utils/Cortex';
 import './ProfilePage.less';
-
-const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
@@ -63,25 +60,16 @@ class ProfilePage extends React.Component {
   }
 
   fetchProfileData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            profileData: res._defaultprofile[0],
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+    fetchUri(`/?zoom=${zoomArray.join()}`)
+      .then((res) => {
+        this.setState({
+          profileData: res._defaultprofile[0],
         });
-    });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   render() {

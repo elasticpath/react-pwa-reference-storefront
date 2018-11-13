@@ -22,39 +22,13 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
+import { fetchCartData } from '../utils/AuthService';
 import CartMain from '../components/cart.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import AddPromotionContainer from '../components/add.promotion.container';
-import cortexFetch from '../utils/Cortex';
 import './CartPage.less';
 
 const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'defaultcart',
-  'defaultcart:total',
-  'defaultcart:discount',
-  'defaultcart:appliedpromotions:element',
-  'defaultcart:order:couponinfo:coupon',
-  'defaultcart:lineitems:element',
-  'defaultcart:lineitems:element:total',
-  'defaultcart:lineitems:element:price',
-  'defaultcart:lineitems:element:availability',
-  'defaultcart:lineitems:element:appliedpromotions',
-  'defaultcart:lineitems:element:appliedpromotions:element',
-  'defaultcart:lineitems:element:item',
-  'defaultcart:lineitems:element:item:code',
-  'defaultcart:lineitems:element:item:definition',
-  'defaultcart:lineitems:element:item:definition:details',
-  'defaultcart:lineitems:element:item:definition:options:element',
-  'defaultcart:lineitems:element:item:definition:options:element:value',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:choice',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:chosen',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:choice:description',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
-];
 
 class CartPage extends React.Component {
   static propTypes = {
@@ -70,38 +44,30 @@ class CartPage extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchCartData();
+    this.refreshCartData();
   }
 
   componentWillReceiveProps() {
-    this.fetchCartData();
+    this.refreshCartData();
   }
 
-  fetchCartData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            cartData: res._defaultcart[0],
-            isLoading: false,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+  refreshCartData() {
+    fetchCartData()
+      .then((res) => {
+        this.setState({
+          cartData: res._defaultcart[0],
+          isLoading: false,
         });
-    });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   handleQuantityChange() {
     this.setState({ isLoading: true });
-    this.fetchCartData();
+    this.refreshCartData();
   }
 
   checkout() {
@@ -165,8 +131,8 @@ class CartPage extends React.Component {
               <div>
                 <div className="cart-sidebar-inner">
                   <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                    <AddPromotionContainer onSubmittedPromotion={() => { this.fetchCartData(); }} />
-                    <CheckoutSummaryList data={cartData} onChange={() => { this.fetchCartData(); }} />
+                    <AddPromotionContainer onSubmittedPromotion={() => { this.refreshCartData(); }} />
+                    <CheckoutSummaryList data={cartData} onChange={() => { this.refreshCartData(); }} />
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                     <div>

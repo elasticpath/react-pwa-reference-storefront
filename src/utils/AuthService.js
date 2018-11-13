@@ -106,6 +106,28 @@ export function logout() {
   return Promise.resolve();
 }
 
+export function fetchUri(uri) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json());
+}
+
+export function deleteUri(uri) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }));
+}
+
 export function registerUser(lastname, firstname, username, password) {
   return cortexFetch('/?zoom=newaccountform', {
     headers: {
@@ -185,26 +207,7 @@ export function fetchGeoData() {
     'countries:element:regions:element',
   ];
 
-  return login()
-    // 7.4 Will expose the countries API at the root. In versions earlier than 7.4 we have to invoke geographies ourselves.
-    .then(() => cortexFetch(`/geographies/${Config.cortexApi.scope}/countries/?zoom=${zoomArray.join()}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    }))
-    .then(res => res.json());
-}
-
-export function fetchAddressData(addressLink) {
-  return login()
-    .then(() => cortexFetch(addressLink, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    }))
-    .then(res => res.json());
+  return fetchUri(`/geographies/${Config.cortexApi.scope}/countries/?zoom=${zoomArray.join()}`);
 }
 
 export function updateAddress(uri, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode) {
@@ -262,17 +265,6 @@ export function createAddress(firstName, lastName, address, extendedAddress, cit
           'postal-code': postalCode,
         },
       }),
-    }));
-}
-
-export function deleteUri(uri) {
-  return login()
-    .then(() => cortexFetch(uri, {
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
     }));
 }
 
@@ -374,14 +366,7 @@ export function fetchOrderHistory(uri) {
     'lineitems:element:item:definition:options:element:selector:chosen:selectaction',
   ];
 
-  return login()
-    .then(() => cortexFetch(`${uri}?zoom=${zoomArray.join()}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    }))
-    .then(res => res.json());
+  return fetchUri(`${uri}?zoom=${zoomArray.join()}`);
 }
 
 export function submitPayment(cardHolderName, card, cardNumber, saveToProfile) {
@@ -620,4 +605,32 @@ export function searchProducts(searchKeywords) {
       }),
     }))
     .then(res => res.json());
+}
+
+export function fetchCartData() {
+  const zoomArray = [
+    'defaultcart',
+    'defaultcart:total',
+    'defaultcart:discount',
+    'defaultcart:appliedpromotions:element',
+    'defaultcart:order:couponinfo:coupon',
+    'defaultcart:lineitems:element',
+    'defaultcart:lineitems:element:total',
+    'defaultcart:lineitems:element:price',
+    'defaultcart:lineitems:element:availability',
+    'defaultcart:lineitems:element:appliedpromotions',
+    'defaultcart:lineitems:element:appliedpromotions:element',
+    'defaultcart:lineitems:element:item',
+    'defaultcart:lineitems:element:item:code',
+    'defaultcart:lineitems:element:item:definition',
+    'defaultcart:lineitems:element:item:definition:details',
+    'defaultcart:lineitems:element:item:definition:options:element',
+    'defaultcart:lineitems:element:item:definition:options:element:value',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:choice',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:chosen',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:choice:description',
+    'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
+  ];
+
+  return fetchUri(`/?zoom=${zoomArray.sort().join()}`);
 }

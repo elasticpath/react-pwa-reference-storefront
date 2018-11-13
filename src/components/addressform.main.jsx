@@ -23,7 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import {
-  fetchGeoData, fetchAddressData, updateAddress, createAddress,
+  fetchGeoData, fetchUri, updateAddress, createAddress,
 } from '../utils/AuthService';
 
 import './addressform.main.less';
@@ -73,7 +73,7 @@ class AddressFormMain extends React.Component {
 
     const { location } = this.props;
     if (location.state && location.state.address) {
-      fetchAddressData(location.state.address)
+      fetchUri(location.state.address)
         .then(body => this.setState({
           firstName: body.name['given-name'],
           lastName: body.name['family-name'],
