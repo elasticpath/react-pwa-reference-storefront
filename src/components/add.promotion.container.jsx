@@ -41,10 +41,6 @@ class AddPromotionContainer extends React.Component {
     this.submitPromotionCode = this.submitPromotionCode.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchCouponForm();
-  }
-
   setPromotionCode(event) {
     this.setState({ promotionCode: event.target.value });
   }

@@ -25,12 +25,13 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import { login } from '../utils/AuthService';
+import {
+  changeItemQuantity, moveToCart, removeFromCart,
+} from '../utils/AuthService';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, setRemoveAnalytics, sendRemoveFromCartAnalytics,
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
-import cortexFetch from '../utils/Cortex';
 import './cart.lineitem.less';
 
 const Config = require('Config');
@@ -57,70 +58,9 @@ class CartLineItem extends React.Component {
     event.preventDefault();
     const newQuantity = event.target.value;
     const { item, handleQuantityChange } = this.props;
-    login().then(() => {
-      this.setState({ quantity: newQuantity }, () => {
-        cortexFetch(item.self.uri,
-          {
-            method: 'put',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify({
-              quantity: newQuantity,
-            }),
-          })
-          .then(() => {
-            handleQuantityChange();
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
-    });
-  }
-
-  handleMoveToCartBtnClicked() {
-    const { item, history } = this.props;
-    login().then(() => {
-      const moveToCartLink = item._movetocartform[0].links.find(link => link.rel === 'movetocartaction');
-      cortexFetch(moveToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity: 1,
-          }),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            history.push('/mycart');
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-  }
-
-  handleRemoveBtnClicked() {
-    const { item, handleQuantityChange } = this.props;
-    login().then(() => {
-      cortexFetch(item.self.uri,
-        {
-          method: 'delete',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
+    this.setState({ quantity: newQuantity }, () => {
+      changeItemQuantity(item.self.uri, newQuantity)
         .then(() => {
-          this.trackAddItemAnalytics();
           handleQuantityChange();
         })
         .catch((error) => {
@@ -128,6 +68,33 @@ class CartLineItem extends React.Component {
           console.error(error.message);
         });
     });
+  }
+
+  handleMoveToCartBtnClicked() {
+    const { item, history } = this.props;
+    moveToCart(item._movetocartform[0].links.find(link => link.rel === 'movetocartaction').uri)
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          history.push('/mycart');
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+  }
+
+  handleRemoveBtnClicked() {
+    const { item, handleQuantityChange } = this.props;
+    removeFromCart(item.self.uri)
+      .then(() => {
+        this.trackAddItemAnalytics();
+        handleQuantityChange();
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   trackAddItemAnalytics() {

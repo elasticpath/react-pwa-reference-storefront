@@ -298,3 +298,42 @@ export function updatePersonalInfo(firstName, lastName) {
       throw error;
     });
 }
+
+export function changeItemQuantity(uri, newQuantity) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        quantity: newQuantity,
+      }),
+    }));
+}
+
+export function moveToCart(uri) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        quantity: 1,
+      }),
+    }));
+}
+
+export function removeFromCart(uri) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }));
+}
