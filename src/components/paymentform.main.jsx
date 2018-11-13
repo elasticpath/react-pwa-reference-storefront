@@ -22,8 +22,7 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { submitPayment } from '../utils/AuthService';
 import './paymentform.main.less';
 
 const Config = require('Config');
@@ -47,8 +46,6 @@ class PaymentFormMain extends React.Component {
       securityCode: '',
       saveToProfile: false,
       failedSubmit: false,
-      paymentForm: undefined,
-      orderPaymentForm: undefined,
     };
     this.setCardType = this.setCardType.bind(this);
     this.setCardHolderName = this.setCardHolderName.bind(this);
@@ -59,10 +56,6 @@ class PaymentFormMain extends React.Component {
     this.setSaveToProfile = this.setSaveToProfile.bind(this);
     this.submitPayment = this.submitPayment.bind(this);
     this.cancel = this.cancel.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchPaymentForms();
   }
 
   setCardType(event) {
@@ -96,17 +89,11 @@ class PaymentFormMain extends React.Component {
   submitPayment(event) {
     event.preventDefault();
     const {
-      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm,
+      cardHolderName, cardType, cardNumber, securityCode, saveToProfile,
     } = this.state;
     if (!cardHolderName || !cardNumber || !securityCode) {
       this.setState({ failedSubmit: true });
       return;
-    }
-    let link;
-    if (saveToProfile) {
-      link = paymentForm;
-    } else {
-      link = orderPaymentForm;
     }
     let card;
     switch (cardType) {
@@ -120,22 +107,8 @@ class PaymentFormMain extends React.Component {
         card = 'American Express';
     }
     // set link based on savetoprofile
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({
-          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-          token: Math.random().toString(36).substr(2, 9),
-          /* token is being randomly generated here to be passed to the demo payment gateway
-          ** in a true implementation this token should be received from the actual payment gateway
-          ** when doing so, make sure you're compliant with PCI DSS
-          */
-        }),
-      }).then((res) => {
+    submitPayment(cardHolderName, card, cardNumber, saveToProfile)
+      .then((res) => {
         if (res.status === 400) {
           this.setState({ failedSubmit: true });
         } else if (res.status === 201 || res.status === 200 || res.status === 204) {
@@ -147,31 +120,6 @@ class PaymentFormMain extends React.Component {
         // eslint-disable-next-line no-console
         console.error(error.message);
       });
-    });
-  }
-
-  fetchPaymentForms() {
-    login().then(() => {
-      cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          const paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenaction',
-          );
-          const orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenfororderaction',
-          );
-          this.setState({
-            paymentForm: paymentFormLink.uri,
-            orderPaymentForm: orderPaymentFormLink.uri,
-          });
-        });
-    });
   }
 
   cancel() {
