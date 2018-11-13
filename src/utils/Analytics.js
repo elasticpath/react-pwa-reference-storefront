@@ -25,8 +25,10 @@ import ga from 'react-ga';
 
 const Config = require('Config');
 
-ga.initialize(Config.gaTrackingId);
-ga.plugin.require('ec');
+if (Config.gaTrackingId !== '') {
+  ga.initialize(Config.gaTrackingId);
+  ga.plugin.require('ec');
+}
 export default Component => class WithAnalytics extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
