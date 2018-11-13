@@ -134,3 +134,32 @@ export function registerUser(lastname, firstname, username, password) {
       throw error;
     });
 }
+
+export function submitPromotionCode(promotionCode) {
+  return login()
+    .then(cortexFetch('/?zoom=defaultcart:order:couponinfo:couponform', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json())
+    .then(body => body
+      ._defaultcart[0]
+      ._order[0]
+      ._couponinfo[0]
+      ._couponform[0]
+      .links
+      .find(link => link.rel === 'applycouponaction')
+      .uri)
+    .then(couponFormLink => cortexFetch(couponFormLink, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        code: promotionCode,
+      }),
+    }));
+}
