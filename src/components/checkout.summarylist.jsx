@@ -23,11 +23,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { deletePromotionCode } from '../utils/AuthService';
 import './checkout.summarylist.less';
-
-const Config = require('Config');
 
 class CheckoutSummaryList extends React.Component {
   static propTypes = {
@@ -40,21 +37,14 @@ class CheckoutSummaryList extends React.Component {
   }
 
   deletePromotionCode(link) {
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
+    deletePromotionCode(link)
+      .then(() => {
         const { onChange } = this.props;
         onChange();
       }).catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
       });
-    });
   }
 
   renderCoupons() {

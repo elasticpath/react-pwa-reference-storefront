@@ -164,6 +164,17 @@ export function submitPromotionCode(promotionCode) {
     }));
 }
 
+export function deletePromotionCode(uri) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }));
+}
+
 export function fetchGeoData() {
   const zoomArray = [
     'element',
