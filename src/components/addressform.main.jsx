@@ -22,22 +22,13 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import {
+  fetchGeoData, fetchAddressData, updateAddress, createAddress,
+} from '../utils/AuthService';
 
 import './addressform.main.less';
 
 const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'element',
-  'element:regions',
-  'element:regions:element',
-  'countries:element',
-  'countries:element:regions',
-  'countries:element:regions:element',
-];
 
 class AddressFormMain extends React.Component {
   static propTypes = {
@@ -58,7 +49,6 @@ class AddressFormMain extends React.Component {
       subCountry: '',
       postalCode: '',
       failedSubmit: false,
-      addressForm: undefined,
     };
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
@@ -73,12 +63,27 @@ class AddressFormMain extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchGeoData();
+    fetchGeoData()
+      .then(body => this.setState({ geoData: body }))
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        throw error;
+      });
+
     const { location } = this.props;
     if (location.state && location.state.address) {
-      this.fetchAddressData(location.state.address);
-    } else {
-      this.fetchAddressForm();
+      fetchAddressData(location.state.address)
+        .then(body => this.setState({
+          firstName: body.name['given-name'],
+          lastName: body.name['family-name'],
+          address: body.address['street-address'],
+          extendedAddress: body.address['extended-address'] || '',
+          city: body.address.locality,
+          country: body.address['country-name'],
+          subCountry: body.address.region,
+          postalCode: body.address['postal-code'],
+        }));
     }
   }
 
@@ -118,39 +123,14 @@ class AddressFormMain extends React.Component {
     event.preventDefault();
     const { location } = this.props;
     const {
-      addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
+      firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
     } = this.state;
-    let link;
-    let methodType;
-    if (location.state && location.state.address) {
-      link = location.state.address;
-      methodType = 'put';
-    } else {
-      link = addressForm;
-      methodType = 'post';
-    }
-    login().then(() => {
-      cortexFetch(link, {
-        method: methodType,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({
-          name: {
-            'given-name': firstName,
-            'family-name': lastName,
-          },
-          address: {
-            'street-address': address,
-            'extended-address': extendedAddress,
-            locality: city,
-            'country-name': country,
-            region: subCountry,
-            'postal-code': postalCode,
-          },
-        }),
-      }).then((res) => {
+
+    (location.state && location.state.address
+      ? updateAddress(location.state.address, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode)
+      : createAddress(firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode)
+    )
+      .then((res) => {
         if (res.status === 400) {
           this.setState({ failedSubmit: true });
         } else if (res.status === 201 || res.status === 200 || res.status === 204) {
@@ -162,71 +142,6 @@ class AddressFormMain extends React.Component {
         // eslint-disable-next-line no-console
         console.error(error.message);
       });
-    });
-  }
-
-  fetchGeoData() {
-    login().then(() => {
-      // 7.4 Will expose the countries API at the root. In versions earlier than 7.4 we have to invoke geographies ourselves.
-      cortexFetch(`/geographies/${Config.cortexApi.scope}/countries/?zoom=${zoomArray.join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            geoData: res,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-  }
-
-  fetchAddressData(addressLink) {
-    login().then(() => {
-      cortexFetch(addressLink, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            firstName: res.name['given-name'],
-            lastName: res.name['family-name'],
-            address: res.address['street-address'],
-            extendedAddress: res.address['extended-address'] ? res.address['extended-address'] : '',
-            city: res.address.locality,
-            country: res.address['country-name'],
-            subCountry: res.address.region,
-            postalCode: res.address['postal-code'],
-          });
-        });
-    });
-  }
-
-  fetchAddressForm() {
-    login().then(() => {
-      cortexFetch('/?zoom=defaultprofile:addresses:addressform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          const addressFormLink = res._defaultprofile[0]._addresses[0]._addressform[0].links.find(link => link.rel === 'createaddressaction').uri;
-          this.setState({
-            addressForm: addressFormLink,
-          });
-        });
-    });
   }
 
   cancel() {

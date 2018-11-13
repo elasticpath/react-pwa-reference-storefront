@@ -137,7 +137,7 @@ export function registerUser(lastname, firstname, username, password) {
 
 export function submitPromotionCode(promotionCode) {
   return login()
-    .then(cortexFetch('/?zoom=defaultcart:order:couponinfo:couponform', {
+    .then(() => cortexFetch('/?zoom=defaultcart:order:couponinfo:couponform', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -161,5 +161,106 @@ export function submitPromotionCode(promotionCode) {
       body: JSON.stringify({
         code: promotionCode,
       }),
+    }));
+}
+
+export function fetchGeoData() {
+  const zoomArray = [
+    'element',
+    'element:regions',
+    'element:regions:element',
+    'countries:element',
+    'countries:element:regions',
+    'countries:element:regions:element',
+  ];
+
+  return login()
+    // 7.4 Will expose the countries API at the root. In versions earlier than 7.4 we have to invoke geographies ourselves.
+    .then(() => cortexFetch(`/geographies/${Config.cortexApi.scope}/countries/?zoom=${zoomArray.join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json());
+}
+
+export function fetchAddressData(addressLink) {
+  return login()
+    .then(() => cortexFetch(addressLink, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json());
+}
+
+export function updateAddress(uri, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        name: {
+          'given-name': firstName,
+          'family-name': lastName,
+        },
+        address: {
+          'street-address': address,
+          'extended-address': extendedAddress,
+          locality: city,
+          'country-name': country,
+          region: subCountry,
+          'postal-code': postalCode,
+        },
+      }),
+    }));
+}
+
+export function createAddress(firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode) {
+  return login()
+    .then(() => cortexFetch('/?zoom=defaultprofile:addresses:addressform', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json())
+    .then(body => body._defaultprofile[0]._addresses[0]._addressform[0].links.find(link => link.rel === 'createaddressaction').uri)
+    .then(uri => cortexFetch(uri, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        name: {
+          'given-name': firstName,
+          'family-name': lastName,
+        },
+        address: {
+          'street-address': address,
+          'extended-address': extendedAddress,
+          locality: city,
+          'country-name': country,
+          region: subCountry,
+          'postal-code': postalCode,
+        },
+      }),
+    }));
+}
+
+export function deleteAddress(uri) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
     }));
 }
