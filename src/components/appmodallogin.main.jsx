@@ -66,13 +66,7 @@ class AppModalLoginMain extends React.Component {
     this.setState({ isLoading: true });
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
       loginRegistered(username, password).then((resStatus) => {
-        if (resStatus === 401) {
-          this.setState({
-            failedLogin: true,
-            isLoading: false,
-          });
-        }
-        if (resStatus === 400) {
+        if (resStatus === 400 || resStatus === 401) {
           this.setState({
             failedLogin: true,
             isLoading: false,

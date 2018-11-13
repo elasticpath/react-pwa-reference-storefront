@@ -24,7 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
 import {
-  login, loginRegistered, registerUser, getRegistrationForm,
+  login, loginRegistered, registerUser,
 } from '../utils/AuthService';
 import './registrationform.main.less';
 
@@ -54,12 +54,6 @@ class RegistrationFormMain extends React.Component {
     this.registerNewUser = this.registerNewUser.bind(this);
   }
 
-  componentDidMount() {
-    login().then(() => {
-      getRegistrationForm();
-    });
-  }
-
   setFirstName(event) {
     this.setState({ firstname: event.target.value });
   }
@@ -87,16 +81,7 @@ class RegistrationFormMain extends React.Component {
           this.setState({ failedRegistration: false });
           if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
             loginRegistered(username, password).then((resStatus) => {
-              if (resStatus === 401) {
-                this.setState({ failedLogin: true });
-                let debugMessages = '';
-                res.json().then((json) => {
-                  for (let i = 0; i < json.messages.length; i++) {
-                    debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-                  }
-                }).then(() => this.setState({ registrationErrors: debugMessages }));
-              }
-              if (resStatus === 400) {
+              if (resStatus === 400 || resStatus === 401) {
                 this.setState({ failedLogin: true });
                 let debugMessages = '';
                 res.json().then((json) => {
