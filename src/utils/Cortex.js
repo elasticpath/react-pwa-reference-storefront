@@ -35,7 +35,22 @@ function cortexFetch(input, init) {
     return mockFetch(input, requestInit);
   }
 
-  return fetch(`${Config.cortexApi.path + input}`, requestInit);
+  return fetch(`${Config.cortexApi.path + input}`, requestInit)
+    .then((res) => {
+      if (res.status === 504 || res.status === 503) {
+        if (window.location.href.indexOf('/maintenance') === -1) {
+          window.location.pathname = '/maintenance';
+        }
+      }
+      return res;
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+      if (window.location.href.indexOf('/maintenance') === -1) {
+        window.location.pathname = '/maintenance';
+      }
+    });
 }
 
 export default cortexFetch;

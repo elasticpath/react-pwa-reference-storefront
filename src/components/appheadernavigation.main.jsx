@@ -41,8 +41,14 @@ const zoomArray = [
 class AppHeaderNavigationMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
     isOfflineCheck: PropTypes.func.isRequired,
+    isOffline: PropTypes.bool,
     isMobileView: PropTypes.bool.isRequired,
+  }
+
+  static defaultProps = {
+    isOffline: undefined,
   }
 
   constructor(props) {
@@ -53,6 +59,23 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   componentWillMount() {
+    this.fetchNavigationData();
+  }
+
+  componentWillReceiveProps() {
+    const { isOffline, isOfflineCheck, location } = this.props;
+    if (!navigator.onLine && !isOffline && isOffline !== undefined) {
+      isOfflineCheck(true);
+    } else if (navigator.onLine && isOffline) {
+      isOfflineCheck(false);
+    }
+    const { navigations } = this.state;
+    if (navigations.length === 0 && location.pathname === '/maintenance') {
+      this.fetchNavigationData();
+    }
+  }
+
+  fetchNavigationData() {
     login()
       .then(() => cortexFetch(`/?zoom=${zoomArray.join()}`,
         {
@@ -62,10 +85,6 @@ class AppHeaderNavigationMain extends React.Component {
           },
         }))
       .then((res) => {
-        if (res.status === 504 || res.status === 503) {
-          const { history } = this.props;
-          history.push('/maintenance');
-        }
         if (res.status === 401 || res.status === 403) {
           logout().then(() => {
             login().then(() => {
@@ -88,23 +107,11 @@ class AppHeaderNavigationMain extends React.Component {
         this.setState({
           navigations: res._navigations[0]._element,
         });
-        this.handleIsOffline(false);
       })
       .catch((error) => {
-        if (error.status === 504 || error.status === 503) {
-          const { history } = this.props;
-          history.push('/maintenance');
-        } else {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-          this.handleIsOffline(true);
-        }
+        // eslint-disable-next-line no-console
+        console.error(error.message);
       });
-  }
-
-  handleIsOffline = (isOfflineValue) => {
-    const { isOfflineCheck } = this.props;
-    isOfflineCheck(isOfflineValue);
   }
 
   render() {

@@ -171,12 +171,6 @@ export function navigationLookup(navigationLookupCode) {
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
         })
-        .then((res) => {
-          if (res.status === 504 || res.status === 503) {
-            reject(res);
-          }
-          return res;
-        })
         .then(res => res.json())
         .then((res) => {
           resolve(res);
@@ -199,9 +193,6 @@ export function navigationLookup(navigationLookupCode) {
           }),
         })
         .then((res) => {
-          if (res.status === 504 || res.status === 503) {
-            reject(res);
-          }
           if (res.status === 404 || res.status === 403) {
             localStorage.removeItem(`${Config.cortexApi.scope}_navigationLookupForm`);
           }
@@ -234,9 +225,6 @@ export function itemLookup(itemLookupCode) {
         }),
       })
       .then((res) => {
-        if (res.status === 504 || res.status === 503) {
-          reject(res);
-        }
         if (res.status === 404 || res.status === 403) {
           localStorage.removeItem(`${Config.cortexApi.scope}_itemLookupForm`);
         }
@@ -269,9 +257,6 @@ export function purchaseLookup(purchaseLookupCode) {
           }),
         }))
       .then((res) => {
-        if (res.status === 504 || res.status === 503) {
-          reject(res);
-        }
         if (res.status === 404 || res.status === 403) {
           localStorage.removeItem(`${Config.cortexApi.scope}_purchaseLookupForm`);
         }

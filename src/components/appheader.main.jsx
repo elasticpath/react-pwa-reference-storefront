@@ -79,7 +79,7 @@ class AppHeaderMain extends React.Component {
 
           <div className="central-container">
             <div className="horizontal-menu">
-              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView={false} />
+              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} />
             </div>
           </div>
 
