@@ -64,12 +64,12 @@ class AppHeaderNavigationMain extends React.Component {
 
   componentWillReceiveProps() {
     const { isOffline, isOfflineCheck, location } = this.props;
+    const { navigations } = this.state;
     if (!navigator.onLine && !isOffline && isOffline !== undefined) {
       isOfflineCheck(true);
     } else if (navigator.onLine && isOffline) {
       isOfflineCheck(false);
     }
-    const { navigations } = this.state;
     if (navigations.length === 0 && location.pathname === '/maintenance') {
       this.fetchNavigationData();
     }
