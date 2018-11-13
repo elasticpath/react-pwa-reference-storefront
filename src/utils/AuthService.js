@@ -348,3 +348,38 @@ export function removeFromCart(uri) {
       },
     }));
 }
+
+export function fetchOrderHistory(uri) {
+  const zoomArray = [
+    'total',
+    'discount',
+    'appliedpromotions:element',
+    'lineitems:element',
+    'lineitems:element:total',
+    'lineitems:element:price',
+    'lineitems:element:availability',
+    'lineitems:element:appliedpromotions:element',
+    'lineitems:element:item',
+    'lineitems:element:item:code',
+    'lineitems:element:item:definition',
+    'lineitems:element:item:definition:options:element',
+    'lineitems:element:item:definition:options:element:value',
+    'lineitems:element:item:definition:options:element:selector:choice',
+    'lineitems:element:item:definition:options:element:selector:chosen',
+    'lineitems:element:item:definition:options:element:selector:choice:description',
+    'lineitems:element:item:definition:options:element:selector:chosen:description',
+    'lineitems:element:item:definition:options:element:selector:choice:selector',
+    'lineitems:element:item:definition:options:element:selector:chosen:selector',
+    'lineitems:element:item:definition:options:element:selector:choice:selectaction',
+    'lineitems:element:item:definition:options:element:selector:chosen:selectaction',
+  ];
+
+  return login()
+    .then(() => cortexFetch(`${uri}?zoom=${zoomArray.join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json());
+}

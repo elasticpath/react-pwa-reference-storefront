@@ -22,35 +22,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
-
-const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'total',
-  'discount',
-  'appliedpromotions:element',
-  'lineitems:element',
-  'lineitems:element:total',
-  'lineitems:element:price',
-  'lineitems:element:availability',
-  'lineitems:element:appliedpromotions:element',
-  'lineitems:element:item',
-  'lineitems:element:item:code',
-  'lineitems:element:item:definition',
-  'lineitems:element:item:definition:options:element',
-  'lineitems:element:item:definition:options:element:value',
-  'lineitems:element:item:definition:options:element:selector:choice',
-  'lineitems:element:item:definition:options:element:selector:chosen',
-  'lineitems:element:item:definition:options:element:selector:choice:description',
-  'lineitems:element:item:definition:options:element:selector:chosen:description',
-  'lineitems:element:item:definition:options:element:selector:choice:selector',
-  'lineitems:element:item:definition:options:element:selector:chosen:selector',
-  'lineitems:element:item:definition:options:element:selector:choice:selectaction',
-  'lineitems:element:item:definition:options:element:selector:chosen:selectaction',
-];
+import { fetchOrderHistory } from '../utils/AuthService';
 
 class OrderHistoryLineMain extends React.Component {
   static propTypes = {
@@ -66,25 +38,12 @@ class OrderHistoryLineMain extends React.Component {
 
   componentDidMount() {
     const { orderHistoryLineUrlProps } = this.props;
-    login().then(() => {
-      cortexFetch(`${orderHistoryLineUrlProps}?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            orderModel: res,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+    fetchOrderHistory(orderHistoryLineUrlProps)
+      .then((res) => {
+        this.setState({
+          orderModel: res,
         });
-    });
+      });
   }
 
   renderPromotions() {
