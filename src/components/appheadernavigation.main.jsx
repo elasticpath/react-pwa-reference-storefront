@@ -59,6 +59,12 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   componentWillMount() {
+    const { isOffline, isOfflineCheck } = this.props;
+    if (!navigator.onLine && !isOffline && isOffline !== undefined) {
+      isOfflineCheck(true);
+    } else if (navigator.onLine && isOffline) {
+      isOfflineCheck(false);
+    }
     this.fetchNavigationData();
   }
 
