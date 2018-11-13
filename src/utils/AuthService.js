@@ -572,3 +572,19 @@ export function addToWishList(uri, itemQuantity) {
       }),
     }));
 }
+
+export function fetchCategories() {
+  const zoomArray = [
+    'navigations:element',
+    'navigations:element:child',
+  ];
+
+  return login()
+    .then(() => cortexFetch(`/?zoom=${zoomArray.join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => Promise.all([res, res.status === 200 ? res.json() : {}]));
+}

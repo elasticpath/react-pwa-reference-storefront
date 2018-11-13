@@ -24,19 +24,9 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { login, logout } from '../utils/AuthService';
-import { cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
-import cortexFetch from '../utils/Cortex';
+import { login, logout, fetchCategories } from '../utils/AuthService';
 
 import './appheadernavigation.main.less';
-
-const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'navigations:element',
-  'navigations:element:child',
-];
 
 class AppHeaderNavigationMain extends React.Component {
   static propTypes = {
@@ -53,15 +43,8 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   componentWillMount() {
-    login()
-      .then(() => cortexFetch(`/?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        }))
-      .then((res) => {
+    fetchCategories()
+      .then(([res, body]) => {
         if (res.status === 504 || res.status === 503) {
           const { history } = this.props;
           history.push('/maintenance');
@@ -75,18 +58,9 @@ class AppHeaderNavigationMain extends React.Component {
             });
           });
         }
-        return res;
-      })
-      .then((res) => {
-        cortexFetchNavigationLookupForm()
-          .then(() => cortexFetchItemLookupForm())
-          .then(() => cortexFetchPurchaseLookupForm());
-        return res;
-      })
-      .then(res => res.json())
-      .then((res) => {
+
         this.setState({
-          navigations: res._navigations[0]._element,
+          navigations: body._navigations[0]._element,
         });
         this.handleIsOffline(false);
       })
