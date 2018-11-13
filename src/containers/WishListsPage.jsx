@@ -21,33 +21,9 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
+import { fetchWishlistData } from '../utils/AuthService';
 import WishListMain from '../components/wishlist.main';
-import cortexFetch from '../utils/Cortex';
 import './WishListsPage.less';
-
-const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'defaultwishlist',
-  'defaultwishlist:lineitems',
-  'defaultwishlist:lineitems:element',
-  'defaultwishlist:lineitems:element:item:price',
-  'defaultwishlist:lineitems:element:item:availability',
-  'defaultwishlist:lineitems:element:list',
-  'defaultwishlist:lineitems:element:list:element',
-  'defaultwishlist:lineitems:element:item',
-  'defaultwishlist:lineitems:element:item:code',
-  'defaultwishlist:lineitems:element:item:definition',
-  'defaultwishlist:lineitems:element:item:definition:options:element',
-  'defaultwishlist:lineitems:element:item:definition:options:element:value',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:choice',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:chosen',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:choice:description',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:chosen:description',
-  'defaultwishlist:lineitems:element:movetocartform',
-];
 
 class WishListsPage extends React.Component {
   constructor(props) {
@@ -59,38 +35,30 @@ class WishListsPage extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchwishListData();
+    this.refreshWishListData();
   }
 
   componentWillReceiveProps() {
-    this.fetchwishListData();
+    this.refreshWishListData();
   }
 
   handleQuantityChange() {
     this.setState({ isLoading: true });
-    this.fetchwishListData();
+    this.refreshWishListData();
   }
 
-  fetchwishListData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            wishListData: res._defaultwishlist[0],
-            isLoading: false,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+  refreshWishListData() {
+    fetchWishlistData()
+      .then((res) => {
+        this.setState({
+          wishListData: res._defaultwishlist[0],
+          isLoading: false,
         });
-    });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   render() {

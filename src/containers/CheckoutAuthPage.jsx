@@ -22,8 +22,7 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import { login, loginRegistered } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { loginRegistered, submitEmail } from '../utils/AuthService';
 import './CheckoutAuthPage.less';
 
 const Config = require('Config');
@@ -81,45 +80,23 @@ class CheckoutAuthPage extends React.Component {
     }
   }
 
-  submitEmail(event) {
+  handleSubmitEmail(event) {
     event.preventDefault();
     const { email } = this.state;
     const { history } = this.props;
-    login().then(() => {
-      let emailForm;
-      cortexFetch('/?zoom=defaultprofile:emails:emailform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          emailForm = res._defaultprofile[0]._emails[0]._emailform[0].links.find(link => link.rel === 'createemailaction').uri;
-        })
-        .then(() => {
-          cortexFetch(emailForm, {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify({ email }),
-          })
-            .then((res) => {
-              if (res.status === 400) {
-                this.setState({ badEmail: true });
-              } else if (res.status === 201) {
-                this.setState({ badEmail: false }, () => {
-                  history.push('/checkout');
-                });
-              }
-            }).catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        });
-    });
+    submitEmail(email)
+      .then((res) => {
+        if (res.status === 400) {
+          this.setState({ badEmail: true });
+        } else if (res.status === 201) {
+          this.setState({ badEmail: false }, () => {
+            history.push('/checkout');
+          });
+        }
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   render() {
@@ -195,7 +172,7 @@ class CheckoutAuthPage extends React.Component {
                     {intl.get('continue-without-account-message')}
                     {' '}
                   </p>
-                  <form onSubmit={this.submitEmail}>
+                  <form onSubmit={this.handleSubmitEmail}>
                     <div className="anonymous-checkout-feedback-container" data-region="anonymousCheckoutFeedbackRegion">
                       {badEmail ? (intl.get('bad-email-message')) : ''}
                     </div>

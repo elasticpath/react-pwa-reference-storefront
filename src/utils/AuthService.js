@@ -128,14 +128,20 @@ export function deleteUri(uri) {
     }));
 }
 
+export function postUri(uri) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }));
+}
+
 export function registerUser(lastname, firstname, username, password) {
-  return cortexFetch('/?zoom=newaccountform', {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-    },
-  })
-    .then(res => res.json())
+  return login()
+    .then(() => fetchUri('/?zoom=newaccountform'))
     .then(body => body.links.find(link => link.rel === 'newaccountform').uri)
     .then(uri => cortexFetch(uri, {
       method: 'post',
@@ -633,4 +639,216 @@ export function fetchCartData() {
   ];
 
   return fetchUri(`/?zoom=${zoomArray.sort().join()}`);
+}
+
+export function submitEmail(email) {
+  return fetchUri('/?zoom=defaultprofile:emails:emailform')
+    .then(body => body._defaultprofile[0]._emails[0]._emailform[0].links.find(link => link.rel === 'createemailaction').uri)
+    .then(uri => cortexFetch(uri, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({ email }),
+    }));
+}
+
+export function fetchOrderData() {
+  const zoomArray = [
+    // zooms for checkout summary
+    'defaultcart',
+    'defaultcart:total',
+    'defaultcart:discount',
+    'defaultcart:order',
+    'defaultcart:order:tax',
+    'defaultcart:order:total',
+    'defaultcart:appliedpromotions:element',
+    // zooms for billing address
+    'defaultcart:order:billingaddressinfo:billingaddress',
+    'defaultcart:order:billingaddressinfo:selector:choice',
+    'defaultcart:order:billingaddressinfo:selector:choice:description',
+    // zooms for shipping address
+    'defaultcart:order:deliveries:element:destinationinfo:destination',
+    'defaultcart:order:deliveries:element:destinationinfo:selector:choice',
+    'defaultcart:order:deliveries:element:destinationinfo:selector:choice:description',
+    // zooms for shipping options
+    'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
+    'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice',
+    'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice:description',
+    // zooms for payment methods
+    'defaultcart:order:paymentmethodinfo:paymentmethod',
+    'defaultcart:order:paymentmethodinfo:selector:choice',
+    'defaultcart:order:paymentmethodinfo:selector:choice:description',
+  ];
+
+  return fetchUri(`/?zoom=${zoomArray.sort().join()}`);
+}
+
+export function submitOrder(uri) {
+  const purchaseZoomArray = [
+    'paymentmeans:element',
+    'shipments:element:destination',
+    'shipments:element:shippingoption',
+    'billingaddress',
+    'discount',
+    'appliedpromotions:element',
+    'lineitems:element',
+    'lineitems:element:options:element',
+    'lineitems:element:options:element:value',
+  ];
+
+  return login()
+    .then(() => cortexFetch(`${uri}?followlocation&zoom=${purchaseZoomArray.sort().join()}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json());
+}
+
+export function fetchWishlistData() {
+  const zoomArray = [
+    'defaultwishlist',
+    'defaultwishlist:lineitems',
+    'defaultwishlist:lineitems:element',
+    'defaultwishlist:lineitems:element:item:price',
+    'defaultwishlist:lineitems:element:item:availability',
+    'defaultwishlist:lineitems:element:list',
+    'defaultwishlist:lineitems:element:list:element',
+    'defaultwishlist:lineitems:element:item',
+    'defaultwishlist:lineitems:element:item:code',
+    'defaultwishlist:lineitems:element:item:definition',
+    'defaultwishlist:lineitems:element:item:definition:options:element',
+    'defaultwishlist:lineitems:element:item:definition:options:element:value',
+    'defaultwishlist:lineitems:element:item:definition:options:element:selector:choice',
+    'defaultwishlist:lineitems:element:item:definition:options:element:selector:chosen',
+    'defaultwishlist:lineitems:element:item:definition:options:element:selector:choice:description',
+    'defaultwishlist:lineitems:element:item:definition:options:element:selector:chosen:description',
+    'defaultwishlist:lineitems:element:movetocartform',
+  ];
+
+  return login()
+    .then(() => cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json());
+}
+
+export function ensureNavigationLookupForm() {
+  if (localStorage.getItem(`${Config.cortexApi.scope}_navigationLookupForm`)) {
+    return Promise.resolve();
+  }
+
+  return login()
+    .then(() => fetchUri('/?zoom=lookups:navigationlookupform'))
+    .then((body) => {
+      const navigationForm = body._lookups[0]._navigationlookupform[0].links.find(link => link.rel === 'navigationlookupaction').uri;
+      localStorage.setItem(`${Config.cortexApi.scope}_navigationLookupForm`, navigationForm);
+    });
+}
+
+export function navigationLookup(navigationLookupCode) {
+  const navigationFormZoomArray = [
+    'items',
+    'items:element',
+    'items:element:code',
+    'element',
+    'element:availability',
+    'element:definition',
+    'element:definition:assets:element',
+    'element:price',
+    'element:rate',
+    'element:code',
+  ];
+
+  return ensureNavigationLookupForm()
+    .then(navigationLookupCode.includes('/')
+      ? cortexFetch(`${navigationLookupCode}?zoom=${navigationFormZoomArray.join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then((res) => {
+          if (res.status === 504 || res.status === 503) {
+            throw new Error();
+          }
+          return res;
+        })
+        .then(res => res.json())
+      : cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_navigationLookupForm`)}?zoom=${navigationFormZoomArray.join()}&followlocation`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({
+          code: navigationLookupCode,
+        }),
+      })
+        .then((res) => {
+          if (res.status === 504 || res.status === 503) {
+            throw new Error();
+          }
+          if (res.status === 404 || res.status === 403) {
+            localStorage.removeItem(`${Config.cortexApi.scope}_navigationLookupForm`);
+          }
+          return res;
+        })
+        .then(res => res.json()));
+}
+
+
+export function ensurePurchaseLookupForm() {
+  if (localStorage.getItem(`${Config.cortexApi.scope}_purchaseLookupForm`)) {
+    return Promise.resolve();
+  }
+
+  return fetchUri('/?zoom=lookups:purchaselookupform')
+    .then((res) => {
+      const purchaseForm = res._lookups[0]._purchaselookupform[0].links.find(link => link.rel === 'purchaselookupaction').uri;
+      localStorage.setItem(`${Config.cortexApi.scope}_purchaseLookupForm`, purchaseForm);
+    });
+}
+
+export function purchaseLookup(purchaseLookupCode) {
+  const purchaseFormZoomArray = [
+    'paymentmeans:element',
+    'shipments:element:destination',
+    'shipments:element:shippingoption',
+    'billingaddress',
+    'discount',
+    'appliedpromotions:element',
+    'lineitems:element',
+    'lineitems:element:options:element',
+    'lineitems:element:options:element:value',
+  ];
+
+  return ensurePurchaseLookupForm(purchaseLookupCode)
+    .then(() => cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_purchaseLookupForm`)}?zoom=${purchaseFormZoomArray.join()}&followlocation`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        'purchase-number': purchaseLookupCode,
+      }),
+    }))
+    .then((res) => {
+      if (res.status === 504 || res.status === 503) {
+        throw new Error();
+      }
+      if (res.status === 404 || res.status === 403) {
+        localStorage.removeItem(`${Config.cortexApi.scope}_purchaseLookupForm`);
+      }
+      return res;
+    })
+    .then(res => res.json());
 }

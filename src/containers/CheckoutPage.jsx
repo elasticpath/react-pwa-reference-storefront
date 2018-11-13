@@ -22,43 +22,12 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
+import { fetchOrderData, deleteUri, postUri } from '../utils/AuthService';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import AddressContainer from '../components/address.container';
 import ShippingOptionContainer from '../components/shippingoption.container';
 import PaymentMethodContainer from '../components/paymentmethod.container';
-import cortexFetch from '../utils/Cortex';
 import './CheckoutPage.less';
-
-const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  // zooms for checkout summary
-  'defaultcart',
-  'defaultcart:total',
-  'defaultcart:discount',
-  'defaultcart:order',
-  'defaultcart:order:tax',
-  'defaultcart:order:total',
-  'defaultcart:appliedpromotions:element',
-  // zooms for billing address
-  'defaultcart:order:billingaddressinfo:billingaddress',
-  'defaultcart:order:billingaddressinfo:selector:choice',
-  'defaultcart:order:billingaddressinfo:selector:choice:description',
-  // zooms for shipping address
-  'defaultcart:order:deliveries:element:destinationinfo:destination',
-  'defaultcart:order:deliveries:element:destinationinfo:selector:choice',
-  'defaultcart:order:deliveries:element:destinationinfo:selector:choice:description',
-  // zooms for shipping options
-  'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
-  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice',
-  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice:description',
-  // zooms for payment methods
-  'defaultcart:order:paymentmethodinfo:paymentmethod',
-  'defaultcart:order:paymentmethodinfo:selector:choice',
-  'defaultcart:order:paymentmethodinfo:selector:choice:description',
-];
 
 class CheckoutPage extends React.Component {
   static propTypes = {
@@ -74,30 +43,21 @@ class CheckoutPage extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchOrderData();
+    this.refreshOrderData();
   }
 
-  fetchOrderData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            orderData: res._defaultcart[0],
-            isLoading: false,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+  refreshOrderData() {
+    fetchOrderData()
+      .then((res) => {
+        this.setState({
+          orderData: res._defaultcart[0],
+          isLoading: false,
         });
-    });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   newAddress() {
@@ -114,40 +74,26 @@ class CheckoutPage extends React.Component {
     this.setState({
       isLoading: true,
     });
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        this.fetchOrderData();
+    deleteUri(link)
+      .then(() => {
+        this.refreshOrderData();
       }).catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
       });
-    });
   }
 
   handleChange(link) {
     this.setState({
       isLoading: true,
     });
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        this.fetchOrderData();
+    postUri(link)
+      .then(() => {
+        this.refreshOrderData();
       }).catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
       });
-    });
   }
 
   newPayment() {

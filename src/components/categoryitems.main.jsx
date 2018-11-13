@@ -22,8 +22,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
-import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
+import { navigationLookup } from '../utils/AuthService';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
 
@@ -43,40 +42,34 @@ class CategoryItemsMain extends React.Component {
   componentDidMount() {
     const { categoryId } = this.props;
     this.setState({ isLoading: true });
-    login().then(() => {
-      cortexFetchNavigationLookupForm()
-        .then(() => navigationLookup(categoryId)
-          .then((res) => {
-            this.setState({
-              isLoading: false,
-              categoryModel: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-            throw error;
-          }));
-    });
+    navigationLookup(categoryId)
+      .then((res) => {
+        this.setState({
+          isLoading: false,
+          categoryModel: res,
+        });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        throw error;
+      });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ isLoading: true });
-    login().then(() => {
-      cortexFetchNavigationLookupForm()
-        .then(() => navigationLookup(nextProps.categoryId)
-          .then((res) => {
-            this.setState({
-              isLoading: false,
-              categoryModel: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-            throw error;
-          }));
-    });
+    navigationLookup(nextProps.categoryId)
+      .then((res) => {
+        this.setState({
+          isLoading: false,
+          categoryModel: res,
+        });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        throw error;
+      });
   }
 
   render() {

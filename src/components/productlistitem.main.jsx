@@ -23,8 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import { login } from '../utils/AuthService';
-import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
+import { itemLookup } from '../utils/AuthService';
 import imgPlaceholder from '../images/img-placeholder.png';
 
 import './productlistitem.main.less';
@@ -45,19 +44,16 @@ class ProductListItemMain extends React.Component {
 
   componentDidMount() {
     const { productId } = this.props;
-    login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId)
-          .then((res) => {
-            this.setState({
-              productData: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+    itemLookup(productId)
+      .then((res) => {
+        this.setState({
+          productData: res,
+        });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   render() {

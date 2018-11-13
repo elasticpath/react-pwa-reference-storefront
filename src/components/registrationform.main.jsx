@@ -24,7 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
 import {
-  login, loginRegistered, registerUser,
+  loginRegistered, registerUser,
 } from '../utils/AuthService';
 import './registrationform.main.less';
 
@@ -75,39 +75,37 @@ class RegistrationFormMain extends React.Component {
       lastname, firstname, username, password,
     } = this.state;
     const { location, history } = this.props;
-    login().then(() => {
-      registerUser(lastname, firstname, username, password).then((res) => {
-        if (res.status === 201) {
-          this.setState({ failedRegistration: false });
-          if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-            loginRegistered(username, password).then((resStatus) => {
-              if (resStatus === 400 || resStatus === 401) {
-                this.setState({ failedLogin: true });
-                let debugMessages = '';
-                res.json().then((json) => {
-                  for (let i = 0; i < json.messages.length; i++) {
-                    debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-                  }
-                }).then(() => this.setState({ registrationErrors: debugMessages }));
-              } else if (resStatus === 200) {
-                if (location.state && location.returnPage) {
-                  history.push(location.state.returnPage);
-                } else {
-                  history.push('/');
+    registerUser(lastname, firstname, username, password).then((res) => {
+      if (res.status === 201) {
+        this.setState({ failedRegistration: false });
+        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
+          loginRegistered(username, password).then((resStatus) => {
+            if (resStatus === 400 || resStatus === 401) {
+              this.setState({ failedLogin: true });
+              let debugMessages = '';
+              res.json().then((json) => {
+                for (let i = 0; i < json.messages.length; i++) {
+                  debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
                 }
+              }).then(() => this.setState({ registrationErrors: debugMessages }));
+            } else if (resStatus === 200) {
+              if (location.state && location.returnPage) {
+                history.push(location.state.returnPage);
+              } else {
+                history.push('/');
               }
-            });
-          }
-        } else {
-          this.setState({ failedRegistration: true });
-          let debugMessages = '';
-          res.json().then((json) => {
-            for (let i = 0; i < json.messages.length; i++) {
-              debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
             }
-          }).then(() => this.setState({ registrationErrors: debugMessages }));
+          });
         }
-      });
+      } else {
+        this.setState({ failedRegistration: true });
+        let debugMessages = '';
+        res.json().then((json) => {
+          for (let i = 0; i < json.messages.length; i++) {
+            debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
+          }
+        }).then(() => this.setState({ registrationErrors: debugMessages }));
+      }
     });
   }
 

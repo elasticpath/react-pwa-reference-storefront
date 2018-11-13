@@ -22,8 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
-import { login } from '../utils/AuthService';
-import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
+import { purchaseLookup } from '../utils/AuthService';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
 import './OrderHistoryPage.less';
 
@@ -46,19 +45,16 @@ class OrderHistoryPage extends React.Component {
   fetchPurchaseData() {
     const { match } = this.props;
     const orderId = decodeURIComponent(match.params.url);
-    login().then(() => {
-      cortexFetchPurchaseLookupForm()
-        .then(() => purchaseLookup(orderId)
-          .then((res) => {
-            this.setState({
-              purchaseData: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+    purchaseLookup(orderId)
+      .then((res) => {
+        this.setState({
+          purchaseData: res,
+        });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   render() {
