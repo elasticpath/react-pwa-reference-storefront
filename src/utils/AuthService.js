@@ -264,3 +264,37 @@ export function deleteAddress(uri) {
       },
     }));
 }
+
+export function updatePersonalInfo(firstName, lastName) {
+  return login()
+    .then(() => cortexFetch('/', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json())
+    .then(body => cortexFetch(`${body.links.find(link => link.rel === 'defaultprofile').uri}?followlocation`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(linkRes => linkRes.json())
+    .then(linkRes => cortexFetch(linkRes.self.uri, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        'given-name': firstName,
+        'family-name': lastName,
+      }),
+    }))
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+      throw error;
+    });
+}

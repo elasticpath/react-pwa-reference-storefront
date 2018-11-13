@@ -22,11 +22,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
-import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { updatePersonalInfo } from '../utils/AuthService';
 import './profileInfo.main.less';
-
-const Config = require('Config');
 
 class ProfileInfoMain extends React.Component {
   static propTypes = {
@@ -73,53 +70,20 @@ class ProfileInfoMain extends React.Component {
     const {
       firstName, lastName,
     } = this.state;
-    login().then(() => {
-      cortexFetch('/', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(res => res.json())
-        .then((res) => {
-          const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
-          cortexFetch(`${profileNameLink.uri}?followlocation`, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-          }).then(linkRes => linkRes.json())
-            .then((linkRes) => {
-              cortexFetch(linkRes.self.uri, {
-                method: 'put',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                },
-                body: JSON.stringify({
-                  'given-name': firstName,
-                  'family-name': lastName,
-                }),
-              }).then((response) => {
-                if (response.status === 400) {
-                  this.setState({ failedSubmit: true });
-                } else if (response.status === 201 || response.status === 200 || response.status === 204) {
-                  this.cancel();
-                  const { onChange } = this.props;
-                  onChange();
-                }
-              }).catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
-            }).catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        }).catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+
+    updatePersonalInfo(firstName, lastName)
+      .then((response) => {
+        if (response.status === 400) {
+          this.setState({ failedSubmit: true });
+        } else if (response.status === 201 || response.status === 200 || response.status === 204) {
+          this.cancel();
+          const { onChange } = this.props;
+          onChange();
+        }
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   render() {
