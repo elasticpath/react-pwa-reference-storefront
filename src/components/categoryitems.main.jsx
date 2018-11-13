@@ -35,7 +35,7 @@ class CategoryItemsMain extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      categoryModel: { links: [] },
+      categoryModel: { links: [], _items: [] },
     };
   }
 
@@ -74,7 +74,7 @@ class CategoryItemsMain extends React.Component {
 
   render() {
     const { isLoading, categoryModel } = this.state;
-    const products = categoryModel._items ? categoryModel._items[0] : categoryModel;
+    const products = (categoryModel._items || []) ? categoryModel._items[0] : categoryModel;
     const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
     return (
       <div className="category-items-container container-3">

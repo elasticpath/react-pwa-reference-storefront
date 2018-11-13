@@ -768,7 +768,7 @@ export function navigationLookup(navigationLookupCode) {
   ];
 
   return ensureNavigationLookupForm()
-    .then(navigationLookupCode.includes('/')
+    .then(() => (navigationLookupCode.includes('/')
       ? cortexFetch(`${navigationLookupCode}?zoom=${navigationFormZoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
@@ -801,7 +801,8 @@ export function navigationLookup(navigationLookupCode) {
           }
           return res;
         })
-        .then(res => res.json()));
+        .then(res => res.json())
+    ));
 }
 
 
