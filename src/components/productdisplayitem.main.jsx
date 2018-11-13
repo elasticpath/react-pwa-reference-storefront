@@ -353,7 +353,9 @@ class ProductDisplayItemMain extends React.Component {
 
   renderProductImage() {
     const { productData, arFileExists } = this.state;
-    if (arFileExists) {
+    const arBrowserSupported = document.createElement('a');
+    const isInStandaloneMode = window.navigator.standalone;
+    if (arBrowserSupported.relList.supports('ar') && !isInStandaloneMode && arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
           <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
