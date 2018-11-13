@@ -417,3 +417,158 @@ export function submitPayment(cardHolderName, card, cardNumber, saveToProfile) {
       }),
     }));
 }
+
+export function fetchSkuDetails(uri) {
+  const zoomArray = [
+    'availability',
+    'addtocartform',
+    'addtowishlistform',
+    'price',
+    'rate',
+    'definition',
+    'definition:assets:element',
+    'definition:options:element',
+    'definition:options:element:value',
+    'definition:options:element:selector:choice',
+    'definition:options:element:selector:chosen',
+    'definition:options:element:selector:choice:description',
+    'definition:options:element:selector:chosen:description',
+    'definition:options:element:selector:choice:selector',
+    'definition:options:element:selector:chosen:selector',
+    'definition:options:element:selector:choice:selectaction',
+    'definition:options:element:selector:chosen:selectaction',
+    'recommendations',
+    'recommendations:crosssell',
+    'recommendations:recommendation',
+    'recommendations:replacement',
+    'recommendations:upsell',
+    'recommendations:warranty',
+    'recommendations:crosssell:element:code',
+    'recommendations:recommendation:element:code',
+    'recommendations:replacement:element:code',
+    'recommendations:upsell:element:code',
+    'recommendations:warranty:element:code',
+    'code',
+  ];
+
+  return login()
+    .then(() => cortexFetch(`${uri}?followlocation&zoom=${zoomArray.sort().join()}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({}),
+    }))
+    .then(res => res.json());
+}
+
+export function addItemToCart(uri, itemQuantity, itemConfiguration) {
+  const body = {
+    quantity: itemQuantity,
+  };
+
+  if (itemConfiguration) {
+    body.configuration = itemConfiguration;
+  }
+
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify(body),
+    }));
+}
+
+export function ensureItemLookupForm() {
+  if (localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)) {
+    return Promise.resolve();
+  }
+
+  return login()
+    .then(() => cortexFetch('/?zoom=lookups:itemlookupform', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }))
+    .then(res => res.json())
+    .then((res) => {
+      const itemForm = res._lookups[0]._itemlookupform[0].links.find(link => link.rel === 'itemlookupaction').uri;
+      localStorage.setItem(`${Config.cortexApi.scope}_itemLookupForm`, itemForm);
+    });
+}
+
+export function itemLookup(itemLookupCode) {
+  const itemFormZoomArray = [
+    'availability',
+    'addtocartform',
+    'addtowishlistform',
+    'price',
+    'rate',
+    'definition',
+    'definition:assets:element',
+    'definition:options:element',
+    'definition:options:element:value',
+    'definition:options:element:selector:choice',
+    'definition:options:element:selector:chosen',
+    'definition:options:element:selector:choice:description',
+    'definition:options:element:selector:chosen:description',
+    'definition:options:element:selector:choice:selector',
+    'definition:options:element:selector:chosen:selector',
+    'definition:options:element:selector:choice:selectaction',
+    'definition:options:element:selector:chosen:selectaction',
+    'recommendations',
+    'recommendations:crosssell',
+    'recommendations:recommendation',
+    'recommendations:replacement',
+    'recommendations:upsell',
+    'recommendations:warranty',
+    'recommendations:crosssell:element:code',
+    'recommendations:recommendation:element:code',
+    'recommendations:replacement:element:code',
+    'recommendations:upsell:element:code',
+    'recommendations:warranty:element:code',
+    'code',
+  ];
+
+  return login()
+    .then(() => ensureItemLookupForm())
+    .then(() => cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${itemFormZoomArray.join()}&followlocation`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        code: itemLookupCode,
+      }),
+    }))
+    .then((res) => {
+      if (res.status === 504 || res.status === 503) {
+        throw res;
+      }
+      if (res.status === 404 || res.status === 403) {
+        localStorage.removeItem(`${Config.cortexApi.scope}_itemLookupForm`);
+      }
+      return res;
+    })
+    .then(res => res.json());
+}
+
+export function addToWishList(uri, itemQuantity) {
+  return login()
+    .then(() => cortexFetch(uri, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        quantity: itemQuantity,
+      }),
+    }));
+}

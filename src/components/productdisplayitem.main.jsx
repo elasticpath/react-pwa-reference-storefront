@@ -24,51 +24,18 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import { login } from '../utils/AuthService';
-import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
+import {
+  fetchSkuDetails, addItemToCart, itemLookup, addToWishList,
+} from '../utils/AuthService';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
-import cortexFetch from '../utils/Cortex';
 
 import './productdisplayitem.main.less';
 
 const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'availability',
-  'addtocartform',
-  'addtowishlistform',
-  'price',
-  'rate',
-  'definition',
-  'definition:assets:element',
-  'definition:options:element',
-  'definition:options:element:value',
-  'definition:options:element:selector:choice',
-  'definition:options:element:selector:chosen',
-  'definition:options:element:selector:choice:description',
-  'definition:options:element:selector:chosen:description',
-  'definition:options:element:selector:choice:selector',
-  'definition:options:element:selector:chosen:selector',
-  'definition:options:element:selector:choice:selectaction',
-  'definition:options:element:selector:chosen:selectaction',
-  'recommendations',
-  'recommendations:crosssell',
-  'recommendations:recommendation',
-  'recommendations:replacement',
-  'recommendations:upsell',
-  'recommendations:warranty',
-  'recommendations:crosssell:element:code',
-  'recommendations:recommendation:element:code',
-  'recommendations:replacement:element:code',
-  'recommendations:upsell:element:code',
-  'recommendations:warranty:element:code',
-  'code',
-];
 
 class ProductDisplayItemMain extends React.Component {
   static isLoggedIn() {
@@ -100,56 +67,51 @@ class ProductDisplayItemMain extends React.Component {
 
   componentDidMount() {
     const { productId } = this.props;
-    login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId)
-          .then((res) => {
-            if (Config.arKit.enable) {
-              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-                this.setState({
-                  productData: res,
-                  arFileExists: exists,
-                });
-                this.trackImpressionAnalytics();
-              });
-            } else {
-              this.setState({
-                productData: res,
-              });
-              this.trackImpressionAnalytics();
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+    itemLookup(productId)
+      .then((res) => {
+        if (Config.arKit.enable) {
+          this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+            this.setState({
+              productData: res,
+              arFileExists: exists,
+            });
+            this.trackImpressionAnalytics();
+          });
+        } else {
+          this.setState({
+            productData: res,
+          });
+          this.trackImpressionAnalytics();
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   componentWillReceiveProps(nextProps) {
-    login().then(() => {
-      itemLookup(nextProps.productId)
-        .then((res) => {
-          if (Config.arKit.enable) {
-            this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-              this.setState({
-                productData: res,
-                arFileExists: exists,
-              });
-              this.trackImpressionAnalytics();
-            });
-          } else {
+    itemLookup(nextProps.productId)
+      .then((res) => {
+        if (Config.arKit.enable) {
+          this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
             this.setState({
               productData: res,
+              arFileExists: exists,
             });
             this.trackImpressionAnalytics();
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+          });
+        } else {
+          this.setState({
+            productData: res,
+          });
+          this.trackImpressionAnalytics();
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   trackImpressionAnalytics() {
@@ -172,113 +134,71 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   handleSkuSelection(event) {
-    const selfUri = event.target.value;
     const { history } = this.props;
-    this.setState({
-      isLoading: true,
-    });
-    login().then(() => {
-      cortexFetch(`${selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({}),
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
-          history.push(`/itemdetail/${encodeURIComponent(res._code[0].code)}`);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    this.setState({ isLoading: true });
+
+    fetchSkuDetails(event.target.value)
+      .then((res) => {
+        this.setState({ isLoading: false });
+        history.push(`/itemdetail/${encodeURIComponent(res._code[0].code)}`);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   addToCart(event) {
     const { productData, itemQuantity, itemConfiguration } = this.state;
     const { history } = this.props;
-    login().then(() => {
-      const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      const body = {};
-      body.quantity = itemQuantity;
-      if (itemConfiguration) {
-        body.configuration = itemConfiguration;
-      }
-      cortexFetch(addToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            if (isAnalyticsConfigured()) {
-              const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-              trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
-              setAddAnalytics();
-              sendAddToCartAnalytics();
-            }
-            history.push('/mycart');
-          } else {
-            let debugMessages = '';
-            res.json().then((json) => {
-              for (let i = 0; i < json.messages.length; i++) {
-                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-              }
-            }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
+    const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+    addItemToCart(addToCartLink.uri, itemQuantity, itemConfiguration)
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          if (isAnalyticsConfigured()) {
+            const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+            trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+            setAddAnalytics();
+            sendAddToCartAnalytics();
           }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+          history.push('/mycart');
+        } else {
+          let debugMessages = '';
+          res.json().then((json) => {
+            for (let i = 0; i < json.messages.length; i++) {
+              debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
+            }
+          }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
     event.preventDefault();
   }
 
   addToWishList(event) {
     const { productData, itemQuantity } = this.state;
     const { history } = this.props;
-    login().then(() => {
-      const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
-      cortexFetch(addToWishListLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity: itemQuantity,
-          }),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            history.push('/wishlists');
-          } else {
-            let debugMessages = '';
-            res.json().then((json) => {
-              for (let i = 0; i < json.messages.length; i++) {
-                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-              }
-            }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction').uri;
+    addToWishList(addToWishListLink, itemQuantity)
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          history.push('/wishlists');
+        } else {
+          let debugMessages = '';
+          res.json().then((json) => {
+            for (let i = 0; i < json.messages.length; i++) {
+              debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
+            }
+          }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
     event.preventDefault();
   }
 
