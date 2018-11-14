@@ -364,7 +364,7 @@ export function searchLookup(searchKeyword) {
           reject(error);
         });
     } else {
-      cortexFetchPurchaseLookupForm()
+      cortexFetchSearchLookupForm()
         .then(() => cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_searchLookupForm`)}?zoom=${searchFormZoomArray.join()}&followlocation`,
           {
             method: 'post',
@@ -374,7 +374,6 @@ export function searchLookup(searchKeyword) {
             },
             body: JSON.stringify({
               keywords: searchKeyword,
-              'page-size': 20,
             }),
           }))
         .then((res) => {

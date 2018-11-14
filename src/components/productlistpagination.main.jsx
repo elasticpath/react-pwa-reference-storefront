@@ -130,7 +130,9 @@ class ProductListPagination extends React.Component {
                       {intl.get('previous')}
                     </Link>
                   )
-                  : ('')}
+                  : (
+                    <div className="btn-pagination prev hide" />
+                  )}
                 <span className="pagestate-summary">
                   <label htmlFor="pagination_curr_page_label" className="pagination-label">
                     {intl.get('page')}
@@ -155,7 +157,9 @@ class ProductListPagination extends React.Component {
                       <span className="icon" />
                     </Link>
                   )
-                  : ('')}
+                  : (
+                    <div className="btn-pagination next hide" />
+                  )}
               </div>
             )
             : ('')}
