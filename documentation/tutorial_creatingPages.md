@@ -1,3 +1,10 @@
+---
+layout: master
+permalink: /documentation/tutorial_pages/
+title: Tutorial Creating Pages
+tutorial: true
+weight: 8
+---
 # Tutorial: Create Reference Storefront Pages and Components
 
 ### Overview
@@ -5,7 +12,7 @@
 This tutorial demonstrates how to create the pages and components for a React PWA Reference Storefront. The React PWA Reference Storefront is composed of containers (pages) and React components. Each page in the storefront is composed of various components that fulfills the purpose of the page. For example, home, cart, categories, checkout, and registration are separate pages. Each page consists of various components, such as navigation, footer, product list, or products.
 
 ### Prerequisites
-This tutorial requires an Elastic Path developer environment: 
+This tutorial requires an Elastic Path developer environment:
 
 * Your own development environment
 * An Elastic Path Training virtual machine
@@ -32,7 +39,7 @@ The goal of this tutorial is to create a Reference Storefront container and comp
 
 #### Step 1: Create New Containers in React
 
-To create pages for the storefront, first you have to create containers as a structure for the pages. 
+To create pages for the storefront, first you have to create containers as a structure for the pages.
 
 1. From the command line, navigate to the `src/containers` directory. Create a new folder for the page.
 2. Name the directory. <br>**Note**: Ensure that the name of the directory and the correpsonding page are the same. For example, if the name of the page is `MyPage`, name the containter `MyPage`.
@@ -61,4 +68,3 @@ Create components so you have reusable pieces you can use in the storefront. For
 * Add all required components and content for the component.
 * Import the component to other components or pages as required.
 7. In the `src/components/mycomponent.main.jsx` file, add the required custom CSS.
-

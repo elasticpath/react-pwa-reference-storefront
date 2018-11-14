@@ -201,19 +201,12 @@ blockquote p {
     -o-transition: all 0.4s ease-in-out;
 }
 
-.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-    color: #ffffff;
-    background-color: #16A085;
-}
-
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     color: #ffffff;
-    background-color: #16A085;
 }
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
     color: #ffffff;
-    background-color: #16A085;
 }
 
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
@@ -549,7 +542,6 @@ div.list-posts ul li a:hover{
 
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
-    background-color: #ECF0F1;
 }
 
 .nav-stacked > li + li{

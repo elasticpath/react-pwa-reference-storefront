@@ -1,3 +1,10 @@
+---
+layout: master
+permalink: /documentation/tutorial_production/
+title: Tutorial Setting Up Production
+tutorial: true
+weight: 9
+---
 # Tutorial: Setting Up a Production Instance
 
 ### Overview
@@ -6,7 +13,7 @@ This tutorial demonstrates how to set up a production ready environment for a Re
 
 ### Prerequisites
 
-This tutorial requires an Elastic Path developer environment: 
+This tutorial requires an Elastic Path developer environment:
 
 * Your own development environment
 * An Elastic Path Training virtual machine
@@ -25,7 +32,7 @@ As a developer, I want to set up and install a React PWA Reference Storefront ex
 
 ### Reference Example
 
-This reference example creates a **Terms and Conditions** page used during the shopper checkout flow. This example can be used as a guide to creating other pages and containers within the React PWA Reference Storefront. 
+This reference example creates a **Terms and Conditions** page used during the shopper checkout flow. This example can be used as a guide to creating other pages and containers within the React PWA Reference Storefront.
 
 ### Exercise
 
@@ -51,4 +58,3 @@ With the Production Docker Image built, the next steps are to run the image.
 3. Replace the `$CORTEX_URL` parameter in the `nginx.conf` file with a Cortex server URL.
 4. Replace the `$DOCKER_REPO` parameter in the `docker-compose.yaml` file with `ep-store`.
 5. Run the `docker-compose up -d` command.
-
