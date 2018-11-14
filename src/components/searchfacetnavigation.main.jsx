@@ -48,7 +48,7 @@ class SearchFacetNavigationMain extends React.Component {
   handleFacetSelection(facetUri) {
     const { history } = this.props;
     login().then(() => {
-      cortexFetch(`${decodeURIComponent(facetUri)}?followlocation&zoom=offer-search-result`,
+      cortexFetch(`${decodeURIComponent(facetUri)}?followlocation&zoom=offersearchresult`,
         {
           method: 'post',
           headers: {
@@ -59,7 +59,7 @@ class SearchFacetNavigationMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          history.push(`/search/${encodeURIComponent(res['_offer-search-result'][0].self.uri)}`);
+          history.push(`/search/${encodeURIComponent(res._offersearchresult[0].self.uri)}`);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

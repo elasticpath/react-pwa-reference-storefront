@@ -80,7 +80,6 @@ class SearchResultsItemsMain extends React.Component {
 
   render() {
     const { isLoading, searchResultsModel } = this.state;
-    console.log(searchResultsModel)
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0 || !products._element;
     const { searchKeywords } = this.state;
