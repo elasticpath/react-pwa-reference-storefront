@@ -26,7 +26,7 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { login, logout } from '../utils/AuthService';
 import {
-  cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm, cortexFetchSearchLookupForm,
+  cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm,
 } from '../utils/CortexLookup';
 import cortexFetch from '../utils/Cortex';
 
@@ -107,8 +107,7 @@ class AppHeaderNavigationMain extends React.Component {
       .then((res) => {
         cortexFetchNavigationLookupForm()
           .then(() => cortexFetchItemLookupForm())
-          .then(() => cortexFetchPurchaseLookupForm())
-          .then(() => cortexFetchSearchLookupForm());
+          .then(() => cortexFetchPurchaseLookupForm());
         return res;
       })
       .then(res => res.json())

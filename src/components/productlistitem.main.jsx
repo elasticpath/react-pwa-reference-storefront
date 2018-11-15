@@ -35,11 +35,13 @@ class ProductListItemMain extends React.Component {
   static propTypes = {
     productId: PropTypes.string,
     offerData: PropTypes.objectOf(PropTypes.any),
+    productElement: PropTypes.objectOf(PropTypes.any),
   }
 
   static defaultProps = {
     productId: '',
     offerData: {},
+    productElement: {},
   }
 
   constructor(props) {
@@ -50,7 +52,7 @@ class ProductListItemMain extends React.Component {
   }
 
   componentDidMount() {
-    const { productId, offerData } = this.props;
+    const { productId, offerData, productElement } = this.props;
     if (productId !== '') {
       login().then(() => {
         cortexFetchItemLookupForm()
@@ -64,6 +66,11 @@ class ProductListItemMain extends React.Component {
               // eslint-disable-next-line no-console
               console.error(error.message);
             }));
+      });
+    }
+    if (productElement._definition) {
+      this.setState({
+        productData: productElement,
       });
     }
     if (offerData._items) {

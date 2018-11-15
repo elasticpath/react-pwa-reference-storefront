@@ -44,7 +44,7 @@ class ProductListMain extends React.Component {
       if (product._code) {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain productId={product._code[0].code} />
+            <ProductListItemMain productElement={product} />
           </li>
         );
       }

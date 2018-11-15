@@ -23,7 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
-import { searchLookup, cortexFetchSearchLookupForm } from '../utils/CortexLookup';
+import { searchLookup } from '../utils/CortexLookup';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
 import SearchFacetNavigationMain from './searchfacetnavigation.main';
@@ -62,19 +62,18 @@ class SearchResultsItemsMain extends React.Component {
     });
 
     login().then(() => {
-      cortexFetchSearchLookupForm()
-        .then(() => searchLookup(searchKeywordsProps)
-          .then((res) => {
-            this.setState({
-              isLoading: false,
-              searchResultsModel: res,
-              searchKeywords: searchKeywordsProps,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
+      searchLookup(searchKeywordsProps)
+        .then((res) => {
+          this.setState({
+            isLoading: false,
+            searchResultsModel: res,
+            searchKeywords: searchKeywordsProps,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     });
   }
 

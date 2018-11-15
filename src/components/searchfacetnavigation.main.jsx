@@ -146,7 +146,7 @@ class SearchFacetNavigationMain extends React.Component {
         </div>
       );
     }
-    return (<div className="loader" />);
+    return ('');
   }
 }
 

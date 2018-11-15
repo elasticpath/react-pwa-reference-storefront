@@ -45,7 +45,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
       if (index < maxItemsInView && element._code) {
         data.push(
           <div className="category-item-container card" key={`_${Math.random().toString(36).substr(2, 9)}`}>
-            <ProductListItemMain productId={element._code[0].code} />
+            <ProductListItemMain productElement={element} />
           </div>,
         );
       }
