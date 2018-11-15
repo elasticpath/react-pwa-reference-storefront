@@ -6432,9 +6432,6 @@ body ol,
 body ul {
     padding-left: 15px;
 }
-#navbar .navbar-nav > li:hover ul {
-    display: block;
-}
 .section-header {
     margin-top: 20px;
 }
