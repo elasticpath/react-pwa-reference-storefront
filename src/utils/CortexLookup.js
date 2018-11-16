@@ -329,103 +329,103 @@ export function purchaseLookup(purchaseLookupCode) {
 
 export function searchLookup(searchKeyword, searchPagination) {
   return new Promise(((resolve, reject) => {
-    // if (searchKeyword.includes('/')) {
-    //   cortexFetch(`${searchKeyword}?zoom=${searchFormZoomArray.join()}`,
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-    //       },
-    //     })
-    //     .then((res) => {
-    //       if (res.status === 504 || res.status === 503) {
-    //         reject(res);
-    //       }
-    //       return res;
-    //     })
-    //     .then(res => res.json())
-    //     .then((res) => {
-    //       resolve(res);
-    //     })
-    //     .catch((error) => {
-    //       // eslint-disable-next-line no-console
-    //       console.error(error.message);
-    //       reject(error);
-    //     });
-    // } else {
-    cortexFetch('/?zoom=searches:keywordsearchform,searches:offersearchform', {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    })
-      .then(res => res.json())
-      .then((res) => {
-        let searchForm = '';
-        if (res._searches[0]._offersearchform) {
-          searchForm = res._searches[0]._offersearchform[0].links.find(link => link.rel === 'offersearchaction').uri;
-        } else {
-          searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
-        }
-        cortexFetch(`${searchForm}?zoom=${searchFormZoomArray.join()}&followlocation`,
-          {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify({
-              keywords: searchKeyword,
-            }),
-          })
-          .then((resData) => {
-            if (res.status === 504 || res.status === 503) {
-              reject(resData);
-            }
-            return resData;
-          })
-          .then(resData => resData.json())
-          .then((resData) => {
-            if (searchPagination && searchPagination !== undefined && searchPagination !== '') {
-              const paginationUrllastIndex = resData.self.uri.lastIndexOf('/');
-              const paginationURL = resData.self.uri.slice(0, paginationUrllastIndex + 1);
-              cortexFetch(`${paginationURL}${searchPagination}?zoom=${searchFormZoomArray.join()}`,
-                {
-                  headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                  },
-                })
-                .then((resDataPagination) => {
-                  if (res.status === 504 || res.status === 503) {
-                    reject(resDataPagination);
-                  }
-                  return resDataPagination;
-                })
-                .then(resDataPagination => resDataPagination.json())
-                .then((resDataPagination) => {
-                  resolve(resDataPagination);
-                })
-                .catch((error) => {
-                  // eslint-disable-next-line no-console
-                  console.error(error.message);
-                  reject(error);
-                });
-            } else {
-              resolve(resData);
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-            reject(error);
-          });
+    if (searchKeyword.includes('/')) {
+      cortexFetch(`${searchKeyword}?zoom=${searchFormZoomArray.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then((res) => {
+          if (res.status === 504 || res.status === 503) {
+            reject(res);
+          }
+          return res;
+        })
+        .then(res => res.json())
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          reject(error);
+        });
+    } else {
+      cortexFetch('/?zoom=searches:keywordsearchform,searches:offersearchform', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
       })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        reject(error);
-      });
-    // }
+        .then(res => res.json())
+        .then((res) => {
+          let searchForm = '';
+          if (res._searches[0]._offersearchform) {
+            searchForm = res._searches[0]._offersearchform[0].links.find(link => link.rel === 'offersearchaction').uri;
+          } else {
+            searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
+          }
+          cortexFetch(`${searchForm}?zoom=${searchFormZoomArray.join()}&followlocation`,
+            {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+              body: JSON.stringify({
+                keywords: searchKeyword,
+              }),
+            })
+            .then((resData) => {
+              if (res.status === 504 || res.status === 503) {
+                reject(resData);
+              }
+              return resData;
+            })
+            .then(resData => resData.json())
+            .then((resData) => {
+              if (searchPagination !== "undefined" && searchPagination !== undefined && searchPagination !== '') {
+                const paginationUrllastIndex = resData.self.uri.lastIndexOf('/');
+                const paginationURL = resData.self.uri.slice(0, paginationUrllastIndex + 1);
+                cortexFetch(`${paginationURL}${searchPagination}?zoom=${searchFormZoomArray.join()}`,
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                    },
+                  })
+                  .then((resDataPagination) => {
+                    if (res.status === 504 || res.status === 503) {
+                      reject(resDataPagination);
+                    }
+                    return resDataPagination;
+                  })
+                  .then(resDataPagination => resDataPagination.json())
+                  .then((resDataPagination) => {
+                    resolve(resDataPagination);
+                  })
+                  .catch((error) => {
+                    // eslint-disable-next-line no-console
+                    console.error(error.message);
+                    reject(error);
+                  });
+              } else {
+                resolve(resData);
+              }
+            })
+            .catch((error) => {
+              // eslint-disable-next-line no-console
+              console.error(error.message);
+              reject(error);
+            });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          reject(error);
+        });
+    }
   }));
 }
