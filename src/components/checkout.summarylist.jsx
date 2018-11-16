@@ -59,7 +59,7 @@ class CheckoutSummaryList extends React.Component {
 
   renderCoupons() {
     const { data } = this.props;
-    if (data._order && data._order[0] && data._order[0]._couponinfo) {
+    if (data._order && data._order[0] && data._order[0]._couponinfo[0]._coupon) {
       return (
         <li className="cart-coupons" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart-applied-promotions" className="cart-summary-label-col">

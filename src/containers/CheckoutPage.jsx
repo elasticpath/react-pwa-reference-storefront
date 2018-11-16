@@ -42,6 +42,8 @@ const zoomArray = [
   'defaultcart:order:tax',
   'defaultcart:order:total',
   'defaultcart:appliedpromotions:element',
+  'defaultcart:order:couponinfo:coupon',
+  'defaultcart:order:couponinfo:couponform',
   // zooms for billing address
   'defaultcart:order:billingaddressinfo:billingaddress',
   'defaultcart:order:billingaddressinfo:selector:choice',

@@ -1,0 +1,95 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.product-list-facet-navigation-component {
+  float: left;
+  display: table;
+  min-width: 25%;
+  padding-bottom: 30px;
+
+  .card-stack {
+    .card {
+      margin-top: 5px;
+
+      .card-title .glyphicon {
+        margin-right:10px;
+      }
+
+      .facet {
+        padding-left: 20px;
+
+        button, {
+          color: #000000;
+          display: inline-block;
+          vertical-align: middle;
+          position: relative;
+          padding-left: 5px;
+          background:none;
+          border:none;
+
+          &:before {
+            content:"\e157";
+            font-family:"Glyphicons Halflings";
+            font-size: 18px;
+            font-weight: 100;
+            padding-right: 10px;
+            vertical-align: bottom;
+            -webkit-text-stroke: 1px white;
+          }
+
+          &.chosen {
+            &:before {
+                content:"\e067";
+            }
+            color: @mainBlueColor;
+          }
+
+          &:hover {
+            text-decoration: none;
+            color: @mainBlueColor;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: @tabletWidth) {
+    .card-title > a {
+      pointer-events: none;
+    }
+
+    .in.collapse {
+      display: block;
+    }
+  }
+
+  @media (max-width: @tabletWidth - 1px) {
+    display: block;
+    float: none;
+
+    .card-header {
+      border-bottom: none;
+    }
+  }
+}

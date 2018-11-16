@@ -29,6 +29,7 @@ import './productlistpagination.less';
 
 let paginationPreviousLinkVar = '';
 let paginationNextLinkVar = '';
+let searchUrlVar = false;
 
 class ProductListPagination extends React.Component {
   static propTypes = {
@@ -47,13 +48,18 @@ class ProductListPagination extends React.Component {
       paginationData: paginationDataProps,
       paginationPreviousLink: '',
       paginationNextLink: '',
+      searchUrl: false,
     };
   }
 
   componentDidMount() {
     paginationPreviousLinkVar = '';
     paginationNextLinkVar = '';
+    searchUrlVar = false;
     const { paginationData } = this.state;
+    if (paginationData.self.type.includes('searches')) {
+      searchUrlVar = true;
+    }
     for (let i = 0; i < paginationData.links.length; i++) {
       if (paginationData.links[i].rel === 'previous') {
         paginationPreviousLinkVar = paginationData.links[i].uri;
@@ -65,6 +71,7 @@ class ProductListPagination extends React.Component {
     this.setState({
       paginationPreviousLink: paginationPreviousLinkVar,
       paginationNextLink: paginationNextLinkVar,
+      searchUrl: searchUrlVar,
     });
   }
 
@@ -87,9 +94,12 @@ class ProductListPagination extends React.Component {
   }
 
   render() {
-    const { paginationData, paginationNextLink, paginationPreviousLink } = this.state;
+    const {
+      paginationData, paginationNextLink, paginationPreviousLink, searchUrl,
+    } = this.state;
     const { isTop } = this.props;
     if (paginationData.links.length > 0) {
+      const urlPrefix = (searchUrl) ? ('search') : ('category');
       return (
         <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
           {
@@ -102,11 +112,11 @@ class ProductListPagination extends React.Component {
                 </span>
                 &nbsp;
                 <span className="results-displayed-value">
-                    (
+                  (
                   {paginationData.pagination['results-on-page']}
-                    &nbsp;
+                  &nbsp;
                   {intl.get('results-on-page')}
-                    )
+                  )
                 </span>
               </div>
             ) : ('')}
@@ -115,12 +125,14 @@ class ProductListPagination extends React.Component {
               <div className="pagination-navigation-container">
                 {paginationPreviousLink !== ''
                   ? (
-                    <Link to={`/category/${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination prev" role="button">
+                    <Link to={`/${urlPrefix}/${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination prev" role="button">
                       <span className="icon" />
                       {intl.get('previous')}
                     </Link>
                   )
-                  : ('')}
+                  : (
+                    <div className="btn-pagination prev hide" />
+                  )}
                 <span className="pagestate-summary">
                   <label htmlFor="pagination_curr_page_label" className="pagination-label">
                     {intl.get('page')}
@@ -140,12 +152,14 @@ class ProductListPagination extends React.Component {
                 </span>
                 {paginationNextLink !== ''
                   ? (
-                    <Link to={`/category/${encodeURIComponent(paginationNextLink)}`} className="btn-pagination next" role="button">
+                    <Link to={`/${urlPrefix}/${encodeURIComponent(paginationNextLink)}`} className="btn-pagination next" role="button">
                       {intl.get('next')}
                       <span className="icon" />
                     </Link>
                   )
-                  : ('')}
+                  : (
+                    <div className="btn-pagination next hide" />
+                  )}
               </div>
             )
             : ('')}

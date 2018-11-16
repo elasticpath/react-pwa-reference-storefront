@@ -31,6 +31,7 @@ const Config = require('Config');
 class AddPromotionContainer extends React.Component {
   static propTypes = {
     onSubmittedPromotion: PropTypes.func.isRequired,
+    data: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   constructor() {
@@ -46,7 +47,15 @@ class AddPromotionContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchCouponForm();
+    const { data } = this.props;
+    if (data._order) {
+      const couponFormUri = data._order[0]._couponinfo[0]._couponform[0].links.find(
+        link => link.rel === 'applycouponaction',
+      ).uri;
+      this.setState({
+        couponFormLink: couponFormUri,
+      });
+    }
   }
 
   setPromotionCode(event) {
@@ -63,26 +72,6 @@ class AddPromotionContainer extends React.Component {
     this.setState({
       isPromotionFormOpen: false,
       failedPromotion: false,
-    });
-  }
-
-  fetchCouponForm() {
-    login().then(() => {
-      cortexFetch('/?zoom=defaultcart:order:couponinfo:couponform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          const couponFormUri = res._defaultcart[0]._order[0]._couponinfo[0]._couponform[0].links.find(
-            link => link.rel === 'applycouponaction',
-          ).uri;
-          this.setState({
-            couponFormLink: couponFormUri,
-          });
-        });
     });
   }
 

@@ -80,7 +80,7 @@ class CategoryItemsMain extends React.Component {
   render() {
     const { isLoading, categoryModel } = this.state;
     const products = categoryModel._items ? categoryModel._items[0] : categoryModel;
-    const noProducts = !products || products.links.length === 0 || !products.pagination;
+    const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">

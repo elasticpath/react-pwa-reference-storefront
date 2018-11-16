@@ -38,6 +38,7 @@ const zoomArray = [
   'defaultcart:discount',
   'defaultcart:appliedpromotions:element',
   'defaultcart:order:couponinfo:coupon',
+  'defaultcart:order:couponinfo:couponform',
   'defaultcart:lineitems:element',
   'defaultcart:lineitems:element:total',
   'defaultcart:lineitems:element:price',
@@ -165,7 +166,7 @@ class CartPage extends React.Component {
               <div>
                 <div className="cart-sidebar-inner">
                   <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                    <AddPromotionContainer onSubmittedPromotion={() => { this.fetchCartData(); }} />
+                    <AddPromotionContainer data={cartData} onSubmittedPromotion={() => { this.fetchCartData(); }} />
                     <CheckoutSummaryList data={cartData} onChange={() => { this.fetchCartData(); }} />
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
