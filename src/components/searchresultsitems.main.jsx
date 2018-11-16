@@ -33,6 +33,11 @@ import './searchresultsitems.main.less';
 class SearchResultsItemsMain extends React.Component {
   static propTypes = {
     searchKeywordsProps: PropTypes.string.isRequired,
+    searchPaginationProps: PropTypes.string,
+  }
+
+  static defaultProps = {
+    searchPaginationProps: '',
   }
 
   constructor(props) {
@@ -46,23 +51,23 @@ class SearchResultsItemsMain extends React.Component {
   }
 
   componentDidMount() {
-    const { searchKeywordsProps } = this.props;
-    this.getSearchData(searchKeywordsProps);
+    const { searchKeywordsProps, searchPaginationProps } = this.props;
+    this.getSearchData(searchKeywordsProps, searchPaginationProps);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { searchKeywordsProps } = nextProps;
-    this.getSearchData(searchKeywordsProps);
+    const { searchKeywordsProps, searchPaginationProps } = nextProps;
+    this.getSearchData(searchKeywordsProps, searchPaginationProps);
   }
 
-  getSearchData(searchKeywordsProps) {
+  getSearchData(searchKeywordsProps, searchPaginationProps) {
     this.setState({
       isLoading: true,
       searchKeywords: searchKeywordsProps,
     });
 
     login().then(() => {
-      searchLookup(searchKeywordsProps)
+      searchLookup(searchKeywordsProps, searchPaginationProps)
         .then((res) => {
           this.setState({
             isLoading: false,
@@ -112,9 +117,9 @@ class SearchResultsItemsMain extends React.Component {
               <div>
                 <SearchFacetNavigationMain productData={products} />
                 <div className="products-container">
-                  <ProductListPagination paginationDataProps={products} isTop />
+                  <ProductListPagination paginationDataProps={products} searchKeywordsProps={searchKeywords} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListPagination paginationDataProps={products} searchKeywordsProps={searchKeywords} />
                 </div>
               </div>
             );

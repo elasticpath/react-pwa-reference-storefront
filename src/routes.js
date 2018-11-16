@@ -95,6 +95,9 @@ const router = [{
   path: '/search/:keywords',
   component: SearchResultsPage,
 }, {
+  path: '/search/:keywords/:pagination',
+  component: SearchResultsPage,
+}, {
   path: '/aboutus',
   component: AboutUsPage,
 }, {

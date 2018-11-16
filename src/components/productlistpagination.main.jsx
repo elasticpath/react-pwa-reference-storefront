@@ -34,11 +34,13 @@ let searchUrlVar = false;
 class ProductListPagination extends React.Component {
   static propTypes = {
     paginationDataProps: PropTypes.objectOf(PropTypes.any).isRequired,
+    searchKeywordsProps: PropTypes.string,
     isTop: PropTypes.bool,
   }
 
   static defaultProps = {
     isTop: false,
+    searchKeywordsProps: '',
   }
 
   constructor(props) {
@@ -62,10 +64,14 @@ class ProductListPagination extends React.Component {
     }
     for (let i = 0; i < paginationData.links.length; i++) {
       if (paginationData.links[i].rel === 'previous') {
-        paginationPreviousLinkVar = paginationData.links[i].uri;
+        const paginationSplit = paginationData.links[i].uri.split('/');
+        // paginationPreviousLinkVar = paginationData.links[i].uri;
+        paginationPreviousLinkVar = paginationSplit[paginationSplit.length - 1];
       }
       if (paginationData.links[i].rel === 'next') {
-        paginationNextLinkVar = paginationData.links[i].uri;
+        const paginationSplit = paginationData.links[i].uri.split('/');
+        // paginationNextLinkVar = paginationData.links[i].uri;
+        paginationNextLinkVar = paginationSplit[paginationSplit.length - 1];
       }
     }
     this.setState({
@@ -80,10 +86,14 @@ class ProductListPagination extends React.Component {
     paginationNextLinkVar = '';
     for (let i = 0; i < nextProps.paginationDataProps.links.length; i++) {
       if (nextProps.paginationDataProps.links[i].rel === 'previous') {
-        paginationPreviousLinkVar = nextProps.paginationDataProps.links[i].uri;
+        const paginationSplit = nextProps.paginationDataProps.links[i].uri.split('/');
+        // paginationPreviousLinkVar = nextProps.paginationDataProps.links[i].uri;
+        paginationPreviousLinkVar = paginationSplit[paginationSplit.length - 1];
       }
       if (nextProps.paginationDataProps.links[i].rel === 'next') {
-        paginationNextLinkVar = nextProps.paginationDataProps.links[i].uri;
+        const paginationSplit = nextProps.paginationDataProps.links[i].uri.split('/');
+        // paginationNextLinkVar = nextProps.paginationDataProps.links[i].uri;
+        paginationNextLinkVar = paginationSplit[paginationSplit.length - 1];
       }
     }
     this.setState({
@@ -97,7 +107,11 @@ class ProductListPagination extends React.Component {
     const {
       paginationData, paginationNextLink, paginationPreviousLink, searchUrl,
     } = this.state;
-    const { isTop } = this.props;
+    const { isTop, searchKeywordsProps } = this.props;
+    let searchKeywordsPropsUrl = '';
+    if (searchKeywordsProps !== '') {
+      searchKeywordsPropsUrl = searchKeywordsProps.concat('/');
+    }
     if (paginationData.links.length > 0) {
       const urlPrefix = (searchUrl) ? ('search') : ('category');
       return (
@@ -125,7 +139,7 @@ class ProductListPagination extends React.Component {
               <div className="pagination-navigation-container">
                 {paginationPreviousLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination prev" role="button">
+                    <Link to={`/${urlPrefix}/${searchKeywordsPropsUrl}${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination prev" role="button">
                       <span className="icon" />
                       {intl.get('previous')}
                     </Link>
@@ -152,7 +166,7 @@ class ProductListPagination extends React.Component {
                 </span>
                 {paginationNextLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${encodeURIComponent(paginationNextLink)}`} className="btn-pagination next" role="button">
+                    <Link to={`/${urlPrefix}/${searchKeywordsPropsUrl}${encodeURIComponent(paginationNextLink)}`} className="btn-pagination next" role="button">
                       {intl.get('next')}
                       <span className="icon" />
                     </Link>
