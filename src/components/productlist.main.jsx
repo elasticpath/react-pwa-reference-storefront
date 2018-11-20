@@ -41,17 +41,17 @@ class ProductListMain extends React.Component {
   renderProducts() {
     const { categoryModel } = this.state;
     return categoryModel._element.map((product) => {
-      if (product._code) {
-        return (
-          <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain productElement={product} />
-          </li>
-        );
-      }
       if (product.self.type === 'offers.offer') {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
             <ProductListItemMain offerData={product} />
+          </li>
+        );
+      }
+      if (product._code) {
+        return (
+          <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
+            <ProductListItemMain productElement={product} />
           </li>
         );
       }
