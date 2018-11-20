@@ -87,15 +87,18 @@ class ProductListItemMain extends React.Component {
       let listPrice = 'n/a';
       let itemPrice = 'n/a';
       if (offerData._pricerange) {
-        listPrice = offerData._pricerange[0]['purchase-price-range']['from-price'][0].display;
-        itemPrice = offerData._pricerange[0]['purchase-price-range']['to-price'][0].display;
-      } else {
-        if (productData._price) {
-          listPrice = productData._price[0]['list-price'][0].display;
+        if (offerData._pricerange[0]['list-price-range']['from-price'] && offerData._pricerange[0]['list-price-range']['from-price'][0].amount !== offerData._pricerange[0]['list-price-range']['to-price'][0].amount) {
+          listPrice = `${offerData._pricerange[0]['list-price-range']['from-price'][0].display} - ${offerData._pricerange[0]['list-price-range']['to-price'][0].display}`;
         }
-        if (productData._price) {
-          itemPrice = productData._price[0]['purchase-price'][0].display;
+        if (offerData._pricerange[0]['purchase-price-range']['from-price'] && offerData._pricerange[0]['purchase-price-range']['from-price'][0].amount !== offerData._pricerange[0]['purchase-price-range']['to-price'][0].amount) {
+          itemPrice = `${offerData._pricerange[0]['purchase-price-range']['from-price'][0].display} - ${offerData._pricerange[0]['purchase-price-range']['to-price'][0].display}`;
+        } else {
+          listPrice = (offerData._pricerange[0]['list-price-range']['from-price']) ? (offerData._pricerange[0]['list-price-range']['from-price'][0].display) : ('');
+          itemPrice = (offerData._pricerange[0]['purchase-price-range']['to-price']) ? (offerData._pricerange[0]['purchase-price-range']['to-price'][0].display) : listPrice;
         }
+      } else if (productData._price) {
+        listPrice = productData._price[0]['list-price'][0].display;
+        itemPrice = productData._price[0]['purchase-price'][0].display;
       }
       let availability = false;
       let availabilityString = '';
@@ -137,30 +140,20 @@ class ProductListItemMain extends React.Component {
           <div data-region="priceRegion">
             <div data-region="itemPriceRegion">
               <ul className="category-item-price-container">
-                {(offerData._pricerange)
-                  ? (
-                    <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
-                      <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                        {`${listPrice} - ${itemPrice}`}
-                      </span>
-                    </li>
-                  ) : (
-                    <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
-                      {
-                        listPrice !== itemPrice
-                          ? (
-                            <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
-                              {listPrice}
-                            </span>
-                          )
-                          : ('')
-                      }
-                      <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                        {itemPrice}
-                      </span>
-                    </li>
-                  )
-                }
+                <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
+                  {
+                    listPrice !== itemPrice
+                      ? (
+                        <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
+                          {listPrice}
+                        </span>
+                      )
+                      : ('')
+                  }
+                  <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                    {itemPrice}
+                  </span>
+                </li>
               </ul>
             </div>
             <div data-region="itemRateRegion" />
