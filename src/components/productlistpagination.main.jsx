@@ -59,19 +59,19 @@ class ProductListPagination extends React.Component {
     paginationNextLinkVar = '';
     searchUrlVar = false;
     const { paginationData } = this.state;
+    console.log(paginationData)
     if (paginationData.self.type.includes('searches')) {
       searchUrlVar = true;
     }
     for (let i = 0; i < paginationData.links.length; i++) {
       if (paginationData.links[i].rel === 'previous') {
         const paginationSplit = paginationData.links[i].uri.split('/');
-        // paginationPreviousLinkVar = paginationData.links[i].uri;
         paginationPreviousLinkVar = paginationSplit[paginationSplit.length - 1];
       }
       if (paginationData.links[i].rel === 'next') {
         const paginationSplit = paginationData.links[i].uri.split('/');
-        // paginationNextLinkVar = paginationData.links[i].uri;
         paginationNextLinkVar = paginationSplit[paginationSplit.length - 1];
+        console.log(paginationNextLinkVar)
       }
     }
     this.setState({
@@ -84,15 +84,14 @@ class ProductListPagination extends React.Component {
   componentWillReceiveProps(nextProps) {
     paginationPreviousLinkVar = '';
     paginationNextLinkVar = '';
+    console.log(nextProps)
     for (let i = 0; i < nextProps.paginationDataProps.links.length; i++) {
       if (nextProps.paginationDataProps.links[i].rel === 'previous') {
         const paginationSplit = nextProps.paginationDataProps.links[i].uri.split('/');
-        // paginationPreviousLinkVar = nextProps.paginationDataProps.links[i].uri;
         paginationPreviousLinkVar = paginationSplit[paginationSplit.length - 1];
       }
       if (nextProps.paginationDataProps.links[i].rel === 'next') {
         const paginationSplit = nextProps.paginationDataProps.links[i].uri.split('/');
-        // paginationNextLinkVar = nextProps.paginationDataProps.links[i].uri;
         paginationNextLinkVar = paginationSplit[paginationSplit.length - 1];
       }
     }
@@ -109,8 +108,18 @@ class ProductListPagination extends React.Component {
     } = this.state;
     const { isTop, searchKeywordsProps } = this.props;
     let searchKeywordsPropsUrl = '';
+    let paginationFullUrl = false;
+    let paginationNextLinkNewVar = paginationNextLink;
+    let paginationPreviousLinkNewVar = paginationPreviousLink;
     if (searchKeywordsProps !== '') {
       searchKeywordsPropsUrl = searchKeywordsProps.concat('/');
+    }
+    console.log(searchKeywordsProps)
+    if (searchKeywordsProps.includes('/')) {
+      searchKeywordsPropsUrl = encodeURIComponent(searchKeywordsProps);
+      paginationFullUrl = true;
+      paginationNextLinkNewVar = '';
+      paginationPreviousLinkNewVar = '';
     }
     if (paginationData.links.length > 0) {
       const urlPrefix = (searchUrl) ? ('search') : ('category');
@@ -134,12 +143,12 @@ class ProductListPagination extends React.Component {
                 </span>
               </div>
             ) : ('')}
-          {!isTop && (paginationNextLink !== '' || paginationPreviousLink !== '')
+          {!isTop && (paginationNextLinkNewVar !== '' || paginationPreviousLinkNewVar !== '' || paginationFullUrl)
             ? (
               <div className="pagination-navigation-container">
-                {paginationPreviousLink !== ''
+                {paginationPreviousLinkNewVar !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${searchKeywordsPropsUrl}${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination prev" role="button">
+                    <Link to={`/${urlPrefix}/${searchKeywordsPropsUrl}${encodeURIComponent(paginationPreviousLinkNewVar)}`} className="btn-pagination prev" role="button">
                       <span className="icon" />
                       {intl.get('previous')}
                     </Link>
@@ -164,9 +173,9 @@ class ProductListPagination extends React.Component {
                     {paginationData.pagination.pages}
                   </span>
                 </span>
-                {paginationNextLink !== ''
+                {paginationNextLinkNewVar !== '' || paginationFullUrl
                   ? (
-                    <Link to={`/${urlPrefix}/${searchKeywordsPropsUrl}${encodeURIComponent(paginationNextLink)}`} className="btn-pagination next" role="button">
+                    <Link to={`/${urlPrefix}/${searchKeywordsPropsUrl}${encodeURIComponent(paginationNextLinkNewVar)}`} className="btn-pagination next" role="button">
                       {intl.get('next')}
                       <span className="icon" />
                     </Link>
