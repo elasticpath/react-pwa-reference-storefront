@@ -367,7 +367,11 @@ export function searchLookup(searchKeyword, searchPagination) {
           } else {
             searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
           }
-          cortexFetch(`${searchForm}?zoom=${searchFormZoomArray.join()}&followlocation`,
+          let searchZoom = `?zoom=${searchFormZoomArray.join()}&`;
+          if (searchPagination !== 'undefined' && searchPagination !== undefined && searchPagination !== '') {
+            searchZoom = '?';
+          }
+          cortexFetch(`${searchForm}${searchZoom}followlocation`,
             {
               method: 'post',
               headers: {
@@ -386,7 +390,7 @@ export function searchLookup(searchKeyword, searchPagination) {
             })
             .then(resData => resData.json())
             .then((resData) => {
-              if (searchPagination !== "undefined" && searchPagination !== undefined && searchPagination !== '') {
+              if (searchPagination !== 'undefined' && searchPagination !== undefined && searchPagination !== '') {
                 const paginationUrllastIndex = resData.self.uri.lastIndexOf('/');
                 const paginationURL = resData.self.uri.slice(0, paginationUrllastIndex + 1);
                 cortexFetch(`${paginationURL}${searchPagination}?zoom=${searchFormZoomArray.join()}`,
