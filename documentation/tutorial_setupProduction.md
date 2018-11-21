@@ -7,54 +7,38 @@ weight: 9
 ---
 # Tutorial: Setting Up a Production Instance
 
-### Overview
+### Requirements
 
-This tutorial demonstrates how to set up a production ready environment for a React PWA Reference Storefront.
+This tutorial requires:
+* A development environment
+* An Elastic Path training virtual machine
 
 ### Prerequisites
 
-This tutorial requires an Elastic Path developer environment:
-
-* Your own development environment
-* An Elastic Path Training virtual machine
-
-Ensure that you are familiar with the following third-party technologies:
-
+Ensure that you are familiar with the following third-party technologies:<br>
 * Git
 * Node.js
 * Visual Studio Code with the following extensions:
-*   * Debugger for Chrome
-*   * ESLint extension
+   * Debugger for Chrome
+   * ESLint extension
 
-### Business Requirements
+### Example
 
-As a developer, I want to set up and install a React PWA Reference Storefront experience so my company can engage customers on multiple touchpoints, such as desktop, tablet and mobile devices.
+1. Build a production Docker image.<br>
+    a) Clone or pull the `react-pwa-reference-storefront` repository in to your directory.<br>
+    b) Run the following command: <br>`cd react-pwa-reference-storefront`<br>
+    c) Run the following command: <br>`docker build -t ep-store -f ./docker/prod/Dockerfile .` <br>
+    d) Push the `ep-store` image to the Docker repository.<br>
+2. Run a production Docker image.<br>
+    a) Navigate to your Docker directory: <br>`docker/prod/`<br>
+    b) Copy the following files to the user home directory on the remote host:<br>
+        -`docker-compose.yaml`<br>
+        -`nginx.conf` <br>
+    c) In the `nginx.conf` file, replace the `$CORTEX_URL` parameter with a Cortex server URL.<br>
+    d) In the `docker-compose.yaml` file, replace the `$DOCKER_REPO` parameter with `ep-store`.<br>
+    e) In the `nginx.conf` file, replace the `$DOMAIN` parameter the domain name. <br>
+    **Note**: Ensure that you exclude `http://`.<br>
+    f) Replace the `$SSL_CERT_PATH` in the `nginx.conf` and `docker-compose.yaml` files with the path of the certificate file from the remote server. <br> For example: `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.<br>
+    g) Replace the `$SSL_KEY_PATH` in the `nginx.conf` and `docker-compose.yaml` files with the path of the private key from the remote server.<br> For example: `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`<br>
+    e) Run the following Docker command: <br> `docker-compose up -d` <br>
 
-### Reference Example
-
-This reference example creates a **Terms and Conditions** page used during the shopper checkout flow. This example can be used as a guide to creating other pages and containers within the React PWA Reference Storefront.
-
-### Exercise
-
-#### Step 1: Access the repository
-
-Clone or pull the `react-pwa-reference-storefront` repository to your directory.
-
-#### Step 2: Build a Production Docker Image
-
-Build the Production Docker Image for the React PWA Reference Storefront.
-
-1. Start by cloning or pulling the `react-pwa-reference-storefront` repository in to your directory.
-2. When the repository is cloned or pulled into your directory, run the `cd react-pwa-reference-storefront` command.
-3. Run the docker build `-t ep-store -f ./docker/prod/Dockerfile .` command.
-4. Push the `ep-store` image to the docker repository.
-
-#### Step 3: Run a Production Docker Image
-
-With the Production Docker Image built, the next steps are to run the image.
-
-1. In the repository, navigate to the `docker/prod/ directory`.
-2. Copy the` docker-compose.yaml` and `nginx.conf` files to a folder on the remote host.
-3. Replace the `$CORTEX_URL` parameter in the `nginx.conf` file with a Cortex server URL.
-4. Replace the `$DOCKER_REPO` parameter in the `docker-compose.yaml` file with `ep-store`.
-5. Run the `docker-compose up -d` command.
