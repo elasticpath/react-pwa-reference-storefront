@@ -98,7 +98,7 @@ class CartLineItem extends React.Component {
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
-            history.push('/mycart');
+            history.push('/mybag');
           }
         })
         .catch((error) => {

@@ -243,7 +243,7 @@ class ProductDisplayItemMain extends React.Component {
               setAddAnalytics();
               sendAddToCartAnalytics();
             }
-            history.push('/mycart');
+            history.push('/mybag');
           } else {
             let debugMessages = '';
             res.json().then((json) => {
