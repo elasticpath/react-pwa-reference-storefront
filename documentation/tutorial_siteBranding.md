@@ -27,7 +27,7 @@ Ensure that you are familiar with the following third-party technologies:
 2. Navigate to the `src/ep.config.json` file.
 3. Update the value of `cortexApi.scope` with the store's name.
 4. Add marketing content images in the `react-pwa-reference-storefront⁩/src⁩/images⁩/site-images` file. <br>
-    **Note**: Images can be referenced in other components. To reuse images, ensure that the image names are the same in each component.<br>
+    **Note**: To replace images and keep the same layout in other components, ensure that the image names are the same. <br>
 5. Add PWA icons and any default splash screen images in the `react-pwa-reference-storefront⁩/src⁩/images⁩/manifest-images` file. <br>
     **Note**: To maintain device compatibility, ensure that image names and resolutions are the same. <br>
 6. Add icon images in the `react-pwa-reference-storefront⁩/src⁩/images⁩/header-icons` file. <br> For example, the magnifying glass icon.<br>
@@ -46,4 +46,4 @@ Ensure that you are familiar with the following third-party technologies:
     a) Update the path to the USDZ files hosted on an external CMS used for ARKit Quick Look. <br>
     b) Set the parameter to the complete URL of the files. Replace the `sku/file-name` parameter with `%sku%`. <br>
     Cortex populates the parameter value when the page loads.<br>
-11. Update the color values for your store's brand in the `src/style/common.less`.<br>
+11. Update the color values for your store's brand in the `src/style/common.less` file.<br>
