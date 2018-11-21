@@ -31,7 +31,7 @@ Ensure that you are familiar with the following third-party technologies:
   b) Create a new folder.<br>
   c) Name the directory. <br>
       **Note**: Ensure that the name of the directory and the correpsonding page are the same. For example, if the name of the page is `MyPage`, name the containter `MyPage`.<br>
-  d) Create a new `.jsx` file in the `src/containers/<PageName>` directory. <br> 
+  d) Create a new `.jsx` file in the `src/containers/<PageName>` directory. <br>
       For example, `src/containers/MyPage/MyPage.jsx`.<br>
   e) To populate the page with the required structure, copy the contents of an existing page to the new page.<br>
   f) In the `src/components/routes.js` directory:<br>
@@ -52,4 +52,5 @@ Ensure that you are familiar with the following third-party technologies:
     i)  To view changes in the storefront, update the export settings with the page name.<br>
     ii)  Add all required components and content.<br>
     iii) Import the component to other components or pages as required.<br>
-  g) Add the required custom CSS in the `src/components/mycomponent.main.jsx` file.
+  g) Create and add any custom CSS in the `src/components/mycomponent.main.less` file.<br>
+  h) Import the custom CSS file (if created in the previous step) in the `src/components/mycomponent.main.jsx` file.

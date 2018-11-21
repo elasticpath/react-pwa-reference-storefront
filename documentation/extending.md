@@ -37,6 +37,7 @@ weight: 6
 	* Update the export settings of the page with the component name to view the changes in the storefront.
 	* Add all required components and content for the component.
 	* Import the component to other components or pages as required.
-7. In the `src/components/mycomponent.main.jsx` file, add the required custom CSS.
+7. Create and add any custom CSS in the `src/components/mycomponent.main.less` file.
+8. Import the custom CSS file (if created in the previous step) in the `src/components/mycomponent.main.jsx` file.
 
 {% include legal.html %}
