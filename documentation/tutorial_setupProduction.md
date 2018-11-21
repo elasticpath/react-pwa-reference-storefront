@@ -38,7 +38,6 @@ Ensure that you are familiar with the following third-party technologies:<br>
     d) In the `docker-compose.yaml` file, replace the `$DOCKER_REPO` parameter with `ep-store`.<br>
     e) In the `nginx.conf` file, replace the `$DOMAIN` parameter the domain name. <br>
     **Note**: Ensure that you exclude `http://`.<br>
-    f) Replace the `$SSL_CERT_PATH` in the `nginx.conf` and `docker-compose.yaml` files with the path of the certificate file from the remote server. <br> For example: `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.<br>
-    g) Replace the `$SSL_KEY_PATH` in the `nginx.conf` and `docker-compose.yaml` files with the path of the private key from the remote server.<br> For example: `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`<br>
+    f) Replace the `$SSL_CERT_PATH` in the `nginx.conf` and `docker-compose.yaml` files with the path of the certificate file from the remote server. <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.<br>
+    g) Replace the `$SSL_KEY_PATH` in the `nginx.conf` and `docker-compose.yaml` files with the path of the private key from the remote server.<br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`<br>
     e) Run the following Docker command: <br> `docker-compose up -d` <br>
-

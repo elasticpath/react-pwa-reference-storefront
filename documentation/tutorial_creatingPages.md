@@ -9,7 +9,6 @@ weight: 8
 
 ### Requirements
 
-This tutorial requires:
 * A development environment
 * An Elastic Path training virtual machine
 
@@ -26,31 +25,28 @@ Ensure that you are familiar with the following third-party technologies:
 
 ### Example
 
-1. Create new containers in React.<br>
-  a) Navigate to `src/containers` directory.<br>
-  b) Create a new folder.<br>
-  c) Name the directory. <br>
-      **Note**: Ensure that the name of the directory and the correpsonding page are the same. For example, if the name of the page is `MyPage`, name the containter `MyPage`.<br>
-  d) Create a new `.jsx` file in the `src/containers/<PageName>` directory. <br>
-      For example, `src/containers/MyPage/MyPage.jsx`.<br>
-  e) To populate the page with the required structure, copy the contents of an existing page to the new page.<br>
-  f) In the `src/components/routes.js` directory:<br>
-    i)  Import the new page.<br>
-    ii) Define the routing path for the page.<br>
-  g) In the `.jsx` file:<br>
-    * To view the changes in the storefront, update the export settings with the page name.<br>
-    * Add all required components and content.<br>
-  h) Add the required custom CSS in the `src/containers/<PageName>/<PageName>.less` directory. <br>
-  <br>
-2. Create new components in React.<br>
-  a) In the `src/components` directory, create a new component directory with the appropriate name.<br>
-  Name of the directory and component must be the same. For example, `mycomponent`.<br>
-  b) Create a new `.jsx` file in the `src/components/<componentName>` directory. <br> For example, `src/components/mycomponent.main.jsx`.<br>
-  d) To populate the file with the required structure, copy the contents of an existing component to the new component.<br>
-  e) Name the class of the component with the component name.<br>
-  f) In the `.jsx` file of the component:<br>
-    i)  To view changes in the storefront, update the export settings with the page name.<br>
-    ii)  Add all required components and content.<br>
-    iii) Import the component to other components or pages as required.<br>
-  g) Create and add any custom CSS in the `src/components/mycomponent.main.less` file.<br>
-  h) Import the custom CSS file (if created in the previous step) in the `src/components/mycomponent.main.jsx` file.
+1. Navigate to `src/containers` directory.<br>
+2. Create a new folder.<br>
+3. Name the directory. <br>
+    **Note**: Ensure that the name of the directory and the correpsonding page are the same. For example, if the name of the page is `MyPage`, name the containter `MyPage`.<br>
+4. Create a new `.jsx` file in the `src/containers/<PageName>` directory. <br>
+    For example, `src/containers/MyPage/MyPage.jsx`.<br>
+5. To populate the page with the required structure, copy the contents of an existing page to the new page.<br>
+6. In the `src/components/routes.js` directory:<br>
+  i)  Import the new page.<br>
+  ii) Define the routing path for the page.<br>
+7. In the `.jsx` file:<br>
+  * To view the changes in the storefront, update the export settings with the page name.<br>
+  * Add all required components and content.<br>
+8. Add the required custom CSS in the `src/containers/<PageName>/<PageName>.less` directory. <br>
+9. In the `src/components` directory, create a new component directory with the appropriate name.<br>
+Name of the directory and component must be the same. For example, `mycomponent`.<br>
+10. Create a new `.jsx` file in the `src/components/<componentName>` directory. <br> For example, `src/components/mycomponent.main.jsx`.<br>
+11. To populate the file with the required structure, copy the contents of an existing component to the new component.<br>
+12. Name the class of the component with the component name.<br>
+13. In the `.jsx` file of the component:<br>
+  i)  To view changes in the storefront, update the export settings with the page name.<br>
+  ii)  Add all required components and content.<br>
+  iii) Import the component to other components or pages as required.<br>
+14. Create and add any custom CSS in the `src/components/mycomponent.main.less` file.<br>
+15. Import the custom CSS file (if created in the previous step) in the `src/components/mycomponent.main.jsx` file.

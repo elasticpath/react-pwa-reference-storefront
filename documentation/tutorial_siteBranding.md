@@ -9,7 +9,6 @@ weight: 10
 
 ### Requirements
 
-This tutorial requires:
 * A development environment
 * An Elastic Path training virtual machine
 
@@ -38,7 +37,7 @@ Ensure that you are familiar with the following third-party technologies:
     b) Replace the SKU or product file name with `%sku%`. This value is populated when the page is loaded with the values retrieved by Cortex. <br>
 8. Upload all your site images to a CMS. <br>
     a) In each image, update the value of `siteImagesUrl` with the path to the site content and marketing images.<br>
-    b) Replace the file name and extension with `%fileName%`. This value is populated when the page is loaded with the values retrieved by your components. <br> 
+    b) Replace the file name and extension with `%fileName%`. This value is populated when the page is loaded with the values retrieved by your components. <br>
     **Note**: If there is an issue with retrieving the values, the value is populated with assets locally available in `./src/images/site-images`. <br>
 9. Optional: Update the value of `arKit.enable`. <br>
     a) Enable elements for ARKit's Quick Look capability to load on a product display page.<br>
