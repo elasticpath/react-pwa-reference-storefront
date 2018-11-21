@@ -44,7 +44,7 @@ const router = [{
   path: '/',
   component: HomePage,
 }, {
-  path: '/mycart',
+  path: '/mybag',
   component: CartPage,
 }, {
   path: '/category',
