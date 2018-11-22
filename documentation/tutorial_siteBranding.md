@@ -40,9 +40,8 @@ Ensure that you are familiar with the following third-party technologies:
     a) In each image, update the value of `siteImagesUrl` with the path to the site content and marketing images.<br>
     b) Replace the file name and extension with `%fileName%`. This value is populated when the page is loaded with the values retrieved by your components. <br>
     **Note**: If there is an issue with retrieving the values, the value is populated with assets locally available in `./src/images/site-images`. <br>
-9. Optional: Update the value of `arKit.enable`. <br>
-    a) Enable elements for ARKit's Quick Look capability to load on a product display page.<br>
-    **Note**: When you enable `arKit.enable`, any product images that have hosted ARKit USDZ files are wrapped with an anchor tag referencing the file hosted on an external CMS.<br>
+9. Optional: Set the value of `arKit.enable` to **true**. <br>
+    **Note**: When you enable `arKit.enable`, any product images with hosted ARKit USDZ files are wrapped with an anchor tag referencing the file hosted on an external CMS.<br>
 10. Optional: Update the value of `arKit.skuArImagesUrl`. <br>
     a) Update the path to the USDZ files hosted on an external CMS used for ARKit Quick Look. <br>
     b) Replace the `sku/file-name` parameter with `%sku%` to complete the URL of the files. <br>
