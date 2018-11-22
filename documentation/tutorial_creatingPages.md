@@ -27,10 +27,12 @@ Ensure that you are familiar with the following third-party technologies:
 
 In this section, [Extending React Reference Storefront](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/extending/) is explained with an example.
 
+**Before you begin**: 
+* Ensure that the name of the container directory and components directory are the same as the correpsonding directories. For example, if the name of the page is `MyPage`, name the containter `MyPage`.<br>
+
 1. Navigate to `src/containers` directory.<br>
 2. Create a new folder.<br>
 3. Name the directory. <br>
-    **Note**: Ensure that the name of the container directory and components directory are the same as the correpsonding directories. For example, if the name of the page is `MyPage`, name the containter `MyPage`.<br>
 4. Create a new `.jsx` file in the `src/containers/<PageName>` directory. <br>
     For example, `src/containers/MyPage/MyPage.jsx`.<br>
 5. Populate the page with the required structure, copy the contents of an existing page to the new page.<br>
@@ -42,7 +44,6 @@ In this section, [Extending React Reference Storefront](https://elasticpath.gith
   * Add all required components and content.<br>
 8. Add the required custom CSS in the `src/containers/<PageName>/<PageName>.less` directory. <br>
 9. In the `src/components` directory, create a new component directory with the appropriate name.<br>
-  **Note** Ensure that the name of the container directory and components directory are the same as the corresponding directories. For example, for the page `MyPage`, name the container `MyPage`.<br>
 10. Create a new `.jsx` file in the `src/components/<componentName>` directory. <br> For example, `src/components/mycomponent.main.jsx`.<br>
 11. Populate the file with the required structure, copy the contents of an existing component to the new component.<br>
 12. Name the class of the component with the component name.<br>For example, if the component name is `ProductDisplayItemMain`, use the same name for the class.<br>

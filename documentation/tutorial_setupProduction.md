@@ -33,17 +33,17 @@ Ensure that you are familiar with the following third-party technologies:<br>
         -`docker-compose.yaml`
         -`nginx.conf` 
 7. In the `nginx.conf` file, update:
-   * `$CORTEX_URL` with Cortex server URL
-   * `$DOMAIN` with domain name without `http://`
-   * `$SSL_CERT_PATH` with with the path of the certificate file from the remote server. <br>
+   * `$CORTEX_URL` with Cortex server URL.
+   * `$DOMAIN` with domain name without `http://`.
+   * `$SSL_CERT_PATH` with the path of the certificate file from the remote server. <br>
     For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.
    * `$SSL_KEY_PATH` with the path of the private key from the remote server.<br> 
-   For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`
+   For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.
 8. In the `docker-compose.yaml` file, update:
    * `$DOCKER_REPO` parameter with `ep-store`.
    * `$SSL_CERT_PATH` with the path of the certificate file from the remote server. 
     <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.<br>
    * `$SSL_KEY_PATH` with the path of the private key from the remote server.
-    <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`<br>
+    <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.<br>
 9. Run the following Docker command:<br/> 
 `docker-compose up -d` <br>
