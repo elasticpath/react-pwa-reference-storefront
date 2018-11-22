@@ -125,7 +125,7 @@ class ProductListPagination extends React.Component {
               <div className="pagination-navigation-container">
                 {paginationPreviousLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination prev" role="button">
+                    <Link to={`/${urlPrefix}${paginationPreviousLink}`} className="btn-pagination prev" role="button">
                       <span className="icon" />
                       {intl.get('previous')}
                     </Link>
@@ -152,7 +152,7 @@ class ProductListPagination extends React.Component {
                 </span>
                 {paginationNextLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${encodeURIComponent(paginationNextLink)}`} className="btn-pagination next" role="button">
+                    <Link to={`/${urlPrefix}${paginationNextLink}`} className="btn-pagination next" role="button">
                       {intl.get('next')}
                       <span className="icon" />
                     </Link>

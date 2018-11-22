@@ -26,7 +26,7 @@ function SearchResultsPage(props) {
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <SearchResultsItemsMain searchKeywordsProps={decodeURIComponent(props.match.params.keywords)} />
+      <SearchResultsItemsMain searchKeywordsProps={props} />
     </div>
   );
 }

@@ -32,7 +32,7 @@ import './searchresultsitems.main.less';
 
 class SearchResultsItemsMain extends React.Component {
   static propTypes = {
-    searchKeywordsProps: PropTypes.string.isRequired,
+    searchKeywordsProps: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   constructor(props) {
@@ -62,12 +62,18 @@ class SearchResultsItemsMain extends React.Component {
     });
 
     login().then(() => {
-      searchLookup(searchKeywordsProps)
+      let searchKeyword = searchKeywordsProps.match.params;
+      if (!searchKeyword.keywords || searchKeyword.keywords === undefined) {
+        searchKeyword = searchKeywordsProps.match.params[0];
+      } else {
+        searchKeyword = searchKeywordsProps.match.params.keywords;
+      }
+      searchLookup(searchKeyword)
         .then((res) => {
           this.setState({
             isLoading: false,
             searchResultsModel: res,
-            searchKeywords: searchKeywordsProps,
+            searchKeywords: searchKeyword,
           });
         })
         .catch((error) => {
@@ -82,18 +88,19 @@ class SearchResultsItemsMain extends React.Component {
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0 || !products._element;
     const { searchKeywords } = this.state;
+    const searchKeywordsString = '';
 
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
           {
-            (searchKeywords.includes('/')) ? (
+            (searchKeywordsString.includes('/')) ? (
               <h1 className="view-title">
                 {intl.get('search-results')}
               </h1>
             ) : (
               <h1 className="view-title">
-                {intl.get('search-results-for', { searchKeywords })}
+                {intl.get('search-results-for', { searchKeywordsString })}
               </h1>
             )}
           {(() => {
