@@ -106,6 +106,12 @@ const purchaseFormZoomArray = [
   'lineitems:element',
   'lineitems:element:options:element',
   'lineitems:element:options:element:value',
+  'lineitems:element:components',
+  'lineitems:element:components:element',
+  'lineitems:element:components:element:item:addtocartform',
+  'lineitems:element:components:element:item:availability',
+  'lineitems:element:components:element:item:definition',
+  'lineitems:element:components:element:item:code',
 ];
 
 // Array of zoom parameters to pass to Cortex for searchDetails

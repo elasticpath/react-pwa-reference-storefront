@@ -35,6 +35,45 @@ const OrderTableLineItem = (props) => {
   const { quantity } = item;
   const totalPrice = item._total[0].cost[0].display;
 
+  const renderBundleConfiguration = () => {
+    let bundleConfigs = null;
+    if (item._components) {
+      bundleConfigs = (item._components && item._components[0] && item._components[0]._element) ? (item._components[0]._element) : (null);
+    }
+    if (item._dependentlineitems) {
+      bundleConfigs = (item._dependentlineitems && item._dependentlineitems[0] && item._dependentlineitems[0]._element) ? (item._dependentlineitems[0]._element) : (null);
+    }
+    if (bundleConfigs) {
+      return bundleConfigs.map(config => (
+        <li className="bundle-configuration" key={config}>
+          <label htmlFor="option-name" className="option-name">
+            {config._item[0]._definition[0]['display-name']}
+            &nbsp;
+          </label>
+        </li>
+      ));
+    }
+    return null;
+  };
+
+  const renderConfiguration = () => {
+    const keys = (item.configuration) ? (Object.keys(item.configuration)) : ('');
+    if (keys) {
+      return keys.map(key => (
+        <li className="configuration" key={key}>
+          <label htmlFor="option-name" className="option-name">
+            {key}
+            :&nbsp;
+          </label>
+          <span>
+            {item.configuration[key]}
+          </span>
+        </li>
+      ));
+    }
+    return null;
+  };
+
   const renderOptions = () => {
     if (options) {
       return (
@@ -67,6 +106,8 @@ const OrderTableLineItem = (props) => {
       <td className="options-col" style={{ display: 'table-cell' }}>
         <ul className="options-container">
           {renderOptions()}
+          {renderConfiguration()}
+          {renderBundleConfiguration()}
         </ul>
       </td>
       <td className="quantity-col">
