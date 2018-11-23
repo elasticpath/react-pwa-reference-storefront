@@ -29,7 +29,7 @@ import ProductListPagination from './productlistpagination.main';
 
 class CategoryItemsMain extends React.Component {
   static propTypes = {
-    categoryId: PropTypes.string.isRequired,
+    categoryProps: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   constructor(props) {
@@ -41,8 +41,14 @@ class CategoryItemsMain extends React.Component {
   }
 
   componentDidMount() {
-    const { categoryId } = this.props;
+    const { categoryProps } = this.props;
     this.setState({ isLoading: true });
+    let categoryId = categoryProps.match.params;
+    if (!categoryId.url || categoryId.url === undefined) {
+      categoryId = categoryProps.match.params['0'];
+    } else {
+      categoryId = categoryProps.match.params.url;
+    }
     login().then(() => {
       cortexFetchNavigationLookupForm()
         .then(() => navigationLookup(categoryId)
@@ -61,9 +67,15 @@ class CategoryItemsMain extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ isLoading: true });
+    let categoryId = nextProps.categoryProps.match.params;
+    if (!categoryId.keywords || categoryId.keywords === undefined) {
+      categoryId = nextProps.categoryProps.match.params['0'];
+    } else {
+      categoryId = nextProps.categoryProps.match.params.keywords;
+    }
     login().then(() => {
       cortexFetchNavigationLookupForm()
-        .then(() => navigationLookup(nextProps.categoryId)
+        .then(() => navigationLookup(categoryId)
           .then((res) => {
             this.setState({
               isLoading: false,

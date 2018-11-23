@@ -29,7 +29,7 @@ import './productlistpagination.less';
 
 let paginationPreviousLinkVar = '';
 let paginationNextLinkVar = '';
-let searchUrlVar = false;
+let searchUrlVar = true;
 
 class ProductListPagination extends React.Component {
   static propTypes = {
@@ -48,17 +48,17 @@ class ProductListPagination extends React.Component {
       paginationData: paginationDataProps,
       paginationPreviousLink: '',
       paginationNextLink: '',
-      searchUrl: false,
+      searchUrl: true,
     };
   }
 
   componentDidMount() {
     paginationPreviousLinkVar = '';
     paginationNextLinkVar = '';
-    searchUrlVar = false;
+    searchUrlVar = true;
     const { paginationData } = this.state;
-    if (paginationData.self.type.includes('searches')) {
-      searchUrlVar = true;
+    if (paginationData.self.type.includes('navigation')) {
+      searchUrlVar = false;
     }
     for (let i = 0; i < paginationData.links.length; i++) {
       if (paginationData.links[i].rel === 'previous') {

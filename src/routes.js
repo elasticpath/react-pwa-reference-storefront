@@ -53,6 +53,9 @@ const router = [{
   path: '/category/:url',
   component: CategoryPage,
 }, {
+  path: '/category/*',
+  component: CategoryPage,
+}, {
   path: '/checkout',
   component: CheckoutPage,
 }, {

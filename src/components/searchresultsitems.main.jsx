@@ -30,6 +30,8 @@ import SearchFacetNavigationMain from './searchfacetnavigation.main';
 
 import './searchresultsitems.main.less';
 
+const Config = require('Config');
+
 class SearchResultsItemsMain extends React.Component {
   static propTypes = {
     searchKeywordsProps: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -64,7 +66,7 @@ class SearchResultsItemsMain extends React.Component {
     login().then(() => {
       let searchKeyword = searchKeywordsProps.match.params;
       if (!searchKeyword.keywords || searchKeyword.keywords === undefined) {
-        searchKeyword = searchKeywordsProps.match.params[0];
+        searchKeyword = searchKeywordsProps.match.params['0'];
       } else {
         searchKeyword = searchKeywordsProps.match.params.keywords;
       }
@@ -88,19 +90,18 @@ class SearchResultsItemsMain extends React.Component {
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0 || !products._element;
     const { searchKeywords } = this.state;
-    const searchKeywordsString = '';
 
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
           {
-            (searchKeywordsString.includes('/')) ? (
+            ((typeof searchKeywords === 'object' || searchKeywords instanceof Object) || ((typeof searchKeywords === 'string' || searchKeywords instanceof String) && searchKeywords.includes('/') && searchKeywords.includes(Config.cortexApi.scope))) ? (
               <h1 className="view-title">
                 {intl.get('search-results')}
               </h1>
             ) : (
               <h1 className="view-title">
-                {intl.get('search-results-for', { searchKeywordsString })}
+                {intl.get('search-results-for', { searchKeywords })}
               </h1>
             )}
           {(() => {
