@@ -27,11 +27,11 @@ Ensure that you are familiar with the following third-party technologies:
 
 In this section, [Extending React Reference Storefront](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/extending/) is explained with an example.
 
-**Before you begin**: 
+**Warning**: 
 * Ensure that the name of the container directory and components directory are the same as the correpsonding directories. For example, if the name of the page is `MyPage`, name the containter `MyPage`.<br>
 
 1. Navigate to `src/containers` directory.<br>
-2. Create a new folder.<br>
+2. Create a new directory.<br>
 3. Name the directory. <br>
 4. Create a new `.jsx` file in the `src/containers/<PageName>` directory. <br>
     For example, `src/containers/MyPage/MyPage.jsx`.<br>
