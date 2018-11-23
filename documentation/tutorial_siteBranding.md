@@ -33,15 +33,16 @@ Ensure that you are familiar with the following third-party technologies:
 5. In the `react-pwa-reference-storefront⁩/src⁩/images⁩/manifest-images` directory, add PWA icons and any default splash screen images. <br>
 6. In the `react-pwa-reference-storefront⁩/src⁩/images⁩/header-icons` directory, add icon images. <br>
 7. Upload all product, SKU, and other site images to a CMS. <br>
-    a. Update all product and SKU image names to corresponding SKU codes.
-    b. In the `react-pwa-reference-storefront⁩/ep.config.json` file, update the `skuImagesURL` parameter for all images to the corresponding path for each image in the CMS.<br>
-    c. Update the SKU or product file name to `%sku%` and site image names to `%fileName%`.
-    The `%sku%` parameter is populated with the SKU code associated with each image and the  `%fileName%` parameter is populated with the associated file name. When you load the page, Cortex retrieves image for the specific SKU code of file name from the CMS using the file path provided by the `skuImagesURL` parameter. <br>
-    **Note**: If Cortex fails to retrieve the `%fileName%` value form the CMS, the parameter is populated with the assets available locally in the `./src/images/site-images` directory.<br>
-9. Optional: In the `react-pwa-reference-storefront⁩/ep.config.json` file:
-       a. Set the `arKit.enable` parameter to **true**. <br>
-        If a USDZ file for a SKU is available at the path provided by the `skuImagesURL`  parameter, the product images are wrapped with an anchor tag with a reference to the file on the CMS.
-       b. Update the `arKit.skuArImagesUrl` parameter to the USDZ file paths hosted on the CMS for ARKit Quick Look images.
-       c. To complete the URL of the files, in the file path, update the `sku/file-name` parameter to `%sku%` t. <br/>For example,` "skuArImagesUrl":"https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"`
-       Cortex populates the page with the images corresponding to the parameter value when the page loads.<br>
+    a. In the CMS, update all product and SKU image names to corresponding SKU codes.<br/>
+    b. In the `react-pwa-reference-storefront⁩/ep.config.json` file, update the `skuImagesURL` parameter for each image to the corresponding path for the image in CMS.<br>
+    c. Update the SKU or product file name to `%sku%` and site image names to `%fileName%`.<br/>
+    The `%sku%` parameter is populated with the SKU code associated with each image and the  `%fileName%` parameter is populated with the associated file name. When you load the page, Cortex retrieves image for the specific SKU code or file name from CMS using the file path provided by the `skuImagesURL` parameter. <br>
+    **Note**: If Cortex fails to retrieve the `%fileName%` value from CMS, the parameter is populated with the assets available locally in the `./src/images/site-images` directory.<br>
+9. Optional: In the `react-pwa-reference-storefront⁩/ep.config.json` file:<br/>
+    a. Set the `arKit.enable` parameter to **true**. <br>
+    If a USDZ file for a SKU is available at the path provided by the `skuImagesURL`  parameter, the product images are wrapped with an anchor tag with a reference to the file on the CMS.<br/>
+   b. Update the `arKit.skuArImagesUrl` parameter to the USDZ file paths hosted on the CMS for ARKit Quick Look images.<br/>
+   c. To complete the URL of the files, in the file path, update the `sku/file-name` parameter to `%sku%`. <br/>For example,
+   ` "skuArImagesUrl":"https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"`<br/>
+    Cortex populates the page with the images corresponding to the parameter value when the page loads.<br>
 11. Update the `react-pwa-reference-storefront⁩/src/style/common.less` file with the color values for the store.<br>
