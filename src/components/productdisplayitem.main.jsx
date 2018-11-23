@@ -33,6 +33,7 @@ import {
 import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
 import IndiRecommendationsDisplayMain from './indirecommendations.main';
+import BundleConstituentsDisplayMain from './bundleconstituents.main';
 import cortexFetch from '../utils/Cortex';
 
 import './productdisplayitem.main.less';
@@ -58,6 +59,13 @@ const zoomArray = [
   'definition:options:element:selector:chosen:selector',
   'definition:options:element:selector:choice:selectaction',
   'definition:options:element:selector:chosen:selectaction',
+  'definition:components',
+  'definition:components:element',
+  'definition:components:element:code',
+  'definition:components:element:standaloneitem',
+  'definition:components:element:standaloneitem:code',
+  'definition:components:element:standaloneitem:definition',
+  'definition:components:element:standaloneitem:availability',
   'recommendations',
   'recommendations:crosssell',
   'recommendations:recommendation',
@@ -621,6 +629,7 @@ class ProductDisplayItemMain extends React.Component {
               {this.renderAttributes()}
             </div>
           </div>
+          <BundleConstituentsDisplayMain productData={productData} />
           <ProductRecommendationsDisplayMain productData={productData} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
         </div>

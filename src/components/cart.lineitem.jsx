@@ -31,6 +31,8 @@ import {
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
 import cortexFetch from '../utils/Cortex';
+/* eslint-disable-next-line import/no-cycle */
+import AppModalBundleConfigurationMain from './appmodalbundleconfiguration.main';
 import './cart.lineitem.less';
 
 const Config = require('Config');
@@ -38,8 +40,14 @@ const Config = require('Config');
 class CartLineItem extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
     item: PropTypes.objectOf(PropTypes.any).isRequired,
     handleQuantityChange: PropTypes.func.isRequired,
+    handleErrorMessage: PropTypes.func,
+  }
+
+  static defaultProps = {
+    handleErrorMessage: () => {},
   }
 
   constructor(props) {
@@ -53,6 +61,7 @@ class CartLineItem extends React.Component {
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.handleMoveToCartBtnClicked = this.handleMoveToCartBtnClicked.bind(this);
     this.handleRemoveBtnClicked = this.handleRemoveBtnClicked.bind(this);
+    this.handleConfiguratorAddToCartBtnClicked = this.handleConfiguratorAddToCartBtnClicked.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -107,6 +116,40 @@ class CartLineItem extends React.Component {
     this.setState({ quantity: newItemQuantity });
   }
 
+  handleConfiguratorAddToCartBtnClicked() {
+    const {
+      item, history, handleQuantityChange, handleErrorMessage,
+    } = this.props;
+    handleQuantityChange();
+    login().then(() => {
+      const addToCartLink = item._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+      cortexFetch(addToCartLink.uri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            quantity: 1,
+          }),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            history.push('/mybag');
+          } else {
+            res.json().then((json) => {
+              handleErrorMessage(json);
+            });
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
   handleMoveToCartBtnClicked() {
     const { item, history } = this.props;
     login().then(() => {
@@ -135,7 +178,10 @@ class CartLineItem extends React.Component {
   }
 
   handleRemoveBtnClicked() {
-    const { item, handleQuantityChange, history } = this.props;
+    const {
+      item, handleQuantityChange, location, history,
+    } = this.props;
+    handleQuantityChange();
     login().then(() => {
       cortexFetch(item.self.uri,
         {
@@ -146,6 +192,7 @@ class CartLineItem extends React.Component {
           },
         })
         .then(() => {
+          history.push(location.pathname);
           this.trackAddItemAnalytics();
           handleQuantityChange();
           history.push('/mybag'); // need call push to refresh header shopping cart items count
@@ -169,15 +216,24 @@ class CartLineItem extends React.Component {
 
   renderUnitPrice() {
     const { item } = this.props;
-    const itemPrice = ((item._price) ? (item._price) : (item._item[0]._price));
-    const listPrice = itemPrice[0]['list-price'][0].display;
-    const purchasePrice = itemPrice[0]['purchase-price'][0].display;
-    if (listPrice !== purchasePrice) {
+    if (item._item && (item._price || item._item[0]._price)) {
+      const itemPrice = ((item._price) ? (item._price) : (item._item[0]._price));
+      const listPrice = itemPrice[0]['list-price'][0].display;
+      const purchasePrice = itemPrice[0]['purchase-price'][0].display;
+      if (listPrice !== purchasePrice) {
+        return (
+          <ul className="price-container">
+            <li className="cart-unit-list-price" data-region="itemListPriceRegion">
+              {listPrice}
+            </li>
+            <li className="cart-unit-purchase-price">
+              {purchasePrice}
+            </li>
+          </ul>
+        );
+      }
       return (
         <ul className="price-container">
-          <li className="cart-unit-list-price" data-region="itemListPriceRegion">
-            {listPrice}
-          </li>
           <li className="cart-unit-purchase-price">
             {purchasePrice}
           </li>
@@ -187,7 +243,7 @@ class CartLineItem extends React.Component {
     return (
       <ul className="price-container">
         <li className="cart-unit-purchase-price">
-          {purchasePrice}
+          {}
         </li>
       </ul>
     );
@@ -206,9 +262,25 @@ class CartLineItem extends React.Component {
     );
   }
 
+  renderBundleConfiguration() {
+    const { item } = this.props;
+    const bundleConfigs = (item._dependentlineitems && item._dependentlineitems[0] && item._dependentlineitems[0]._element) ? (item._dependentlineitems[0]._element) : (null);
+    if (bundleConfigs) {
+      return bundleConfigs.map(config => (
+        <li className="bundle-configuration" key={config}>
+          <label htmlFor="option-name" className="option-name">
+            {config._item[0]._definition[0]['display-name']}
+            &nbsp;
+          </label>
+        </li>
+      ));
+    }
+    return null;
+  }
+
   renderConfiguration() {
     const { item } = this.props;
-    const keys = Object.keys(item.configuration);
+    const keys = (item.configuration) ? (Object.keys(item.configuration)) : ('');
     if (keys) {
       return keys.map(key => (
         <li className="configuration" key={key}>
@@ -227,7 +299,7 @@ class CartLineItem extends React.Component {
 
   renderOptions() {
     const { item } = this.props;
-    const options = item._item[0]._definition[0]._options;
+    const options = (item._item) ? (item._item[0]._definition[0]._options) : ('');
     if (options) {
       return (
         options[0]._element.map(option => (
@@ -286,7 +358,19 @@ class CartLineItem extends React.Component {
         availabilityString = intl.get('out-of-stock');
       }
     }
-    const featuredProductAttribute = (item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
+    let itemCodeString = '';
+    let itemDisplayName = '';
+    if (item._item) {
+      itemCodeString = item._item[0]._code[0].code;
+      itemDisplayName = item._item[0]._definition[0]['display-name'];
+    }
+    if (item._code) {
+      itemCodeString = item._code[0].code;
+    }
+    if (item._definition) {
+      itemDisplayName = item._definition[0]['display-name'];
+    }
+    const featuredProductAttribute = (item._item && item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return (
       <div id={`cart_lineitem_${item._item[0]._code[0].code}`} className="cart-lineitem-row">
         <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
@@ -297,13 +381,13 @@ class CartLineItem extends React.Component {
               </div>)
             : ('')
           }
-          <Link to={`/itemdetail/${encodeURIComponent(item._item[0]._code[0].code)}`}>
-            <img src={Config.skuImagesUrl.replace('%sku%', item._item[0]._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
+          <Link to={`/itemdetail/${encodeURIComponent(itemCodeString)}`}>
+            <img src={Config.skuImagesUrl.replace('%sku%', itemCodeString)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
           </Link>
         </div>
         <div className="title-col" data-el-value="lineItem.displayName">
-          <Link to={`/itemdetail/${encodeURIComponent(item._item[0]._code[0].code)}`}>
-            {item._item[0]._definition[0]['display-name']}
+          <Link to={`/itemdetail/${encodeURIComponent(itemCodeString)}`}>
+            {itemDisplayName}
           </Link>
         </div>
         {(item._appliedpromotions && item._appliedpromotions[0]._element)
@@ -323,6 +407,7 @@ class CartLineItem extends React.Component {
           <ul className="options-container">
             {this.renderOptions()}
             {this.renderConfiguration()}
+            {this.renderBundleConfiguration()}
           </ul>
         </div>
         <div className="availability-col" data-region="cartLineitemAvailabilityRegion">
@@ -383,6 +468,27 @@ class CartLineItem extends React.Component {
             </span>
           </button>
         </div>
+        {(item._addtocartform) ? (
+          <div className="move-to-cart-btn-col">
+            <button className="ep-btn primary small btn-cart-addToCart" type="button" onClick={this.handleConfiguratorAddToCartBtnClicked}>
+              <span className="btn-text">
+                {intl.get('add-to-cart')}
+              </span>
+            </button>
+          </div>
+        ) : ('')
+        }
+        {(item._dependentoptions && item._dependentoptions[0] && (item._dependentoptions[0]._element || item._dependentlineitems[0]._element)) ? (
+          <div className="configure-btn-col">
+            <button className="ep-btn primary small btn-cart-configureBundle" type="button" data-toggle="modal" data-target="#bundle-configuration-modal">
+              <span className="btn-text">
+                {intl.get('configure-bundle')}
+              </span>
+            </button>
+            <AppModalBundleConfigurationMain key="app-modal-bundle-configuration-main" bundleConfigurationItems={item} />
+          </div>
+        ) : ('')
+        }
         {(item._movetocartform) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-moveToCart" type="button" onClick={this.handleMoveToCartBtnClicked}>
