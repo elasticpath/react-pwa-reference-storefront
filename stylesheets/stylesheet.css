@@ -3911,7 +3911,6 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: #090909;
     color: #fff;
 }
 .navbar-inverse .navbar-nav > .dropdown > a:hover .caret {
@@ -3919,8 +3918,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
     border-bottom-color: #fff;
 }
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
-    border-top-color: #999999;
-    border-bottom-color: #999999;
+    border-top-color: #fff;
+    border-bottom-color: #fff;
 }
 .navbar-inverse .navbar-nav > .open > a .caret,
 .navbar-inverse .navbar-nav > .open > a:hover .caret,
@@ -6432,9 +6431,6 @@ table .checkbox input[type="checkbox"] {
 body ol,
 body ul {
     padding-left: 15px;
-}
-#navbar .navbar-nav > li:hover ul {
-    display: block;
 }
 .section-header {
     margin-top: 20px;

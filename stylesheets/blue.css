@@ -19,28 +19,12 @@ blockquote {
     border-color: #2090AC;
 }
 
-.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-    background-color: #2090AC;
-}
-
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: #2090AC;
-}
-
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-    background-color: #2090AC;
-}
-
-.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
-    background-color: #2090AC;
-}
-
 .navbar-inverse .navbar-toggle {
     border-color: #2090AC;
 }
 
 .dropdown-menu{
-    background-color: #2090AC;
+    background-color: #00a3dd;
 }
 
 .post-meta .fa{
