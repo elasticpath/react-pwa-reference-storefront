@@ -45,5 +45,5 @@ Ensure that you are familiar with the following third-party technologies:<br>
     <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.<br>
    * `$SSL_KEY_PATH` with the path of the private key in the remote server.
     <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.<br>
-9. Run the following Docker command:<br/>
+9. Run the following Docker command to start the Docker container created for the Docker image:<br/>
 `docker-compose up -d` <br>
