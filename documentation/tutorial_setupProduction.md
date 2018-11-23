@@ -30,8 +30,8 @@ Ensure that you are familiar with the following third-party technologies:<br>
 4. Push the `ep-store` image to the Docker repository.<br>
 5. Navigate to your Docker directory,`docker/prod/`.<br>
 6. Copy the following files to the user home directory on the remote host:<br>
-        -`docker-compose.yaml`
-        -`nginx.conf`
+   * `docker-compose.yaml`
+   * `nginx.conf`
 7. In the `nginx.conf` file, update the following parameters:
    * `$CORTEX_URL` with Cortex server URL.
    * `$DOMAIN` with domain name without `http://`.
@@ -46,4 +46,4 @@ Ensure that you are familiar with the following third-party technologies:<br>
    * `$SSL_KEY_PATH` with the path of the private key in the remote server.
     <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.<br>
 9. Run the following Docker command to start the Docker container created for the Docker image:<br/>
-`docker-compose up -d` <br>
+   * `docker-compose up -d` <br>
