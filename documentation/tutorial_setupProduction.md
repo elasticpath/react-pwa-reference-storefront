@@ -23,7 +23,7 @@ Ensure that you are familiar with the following third-party technologies:<br>
 
 ### Example
 
-1. Clone or pull the `react-pwa-reference-storefront` repository in to your directory.<br>
+1. Clone or pull the `react-pwa-reference-storefront` repository into your directory.<br>
 2. Navigate to the `react-pwa-reference-storefront` repository.<br>
 3. Build a production Docker image by running the following command:</br>
 `docker build -t ep-store -f ./docker/prod/Dockerfile .` <br>
@@ -31,19 +31,19 @@ Ensure that you are familiar with the following third-party technologies:<br>
 5. Navigate to your Docker directory,`docker/prod/`.<br>
 6. Copy the following files to the user home directory on the remote host:<br>
         -`docker-compose.yaml`
-        -`nginx.conf` 
-7. In the `nginx.conf` file, update:
+        -`nginx.conf`
+7. In the `nginx.conf` file, update the following parameters:
    * `$CORTEX_URL` with Cortex server URL.
    * `$DOMAIN` with domain name without `http://`.
-   * `$SSL_CERT_PATH` with the path of the certificate file from the remote server. <br>
+   * `$SSL_CERT_PATH` with the certificate file path in the remote server. <br>
     For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.
-   * `$SSL_KEY_PATH` with the path of the private key from the remote server.<br> 
+   * `$SSL_KEY_PATH` with the path of the private key in the remote server.<br>
    For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.
-8. In the `docker-compose.yaml` file, update:
-   * `$DOCKER_REPO` parameter with `ep-store`.
-   * `$SSL_CERT_PATH` with the path of the certificate file from the remote server. 
+8. In the `docker-compose.yaml` file, update the following parameters:
+   * `$DOCKER_REPO` with `ep-store`.
+   * `$SSL_CERT_PATH` with the certificate file path in the remote server .
     <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.<br>
-   * `$SSL_KEY_PATH` with the path of the private key from the remote server.
+   * `$SSL_KEY_PATH` with the path of the private key in the remote server.
     <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.<br>
-9. Run the following Docker command:<br/> 
+9. Run the following Docker command:<br/>
 `docker-compose up -d` <br>
