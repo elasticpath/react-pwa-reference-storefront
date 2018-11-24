@@ -130,7 +130,7 @@ class ProductListItemMain extends React.Component {
             </Link>
           </div>
           <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`} style={{ minHeight: '43px' }}>
-            <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
+            <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`} data-name={productData._definition[0]['display-name']}>
               {productData._definition[0]['display-name']}
             </Link>
           </div>
