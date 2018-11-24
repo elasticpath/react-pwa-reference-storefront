@@ -23,6 +23,7 @@ const cucumber = require('cucumber');
 const puppeteer = require('puppeteer');
 const chai = require('chai');
 const createNetworkMonitor = require('./monitor.js').createNetworkMonitor;
+const _ = require('lodash');
 
 const { expect } = chai;
 const {
@@ -71,14 +72,11 @@ When('I select quantity {int} and add product to my cart', async (quantity) => {
   await monitor.waitForIdle();
   await page.click('#product_display_item_add_to_cart_button');
   await monitor.waitForIdle();
-  await page.screenshot({ path: 'screenshot00.png' });
 });
 
 When(/I update cart lineitem quantity to (.+) for product (.+)/, async (quantity, product) => {
-  await page.screenshot({ path: 'screenshot0.png' });
   await page.select(`.cart-lineitem-row[data-name="${product}"] .quantity-select`, quantity.toString());
   await monitor.waitForIdle();
-  await page.screenshot({ path: 'screenshot1.png' });
 });
 
 Then(/the expected cart lineitem total price is (.+) for product (.+)/, async (expectedTotal, product) => {
@@ -87,13 +85,31 @@ Then(/the expected cart lineitem total price is (.+) for product (.+)/, async (e
 });
 
 When(/I add following items to my cart/, async (items) => {
-  // console.log(items);
+  for (const row of items.rows()) {
+    const productCategory = row[0];
+    const productSubCategory = row[1];
+    const productName = row[2];
+
+    await page.click(`.app-header-navigation-component li[data-name="${productCategory}"]`);
+    await page.click(`.app-header-navigation-component li[data-name="${productCategory}"] > .dropdown-menu > a[title="${productSubCategory}"]`);
+    await monitor.waitForIdle();
+
+    const productLinkElem = (await page.$x(`//a[contains(text(), '${productName}')]`))[0];
+    await productLinkElem.click();
+    await monitor.waitForIdle();
+    await page.click('#product_display_item_add_to_cart_button');
+    await monitor.waitForIdle();
+  }
 });
 
-When(/I remove the cart line item (.+)/, async (product) => {
-  // console.log(product);
+When(/I remove the cart line item (.+)/, async (productName) => {
+  const productLineElem = (await page.$x(`//div[@class="cart-lineitem-row"][//a[contains(text(), '${productName}')]]`))[0];
+  const removeBtnElem = await productLineElem.$('.btn-cart-removelineitem');
+  await removeBtnElem.click();
+  await monitor.waitForIdle();
 });
 
-Then(/Lineitem (.+) is no longer in the cart/, async (product) => {
-  // console.log(product);
+Then(/Lineitem (.+) is no longer in the cart/, async (productName) => {
+  const productLineElems = await page.$x(`//div[@class="cart-lineitem-row"][//a[contains(text(), '${productName}')]]`);
+  expect(productLineElems.length).to.be.equal(0);
 });
