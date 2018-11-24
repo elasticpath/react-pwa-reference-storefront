@@ -242,7 +242,7 @@ class CartLineItem extends React.Component {
     }
     const featuredProductAttribute = (item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return (
-      <div className="cart-lineitem-row">
+      <div className="cart-lineitem-row" data-name={item._item[0]._definition[0]['display-name']}>
         <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
           {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
             ? (

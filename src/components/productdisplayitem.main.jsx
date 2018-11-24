@@ -331,12 +331,29 @@ class ProductDisplayItemMain extends React.Component {
             {options['display-name']}
           </label>
           <div className="form-content">
-            <select className="form-control" id={`product_display_item_sku_select_${options.name}`} disabled={isLoading} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
-              <option key={options._selector[0]._chosen[0]._description[0].name} id={`product_display_item_sku_option_${options._selector[0]._chosen[0]._description[0].name}`} value={(options._selector[0]._chosen[0]._selectaction) ? options._selector[0]._chosen[0]._selectaction[0].self.uri : ''}>
+            <select
+              className="form-control product-configurator"
+              id={`product_display_item_sku_select_${options.name}`}
+              disabled={isLoading}
+              name="itemdetail-select-sku"
+              onChange={this.handleSkuSelection}
+              data-name={options['display-name']}
+            >
+              <option
+                key={options._selector[0]._chosen[0]._description[0].name}
+                id={`product_display_item_sku_option_${options._selector[0]._chosen[0]._description[0].name}`}
+                value={(options._selector[0]._chosen[0]._selectaction) ? options._selector[0]._chosen[0]._selectaction[0].self.uri : ''}
+                data-name={options._selector[0]._chosen[0]._description[0]['display-name']}
+              >
                 {options._selector[0]._chosen[0]._description[0]['display-name']}
               </option>
               {(options._selector[0]._choice) ? options._selector[0]._choice.map(skuChoice => (
-                <option key={skuChoice._description[0].name} id={`product_display_item_sku_option_${skuChoice._description[0].name}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''}>
+                <option
+                  key={skuChoice._description[0].name}
+                  id={`product_display_item_sku_option_${skuChoice._description[0].name}`}
+                  value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''}
+                  data-name={skuChoice._description[0]['display-name']}
+                >
                   {skuChoice._description[0]['display-name']}
                 </option>
               )) : ''}
