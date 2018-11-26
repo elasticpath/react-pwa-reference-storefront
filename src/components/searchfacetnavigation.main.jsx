@@ -109,14 +109,14 @@ class SearchFacetNavigationMain extends React.Component {
   renderFacets() {
     const { facetModel } = this.state;
     return facetModel._facets[0]._element.map((facet) => {
-      if (facet.value) {
+      if (facet['display-name']) {
         return (
-          <div className="card" key={facet.value}>
+          <div className="card" key={facet['display-name']}>
             <div className="card-header">
               <h4 className="card-title">
                 <a data-toggle="collapse" href="#facets-2">
                   <span className="glyphicon glyphicon-tag" />
-                  {facet.value}
+                  {facet['display-name']}
                 </a>
               </h4>
             </div>
