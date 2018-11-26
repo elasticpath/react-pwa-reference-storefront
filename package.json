@@ -60,8 +60,9 @@
   "scripts": {
     "start": "webpack-dev-server --config=webpack/webpack.config.dev.js --mode development --host 0.0.0.0 --inline --watch --hot",
     "start-prod": "webpack-dev-server --config=webpack/webpack.config.prod.js --mode production",
-    "build": "webpack --config=webpack/webpack.config.prod.js --mode production",
-    "test": "cucumber-js -r tests",
+    "build": "webpack --config=webpack/webpack.config.prod.js --mode production --json",
+    "test": "./node_modules/cucumber-js -r tests",
+    "watch-test": "nodemon -w tests -x './node_modules/.bin/cucumber-js tests'",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

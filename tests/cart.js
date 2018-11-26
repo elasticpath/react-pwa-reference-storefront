@@ -23,7 +23,6 @@ const cucumber = require('cucumber');
 const puppeteer = require('puppeteer');
 const chai = require('chai');
 const createNetworkMonitor = require('./monitor.js').createNetworkMonitor;
-const _ = require('lodash');
 
 const { expect } = chai;
 const {
@@ -35,11 +34,20 @@ let page;
 let monitor;
 
 Before(async () => {
-  browser = await puppeteer.launch();
+  browser = await puppeteer.launch({
+    headless: false,
+    // executablePath: '/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary',
+    defaultViewport: { width: 1920, height: 1080 },
+    // dumpio: process.stdout,
+    pipe: true
+  });
   page = await browser.newPage();
   monitor = createNetworkMonitor(page, 100);
 
-  await page.setViewport({ width: 1920, height: 1080 });
+  // await page.setViewport({
+  //   width: 1920,
+  //   height: 1080,
+  // });
   await page.goto('http://localhost:8080');
   await monitor.waitForIdle();
 
