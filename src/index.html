@@ -32,7 +32,10 @@
 
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
   <!-- iPhone ICON -->
   <link href="<%= require('./images/manifest-images/icons-192.png') %>" sizes="57x57" rel="apple-touch-icon">
@@ -73,6 +76,24 @@
 </head>
 
 <body>
+  <!-- This has to be the first element in the body -->
+  <div id="fb-root">
+  </div>
+
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Your customer chat code -->
+  <div class="fb-customerchat"
+      attribution=setup_tool
+      page_id="<YOUR_PAGE_ID>">
+  </div>
 
   <!-- Viewport -->
   <div class="viewport ui-container" data-region="viewPortRegion"></div>
@@ -131,7 +152,28 @@
 
   <!-- Modal Window PLaceholder -->
   <div data-region="modalRegion" class="modal-container"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '<YOUR_FACEBOOK_CHATBOT_APP>',
+        status     : true,
+        xfbml      : true,
+        version    : 'v2.10'
+      });
 
+      $(document).trigger('fbload');  //  <---- THIS RIGHT HERE TRIGGERS A CUSTOM EVENT CALLED 'fbload'
+    };
+
+    $(document).on(
+      'fbload',  //  <---- HERE'S OUR CUSTOM EVENT BEING LISTENED FOR
+      function(){
+        //some code that requires the FB object
+        //such as...
+        //FB.CustomerChat.showDialog();
+
+      }
+    );
+  </script>
 </body>
 
 </html>

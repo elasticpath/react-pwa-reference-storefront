@@ -24,7 +24,7 @@ import ReactDOM from 'react-dom';
 import intl from 'react-intl-universal';
 import App from './App';
 import * as UserPrefs from './utils/UserPrefs';
-
+import $ from 'jquery';
 // Import custom required styles
 import './style/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
