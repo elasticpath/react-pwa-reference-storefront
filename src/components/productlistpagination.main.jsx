@@ -34,6 +34,7 @@ let searchUrlVar = true;
 class ProductListPagination extends React.Component {
   static propTypes = {
     paginationDataProps: PropTypes.objectOf(PropTypes.any).isRequired,
+    titleString: PropTypes.string.isRequired,
     isTop: PropTypes.bool,
   }
 
@@ -97,7 +98,9 @@ class ProductListPagination extends React.Component {
     const {
       paginationData, paginationNextLink, paginationPreviousLink, searchUrl,
     } = this.state;
-    const { isTop } = this.props;
+
+    console.log(paginationData)
+    const { isTop, titleString } = this.props;
     if (paginationData.links.length > 0) {
       const urlPrefix = (searchUrl) ? ('search') : ('category');
       return (
@@ -125,7 +128,7 @@ class ProductListPagination extends React.Component {
               <div className="pagination-navigation-container">
                 {paginationPreviousLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}${paginationPreviousLink}`} className="btn-pagination prev" role="button">
+                    <Link to={`/${urlPrefix}/${titleString}${paginationPreviousLink}`} className="btn-pagination prev" role="button">
                       <span className="icon" />
                       {intl.get('previous')}
                     </Link>
@@ -152,7 +155,7 @@ class ProductListPagination extends React.Component {
                 </span>
                 {paginationNextLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}${paginationNextLink}`} className="btn-pagination next" role="button">
+                    <Link to={`/${urlPrefix}/${titleString}${paginationNextLink}`} className="btn-pagination next" role="button">
                       {intl.get('next')}
                       <span className="icon" />
                     </Link>

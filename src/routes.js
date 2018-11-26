@@ -50,10 +50,13 @@ const router = [{
   path: '/category',
   component: CategoryPage,
 }, {
-  path: '/category/:url',
+  path: '/category/:id',
   component: CategoryPage,
 }, {
-  path: '/category/*',
+  path: '/category/:id/:url',
+  component: CategoryPage,
+}, {
+  path: '/category/:id/*',
   component: CategoryPage,
 }, {
   path: '/checkout',
@@ -98,7 +101,10 @@ const router = [{
   path: '/search/:keywords',
   component: SearchResultsPage,
 }, {
-  path: '/search/*',
+  path: '/search/:keywords/:url',
+  component: SearchResultsPage,
+}, {
+  path: '/search/:keywords/*',
   component: SearchResultsPage,
 }, {
   path: '/aboutus',

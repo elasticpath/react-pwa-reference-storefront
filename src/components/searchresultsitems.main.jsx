@@ -62,15 +62,18 @@ class SearchResultsItemsMain extends React.Component {
       isLoading: true,
       searchKeywords: searchKeywordsProps,
     });
-
+    console.log(searchKeywordsProps)
     login().then(() => {
       let searchKeyword = searchKeywordsProps.match.params;
-      if (!searchKeyword.keywords || searchKeyword.keywords === undefined) {
-        searchKeyword = searchKeywordsProps.match.params['0'];
+      let searchUrl = searchKeywordsProps.match.params;
+      if (!searchKeyword['0'] || searchKeyword['0'] === undefined) {
+        searchKeyword = searchKeywordsProps.match.params.keywords;
+        searchUrl = '';
       } else {
         searchKeyword = searchKeywordsProps.match.params.keywords;
+        searchUrl = searchKeywordsProps.match.params['0'];
       }
-      searchLookup(searchKeyword)
+      searchLookup((searchUrl === '') ? searchKeyword : searchUrl)
         .then((res) => {
           this.setState({
             isLoading: false,
@@ -86,10 +89,10 @@ class SearchResultsItemsMain extends React.Component {
   }
 
   render() {
-    const { isLoading, searchResultsModel } = this.state;
+    const { isLoading, searchResultsModel, searchKeywords } = this.state;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0 || !products._element;
-    const { searchKeywords } = this.state;
+    const searchKeywordString = searchKeywords;
 
     return (
       <div className="category-items-container container-3">
@@ -118,11 +121,11 @@ class SearchResultsItemsMain extends React.Component {
             }
             return (
               <div>
-                <SearchFacetNavigationMain productData={products} />
+                <SearchFacetNavigationMain productData={products} titleString={searchKeywordString} />
                 <div className="products-container">
-                  <ProductListPagination paginationDataProps={products} isTop />
+                  <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} />
                 </div>
               </div>
             );
