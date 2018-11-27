@@ -62,13 +62,28 @@ class CategoryItemsMain extends React.Component {
     }
     login().then(() => {
       cortexFetchNavigationLookupForm()
-        .then(() => navigationLookup((categoryUrl === '') ? categoryId : categoryUrl)
+        .then(() => navigationLookup(categoryId)
           .then((res) => {
             this.setState({
-              isLoading: false,
               categoryModel: res,
+              categoryModelDisplayName: res['display-name'],
               categoryModelId: categoryId,
             });
+          })
+          .then(() => {
+            if (categoryUrl !== '') {
+              navigationLookup(categoryUrl)
+                .then((res) => {
+                  this.setState({
+                    isLoading: false,
+                    categoryModel: res,
+                  });
+                });
+            } else {
+              this.setState({
+                isLoading: false,
+              });
+            }
           })
           .catch((error) => {
             // eslint-disable-next-line no-console
@@ -78,7 +93,9 @@ class CategoryItemsMain extends React.Component {
   }
 
   render() {
-    const { isLoading, categoryModel, categoryModelId } = this.state;
+    const {
+      isLoading, categoryModel, categoryModelId, categoryModelDisplayName,
+    } = this.state;
     const products = categoryModel._items ? categoryModel._items[0] : categoryModel;
     const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
     const categoryModelIdString = categoryModelId;
@@ -102,7 +119,7 @@ class CategoryItemsMain extends React.Component {
             return (
               <div>
                 <h1 className="view-title">
-                  {categoryModel['display-name']}
+                  {categoryModelDisplayName}
                 </h1>
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />

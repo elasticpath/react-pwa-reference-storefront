@@ -138,7 +138,7 @@ class AppHeaderNavigationMain extends React.Component {
                   </a>
                   <div className="dropdown-menu sub-category-dropdown-menu" aria-label={`navbarDropdown_${category.name}`}>
                     {category._child.map(subcategory => (
-                      <Link to={`/category/${encodeURIComponent(subcategory.name)}`} key={subcategory.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
+                      <Link to={`/category/${subcategory.name}`} key={subcategory.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
                         <div
                           data-toggle="collapse"
                           data-target={isMobileView ? '.collapsable-container' : ''}
@@ -152,7 +152,7 @@ class AppHeaderNavigationMain extends React.Component {
               )
               : (
                 <li className="nav-item" key={category.name} data-name={category['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
-                  <Link className="nav-link" to={`/category/${encodeURIComponent(category.name)}`}>
+                  <Link className="nav-link" to={`/category/${category.name}`}>
                     <div
                       data-toggle="collapse"
                       data-target={isMobileView ? '.collapsable-container' : ''}
