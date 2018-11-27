@@ -1,6 +1,6 @@
 {
   "name": "my-ap",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "appcache-webpack-plugin": "^1.4.0",
