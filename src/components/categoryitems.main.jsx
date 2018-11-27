@@ -29,7 +29,7 @@ import ProductListPagination from './productlistpagination.main';
 
 class CategoryItemsMain extends React.Component {
   static propTypes = {
-    categoryId: PropTypes.string.isRequired,
+    categoryProps: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   constructor(props) {
@@ -41,34 +41,49 @@ class CategoryItemsMain extends React.Component {
   }
 
   componentDidMount() {
-    const { categoryId } = this.props;
+    const { categoryProps } = this.props;
+    this.getCategoryData(categoryProps);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { categoryProps } = nextProps;
+    this.getCategoryData(categoryProps);
+  }
+
+  getCategoryData(categoryProps) {
     this.setState({ isLoading: true });
+    let categoryId = categoryProps.match.params;
+    let categoryUrl = '';
+    if (!categoryId['0'] || categoryId['0'] === undefined) {
+      categoryId = categoryProps.match.params.id;
+    } else {
+      categoryId = categoryProps.match.params.id;
+      categoryUrl = categoryProps.match.params['0'];
+    }
     login().then(() => {
       cortexFetchNavigationLookupForm()
         .then(() => navigationLookup(categoryId)
           .then((res) => {
             this.setState({
-              isLoading: false,
               categoryModel: res,
+              categoryModelDisplayName: res['display-name'],
+              categoryModelId: categoryId,
             });
           })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ isLoading: true });
-    login().then(() => {
-      cortexFetchNavigationLookupForm()
-        .then(() => navigationLookup(nextProps.categoryId)
-          .then((res) => {
-            this.setState({
-              isLoading: false,
-              categoryModel: res,
-            });
+          .then(() => {
+            if (categoryUrl !== '') {
+              navigationLookup(categoryUrl)
+                .then((res) => {
+                  this.setState({
+                    isLoading: false,
+                    categoryModel: res,
+                  });
+                });
+            } else {
+              this.setState({
+                isLoading: false,
+              });
+            }
           })
           .catch((error) => {
             // eslint-disable-next-line no-console
@@ -78,9 +93,13 @@ class CategoryItemsMain extends React.Component {
   }
 
   render() {
-    const { isLoading, categoryModel } = this.state;
+    const {
+      isLoading, categoryModel, categoryModelId, categoryModelDisplayName,
+    } = this.state;
     const products = categoryModel._items ? categoryModel._items[0] : categoryModel;
     const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
+    const categoryModelIdString = categoryModelId;
+
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
@@ -100,12 +119,12 @@ class CategoryItemsMain extends React.Component {
             return (
               <div>
                 <h1 className="view-title">
-                  {categoryModel['display-name']}
+                  {categoryModelDisplayName}
                 </h1>
                 <div className="products-container">
-                  <ProductListPagination paginationDataProps={products} isTop />
+                  <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} />
                 </div>
               </div>
             );

@@ -50,7 +50,10 @@ const router = [{
   path: '/category',
   component: CategoryPage,
 }, {
-  path: '/category/:url',
+  path: '/category/:id',
+  component: CategoryPage,
+}, {
+  path: '/category/:id/*',
   component: CategoryPage,
 }, {
   path: '/checkout',
@@ -93,6 +96,9 @@ const router = [{
   component: SearchResultsPage,
 }, {
   path: '/search/:keywords',
+  component: SearchResultsPage,
+}, {
+  path: '/search/:keywords/*',
   component: SearchResultsPage,
 }, {
   path: '/aboutus',

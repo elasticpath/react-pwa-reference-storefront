@@ -26,7 +26,7 @@ function CategoryPage(props) {
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <CategoryItemsMain categoryId={decodeURIComponent(props.match.params.url)} />
+      <CategoryItemsMain categoryProps={props} />
     </div>
   );
 }

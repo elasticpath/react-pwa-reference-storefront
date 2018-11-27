@@ -30,9 +30,11 @@ import SearchFacetNavigationMain from './searchfacetnavigation.main';
 
 import './searchresultsitems.main.less';
 
+const Config = require('Config');
+
 class SearchResultsItemsMain extends React.Component {
   static propTypes = {
-    searchKeywordsProps: PropTypes.string.isRequired,
+    searchKeywordsProps: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   constructor(props) {
@@ -60,14 +62,21 @@ class SearchResultsItemsMain extends React.Component {
       isLoading: true,
       searchKeywords: searchKeywordsProps,
     });
-
     login().then(() => {
-      searchLookup(searchKeywordsProps)
+      let searchKeyword = searchKeywordsProps.match.params;
+      let searchUrl = '';
+      if (!searchKeyword['0'] || searchKeyword['0'] === undefined) {
+        searchKeyword = searchKeywordsProps.match.params.keywords;
+      } else {
+        searchKeyword = searchKeywordsProps.match.params.keywords;
+        searchUrl = searchKeywordsProps.match.params['0'];
+      }
+      searchLookup((searchUrl === '') ? searchKeyword : searchUrl)
         .then((res) => {
           this.setState({
             isLoading: false,
             searchResultsModel: res,
-            searchKeywords: searchKeywordsProps,
+            searchKeywords: searchKeyword,
           });
         })
         .catch((error) => {
@@ -78,16 +87,16 @@ class SearchResultsItemsMain extends React.Component {
   }
 
   render() {
-    const { isLoading, searchResultsModel } = this.state;
+    const { isLoading, searchResultsModel, searchKeywords } = this.state;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0 || !products._element;
-    const { searchKeywords } = this.state;
+    const searchKeywordString = searchKeywords;
 
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
           {
-            (searchKeywords.includes('/')) ? (
+            ((typeof searchKeywords === 'object' || searchKeywords instanceof Object) || ((typeof searchKeywords === 'string' || searchKeywords instanceof String) && searchKeywords.includes('/') && searchKeywords.includes(Config.cortexApi.scope))) ? (
               <h1 className="view-title">
                 {intl.get('search-results')}
               </h1>
@@ -110,11 +119,11 @@ class SearchResultsItemsMain extends React.Component {
             }
             return (
               <div>
-                <SearchFacetNavigationMain productData={products} />
+                <SearchFacetNavigationMain productData={products} titleString={searchKeywordString} />
                 <div className="products-container">
-                  <ProductListPagination paginationDataProps={products} isTop />
+                  <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListPagination paginationDataProps={products} />
+                  <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} />
                 </div>
               </div>
             );

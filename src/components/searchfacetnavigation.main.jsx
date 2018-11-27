@@ -34,6 +34,7 @@ class SearchFacetNavigationMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
+    titleString: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -46,7 +47,7 @@ class SearchFacetNavigationMain extends React.Component {
   }
 
   handleFacetSelection(facetUri) {
-    const { history } = this.props;
+    const { history, titleString } = this.props;
     login().then(() => {
       cortexFetch(`${decodeURIComponent(facetUri)}?followlocation&zoom=offersearchresult`,
         {
@@ -59,7 +60,7 @@ class SearchFacetNavigationMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          history.push(`/search/${encodeURIComponent(res._offersearchresult[0].self.uri)}`);
+          history.push(`/search/${titleString}${res._offersearchresult[0].self.uri}`);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

@@ -29,11 +29,12 @@ import './productlistpagination.less';
 
 let paginationPreviousLinkVar = '';
 let paginationNextLinkVar = '';
-let searchUrlVar = false;
+let searchUrlVar = true;
 
 class ProductListPagination extends React.Component {
   static propTypes = {
     paginationDataProps: PropTypes.objectOf(PropTypes.any).isRequired,
+    titleString: PropTypes.string.isRequired,
     isTop: PropTypes.bool,
   }
 
@@ -48,17 +49,17 @@ class ProductListPagination extends React.Component {
       paginationData: paginationDataProps,
       paginationPreviousLink: '',
       paginationNextLink: '',
-      searchUrl: false,
+      searchUrl: true,
     };
   }
 
   componentDidMount() {
     paginationPreviousLinkVar = '';
     paginationNextLinkVar = '';
-    searchUrlVar = false;
+    searchUrlVar = true;
     const { paginationData } = this.state;
-    if (paginationData.self.type.includes('searches')) {
-      searchUrlVar = true;
+    if (paginationData.self.type.includes('navigation')) {
+      searchUrlVar = false;
     }
     for (let i = 0; i < paginationData.links.length; i++) {
       if (paginationData.links[i].rel === 'previous') {
@@ -97,7 +98,7 @@ class ProductListPagination extends React.Component {
     const {
       paginationData, paginationNextLink, paginationPreviousLink, searchUrl,
     } = this.state;
-    const { isTop } = this.props;
+    const { isTop, titleString } = this.props;
     if (paginationData.links.length > 0) {
       const urlPrefix = (searchUrl) ? ('search') : ('category');
       return (
@@ -125,7 +126,7 @@ class ProductListPagination extends React.Component {
               <div className="pagination-navigation-container">
                 {paginationPreviousLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${encodeURIComponent(paginationPreviousLink)}`} className="btn-pagination prev" role="button">
+                    <Link to={`/${urlPrefix}/${titleString}${paginationPreviousLink}`} className="btn-pagination prev" role="button">
                       <span className="icon" />
                       {intl.get('previous')}
                     </Link>
@@ -152,7 +153,7 @@ class ProductListPagination extends React.Component {
                 </span>
                 {paginationNextLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${encodeURIComponent(paginationNextLink)}`} className="btn-pagination next" role="button">
+                    <Link to={`/${urlPrefix}/${titleString}${paginationNextLink}`} className="btn-pagination next" role="button">
                       {intl.get('next')}
                       <span className="icon" />
                     </Link>
