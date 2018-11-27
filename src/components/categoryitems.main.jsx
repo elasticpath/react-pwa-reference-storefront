@@ -53,10 +53,9 @@ class CategoryItemsMain extends React.Component {
   getCategoryData(categoryProps) {
     this.setState({ isLoading: true });
     let categoryId = categoryProps.match.params;
-    let categoryUrl = categoryProps.match.params;
+    let categoryUrl = '';
     if (!categoryId['0'] || categoryId['0'] === undefined) {
       categoryId = categoryProps.match.params.id;
-      categoryUrl = '';
     } else {
       categoryId = categoryProps.match.params.id;
       categoryUrl = categoryProps.match.params['0'];

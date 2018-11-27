@@ -62,13 +62,11 @@ class SearchResultsItemsMain extends React.Component {
       isLoading: true,
       searchKeywords: searchKeywordsProps,
     });
-    console.log(searchKeywordsProps)
     login().then(() => {
       let searchKeyword = searchKeywordsProps.match.params;
-      let searchUrl = searchKeywordsProps.match.params;
+      let searchUrl = '';
       if (!searchKeyword['0'] || searchKeyword['0'] === undefined) {
         searchKeyword = searchKeywordsProps.match.params.keywords;
-        searchUrl = '';
       } else {
         searchKeyword = searchKeywordsProps.match.params.keywords;
         searchUrl = searchKeywordsProps.match.params['0'];

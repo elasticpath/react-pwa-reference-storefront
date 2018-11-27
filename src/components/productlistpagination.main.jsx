@@ -98,8 +98,6 @@ class ProductListPagination extends React.Component {
     const {
       paginationData, paginationNextLink, paginationPreviousLink, searchUrl,
     } = this.state;
-
-    console.log(paginationData)
     const { isTop, titleString } = this.props;
     if (paginationData.links.length > 0) {
       const urlPrefix = (searchUrl) ? ('search') : ('category');
