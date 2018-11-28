@@ -87,8 +87,8 @@ services:
       - /ep/tomcat-logs:/usr/local/tomcat/logs
       - /ep/${SOLR_HOME_CONFIG}:/ep/external-solrHome
     environment:
-      - SEARCH_ROLE=standalone
-      - SEARCH_MASTER_URL=http://search:8082/search
+      - EP_SEARCH_ROLE=standalone
+      - EP_SEARCH_MASTER_URL=http://search:8082/search
     env_file:
       - docker-compose.env
     restart: always
