@@ -83,8 +83,8 @@ services:
       mysql:
         condition: service_healthy
     environment:
-      - EP_SEARCH_ROLE='standalone'
-      - EP_SEARCH_MASTER_URL='http://search:8082/searchserver'
+      - EP_SEARCH_ROLE: 'standalone'
+      - EP_SEARCH_MASTER_URL: 'http://search:8082/searchserver'
     env_file:
       - docker-compose.env
     restart: always
