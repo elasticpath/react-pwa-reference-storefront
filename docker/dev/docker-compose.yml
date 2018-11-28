@@ -82,9 +82,13 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    volumes:
+      - /ep/logs:/root/ep/logs
+      - /ep/tomcat-logs:/usr/local/tomcat/logs
+      - /ep/${SOLR_HOME_CONFIG}:/ep/external-solrHome
     environment:
-      EP_SEARCH_ROLE: 'standalone'
-      EP_SEARCH_MASTER_URL: 'http://search:8082/searchserver'
+      - EP_SEARCH_ROLE=standalone
+      - EP_SEARCH_MASTER_URL=http://search:8082/search
     env_file:
       - docker-compose.env
     restart: always
