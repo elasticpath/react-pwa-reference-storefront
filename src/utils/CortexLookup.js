@@ -338,7 +338,7 @@ export function searchLookup(searchKeyword) {
           },
         })
         .then((res) => {
-          if (res.status === 504 || res.status === 503) {
+          if (res.status >= 500) {
             reject(res);
           }
           return res;
@@ -379,7 +379,7 @@ export function searchLookup(searchKeyword) {
               }),
             })
             .then((resData) => {
-              if (res.status === 504 || res.status === 503) {
+              if (res.status >= 500) {
                 reject(resData);
               }
               return resData;
