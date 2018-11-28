@@ -37,7 +37,7 @@ function cortexFetch(input, init) {
 
   return fetch(`${Config.cortexApi.path + input}`, requestInit)
     .then((res) => {
-      if (res.status === 504 || res.status === 503) {
+      if (res.status >= 500) {
         if (window.location.href.indexOf('/maintenance') === -1) {
           window.location.pathname = '/maintenance';
         }
