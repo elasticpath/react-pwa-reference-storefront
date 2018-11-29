@@ -34,8 +34,6 @@ const Config = require('Config');
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
   'defaultprofile',
-  'defaultprofile:subscriptions',
-  'defaultprofile:subscriptions:element',
   'defaultprofile:purchases',
   'defaultprofile:purchases:element',
   'defaultprofile:addresses',
