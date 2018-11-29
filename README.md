@@ -104,14 +104,15 @@ For more information about populating database, see the [Populating the Database
 
 ### Setting up a Production Environment
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
-2. Build a Production Docker Image:
+2. Navigate to the `react-pwa-reference-storefront` directory.<br>
+3. Build a Production Docker Image:
     1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
     2. Run the `cd react-pwa-reference-storefront` command.
     3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile .` command.
     4. Push the `ep-store` image to the docker repository.
 
-3. Run a Production Docker Image:
-    1. In the repository, navigate to the `docker/prod/` directory.<br>
+4. Run a Production Docker Image:
+    1. Navigate to the `docker/prod/` directory.<br>
     2. Copy the following files to the user home directory on the remote host:<br>
         * `docker-compose.yaml`
         * `nginx.conf`
