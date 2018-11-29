@@ -25,6 +25,7 @@
   .personal-info-container {
     margin-left: -15px;
     margin-right: -15px;
+    margin-bottom: 1rem;
 
     &:before,
     &:after {
@@ -33,22 +34,27 @@
       clear: both;
     }
 
-    .info-label {
-      position: relative;
-      float: left;
-      width: 33.33333333333333%;
-      min-height: 1px;
-      padding-left: 1;
-      padding-right: 1;
-    }
+    .personal-info-firstName,
+    .personal-info-lastName {
+      margin-bottom: .5rem;
+      margin-left: 0;
 
-    .info-value {
-      position: relative;
-      float: left;
-      width: 50%;
-      min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px;
+      .info-label {
+        position: relative;
+        float: left;
+        min-height: 1px;
+        padding-left: 1;
+        padding-right: 1;
+        font-weight: 700;
+      }
+
+      .info-value {
+        position: relative;
+        float: left;
+        min-height: 1px;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
     }
   }
 

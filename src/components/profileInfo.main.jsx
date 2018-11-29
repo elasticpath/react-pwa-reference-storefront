@@ -190,22 +190,27 @@ class ProfileInfoMain extends React.Component {
             <h2>
               {intl.get('personal-information')}
             </h2>
-            <dl className="personal-info-container container">
-              <dt className="info-label" data-el-label="profile.firstName">
-                {intl.get('first-name')}
-                :
-              </dt>
-              <dd className="info-value" id="profile_personal_info_givenName" data-el-value="givenName">
-                {profileInfo['given-name']}
-              </dd>
-              <dt className="info-label" data-el-label="profile.lastName">
-                {intl.get('last-name')}
-                :
-              </dt>
-              <dd className="info-value" id="profile_personal_info_familyName" data-el-value="familyName">
-                {profileInfo['family-name']}
-              </dd>
-            </dl>
+            <div className="personal-info-container container">
+              <div className="personal-info-firstName">
+                <span className="info-label" data-el-label="profile.firstName">
+                  {intl.get('first-name')}
+                  :
+                </span>
+                <span className="info-value" id="profile_personal_info_givenName" data-el-value="givenName">
+                  {profileInfo['given-name']}
+                </span>
+              </div>
+              <br />
+              <div className="personal-info-lastName">
+                <span className="info-label" data-el-label="profile.lastName">
+                  {intl.get('last-name')}
+                  :
+                </span>
+                <span className="info-value" id="profile_personal_info_familyName" data-el-value="familyName">
+                  {profileInfo['family-name']}
+                </span>
+              </div>
+            </div>
 
             <button className="ep-btn small profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" onClick={() => { this.editPersonalInfo(); }}>
               {intl.get('edit')}
