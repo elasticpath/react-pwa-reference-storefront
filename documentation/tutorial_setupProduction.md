@@ -25,7 +25,7 @@ Ensure that you are familiar with the following third-party technologies:<br>
 
 1. Clone or pull the `react-pwa-reference-storefront` repository into your directory.<br>
 2. Navigate to the `react-pwa-reference-storefront` repository.<br>
-3. Build a production Docker image by running the following command:</br>
+3. Build a production Docker image by running the following command:<br>
 `docker build -t ep-store -f ./docker/prod/Dockerfile .` <br>
 4. Push the `ep-store` image to the Docker repository.<br>
 5. Navigate to your Docker directory,`docker/prod/`.<br>
@@ -36,9 +36,10 @@ Ensure that you are familiar with the following third-party technologies:<br>
    * `$CORTEX_URL` with Cortex server URL.
    * `$DOMAIN` with domain name without `http://`.
    * `$SSL_CERT_PATH` with the certificate file path in the remote server. <br>
-    For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.
+    For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`. <br>
    * `$SSL_KEY_PATH` with the path of the private key in the remote server.<br>
-   For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.
+   For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`. <br>
+   **Note:** You may use a certificate generated through any certificate provider of your choosing. An example is [Let's Encrypt](https://letsencrypt.org).
 8. In the `docker-compose.yaml` file, update the following parameters:
    * `$DOCKER_REPO` with `ep-store`.
    * `$SSL_CERT_PATH` with the certificate file path in the remote server .
