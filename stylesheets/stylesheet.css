@@ -3559,6 +3559,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
         margin-right: 0;
         margin-left: 0;
     }
+    #main_content > h1 {
+        width: 80%;
+    }
 }
 .navbar-static-top {
     border-width: 0 0 1px;
