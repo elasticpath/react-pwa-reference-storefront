@@ -41,12 +41,11 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
 ### Related Resources
 
 - [REACT PWA Reference Storefront Overview](https://developers.elasticpath.com/reference-experiences)
-- [REACT PWA Reference Storefront Installation Guide](https://elasticpath.github.io/react-pwa-reference-storefront/)
-- [Requirements and Specifications](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/technologyoverview/)
+- [REACT PWA Reference Storefront Documentation](https://elasticpath.github.io/react-pwa-reference-storefront/)
 
 ## Overview
 
-The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s RESTful e-commerce API, Cortex API. Through the Cortex API, the storefront uses the e-commerce capabilities provided by Elastic Path Commerce and gets data in a RESTful manner. For more information about the storefront, see [REACT PWA Reference Storefront documentation](https://elasticpath.github.io/react-pwa-reference-storefront/).
+The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s RESTful e-commerce API, Cortex API. Through the Cortex API, the storefront uses the e-commerce capabilities provided by Elastic Path Commerce and gets data in a RESTful manner. For more information about the storefront, see [REACT PWA Reference Storefront Documentation](https://elasticpath.github.io/react-pwa-reference-storefront/).
 
 The Storefront is designed as an open source mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enable the application layer interactions through the configurable web server. For more information about the software requirements, see the [Requirements and Specifications](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/technologyoverview/) section.
 
@@ -120,6 +119,8 @@ For more information about populating database, see the [Populating the Database
         - Replace the `$DOMAIN` parameter in `nginx.conf` with the domain name (excluding the `http://` part, eg. `www.domain.com`) where you plan to host the site.
         - Replace the `$SSL_CERT_PATH` in `nginx.conf` and `docker-compose.yaml` with the path of the certificate file on the remove server (eg. `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`).
         - Replace the `$SSL_KEY_PATH` in `nginx.conf` and `docker-compose.yaml` with the path of the private key on the remote server (eg. `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`).
+
+        **Note:** You may use a certificate generated through any certificate provider of your choosing. An example is [Let's Encrypt](https://letsencrypt.org).
     5. Run the `docker-compose up -d` command.
 
 ## Running a Linter
