@@ -75,7 +75,7 @@ class SearchFacetNavigationMain extends React.Component {
       return facetselector[0]._chosen.map((chosen) => {
         if (chosen._description && chosen._selector) {
           return (
-            <div className="list-group-item facet" key={chosen._description[0].value}>
+            <div className="list-group-item facet-value" key={chosen._description[0].value}>
               <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(encodeURIComponent(chosen._selectaction[0].self.uri))}>
                 {chosen._description[0].value}
               </button>
@@ -94,9 +94,9 @@ class SearchFacetNavigationMain extends React.Component {
       return facetselector[0]._choice.map((choice) => {
         if (choice._description && choice._selector) {
           return (
-            <div className="list-group-item facet" key={choice._description[0].value}>
+            <div className="list-group-item facet-value" key={choice._description[0].value}>
               <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(encodeURIComponent(choice._selectaction[0].self.uri))}>
-                {choice._description[0].value}
+                {`${choice._description[0].value} (${choice._description[0].count})`}
               </button>
             </div>
           );
@@ -111,17 +111,18 @@ class SearchFacetNavigationMain extends React.Component {
     const { facetModel } = this.state;
     return facetModel._facets[0]._element.map((facet) => {
       if (facet['display-name']) {
+        const facetDisplayNameId = facet['display-name'].toLowerCase().replace(/ /g, '_');
         return (
-          <div className="card" key={facet['display-name']}>
+          <div className="card" key={facet['display-name']} id={`${facetDisplayNameId}_facet`}>
             <div className="card-header">
               <h4 className="card-title">
-                <a data-toggle="collapse" href="#facets-2">
+                <a className="facet" data-toggle="collapse" href={`#${facetDisplayNameId}_facet_values`}>
                   <span className="glyphicon glyphicon-tag" />
                   {facet['display-name']}
                 </a>
               </h4>
             </div>
-            <div id="facets-2" className="collapse navbar-collapse in">
+            <div id={`${facetDisplayNameId}_facet_values`} className="collapse navbar-collapse in">
               <ul className="list-group list-group-flush">
                 {this.renderFacetSelectorsChosen(facet._facetselector)}
                 {this.renderFacetSelectors(facet._facetselector)}
