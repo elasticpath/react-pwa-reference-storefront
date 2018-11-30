@@ -31,12 +31,22 @@
     .card {
       margin-top: 5px;
 
-      .card-title .glyphicon {
-        margin-right:10px;
+      .card-title {
+        .facet {
+          .glyphicon {
+            margin-right:10px;
+          }
+
+          &:hover {
+            text-decoration: none;
+            color: @mainBlueColor;
+            cursor: pointer;
+          }
+        }
       }
 
-      .facet {
-        padding-left: 20px;
+      .facet-value {
+        padding-left: 12.5px;
 
         button, {
           color: #000000;
@@ -44,6 +54,7 @@
           vertical-align: middle;
           position: relative;
           padding-left: 5px;
+          padding-right: 0px;
           background:none;
           border:none;
 
