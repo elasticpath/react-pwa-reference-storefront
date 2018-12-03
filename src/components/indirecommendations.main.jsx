@@ -43,12 +43,27 @@ class IndiRecommendationsDisplayMain extends React.Component {
       animate: true\
     });';
     this.instance.appendChild(s);
+
+    const i = document.createElement('script');
+    i.type = 'text/javascript';
+    i.async = true;
+    /* eslint-disable-next-line no-multi-str */
+    i.innerHTML = 'var indi_forum = new indi.forum("#indi-forum-root", {\
+      title: "Share Your Review",\
+      description: "Upload your photo or video about this product",\
+      submit_button_text: "UPLOAD PHOTO/VIDEO",\
+      submit_button_url: "https://indi.com/Submit/ForumTerms?id=e26b530c-319c-4e81-8444-5e7c27acd39a",\
+      thumbnail_url: "https://indi-upload-us-west-1.s3.amazonaws.com/Image/1e1eee8842d4002382882bc7590445a4.jpg",\
+      keywords: "{{ product.handle }}"\
+    });';
+    this.instance.appendChild(i);
   }
 
   render() {
     return (
       <div className="product-recomentations-component" data-region="categoryBrowseRegion" key="categoryBrowseRegion">
         <div id="indi-carousel-root" />
+        <div id="indi-forum-root" />
         {/* eslint-disable-next-line no-return-assign */}
         <div ref={el => (this.instance = el)} />
       </div>
