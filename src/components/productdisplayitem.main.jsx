@@ -31,6 +31,7 @@ import {
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
+import IndiRecommendationsDisplayMain from './indirecommendations.main';
 import cortexFetch from '../utils/Cortex';
 
 import './productdisplayitem.main.less';
@@ -580,6 +581,7 @@ class ProductDisplayItemMain extends React.Component {
             </div>
           </div>
           <ProductRecommendationsDisplayMain productData={productData} />
+          <IndiRecommendationsDisplayMain productData={productData} />
         </div>
       );
     }
