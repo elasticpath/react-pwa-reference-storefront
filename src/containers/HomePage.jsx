@@ -95,6 +95,10 @@ class HomePage extends React.Component {
             </span>
           </div>
         </div>
+        <div id="indi-carousel-root" />
+        <div id="indi-forum-root" />
+        {/* eslint-disable-next-line no-return-assign */}
+        <div ref={el => (this.instance = el)} />
         <div className="section section-3 container">
           <div className="sub-section">
             <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e) => { e.target.src = homeEspot2; }} />
@@ -135,10 +139,6 @@ class HomePage extends React.Component {
             </div>
           </div>
         </div>
-        <div id="indi-carousel-root" />
-        <div id="indi-forum-root" />
-        {/* eslint-disable-next-line no-return-assign */}
-        <div ref={el => (this.instance = el)} />
       </div>
     );
   }
