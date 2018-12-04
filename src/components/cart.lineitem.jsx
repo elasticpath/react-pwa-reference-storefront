@@ -292,7 +292,6 @@ class CartLineItem extends React.Component {
             </div>)
           : ('')
         }
-        
         <div className="options-col">
           <ul className="options-container">
             {this.renderOptions()}
