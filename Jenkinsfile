@@ -79,7 +79,7 @@ timestamps {
           dir('scm') {
             // Download google chrome using script from https://intoli.com/blog/installing-google-chrome-on-centos/
             sh """
-              curl https://intoli.com/install-google-chrome.sh | bash
+              sudo ./install-google-chrome.sh
               sudo mv /usr/bin/google-chrome-stable /usr/bin/google-chrome
             """
             // Replace selenium.session.baseurl and run tests using headless chrome
