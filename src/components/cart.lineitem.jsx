@@ -279,7 +279,7 @@ class CartLineItem extends React.Component {
             {item._item[0]._definition[0]['display-name']}
           </Link>
         </div>
-        {(item._appliedpromotions[0]._element)
+        {(item._appliedpromotions && item._appliedpromotions[0]._element)
           ? (
             <div className="promotions-col">
               <ul className="promotions-container">
