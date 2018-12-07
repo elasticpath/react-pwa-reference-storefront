@@ -47,7 +47,7 @@ class CartLineItem extends React.Component {
   }
 
   static defaultProps = {
-    handleErrorMessage: () => {},
+    handleErrorMessage: () => { },
   }
 
   constructor(props) {
@@ -282,17 +282,22 @@ class CartLineItem extends React.Component {
     const { item } = this.props;
     const keys = (item.configuration) ? (Object.keys(item.configuration)) : ('');
     if (keys) {
-      return keys.map(key => (
-        <li className="configuration" key={key}>
-          <label htmlFor="option-name" className="option-name">
-            {key}
-            :&nbsp;
-          </label>
-          <span>
-            {item.configuration[key]}
-          </span>
-        </li>
-      ));
+      return keys.map((key) => {
+        if (item.configuration[key] !== '') {
+          return (
+            <li className="configuration" key={key}>
+              <label htmlFor="option-name" className="option-name">
+                {key}
+                :&nbsp;
+              </label>
+              <span>
+                {item.configuration[key]}
+              </span>
+            </li>
+          );
+        }
+        return null;
+      });
     }
     return null;
   }

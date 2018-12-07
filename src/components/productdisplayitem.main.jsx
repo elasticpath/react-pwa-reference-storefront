@@ -292,10 +292,15 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   addToWishList(event) {
-    const { productData, itemQuantity } = this.state;
+    const { productData, itemQuantity, itemConfiguration } = this.state;
     const { history } = this.props;
     login().then(() => {
       const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
+      const body = {};
+      body.quantity = itemQuantity;
+      if (itemConfiguration) {
+        body.configuration = itemConfiguration;
+      }
       cortexFetch(addToWishListLink.uri,
         {
           method: 'post',
@@ -303,9 +308,7 @@ class ProductDisplayItemMain extends React.Component {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-          body: JSON.stringify({
-            quantity: itemQuantity,
-          }),
+          body: JSON.stringify(body),
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
@@ -576,7 +579,7 @@ class ProductDisplayItemMain extends React.Component {
                   </div>
 
                 </form>
-                {(ProductDisplayItemMain.isLoggedIn()) ? (
+                {(ProductDisplayItemMain.isLoggedIn() && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
                   <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.addToWishList}>
                     <div className="form-group-submit">
                       <div className="form-content form-content-submit col-sm-offset-4">
