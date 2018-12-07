@@ -467,6 +467,10 @@ class CheckoutPage extends React.Component {
     const { orderData, isLoading } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
+      let debugMessages = '';
+      for (let i = 0; i < messages.length; i++) {
+        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
+      }
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">
@@ -496,6 +500,9 @@ class CheckoutPage extends React.Component {
                 <div className="checkout-sidebar-inner">
                   <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
                     <CheckoutSummaryList data={orderData} />
+                  </div>
+                  <div className="feedback-label" id="checkout_feedback_container">
+                    {(debugMessages !== '') ? (debugMessages) : ('')}
                   </div>
                   <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
                     <button className="ep-btn primary wide btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>

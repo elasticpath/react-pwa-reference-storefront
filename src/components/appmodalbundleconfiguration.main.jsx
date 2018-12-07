@@ -74,9 +74,13 @@ class AppModalBundleConfigurationMain extends React.Component {
   render() {
     const { bundleConfigurationItems } = this.props;
     const { isLoading, registrationErrors } = this.state;
+    let itemCodeString = '';
     if (bundleConfigurationItems && (bundleConfigurationItems._dependentoptions[0]._element || bundleConfigurationItems._dependentlineitems[0]._element)) {
+      if (bundleConfigurationItems._item && bundleConfigurationItems._item[0]._code[0]) {
+        itemCodeString = bundleConfigurationItems._item[0]._code[0].code;
+      }
       return (
-        <div className="modal bundle-configurator-modal-content" id="bundle-configuration-modal">
+        <div className="modal bundle-configurator-modal-content" id={`bundle-configuration-modal-${itemCodeString}`}>
           <div className="modal-dialog">
             <div className="modal-content" id="simplemodal-container">
 
@@ -84,7 +88,7 @@ class AppModalBundleConfigurationMain extends React.Component {
                 <h2 className="modal-title">
                   {intl.get('configure-bundle-configurator')}
                 </h2>
-                <button type="button" id="bundle_configurator_modal_close_button" className="close" data-dismiss="modal">
+                <button type="button" className="close bundle_configurator_modal_close_button" data-dismiss="modal">
                   &times;
                 </button>
               </div>
