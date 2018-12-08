@@ -31,6 +31,8 @@ import homeEspot4 from '../images/site-images/warranty-graphic.jpg';
 
 import './HomePage.less';
 
+import IndiRecommendationsDisplayMain from '../components/indirecommendations.main';
+
 const Config = require('Config');
 
 const homeEspotMainFileName = 'homepage-banner.jpg';
@@ -38,41 +40,13 @@ const homeEspot2FileName = 'brake-icon.jpg';
 const homeEspot3FileName = 'charging-icon.jpg';
 const homeEspot4FileName = 'warranty-graphic.jpg';
 
+
 class HomePage extends React.Component {
-  componentDidMount() {
-    const s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.async = true;
-    /* eslint-disable-next-line no-multi-str */
-    s.innerHTML = 'var indi_carousel = new indi.carousel("#indi-carousel-root", {\
-      apikey: "EERIxwXF644c1E1To5puL8xNP5PvLHSv240PyNYf",\
-      id: "5b2c577c-1cef-4b18-a49e-fc924783351c",\
-      size: "large",\
-      theme: "light",\
-      round_corners: false,\
-      show_title: false,\
-      show_views: false,\
-      show_likes: false,\
-      show_buzz: false,\
-      animate: true\
-    });';
-    this.instance.appendChild(s);
-
-    const j = document.createElement('script');
-    j.type = 'text/javascript';
-    j.async = true;
-    /* eslint-disable-next-line no-multi-str */
-    j.innerHTML = 'var indi_forum = new indi.forum("#indi-forum-root", {\
-      title: "Join Our Brand Ambassador Program",\
-      description: "Upload a photo or video about Vestri",\
-      submit_button_text: "UPLOAD PHOTO/VIDEO",\
-      submit_button_url: "https://indi.com/Submit/ForumTerms?id=e26b530c-319c-4e81-8444-5e7c27acd39a",\
-      thumbnail_url: "https://images.indi.com/s3/indi-upload-us-west-1/Image/f3ffee3e35213cfc30ee5b6525fa71c9.jpg"\
-    });';
-    this.instance.appendChild(j);
-  }
-
   render() {
+    // Set the language-specific configuration for indi integration
+    Config.indi.brandAmbassador.title = intl.get('indi-brand-ambassador-title');
+    Config.indi.brandAmbassador.description = intl.get('indi-brand-ambassador-description');
+    Config.indi.brandAmbassador.submit_button_text = intl.get('indi-brand-ambassador-submit-button-text');
     return (
       <div className="home-page-component" data-region="viewPortRegion">
         <div className="section section-1 container" data-region="homeMainContentRegion">
@@ -95,8 +69,7 @@ class HomePage extends React.Component {
             </span>
           </div>
         </div>
-        <div id="indi-carousel-root" />
-        <div id="indi-forum-root" />
+        <IndiRecommendationsDisplayMain render={['carousel', 'brand']} configuration={Config.indi} />
         {/* eslint-disable-next-line no-return-assign */}
         <div ref={el => (this.instance = el)} />
         <div className="section section-3 container">
