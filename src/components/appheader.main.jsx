@@ -92,7 +92,9 @@ class AppHeaderMain extends React.Component {
           </div>
 
           <div className="cart-link-container">
-            <Link className="cart-link" to="/mybag" />
+            <Link className="cart-link" to="/mybag">
+              {intl.get('shopping-bag-nav')}
+            </Link>
           </div>
 
           <div className="locale-container">

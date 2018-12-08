@@ -28,6 +28,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriverException;
 
 public class HeaderPage extends AbstractPageObject {
 
@@ -36,6 +37,7 @@ public class HeaderPage extends AbstractPageObject {
 
 	private final WebDriver driver;
 	private final static String CART_LINK_CSS = ".cart-link";
+	private final static String MOBILE_CART_LINK_CSS = ".mobile-cart-link-container .cart-link";
 	private final static String PARENT_CATEGORY_CSS = ".app-header-navigation-component li[data-name='%1s']";
 	private final static String SUB_CATEGORY_CSS = PARENT_CATEGORY_CSS + " > .dropdown-menu > a[title='%2s']";
 	private final static String SEARCH_INPUT_CSS = "input.input-search";
@@ -103,7 +105,15 @@ public class HeaderPage extends AbstractPageObject {
 	}
 
 	public CartPage clickCartLink() {
-		getWaitDriver().waitForElementToBeClickable(By.cssSelector(CART_LINK_CSS)).click();
+		try
+		{
+			driver.findElement(By.cssSelector(CART_LINK_CSS));
+			getWaitDriver().waitForElementToBeClickable(By.cssSelector(CART_LINK_CSS)).click();
+		}
+		catch(WebDriverException e)
+		{
+			getWaitDriver().waitForElementToBeClickable(By.cssSelector(MOBILE_CART_LINK_CSS)).click();
+		}
 		return new CartPage(driver);
 	}
 
