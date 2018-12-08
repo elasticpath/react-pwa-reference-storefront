@@ -33,5 +33,28 @@
   "arKit": {
     "enable": true,
     "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"
+  },
+  "indi": {
+    "enable": true,
+    "carousel": {
+      "apikey": "EERIxwXF644c1E1To5puL8xNP5PvLHSv240PyNYf",
+      "id": "5b2c577c-1cef-4b18-a49e-fc924783351c",
+      "size": "large",
+      "theme": "large",
+      "round_corners": false,
+      "show_title": false,
+      "show_views": false,
+      "show_likes": false,
+      "show_buzz": false,
+      "animate": true
+    },
+    "productReview": {
+      "submit_button_url": "https://indi.com/Submit/ForumTerms?id=e26b530c-319c-4e81-8444-5e7c27acd39a",
+      "thumbnail_url": "https://indi-upload-us-west-1.s3.amazonaws.com/Image/1e1eee8842d4002382882bc7590445a4.jpg"
+    },
+    "brandAmbassador": {
+      "submit_button_url": "https://indi.com/Submit/ForumTerms?id=e26b530c-319c-4e81-8444-5e7c27acd39a",
+      "thumbnail_url": "https://images.indi.com/s3/indi-upload-us-west-1/Image/f3ffee3e35213cfc30ee5b6525fa71c9.jpg"
+    }
   }
 }
