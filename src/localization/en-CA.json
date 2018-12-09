@@ -18,6 +18,7 @@
   "create-an-account-message": "Create an account with us to enjoy fast and easy checkout, online address book, purchase history and more!",
   "register": "Register",
   "i-have-an-account": "I have an account",
+  "registration-error": "Error registering your account.",
   "invalid-username-or-password": "Your username or password is invalid.",
   "username": "Username",
   "password": "Password",

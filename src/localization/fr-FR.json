@@ -18,6 +18,7 @@
   "create-an-account-message": "C-r-e-a-t-e- -a-n- -a-c-c-o-u-n-t- -w-i-t-h- -u-s- -t-o- -e-n-j-o-y- -f-a-s-t- -a-n-d- -e-a-s-y- -c-h-e-c-k-o-u-t-,- -o-n-l-i-n-e- -a-d-d-r-e-s-s- -b-o-o-k-,- -p-u-r-c-h-a-s-e- -h-i-s-t-o-r-y- -a-n-d- -m-o-r-e-!",
   "register": "R-e-g-i-s-t-e-r",
   "i-have-an-account": "I- -h-a-v-e- -a-n- -a-c-c-o-u-n-t",
+  "registration-error": "E-r-r-o-r- -r-e-g-i-s-t-e-r-i-n-g- -y-o-u-r- -a-c-c-o-u-n-t-.",
   "invalid-username-or-password": "Y-o-u-r- -u-s-e-r-n-a-m-e- -o-r- -p-a-s-s-w-o-r-d- -i-s- -i-n-v-a-l-i-d-.",
   "username": "U-s-e-r-n-a-m-e",
   "password": "P-a-s-s-w-o-r-d",
