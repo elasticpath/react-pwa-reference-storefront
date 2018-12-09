@@ -104,7 +104,7 @@ class AppModalLoginMain extends React.Component {
               </button>
             </div>
 
-            <div className="auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
+            <div className="feedback-label auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
               {failedLogin ? (intl.get('invalid-username-or-password')) : ('')}
             </div>
 

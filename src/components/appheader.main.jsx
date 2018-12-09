@@ -55,16 +55,19 @@ class AppHeaderMain extends React.Component {
 
   render() {
     const { isOffline } = this.state;
+    const isInStandaloneMode = window.navigator.standalone;
     return [
       <header key="app-header" className="app-header">
 
         <div className="main-container">
 
-          <div className="back-btn-container">
-            <button className="back-btn" aria-label="back button" type="button" onClick={AppHeaderMain.goBack}>
-              <span className="icon glyphicon glyphicon-chevron-left" />
-            </button>
-          </div>
+          {(isInStandaloneMode) ? (
+            <div className="back-btn-container">
+              <button className="back-btn" aria-label="back button" type="button" onClick={AppHeaderMain.goBack}>
+                <span className="icon glyphicon glyphicon-chevron-left" />
+              </button>
+            </div>) : ('')
+          }
 
           <div className="logo-container">
             <Link to="/" className="logo">

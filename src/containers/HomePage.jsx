@@ -21,6 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import { Link } from 'react-router-dom';
 
 import homeEspotMain from '../images/site-images/homepage-banner.jpg';
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
@@ -51,9 +52,11 @@ function HomePage() {
             {intl.get('home-sub-espot-container1-second-line')}
           </span>
           <span className="line line-3">
-            <button className="ep-btn primary wide btn-accessories" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
-              {intl.get('home-sub-espot-container1-button')}
-            </button>
+            <Link className="ep-btn primary wide btn-accessories accessories-link" to="/category/VESTRI_ACCESSORIES">
+              <span>
+                {intl.get('home-sub-espot-container1-button')}
+              </span>
+            </Link>
           </span>
         </div>
       </div>

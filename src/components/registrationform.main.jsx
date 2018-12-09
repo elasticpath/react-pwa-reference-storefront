@@ -117,6 +117,7 @@ class RegistrationFormMain extends React.Component {
           this.setState({ failedRegistration: true });
           let debugMessages = '';
           res.json().then((json) => {
+            debugMessages = debugMessages.concat(`- ${intl.get('registration-error')} \n `);
             for (let i = 0; i < json.messages.length; i++) {
               debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
             }
