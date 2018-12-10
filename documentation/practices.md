@@ -113,5 +113,4 @@ Configuration properties for Indi component's requirements are:
 * `indi.brandAmbassador.submit_button_url`: The URL provided by Indi which directs to the action performed when the submit button is clicked on a brand ambassador signup.
 * `indi.brandAmbassador.thumbnail_url`: The thumbnail provided by Indi for the submit button.
 
-
 {% include legal.html %}
