@@ -80,6 +80,10 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`arKit.enable`| Optional| Boolean| Enable elements for ARKit's Quick Look capability to load on a product display page. When `arKit.enable` is enabled, any product images that have hosted ARKit USDZ files are wrapped with an anchor tag referencing the file hosted on an external CMS.|
 |`arKit.skuArImagesUrl`| Optional| String| The path to the USDZ files hosted on an external CMS used for ARKit Quick Look. Set this parameter to the complete URL of the files by replacing the `sku/file-name` with `%sku%`. This value is populated when the page is loaded with values retrieved by Cortex.|
 |`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
+|`indi.enable`| Optional| Boolean| Enable the integration component for Indi. More information may be found available here `https://indi.com/`.|
+|`indi.carousel`| Optional| Values| Configurations for the Indi carousel component.|
+|`indi.productReview`| Optional| Values| Configurations for the Indi product review component.|
+|`indi.brandAmbassador`| Optional| Values| Configurations for the Indi brand ambassador component.|
 
 ### Configuring Sample Data
 

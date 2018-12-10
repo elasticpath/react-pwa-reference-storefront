@@ -22,8 +22,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import scriptjs from 'scriptjs';
 
-import './indirecommendations.main.less';
+const remoteScriptUrl = 'https://embed.indi.com/widgets/v1/indi-embed.js';
 
 class IndiRecommendationsDisplayMain extends React.Component {
   static propTypes = {
@@ -41,30 +42,32 @@ class IndiRecommendationsDisplayMain extends React.Component {
       render, keywords, configuration,
     } = this.props;
     if (configuration.enable) {
-      if (render.includes('carousel')) {
-        const carouselElement = document.createElement('script');
-        carouselElement.type = 'text/javascript';
-        carouselElement.async = true;
-        carouselElement.innerHTML = `var indi_carousel = new indi.carousel("#indi-carousel-root", ${JSON.stringify(configuration.carousel)});`;
-        this.instance.appendChild(carouselElement);
-      }
+      scriptjs(remoteScriptUrl, () => {
+        if (render.includes('carousel')) {
+          const carouselElement = document.createElement('script');
+          carouselElement.type = 'text/javascript';
+          carouselElement.async = true;
+          carouselElement.innerHTML = `var indi_carousel = new indi.carousel("#indi-carousel-root", ${JSON.stringify(configuration.carousel)});`;
+          this.instance.appendChild(carouselElement);
+        }
 
-      if (render.includes('product')) {
-        configuration.productReview.keywords = keywords;
-        const productReviewElement = document.createElement('script');
-        productReviewElement.type = 'text/javascript';
-        productReviewElement.async = true;
-        productReviewElement.innerHTML = `var indi_forum = new indi.forum("#indi-forum-root", ${JSON.stringify(configuration.productReview)});`;
-        this.instance.appendChild(productReviewElement);
-      }
+        if (render.includes('product')) {
+          configuration.productReview.keywords = keywords;
+          const productReviewElement = document.createElement('script');
+          productReviewElement.type = 'text/javascript';
+          productReviewElement.async = true;
+          productReviewElement.innerHTML = `var indi_forum = new indi.forum("#indi-forum-root", ${JSON.stringify(configuration.productReview)});`;
+          this.instance.appendChild(productReviewElement);
+        }
 
-      if (render.includes('brand')) {
-        const brandAmbassadorElement = document.createElement('script');
-        brandAmbassadorElement.type = 'text/javascript';
-        brandAmbassadorElement.async = true;
-        brandAmbassadorElement.innerHTML = `var indi_forum = new indi.forum("#indi-forum-root", ${JSON.stringify(configuration.brandAmbassador)});`;
-        this.instance.appendChild(brandAmbassadorElement);
-      }
+        if (render.includes('brand')) {
+          const brandAmbassadorElement = document.createElement('script');
+          brandAmbassadorElement.type = 'text/javascript';
+          brandAmbassadorElement.async = true;
+          brandAmbassadorElement.innerHTML = `var indi_forum = new indi.forum("#indi-forum-root", ${JSON.stringify(configuration.brandAmbassador)});`;
+          this.instance.appendChild(brandAmbassadorElement);
+        }
+      });
     }
   }
 

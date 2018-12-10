@@ -35,7 +35,7 @@
     "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"
   },
   "indi": {
-    "enable": true,
+    "enable": false,
     "carousel": {
       "apikey": "EERIxwXF644c1E1To5puL8xNP5PvLHSv240PyNYf",
       "id": "5b2c577c-1cef-4b18-a49e-fc924783351c",
