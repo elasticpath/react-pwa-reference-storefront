@@ -69,30 +69,17 @@
   <title>Elastic Path&trade; Storefront Reference Application</title>
 
   <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
   <link rel="icon" href="https://www.elasticpath.com/sites/default/files/favicon_0.ico">
 </head>
 
 <body>
   <!-- This has to be the first element in the body -->
-  <div id="fb-root">
-  </div>
-
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
-  <!-- Your customer chat code -->
-  <div class="fb-customerchat"
-      attribution=setup_tool
-      page_id="269332243771631">
-  </div>
-
+  <FacebookChatbot></FacebookChatbot>
   <!-- Viewport -->
   <div class="viewport ui-container" data-region="viewPortRegion"></div>
 
@@ -150,18 +137,6 @@
 
   <!-- Modal Window PLaceholder -->
   <div data-region="modalRegion" class="modal-container"></div>
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '1134440653387128',
-        status     : true,
-        xfbml      : true,
-        version    : 'v2.10'
-      });
-
-      $(document).trigger('fbload');  //  <---- THIS RIGHT HERE TRIGGERS A CUSTOM EVENT CALLED 'fbload'
-    };
-  </script>
 </body>
 
 </html>
