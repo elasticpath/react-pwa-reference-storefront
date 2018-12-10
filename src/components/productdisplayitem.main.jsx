@@ -31,6 +31,7 @@ import {
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
+import IndiRecommendationsDisplayMain from './indirecommendations.main';
 import cortexFetch from '../utils/Cortex';
 
 import './productdisplayitem.main.less';
@@ -408,6 +409,10 @@ class ProductDisplayItemMain extends React.Component {
         }
       }
       const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
+      // Set the language-specific configuration for indi integration
+      Config.indi.productReview.title = intl.get('indi-product-review-title');
+      Config.indi.productReview.description = intl.get('indi-product-review-description');
+      Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
       return (
         <div className="itemdetail-component container-3">
           <div className="itemdetail-assets">
@@ -580,6 +585,7 @@ class ProductDisplayItemMain extends React.Component {
             </div>
           </div>
           <ProductRecommendationsDisplayMain productData={productData} />
+          <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
         </div>
       );
     }

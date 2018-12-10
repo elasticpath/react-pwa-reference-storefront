@@ -51,6 +51,7 @@
     "react-routing": "0.0.7",
     "react-scripts": "^1.1.4",
     "schema-client": "^2.2.1",
+    "scriptjs": "^2.5.9",
     "setimmediate2": "^2.0.1",
     "smart-mixin": "^2.0.0",
     "source-map-support": "0.4.0",

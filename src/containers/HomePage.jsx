@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
@@ -30,6 +31,8 @@ import homeEspot4 from '../images/site-images/warranty-graphic.jpg';
 
 import './HomePage.less';
 
+import IndiRecommendationsDisplayMain from '../components/indirecommendations.main';
+
 const Config = require('Config');
 
 const homeEspotMainFileName = 'homepage-banner.jpg';
@@ -37,71 +40,81 @@ const homeEspot2FileName = 'brake-icon.jpg';
 const homeEspot3FileName = 'charging-icon.jpg';
 const homeEspot4FileName = 'warranty-graphic.jpg';
 
-function HomePage() {
-  return (
-    <div className="home-page-component" data-region="viewPortRegion">
-      <div className="section section-1 container" data-region="homeMainContentRegion">
-        <img className="cover" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotMainFileName)} onError={(e) => { e.target.src = homeEspotMain; }} />
-      </div>
-      <div className="section section-2 container">
-        <div className="sub-section">
-          <span className="line line-1">
-            {intl.get('home-sub-espot-container1-first-line')}
-          </span>
-          <span className="line line-2">
-            {intl.get('home-sub-espot-container1-second-line')}
-          </span>
-          <span className="line line-3">
-            <Link className="ep-btn primary wide btn-accessories accessories-link" to="/category/VESTRI_ACCESSORIES">
-              <span>
-                {intl.get('home-sub-espot-container1-button')}
+
+class HomePage extends React.Component {
+  render() {
+    // Set the language-specific configuration for indi integration
+    Config.indi.brandAmbassador.title = intl.get('indi-brand-ambassador-title');
+    Config.indi.brandAmbassador.description = intl.get('indi-brand-ambassador-description');
+    Config.indi.brandAmbassador.submit_button_text = intl.get('indi-brand-ambassador-submit-button-text');
+    return (
+      <div className="home-page-component" data-region="viewPortRegion">
+        <div className="section section-1 container" data-region="homeMainContentRegion">
+          <img className="cover" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotMainFileName)} onError={(e) => { e.target.src = homeEspotMain; }} />
+        </div>
+        <div className="section section-2 container">
+          <div className="sub-section">
+            <span className="line line-1">
+              {intl.get('home-sub-espot-container1-first-line')}
+            </span>
+            <span className="line line-2">
+              {intl.get('home-sub-espot-container1-second-line')}
+            </span>
+            <span className="line line-3">
+              <Link className="ep-btn primary wide btn-accessories accessories-link" to="/category/VESTRI_ACCESSORIES">
+                <span>
+                  {intl.get('home-sub-espot-container1-button')}
+                </span>
+              </Link>
+            </span>
+          </div>
+        </div>
+        <IndiRecommendationsDisplayMain render={['carousel', 'brand']} configuration={Config.indi} />
+        {/* eslint-disable-next-line no-return-assign */}
+        <div ref={el => (this.instance = el)} />
+        <div className="section section-3 container">
+          <div className="sub-section">
+            <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e) => { e.target.src = homeEspot2; }} />
+            <div className="text-block">
+              <span className="line line-1">
+                {intl.get('home-sub-espot-container2-first-line')}
               </span>
-            </Link>
-          </span>
+              <span className="line line-2">
+                {intl.get('home-sub-espot-container2-second-line')}
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="section section-3 container">
-        <div className="sub-section">
-          <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e) => { e.target.src = homeEspot2; }} />
-          <div className="text-block">
-            <span className="line line-1">
-              {intl.get('home-sub-espot-container2-first-line')}
-            </span>
-            <span className="line line-2">
-              {intl.get('home-sub-espot-container2-second-line')}
-            </span>
+        <div className="section section-4 container">
+          <div className="sub-section">
+            <img className="small-image image-1" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
+            <div className="text-block">
+              <span className="line line-1">
+                {intl.get('home-sub-espot-container3-first-line')}
+              </span>
+              <span className="line line-2">
+                {intl.get('home-sub-espot-container3-second-line')}
+              </span>
+            </div>
+            <img className="small-image image-2" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
+          </div>
+        </div>
+        <div className="section section-5 container">
+          <div className="sub-section">
+            <img className="small-image" alt="home-espot-4" src={Config.siteImagesUrl.replace('%fileName%', homeEspot4FileName)} onError={(e) => { e.target.src = homeEspot4; }} />
+            <div className="text-block">
+              <span className="line line-1">
+                {intl.get('home-sub-espot-container4-first-line')}
+              </span>
+              <span className="line line-2">
+                {intl.get('home-sub-espot-container4-second-line')}
+              </span>
+            </div>
           </div>
         </div>
       </div>
-      <div className="section section-4 container">
-        <div className="sub-section">
-          <img className="small-image image-1" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
-          <div className="text-block">
-            <span className="line line-1">
-              {intl.get('home-sub-espot-container3-first-line')}
-            </span>
-            <span className="line line-2">
-              {intl.get('home-sub-espot-container3-second-line')}
-            </span>
-          </div>
-          <img className="small-image image-2" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
-        </div>
-      </div>
-      <div className="section section-5 container">
-        <div className="sub-section">
-          <img className="small-image" alt="home-espot-4" src={Config.siteImagesUrl.replace('%fileName%', homeEspot4FileName)} onError={(e) => { e.target.src = homeEspot4; }} />
-          <div className="text-block">
-            <span className="line line-1">
-              {intl.get('home-sub-espot-container4-first-line')}
-            </span>
-            <span className="line line-2">
-              {intl.get('home-sub-espot-container4-second-line')}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default HomePage;
+export default withRouter(HomePage);

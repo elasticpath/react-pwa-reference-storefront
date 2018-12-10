@@ -33,5 +33,28 @@
   "arKit": {
     "enable": true,
     "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"
+  },
+  "indi": {
+    "enable": false,
+    "carousel": {
+      "apikey": "",
+      "id": "",
+      "size": "large",
+      "theme": "large",
+      "round_corners": false,
+      "show_title": false,
+      "show_views": false,
+      "show_likes": false,
+      "show_buzz": false,
+      "animate": true
+    },
+    "productReview": {
+      "submit_button_url": "",
+      "thumbnail_url": ""
+    },
+    "brandAmbassador": {
+      "submit_button_url": "",
+      "thumbnail_url": ""
+    }
   }
 }
