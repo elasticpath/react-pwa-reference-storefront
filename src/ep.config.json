@@ -2,7 +2,7 @@
   "cortexApi": {
     "path": "/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://fb-vestri-spa.epdemos.com"
+    "pathForProxy": "http://localhost:9080"
   },
   "supportedLocales": [
     {
@@ -60,5 +60,9 @@
       "pageId": "269332243771631",
       "applicationId": "1134440653387128"
     }
+  },
+  "facebook": {
+    "pageId": "269332243771631",
+    "applicationId": "1134440653387128"
   }
 }
