@@ -31,7 +31,7 @@
     }
 
     .form-control {
-      display: block;
+      display: inline-block;
       height: 34px;
       padding: 6px 12px;
       font-size: 14px;
@@ -39,6 +39,12 @@
       border: 1px solid #cccccc;
       border-radius: 4px;
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      max-width: 414px;
+      background: #f7f7f7 none repeat scroll 0 0;
+    }
+
+    .form-control:focus {
+      background: #ffffff none repeat scroll 0 0;
     }
   }
 
@@ -67,10 +73,6 @@
   .form-container {
     margin: auto 30px;
     text-align: center;
-  }
-
-  .form-control {
-    background: #f7f7f7 none repeat scroll 0 0;
   }
 
   .panel {
