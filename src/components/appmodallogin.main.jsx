@@ -104,7 +104,7 @@ class AppModalLoginMain extends React.Component {
               </div>
               <form id="login_modal_form" onSubmit={this.loginRegisteredUser}>
                 <div className="form-group">
-                  <input className="form-control" id="login_modal_username_input" placeholder={intl.get('username')} type="text" onChange={this.setUsername} />
+                  <input className="form-control" id="login_modal_username_input" placeholder={intl.get('email-slash-username')} type="text" onChange={this.setUsername} />
                 </div>
                 <div className="form-group">
                   <input className="form-control" id="login_modal_password_input" placeholder={intl.get('password')} type="password" onChange={this.setPassword} />
