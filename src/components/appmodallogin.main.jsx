@@ -104,10 +104,10 @@ class AppModalLoginMain extends React.Component {
               </div>
               <form id="login_modal_form" onSubmit={this.loginRegisteredUser}>
                 <div className="form-group">
-                  <input className="form-control" id="login_modal_username_input" placeholder="Email Address" type="text" onChange={this.setUsername} />
+                  <input className="form-control" id="login_modal_username_input" placeholder={intl.get('username')} type="text" onChange={this.setUsername} />
                 </div>
                 <div className="form-group">
-                  <input className="form-control" id="login_modal_password_input" placeholder="Password" type="password" onChange={this.setPassword} />
+                  <input className="form-control" id="login_modal_password_input" placeholder={intl.get('password')} type="password" onChange={this.setPassword} />
                 </div>
                 <div className="feedback-label auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
                   {failedLogin ? (intl.get('invalid-username-or-password')) : ('')}
