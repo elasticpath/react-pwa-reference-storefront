@@ -21,6 +21,6 @@
 
 const LessToJs = require('less-vars-to-js');
 
-module.exports = function (content) {
-  return `module.exports = ${JSON.stringify(LessToJs(content))}`;
-};
+module.exports = content => (
+  `module.exports = ${JSON.stringify(LessToJs(content))}`
+);

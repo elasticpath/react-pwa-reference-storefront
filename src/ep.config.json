@@ -58,6 +58,7 @@
     }
   },
   "facebook": {
+    "enable": false,
     "pageId": "269332243771631",
     "applicationId": "1134440653387128"
   }
