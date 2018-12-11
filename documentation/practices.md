@@ -80,37 +80,43 @@ Configuration properties for content URLs are:
 
 For any other CMS, you must update the configurations to reflect the public URLs of the files being retrieved by the particular content provider.
 
-## Indi Brand Loyalty Example
+##  Third-Party Dynamic Content Integration Example
 
-The React PWA Reference Storefront is pre-configured for integration with Indi, with a custom component created to interact with the various widgets Indi may display. For more information on Indi, visit their official [website](https://indi.com/).
+**Brand Loyalty Integration for Indi**
 
-The Indi component available is a stand-alone component created solely to fetch the `indi-embed` libraries, then display the corresponding elements that were passed into the component as a structured list.
+The React PWA Reference Storefront is pre-configured with a custom component for Indi integration. This component interacts with various widgets that Indi displays. New widgets may be added in the component as made available. For more information on Indi, see the company [website](https://indi.com/).
 
-The required parameters of this component are as follows:
-* `render`: A list of the elements to display from Indi. Example: `render={['carousel', 'brand', 'product']}`. Note the correct configurations must be provided for the element to render correctly.
-* `configuration`: The structured object consisting of the configurations to provide to the Indi components. These are defined in `ep.config.json` in the `indi` element.
-* `keywords`: A string of the keywords for the product in which the Indi component is displayed for.
+The Indi component is a stand-alone component to fetch only the `indi-embed` libraries and display the elements corresponding to the libraries. These elements are passed to the component as a structured list.
 
-Static strings for the Indi component have been localized in the Reference Storefront and are overrided on a per-usage basis for the Indi component. This will ensure the component displays the correct text in the storefront based on the locale which a customer chooses during their shopping flow.
+This component requires the following parameters:
+* `render`: The list of the elements to display from Indi. For example, `render={['carousel', 'brand', 'product']}`.
+Note:  Provide the correct configurations to render the element  correctly.
+* `configuration`: The structured object that consists of the configuration required for the Indi components. These configurations are defined in the `indi` parameter in `react-pwa-reference-storefront⁩/ep.config.json' file.
+* `keywords`: A string of the keywords for the product in which the Indi component is displayed.
 
-Configuration properties for Indi component's requirements are:
-* `indi.enable`: Enable the integration component for Indi. More information may be found available here [https://indi.com/](https://indi.com/).
-* `indi.carousel`: Configurations for the Indi carousel component.
-* `indi.carousel.apikey`: The apikey used to connect the carousel to Indi.
-* `indi.carousel.id`: The apikey used to connect the carousel to Indi.
-* `indi.carousel.size`: Used when theming the carousel displaying content from Indi.
-* `indi.carousel.theme`: Used when theming the carousel displaying content from Indi.
-* `indi.carousel.round_corners`: Used when theming the carousel displaying content from Indi.
-* `indi.carousel.show_title`: Used when theming the carousel displaying content from Indi.
-* `indi.carousel.show_views`: Used when theming the carousel displaying content from Indi.
-* `indi.carousel.show_likes`: Used when theming the carousel displaying content from Indi.
-* `indi.carousel.show_buzz`: Used when theming the carousel displaying content from Indi.
-* `indi.carousel.animate`: Used when theming the carousel displaying content from Indi.
-* `indi.productReview`: Configurations for the Indi product review component.
-* `indi.productReview.submit_button_url`: The URL provided by Indi which directs to the action performed when the submit button is clicked on a product review.
-* `indi.productReview.thumbnail_url`: The thumbnail provided by Indi for the submit button.
-* `indi.brandAmbassador`: Configurations for the Indi brand ambassador component.
-* `indi.brandAmbassador.submit_button_url`: The URL provided by Indi which directs to the action performed when the submit button is clicked on a brand ambassador signup.
-* `indi.brandAmbassador.thumbnail_url`: The thumbnail provided by Indi for the submit button.
+Static strings for the Indi component are localized in the Reference Storefront and are overridden whenever the Indi component is used. With this setting, the component displays the storefront in the locale that a customer chooses. The localized strings for the Indi component can be found in the corresponding language files within `src/localization`, for strings with the prefix `indi-`.
+
+The following are the configuration settings for the indi parameters in the `ep.config.json` file:
+
+| **Functionality**| **Parameter**| **Description**|
+|--|--|--|
+| **Integration**|`indi.enable`| The parameter that enables the component for the integration with Indi. For more information about the required configurations, see the company [website](https://indi.com/).|
+| **Theming**|`indi.carousel`| The configurations for the Indi carousel component.|
+| |`indi.carousel.apikey`| The _apikey_ that connects a carousel to Indi.|
+| |`indi.carousel.id`| The id used to connect the carousel to Indi.|
+| |`indi.carousel.size`| The parameter used to theme the carousel that displays the content from Indi.|
+| |`indi.carousel.theme`| The parameter used to theme the carousel that displays the content from Indi.|
+| |`indi.carousel.round_corners`| The parameter used to theme the carousel that displays the content from Indi.|
+| |`indi.carousel.show_title`| The parameter used to theme the carousel that displays the content from Indi.|
+| |`indi.carousel.show_views`| The parameter used to theme the carousel that displays the content from Indi.|
+| |`indi.carousel.show_likes`| The parameter used to theme the carousel that displays the content from Indi.|
+| |`indi.carousel.show_buzz`| The parameter used to theme the carousel that displays the content from Indi.|
+| |`indi.carousel.animate`| The parameter used to theme the carousel that displays the content from Indi.|
+| **Product Review**|`indi.productReview`| Configurations for the Indi product review component.|
+| |`indi.productReview.submit_button_url`| The URL provided by Indi which directs to the action performed when the submit button is clicked on a product review.|
+| |`indi.productReview.thumbnail_url`| The thumbnail provided by Indi for the submit button.|
+| **Brand Ambassador**|`indi.brandAmbassador`| Configurations for the Indi brand ambassador component.|
+| |`indi.brandAmbassador.submit_button_url`| The URL provided by Indi which directs to the action performed when the submit button is clicked on a brand ambassador signup.|
+| |`indi.brandAmbassador.thumbnail_url`| The thumbnail provided by Indi for the submit button.|
 
 {% include legal.html %}
