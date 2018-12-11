@@ -113,10 +113,10 @@ The following are the configuration settings for the indi parameters in the `ep.
 | |`indi.carousel.show_buzz`| The parameter used to theme the carousel that displays the content from Indi.|
 | |`indi.carousel.animate`| The parameter used to theme the carousel that displays the content from Indi.|
 | **Product Review**|`indi.productReview`| Configurations for the Indi product review component.|
-| |`indi.productReview.submit_button_url`| The URL provided by Indi which directs to the action performed when the submit button is clicked on a product review.|
+| |`indi.productReview.submit_button_url`| The unique URL that Indi provides to submit a product review.|
 | |`indi.productReview.thumbnail_url`| The thumbnail provided by Indi for the submit button.|
 | **Brand Ambassador**|`indi.brandAmbassador`| The configurations for the Indi brand ambassador component.|
-| |`indi.brandAmbassador.submit_button_url`| The URL provided by Indi which directs to the action performed when the submit button is clicked for a brand ambassador to signup.|
+| |`indi.brandAmbassador.submit_button_url`| The unique URL that Indi provides for the brand ambassadors to sign up.|
 | |`indi.brandAmbassador.thumbnail_url`| The thumbnail provided by Indi for the submit button.|
 
 {% include legal.html %}
