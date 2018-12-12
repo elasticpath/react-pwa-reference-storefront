@@ -80,7 +80,7 @@ Configuration properties for content URLs are:
 
 For any other CMS, you must update the configurations to reflect the public URLs of the files being retrieved by the particular content provider.
 
-##  Third-Party Dynamic Content Integration Example
+##  Third-Party User Generated Content Integration Example
 
 **Brand Loyalty Integration for Indi**
 

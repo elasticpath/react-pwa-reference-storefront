@@ -31,6 +31,7 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
       * [External Content Management System Integration Example]({{ site.baseurl }}/documentation/practices#content-management-for-assets-and-catalog-images-integration-example)
       * [Analytics Example]({{ site.baseurl }}/documentation/practices#analytics-example)
       * [ARKit Quick Look Example]({{ site.baseurl }}/documentation/practices#arkit-quick-look-example)
+      * [Third-Party User Generated Content Integration Example]({{ site.baseurl }}/documentation/practices#third-party-user-generated-content-integration-example)
   * [Related Resources]({{ site.baseurl }}/documentation/resources)
 
 {% include legal.html %}
