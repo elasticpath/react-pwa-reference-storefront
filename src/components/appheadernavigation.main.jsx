@@ -143,7 +143,7 @@ class AppHeaderNavigationMain extends React.Component {
         subcategoryChild._child
           ? (
             <li className={leftDropdownStyling ? 'left-drop-down' : 'right-drop-down'}>
-              <Link className="dropdown-item dropdown-toggle" to="https://bootstrapthemes.co" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <Link className="dropdown-item dropdown-toggle" to={`/category/${subcategoryChild.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
                 {subcategoryChild['display-name']}
               </Link>
               <ul className={`dropdown-menu ${leftDropdownStyling ? 'left-drop-down' : 'right-drop-down'}`} aria-labelledby="navbarDropdownMenuLink">
@@ -171,7 +171,7 @@ class AppHeaderNavigationMain extends React.Component {
       if (category._child) {
         return (
           <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
               {category['display-name']}
             </Link>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -182,7 +182,7 @@ class AppHeaderNavigationMain extends React.Component {
       } else {
         return (
           <li className="nav-item">
-            <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
+            <Link className="nav-link" to={`/category/${category.name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
               {category['display-name']}
             </Link>
           </li>
