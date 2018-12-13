@@ -146,8 +146,8 @@ class AppHeaderNavigationMain extends React.Component {
               <a className="dropdown-item dropdown-toggle" href="https://bootstrapthemes.co" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {subcategoryChild['display-name']}
               </a>
-              <ul className={`dropdown-menu ${leftDropdownStyling ? 'leftDropDown' : 'rightDropDown'}`} aria-labelledby="navbarDropdownMenuLink">
-                {this.renderSubCategories(subcategoryChild._child)}
+              <ul className={`dropdown-menu ${leftDropdownStyling ? 'left-drop-down' : 'right-drop-down'}`} aria-labelledby="navbarDropdownMenuLink">
+                {this.renderSubCategories(subcategoryChild._child, !leftDropdownStyling)}
               </ul>
             </li>
           )
@@ -166,7 +166,7 @@ class AppHeaderNavigationMain extends React.Component {
   renderCategories() {
     const { navigations } = this.state;
     const { isMobileView } = this.props;
-    let leftDropDownStyling = false;
+    const leftDropDownStyling = false;
     return (navigations.map((category) => {
       if (category._child) {
         return (
