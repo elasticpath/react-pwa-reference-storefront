@@ -172,20 +172,23 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   renderCategoriesWithNoChildren(category) {
+    const { isMobileView } = this.props;
     return (
       <li className="nav-item">
         <Link className="nav-link" to={`/category/${category.name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
-          {category['display-name']}
+            {category['display-name']}
         </Link>
       </li>
     );
   }
 
   renderCategoriesWithChildren(category, isLeftDropDownStyling) {
+    const { isMobileView } = this.props;
     return (
-      <li className="nav-item dropdown">
+      <li className="nav-item dropdown"
+        >
         <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
-          {category['display-name']}
+            {category['display-name']}
         </Link>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           {this.renderSubCategories(category._child, isLeftDropDownStyling)}
@@ -196,7 +199,6 @@ class AppHeaderNavigationMain extends React.Component {
 
   renderCategories() {
     const { navigations } = this.state;
-    const { isMobileView } = this.props;
     const isLeftDropDownStyling = false;
     return (navigations.map((category) => {
       if (category._child) {
@@ -207,11 +209,9 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   render() {
-    const { navigations } = this.state;
     const { isMobileView } = this.props;
-
     return (
-      <div className="app-header-navigation-component">
+      <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
         <nav className="navbar navbar-expand-md btco-hover-menu">
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
