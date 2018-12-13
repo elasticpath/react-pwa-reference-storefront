@@ -130,7 +130,7 @@ class AppHeaderNavigationMain extends React.Component {
       });
   }
 
-  renderSubCategories(subCategoryChildArray) {
+  renderSubCategories(subCategoryChildArray, leftDropdownStyling) {
     const { isMobileView } = this.props;
     // debugger;
     return subCategoryChildArray.map((subcategoryChild) => {
@@ -139,13 +139,14 @@ class AppHeaderNavigationMain extends React.Component {
       } = this.state;
       // debugger;
       return (
+        // {`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
         subcategoryChild._child
           ? (
-            <li className="nav-item dropdown">
+            <li className={leftDropdownStyling ? 'left-drop-down' : 'right-drop-down'}>
               <a className="dropdown-item dropdown-toggle" href="https://bootstrapthemes.co" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {subcategoryChild['display-name']}
               </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <ul className={`dropdown-menu ${leftDropdownStyling ? 'leftDropDown' : 'rightDropDown'}`} aria-labelledby="navbarDropdownMenuLink">
                 {this.renderSubCategories(subcategoryChild._child)}
               </ul>
             </li>
@@ -165,7 +166,7 @@ class AppHeaderNavigationMain extends React.Component {
   renderCategories() {
     const { navigations } = this.state;
     const { isMobileView } = this.props;
-
+    let leftDropDownStyling = false;
     return (navigations.map((category) => {
       if (category._child) {
         return (
@@ -174,7 +175,7 @@ class AppHeaderNavigationMain extends React.Component {
               {category['display-name']}
             </a>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              {this.renderSubCategories(category._child)}
+              {this.renderSubCategories(category._child, leftDropDownStyling)}
             </ul>
           </li>
         );

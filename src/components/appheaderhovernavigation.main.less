@@ -9,16 +9,36 @@
     }
   }
 
-  .btco-hover-menu .collapse ul li{position:relative;}
-  .btco-hover-menu .collapse ul li:hover> ul{display:block}
-  .btco-hover-menu .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
+  // TODO: Have to figure out a better way to handle this... instead of doing it 10 possible times...
+  // Or we could just go back and forth on the styles.
+
+  /** First dropdown **/
+  .btco-hover-menu ul li{position:relative;}
+  .btco-hover-menu ul li:hover> ul{display:block}
+  .btco-hover-menu ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
+
+  .btco-hover-menu .right-drop-down {
+
+  }
+
+
+  .btco-hover-menu .left-drop-down:hover> {
+
+  }
+
   /*******/
-  .btco-hover-menu .collapse ul ul li{position:relative}
-  .btco-hover-menu .collapse ul ul li:hover> ul{display:block}
-  .btco-hover-menu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+  .btco-hover-menu ul ul li{position:relative}
+  .btco-hover-menu ul ul li:hover> ul{display:block}
+  .btco-hover-menu ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+
   /*******/
-  .btco-hover-menu .collapse ul ul ul li{position:relative}
-  .btco-hover-menu .collapse ul ul ul li:hover ul{display:block}
-  .btco-hover-menu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
+  .btco-hover-menu ul ul ul li{position:relative}
+  .btco-hover-menu ul ul ul li:hover> ul{display:block}
+  .btco-hover-menu ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
+
+  /*******/
+  .btco-hover-menu ul ul ul ul li{position:relative}
+  .btco-hover-menu ul ul ul ul li:hover> ul{display:block}
+  .btco-hover-menu ul ul ul ul ul {position:absolute;top:0;left:100%;min-width:250px;display:none;z-index:1}
 
 }
