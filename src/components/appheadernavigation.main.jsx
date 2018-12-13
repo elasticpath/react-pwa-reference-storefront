@@ -130,64 +130,79 @@ class AppHeaderNavigationMain extends React.Component {
       });
   }
 
-  renderSubCategories(subCategoryChildArray, leftDropdownStyling) {
+  renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling) {
+    return (
+      <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
+        <Link className="dropdown-item dropdown-toggle" to={`/category/${subcategoryChild.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+          {subcategoryChild['display-name']}
+        </Link>
+        <ul className={`dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}`} aria-labelledby="navbarDropdownMenuLink">
+          {this.renderSubCategories(subcategoryChild._child, !isLeftDropDownStyling)}
+        </ul>
+      </li>
+    );
+  }
+
+  renderSubCategoriesWithNoChildren(subcategoryChild) {
+    return (
+      <li>
+        <Link className="dropdown-item" to={`/category/${subcategoryChild.name}`}>
+          {subcategoryChild['display-name']}
+        </Link>
+      </li>
+    );
+  }
+
+  renderSubCategories(subCategoryChildArray, isLeftDropDownStyling) {
     const { isMobileView } = this.props;
-    // debugger;
     return subCategoryChildArray.map((subcategoryChild) => {
       const {
         navigations,
       } = this.state;
-      // debugger;
       return (
-        // {`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
         subcategoryChild._child
           ? (
-            <li className={leftDropdownStyling ? 'left-drop-down' : 'right-drop-down'}>
-              <Link className="dropdown-item dropdown-toggle" to={`/category/${subcategoryChild.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
-                {subcategoryChild['display-name']}
-              </Link>
-              <ul className={`dropdown-menu ${leftDropdownStyling ? 'left-drop-down' : 'right-drop-down'}`} aria-labelledby="navbarDropdownMenuLink">
-                {this.renderSubCategories(subcategoryChild._child, !leftDropdownStyling)}
-              </ul>
-            </li>
+            this.renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling)
           )
           : (
-            <li>
-              <Link className="dropdown-item" to={`/category/${subcategoryChild.name}`}>
-                {subcategoryChild['display-name']}
-              </Link>
-            </li>
+            this.renderSubCategoriesWithNoChildren(subcategoryChild)
           )
       );
     });
   }
 
-  // TODO:
+  renderCategoriesWithNoChildren(category) {
+    return (
+      <li className="nav-item">
+        <Link className="nav-link" to={`/category/${category.name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
+          {category['display-name']}
+        </Link>
+      </li>
+    );
+  }
+
+  renderCategoriesWithChildren(category, isLeftDropDownStyling) {
+    return (
+      <li className="nav-item dropdown">
+        <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+          {category['display-name']}
+        </Link>
+        <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          {this.renderSubCategories(category._child, isLeftDropDownStyling)}
+        </ul>
+      </li>
+    );
+  }
+
   renderCategories() {
     const { navigations } = this.state;
     const { isMobileView } = this.props;
-    const leftDropDownStyling = false;
+    const isLeftDropDownStyling = false;
     return (navigations.map((category) => {
       if (category._child) {
-        return (
-          <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
-              {category['display-name']}
-            </Link>
-            <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              {this.renderSubCategories(category._child, leftDropDownStyling)}
-            </ul>
-          </li>
-        );
-      } else {
-        return (
-          <li className="nav-item">
-            <Link className="nav-link" to={`/category/${category.name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
-              {category['display-name']}
-            </Link>
-          </li>
-        );
+        return this.renderCategoriesWithChildren(category, isLeftDropDownStyling);
       }
+      return this.renderCategoriesWithNoChildren(category, isLeftDropDownStyling);
     }));
   }
 
