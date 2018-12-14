@@ -23,6 +23,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
+import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
+import {
+  isAnalyticsConfigured, trackAddItemAnalytics, setAddAnalytics, sendAddToCartAnalytics,
+} from '../utils/Analytics';
 import cortexFetch from '../utils/Cortex';
 import './quickorder.main.less';
 
@@ -30,145 +34,128 @@ const Config = require('Config');
 
 class QuickOrderMain extends React.Component {
   static propTypes = {
-    onChange: PropTypes.func.isRequired,
+    onAddToCart: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onAddToCart: () => {},
   }
 
   constructor(props) {
     super(props);
     this.state = {
       failedSubmit: false,
+      productData: undefined,
+      productId: '',
+      itemQuantity: 1,
+      addToCartFailedMessage: '',
+      isLoading: false,
+      itemConfiguration: {},
     };
-    this.setFirstName = this.setFirstName.bind(this);
-    this.setLastName = this.setLastName.bind(this);
-    this.submitPersonalInfoChange = this.submitPersonalInfoChange.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
-  setFirstName(event) {
-    this.setState({ firstName: event.target.value });
-  }
-
-  setLastName(event) {
-    this.setState({ lastName: event.target.value });
-  }
-
-  submitPersonalInfoChange(event) {
-    event.preventDefault();
+  addToCart(event) {
+    const { onAddToCart } = this.props;
     const {
-      firstName, lastName,
+      productData, itemQuantity, itemConfiguration, productId,
     } = this.state;
+    this.setState({
+      isLoading: true,
+    });
     login().then(() => {
-      cortexFetch('/', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(res => res.json())
-        .then((res) => {
-          const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
-          cortexFetch(`${profileNameLink.uri}?followlocation`, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-          }).then(linkRes => linkRes.json())
-            .then((linkRes) => {
-              cortexFetch(linkRes.self.uri, {
-                method: 'put',
+      cortexFetchItemLookupForm()
+        .then(() => itemLookup(productId)
+          .then((res) => {
+            const addToCartLink = res._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+            const body = {};
+            body.quantity = itemQuantity;
+            if (itemConfiguration) {
+              body.configuration = itemConfiguration;
+            }
+            cortexFetch(addToCartLink.uri,
+              {
+                method: 'post',
                 headers: {
                   'Content-Type': 'application/json',
                   Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
                 },
-                body: JSON.stringify({
-                  'given-name': firstName,
-                  'family-name': lastName,
-                }),
-              }).then((response) => {
-                if (response.status === 400) {
-                  this.setState({ failedSubmit: true });
-                } else if (response.status === 201 || response.status === 200 || response.status === 204) {
-                  this.cancel();
-                  const { onChange } = this.props;
-                  onChange();
+                body: JSON.stringify(body),
+              })
+              .then((resAddToCart) => {
+                if (resAddToCart.status === 200 || resAddToCart.status === 201) {
+                  if (isAnalyticsConfigured()) {
+                    const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+                    trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+                    setAddAnalytics();
+                    sendAddToCartAnalytics();
+                  }
+                  this.setState({
+                    isLoading: false,
+                    productId: '',
+                    itemQuantity: 1,
+                  });
+                  onAddToCart();
+                } else {
+                  let debugMessages = '';
+                  resAddToCart.json().then((json) => {
+                    for (let i = 0; i < json.messages.length; i++) {
+                      debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
+                    }
+                  }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
                 }
-              }).catch((error) => {
+              })
+              .catch((error) => {
                 // eslint-disable-next-line no-console
                 console.error(error.message);
               });
-            }).catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        }).catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          }));
     });
+    event.preventDefault();
   }
 
   render() {
     const {
-      failedSubmit,
+      failedSubmit, isLoading, addToCartFailedMessage, productId, itemQuantity,
     } = this.state;
     return (
-      <div className="quick-order-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
+      <div className="quick-order-container" style={{ display: 'block' }}>
         <div>
           <h2 className="quick-order-title">
             {intl.get('quick-order-title')}
           </h2>
-          <form className="form-horizontal" onSubmit={this.submitPersonalInfoChange}>
+          <form className="form-horizontal" onSubmit={this.addToCart}>
             <div data-region="componentQuickOrderFormRegion">
-              <div className="quick-order-form-container profile-info-edit-container">
+              <div className="quick-order-form-container">
                 <div className="feedback-label quick-order-form-feedback-container" data-region="componentQuickOrderFeedbackRegion">
                   {failedSubmit ? intl.get('failed-to-save-message') : ''}
                 </div>
                 <div className="form-group quick-order-forms">
                   <div className="quick-order-form-input">
-                    {/* eslint-disable-next-line max-len */}
-                    <input id="registration_form_firstName" name="FirstName" className="form-control" type="text" defaultValue={intl.get('quick-order-sku-title')} onChange={this.setFirstName} />
+                    <input id="quick_order_form_sku" className="form-control" type="text" placeholder={intl.get('quick-order-sku-title')} value={productId} onChange={e => this.setState({ productId: e.target.value })} />
                   </div>
-                  <div className="quantity-col" data-el-value="lineItem.quantity">
-                    <select className="quantity-select form-control" id="select-quantity" name="select-quantity" onChange={this.handleQuantityChange}>
-                      <option value="1">
-                        1
-                      </option>
-                      <option value="2">
-                        2
-                      </option>
-                      <option value="3">
-                        3
-                      </option>
-                      <option value="4">
-                        4
-                      </option>
-                      <option value="5">
-                        5
-                      </option>
-                      <option value="6">
-                        6
-                      </option>
-                      <option value="7">
-                        7
-                      </option>
-                      <option value="8">
-                        8
-                      </option>
-                      <option value="9">
-                        9
-                      </option>
-                      <option value="10">
-                        10
-                      </option>
-                    </select>
+                  <div className="quantity-col">
+                    <input id="quick_order_form_quantity" className="quantity-select form-control" type="number" placeholder="1" value={itemQuantity} onChange={e => this.setState({ itemQuantity: e.target.value })} />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="form-group quick-order-btn-container profile-info-btn-container">
-              <button className="ep-btn primary wide profile-info-save-btn" data-el-label="quickOrderForm.save" type="submit">
+            <div className="form-group quick-order-btn-container quick-order-btn-container">
+              <button className="ep-btn primary wide quick-order-add-to-cart" data-el-label="quickOrderForm.save" type="submit">
                 {intl.get('add-to-cart')}
               </button>
             </div>
           </form>
+          <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
+            {addToCartFailedMessage}
+          </div>
+          {
+            (isLoading) ? (<div className="miniLoader" />) : ''
+          }
         </div>
       </div>
     );

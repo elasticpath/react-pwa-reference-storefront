@@ -25,6 +25,14 @@
   padding-top: 15px;
   padding-bottom: 15px;
 
+  border-bottom: 1px solid #d0d0d0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffff;
+  z-index: 4;
+
   h2 {
     font-size: 18px;
     margin-top: 20px;
@@ -62,24 +70,21 @@
 
   .quantity-col {
     display: table-cell;
+    width: 70px;
 
     .form-control {
       border: 1px solid #cccccc;
-      font-size: 12px;
       font-weight: 600;
       line-height: normal;
       appearance: none;
       -webkit-appearance: none;
       border-radius: 4px;
       -webkit-border-radius: 4px;
-      background: url(../images/header-icons/down-arrow.png) no-repeat 96% 0;
-      background-position: 42px;
-      background-size: 16px 9px;
     }
   }
 
   .quantity-select {
-    min-width: 70px;
+    width: 70px;
   }
 
   @media (max-width: 768px) {

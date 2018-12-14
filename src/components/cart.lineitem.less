@@ -65,7 +65,7 @@
     width: 33%;
     text-align: left;
   }
-  
+
   .availability-col {
     display: inline-block;
     width: 50%;
@@ -141,8 +141,9 @@
 
   .quantity-col {
     display: inline-block;
-    width: 40px;
+    width: 70px;
     height: 30px;
+
     .form-control {
       border: solid 1px #8a8a8a;
       font-size: 12px;
@@ -152,9 +153,19 @@
       -webkit-appearance: none;
       border-radius: 0px;
       -webkit-border-radius: 0px;
-      background: url(../images/header-icons/down-arrow.png) no-repeat 96% 0;
-      background-position: 42px;
-      background-size: 16px 9px;
+    }
+
+    .product-display-item-quantity-update-button {
+      background: none !important;
+      border: none;
+      padding: 0 !important;
+      font-size: 12px;
+      cursor: pointer;
+
+      &:hover {
+        color: @mainBlueColor;
+        text-decoration: underline;
+      }
     }
   }
 

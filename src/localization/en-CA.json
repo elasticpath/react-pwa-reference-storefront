@@ -96,6 +96,7 @@
   "availability": "Availability",
   "unit-price": "Unit Price",
   "quantity": "Quantity",
+  "update-quantity": "Update Quantity",
   "total-price": "Total Price",
   "no-products-found": "No products found",
   "todays-discount": "Discount",

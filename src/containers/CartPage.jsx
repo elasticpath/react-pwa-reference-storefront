@@ -158,7 +158,7 @@ class CartPage extends React.Component {
             </div>
           </div>
           {(Config.b2bFeatures) ? (
-            <QuickOrderMain />
+            <QuickOrderMain onAddToCart={() => { this.fetchCartData(); }} />
           ) : ('')}
           {cartData && !isLoading && (
             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>

@@ -504,40 +504,8 @@ class ProductDisplayItemMain extends React.Component {
                     <label htmlFor="product_display_item_quantity_label" className="control-label">
                       {intl.get('quantity')}
                     </label>
-
-                    <div className="form-content">
-                      <select className="form-control" id="product_display_item_quantity_select" name="itemdetail-select-quantity" onChange={this.handleQuantityChange}>
-                        <option id="product_display_item_quantity_option_1" value="1">
-                          1
-                        </option>
-                        <option id="product_display_item_quantity_option_2" value="2">
-                          2
-                        </option>
-                        <option id="product_display_item_quantity_option_3" value="3">
-                          3
-                        </option>
-                        <option id="product_display_item_quantity_option_4" value="4">
-                          4
-                        </option>
-                        <option id="product_display_item_quantity_option_5" value="5">
-                          5
-                        </option>
-                        <option id="product_display_item_quantity_option_6" value="6">
-                          6
-                        </option>
-                        <option id="product_display_item_quantity_option_7" value="7">
-                          7
-                        </option>
-                        <option id="product_display_item_quantity_option_8" value="8">
-                          8
-                        </option>
-                        <option id="product_display_item_quantity_option_9" value="9">
-                          9
-                        </option>
-                        <option id="product_display_item_quantity_option_10" value="10">
-                          10
-                        </option>
-                      </select>
+                    <div className="quantity-col form-content">
+                      <input id="product_display_item_quantity_select" className="form-control" type="number" placeholder="1" onChange={this.handleQuantityChange} />
                     </div>
                     {
                       (isLoading) ? (<div className="miniLoader" />) : ''

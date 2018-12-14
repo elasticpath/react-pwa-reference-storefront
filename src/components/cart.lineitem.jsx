@@ -53,31 +53,38 @@ class CartLineItem extends React.Component {
     this.handleRemoveBtnClicked = this.handleRemoveBtnClicked.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { quantity } = this.state;
+    if (nextProps.item.quantity !== quantity) {
+      this.state = {
+        quantity: nextProps.item.quantity,
+      };
+    }
+  }
+
   handleQuantityChange(event) {
     event.preventDefault();
-    const newQuantity = event.target.value;
     const { item, handleQuantityChange } = this.props;
+    const { quantity } = this.state;
     login().then(() => {
-      this.setState({ quantity: newQuantity }, () => {
-        cortexFetch(item.self.uri,
-          {
-            method: 'put',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify({
-              quantity: newQuantity,
-            }),
-          })
-          .then(() => {
-            handleQuantityChange();
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
+      cortexFetch(item.self.uri,
+        {
+          method: 'put',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            quantity,
+          }),
+        })
+        .then(() => {
+          handleQuantityChange();
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     });
   }
 
@@ -332,42 +339,10 @@ class CartLineItem extends React.Component {
             <div data-region="itemTotalRateRegion" />
           </div>
         </div>
-        <div className="quantity-col" data-el-value="lineItem.quantity">
-          {(quantity > 0) ? (
-            <select className="quantity-select form-control" id="select-quantity" name="select-quantity" value={quantity} onChange={this.handleQuantityChange}>
-              <option value="1">
-                1
-              </option>
-              <option value="2">
-                2
-              </option>
-              <option value="3">
-                3
-              </option>
-              <option value="4">
-                4
-              </option>
-              <option value="5">
-                5
-              </option>
-              <option value="6">
-                6
-              </option>
-              <option value="7">
-                7
-              </option>
-              <option value="8">
-                8
-              </option>
-              <option value="9">
-                9
-              </option>
-              <option value="10">
-                10
-              </option>
-            </select>
-          ) : ('')}
-        </div>
+        <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
+          <input className="product-display-item-quantity-select form-control" name="quantity" type="number" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
+          <input className="product-display-item-quantity-update-button" type="submit" value="Update Quantity" />
+        </form>
         <div className="remove-btn-col">
           <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
             <span className="btn-text">
