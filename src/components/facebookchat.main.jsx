@@ -35,20 +35,22 @@ class FacebookChat extends React.Component {
   }
 
   static propTypes = {
-    pageId: PropTypes.string.isRequired,
-    applicationId: PropTypes.string.isRequired,
+    config: PropTypes.objectOf(PropTypes.any).isRequired,
   };
 
   componentDidMount() {
-    this.setFbAsync();
-    FacebookChat.loadSDKAsynchronously();
+    const { config } = this.props;
+    if (config.enable) {
+      this.setFbAsync();
+      FacebookChat.loadSDKAsynchronously();
+    }
   }
 
   setFbAsync() {
-    const { applicationId } = this.props;
+    const { config } = this.props;
     window.fbAsyncInit = function () {
       FB.init({
-        appId: applicationId,
+        appId: config.applicationId,
         status: true,
         xfbml: true,
         version: 'v2.10',
@@ -57,13 +59,13 @@ class FacebookChat extends React.Component {
   }
 
   render() {
-    const { pageId } = this.props;
+    const { config } = this.props;
     return (
       <div>
         <div id="fb-root" />
         <div
           className="fb-customerchat"
-          page_id={pageId}
+          page_id={config.pageId}
           theme_color={styles['@mainColor']}
         />
       </div>

@@ -2,7 +2,7 @@
   "cortexApi": {
     "path": "/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://vestri.uk.epdemos.com"
+    "pathForProxy": "http://localhost:9080"
   },
   "supportedLocales": [
     {
@@ -55,13 +55,10 @@
     "brandAmbassador": {
       "submit_button_url": "",
       "thumbnail_url": ""
-    },
-    "facebook": {
-      "pageId": "269332243771631",
-      "applicationId": "1134440653387128"
     }
   },
   "facebook": {
+    "enable": true,
     "pageId": "342187129912807",
     "applicationId": "611342922616129"
   }
