@@ -504,8 +504,8 @@ class ProductDisplayItemMain extends React.Component {
                     <label htmlFor="product_display_item_quantity_label" className="control-label">
                       {intl.get('quantity')}
                     </label>
-                    <div className="quantity-col form-content">
-                      <input id="product_display_item_quantity_select" className="form-control" type="number" placeholder="1" onChange={this.handleQuantityChange} />
+                    <div className="quantity-col form-content form-content-quantity">
+                      <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" placeholder="1" onChange={this.handleQuantityChange} />
                     </div>
                     {
                       (isLoading) ? (<div className="miniLoader" />) : ''

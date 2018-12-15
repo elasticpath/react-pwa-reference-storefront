@@ -268,7 +268,7 @@ class CartLineItem extends React.Component {
     }
     const featuredProductAttribute = (item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return (
-      <div className="cart-lineitem-row">
+      <div id={`cart_lineitem_${item._item[0]._code[0].code}`} className="cart-lineitem-row">
         <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
           {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
             ? (
@@ -340,8 +340,11 @@ class CartLineItem extends React.Component {
           </div>
         </div>
         <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
-          <input className="product-display-item-quantity-select form-control" name="quantity" type="number" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
-          <input className="product-display-item-quantity-update-button" type="submit" value="Update Quantity" />
+          {(quantity !== undefined && quantity !== '') ? [
+            <input key="product-display-item-quantity-select" className="product-display-item-quantity-select form-control" name="quantity" type="number" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />,
+            <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value="Update Quantity" />,
+          ] : ('')
+          }
         </form>
         <div className="remove-btn-col">
           <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
