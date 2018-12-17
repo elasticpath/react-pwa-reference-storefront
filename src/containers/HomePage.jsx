@@ -23,6 +23,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
+import Carousel from '../components/carousel.homepage';
 
 import homeEspotMain from '../images/site-images/homepage-banner.jpg';
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
@@ -40,7 +41,6 @@ const homeEspot2FileName = 'brake-icon.jpg';
 const homeEspot3FileName = 'charging-icon.jpg';
 const homeEspot4FileName = 'warranty-graphic.jpg';
 
-
 class HomePage extends React.Component {
   render() {
     // Set the language-specific configuration for indi integration
@@ -49,6 +49,7 @@ class HomePage extends React.Component {
     Config.indi.brandAmbassador.submit_button_text = intl.get('indi-brand-ambassador-submit-button-text');
     return (
       <div className="home-page-component" data-region="viewPortRegion">
+        <Carousel />
         <div className="section section-1 container" data-region="homeMainContentRegion">
           <img className="cover" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotMainFileName)} onError={(e) => { e.target.src = homeEspotMain; }} />
         </div>
