@@ -25,12 +25,16 @@
   .navbar-nav {
     display: block;
 
+      .dropdown-toggle::after {
+        display:none;
+      }
+
     .nav-item {
       display: inline-block;
       white-space: nowrap;
-      padding-bottom: 1px;
-      padding-right: 21px;
+      padding-right: 30px;
       font-size: 13px;
+      font-weight: bold;
       transition: border-color 0.2s;
 
       .nav-link {

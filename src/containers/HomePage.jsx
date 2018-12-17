@@ -24,6 +24,7 @@ import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
+import Carousel from '../components/carousel.homepage';
 
 import homeEspotMain from '../images/site-images/homepage-banner.jpg';
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
@@ -45,7 +46,6 @@ const homeEspot4FileName = 'warranty-graphic.jpg';
 const homeEspotParallax1FileName = 'car-inside.jpg';
 const homeEspotParallax2FileName = 'car-dashboard.jpg';
 
-
 class HomePage extends React.Component {
   render() {
     // Set the language-specific configuration for indi integration
@@ -56,6 +56,7 @@ class HomePage extends React.Component {
     return (
       <ParallaxProvider>
         <div className="home-page-component" data-region="viewPortRegion">
+          <Carousel />
           <div className="section section-1 container" data-region="homeMainContentRegion">
             <img className="cover" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotMainFileName)} onError={(e) => { e.target.src = homeEspotMain; }} />
           </div>

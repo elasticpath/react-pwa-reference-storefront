@@ -24,6 +24,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import intl from 'react-intl-universal';
 import { login, logout } from '../utils/AuthService';
 import {
   cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm,
@@ -125,11 +126,39 @@ class AppHeaderNavigationMain extends React.Component {
   render() {
     const { navigations } = this.state;
     const { isMobileView } = this.props;
+    let mainNavigations = (isMobileView === false) ? navigations.slice(0, 5) : navigations;
+    let buttonMore;
+    if (navigations.length >= 5 && isMobileView === false) {
+      mainNavigations = navigations.slice(0, 5);
+      const moreNavigations = navigations.slice(5);
+      buttonMore = (
+        <ul className="nav-item" data-el-container="category-nav-item-container">
+          <a className="nav-link dropdown-toggle" href="/" id={`${isMobileView ? 'mobile_' : ''}navbarDropdown_${intl.get('more')}`} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {intl.get('more')}
+          </a>
+          <div className="dropdown-menu sub-category-dropdown-menu" aria-label={`navbarDropdown_${intl.get('more')}`}>
+            {moreNavigations.map(category => (
+              <li className="dropdown" key={category.name}>
+                <Link to={`/category/${category.name}`} key={category.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${category.name}`} title={category['display-name']}>
+                  <div
+                    data-toggle="collapse"
+                    data-target={isMobileView ? '.collapsable-container' : ''}
+                  >
+                    {category['display-name']}
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </div>
+        </ul>
+      );
+    }
+
 
     return (
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
         <ul className="navbar-nav nav mr-auto mt-2 mt-lg-0">
-          {navigations.map(category => (
+          {mainNavigations.map(category => (
             category._child
               ? (
                 <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
@@ -163,6 +192,7 @@ class AppHeaderNavigationMain extends React.Component {
                 </li>
               )
           ))}
+          {buttonMore}
         </ul>
       </div>
     );

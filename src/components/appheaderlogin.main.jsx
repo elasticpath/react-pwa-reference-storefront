@@ -30,6 +30,7 @@ import './appheaderlogin.main.less';
 
 const Config = require('Config');
 
+const usingCart = ' GLOBEX EASTERN';
 class AppHeaderLoginMain extends React.Component {
   static isLoggedIn() {
     return (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
@@ -77,16 +78,7 @@ class AppHeaderLoginMain extends React.Component {
                   <Link to="/profile" className="profile-link">
                     <div data-toggle="collapse" data-target=".collapsable-container">
                       <span id="header_navbar_login_menu_profile_link">
-                        {intl.get('profile')}
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-                <li className="dropdown-item">
-                  <Link to="/wishlists" className="wishlist-link">
-                    <div data-toggle="collapse" data-target=".collapsable-container">
-                      <span id="header_navbar_login_menu_wishlist_link">
-                        {intl.get('wishlists')}
+                        {intl.get('my-profile')}
                       </span>
                     </div>
                   </Link>
@@ -98,6 +90,22 @@ class AppHeaderLoginMain extends React.Component {
                   </button>
                 </li>
               </ul>
+              <div className="dropdown-login-cart">
+                <ul>
+                  <li className="dropdown-item change-carts">
+                    {intl.get('using-cart')}
+                    <p className="using-cart">
+                      {usingCart}
+                    </p>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link to="/">
+                      {intl.get('change-carts')}
+                      <i className="arrow down" />
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
