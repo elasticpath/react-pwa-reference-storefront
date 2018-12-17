@@ -27,6 +27,7 @@ import AppHeaderLoginMain from './appheaderlogin.main';
 import AppModalLoginMain from './appmodallogin.main';
 import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
+import AppHeaderTop from './appheadertop.main';
 import headerLogo from '../images/site-images/Company-Logo-v1.png';
 
 import './appheader.main.less';
@@ -58,6 +59,7 @@ class AppHeaderMain extends React.Component {
     const isInStandaloneMode = window.navigator.standalone;
     return [
       <header key="app-header" className="app-header">
+        <AppHeaderTop />
 
         <div className="main-container">
 
@@ -100,9 +102,6 @@ class AppHeaderMain extends React.Component {
             </Link>
           </div>
 
-          <div className="locale-container">
-            <AppHeaderLocaleMain isMobileView={false} />
-          </div>
 
           <div className="toggle-btn-container">
             <button
