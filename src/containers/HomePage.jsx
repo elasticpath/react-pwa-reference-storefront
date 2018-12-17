@@ -22,6 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
+import Carousel from '../components/carousel.homepage';
 
 import homeEspotMain from '../images/site-images/homepage-banner.jpg';
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
@@ -40,6 +41,7 @@ const homeEspot4FileName = 'warranty-graphic.jpg';
 function HomePage() {
   return (
     <div className="home-page-component" data-region="viewPortRegion">
+      <Carousel />
       <div className="section section-1 container" data-region="homeMainContentRegion">
         <img className="cover" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotMainFileName)} onError={(e) => { e.target.src = homeEspotMain; }} />
       </div>
@@ -100,6 +102,7 @@ function HomePage() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
