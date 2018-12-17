@@ -340,7 +340,7 @@ class CartLineItem extends React.Component {
           </div>
         </div>
         <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
-          {(quantity !== undefined && quantity !== '') ? [
+          {(quantity !== undefined) ? [
             <input key="product-display-item-quantity-select" className="product-display-item-quantity-select form-control" name="quantity" type="number" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />,
             <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value="Update Quantity" />,
           ] : ('')
