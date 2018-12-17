@@ -23,12 +23,15 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
+import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import Carousel from '../components/carousel.homepage';
 
 import homeEspotMain from '../images/site-images/homepage-banner.jpg';
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
 import homeEspot3 from '../images/site-images/charging-icon.jpg';
 import homeEspot4 from '../images/site-images/warranty-graphic.jpg';
+import homeEspotParallax1 from '../images/site-images/car-inside.jpg';
+import homeEspotParallax2 from '../images/site-images/car-dashboard.jpg';
 
 import './HomePage.less';
 
@@ -40,6 +43,8 @@ const homeEspotMainFileName = 'homepage-banner.jpg';
 const homeEspot2FileName = 'brake-icon.jpg';
 const homeEspot3FileName = 'charging-icon.jpg';
 const homeEspot4FileName = 'warranty-graphic.jpg';
+const homeEspotParallax1FileName = 'car-inside.jpg';
+const homeEspotParallax2FileName = 'car-dashboard.jpg';
 
 class HomePage extends React.Component {
   render() {
@@ -47,73 +52,110 @@ class HomePage extends React.Component {
     Config.indi.brandAmbassador.title = intl.get('indi-brand-ambassador-title');
     Config.indi.brandAmbassador.description = intl.get('indi-brand-ambassador-description');
     Config.indi.brandAmbassador.submit_button_text = intl.get('indi-brand-ambassador-submit-button-text');
+
     return (
-      <div className="home-page-component" data-region="viewPortRegion">
-        <Carousel />
-        <div className="section section-1 container" data-region="homeMainContentRegion">
-          <img className="cover" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotMainFileName)} onError={(e) => { e.target.src = homeEspotMain; }} />
-        </div>
-        <div className="section section-2 container">
-          <div className="sub-section">
-            <span className="line line-1">
-              {intl.get('home-sub-espot-container1-first-line')}
-            </span>
-            <span className="line line-2">
-              {intl.get('home-sub-espot-container1-second-line')}
-            </span>
-            <span className="line line-3">
-              <Link className="ep-btn primary wide btn-accessories accessories-link" to="/category/VESTRI_ACCESSORIES">
-                <span>
-                  {intl.get('home-sub-espot-container1-button')}
+      <ParallaxProvider>
+        <div className="home-page-component" data-region="viewPortRegion">
+          <Carousel />
+          <div className="section section-1 container" data-region="homeMainContentRegion">
+            <img className="cover" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotMainFileName)} onError={(e) => { e.target.src = homeEspotMain; }} />
+          </div>
+          <div className="section section-2 container">
+            <div className="sub-section">
+              <span className="line line-1">
+                {intl.get('home-sub-espot-container1-first-line')}
+              </span>
+              <span className="line line-2">
+                {intl.get('home-sub-espot-container1-second-line')}
+              </span>
+              <span className="line line-3">
+                <Link className="ep-btn primary wide btn-accessories accessories-link" to="/category/VESTRI_ACCESSORIES">
+                  <span>
+                    {intl.get('home-sub-espot-container1-button')}
+                  </span>
+                </Link>
+              </span>
+            </div>
+          </div>
+          <IndiRecommendationsDisplayMain render={['carousel', 'brand']} configuration={Config.indi} />
+          {/* eslint-disable-next-line no-return-assign */}
+          <div ref={el => (this.instance = el)} />
+          <div className="section section-3 container">
+            <div className="sub-section">
+              <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e) => { e.target.src = homeEspot2; }} />
+              <div className="text-block">
+                <span className="line line-1">
+                  {intl.get('home-sub-espot-container2-first-line')}
                 </span>
-              </Link>
-            </span>
+                <span className="line line-2">
+                  {intl.get('home-sub-espot-container2-second-line')}
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-        <IndiRecommendationsDisplayMain render={['carousel', 'brand']} configuration={Config.indi} />
-        {/* eslint-disable-next-line no-return-assign */}
-        <div ref={el => (this.instance = el)} />
-        <div className="section section-3 container">
-          <div className="sub-section">
-            <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e) => { e.target.src = homeEspot2; }} />
-            <div className="text-block">
-              <span className="line line-1">
-                {intl.get('home-sub-espot-container2-first-line')}
-              </span>
-              <span className="line line-2">
-                {intl.get('home-sub-espot-container2-second-line')}
-              </span>
+          <div className="section-parallax section-parallax-1 container" data-region="homeMainContentRegion">
+            <Parallax offsetYMax={10} offsetYMin={-50} slowerScrollRate tag="figure">
+              <div className="parallax-image-container">
+                <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax1FileName)} onError={(e) => { e.target.src = homeEspotParallax1; }} />
+              </div>
+            </Parallax>
+            <div className="sub-section">
+              <div className="text-block">
+                <span className="line line-white">
+                  {intl.get('home-sub-espot-container2-second-line')}
+                </span>
+                <span className="line line-link">
+                  Learn more
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="section section-4 container">
+            <div className="sub-section">
+              <img className="small-image image-1" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
+              <div className="text-block">
+                <span className="line line-1">
+                  {intl.get('home-sub-espot-container3-first-line')}
+                </span>
+                <span className="line line-2">
+                  {intl.get('home-sub-espot-container3-second-line')}
+                </span>
+              </div>
+              <img className="small-image image-2" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
+            </div>
+          </div>
+          <div className="section section-5 container">
+            <div className="sub-section">
+              <img className="small-image" alt="home-espot-4" src={Config.siteImagesUrl.replace('%fileName%', homeEspot4FileName)} onError={(e) => { e.target.src = homeEspot4; }} />
+              <div className="text-block">
+                <span className="line line-1">
+                  {intl.get('home-sub-espot-container4-first-line')}
+                </span>
+                <span className="line line-2">
+                  {intl.get('home-sub-espot-container4-second-line')}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="section-parallax section-parallax-2 container" data-region="homeMainContentRegion">
+            <Parallax offsetYMax={10} offsetYMin={-30} slowerScrollRate tag="figure">
+              <div className="parallax-image-container">
+                <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax2FileName)} onError={(e) => { e.target.src = homeEspotParallax2; }} />
+              </div>
+            </Parallax>
+            <div className="sub-section">
+              <div className="text-block">
+                <span className="line line-white">
+                  {intl.get('home-sub-espot-container2-second-line')}
+                </span>
+                <span className="line line-link">
+                  Learn more
+                </span>
+              </div>
             </div>
           </div>
         </div>
-        <div className="section section-4 container">
-          <div className="sub-section">
-            <img className="small-image image-1" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
-            <div className="text-block">
-              <span className="line line-1">
-                {intl.get('home-sub-espot-container3-first-line')}
-              </span>
-              <span className="line line-2">
-                {intl.get('home-sub-espot-container3-second-line')}
-              </span>
-            </div>
-            <img className="small-image image-2" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
-          </div>
-        </div>
-        <div className="section section-5 container">
-          <div className="sub-section">
-            <img className="small-image" alt="home-espot-4" src={Config.siteImagesUrl.replace('%fileName%', homeEspot4FileName)} onError={(e) => { e.target.src = homeEspot4; }} />
-            <div className="text-block">
-              <span className="line line-1">
-                {intl.get('home-sub-espot-container4-first-line')}
-              </span>
-              <span className="line line-2">
-                {intl.get('home-sub-espot-container4-second-line')}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </ParallaxProvider>
     );
   }
 }
