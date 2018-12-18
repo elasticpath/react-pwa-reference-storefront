@@ -30,7 +30,6 @@ import './appheaderlogin.main.less';
 
 const Config = require('Config');
 
-const usingCart = ' GLOBEX EASTERN';
 class AppHeaderLoginMain extends React.Component {
   static isLoggedIn() {
     return (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
@@ -91,13 +90,7 @@ class AppHeaderLoginMain extends React.Component {
                 </li>
               </ul>
               <div className="dropdown-login-cart">
-                <ul>
-                  <li className="dropdown-item change-carts">
-                    {intl.get('using-cart')}
-                    <p className="using-cart">
-                      {usingCart}
-                    </p>
-                  </li>
+                <ul className="login-cart-list">
                   <li className="dropdown-item">
                     <Link to="/">
                       {intl.get('change-carts')}

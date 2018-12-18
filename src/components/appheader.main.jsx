@@ -156,16 +156,17 @@ class AppHeaderMain extends React.Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="icon glyphicon glyphicon-list" />
+              <span className="icon glyphicon glyphicon-align-justify">
+                <h6 className="hamburger-shop">
+                  {intl.get('shop')}
+                </h6>
+              </span>
             </button>
           </div>
 
         </div>
 
         <div className="collapsable-container collapse collapsed">
-          <div className="mobile-search-container">
-            <AppHeaderSearchMain isMobileView />
-          </div>
           <div className="mobile-locale-container">
             <AppHeaderLocaleMain isMobileView />
           </div>
