@@ -25,9 +25,10 @@ import intl from 'react-intl-universal';
 import * as UserPrefs from '../utils/UserPrefs';
 import currencyLogoCad from '../images/header-icons/ca.svg';
 import currencyLogoEur from '../images/header-icons/eu.svg';
+import headerLogo from '../images/site-images/Company-Logo-v1.png';
 
 import './appheaderlocale.main.less';
-import headerLogo from '../images/site-images/Company-Logo-v1.png';
+
 
 const Config = require('Config');
 
@@ -65,20 +66,9 @@ class AppHeaderLocaleMain extends React.Component {
     const selectedLocale = Config.supportedLocales.filter(l => l.value === selectedLocaleValue)[0];
     const title = `${selectedCurrencyValue}/${selectedLocale.name}`;
     const { isMobileView } = this.props;
-    let selectedCurrencyLogo;
-    switch (selectedCurrencyValue) {
-      case 'CAD':
-        selectedCurrencyLogo = currencyLogoCad;
-        break;
-      case 'EUR':
-        selectedCurrencyLogo = currencyLogoEur;
-        break;
-      default:
-        break;
-    }
+    const selectedCurrencyLogo = selectedCurrencyValue === 'CAD' ? currencyLogoCad : currencyLogoEur;
     return (
       <div className={`main-locale-container ${isMobileView ? 'mobile-view' : ''}`}>
-
         <button id={`${isMobileView ? 'mobile_' : ''}locale-dropdown-trigger`} type="button" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img
             className="currency-logo"
