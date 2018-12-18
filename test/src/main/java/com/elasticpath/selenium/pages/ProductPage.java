@@ -30,7 +30,7 @@ public class ProductPage extends AbstractPageObject {
 	private final static String SKU_OPTION_SELECT_CSS = "select[id*='product_display_item_sku_select_'][id*='%s']";
 	private final static String ADD_TO_CART_BUTTON_CSS = "button[id='product_display_item_add_to_cart_button']";
 	private final static String ADD_TO_WISHLIST_BUTTON_CSS = "button[id='product_display_item_add_to_wish_list_button']";
-	private final static String QUANTITY_SELECT_CSS = "select[id='product_display_item_quantity_select']";
+	private final static String QUANTITY_SELECT_CSS = "input[class='product-display-item-quantity-select form-control form-control-quantity']";
 
 	private final WebDriver driver;
 
@@ -62,7 +62,7 @@ public class ProductPage extends AbstractPageObject {
 	}
 
 	public void selectQuantity(final String quantity) {
-		new Select(getDriver().findElement(By.cssSelector(QUANTITY_SELECT_CSS))).selectByVisibleText(quantity);
+		clearAndType(QUANTITY_SELECT_CSS, quantity);
 	}
 
 	public void selectSkuOption(final String skuOption, final String choice) {
