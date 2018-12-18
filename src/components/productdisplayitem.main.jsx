@@ -110,6 +110,8 @@ class ProductDisplayItemMain extends React.Component {
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.handleConfiguration = this.handleConfiguration.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
+    this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
   }
@@ -178,7 +180,25 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   handleQuantityChange(event) {
-    this.setState({ itemQuantity: parseInt(event.target.value, 10) });
+    if (event.target.value === '') {
+      this.setState({ itemQuantity: 1 });
+    } else {
+      this.setState({ itemQuantity: parseInt(event.target.value, 10) });
+    }
+  }
+
+  handleQuantityDecrement() {
+    const { itemQuantity } = this.state;
+    if (itemQuantity > 1) {
+      const newItemQuantity = itemQuantity - 1;
+      this.setState({ itemQuantity: newItemQuantity });
+    }
+  }
+
+  handleQuantityIncrement() {
+    const { itemQuantity } = this.state;
+    const newItemQuantity = itemQuantity + 1;
+    this.setState({ itemQuantity: newItemQuantity });
   }
 
   handleConfiguration(configuration, event) {
@@ -384,7 +404,9 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   render() {
-    const { productData, addToCartFailedMessage, isLoading } = this.state;
+    const {
+      productData, addToCartFailedMessage, isLoading, itemQuantity,
+    } = this.state;
     if (productData) {
       let listPrice = 'n/a';
       if (productData._price) {
@@ -504,9 +526,17 @@ class ProductDisplayItemMain extends React.Component {
                     <label htmlFor="product_display_item_quantity_label" className="control-label">
                       {intl.get('quantity')}
                     </label>
-                    <div className="quantity-col form-content form-content-quantity">
-                      <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" placeholder="1" onChange={this.handleQuantityChange} />
-                    </div>
+                    <span className="input-group-btn">
+                      <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+                        <span className="glyphicon glyphicon-plus" />
+                      </button>
+                      <div className="quantity-col form-content form-content-quantity">
+                        <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
+                      </div>
+                      <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+                        <span className="glyphicon glyphicon-minus" />
+                      </button>
+                    </span>
                     {
                       (isLoading) ? (<div className="miniLoader" />) : ''
                     }

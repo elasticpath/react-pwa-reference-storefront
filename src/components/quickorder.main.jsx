@@ -139,7 +139,7 @@ class QuickOrderMain extends React.Component {
                     <input id="quick_order_form_sku" className="form-control" type="text" placeholder={intl.get('quick-order-sku-title')} value={productId} onChange={e => this.setState({ productId: e.target.value })} />
                   </div>
                   <div className="quantity-col">
-                    <input id="quick_order_form_quantity" className="quantity-select form-control" type="number" placeholder="1" value={itemQuantity} onChange={e => this.setState({ itemQuantity: e.target.value })} />
+                    <input id="quick_order_form_quantity" className="quantity-select form-control" type="number" step="1" min="1" max="9999" placeholder="1" value={itemQuantity} onChange={e => this.setState({ itemQuantity: e.target.value })} />
                   </div>
                 </div>
               </div>

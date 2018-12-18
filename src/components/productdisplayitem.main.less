@@ -105,11 +105,50 @@
           }
         }
 
-        .form-content-quantity {
-          width: 70px;
+        .input-group-btn {
+          float: right;
 
-          .form-control-quantity {
-            width: 70px;
+          .quantity-right-plus,
+          .quantity-left-minus {
+            border-radius: 0 !important;
+            overflow: hidden;
+            position: relative;
+            text-shadow: 1px 1px 1px #fff;
+            color: #666;
+            border: solid 1px #8a8a8a;
+            text-transform: none;
+            font-weight: normal;
+            float: right;
+            height: 34px;
+          }
+
+          .quantity-left-minus {
+            border-right: 0 !important;
+          }
+
+          .quantity-right-plus {
+            border-left: 0 !important;
+          }
+
+          .form-content-quantity {
+            width: 50px;
+
+            .form-control-quantity {
+              width: 50px;
+              height: 34px;
+              font-size: 16px;
+              text-align: center;
+            }
+
+            input[type=number]::-webkit-outer-spin-button,
+            input[type=number]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            input[type=number] {
+                -moz-appearance:textfield;
+            }
           }
         }
       }

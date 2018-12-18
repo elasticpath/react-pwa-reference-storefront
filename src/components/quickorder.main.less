@@ -70,7 +70,7 @@
 
   .quantity-col {
     display: table-cell;
-    width: 70px;
+    width: 50px;
 
     .form-control {
       border: 1px solid #cccccc;
@@ -80,11 +80,23 @@
       -webkit-appearance: none;
       border-radius: 4px;
       -webkit-border-radius: 4px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield;
     }
   }
 
   .quantity-select {
-    width: 70px;
+    width: 50px;
   }
 
   @media (max-width: 768px) {
