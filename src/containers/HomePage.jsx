@@ -22,11 +22,9 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
-import { Link } from 'react-router-dom';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import Carousel from '../components/carousel.homepage';
 
-import homeEspotMain from '../images/site-images/homepage-banner.jpg';
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
 import homeEspot3 from '../images/site-images/charging-icon.jpg';
 import homeEspot4 from '../images/site-images/warranty-graphic.jpg';
@@ -39,7 +37,6 @@ import IndiRecommendationsDisplayMain from '../components/indirecommendations.ma
 
 const Config = require('Config');
 
-const homeEspotMainFileName = 'homepage-banner.jpg';
 const homeEspot2FileName = 'brake-icon.jpg';
 const homeEspot3FileName = 'charging-icon.jpg';
 const homeEspot4FileName = 'warranty-graphic.jpg';
@@ -57,26 +54,6 @@ class HomePage extends React.Component {
       <ParallaxProvider>
         <div className="home-page-component" data-region="viewPortRegion">
           <Carousel />
-          <div className="section section-1 container" data-region="homeMainContentRegion">
-            <img className="cover" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotMainFileName)} onError={(e) => { e.target.src = homeEspotMain; }} />
-          </div>
-          <div className="section section-2 container">
-            <div className="sub-section">
-              <span className="line line-1">
-                {intl.get('home-sub-espot-container1-first-line')}
-              </span>
-              <span className="line line-2">
-                {intl.get('home-sub-espot-container1-second-line')}
-              </span>
-              <span className="line line-3">
-                <Link className="ep-btn primary wide btn-accessories accessories-link" to="/category/VESTRI_ACCESSORIES">
-                  <span>
-                    {intl.get('home-sub-espot-container1-button')}
-                  </span>
-                </Link>
-              </span>
-            </div>
-          </div>
           <IndiRecommendationsDisplayMain render={['carousel', 'brand']} configuration={Config.indi} />
           {/* eslint-disable-next-line no-return-assign */}
           <div ref={el => (this.instance = el)} />
