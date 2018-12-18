@@ -31,10 +31,17 @@ import AppHeaderTop from './appheadertop.main';
 import headerLogo from '../images/site-images/Company-Logo-v1.png';
 
 import './appheader.main.less';
+import cortexFetch from '../utils/Cortex';
+import { login } from '../utils/AuthService';
 
 const Config = require('Config');
 
 const headerLogoFileName = 'Company-Logo-v1.png';
+
+// Array of zoom parameters to pass to Cortex
+const zoomArray = [
+  'defaultcart',
+];
 
 class AppHeaderMain extends React.Component {
   static goBack() {
@@ -44,8 +51,18 @@ class AppHeaderMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartData: undefined,
+      isLoading: false,
       isOffline: false,
     };
+  }
+
+  componentDidMount() {
+    this.fetchCartData();
+  }
+
+  componentWillReceiveProps() {
+    this.fetchCartData();
   }
 
   handleIsOffline = (isOfflineValue) => {
@@ -54,8 +71,30 @@ class AppHeaderMain extends React.Component {
     });
   }
 
+  fetchCartData() {
+    login().then(() => {
+      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            cartData: res._defaultcart[0],
+            isLoading: false,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
   render() {
-    const { isOffline } = this.state;
+    const { isOffline, cartData, isLoading } = this.state;
     const isInStandaloneMode = window.navigator.standalone;
     return [
       <header key="app-header" className="app-header">
@@ -98,6 +137,11 @@ class AppHeaderMain extends React.Component {
 
           <div className="cart-link-container">
             <Link className="cart-link" to="/mybag">
+              {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                <span className="cart-link-counter">
+                  {cartData['total-quantity']}
+                </span>
+              )}
               {intl.get('shopping-bag-nav')}
             </Link>
           </div>
@@ -132,6 +176,13 @@ class AppHeaderMain extends React.Component {
             >
               <div data-toggle="collapse" data-target=".collapsable-container">
                 {intl.get('shopping-bag-nav')}
+                <div className="cart-link-counter-container">
+                  {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                    <span className="cart-link-counter">
+                      {cartData['total-quantity']}
+                    </span>
+                  )}
+                </div>
               </div>
             </Link>
           </div>
