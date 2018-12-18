@@ -45,13 +45,13 @@ class AppHeaderTop extends React.Component {
           <div className="top-container-menu">
             <ul>
               <li>
-                <Link to="/">
-                Shipping & Returns
+                <Link to="/termsandconditions">
+                  {intl.get('shipping-returns')}
                 </Link>
               </li>
               <li>
-                <Link to="/">
-                Help
+                <Link to="/aboutus">
+                  {intl.get('help')}
                 </Link>
               </li>
               <li>
