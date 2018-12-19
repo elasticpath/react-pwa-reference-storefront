@@ -45,7 +45,7 @@ class AppHeaderTop extends React.Component {
           <div className="top-container-menu">
             <ul>
               <li>
-                <Link to="/termsandconditions">
+                <Link to="/shippingreturns">
                   {intl.get('shipping-returns')}
                 </Link>
               </li>
