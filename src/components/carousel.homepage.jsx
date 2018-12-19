@@ -53,6 +53,7 @@ function Carousel() {
     },
     dots: true,
     dotsClass: 'slick-dots slick-thumb',
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
