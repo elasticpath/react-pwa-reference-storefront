@@ -115,7 +115,7 @@ class HomePage extends React.Component {
             </div>
           </div>
           <div className="section-parallax section-parallax-2 container" data-region="homeMainContentRegion">
-            <Parallax offsetYMax={10} offsetYMin={-30} slowerScrollRate tag="figure">
+            <Parallax offsetYMax={-20} offsetYMin={10} slowerScrollRate tag="figure">
               <div className="parallax-image-container">
                 <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax2FileName)} onError={(e) => { e.target.src = homeEspotParallax2; }} />
               </div>

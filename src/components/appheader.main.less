@@ -99,6 +99,13 @@
         line-height: 0;
         font-size: 0;
         background-size: cover;
+        position: relative;
+
+        .cart-link-counter {
+          right: 0;
+          left: unset;
+          transform: translate(25%, -25%);
+        }
       }
     }
 
@@ -128,6 +135,21 @@
         }
       }
     }
+  }
+
+  .cart-link-counter {
+    text-align: center;
+    position: absolute;
+    background-color: @mainBlueColor;
+    min-width: 16px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    border-radius: 50%;
+    color: white;
+    top: 0;
+    left: 0;
+    font-weight: bold;
   }
 
   .collapsable-container {
@@ -203,6 +225,11 @@
           div {
             padding: 10px 0px 10px 0px;
           }
+
+          .cart-link-counter-container {
+            display: inline;
+            position: relative;
+          }
         }
       }
 
@@ -230,6 +257,7 @@
       }
     }
   }
+
   @media (max-width: @mobileWidth - 1px) {
     .main-container {
       .logo-container {
