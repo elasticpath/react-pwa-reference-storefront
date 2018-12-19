@@ -29,10 +29,10 @@ import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
 import AppHeaderTop from './appheadertop.main';
 import headerLogo from '../images/site-images/Company-Logo-v1.png';
-
-import './appheader.main.less';
 import cortexFetch from '../utils/Cortex';
 import { login } from '../utils/AuthService';
+
+import './appheader.main.less';
 
 const Config = require('Config');
 
