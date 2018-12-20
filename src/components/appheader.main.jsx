@@ -54,6 +54,7 @@ class AppHeaderMain extends React.Component {
       cartData: undefined,
       isLoading: false,
       isOffline: false,
+      isSearchFocused: false,
     };
   }
 
@@ -68,6 +69,12 @@ class AppHeaderMain extends React.Component {
   handleIsOffline = (isOfflineValue) => {
     this.setState({
       isOffline: isOfflineValue,
+    });
+  }
+
+  handleInputFocus = () => {
+    this.setState({
+      isSearchFocused: true,
     });
   }
 
@@ -94,7 +101,9 @@ class AppHeaderMain extends React.Component {
   }
 
   render() {
-    const { isOffline, cartData, isLoading } = this.state;
+    const {
+      isOffline, cartData, isLoading, isSearchFocused,
+    } = this.state;
     const isInStandaloneMode = window.navigator.standalone;
     return [
       <header key="app-header" className="app-header">
@@ -131,6 +140,20 @@ class AppHeaderMain extends React.Component {
             <AppHeaderSearchMain isMobileView={false} />
           </div>
 
+          <div className="search-toggle-btn-container">
+            <button
+              className="search-toggle-btn"
+              type="button"
+              data-toggle="collapse"
+              data-target=".collapsable-container"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              onClick={this.handleInputFocus}
+            >
+              <div className="search-icon" />
+            </button>
+          </div>
+
           <div className="login-container">
             <AppHeaderLoginMain isMobileView={false} />
           </div>
@@ -163,6 +186,9 @@ class AppHeaderMain extends React.Component {
         </div>
 
         <div className="collapsable-container collapse collapsed">
+          <div className="search-container">
+            <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} />
+          </div>
           <div className="mobile-locale-container">
             <AppHeaderLocaleMain isMobileView />
           </div>

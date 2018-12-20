@@ -132,6 +132,10 @@
         }
       }
     }
+
+    .search-toggle-btn-container {
+      display: none;
+    }
   }
 
   .cart-link-counter {
@@ -194,7 +198,7 @@
 
       .toggle-btn-container {
         position: absolute;
-        left: 0;
+        left: 10px;
         display: block;
       }
     }
@@ -260,12 +264,26 @@
   @media (max-width: @mobileWidth - 1px) {
     .main-container {
       .logo-container {
-        padding-left: 0px;
-        padding-top: 0px;
+        padding-left: 0;
+        padding-top: 0;
         display: block;
         position: absolute;
-        left: 90px;
+        left: 100px;
+      }
 
+      .search-container {
+        display: none;
+      }
+
+      .search-toggle-btn-container {
+        padding-top: 18px;
+        display: block;
+
+        .search-icon {
+          background: #ffffff00 url('../images/header-icons/magnifying-glass.png') no-repeat 9px center;
+          width: 35px;
+          height: 20px;
+        }
       }
     }
   }
