@@ -39,6 +39,7 @@ import ContactUsPage from './containers/ContactUsPage';
 import TermsAndConditionsPage from './containers/TermsAndConditionsPage';
 import OrderReviewPage from './containers/OrderReviewPage';
 import WishListsPage from './containers/WishListsPage';
+import ShippingReturnsPage from './containers/ShippingReturns';
 
 const router = [{
   path: '/',
@@ -115,6 +116,9 @@ const router = [{
 }, {
   path: '/wishlists',
   component: WishListsPage,
+}, {
+  path: '/shippingreturns',
+  component: ShippingReturnsPage,
 }];
 
 export default router;
