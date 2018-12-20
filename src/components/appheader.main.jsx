@@ -156,11 +156,7 @@ class AppHeaderMain extends React.Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="icon glyphicon glyphicon-align-justify">
-                <h6 className="hamburger-shop">
-                  {intl.get('shop')}
-                </h6>
-              </span>
+              <span className="icon glyphicon glyphicon-align-justify" />
             </button>
           </div>
 
