@@ -48,6 +48,9 @@ function AppFooterMain() {
             <Link to="/contactus">
               {intl.get('contact')}
             </Link>
+            <Link to="/shippingreturns">
+              {intl.get('shipping-returns')}
+            </Link>
             <Link to="/termsandconditions">
               {intl.get('terms-and-conditions')}
             </Link>
