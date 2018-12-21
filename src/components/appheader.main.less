@@ -31,9 +31,7 @@
     padding-right: 10px;
     background-color: @mainColor;
 
-    .back-btn-container {
-      display: none;
-
+    .toggle-btn-container {
       .back-btn {
         border: 0;
         background-color: transparent;
@@ -161,9 +159,6 @@
     .main-container {
       position: relative;
       justify-content: flex-end;
-      .back-btn-container {
-        display: block;
-      }
 
       .logo-container {
         padding-left: 0px;
@@ -200,6 +195,12 @@
         position: absolute;
         left: 10px;
         display: block;
+      }
+
+      &.in-standalone {
+        .toggle-btn-container {
+          left: 0px;
+        }
       }
     }
 
@@ -288,6 +289,12 @@
             width: 35px;
             height: 21px;
           }
+        }
+      }
+
+      &.in-standalone {
+        .logo-container {
+          left: 130px;
         }
       }
     }

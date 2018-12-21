@@ -109,16 +109,7 @@ class AppHeaderMain extends React.Component {
       <header key="app-header" className="app-header">
         <AppHeaderTop />
 
-        <div className="main-container">
-
-          {(isInStandaloneMode) ? (
-            <div className="back-btn-container">
-              <button className="back-btn" aria-label="back button" type="button" onClick={AppHeaderMain.goBack}>
-                <span className="icon glyphicon glyphicon-chevron-left" />
-              </button>
-            </div>) : ('')
-          }
-
+        <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
           <div className="logo-container">
             <Link to="/" className="logo">
               <img
@@ -171,6 +162,12 @@ class AppHeaderMain extends React.Component {
 
 
           <div className="toggle-btn-container">
+            {(isInStandaloneMode) ? (
+              <button className="back-btn" aria-label="back button" type="button" onClick={AppHeaderMain.goBack}>
+                <span className="icon glyphicon glyphicon-chevron-left" />
+              </button>
+            ) : ('')
+            }
             <button
               className="toggle-btn"
               type="button"
