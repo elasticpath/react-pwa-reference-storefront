@@ -199,7 +199,7 @@ class AppHeaderNavigationMain extends React.Component {
     const { isMobileView } = this.props;
     return (
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <nav className="navbar navbar-expand-md btco-hover-menu">
+        <nav className="navbar navbar-expand btco-hover-menu">
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
               {this.renderCategories()}

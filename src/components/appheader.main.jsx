@@ -136,7 +136,9 @@ class AppHeaderMain extends React.Component {
               </div>
             </Link>
           </div>
+
           <hr className="mobile-navigation-separator" />
+
           <div className="mobile-navigation-container">
             <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
           </div>
