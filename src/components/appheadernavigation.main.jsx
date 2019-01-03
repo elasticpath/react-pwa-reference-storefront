@@ -133,7 +133,7 @@ class AppHeaderNavigationMain extends React.Component {
   renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling) {
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
-        <Link className="dropdown-item dropdown-toggle" to={`/category/${subcategoryChild.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+        <Link className="dropdown-item dropdown-toggle" to={`/category/${subcategoryChild.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
           {subcategoryChild['display-name']}
         </Link>
         <ul className={`dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}`} aria-labelledby="navbarDropdownMenuLink">
@@ -173,7 +173,7 @@ class AppHeaderNavigationMain extends React.Component {
   renderCategoriesWithChildren(category, isLeftDropDownStyling) {
     return (
       <li className="nav-item dropdown">
-        <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+        <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
           {category['display-name']}
         </Link>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
