@@ -21,67 +21,55 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-/* eslint-disable */
 import * as styles from '!!../utils/less-var-loader!../style/common.less';
-/* eslint-enable */
-import scriptjs from 'scriptjs';
 
 class FacebookChat extends React.Component {
   static loadSDKAsynchronously() {
-    scriptjs('https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js', () => {
-      // eslint-disable-next-line (unaccepted unnamed function)
-      (function loadSdk(d, s, id) {
-        const fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        const js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    });
+    (function loadSdk(d, s, id) {
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      const js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   }
 
   static propTypes = {
-    pageId: PropTypes.string.isRequired,
-    applicationId: PropTypes.string.isRequired,
+    config: PropTypes.objectOf(PropTypes.any).isRequired,
   };
 
   componentDidMount() {
-    const { pageId, applicationId } = this.props;
-    if (pageId && applicationId) {
+    const { config } = this.props;
+    if (config.enable) {
       this.setFbAsync();
       FacebookChat.loadSDKAsynchronously();
     }
   }
 
   setFbAsync() {
-    const { applicationId } = this.props;
-    /* eslint-disable */
+    const { config } = this.props;
     window.fbAsyncInit = function () {
       FB.init({
-        appId: applicationId,
+        appId: config.applicationId,
         status: true,
         xfbml: true,
         version: 'v2.10',
       });
     };
-    /* eslint-enable */
   }
 
   render() {
-    const { pageId, applicationId } = this.props;
-    if (pageId && applicationId) {
-      return (
-        <div>
-          <div id="fb-root" />
-          <div
-            className="fb-customerchat"
-            page_id={pageId}
-            theme_color={styles['@mainColor']}
-          />
-        </div>
-      );
-    }
-    return ('');
+    const { config } = this.props;
+    return (
+      <div>
+        <div id="fb-root" />
+        <div
+          className="fb-customerchat"
+          page_id={config.pageId}
+          theme_color={styles['@mainColor']}
+        />
+      </div>
+    );
   }
 }
 
