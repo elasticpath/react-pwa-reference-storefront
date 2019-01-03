@@ -89,28 +89,40 @@ class AppModalLoginMain extends React.Component {
 
   render() {
     const { failedLogin, isLoading } = this.state;
+
     return (
       <div className="modal login-modal-content" id="login-modal">
         <div className="modal-dialog">
           <div className="modal-content" id="simplemodal-container">
-            <button type="button" id="login_modal_close_button" className="close" data-dismiss="modal">
-              &times;
-            </button>
-            <div className="form-container">
-              <div className="panel">
-                <h2>
-                  {intl.get('login')}
-                </h2>
-              </div>
+
+            <div className="modal-header">
+              <h2 className="modal-title">
+                {intl.get('login')}
+              </h2>
+              <button type="button" id="login_modal_close_button" className="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+
+            <div className="feedback-label auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
+              {failedLogin ? (intl.get('invalid-username-or-password')) : ('')}
+            </div>
+
+            <div className="modal-body">
               <form id="login_modal_form" onSubmit={this.loginRegisteredUser}>
                 <div className="form-group">
-                  <input className="form-control" id="login_modal_username_input" placeholder={intl.get('email-slash-username')} type="text" onChange={this.setUsername} />
+                  <span>
+                    {intl.get('username')}
+                    :
+                  </span>
+                  <input className="form-control" id="login_modal_username_input" type="text" onChange={this.setUsername} />
                 </div>
                 <div className="form-group">
-                  <input className="form-control" id="login_modal_password_input" placeholder={intl.get('password')} type="password" onChange={this.setPassword} />
-                </div>
-                <div className="feedback-label auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
-                  {failedLogin ? (intl.get('invalid-username-or-password')) : ('')}
+                  <span>
+                    {intl.get('password')}
+                    :
+                  </span>
+                  <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} />
                 </div>
                 <div className="form-group action-row">
                   {
