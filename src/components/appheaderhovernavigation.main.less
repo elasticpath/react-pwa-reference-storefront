@@ -20,40 +20,36 @@
         display: block
       }
 
+      /** Left Dropdown **/
+      .btco-hover-menu .left-drop-down {
+        position: relative
+      }
+
+      .btco-hover-menu .left-drop-down:hover > ul {
+        display: block
+      }
+
+      .btco-hover-menu .right-drop-down > .dropdown-menu {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        min-width: 250px;
+        display: none;
+        z-index: 1
+      }
+
+      .btco-hover-menu .left-drop-down > .dropdown-menu {
+        position: absolute;
+        top: 0%;
+        left: 100%;
+        min-width: 250px;
+        display: none
+      }
     }
 
-    .btco-hover-menu ul ul {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 250px;
-    }
-
-
-
-    .btco-hover-menu .right-drop-down > .dropdown-menu {
-      position: absolute;
-      top: 0;
-      left: -100%;
-      min-width: 250px;
-      display: none;
-      z-index: 1
-    }
-
-    /** Left Dropdown **/
-    .btco-hover-menu .left-drop-down {
-      position: relative
-    }
-
-    .btco-hover-menu .left-drop-down:hover > ul {
-      display: block
-    }
-
-    .btco-hover-menu .left-drop-down > .dropdown-menu {
-      position: absolute;
-      top: 0%;
-      left: 100%;
-      min-width: 250px;
-      display: none
+  @media only screen and (max-width: @tabletWidth - 1){
+      .dropdown-menu.show {
+        position: relative!important;
+      }
     }
 }
