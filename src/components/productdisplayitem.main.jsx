@@ -436,7 +436,7 @@ class ProductDisplayItemMain extends React.Component {
         }
       }
       const productTitle = productData._definition[0]['display-name'];
-      const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary')).value : '';
+      const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary'))['display-value'] : '';
       const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
       const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       // Set the language-specific configuration for indi integration
