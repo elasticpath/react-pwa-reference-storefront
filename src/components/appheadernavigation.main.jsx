@@ -99,12 +99,15 @@ class AppHeaderNavigationMain extends React.Component {
       const show = 0;
 
       const categoryChildren = category._child;
-      const children = this.getDropDownNavigationStateHelper(categoryChildren);
+      let children;
+      if (categoryChildren) {
+        children = this.getDropDownNavigationStateHelper(categoryChildren);
+      }
 
-      dropDownNavigation.set(displayName, {
+      dropDownNavigation[displayName] = {
         show,
         ...children,
-      });
+      };
     });
 
     return dropDownNavigation;
@@ -181,19 +184,23 @@ class AppHeaderNavigationMain extends React.Component {
     //     }
     //   }
     //   }
-    const dropDownNavigation = new Map();
+    const dropDownNavigation = {};
 
     navigations.forEach((category) => {
       const displayName = category['display-name'];
       const show = 1;
 
       const categoryChildren = category._child;
-      const children = this.getDropDownNavigationStateHelper(categoryChildren);
+      let children;
 
-      dropDownNavigation.set(displayName, {
+      if (categoryChildren) {
+        children = this.getDropDownNavigationStateHelper(categoryChildren);
+      }
+
+      dropDownNavigation[displayName] = {
         show,
         ...children,
-      });
+      };
     });
 
     console.log(dropDownNavigation);
