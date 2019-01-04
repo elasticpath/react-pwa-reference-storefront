@@ -444,7 +444,8 @@ class ProductDisplayItemMain extends React.Component {
                   ? (
                     <div className="featured">
                       {intl.get('featured')}
-                    </div>)
+                    </div>
+                  )
                   : ('')
                 }
                 {this.renderProductImage()}

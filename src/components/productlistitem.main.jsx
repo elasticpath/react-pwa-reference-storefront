@@ -125,7 +125,8 @@ class ProductListItemMain extends React.Component {
               ? (
                 <div className="featured">
                   {intl.get('featured')}
-                </div>)
+                </div>
+              )
               : ('')
             }
             <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
