@@ -422,7 +422,7 @@ class ProductDisplayItemMain extends React.Component {
       let productLink = '';
       if (productData._availability.length >= 0) {
         if (productData._code) {
-          productLink = `https://reference.elasticpath.com/itemdetail/${productData._code[0].code}`;
+          productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
         }
         if (productData._availability[0].state === 'AVAILABLE') {
           availabilityString = intl.get('in-stock');
@@ -435,7 +435,9 @@ class ProductDisplayItemMain extends React.Component {
           availabilityString = intl.get('out-of-stock');
         }
       }
-      const shareImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
+      const productTitle = productData._definition[0]['display-name'];
+      const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary')).value : '';
+      const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
       const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');
@@ -604,9 +606,9 @@ class ProductDisplayItemMain extends React.Component {
 
                     // OPTIONAL PARAMETERS
                     url: productLink, // (defaults to current url)
-                    image: shareImage, // (defaults to og:image or twitter:image)
-                    description: 'custom text', // (defaults to og:description or twitter:description)
-                    title: 'Test title', // (defaults to og:title or twitter:title)
+                    image: productImage, // (defaults to og:image or twitter:image)
+                    description: productDescription, // (defaults to og:description or twitter:description)
+                    title: productTitle, // (defaults to og:title or twitter:title)
                     message: 'custom email text', // (only for email sharing)
                     subject: 'custom email subject', // (only for email sharing)
                     username: 'custom twitter handle', // (only for twitter sharing)
