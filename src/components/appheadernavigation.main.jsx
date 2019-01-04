@@ -91,6 +91,114 @@ class AppHeaderNavigationMain extends React.Component {
     }
   }
 
+  getDropDownNavigationStateHelper(navigations) {
+    const dropDownNavigation = new Map();
+
+    navigations.forEach((category) => {
+      const displayName = category['display-name'];
+      const show = 0;
+
+      const categoryChildren = category._child;
+      const children = this.getDropDownNavigationStateHelper(categoryChildren);
+
+      dropDownNavigation.set(displayName, {
+        show,
+        ...children,
+      });
+    });
+
+    return dropDownNavigation;
+  }
+
+  getDropDownNavigationState(navigations) {
+    // TODO: parse the navigations into the following structure...
+    //
+
+    //   navigations =
+    //     [
+    //       {
+    //         display-name: Accessories,
+    //     links: [],
+    //     messages: [],
+    //     name: "VESTRI_ACCESSORIES",
+    //     self: {}
+    //        },
+    //       {
+    //        _child:[
+    //        {
+    //           _child: [
+    //            {
+    //              _child:[]
+    //           }
+    //           ]
+    //        display-name: "nested1",
+    //        links: [],
+    //        messages: [],
+    //        name: "NEsted1",
+    //        self: {}
+    //        },
+    //       {...}
+    //       ],
+    //      display-name: "All Products",
+    //      links: [],
+    //      messages: [],
+    //      name: "VESTRI_MODEL_S_ALL_PRODUCTS",
+    //      self: {}
+    //   },
+    //     {
+    //       _child: [],
+    //       display-name: "Something",
+    //       links: [],
+    //       messages: [],
+    //       name: "VESTRI_MODEL_SOMETHING",
+    //       self: {}
+    //     }
+    //   ]
+    //     display-name: "M-Class",
+    //     links: [],
+    //     messages: [],
+    //     name: "VESTRI_LADIES_APPAREL",
+    //     self: {}
+    //   }
+    // ]
+    //
+    //   Turn the above into...
+    //
+    //   {
+    //     Accessories: {
+    //       show:1
+    //     },
+    //     M-Class: {
+    //     show:1,
+    //     All-Products:{
+    //       show:0,
+    //         nested1:{
+    //         show:0
+    //       }
+    //     },
+    //     Something:{
+    //       show:0
+    //     }
+    //   }
+    //   }
+    const dropDownNavigation = new Map();
+
+    navigations.forEach((category) => {
+      const displayName = category['display-name'];
+      const show = 1;
+
+      const categoryChildren = category._child;
+      const children = this.getDropDownNavigationStateHelper(categoryChildren);
+
+      dropDownNavigation.set(displayName, {
+        show,
+        ...children,
+      });
+    });
+
+    console.log(dropDownNavigation);
+  }
+
   fetchNavigationData() {
     login()
       .then(() => cortexFetch(`/?zoom=${zoomArray.join()}`,
@@ -120,7 +228,13 @@ class AppHeaderNavigationMain extends React.Component {
       })
       .then(res => res.json())
       .then((res) => {
+        const navigations = res._navigations[0]._element;
+
+        // TODO: This will be turned into the actual navigations that everything will work off of.
+        const dropDownNavigations = this.getDropDownNavigationState(navigations);
+
         this.setState({
+          // We need to transform the navigations here.. into the structure defined before...
           navigations: res._navigations[0]._element,
         });
       })
@@ -130,6 +244,10 @@ class AppHeaderNavigationMain extends React.Component {
       });
   }
 
+  // TODO: have to implement onClick handler here...
+  // Once clicked it is going to toggle the show values...
+  // We can only change the state though?
+  // So how would we figure out how to change the dom? We have to use state to define it...
   renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling) {
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
@@ -184,6 +302,7 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   renderCategories() {
+    // Where does navigations get set?
     const { navigations } = this.state;
     const isLeftDropDownStyling = false;
     return (navigations.map((category) => {

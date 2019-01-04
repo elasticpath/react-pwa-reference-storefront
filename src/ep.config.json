@@ -2,7 +2,7 @@
   "cortexApi": {
     "path": "/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://vestri.us.epdemos.com"
+    "pathForProxy": "http://localhost:9080"
   },
   "supportedLocales": [
     {
