@@ -64,7 +64,7 @@ class AppHeaderNavigationMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      navigations: [],
+      navigations: {},
     };
   }
 
@@ -91,110 +91,18 @@ class AppHeaderNavigationMain extends React.Component {
     }
   }
 
-  getDropDownNavigationStateHelper(navigations) {
-    const dropDownNavigation = new Map();
-
-    navigations.forEach((category) => {
-      const displayName = category['display-name'];
-      const show = 0;
-
-      const categoryChildren = category._child;
-      let children;
-      if (categoryChildren) {
-        children = this.getDropDownNavigationStateHelper(categoryChildren);
-      }
-
-      dropDownNavigation[displayName] = {
-        show,
-        ...children,
-      };
-    });
-
-    return dropDownNavigation;
-  }
-
   getDropDownNavigationState(navigations) {
-    // TODO: parse the navigations into the following structure...
-    //
-
-    //   navigations =
-    //     [
-    //       {
-    //         display-name: Accessories,
-    //     links: [],
-    //     messages: [],
-    //     name: "VESTRI_ACCESSORIES",
-    //     self: {}
-    //        },
-    //       {
-    //        _child:[
-    //        {
-    //           _child: [
-    //            {
-    //              _child:[]
-    //           }
-    //           ]
-    //        display-name: "nested1",
-    //        links: [],
-    //        messages: [],
-    //        name: "NEsted1",
-    //        self: {}
-    //        },
-    //       {...}
-    //       ],
-    //      display-name: "All Products",
-    //      links: [],
-    //      messages: [],
-    //      name: "VESTRI_MODEL_S_ALL_PRODUCTS",
-    //      self: {}
-    //   },
-    //     {
-    //       _child: [],
-    //       display-name: "Something",
-    //       links: [],
-    //       messages: [],
-    //       name: "VESTRI_MODEL_SOMETHING",
-    //       self: {}
-    //     }
-    //   ]
-    //     display-name: "M-Class",
-    //     links: [],
-    //     messages: [],
-    //     name: "VESTRI_LADIES_APPAREL",
-    //     self: {}
-    //   }
-    // ]
-    //
-    //   Turn the above into...
-    //
-    //   {
-    //     Accessories: {
-    //       show:1
-    //     },
-    //     M-Class: {
-    //     show:1,
-    //     All-Products:{
-    //       show:0,
-    //         nested1:{
-    //         show:0
-    //       }
-    //     },
-    //     Something:{
-    //       show:0
-    //     }
-    //   }
-    //   }
     const dropDownNavigation = {};
 
     navigations.forEach((category) => {
       const displayName = category['display-name'];
-      const show = 1;
+      const show = false; // HAX -- Should change this for all top categories.
 
       const categoryChildren = category._child;
       let children;
 
       if (categoryChildren) {
-        children = this.getDropDownNavigationStateHelper(categoryChildren);
+        children = this.getDropDownNavigationState(categoryChildren);
       }
 
       dropDownNavigation[displayName] = {
@@ -202,8 +110,7 @@ class AppHeaderNavigationMain extends React.Component {
         ...children,
       };
     });
-
-    console.log(dropDownNavigation);
+    return dropDownNavigation;
   }
 
   fetchNavigationData() {
@@ -235,14 +142,10 @@ class AppHeaderNavigationMain extends React.Component {
       })
       .then(res => res.json())
       .then((res) => {
-        const navigations = res._navigations[0]._element;
-
-        // TODO: This will be turned into the actual navigations that everything will work off of.
-        const dropDownNavigations = this.getDropDownNavigationState(navigations);
-
+        const cortexNavigations = res._navigations[0]._element;
+        const navigations = this.getDropDownNavigationState(cortexNavigations);
         this.setState({
-          // We need to transform the navigations here.. into the structure defined before...
-          navigations: res._navigations[0]._element,
+          navigations,
         });
       })
       .catch((error) => {
@@ -285,11 +188,13 @@ class AppHeaderNavigationMain extends React.Component {
         : (AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChild))));
   }
 
-  static renderCategoriesWithNoChildren(category) {
+  static renderCategoriesWithNoChildren(categoryDisplayName) {
+    // tODO: We need to change the display name to be the naem...
+    // Should be showing up here..
     return (
       <li className="nav-item">
-        <Link className="nav-link" to={`/category/${category.name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
-          {category['display-name']}
+        <Link className="nav-link" to={`/category/${categoryDisplayName}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
+          {categoryDisplayName}
         </Link>
       </li>
     );
@@ -311,18 +216,38 @@ class AppHeaderNavigationMain extends React.Component {
   renderCategories() {
     // Where does navigations get set?
     const { navigations } = this.state;
-    const isLeftDropDownStyling = false;
-    return (navigations.map((category) => {
-      if (category._child) {
-        return this.renderCategoriesWithChildren(category, isLeftDropDownStyling);
+    console.log('the navigations inside the renderCategories function');
+    console.log(navigations);
+    const firstLevelKeys = Object.keys(navigations);
+    console.log(firstLevelKeys);
+
+    return firstLevelKeys.map((category) => {
+      const categoryObj = this.state.navigations[category]
+      // Check if there are children
+      if (Object.keys(categoryObj).length > 1) {
+       // Then we start to go through this particular category and create all its subcategory dropdowns.
+
+       // return this.renderCategoriesWithChildren(category, isLeftDropDownStyling);
+        return AppHeaderNavigationMain.renderCategoriesWithNoChildren(category);
       }
-      return AppHeaderNavigationMain.renderCategoriesWithNoChildren(category, isLeftDropDownStyling);
-    }));
+      return AppHeaderNavigationMain.renderCategoriesWithNoChildren(category);
+    });
+
+    // TODO: We need to traverse through the map and all of its children...
+    // return (navigations.map((category) => {
+    //   if (category._child) {
+    //     return this.renderCategoriesWithChildren(category, isLeftDropDownStyling);
+    //   }
+    //   return AppHeaderNavigationMain.renderCategoriesWithNoChildren(category, isLeftDropDownStyling);
+    // }));
   }
 
   render() {
     // console.log("working");
     const { isMobileView } = this.props;
+    const { navigations } = this.state;
+    console.log(navigations);
+
     return (
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
         <nav className="navbar navbar-expand btco-hover-menu">
