@@ -96,6 +96,7 @@ class AppHeaderNavigationMain extends React.Component {
 
     navigations.forEach((category) => {
       const displayName = category['display-name'];
+      const { name } = category;
       const show = false; // HAX -- Should change this for all top categories.
 
       const categoryChildren = category._child;
@@ -107,6 +108,7 @@ class AppHeaderNavigationMain extends React.Component {
 
       dropDownNavigation[displayName] = {
         show,
+        name,
         ...children,
       };
     });
@@ -188,13 +190,12 @@ class AppHeaderNavigationMain extends React.Component {
         : (AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChild))));
   }
 
-  static renderCategoriesWithNoChildren(categoryDisplayName) {
-    // tODO: We need to change the display name to be the naem...
-    // Should be showing up here..
+  renderCategoriesWithNoChildren(categoryKey) {
+    const { navigations } = this.state;
     return (
       <li className="nav-item">
-        <Link className="nav-link" to={`/category/${categoryDisplayName}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
-          {categoryDisplayName}
+        <Link className="nav-link" to={`/category/${navigations[categoryKey]['name']}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
+          {categoryKey}
         </Link>
       </li>
     );
@@ -222,15 +223,12 @@ class AppHeaderNavigationMain extends React.Component {
     console.log(firstLevelKeys);
 
     return firstLevelKeys.map((category) => {
-      const categoryObj = this.state.navigations[category]
+      const categoryObj = navigations[category]
       // Check if there are children
       if (Object.keys(categoryObj).length > 1) {
-       // Then we start to go through this particular category and create all its subcategory dropdowns.
-
-       // return this.renderCategoriesWithChildren(category, isLeftDropDownStyling);
-        return AppHeaderNavigationMain.renderCategoriesWithNoChildren(category);
+        // return this.renderCategoriesWithChildren(category, false);
       }
-      return AppHeaderNavigationMain.renderCategoriesWithNoChildren(category);
+      return this.renderCategoriesWithNoChildren(category);
     });
 
     // TODO: We need to traverse through the map and all of its children...
