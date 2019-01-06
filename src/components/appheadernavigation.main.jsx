@@ -32,6 +32,7 @@ import cortexFetch from '../utils/Cortex';
 
 import './appheadernavigation.main.less';
 import './appheaderhovernavigation.main.less';
+import _ from 'lodash';
 
 const Config = require('Config');
 
@@ -160,15 +161,14 @@ class AppHeaderNavigationMain extends React.Component {
   // Once clicked it is going to toggle the show values...
   // We can only change the state though?
   // So how would we figure out how to change the dom? We have to use state to define it...
-  renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling) {
-    // We need to check if this has children or not
+  renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling) {
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
-        <Link className="dropdown-item dropdown-toggle" to={`/category/${subcategoryChild.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-          {subcategoryChild['display-name']}
+        <Link className={`dropdown-item dropdown-toggle ${nestedChildObj.show ? 'show' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+          {subcategoryChildKeyName}
         </Link>
         <ul className={`dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}`} aria-labelledby="navbarDropdownMenuLink">
-          {this.renderSubCategories(subcategoryChild._child, !isLeftDropDownStyling)}
+          {this.renderSubCategories(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`, !isLeftDropDownStyling)}
         </ul>
       </li>
     );
@@ -188,7 +188,7 @@ class AppHeaderNavigationMain extends React.Component {
 
   renderSubCategories(category, path, isLeftDropDownStyling) {
     const { navigations } = this.state;
-    const childObj = navigations[path];
+    const childObj = _.get(navigations, path, '');
     const subCategoryChildArray = Object.keys(childObj);
     // TODO: make sure this works here... We have the array of the child we just have to render it properly now ...
     return subCategoryChildArray.map((subcategoryChildKeyName) => {
@@ -197,7 +197,7 @@ class AppHeaderNavigationMain extends React.Component {
       console.log(nestedChildObj);
       if (Object.keys(nestedChildObj).length > 2 && subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
         console.log(nestedChildObj);
-        this.renderSubCategoriesWithChildren(isLeftDropDownStyling);
+        return this.renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling);
       } else {
         console.log(nestedChildObj);
         return AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj);
