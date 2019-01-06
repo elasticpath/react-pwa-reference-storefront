@@ -161,6 +161,7 @@ class AppHeaderNavigationMain extends React.Component {
   // We can only change the state though?
   // So how would we figure out how to change the dom? We have to use state to define it...
   renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling) {
+    // We need to check if this has children or not
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
         <Link className="dropdown-item dropdown-toggle" to={`/category/${subcategoryChild.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
@@ -173,49 +174,69 @@ class AppHeaderNavigationMain extends React.Component {
     );
   }
 
-  static renderSubCategoriesWithNoChildren(subcategoryChild) {
-    return (
-      <li>
-        <Link className="dropdown-item" to={`/category/${subcategoryChild.name}`}>
-          {subcategoryChild['display-name']}
-        </Link>
-      </li>
-    );
+  static renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj) {
+    if (subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
+      return (
+        <li>
+          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} to={`/category/${nestedChildObj.name}`}>
+            {subcategoryChildKeyName}
+          </Link>
+        </li>
+      );
+    }
   }
 
-  renderSubCategories(subCategoryChildArray, isLeftDropDownStyling) {
-    return subCategoryChildArray.map(subcategoryChild => (
-      subcategoryChild._child
-        ? (this.renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling))
-        : (AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChild))));
+  renderSubCategories(category, path, isLeftDropDownStyling) {
+    const { navigations } = this.state;
+    const childObj = navigations[path];
+    const subCategoryChildArray = Object.keys(childObj);
+    // TODO: make sure this works here... We have the array of the child we just have to render it properly now ...
+    return subCategoryChildArray.map((subcategoryChildKeyName) => {
+      // We need to check if this nestedChildObj has anymore ckeys representing children then we will choose to recurse appropriately...
+      const nestedChildObj = childObj[subcategoryChildKeyName];
+      console.log(nestedChildObj);
+      if (Object.keys(nestedChildObj).length > 2 && subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
+        console.log(nestedChildObj);
+        this.renderSubCategoriesWithChildren(isLeftDropDownStyling);
+      } else {
+        console.log(nestedChildObj);
+        return AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj);
+      }
+    },
+      // subcategoryChild._child
+      //   ? (this.renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling))
+      //   : (AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChild))
+      // }
+    );
   }
 
   renderCategoriesWithNoChildren(categoryKey) {
     const { navigations } = this.state;
     return (
       <li className="nav-item">
-        <Link className="nav-link" to={`/category/${navigations[categoryKey]['name']}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
+        <Link className="nav-link" to={`/category/${navigations[categoryKey].name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
           {categoryKey}
         </Link>
       </li>
     );
   }
 
-  renderCategoriesWithChildren(category, isLeftDropDownStyling) {
+  renderCategoriesWithChildren(category, path, isLeftDropDownStyling) {
+    // TODO: Render the subcategories properly here...
+    const { navigations } = this.state;
     return (
       <li className="nav-item dropdown">
-        <Link className="nav-link dropdown-toggle" to={`/category/${category.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-          {category['display-name']}
+        <Link className="nav-link dropdown-toggle" to={`/category/${navigations[category].name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+          {category}
         </Link>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          {this.renderSubCategories(category._child, isLeftDropDownStyling)}
+          {this.renderSubCategories(category, path, isLeftDropDownStyling)}
         </ul>
       </li>
     );
   }
 
   renderCategories() {
-    // Where does navigations get set?
     const { navigations } = this.state;
     console.log('the navigations inside the renderCategories function');
     console.log(navigations);
@@ -223,10 +244,11 @@ class AppHeaderNavigationMain extends React.Component {
     console.log(firstLevelKeys);
 
     return firstLevelKeys.map((category) => {
-      const categoryObj = navigations[category]
+      const categoryObj = navigations[category];
       // Check if there are children
-      if (Object.keys(categoryObj).length > 1) {
-        // return this.renderCategoriesWithChildren(category, false);
+      if (Object.keys(categoryObj).length > 2) {
+        const path = category;
+        return this.renderCategoriesWithChildren(category, path, false);
       }
       return this.renderCategoriesWithNoChildren(category);
     });
