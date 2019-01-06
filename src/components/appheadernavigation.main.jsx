@@ -187,6 +187,7 @@ class AppHeaderNavigationMain extends React.Component {
     const { navigations } = this.state;
     const childObj = _.get(navigations, path, '');
     const subCategoryChildArray = Object.keys(childObj);
+
     return subCategoryChildArray.map((subcategoryChildKeyName) => {
       const nestedChildObj = childObj[subcategoryChildKeyName];
       if (Object.keys(nestedChildObj).length > 2 && subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
@@ -200,7 +201,7 @@ class AppHeaderNavigationMain extends React.Component {
     const { navigations } = this.state;
     return (
       <li className="nav-item">
-        <Link className="nav-link" to={`/category/${navigations[categoryKey].name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false">
+        <Link className="nav-link" to={`/category/${navigations[categoryKey].name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false" data-target="#">
           {categoryKey}
         </Link>
       </li>
@@ -211,7 +212,7 @@ class AppHeaderNavigationMain extends React.Component {
     const { navigations } = this.state;
     return (
       <li className="nav-item dropdown">
-        <Link className="nav-link dropdown-toggle" to={`/category/${navigations[category].name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+        <Link className="nav-link dropdown-toggle" to={`/category/${navigations[category].name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" data-target="#">
           {category}
         </Link>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
