@@ -157,10 +157,6 @@ class AppHeaderNavigationMain extends React.Component {
       });
   }
 
-  // TODO: have to implement onClick handler here...
-  // Once clicked it is going to toggle the show values...
-  // We can only change the state though?
-  // So how would we figure out how to change the dom? We have to use state to define it...
   renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling) {
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
@@ -184,30 +180,20 @@ class AppHeaderNavigationMain extends React.Component {
         </li>
       );
     }
+    return null;
   }
 
   renderSubCategories(category, path, isLeftDropDownStyling) {
     const { navigations } = this.state;
     const childObj = _.get(navigations, path, '');
     const subCategoryChildArray = Object.keys(childObj);
-    // TODO: make sure this works here... We have the array of the child we just have to render it properly now ...
     return subCategoryChildArray.map((subcategoryChildKeyName) => {
-      // We need to check if this nestedChildObj has anymore ckeys representing children then we will choose to recurse appropriately...
       const nestedChildObj = childObj[subcategoryChildKeyName];
-      console.log(nestedChildObj);
       if (Object.keys(nestedChildObj).length > 2 && subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
-        console.log(nestedChildObj);
         return this.renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling);
-      } else {
-        console.log(nestedChildObj);
-        return AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj);
       }
-    },
-      // subcategoryChild._child
-      //   ? (this.renderSubCategoriesWithChildren(subcategoryChild, isLeftDropDownStyling))
-      //   : (AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChild))
-      // }
-    );
+      return AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj);
+    });
   }
 
   renderCategoriesWithNoChildren(categoryKey) {
@@ -222,7 +208,6 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   renderCategoriesWithChildren(category, path, isLeftDropDownStyling) {
-    // TODO: Render the subcategories properly here...
     const { navigations } = this.state;
     return (
       <li className="nav-item dropdown">
@@ -238,35 +223,20 @@ class AppHeaderNavigationMain extends React.Component {
 
   renderCategories() {
     const { navigations } = this.state;
-    console.log('the navigations inside the renderCategories function');
-    console.log(navigations);
     const firstLevelKeys = Object.keys(navigations);
-    console.log(firstLevelKeys);
 
     return firstLevelKeys.map((category) => {
       const categoryObj = navigations[category];
-      // Check if there are children
       if (Object.keys(categoryObj).length > 2) {
         const path = category;
         return this.renderCategoriesWithChildren(category, path, false);
       }
       return this.renderCategoriesWithNoChildren(category);
     });
-
-    // TODO: We need to traverse through the map and all of its children...
-    // return (navigations.map((category) => {
-    //   if (category._child) {
-    //     return this.renderCategoriesWithChildren(category, isLeftDropDownStyling);
-    //   }
-    //   return AppHeaderNavigationMain.renderCategoriesWithNoChildren(category, isLeftDropDownStyling);
-    // }));
   }
 
   render() {
-    // console.log("working");
     const { isMobileView } = this.props;
-    const { navigations } = this.state;
-    console.log(navigations);
 
     return (
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
