@@ -21,6 +21,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import scriptjs from 'scriptjs';
 // eslint-disable-next-line
 import * as styles from '!!../utils/less-var-loader!../style/common.less';
 
