@@ -193,15 +193,14 @@ class AppHeaderNavigationMain extends React.Component {
 
   getListOfPathsToAlterShow(path) {
     const loPathsToChange = [];
+    let currentPathToAddToArray = path;
 
     do {
       const indexOfLastDot = path.lastIndexOf('.');
-      path = path.substring(0, indexOfLastDot);
+      currentPathToAddToArray = currentPathToAddToArray.substring(0, indexOfLastDot);
 
       loPathsToChange.push(path);
     } while (path.indexOf('.') > -1);
-
-    console.log(loPathsToChange);
 
     return loPathsToChange;
   }
