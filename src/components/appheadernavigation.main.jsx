@@ -150,6 +150,7 @@ class AppHeaderNavigationMain extends React.Component {
         const navigations = this.getDropDownNavigationState(cortexNavigations);
         this.setState({
           navigations,
+          /* eslint-disable react/no-unused-state */
           originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
         });
       })
