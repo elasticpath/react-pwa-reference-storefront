@@ -66,6 +66,7 @@ class AppHeaderNavigationMain extends React.Component {
     super(props);
     this.state = {
       navigations: {},
+      originalMinimizedNav: {},
     };
   }
 
@@ -149,6 +150,7 @@ class AppHeaderNavigationMain extends React.Component {
         const navigations = this.getDropDownNavigationState(cortexNavigations);
         this.setState({
           navigations,
+          originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
         });
       })
       .catch((error) => {
@@ -189,20 +191,43 @@ class AppHeaderNavigationMain extends React.Component {
     this.toggleShowForCategory(category, path);
   }
 
+  getListOfPathsToAlterShow(path) {
+    const loPathsToChange = [];
+
+    do {
+      const indexOfLastDot = path.lastIndexOf('.');
+      path = path.substring(0, indexOfLastDot);
+
+      loPathsToChange.push(path);
+    } while (path.indexOf('.') > -1);
+
+    console.log(loPathsToChange);
+
+    return loPathsToChange;
+  }
+
   toggleShowForCategory(category, path) {
     const { isMobileView } = this.props;
 
     if (isMobileView) {
       this.setState((state) => {
-        if (isMobileView) {
-          const { navigations } = state;
-          const currentCategoryShowVal = _.get(navigations, `${path}.show`, '');
-          _.set(navigations, `${path}.show`, !currentCategoryShowVal);
+        const {
+          navigations,
+          originalMinimizedNav,
+        } = state;
 
-          return { navigations };
-        }
+        const returnNav = JSON.parse(JSON.stringify(originalMinimizedNav));
 
-        return null;
+        const loPathsToChange = this.getListOfPathsToAlterShow(path);
+
+        loPathsToChange.forEach((pathToChange) => {
+          _.set(returnNav, `${pathToChange}.show`, true);
+        });
+
+        const lowestCategoryInPathVal = !_.get(navigations, `${path}.show`, '');
+        _.set(returnNav, `${path}.show`, lowestCategoryInPathVal);
+
+        return { navigations: returnNav };
       });
     }
   }
