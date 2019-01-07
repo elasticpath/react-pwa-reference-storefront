@@ -165,9 +165,11 @@ class AppHeaderNavigationMain extends React.Component {
     const updatedPath = `${path}.${subcategoryChildKeyName}`;
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
-        <Link className={`dropdown-item dropdown-toggle ${_.get(navigations, `${updatedPath}.show`, '') ? 'rotateCaret' : ''}`} to="#" id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`)} aria-haspopup="true" aria-expanded="false">
+        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
+        <div className={`disable dropdown-item dropdown-toggle ${_.get(navigations, `${updatedPath}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
-        </Link>
+        </div>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} ${nestedChildObj.show ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
           {this.renderSubCategories(subcategoryChildKeyName, updatedPath, !isLeftDropDownStyling)}
         </ul>
@@ -257,9 +259,11 @@ class AppHeaderNavigationMain extends React.Component {
     const { navigations } = this.state;
     return (
       <li className="nav-item">
-        <Link className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to="#" onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
+        <div className={`disable nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
           {category}
-        </Link>
+        </div>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
           {this.renderSubCategories(category, path, isLeftDropDownStyling)}
         </ul>
