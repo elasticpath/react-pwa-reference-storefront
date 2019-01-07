@@ -175,7 +175,7 @@ class AppHeaderNavigationMain extends React.Component {
       return (
         <li>
           <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} to={`/category/${nestedChildObj.name}`}>
-            {subcategoryChildKeyName}
+            <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{subcategoryChildKeyName}</div>
           </Link>
         </li>
       );
@@ -216,7 +216,7 @@ class AppHeaderNavigationMain extends React.Component {
     return (
       <li className="nav-item">
         <Link className="nav-link" to={`/category/${navigations[categoryKey].name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false" data-target="#">
-          {categoryKey}
+          <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{categoryKey}</div>
         </Link>
       </li>
     );
