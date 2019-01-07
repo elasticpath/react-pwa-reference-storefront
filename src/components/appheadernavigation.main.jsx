@@ -188,13 +188,21 @@ class AppHeaderNavigationMain extends React.Component {
   }
 
   toggleShowForCategory(category, path) {
-    this.setState((state) => {
-      const { navigations } = state;
-      const currentCategoryShowVal = _.get(navigations, `${path}.show`, '');
-      _.set(navigations, `${path}.show`, !currentCategoryShowVal);
+    const { isMobileView } = this.props;
 
-      return { navigations };
-    });
+    if (isMobileView) {
+      this.setState((state) => {
+        if (isMobileView) {
+          const { navigations } = state;
+          const currentCategoryShowVal = _.get(navigations, `${path}.show`, '');
+          _.set(navigations, `${path}.show`, !currentCategoryShowVal);
+
+          return { navigations };
+        }
+
+        return null;
+      });
+    }
   }
 
   renderSubCategories(category, path, isLeftDropDownStyling) {
