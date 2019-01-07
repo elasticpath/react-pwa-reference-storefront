@@ -246,25 +246,6 @@ class CartLineItem extends React.Component {
     return null;
   }
 
-  renderPromotions() {
-    const { item } = this.props;
-    if (item._appliedpromotions) {
-      const promotions = item._appliedpromotions[0]._element;
-      if (promotions) {
-        return (
-          promotions.map(promotion => (
-            <li key={promotion.name}>
-              {(promotion['display-name'])
-                ? (promotion['display-name'])
-                : (promotion.name)}
-              &nbsp;
-            </li>
-          )));
-      }
-    }
-    return null;
-  }
-
   render() {
     const { item } = this.props;
     const { quantity } = this.state;
@@ -306,19 +287,6 @@ class CartLineItem extends React.Component {
             {item._item[0]._definition[0]['display-name']}
           </Link>
         </div>
-        {(item._appliedpromotions && item._appliedpromotions[0]._element)
-          ? (
-            <div className="promotions-col">
-              <ul className="promotions-container">
-                <label htmlFor="promotions-container" className="cart-summary-label-col">
-                  {intl.get('applied-promotions')}
-                  :&nbsp;
-                </label>
-                {this.renderPromotions()}
-              </ul>
-            </div>)
-          : ('')
-        }
         <div className="options-col">
           <ul className="options-container">
             {this.renderOptions()}
