@@ -165,7 +165,7 @@ class AppHeaderNavigationMain extends React.Component {
     const updatedPath = `${path}.${subcategoryChildKeyName}`;
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
-        <Link className={`dropdown-item dropdown-toggle ${_.get(navigations, `${updatedPath}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`)} aria-haspopup="true" aria-expanded="false">
+        <Link className={`dropdown-item dropdown-toggle ${_.get(navigations, `${updatedPath}.show`, '') ? 'rotateCaret' : ''}`} to="#" id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
         </Link>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} ${nestedChildObj.show ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
@@ -257,7 +257,7 @@ class AppHeaderNavigationMain extends React.Component {
     const { navigations } = this.state;
     return (
       <li className="nav-item">
-        <Link className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+        <Link className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to="#" onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
           {category}
         </Link>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
