@@ -49,36 +49,62 @@ class CartLineItem extends React.Component {
       quantity: item.quantity,
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
+    this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.handleMoveToCartBtnClicked = this.handleMoveToCartBtnClicked.bind(this);
     this.handleRemoveBtnClicked = this.handleRemoveBtnClicked.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { quantity } = this.state;
+    if (nextProps.item.quantity !== quantity) {
+      this.state = {
+        quantity: nextProps.item.quantity,
+      };
+    }
+  }
+
   handleQuantityChange(event) {
     event.preventDefault();
-    const newQuantity = event.target.value;
     const { item, handleQuantityChange } = this.props;
+    const { quantity } = this.state;
+    if (quantity === '') {
+      this.setState({ quantity: 1 });
+    }
     login().then(() => {
-      this.setState({ quantity: newQuantity }, () => {
-        cortexFetch(item.self.uri,
-          {
-            method: 'put',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify({
-              quantity: newQuantity,
-            }),
-          })
-          .then(() => {
-            handleQuantityChange();
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
+      cortexFetch(item.self.uri,
+        {
+          method: 'put',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            quantity,
+          }),
+        })
+        .then(() => {
+          handleQuantityChange();
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     });
+  }
+
+  handleQuantityDecrement() {
+    const { quantity } = this.state;
+    if (quantity > 1) {
+      const newItemQuantity = parseInt(quantity, 10) - 1;
+      this.setState({ quantity: newItemQuantity });
+    }
+  }
+
+  handleQuantityIncrement() {
+    const { quantity } = this.state;
+    const newItemQuantity = parseInt(quantity, 10) + 1;
+    this.setState({ quantity: newItemQuantity });
   }
 
   handleMoveToCartBtnClicked() {
@@ -109,7 +135,7 @@ class CartLineItem extends React.Component {
   }
 
   handleRemoveBtnClicked() {
-    const { item, handleQuantityChange } = this.props;
+    const { item, handleQuantityChange, history } = this.props;
     login().then(() => {
       cortexFetch(item.self.uri,
         {
@@ -122,6 +148,7 @@ class CartLineItem extends React.Component {
         .then(() => {
           this.trackAddItemAnalytics();
           handleQuantityChange();
+          history.push('/mybag'); // need call push to refresh header shopping cart items count
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -242,7 +269,7 @@ class CartLineItem extends React.Component {
     }
     const featuredProductAttribute = (item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return (
-      <div className="cart-lineitem-row">
+      <div id={`cart_lineitem_${item._item[0]._code[0].code}`} className="cart-lineitem-row">
         <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
           {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
             ? (
@@ -300,42 +327,23 @@ class CartLineItem extends React.Component {
             <div data-region="itemTotalRateRegion" />
           </div>
         </div>
-        <div className="quantity-col" data-el-value="lineItem.quantity">
-          {(quantity > 0) ? (
-            <select className="quantity-select form-control" id="select-quantity" name="select-quantity" value={quantity} onChange={this.handleQuantityChange}>
-              <option value="1">
-                1
-              </option>
-              <option value="2">
-                2
-              </option>
-              <option value="3">
-                3
-              </option>
-              <option value="4">
-                4
-              </option>
-              <option value="5">
-                5
-              </option>
-              <option value="6">
-                6
-              </option>
-              <option value="7">
-                7
-              </option>
-              <option value="8">
-                8
-              </option>
-              <option value="9">
-                9
-              </option>
-              <option value="10">
-                10
-              </option>
-            </select>
-          ) : ('')}
-        </div>
+        <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
+          {(quantity !== undefined) ? [
+            <span className="input-group-btn">
+              <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+                <span className="glyphicon glyphicon-plus" />
+              </button>
+              <div className="quantity-col form-content form-content-quantity">
+                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
+              </div>
+              <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+                <span className="glyphicon glyphicon-minus" />
+              </button>
+            </span>,
+            <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value="Update Quantity" />,
+          ] : ('')
+          }
+        </form>
         <div className="remove-btn-col">
           <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
             <span className="btn-text">

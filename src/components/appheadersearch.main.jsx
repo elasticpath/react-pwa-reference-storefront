@@ -31,6 +31,11 @@ class AppHeaderSearchMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
     isMobileView: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isFocused: false,
   }
 
   constructor(props) {
@@ -40,6 +45,14 @@ class AppHeaderSearchMain extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isFocused === true) {
+      setTimeout(() => {
+        this.searchInput.focus();
+      }, 500);
+    }
   }
 
   handleChange(event) {
@@ -53,6 +66,7 @@ class AppHeaderSearchMain extends React.Component {
       document.querySelector('.collapsable-container').classList.remove('show');
       history.push(`/search/${keywords}`);
     }
+    this.searchInput.value = '';
     event.preventDefault();
   }
 
@@ -62,7 +76,7 @@ class AppHeaderSearchMain extends React.Component {
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={this.search}>
-          <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} />
+          <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={(input) => { this.searchInput = input; }} />
           <div className="search-icon" />
         </form>
       </div>
