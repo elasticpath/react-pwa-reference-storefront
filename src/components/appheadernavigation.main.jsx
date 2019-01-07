@@ -66,6 +66,7 @@ class AppHeaderNavigationMain extends React.Component {
     super(props);
     this.state = {
       navigations: {},
+      /* eslint-disable react/no-unused-state */
       originalMinimizedNav: {},
     };
   }
@@ -117,6 +118,20 @@ class AppHeaderNavigationMain extends React.Component {
     return dropDownNavigation;
   }
 
+  static getListOfPathsToAlterShow(path) {
+    const loPathsToChange = [];
+    let currentPathToAddToArray = path;
+
+    do {
+      const indexOfLastDot = currentPathToAddToArray.lastIndexOf('.');
+      currentPathToAddToArray = currentPathToAddToArray.substring(0, indexOfLastDot);
+
+      loPathsToChange.push(currentPathToAddToArray);
+    } while (currentPathToAddToArray.indexOf('.') > -1);
+
+    return loPathsToChange;
+  }
+
   fetchNavigationData() {
     login()
       .then(() => cortexFetch(`/?zoom=${zoomArray.join()}`,
@@ -160,6 +175,32 @@ class AppHeaderNavigationMain extends React.Component {
       });
   }
 
+  toggleShowForCategory(category, path) {
+    const { isMobileView } = this.props;
+
+    if (isMobileView) {
+      this.setState((state) => {
+        const {
+          navigations,
+          originalMinimizedNav,
+        } = state;
+
+        const returnNav = JSON.parse(JSON.stringify(originalMinimizedNav));
+
+        const loPathsToChange = AppHeaderNavigationMain.getListOfPathsToAlterShow(path);
+
+        loPathsToChange.forEach((pathToChange) => {
+          _.set(returnNav, `${pathToChange}.show`, true);
+        });
+
+        const lowestCategoryInPathVal = !_.get(navigations, `${path}.show`, '');
+        _.set(returnNav, `${path}.show`, lowestCategoryInPathVal);
+
+        return { navigations: returnNav };
+      });
+    }
+  }
+
   renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling) {
     const { navigations } = this.state;
     const updatedPath = `${path}.${subcategoryChildKeyName}`;
@@ -188,46 +229,6 @@ class AppHeaderNavigationMain extends React.Component {
       );
     }
     return null;
-  }
-
-  getListOfPathsToAlterShow(path) {
-    const loPathsToChange = [];
-    let currentPathToAddToArray = path;
-
-    do {
-      const indexOfLastDot = currentPathToAddToArray.lastIndexOf('.');
-      currentPathToAddToArray = currentPathToAddToArray.substring(0, indexOfLastDot);
-
-      loPathsToChange.push(currentPathToAddToArray);
-    } while (currentPathToAddToArray.indexOf('.') > -1);
-
-    return loPathsToChange;
-  }
-
-  toggleShowForCategory(category, path) {
-    const { isMobileView } = this.props;
-
-    if (isMobileView) {
-      this.setState((state) => {
-        const {
-          navigations,
-          originalMinimizedNav,
-        } = state;
-
-        const returnNav = JSON.parse(JSON.stringify(originalMinimizedNav));
-
-        const loPathsToChange = this.getListOfPathsToAlterShow(path);
-
-        loPathsToChange.forEach((pathToChange) => {
-          _.set(returnNav, `${pathToChange}.show`, true);
-        });
-
-        const lowestCategoryInPathVal = !_.get(navigations, `${path}.show`, '');
-        _.set(returnNav, `${path}.show`, lowestCategoryInPathVal);
-
-        return { navigations: returnNav };
-      });
-    }
   }
 
   renderSubCategories(category, path, isLeftDropDownStyling) {
