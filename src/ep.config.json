@@ -57,5 +57,10 @@
       "submit_button_url": "",
       "thumbnail_url": ""
     }
+  },
+  "facebook": {
+    "enable": false,
+    "pageId": "<PAGE_ID>",
+    "applicationId": "<APP_ID>"
   }
 }

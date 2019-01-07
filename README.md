@@ -84,6 +84,9 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`indi.carousel`| Optional| Values| Configurations for the Indi carousel component.|
 |`indi.productReview`| Optional| Values| Configurations for the Indi product review component.|
 |`indi.brandAmbassador`| Optional| Values| Configurations for the Indi brand ambassador component.|
+|`facebook.enable`| Optional| Boolean| Enable the Elastic Path Facebook Chatbot component. More information may be found available here `https://github.com/elasticpath/facebook-chat`.|
+|`facebook.pageId`| Optional| String| The Facebook Page Identifier used to connect the chatbot component to Facebook.|
+|`facebook.applicationId`| Optional| String| The Facebook Application Identifier used to connect the chatbot component to Facebook.|
 
 ### Configuring Sample Data
 
