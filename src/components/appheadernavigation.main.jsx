@@ -160,10 +160,10 @@ class AppHeaderNavigationMain extends React.Component {
   renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling) {
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
-        <Link className={`dropdown-item dropdown-toggle ${nestedChildObj.show ? 'show' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+        <Link className="dropdown-item dropdown-toggle" to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.ulDropDownClicked(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
         </Link>
-        <ul className={`dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}`} aria-labelledby="navbarDropdownMenuLink">
+        <ul className={`dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} ${nestedChildObj.show ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
           {this.renderSubCategories(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`, !isLeftDropDownStyling)}
         </ul>
       </li>
@@ -181,6 +181,26 @@ class AppHeaderNavigationMain extends React.Component {
       );
     }
     return null;
+  }
+
+  ulDropDownClicked(category, path) {
+    // We need to show all the lower levels
+    // TODO: Implement this function to change the state...
+    console.log('the dropdown has been clicked');
+    this.toggleShowForCategory(category, path);
+  }
+
+  toggleShowForCategory(category, path) {
+    console.log(category);
+    console.log(path);
+
+    this.setState((state) => {
+      const { navigations } = state;
+      const currentCategoryShowVal = _.get(navigations, `${path}.show`, '');
+      _.set(navigations, `${path}.show`, !currentCategoryShowVal);
+
+      return { navigations };
+    });
   }
 
   renderSubCategories(category, path, isLeftDropDownStyling) {
@@ -210,12 +230,16 @@ class AppHeaderNavigationMain extends React.Component {
 
   renderCategoriesWithChildren(category, path, isLeftDropDownStyling) {
     const { navigations } = this.state;
+    // TODO: Place an onclick handler on ul in order to toggle the show attribute within the particular path.
+    console.log(_.get(navigations, `${path}.show`, ''));
+    console.log(navigations);
+    console.log('rerendering');
     return (
-      <li className="nav-item dropdown">
-        <Link className="nav-link dropdown-toggle" to={`/category/${navigations[category].name}`} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" data-target="#">
+      <li className="nav-item">
+        <Link className="nav-link dropdown-toggle" to={`/category/${navigations[category].name}`} onClick={() => this.ulDropDownClicked(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
           {category}
         </Link>
-        <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <ul className={`dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
           {this.renderSubCategories(category, path, isLeftDropDownStyling)}
         </ul>
       </li>
