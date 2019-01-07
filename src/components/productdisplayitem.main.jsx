@@ -24,6 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import {
@@ -110,6 +111,8 @@ class ProductDisplayItemMain extends React.Component {
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.handleConfiguration = this.handleConfiguration.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
+    this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
   }
@@ -178,7 +181,25 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   handleQuantityChange(event) {
-    this.setState({ itemQuantity: parseInt(event.target.value, 10) });
+    if (event.target.value === '') {
+      this.setState({ itemQuantity: 1 });
+    } else {
+      this.setState({ itemQuantity: parseInt(event.target.value, 10) });
+    }
+  }
+
+  handleQuantityDecrement() {
+    const { itemQuantity } = this.state;
+    if (itemQuantity > 1) {
+      const newItemQuantity = itemQuantity - 1;
+      this.setState({ itemQuantity: newItemQuantity });
+    }
+  }
+
+  handleQuantityIncrement() {
+    const { itemQuantity } = this.state;
+    const newItemQuantity = itemQuantity + 1;
+    this.setState({ itemQuantity: newItemQuantity });
   }
 
   handleConfiguration(configuration, event) {
@@ -384,7 +405,9 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   render() {
-    const { productData, addToCartFailedMessage, isLoading } = this.state;
+    const {
+      productData, addToCartFailedMessage, isLoading, itemQuantity,
+    } = this.state;
     if (productData) {
       let listPrice = 'n/a';
       if (productData._price) {
@@ -396,7 +419,11 @@ class ProductDisplayItemMain extends React.Component {
       }
       let availability = (productData._addtocartform[0].links.length > 0);
       let availabilityString = '';
+      let productLink = '';
       if (productData._availability.length >= 0) {
+        if (productData._code) {
+          productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
+        }
         if (productData._availability[0].state === 'AVAILABLE') {
           availabilityString = intl.get('in-stock');
         } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
@@ -408,6 +435,10 @@ class ProductDisplayItemMain extends React.Component {
           availabilityString = intl.get('out-of-stock');
         }
       }
+      const productTitle = productData._definition[0]['display-name'];
+      const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
+      const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
+      const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
       const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');
@@ -504,41 +535,17 @@ class ProductDisplayItemMain extends React.Component {
                     <label htmlFor="product_display_item_quantity_label" className="control-label">
                       {intl.get('quantity')}
                     </label>
-
-                    <div className="form-content">
-                      <select className="form-control" id="product_display_item_quantity_select" name="itemdetail-select-quantity" onChange={this.handleQuantityChange}>
-                        <option id="product_display_item_quantity_option_1" value="1">
-                          1
-                        </option>
-                        <option id="product_display_item_quantity_option_2" value="2">
-                          2
-                        </option>
-                        <option id="product_display_item_quantity_option_3" value="3">
-                          3
-                        </option>
-                        <option id="product_display_item_quantity_option_4" value="4">
-                          4
-                        </option>
-                        <option id="product_display_item_quantity_option_5" value="5">
-                          5
-                        </option>
-                        <option id="product_display_item_quantity_option_6" value="6">
-                          6
-                        </option>
-                        <option id="product_display_item_quantity_option_7" value="7">
-                          7
-                        </option>
-                        <option id="product_display_item_quantity_option_8" value="8">
-                          8
-                        </option>
-                        <option id="product_display_item_quantity_option_9" value="9">
-                          9
-                        </option>
-                        <option id="product_display_item_quantity_option_10" value="10">
-                          10
-                        </option>
-                      </select>
-                    </div>
+                    <span className="input-group-btn">
+                      <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+                        <span className="glyphicon glyphicon-plus" />
+                      </button>
+                      <div className="quantity-col form-content form-content-quantity">
+                        <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
+                      </div>
+                      <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+                        <span className="glyphicon glyphicon-minus" />
+                      </button>
+                    </span>
                     {
                       (isLoading) ? (<div className="miniLoader" />) : ''
                     }
@@ -578,6 +585,36 @@ class ProductDisplayItemMain extends React.Component {
                   </form>
                 ) : ('')
                 }
+              </div>
+              <div className="social-network-sharing">
+                <InlineShareButtons
+                  config={{
+                    alignment: 'center', // alignment of buttons (left, center, right)
+                    color: 'social', // set the color of buttons (social, white)
+                    enabled: true, // show/hide buttons (true, false)
+                    font_size: 16, // font size for the buttons
+                    labels: 'cta', // button labels (cta, counts, null)
+                    language: 'en', // which language to use (see LANGUAGES)
+                    networks: [ // which networks to include (see SHARING NETWORKS)
+                      'facebook',
+                      'twitter',
+                      'pinterest',
+                      'email',
+                    ],
+                    padding: 12, // padding within buttons (INTEGER)
+                    radius: 4, // the corner radius on each button (INTEGER)
+                    size: 40, // the size of each button (INTEGER)
+
+                    // OPTIONAL PARAMETERS
+                    url: productLink, // (defaults to current url)
+                    image: productImage, // (defaults to og:image or twitter:image)
+                    description: productDescriptionValue, // (defaults to og:description or twitter:description)
+                    title: productTitle, // (defaults to og:title or twitter:title)
+                    message: 'custom email text', // (only for email sharing)
+                    subject: 'custom email subject', // (only for email sharing)
+                    username: 'custom twitter handle', // (only for twitter sharing)
+                  }}
+                />
               </div>
             </div>
             <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>

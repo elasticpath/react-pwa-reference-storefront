@@ -24,7 +24,7 @@
 .home-page-component {
   height: 100%;
 
-  .section {
+  .section, .section-parallax {
     max-width: 100%;
     padding-right: 0px;
     padding-left: 0px;
@@ -51,6 +51,36 @@
 
     .line-3 {
       padding: 20px;
+    }
+
+    .line-white {
+      font-size: 14px;
+      color: white;
+      letter-spacing: .4px;
+    }
+
+    .line-link {
+      color: @mainBlueColor;
+      font-size: 12px;
+      margin-top: 20px;
+      position: relative;
+      display: inline-block;
+
+      &:after {
+        @size: 8px;
+        @border: 1.5px;
+
+        content: '';
+        display: block;
+        border-top: @border solid @mainBlueColor;
+        border-right: @border solid @mainBlueColor;
+        height: @size;
+        width: @size;
+        position: absolute;
+        transform: rotate(45deg) translate(0, -50%);
+        top: 45%;
+        right: 0;
+      }
     }
 
     .sub-section {
@@ -126,8 +156,82 @@
     }
   }
 
+  .section-parallax {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    background-color: black;
+    height: 35vw;
+    max-height: 700px;
+
+    .parallax-image {
+      width: 100%;
+    }
+
+    .sub-section {
+      position: absolute;
+
+      .text-block {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .section-parallax-1 {
+    .sub-section {
+      left: 18%;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+
+  .section-parallax-2 {
+    @img-container-width: 105vh;
+
+    .parallax-image-container {
+      width: @img-container-width;
+    }
+
+    .sub-section {
+      left: @img-container-width;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+
   .section-4 {
     background-color: #f7f7f7;
+  }
+
+  @media (max-width: @tabletWidth - 1px) {
+    .section-parallax {
+      height: 400px;
+    }
+
+    .section-parallax-1 {
+      .sub-section {
+        left: 8%;
+      }
+    }
+
+    .section-parallax-2 {
+      @img-container-width: 62%;
+
+      .parallax-image-container {
+        width: @img-container-width;
+
+        .parallax-image {
+          height: 500px;
+          object-position: right;
+          object-fit: cover;
+        }
+      }
+
+      .sub-section {
+        left: @img-container-width - 5%;
+        top: 65%;
+      }
+    }
   }
 
   @media (min-width: @mobileWidth) {
@@ -175,6 +279,44 @@
 
       .btn-accessories {
         margin-top: 20px;
+      }
+    }
+
+    .section-parallax {
+      height: 60vh;
+
+      .parallax-image {
+        height: 70vh;
+        object-fit: cover;
+      }
+
+      .sub-section {
+        left: 0;
+        top: unset;
+        bottom: 10%;
+        transform: translate(0, 0);
+
+        .text-block {
+          width: 100%;
+        }
+      }
+    }
+
+    .section-parallax-1 {
+      .parallax-image {
+        height: 70vh;
+        object-position: 70%;
+      }
+    }
+
+    .section-parallax-2 {
+      .parallax-image-container {
+        width: 100%;
+
+        .parallax-image {
+          height: 55vh;
+          object-position: right;
+        }
       }
     }
   }

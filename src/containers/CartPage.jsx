@@ -23,6 +23,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
+import QuickOrderMain from '../components/quickorder.main';
 import CartMain from '../components/cart.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import AddPromotionContainer from '../components/add.promotion.container';
@@ -156,6 +157,9 @@ class CartPage extends React.Component {
               )}
             </div>
           </div>
+          {(Config.b2bFeatures) ? (
+            <QuickOrderMain onAddToCart={() => { this.fetchCartData(); }} />
+          ) : ('')}
           {cartData && !isLoading && (
             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
               <CartMain empty={!cartData['total-quantity']} cartData={cartData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
