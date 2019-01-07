@@ -45,10 +45,6 @@
         min-width: 250px;
         display: none
       }
-
-      .btco-hover-menu .show > .dropdown-toggle::after {
-        transform: rotate(-90deg);
-      }
     }
 
   @media only screen and (max-width: @tabletWidth - 1){
@@ -59,4 +55,9 @@
         text-align: center;
       }
     }
+  
+  .rotateCaret {
+    transform: rotate(-90deg);
+  }
+
 }
