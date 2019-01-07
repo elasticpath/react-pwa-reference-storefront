@@ -59,7 +59,7 @@
   },
   "facebook": {
     "enable": true,
-    "pageId": "342187129912807",
-    "applicationId": "611342922616129"
+    "pageId": "<PAGE_ID>",
+    "applicationId": "<APP_ID>"
   }
 }

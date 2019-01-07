@@ -21,17 +21,21 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line
 import * as styles from '!!../utils/less-var-loader!../style/common.less';
 
 class FacebookChat extends React.Component {
   static loadSDKAsynchronously() {
-    (function loadSdk(d, s, id) {
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      const js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    scriptjs('https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js', () => {
+      // eslint-disable-next-line (unaccepted unnamed function)
+      (function loadSdk(d, s, id) {
+        const fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        const js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    });
   }
 
   static propTypes = {
@@ -48,7 +52,9 @@ class FacebookChat extends React.Component {
 
   setFbAsync() {
     const { config } = this.props;
+    // eslint-disable-next-line
     window.fbAsyncInit = function () {
+      // eslint-disable-next-line
       FB.init({
         appId: config.applicationId,
         status: true,
