@@ -234,7 +234,7 @@ class AppHeaderNavigationMain extends React.Component {
     const { navigations } = this.state;
     return (
       <li className="nav-item">
-        <Link className="nav-link dropdown-toggle" to={`/category/${navigations[category].name}`} onClick={() => this.ulDropDownClicked(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+        <Link className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.ulDropDownClicked(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
           {category}
         </Link>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
