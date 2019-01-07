@@ -196,11 +196,11 @@ class AppHeaderNavigationMain extends React.Component {
     let currentPathToAddToArray = path;
 
     do {
-      const indexOfLastDot = path.lastIndexOf('.');
+      const indexOfLastDot = currentPathToAddToArray.lastIndexOf('.');
       currentPathToAddToArray = currentPathToAddToArray.substring(0, indexOfLastDot);
 
-      loPathsToChange.push(path);
-    } while (path.indexOf('.') > -1);
+      loPathsToChange.push(currentPathToAddToArray);
+    } while (currentPathToAddToArray.indexOf('.') > -1);
 
     return loPathsToChange;
   }
