@@ -251,7 +251,10 @@ class CartLineItem extends React.Component {
 
   renderTotalPrice() {
     const { item } = this.props;
-    const itemTotal = ((item._total) ? (item._total[0].cost[0].display) : (''));
+    let itemTotal = ((item._total) ? (item._total[0].cost[0].display) : (''));
+    if (!itemTotal && item._price) {
+      itemTotal = item._price[0]['purchase-price'][0].display;
+    }
     return (
       <ul className="price-container">
         <li className="cart-total-list-price is-hidden" data-region="itemListPriceRegion" />
@@ -304,7 +307,10 @@ class CartLineItem extends React.Component {
 
   renderOptions() {
     const { item } = this.props;
-    const options = (item._item) ? (item._item[0]._definition[0]._options) : ('');
+    let options = (item._item) ? (item._item[0]._definition[0]._options) : ('');
+    if (!options && item._definition) {
+      options = item._definition[0]._options;
+    }
     if (options) {
       return (
         options[0]._element.map(option => (
@@ -314,7 +320,9 @@ class CartLineItem extends React.Component {
               :&nbsp;
             </label>
             <span className="option-value">
-              {option._value[0]['display-name']}
+              {(option._value)
+                ? option._value[0]['display-name']
+                : ('')}
             </span>
           </li>
         ))
@@ -377,7 +385,7 @@ class CartLineItem extends React.Component {
     }
     const featuredProductAttribute = (item._item && item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return (
-      <div id={`cart_lineitem_${item._item[0]._code[0].code}`} className="cart-lineitem-row">
+      <div id={`cart_lineitem_${itemCodeString}`} className="cart-lineitem-row">
         <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
           {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
             ? (
