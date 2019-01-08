@@ -32,7 +32,6 @@ import {
 import cortexFetch from '../utils/Cortex';
 
 import './appheadernavigation.main.less';
-import './appheaderhovernavigation.main.less';
 
 
 const Config = require('Config');
