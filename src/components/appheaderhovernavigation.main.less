@@ -1,35 +1,35 @@
 @import './../style/common.less';
 
 .app-header-navigation-component {
-    /** First dropdown **/
+
     @media only screen and (min-width: @tabletWidth) {
-      .btco-hover-menu ul li {
+      .hover-menu ul li {
         position: relative;
       }
 
-      .btco-hover-menu ul li:hover > ul {
+      .hover-menu ul li:hover > ul {
         display: block
       }
 
       /** Right Dropdown Styling **/
-      .btco-hover-menu .right-drop-down {
+      .hover-menu .right-drop-down {
         position: relative
       }
 
-      .btco-hover-menu .right-drop-down:hover > ul {
+      .hover-menu .right-drop-down:hover > ul {
         display: block
       }
 
       /** Left Dropdown **/
-      .btco-hover-menu .left-drop-down {
+      .hover-menu .left-drop-down {
         position: relative
       }
 
-      .btco-hover-menu .left-drop-down:hover > ul {
+      .hover-menu .left-drop-down:hover > ul {
         display: block
       }
 
-      .btco-hover-menu .right-drop-down > .dropdown-menu {
+      .hover-menu .right-drop-down > .dropdown-menu {
         position: absolute;
         top: 0;
         left: -100%;
@@ -38,7 +38,7 @@
         z-index: 1
       }
 
-      .btco-hover-menu .left-drop-down > .dropdown-menu {
+      .hover-menu .left-drop-down > .dropdown-menu {
         position: absolute;
         top: 0%;
         left: 100%;
