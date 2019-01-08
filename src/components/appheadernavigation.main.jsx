@@ -207,7 +207,7 @@ class AppHeaderNavigationMain extends React.Component {
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} key={`${path}`}>
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <div className={`dropdown-item dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`)} aria-haspopup="true" aria-expanded="false">
+        <div className={`dropdown-item dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
         </div>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} ${nestedChildObj.show ? 'show' : ''} nestedCategory${currentCategoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
