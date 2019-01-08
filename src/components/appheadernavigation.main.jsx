@@ -284,7 +284,7 @@ class AppHeaderNavigationMain extends React.Component {
       const path = category;
       if (Object.keys(categoryObj).length > 2) {
         const categoryLevel = 0;
-        return this.renderCategoriesWithChildren(category, path, false, categoryLevel);
+        return this.renderCategoriesWithChildren(category, path, true, categoryLevel);
       }
       return this.renderCategoriesWithNoChildren(category, path);
     });
