@@ -27,13 +27,21 @@ import AppHeaderLoginMain from './appheaderlogin.main';
 import AppModalLoginMain from './appmodallogin.main';
 import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
+import AppHeaderTop from './appheadertop.main';
 import headerLogo from '../images/site-images/Company-Logo-v1.png';
+import cortexFetch from '../utils/Cortex';
+import { login } from '../utils/AuthService';
 
 import './appheader.main.less';
 
 const Config = require('Config');
 
 const headerLogoFileName = 'Company-Logo-v1.png';
+
+// Array of zoom parameters to pass to Cortex
+const zoomArray = [
+  'defaultcart',
+];
 
 class AppHeaderMain extends React.Component {
   static goBack() {
@@ -43,8 +51,19 @@ class AppHeaderMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartData: undefined,
+      isLoading: false,
       isOffline: false,
+      isSearchFocused: false,
     };
+  }
+
+  componentDidMount() {
+    this.fetchCartData();
+  }
+
+  componentWillReceiveProps() {
+    this.fetchCartData();
   }
 
   handleIsOffline = (isOfflineValue) => {
@@ -53,22 +72,44 @@ class AppHeaderMain extends React.Component {
     });
   }
 
+  handleInputFocus = () => {
+    this.setState({
+      isSearchFocused: true,
+    });
+  }
+
+  fetchCartData() {
+    login().then(() => {
+      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            cartData: res._defaultcart[0],
+            isLoading: false,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
   render() {
-    const { isOffline } = this.state;
+    const {
+      isOffline, cartData, isLoading, isSearchFocused,
+    } = this.state;
     const isInStandaloneMode = window.navigator.standalone;
     return [
       <header key="app-header" className="app-header">
+        <AppHeaderTop />
 
-        <div className="main-container">
-
-          {(isInStandaloneMode) ? (
-            <div className="back-btn-container">
-              <button className="back-btn" aria-label="back button" type="button" onClick={AppHeaderMain.goBack}>
-                <span className="icon glyphicon glyphicon-chevron-left" />
-              </button>
-            </div>
-          ) : ('')
-          }
+        <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
 
           <div className="logo-container">
             <Link to="/" className="logo">
@@ -91,21 +132,43 @@ class AppHeaderMain extends React.Component {
             <AppHeaderSearchMain isMobileView={false} />
           </div>
 
+          <div className="search-toggle-btn-container">
+            <button
+              className="search-toggle-btn"
+              type="button"
+              data-toggle="collapse"
+              data-target=".collapsable-container"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              onClick={this.handleInputFocus}
+            >
+              <div className="search-icon" />
+            </button>
+          </div>
+
           <div className="login-container">
             <AppHeaderLoginMain isMobileView={false} />
           </div>
 
           <div className="cart-link-container">
             <Link className="cart-link" to="/mybag">
+              {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                <span className="cart-link-counter">
+                  {cartData['total-quantity']}
+                </span>
+              )}
               {intl.get('shopping-bag-nav')}
             </Link>
           </div>
 
-          <div className="locale-container">
-            <AppHeaderLocaleMain isMobileView={false} />
-          </div>
 
           <div className="toggle-btn-container">
+            {(isInStandaloneMode) ? (
+              <button className="back-btn" aria-label="back button" type="button" onClick={AppHeaderMain.goBack}>
+                <span className="icon glyphicon glyphicon-chevron-left" />
+              </button>
+            ) : ('')
+            }
             <button
               className="toggle-btn"
               type="button"
@@ -114,15 +177,15 @@ class AppHeaderMain extends React.Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="icon glyphicon glyphicon-list" />
+              <span className="icon glyphicon glyphicon-align-justify" />
             </button>
           </div>
 
         </div>
 
         <div className="collapsable-container collapse collapsed">
-          <div className="mobile-search-container">
-            <AppHeaderSearchMain isMobileView />
+          <div className="search-container">
+            <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} />
           </div>
           <div className="mobile-locale-container">
             <AppHeaderLocaleMain isMobileView />
@@ -134,6 +197,13 @@ class AppHeaderMain extends React.Component {
             >
               <div data-toggle="collapse" data-target=".collapsable-container">
                 {intl.get('shopping-bag-nav')}
+                <div className="cart-link-counter-container">
+                  {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                    <span className="cart-link-counter">
+                      {cartData['total-quantity']}
+                    </span>
+                  )}
+                </div>
               </div>
             </Link>
           </div>

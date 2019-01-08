@@ -135,7 +135,7 @@ class CartLineItem extends React.Component {
   }
 
   handleRemoveBtnClicked() {
-    const { item, handleQuantityChange } = this.props;
+    const { item, handleQuantityChange, history } = this.props;
     login().then(() => {
       cortexFetch(item.self.uri,
         {
@@ -148,6 +148,7 @@ class CartLineItem extends React.Component {
         .then(() => {
           this.trackAddItemAnalytics();
           handleQuantityChange();
+          history.push('/mybag'); // need call push to refresh header shopping cart items count
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

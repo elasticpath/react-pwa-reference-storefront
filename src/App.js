@@ -27,13 +27,17 @@ import router from './routes';
 import withAnalytics from './utils/Analytics';
 import AppHeaderMain from './components/appheader.main';
 import AppFooterMain from './components/appfooter.main';
+import FacebookChat from './components/facebookchat.main';
 
 import './App.less';
+
+const Config = require('Config');
 
 // eslint-disable-next-line react/no-array-index-key
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
 const Root = () => [
+  <FacebookChat config={Config.facebook} />,
   <AppHeaderMain key="AppHeaderMain" />,
   <div key="app-content" className="app-content">
     <Switch>

@@ -24,6 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import {
@@ -418,7 +419,11 @@ class ProductDisplayItemMain extends React.Component {
       }
       let availability = (productData._addtocartform[0].links.length > 0);
       let availabilityString = '';
+      let productLink = '';
       if (productData._availability.length >= 0) {
+        if (productData._code) {
+          productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
+        }
         if (productData._availability[0].state === 'AVAILABLE') {
           availabilityString = intl.get('in-stock');
         } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
@@ -430,6 +435,10 @@ class ProductDisplayItemMain extends React.Component {
           availabilityString = intl.get('out-of-stock');
         }
       }
+      const productTitle = productData._definition[0]['display-name'];
+      const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
+      const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
+      const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
       const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');
@@ -577,6 +586,36 @@ class ProductDisplayItemMain extends React.Component {
                   </form>
                 ) : ('')
                 }
+              </div>
+              <div className="social-network-sharing">
+                <InlineShareButtons
+                  config={{
+                    alignment: 'center', // alignment of buttons (left, center, right)
+                    color: 'social', // set the color of buttons (social, white)
+                    enabled: true, // show/hide buttons (true, false)
+                    font_size: 16, // font size for the buttons
+                    labels: 'cta', // button labels (cta, counts, null)
+                    language: 'en', // which language to use (see LANGUAGES)
+                    networks: [ // which networks to include (see SHARING NETWORKS)
+                      'facebook',
+                      'twitter',
+                      'pinterest',
+                      'email',
+                    ],
+                    padding: 12, // padding within buttons (INTEGER)
+                    radius: 4, // the corner radius on each button (INTEGER)
+                    size: 40, // the size of each button (INTEGER)
+
+                    // OPTIONAL PARAMETERS
+                    url: productLink, // (defaults to current url)
+                    image: productImage, // (defaults to og:image or twitter:image)
+                    description: productDescriptionValue, // (defaults to og:description or twitter:description)
+                    title: productTitle, // (defaults to og:title or twitter:title)
+                    message: 'custom email text', // (only for email sharing)
+                    subject: 'custom email subject', // (only for email sharing)
+                    username: 'custom twitter handle', // (only for twitter sharing)
+                  }}
+                />
               </div>
             </div>
             <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
