@@ -201,9 +201,10 @@ class AppHeaderNavigationMain extends React.Component {
     }
   }
 
-  renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling) {
+  renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling, categoryLevel) {
     const { navigations } = this.state;
     const updatedPath = `${path}.${subcategoryChildKeyName}`;
+    const currentCategoryLevel = categoryLevel + 1;
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'}>
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
@@ -211,8 +212,8 @@ class AppHeaderNavigationMain extends React.Component {
         <div className={`disable dropdown-item dropdown-toggle ${_.get(navigations, `${updatedPath}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}.${subcategoryChildKeyName}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
         </div>
-        <ul className={`dropdown-menu sub-category-dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} ${nestedChildObj.show ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
-          {this.renderSubCategories(subcategoryChildKeyName, updatedPath, !isLeftDropDownStyling)}
+        <ul className={`dropdown-menu sub-category-dropdown-menu ${isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} ${nestedChildObj.show ? 'show' : ''} nestedCategory${currentCategoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
+          {this.renderSubCategories(subcategoryChildKeyName, updatedPath, !isLeftDropDownStyling, currentCategoryLevel)}
         </ul>
       </li>
     );
@@ -231,7 +232,7 @@ class AppHeaderNavigationMain extends React.Component {
     return null;
   }
 
-  renderSubCategories(category, path, isLeftDropDownStyling) {
+  renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel) {
     const { navigations } = this.state;
     const childObj = _.get(navigations, path, '');
     const subCategoryChildArray = Object.keys(childObj);
@@ -239,7 +240,7 @@ class AppHeaderNavigationMain extends React.Component {
     return subCategoryChildArray.map((subcategoryChildKeyName) => {
       const nestedChildObj = childObj[subcategoryChildKeyName];
       if (Object.keys(nestedChildObj).length > 2 && subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
-        return this.renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling);
+        return this.renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling, categoryLevel);
       }
       return AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj);
     });
@@ -256,7 +257,7 @@ class AppHeaderNavigationMain extends React.Component {
     );
   }
 
-  renderCategoriesWithChildren(category, path, isLeftDropDownStyling) {
+  renderCategoriesWithChildren(category, path, isLeftDropDownStyling, categoryLevel) {
     const { navigations } = this.state;
     return (
       <li className="nav-item">
@@ -265,8 +266,8 @@ class AppHeaderNavigationMain extends React.Component {
         <div className={`disable nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
           {category}
         </div>
-        <ul className={`dropdown-menu sub-category-dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''}`} aria-labelledby="navbarDropdownMenuLink">
-          {this.renderSubCategories(category, path, isLeftDropDownStyling)}
+        <ul className={`dropdown-menu sub-category-dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''} nestedCategory${categoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
+          {this.renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel)}
         </ul>
       </li>
     );
@@ -280,7 +281,8 @@ class AppHeaderNavigationMain extends React.Component {
       const categoryObj = navigations[category];
       if (Object.keys(categoryObj).length > 2) {
         const path = category;
-        return this.renderCategoriesWithChildren(category, path, false);
+        const categoryLevel = 0;
+        return this.renderCategoriesWithChildren(category, path, false, categoryLevel);
       }
       return this.renderCategoriesWithNoChildren(category);
     });
