@@ -24,6 +24,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import { login, logout } from '../utils/AuthService';
 import {
   cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm,
@@ -32,11 +33,10 @@ import cortexFetch from '../utils/Cortex';
 
 import './appheadernavigation.main.less';
 import './appheaderhovernavigation.main.less';
-import _ from 'lodash';
+
 
 const Config = require('Config');
 
-// Array of zoom parameters to pass to Cortex
 const zoomArray = [
   'navigations:element',
   'navigations:element:child',
@@ -100,7 +100,7 @@ class AppHeaderNavigationMain extends React.Component {
     navigations.forEach((category) => {
       const displayName = category['display-name'];
       const { name } = category;
-      const show = false; // HAX -- Should change this for all top categories.
+      const show = false;
 
       const categoryChildren = category._child;
       let children;
