@@ -37,6 +37,7 @@
         width: 100%;
         padding-top: 100%;
         position: relative;
+        z-index: 1;
 
         img {
           position: absolute;
@@ -50,6 +51,20 @@
           object-fit: cover;
           object-position: 50% 0;
         }
+      }
+      &:before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        background: -webkit-gradient(linear, left top, right top, color-stop(25%, #f2f2f2), color-stop(37%, #e6e6e6), color-stop(63%, #f2f2f2));
+        background: -webkit-linear-gradient(left, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+        background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+        -webkit-animation: skeleton-loading 1.4s ease infinite;
+        animation: skeleton-loading 1.4s ease infinite; 
+        background-size: 400% 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
 
@@ -103,4 +118,24 @@
     }
   }
 
+}
+
+@-webkit-keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%
+  }
+
+  100% {
+    background-position: 0 50%
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%
+  }
+
+  100% {
+    background-position: 0 50%
+  }
 }
