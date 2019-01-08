@@ -27,6 +27,8 @@ import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/Cort
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
 
+import './categoryitems.main.less';
+
 class CategoryItemsMain extends React.Component {
   static propTypes = {
     categoryProps: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -67,6 +69,7 @@ class CategoryItemsMain extends React.Component {
             this.setState({
               categoryModel: res,
               categoryModelDisplayName: res['display-name'],
+              categoryModelParentDisplayName: res._parent[0]['display-name'],
               categoryModelId: categoryId,
             });
           })
@@ -94,7 +97,7 @@ class CategoryItemsMain extends React.Component {
 
   render() {
     const {
-      isLoading, categoryModel, categoryModelId, categoryModelDisplayName,
+      isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName,
     } = this.state;
     const products = categoryModel._items ? categoryModel._items[0] : categoryModel;
     const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
@@ -118,9 +121,18 @@ class CategoryItemsMain extends React.Component {
 
             return (
               <div>
-                <h1 className="view-title">
+                <div className="menu-history">
+                  {categoryModelParentDisplayName}
+                  &nbsp;
+                  <span className="arrow">
+                    ﹥
+                  </span>
+                  &nbsp;
                   {categoryModelDisplayName}
-                </h1>
+                  <h1 className="category-title">
+                    {categoryModelDisplayName}
+                  </h1>
+                </div>
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
                   <ProductListMain productData={products} />
