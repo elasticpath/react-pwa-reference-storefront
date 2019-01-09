@@ -55,6 +55,7 @@ class CartLineItem extends React.Component {
     const { item } = this.props;
     this.state = {
       quantity: item.quantity,
+      openModal: false,
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
@@ -62,6 +63,7 @@ class CartLineItem extends React.Component {
     this.handleMoveToCartBtnClicked = this.handleMoveToCartBtnClicked.bind(this);
     this.handleRemoveBtnClicked = this.handleRemoveBtnClicked.bind(this);
     this.handleConfiguratorAddToCartBtnClicked = this.handleConfiguratorAddToCartBtnClicked.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -204,6 +206,18 @@ class CartLineItem extends React.Component {
     });
   }
 
+  handleModalOpen() {
+    this.setState({
+      openModal: true,
+    });
+  }
+
+  handleModalClose() {
+    this.setState({
+      openModal: false,
+    });
+  }
+
   trackAddItemAnalytics() {
     const { item } = this.props;
     if (isAnalyticsConfigured()) {
@@ -270,12 +284,16 @@ class CartLineItem extends React.Component {
     const bundleConfigs = (item._dependentlineitems && item._dependentlineitems[0] && item._dependentlineitems[0]._element) ? (item._dependentlineitems[0]._element) : (null);
     if (bundleConfigs) {
       return bundleConfigs.map(config => (
-        <li className="bundle-configuration" key={config}>
-          <label htmlFor="option-name" className="option-name">
-            {config._item[0]._definition[0]['display-name']}
-            &nbsp;
-          </label>
-        </li>
+        (config._item)
+          ? (
+            <li className="bundle-configuration" key={config}>
+              <label htmlFor="option-name" className="option-name">
+                {config._item[0]._definition[0]['display-name']}
+                &nbsp;
+              </label>
+            </li>
+          )
+          : ('')
       ));
     }
     return null;
@@ -352,7 +370,7 @@ class CartLineItem extends React.Component {
 
   render() {
     const { item } = this.props;
-    const { quantity } = this.state;
+    const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
     let availability = (itemAvailability[0].state === 'AVAILABLE');
     let availabilityString = '';
@@ -493,12 +511,12 @@ class CartLineItem extends React.Component {
         }
         {(item._dependentoptions && item._dependentoptions[0] && (item._dependentoptions[0]._element || item._dependentlineitems[0]._element)) ? (
           <div className="configure-btn-col">
-            <button className="ep-btn primary small btn-cart-configureBundle" type="button" data-toggle="modal" data-target={`#bundle-configuration-modal-${itemCodeString}`}>
+            <button className="ep-btn primary small btn-cart-configureBundle" type="button" onClick={() => this.handleModalOpen()} data-toggle="modal" data-target={`#bundle-configuration-modal-${itemCodeString}`}>
               <span className="btn-text">
                 {intl.get('configure-bundle')}
               </span>
             </button>
-            <AppModalBundleConfigurationMain key={`app-modal-bundle-configuration-main_${itemCodeString}`} bundleConfigurationItems={item} />
+            <AppModalBundleConfigurationMain key={`app-modal-bundle-configuration-main_${itemCodeString}`} handleModalClose={this.handleModalClose} bundleConfigurationItems={item} openModal={openModal} />
           </div>
         ) : ('')
         }

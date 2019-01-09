@@ -23,6 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router-dom';
+import Modal from 'react-responsive-modal';
 /* eslint-disable-next-line import/no-cycle */
 import CartLineItem from './cart.lineitem';
 import { login } from '../utils/AuthService';
@@ -58,6 +59,8 @@ const Config = require('Config');
 class AppModalBundleConfigurationMain extends React.Component {
   static propTypes = {
     bundleConfigurationItems: PropTypes.objectOf(PropTypes.any).isRequired,
+    handleModalClose: PropTypes.func.isRequired,
+    openModal: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -75,6 +78,7 @@ class AppModalBundleConfigurationMain extends React.Component {
     this.fetchDependantItemData();
   }
 
+  // TODO: Add some kind of check to prevent extra network calls
   componentWillReceiveProps() {
     this.fetchDependantItemData();
   }
@@ -118,23 +122,23 @@ class AppModalBundleConfigurationMain extends React.Component {
 
   render() {
     const { isLoading, registrationErrors, dependantItemData } = this.state;
-    const { bundleConfigurationItems } = this.props;
+    const { bundleConfigurationItems, handleModalClose, openModal } = this.props;
     let itemCodeString = '';
     if (dependantItemData && dependantItemData._dependentoptions && dependantItemData._dependentlineitems && (dependantItemData._dependentoptions[0]._element || dependantItemData._dependentlineitems[0]._element)) {
       if (bundleConfigurationItems._item && bundleConfigurationItems._item[0]._code[0]) {
         itemCodeString = bundleConfigurationItems._item[0]._code[0].code;
       }
       return (
-        <div className="modal bundle-configurator-modal-content" id={`bundle-configuration-modal-${itemCodeString}`}>
+        <Modal open={openModal} onClose={handleModalClose} className="modal bundle-configurator-modal-content" id={`bundle-configuration-modal-${itemCodeString}`}>
           <div className="modal-dialog">
             <div className="modal-content" id="simplemodal-container">
               <div className="modal-header">
                 <h2 className="modal-title">
                   {intl.get('configure-bundle-configurator')}
                 </h2>
-                <button type="button" className="close bundle_configurator_modal_close_button" data-dismiss="modal" >
+                {/* <button type="button" onClick={() => handleModalClose()} className="close bundle_configurator_modal_close_button" data-dismiss="modal">
                   &times;
-                </button>
+                </button> */}
               </div>
 
               {(dependantItemData._dependentlineitems[0] && dependantItemData._dependentlineitems[0]._element) ? (
@@ -144,7 +148,7 @@ class AppModalBundleConfigurationMain extends React.Component {
                   </h2>
                   <div className="wish-list-main-inner table-responsive">
                     {dependantItemData._dependentlineitems[0]._element.map(product => (
-                      <CartLineItem key={product._item[0]._code[0].code} item={product} handleQuantityChange={() => { this.handleQuantityChange(); }} hideQuantitySelector handleErrorMessage={this.handleErrorMessage} parentModal={`bundle-configuration-modal-${itemCodeString}`} />
+                      <CartLineItem key={product._item[0]._code[0].code} item={product} handleQuantityChange={() => { this.handleQuantityChange(); }} hideQuantitySelector handleErrorMessage={this.handleErrorMessage} />
                     ))}
                   </div>
                 </div>
@@ -158,7 +162,7 @@ class AppModalBundleConfigurationMain extends React.Component {
                   </h2>
                   <div className="wish-list-main-inner table-responsive">
                     {dependantItemData._dependentoptions[0]._element.map(product => (
-                      <CartLineItem key={product._code[0].code} item={product} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton hideQuantitySelector handleErrorMessage={this.handleErrorMessage} parentModal={`bundle-configuration-modal-${itemCodeString}`} />
+                      <CartLineItem key={product._code[0].code} item={product} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton hideQuantitySelector handleErrorMessage={this.handleErrorMessage} />
                     ))}
                   </div>
                 </div>
@@ -173,7 +177,7 @@ class AppModalBundleConfigurationMain extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+        </Modal>
       );
     }
     return ('');
