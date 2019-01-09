@@ -24,6 +24,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import { login, logout } from '../utils/AuthService';
 import {
   cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm,
@@ -32,12 +33,19 @@ import cortexFetch from '../utils/Cortex';
 
 import './appheadernavigation.main.less';
 
+
 const Config = require('Config');
 
-// Array of zoom parameters to pass to Cortex
 const zoomArray = [
   'navigations:element',
   'navigations:element:child',
+  'navigations:element:child:child',
+  'navigations:element:child:child:child',
+  'navigations:element:child:child:child:child',
+  'navigations:element:child:child:child:child:child',
+  'navigations:element:child:child:child:child:child:child',
+  'navigations:element:child:child:child:child:child:child:child',
+  'navigations:element:child:child:child:child:child:child:child:child',
 ];
 
 class AppHeaderNavigationMain extends React.Component {
@@ -56,7 +64,9 @@ class AppHeaderNavigationMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      navigations: [],
+      navigations: {},
+      /* eslint-disable react/no-unused-state */
+      originalMinimizedNav: {},
     };
   }
 
@@ -81,6 +91,44 @@ class AppHeaderNavigationMain extends React.Component {
     if (navigations.length === 0 && location.pathname === '/maintenance') {
       this.fetchNavigationData();
     }
+  }
+
+  getDropDownNavigationState(navigations) {
+    const dropDownNavigation = {};
+
+    navigations.forEach((category) => {
+      const displayName = category['display-name'];
+      const { name } = category;
+      const show = false;
+
+      const categoryChildren = category._child;
+      let children;
+
+      if (categoryChildren) {
+        children = this.getDropDownNavigationState(categoryChildren);
+      }
+
+      dropDownNavigation[displayName] = {
+        show,
+        name,
+        ...children,
+      };
+    });
+    return dropDownNavigation;
+  }
+
+  static getListOfPathsToAlterShow(path) {
+    const loPathsToChange = [];
+    let currentPathToAddToArray = path;
+
+    do {
+      const indexOfLastDot = currentPathToAddToArray.lastIndexOf('.');
+      currentPathToAddToArray = currentPathToAddToArray.substring(0, indexOfLastDot);
+
+      loPathsToChange.push(currentPathToAddToArray);
+    } while (currentPathToAddToArray.indexOf('.') > -1);
+
+    return loPathsToChange;
   }
 
   fetchNavigationData() {
@@ -112,8 +160,12 @@ class AppHeaderNavigationMain extends React.Component {
       })
       .then(res => res.json())
       .then((res) => {
+        const cortexNavigations = res._navigations[0]._element;
+        const navigations = this.getDropDownNavigationState(cortexNavigations);
         this.setState({
-          navigations: res._navigations[0]._element,
+          navigations,
+          /* eslint-disable react/no-unused-state */
+          originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
         });
       })
       .catch((error) => {
@@ -122,48 +174,134 @@ class AppHeaderNavigationMain extends React.Component {
       });
   }
 
-  render() {
+  toggleShowForCategory(category, path) {
+    const { isMobileView } = this.props;
+
+    if (isMobileView) {
+      this.setState((state) => {
+        const {
+          navigations,
+          originalMinimizedNav,
+        } = state;
+
+        const returnNav = JSON.parse(JSON.stringify(originalMinimizedNav));
+
+        const loPathsToChange = AppHeaderNavigationMain.getListOfPathsToAlterShow(path);
+
+        loPathsToChange.forEach((pathToChange) => {
+          _.set(returnNav, `${pathToChange}.show`, true);
+        });
+
+        const lowestCategoryInPathVal = !_.get(navigations, `${path}.show`, '');
+        _.set(returnNav, `${path}.show`, lowestCategoryInPathVal);
+
+        return { navigations: returnNav };
+      });
+    }
+  }
+
+  renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, path, isLeftDropDownStyling, categoryLevel) {
     const { navigations } = this.state;
+    const currentCategoryLevel = categoryLevel + 1;
+    return (
+      <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} key={`${path}`}>
+        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
+        <div className={`dropdown-item dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
+          {subcategoryChildKeyName}
+        </div>
+        <ul className={`dropdown-menu sub-category-dropdown-menu ${nestedChildObj.show ? 'show' : ''} nestedCategory${currentCategoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
+          {this.renderSubCategories(subcategoryChildKeyName, path, !isLeftDropDownStyling, currentCategoryLevel)}
+        </ul>
+      </li>
+    );
+  }
+
+  static renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj, path) {
+    if (subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
+      return (
+        <li key={`${path}`}>
+          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} to={`/category/${nestedChildObj.name}`}>
+            <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{subcategoryChildKeyName}</div>
+          </Link>
+        </li>
+      );
+    }
+    return null;
+  }
+
+  renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel) {
+    const { navigations } = this.state;
+    const childObj = _.get(navigations, path, '');
+    const subCategoryChildArray = Object.keys(childObj);
+
+    return subCategoryChildArray.map((subcategoryChildKeyName) => {
+      const nestedChildObj = childObj[subcategoryChildKeyName];
+      const currentPath = `${path}.${subcategoryChildKeyName}`;
+      if (subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
+        if (Object.keys(nestedChildObj).length > 2) {
+          return this.renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, currentPath, isLeftDropDownStyling, categoryLevel);
+        }
+        return AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj, currentPath);
+      }
+      return null;
+    });
+  }
+
+  renderCategoriesWithNoChildren(categoryKey, path) {
+    const { navigations } = this.state;
+    return (
+      <li className="nav-item" key={`${path}`}>
+        <Link className="nav-link" to={`/category/${navigations[categoryKey].name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false" data-target="#">
+          <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{categoryKey}</div>
+        </Link>
+      </li>
+    );
+  }
+
+  renderCategoriesWithChildren(category, path, isLeftDropDownStyling, categoryLevel) {
+    const { navigations } = this.state;
+    return (
+      <li className="nav-item" key={`${path}`}>
+        {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
+        <div className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+          {category}
+        </div>
+        <ul className={`dropdown-menu sub-category-dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''} nestedCategory${categoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
+          {this.renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel)}
+        </ul>
+      </li>
+    );
+  }
+
+  renderCategories() {
+    const { navigations } = this.state;
+    const firstLevelKeys = Object.keys(navigations);
+
+    return firstLevelKeys.map((category) => {
+      const categoryObj = navigations[category];
+      const path = category;
+      if (Object.keys(categoryObj).length > 2) {
+        const categoryLevel = 0;
+        return this.renderCategoriesWithChildren(category, path, true, categoryLevel);
+      }
+      return this.renderCategoriesWithNoChildren(category, path);
+    });
+  }
+
+  render() {
     const { isMobileView } = this.props;
 
     return (
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <ul className="navbar-nav nav mr-auto mt-2 mt-lg-0">
-          {navigations.map(category => (
-            category._child
-              ? (
-                <li className="nav-item dropdown" key={category.name} data-name={category['display-name']} data-el-container="category-nav-item-container">
-                  <a className="nav-link dropdown-toggle" href="/" id={`${isMobileView ? 'mobile_' : ''}navbarDropdown_${category.name}`} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {category['display-name']}
-                  </a>
-                  <div className="dropdown-menu sub-category-dropdown-menu" aria-label={`navbarDropdown_${category.name}`}>
-                    {category._child.map(subcategory => (
-                      <Link to={`/category/${subcategory.name}`} key={subcategory.name} className="dropdown-item" id={`${isMobileView ? 'mobile_' : ''}header_navbar_sub_category_button_${subcategory.name}`} title={subcategory['display-name']}>
-                        <div
-                          data-toggle="collapse"
-                          data-target={isMobileView ? '.collapsable-container' : ''}
-                        >
-                          {subcategory['display-name']}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </li>
-              )
-              : (
-                <li className="nav-item" key={category.name} data-name={category['display-name']} data-toggle="collapse" data-target=".navbar-collapse">
-                  <Link className="nav-link" to={`/category/${category.name}`}>
-                    <div
-                      data-toggle="collapse"
-                      data-target={isMobileView ? '.collapsable-container' : ''}
-                    >
-                      {category['display-name']}
-                    </div>
-                  </Link>
-                </li>
-              )
-          ))}
-        </ul>
+        <nav className="navbar navbar-expand hover-menu">
+          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul className="navbar-nav">
+              {this.renderCategories()}
+            </ul>
+          </div>
+        </nav>
       </div>
     );
   }

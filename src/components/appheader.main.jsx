@@ -110,6 +110,7 @@ class AppHeaderMain extends React.Component {
         <AppHeaderTop />
 
         <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
+
           <div className="logo-container">
             <Link to="/" className="logo">
               <img
@@ -206,7 +207,9 @@ class AppHeaderMain extends React.Component {
               </div>
             </Link>
           </div>
+
           <hr className="mobile-navigation-separator" />
+
           <div className="mobile-navigation-container">
             <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
           </div>

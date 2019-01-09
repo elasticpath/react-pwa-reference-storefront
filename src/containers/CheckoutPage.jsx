@@ -193,6 +193,7 @@ class CheckoutPage extends React.Component {
               <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
                 {/* eslint-disable-next-line max-len */}
                 <input type="radio" name="shipping" id="shippingOption" className="checkout-address-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+                {/* eslint-disable jsx-a11y/label-has-associated-control */}
                 <label htmlFor="shippingOption">
                   <div data-region="checkoutAddressRegion" style={{ display: 'block' }}>
                     <AddressContainer name={name} address={address} />

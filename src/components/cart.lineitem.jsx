@@ -294,7 +294,8 @@ class CartLineItem extends React.Component {
             ? (
               <div className="featured">
                 {intl.get('featured')}
-              </div>)
+              </div>
+            )
             : ('')
           }
           <Link to={`/itemdetail/${encodeURIComponent(item._item[0]._code[0].code)}`}>
@@ -316,7 +317,8 @@ class CartLineItem extends React.Component {
                 </label>
                 {this.renderPromotions()}
               </ul>
-            </div>)
+            </div>
+          )
           : ('')
         }
         <div className="options-col">
