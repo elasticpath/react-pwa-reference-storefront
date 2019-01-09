@@ -69,7 +69,7 @@ class CategoryItemsMain extends React.Component {
             this.setState({
               categoryModel: res,
               categoryModelDisplayName: res['display-name'],
-              categoryModelParentDisplayName: res._parent[0]['display-name'],
+              categoryModelParentDisplayName: res._parent ? res._parent[0]['display-name'] : '',
               categoryModelId: categoryId,
             });
           })
@@ -123,11 +123,11 @@ class CategoryItemsMain extends React.Component {
               <div>
                 <div className="menu-history">
                   {categoryModelParentDisplayName}
-                  &nbsp;
+                  {categoryModelParentDisplayName && (
                   <span className="arrow">
-                    ﹥
+                    &nbsp;﹥&nbsp;
                   </span>
-                  &nbsp;
+                  )}
                   {categoryModelDisplayName}
                   <h1 className="category-title">
                     {categoryModelDisplayName}
