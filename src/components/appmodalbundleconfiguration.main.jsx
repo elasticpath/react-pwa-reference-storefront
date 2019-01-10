@@ -78,9 +78,11 @@ class AppModalBundleConfigurationMain extends React.Component {
     this.fetchDependantItemData();
   }
 
-  // TODO: Add some kind of check to prevent extra network calls
-  componentWillReceiveProps() {
-    this.fetchDependantItemData();
+  componentWillReceiveProps(nextProps) {
+    const { bundleConfigurationItems } = this.props;
+    if (bundleConfigurationItems !== nextProps.bundleConfigurationItems) {
+      this.fetchDependantItemData();
+    }
   }
 
   fetchDependantItemData() {
@@ -129,16 +131,13 @@ class AppModalBundleConfigurationMain extends React.Component {
         itemCodeString = bundleConfigurationItems._item[0]._code[0].code;
       }
       return (
-        <Modal open={openModal} onClose={handleModalClose} className="modal bundle-configurator-modal-content" id={`bundle-configuration-modal-${itemCodeString}`}>
+        <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'bundle-configurator-modal-content' }} id={`bundle-configuration-modal-${itemCodeString}`}>
           <div className="modal-dialog">
             <div className="modal-content" id="simplemodal-container">
               <div className="modal-header">
                 <h2 className="modal-title">
                   {intl.get('configure-bundle-configurator')}
                 </h2>
-                {/* <button type="button" onClick={() => handleModalClose()} className="close bundle_configurator_modal_close_button" data-dismiss="modal">
-                  &times;
-                </button> */}
               </div>
 
               {(dependantItemData._dependentlineitems[0] && dependantItemData._dependentlineitems[0]._element) ? (
