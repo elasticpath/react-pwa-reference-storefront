@@ -629,8 +629,37 @@ class ProductDisplayItemMain extends React.Component {
                 />
               </div>
             </div>
-            <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
-              {this.renderAttributes()}
+            <div className="itemdetail-tabs-wrap">
+              <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
+                <li className="nav-item">
+                  <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
+                    Summary
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                    Reviews (0)
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link disabled" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
+                    Questions (0)
+                  </a>
+                </li>
+              </ul>
+              <div className="tab-content">
+                <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                  <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
+                    {this.renderAttributes()}
+                  </div>
+                </div>
+                <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                  ...
+                </div>
+                <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
+                  ...
+                </div>
+              </div>
             </div>
           </div>
           <BundleConstituentsDisplayMain productData={productData} />
