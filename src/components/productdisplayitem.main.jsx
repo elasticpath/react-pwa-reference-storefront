@@ -625,7 +625,7 @@ class ProductDisplayItemMain extends React.Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                  <a className="nav-link disabled" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
                     Reviews (0)
                   </a>
                 </li>
@@ -637,7 +637,7 @@ class ProductDisplayItemMain extends React.Component {
               </ul>
               <div className="tab-content">
                 <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-                  <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
+                  <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion">
                     {this.renderAttributes()}
                   </div>
                 </div>
