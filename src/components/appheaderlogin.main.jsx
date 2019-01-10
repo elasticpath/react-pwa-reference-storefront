@@ -100,24 +100,25 @@ class AppHeaderLoginMain extends React.Component {
                   </button>
                 </li>
               </ul>
-              <div className="dropdown-login-cart">
-                <ul>
-                  <li className="dropdown-item change-carts">
-                    {intl.get('using-cart')}
-                    <p className="using-cart">
-                      {usingCart}
-                    </p>
-                  </li>
-                </ul>
-                <ul className="login-cart-list">
-                  <li className="dropdown-item">
-                    <Link to="/">
-                      {intl.get('change-carts')}
-                      <i className="arrow down" />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              {(Config.b2bFeatures) ? (
+                <div className="dropdown-login-cart">
+                  <ul>
+                    <li className="dropdown-item change-carts">
+                      {intl.get('using-cart')}
+                      <p className="using-cart">
+                        {usingCart}
+                      </p>
+                    </li>
+                  </ul>
+                  <ul className="login-cart-list">
+                    <li className="dropdown-item">
+                      <button className="cart-select-btn" type="button" data-toggle="modal" data-target="#cart-select-modal">
+                        {intl.get('change-carts')}
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              ) : ('')}
             </div>
           </div>
         </div>
