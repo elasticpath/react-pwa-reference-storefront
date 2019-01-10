@@ -28,10 +28,17 @@
 
   .social-network-sharing {
     margin-top: 15px;
+    .st-btn {
+      min-width: 50px !important;
+      >span {
+        display: none !important;
+      }
+    }
   }
 
   .itemdetail-assets {
-    width: 380px;
+    width: 50%;
+    padding: 0 10px;
     vertical-align: top;
     display: inline-block;
 
@@ -39,8 +46,8 @@
       position: relative;
 
       img {
-        max-width: 380px;
-        max-height: 380px;
+        max-width: 100%;
+        max-height: 600px;
         width: 100%;
         object-fit: cover;
       }
@@ -55,12 +62,15 @@
     }
   }
 
+  .btn-itemdetail-addtocart.wide {
+    width: 100%;
+  }
+
   .itemdetail-details {
     vertical-align: top;
-    padding-top: 30px;
-    margin-left: 50px;
+    padding: 30px 10px 0 20px;
     display: inline-block;
-    width: 280px;
+    width: 50%;
     font-size: 12px;
     line-height: normal;
     text-align: left;
@@ -188,21 +198,26 @@
       height: 100%;
     }
 
-    .itemdetail-details {
-      margin-left: 39px;
-    }
   }
 
   @media (max-width: @mobileWidth - 100px) {
     .itemdetail-assets {
       display: block;
       width: 100%;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .itemdetail-details {
       display: block;
       width: 100%;
       margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .itemdetail-assets .itemdetail-asset-container img {
+      max-width: 380px;
+      max-height: 380px;
     }
   }
 
@@ -224,6 +239,36 @@
         .icon {
           margin-right: 6px;
         }
+      }
+    }
+  }
+}
+
+.itemdetail-tabs {
+  &-wrap {
+    margin-top: 30px;
+  }
+  .nav-item {
+    margin-bottom: 0;
+  }
+  .nav-item {
+    .nav-link {
+      padding: 5px 15px;
+      font-size: 14px;
+      color: #666;
+      &:hover {
+        border-color: transparent;
+        color: @mainTextColor;
+      }
+      &.active {
+        color: @mainTextColor;
+        font-weight: bold;
+        border-color: transparent;
+        border-bottom-color: @mainTextColor;
+      }
+      &.disabled {
+        cursor: default;
+        color: #666;
       }
     }
   }
