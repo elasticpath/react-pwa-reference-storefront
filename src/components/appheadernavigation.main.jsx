@@ -221,7 +221,7 @@ class AppHeaderNavigationMain extends React.Component {
     if (subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
       return (
         <li key={`${path}`}>
-          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} to={`/category/${nestedChildObj.name}`}>
+          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} id={`header_navbar_sub_category_button_${nestedChildObj.name}`} title={subcategoryChildKeyName} to={`/category/${nestedChildObj.name}`}>
             <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{subcategoryChildKeyName}</div>
           </Link>
         </li>
@@ -251,7 +251,7 @@ class AppHeaderNavigationMain extends React.Component {
   renderCategoriesWithNoChildren(categoryKey, path) {
     const { navigations } = this.state;
     return (
-      <li className="nav-item" key={`${path}`}>
+      <li className="nav-item" key={`${path}`} data-name={categoryKey} data-el-container="category-nav-item-container">
         <Link className="nav-link" to={`/category/${navigations[categoryKey].name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false" data-target="#">
           <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{categoryKey}</div>
         </Link>
@@ -262,7 +262,7 @@ class AppHeaderNavigationMain extends React.Component {
   renderCategoriesWithChildren(category, path, isLeftDropDownStyling, categoryLevel) {
     const { navigations } = this.state;
     return (
-      <li className="nav-item" key={`${path}`}>
+      <li className="nav-item" key={`${path}`} data-name={category} data-el-container="category-nav-item-container">
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         {/* eslint-disable jsx-a11y/click-events-have-key-events */}
         <div className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
