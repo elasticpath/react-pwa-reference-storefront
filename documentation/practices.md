@@ -66,6 +66,8 @@ Google Analytics handlers use the global product attribute `Tag`. Use the format
 
 Featured Product handlers use the global product attribute `Featured`. Use the attribute's boolean value to indicate when a product is designated a featured product. You can set the global attribute for each product in the catalog within the Commerce Manager. The React PWA Reference Storefront uses the tag to display a customizable banner for the featured product.
 
+Dynamic Bundle Configuration uses the Elastic Path Accelerator for implementing Dynamic Bundles for products, which is distributed under a separate license. For more information, visit the Elastic Path Accelerators Github Repository upon successful activation of your Elastic Path license.
+
 ## ARKit Quick Look Example
 
 **Apple ARKit Augmented Reality Quick Look Integration**
