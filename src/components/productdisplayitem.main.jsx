@@ -115,6 +115,7 @@ class ProductDisplayItemMain extends React.Component {
       isLoading: false,
       arFileExists: false,
       itemConfiguration: {},
+      selectionValue: '',
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
@@ -124,6 +125,7 @@ class ProductDisplayItemMain extends React.Component {
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
+    this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
 
   componentDidMount() {
@@ -339,6 +341,10 @@ class ProductDisplayItemMain extends React.Component {
       });
   }
 
+  handleSelectionChange(event) {
+    this.setState({ selectionValue: event.target.value });
+  }
+
   renderAttributes() {
     const { productData } = this.state;
     if (productData._definition[0].details) {
@@ -359,17 +365,18 @@ class ProductDisplayItemMain extends React.Component {
   renderSkuSelection() {
     const { productData, isLoading } = this.state;
     if (productData._definition[0]._options) {
-      return productData._definition[0]._options[0]._element.map(options => (
-        <div key={options.name} className="form-group">
-          <label htmlFor={`product_display_item_sku_${options.name}_label`} className="control-label">
-            {options['display-name']}
+      const colorSelectorWrap = productData._definition[0]._options[0]._element[0];
+      return (
+        <div key={colorSelectorWrap.name} className="form-group">
+          <label htmlFor={`product_display_item_sku_${colorSelectorWrap.name}_label`} className="control-label">
+            {colorSelectorWrap['display-name']}
           </label>
           <div className="form-content">
-            <select className="form-control" id={`product_display_item_sku_select_${options.name}`} disabled={isLoading} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
-              <option key={options._selector[0]._chosen[0]._description[0].name} id={`product_display_item_sku_option_${options._selector[0]._chosen[0]._description[0].name}`} value={(options._selector[0]._chosen[0]._selectaction) ? options._selector[0]._chosen[0]._selectaction[0].self.uri : ''}>
-                {options._selector[0]._chosen[0]._description[0]['display-name']}
+            <select className="form-control" id={`product_display_item_sku_select_${colorSelectorWrap.name}`} disabled={isLoading} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
+              <option key={colorSelectorWrap._selector[0]._chosen[0]._description[0].name} id={`product_display_item_sku_option_${colorSelectorWrap._selector[0]._chosen[0]._description[0].name}`} value={(colorSelectorWrap._selector[0]._chosen[0]._selectaction) ? colorSelectorWrap._selector[0]._chosen[0]._selectaction[0].self.uri : ''}>
+                {colorSelectorWrap._selector[0]._chosen[0]._description[0]['display-name']}
               </option>
-              {(options._selector[0]._choice) ? options._selector[0]._choice.map(skuChoice => (
+              {(colorSelectorWrap._selector[0]._choice) ? colorSelectorWrap._selector[0]._choice.map(skuChoice => (
                 <option key={skuChoice._description[0].name} id={`product_display_item_sku_option_${skuChoice._description[0].name}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''}>
                   {skuChoice._description[0]['display-name']}
                 </option>
@@ -377,7 +384,7 @@ class ProductDisplayItemMain extends React.Component {
             </select>
           </div>
         </div>
-      ));
+      );
     }
     return null;
   }
@@ -396,6 +403,45 @@ class ProductDisplayItemMain extends React.Component {
           </div>
         </div>
       ));
+    }
+    return null;
+  }
+
+  renderSizeSelection() {
+    const { productData, selectionValue } = this.state;
+    if (productData._definition[0]._options && productData._definition[0]._options[0]._element[1]._selector[0]._choice) {
+      const sizeSelectorTitle = productData._definition[0]._options[0]._element[1]['display-name'];
+      const arraysizeSelector = [];
+      productData._definition[0]._options[0]._element[1]._selector[0]._choice.map(skuChoice => (
+        arraysizeSelector.push(skuChoice)
+      ));
+      arraysizeSelector.unshift(productData._definition[0]._options[0]._element[1]._selector[0]._chosen[0]);
+      arraysizeSelector.sort((a, b) => {
+        if (a._description[0]['display-name'] < b._description[0]['display-name']) {
+          return -1;
+        }
+        if (a._description[0]['display-name'] > b._description[0]['display-name']) {
+          return 1;
+        }
+        return 0;
+      });
+      return (
+        <fieldset onChange={this.handleSelectionChange}>
+          <span className="selector-title">
+            {sizeSelectorTitle}
+          </span>
+          <div className="size-guide" onChange={this.handleSkuSelection}>
+            {arraysizeSelector ? arraysizeSelector.map(skuChoice => (
+              <div key={skuChoice._description[0]['display-name']} className="size-select-wrap">
+                <input key={skuChoice._description[0].name} type="radio" name="sizeBy" id={`sizeWeight_${skuChoice._description[0]['display-name']}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''} defaultChecked={!skuChoice._selectaction || skuChoice._selectaction[0].self.uri === selectionValue} />
+                <label htmlFor={`sizeWeight_${skuChoice._description[0]['display-name']}`}>
+                  {skuChoice._description[0]['display-name']}
+                </label>
+              </div>
+            )) : ''}
+          </div>
+        </fieldset>
+      );
     }
     return null;
   }
@@ -557,21 +603,22 @@ class ProductDisplayItemMain extends React.Component {
                 <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
                   {this.renderSkuSelection()}
                   {this.renderConfiguration()}
+                  {this.renderSizeSelection()}
                   <div className="form-group">
                     <label htmlFor="product_display_item_quantity_label" className="control-label">
                       {intl.get('quantity')}
                     </label>
-                    <span className="input-group-btn">
-                      <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                        <span className="glyphicon glyphicon-plus" />
+                    <div className="input-group-btn">
+                      <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+                        <span className="glyphicon glyphicon-minus" />
                       </button>
                       <div className="quantity-col form-content form-content-quantity">
                         <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
                       </div>
-                      <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                        <span className="glyphicon glyphicon-minus" />
+                      <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+                        <span className="glyphicon glyphicon-plus" />
                       </button>
-                    </span>
+                    </div>
                     {
                       (isLoading) ? (<div className="miniLoader" />) : ''
                     }
