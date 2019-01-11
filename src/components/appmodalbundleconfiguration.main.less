@@ -21,44 +21,54 @@
 
  @import './../style/common.less';
 
-.order-lineitem-row {
-
-  a {
-    color: @mainTextColor;
-    text-decoration: none;
+.bundle-configurator-modal-content {
+  .quantity-col {
+    visibility: hidden;
   }
 
-  .quantity-col{
-    text-align: center;
-  }
-
-  .thumbnail-col {
-    img {
-      max-width: 60px;
+  .bundle-configurator-available-items {
+    .remove-btn-col {
+      display: none;
     }
   }
 
-  .title-col {
+  .feedback-label {
+    color: red;
     font-size: 16px;
-    display: inline-block;
-    font-size: 1.6rem;
     font-weight: bold;
-    padding-bottom: 3px;
-    width: 60%;
   }
 
-  .bundle-configuration {
-    .option-name {
+  #login_modal_form {
+    span {
+      display: inline-block;
+      margin-bottom: 5px;
       font-weight: bold;
-      color: @mainBlueColor;
+    }
+
+    .form-control {
+      display: block;
+      height: 34px;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: #555555;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     }
   }
 
-  .purchase-price {
-    font-weight: bold;
+  .modal-content {
+    background-color: #fff;
+    border: none;
+    padding: 12px;
   }
 
-  .order-lineitem-option-name {
-    font-weight: bold;
+  .bundle_configurator_modal_close_button {
+    font-size: 30px;
+  }
+
+  .form-input.btn-container {
+    padding-top: 15px;
   }
 }

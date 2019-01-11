@@ -19,46 +19,37 @@
  *
  */
 
- @import './../style/common.less';
+@import './../style/common.less';
 
-.order-lineitem-row {
+.product-recomentations-component {
+  padding: 20px;
 
-  a {
-    color: @mainTextColor;
-    text-decoration: none;
+  .control-label {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 20px 0px;
   }
 
-  .quantity-col{
-    text-align: center;
-  }
+  .card-deck {
+    width: 100%;
+    flex-flow: row wrap;
 
-  .thumbnail-col {
-    img {
-      max-width: 60px;
+    .card {
+      max-width: 160px;
+      min-width: 160px;
+    }
+
+    .category-item-price-container {
+      font-weight: 300;
+    }
+
+    @media (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
+      // width: 33%;
     }
   }
 
-  .title-col {
-    font-size: 16px;
-    display: inline-block;
-    font-size: 1.6rem;
-    font-weight: bold;
-    padding-bottom: 3px;
-    width: 60%;
-  }
-
-  .bundle-configuration {
-    .option-name {
-      font-weight: bold;
-      color: @mainBlueColor;
-    }
-  }
-
-  .purchase-price {
-    font-weight: bold;
-  }
-
-  .order-lineitem-option-name {
-    font-weight: bold;
+  @media (max-width: @mobileWidth - 100px) {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }

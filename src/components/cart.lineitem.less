@@ -25,6 +25,7 @@
   border-bottom: 1px solid @mainGrey;
   padding-top: 15px;
   padding-bottom: 15px;
+  overflow: auto;
 
   label {
     display: inline-block;
@@ -58,6 +59,13 @@
   .options-col {
     display: inline-block;
     width: 50%;
+
+    .bundle-configuration {
+      .option-name {
+        font-weight: bold;
+        color: @mainBlueColor;
+      }
+    }
   }
 
   .promotions-col {
@@ -125,7 +133,8 @@
   }
 
   .remove-btn-col,
-  .move-to-cart-btn-col {
+  .move-to-cart-btn-col,
+  .configure-btn-col {
     float:right;
   }
 
