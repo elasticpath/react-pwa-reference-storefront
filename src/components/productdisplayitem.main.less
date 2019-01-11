@@ -66,6 +66,7 @@
 
   .btn-itemdetail-addtocart.wide,
   .btn-itemdetail-addtowishlist.wide {
+    text-transform: capitalize;
     width: 100%;
   }
 
@@ -130,10 +131,11 @@
 
         .input-group-btn {
           width: 100%;
-          height: 34px;
-          border: solid 1px #8a8a8a;
+          height: 40px;
+          border: solid 1px @mainGrey;
           display: flex;
           justify-content: space-between;
+          align-items: center;
 
           .quantity-right-plus,
           .quantity-left-minus {
@@ -343,20 +345,22 @@
     display: none;
 
     +label {
+      color: gray;
       padding: 10px 15px;
       box-sizing: border-box;
       position: relative;
       display: inline-block;
-      border: solid 1px #DDD;
+      border: solid 1px @mainGrey;
       background-color: #FFF;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 500;
       text-align: center;
       transition: border-color .15s ease-out, color .25s ease-out, background-color .15s ease-out, box-shadow .15s ease-out;
     }
     &:checked {
       +label {
-        border-color: black;
+        color: @mainTextColor;
+        border-color: @mainTextColor;
         box-shadow: 0 0 0 1px black;
         z-index: 1;
       }
