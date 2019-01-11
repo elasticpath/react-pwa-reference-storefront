@@ -26,6 +26,7 @@ import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
+import ProductListLoadMore from './productlistloadmore';
 
 import './categoryitems.main.less';
 
@@ -40,6 +41,8 @@ class CategoryItemsMain extends React.Component {
       isLoading: true,
       categoryModel: { links: [] },
     };
+
+    this.handleProductsChange = this.handleProductsChange.bind(this);
   }
 
   componentDidMount() {
@@ -95,6 +98,10 @@ class CategoryItemsMain extends React.Component {
     });
   }
 
+  handleProductsChange(products) {
+    this.setState({ categoryModel: products });
+  }
+
   render() {
     const {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName,
@@ -136,7 +143,7 @@ class CategoryItemsMain extends React.Component {
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} />
+                  <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} />
                 </div>
               </div>
             );
