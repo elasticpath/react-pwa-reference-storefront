@@ -160,9 +160,6 @@ const PurchaseDetailsMain = (props) => {
             {bundleConfiguration && (bundleConfiguration[0]._element.map(config => (
               <tr key={config.name}>
                 <td>
-                  <label htmlFor="option" />
-                </td>
-                <td>
                   <span id="option">
                     {config.name}
                   </span>
