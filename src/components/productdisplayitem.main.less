@@ -62,7 +62,8 @@
     }
   }
 
-  .btn-itemdetail-addtocart.wide {
+  .btn-itemdetail-addtocart.wide,
+  .btn-itemdetail-addtowishlist.wide {
     width: 100%;
   }
 
@@ -85,13 +86,19 @@
       vertical-align: top;
       display: inline-block;
 
+      .selector-title{
+        color: #8a8a8a;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
       .form-group {
         margin-bottom: 15px;
 
         .control-label {
           margin-top: .75rem;
           color: #8a8a8a;
-          font-weight: 600;
+          font-weight: 500;
           text-transform: uppercase;
         }
 
@@ -99,7 +106,7 @@
           float: right;
 
           .form-control {
-            border: solid 1px #8a8a8a;
+            border: none;
             font-size: 12px;
             font-weight: 600;
             line-height: normal;
@@ -120,7 +127,11 @@
         }
 
         .input-group-btn {
-          float: right;
+          width: 100%;
+          height: 34px;
+          border: solid 1px #8a8a8a;
+          display: flex;
+          justify-content: space-between;
 
           .quantity-right-plus,
           .quantity-left-minus {
@@ -129,11 +140,10 @@
             position: relative;
             text-shadow: 1px 1px 1px #fff;
             color: #666;
-            border: solid 1px #8a8a8a;
             text-transform: none;
             font-weight: normal;
             float: right;
-            height: 34px;
+            margin: 5px 0;
           }
 
           .quantity-left-minus {
@@ -148,10 +158,12 @@
             width: 50px;
 
             .form-control-quantity {
+              display: block;
               width: 50px;
               height: 34px;
               font-size: 16px;
               text-align: center;
+              margin: 0 auto;
             }
 
             input[type=number]::-webkit-outer-spin-button,
@@ -313,6 +325,38 @@
       border-left: 3px solid;
       -webkit-transform: rotate(-135deg);
       transform: rotate(-135deg);
+    }
+  }
+}
+.size-guide {
+  margin-top:8px;
+
+  .size-select-wrap {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  input[type="radio"] {
+    display: none;
+
+    +label {
+      padding: 10px 15px;
+      box-sizing: border-box;
+      position: relative;
+      display: inline-block;
+      border: solid 1px #DDD;
+      background-color: #FFF;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      transition: border-color .15s ease-out, color .25s ease-out, background-color .15s ease-out, box-shadow .15s ease-out;
+    }
+    &:checked {
+      +label {
+        border-color: black;
+        box-shadow: 0 0 0 1px black;
+        z-index: 1;
+      }
     }
   }
 }
