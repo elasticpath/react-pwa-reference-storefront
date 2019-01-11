@@ -167,6 +167,7 @@
   "search-results": "Search Results",
   "search-results-for": "Search results for: '{searchKeywords}'",
   "no-results-found": "No results found",
+  "load-more": "Load more",
   "network-offline": "Network Offline",
   "account-login": "Account Login",
   "account-logged-in": "Account",
