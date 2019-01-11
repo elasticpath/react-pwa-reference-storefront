@@ -89,7 +89,7 @@ class ProductListLoadMore extends React.Component {
     );
 
     return [
-      <div className="product-list-load-more-component">
+      <div className="product-list-load-more-component" key="load-more">
         {canLoadMore && !isLoading ? nextBtn : ''}
         {isLoading ? (<div className="loader" />) : ''}
       </div>,
