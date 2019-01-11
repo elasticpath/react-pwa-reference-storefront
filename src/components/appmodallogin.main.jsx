@@ -20,23 +20,21 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
+import Modal from 'react-responsive-modal';
 import { loginRegistered } from '../utils/AuthService';
 import './appmodallogin.main.less';
 
 const Config = require('Config');
 
 class AppModalLoginMain extends React.Component {
-  static registerNewUser() {
-    if (document.getElementById('login_modal_close_button')) {
-      document.getElementById('login_modal_close_button').click();
-    }
-  }
-
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    handleModalClose: PropTypes.func.isRequired,
+    openModal: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -50,6 +48,7 @@ class AppModalLoginMain extends React.Component {
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.loginRegisteredUser = this.loginRegisteredUser.bind(this);
+    this.registerNewUser = this.registerNewUser.bind(this);
   }
 
   setUsername(event) {
@@ -60,9 +59,14 @@ class AppModalLoginMain extends React.Component {
     this.setState({ password: event.target.value });
   }
 
+  registerNewUser() {
+    const { handleModalClose } = this.props;
+    handleModalClose();
+  }
+
   loginRegisteredUser(event) {
     const { username, password } = this.state;
-    const { history } = this.props;
+    const { history, handleModalClose } = this.props;
     this.setState({ isLoading: true });
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
       loginRegistered(username, password).then((resStatus) => {
@@ -79,7 +83,7 @@ class AppModalLoginMain extends React.Component {
           });
         } else if (resStatus === 200) {
           this.setState({ failedLogin: false });
-          document.getElementById('login_modal_close_button').click();
+          handleModalClose();
           history.push('/');
         }
       });
@@ -89,19 +93,17 @@ class AppModalLoginMain extends React.Component {
 
   render() {
     const { failedLogin, isLoading } = this.state;
+    const { handleModalClose, openModal } = this.props;
 
     return (
-      <div className="modal login-modal-content" id="login-modal">
-        <div className="modal-dialog">
+      <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'login-modal-content' }} id="login-modal">
+        <div>
           <div className="modal-content" id="simplemodal-container">
 
             <div className="modal-header">
               <h2 className="modal-title">
                 {intl.get('login')}
               </h2>
-              <button type="button" id="login_modal_close_button" className="close" data-dismiss="modal">
-                &times;
-              </button>
             </div>
 
             <div className="feedback-label auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
@@ -133,7 +135,7 @@ class AppModalLoginMain extends React.Component {
                       {intl.get('login')}
                     </button>
                     <Link to="/registration">
-                      <button className="ep-btn btn-auth-register" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={AppModalLoginMain.registerNewUser}>
+                      <button className="ep-btn btn-auth-register" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={this.registerNewUser}>
                         {intl.get('register')}
                       </button>
                     </Link>
@@ -143,7 +145,7 @@ class AppModalLoginMain extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </Modal>
     );
   }
 }

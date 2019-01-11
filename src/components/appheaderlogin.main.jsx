@@ -24,13 +24,13 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
+import AppModalLoginMain from './appmodallogin.main';
+import AppModalCartSelectMain from './appmodalcartselect.main';
 import { login, logout } from '../utils/AuthService';
 
 import './appheaderlogin.main.less';
 
 const Config = require('Config');
-
-const usingCart = ' GLOBEX EASTERN';
 
 class AppHeaderLoginMain extends React.Component {
   static isLoggedIn() {
@@ -46,6 +46,15 @@ class AppHeaderLoginMain extends React.Component {
     isMobileView: false,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      openModal: false,
+      openCartModal: false,
+    };
+    this.handleModalClose = this.handleModalClose.bind(this);
+  }
+
   logoutRegisteredUser() {
     logout().then(() => {
       login().then(() => {
@@ -56,8 +65,30 @@ class AppHeaderLoginMain extends React.Component {
     });
   }
 
+  handleModalOpen() {
+    this.setState({
+      openModal: true,
+    });
+  }
+
+  handleCartModalOpen() {
+    this.setState({
+      openCartModal: true,
+    });
+  }
+
+  handleModalClose() {
+    this.setState({
+      openModal: false,
+      openCartModal: false,
+    });
+  }
+
   render() {
     const { isMobileView } = this.props;
+    const {
+      openModal, openCartModal,
+    } = this.state;
     if (AppHeaderLoginMain.isLoggedIn()) {
       return (
         <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
@@ -106,15 +137,16 @@ class AppHeaderLoginMain extends React.Component {
                     <li className="dropdown-item change-carts">
                       {intl.get('using-cart')}
                       <p className="using-cart">
-                        {usingCart}
+                        {` ${localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}`}
                       </p>
                     </li>
                   </ul>
                   <ul className="login-cart-list">
                     <li className="dropdown-item">
-                      <button className="cart-select-btn" type="button" data-toggle="modal" data-target="#cart-select-modal">
+                      <button className="cart-select-btn" type="button" data-toggle="modal" onClick={() => this.handleCartModalOpen()} data-target="#cart-select-modal">
                         {intl.get('change-carts')}
                       </button>
+                      <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} />
                     </li>
                   </ul>
                 </div>
@@ -127,7 +159,7 @@ class AppHeaderLoginMain extends React.Component {
 
     return (
       <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button" data-toggle="modal" data-target="#login-modal">
+        <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button" data-toggle="modal" onClick={() => this.handleModalOpen()} data-target="#login-modal">
           {(isMobileView)
             ? (
               intl.get('account-login')
@@ -135,6 +167,7 @@ class AppHeaderLoginMain extends React.Component {
               intl.get('login')
             )}
         </button>
+        <AppModalLoginMain key="app-modal-login-main" handleModalClose={this.handleModalClose} openModal={openModal} />
         <div data-region="authMainRegion" className="auth-nav-container" />
       </div>
     );

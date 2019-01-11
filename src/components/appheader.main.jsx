@@ -24,8 +24,6 @@ import { Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import AppHeaderSearchMain from './appheadersearch.main';
 import AppHeaderLoginMain from './appheaderlogin.main';
-import AppModalLoginMain from './appmodallogin.main';
-import AppModalCartSelectMain from './appmodalcartselect.main';
 import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
 import AppHeaderTop from './appheadertop.main';
@@ -228,8 +226,6 @@ class AppHeaderMain extends React.Component {
           </div>
         ) : ''}
       </header>,
-      <AppModalLoginMain key="app-modal-login-main" />,
-      <AppModalCartSelectMain key="app-modal-login-main" />,
     ];
   }
 }

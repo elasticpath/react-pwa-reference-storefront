@@ -22,6 +22,7 @@
  @import './../style/common.less';
 
 .login-modal-content {
+  min-width: 500px;
 
   #login_modal_form {
     span {
@@ -39,7 +40,6 @@
       border: 1px solid #cccccc;
       border-radius: 4px;
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-      max-width: 414px;
       background: #f7f7f7 none repeat scroll 0 0;
     }
 
@@ -48,10 +48,12 @@
     }
   }
 
-  #simplemodal-container {
+  .modal-content {
     background-color: #fff;
-    border: 8px solid #444;
-    padding: 12px;
+    border: none;
+  }
+
+  #simplemodal-container {
 
     .feedback-label {
       color: red;
@@ -59,11 +61,6 @@
       font-weight: bold;
       padding: 1rem;
     }
-  }
-
-  #login_modal_close_button {
-    font-size: 30px;
-    text-align: right;
   }
 
   .form-input.btn-container {
@@ -78,19 +75,11 @@
   .panel {
     margin-bottom: 10%
   }
+}
 
-  @media (max-width: @mobileWidth - 1) {
-    .modal-dialog {
-      height: 98.5%;
-      max-width: 100%;
-      margin: .5rem;
-    }
+@media (max-width: @mobileWidth - 1) {
+  .login-modal-content {
+    height: 100%;
+    min-width: 100%;
   }
-
-  @media (max-width: @mobileWidth - 1) {
-    .modal-content {
-      height: 100%;
-    }
-  }
-
 }
