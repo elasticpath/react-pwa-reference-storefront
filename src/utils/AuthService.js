@@ -132,6 +132,7 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console

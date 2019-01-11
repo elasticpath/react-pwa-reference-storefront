@@ -25,7 +25,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import { loginRegistered } from '../utils/AuthService';
 import './appmodalcartselect.main.less';
 
 const Config = require('Config');
@@ -51,16 +50,18 @@ class AppModalCartSelectMain extends React.Component {
     this.state = {
       selectedCart: '0',
       selectedCartName: optionCarts[0].optionName,
-      isLoading: false,
     };
     this.continueCart = this.continueCart.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
+  componentDidMount() {
+    this.continueCart();
+  }
+
   continueCart() {
     const { selectedCartName } = this.state;
     const { history } = this.props;
-    this.setState({ isLoading: true });
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartName);
       history.push('/');
@@ -97,7 +98,7 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   render() {
-    const { isLoading, selectedCartName } = this.state;
+    const { selectedCartName } = this.state;
     const { handleModalClose, openModal } = this.props;
 
     return (
@@ -117,9 +118,6 @@ class AppModalCartSelectMain extends React.Component {
                   {this.renderCartOption()}
                 </div>
                 <div className="action-row">
-                  {
-                    (isLoading) ? <div className="miniLoader" /> : ('')
-                  }
                   <div className="form-input btn-container">
                     <button className="ep-btn primary wide" id="continue_with_cart_button" data-cmd="continue" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {intl.get('continue-with')}
