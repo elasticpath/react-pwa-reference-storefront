@@ -145,7 +145,7 @@ class AppModalBundleConfigurationMain extends React.Component {
                   <h2 className="modal-title">
                     {intl.get('bundle-configurator-selected-items')}
                   </h2>
-                  <div className="wish-list-main-inner table-responsive">
+                  <div className="table-responsive">
                     {dependantItemData._dependentlineitems[0]._element.map(product => (
                       <CartLineItem key={product._item[0]._code[0].code} item={product} handleQuantityChange={() => { this.handleQuantityChange(); }} hideQuantitySelector handleErrorMessage={this.handleErrorMessage} />
                     ))}
@@ -159,7 +159,7 @@ class AppModalBundleConfigurationMain extends React.Component {
                   <h2 className="modal-title">
                     {intl.get('bundle-configurator-available-items')}
                   </h2>
-                  <div className="wish-list-main-inner table-responsive">
+                  <div className="table-responsive">
                     {dependantItemData._dependentoptions[0]._element.map(product => (
                       <CartLineItem key={product._code[0].code} item={product} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton hideQuantitySelector handleErrorMessage={this.handleErrorMessage} />
                     ))}

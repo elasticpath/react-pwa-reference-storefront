@@ -511,7 +511,7 @@ class CartLineItem extends React.Component {
         }
         {(item._dependentoptions && item._dependentoptions[0] && (item._dependentoptions[0]._element || item._dependentlineitems[0]._element)) ? (
           <div className="configure-btn-col">
-            <button className="ep-btn primary small btn-cart-configureBundle" type="button" onClick={() => this.handleModalOpen()} data-toggle="modal" data-target={`#bundle-configuration-modal-${itemCodeString}`}>
+            <button className="ep-btn primary small btn-cart-configureBundle" type="button" onClick={() => this.handleModalOpen()}>
               <span className="btn-text">
                 {intl.get('configure-bundle')}
               </span>

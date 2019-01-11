@@ -84,8 +84,8 @@ class ProductListItemMain extends React.Component {
     const { productData } = this.state;
     const { offerData } = this.props;
     if (productData) {
-      let listPrice = '';
-      let itemPrice = '';
+      let listPrice = 'n/a';
+      let itemPrice = 'n/a';
       if (offerData._pricerange) {
         if (offerData._pricerange[0]['list-price-range']['from-price'] && offerData._pricerange[0]['list-price-range']['from-price'][0].amount !== offerData._pricerange[0]['list-price-range']['to-price'][0].amount) {
           listPrice = `${offerData._pricerange[0]['list-price-range']['from-price'][0].display} - ${offerData._pricerange[0]['list-price-range']['to-price'][0].display}`;
