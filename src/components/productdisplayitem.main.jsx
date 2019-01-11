@@ -23,6 +23,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
+import Slider from 'react-slick';
 import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
@@ -403,6 +404,13 @@ class ProductDisplayItemMain extends React.Component {
     const { productData, arFileExists } = this.state;
     const arBrowserSupported = document.createElement('a');
     const isInStandaloneMode = window.navigator.standalone;
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
     if (arBrowserSupported.relList.supports('ar') && !isInStandaloneMode && arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
@@ -411,7 +419,13 @@ class ProductDisplayItemMain extends React.Component {
       );
     }
     return (
-      <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+      <div className="product-image-carousel">
+        <Slider {...settings}>
+          <div>
+            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+          </div>
+        </Slider>
+      </div>
     );
   }
 
