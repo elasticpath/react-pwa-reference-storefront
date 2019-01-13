@@ -61,10 +61,12 @@ For example, when a customer views a product, adds a product to the cart, or rem
 * The product and cart pages submit this information to Cortex.
 * The product and cart pages submit this information for further analysis by Google Analytics’ in a separate request.
 
-### Global Product Attribute
-Google Analytics handlers use the global product attribute `Tag`. Use the formatted value of `store-name:category`, such as `vestri:Accessories`, to submit the product category information. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product's category to Google Analytics.
+## Global Product Attribute
+* Use the formatted value of `store-name:category`, such as `vestri:Accessories`, to submit the product category information. Google Analytics handlers use the global product attribute `Tag`. You can set the global attribute for each product in the catalog to avoid submitting empty values for the product’s category to Google Analytics.
 
-Featured Product handlers use the global product attribute `Featured`. Use the attribute's boolean value to indicate when a product is designated a featured product. You can set the global attribute for each product in the catalog within the Commerce Manager. The React PWA Reference Storefront uses the tag to display a customizable banner for the featured product.
+* Use the boolean value of the `Featured` attribute to indicate when a product is designated a featured product. Featured Product handlers use the global product attribute `Featured`. You can set the global attribute for each product in the catalog within the Commerce Manager. The React PWA Reference Storefront uses the tag to display a customizable banner for the featured product.
+
+* Use [Elastic Path Dynamic Bundle Accelerator](https://code.elasticpath.com/accelerators/dynamic-bundles) for implementing Dynamic Bundles for products. For more information about the accelerator license, see the License and Copyright page(https://www.elasticpath.com/sites/default/files/elastic-license-and-copyright.pdf).
 
 ## ARKit Quick Look Example
 
