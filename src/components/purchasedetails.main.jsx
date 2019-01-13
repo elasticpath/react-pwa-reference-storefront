@@ -21,11 +21,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import PaymentMethodContainer from './paymentmethod.container';
 import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
 import './purchasedetails.main.less';
+
+const Config = require('Config');
 
 const PurchaseDetailsMain = (props) => {
   const { data } = props;
@@ -218,6 +221,15 @@ const PurchaseDetailsMain = (props) => {
                 </span>
               </td>
             </tr>
+            {(Config.b2bFeatures) ? (
+              <tr>
+                <Link to={`/itemdetail/${encodeURIComponent(purchaseItem._item[0]._code[0].code)}`} className="buy-it-again-btn">
+                  <button className="ep-btn small buy-it-again-btn" type="button">
+                    {intl.get('buy-it-again')}
+                  </button>
+                </Link>
+              </tr>
+            ) : ('')}
           </tbody>
         </table>
       </li>

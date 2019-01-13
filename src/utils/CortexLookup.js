@@ -105,6 +105,7 @@ const purchaseFormZoomArray = [
   'discount',
   'appliedpromotions:element',
   'lineitems:element',
+  'lineitems:element:item:code',
   'lineitems:element:options:element',
   'lineitems:element:options:element:value',
   'lineitems:element:components',

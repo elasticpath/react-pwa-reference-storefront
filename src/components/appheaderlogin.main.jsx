@@ -140,6 +140,15 @@ class AppHeaderLoginMain extends React.Component {
                         {` ${localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}`}
                       </p>
                     </li>
+                    {(localStorage.getItem(`${Config.cortexApi.scope}_b2bDivision`) !== '') ? (
+                      <li className="dropdown-item change-carts">
+                        {intl.get('using-division')}
+                        <p className="using-division">
+                          {` ${localStorage.getItem(`${Config.cortexApi.scope}_b2bDivision`)}`}
+                        </p>
+                      </li>
+                    ) : ('')
+                    }
                   </ul>
                   <ul className="login-cart-list">
                     <li className="dropdown-item">
