@@ -161,7 +161,7 @@ class AppModalCartSelectMain extends React.Component {
             <div className="modal-content" id="simplemodal-container">
               <div className="modal-header">
                 <h2 className="modal-title">
-                  Change Division
+                  {intl.get('change-division')}
                 </h2>
               </div>
               <div className="modal-body">

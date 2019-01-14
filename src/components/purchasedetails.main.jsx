@@ -21,8 +21,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
+import QuickOrderMain from './quickorder.main';
 import PaymentMethodContainer from './paymentmethod.container';
 import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
@@ -105,6 +105,10 @@ const PurchaseDetailsMain = (props) => {
         <PaymentMethodContainer displayName={displayName} />
       </div>
     );
+  };
+
+  const routeToCart = () => {
+    window.location.pathname = '/mybag';
   };
 
   const renderItem = (purchaseItem) => {
@@ -223,11 +227,7 @@ const PurchaseDetailsMain = (props) => {
             </tr>
             {(Config.b2bFeatures) ? (
               <tr>
-                <Link to={`/itemdetail/${encodeURIComponent(purchaseItem._item[0]._code[0].code)}`} className="buy-it-again-btn">
-                  <button className="ep-btn small buy-it-again-btn" type="button">
-                    {intl.get('buy-it-again')}
-                  </button>
-                </Link>
+                <QuickOrderMain isBuyItAgain productIdProps={purchaseItem._item[0]._code[0].code} onAddToCart={() => { routeToCart(); }} />
               </tr>
             ) : ('')}
           </tbody>
