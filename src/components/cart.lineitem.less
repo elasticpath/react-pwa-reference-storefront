@@ -154,7 +154,7 @@
     height: 30px;
 
     .form-control {
-      border: solid 1px #8a8a8a;
+      border: none;
       font-size: 12px;
       font-weight: 600;
       line-height: normal;
@@ -166,15 +166,18 @@
 
     .input-group-btn {
       float: left;
+      border: solid 1px @mainGrey;
+      justify-content: space-between;
+      align-items: center;
 
       .quantity-right-plus,
       .quantity-left-minus {
+        background-color: white;
         border-radius: 0 !important;
         overflow: hidden;
         position: relative;
         text-shadow: 1px 1px 1px #fff;
         color: #666;
-        border: solid 1px #8a8a8a;
         text-transform: none;
         font-weight: normal;
         float: right;
