@@ -28,6 +28,7 @@ import org.openqa.selenium.support.ui.Select;
 public class ProductPage extends AbstractPageObject {
 
 	private final static String SKU_OPTION_SELECT_CSS = "select[id*='product_display_item_sku_select_'][id*='%s']";
+	private final static String SKU_BUTTON_SELECT_CSS = "div[id='product_display_item_size_guide'] > div > label[for*='sizeWeight_%s']";
 	private final static String ADD_TO_CART_BUTTON_CSS = "button[id='product_display_item_add_to_cart_button']";
 	private final static String ADD_TO_WISHLIST_BUTTON_CSS = "button[id='product_display_item_add_to_wish_list_button']";
 	private final static String QUANTITY_SELECT_CSS = "input[class='product-display-item-quantity-select form-control form-control-quantity']";
@@ -69,6 +70,12 @@ public class ProductPage extends AbstractPageObject {
 		String beforeUrl = driver.getCurrentUrl();
 		Select skuOptionSelect = new Select(driver.findElement(By.cssSelector(String.format(SKU_OPTION_SELECT_CSS, skuOption.toUpperCase()))));
 		skuOptionSelect.selectByVisibleText(choice);
+		waitForUrlToChange(beforeUrl);
+	}
+
+	public void selectSkuButtonOption(final String skuOption) {
+		String beforeUrl = driver.getCurrentUrl();
+		clickButton(getDriver().findElement(By.cssSelector(String.format(SKU_BUTTON_SELECT_CSS, skuOption))));
 		waitForUrlToChange(beforeUrl);
 	}
 

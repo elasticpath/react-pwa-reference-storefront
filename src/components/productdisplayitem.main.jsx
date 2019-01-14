@@ -430,7 +430,7 @@ class ProductDisplayItemMain extends React.Component {
           <span className="selector-title">
             {sizeSelectorTitle}
           </span>
-          <div className="size-guide" onChange={this.handleSkuSelection}>
+          <div className="size-guide" id="product_display_item_size_guide" onChange={this.handleSkuSelection}>
             {arraysizeSelector ? arraysizeSelector.map(skuChoice => (
               <div key={skuChoice._description[0]['display-name']} className="size-select-wrap">
                 <input key={skuChoice._description[0].name} type="radio" name="sizeBy" id={`sizeWeight_${skuChoice._description[0]['display-name']}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''} defaultChecked={!skuChoice._selectaction || skuChoice._selectaction[0].self.uri === selectionValue} />

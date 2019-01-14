@@ -5,7 +5,7 @@ Feature: Shopping Cart
     When I select category <category>
     And I select product <product>
     And I select sku option Color and choose Black
-    And I select sku option Size and choose Small
+    And I choose sku size option Small
     And I select quantity <quantity> and add product to my cart
     When I update cart lineitem quantity to 2 for product <product>
     Then the expected cart lineitem total price is $319.98 for product <product>
