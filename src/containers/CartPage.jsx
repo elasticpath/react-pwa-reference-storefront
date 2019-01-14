@@ -165,7 +165,7 @@ class CartPage extends React.Component {
           ) : ('')}
           {cartData && !isLoading && (
             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
-              <CartMain empty={!cartData['total-quantity']} cartData={cartData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
+              <CartMain empty={!cartData['total-quantity'] && cartData._lineitems === undefined} cartData={cartData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
             </div>
           )}
           {cartData && !isLoading && (

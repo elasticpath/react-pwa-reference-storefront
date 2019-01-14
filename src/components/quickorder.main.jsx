@@ -140,9 +140,17 @@ class QuickOrderMain extends React.Component {
     const { isBuyItAgain } = this.props;
     if (isBuyItAgain) {
       return (
-        <button className="ep-btn small buy-it-again-btn" type="button" onClick={this.addToCart}>
-          {intl.get('buy-it-again')}
-        </button>
+        <div style={{ display: 'block' }}>
+          <button className="ep-btn small buy-it-again-btn" type="button" onClick={this.addToCart}>
+            {intl.get('buy-it-again')}
+          </button>
+          <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
+            {addToCartFailedMessage}
+          </div>
+          {
+            (isLoading) ? (<div className="miniLoader" />) : ''
+          }
+        </div>
       );
     }
     return (

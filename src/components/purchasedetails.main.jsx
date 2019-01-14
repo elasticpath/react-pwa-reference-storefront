@@ -225,11 +225,9 @@ const PurchaseDetailsMain = (props) => {
                 </span>
               </td>
             </tr>
-            {(Config.b2bFeatures) ? (
-              <tr>
-                <QuickOrderMain isBuyItAgain productIdProps={purchaseItem._item[0]._code[0].code} onAddToCart={() => { routeToCart(); }} />
-              </tr>
-            ) : ('')}
+            <tr>
+              <QuickOrderMain isBuyItAgain productIdProps={purchaseItem._item[0]._code[0].code} onAddToCart={() => { routeToCart(); }} />
+            </tr>
           </tbody>
         </table>
       </li>
