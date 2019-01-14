@@ -164,7 +164,8 @@ class ProductListPagination extends React.Component {
               </div>
             )
             : ('')}
-        </div>);
+        </div>
+      );
     }
 
     return (<div className="loader" />);

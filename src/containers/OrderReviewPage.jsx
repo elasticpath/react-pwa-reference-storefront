@@ -64,6 +64,12 @@ const zoomArray = [
   'defaultcart:lineitems:element:item:definition',
   'defaultcart:lineitems:element:item:definition:options:element',
   'defaultcart:lineitems:element:item:definition:options:element:value',
+  'defaultcart:lineitems:element:dependentlineitems',
+  'defaultcart:lineitems:element:dependentlineitems:element',
+  'defaultcart:lineitems:element:dependentlineitems:element:item:addtocartform',
+  'defaultcart:lineitems:element:dependentlineitems:element:item:availability',
+  'defaultcart:lineitems:element:dependentlineitems:element:item:definition',
+  'defaultcart:lineitems:element:dependentlineitems:element:item:code',
   // zoom for purchaseform
   'defaultcart:order:purchaseform',
 ];
@@ -121,6 +127,18 @@ class OrderReviewPage extends React.Component {
       'lineitems:element',
       'lineitems:element:options:element',
       'lineitems:element:options:element:value',
+      'lineitems:element:components',
+      'lineitems:element:components:element',
+      'lineitems:element:components:element:item:addtocartform',
+      'lineitems:element:components:element:item:availability',
+      'lineitems:element:components:element:item:definition',
+      'lineitems:element:components:element:item:code',
+      'lineitems:element:dependentlineitems',
+      'lineitems:element:dependentlineitems:element',
+      'lineitems:element:dependentlineitems:element:item:addtocartform',
+      'lineitems:element:dependentlineitems:element:item:availability',
+      'lineitems:element:dependentlineitems:element:item:definition',
+      'lineitems:element:dependentlineitems:element:item:code',
     ];
     const { orderData } = this.state;
     const { history } = this.props;

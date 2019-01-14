@@ -22,6 +22,103 @@
 @import './../style/common.less';
 
 .app-header-navigation-component {
+  @media only screen and (min-width: @tabletWidth) {
+    .hover-menu ul li {
+      position: relative;
+    }
+
+    .hover-menu ul li:hover > ul {
+      display: block
+    }
+
+    /** Right Dropdown Styling **/
+    .hover-menu .right-drop-down {
+      position: relative
+    }
+
+    .hover-menu .right-drop-down:hover > ul {
+      display: block
+    }
+
+    /** Left Dropdown **/
+    .hover-menu .left-drop-down {
+      position: relative
+    }
+
+    .hover-menu .left-drop-down:hover > ul {
+      display: block
+    }
+
+    .hover-menu .right-drop-down > .dropdown-menu {
+      position: absolute;
+      top: 10%;
+      left: -100%;
+      display: none;
+      z-index: 1
+    }
+
+    .hover-menu .left-drop-down > .dropdown-menu {
+      position: absolute;
+      top: 10%;
+      left: 100%;
+      display: none
+    }
+  }
+
+  @media only screen and (max-width: @tabletWidth - 1){
+    .dropdown-menu.show {
+      position: relative!important;
+    }
+    .dropdown-menu {
+      text-align: center;
+    }
+
+    /** Colors of each level of mobile/tablet dropdown **/
+    .nestedCategory0 {
+      background-color: #eeeeee!important
+    }
+
+    .nestedCategory1 {
+      background-color: #e5e5e5!important
+    }
+
+    .nestedCategory2 {
+      background-color: #dcdcdc!important
+    }
+
+    .nestedCategory3 {
+      background-color: #d3d3d3!important
+    }
+
+    .nestedCategory4 {
+      background-color: #cacaca!important
+    }
+
+    .nestedCategory5 {
+      background-color: #c1c1c1!important
+    }
+
+    .nestedCategory6 {
+      background-color: #b8b8b8!important
+    }
+
+    .nestedCategory7 {
+      background-color: #afafaf!important
+    }
+
+    .nestedCategory8 {
+      background-color: #a6a6a6!important
+    }
+
+    .nestedCategory9 {
+      background-color: #9d9d9d!important
+    }
+  }
+
+  .rotateCaret::after {
+    transform: rotate(-90deg);
+  }
+
   .navbar-nav {
     display: block;
 
@@ -63,6 +160,10 @@
 
   &.mobile-view {
     .navbar-nav {
+      margin-left: auto;
+      margin-right:auto;
+      width:100%;
+
       .nav-item {
         text-align: center;
         display: block;
@@ -106,6 +207,11 @@
             &:active {
               background-color: #ccc;
             }
+
+            &:focus {
+              background-color: #ccc;
+            }
+
           }
         }
       }

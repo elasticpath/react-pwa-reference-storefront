@@ -110,6 +110,8 @@ const PurchaseDetailsMain = (props) => {
     const tax = purchaseItem['line-extension-tax'][0].display;
     const itemTotal = purchaseItem['line-extension-total'][0].display;
     const options = purchaseItem._options;
+    const configuration = purchaseItem._configuration;
+    const bundleConfiguration = purchaseItem._components;
     return (
       <li key={name}>
         <table className="table">
@@ -137,6 +139,29 @@ const PurchaseDetailsMain = (props) => {
                 <td>
                   <span id="option">
                     {option._value[0]['display-name']}
+                  </span>
+                </td>
+              </tr>
+            )))}
+            {configuration && (configuration[0]._element.map(config => (
+              <tr key={config.name}>
+                <td>
+                  <label htmlFor="option">
+                    {config['display-name']}
+                  </label>
+                </td>
+                <td>
+                  <span id="option">
+                    {config._value[0]['display-name']}
+                  </span>
+                </td>
+              </tr>
+            )))}
+            {bundleConfiguration && (bundleConfiguration[0]._element.map(config => (
+              <tr key={config.name}>
+                <td>
+                  <span id="option">
+                    {config.name}
                   </span>
                 </td>
               </tr>

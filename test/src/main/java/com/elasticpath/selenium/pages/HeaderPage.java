@@ -39,7 +39,7 @@ public class HeaderPage extends AbstractPageObject {
 	private final static String CART_LINK_CSS = ".cart-link";
 	private final static String MOBILE_CART_LINK_CSS = ".mobile-cart-link-container .cart-link";
 	private final static String PARENT_CATEGORY_CSS = ".app-header-navigation-component li[data-name='%1s']";
-	private final static String SUB_CATEGORY_CSS = PARENT_CATEGORY_CSS + " > .dropdown-menu > a[title='%2s']";
+	private final static String SUB_CATEGORY_CSS = PARENT_CATEGORY_CSS + " > .dropdown-menu > li > a[title='%2s']";
 	private final static String SEARCH_INPUT_CSS = "input.input-search";
 	private final static String LOGIN_BUTTON_CSS = ".app-login-component .login-btn";
 	private final static String LOGGEDIN_BUTTON_CSS = ".app-login-component .btn-auth-menu";
