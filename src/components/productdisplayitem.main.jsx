@@ -694,17 +694,21 @@ class ProductDisplayItemMain extends React.Component {
               <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
                 <li className="nav-item">
                   <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
-                    Summary
+                    {intl.get('summary')}
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link disabled" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
-                    Reviews (0)
+                    {intl.get('reviews')}
+                    {' '}
+                    (0)
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link disabled" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
-                    Questions (0)
+                    {intl.get('questions')}
+                    {' '}
+                    (0)
                   </a>
                 </li>
               </ul>
