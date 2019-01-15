@@ -22,7 +22,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
-import { navigationLookup } from '../utils/CortexLookup';
 import { login } from '../utils/AuthService';
 
 import './productlistloadmore.less';
@@ -31,6 +30,7 @@ class ProductListLoadMore extends React.Component {
   static propTypes = {
     dataProps: PropTypes.objectOf(PropTypes.any).isRequired,
     handleDataChange: PropTypes.func.isRequired,
+    onLoadMore: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -50,12 +50,12 @@ class ProductListLoadMore extends React.Component {
   }
 
   loadMore() {
-    const { dataProps, handleDataChange } = this.props;
+    const { dataProps, handleDataChange, onLoadMore } = this.props;
     this.setState({ isLoading: true });
     login().then(() => {
       const nextRel = dataProps.links.find(link => link.rel === 'next');
       if (nextRel) {
-        navigationLookup(nextRel.uri)
+        onLoadMore(nextRel.uri)
           .then((res) => {
             const { _element, links, pagination } = dataProps;
             const updatedLinks = links.filter(link => link.rel === 'element');
