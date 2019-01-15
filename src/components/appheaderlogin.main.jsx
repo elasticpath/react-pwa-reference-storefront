@@ -140,15 +140,6 @@ class AppHeaderLoginMain extends React.Component {
                         {` ${localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}`}
                       </p>
                     </li>
-                    {(localStorage.getItem(`${Config.cortexApi.scope}_b2bDivision`) !== '') ? (
-                      <li className="dropdown-item change-carts">
-                        {intl.get('using-division')}
-                        <p className="using-division">
-                          {` ${localStorage.getItem(`${Config.cortexApi.scope}_b2bDivision`)}`}
-                        </p>
-                      </li>
-                    ) : ('')
-                    }
                   </ul>
                   <ul className="login-cart-list">
                     <li className="dropdown-item">
@@ -168,14 +159,25 @@ class AppHeaderLoginMain extends React.Component {
 
     return (
       <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button" data-toggle="modal" onClick={() => this.handleModalOpen()} data-target="#login-modal">
-          {(isMobileView)
-            ? (
-              intl.get('account-login')
-            ) : (
-              intl.get('login')
-            )}
-        </button>
+        {(Config.b2bFeatures) ? (
+          <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button" data-toggle="modal" onClick={() => this.handleModalOpen()} data-target="#login-modal">
+            {(isMobileView)
+              ? (
+                intl.get('account-login')
+              ) : (
+                intl.get('login')
+              )}
+          </button>
+        ) : (
+          <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button" data-toggle="modal" onClick={() => this.handleModalOpen()} data-target="#login-modal">
+            {(isMobileView)
+              ? (
+                intl.get('account-login')
+              ) : (
+                intl.get('login')
+              )}
+          </button>
+        )}
         <AppModalLoginMain key="app-modal-login-main" handleModalClose={this.handleModalClose} openModal={openModal} />
         <div data-region="authMainRegion" className="auth-nav-container" />
       </div>
