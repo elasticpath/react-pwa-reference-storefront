@@ -28,8 +28,6 @@ import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
 import './purchasedetails.main.less';
 
-const Config = require('Config');
-
 const PurchaseDetailsMain = (props) => {
   const { data } = props;
   const { status } = data;
