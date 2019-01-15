@@ -27,6 +27,7 @@ import { searchLookup } from '../utils/CortexLookup';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
 import SearchFacetNavigationMain from './searchfacetnavigation.main';
+import ProductListLoadMore from './productlistloadmore';
 
 import './searchresultsitems.main.less';
 
@@ -45,6 +46,8 @@ class SearchResultsItemsMain extends React.Component {
       searchResultsModel: { links: [] },
       searchKeywords: searchKeywordsProps,
     };
+
+    this.handleProductsChange = this.handleProductsChange.bind(this);
   }
 
   componentDidMount() {
@@ -86,6 +89,10 @@ class SearchResultsItemsMain extends React.Component {
     });
   }
 
+  handleProductsChange(products) {
+    this.setState({ searchResultsModel: products });
+  }
+
   render() {
     const { isLoading, searchResultsModel, searchKeywords } = this.state;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
@@ -123,7 +130,7 @@ class SearchResultsItemsMain extends React.Component {
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} />
+                  <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={searchLookup} />
                 </div>
               </div>
             );

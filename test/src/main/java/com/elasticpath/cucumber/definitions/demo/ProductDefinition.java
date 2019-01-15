@@ -52,4 +52,9 @@ public class ProductDefinition {
 		productPage.selectSkuOption(skuOption, choice);
 	}
 
+	@Given("^I choose sku size option (.+)")
+	public void selectSkuButtonOption(final String skuOption) {
+		productPage.selectSkuButtonOption(skuOption);
+	}
+
 }

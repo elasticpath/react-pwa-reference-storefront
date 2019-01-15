@@ -23,6 +23,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
+import Slider from 'react-slick';
 import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
@@ -114,6 +115,7 @@ class ProductDisplayItemMain extends React.Component {
       isLoading: false,
       arFileExists: false,
       itemConfiguration: {},
+      selectionValue: '',
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
@@ -123,6 +125,7 @@ class ProductDisplayItemMain extends React.Component {
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
+    this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
 
   componentDidMount() {
@@ -338,6 +341,10 @@ class ProductDisplayItemMain extends React.Component {
       });
   }
 
+  handleSelectionChange(event) {
+    this.setState({ selectionValue: event.target.value });
+  }
+
   renderAttributes() {
     const { productData } = this.state;
     if (productData._definition[0].details) {
@@ -358,17 +365,18 @@ class ProductDisplayItemMain extends React.Component {
   renderSkuSelection() {
     const { productData, isLoading } = this.state;
     if (productData._definition[0]._options) {
-      return productData._definition[0]._options[0]._element.map(options => (
-        <div key={options.name} className="form-group">
-          <label htmlFor={`product_display_item_sku_${options.name}_label`} className="control-label">
-            {options['display-name']}
+      const colorSelectorWrap = productData._definition[0]._options[0]._element[0];
+      return (
+        <div key={colorSelectorWrap.name} className="form-group">
+          <label htmlFor={`product_display_item_sku_${colorSelectorWrap.name}_label`} className="control-label">
+            {colorSelectorWrap['display-name']}
           </label>
           <div className="form-content">
-            <select className="form-control" id={`product_display_item_sku_select_${options.name}`} disabled={isLoading} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
-              <option key={options._selector[0]._chosen[0]._description[0].name} id={`product_display_item_sku_option_${options._selector[0]._chosen[0]._description[0].name}`} value={(options._selector[0]._chosen[0]._selectaction) ? options._selector[0]._chosen[0]._selectaction[0].self.uri : ''}>
-                {options._selector[0]._chosen[0]._description[0]['display-name']}
+            <select className="form-control" id={`product_display_item_sku_select_${colorSelectorWrap.name}`} disabled={isLoading} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
+              <option key={colorSelectorWrap._selector[0]._chosen[0]._description[0].name} id={`product_display_item_sku_option_${colorSelectorWrap._selector[0]._chosen[0]._description[0].name}`} value={(colorSelectorWrap._selector[0]._chosen[0]._selectaction) ? colorSelectorWrap._selector[0]._chosen[0]._selectaction[0].self.uri : ''}>
+                {colorSelectorWrap._selector[0]._chosen[0]._description[0]['display-name']}
               </option>
-              {(options._selector[0]._choice) ? options._selector[0]._choice.map(skuChoice => (
+              {(colorSelectorWrap._selector[0]._choice) ? colorSelectorWrap._selector[0]._choice.map(skuChoice => (
                 <option key={skuChoice._description[0].name} id={`product_display_item_sku_option_${skuChoice._description[0].name}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''}>
                   {skuChoice._description[0]['display-name']}
                 </option>
@@ -376,7 +384,7 @@ class ProductDisplayItemMain extends React.Component {
             </select>
           </div>
         </div>
-      ));
+      );
     }
     return null;
   }
@@ -399,10 +407,69 @@ class ProductDisplayItemMain extends React.Component {
     return null;
   }
 
+  renderSizeSelection() {
+    const { productData, selectionValue } = this.state;
+    let displaySelectorName = false;
+    let indexSelector = 0;
+    if (productData._definition[0]._options) {
+      productData._definition[0]._options[0]._element.forEach((selectorName, index) => {
+        if (selectorName['display-name'] === 'Size') {
+          indexSelector = index;
+          displaySelectorName = true;
+        }
+      });
+    }
+    if (displaySelectorName) {
+      const sizeSelectorTitle = productData._definition[0]._options[0]._element[indexSelector]['display-name'];
+      const sizeSelectorWrap = productData._definition[0]._options[0]._element[indexSelector]._selector[0]._choice;
+      const arraySizeSelector = [];
+      if (sizeSelectorWrap) {
+        productData._definition[0]._options[0]._element[indexSelector]._selector[0]._choice.map(skuChoice => (
+          arraySizeSelector.push(skuChoice)
+        ));
+      }
+      arraySizeSelector.unshift(productData._definition[0]._options[0]._element[indexSelector]._selector[0]._chosen[0]);
+      arraySizeSelector.sort((a, b) => {
+        if (a._description[0]['display-name'] < b._description[0]['display-name']) {
+          return -1;
+        }
+        if (a._description[0]['display-name'] > b._description[0]['display-name']) {
+          return 1;
+        }
+        return 0;
+      });
+      return (
+        <fieldset onChange={this.handleSelectionChange}>
+          <span className="selector-title">
+            {sizeSelectorTitle}
+          </span>
+          <div className="size-guide" id="product_display_item_size_guide" onChange={this.handleSkuSelection}>
+            {arraySizeSelector ? arraySizeSelector.map(skuChoice => (
+              <div key={skuChoice._description[0]['display-name']} className="size-select-wrap">
+                <input key={skuChoice._description[0].name} type="radio" name="sizeBy" id={`sizeWeight_${skuChoice._description[0]['display-name']}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''} defaultChecked={!skuChoice._selectaction || skuChoice._selectaction[0].self.uri === selectionValue} />
+                <label htmlFor={`sizeWeight_${skuChoice._description[0]['display-name']}`}>
+                  {skuChoice._description[0]['display-name']}
+                </label>
+              </div>
+            )) : ''}
+          </div>
+        </fieldset>
+      );
+    }
+    return null;
+  }
+
   renderProductImage() {
     const { productData, arFileExists } = this.state;
     const arBrowserSupported = document.createElement('a');
     const isInStandaloneMode = window.navigator.standalone;
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
     if (arBrowserSupported.relList.supports('ar') && !isInStandaloneMode && arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
@@ -411,7 +478,13 @@ class ProductDisplayItemMain extends React.Component {
       );
     }
     return (
-      <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+      <div className="product-image-carousel">
+        <Slider {...settings}>
+          <div>
+            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+          </div>
+        </Slider>
+      </div>
     );
   }
 
@@ -457,180 +530,216 @@ class ProductDisplayItemMain extends React.Component {
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
       return (
         <div className="itemdetail-component container-3">
-          <div className="itemdetail-assets">
-            <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
-              <div className="itemdetail-asset-container">
-                {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
-                  ? (
-                    <div className="featured">
-                      {intl.get('featured')}
-                    </div>
-                  )
-                  : ('')
-                }
-                {this.renderProductImage()}
-              </div>
-            </div>
-          </div>
-
-          <div className="itemdetail-details">
-            <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
-              <div>
-                <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
-                  {productData._definition[0]['display-name']}
-                </h1>
-              </div>
-            </div>
-            <div className="itemdetail-price-container" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
-              <div>
-                <div data-region="itemPriceRegion" style={{ display: 'block' }}>
-                  <ul className="itemdetail-price-container">
-                    {
-                      listPrice !== itemPrice
-                        ? (
-                          <li className="itemdetail-list-price" data-region="itemListPriceRegion">
-                            <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="itemdetail-list-price-label">
-                              {intl.get('original-price')}
-                              &nbsp;
-                            </label>
-                            <span className="itemdetail-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
-                              {listPrice}
-                            </span>
-                          </li>
-                        )
-                        : ('')
-                    }
-                    <li className="itemdetail-purchase-price">
-                      <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                        {itemPrice}
-                      </h1>
-                    </li>
-                  </ul>
+          <div>
+            <div className="itemdetail-assets">
+              <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
+                <div className="itemdetail-asset-container">
+                  {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
+                    ? (
+                      <div className="featured">
+                        {intl.get('featured')}
+                      </div>
+                    )
+                    : ('')
+                  }
+                  {this.renderProductImage()}
                 </div>
-                <div data-region="itemRateRegion" />
               </div>
             </div>
-            <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
-              <ul className="itemdetail-availability-container">
-                <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                  <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
-                    {(availability) ? (
-                      <div>
-                        <span className="icon glyphicon glyphicon-ok" />
-                        {availabilityString}
-                      </div>
-                    ) : (
-                      <div>
-                        {availabilityString}
-                      </div>
-                    )}
-                  </label>
-                </li>
-                <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                  <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
-                    {intl.get('expected-release-date')}
-                    :&nbsp;
-                  </label>
-                  <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
-                    {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <hr />
-            <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
-              <div>
-                <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
-                  {this.renderSkuSelection()}
-                  {this.renderConfiguration()}
-                  <div className="form-group">
-                    <label htmlFor="product_display_item_quantity_label" className="control-label">
-                      {intl.get('quantity')}
+
+            <div className="itemdetail-details">
+              <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
+                <div>
+                  <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
+                    {productData._definition[0]['display-name']}
+                  </h1>
+                </div>
+              </div>
+              <div className="itemdetail-price-container" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
+                <div>
+                  <div data-region="itemPriceRegion" style={{ display: 'block' }}>
+                    <ul className="itemdetail-price-container">
+                      {
+                        listPrice !== itemPrice
+                          ? (
+                            <li className="itemdetail-list-price" data-region="itemListPriceRegion">
+                              <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="itemdetail-list-price-label">
+                                {intl.get('original-price')}
+                                &nbsp;
+                              </label>
+                              <span className="itemdetail-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
+                                {listPrice}
+                              </span>
+                            </li>
+                          )
+                          : ('')
+                      }
+                      <li className="itemdetail-purchase-price">
+                        <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                          {itemPrice}
+                        </h1>
+                      </li>
+                    </ul>
+                  </div>
+                  <div data-region="itemRateRegion" />
+                </div>
+              </div>
+              <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
+                <ul className="itemdetail-availability-container">
+                  <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
+                    <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
+                      {(availability) ? (
+                        <div>
+                          <span className="icon glyphicon glyphicon-ok" />
+                          {availabilityString}
+                        </div>
+                      ) : (
+                        <div>
+                          {availabilityString}
+                        </div>
+                      )}
                     </label>
-                    <span className="input-group-btn">
-                      <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                        <span className="glyphicon glyphicon-plus" />
-                      </button>
-                      <div className="quantity-col form-content form-content-quantity">
-                        <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
-                      </div>
-                      <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                        <span className="glyphicon glyphicon-minus" />
-                      </button>
+                  </li>
+                  <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+                    <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
+                      {intl.get('expected-release-date')}
+                      :&nbsp;
+                    </label>
+                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
+                      {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
                     </span>
-                    {
-                      (isLoading) ? (<div className="miniLoader" />) : ''
-                    }
-                  </div>
-                  <div className="form-group-submit">
-                    <div className="form-content form-content-submit col-sm-offset-4">
-                      <button
-                        className="ep-btn primary wide btn-itemdetail-addtocart"
-                        disabled={!availability}
-                        id="product_display_item_add_to_cart_button"
-                        type="submit"
-                      >
-                        {intl.get('add-to-cart')}
-                      </button>
+                  </li>
+                </ul>
+              </div>
+              <hr />
+              <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
+                <div>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
+                    {this.renderSkuSelection()}
+                    {this.renderConfiguration()}
+                    {this.renderSizeSelection()}
+                    <div className="form-group">
+                      <label htmlFor="product_display_item_quantity_label" className="control-label">
+                        {intl.get('quantity')}
+                      </label>
+                      <div className="input-group-btn">
+                        <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+                          <span className="glyphicon glyphicon-minus" />
+                        </button>
+                        <div className="quantity-col form-content form-content-quantity">
+                          <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
+                        </div>
+                        <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+                          <span className="glyphicon glyphicon-plus" />
+                        </button>
+                      </div>
+                      {
+                        (isLoading) ? (<div className="miniLoader" />) : ''
+                      }
                     </div>
-                  </div>
-
-                  <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
-                    {addToCartFailedMessage}
-                  </div>
-
-                </form>
-                {(ProductDisplayItemMain.isLoggedIn() && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
-                  <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.addToWishList}>
                     <div className="form-group-submit">
                       <div className="form-content form-content-submit col-sm-offset-4">
                         <button
-                          className="ep-btn wide btn-itemdetail-addtowishlist"
+                          className="ep-btn primary wide btn-itemdetail-addtocart"
                           disabled={!availability}
-                          id="product_display_item_add_to_wish_list_button"
+                          id="product_display_item_add_to_cart_button"
                           type="submit"
                         >
-                          {intl.get('add-to-wish-list')}
+                          {intl.get('add-to-cart')}
                         </button>
                       </div>
                     </div>
-                  </form>
-                ) : ('')
-                }
-              </div>
-              <div className="social-network-sharing">
-                <InlineShareButtons
-                  config={{
-                    alignment: 'center', // alignment of buttons (left, center, right)
-                    color: 'social', // set the color of buttons (social, white)
-                    enabled: true, // show/hide buttons (true, false)
-                    font_size: 16, // font size for the buttons
-                    labels: 'cta', // button labels (cta, counts, null)
-                    language: 'en', // which language to use (see LANGUAGES)
-                    networks: [ // which networks to include (see SHARING NETWORKS)
-                      'facebook',
-                      'twitter',
-                      'pinterest',
-                      'email',
-                    ],
-                    padding: 12, // padding within buttons (INTEGER)
-                    radius: 4, // the corner radius on each button (INTEGER)
-                    size: 40, // the size of each button (INTEGER)
 
-                    // OPTIONAL PARAMETERS
-                    url: productLink, // (defaults to current url)
-                    image: productImage, // (defaults to og:image or twitter:image)
-                    description: productDescriptionValue, // (defaults to og:description or twitter:description)
-                    title: productTitle, // (defaults to og:title or twitter:title)
-                    message: 'custom email text', // (only for email sharing)
-                    subject: 'custom email subject', // (only for email sharing)
-                    username: 'custom twitter handle', // (only for twitter sharing)
-                  }}
-                />
+                    <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
+                      {addToCartFailedMessage}
+                    </div>
+
+                  </form>
+                  {(ProductDisplayItemMain.isLoggedIn() && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
+                    <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.addToWishList}>
+                      <div className="form-group-submit">
+                        <div className="form-content form-content-submit col-sm-offset-4">
+                          <button
+                            className="ep-btn wide btn-itemdetail-addtowishlist"
+                            disabled={!availability}
+                            id="product_display_item_add_to_wish_list_button"
+                            type="submit"
+                          >
+                            {intl.get('add-to-wish-list')}
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  ) : ('')
+                  }
+                </div>
+                <div className="social-network-sharing">
+                  <InlineShareButtons
+                    config={{
+                      alignment: 'center', // alignment of buttons (left, center, right)
+                      color: 'social', // set the color of buttons (social, white)
+                      enabled: true, // show/hide buttons (true, false)
+                      font_size: 16, // font size for the buttons
+                      labels: 'cta', // button labels (cta, counts, null)
+                      language: 'en', // which language to use (see LANGUAGES)
+                      networks: [ // which networks to include (see SHARING NETWORKS)
+                        'facebook',
+                        'twitter',
+                        'pinterest',
+                        'email',
+                      ],
+                      padding: 12, // padding within buttons (INTEGER)
+                      radius: 4, // the corner radius on each button (INTEGER)
+                      size: 40, // the size of each button (INTEGER)
+
+                      // OPTIONAL PARAMETERS
+                      url: productLink, // (defaults to current url)
+                      image: productImage, // (defaults to og:image or twitter:image)
+                      description: productDescriptionValue, // (defaults to og:description or twitter:description)
+                      title: productTitle, // (defaults to og:title or twitter:title)
+                      message: 'custom email text', // (only for email sharing)
+                      subject: 'custom email subject', // (only for email sharing)
+                      username: 'custom twitter handle', // (only for twitter sharing)
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion" style={{ display: 'block' }}>
-              {this.renderAttributes()}
+              <div className="itemdetail-tabs-wrap">
+                <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
+                  <li className="nav-item">
+                    <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
+                      {intl.get('summary')}
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link disabled" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                      {intl.get('reviews')}
+                      {' '}
+                      (0)
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link disabled" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
+                      {intl.get('questions')}
+                      {' '}
+                      (0)
+                    </a>
+                  </li>
+                </ul>
+                <div className="tab-content">
+                  <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                    <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion">
+                      {this.renderAttributes()}
+                    </div>
+                  </div>
+                  <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                    ...
+                  </div>
+                  <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
+                    ...
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <BundleConstituentsDisplayMain productData={productData} />

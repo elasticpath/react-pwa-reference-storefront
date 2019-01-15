@@ -26,6 +26,9 @@ import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
+import ProductListLoadMore from './productlistloadmore';
+
+import './categoryitems.main.less';
 
 class CategoryItemsMain extends React.Component {
   static propTypes = {
@@ -38,6 +41,8 @@ class CategoryItemsMain extends React.Component {
       isLoading: true,
       categoryModel: { links: [] },
     };
+
+    this.handleProductsChange = this.handleProductsChange.bind(this);
   }
 
   componentDidMount() {
@@ -67,6 +72,7 @@ class CategoryItemsMain extends React.Component {
             this.setState({
               categoryModel: res,
               categoryModelDisplayName: res['display-name'],
+              categoryModelParentDisplayName: res._parent ? res._parent[0]['display-name'] : '',
               categoryModelId: categoryId,
             });
           })
@@ -92,9 +98,13 @@ class CategoryItemsMain extends React.Component {
     });
   }
 
+  handleProductsChange(products) {
+    this.setState({ categoryModel: products });
+  }
+
   render() {
     const {
-      isLoading, categoryModel, categoryModelId, categoryModelDisplayName,
+      isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName,
     } = this.state;
     const products = categoryModel._items ? categoryModel._items[0] : categoryModel;
     const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
@@ -118,13 +128,22 @@ class CategoryItemsMain extends React.Component {
 
             return (
               <div>
-                <h1 className="view-title">
+                <div className="menu-history">
+                  {categoryModelParentDisplayName}
+                  {categoryModelParentDisplayName && (
+                  <span className="arrow">
+                    &nbsp;﹥&nbsp;
+                  </span>
+                  )}
                   {categoryModelDisplayName}
-                </h1>
+                  <h1 className="category-title">
+                    {categoryModelDisplayName}
+                  </h1>
+                </div>
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} />
+                  <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />
                 </div>
               </div>
             );

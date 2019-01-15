@@ -2,7 +2,70 @@
 
 .carousel {
   position: relative;
-  margin-bottom: 50px
+  margin-bottom: 50px;
+  .slick-slider:before {
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(43,43,43,0.35);
+    z-index: 1;
+  }
+  .slick-slide img{
+    display:block;
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    object-fit: cover
+  }
+  .slick-dots li{
+    position:relative;
+    display:inline-block;
+    width:25%;
+    height:100px;
+    padding:0;
+    cursor:pointer
+  }
+  .slick-dots li div:before {
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(4,0,96,0.45);
+    z-index: 1;
+  }
+  .slick-dots li.slick-active div:before {
+    z-index: -1;
+  }
+  .slick-list {
+    max-height: 800px;
+  }
+  .slick-next,.slick-prev {
+    bottom: -150px;
+    width: 60px;
+    height: 25px;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+  .slick-next:before {
+    content: '→';
+  }
+  .slick-prev:before {
+    content: '←';
+  }
+  .slick-prev{
+    right:calc(50% - 520px)
+  }
+  .slick-next{
+    right:calc(50% - 600px)
+  }
 }
 .carousel-txt {
   width: 100%;
@@ -46,19 +109,7 @@
   touch-action:pan-y;
   -webkit-tap-highlight-color:transparent
 }
-.slick-slider:before {
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(43,43,43,0.35);
-  z-index: 1;
-}
 .slick-list{
-  max-height: 800px;
   overflow:hidden;
   margin:0;
   padding:0
@@ -97,13 +148,6 @@
 [dir=rtl] .slick-slide{
   float:right
 }
-.slick-slide img{
-  display:block;
-  width: 100%;
-  height: 500px;
-  margin: 0 auto;
-  object-fit: cover
-}
 .slick-slide.slick-loading img{
   display:none
 }
@@ -122,7 +166,6 @@
   display:none
 }
 
-
 .slick-dots,.slick-next,.slick-prev{
   position:absolute;
   display:block;
@@ -134,15 +177,8 @@
   -moz-osx-font-smoothing:grayscale
 }
 .slick-next,.slick-prev{
-  display: none;
   font-size:0;
   line-height:0;
-  bottom:-150px;
-  width:60px;
-  height:25px;
-  -webkit-transform:translate(0,-50%);
-  -ms-transform:translate(0,-50%);
-  transform:translate(0,-50%);
   cursor:pointer;
   color:transparent;
   border:none;
@@ -166,21 +202,9 @@
   opacity:.5;
   color:@mainGrey
 }
-.slick-next:before {
-  content: '→';
-}
-.slick-prev:before {
-  content: '←';
-}
-.slick-prev{
-  right:calc(50% - 520px)
-}
 [dir=rtl] .slick-prev{
   right:0;
   left:auto
-}
-.slick-next{
-  right:calc(50% - 600px)
 }
 [dir=rtl] .slick-next{
   right:auto;
@@ -198,28 +222,6 @@
   list-style:none;
   text-align:center;
   z-index: 2;
-}
-.slick-dots li{
-  position:relative;
-  display:inline-block;
-  width:25%;
-  height:100px;
-  padding:0;
-  cursor:pointer
-}
-.slick-dots li div:before {
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(4,0,96,0.45);
-  z-index: 1;
-}
-.slick-dots li.slick-active div:before {
-  z-index: -1;
 }
 .slick-dots li button{
   font-size:0;
@@ -256,6 +258,16 @@
 @media (min-width: @mobileWidth) {
   .carousel {
     margin-bottom: 75px;
+    .slick-dots li {
+      width:190px;
+      height: 150px;
+    }
+    .slick-thumb img {
+      height: 150px;
+    }
+    .slick-slide img{
+      height: 800px;
+    }
   }
   .carousel-txt {
     bottom: 200px;
@@ -265,27 +277,17 @@
     line-height: 60px;
     margin-bottom: 40px;
   }
-  .slick-dots li {
-    width:190px;
-    height: 150px;
-  }
-  .slick-thumb img {
-    height: 150px;
-  }
-  .slick-slide img{
-    height: 800px;
-  }
 }
 
 @media (min-width: 1200px) {
   .carousel {
     margin-bottom: 100px;
-  }
-  .slick-dots li {
-    width: 300px;
-    height: 200px;
-  }
-  .slick-thumb img {
-    height: 200px;
+    .slick-dots li {
+      width: 300px;
+      height: 200px;
+    }
+    .slick-thumb img {
+      height: 200px;
+    }
   }
 }

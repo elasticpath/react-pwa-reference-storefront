@@ -38,6 +38,7 @@ const navigationFormZoomArray = [
   'element:price',
   'element:rate',
   'element:code',
+  'parent',
 ];
 
 // Array of zoom parameters to pass to Cortex for itemDetails

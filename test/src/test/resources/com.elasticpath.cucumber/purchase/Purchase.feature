@@ -84,7 +84,7 @@ Feature: Purchase
     Given I select category Mens
     And I select product Men's Soft Shell Jacket
     And I select sku option Color and choose Black
-    And I select sku option Size and choose Small
+    And I choose sku size option Small
     And I select quantity 2 and add product to my cart
     When I complete the purchase as a new registered shopper
     Then the purchase status in my purchase history should be In Progress
