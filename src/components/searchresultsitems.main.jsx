@@ -130,7 +130,7 @@ class SearchResultsItemsMain extends React.Component {
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} />
+                  <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={searchLookup} />
                 </div>
               </div>
             );

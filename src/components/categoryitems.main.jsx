@@ -143,7 +143,7 @@ class CategoryItemsMain extends React.Component {
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
                   <ProductListMain productData={products} />
-                  <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} />
+                  <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />
                 </div>
               </div>
             );
