@@ -409,14 +409,27 @@ class ProductDisplayItemMain extends React.Component {
 
   renderSizeSelection() {
     const { productData, selectionValue } = this.state;
-    if (productData._definition[0]._options && productData._definition[0]._options[0]._element[1]._selector[0]._choice) {
-      const sizeSelectorTitle = productData._definition[0]._options[0]._element[1]['display-name'];
-      const arraysizeSelector = [];
-      productData._definition[0]._options[0]._element[1]._selector[0]._choice.map(skuChoice => (
-        arraysizeSelector.push(skuChoice)
-      ));
-      arraysizeSelector.unshift(productData._definition[0]._options[0]._element[1]._selector[0]._chosen[0]);
-      arraysizeSelector.sort((a, b) => {
+    let displaySelectorName = false;
+    let indexSelector = 0;
+    if (productData._definition[0]._options) {
+      productData._definition[0]._options[0]._element.forEach((selectorName, index) => {
+        if (selectorName['display-name'] === 'Size') {
+          indexSelector = index;
+          displaySelectorName = true;
+        }
+      });
+    }
+    if (displaySelectorName) {
+      const sizeSelectorTitle = productData._definition[0]._options[0]._element[indexSelector]['display-name'];
+      const sizeSelectorWrap = productData._definition[0]._options[0]._element[indexSelector]._selector[0]._choice;
+      const arraySizeSelector = [];
+      if (sizeSelectorWrap) {
+        productData._definition[0]._options[0]._element[indexSelector]._selector[0]._choice.map(skuChoice => (
+          arraySizeSelector.push(skuChoice)
+        ));
+      }
+      arraySizeSelector.unshift(productData._definition[0]._options[0]._element[indexSelector]._selector[0]._chosen[0]);
+      arraySizeSelector.sort((a, b) => {
         if (a._description[0]['display-name'] < b._description[0]['display-name']) {
           return -1;
         }
@@ -431,7 +444,7 @@ class ProductDisplayItemMain extends React.Component {
             {sizeSelectorTitle}
           </span>
           <div className="size-guide" id="product_display_item_size_guide" onChange={this.handleSkuSelection}>
-            {arraysizeSelector ? arraysizeSelector.map(skuChoice => (
+            {arraySizeSelector ? arraySizeSelector.map(skuChoice => (
               <div key={skuChoice._description[0]['display-name']} className="size-select-wrap">
                 <input key={skuChoice._description[0].name} type="radio" name="sizeBy" id={`sizeWeight_${skuChoice._description[0]['display-name']}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''} defaultChecked={!skuChoice._selectaction || skuChoice._selectaction[0].self.uri === selectionValue} />
                 <label htmlFor={`sizeWeight_${skuChoice._description[0]['display-name']}`}>
