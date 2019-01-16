@@ -24,6 +24,8 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
+import AppModalLoginMain from './appmodallogin.main';
+import AppModalCartSelectMain from './appmodalcartselect.main';
 import { login, logout } from '../utils/AuthService';
 
 import './appheaderlogin.main.less';
@@ -44,6 +46,15 @@ class AppHeaderLoginMain extends React.Component {
     isMobileView: false,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      openModal: false,
+      openCartModal: false,
+    };
+    this.handleModalClose = this.handleModalClose.bind(this);
+  }
+
   logoutRegisteredUser() {
     logout().then(() => {
       login().then(() => {
@@ -54,8 +65,36 @@ class AppHeaderLoginMain extends React.Component {
     });
   }
 
+  handleModalOpen() {
+    this.setState({
+      openModal: true,
+    });
+  }
+
+  handleCartModalOpen() {
+    this.setState({
+      openCartModal: true,
+    });
+  }
+
+  handleModalClose() {
+    this.setState({
+      openModal: false,
+      openCartModal: false,
+    });
+  }
+
   render() {
     const { isMobileView } = this.props;
+    const {
+      openModal, openCartModal,
+    } = this.state;
+    let keyCloakLoginRedirectUrl = '';
+    let keyCloakLogoutRedirectUrl = '';
+    if (Config.b2b.enable) {
+      keyCloakLoginRedirectUrl = `${Config.b2b.keyCloak.loginRedirectUrl}?client_id=${Config.b2b.keyCloak.client_id}&response_type=code&scope=${Config.cortexApi.scope}&redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
+      keyCloakLogoutRedirectUrl = `${Config.b2b.keyCloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
+    }
     if (AppHeaderLoginMain.isLoggedIn()) {
       return (
         <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
@@ -92,12 +131,41 @@ class AppHeaderLoginMain extends React.Component {
                   </Link>
                 </li>
                 <li className="dropdown-item">
-                  <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
-                    <span className="icon" />
-                    {intl.get('logout')}
-                  </button>
+                  {(Config.b2b.enable) ? (
+                    <a href={`${keyCloakLogoutRedirectUrl}`} className="login-eam-btn">
+                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
+                        <span className="icon" />
+                        {intl.get('logout')}
+                      </button>
+                    </a>
+                  ) : (
+                    <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
+                      <span className="icon" />
+                      {intl.get('logout')}
+                    </button>
+                  )}
                 </li>
               </ul>
+              {(Config.b2b.enable) ? (
+                <div className="dropdown-login-cart">
+                  <ul>
+                    <li className="dropdown-item change-carts">
+                      {intl.get('using-cart')}
+                      <p className="using-cart">
+                        {` ${localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}`}
+                      </p>
+                    </li>
+                  </ul>
+                  <ul className="login-cart-list">
+                    <li className="dropdown-item">
+                      <button className="cart-select-btn" type="button" data-toggle="modal" onClick={() => this.handleCartModalOpen()} data-target="#cart-select-modal">
+                        {intl.get('change-carts')}
+                      </button>
+                      <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} />
+                    </li>
+                  </ul>
+                </div>
+              ) : ('')}
             </div>
           </div>
         </div>
@@ -106,14 +174,28 @@ class AppHeaderLoginMain extends React.Component {
 
     return (
       <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button" data-toggle="modal" data-target="#login-modal">
-          {(isMobileView)
-            ? (
-              intl.get('account-login')
-            ) : (
-              intl.get('login')
-            )}
-        </button>
+        {(Config.b2b.enable) ? (
+          <a href={`${keyCloakLoginRedirectUrl}`} className="login-eam-btn">
+            <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button">
+              {(isMobileView)
+                ? (
+                  intl.get('account-login')
+                ) : (
+                  intl.get('login')
+                )}
+            </button>
+          </a>
+        ) : (
+          <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button" data-toggle="modal" onClick={() => this.handleModalOpen()} data-target="#login-modal">
+            {(isMobileView)
+              ? (
+                intl.get('account-login')
+              ) : (
+                intl.get('login')
+              )}
+          </button>
+        )}
+        <AppModalLoginMain key="app-modal-login-main" handleModalClose={this.handleModalClose} openModal={openModal} />
         <div data-region="authMainRegion" className="auth-nav-container" />
       </div>
     );

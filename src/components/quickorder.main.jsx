@@ -20,8 +20,10 @@
  */
 
 import React from 'react';
+
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
+import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import {
@@ -35,10 +37,14 @@ const Config = require('Config');
 class QuickOrderMain extends React.Component {
   static propTypes = {
     onAddToCart: PropTypes.func,
+    isBuyItAgain: PropTypes.bool,
+    productIdProps: PropTypes.string,
   }
 
   static defaultProps = {
-    onAddToCart: () => {},
+    onAddToCart: () => { },
+    isBuyItAgain: false,
+    productIdProps: '',
   }
 
   constructor(props) {
@@ -52,6 +58,12 @@ class QuickOrderMain extends React.Component {
       isLoading: false,
       itemConfiguration: {},
     };
+    const { productIdProps } = this.props;
+    if (productIdProps !== '') {
+      this.state = {
+        productId: productIdProps,
+      };
+    }
     this.addToCart = this.addToCart.bind(this);
   }
 
@@ -70,6 +82,9 @@ class QuickOrderMain extends React.Component {
             const addToCartLink = res._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
             const body = {};
             body.quantity = itemQuantity;
+            if (itemQuantity === undefined) {
+              body.quantity = 1;
+            }
             if (itemConfiguration) {
               body.configuration = itemConfiguration;
             }
@@ -122,6 +137,22 @@ class QuickOrderMain extends React.Component {
     const {
       failedSubmit, isLoading, addToCartFailedMessage, productId, itemQuantity,
     } = this.state;
+    const { isBuyItAgain } = this.props;
+    if (isBuyItAgain) {
+      return (
+        <div style={{ display: 'block' }}>
+          <button className="ep-btn small buy-it-again-btn" type="button" onClick={this.addToCart}>
+            {intl.get('buy-it-again')}
+          </button>
+          <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
+            {addToCartFailedMessage}
+          </div>
+          {
+            (isLoading) ? (<div className="miniLoader" />) : ''
+          }
+        </div>
+      );
+    }
     return (
       <div className="quick-order-container" style={{ display: 'block' }}>
         <div>
@@ -162,4 +193,4 @@ class QuickOrderMain extends React.Component {
   }
 }
 
-export default QuickOrderMain;
+export default withRouter(QuickOrderMain);

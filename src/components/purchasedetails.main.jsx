@@ -22,6 +22,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
+import QuickOrderMain from './quickorder.main';
 import PaymentMethodContainer from './paymentmethod.container';
 import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
@@ -102,6 +103,10 @@ const PurchaseDetailsMain = (props) => {
         <PaymentMethodContainer displayName={displayName} />
       </div>
     );
+  };
+
+  const routeToCart = () => {
+    window.location.pathname = '/mybag';
   };
 
   const renderItem = (purchaseItem) => {
@@ -217,6 +222,9 @@ const PurchaseDetailsMain = (props) => {
                   {itemTotal}
                 </span>
               </td>
+            </tr>
+            <tr>
+              <QuickOrderMain isBuyItAgain productIdProps={purchaseItem._item[0]._code[0].code} onAddToCart={() => { routeToCart(); }} />
             </tr>
           </tbody>
         </table>

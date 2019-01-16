@@ -35,18 +35,27 @@ function generateFormBody(userDetails) {
   userFormBodyString = userFormBody.join('&');
 }
 
-export function login() {
+export function login(code, redirectUri) {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       userFormBodyString = '';
       userFormBody = [];
-      const publicUserDetails = {
-        username: '',
-        password: '',
-        grant_type: 'password',
-        role: 'PUBLIC',
-        scope: Config.cortexApi.scope,
-      };
+      let publicUserDetails = {};
+      if (code !== undefined) {
+        publicUserDetails = {
+          code,
+          redirectUri,
+        };
+      } else {
+        publicUserDetails = {
+          username: '',
+          password: '',
+          grant_type: 'password',
+          role: 'PUBLIC',
+          scope: Config.cortexApi.scope,
+        };
+      }
+
       generateFormBody(publicUserDetails);
 
       cortexFetch('/oauth2/tokens', {
@@ -132,6 +141,7 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console
