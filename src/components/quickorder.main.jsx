@@ -26,9 +26,6 @@ import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import {
-  isAnalyticsConfigured, trackAddItemAnalytics, setAddAnalytics, sendAddToCartAnalytics,
-} from '../utils/Analytics';
 import cortexFetch from '../utils/Cortex';
 import './quickorder.main.less';
 
@@ -51,7 +48,6 @@ class QuickOrderMain extends React.Component {
     super(props);
     this.state = {
       failedSubmit: false,
-      productData: undefined,
       productId: '',
       itemQuantity: 1,
       addToCartFailedMessage: '',
@@ -70,7 +66,7 @@ class QuickOrderMain extends React.Component {
   addToCart(event) {
     const { onAddToCart } = this.props;
     const {
-      productData, itemQuantity, itemConfiguration, productId,
+      itemQuantity, itemConfiguration, productId,
     } = this.state;
     this.setState({
       isLoading: true,
@@ -99,12 +95,6 @@ class QuickOrderMain extends React.Component {
               })
               .then((resAddToCart) => {
                 if (resAddToCart.status === 200 || resAddToCart.status === 201) {
-                  if (isAnalyticsConfigured()) {
-                    const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-                    trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
-                    setAddAnalytics();
-                    sendAddToCartAnalytics();
-                  }
                   this.setState({
                     isLoading: false,
                     productId: '',
