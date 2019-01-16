@@ -35,16 +35,16 @@ function generateFormBody(userDetails) {
   userFormBodyString = userFormBody.join('&');
 }
 
-export function login(code = '', redirect_uri = '') {
+export function login(code, redirectUri) {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       userFormBodyString = '';
       userFormBody = [];
       let publicUserDetails = {};
-      if (code !== '') {
+      if (code !== undefined) {
         publicUserDetails = {
           code,
-          redirect_uri,
+          redirectUri,
         };
       } else {
         publicUserDetails = {
