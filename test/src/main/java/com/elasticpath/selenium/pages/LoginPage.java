@@ -27,7 +27,7 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage extends AbstractPageObject {
 
 	private final WebDriver driver;
-	private final static String LOGIN_MODEL_CSS = "div[id='login-modal'][style*='block']";
+	private final static String LOGIN_MODEL_CSS = "div[id='login-modal']";
 	private final static String LOGIN_BUTTON_CSS = LOGIN_MODEL_CSS + " button[id='login_modal_login_button']";
 	private final static String REGISTER_BUTTON_CSS = "#login_modal_register_button";
 	private final static String USERNAME_INPUT_CSS = LOGIN_MODEL_CSS + " input[id='login_modal_username_input']";
