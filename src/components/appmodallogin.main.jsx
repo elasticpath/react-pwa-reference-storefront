@@ -25,7 +25,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import { loginRegistered } from '../utils/AuthService';
+import queryString from 'query-string';
+import { loginRegistered, login } from '../utils/AuthService';
 import './appmodallogin.main.less';
 
 const Config = require('Config');
@@ -33,6 +34,7 @@ const Config = require('Config');
 class AppModalLoginMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
     handleModalClose: PropTypes.func.isRequired,
     openModal: PropTypes.bool.isRequired,
   }
@@ -49,6 +51,37 @@ class AppModalLoginMain extends React.Component {
     this.setPassword = this.setPassword.bind(this);
     this.loginRegisteredUser = this.loginRegisteredUser.bind(this);
     this.registerNewUser = this.registerNewUser.bind(this);
+  }
+
+  componentWillMount() {
+    const { location, history } = this.props;
+    const url = location.search;
+    const params = queryString.parse(url);
+    if (params.code) {
+      localStorage.setItem(`${Config.cortexApi.scope}_keyCloakCode`, params.code);
+      localStorage.setItem(`${Config.cortexApi.scope}_keyCloakSessionState`, params.session_state);
+      if (!localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`)) {
+        login(params.code, encodeURIComponent(Config.b2b.keyCloak.callbackUrl)).then((resStatus) => {
+          if (resStatus === 401) {
+            this.setState({
+              failedLogin: true,
+              isLoading: false,
+            });
+          }
+          if (resStatus === 400) {
+            this.setState({
+              failedLogin: true,
+              isLoading: false,
+            });
+          } else if (resStatus === 200) {
+            this.setState({ failedLogin: false });
+            history.push('/');
+          }
+        });
+      }
+      history.push('/');
+      window.location.reload();
+    }
   }
 
   setUsername(event) {

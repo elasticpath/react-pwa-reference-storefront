@@ -160,7 +160,7 @@ class CartPage extends React.Component {
               )}
             </div>
           </div>
-          {(Config.b2bFeatures) ? (
+          {(Config.b2b.enable) ? (
             <QuickOrderMain onAddToCart={() => { this.fetchCartData(); }} />
           ) : ('')}
           {cartData && !isLoading && (

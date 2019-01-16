@@ -35,18 +35,27 @@ function generateFormBody(userDetails) {
   userFormBodyString = userFormBody.join('&');
 }
 
-export function login() {
+export function login(code = '', redirect_uri = '') {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       userFormBodyString = '';
       userFormBody = [];
-      const publicUserDetails = {
-        username: '',
-        password: '',
-        grant_type: 'password',
-        role: 'PUBLIC',
-        scope: Config.cortexApi.scope,
-      };
+      let publicUserDetails = {};
+      if (code !== '') {
+        publicUserDetails = {
+          code,
+          redirect_uri,
+        };
+      } else {
+        publicUserDetails = {
+          username: '',
+          password: '',
+          grant_type: 'password',
+          role: 'PUBLIC',
+          scope: Config.cortexApi.scope,
+        };
+      }
+
       generateFormBody(publicUserDetails);
 
       cortexFetch('/oauth2/tokens', {
