@@ -129,8 +129,8 @@ class AppModalLoginMain extends React.Component {
     const { handleModalClose, openModal } = this.props;
 
     return (
-      <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'login-modal-content' }} id="login-modal">
-        <div>
+      <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'login-modal-content' }}>
+        <div id="login-modal">
           <div className="modal-content" id="simplemodal-container">
 
             <div className="modal-header">
