@@ -73,7 +73,9 @@ public class LoginPage extends AbstractPageObject {
 	}
 
 	public RegisterPage clickRegisterLink() {
+		String beforeUrl = driver.getCurrentUrl();
 		getDriver().findElement(By.cssSelector(REGISTER_BUTTON_CSS)).click();
+		waitForUrlToChange(beforeUrl);
 		return new RegisterPage(driver);
 	}
 }
