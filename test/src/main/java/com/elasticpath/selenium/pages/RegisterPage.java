@@ -68,9 +68,10 @@ public class RegisterPage extends AbstractPageObject {
 
 	@Override
 	public void verifyCorrectPageIsDisplayed() {
-		// assertThat(registrationContainer.isDisplayed())
-		// 		.as("Failed to verify Register page")
-		// 		.isTrue();
+		getWaitDriver().waitForPageToLoad();
+		assertThat(registrationContainer.isDisplayed())
+				.as("Failed to verify Register page")
+				.isTrue();
 	}
 
 	public HomePage registerUser(final CustomerInfo customerInfo) {
