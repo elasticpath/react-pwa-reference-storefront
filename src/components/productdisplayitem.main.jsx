@@ -660,6 +660,7 @@ class ProductDisplayItemMain extends React.Component {
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
                           <button
+                            onClick={event => this.addToCart(event, '/order')}
                             className="ep-btn primary wide btn-itemdetail-addtocart"
                             disabled={!availability}
                             id="product_display_item_buy_now_button"
@@ -667,16 +668,8 @@ class ProductDisplayItemMain extends React.Component {
                           >
                             {intl.get('buy-now')}
                           </button>
-                        </div>
-                      </div>
-                    </form>
-                  ) : ('')
-                  }
-                  {(ProductDisplayItemMain.isLoggedIn() && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
-                    <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.addToWishList}>
-                      <div className="form-group-submit">
-                        <div className="form-content form-content-submit col-sm-offset-4">
                           <button
+                            onClick={this.addToWishList}
                             className="ep-btn wide btn-itemdetail-addtowishlist"
                             disabled={!availability}
                             id="product_display_item_add_to_wish_list_button"
