@@ -124,7 +124,6 @@ class ProductDisplayItemMain extends React.Component {
     this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
-    this.renderBuyNow = this.renderBuyNow.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
@@ -250,7 +249,7 @@ class ProductDisplayItemMain extends React.Component {
     });
   }
 
-  addToCart(event) {
+  addToCart(event, path) {
     const { productData, itemQuantity, itemConfiguration } = this.state;
     const { history } = this.props;
     login().then(() => {
@@ -277,7 +276,7 @@ class ProductDisplayItemMain extends React.Component {
               setAddAnalytics();
               sendAddToCartAnalytics();
             }
-            history.push('/mybag');
+            history.push(path);
           } else {
             let debugMessages = '';
             res.json().then((json) => {
@@ -345,52 +344,6 @@ class ProductDisplayItemMain extends React.Component {
   handleSelectionChange(event) {
     this.setState({ selectionValue: event.target.value });
   }
-
-  renderBuyNow(event) {
-    const { productData, itemQuantity, itemConfiguration } = this.state;
-    const { history } = this.props;
-    login().then(() => {
-      const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      const body = {};
-      body.quantity = itemQuantity;
-      if (itemConfiguration) {
-        body.configuration = itemConfiguration;
-      }
-      cortexFetch(addToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            if (isAnalyticsConfigured()) {
-              const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-              trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
-              setAddAnalytics();
-              sendAddToCartAnalytics();
-            }
-            history.push('/order');
-          } else {
-            let debugMessages = '';
-            res.json().then((json) => {
-              for (let i = 0; i < json.messages.length; i++) {
-                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-              }
-            }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-    event.preventDefault();
-  }
-
 
   renderAttributes() {
     const { productData } = this.state;
@@ -661,7 +614,7 @@ class ProductDisplayItemMain extends React.Component {
               <hr />
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={event => this.addToCart(event, '/mybag')}>
                     {this.renderSkuSelection()}
                     {this.renderConfiguration()}
                     {this.renderSizeSelection()}
@@ -703,7 +656,7 @@ class ProductDisplayItemMain extends React.Component {
 
                   </form>
                   {(ProductDisplayItemMain.isLoggedIn() && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
-                    <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.renderBuyNow}>
+                    <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={event => this.addToCart(event, '/order')}>
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
                           <button
