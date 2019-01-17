@@ -249,7 +249,7 @@ class ProductDisplayItemMain extends React.Component {
     });
   }
 
-  addToCart(event) {
+  addToCart(event, path) {
     const { productData, itemQuantity, itemConfiguration } = this.state;
     const { history } = this.props;
     login().then(() => {
@@ -276,7 +276,7 @@ class ProductDisplayItemMain extends React.Component {
               setAddAnalytics();
               sendAddToCartAnalytics();
             }
-            history.push('/mybag');
+            history.push(path);
           } else {
             let debugMessages = '';
             res.json().then((json) => {
@@ -614,7 +614,7 @@ class ProductDisplayItemMain extends React.Component {
               <hr />
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={this.addToCart}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={event => this.addToCart(event, '/mybag')}>
                     {this.renderSkuSelection()}
                     {this.renderConfiguration()}
                     {this.renderSizeSelection()}
@@ -656,10 +656,20 @@ class ProductDisplayItemMain extends React.Component {
 
                   </form>
                   {(ProductDisplayItemMain.isLoggedIn() && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
-                    <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={this.addToWishList}>
+                    <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
                           <button
+                            onClick={event => this.addToCart(event, '/order')}
+                            className="ep-btn primary wide btn-itemdetail-addtocart"
+                            disabled={!availability}
+                            id="product_display_item_buy_now_button"
+                            type="submit"
+                          >
+                            {intl.get('buy-now')}
+                          </button>
+                          <button
+                            onClick={this.addToWishList}
                             className="ep-btn wide btn-itemdetail-addtowishlist"
                             disabled={!availability}
                             id="product_display_item_add_to_wish_list_button"

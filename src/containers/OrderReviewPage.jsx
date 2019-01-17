@@ -166,6 +166,11 @@ class OrderReviewPage extends React.Component {
     });
   }
 
+  goToCheckOut() {
+    const { history } = this.props;
+    history.push('/checkout');
+  }
+
   trackTransactionAnalytics() {
     const { orderData } = this.state;
     if (isAnalyticsConfigured()) {
@@ -243,6 +248,14 @@ class OrderReviewPage extends React.Component {
 
   render() {
     const { orderData, isLoading } = this.state;
+    const isValid = (orderData && orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri);
+    let debugMessages = '';
+    if (orderData && orderData._order[0]) {
+      const { messages } = orderData._order[0];
+      for (let i = 0; i < messages.length; i++) {
+        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
+      }
+    }
     return (
       <div>
         <div className="app-main" style={{ display: 'block' }}>
@@ -256,10 +269,10 @@ class OrderReviewPage extends React.Component {
               {orderData && (
                 <div className="order-main-container" style={{ display: 'block' }}>
                   <div className="order-options-container" style={{ display: 'block' }}>
-                    {this.renderShippingOption()}
-                    {this.renderShippingAddress()}
-                    {this.renderBillingAddress()}
-                    {this.renderPaymentMethod()}
+                    {(orderData._order[0]._deliveries) && this.renderShippingOption()}
+                    {(orderData._order[0]._deliveries) && this.renderShippingAddress()}
+                    {(orderData._order[0]._billingaddressinfo) && this.renderBillingAddress()}
+                    {(orderData._order[0]._paymentmethodinfo) && this.renderPaymentMethod()}
                   </div>
                   <div className="order-items-container" style={{ display: 'block' }}>
                     <OrderTableMain data={orderData} />
@@ -273,9 +286,16 @@ class OrderReviewPage extends React.Component {
                       <div className="checkout-summary-container" style={{ display: 'inline-block' }}>
                         <CheckoutSummaryList data={orderData} isLoading={false} />
                       </div>
+                      <div className="feedback-label" id="checkout_feedback_container">
+                        {(debugMessages !== '') ? (debugMessages) : ('')}
+                      </div>
                       <div className="checkout-submit-container" style={{ display: 'block' }}>
-                        <button className="ep-btn primary wide btn-cmd-submit-order" type="button" onClick={() => { this.completeOrder(); }}>
+                        <button className="ep-btn primary wide btn-cmd-submit-order" disabled={!isValid} type="button" onClick={() => { this.completeOrder(); }}>
                           {intl.get('complete-purchase')}
+                        </button>
+                        <br />
+                        <button className="ep-btn primary wide btn-cmd-edit-order" type="button" onClick={() => { this.goToCheckOut(); }}>
+                          {intl.get('edit')}
                         </button>
                         {isLoading && (
                           <div className="miniLoader" />
