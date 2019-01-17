@@ -32,7 +32,7 @@ import com.elasticpath.util.CustomerInfo;
 
 public class RegisterPage extends AbstractPageObject {
 
-	@FindBy(className = "registration-container")
+	@FindBy(className = "app-content")
 	private WebElement registrationContainer;
 
 	@FindBy(id = "registration_form_firstName")
@@ -68,6 +68,7 @@ public class RegisterPage extends AbstractPageObject {
 
 	@Override
 	public void verifyCorrectPageIsDisplayed() {
+		getWaitDriver().waitForPageToLoad();
 		assertThat(registrationContainer.isDisplayed())
 				.as("Failed to verify Register page")
 				.isTrue();
