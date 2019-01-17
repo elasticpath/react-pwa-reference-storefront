@@ -249,6 +249,13 @@ class OrderReviewPage extends React.Component {
   render() {
     const { orderData, isLoading } = this.state;
     const isValid = (orderData && orderData._order[0]._deliveries && orderData._order[0]._billingaddressinfo && orderData._order[0]._paymentmethodinfo);
+    let debugMessages = '';
+    if (orderData && orderData._order[0]) {
+      const { messages } = orderData._order[0];
+      for (let i = 0; i < messages.length; i++) {
+        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
+      }
+    }
     return (
       <div>
         <div className="app-main" style={{ display: 'block' }}>
@@ -278,6 +285,9 @@ class OrderReviewPage extends React.Component {
                     <div className="checkout-sidebar-inner">
                       <div className="checkout-summary-container" style={{ display: 'inline-block' }}>
                         <CheckoutSummaryList data={orderData} isLoading={false} />
+                      </div>
+                      <div className="feedback-label" id="checkout_feedback_container">
+                        {(debugMessages !== '') ? (debugMessages) : ('')}
                       </div>
                       <div className="checkout-submit-container" style={{ display: 'block' }}>
                         <button className="ep-btn primary wide btn-cmd-submit-order" disabled={!isValid} type="button" onClick={() => { this.completeOrder(); }}>
