@@ -659,7 +659,7 @@ class ProductDisplayItemMain extends React.Component {
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
-                          <button
+                          {/* <button
                             onClick={event => this.addToCart(event, '/order')}
                             className="ep-btn primary wide btn-itemdetail-addtocart"
                             disabled={!availability}
@@ -667,7 +667,7 @@ class ProductDisplayItemMain extends React.Component {
                             type="submit"
                           >
                             {intl.get('buy-now')}
-                          </button>
+                          </button> */}
                           <button
                             onClick={this.addToWishList}
                             className="ep-btn wide btn-itemdetail-addtowishlist"
