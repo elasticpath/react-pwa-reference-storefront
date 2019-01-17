@@ -248,7 +248,7 @@ class OrderReviewPage extends React.Component {
 
   render() {
     const { orderData, isLoading } = this.state;
-    const isValid = (orderData && orderData._order[0]._deliveries && orderData._order[0]._billingaddressinfo && orderData._order[0]._paymentmethodinfo);
+    const isValid = (orderData && orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri);
     let debugMessages = '';
     if (orderData && orderData._order[0]) {
       const { messages } = orderData._order[0];
@@ -294,7 +294,7 @@ class OrderReviewPage extends React.Component {
                           {intl.get('complete-purchase')}
                         </button>
                         <br />
-                        <button className="ep-btn primary wide btn-cmd-submit-order" type="button" onClick={() => { this.goToCheckOut(); }}>
+                        <button className="ep-btn primary wide btn-cmd-edit-order" type="button" onClick={() => { this.goToCheckOut(); }}>
                           {intl.get('edit')}
                         </button>
                         {isLoading && (

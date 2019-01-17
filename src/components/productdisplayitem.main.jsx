@@ -656,7 +656,7 @@ class ProductDisplayItemMain extends React.Component {
 
                   </form>
                   {(ProductDisplayItemMain.isLoggedIn() && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
-                    <form className="itemdetail-addtowishlist-form form-horizontal" onSubmit={event => this.addToCart(event, '/order')}>
+                    <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
                           <button
