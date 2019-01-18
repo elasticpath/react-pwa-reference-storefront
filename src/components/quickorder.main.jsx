@@ -24,6 +24,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
+import Modal from 'react-responsive-modal';
+import CartLineItem from './cart.lineitem';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import cortexFetch from '../utils/Cortex';
@@ -35,13 +37,13 @@ class QuickOrderMain extends React.Component {
   static propTypes = {
     onAddToCart: PropTypes.func,
     isBuyItAgain: PropTypes.bool,
-    productIdProps: PropTypes.string,
+    productData: PropTypes.objectOf(PropTypes.any),
   }
 
   static defaultProps = {
     onAddToCart: () => { },
     isBuyItAgain: false,
-    productIdProps: '',
+    productData: {},
   }
 
   constructor(props) {
@@ -49,18 +51,41 @@ class QuickOrderMain extends React.Component {
     this.state = {
       failedSubmit: false,
       productId: '',
+      productDataInfo: {},
       itemQuantity: 1,
       addToCartFailedMessage: '',
       isLoading: false,
       itemConfiguration: {},
+      openModal: false,
     };
-    const { productIdProps } = this.props;
-    if (productIdProps !== '') {
+    const { productData } = this.props;
+    if (productData !== {}) {
       this.state = {
-        productId: productIdProps,
+        productDataInfo: productData,
       };
     }
     this.addToCart = this.addToCart.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+  }
+
+  handleQuantityChange() {
+    this.setState({
+      isLoading: true,
+    });
+  }
+
+  handleModalOpen() {
+    this.setState({
+      openModal: true,
+    });
+  }
+
+  handleModalClose() {
+    this.setState({
+      openModal: false,
+    });
   }
 
   addToCart(event) {
@@ -125,15 +150,27 @@ class QuickOrderMain extends React.Component {
 
   render() {
     const {
-      failedSubmit, isLoading, addToCartFailedMessage, productId, itemQuantity,
+      failedSubmit, isLoading, addToCartFailedMessage, productId, itemQuantity, openModal, productDataInfo,
     } = this.state;
     const { isBuyItAgain } = this.props;
     if (isBuyItAgain) {
       return (
         <div style={{ display: 'block' }}>
-          <button className="ep-btn small buy-it-again-btn" type="button" onClick={this.addToCart}>
+          <button className="ep-btn small buy-it-again-btn" type="button" onClick={() => this.handleModalOpen()}>
             {intl.get('buy-it-again')}
           </button>
+          <Modal open={openModal} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
+            <div id="buy-it-again-modal">
+              <div className="modal-content" id="simplemodal-container">
+                <div className="modal-header">
+                  <h2 className="modal-title">
+                    {intl.get('buy-it-again')}
+                  </h2>
+                </div>
+                <CartLineItem key={productId} item={productDataInfo} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton handleErrorMessage={this.handleErrorMessage} />
+              </div>
+            </div>
+          </Modal>
           <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
             {addToCartFailedMessage}
           </div>

@@ -105,10 +105,6 @@ const PurchaseDetailsMain = (props) => {
     );
   };
 
-  const routeToCart = () => {
-    window.location.pathname = '/mybag';
-  };
-
   const renderItem = (purchaseItem) => {
     const { name, quantity } = purchaseItem;
     const subTotal = purchaseItem['line-extension-amount'][0].display;
@@ -225,7 +221,7 @@ const PurchaseDetailsMain = (props) => {
             </tr>
             {(purchaseItem._item) ? (
               <tr>
-                <QuickOrderMain isBuyItAgain productIdProps={purchaseItem._item[0]._code[0].code} onAddToCart={() => { routeToCart(); }} />
+                <QuickOrderMain isBuyItAgain productData={purchaseItem._item[0]} />
               </tr>
             ) : ('')
             }
