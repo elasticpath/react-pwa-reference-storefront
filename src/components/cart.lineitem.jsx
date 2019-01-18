@@ -44,10 +44,12 @@ class CartLineItem extends React.Component {
     item: PropTypes.objectOf(PropTypes.any).isRequired,
     handleQuantityChange: PropTypes.func.isRequired,
     handleErrorMessage: PropTypes.func,
+    hideRemoveButton: PropTypes.bool,
   }
 
   static defaultProps = {
     handleErrorMessage: () => { },
+    hideRemoveButton: false,
   }
 
   constructor(props) {
@@ -369,7 +371,7 @@ class CartLineItem extends React.Component {
   }
 
   render() {
-    const { item } = this.props;
+    const { item, hideRemoveButton } = this.props;
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
     let availability = (itemAvailability[0].state === 'AVAILABLE');
@@ -494,13 +496,16 @@ class CartLineItem extends React.Component {
           ] : ('')
           }
         </form>
-        <div className="remove-btn-col">
-          <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
-            <span className="btn-text">
-              {intl.get('remove')}
-            </span>
-          </button>
-        </div>
+        {(!hideRemoveButton) ? (
+          <div className="remove-btn-col">
+            <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
+              <span className="btn-text">
+                {intl.get('remove')}
+              </span>
+            </button>
+          </div>
+        ) : ('')
+        }
         {(item._addtocartform) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-addToCart" type="button" onClick={this.handleConfiguratorAddToCartBtnClicked}>

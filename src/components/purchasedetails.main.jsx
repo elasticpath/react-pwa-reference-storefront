@@ -225,7 +225,7 @@ const PurchaseDetailsMain = (props) => {
             </tr>
             {(purchaseItem._item) ? (
               <tr>
-                <QuickOrderMain isBuyItAgain productIdProps={purchaseItem._item[0]._code[0].code} onAddToCart={() => { routeToCart(); }} />
+                <QuickOrderMain isBuyItAgain productData={purchaseItem._item[0]} />
               </tr>
             ) : ('')
             }
