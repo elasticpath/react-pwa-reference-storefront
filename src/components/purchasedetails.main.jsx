@@ -105,10 +105,6 @@ const PurchaseDetailsMain = (props) => {
     );
   };
 
-  const routeToCart = () => {
-    window.location.pathname = '/mybag';
-  };
-
   const renderItem = (purchaseItem) => {
     const { name, quantity } = purchaseItem;
     const subTotal = purchaseItem['line-extension-amount'][0].display;
