@@ -25,7 +25,13 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
+import cortexFetch from '../utils/Cortex';
 import './appmodalcartselect.main.less';
+
+const zoomArray = [
+  'authorizationcontexts',
+  'authorizationcontexts:element',
+];
 
 const Config = require('Config');
 
@@ -48,15 +54,38 @@ class AppModalCartSelectMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      orgEamData: undefined,
       selectedCart: '0',
       selectedCartName: optionCarts[0].optionName,
     };
     this.continueCart = this.continueCart.bind(this);
+    this.fetchOrganizationData = this.fetchOrganizationData.bind(this);
     this.handleCartChange = this.handleCartChange.bind(this);
   }
 
   componentDidMount() {
-    this.continueCart();
+    // this.continueCart();
+    this.fetchOrganizationData();
+  }
+
+  fetchOrganizationData() {
+    cortexFetch(`/eam?zoom=${zoomArray.join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
+      },
+    })
+      .then(res => res.json())
+      .then((res) => {
+        const orgEamData = res._authorizationcontexts[0]._element.find(element => element.name === Config.cortexApi.scope.toUpperCase());
+        this.setState({
+          orgEamData,
+        });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   continueCart() {
@@ -79,9 +108,9 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   renderCartOption() {
-    const { selectedCart } = this.state;
+    const { selectedCart, orgEamData } = this.state;
 
-    if (optionCarts) {
+    if (optionCarts && orgEamData) {
       return optionCarts.map((option) => {
         if (option) {
           return (

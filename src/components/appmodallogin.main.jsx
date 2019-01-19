@@ -26,7 +26,7 @@ import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
-import { loginRegistered, login } from '../utils/AuthService';
+import { loginRegistered, loginRegisteredEam } from '../utils/AuthService';
 import './appmodallogin.main.less';
 
 const Config = require('Config');
@@ -60,8 +60,8 @@ class AppModalLoginMain extends React.Component {
     if (params.code) {
       localStorage.setItem(`${Config.cortexApi.scope}_keyCloakCode`, params.code);
       localStorage.setItem(`${Config.cortexApi.scope}_keyCloakSessionState`, params.session_state);
-      if (!localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`)) {
-        login(params.code, encodeURIComponent(Config.b2b.keyCloak.callbackUrl)).then((resStatus) => {
+      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
+        loginRegisteredEam(params.code, encodeURIComponent(Config.b2b.keyCloak.callbackUrl)).then((resStatus) => {
           if (resStatus === 401) {
             this.setState({
               failedLogin: true,
@@ -76,11 +76,10 @@ class AppModalLoginMain extends React.Component {
           } else if (resStatus === 200) {
             this.setState({ failedLogin: false });
             history.push('/');
+            window.location.reload();
           }
         });
       }
-      history.push('/');
-      window.location.reload();
     }
   }
 

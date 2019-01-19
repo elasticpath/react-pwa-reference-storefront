@@ -35,26 +35,19 @@ function generateFormBody(userDetails) {
   userFormBodyString = userFormBody.join('&');
 }
 
-export function login(code, redirectUri) {
+export function login() {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       userFormBodyString = '';
       userFormBody = [];
       let publicUserDetails = {};
-      if (code !== undefined) {
-        publicUserDetails = {
-          code,
-          redirectUri,
-        };
-      } else {
-        publicUserDetails = {
-          username: '',
-          password: '',
-          grant_type: 'password',
-          role: 'PUBLIC',
-          scope: Config.cortexApi.scope,
-        };
-      }
+      publicUserDetails = {
+        username: '',
+        password: '',
+        grant_type: 'password',
+        role: 'PUBLIC',
+        scope: Config.cortexApi.scope,
+      };
 
       generateFormBody(publicUserDetails);
 
@@ -66,7 +59,9 @@ export function login(code, redirectUri) {
         body: userFormBodyString,
       }).then(res => res.json())
         .then((res) => {
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
+          if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`) === null) {
+            localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
+          }
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res.access_token}`);
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, publicUserDetails.username);
@@ -116,9 +111,55 @@ export function loginRegistered(username, password) {
         }
         return null;
       }).then((res) => {
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
+        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`) === null) {
+          localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
+        }
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res.access_token}`);
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registeredUserDetails.username);
+        resolve(200);
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        reject(error);
+      });
+    } else {
+      resolve(userFormBodyString);
+    }
+  }));
+}
+
+export function loginRegisteredEam(code, redirectUri) {
+  return new Promise(((resolve, reject) => {
+    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`) === null) {
+      userFormBodyString = '';
+      userFormBody = [];
+      const registeredUserDetails = {
+        code,
+        redirect_uri: redirectUri,
+      };
+
+      generateFormBody(registeredUserDetails);
+      cortexFetch('/oauth2/tokens/eam', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        },
+        body: userFormBodyString,
+      }).then((res) => {
+        if (res.status === 401) {
+          resolve(401);
+        }
+        if (res.status === 400) {
+          resolve(400);
+        } else if (res.status === 200) {
+          return res.json();
+        }
+        return null;
+      }).then((res) => {
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthTokenEam`, `Bearer ${res.access_token}`);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registeredUserDetails.username);
         resolve(200);
       }).catch((error) => {
@@ -142,6 +183,9 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
       localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenEam`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_keyCloakSessionState`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_keyCloakCode`);
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console

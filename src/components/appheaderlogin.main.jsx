@@ -55,6 +55,12 @@ class AppHeaderLoginMain extends React.Component {
     this.handleModalClose = this.handleModalClose.bind(this);
   }
 
+  componentDidMount() {
+    if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
+      this.handleCartModalOpen();
+    }
+  }
+
   logoutRegisteredUser() {
     logout().then(() => {
       login().then(() => {
@@ -92,7 +98,7 @@ class AppHeaderLoginMain extends React.Component {
     let keyCloakLoginRedirectUrl = '';
     let keyCloakLogoutRedirectUrl = '';
     if (Config.b2b.enable) {
-      keyCloakLoginRedirectUrl = `${Config.b2b.keyCloak.loginRedirectUrl}?client_id=${Config.b2b.keyCloak.client_id}&response_type=code&scope=${Config.cortexApi.scope}&redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
+      keyCloakLoginRedirectUrl = `${Config.b2b.keyCloak.loginRedirectUrl}?client_id=${Config.b2b.keyCloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
       keyCloakLogoutRedirectUrl = `${Config.b2b.keyCloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
     }
     if (AppHeaderLoginMain.isLoggedIn()) {
@@ -148,14 +154,17 @@ class AppHeaderLoginMain extends React.Component {
               </ul>
               {(Config.b2b.enable) ? (
                 <div className="dropdown-login-cart">
-                  <ul>
-                    <li className="dropdown-item change-carts">
-                      {intl.get('using-cart')}
-                      <p className="using-cart">
-                        {` ${localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}`}
-                      </p>
-                    </li>
-                  </ul>
+                  {(localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)) ? (
+                    <ul>
+                      <li className="dropdown-item change-carts">
+                        {intl.get('using-cart')}
+                        <p className="using-cart">
+                          {` ${(localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`))}`}
+                        </p>
+                      </li>
+                    </ul>
+                  ) : ('')
+                  }
                   <ul className="login-cart-list">
                     <li className="dropdown-item">
                       <button className="cart-select-btn" type="button" data-toggle="modal" onClick={() => this.handleCartModalOpen()} data-target="#cart-select-modal">
