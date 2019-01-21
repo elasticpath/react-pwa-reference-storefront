@@ -23,12 +23,34 @@
 
 .app-header-navigation-component {
   @media only screen and (min-width: @tabletWidth) {
-    .hover-menu ul li {
-      position: relative;
+
+    .show .dropdown-toggle:after {
+      transform: rotate(-180deg);
     }
 
-    .hover-menu ul li:hover > ul {
-      display: block
+    .hover-menu .dropdown-menu.show {
+      width: 100%;
+      display: block;
+      border: none;
+      border-radius: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .dropdown-item {
+        font-weight: bold;
+        +.dropdown-menu .dropdown-item {
+          font-weight: normal;
+        }
+      }
+      ul {
+        position: static;
+        display: block;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+      }
     }
 
     .hover-menu ul li:hover > div {
@@ -119,6 +141,11 @@
     }
   }
 
+  .hover-menu {
+    position: static;
+    padding: 0;
+  }
+
   .rotateCaret::after {
     transform: rotate(-90deg);
   }
@@ -150,8 +177,7 @@
         .dropdown-item {
           font-size: 1.3rem;
           color: #555;
-          padding-top: 7px;
-          padding-bottom: 7px;
+          padding: 10px 20px;
           transition: border-color 0.2s;
 
           &:hover {
