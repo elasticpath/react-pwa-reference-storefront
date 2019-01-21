@@ -248,7 +248,7 @@ class OrderReviewPage extends React.Component {
 
   render() {
     const { orderData, isLoading } = this.state;
-    const isValid = (orderData && orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri);
+    const isValid = (orderData && orderData._order[0]._purchaseform[0].links[0] && orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri);
     let debugMessages = '';
     if (orderData && orderData._order[0]) {
       const { messages } = orderData._order[0];
