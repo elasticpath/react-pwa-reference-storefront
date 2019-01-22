@@ -41,6 +41,7 @@
     "prop-types": "^15.6.1",
     "query-string": "^6.2.0",
     "react": "^16.4.2",
+    "react-device-detect": "^1.6.2",
     "react-dom": "^16.4.2",
     "react-ga": "^2.5.3",
     "react-intl-universal": "1.11.6",

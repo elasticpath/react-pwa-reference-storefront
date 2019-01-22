@@ -21,6 +21,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { MobileView, BrowserView } from 'react-device-detect';
 import intl from 'react-intl-universal';
 import AppHeaderSearchMain from './appheadersearch.main';
 import AppHeaderLoginMain from './appheaderlogin.main';
@@ -121,11 +122,13 @@ class AppHeaderMain extends React.Component {
             </Link>
           </div>
 
-          <div className="central-container">
-            <div className="horizontal-menu">
-              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} />
+          <BrowserView>
+            <div className="central-container">
+              <div className="horizontal-menu">
+                <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} />
+              </div>
             </div>
-          </div>
+          </BrowserView>
 
           <div className="search-container">
             <AppHeaderSearchMain isMobileView={false} />
@@ -209,9 +212,11 @@ class AppHeaderMain extends React.Component {
 
           <hr className="mobile-navigation-separator" />
 
-          <div className="mobile-navigation-container">
-            <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
-          </div>
+          <MobileView>
+            <div className="mobile-navigation-container">
+              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
+            </div>
+          </MobileView>
           <hr className="mobile-navigation-separator" />
           <div className="mobile-login-container">
             <AppHeaderLoginMain isMobileView />
