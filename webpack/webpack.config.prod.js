@@ -39,6 +39,12 @@ if (epConfig.cortexApi.pathForProxy !== '') {
       historyApiFallback: true,
       compress: true,
       proxy: {
+        '/cortex/**/eam': {
+          target: epConfig.b2b.eamAPI.pathForProxy,
+          pathRewrite: {
+            '/oauth2/tokens/eam': '/oauth2/tokens',
+          },
+        },
         '/cortex': {
           target: epConfig.cortexApi.pathForProxy,
         },

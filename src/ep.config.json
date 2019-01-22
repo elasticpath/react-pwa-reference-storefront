@@ -31,11 +31,14 @@
   "enableOfflineMode": false,
   "b2b": {
     "enable": false,
+    "eamAPI": {
+      "pathForProxy": ""
+    },
     "keyCloak": {
       "callbackUrl": "",
       "loginRedirectUrl": "",
       "logoutRedirectUrl": "",
-      "client_id": "storefront"
+      "client_id": "studio"
     }
   },
   "gaTrackingId": "",
