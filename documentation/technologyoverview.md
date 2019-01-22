@@ -53,4 +53,24 @@ The React Reference Storefront technologies are robust and extensible. With thes
 |[**Selenium**](https://en.wikipedia.org/wiki/Selenium_software)|The framework for testing web applications using browser automation.|3.4.0|QA|
 |[**Cucumber**](https://cucumber.io/)|The framework that runs automated acceptance tests.|1.2.5|QA|
 
+
+# Installing React Reference Storefront
+
+## Prerequisite
+
+Ensure that the correct installation option is selected for the instance.
+
+### Running React Reference Storefront
+
+1. Run the required applications on the corresponding ports:
+
+|  Application| Port|
+|--|--|
+|Cortex API| 9080|
+|Search Server| 8082|
+|Webpack Store Server|8080|
+|Commerce Manager|8081|
+
+For more information on installing the React Reference Storefront, see the [Readme](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/README.md) file.
+
 {% include legal.html %}

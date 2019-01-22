@@ -4,12 +4,12 @@
   url: /documentation/architecture/
 - title: Technology
   url: /documentation/technologyoverview/
-- title: Installing
-  url: /documentation/installing/
 - title: Customization
   url: /documentation/extending/
 - title: Best Practices
   url: /documentation/practices/
+- title: B2B
+  url: /documentation/b2b/
 - title: Tutorials
   sublinks:
     - title: Setting Up Production

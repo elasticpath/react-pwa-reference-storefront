@@ -18,8 +18,8 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
   * [Platform Architecture]({{ site.baseurl }}/documentation/architecture)
       * [Cortex Integration]({{ site.baseurl }}/documentation/architecture#cortex-integration)
   * [Requirements and Specifications]({{ site.baseurl }}/documentation/technologyoverview)
-  * [Installing React Reference Storefront]({{ site.baseurl }}/documentation/installing)
-      *  [Running React Reference Storefront]({{ site.baseurl }}/documentation/installing#running-react-reference-storefront)
+      *  [Installing React Reference Storefront]({{ site.baseurl }}/documentation/technologyoverview#installing-react-reference-storefront)
+      *  [Running React Reference Storefront]({{ site.baseurl }}/documentation/technologyoverview#running-react-reference-storefront)
   * [Extending React Reference Storefront]({{ site.baseurl }}/documentation/extending)
       * [Creating New Containers in React]({{ site.baseurl }}/documentation/extending#creating-new-containers-in-react)
       * [Creating New Components in React]({{ site.baseurl }}/documentation/extending#creating-new-components-in-react)
@@ -33,6 +33,8 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
       * [Global Product Attribute]({{ site.baseurl }}/documentation/practices#global-product-attribute)
       * [ARKit Quick Look Example]({{ site.baseurl }}/documentation/practices#arkit-quick-look-example)
       * [Third-Party User Generated Content Integration Example]({{ site.baseurl }}/documentation/practices#third-party-user-generated-content-integration-example)
+  * [B2B]({{ site.baseurl }}/documentation/b2b)
+      *  [KeyCloak Theme Implementation]({{ site.baseurl }}/documentation/b2b#keycloak-theme-implementation)
   * [Related Resources]({{ site.baseurl }}/documentation/resources)
 
 {% include legal.html %}
