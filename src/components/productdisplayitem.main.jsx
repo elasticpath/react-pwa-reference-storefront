@@ -422,13 +422,14 @@ class ProductDisplayItemMain extends React.Component {
     if (displaySelectorName) {
       const sizeSelectorTitle = productData._definition[0]._options[0]._element[indexSelector]['display-name'];
       const sizeSelectorWrap = productData._definition[0]._options[0]._element[indexSelector]._selector[0]._choice;
+      const chosenColor = productData._definition[0]._options[0]._element[indexSelector]._selector[0]._chosen[0];
       const arraySizeSelector = [];
       if (sizeSelectorWrap) {
-        productData._definition[0]._options[0]._element[indexSelector]._selector[0]._choice.map(skuChoice => (
+        sizeSelectorWrap.map(skuChoice => (
           arraySizeSelector.push(skuChoice)
         ));
       }
-      arraySizeSelector.unshift(productData._definition[0]._options[0]._element[indexSelector]._selector[0]._chosen[0]);
+      arraySizeSelector.unshift(chosenColor);
       arraySizeSelector.sort((a, b) => {
         if (a._description[0]['display-name'] < b._description[0]['display-name']) {
           return -1;
@@ -438,6 +439,7 @@ class ProductDisplayItemMain extends React.Component {
         }
         return 0;
       });
+      const chosenColorChecked = chosenColor._description[0]['display-name'];
       return (
         <fieldset onChange={this.handleSelectionChange}>
           <span className="selector-title">
@@ -446,7 +448,7 @@ class ProductDisplayItemMain extends React.Component {
           <div className="size-guide" id="product_display_item_size_guide" onChange={this.handleSkuSelection}>
             {arraySizeSelector ? arraySizeSelector.map(skuChoice => (
               <div key={skuChoice._description[0]['display-name']} className="size-select-wrap">
-                <input key={skuChoice._description[0].name} type="radio" name="sizeBy" id={`sizeWeight_${skuChoice._description[0]['display-name']}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''} defaultChecked={!skuChoice._selectaction || skuChoice._selectaction[0].self.uri === selectionValue} />
+                <input key={skuChoice._description[0].name} type="radio" name="sizeBy" id={`sizeWeight_${skuChoice._description[0]['display-name']}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''} defaultChecked={skuChoice._description[0]['display-name'] === chosenColorChecked || skuChoice._selectaction[0].self.uri === selectionValue} />
                 <label htmlFor={`sizeWeight_${skuChoice._description[0]['display-name']}`}>
                   {skuChoice._description[0]['display-name']}
                 </label>
