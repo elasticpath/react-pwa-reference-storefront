@@ -414,11 +414,11 @@ class ProductDisplayItemMain extends React.Component {
           <span className="selector-title">
             {Component.displayName}
           </span>
-          <div className="guide" id="product_display_item_size_guide" onChange={this.handleSkuSelection}>
+          <div className="guide" id={`${(Component.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
             {Component.map(Element => (
               <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
-                <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name']}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
-                <label htmlFor={`selectorWeight_${Element._description[0]['display-name']}`} style={{ background: Element._description[0]['display-name'] }}>
+                <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
+                <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}`} style={{ background: Element._description[0]['display-name'] }}>
                   {Element._description[0]['display-name']}
                 </label>
               </div>
@@ -531,21 +531,26 @@ class ProductDisplayItemMain extends React.Component {
                 <div>
                   <div data-region="itemPriceRegion" style={{ display: 'block' }}>
                     <ul className="itemdetail-price-container">
-
-                      <li className="itemdetail-purchase-price">
-                        <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                          {itemPrice}
-                        </h1>
-                        {
-                          listPrice !== itemPrice
-                            ? (
+                      {
+                        listPrice !== itemPrice
+                          ? (
+                            <li className="itemdetail-purchase-price">
+                              <h1 className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
+                                {itemPrice}
+                              </h1>
                               <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
                                 {listPrice}
                               </span>
-                            )
-                            : ('')
-                        }
-                      </li>
+                            </li>
+                          )
+                          : (
+                            <li className="itemdetail-purchase-price">
+                              <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                                {itemPrice}
+                              </h1>
+                            </li>
+                          )
+                      }
                     </ul>
                   </div>
                   <div data-region="itemRateRegion" />
