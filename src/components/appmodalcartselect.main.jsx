@@ -79,7 +79,7 @@ class AppModalCartSelectMain extends React.Component {
     })
       .then(res => res.json())
       .then((res) => {
-        const orgEamData = res._authorizationcontexts[0]._element.find(element => element.name === /*Config.cortexApi.scope.toUpperCase()*/ 'MOBEE');
+        const orgEamData = res._authorizationcontexts[0]._element.find(element => element.name === /* Config.cortexApi.scope.toUpperCase() */ 'MOBEE');
         this.setState({
           orgEamData,
         });
@@ -92,13 +92,28 @@ class AppModalCartSelectMain extends React.Component {
 
   continueCart() {
     const {
-      selectedCartName,
+      selectedCart,
+      orgEamData,
     } = this.state;
     const { history } = this.props;
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
-      localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartName);
-      history.push('/');
+      const selectedCartData = orgEamData._element[selectedCart];
+      console.warn('selectedCart', selectedCart);
+      console.warn('selectedCartData', selectedCartData);
+      localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
+
+      fetch(selectedCartData._accesstokenform[0].self.href)
+        .then((res) => {
+          console.warn('fetch.res',res);
+          history.push('/');
+        })
+        .catch((error) => {
+
+          console.error(error.message);
+        });
+
+
     }
   }
 
