@@ -60,7 +60,7 @@ class AppModalLoginMain extends React.Component {
     if (params.code) {
       localStorage.setItem(`${Config.cortexApi.scope}_keyCloakCode`, params.code);
       localStorage.setItem(`${Config.cortexApi.scope}_keyCloakSessionState`, params.session_state);
-      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
+      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) !== 'REGISTERED') {
         loginRegisteredEam(params.code, encodeURIComponent(Config.b2b.keyCloak.callbackUrl)).then((resStatus) => {
           if (resStatus === 401) {
             this.setState({

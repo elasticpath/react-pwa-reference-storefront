@@ -31,6 +31,8 @@ import './appmodalcartselect.main.less';
 const zoomArray = [
   'authorizationcontexts',
   'authorizationcontexts:element',
+  'authorizationcontexts:element:element',
+  'authorizationcontexts:element:element:accesstokenform',
 ];
 
 const Config = require('Config');
@@ -69,7 +71,7 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   fetchOrganizationData() {
-    cortexFetch(`/eam?zoom=${zoomArray.join()}`, {
+    cortexFetch(`/admin_eam?zoom=${zoomArray.join()}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
@@ -111,14 +113,14 @@ class AppModalCartSelectMain extends React.Component {
     const { selectedCart, orgEamData } = this.state;
 
     if (optionCarts && orgEamData) {
-      return optionCarts.map((option) => {
-        if (option) {
+      return orgEamData._element.map((division, index) => {
+        if (division) {
           return (
             <div className="radio">
-              <label htmlFor={`cart-selection-option${option.optionNum}`} className="custom-radio-button">
-                <input id={`cart-selection-option${option.optionNum}`} type="radio" value={option.optionNum} checked={selectedCart === `${option.optionNum}`} onChange={this.handleCartChange} />
+              <label htmlFor={`cart-selection-option${index}`} className="custom-radio-button">
+                <input id={`cart-selection-option${index}`} type="radio" value={index} checked={selectedCart === `${index}`} onChange={this.handleCartChange} />
                 <span className="helping-el" />
-                <span className="label-text">{option.optionName}</span>
+                <span className="label-text">{division.name}</span>
               </label>
             </div>
           );
