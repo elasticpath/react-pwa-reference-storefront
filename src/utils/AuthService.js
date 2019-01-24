@@ -140,7 +140,7 @@ export function loginRegisteredEam(code, redirectUri) {
       };
 
       generateFormBody(registeredUserDetails);
-      cortexFetch('/oauth2/tokens/eam', {
+      cortexFetch('/oauth2/tokens/admin_eam', {
         method: 'post',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
