@@ -79,7 +79,7 @@ class AppModalCartSelectMain extends React.Component {
     })
       .then(res => res.json())
       .then((res) => {
-        const orgEamData = res._authorizationcontexts[0]._element.find(element => element.name === /*Config.cortexApi.scope.toUpperCase()*/ 'MOBEE');
+        const orgEamData = res._authorizationcontexts[0]._element.find(element => element.name === Config.cortexApi.scope.toUpperCase());
         this.setState({
           orgEamData,
         });
