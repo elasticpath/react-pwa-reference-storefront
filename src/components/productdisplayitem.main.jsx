@@ -409,7 +409,6 @@ class ProductDisplayItemMain extends React.Component {
         productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
         return productKindsSelection;
       });
-
       return (productKindsSelection.map(Component => (
         <fieldset onChange={this.handleSelectionChange}>
           <span className="selector-title">

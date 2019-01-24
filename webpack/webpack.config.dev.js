@@ -32,11 +32,15 @@ module.exports = merge.smart(baseConfig, {
     historyApiFallback: true,
     ...(epConfig.cortexApi.pathForProxy !== '' ? {
       proxy: [{
-        context: ['/cortex/**/eam'],
+        context: ['/cortex/oauth2/tokens/eam'],
         target: epConfig.b2b.eamAPI.pathForProxy,
         pathRewrite: {
           '/eam': '',
         },
+      },
+      {
+        context: ['/cortex/associates', '/cortex/authorizationcontexts', '/cortex/organizations'],
+        target: epConfig.b2b.eamAPI.pathForProxy,
       },
       {
         context: ['/cortex'],
