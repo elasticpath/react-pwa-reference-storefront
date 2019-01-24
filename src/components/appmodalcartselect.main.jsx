@@ -58,7 +58,6 @@ class AppModalCartSelectMain extends React.Component {
     this.state = {
       orgEamData: undefined,
       selectedCart: '0',
-      selectedCartName: optionCarts[0].optionName,
     };
     this.continueCart = this.continueCart.bind(this);
     this.fetchOrganizationData = this.fetchOrganizationData.bind(this);
@@ -83,6 +82,7 @@ class AppModalCartSelectMain extends React.Component {
         this.setState({
           orgEamData,
         });
+        console.warn('orgEamData', orgEamData);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -103,24 +103,25 @@ class AppModalCartSelectMain extends React.Component {
       console.warn('selectedCartData', selectedCartData);
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
 
-      fetch(selectedCartData._accesstokenform[0].self.href)
-        .then((res) => {
-          console.warn('fetch.res',res);
+      console.warn('URI', selectedCartData.self.uri);
+      cortexFetch(`${selectedCartData.self.uri}/form?followlocation`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
+        },
+      })
+        .then((data) => {
+          console.warn(data);
           history.push('/');
         })
-        .catch((error) => {
-
-          console.error(error.message);
-        });
-
-
+        .catch(data => console.warn(data));
     }
   }
 
   handleCartChange(event) {
     this.setState({
       selectedCart: event.target.value,
-      selectedCartName: optionCarts[event.target.value].optionName,
     });
   }
 
