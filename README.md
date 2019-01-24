@@ -79,6 +79,12 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`siteImagesUrl`| Optional| String| The path to the site content and marketing images hosted on an external CMS. Set this parameter to the complete URL of the images by replacing the filename and file extension with `%fileName%`. This parameter is populated with the values set in the components when the page is loaded, and uses the assets locally available in the `./src/images/site-images` directory.|
 |`arKit.enable`| Optional| Boolean| Enable elements for ARKit's Quick Look capability to load on a product display page. When `arKit.enable` is enabled, any product images that have hosted ARKit USDZ files are wrapped with an anchor tag referencing the file hosted on an external CMS.|
 |`arKit.skuArImagesUrl`| Optional| String| The path to the USDZ files hosted on an external CMS used for ARKit Quick Look. Set this parameter to the complete URL of the files by replacing the `sku/file-name` with `%sku%`. This value is populated when the page is loaded with values retrieved by Cortex.|
+|`b2b.enable`| Optional| Boolean| The general configuration to enable the B2B e-commerce shopping flow components in the storefront.|
+|`b2b.eamAPI.pathForProxy`| Optional| String| The path to which the [Webpack](https://webpack.js.org/) proxy uses to route Cortex calls from the storefront to the publically hosted EAM service. This value is a URL consisting of a hostname and port of a running Cortex for EAM instance. Leave this field blank to disable proxy.|
+|`b2b.keyCloak.callbackUrl`| Optional| String| The URL that is passed to KeyCloak, and redirected to upon a successful login.|
+|`b2b.keyCloak.loginRedirectUrl`| Optional| String| The KeyCloak log on URL.|
+|`b2b.keyCloak.logoutRedirectUrl`| Optional| String| The KeyCloak log off URL.|
+|`b2b.keyCloak.client_id`| Optional| String| The Keycloak client configuration ID.|
 |`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
 |`indi.enable`| Optional| Boolean| Enable the integration component for Indi. More information may be found available here `https://indi.com/`.|
 |`indi.carousel`| Optional| Values| Configurations for the Indi carousel component.|
@@ -106,6 +112,7 @@ For more information about populating database, see the [Populating the Database
 2. Run the `cd react-pwa-reference-storefront` command.
 3. To install dependencies, run the `npm install` command.
 4. Configure the `./src/ep.config.json` file as required for the environment.<br/> For more information, see the [Configuration Parameter Descriptions](#configuration-parameter-descriptions) section.
+**Note:** For more information about configuring the storefront as a B2B instance, see [REACT PWA Reference Storefront Documentation B2B](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/b2b/).
 5. To start the server in development mode, run the `npm start` command.
 6. To see the running Progressive Web Application (PWA), navigate to `http://localhost:8080/` .
 
