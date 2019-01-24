@@ -380,7 +380,7 @@ class ProductDisplayItemMain extends React.Component {
     return null;
   }
 
-  renderSizeSelection() {
+  renderSkuSelection() {
     const { productData, selectionValue } = this.state;
     const productKindsSelection = [];
     if (productData._definition[0]._options) {
@@ -417,8 +417,8 @@ class ProductDisplayItemMain extends React.Component {
           <div className="guide" id="product_display_item_size_guide" onChange={this.handleSkuSelection}>
             {Component.map(Element => (
               <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
-                <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`sizeWeight_${Element._description[0]['display-name']}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
-                <label htmlFor={`sizeWeight_${Element._description[0]['display-name']}`} style={{ background: Element._description[0]['display-name'] }}>
+                <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name']}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
+                <label htmlFor={`selectorWeight_${Element._description[0]['display-name']}`} style={{ background: Element._description[0]['display-name'] }}>
                   {Element._description[0]['display-name']}
                 </label>
               </div>
@@ -582,7 +582,7 @@ class ProductDisplayItemMain extends React.Component {
                 <div>
                   <form className="itemdetail-addtocart-form form-horizontal" onSubmit={event => this.addToCart(event, '/mybag')}>
                     {this.renderConfiguration()}
-                    {this.renderSizeSelection()}
+                    {this.renderSkuSelection()}
                     <div className="form-group">
                       <label htmlFor="product_display_item_quantity_label" className="control-label">
                         {intl.get('quantity')}
