@@ -47,14 +47,14 @@ public class ProductDefinition {
 		cartPage = productPage.clickAddToCartButton();
 	}
 
-	@Given("^I select sku option (.+) and choose (.+)")
-	public void selectSkuOption(final String skuOption, final String choice) {
-		productPage.selectSkuOption(skuOption, choice);
+	@Given("^I choose sku color option (.+)")
+	public void selectSkuOption(final String skuOption) {
+		productPage.selectSkuOption(skuOption.toLowerCase());
 	}
 
 	@Given("^I choose sku size option (.+)")
 	public void selectSkuButtonOption(final String skuOption) {
-		productPage.selectSkuButtonOption(skuOption);
+		productPage.selectSkuButtonOption(skuOption.toLowerCase());
 	}
 
 }
