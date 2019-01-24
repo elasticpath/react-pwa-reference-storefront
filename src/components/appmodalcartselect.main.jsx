@@ -73,7 +73,6 @@ class AppModalCartSelectMain extends React.Component {
         this.setState({
           orgEamData,
         });
-        console.warn('orgEamData', orgEamData);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -96,11 +95,12 @@ class AppModalCartSelectMain extends React.Component {
 
       console.warn('URI', selectedCartData._accesstokenform[0].self.uri);
       cortexFetch(`${selectedCartData._accesstokenform[0].self.uri}`, {
-        method: 'POST',
+        method: 'post',
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
         },
+        body: JSON.stringify({}),
       })
         .then((data) => {
           console.warn(data);
