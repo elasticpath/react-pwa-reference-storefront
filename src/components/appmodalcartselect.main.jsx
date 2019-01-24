@@ -104,7 +104,7 @@ class AppModalCartSelectMain extends React.Component {
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
 
       console.warn('URI', selectedCartData.self.uri);
-      cortexFetch(`${selectedCartData.self.uri}/form?followlocation`, {
+      cortexFetch(`${selectedCartData._accesstokenform[0].self.uri}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
