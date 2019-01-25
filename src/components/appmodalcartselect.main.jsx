@@ -21,7 +21,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
@@ -39,7 +38,6 @@ const Config = require('Config');
 
 class AppModalCartSelectMain extends React.Component {
   static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
     handleModalClose: PropTypes.func.isRequired,
     openModal: PropTypes.bool.isRequired,
   }
@@ -85,15 +83,11 @@ class AppModalCartSelectMain extends React.Component {
       selectedCart,
       orgEamData,
     } = this.state;
-    const { history } = this.props;
+    const { handleModalClose } = this.props;
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgEamData._element[selectedCart];
-      console.warn('selectedCart', selectedCart);
-      console.warn('selectedCartData', selectedCartData);
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
-
-      console.warn('URI', selectedCartData._accesstokenform[0].self.uri);
       cortexFetch(`${selectedCartData._accesstokenform[0].self.uri}/admin_eam?followlocation`, {
         method: 'post',
         headers: {
@@ -102,11 +96,15 @@ class AppModalCartSelectMain extends React.Component {
         },
         body: JSON.stringify({}),
       })
+        .then(res => res.json())
         .then((data) => {
-          console.warn(data);
-          history.push('/');
+          localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
+          handleModalClose();
         })
-        .catch(data => console.warn(data));
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     }
   }
 
