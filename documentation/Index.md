@@ -34,7 +34,7 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
       * [ARKit Quick Look Example]({{ site.baseurl }}/documentation/practices#arkit-quick-look-example)
       * [Third-Party User Generated Content Integration Example]({{ site.baseurl }}/documentation/practices#third-party-user-generated-content-integration-example)
   * [B2B]({{ site.baseurl }}/documentation/b2b)
-      *  [KeyCloak Theme Implementation]({{ site.baseurl }}/documentation/b2b#keycloak-theme-implementation)
+      *  [Implementing KeyCloak Theme]({{ site.baseurl }}/documentation/b2b#implementing-keycloak-theme)
   * [Related Resources]({{ site.baseurl }}/documentation/resources)
 
 {% include legal.html %}

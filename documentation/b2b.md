@@ -9,17 +9,17 @@ weight: 7
 ## Configuration
 TBA
 
-## KeyCloak Theme Implementation
-By default, KeyCloak provides a set of themes that may be used for the various actions KeyCloak supports (login, accounts, etc). Either of these existing themes may be used for the supported flows, or a customized theme may be added to the KeyCloak Docker Image if desired. The REACT PWA Reference Storefront includes a login theme that may be used for this purpose.
+## Implementing KeyCloak Theme
+By default, KeyCloak provides a set of themes, such as, login or accounts, that can be used for the various actions that KeyCloak supports. Use one of these existing themes for the supported flows or add a customized theme to the KeyCloak Docker Image, if required. The REACT PWA Reference Storefront provides a login theme to use for the custom login page.
 
-The current KeyClock Docker Image will expect any cusom themes to be provided in the directory `/devops/docker/keycloak/themes`.
+For the current KeyClock Docker Image, add the custom themes to the `/devops/docker/keycloak/themes` directory.
 
-To apply the custom KeyCloak theme to your EAM instance:
-1. Copy and extract the file `https://github.com/elasticpath/react-pwa-reference-storefront/tree/master/eam/keycloak/themes.zip` into `/devops/docker/keycloak/themes`.
-2. Ensure the new directory structure represents the following hierarchy: `/devops/docker/keycloak/themes/vestri/...`
-3. Build and run the EAM KeyClock Docker Image as usual
-4. Configure your client in the KeyClock administrative console to use the newly added custom `vestri` theme.
-5. You may apply this same practice to add any further custom themes to the KeyClock Docker Image.
+To apply a custom KeyCloak theme to an Account Management instance::
+1. Copy and extract the `https://github.com/elasticpath/react-pwa-reference-storefront/tree/master/eam/keycloak/themes.zip` file into the `/devops/docker/keycloak/themes` directory.
+
+**Note:** Ensure that the new directory is in the following order: `/devops/docker/keycloak/themes/vestri/...`.
+2. Build and run the Account Management KeyClock Docker Image.
+3. To use the newly added `vestri` custom theme, configure your client in the KeyClock administrative console.
 <br/><br/>
 
 {% include legal.html %}
