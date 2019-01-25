@@ -83,7 +83,7 @@ Feature: Purchase
   Scenario: Purchase multi-sku item as a registered shopper
     Given I select category Mens
     And I select product Men's Soft Shell Jacket
-    And I select sku option Color and choose Black
+    And I choose sku color option Black
     And I choose sku size option Small
     And I select quantity 2 and add product to my cart
     When I complete the purchase as a new registered shopper

@@ -362,33 +362,6 @@ class ProductDisplayItemMain extends React.Component {
     return null;
   }
 
-  renderSkuSelection() {
-    const { productData, isLoading } = this.state;
-    if (productData._definition[0]._options) {
-      const colorSelectorWrap = productData._definition[0]._options[0]._element[0];
-      return (
-        <div key={colorSelectorWrap.name} className="form-group">
-          <label htmlFor={`product_display_item_sku_${colorSelectorWrap.name}_label`} className="control-label">
-            {colorSelectorWrap['display-name']}
-          </label>
-          <div className="form-content">
-            <select className="form-control" id={`product_display_item_sku_select_${colorSelectorWrap.name}`} disabled={isLoading} name="itemdetail-select-sku" onChange={this.handleSkuSelection}>
-              <option key={colorSelectorWrap._selector[0]._chosen[0]._description[0].name} id={`product_display_item_sku_option_${colorSelectorWrap._selector[0]._chosen[0]._description[0].name}`} value={(colorSelectorWrap._selector[0]._chosen[0]._selectaction) ? colorSelectorWrap._selector[0]._chosen[0]._selectaction[0].self.uri : ''}>
-                {colorSelectorWrap._selector[0]._chosen[0]._description[0]['display-name']}
-              </option>
-              {(colorSelectorWrap._selector[0]._choice) ? colorSelectorWrap._selector[0]._choice.map(skuChoice => (
-                <option key={skuChoice._description[0].name} id={`product_display_item_sku_option_${skuChoice._description[0].name}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''}>
-                  {skuChoice._description[0]['display-name']}
-                </option>
-              )) : ''}
-            </select>
-          </div>
-        </div>
-      );
-    }
-    return null;
-  }
-
   renderConfiguration() {
     const { productData, isLoading } = this.state;
     if (productData._addtocartform[0].configuration) {
@@ -407,55 +380,52 @@ class ProductDisplayItemMain extends React.Component {
     return null;
   }
 
-  renderSizeSelection() {
+  renderSkuSelection() {
     const { productData, selectionValue } = this.state;
-    let displaySelectorName = false;
-    let indexSelector = 0;
+    const productKindsSelection = [];
     if (productData._definition[0]._options) {
-      productData._definition[0]._options[0]._element.forEach((selectorName, index) => {
-        if (selectorName['display-name'] === 'Size') {
-          indexSelector = index;
-          displaySelectorName = true;
+      productData._definition[0]._options[0]._element.map((ChoiceElement, index) => {
+        const arraySelectors = [];
+        const selectorTitle = ChoiceElement['display-name'];
+        const selectorWrap = ChoiceElement._selector[0]._choice;
+        const chosenItem = ChoiceElement._selector[0]._chosen[0];
+        if (selectorWrap) {
+          selectorWrap.map(skuChoice => (
+            arraySelectors.push(skuChoice)
+          ));
         }
+        arraySelectors.unshift(chosenItem);
+        arraySelectors.sort((a, b) => {
+          if (a._description[0]['display-name'] < b._description[0]['display-name']) {
+            return -1;
+          }
+          if (a._description[0]['display-name'] > b._description[0]['display-name']) {
+            return 1;
+          }
+          return 0;
+        });
+        productKindsSelection.push(arraySelectors);
+        productKindsSelection[index].displayName = selectorTitle;
+        productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
+        return productKindsSelection;
       });
-    }
-    if (displaySelectorName) {
-      const sizeSelectorTitle = productData._definition[0]._options[0]._element[indexSelector]['display-name'];
-      const sizeSelectorWrap = productData._definition[0]._options[0]._element[indexSelector]._selector[0]._choice;
-      const chosenColor = productData._definition[0]._options[0]._element[indexSelector]._selector[0]._chosen[0];
-      const arraySizeSelector = [];
-      if (sizeSelectorWrap) {
-        sizeSelectorWrap.map(skuChoice => (
-          arraySizeSelector.push(skuChoice)
-        ));
-      }
-      arraySizeSelector.unshift(chosenColor);
-      arraySizeSelector.sort((a, b) => {
-        if (a._description[0]['display-name'] < b._description[0]['display-name']) {
-          return -1;
-        }
-        if (a._description[0]['display-name'] > b._description[0]['display-name']) {
-          return 1;
-        }
-        return 0;
-      });
-      const chosenColorChecked = chosenColor._description[0]['display-name'];
-      return (
+      return (productKindsSelection.map(Component => (
         <fieldset onChange={this.handleSelectionChange}>
           <span className="selector-title">
-            {sizeSelectorTitle}
+            {Component.displayName}
           </span>
-          <div className="size-guide" id="product_display_item_size_guide" onChange={this.handleSkuSelection}>
-            {arraySizeSelector ? arraySizeSelector.map(skuChoice => (
-              <div key={skuChoice._description[0]['display-name']} className="size-select-wrap">
-                <input key={skuChoice._description[0].name} type="radio" name="sizeBy" id={`sizeWeight_${skuChoice._description[0]['display-name']}`} value={(skuChoice._selectaction) ? skuChoice._selectaction[0].self.uri : ''} defaultChecked={skuChoice._description[0]['display-name'] === chosenColorChecked || skuChoice._selectaction[0].self.uri === selectionValue} />
-                <label htmlFor={`sizeWeight_${skuChoice._description[0]['display-name']}`}>
-                  {skuChoice._description[0]['display-name']}
+          <div className="guide" id={`${(Component.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
+            {Component.map(Element => (
+              <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
+                <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
+                <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}`} style={{ background: Element._description[0]['display-name'] }}>
+                  {Element._description[0]['display-name']}
                 </label>
               </div>
-            )) : ''}
+            ))}
           </div>
         </fieldset>
+      ))
       );
     }
     return null;
@@ -557,30 +527,30 @@ class ProductDisplayItemMain extends React.Component {
                   </h1>
                 </div>
               </div>
-              <div className="itemdetail-price-container" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
+              <div className="itemdetail-price-container itemdetail-price-wrap" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
                 <div>
                   <div data-region="itemPriceRegion" style={{ display: 'block' }}>
                     <ul className="itemdetail-price-container">
                       {
                         listPrice !== itemPrice
                           ? (
-                            <li className="itemdetail-list-price" data-region="itemListPriceRegion">
-                              <label htmlFor={`category_item_list_price_${productData._code[0].code}_label`} className="itemdetail-list-price-label">
-                                {intl.get('original-price')}
-                                &nbsp;
-                              </label>
-                              <span className="itemdetail-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
+                            <li className="itemdetail-purchase-price">
+                              <h1 className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
+                                {itemPrice}
+                              </h1>
+                              <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
                                 {listPrice}
                               </span>
                             </li>
                           )
-                          : ('')
+                          : (
+                            <li className="itemdetail-purchase-price">
+                              <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                                {itemPrice}
+                              </h1>
+                            </li>
+                          )
                       }
-                      <li className="itemdetail-purchase-price">
-                        <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                          {itemPrice}
-                        </h1>
-                      </li>
                     </ul>
                   </div>
                   <div data-region="itemRateRegion" />
@@ -613,13 +583,11 @@ class ProductDisplayItemMain extends React.Component {
                   </li>
                 </ul>
               </div>
-              <hr />
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
                   <form className="itemdetail-addtocart-form form-horizontal" onSubmit={event => this.addToCart(event, '/mybag')}>
-                    {this.renderSkuSelection()}
                     {this.renderConfiguration()}
-                    {this.renderSizeSelection()}
+                    {this.renderSkuSelection()}
                     <div className="form-group">
                       <label htmlFor="product_display_item_quantity_label" className="control-label">
                         {intl.get('quantity')}

@@ -141,20 +141,26 @@ class ProductListItemMain extends React.Component {
           <div data-region="priceRegion">
             <div data-region="itemPriceRegion">
               <ul className="category-item-price-container">
-                <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
-                  {
-                    listPrice !== itemPrice
-                      ? (
+                {
+                  listPrice !== itemPrice
+                    ? (
+                      <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
                         <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
                           {listPrice}
                         </span>
-                      )
-                      : ('')
-                  }
-                  <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                    {itemPrice}
-                  </span>
-                </li>
+                        <span className="item-meta category-item-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
+                          {itemPrice}
+                        </span>
+                      </li>
+                    )
+                    : (
+                      <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
+                        <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                          {itemPrice}
+                        </span>
+                      </li>
+                    )
+                }
               </ul>
             </div>
             <div data-region="itemRateRegion" />
