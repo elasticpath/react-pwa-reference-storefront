@@ -132,7 +132,7 @@ For more information about populating database, see the [Populating the Database
         * `nginx.conf`
     3. In the `nginx.conf` file, update the following parameters:
         * `$CORTEX_URL` with Cortex server URL.
-        * `$EAM_CORTEX_URL` with Cortex Account Management Service URL (This is required for all scenarios. If not running the storefront in B2B mode, you may set this to the same value as `$CORTEX_URL`).
+        * `$EAM_CORTEX_URL` with Cortex Account Management service URL (This is required for all scenarios. If not running the storefront in B2B mode, you may set this to the same value as `$CORTEX_URL`).
         * `$DOMAIN` with domain name without `http://`.
         * `$SSL_CERT_PATH` with the certificate file path in the remote server. <br>
         For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`. <br>
