@@ -184,8 +184,8 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
       localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenEam`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_keyCloakSessionState`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_keyCloakCode`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console

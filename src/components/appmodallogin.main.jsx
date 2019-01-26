@@ -58,10 +58,10 @@ class AppModalLoginMain extends React.Component {
     const url = location.search;
     const params = queryString.parse(url);
     if (params.code) {
-      localStorage.setItem(`${Config.cortexApi.scope}_keyCloakCode`, params.code);
-      localStorage.setItem(`${Config.cortexApi.scope}_keyCloakSessionState`, params.session_state);
+      localStorage.setItem(`${Config.cortexApi.scope}_keycloakCode`, params.code);
+      localStorage.setItem(`${Config.cortexApi.scope}_keycloakSessionState`, params.session_state);
       if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) !== 'REGISTERED') {
-        loginRegisteredEam(params.code, encodeURIComponent(Config.b2b.keyCloak.callbackUrl)).then((resStatus) => {
+        loginRegisteredEam(params.code, encodeURIComponent(Config.b2b.keycloak.callbackUrl)).then((resStatus) => {
           if (resStatus === 401) {
             this.setState({
               failedLogin: true,

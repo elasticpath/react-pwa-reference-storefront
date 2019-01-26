@@ -34,7 +34,7 @@
     "eamAPI": {
       "pathForProxy": ""
     },
-    "keyCloak": {
+    "keycloak": {
       "callbackUrl": "",
       "loginRedirectUrl": "",
       "logoutRedirectUrl": "",
