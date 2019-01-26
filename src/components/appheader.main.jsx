@@ -104,6 +104,7 @@ class AppHeaderMain extends React.Component {
       isOffline, cartData, isLoading, isSearchFocused,
     } = this.state;
     const isInStandaloneMode = window.navigator.standalone;
+    const isB2bCartSelected = localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`);
     return [
       <header key="app-header" className="app-header">
         <AppHeaderTop />
@@ -127,9 +128,11 @@ class AppHeaderMain extends React.Component {
             </div>
           </div>
 
-          <div className="search-container">
-            <AppHeaderSearchMain isMobileView={false} />
-          </div>
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
+            <div className="search-container">
+              <AppHeaderSearchMain isMobileView={false} />
+            </div>
+          )}
 
           <div className="search-toggle-btn-container">
             <button
@@ -149,17 +152,18 @@ class AppHeaderMain extends React.Component {
             <AppHeaderLoginMain isMobileView={false} />
           </div>
 
-          <div className="cart-link-container">
-            <Link className="cart-link" to="/mybag">
-              {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
-                <span className="cart-link-counter">
-                  {cartData['total-quantity']}
-                </span>
-              )}
-              {intl.get('shopping-bag-nav')}
-            </Link>
-          </div>
-
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
+            <div className="cart-link-container">
+              <Link className="cart-link" to="/mybag">
+                {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                  <span className="cart-link-counter">
+                    {cartData['total-quantity']}
+                  </span>
+                )}
+                {intl.get('shopping-bag-nav')}
+              </Link>
+            </div>
+          )}
 
           <div className="toggle-btn-container">
             {(isInStandaloneMode) ? (
@@ -183,29 +187,34 @@ class AppHeaderMain extends React.Component {
         </div>
 
         <div className="collapsable-container collapse collapsed">
-          <div className="search-container">
-            <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} />
-          </div>
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
+            <div className="search-container">
+              <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} />
+            </div>
+          )}
           <div className="mobile-locale-container">
             <AppHeaderLocaleMain isMobileView />
           </div>
-          <div className="mobile-cart-link-container">
-            <Link
-              className="cart-link"
-              to="/mybag"
-            >
-              <div data-toggle="collapse" data-target=".collapsable-container">
-                {intl.get('shopping-bag-nav')}
-                <div className="cart-link-counter-container">
-                  {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
-                    <span className="cart-link-counter">
-                      {cartData['total-quantity']}
-                    </span>
-                  )}
+
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
+            <div className="mobile-cart-link-container">
+              <Link
+                className="cart-link"
+                to="/mybag"
+              >
+                <div data-toggle="collapse" data-target=".collapsable-container">
+                  {intl.get('shopping-bag-nav')}
+                  <div className="cart-link-counter-container">
+                    {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                      <span className="cart-link-counter">
+                        {cartData['total-quantity']}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </div>
+              </Link>
+            </div>
+          )}
 
           <hr className="mobile-navigation-separator" />
 

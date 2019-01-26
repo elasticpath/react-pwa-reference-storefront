@@ -37,15 +37,6 @@ const zoomArray = [
 
 const Config = require('Config');
 
-const optionCarts = [
-  { optionNum: 0, optionName: 'GLOBEX EASTERN' },
-  { optionNum: 1, optionName: 'GLOBEX Western' },
-  { optionNum: 2, optionName: 'GLOBEX Team A1' },
-  { optionNum: 3, optionName: 'GLOBEX Superstar' },
-  { optionNum: 4, optionName: 'Hooli' },
-  { optionNum: 5, optionName: 'Pied Piper' },
-];
-
 class AppModalCartSelectMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
@@ -58,7 +49,6 @@ class AppModalCartSelectMain extends React.Component {
     this.state = {
       orgEamData: undefined,
       selectedCart: '0',
-      selectedCartName: optionCarts[0].optionName,
     };
     this.continueCart = this.continueCart.bind(this);
     this.fetchOrganizationData = this.fetchOrganizationData.bind(this);
@@ -92,27 +82,45 @@ class AppModalCartSelectMain extends React.Component {
 
   continueCart() {
     const {
-      selectedCartName,
+      selectedCart,
+      orgEamData,
     } = this.state;
-    const { history } = this.props;
+    const { handleModalClose, history } = this.props;
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
-      localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartName);
-      history.push('/');
+      const selectedCartData = orgEamData._element[selectedCart];
+      localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
+      cortexFetch(`${selectedCartData._accesstokenform[0].self.uri}/admin_eam?followlocation`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
+        },
+        body: JSON.stringify({}),
+      })
+        .then(res => res.json())
+        .then((data) => {
+          localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
+          handleModalClose();
+          history.push('/');
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     }
   }
 
   handleCartChange(event) {
     this.setState({
       selectedCart: event.target.value,
-      selectedCartName: optionCarts[event.target.value].optionName,
     });
   }
 
   renderCartOption() {
     const { selectedCart, orgEamData } = this.state;
 
-    if (optionCarts && orgEamData) {
+    if (orgEamData) {
       return orgEamData._element.map((division, index) => {
         if (division) {
           return (
@@ -132,8 +140,9 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   render() {
-    const { selectedCartName } = this.state;
+    const { selectedCart, orgEamData } = this.state;
     const { handleModalClose, openModal } = this.props;
+    const selectedCartName = orgEamData ? orgEamData._element[selectedCart].name : '';
 
     return (
       <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'cart-selection-modal-content' }} id="cart-select-modal">
@@ -146,19 +155,19 @@ class AppModalCartSelectMain extends React.Component {
             </div>
 
             <div className="modal-body">
-              <form id="cart_selection_modal_form" onSubmit={this.continueCart}>
+              <div id="cart_selection_modal_form">
                 <div className="carts-selection-region">
                   {this.renderCartOption()}
                 </div>
                 <div className="action-row">
                   <div className="form-input btn-container">
-                    <button className="ep-btn primary wide" id="continue_with_cart_button" data-cmd="continue" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+                    <button onClick={this.continueCart} className="ep-btn primary wide" id="continue_with_cart_button" data-cmd="continue" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {intl.get('continue-with')}
                       {` ${selectedCartName}`}
                     </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
