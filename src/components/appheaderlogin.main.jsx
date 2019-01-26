@@ -101,6 +101,8 @@ class AppHeaderLoginMain extends React.Component {
       keyCloakLoginRedirectUrl = `${Config.b2b.keyCloak.loginRedirectUrl}?client_id=${Config.b2b.keyCloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
       keyCloakLogoutRedirectUrl = `${Config.b2b.keyCloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
     }
+    const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`);
+
     if (AppHeaderLoginMain.isLoggedIn()) {
       return (
         <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
@@ -115,9 +117,11 @@ class AppHeaderLoginMain extends React.Component {
             </button>
             <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
               <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
-                <li className="dropdown-header">
-                  {localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`)}
-                </li>
+                { userName !== 'undefined' ? (
+                  <li className="dropdown-header">
+                    {userName}
+                  </li>
+                ) : ('')}
                 <li className="dropdown-item">
                   <Link to="/profile" className="profile-link">
                     <div>

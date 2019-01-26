@@ -21,10 +21,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import cortexFetch from '../utils/Cortex';
+import { login } from '../utils/AuthService';
 import './appmodalcartselect.main.less';
 
 const zoomArray = [
@@ -38,6 +40,7 @@ const Config = require('Config');
 
 class AppModalCartSelectMain extends React.Component {
   static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
     handleModalClose: PropTypes.func.isRequired,
     openModal: PropTypes.bool.isRequired,
   }
@@ -59,22 +62,25 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   fetchOrganizationData() {
-    cortexFetch(`/admin_eam?zoom=${zoomArray.join()}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
-      },
-    })
-      .then(res => res.json())
-      .then((res) => {
-        const orgEamData = res._authorizationcontexts[0]._element.find(element => element.name === Config.cortexApi.scope.toUpperCase());
-        this.setState({
-          orgEamData,
-        });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
+    login()
+      .then(() => {
+        cortexFetch(`/admin_eam?zoom=${zoomArray.join()}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
+          },
+        })
+          .then(res => res.json())
+          .then((res) => {
+            const orgEamData = res._authorizationcontexts[0]._element.find(element => element.name === Config.cortexApi.scope.toUpperCase());
+            this.setState({
+              orgEamData,
+            });
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
       });
   }
 
@@ -83,7 +89,7 @@ class AppModalCartSelectMain extends React.Component {
       selectedCart,
       orgEamData,
     } = this.state;
-    const { handleModalClose } = this.props;
+    const { handleModalClose, history } = this.props;
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgEamData._element[selectedCart];
@@ -100,6 +106,7 @@ class AppModalCartSelectMain extends React.Component {
         .then((data) => {
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
           handleModalClose();
+          history.push('/');
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
