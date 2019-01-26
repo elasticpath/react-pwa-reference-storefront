@@ -104,7 +104,7 @@ class AppHeaderMain extends React.Component {
       isOffline, cartData, isLoading, isSearchFocused,
     } = this.state;
     const isInStandaloneMode = window.navigator.standalone;
-    const isB2B = localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`);
+    const isB2bCartSelected = localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`);
     return [
       <header key="app-header" className="app-header">
         <AppHeaderTop />
@@ -128,7 +128,7 @@ class AppHeaderMain extends React.Component {
             </div>
           </div>
 
-          {!isB2B && !Config.b2b.enable && (
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
             <div className="search-container">
               <AppHeaderSearchMain isMobileView={false} />
             </div>
@@ -152,7 +152,7 @@ class AppHeaderMain extends React.Component {
             <AppHeaderLoginMain isMobileView={false} />
           </div>
 
-          {!isB2B && !Config.b2b.enable && (
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
             <div className="cart-link-container">
               <Link className="cart-link" to="/mybag">
                 {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
@@ -187,7 +187,7 @@ class AppHeaderMain extends React.Component {
         </div>
 
         <div className="collapsable-container collapse collapsed">
-          {!isB2B && !Config.b2b.enable && (
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
             <div className="search-container">
               <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} />
             </div>
@@ -196,7 +196,7 @@ class AppHeaderMain extends React.Component {
             <AppHeaderLocaleMain isMobileView />
           </div>
 
-          {!isB2B && !Config.b2b.enable && (
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
             <div className="mobile-cart-link-container">
               <Link
                 className="cart-link"
