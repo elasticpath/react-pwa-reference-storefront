@@ -47,7 +47,7 @@ class AppModalCartSelectMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      orgEamData: undefined,
+      orgAuthServiceData: undefined,
       selectedCart: '0',
     };
     this.continueCart = this.continueCart.bind(this);
@@ -61,17 +61,17 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   fetchOrganizationData() {
-    cortexFetch(`/admin_eam?zoom=${zoomArray.join()}`, {
+    cortexFetch(`/authService?zoom=${zoomArray.join()}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
       },
     })
       .then(res => res.json())
       .then((res) => {
-        const orgEamData = res._authorizationcontexts[0]._element.find(element => element.name === Config.cortexApi.scope.toUpperCase());
+        const orgAuthServiceData = res._authorizationcontexts[0]._element.find(element => element.name === Config.cortexApi.scope.toUpperCase());
         this.setState({
-          orgEamData,
+          orgAuthServiceData,
         });
       })
       .catch((error) => {
@@ -83,18 +83,18 @@ class AppModalCartSelectMain extends React.Component {
   continueCart() {
     const {
       selectedCart,
-      orgEamData,
+      orgAuthServiceData,
     } = this.state;
     const { handleModalClose, history } = this.props;
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
-      const selectedCartData = orgEamData._element[selectedCart];
+      const selectedCartData = orgAuthServiceData._element[selectedCart];
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
-      cortexFetch(`${selectedCartData._accesstokenform[0].self.uri}/admin_eam?followlocation`, {
+      cortexFetch(`${selectedCartData._accesstokenform[0].self.uri}/authService?followlocation`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`),
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
         },
         body: JSON.stringify({}),
       })
@@ -118,10 +118,10 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   renderCartOption() {
-    const { selectedCart, orgEamData } = this.state;
+    const { selectedCart, orgAuthServiceData } = this.state;
 
-    if (orgEamData) {
-      return orgEamData._element.map((division, index) => {
+    if (orgAuthServiceData) {
+      return orgAuthServiceData._element.map((division, index) => {
         if (division) {
           return (
             <div className="radio">
@@ -140,9 +140,9 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   render() {
-    const { selectedCart, orgEamData } = this.state;
+    const { selectedCart, orgAuthServiceData } = this.state;
     const { handleModalClose, openModal } = this.props;
-    const selectedCartName = orgEamData ? orgEamData._element[selectedCart].name : '';
+    const selectedCartName = orgAuthServiceData ? orgAuthServiceData._element[selectedCart].name : '';
 
     return (
       <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'cart-selection-modal-content' }} id="cart-select-modal">
