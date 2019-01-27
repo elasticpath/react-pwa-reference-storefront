@@ -56,7 +56,7 @@ class AppHeaderLoginMain extends React.Component {
   }
 
   componentDidMount() {
-    if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
+    if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
       this.handleCartModalOpen();
     }
   }
@@ -95,11 +95,11 @@ class AppHeaderLoginMain extends React.Component {
     const {
       openModal, openCartModal,
     } = this.state;
-    let keyCloakLoginRedirectUrl = '';
-    let keyCloakLogoutRedirectUrl = '';
+    let keycloakLoginRedirectUrl = '';
+    let keycloakLogoutRedirectUrl = '';
     if (Config.b2b.enable) {
-      keyCloakLoginRedirectUrl = `${Config.b2b.keyCloak.loginRedirectUrl}?client_id=${Config.b2b.keyCloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
-      keyCloakLogoutRedirectUrl = `${Config.b2b.keyCloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keyCloak.callbackUrl)}`;
+      keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
+      keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
     }
     const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`);
 
@@ -142,7 +142,7 @@ class AppHeaderLoginMain extends React.Component {
                 </li>
                 <li className="dropdown-item">
                   {(Config.b2b.enable) ? (
-                    <a href={`${keyCloakLogoutRedirectUrl}`} className="login-eam-btn">
+                    <a href={`${keycloakLogoutRedirectUrl}`} className="login-auth-service-btn">
                       <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                         <span className="icon" />
                         {intl.get('logout')}
@@ -188,7 +188,7 @@ class AppHeaderLoginMain extends React.Component {
     return (
       <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
         {(Config.b2b.enable) ? (
-          <a href={`${keyCloakLoginRedirectUrl}`} className="login-eam-btn">
+          <a href={`${keycloakLoginRedirectUrl}`} className="login-auth-service-btn">
             <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button">
               {(isMobileView)
                 ? (

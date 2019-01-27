@@ -59,7 +59,7 @@ export function login() {
         body: userFormBodyString,
       }).then(res => res.json())
         .then((res) => {
-          if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`) === null) {
+          if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
             localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
           }
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
@@ -111,7 +111,7 @@ export function loginRegistered(username, password) {
         }
         return null;
       }).then((res) => {
-        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`) === null) {
+        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, res.role);
         }
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, res.scope);
@@ -129,9 +129,9 @@ export function loginRegistered(username, password) {
   }));
 }
 
-export function loginRegisteredEam(code, redirectUri) {
+export function loginRegisteredAuthService(code, redirectUri) {
   return new Promise(((resolve, reject) => {
-    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenEam`) === null) {
+    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
       userFormBodyString = '';
       userFormBody = [];
       const registeredUserDetails = {
@@ -140,7 +140,7 @@ export function loginRegisteredEam(code, redirectUri) {
       };
 
       generateFormBody(registeredUserDetails);
-      cortexFetch('/oauth2/tokens/admin_eam', {
+      cortexFetch('/oauth2/tokens/authService', {
         method: 'post',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -159,7 +159,7 @@ export function loginRegisteredEam(code, redirectUri) {
       }).then((res) => {
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthTokenEam`, `Bearer ${res.access_token}`);
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`, `Bearer ${res.access_token}`);
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, registeredUserDetails.username);
         resolve(200);
       }).catch((error) => {
@@ -183,9 +183,9 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
       localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenEam`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_keyCloakSessionState`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_keyCloakCode`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console

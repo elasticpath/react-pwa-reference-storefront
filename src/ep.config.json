@@ -31,10 +31,10 @@
   "enableOfflineMode": false,
   "b2b": {
     "enable": false,
-    "eamAPI": {
+    "authServiceAPI": {
       "pathForProxy": ""
     },
-    "keyCloak": {
+    "keycloak": {
       "callbackUrl": "",
       "loginRedirectUrl": "",
       "logoutRedirectUrl": "",

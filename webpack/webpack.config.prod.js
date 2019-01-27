@@ -38,17 +38,19 @@ if (epConfig.cortexApi.pathForProxy !== '') {
     devServer: {
       historyApiFallback: true,
       compress: true,
-      proxy: {
-        '/cortex/**/eam': {
-          target: epConfig.b2b.eamAPI.pathForProxy,
+      ...(epConfig.cortexApi.pathForProxy !== '' ? {
+        proxy: [{
+          context: ['/cortex/**/authService'],
+          target: epConfig.b2b.authServiceAPI.pathForProxy,
           pathRewrite: {
-            '/oauth2/tokens/eam': '/oauth2/tokens',
+            '/authService': '',
           },
         },
-        '/cortex': {
+        {
+          context: ['/cortex'],
           target: epConfig.cortexApi.pathForProxy,
-        },
-      },
+        }],
+      } : {}),
     },
   });
 } else {

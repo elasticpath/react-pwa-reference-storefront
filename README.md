@@ -80,11 +80,11 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`arKit.enable`| Optional| Boolean| Enable elements for ARKit's Quick Look capability to load on a product display page. When `arKit.enable` is enabled, any product images that have hosted ARKit USDZ files are wrapped with an anchor tag referencing the file hosted on an external CMS.|
 |`arKit.skuArImagesUrl`| Optional| String| The path to the USDZ files hosted on an external CMS used for ARKit Quick Look. Set this parameter to the complete URL of the files by replacing the `sku/file-name` with `%sku%`. This value is populated when the page is loaded with values retrieved by Cortex.|
 |`b2b.enable`| Optional| Boolean| The general configuration to enable the B2B e-commerce shopping flow components in the storefront.|
-|`b2b.eamAPI.pathForProxy`| Optional| String| The path to which the [Webpack](https://webpack.js.org/) proxy uses to route Cortex calls from the storefront to the publically hosted Account Management service. This value is a URL consisting of a hostname and port of a running Cortex for Account Management service instance. Leave this field blank to disable proxy.|
-|`b2b.keyCloak.callbackUrl`| Optional| String| The URL that is passed to KeyCloak, and redirected to upon a successful login.|
-|`b2b.keyCloak.loginRedirectUrl`| Optional| String| The KeyCloak log on URL.|
-|`b2b.keyCloak.logoutRedirectUrl`| Optional| String| The KeyCloak log off URL.|
-|`b2b.keyCloak.client_id`| Optional| String| The Keycloak client configuration ID.|
+|`b2b.authServiceAPI.pathForProxy`| Optional| String| The path to which the [Webpack](https://webpack.js.org/) proxy uses to route Cortex calls from the storefront to the publically hosted Account Management service. This value is a URL consisting of a hostname and port of a running Cortex for Account Management service instance. Leave this field blank to disable proxy.|
+|`b2b.keycloak.callbackUrl`| Optional| String| The URL that is passed to keycloak, and redirected to upon a successful login.|
+|`b2b.keycloak.loginRedirectUrl`| Optional| String| The keycloak log on URL.|
+|`b2b.keycloak.logoutRedirectUrl`| Optional| String| The keycloak log off URL.|
+|`b2b.keycloak.client_id`| Optional| String| The keycloak client configuration ID.|
 |`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
 |`indi.enable`| Optional| Boolean| Enable the integration component for Indi. More information may be found available here `https://indi.com/`.|
 |`indi.carousel`| Optional| Values| Configurations for the Indi carousel component.|
@@ -132,7 +132,7 @@ For more information about populating database, see the [Populating the Database
         * `nginx.conf`
     3. In the `nginx.conf` file, update the following parameters:
         * `$CORTEX_URL` with Cortex server URL.
-        * `$EAM_CORTEX_URL` with Cortex Account Management service URL (This is required for all scenarios. If not running the storefront in B2B mode, you may set this to the same value as `$CORTEX_URL`).
+        * `$AUTHSERVICE_CORTEX_URL` with Cortex Account Management service URL (This is required for all scenarios. If not running the storefront in B2B mode, you may set this to the same value as `$CORTEX_URL`).
         * `$DOMAIN` with domain name without `http://`.
         * `$SSL_CERT_PATH` with the certificate file path in the remote server. <br>
         For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`. <br>
