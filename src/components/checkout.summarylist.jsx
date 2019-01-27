@@ -24,7 +24,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import './checkout.summarylist.less';
 
 const Config = require('Config');

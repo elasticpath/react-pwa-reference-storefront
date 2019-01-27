@@ -27,7 +27,7 @@ import Modal from 'react-responsive-modal';
 /* eslint-disable-next-line import/no-cycle */
 import CartLineItem from './cart.lineitem';
 import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import './appmodalbundleconfiguration.main.less';
 
 const zoomArray = [

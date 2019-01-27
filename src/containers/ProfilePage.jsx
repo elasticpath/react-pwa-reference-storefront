@@ -26,7 +26,7 @@ import ProfileInfoMain from '../components/profileInfo.main';
 import OrderHistoryMain from '../components/orderhistory.main';
 import ProfileAddressesMain from '../components/profileaddresses.main';
 import ProfilePaymentMethodsMain from '../components/profilepaymentmethods.main';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import './ProfilePage.less';
 
 const Config = require('Config');

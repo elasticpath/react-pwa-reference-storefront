@@ -25,7 +25,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import cortexFetch from '../utils/Cortex';
+import { adminFetch } from '../utils/Cortex';
 import './appmodalcartselect.main.less';
 
 const zoomArray = [
@@ -61,7 +61,7 @@ class AppModalCartSelectMain extends React.Component {
   }
 
   fetchOrganizationData() {
-    cortexFetch(`/authService?zoom=${zoomArray.join()}`, {
+    adminFetch(`/?zoom=${zoomArray.join()}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
@@ -90,7 +90,7 @@ class AppModalCartSelectMain extends React.Component {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgAuthServiceData._element[selectedCart];
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
-      cortexFetch(`${selectedCartData._accesstokenform[0].self.uri}/authService?followlocation`, {
+      adminFetch(`${selectedCartData._accesstokenform[0].self.uri}/?followlocation`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

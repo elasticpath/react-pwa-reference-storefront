@@ -19,7 +19,7 @@
  *
  */
 
-import cortexFetch from './Cortex';
+import { cortexFetch, adminFetch } from './Cortex';
 
 const Config = require('Config');
 
@@ -140,7 +140,7 @@ export function loginRegisteredAuthService(code, redirectUri) {
       };
 
       generateFormBody(registeredUserDetails);
-      cortexFetch('/oauth2/tokens/authService', {
+      adminFetch('/oauth2/tokens', {
         method: 'post',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',

@@ -28,7 +28,7 @@ import Modal from 'react-responsive-modal';
 import CartLineItem from './cart.lineitem';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import './quickorder.main.less';
 
 const Config = require('Config');

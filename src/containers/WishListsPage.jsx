@@ -23,7 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import WishListMain from '../components/wishlist.main';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import './WishListsPage.less';
 
 const Config = require('Config');

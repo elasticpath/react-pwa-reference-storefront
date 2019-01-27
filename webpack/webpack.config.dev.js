@@ -31,17 +31,15 @@ module.exports = merge.smart(baseConfig, {
   devServer: {
     historyApiFallback: true,
     ...(epConfig.cortexApi.pathForProxy !== '' ? {
-      proxy: [{
-        context: ['/cortex/**/authService'],
-        target: epConfig.b2b.authServiceAPI.pathForProxy,
-        pathRewrite: {
-          '/authService': '',
+      proxy: [
+        {
+          context: ['/admin'],
+          target: epConfig.b2b.authServiceAPI.pathForProxy,
         },
-      },
-      {
-        context: ['/cortex'],
-        target: epConfig.cortexApi.pathForProxy,
-      }],
+        {
+          context: ['/cortex'],
+          target: epConfig.cortexApi.pathForProxy,
+        }],
     } : {}),
   },
   module: {
