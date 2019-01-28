@@ -23,7 +23,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { login, loginRegistered } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import './CheckoutAuthPage.less';
 
 const Config = require('Config');

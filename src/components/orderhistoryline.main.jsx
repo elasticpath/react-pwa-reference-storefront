@@ -23,7 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 
 const Config = require('Config');
 

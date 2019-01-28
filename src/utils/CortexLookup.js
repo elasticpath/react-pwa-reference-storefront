@@ -19,7 +19,7 @@
  *
  */
 
-import cortexFetch from './Cortex';
+import { cortexFetch } from './Cortex';
 
 // Array of zoom parameters to pass to Cortex for navigationForm
 const navigationFormZoomArray = [

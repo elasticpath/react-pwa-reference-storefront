@@ -24,7 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 
 import './searchfacetnavigation.main.less';
 

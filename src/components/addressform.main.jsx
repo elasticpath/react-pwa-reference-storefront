@@ -23,7 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 
 import './addressform.main.less';
 

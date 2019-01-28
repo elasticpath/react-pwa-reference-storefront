@@ -24,7 +24,7 @@ import mockFetch from './Mock';
 
 const Config = require('Config');
 
-function cortexFetch(input, init) {
+export function cortexFetch(input, init) {
   const requestInit = init;
 
   if (requestInit && requestInit.headers) {
@@ -50,4 +50,28 @@ function cortexFetch(input, init) {
     });
 }
 
-export default cortexFetch;
+export function adminFetch(input, init) {
+  const requestInit = init;
+
+  if (requestInit && requestInit.headers) {
+    requestInit.headers['x-ep-user-traits'] = `LOCALE=${UserPrefs.getSelectedLocaleValue()}, CURRENCY=${UserPrefs.getSelectedCurrencyValue()}`;
+  }
+
+  if (Config.enableOfflineMode) {
+    return mockFetch(input, requestInit);
+  }
+
+  return fetch(`${Config.b2b.authServiceAPI.path + input}`, requestInit)
+    .then((res) => {
+      if (res.status >= 500) {
+        if (window.location.href.indexOf('/maintenance') === -1) {
+          window.location.pathname = '/maintenance';
+        }
+      }
+      return res;
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    });
+}

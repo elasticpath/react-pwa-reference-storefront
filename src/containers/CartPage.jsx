@@ -27,7 +27,7 @@ import QuickOrderMain from '../components/quickorder.main';
 import CartMain from '../components/cart.main';
 import CheckoutSummaryList from '../components/checkout.summarylist';
 import AddPromotionContainer from '../components/add.promotion.container';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import './CartPage.less';
 
 const Config = require('Config');

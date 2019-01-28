@@ -29,7 +29,7 @@ import { login, logout } from '../utils/AuthService';
 import {
   cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm,
 } from '../utils/CortexLookup';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 
 import './appheadernavigation.main.less';
 

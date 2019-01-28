@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
-import cortexFetch from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import './profilepaymentmethods.main.less';
 
 const Config = require('Config');
