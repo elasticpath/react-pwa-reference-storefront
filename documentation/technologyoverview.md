@@ -43,10 +43,10 @@ The React Reference Storefront technologies are robust and extensible. With thes
 
 |  Technology| Description|Version|Domain|
 |--|--|--|--|
-| [**React.js**](https://reactjs.org/) |The JavaScript library for building a user interface using the components for single page applications.|16.4.1| Development |
+| [**React.js**](https://reactjs.org/) |The JavaScript library for building a user interface using the components for single page applications.|16.4.2| Development |
 |[**Webpack**](https://webpack.js.org/)| An open-source JavaScript module bundler. Webpack takes modules with dependencies and generates static assets for the modules. |4.16.0|Development |
 |  [**jQuery**](https://jquery.com/) | The JavaScript library used for the base DOM abstraction layer. | 3.3.1 |Development |
-| [**Babel**](https://babeljs.io/) |The Javascript compiler. | 6.26.3 |Development |
+| [**Babel**](https://babeljs.io/) |The Javascript compiler. | 7.0.0 |Development |
 | [**Bootstrap.js**](https://getbootstrap.com/docs/4.0/getting-started/introduction/) | A free and open-source front-end framework for designing websites and web applications. |  4.4.1|Development |
 |[**node.js**](https://nodejs.org/en/)|An open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side.|8.11.2|Development |
 |[**Workbox**](https://developers.google.com/web/tools/workbox/)|The JavaScript libraries for adding offline support to web applications|3.4.1|Development |
