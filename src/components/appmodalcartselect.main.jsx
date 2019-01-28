@@ -21,7 +21,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
@@ -39,7 +38,6 @@ const Config = require('Config');
 
 class AppModalCartSelectMain extends React.Component {
   static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
     handleModalClose: PropTypes.func.isRequired,
     openModal: PropTypes.bool.isRequired,
   }
@@ -85,7 +83,7 @@ class AppModalCartSelectMain extends React.Component {
       selectedCart,
       orgAuthServiceData,
     } = this.state;
-    const { handleModalClose, history } = this.props;
+    const { handleModalClose } = this.props;
 
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgAuthServiceData._element[selectedCart];
@@ -102,7 +100,7 @@ class AppModalCartSelectMain extends React.Component {
         .then((data) => {
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
           handleModalClose();
-          history.push('/');
+          window.location.reload();
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
