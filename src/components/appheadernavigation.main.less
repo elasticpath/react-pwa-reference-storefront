@@ -188,12 +188,22 @@
           padding: 10px 20px;
           transition: border-color 0.2s;
 
+          &:after {
+            display: none;
+          }
+
           &:hover {
             background-color: #e2e2e2;
           }
 
           &:active {
             background-color: transparent;
+          }
+        }
+        div.dropdown-item {
+          cursor: default;
+          &:hover {
+            background: transparent;
           }
         }
       }

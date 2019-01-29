@@ -23,6 +23,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
+import GdprSupportModal from '../components/gdprsupport.main';
 import Carousel from '../components/carousel.homepage';
 
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
@@ -42,6 +43,10 @@ const homeEspot3FileName = 'charging-icon.jpg';
 const homeEspot4FileName = 'warranty-graphic.jpg';
 const homeEspotParallax1FileName = 'car-inside.jpg';
 const homeEspotParallax2FileName = 'car-dashboard.jpg';
+
+const showGDPR = Config.GDPR.enable;
+const gdprSupportAccept = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`);
+const gdprSupportDecline = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Decline`);
 
 class HomePage extends React.Component {
   render() {
@@ -131,6 +136,7 @@ class HomePage extends React.Component {
               </div>
             </div>
           </div>
+          {showGDPR && !gdprSupportAccept && !gdprSupportDecline && <GdprSupportModal />}
         </div>
       </ParallaxProvider>
     );

@@ -201,5 +201,9 @@
   "indi-brand-ambassador-description": "Upload a photo or video about Vestri",
   "indi-brand-ambassador-submit-button-text": "UPLOAD PHOTO/VIDEO",
   "reviews": "Reviews",
-  "questions": "Questions"
+  "questions": "Questions",
+  "gdpr": "GDPR",
+  "accept": "accept",
+  "decline": "decline",
+  "gdpr-label": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
 }
