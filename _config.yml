@@ -4,3 +4,5 @@ relative_permalinks: false
 github:
   url: https://github.com/
 repository: elasticpath/react-pwa-reference-storefront
+plugins:
+  - jekyll-redirect-from
