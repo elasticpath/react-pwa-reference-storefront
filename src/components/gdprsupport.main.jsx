@@ -81,7 +81,7 @@ class GdprSupportModal extends React.Component {
                     <input id="gdpr_agreement" type="checkbox" onChange={this.handleCheck} defaultChecked={checked} />
                     <span className="helping-el" />
                     <span className="label-text">
-                      {intl.get('gdrp-label')}
+                      {intl.get('gdpr-label')}
                     </span>
                   </label>
                 </div>
