@@ -1,5 +1,5 @@
 ---
-redirect_to: "https://documentation.elasticpath.com/storefront-react/docs/index.html"
+redirect_to: "https://documentation.elasticpath.com/storefront-react/index.html"
 layout: master
 permalink: /
 title: Home
