@@ -38,6 +38,7 @@ class GdprSupportModal extends React.Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.handleAcceptGdpr = this.handleAcceptGdpr.bind(this);
+    this.handleDeclineGdpr = this.handleDeclineGdpr.bind(this);
   }
 
   handleOpenModal() {
@@ -56,10 +57,15 @@ class GdprSupportModal extends React.Component {
   handleAcceptGdpr() {
     const { checked } = this.state;
     if (checked) {
-      localStorage.setItem(`${Config.cortexApi.scope}_GDPR_Support`, 'true');
+      localStorage.setItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`, 'true');
       this.setState({ open: false });
       window.location.reload();
     }
+  }
+
+  handleDeclineGdpr() {
+    localStorage.setItem(`${Config.cortexApi.scope}_GDPR_Support_Decline`, 'true');
+    this.setState({ open: false });
   }
 
   render() {
@@ -87,7 +93,7 @@ class GdprSupportModal extends React.Component {
                 </div>
                 <div className="action-row">
                   <button type="button" onClick={this.handleAcceptGdpr} className="ep-btn primary wide" disabled={!checked}>{intl.get('accept')}</button>
-                  <button type="button" onClick={this.handleCloseModal} className="ep-btn primary wide">{intl.get('decline')}</button>
+                  <button type="button" onClick={this.handleDeclineGdpr} className="ep-btn primary wide">{intl.get('decline')}</button>
                 </div>
               </div>
             </div>

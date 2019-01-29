@@ -25,9 +25,9 @@ import ga from 'react-ga';
 
 const Config = require('Config');
 
-const gdprSupport = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support`);
+const gdprSupportAccept = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`);
 
-if (Config.gaTrackingId !== '' && gdprSupport) {
+if (Config.gaTrackingId !== '' && gdprSupportAccept) {
   ga.initialize(Config.gaTrackingId);
   ga.plugin.require('ec');
 }
@@ -62,7 +62,7 @@ export default Component => class WithAnalytics extends React.Component {
 };
 
 export function isAnalyticsConfigured() {
-  if (Config.gaTrackingId !== '' && gdprSupport) {
+  if (Config.gaTrackingId !== '' && gdprSupportAccept) {
     return true;
   }
   return false;

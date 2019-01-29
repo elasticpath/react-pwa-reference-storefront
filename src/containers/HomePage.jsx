@@ -45,7 +45,8 @@ const homeEspotParallax1FileName = 'car-inside.jpg';
 const homeEspotParallax2FileName = 'car-dashboard.jpg';
 
 const showGDPR = Config.GDPR.enable;
-const gdprSupport = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support`);
+const gdprSupportAccept = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`);
+const gdprSupportDecline = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Decline`);
 
 class HomePage extends React.Component {
   render() {
@@ -135,7 +136,7 @@ class HomePage extends React.Component {
               </div>
             </div>
           </div>
-          {showGDPR && !gdprSupport && <GdprSupportModal />}
+          {showGDPR && !gdprSupportAccept && !gdprSupportDecline && <GdprSupportModal />}
         </div>
       </ParallaxProvider>
     );
