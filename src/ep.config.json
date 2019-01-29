@@ -74,5 +74,8 @@
     "enable": false,
     "pageId": "<PAGE_ID>",
     "applicationId": "<APP_ID>"
+  },
+  "GDPR": {
+    "enable": false
   }
 }
