@@ -41,13 +41,13 @@ This document provides guidelines for knowledgeable JavaScript developers and fr
 ### Related Resources
 
 - [REACT PWA Reference Storefront Overview](https://developers.elasticpath.com/reference-experiences)
-- [REACT PWA Reference Storefront Documentation](https://elasticpath.github.io/react-pwa-reference-storefront/)
+- [REACT PWA Reference Storefront Documentation](https://documentation.elasticpath.com/storefront-react/index.html)
 
 ## Overview
 
-The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s RESTful e-commerce API, Cortex API. Through the Cortex API, the storefront uses the e-commerce capabilities provided by Elastic Path Commerce and gets data in a RESTful manner. For more information about the storefront, see [REACT PWA Reference Storefront Documentation](https://elasticpath.github.io/react-pwa-reference-storefront/).
+The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s RESTful e-commerce API, Cortex API. Through the Cortex API, the storefront uses the e-commerce capabilities provided by Elastic Path Commerce and gets data in a RESTful manner. For more information about the storefront, see [REACT PWA Reference Storefront Documentation](https://documentation.elasticpath.com/storefront-react/index.html).
 
-The Storefront is designed as an open source mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enable the application layer interactions through the configurable web server. For more information about the software requirements, see the [Requirements and Specifications](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/technologyoverview/) section.
+The Storefront is designed as an open source mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enable the application layer interactions through the configurable web server. For more information about the software requirements, see the [Requirements and Specifications](https://documentation.elasticpath.com/storefront-react/docs/requirements.html) section.
 
 ## Setting up the Storefront
 
@@ -113,7 +113,7 @@ For more information about populating database, see the [Populating the Database
 2. Run the `cd react-pwa-reference-storefront` command.
 3. To install dependencies, run the `npm install` command.
 4. Configure the `./src/ep.config.json` file as required for the environment.<br/> For more information, see the [Configuration Parameter Descriptions](#configuration-parameter-descriptions) section.
-**Note:** For more information about configuring the storefront as a B2B instance, see [REACT PWA Reference Storefront Documentation B2B](https://elasticpath.github.io/react-pwa-reference-storefront/documentation/b2b/).
+**Note:** For more information about configuring the storefront as a B2B instance, see [REACT PWA Reference Storefront Documentation B2B](https://documentation.elasticpath.com/storefront-react/docs/dev-guides/implement-b2b.html).
 5. To start the server in development mode, run the `npm start` command.
 6. To see the running Progressive Web Application (PWA), navigate to `http://localhost:8080/` .
 
