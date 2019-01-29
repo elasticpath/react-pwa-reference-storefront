@@ -170,9 +170,9 @@ class AppHeaderLoginMain extends React.Component {
                   ) : ('')
                   }
                   <ul className="login-cart-list">
-                    <li className="dropdown-item">
-                      <button className="cart-select-btn" type="button" data-toggle="modal" onClick={() => this.handleCartModalOpen()} data-target="#cart-select-modal">
-                        {intl.get('change-carts')}
+                    <li>
+                      <button className="dropdown-item" type="button" data-toggle="modal" onClick={() => this.handleCartModalOpen()} data-target="#cart-select-modal">
+                        <span className="cart-select-btn">{intl.get('change-carts')}</span>
                       </button>
                       <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} />
                     </li>

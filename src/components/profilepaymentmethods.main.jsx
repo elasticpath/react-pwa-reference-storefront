@@ -35,6 +35,11 @@ class ProfilePaymentMethodsMain extends React.Component {
     history: ReactRouterPropTypes.history.isRequired,
     paymentMethods: PropTypes.objectOf(PropTypes.any).isRequired,
     onChange: PropTypes.func.isRequired,
+    isDisabled: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isDisabled: false,
   }
 
   newPayment() {
@@ -95,6 +100,7 @@ class ProfilePaymentMethodsMain extends React.Component {
   render() {
     const {
       paymentMethods,
+      isDisabled,
     } = this.props;
     if (paymentMethods) {
       return (
@@ -104,7 +110,7 @@ class ProfilePaymentMethodsMain extends React.Component {
               {intl.get('payment-methods')}
             </h2>
             {this.renderPaymentMethods()}
-            <button className="ep-btn primary wide new-payment-btn" type="button" onClick={() => { this.newPayment(); }}>
+            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={isDisabled} onClick={() => { this.newPayment(); }}>
               {intl.get('add-new-payment-method')}
             </button>
           </div>
