@@ -2,11 +2,11 @@ This is the code of the GitHub Pages site containing documentation for Elastic P
 
 The GitHub Pages site can be found at:
 
-https://elasticpath.github.io/react-pwa-reference-storefront/
+https://documentation.elasticpath.com/storefront-react/index.html
 
 
 ### Setting Up Documentation Locally
-**Prerequisites** 
+**Prerequisites**
 Ensure that Xcode and Command Line Tools are installed.
 
 1. To install the latest version of rvm, run the following command:<br>
