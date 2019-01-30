@@ -36,19 +36,12 @@ const Config = require('Config');
 // Array of zoom parameters to pass to Cortex
 const zoomArrayProfile = [
   'defaultprofile',
-  'defaultprofile:purchases',
-  'defaultprofile:purchases:element',
-  'defaultprofile:addresses',
   'defaultprofile:emails',
   'defaultprofile:emails:element',
   'defaultprofile:emails:element:list',
   'defaultprofile:emails:element:profile',
   'defaultprofile:emails:emailform',
   'defaultprofile:emails:profile',
-  'defaultprofile:addresses:element',
-  'defaultprofile:addresses:billingaddresses:default',
-  'defaultprofile:paymentmethods',
-  'defaultprofile:paymentmethods:element',
 ];
 
 const zoomArray = [
@@ -421,7 +414,7 @@ class CheckoutPage extends React.Component {
 
   renderBillingAddressSelector() {
     const { profileData } = this.state;
-    const isDisabled = !(profileData && profileData._emails[0]._element);
+    const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
     return (
       <div>
         <h2>
@@ -499,7 +492,7 @@ class CheckoutPage extends React.Component {
 
   renderPaymentSelector() {
     const { profileData } = this.state;
-    const isDisabled = !(profileData && profileData._emails[0]._element);
+    const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
     return (
       <div>
         <h2>
@@ -535,10 +528,12 @@ class CheckoutPage extends React.Component {
               </div>
             </div>
             <div className="checkout-main-container">
-              <div className="profile-email-info">
-                <span className="feedback-label">{ email === '' && intl.get('email-validation') }</span>
-                <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
-              </div>
+              { profileData ? (
+                <div className="profile-email-info">
+                  <span className="feedback-label">{ email === '' && intl.get('email-validation') }</span>
+                  <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+                </div>
+              ) : (<div />)}
               <div data-region="billingAddressesRegion" style={{ display: 'block' }}>
                 {this.renderBillingAddressSelector()}
               </div>

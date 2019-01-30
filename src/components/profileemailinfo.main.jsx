@@ -65,6 +65,7 @@ class ProfileemailinfoMain extends React.Component {
     event.preventDefault();
     const { email } = this.state;
     const { profileInfo } = this.props;
+    if (!profileInfo) return;
     login()
       .then(() => {
         cortexFetch(profileInfo._emails[0]._emailform[0].self.uri, {
@@ -99,7 +100,7 @@ class ProfileemailinfoMain extends React.Component {
   render() {
     const { emailInEditMode, failedSubmit } = this.state;
     const { profileInfo } = this.props;
-    const email = profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+    const email = profileInfo && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
     if (emailInEditMode) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
@@ -142,7 +143,7 @@ class ProfileemailinfoMain extends React.Component {
         </div>
       );
     }
-    if (profileInfo.links.length > 0) {
+    if (profileInfo && profileInfo.links.length > 0) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <h2>
