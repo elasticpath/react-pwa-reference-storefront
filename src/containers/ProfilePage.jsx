@@ -23,6 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import ProfileInfoMain from '../components/profileInfo.main';
+import ProfileemailinfoMain from '../components/profileemailinfo.main';
 import OrderHistoryMain from '../components/orderhistory.main';
 import ProfileAddressesMain from '../components/profileaddresses.main';
 import ProfilePaymentMethodsMain from '../components/profilepaymentmethods.main';
@@ -37,6 +38,12 @@ const zoomArray = [
   'defaultprofile:purchases',
   'defaultprofile:purchases:element',
   'defaultprofile:addresses',
+  'defaultprofile:emails',
+  'defaultprofile:emails:element',
+  'defaultprofile:emails:element:list',
+  'defaultprofile:emails:element:profile',
+  'defaultprofile:emails:emailform',
+  'defaultprofile:emails:profile',
   'defaultprofile:addresses:element',
   'defaultprofile:addresses:billingaddresses:default',
   'defaultprofile:paymentmethods',
@@ -84,6 +91,7 @@ class ProfilePage extends React.Component {
 
   render() {
     const { profileData } = this.state;
+    const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
     return (
       <div>
         <div className="container profile-container">
@@ -94,10 +102,12 @@ class ProfilePage extends React.Component {
           </div>
           {profileData ? (
             <div>
-              <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+              <span className="feedback-label">{ email === '' && intl.get('email-validation') }</span>
+              <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+              <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} isDisabled={email === ''} />
               <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
-              <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
-              <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
+              <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} isDisabled={email === ''} />
+              <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} isDisabled={email === ''} />
             </div>
           ) : <div className="loader" />}
         </div>

@@ -35,6 +35,11 @@ class ProfileAddressesMain extends React.Component {
     history: ReactRouterPropTypes.history.isRequired,
     addresses: PropTypes.objectOf(PropTypes.any).isRequired,
     onChange: PropTypes.func.isRequired,
+    isDisabled: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isDisabled: false,
   }
 
   newAddress() {
@@ -126,6 +131,7 @@ class ProfileAddressesMain extends React.Component {
   render() {
     const {
       addresses,
+      isDisabled,
     } = this.props;
     if (addresses) {
       return (
@@ -135,7 +141,7 @@ class ProfileAddressesMain extends React.Component {
               {intl.get('addresses')}
             </h2>
             {this.renderAddresses()}
-            <button className="ep-btn primary wide profile-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
+            <button className="ep-btn primary wide profile-new-address-btn" type="button" disabled={isDisabled} onClick={() => { this.newAddress(); }}>
               {intl.get('add-new-address')}
             </button>
           </div>

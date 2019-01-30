@@ -29,10 +29,21 @@ import ShippingOptionContainer from '../components/shippingoption.container';
 import PaymentMethodContainer from '../components/paymentmethod.container';
 import { cortexFetch } from '../utils/Cortex';
 import './CheckoutPage.less';
+import ProfileemailinfoMain from '../components/profileemailinfo.main';
 
 const Config = require('Config');
 
 // Array of zoom parameters to pass to Cortex
+const zoomArrayProfile = [
+  'defaultprofile',
+  'defaultprofile:emails',
+  'defaultprofile:emails:element',
+  'defaultprofile:emails:element:list',
+  'defaultprofile:emails:element:profile',
+  'defaultprofile:emails:emailform',
+  'defaultprofile:emails:profile',
+];
+
 const zoomArray = [
   // zooms for checkout summary
   'defaultcart',
@@ -72,11 +83,40 @@ class CheckoutPage extends React.Component {
     this.state = {
       orderData: undefined,
       isLoading: false,
+      profileData: undefined,
     };
+    this.fetchProfileData = this.fetchProfileData.bind(this);
   }
 
   componentDidMount() {
     this.fetchOrderData();
+    this.fetchProfileData();
+  }
+
+  componentWillReceiveProps() {
+    this.fetchProfileData();
+  }
+
+  fetchProfileData() {
+    login().then(() => {
+      cortexFetch(`/?zoom=${zoomArrayProfile.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            profileData: res._defaultprofile[0],
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
   }
 
   fetchOrderData() {
@@ -373,6 +413,8 @@ class CheckoutPage extends React.Component {
   }
 
   renderBillingAddressSelector() {
+    const { profileData } = this.state;
+    const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
     return (
       <div>
         <h2>
@@ -381,7 +423,7 @@ class CheckoutPage extends React.Component {
         <div data-region="billingAddressSelectorsRegion" className="checkout-region-inner-container">
           {this.renderBillingAddress()}
         </div>
-        <button className="ep-btn primary wide checkout-new-address-btn" type="button" onClick={() => { this.newAddress(); }}>
+        <button className="ep-btn primary wide checkout-new-address-btn" disabled={isDisabled} type="button" onClick={() => { this.newAddress(); }}>
           {intl.get('add-new-address')}
         </button>
       </div>
@@ -449,6 +491,8 @@ class CheckoutPage extends React.Component {
   }
 
   renderPaymentSelector() {
+    const { profileData } = this.state;
+    const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
     return (
       <div>
         <h2>
@@ -457,7 +501,7 @@ class CheckoutPage extends React.Component {
         <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
           {this.renderPayments()}
         </div>
-        <button className="ep-btn primary wide checkout-new-payment-btn" type="button" onClick={() => { this.newPayment(); }}>
+        <button className="ep-btn primary wide checkout-new-payment-btn" disabled={isDisabled} type="button" onClick={() => { this.newPayment(); }}>
           {intl.get('add-new-payment-method')}
         </button>
       </div>
@@ -465,10 +509,11 @@ class CheckoutPage extends React.Component {
   }
 
   render() {
-    const { orderData, isLoading } = this.state;
+    const { orderData, isLoading, profileData } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
       let debugMessages = '';
+      const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
       for (let i = 0; i < messages.length; i++) {
         debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
       }
@@ -483,6 +528,12 @@ class CheckoutPage extends React.Component {
               </div>
             </div>
             <div className="checkout-main-container">
+              { profileData ? (
+                <div className="profile-email-info">
+                  <span className="feedback-label">{ email === '' && intl.get('email-validation') }</span>
+                  <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+                </div>
+              ) : (<div />)}
               <div data-region="billingAddressesRegion" style={{ display: 'block' }}>
                 {this.renderBillingAddressSelector()}
               </div>

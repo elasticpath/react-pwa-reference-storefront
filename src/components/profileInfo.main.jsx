@@ -32,6 +32,11 @@ class ProfileInfoMain extends React.Component {
   static propTypes = {
     profileInfo: PropTypes.objectOf(PropTypes.any).isRequired,
     onChange: PropTypes.func.isRequired,
+    isDisabled: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isDisabled: false,
   }
 
   constructor(props) {
@@ -127,15 +132,12 @@ class ProfileInfoMain extends React.Component {
       inEditMode, failedSubmit,
     } = this.state;
     const {
-      profileInfo,
+      profileInfo, isDisabled,
     } = this.props;
     if (inEditMode) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <div>
-            <h2>
-              {intl.get('personal-information')}
-            </h2>
             <form className="form-horizontal" onSubmit={this.submitPersonalInfoChange}>
               <div data-region="componentAddressFormRegion" style={{ display: 'block' }}>
                 <div className="address-form-container profile-info-edit-container">
@@ -187,9 +189,6 @@ class ProfileInfoMain extends React.Component {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <div>
-            <h2>
-              {intl.get('personal-information')}
-            </h2>
             <div className="personal-info-container container">
               <div className="personal-info-firstName">
                 <span className="info-label" data-el-label="profile.firstName">
@@ -212,7 +211,7 @@ class ProfileInfoMain extends React.Component {
               </div>
             </div>
 
-            <button className="ep-btn small profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" onClick={() => { this.editPersonalInfo(); }}>
+            <button className="ep-btn small profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" disabled={isDisabled} onClick={() => { this.editPersonalInfo(); }}>
               {intl.get('edit')}
             </button>
           </div>
