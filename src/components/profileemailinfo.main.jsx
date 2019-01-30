@@ -37,7 +37,7 @@ class ProfileemailinfoMain extends React.Component {
   constructor(props) {
     super(props);
     const { profileInfo } = this.props;
-    const email = profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+    const email = profileInfo && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
     this.state = {
       failedSubmit: false,
       emailInEditMode: false,
