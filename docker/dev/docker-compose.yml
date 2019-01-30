@@ -88,6 +88,8 @@ services:
     env_file:
       - docker-compose.env
     restart: always
+    extra_hosts:
+      - "search:127.0.0.1"
   cortex:
     image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/cortex:${DOCKER_IMAGE_TAG}
     container_name: cortex
@@ -99,13 +101,11 @@ services:
         condition: service_healthy
       mysql:
         condition: service_healthy
+      search:
+        condition: service_healthy
     volumes:
       - /ep/logs:/root/ep/logs
       - /ep/tomcat-logs:/usr/local/tomcat/logs
-    environment:
-      - EP_SEARCH_ROLE=slave
-      - EP_SEARCH_SLAVE_URL=http://search:8082/search
-      - EP_SEARCH_MASTER_URL=http://search:8082/search
     env_file:
       - docker-compose.env
     restart: always
