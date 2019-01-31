@@ -118,7 +118,7 @@ class AppModalCartSelectMain extends React.Component {
   renderCartOption() {
     const { selectedCart, orgAuthServiceData } = this.state;
 
-    if (orgAuthServiceData) {
+    if (orgAuthServiceData && orgAuthServiceData._element) {
       return orgAuthServiceData._element.map((division, index) => {
         if (division) {
           return (
@@ -140,7 +140,7 @@ class AppModalCartSelectMain extends React.Component {
   render() {
     const { selectedCart, orgAuthServiceData } = this.state;
     const { handleModalClose, openModal } = this.props;
-    const selectedCartName = orgAuthServiceData ? orgAuthServiceData._element[selectedCart].name : '';
+    const selectedCartName = orgAuthServiceData && orgAuthServiceData._element ? orgAuthServiceData._element[selectedCart].name : '';
 
     return (
       <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'cart-selection-modal-content' }} id="cart-select-modal">
