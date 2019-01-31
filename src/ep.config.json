@@ -77,5 +77,10 @@
   },
   "GDPR": {
     "enable": false
+  },
+  "socialNetworksLogin": {
+    "enable": false,
+    "fbApplicationId": "",
+    "googleClientId": ""
   }
 }

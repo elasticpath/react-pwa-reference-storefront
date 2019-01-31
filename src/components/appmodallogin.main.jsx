@@ -27,6 +27,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
 import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
+import SocialNetworksLogin from './socialnetworkslogin.main';
 import './appmodallogin.main.less';
 
 const Config = require('Config');
@@ -175,6 +176,15 @@ class AppModalLoginMain extends React.Component {
                 </div>
               </form>
             </div>
+
+            {Config && Config.socialNetworksLogin && (
+              <div className="social-networks-login-container">
+                <h2 className="modal-header">
+                  {intl.get('or')}
+                </h2>
+                <SocialNetworksLogin className="social-networks-login" config={Config.socialNetworksLogin} />
+              </div>
+            )}
           </div>
         </div>
       </Modal>
