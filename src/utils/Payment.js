@@ -20,7 +20,7 @@
  */
 
 import { login } from './AuthService';
-import cortexFetch from './Cortex';
+import { cortexFetch } from './Cortex';
 
 const Config = require('Config');
 
@@ -316,7 +316,7 @@ export function setPaymentOptions() {
 }
 
 export function setGlobalShippingOptions() {
-  return new Promise(((resolve, reject) => {
+  return new Promise(((resolve) => {
     fetchOrderData().then((orderData) => {
       // eslint-disable-next-line no-console
       console.log(orderData);
@@ -365,6 +365,7 @@ export function newPaymentRequest() {
   );
 
   paymentRequest.addEventListener('shippingaddresschange', (event) => {
+    // eslint-disable-next-line no-console
     console.log(event);
     submitAddress(event.currentTarget.shippingAddress.recipient.split(' ')[0], event.currentTarget.shippingAddress.recipient.split(' ')[1], event.currentTarget.shippingAddress.addressLine[0], '', event.currentTarget.shippingAddress.city, event.currentTarget.shippingAddress.country, event.currentTarget.shippingAddress.region, event.currentTarget.shippingAddress.postalCode);
     const updatedShippingOptions = setGlobalShippingOptions().then((shippingOptions) => {

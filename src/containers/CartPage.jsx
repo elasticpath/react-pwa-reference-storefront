@@ -177,7 +177,6 @@ class CartPage extends React.Component {
 
   render() {
     const { cartData, isLoading } = this.state;
-    const { history } = this.props;
     // eslint-disable-next-line no-console
     console.log(cartData);
     return (
