@@ -40,6 +40,7 @@ import TermsAndConditionsPage from './containers/TermsAndConditionsPage';
 import OrderReviewPage from './containers/OrderReviewPage';
 import WishListsPage from './containers/WishListsPage';
 import ShippingReturnsPage from './containers/ShippingReturns';
+import ProductsComparePage from './containers/ProductsComparePage';
 
 const router = [{
   path: '/',
@@ -119,6 +120,9 @@ const router = [{
 }, {
   path: '/shippingreturns',
   component: ShippingReturnsPage,
+}, {
+  path: '/productscompare/:products',
+  component: ProductsComparePage,
 }];
 
 export default router;

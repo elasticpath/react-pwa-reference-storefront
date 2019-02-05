@@ -155,6 +155,62 @@ const searchFormZoomArray = [
   'facets:element:facetselector:chosen:selectaction',
 ];
 
+// Array of zoom parameters to pass to Cortex for batches
+const batchFormZoomArray = [
+  'element',
+  'element:availability',
+  'element:addtocartform',
+  'element:addtowishlistform',
+  'element:price',
+  'element:rate',
+  'element:definition',
+  'element:definition:assets:element',
+  'element:definition:options:element',
+  'element:definition:options:element:value',
+  'element:definition:options:element:selector:choice',
+  'element:definition:options:element:selector:chosen',
+  'element:definition:options:element:selector:choice:description',
+  'element:definition:options:element:selector:chosen:description',
+  'element:definition:options:element:selector:choice:selector',
+  'element:definition:options:element:selector:chosen:selector',
+  'element:definition:options:element:selector:choice:selectaction',
+  'element:definition:options:element:selector:chosen:selectaction',
+  'element:definition:components',
+  'element:definition:components:element',
+  'element:definition:components:element:code',
+  'element:definition:components:element:standaloneitem',
+  'element:definition:components:element:standaloneitem:code',
+  'element:definition:components:element:standaloneitem:definition',
+  'element:definition:components:element:standaloneitem:availability',
+  'element:recommendations',
+  'element:recommendations:crosssell',
+  'element:recommendations:recommendation',
+  'element:recommendations:replacement',
+  'element:recommendations:upsell',
+  'element:recommendations:warranty',
+  'element:recommendations:crosssell:element:code',
+  'element:recommendations:recommendation:element:code',
+  'element:recommendations:replacement:element:code',
+  'element:recommendations:upsell:element:code',
+  'element:recommendations:warranty:element:code',
+  'element:recommendations:crosssell:element:definition',
+  'element:recommendations:recommendation:element:definition',
+  'element:recommendations:replacement:element:definition',
+  'element:recommendations:upsell:element:definition',
+  'element:recommendations:warranty:element:definition',
+  'element:recommendations:crosssell:element:price',
+  'element:recommendations:recommendation:element:price',
+  'element:recommendations:replacement:element:price',
+  'element:recommendations:upsell:element:price',
+  'element:recommendations:warranty:element:price',
+  'element:recommendations:crosssell:element:availability',
+  'element:recommendations:recommendation:element:availability',
+  'element:recommendations:replacement:element:availability',
+  'element:recommendations:upsell:element:availability',
+  'element:recommendations:warranty:element:availability',
+  'element:code',
+];
+
 const Config = require('Config');
 
 export function cortexFetchNavigationLookupForm() {
@@ -196,6 +252,32 @@ export function cortexFetchItemLookupForm() {
         .then((res) => {
           const itemForm = res._lookups[0]._itemlookupform[0].links.find(link => link.rel === 'itemlookupaction').uri;
           localStorage.setItem(`${Config.cortexApi.scope}_itemLookupForm`, itemForm);
+          resolve();
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          reject(error);
+        });
+    } else {
+      resolve();
+    }
+  }));
+}
+
+export function cortexFetchBatchItemLookupForm() {
+  return new Promise(((resolve, reject) => {
+    if (localStorage.getItem(`${Config.cortexApi.scope}_batchLookupForm`) === null) {
+      cortexFetch('/?zoom=lookups:batchitemslookupform', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          const batchForm = res._lookups[0]._batchitemslookupform[0].links.find(link => link.rel === 'batchitemslookupaction').uri;
+          localStorage.setItem(`${Config.cortexApi.scope}_batchLookupForm`, batchForm);
           resolve();
         })
         .catch((error) => {
@@ -421,5 +503,37 @@ export function searchLookup(searchKeyword) {
           reject(error);
         });
     }
+  }));
+}
+
+export function batchLookup(batchLookupCodes) {
+  return new Promise(((resolve, reject) => {
+    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_batchLookupForm`)}?zoom=${batchFormZoomArray.join()}&followlocation`,
+      {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({
+          codes: batchLookupCodes,
+        }),
+      })
+      .then((res) => {
+        if (res.status === 400 || res.status === 404 || res.status === 403) {
+          localStorage.removeItem(`${Config.cortexApi.scope}_batchLookupForm`);
+          window.location.reload();
+        }
+        return res;
+      })
+      .then(res => res.json())
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        reject(error);
+      });
   }));
 }
