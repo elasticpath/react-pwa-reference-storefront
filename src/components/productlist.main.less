@@ -24,12 +24,45 @@
 .product-list-container {
   text-align: left;
 
+  .compare-button{
+    text-align: center;
+    margin-bottom: 30px;
+
+    .top-compare-link{
+      margin: 0;
+      padding: 7px 15px;
+      text-transform: none;
+
+      &:hover{
+        text-decoration: none;
+      }
+
+      &.disabled {
+        background-color: #9d9d9d;
+        pointer-events: none;
+        cursor: default;
+      }
+
+      .toggle-compare-link{
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+
   .category-items-listing {
     .category-item-container {
+      position: relative;
       display: inline-block;
       width: 25%;
       padding: 0 10px 30px 10px;
       vertical-align: top;
+
+      .compare-checkbox{
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+      }
 
       .category-item-inner {
         .category-item-availability-container {
