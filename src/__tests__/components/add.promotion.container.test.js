@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import AddPromotionContainer from '../../components/add.promotion.container';
 
 describe('App', () => {
@@ -28,5 +28,27 @@ describe('App', () => {
     const cartData = {};
     const wrapper = shallow(<AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
     expect(wrapper).toMatchSnapshot();
+  });
+  
+  it('opens form by clicking on button', () => {
+    const cartData = {};
+    const wrapper = mount(<AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
+    const button = wrapper.find('button');
+    button.simulate('click');
+    expect (wrapper.find('form').exists()).toEqual(true);
+    wrapper.unmount();
+  });
+  
+  it('submits form', () => {
+    const cartData = {};
+    const wrapper = mount(<AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
+    const button = wrapper.find('button');
+    wrapper.instance().submitPromotionCode = jest.fn();
+    wrapper.update();
+    button.simulate('click');
+    const form = wrapper.find('form');
+    form.simulate('submit');
+    expect(wrapper.instance().submitPromotionCode).toBeCalled();
+    wrapper.unmount();
   });
 });

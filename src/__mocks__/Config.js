@@ -19,12 +19,4 @@
  *
  */
 
-const Config = {
-  cortexApi: {
-    path: '/cortex',
-    scope: 'vestri',
-    pathForProxy: 'http://vestri.us.epdemos.com',
-  },
-};
-
-export default Config;
+export * from '../ep.config';
