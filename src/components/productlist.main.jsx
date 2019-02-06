@@ -132,13 +132,15 @@ class ProductListMain extends React.Component {
     if (categoryModel._element && categoryModel._element.length > 0) {
       return (
         <div className="product-list-container" data-region="categoryBrowseRegion">
-          <div className="compare-button">
-            <button type="button" className="ep-btn primary top-compare-link" onClick={(compareList.length <= 1) ? () => this.handleCompare(isCompare) : ''}>
-              {(compareList.length > 1) ? (
-                <Link className="toggle-compare-link" to={compareLink}>{intl.get('compare-products')}</Link>
-              ) : `${intl.get('compare')}`}
-            </button>
-          </div>
+          {!categoryModel._facets ? (
+            <div className="compare-button">
+              <button type="button" className="ep-btn primary top-compare-link" onClick={(compareList.length <= 1) ? () => this.handleCompare(isCompare) : ''}>
+                {(compareList.length > 1) ? (
+                  <Link className="toggle-compare-link" to={compareLink}>{intl.get('compare-products')}</Link>
+                ) : `${intl.get('compare')}`}
+              </button>
+            </div>
+          ) : ''}
           <ul className="category-items-listing equalize" id="category_items_listing">
             {this.renderProducts()}
           </ul>
