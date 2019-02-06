@@ -285,7 +285,7 @@ export function navigationLookup(navigationLookupCode) {
   }));
 }
 
-export function itemLookup(itemLookupCode) {
+export function itemLookup(itemLookupCode, reload = true) {
   return new Promise(((resolve, reject) => {
     cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${itemFormZoomArray.join()}&followlocation`,
       {
@@ -301,7 +301,7 @@ export function itemLookup(itemLookupCode) {
       .then((res) => {
         if (res.status === 400 || res.status === 404 || res.status === 403) {
           localStorage.removeItem(`${Config.cortexApi.scope}_itemLookupForm`);
-          window.location.reload();
+          if (reload) window.location.reload();
         }
         return res;
       })

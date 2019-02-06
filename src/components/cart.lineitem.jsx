@@ -45,11 +45,13 @@ class CartLineItem extends React.Component {
     handleQuantityChange: PropTypes.func.isRequired,
     handleErrorMessage: PropTypes.func,
     hideRemoveButton: PropTypes.bool,
+    itemQuantity: PropTypes.number,
   }
 
   static defaultProps = {
     handleErrorMessage: () => { },
     hideRemoveButton: false,
+    itemQuantity: 1,
   }
 
   constructor(props) {
@@ -122,7 +124,7 @@ class CartLineItem extends React.Component {
 
   handleConfiguratorAddToCartBtnClicked() {
     const {
-      item, history, handleQuantityChange, handleErrorMessage,
+      item, history, handleQuantityChange, handleErrorMessage, itemQuantity,
     } = this.props;
     handleQuantityChange();
     login().then(() => {
@@ -135,7 +137,7 @@ class CartLineItem extends React.Component {
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
           body: JSON.stringify({
-            quantity: 1,
+            quantity: itemQuantity || 1,
           }),
         })
         .then((res) => {
