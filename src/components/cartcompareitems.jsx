@@ -32,7 +32,6 @@ import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
-import BundleConstituentsDisplayMain from './bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 
 import './cartcompareitems.less';
@@ -704,7 +703,6 @@ class CartCompareItems extends React.Component {
                 </div>
               </div>
             </div>
-            <BundleConstituentsDisplayMain productData={productData} />
           </div>
         </div>
       );
