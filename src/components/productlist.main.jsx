@@ -30,6 +30,11 @@ import './productlist.main.less';
 class ProductListMain extends React.Component {
   static propTypes = {
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
+    showCompareButton: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    showCompareButton: true,
   }
 
   constructor(props) {
@@ -129,10 +134,11 @@ class ProductListMain extends React.Component {
       compareList,
       compareLink,
     } = this.state;
+    const { showCompareButton } = this.props;
     if (categoryModel._element && categoryModel._element.length > 0) {
       return (
         <div className="product-list-container" data-region="categoryBrowseRegion">
-          {!categoryModel._facets ? (
+          {showCompareButton ? (
             <div className="compare-button">
               <button type="button" className="ep-btn primary top-compare-link" onClick={(compareList.length <= 1) ? () => this.handleCompare(isCompare) : ''}>
                 {(compareList.length > 1) ? (
