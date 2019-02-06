@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import AddPromotionContainer from '../../components/add.promotion.container';
 
 describe('App', () => {
@@ -32,7 +32,7 @@ describe('App', () => {
   
   it('opens form by clicking on button', () => {
     const cartData = {};
-    const wrapper = mount(<AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
+    const wrapper = shallow(<AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
     const button = wrapper.find('button');
     button.simulate('click');
     expect (wrapper.find('form').exists()).toEqual(true);
@@ -41,7 +41,7 @@ describe('App', () => {
   
   it('submits form', () => {
     const cartData = {};
-    const wrapper = mount(<AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
+    const wrapper = shallow(<AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
     const button = wrapper.find('button');
     wrapper.instance().submitPromotionCode = jest.fn();
     wrapper.update();

@@ -74,7 +74,8 @@
     "start-prod": "webpack-dev-server --config=webpack/webpack.config.prod.js --mode production",
     "build": "webpack --config=webpack/webpack.config.prod.js --mode production",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
