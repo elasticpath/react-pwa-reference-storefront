@@ -22,6 +22,7 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
+import SocialNetworksLogin from '../components/socialnetworkslogin.main';
 import { login, loginRegistered } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import './CheckoutAuthPage.less';
@@ -146,6 +147,16 @@ class CheckoutAuthPage extends React.Component {
                   </button>
                 </div>
               </div>
+              {Config && Config.socialNetworksLogin.enable && (
+                <div className="checkoutAuthLoginOptionRegion" data-region="checkoutAuthLoginOptionRegion" style={{ display: 'block' }}>
+                  <div className="checkout-auth-option-container">
+                    <h2>
+                      {intl.get('continue-with')}
+                    </h2>
+                    <SocialNetworksLogin config={Config.socialNetworksLogin} />
+                  </div>
+                </div>
+              )}
               <div className="checkoutAuthLoginOptionRegion" data-region="checkoutAuthLoginOptionRegion" style={{ display: 'block' }}>
                 <div className="checkout-auth-option-container">
                   <h2>
