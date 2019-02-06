@@ -98,7 +98,7 @@ class SearchResultsItemsMain extends React.Component {
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0 || !products._element;
     const searchKeywordString = searchKeywords;
-
+    const propCompareButton = false;
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
@@ -129,7 +129,7 @@ class SearchResultsItemsMain extends React.Component {
                 <SearchFacetNavigationMain productData={products} titleString={searchKeywordString} />
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop />
-                  <ProductListMain productData={products} />
+                  <ProductListMain productData={products} showCompareButton={propCompareButton} />
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={searchLookup} />
                 </div>
               </div>
