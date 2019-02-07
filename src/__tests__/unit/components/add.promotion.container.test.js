@@ -21,7 +21,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import AddPromotionContainer from '../../components/add.promotion.container';
+import AddPromotionContainer from '../../../components/add.promotion.container';
 
 describe('App', () => {
   it('renders with default props', () => {
