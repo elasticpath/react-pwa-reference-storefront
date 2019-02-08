@@ -1,11 +1,10 @@
 web:
-  image: 417cbdf84a1c
+  image: 1aebfafb26e5
   environment:
-   CORTEX_API_SCOPE: vestri
-   CORTEX_API_PATHFORPROXY: http://localhost:9080
-   DOMAIN: localhost
-   AUTHSERVICE_URL: http://10.11.12.95:9080
-   KEYCLOAK_URL: http://10.11.12.95:9080/meow/meow
+    CORTEX_URL: http://10.11.12.95:9080
+    AUTHSERVICE_URL: http://10.11.12.95:9080
+    CORTEX_API_SCOPE: vestri
+    DOMAIN: localhost
   ports:
    - "8080:80"
    - "443:443"
