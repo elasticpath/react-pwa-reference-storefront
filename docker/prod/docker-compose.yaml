@@ -1,12 +1,11 @@
 web:
-  image: $DOCKER_REPO
-  volumes:
-   - ./nginx.conf:/etc/nginx/nginx.conf
-   - $SSL_CERT_PATH:$SSL_CERT_PATH
-   - $SSL_KEY_PATH:$SSL_KEY_PATH
+  image: 417cbdf84a1c
   environment:
-   CORTEX_API_SCOPE: $CORTEX_API_SCOPE
-   CORTEX_URL: $CORTEX_URL
+   CORTEX_API_SCOPE: vestri
+   CORTEX_API_PATHFORPROXY: http://localhost:9080
+   DOMAIN: localhost
+   AUTHSERVICE_URL: http://10.11.12.95:9080
+   KEYCLOAK_URL: http://10.11.12.95:9080/meow/meow
   ports:
-   - "80:80"
+   - "8080:80"
    - "443:443"

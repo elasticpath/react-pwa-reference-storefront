@@ -24,7 +24,7 @@ import ReactDOM from 'react-dom';
 import intl from 'react-intl-universal';
 import App from './App';
 import * as UserPrefs from './utils/UserPrefs';
-import * as Configs from './utils/Config';
+// import * as Configs from './utils/Config';
 
 // Import custom required styles
 import './style/reset.less';
