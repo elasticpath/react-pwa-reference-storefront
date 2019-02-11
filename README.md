@@ -121,7 +121,7 @@ For more information about populating database, see the [Populating the Database
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
 2. Navigate to the `react-pwa-reference-storefront` directory.
 3. Add any custom configurations to the Dockerfile, Docker Compose file, and Nginx Configuration file
-    1. Provide any custom configurations you would like passed into your Docker container at runtime directly below the existing `RUN jq` command. One has bee provided to you as an example. Be sure to maintain the prefix of `NGINX_REPLACE_` for your custom configuration.
+    1. Provide any custom configurations you would like passed into your Docker container at runtime directly below the existing `RUN jq` command. One has been provided to you as an example. Be sure to maintain the prefix of `NGINX_REPLACE_` for your custom configuration.
     **Note:** You must use jq syntax for the command. More information on jq is availble [here](https://stedolan.github.io/jq/manual/).
     2. Update the `./docker/prod/nginx.conf` file to include the new configuration directly below the existing one by adding a new `sub_filter` statement with your configuration within the configuration block. Be sure to expose this value with a more generic value, which will be used for the environment variable in the next step.
     3. Update the `./docker/prod/docker-compose.yaml` file to include your environment configuration variable from step 2 into the `environment` block, and set it to the value you desire to pass into your container.
