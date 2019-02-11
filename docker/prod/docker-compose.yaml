@@ -1,10 +1,8 @@
 web:
-  image: 1aebfafb26e5
-  environment:
-    CORTEX_URL: http://10.11.12.95:9080
-    AUTHSERVICE_URL: http://10.11.12.95:9080
-    CORTEX_API_SCOPE: vestri
-    DOMAIN: localhost
+  image: $DOCKER_REPO
+  volumes:
+   - $SSL_CERT_PATH:$SSL_CERT_PATH
+   - $SSL_KEY_PATH:$SSL_KEY_PATH
   ports:
-   - "8080:80"
+   - "80:80"
    - "443:443"
