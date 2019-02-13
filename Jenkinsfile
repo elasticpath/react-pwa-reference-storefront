@@ -74,27 +74,10 @@ timestamps {
         currentBuild.description = "Image Tag: ${DOCKER_IMAGE_TAG}"
       }
       stage('TEST') {
-        // Add JAVA_HOME and JAVA + MAVEN to path
-        withEnv( ["JAVA_HOME=${tool 'jdk8u66'}" , "PATH+JDK=${JAVA_HOME}/bin", "PATH+MAVEN=${tool 'maven-3.5.2'}/bin"] ){
-          dir('scm') {
-            // Download google chrome using script from https://intoli.com/blog/installing-google-chrome-on-centos/
-            sh """
-              sudo ./install-google-chrome.sh
-              sudo mv /usr/bin/google-chrome-stable /usr/bin/google-chrome
-            """
-            // Replace selenium.session.baseurl and run tests using headless chrome
-            try {
-              sh """
-                cd test
-                sed -i.bak \"s@\\(<selenium\\.session\\.baseurl>\\)[^<]*\\(<\\/selenium.session.baseurl>\\)@\\1http://${EC2_INSTANCE_HOST}:8080\\2@\" ./pom.xml
-                mvn -v
-                mvn clean install -Dcucumber.option=\"--tags @smoketest\" -Pheadlesschrome -s settings.xml
-              """
-            } finally {
-              cucumber fileIncludePattern: '**/store.json', sortingMethod: 'ALPHABETICAL'
-            }
-          }
-        }
+        // Run unit & Puppeteer tests
+         sh """
+            export TEST_HOST=http://${EC2_INSTANCE_HOST}:8080 && npm test
+          """
       }
     }
   }
