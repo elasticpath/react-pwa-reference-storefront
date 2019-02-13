@@ -28,20 +28,16 @@ import Modal from 'react-responsive-modal';
 import CartLineItem from './cart.lineitem';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import { cortexFetch } from '../utils/Cortex';
 import './quickorder.main.less';
 
-const Config = require('Config');
 
 class QuickOrderMain extends React.Component {
   static propTypes = {
-    onAddToCart: PropTypes.func,
     isBuyItAgain: PropTypes.bool,
     productData: PropTypes.objectOf(PropTypes.any),
   }
 
   static defaultProps = {
-    onAddToCart: () => { },
     isBuyItAgain: false,
     productData: {},
   }
@@ -55,8 +51,9 @@ class QuickOrderMain extends React.Component {
       itemQuantity: 1,
       addToCartFailedMessage: '',
       isLoading: false,
-      itemConfiguration: {},
       openModal: false,
+      productItemInfo: {},
+      showFailedMessage: false,
     };
     const { productData } = this.props;
     if (productData !== {}) {
@@ -71,9 +68,18 @@ class QuickOrderMain extends React.Component {
   }
 
   handleQuantityChange() {
-    this.setState({
-      isLoading: true,
-    });
+    const { isBuyItAgain } = this.props;
+    if (isBuyItAgain) {
+      this.setState({
+        isLoading: true,
+      });
+    } else {
+      this.setState({
+        productId: '',
+        itemQuantity: 1,
+        openModal: false,
+      });
+    }
   }
 
   handleModalOpen() {
@@ -89,60 +95,30 @@ class QuickOrderMain extends React.Component {
   }
 
   addToCart(event) {
-    const { onAddToCart } = this.props;
     const {
-      itemQuantity, itemConfiguration, productId,
+      productId,
     } = this.state;
     this.setState({
       isLoading: true,
     });
     login().then(() => {
       cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId)
+        .then(() => itemLookup(productId, false)
           .then((res) => {
-            const addToCartLink = res._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-            const body = {};
-            body.quantity = itemQuantity;
-            if (itemQuantity === undefined) {
-              body.quantity = 1;
-            }
-            if (itemConfiguration) {
-              body.configuration = itemConfiguration;
-            }
-            cortexFetch(addToCartLink.uri,
-              {
-                method: 'post',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                },
-                body: JSON.stringify(body),
-              })
-              .then((resAddToCart) => {
-                if (resAddToCart.status === 200 || resAddToCart.status === 201) {
-                  this.setState({
-                    isLoading: false,
-                    productId: '',
-                    itemQuantity: 1,
-                  });
-                  onAddToCart();
-                } else {
-                  let debugMessages = '';
-                  resAddToCart.json().then((json) => {
-                    for (let i = 0; i < json.messages.length; i++) {
-                      debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-                    }
-                  }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
-                }
-              })
-              .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
+            this.setState({
+              productItemInfo: res,
+              isLoading: false,
+              openModal: true,
+              showFailedMessage: false,
+            });
           })
           .catch((error) => {
             // eslint-disable-next-line no-console
             console.error(error.message);
+            this.setState({
+              isLoading: false,
+              showFailedMessage: true,
+            });
           }));
     });
     event.preventDefault();
@@ -150,27 +126,31 @@ class QuickOrderMain extends React.Component {
 
   render() {
     const {
-      failedSubmit, isLoading, addToCartFailedMessage, productId, itemQuantity, openModal, productDataInfo,
+      failedSubmit, isLoading, addToCartFailedMessage, productId, itemQuantity, openModal, productDataInfo, productItemInfo, showFailedMessage,
     } = this.state;
     const { isBuyItAgain } = this.props;
+    const orderModal = data => (
+      <Modal open={openModal} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
+        <div id="buy-it-again-modal">
+          <div className="modal-content" id="simplemodal-container">
+            <div className="modal-header">
+              <h2 className="modal-title">
+                {intl.get('buy-it-again')}
+              </h2>
+            </div>
+            <CartLineItem key={productId} item={data} itemQuantity={itemQuantity} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton handleErrorMessage={this.handleErrorMessage} />
+          </div>
+        </div>
+      </Modal>
+    );
+
     if (isBuyItAgain) {
       return (
         <div style={{ display: 'block' }}>
           <button className="ep-btn small buy-it-again-btn" type="button" onClick={() => this.handleModalOpen()}>
             {intl.get('buy-it-again')}
           </button>
-          <Modal open={openModal} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
-            <div id="buy-it-again-modal">
-              <div className="modal-content" id="simplemodal-container">
-                <div className="modal-header">
-                  <h2 className="modal-title">
-                    {intl.get('buy-it-again')}
-                  </h2>
-                </div>
-                <CartLineItem key={productId} item={productDataInfo} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton handleErrorMessage={this.handleErrorMessage} />
-              </div>
-            </div>
-          </Modal>
+          {orderModal(productDataInfo)}
           <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
             {addToCartFailedMessage}
           </div>
@@ -194,22 +174,23 @@ class QuickOrderMain extends React.Component {
                 </div>
                 <div className="form-group quick-order-forms">
                   <div className="quick-order-form-input">
-                    <input id="quick_order_form_sku" className="form-control" type="text" placeholder={intl.get('quick-order-sku-title')} value={productId} onChange={e => this.setState({ productId: e.target.value })} />
+                    <input id="quick_order_form_sku" className="form-control" type="text" placeholder={intl.get('quick-order-sku-title')} value={productId || ''} onChange={e => this.setState({ productId: e.target.value, showFailedMessage: false })} />
                   </div>
                   <div className="quantity-col">
-                    <input id="quick_order_form_quantity" className="quantity-select form-control" type="number" step="1" min="1" max="9999" placeholder="1" value={itemQuantity} onChange={e => this.setState({ itemQuantity: e.target.value })} />
+                    <input id="quick_order_form_quantity" className="quantity-select form-control" type="number" step="1" min="1" max="9999" placeholder="1" value={itemQuantity || 1} onChange={e => this.setState({ itemQuantity: e.target.value })} />
                   </div>
                 </div>
               </div>
             </div>
             <div className="form-group quick-order-btn-container quick-order-btn-container">
-              <button className="ep-btn primary wide quick-order-add-to-cart" data-el-label="quickOrderForm.save" type="submit">
-                {intl.get('add-to-cart')}
+              <button className="ep-btn primary wide quick-order-add-to-cart" disabled={!productId} data-el-label="quickOrderForm.save" type="submit">
+                {intl.get('search')}
               </button>
             </div>
           </form>
-          <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
-            {addToCartFailedMessage}
+          {productItemInfo && orderModal(productItemInfo)}
+          <div className="auth-feedback-container failed-message" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
+            {showFailedMessage && intl.get('incorect-sku')}
           </div>
           {
             (isLoading) ? (<div className="miniLoader" />) : ''

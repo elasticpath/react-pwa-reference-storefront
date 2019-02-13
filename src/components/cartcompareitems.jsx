@@ -32,9 +32,6 @@ import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
 } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
-// import ProductRecommendationsDisplayMain from './productrecommendations.main';
-import IndiRecommendationsDisplayMain from './indirecommendations.main';
-import BundleConstituentsDisplayMain from './bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 
 import './cartcompareitems.less';
@@ -96,7 +93,7 @@ const zoomArray = [
   'code',
 ];
 
-class Cartcompareitems extends React.Component {
+class CartCompareItems extends React.Component {
   static isLoggedIn() {
     return (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
   }
@@ -706,9 +703,6 @@ class Cartcompareitems extends React.Component {
                 </div>
               </div>
             </div>
-            <BundleConstituentsDisplayMain productData={productData} />
-            {/* <ProductRecommendationsDisplayMain productData={productData} /> */}
-            <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
           </div>
         </div>
       );
@@ -719,4 +713,4 @@ class Cartcompareitems extends React.Component {
 }
 
 
-export default withRouter(Cartcompareitems);
+export default withRouter(CartCompareItems);

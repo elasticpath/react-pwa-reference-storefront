@@ -30,7 +30,7 @@
 
     .top-compare-link{
       margin: 0;
-      padding: 7px 15px;
+      padding: 0;
       text-transform: none;
 
       &:hover{
@@ -42,11 +42,15 @@
         pointer-events: none;
         cursor: default;
       }
-
-      .toggle-compare-link{
-        text-decoration: none;
-        color: #fff;
-      }
+    }
+    
+    .toggle-compare-link{
+      min-height: 40px;
+      line-height: 40px;
+      display: inline-block;
+      padding: 0 15px;
+      text-decoration: none;
+      color: #fff;
     }
   }
 
