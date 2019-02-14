@@ -76,7 +76,9 @@ timestamps {
       stage('TEST') {
         // Run unit & Puppeteer tests
          sh """
-            export TEST_HOST=http://${EC2_INSTANCE_HOST}:8080 && npm test
+            ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST}  \"\"\"
+              docker exec -t store sh -c 'export TEST_HOST=http://${EC2_INSTANCE_HOST}:8080 && npm test'
+             \"\"\"
           """
       }
     }
