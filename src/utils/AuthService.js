@@ -50,7 +50,6 @@ export function login() {
       };
 
       generateFormBody(publicUserDetails);
-
       cortexFetch('/oauth2/tokens', {
         method: 'post',
         headers: {
@@ -129,16 +128,17 @@ export function loginRegistered(username, password) {
   }));
 }
 
-export function loginRegisteredAuthService(code, redirectUri) {
+export function loginRegisteredAuthService(code, redirectUri, clientId) {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
       userFormBodyString = '';
       userFormBody = [];
       const registeredUserDetails = {
+        grant_type: 'authorization_code',
         code,
         redirect_uri: redirectUri,
+        client_id: clientId,
       };
-
       generateFormBody(registeredUserDetails);
       adminFetch('/oauth2/tokens', {
         method: 'post',

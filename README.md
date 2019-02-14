@@ -85,7 +85,7 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`b2b.keycloak.callbackUrl`| Optional| String| The URL that is passed to keycloak, and redirected to upon a successful login.|
 |`b2b.keycloak.loginRedirectUrl`| Optional| String| The keycloak log on URL.|
 |`b2b.keycloak.logoutRedirectUrl`| Optional| String| The keycloak log off URL.|
-|`b2b.keycloak.client_id`| Optional| String| The keycloak client configuration ID.|
+|`b2b.keycloak.client_id`| Optional| String| The keycloak client configuration ID. Set this value to the identifier of the client configured in keycloak for the storefront. A default configuration is preset, however older environemnts may use `eam`. For more information, see the [Deploying and Configuring Keycloak](https://developers.elasticpath.com/accountmanagementdeployment/7.4.1/Elastic-Path-Account-Management-Deployment/Deploying-Account-Management-Service/Deploying-and-Configuring-Keycloak) section.|
 |`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
 |`indi.enable`| Optional| Boolean| Enable the integration component for Indi. More information may be found available here `https://indi.com/`.|
 |`indi.carousel`| Optional| Values| Configurations for the Indi carousel component.|

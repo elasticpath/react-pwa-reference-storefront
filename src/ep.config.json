@@ -39,7 +39,7 @@
       "callbackUrl": "",
       "loginRedirectUrl": "",
       "logoutRedirectUrl": "",
-      "client_id": "eam"
+      "client_id": "reference-storefront"
     }
   },
   "gaTrackingId": "",
