@@ -33,6 +33,7 @@ const desktopViewport = {
 describe('App', () => {
   test('Cart feature', async () => {
     const browser = await puppeteer.launch({
+      args: ['--no-sandbox'],
       headless: true,
       slowMo: 80,
     });
