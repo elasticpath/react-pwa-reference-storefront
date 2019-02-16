@@ -226,7 +226,7 @@ class ProductDisplayItemMain extends React.Component {
       isLoading: true,
     });
     login().then(() => {
-      cortexFetch(`${selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
+      cortexFetch(`${selfUri}?followlocation=true&zoom=${zoomArray.sort().join()}`,
         {
           method: 'post',
           headers: {
