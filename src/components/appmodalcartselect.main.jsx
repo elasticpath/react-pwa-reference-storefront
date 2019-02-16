@@ -88,7 +88,7 @@ class AppModalCartSelectMain extends React.Component {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgAuthServiceData._element[selectedCart];
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
-      adminFetch(`${selectedCartData._accesstokenform[0].self.uri}/?followlocation`, {
+      adminFetch(`${selectedCartData._accesstokenform[0].self.uri}/?followlocation=true`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

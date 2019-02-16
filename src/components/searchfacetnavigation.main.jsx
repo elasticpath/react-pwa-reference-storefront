@@ -49,7 +49,7 @@ class SearchFacetNavigationMain extends React.Component {
   handleFacetSelection(facetUri) {
     const { history, titleString } = this.props;
     login().then(() => {
-      cortexFetch(`${decodeURIComponent(facetUri)}?followlocation&zoom=offersearchresult`,
+      cortexFetch(`${decodeURIComponent(facetUri)}?followlocation=true&zoom=offersearchresult`,
         {
           method: 'post',
           headers: {

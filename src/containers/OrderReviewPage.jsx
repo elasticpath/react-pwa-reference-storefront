@@ -144,7 +144,7 @@ class OrderReviewPage extends React.Component {
     const { history } = this.props;
     const purchaseform = orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri;
     login().then(() => {
-      cortexFetch(`${purchaseform}?followlocation&zoom=${purchaseZoomArray.sort().join()}`, {
+      cortexFetch(`${purchaseform}?followlocation=true&zoom=${purchaseZoomArray.sort().join()}`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

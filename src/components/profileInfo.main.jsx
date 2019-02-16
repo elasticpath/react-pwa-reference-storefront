@@ -87,7 +87,7 @@ class ProfileInfoMain extends React.Component {
       }).then(res => res.json())
         .then((res) => {
           const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
-          cortexFetch(`${profileNameLink.uri}?followlocation`, {
+          cortexFetch(`${profileNameLink.uri}?followlocation=true`, {
             headers: {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
