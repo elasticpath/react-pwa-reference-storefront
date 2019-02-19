@@ -50,29 +50,25 @@ describe('Search feature', () => {
     await page.goto(APP);
 
     const SEARCH_INPUT_CSS = 'input.input-search';
-    const PRODUCT_LIST_CSS = '.product-list-pagination-component';
+    const PRODUCT_LIST_CSS = 'div[data-region="categoryPaginationRegion"]';
     const NO_RESULTS_CSS = 'div[data-region="categoryTitleRegion"] h3';
 
-    // When I select search
+    // When I search for keyword 'hat'
     await page.waitForSelector(SEARCH_INPUT_CSS);
     await page.click(SEARCH_INPUT_CSS);
-
-    // And I input searchHat
     await page.type(SEARCH_INPUT_CSS, dataSearch.searchHat);
     await page.keyboard.press( 'Enter' );
 
-    // Then I expect product list
+    // Then I can see my search results for keyword 'hat'
     await page.waitForSelector(PRODUCT_LIST_CSS);
 
-    // When I select search
+    // When I search for keyword 'abc'
     await page.waitForSelector(SEARCH_INPUT_CSS);
     await page.click(SEARCH_INPUT_CSS);
-
-    // And I input searchInvalidKeyword
     await page.type(SEARCH_INPUT_CSS, dataSearch.searchInvalidKeyword);
     await page.keyboard.press( 'Enter' );
 
-    // Then I expect not found product list
+    // Then no search results return for keyword 'abc'
     await page.waitForSelector(NO_RESULTS_CSS);
 
     browser.close();
