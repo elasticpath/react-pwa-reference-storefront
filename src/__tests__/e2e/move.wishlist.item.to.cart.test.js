@@ -96,5 +96,5 @@ describe('Wishlist', () => {
     expect(text).toEqual(EXPECTED_ITEM_TITLE);
 
     browser.close();
-  }, 35000);
+  }, 30000);
 });
