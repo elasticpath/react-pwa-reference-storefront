@@ -134,7 +134,13 @@ class AppModalCartSelectMain extends React.Component {
         return null;
       });
     }
-    return null;
+    return (
+      <div className="radio division-message">
+        <label htmlFor="cart-selection-option">
+          <span className="label-text">{intl.get('no-divisions-found')}</span>
+        </label>
+      </div>
+    );
   }
 
   render() {
@@ -159,7 +165,7 @@ class AppModalCartSelectMain extends React.Component {
                 </div>
                 <div className="action-row">
                   <div className="form-input btn-container">
-                    <button onClick={this.continueCart} className="ep-btn primary wide" id="continue_with_cart_button" data-cmd="continue" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+                    <button disabled={orgAuthServiceData && !orgAuthServiceData._element} onClick={this.continueCart} className="ep-btn primary wide" id="continue_with_cart_button" data-cmd="continue" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {intl.get('continue-with')}
                       {` ${selectedCartName}`}
                     </button>
