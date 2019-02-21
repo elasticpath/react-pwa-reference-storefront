@@ -106,7 +106,6 @@ describe('Profile', () => {
   test('Navigate Profile', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      headless: true,
       slowMo: 20,
     });
     const page = await browser.newPage();
@@ -141,7 +140,6 @@ describe('Profile', () => {
   test('Update Personal Info', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      headless: true,
       slowMo: 20,
     });
     const page = await browser.newPage();
@@ -192,7 +190,6 @@ describe('Profile', () => {
   test('Create new user with Address and Payment Method', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      headless: true,
       slowMo: 20,
     });
     const page = await browser.newPage();
