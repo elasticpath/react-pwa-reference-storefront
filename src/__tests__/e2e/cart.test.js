@@ -30,19 +30,15 @@ const desktopViewport = {
   height: 700,
 };
 
-describe('App', () => {
-  test('Cart feature', async () => {
+describe('Cart feature', () => {
+  
+  test('Change cart line item quantity', async () => {
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
-      headless: true,
-      slowMo: 80,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      slowMo: 10
     });
     const page = await browser.newPage();
-
-    page.emulate({
-      viewport: desktopViewport,
-      userAgent: '',
-    });
+    await page.setViewport(desktopViewport);
     await page.goto(APP);
 
     const PARENT_CATEGORY_CSS = '.app-header-navigation-component li[data-name="Mens"]';
@@ -84,8 +80,59 @@ describe('App', () => {
     await page.waitForSelector(CART_LINE_ITEM_PRICE_CSS);
     const element = await page.$(CART_LINE_ITEM_PRICE_CSS);
     const text = await page.evaluate(el => el.textContent, element);
+  
+    await browser.close();
+    
     expect(text).toEqual(EXPECTED_ITEM_TOTAL);
-
-    browser.close();
+  }, 25000);
+  
+  test('Remove cart line item', async () => {
+    const product = {
+      category: 'M-Class',
+      subCategory: 'Wheels, Tires, and Tire Covers',
+      name: 'M Class Red Brake Calipers'
+    };
+    
+    const PARENT_CATEGORY_CSS = `.app-header-navigation-component li[data-name="${product.category}"]`;
+    const SUB_CATEGORY_CSS = `${PARENT_CATEGORY_CSS} > .dropdown-menu > li > a[title="${product.subCategory}"]`;
+    const PRODUCT_CSS = '.product-list-container .category-items-listing .category-item-container';
+    const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
+    const CART_LINE_ITEM_REMOVE_BTN_CSS = 'button[class="ep-btn small btn-cart-removelineitem"]';
+    const CART_EMPTY_CONTAINER_CSS = 'div[class="cart-empty-container"]';
+  
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+    const page = await browser.newPage();
+    await page.setViewport(desktopViewport);
+    await page.goto(APP);
+  
+    await page.waitForSelector(PARENT_CATEGORY_CSS);
+    await page.click(PARENT_CATEGORY_CSS);
+    
+    await page.waitForSelector(SUB_CATEGORY_CSS);
+    await page.click(SUB_CATEGORY_CSS);
+  
+    await page.waitForSelector(PRODUCT_CSS);
+    const productLink = await page.$x(`//a[contains(text(), "${product.name}")]`);
+  
+    if (productLink.length > 0) {
+      await productLink[0].click();
+    } else {
+      throw new Error('Product not found');
+    }
+  
+    await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
+    await page.click(ADD_TO_CART_BUTTON_CSS);
+  
+    await page.waitForSelector(CART_LINE_ITEM_REMOVE_BTN_CSS);
+    await page.click(CART_LINE_ITEM_REMOVE_BTN_CSS);
+    
+    await page.waitForSelector(CART_EMPTY_CONTAINER_CSS);
+    const element = await page.$(CART_EMPTY_CONTAINER_CSS);
+    
+    await browser.close();
+    
+    expect(element).not.toEqual(null)
   }, 25000);
 });

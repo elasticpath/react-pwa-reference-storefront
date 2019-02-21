@@ -38,8 +38,7 @@ describe('Search feature', () => {
   test('Keyword search', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      headless: false,
-      slowMo: 80,
+      slowMo: 20,
     });
     const page = await browser.newPage();
 
@@ -70,7 +69,7 @@ describe('Search feature', () => {
 
     // Then no search results return for keyword 'abc'
     await page.waitForSelector(NO_RESULTS_CSS);
-
-    browser.close();
+  
+    await browser.close();
   }, 20000);
 });

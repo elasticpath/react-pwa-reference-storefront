@@ -68,37 +68,37 @@ describe('Wishlist', () => {
 
     //When I login as following registered shopper
     await page.waitForSelector(LOGGED_IN_BUTTON);
-    page.click(LOGGED_IN_BUTTON);
+    await page.click(LOGGED_IN_BUTTON);
     await page.waitForSelector(LOGIN_USERNAME_INPUT);
     page.$eval(LOGIN_USERNAME_INPUT, el => el.value = '');
-    await page.type(LOGIN_USERNAME_INPUT, userData.username, { delay: 20 });
+    await page.type(LOGIN_USERNAME_INPUT, userData.username);
     await page.waitForSelector(LOGIN_PASSWORD_INPUT);
     page.$eval(LOGIN_PASSWORD_INPUT, el => el.value = '');
-    await page.type(LOGIN_PASSWORD_INPUT, userData.password, { delay: 20 });
+    await page.type(LOGIN_PASSWORD_INPUT, userData.password);
     await page.waitForSelector(LOGIN_BUTTON);
-    page.click(LOGIN_BUTTON);
+    await page.click(LOGIN_BUTTON);
 
     // When I add following items to my wishlist
     await page.waitForNavigation(PARENT_CATEGORY);
-    page.click(PARENT_CATEGORY);
+    await page.click(PARENT_CATEGORY);
     await page.waitForSelector(PARENT_SUB_CATEGORY);
-    page.click(PARENT_SUB_CATEGORY);
+    await page.click(PARENT_SUB_CATEGORY);
     await page.waitForSelector(PRODUCT_CATEGORY_ITEM);
-    page.click(PRODUCT_CATEGORY_ITEM);
+    await page.click(PRODUCT_CATEGORY_ITEM);
     await page.waitForSelector(ADD_TO_WISHLIST_BUTTON);
-    page.click(ADD_TO_WISHLIST_BUTTON);
+    await page.click(ADD_TO_WISHLIST_BUTTON);
 
     // When I move the wishlist item to cart
     await page.waitForSelector(ADD_TO_CART_BUTTON);
-    page.click(ADD_TO_CART_BUTTON);
+    await page.click(ADD_TO_CART_BUTTON);
 
     // Then cart should contain following items
     await page.waitForSelector(CART_ITEM);
     const element = await page.$(PRODUCT_CART_TITLE);
     const text = await page.evaluate(el => el.textContent, element);
     expect(text).toEqual(EXPECTED_ITEM_TITLE);
-
-    browser.close();
+  
+    await browser.close();
   }, 25000);
 
   test('Remove wishlist item', async () => {
@@ -115,40 +115,40 @@ describe('Wishlist', () => {
 
     //When I login as following registered shopper
     await page.waitForSelector(LOGGED_IN_BUTTON);
-    page.click(LOGGED_IN_BUTTON);
+    await page.click(LOGGED_IN_BUTTON);
     await page.waitForSelector(LOGIN_USERNAME_INPUT);
     page.$eval(LOGIN_USERNAME_INPUT, el => el.value = '');
-    await page.type(LOGIN_USERNAME_INPUT, userData.username, { delay: 20 });
+    await page.type(LOGIN_USERNAME_INPUT, userData.username);
     await page.waitForSelector(LOGIN_PASSWORD_INPUT);
     page.$eval(LOGIN_PASSWORD_INPUT, el => el.value = '');
-    await page.type(LOGIN_PASSWORD_INPUT, userData.password, { delay: 20 });
+    await page.type(LOGIN_PASSWORD_INPUT, userData.password);
     await page.waitForSelector(LOGIN_BUTTON);
-    page.click(LOGIN_BUTTON);
+    await page.click(LOGIN_BUTTON);
 
     // When I add following items to my wishlist
     await page.waitForNavigation(PARENT_CATEGORY);
-    page.click(PARENT_CATEGORY);
+    await page.click(PARENT_CATEGORY);
     await page.waitForSelector(PARENT_SUB_CATEGORY);
-    page.click(PARENT_SUB_CATEGORY);
+    await page.click(PARENT_SUB_CATEGORY);
     await page.waitForSelector(PRODUCT_CATEGORY_ITEM);
-    page.click(PRODUCT_CATEGORY_ITEM);
+    await page.click(PRODUCT_CATEGORY_ITEM);
     await page.waitForSelector(ADD_TO_WISHLIST_BUTTON);
-    page.click(ADD_TO_WISHLIST_BUTTON);
+    await page.click(ADD_TO_WISHLIST_BUTTON);
 
     // When I remove the wishlist item
     await page.waitForSelector(REMOVE_FROM_WISHLIST_BUTTON);
-    page.click(REMOVE_FROM_WISHLIST_BUTTON);
+    await page.click(REMOVE_FROM_WISHLIST_BUTTON);
 
     // Then Lineitem is no longer in the wishlist
     await page.waitForSelector(CART_ITEM);
     await page.waitForSelector(LOGGED_IN_BUTTON);
-    page.click(LOGGED_IN_BUTTON);
+    await page.click(LOGGED_IN_BUTTON);
     await page.waitForSelector(WISHLIST_LINK);
-    page.click(WISHLIST_LINK);
+    await page.click(WISHLIST_LINK);
     await page.waitForSelector(WISHLIST_CONTAINER);
     const element = await page.$(PRODUCT_CART_ITEM);
     expect(element).toEqual(null);
-
-    browser.close();
+  
+    await browser.close();
   }, 25000);
 });

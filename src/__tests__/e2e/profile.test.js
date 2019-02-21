@@ -24,7 +24,7 @@
 const puppeteer = require('puppeteer');
 
 const userData = {
-  username: 'john2@ep.com',
+  username: 'john@ep.com',
   password: 'password',
   firstname: 'john2',
   lastname: 'smith2',
@@ -99,7 +99,7 @@ const CONTINUE_BUTTON = "button.payment-save-btn";
 const ADDRESS_NAME = ".address-name";
 
 
-const EXPECTED_ITEM_TOTAL = 'john2';
+const EXPECTED_FIRST_NAME = 'john2';
 const EXPECTED_ADDRESS_NAME= 'Test User';
 
 describe('Profile', () => {
@@ -118,23 +118,23 @@ describe('Profile', () => {
 
     // When I login as following registered shopper
     await page.waitForSelector(LOGGED_IN_BUTTON);
-    page.click(LOGGED_IN_BUTTON);
+    await page.click(LOGGED_IN_BUTTON);
     await page.waitForSelector(LOGIN_USERNAME_INPUT);
-    page.$eval(LOGIN_USERNAME_INPUT, el => el.value = '');
+    await page.$eval(LOGIN_USERNAME_INPUT, el => el.value = '');
     await page.type(LOGIN_USERNAME_INPUT, userData.username);
     await page.type(LOGIN_PASSWORD_INPUT, userData.password);
     await page.click(LOGIN_BUTTON);
 
     // When I navigate to the profile page
     await page.waitForSelector(DROPDOWN_LOGGED_IN_BUTTON);
-    page.click(DROPDOWN_LOGGED_IN_BUTTON);
+    await page.click(DROPDOWN_LOGGED_IN_BUTTON);
     await page.waitForSelector(MY_PROFILE);
-    page.click(MY_PROFILE);
+    await page.click(MY_PROFILE);
 
     // Then I can see my purchase history
     await page.waitForSelector(PURCHASE_HISTORY);
-
-    browser.close();
+  
+    await browser.close();
   }, 20000);
 
   test('Update Personal Info', async () => {
@@ -152,7 +152,7 @@ describe('Profile', () => {
 
     // When I login as following registered shopper
     await page.waitForSelector(LOGGED_IN_BUTTON);
-    page.click(LOGGED_IN_BUTTON);
+    await page.click(LOGGED_IN_BUTTON);
     await page.waitForSelector(LOGIN_USERNAME_INPUT);
     await page.type(LOGIN_USERNAME_INPUT, userData.username);
     await page.type(LOGIN_PASSWORD_INPUT, userData.password);
@@ -160,13 +160,13 @@ describe('Profile', () => {
 
     // When I navigate to the profile page
     await page.waitForSelector(DROPDOWN_LOGGED_IN_BUTTON);
-    page.click(DROPDOWN_LOGGED_IN_BUTTON);
+    await page.click(DROPDOWN_LOGGED_IN_BUTTON);
     await page.waitForSelector(MY_PROFILE);
-    page.click(MY_PROFILE);
+    await page.click(MY_PROFILE);
 
     // And I click the edit personal info button
     await page.waitForSelector(EDIT_PERSONAL_INFO_BUTTON);
-    page.click(EDIT_PERSONAL_INFO_BUTTON);
+    await page.click(EDIT_PERSONAL_INFO_BUTTON);
 
     // Then I can update my personal info
     await page.waitForSelector(EDIT_PERSONAL_INFO_FIELDS);
@@ -182,9 +182,9 @@ describe('Profile', () => {
     await page.waitForSelector(CHECKING_FIRST_NAME);
     const element = await page.$(CHECKING_FIRST_NAME);
     const text = await page.evaluate(el => el.textContent, element);
-    expect(text).toEqual(EXPECTED_ITEM_TOTAL);
-
-    browser.close();
+    expect(text).toEqual(EXPECTED_FIRST_NAME);
+  
+    await browser.close();
   }, 30000);
 
   test('Create new user with Address and Payment Method', async () => {
@@ -202,7 +202,7 @@ describe('Profile', () => {
 
     // I register a new user
     await page.waitForSelector(LOGGED_IN_BUTTON);
-    page.click(LOGGED_IN_BUTTON);
+    await page.click(LOGGED_IN_BUTTON);
     await page.waitForSelector(REGISTER_BUTTON);
     await page.click(REGISTER_BUTTON);
 
@@ -218,9 +218,9 @@ describe('Profile', () => {
 
     // When I navigate to the profile page
     await page.waitForSelector(DROPDOWN_LOGGED_IN_BUTTON);
-    page.click(DROPDOWN_LOGGED_IN_BUTTON);
+    await page.click(DROPDOWN_LOGGED_IN_BUTTON);
     await page.waitForSelector(MY_PROFILE);
-    page.click(MY_PROFILE);
+    await page.click(MY_PROFILE);
 
     // And I click to add address
     await page.waitForSelector(ADD_NEW_ADDRESS);
@@ -240,7 +240,7 @@ describe('Profile', () => {
 
     // And I click to add payment method
     await page.waitForSelector(ADD_NEW_PAYMENT_METHOD);
-    page.click(ADD_NEW_PAYMENT_METHOD);
+    await page.click(ADD_NEW_PAYMENT_METHOD);
 
     await page.waitForSelector(CARD_TYPE);
     await page.type(CARD_TYPE, paymentMethod.cardType);
@@ -254,16 +254,16 @@ describe('Profile', () => {
 
     // When I navigate to the profile page
     await page.waitForSelector(ADD_NEW_PAYMENT_METHOD);
-    page.click(DROPDOWN_LOGGED_IN_BUTTON);
+    await page.click(DROPDOWN_LOGGED_IN_BUTTON);
     await page.waitForSelector(MY_PROFILE);
-    page.click(MY_PROFILE);
+    await page.click(MY_PROFILE);
 
     // Then I can see my addresses
     await page.waitForSelector(ADDRESS_NAME);
     const element = await page.$(ADDRESS_NAME);
     const text = await page.evaluate(el => el.textContent, element);
     expect(text).toEqual(EXPECTED_ADDRESS_NAME);
-
-    browser.close();
+  
+    await browser.close();
   }, 35000);
 });

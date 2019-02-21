@@ -26,6 +26,11 @@ const puppeteer = require('puppeteer');
 const host = process.env.TEST_HOST;
 const APP = host || 'http://localhost:8080/';
 
+const desktopViewport = {
+  width: 1500,
+  height: 700,
+};
+
 async function addProductToCart(page, productCategory, productSubCategory, productName) {
   const PARENT_CATEGORY_CSS = `.app-header-navigation-component li[data-name="${productCategory}"]`;
   const SUB_CATEGORY_CSS = `${PARENT_CATEGORY_CSS} > .dropdown-menu > li > a[title="${productSubCategory}"]`;
@@ -201,7 +206,7 @@ describe('Purchase feature', () => {
       slowMo: 10
     });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    await page.setViewport(desktopViewport);
     await page.goto(APP);
     
     await addProductToCart(page, 'M-Class', 'Wheels, Tires, and Tire Covers', 'M Class Red Brake Calipers');
@@ -280,7 +285,7 @@ describe('Purchase feature', () => {
       slowMo: 10
     });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    await page.setViewport(desktopViewport);
     await page.goto(APP);
     
     await addProductToCart(page, 'M-Class', 'Wheels, Tires, and Tire Covers', 'M Class Red Brake Calipers');
@@ -341,7 +346,7 @@ describe('Purchase feature', () => {
       slowMo: 10
     });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    await page.setViewport(desktopViewport);
     await page.goto(APP);
     
     await addProductToCart(page, 'Addons', '', '407n Transponder');
@@ -392,7 +397,7 @@ describe('Purchase feature', () => {
       slowMo: 10
     });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    await page.setViewport(desktopViewport);
     await page.goto(APP);
 
     const userInfo = {
@@ -444,7 +449,7 @@ describe('Purchase feature', () => {
       slowMo: 10
     });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    await page.setViewport(desktopViewport);
     await page.goto(APP);
 
     const userInfo = {
@@ -497,7 +502,7 @@ describe('Purchase feature', () => {
       slowMo: 10
     });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    await page.setViewport(desktopViewport);
     await page.goto(APP);
 
     const products = [
@@ -576,7 +581,7 @@ describe('Purchase feature', () => {
   
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 30000);
+  }, 40000);
   
   test('Purchase multi-sku item as a registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
@@ -586,7 +591,7 @@ describe('Purchase feature', () => {
       slowMo: 10
     });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    await page.setViewport(desktopViewport);
     await page.goto(APP);
 
     await addProductToCart(page, 'Mens', '', 'Men\'s Soft Shell Jacket');
