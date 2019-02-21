@@ -14,10 +14,7 @@
       * [Setting up a Production Environment](#setting-up-a-production-environment)
   * [Running a Linter](#running-a-linter)
   * [Adding New Locales](#adding-new-locales)
-  * [Running Unit Tests](#running-unit-tests)
-      * [Maven Options to Run the Unit Tests](#maven-options-to-run-the-unit-tests)
-      * [Running Subset of Tests](#running-subset-of-tests)
-      * [Updating Browser Driver Versions](#updating-browser-driver-versions)
+  * [Running E2E Tests](#running-e2e-tests)
   * [Configuring Jenkins Pipeline](#configuring-jenkins-pipeline)
       * [Prerequisites](#prerequisites)
       * [Configuring the Jenkinfile](#configuring-the-jenkinfile)
@@ -60,9 +57,6 @@ Ensure that the following software are installed:
 * [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:<br/>
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
-* [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) (for unit testing, optional)
-* [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/) (for unit testing, optional)
-* [IntelliJ IDEA](https://www.jetbrains.com/idea/) (for unit testing, optional)
 * A valid Elastic Path development environment. For more information, see
 [The Starting Construction Guide](https://developers.elasticpath.com/commerce/construction-home).
 
@@ -172,16 +166,17 @@ The reference storefront supports multiple languages and currencies. Add all fro
 
 ## Running E2E Tests
 
-Test data are provided in the `tests` directory.
+Test are provided in the `tests` directory.
 
-1. To run all tests, run the following commands in terminals:<br/>terminal 1 `npm start`<br/>terminal 2 `npm test`<br/>
-2. To run one test, run the same commands, press "p" and type the filename
+1. To run all unit tests, run the following command:<br/>`npm test`<br/>
+2. To run all end to end tests, run the previous command, then press "p" and enter `e2e`, then press "enter".
+3. To run a single test, run the previous command, then press "p" and type the filename.
 
-**Note:** You must install watchman to get past the "too many files open" error. Run the following commands: 
-- `brew update`<br/> 
-- `brew install watchman`<br/> 
+**Note:** You may need to install watchman to get past the "too many files open" error. You may use [Homebrew](https://brew.sh/) to do so:
+- `brew update`<br/>
+- `brew install watchman`<br/>
 
-For more information, see [Puppeteer](https://github.com/GoogleChrome/puppeteer/blob/v1.12.2/docs/api.md) documentation.
+For more information, see [Puppeteer](https://github.com/GoogleChrome/puppeteer/blob/v1.12.2/docs/api.md).
 
 ## Configuring Jenkins Pipeline
 
@@ -240,7 +235,7 @@ When you run the the Jenkins job, the job operates in the following sequence:
   * The development Docker runs the `entrypoint.sh` script to replace the path to Cortex and the store in the `ep.config.json` file and starts the project in development by running the `npm start` command.
 * `UNDEPLOY_EXISTING` - Cleans up the working directory and removes docker containers and images, if any.
 * `DEPLOY` - Creates the working directory, copies the files from the project and solr home configuration, exports the environment variables used in the compose file, and deploys the store and Cortex with Docker-compose.
-* `TEST` - Sets the environment variables for JAVA_HOME and adds Java and Maven to the path. The variables are pulled from the Jenkins tools. For headless tests, installs Google Chrome by running the script at [intoli](https://intoli.com/blog/installing-google-chrome-on-centos) and downloading `google-chrome-stable` and renames it to `google-chrome` to enable chromedriver to find it for tests. Before you run the tests, replace the `selenium.session.baseurl` in the `pom.xml`. For viewing reports in Jenkins UI, Jenkins Cucumber plugin is used.
+* `TEST` - Runs the automated Puppeteer tests against the store created from the previous deployment step.
 
 ## Terms And Conditions
 

@@ -8,7 +8,7 @@ Linting:
 
 Tests:
 <!--Have tests been run locally and passed? If manual tests run, explain what was run below-->
-- [ ] Smoke tests (mvn clean install -Dcucumber.options="--tags @smoketest" from test)
+- [ ] E2E tests (npm test run with `e2e`)
 - [ ] Manual tests
 
 Documentation:
