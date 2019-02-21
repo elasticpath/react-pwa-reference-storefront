@@ -170,36 +170,18 @@ The reference storefront supports multiple languages and currencies. Add all fro
 2. To add a new locale, add an entry to the `supportedLocales` array in the `ep.config.json` file and add an appropriate `.json` file to the `localization` folder.
 3. Configure the language and currency for all products in Commerce Manager.
 
-## Running Unit Tests
+## Running E2E Tests
 
 Test data are provided in the `tests` directory.
 
-1. To run all tests, run the following command:<br/> `mvn clean install -Dcucumber.options="--tags @smoketest"`<br/>
-2. To run sanity test, run the following command:<br/>`mvn clean install -Dcucumber.options="--tags @sanity`<br/>
+1. To run all tests, run the following commands in terminals:<br/>terminal 1 `npm start`<br/>terminal 2 `npm test`<br/>
+2. To run one test, run the same commands, press "p" and type the filename
 
-### Maven Options to Run the Unit Tests
+**Note:** You must install watchman to get past the "too many files open" error. Run the following commands: 
+- `brew update`<br/> 
+- `brew install watchman`<br/> 
 
-|  Option| Description|
-|--|--|
-|`-Dcucumber.options="--tags @smoketest"`| Specifies that you can replace the tag with a tag that you define.|
-|`-Dfailsafe.fork.count="<no of testes>"`| Specifies the number of tests that can be run at the same time. The default value is 1. You can change this value depending on number of TestsIT classes. |
-|`-Premote -Dremote.web.driver.url="<REMOTE DRIVER IP>"`| Specifies that the tests are executed using a remote VM. The `remote.web.driver.url` attribute specifies the URL of the remote VM. For example, `http://<IP_ADDRESS>:4444/wd/hub`.
-
-**Note:** You must set up the selenium grid to use this feature.For more information, see [Selenium](https://www.seleniumhq.org/docs/07_selenium_grid.jsp) documentation.
-
-### Running Subset of Tests
-1.  In the `/selenium/src/test/java/com/elasticpath/cucumber/` module, right-click a TestsIT class and click **Run**.
-You can create your own local runner class to run your own tagged tests. For example, `RunLocalTestsIT.java` runs your own tagged tests at local.
-    **Note**  Do not commit the local runner class and tags that are only for the local testing purpose.
-
-### Updating browser driver versions
-
-1. Download the latest browser driver and update the `/selenium/src/test/resources/RepositoryMap.xml` file with the driver version.
-2. Update the `RepositoryMap.xml`  with the bash value of the browser driver:
-    - To get the bash values, run the `openssl sha1 <filename>` command.
-      The <filename> specifies the <filelocation> in the `RepositoryMap.xml` file.
-  For example, https://github.com/Ardesco/Selenium-Maven-Template/blob/master/src/test/resources/RepositoryMap.xml
-
+For more information, see [Puppeteer](https://github.com/GoogleChrome/puppeteer/blob/v1.12.2/docs/api.md) documentation.
 
 ## Configuring Jenkins Pipeline
 
