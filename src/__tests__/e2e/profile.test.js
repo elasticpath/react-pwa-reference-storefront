@@ -20,11 +20,11 @@
  */
 
 /* eslint-disable */
-
+import { loginUser } from "./common";
 const puppeteer = require('puppeteer');
 
 const userData = {
-  username: 'john@ep.com',
+  email: 'john@ep.com',
   password: 'password',
   firstname: 'john2',
   lastname: 'smith2',
@@ -98,67 +98,6 @@ const ADDRESS_NAME = ".address-name";
 const EXPECTED_FIRST_NAME = 'john2';
 const EXPECTED_ADDRESS_NAME= 'Test User';
 
-async function loginUser(page) {
-  const userInfo = {
-    firstName: 'john2',
-    lastName: 'smith2',
-    username: `john2@ep.com`,
-    password: 'password',
-  };
-  const LOGIN_FEEDBACK = 'div[data-region="authLoginFormFeedbackRegion"]';
-  const REGISTER_BUTTON_CSS = "#login_modal_register_button";
-  const HOME_PAGE_CSS = 'div.home-page-component';
-
-  const LOGGED_IN_BUTTON = '#header_navbar_loggedIn_button';
-  const LOGIN_USERNAME_INPUT = '#login_modal_username_input';
-  const LOGIN_PASSWORD_INPUT = '#login_modal_password_input';
-  const LOGIN_BUTTON = '#login_modal_login_button';
-
-  const FORM_FIRST_NAME = '#registration_form_firstName';
-  const FORM_LAST_NAME = '#registration_form_lastName';
-  const FORM_EMAIL_USER_NAME = '#registration_form_emailUsername';
-  const FORM_PASSWORD = '#registration_form_password';
-  const FORM_CONFIRM_PASSWORD = '#registration_form_passwordConfirm';
-  const FORM_SUBMIT_BUTTON = '#registration_form_register_button';
-
-  await page.waitForSelector(LOGGED_IN_BUTTON);
-  await page.click(LOGGED_IN_BUTTON);
-
-  await page.waitForSelector(LOGIN_USERNAME_INPUT);
-  await page.type(LOGIN_USERNAME_INPUT, userInfo.username);
-
-  await page.waitForSelector(LOGIN_PASSWORD_INPUT);
-  await page.type(LOGIN_PASSWORD_INPUT, userInfo.password);
-
-  await page.waitForSelector(LOGIN_BUTTON);
-  await Promise.all([
-    page.click(LOGIN_BUTTON),
-  ]);
-  await page.waitFor(5000);
-
-  const feedbackElement = await page.$(LOGIN_FEEDBACK);
-  let feedbackText = '';
-  if (feedbackElement) {
-    feedbackText = await page.evaluate(el => el.textContent, feedbackElement);
-  }
-  if (feedbackText){
-    await page.waitForSelector(REGISTER_BUTTON_CSS);
-    await page.click(REGISTER_BUTTON_CSS);
-    await page.waitForSelector(FORM_FIRST_NAME);
-    await page.type(FORM_FIRST_NAME, userInfo.firstName);
-    await page.type(FORM_LAST_NAME, userInfo.lastName);
-    await page.type(FORM_EMAIL_USER_NAME, userInfo.username);
-    await page.type(FORM_PASSWORD, userInfo.password);
-    await page.type(FORM_CONFIRM_PASSWORD, userInfo.password);
-
-    await page.click(FORM_SUBMIT_BUTTON);
-    await page.waitForSelector(HOME_PAGE_CSS);
-  }
-  else {
-    await page.waitForSelector(HOME_PAGE_CSS);
-  }
-}
-
 describe('Profile', () => {
   test('Navigate Profile', async () => {
     const browser = await puppeteer.launch({
@@ -174,7 +113,7 @@ describe('Profile', () => {
     await page.goto(APP);
 
     // When I login as following registered shopper
-    await loginUser(page);
+    await loginUser(page, userData);
 
     // When I navigate to the profile page
     await page.waitForSelector(DROPDOWN_LOGGED_IN_BUTTON);
@@ -202,7 +141,7 @@ describe('Profile', () => {
     await page.goto(APP);
 
     // When I login as following registered shopper
-    await loginUser(page);
+    await loginUser(page, userData);
 
     // When I navigate to the profile page
     await page.waitForSelector(DROPDOWN_LOGGED_IN_BUTTON);

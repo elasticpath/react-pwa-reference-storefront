@@ -20,7 +20,7 @@
  */
 
 /* eslint-disable */
-
+import { loginUser } from "./common";
 const puppeteer = require('puppeteer');
 
 const host = process.env.TEST_HOST;
@@ -31,14 +31,11 @@ const desktopViewport = {
 };
 
 const userData = {
-  username: 'john@ep.com',
+  email: 'john@ep.com',
   password: 'password'
 };
 
 const LOGGED_IN_BUTTON = '#header_navbar_loggedIn_button';
-const LOGIN_USERNAME_INPUT = '#login_modal_username_input';
-const LOGIN_PASSWORD_INPUT = '#login_modal_password_input';
-const LOGIN_BUTTON = '#login_modal_login_button';
 const PARENT_CATEGORY = '.app-header-navigation-component li[data-name="M-Class"]';
 const PARENT_SUB_CATEGORY = 'li[data-name="M-Class"] #header_navbar_sub_category_button_VESTRI_MODEL_S_WHEELS_AND_TIRES';
 const PRODUCT_CATEGORY_ITEM = '#category_item_title_link_VESTRI_MODEL_S_RED_BRAKE_CALIPER';
@@ -67,19 +64,10 @@ describe('Wishlist', () => {
     await page.goto(APP);
 
     //When I login as following registered shopper
-    await page.waitForSelector(LOGGED_IN_BUTTON);
-    await page.click(LOGGED_IN_BUTTON);
-    await page.waitForSelector(LOGIN_USERNAME_INPUT);
-    page.$eval(LOGIN_USERNAME_INPUT, el => el.value = '');
-    await page.type(LOGIN_USERNAME_INPUT, userData.username);
-    await page.waitForSelector(LOGIN_PASSWORD_INPUT);
-    page.$eval(LOGIN_PASSWORD_INPUT, el => el.value = '');
-    await page.type(LOGIN_PASSWORD_INPUT, userData.password);
-    await page.waitForSelector(LOGIN_BUTTON);
-    await page.click(LOGIN_BUTTON);
+    await loginUser(page, userData);
 
     // When I add following items to my wishlist
-    await page.waitForNavigation(PARENT_CATEGORY);
+    await page.waitForSelector(PARENT_CATEGORY);
     await page.click(PARENT_CATEGORY);
     await page.waitForSelector(PARENT_SUB_CATEGORY);
     await page.click(PARENT_SUB_CATEGORY);
@@ -99,7 +87,7 @@ describe('Wishlist', () => {
     expect(text).toEqual(EXPECTED_ITEM_TITLE);
   
     await browser.close();
-  }, 25000);
+  }, 30000);
 
   test('Remove wishlist item', async () => {
     const browser = await puppeteer.launch({
@@ -114,19 +102,10 @@ describe('Wishlist', () => {
     await page.goto(APP);
 
     //When I login as following registered shopper
-    await page.waitForSelector(LOGGED_IN_BUTTON);
-    await page.click(LOGGED_IN_BUTTON);
-    await page.waitForSelector(LOGIN_USERNAME_INPUT);
-    page.$eval(LOGIN_USERNAME_INPUT, el => el.value = '');
-    await page.type(LOGIN_USERNAME_INPUT, userData.username);
-    await page.waitForSelector(LOGIN_PASSWORD_INPUT);
-    page.$eval(LOGIN_PASSWORD_INPUT, el => el.value = '');
-    await page.type(LOGIN_PASSWORD_INPUT, userData.password);
-    await page.waitForSelector(LOGIN_BUTTON);
-    await page.click(LOGIN_BUTTON);
+    await loginUser(page, userData);
 
     // When I add following items to my wishlist
-    await page.waitForNavigation(PARENT_CATEGORY);
+    await page.waitForSelector(PARENT_CATEGORY);
     await page.click(PARENT_CATEGORY);
     await page.waitForSelector(PARENT_SUB_CATEGORY);
     await page.click(PARENT_SUB_CATEGORY);
@@ -150,5 +129,5 @@ describe('Wishlist', () => {
     expect(element).toEqual(null);
   
     await browser.close();
-  }, 25000);
+  }, 30000);
 });
