@@ -21,10 +21,13 @@
 
 import React from 'react';
 import queryString from 'query-string';
+import scriptjs from 'scriptjs';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import '../components/powerreviews.less';
 
 const Config = require('Config');
+
+const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 
 class WriteReview extends React.Component {
   static propTypes = {
@@ -38,17 +41,19 @@ class WriteReview extends React.Component {
 
     const productCode = params.pr_page_id;
 
-    // eslint-disable-next-line no-undef
-    POWERREVIEWS.display.render({
-      api_key: Config.PowerReviews.api_key,
-      locale: 'en_US',
-      merchant_group_id: Config.PowerReviews.merchant_group_id,
-      merchant_id: Config.PowerReviews.merchant_id,
-      review_wrapper_url: '/write-a-review/',
-      page_id: productCode,
-      components: {
-        Write: 'pr-write',
-      },
+    scriptjs(powerReviewsRemoteScriptUrl, () => {
+      // eslint-disable-next-line no-undef
+      POWERREVIEWS.display.render({
+        api_key: Config.PowerReviews.api_key,
+        locale: 'en_US',
+        merchant_group_id: Config.PowerReviews.merchant_group_id,
+        merchant_id: Config.PowerReviews.merchant_id,
+        review_wrapper_url: '/write-a-review/',
+        page_id: productCode,
+        components: {
+          Write: 'pr-write',
+        },
+      });
     });
   }
 
