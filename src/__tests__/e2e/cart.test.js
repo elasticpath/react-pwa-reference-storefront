@@ -44,7 +44,6 @@ describe('Cart feature', () => {
   test('Change cart line item quantity', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: false,
       slowMo: 10
     });
     const page = await browser.newPage();
