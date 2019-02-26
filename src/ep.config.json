@@ -80,8 +80,8 @@
   },
   "PowerReviews": {
     "enabled": false,
-    "api_key": "xxxxxxxxxxxxxxxxxxx",
-    "merchant_group_id": "xxxxxx",
-    "merchant_id": "xxxxx"
+    "api_key": "",
+    "merchant_group_id": "",
+    "merchant_id": ""
   }
 }
