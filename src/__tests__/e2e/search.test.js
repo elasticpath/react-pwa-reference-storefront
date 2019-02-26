@@ -71,5 +71,5 @@ describe('Search feature', () => {
     await page.waitForSelector(NO_RESULTS_CSS);
   
     await browser.close();
-  }, 20000);
+  }, 40000);
 });

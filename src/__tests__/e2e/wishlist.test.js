@@ -88,7 +88,7 @@ describe('Wishlist', () => {
     expect(text).toEqual(EXPECTED_ITEM_TITLE);
   
     await browser.close();
-  }, 30000);
+  }, 50000);
 
   test('Remove wishlist item', async () => {
     const browser = await puppeteer.launch({
@@ -131,5 +131,5 @@ describe('Wishlist', () => {
     expect(element).toEqual(null);
   
     await browser.close();
-  }, 30000);
+  }, 50000);
 });

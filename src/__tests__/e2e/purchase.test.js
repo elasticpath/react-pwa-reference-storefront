@@ -32,7 +32,7 @@ import {
 const puppeteer = require('puppeteer');
 
 const host = process.env.TEST_HOST;
-const APP = host || 'http://10.11.12.22:8080/';
+const APP = host || 'http://localhost:8080/';
 
 const desktopViewport = {
   width: 1500,

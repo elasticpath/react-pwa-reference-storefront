@@ -101,7 +101,7 @@ const EXPECTED_ADDRESS_NAME= 'Test User';
 describe('Profile', () => {
   test('Navigate Profile', async () => {
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 20,
     });
     const page = await browser.newPage();
@@ -125,11 +125,11 @@ describe('Profile', () => {
     await page.waitForSelector(PURCHASE_HISTORY);
 
     await browser.close();
-  }, 20000);
+  }, 50000);
 
   test('Update Personal Info', async () => {
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 20,
     });
     const page = await browser.newPage();
@@ -170,11 +170,11 @@ describe('Profile', () => {
     expect(text).toEqual(EXPECTED_FIRST_NAME);
 
     await browser.close();
-  }, 30000);
+  }, 50000);
 
   test('Create new user with Address and Payment Method', async () => {
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 20,
     });
     const page = await browser.newPage();
@@ -250,5 +250,5 @@ describe('Profile', () => {
     expect(text).toEqual(EXPECTED_ADDRESS_NAME);
 
     await browser.close();
-  }, 35000);
+  }, 50000);
 });
