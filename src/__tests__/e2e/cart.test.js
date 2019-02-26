@@ -35,7 +35,7 @@ async function getPrice(page, selector) {
   const element = await page.$(selector);
   const text = await page.evaluate(el => el.textContent, element);
   if (text) {
-    return parseInt(text.replace(/[^0-9.]/g, ''));
+    return parseFloat(text.replace(/[^0-9.]/g, ''));
   }
 }
 
@@ -43,8 +43,7 @@ describe('Cart feature', () => {
   
   test('Change cart line item quantity', async () => {
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      slowMo: 10
+      args: ['--no-sandbox'],
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
@@ -77,14 +76,14 @@ describe('Cart feature', () => {
     await page.waitForSelector(SKU_OPTION_SELECT_CSS);
     await Promise.all([
       page.click(SKU_OPTION_SELECT_CSS),
-      page.waitForNavigation({ waitUntil: 'networkidle0' })
+      page.waitForNavigation()
     ]);
 
     // And I choose sku size option Small
     await page.waitForSelector(SKU_BUTTON_SELECT_CSS);
     await Promise.all([
       page.click(SKU_BUTTON_SELECT_CSS),
-      page.waitForNavigation({ waitUntil: 'networkidle0' })
+      page.waitForNavigation()
     ]);
 
     // And I update cart quantity to 2
@@ -102,7 +101,7 @@ describe('Cart feature', () => {
     await browser.close();
     
     expect(price).toEqual(productPrice * PRODUCT_QUANTITY);
-  }, 25000);
+  }, 30000);
   
   test('Remove cart line item', async () => {
     const product = {
@@ -119,7 +118,7 @@ describe('Cart feature', () => {
     const CART_EMPTY_CONTAINER_CSS = 'div[class="cart-empty-container"]';
   
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);

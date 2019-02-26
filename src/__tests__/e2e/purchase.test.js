@@ -32,7 +32,7 @@ import {
 const puppeteer = require('puppeteer');
 
 const host = process.env.TEST_HOST;
-const APP = host || 'http://localhost:8080/';
+const APP = host || 'http://10.11.12.22:8080/';
 
 const desktopViewport = {
   width: 1500,
@@ -84,7 +84,7 @@ describe('Purchase feature', () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 10
     });
     const page = await browser.newPage();
@@ -157,13 +157,13 @@ describe('Purchase feature', () => {
     await browser.close();
 
     expect(text).toEqual(SUCCESS_ORDER_STATUS);
-  }, 50000);
+  }, 60000);
 
   test('Purchase physical item as an anonymous shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 10
     });
     const page = await browser.newPage();
@@ -218,13 +218,13 @@ describe('Purchase feature', () => {
     await browser.close();
 
     expect(text).toEqual(SUCCESS_ORDER_STATUS);
-  }, 30000);
+  }, 50000);
 
   test('Purchase physical item as an existing registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
     
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 10
     });
     const page = await browser.newPage();
@@ -308,13 +308,13 @@ describe('Purchase feature', () => {
     
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 50000);
+  }, 60000);
 
   test('Purchase physical item as an existing shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 10
     });
     const page = await browser.newPage();
@@ -399,7 +399,7 @@ describe('Purchase feature', () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 10
     });
     const page = await browser.newPage();
@@ -479,13 +479,13 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 50000);
+  }, 60000);
 
   test('Cart merge from anonymous shopper to registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 10
     });
     const page = await browser.newPage();
@@ -574,7 +574,7 @@ describe('Purchase feature', () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
       slowMo: 10
     });
     const page = await browser.newPage();
