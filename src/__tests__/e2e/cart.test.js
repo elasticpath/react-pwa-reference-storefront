@@ -30,11 +30,21 @@ const desktopViewport = {
   height: 700,
 };
 
+async function getPrice(page, selector) {
+  await page.waitForSelector(selector);
+  const element = await page.$(selector);
+  const text = await page.evaluate(el => el.textContent, element);
+  if (text) {
+    return parseInt(text.replace(/[^0-9.]/g, ''));
+  }
+}
+
 describe('Cart feature', () => {
   
   test('Change cart line item quantity', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      headless: false,
       slowMo: 10
     });
     const page = await browser.newPage();
@@ -47,9 +57,11 @@ describe('Cart feature', () => {
     const SKU_BUTTON_SELECT_CSS = 'div[id="product_display_item_size_guide"] > div > label[for*="selectorWeight_small"]';
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
     const QUANTITY_SELECT_CSS = 'input[class="product-display-item-quantity-select form-control form-control-quantity"]';
+    const PRODUCT_DETAIL_CSS = 'div[class="itemdetail-details"]';
+    const PRODUCT_PRICE_CSS = "#category_item_price_VESTRI_MENS_SOFT_SHELL_JACKET_RD_LG";
     const CART_LINE_ITEM_PRICE_CSS = "div[data-region='itemTotalPriceRegion'] .cart-total-purchase-price";
-
-    const EXPECTED_ITEM_TOTAL = '$340.10';
+    
+    const PRODUCT_QUANTITY = 2;
 
     // When I select category Mans
     await page.waitForSelector(PARENT_CATEGORY_CSS);
@@ -58,32 +70,39 @@ describe('Cart feature', () => {
     // And I select product Men's Soft Shell Jacket
     await page.waitForSelector(PRODUCT_CSS);
     page.click(PRODUCT_CSS);
+  
+    await page.waitForSelector(PRODUCT_DETAIL_CSS);
+    const productPrice = await getPrice(page, PRODUCT_PRICE_CSS);
 
     // And I choose sku color option Black
     await page.waitForSelector(SKU_OPTION_SELECT_CSS);
-    page.click(SKU_OPTION_SELECT_CSS);
+    await Promise.all([
+      page.click(SKU_OPTION_SELECT_CSS),
+      page.waitForNavigation({ waitUntil: 'networkidle0' })
+    ]);
 
     // And I choose sku size option Small
     await page.waitForSelector(SKU_BUTTON_SELECT_CSS);
-    page.click(SKU_BUTTON_SELECT_CSS);
+    await Promise.all([
+      page.click(SKU_BUTTON_SELECT_CSS),
+      page.waitForNavigation({ waitUntil: 'networkidle0' })
+    ]);
 
     // And I update cart quantity to 2
     await page.waitForSelector(QUANTITY_SELECT_CSS);
     page.$eval(QUANTITY_SELECT_CSS, el => el.value = '');
-    await page.type(QUANTITY_SELECT_CSS, '2', { delay: 20 });
+    await page.type(QUANTITY_SELECT_CSS, PRODUCT_QUANTITY.toString());
 
     // And I add product to my cart
     await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
     page.click(ADD_TO_CART_BUTTON_CSS);
 
     // Then the expected cart lineitem total price is EXPECTED_ITEM_TOTAL
-    await page.waitForSelector(CART_LINE_ITEM_PRICE_CSS);
-    const element = await page.$(CART_LINE_ITEM_PRICE_CSS);
-    const text = await page.evaluate(el => el.textContent, element);
+    const price = await getPrice(page, CART_LINE_ITEM_PRICE_CSS);
   
     await browser.close();
     
-    expect(text).toEqual(EXPECTED_ITEM_TOTAL);
+    expect(price).toEqual(productPrice * PRODUCT_QUANTITY);
   }, 25000);
   
   test('Remove cart line item', async () => {
