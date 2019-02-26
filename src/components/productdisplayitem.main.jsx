@@ -38,6 +38,7 @@ import BundleConstituentsDisplayMain from './bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 
 import './productdisplayitem.main.less';
+import './powerreviews.less';
 
 const Config = require('Config');
 
@@ -155,6 +156,66 @@ class ProductDisplayItemMain extends React.Component {
           }));
     });
   }
+
+  componentDidUpdate() {
+    if (Config.PowerReviews.enabled) {
+      this.renderPowerReviewsElements();
+    }
+  }
+
+
+  renderPowerReviewsElements() {
+
+    const {
+      productData,
+    } = this.state;
+
+    const productCode = productData._code[0].code;
+
+    const { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
+
+    const { featuredProductAttribute, productImage, productDescriptionValue, productTitle } = this.extractProductDetails(productData);
+    
+    let { listPrice, itemPrice } = this.extractPrice(productData);
+
+    // const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
+
+    // console.log("categoryTag ", categoryTag);
+   
+    const mounted = document.getElementById('pr-reviewsnippet');
+
+
+    if(mounted) {
+    
+      POWERREVIEWS.display.render({
+        api_key: Config.PowerReviews.api_key,
+        locale: 'en_US',
+        merchant_group_id: Config.PowerReviews.merchant_group_id,
+        merchant_id: Config.PowerReviews.merchant_id,
+        review_wrapper_url: '/write-a-review?pr=true',
+        page_id: productCode,
+        product:{
+          name:  productTitle, 
+          url: productLink,
+          image_url: productImage,
+          description: productDescriptionValue,
+          category_name: 'Root Category',
+          manufacturer_id: 'Zilker',
+          upc: productCode,
+          brand_name: 'Zilker',
+          price: itemPrice,
+          in_stock: availability,
+       },
+        components: {
+          ReviewSnippet: 'pr-reviewsnippet',
+          ReviewDisplay: 'pr-reviewdisplay',
+          QuestionSnippet: 'pr-questionsnippet',
+          QuestionDisplay: 'pr-questiondisplay'
+        }
+      });
+    }
+  }
+
 
   componentWillReceiveProps(nextProps) {
     login().then(() => {
@@ -465,37 +526,11 @@ class ProductDisplayItemMain extends React.Component {
       productData, addToCartFailedMessage, isLoading, itemQuantity,
     } = this.state;
     if (productData) {
-      let listPrice = 'n/a';
-      if (productData._price) {
-        listPrice = productData._price[0]['list-price'][0].display;
-      }
-      let itemPrice = 'n/a';
-      if (productData._price) {
-        itemPrice = productData._price[0]['purchase-price'][0].display;
-      }
-      let availability = (productData._addtocartform[0].links.length > 0);
-      let availabilityString = '';
-      let productLink = '';
-      if (productData._availability.length >= 0) {
-        if (productData._code) {
-          productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
-        }
-        if (productData._availability[0].state === 'AVAILABLE') {
-          availabilityString = intl.get('in-stock');
-        } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
-          availabilityString = intl.get('pre-order');
-        } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
-          availability = true;
-          availabilityString = intl.get('back-order');
-        } else {
-          availabilityString = intl.get('out-of-stock');
-        }
-      }
-      const productTitle = productData._definition[0]['display-name'];
-      const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
-      const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
-      const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
-      const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
+      let { listPrice, itemPrice } = this.extractPrice(productData);
+
+      let { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
+
+      const { featuredProductAttribute, productImage, productDescriptionValue, productTitle } = this.extractProductDetails(productData);
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');
       Config.indi.productReview.description = intl.get('indi-product-review-description');
@@ -684,6 +719,10 @@ class ProductDisplayItemMain extends React.Component {
                   />
                 </div>
               </div>
+              <div id="pr-reviewsnippet"></div>
+              <div id="pr-questionsnippet"></div>
+              {/* <div id="pr-reviewdisplay"></div> */}
+
               <div className="itemdetail-tabs-wrap">
                 <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
                   <li className="nav-item">
@@ -692,17 +731,17 @@ class ProductDisplayItemMain extends React.Component {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link disabled" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                    <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
                       {intl.get('reviews')}
-                      {' '}
-                      (0)
+                      {/* {' '}
+                      (0) */}
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link disabled" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
+                    <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
                       {intl.get('questions')}
-                      {' '}
-                      (0)
+                      {/* {' '}
+                      (0) */}
                     </a>
                   </li>
                 </ul>
@@ -713,10 +752,10 @@ class ProductDisplayItemMain extends React.Component {
                     </div>
                   </div>
                   <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                    ...
+                    <div id="pr-reviewdisplay"></div>
                   </div>
                   <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
-                    ...
+                    <div id="pr-questiondisplay"></div>
                   </div>
                 </div>
               </div>
@@ -726,10 +765,57 @@ class ProductDisplayItemMain extends React.Component {
           <ProductRecommendationsDisplayMain productData={productData} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
         </div>
+         
       );
     }
 
     return (<div className="loader" />);
+  }
+
+  extractPrice(productData) {
+    let listPrice = 'n/a';
+    if (productData._price) {
+      listPrice = productData._price[0]['list-price'][0].display;
+    }
+    let itemPrice = 'n/a';
+    if (productData._price) {
+      itemPrice = productData._price[0]['purchase-price'][0].display;
+    }
+    return { listPrice, itemPrice };
+  }
+
+  extractProductDetails(productData) {
+    const productTitle = productData._definition[0]['display-name'];
+    const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
+    const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
+    const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
+    const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
+    return { featuredProductAttribute, productImage, productDescriptionValue, productTitle };
+  }
+
+  extractAvailabilityParams(productData) {
+    let availability = (productData._addtocartform[0].links.length > 0);
+    let availabilityString = '';
+    let productLink = '';
+    if (productData._availability.length >= 0) {
+      if (productData._code) {
+        productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
+      }
+      if (productData._availability[0].state === 'AVAILABLE') {
+        availabilityString = intl.get('in-stock');
+      }
+      else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+        availabilityString = intl.get('pre-order');
+      }
+      else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+        availability = true;
+        availabilityString = intl.get('back-order');
+      }
+      else {
+        availabilityString = intl.get('out-of-stock');
+      }
+    }
+    return { availability, availabilityString, productLink };
   }
 }
 

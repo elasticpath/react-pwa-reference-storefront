@@ -1,11 +1,8 @@
 import React from 'react';
 import queryString from 'query-string';
+import '../components/powerreviews.less';
 
 const Config = require('Config');
-
-
-
-
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -15,14 +12,14 @@ class WriteReview extends React.Component {
 
   componentDidMount() {
   
-     const { location, history } = this.props;
+    const { location} = this.props;
     const url = location.search;
     const params = queryString.parse(url);
 
     var productCode = params.pr_page_id;
 
-    console.log("url: " + url);
-    console.log("displayong write review page for product: " + productCode);
+    console.log("displaying write review page for product: " + productCode);
+   
 
     POWERREVIEWS.display.render({
       api_key: Config.PowerReviews.api_key,
