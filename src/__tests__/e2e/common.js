@@ -75,11 +75,21 @@ export async function addProductToCart(page, productCategory, productSubCategory
   const CART_LIST = 'div[data-region="mainCartRegion"]';
 
   await page.waitForSelector(PARENT_CATEGORY_CSS);
-  await page.click(PARENT_CATEGORY_CSS);
+  if (productSubCategory) {
+    await page.click(PARENT_CATEGORY_CSS);
+  } else {
+    await Promise.all([
+      page.click(PARENT_CATEGORY_CSS),
+      page.waitForNavigation({ waitUntil: 'networkidle0' }),
+    ]);
+  }
 
   if (productSubCategory) {
     await page.waitForSelector(SUB_CATEGORY_CSS);
-    await page.click(SUB_CATEGORY_CSS);
+    await Promise.all([
+      page.click(SUB_CATEGORY_CSS),
+      page.waitForNavigation({ waitUntil: 'networkidle0' }),
+    ]);
   }
 
   await page.waitForSelector(PRODUCT_CSS);
