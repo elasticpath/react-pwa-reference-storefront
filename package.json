@@ -73,6 +73,7 @@
     "start": "webpack-dev-server --config=webpack/webpack.config.dev.js --mode development --host 0.0.0.0 --inline --watch --hot",
     "start-prod": "webpack-dev-server --config=webpack/webpack.config.prod.js --mode production",
     "build": "webpack --config=webpack/webpack.config.prod.js --mode production",
+    "deploy": "webpack --config=webpack/webpack.config.prod.js --mode production && aws s3 sync webpack/dist/ s3://build-store",
     "test": "react-scripts test --runInBand --env=jsdom --testPathIgnorePatterns common.js",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --coverage"
