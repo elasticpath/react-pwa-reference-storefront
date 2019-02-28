@@ -24,7 +24,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import scriptjs from 'scriptjs';
 import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
@@ -97,8 +96,6 @@ const zoomArray = [
   'recommendations:warranty:element:availability',
   'code',
 ];
-
-// const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 
 class ProductDisplayItemMain extends React.Component {
   static isLoggedIn() {
@@ -512,8 +509,6 @@ class ProductDisplayItemMain extends React.Component {
     );
   }
 
- 
-
   render() {
     const {
       productData, addToCartFailedMessage, isLoading, itemQuantity,
@@ -715,7 +710,7 @@ class ProductDisplayItemMain extends React.Component {
                 </div>
               </div>
               {/* <div id="pr-reviewsnippet" /> */}
-              <PowerReview productData={this.state.productData}/>
+              <PowerReview productData={productData} />
               <div id="pr-questionsnippet" />
               {/* <div id="pr-reviewdisplay"></div> */}
 
