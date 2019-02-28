@@ -712,7 +712,7 @@ class ProductDisplayItemMain extends React.Component {
               {/* <div id="pr-reviewsnippet" /> */}
               <PowerReview productData={productData} />
               <div id="pr-questionsnippet" />
-              {/* <div id="pr-reviewdisplay"></div> */}
+              {/* <div id="pr-reviewdisplay" /> */}
 
               <div className="itemdetail-tabs-wrap">
                 <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
