@@ -709,10 +709,7 @@ class ProductDisplayItemMain extends React.Component {
                   />
                 </div>
               </div>
-
               <PowerReview productData={productData} />
-              <div id="pr-questionsnippet" />
-
               <div className="itemdetail-tabs-wrap">
                 <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
                   <li className="nav-item">
