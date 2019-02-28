@@ -709,10 +709,9 @@ class ProductDisplayItemMain extends React.Component {
                   />
                 </div>
               </div>
-              {/* <div id="pr-reviewsnippet" /> */}
+
               <PowerReview productData={productData} />
               <div id="pr-questionsnippet" />
-              {/* <div id="pr-reviewdisplay" /> */}
 
               <div className="itemdetail-tabs-wrap">
                 <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
@@ -724,15 +723,11 @@ class ProductDisplayItemMain extends React.Component {
                   <li className="nav-item">
                     <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
                       {intl.get('reviews')}
-                      {/* {' '}
-                      (0) */}
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
                       {intl.get('questions')}
-                      {/* {' '}
-                      (0) */}
                     </a>
                   </li>
                 </ul>
