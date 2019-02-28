@@ -39,7 +39,7 @@ import BundleConstituentsDisplayMain from './bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 
 import './productdisplayitem.main.less';
-import './powerreviews.less';
+import PowerReview from './powerreview.main';
 
 const Config = require('Config');
 
@@ -98,7 +98,7 @@ const zoomArray = [
   'code',
 ];
 
-const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
+// const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 
 class ProductDisplayItemMain extends React.Component {
   static isLoggedIn() {
@@ -184,14 +184,6 @@ class ProductDisplayItemMain extends React.Component {
           console.error(error.message);
         });
     });
-  }
-
-  componentDidUpdate() {
-    if (Config.PowerReviews.enabled) {
-      scriptjs(powerReviewsRemoteScriptUrl, () => {
-        this.renderPowerReviewsElements();
-      });
-    }
   }
 
   trackImpressionAnalytics() {
@@ -520,52 +512,7 @@ class ProductDisplayItemMain extends React.Component {
     );
   }
 
-  renderPowerReviewsElements() {
-    const {
-      productData,
-    } = this.state;
-
-    const productCode = productData._code[0].code;
-
-    const { availability, productLink } = this.extractAvailabilityParams(productData);
-
-    const { productImage, productDescriptionValue, productTitle } = this.extractProductDetails(productData);
-
-    const { itemPrice } = this.extractPrice(productData);
-
-    const mounted = document.getElementById('pr-reviewsnippet');
-
-
-    if (mounted) {
-      // eslint-disable-next-line no-undef
-      POWERREVIEWS.display.render({
-        api_key: Config.PowerReviews.api_key,
-        locale: 'en_US',
-        merchant_group_id: Config.PowerReviews.merchant_group_id,
-        merchant_id: Config.PowerReviews.merchant_id,
-        review_wrapper_url: '/write-a-review?pr=true',
-        page_id: productCode,
-        product: {
-          name: productTitle,
-          url: productLink,
-          image_url: productImage,
-          description: productDescriptionValue,
-          category_name: 'Root Category',
-          manufacturer_id: 'Zilker',
-          upc: productCode,
-          brand_name: 'Zilker',
-          price: itemPrice,
-          in_stock: availability,
-        },
-        components: {
-          ReviewSnippet: 'pr-reviewsnippet',
-          ReviewDisplay: 'pr-reviewdisplay',
-          QuestionSnippet: 'pr-questionsnippet',
-          QuestionDisplay: 'pr-questiondisplay',
-        },
-      });
-    }
-  }
+ 
 
   render() {
     const {
@@ -767,7 +714,8 @@ class ProductDisplayItemMain extends React.Component {
                   />
                 </div>
               </div>
-              <div id="pr-reviewsnippet" />
+              {/* <div id="pr-reviewsnippet" /> */}
+              <PowerReview productData={this.state.productData}/>
               <div id="pr-questionsnippet" />
               {/* <div id="pr-reviewdisplay"></div> */}
 
