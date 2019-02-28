@@ -57,7 +57,7 @@
   "my-profile": "M-y- -P-r-o-f-i-l-e",
   "wishlists": "W-i-s-h- -L-i-s-t",
   "using-cart": "U-s-i-n-g- -c-a-r-t-:",
-  "change-carts": "C-h-a-n-g-e- -c-a-r-t-s",
+  "change-carts": "S-h-o-p- -f-o-r",
   "continue-with": "C-o-n-t-i-n-u-e- -W-i-t-h",
   "order-processed-message": "T-h-a-n-k- -y-o-u-!- -Y-o-u-r- -o-r-d-e-r- -h-a-s- -b-e-e-n- -p-r-o-c-e-s-s-e-d-.",
   "terms-and-conditions": "T-e-r-m-s- -&- -C-o-n-d-i-t-i-o-n-s",
@@ -130,7 +130,7 @@
   "in-progress": "I-n- -P-r-o-g-r-e-s-s",
   "new-payment-method": "N-e-w- -P-a-y-m-e-n-t- -M-e-t-h-o-d",
   "failed-to-save-message": "F-a-i-l-e-d- -t-o- -S-a-v-e-,- -p-l-e-a-s-e- -c-h-e-c-k- -a-l-l- -r-e-q-u-i-r-e-d- -f-i-e-l-d-s- -a-r-e- -f-i-l-l-e-d-.",
-  "failed-to-save-email":  "F-a-i-l-e-d- -t-o- -S-a-v-e-,- -p-l-e-a-s-e- -c-h-e-c-k- -i-f- -e-m-a-i-l- -i-s- -v-a-l-i-d- -a-n-d- -a-l-l- -r-e-q-u-i-r-e-d- -f-i-e-l-d-s- -a-r-e- -f-i-l-l-e-d-.",
+  "failed-to-save-email": "F-a-i-l-e-d- -t-o- -S-a-v-e-,- -p-l-e-a-s-e- -c-h-e-c-k- -i-f- -e-m-a-i-l- -i-s- -v-a-l-i-d- -a-n-d- -a-l-l- -r-e-q-u-i-r-e-d- -f-i-e-l-d-s- -a-r-e- -f-i-l-l-e-d-.",
   "card-type": "C-a-r-d- -T-y-p-e",
   "american-express": "A-m-e-r-i-c-a-n- -E-x-p-r-e-s-s",
   "mastercard": "M-a-s-t-e-r-c-a-r-d",
@@ -210,5 +210,6 @@
   "accept": "a-c-c-e-p-t-",
   "decline": "d-e-c-l-i-n-e-",
   "gdpr-label": "L-o-r-e-m- -i-p-s-u-m- -d-o-l-o-r- -s-i-t- -a-m-e-t-,- -c-o-n-s-e-c-t-e-t-u-r- -a-d-i-p-i-s-c-i-n-g- -e-l-i-t-,- -s-e-d- -d-o- -e-i-u-s-m-o-d- -t-e-m-p-o-r- -i-n-c-i-d-i-d-u-n-t- -u-t- -l-a-b-o-r-e- -e-t- -d-o-l-o-r-e- -m-a-g-n-a- -a-l-i-q-u-a-.- -U-t- -e-n-i-m- -a-d- -m-i-n-i-m- -v-e-n-i-a-m-,- -q-u-i-s- -n-o-s-t-r-u-d- -e-x-e-r-c-i-t-a-t-i-o-n- -u-l-l-a-m-c-o- -l-a-b-o-r-i-s- -n-i-s-i- -u-t- -a-l-i-q-u-i-p- -e-x- -e-a- -c-o-m-m-o-d-o- -c-o-n-s-e-q-u-a-t-.- -D-u-i-s- -a-u-t-e- -i-r-u-r-e- -d-o-l-o-r- -i-n- -r-e-p-r-e-h-e-n-d-e-r-i-t- -i-n- -v-o-l-u-p-t-a-t-e- -v-e-l-i-t- -e-s-s-e- -c-i-l-l-u-m- -d-o-l-o-r-e- -e-u- -f-u-g-i-a-t- -n-u-l-l-a- -p-a-r-i-a-t-u-r-.- -E-x-c-e-p-t-e-u-r- -s-i-n-t- -o-c-c-a-e-c-a-t- -c-u-p-i-d-a-t-a-t- -n-o-n- -p-r-o-i-d-e-n-t-,- -s-u-n-t- -i-n- -c-u-l-p-a- -q-u-i- -o-f-f-i-c-i-a- -d-e-s-e-r-u-n-t- -m-o-l-l-i-t- -a-n-i-m- -i-d- -e-s-t- -l-a-b-o-r-u-m-.",
-  "incorect-sku": "I-n-c-o-r-e-c-t- -S-K-U-"
+  "incorect-sku": "I-n-c-o-r-e-c-t- -S-K-U-",
+  "no-divisions-found": "N-o- -S-h-o-p-p-a-b-l-e- -D-i-v-i-s-i-o-n-s- -F-o-u-n-d"
 }

@@ -14,10 +14,7 @@
       * [Setting up a Production Environment](#setting-up-a-production-environment)
   * [Running a Linter](#running-a-linter)
   * [Adding New Locales](#adding-new-locales)
-  * [Running Unit Tests](#running-unit-tests)
-      * [Maven Options to Run the Unit Tests](#maven-options-to-run-the-unit-tests)
-      * [Running Subset of Tests](#running-subset-of-tests)
-      * [Updating Browser Driver Versions](#updating-browser-driver-versions)
+  * [Running E2E Tests](#running-e2e-tests)
   * [Configuring Jenkins Pipeline](#configuring-jenkins-pipeline)
       * [Prerequisites](#prerequisites)
       * [Configuring the Jenkinfile](#configuring-the-jenkinfile)
@@ -60,9 +57,6 @@ Ensure that the following software are installed:
 * [Visual Studio Code](https://code.visualstudio.com/) with the following extensions:<br/>
     * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)<br/>
     * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)<br/>
-* [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html) (for unit testing, optional)
-* [Maven 3.5.2](https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/) (for unit testing, optional)
-* [IntelliJ IDEA](https://www.jetbrains.com/idea/) (for unit testing, optional)
 * A valid Elastic Path development environment. For more information, see
 [The Starting Construction Guide](https://developers.elasticpath.com/commerce/construction-home).
 
@@ -85,7 +79,7 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`b2b.keycloak.callbackUrl`| Optional| String| The URL that is passed to keycloak, and redirected to upon a successful login.|
 |`b2b.keycloak.loginRedirectUrl`| Optional| String| The keycloak log on URL.|
 |`b2b.keycloak.logoutRedirectUrl`| Optional| String| The keycloak log off URL.|
-|`b2b.keycloak.client_id`| Optional| String| The keycloak client configuration ID.|
+|`b2b.keycloak.client_id`| Optional| String| The keycloak client configuration ID. Set this value to the identifier of the client configured in keycloak for the storefront. A default configuration is preset, however older environemnts may use `eam`. For more information, see the [Deploying and Configuring Keycloak](https://developers.elasticpath.com/accountmanagementdeployment/7.4.1/Elastic-Path-Account-Management-Deployment/Deploying-Account-Management-Service/Deploying-and-Configuring-Keycloak) section.|
 |`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
 |`indi.enable`| Optional| Boolean| Enable the integration component for Indi. More information may be found available here `https://indi.com/`.|
 |`indi.carousel`| Optional| Values| Configurations for the Indi carousel component.|
@@ -119,34 +113,31 @@ For more information about populating database, see the [Populating the Database
 
 ### Setting up a Production Environment
 1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
-2. Navigate to the `react-pwa-reference-storefront` directory.<br>
-3. Build a Production Docker Image:
-    1. Clone or pull the `react-pwa-reference-storefront` repository to your directory.
-    2. Run the `cd react-pwa-reference-storefront` command.
-    3. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile .` command.
-    4. Push the `ep-store` image to the docker repository.
-
-4. Run a Production Docker Image:
+2. Navigate to the `react-pwa-reference-storefront` directory.
+3. Add custom configurations to the Docker file, Docker compose file, and Nginx configuration file, if any.
+    1. Provide any custom configurations you would like passed into your Docker container at runtime into `src/ep.config.json` by replacing the values of any parameter with a custom configuration value.
+    2. Provide any custom configurations you would like passed into your Docker container at runtime directly below the existing `RUN jq` command. One has been provided to you as an example.<br>
+    **Note:** Use the jq syntax for the command. For more information, see the [jq manual](https://stedolan.github.io/jq/manual/). Ensure that you add the `NGINX_REPLACE_` prefix for the custom configurations.
+    3. Update the `./docker/prod/nginx.conf` file with the new configuration by adding a new `sub_filter` statement within the configuration block below the existing configuration. Use a generic value, which is used for the environment variable in the next step, for the configuration.
+    4. In the `./docker/prod/docker-compose.yaml` file, add the environment configuration variable within the `environment` block and set a value to add in the container.
+3. Build a Production Docker Image by performing the following:
+    1. Run the `docker build -t ep-store -f ./docker/prod/Dockerfile .` command.
+    2. Push the `ep-store` image to the Docker repository.
+4. Run a Production Docker Image, by performing the following:
     1. Navigate to the `docker/prod/` directory.<br>
-    2. Copy the following files to the user home directory on the remote host:<br>
-        * `docker-compose.yaml`
-        * `nginx.conf`
-    3. In the `nginx.conf` file, update the following parameters:
-        * `$CORTEX_URL` with Cortex server URL.
-        * `$AUTHSERVICE_URL` with Cortex Account Management service URL (This is required for all scenarios. If not running the storefront in B2B mode, you may set this to the same value as `$CORTEX_URL`).
-        * `$DOMAIN` with domain name without `http://`.
-        * `$SSL_CERT_PATH` with the certificate file path in the remote server. <br>
-        For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`. <br>
-        * `$SSL_KEY_PATH` with the path of the private key in the remote server.<br>
-        For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`. <br>
-        **Note:** You can use the certificate generated by any certificate provider, such as [Let's Encrypt](https://letsencrypt.org).
-    4. In the `docker-compose.yaml` file, update the following parameters:
-        * `$DOCKER_REPO` with `ep-store`.
-        * `$SSL_CERT_PATH` with the certificate file path in the remote server .
-        <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.<br>
-        * `$SSL_KEY_PATH` with the path of the private key in the remote server.
-        <br> For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.<br>
-    5. Run the following Docker command to start the Docker container created for the Docker image:<br/>
+    2. In the `docker-compose.yaml` file, update the following parameters:
+
+    |Environment Configuration|Value|
+    |--|--|
+    |`$DOCKER_REPO`|`ep-store`|
+    |`$CORTEX_URL`|The Cortex server URL|
+    |`$AUTHSERVICE_URL`|The Cortex Account Management service URL (This is required for all scenarios. If not running the storefront in B2B mode, you may set this to the same value as `$CORTEX_URL`).|
+    |`$DOMAIN`|The domain name without `http://`|
+    |`$SSL_CERT_PATH`|The certificate file path in the remote server. <br>For example, `/etc/letsencrypt/live/reference.elasticpath.com/fullchain.pem`.|
+    |`$SSL_KEY_PATH`|The path of the private key in the remote server. <br>For example, `/etc/letsencrypt/live/reference.elasticpath.com/privkey.pem`.<br> **Note:** You can use the certificate generated by any certificate provider, such as [Let's Encrypt](https://letsencrypt.org).|
+    |`$CORTEX_API_SCOPE`|The name of the store from which Cortex retrieves data|
+
+    3. To start the Docker container created for the Docker image, run the following Docker command:
         * `docker-compose up -d` <br>
 
 ## Running a Linter
@@ -170,36 +161,19 @@ The reference storefront supports multiple languages and currencies. Add all fro
 2. To add a new locale, add an entry to the `supportedLocales` array in the `ep.config.json` file and add an appropriate `.json` file to the `localization` folder.
 3. Configure the language and currency for all products in Commerce Manager.
 
-## Running Unit Tests
+## Running E2E Tests
 
-Test data are provided in the `tests` directory.
+Test are provided in the `tests` directory.
 
-1. To run all tests, run the following command:<br/> `mvn clean install -Dcucumber.options="--tags @smoketest"`<br/>
-2. To run sanity test, run the following command:<br/>`mvn clean install -Dcucumber.options="--tags @sanity`<br/>
+1. To run all unit tests, run the following command:<br/>`npm test`<br/>
+2. To run all end to end tests, run the previous command, then press "p" and enter `e2e`, then press "enter".
+3. To run a single test, run the previous command, then press "p" and type the filename.
 
-### Maven Options to Run the Unit Tests
+**Note:** You may need to install watchman to get past the "too many files open" error. You may use [Homebrew](https://brew.sh/) to do so:
+- `brew update`<br/>
+- `brew install watchman`<br/>
 
-|  Option| Description|
-|--|--|
-|`-Dcucumber.options="--tags @smoketest"`| Specifies that you can replace the tag with a tag that you define.|
-|`-Dfailsafe.fork.count="<no of testes>"`| Specifies the number of tests that can be run at the same time. The default value is 1. You can change this value depending on number of TestsIT classes. |
-|`-Premote -Dremote.web.driver.url="<REMOTE DRIVER IP>"`| Specifies that the tests are executed using a remote VM. The `remote.web.driver.url` attribute specifies the URL of the remote VM. For example, `http://<IP_ADDRESS>:4444/wd/hub`.
-
-**Note:** You must set up the selenium grid to use this feature.For more information, see [Selenium](https://www.seleniumhq.org/docs/07_selenium_grid.jsp) documentation.
-
-### Running Subset of Tests
-1.  In the `/selenium/src/test/java/com/elasticpath/cucumber/` module, right-click a TestsIT class and click **Run**.
-You can create your own local runner class to run your own tagged tests. For example, `RunLocalTestsIT.java` runs your own tagged tests at local.
-    **Note**  Do not commit the local runner class and tags that are only for the local testing purpose.
-
-### Updating browser driver versions
-
-1. Download the latest browser driver and update the `/selenium/src/test/resources/RepositoryMap.xml` file with the driver version.
-2. Update the `RepositoryMap.xml`  with the bash value of the browser driver:
-    - To get the bash values, run the `openssl sha1 <filename>` command.
-      The <filename> specifies the <filelocation> in the `RepositoryMap.xml` file.
-  For example, https://github.com/Ardesco/Selenium-Maven-Template/blob/master/src/test/resources/RepositoryMap.xml
-
+For more information, see [Puppeteer](https://github.com/GoogleChrome/puppeteer/blob/v1.12.2/docs/api.md).
 
 ## Configuring Jenkins Pipeline
 
@@ -258,7 +232,7 @@ When you run the the Jenkins job, the job operates in the following sequence:
   * The development Docker runs the `entrypoint.sh` script to replace the path to Cortex and the store in the `ep.config.json` file and starts the project in development by running the `npm start` command.
 * `UNDEPLOY_EXISTING` - Cleans up the working directory and removes docker containers and images, if any.
 * `DEPLOY` - Creates the working directory, copies the files from the project and solr home configuration, exports the environment variables used in the compose file, and deploys the store and Cortex with Docker-compose.
-* `TEST` - Sets the environment variables for JAVA_HOME and adds Java and Maven to the path. The variables are pulled from the Jenkins tools. For headless tests, installs Google Chrome by running the script at [intoli](https://intoli.com/blog/installing-google-chrome-on-centos) and downloading `google-chrome-stable` and renames it to `google-chrome` to enable chromedriver to find it for tests. Before you run the tests, replace the `selenium.session.baseurl` in the `pom.xml`. For viewing reports in Jenkins UI, Jenkins Cucumber plugin is used.
+* `TEST` - Runs the automated Puppeteer tests against the store created from the previous deployment step.
 
 ## Terms And Conditions
 

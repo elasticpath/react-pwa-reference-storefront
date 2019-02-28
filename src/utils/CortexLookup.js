@@ -337,7 +337,7 @@ export function navigationLookup(navigationLookupCode) {
           reject(error);
         });
     } else {
-      cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_navigationLookupForm`)}?zoom=${navigationFormZoomArray.join()}&followlocation`,
+      cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_navigationLookupForm`)}?zoom=${navigationFormZoomArray.join()}&followlocation=true`,
         {
           method: 'post',
           headers: {
@@ -369,7 +369,7 @@ export function navigationLookup(navigationLookupCode) {
 
 export function itemLookup(itemLookupCode, reload = true) {
   return new Promise(((resolve, reject) => {
-    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${itemFormZoomArray.join()}&followlocation`,
+    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${itemFormZoomArray.join()}&followlocation=true`,
       {
         method: 'post',
         headers: {
@@ -401,7 +401,7 @@ export function itemLookup(itemLookupCode, reload = true) {
 
 export function purchaseLookup(purchaseLookupCode) {
   return new Promise(((resolve, reject) => {
-    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_purchaseLookupForm`)}?zoom=${purchaseFormZoomArray.join()}&followlocation`,
+    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_purchaseLookupForm`)}?zoom=${purchaseFormZoomArray.join()}&followlocation=true`,
       {
         method: 'post',
         headers: {
@@ -470,7 +470,7 @@ export function searchLookup(searchKeyword) {
           } else {
             searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
           }
-          cortexFetch(`${searchForm}?zoom=${searchFormZoomArray.join()}&followlocation`,
+          cortexFetch(`${searchForm}?zoom=${searchFormZoomArray.join()}&followlocation=true`,
             {
               method: 'post',
               headers: {
@@ -508,7 +508,7 @@ export function searchLookup(searchKeyword) {
 
 export function batchLookup(batchLookupCodes) {
   return new Promise(((resolve, reject) => {
-    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_batchLookupForm`)}?zoom=${batchFormZoomArray.join()}&followlocation`,
+    cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_batchLookupForm`)}?zoom=${batchFormZoomArray.join()}&followlocation=true`,
       {
         method: 'post',
         headers: {

@@ -13,6 +13,9 @@
     "classnames": "2.2.3",
     "cookie-parser": "1.4.1",
     "dispatchr": "^1.0.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.8.0",
+    "enzyme-to-json": "^3.3.5",
     "eventemitter3": "^1.2.0",
     "express": "^4.16.3",
     "express-graphql": "0.4.9",
@@ -55,6 +58,7 @@
     "react-scripts": "^1.1.4",
     "react-scroll-parallax": "^1.3.5",
     "react-slick": "^0.23.2",
+    "react-test-renderer": "^16.7.0",
     "schema-client": "^2.2.1",
     "scriptjs": "^2.5.9",
     "setimmediate2": "^2.0.1",
@@ -70,8 +74,9 @@
     "start-prod": "webpack-dev-server --config=webpack/webpack.config.prod.js --mode production",
     "build": "webpack --config=webpack/webpack.config.prod.js --mode production",
     "deploy": "webpack --config=webpack/webpack.config.prod.js --mode production && aws s3 sync webpack/dist/ s3://build-store",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --runInBand --env=jsdom --testPathIgnorePatterns common.js",
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -94,6 +99,7 @@
     "json-loader": "^0.5.7",
     "less": "3.8.1",
     "less-loader": "4.1.0",
+    "puppeteer": "^1.12.2",
     "serviceworker-webpack-plugin": "^0.2.3",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
