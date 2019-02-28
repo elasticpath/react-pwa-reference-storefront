@@ -711,23 +711,26 @@ class ProductDisplayItemMain extends React.Component {
               </div>
               <PowerReview productData={productData} />
               <div className="itemdetail-tabs-wrap">
-                <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
-                  <li className="nav-item">
-                    <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
-                      {intl.get('summary')}
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
-                      {intl.get('reviews')}
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
-                      {intl.get('questions')}
-                    </a>
-                  </li>
-                </ul>
+                {(Config.PowerReviews.enabled) ? (
+                  <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
+                    <li className="nav-item">
+                      <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
+                        {intl.get('summary')}
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                        {intl.get('reviews')}
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
+                        {intl.get('questions')}
+                      </a>
+                    </li>
+                  </ul>
+                ) : ('')
+                }
                 <div className="tab-content">
                   <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                     <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion">
