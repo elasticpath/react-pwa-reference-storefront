@@ -50,7 +50,7 @@ You can contribute to this project by creating a pull request in the repository.
 3. Create a git branch.
 4. Set up the development environment and install the required dependencies. For more information, see [Setting up a Development Environment](README.md#setting-up-a-development-environment).
 5. Make the changes and commit the changes to your new branch. Ensure that the code is clear and comprehensible.
-6. Run the local unit tests by following the instruction in the [Running Unit Tests](README.md#running-unit-tests) section. If you add new features or components that require additional unit tests, ensure that the code is tested and verified with appropriate unit tests.
+6. Run the local tests by following the instruction in the [Running E2E Tests](README.md#running-e2e-tests) section. If you add new features or components that require additional unit tests, ensure that the code is tested and verified with appropriate tests.
 7. Create a Pull Request (PR).
 8. Incorporate the review comments provided by the repository owner, if any, and get approval.<br/>
 The repository owner merges all approved PRs to the repository.
