@@ -24,6 +24,7 @@ import PropTypes from 'prop-types';
 import './powerreviews.less';
 import scriptjs from 'scriptjs';
 import intl from 'react-intl-universal';
+import * as UserPrefs from '../utils/UserPrefs';
 
 const Config = require('Config');
 
@@ -62,7 +63,7 @@ class PowerReview extends React.Component {
       // eslint-disable-next-line no-undef
       POWERREVIEWS.display.render({
         api_key: Config.PowerReviews.api_key,
-        locale: 'en_US',
+        locale: UserPrefs.getSelectedLocaleValue(),
         merchant_group_id: Config.PowerReviews.merchant_group_id,
         merchant_id: Config.PowerReviews.merchant_id,
         review_wrapper_url: '/write-a-review?pr=true',

@@ -23,6 +23,7 @@ import React from 'react';
 import queryString from 'query-string';
 import scriptjs from 'scriptjs';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import * as UserPrefs from '../utils/UserPrefs';
 import '../components/powerreviews.less';
 
 const Config = require('Config');
@@ -45,7 +46,7 @@ class WriteReview extends React.Component {
       // eslint-disable-next-line no-undef
       POWERREVIEWS.display.render({
         api_key: Config.PowerReviews.api_key,
-        locale: 'en_US',
+        locale: UserPrefs.getSelectedLocaleValue(),
         merchant_group_id: Config.PowerReviews.merchant_group_id,
         merchant_id: Config.PowerReviews.merchant_id,
         review_wrapper_url: '/write-a-review/',
