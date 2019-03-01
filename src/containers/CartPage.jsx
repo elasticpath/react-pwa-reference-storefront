@@ -71,6 +71,7 @@ class CartPage extends React.Component {
     this.state = {
       cartData: undefined,
       isLoading: false,
+      permission: false,
     };
   }
 
@@ -92,6 +93,11 @@ class CartPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
+          if (res.links.length === 0 && !res._defaultcart) {
+            this.setState({
+              permission: true,
+            });
+          }
           this.setState({
             cartData: res._defaultcart[0],
             isLoading: false,
@@ -116,6 +122,24 @@ class CartPage extends React.Component {
     } else {
       history.push('/signIn');
     }
+  }
+
+  checkPermissions() {
+    const { permission, cartData, isLoading } = this.state;
+    if (Config.b2b.enable && permission) {
+      return (
+        <div className="message-permission">
+          <h2>{intl.get('permission-message')}</h2>
+        </div>
+      );
+    }
+    return (
+      (!cartData || isLoading) && (
+        <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+          <div className="loader" />
+        </div>
+      )
+    );
   }
 
   renderDiscount() {
@@ -168,7 +192,7 @@ class CartPage extends React.Component {
               <CartMain empty={!cartData['total-quantity'] || cartData._lineitems === undefined} cartData={cartData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
             </div>
           )}
-          {cartData && !isLoading && (
+          {(cartData && !isLoading) && (
             <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
               <div>
                 <div className="cart-sidebar-inner">
@@ -187,11 +211,9 @@ class CartPage extends React.Component {
               </div>
             </div>
           )}
-          {(!cartData || isLoading) && (
-            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
-              <div className="loader" />
-            </div>
-          )}
+          <div>
+            {this.checkPermissions()}
+          </div>
         </div>
       </div>
     );

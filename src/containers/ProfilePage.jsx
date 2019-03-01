@@ -55,6 +55,7 @@ class ProfilePage extends React.Component {
     super(props);
     this.state = {
       profileData: undefined,
+      permission: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
   }
@@ -78,6 +79,11 @@ class ProfilePage extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
+          if (res.links.length === 0 && !res._defaultprofile) {
+            this.setState({
+              permission: true,
+            });
+          }
           this.setState({
             profileData: res._defaultprofile[0],
           });
@@ -87,6 +93,20 @@ class ProfilePage extends React.Component {
           console.error(error.message);
         });
     });
+  }
+
+  checkPermissions() {
+    const { permission } = this.state;
+    if (Config.b2b.enable && permission) {
+      return (
+        <div className="message-permission">
+          <h2>{intl.get('permission-message')}</h2>
+        </div>
+      );
+    }
+    return (
+      <div className="loader" />
+    );
   }
 
   render() {
@@ -109,7 +129,11 @@ class ProfilePage extends React.Component {
               <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} isDisabled={email === ''} />
               <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} isDisabled={email === ''} />
             </div>
-          ) : <div className="loader" />}
+          ) : (
+            <div>
+              {this.checkPermissions()}
+            </div>
+          )}
         </div>
       </div>
     );

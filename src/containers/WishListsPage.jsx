@@ -55,6 +55,7 @@ class WishListsPage extends React.Component {
     this.state = {
       wishListData: undefined,
       isLoading: false,
+      permission: false,
     };
   }
 
@@ -81,6 +82,12 @@ class WishListsPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
+          console.log(res);
+          if (res.links.length === 0 && !res._defaultwishlist) {
+            this.setState({
+              permission: true,
+            });
+          }
           this.setState({
             wishListData: res._defaultwishlist[0],
             isLoading: false,
@@ -91,6 +98,24 @@ class WishListsPage extends React.Component {
           console.error(error.message);
         });
     });
+  }
+
+  checkPermissions() {
+    const { permission, wishListData, isLoading } = this.state;
+    if (Config.b2b.enable && permission) {
+      return (
+        <div className="message-permission">
+          <h2>{intl.get('permission-message')}</h2>
+        </div>
+      );
+    }
+    return (
+      (!wishListData || isLoading) && (
+        <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
+          <div className="loader" />
+        </div>
+      )
+    );
   }
 
   render() {
@@ -117,11 +142,9 @@ class WishListsPage extends React.Component {
               <WishListMain empty={!wishListData._lineitems[0]._element} wishListData={wishListData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
             </div>
           )}
-          {(!wishListData || isLoading) && (
-            <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
-              <div className="loader" />
-            </div>
-          )}
+          <div>
+            {this.checkPermissions()}
+          </div>
         </div>
       </div>
     );

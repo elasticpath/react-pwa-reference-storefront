@@ -160,6 +160,7 @@
   "addresses": "Addresses",
   "personal-information": "Personal Information",
   "no-payment-methods-message": "You have no saved paymentMethods.",
+  "permission-message": "You don't have permission to access",
   "payment-methods": "Payment Methods",
   "sub-total": "Sub-total",
   "tax": "Tax",
