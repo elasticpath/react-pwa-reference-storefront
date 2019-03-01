@@ -83,7 +83,6 @@ class PowerReview extends React.Component {
         components: {
           ReviewSnippet: 'pr-reviewsnippet',
           ReviewDisplay: 'pr-reviewdisplay',
-          QuestionSnippet: 'pr-questionsnippet',
           QuestionDisplay: 'pr-questiondisplay',
         },
       });
