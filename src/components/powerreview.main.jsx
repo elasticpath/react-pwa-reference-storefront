@@ -63,7 +63,7 @@ class PowerReview extends React.Component {
       // eslint-disable-next-line no-undef
       POWERREVIEWS.display.render({
         api_key: Config.PowerReviews.api_key,
-        locale: UserPrefs.getSelectedLocaleValue(),
+        locale: UserPrefs.getSelectedLocaleValue().replace('-', '_'),
         merchant_group_id: Config.PowerReviews.merchant_group_id,
         merchant_id: Config.PowerReviews.merchant_id,
         review_wrapper_url: '/write-a-review?pr=true',
