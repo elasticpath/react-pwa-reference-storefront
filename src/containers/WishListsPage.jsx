@@ -55,7 +55,7 @@ class WishListsPage extends React.Component {
     this.state = {
       wishListData: undefined,
       isLoading: false,
-      permission: false,
+      invalidPermission: false,
     };
   }
 
@@ -82,10 +82,9 @@ class WishListsPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          console.log(res);
           if (res.links.length === 0 && !res._defaultwishlist) {
             this.setState({
-              permission: true,
+              invalidPermission: true,
             });
           }
           this.setState({
@@ -101,8 +100,8 @@ class WishListsPage extends React.Component {
   }
 
   checkPermissions() {
-    const { permission, wishListData, isLoading } = this.state;
-    if (Config.b2b.enable && permission) {
+    const { invalidPermission, wishListData, isLoading } = this.state;
+    if (Config.b2b.enable && invalidPermission) {
       return (
         <div className="message-permission">
           <h2>{intl.get('permission-message')}</h2>

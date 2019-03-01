@@ -71,7 +71,7 @@ class CartPage extends React.Component {
     this.state = {
       cartData: undefined,
       isLoading: false,
-      permission: false,
+      invalidPermission: false,
     };
   }
 
@@ -95,7 +95,7 @@ class CartPage extends React.Component {
         .then((res) => {
           if (res.links.length === 0 && !res._defaultcart) {
             this.setState({
-              permission: true,
+              invalidPermission: true,
             });
           }
           this.setState({
@@ -125,8 +125,8 @@ class CartPage extends React.Component {
   }
 
   checkPermissions() {
-    const { permission, cartData, isLoading } = this.state;
-    if (Config.b2b.enable && permission) {
+    const { invalidPermission, cartData, isLoading } = this.state;
+    if (Config.b2b.enable && invalidPermission) {
       return (
         <div className="message-permission">
           <h2>{intl.get('permission-message')}</h2>

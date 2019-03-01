@@ -55,7 +55,7 @@ class ProfilePage extends React.Component {
     super(props);
     this.state = {
       profileData: undefined,
-      permission: false,
+      invalidPermission: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
   }
@@ -81,7 +81,7 @@ class ProfilePage extends React.Component {
         .then((res) => {
           if (res.links.length === 0 && !res._defaultprofile) {
             this.setState({
-              permission: true,
+              invalidPermission: true,
             });
           }
           this.setState({
@@ -96,8 +96,8 @@ class ProfilePage extends React.Component {
   }
 
   checkPermissions() {
-    const { permission } = this.state;
-    if (Config.b2b.enable && permission) {
+    const { invalidPermission } = this.state;
+    if (Config.b2b.enable && invalidPermission) {
       return (
         <div className="message-permission">
           <h2>{intl.get('permission-message')}</h2>
