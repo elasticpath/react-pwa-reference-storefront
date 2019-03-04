@@ -94,6 +94,11 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`facebook.enable`| Optional| Boolean| Enable the Elastic Path Facebook Chatbot component. More information may be found available here `https://github.com/elasticpath/facebook-chat`.|
 |`facebook.pageId`| Optional| String| The Facebook Page Identifier used to connect the chatbot component to Facebook.|
 |`facebook.applicationId`| Optional| String| The Facebook Application Identifier used to connect the chatbot component to Facebook.|
+|`GDPR.enable`| Optional| Boolean| Enable the GDPR modal in the storefront.|
+|`PowerReviews.enable`| Optional| Boolean| Enable the integration component for PowerReviews. More information may be found available here `https://www.powerreviews.com/`.|
+|`PowerReviews.api_key`| Optional| String| The PowerReviews API Key used to connect the PowerReviews component.|
+|`PowerReviews.merchant_group_id`| Optional| String| The PowerReviews Merchant Group Identifier used to connect the PowerReviews component.|
+|`PowerReviews.merchant_id`| Optional| String| The PowerReviews Merchant Identifier used to connect the PowerReviews component.|
 
 ### Configuring Sample Data
 

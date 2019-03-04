@@ -37,7 +37,7 @@ class PowerReview extends React.Component {
   }
 
   componentDidMount() {
-    if (Config.PowerReviews.enabled) {
+    if (Config.PowerReviews.enable) {
       scriptjs(powerReviewsRemoteScriptUrl, () => {
         this.mountPowerReview();
       });

@@ -79,7 +79,7 @@
     "enable": false
   },
   "PowerReviews": {
-    "enabled": false,
+    "enable": false,
     "api_key": "",
     "merchant_group_id": "",
     "merchant_id": ""

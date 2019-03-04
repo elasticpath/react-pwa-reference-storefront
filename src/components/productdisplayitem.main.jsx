@@ -711,7 +711,7 @@ class ProductDisplayItemMain extends React.Component {
               </div>
               <PowerReview productData={productData} />
               <div className="itemdetail-tabs-wrap">
-                {(Config.PowerReviews.enabled) ? (
+                {(Config.PowerReviews.enable) ? (
                   <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
                     <li className="nav-item">
                       <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
