@@ -82,15 +82,16 @@ class WishListsPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          if (res.links.length === 0 && !res._defaultwishlist) {
+          if (!res._defaultwishlist) {
             this.setState({
               invalidPermission: true,
             });
+          } else {
+            this.setState({
+              wishListData: res._defaultwishlist[0],
+              isLoading: false,
+            });
           }
-          this.setState({
-            wishListData: res._defaultwishlist[0],
-            isLoading: false,
-          });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

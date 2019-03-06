@@ -93,15 +93,16 @@ class CartPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          if (res.links.length === 0 && !res._defaultcart) {
+          if (!res._defaultcart) {
             this.setState({
               invalidPermission: true,
             });
+          } else {
+            this.setState({
+              cartData: res._defaultcart[0],
+              isLoading: false,
+            });
           }
-          this.setState({
-            cartData: res._defaultcart[0],
-            isLoading: false,
-          });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

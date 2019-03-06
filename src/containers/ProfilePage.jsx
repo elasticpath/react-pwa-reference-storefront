@@ -79,14 +79,15 @@ class ProfilePage extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          if (res.links.length === 0 && !res._defaultprofile) {
+          if (!res._defaultprofile) {
             this.setState({
               invalidPermission: true,
             });
+          } else {
+            this.setState({
+              profileData: res._defaultprofile[0],
+            });
           }
-          this.setState({
-            profileData: res._defaultprofile[0],
-          });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -111,7 +112,8 @@ class ProfilePage extends React.Component {
 
   render() {
     const { profileData } = this.state;
-    const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
+    const email = profileData && profileData._emails && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
+
     return (
       <div>
         <div className="container profile-container">
