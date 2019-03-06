@@ -77,5 +77,11 @@
   },
   "GDPR": {
     "enable": false
+  },
+  "PowerReviews": {
+    "enable": false,
+    "api_key": "",
+    "merchant_group_id": "",
+    "merchant_id": ""
   }
 }

@@ -38,6 +38,7 @@ import BundleConstituentsDisplayMain from './bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 
 import './productdisplayitem.main.less';
+import PowerReview from './powerreview.main';
 
 const Config = require('Config');
 
@@ -345,6 +346,54 @@ class ProductDisplayItemMain extends React.Component {
     this.setState({ selectionValue: event.target.value });
   }
 
+  extractPrice(productData) {
+    this.funcName = 'extractPrice';
+    let listPrice = 'n/a';
+    if (productData._price) {
+      listPrice = productData._price[0]['list-price'][0].display;
+    }
+    let itemPrice = 'n/a';
+    if (productData._price) {
+      itemPrice = productData._price[0]['purchase-price'][0].display;
+    }
+    return { listPrice, itemPrice };
+  }
+
+  extractProductDetails(productData) {
+    this.funcName = 'extractProductDetails';
+    const productTitle = productData._definition[0]['display-name'];
+    const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
+    const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
+    const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
+    const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
+    return {
+      featuredProductAttribute, productImage, productDescriptionValue, productTitle,
+    };
+  }
+
+  extractAvailabilityParams(productData) {
+    this.funcName = 'extractAvailabilityParams';
+    let availability = (productData._addtocartform[0].links.length > 0);
+    let availabilityString = '';
+    let productLink = '';
+    if (productData._availability.length >= 0) {
+      if (productData._code) {
+        productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
+      }
+      if (productData._availability[0].state === 'AVAILABLE') {
+        availabilityString = intl.get('in-stock');
+      } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+        availabilityString = intl.get('pre-order');
+      } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+        availability = true;
+        availabilityString = intl.get('back-order');
+      } else {
+        availabilityString = intl.get('out-of-stock');
+      }
+    }
+    return { availability, availabilityString, productLink };
+  }
+
   renderAttributes() {
     const { productData } = this.state;
     if (productData._definition[0].details) {
@@ -465,37 +514,13 @@ class ProductDisplayItemMain extends React.Component {
       productData, addToCartFailedMessage, isLoading, itemQuantity,
     } = this.state;
     if (productData) {
-      let listPrice = 'n/a';
-      if (productData._price) {
-        listPrice = productData._price[0]['list-price'][0].display;
-      }
-      let itemPrice = 'n/a';
-      if (productData._price) {
-        itemPrice = productData._price[0]['purchase-price'][0].display;
-      }
-      let availability = (productData._addtocartform[0].links.length > 0);
-      let availabilityString = '';
-      let productLink = '';
-      if (productData._availability.length >= 0) {
-        if (productData._code) {
-          productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
-        }
-        if (productData._availability[0].state === 'AVAILABLE') {
-          availabilityString = intl.get('in-stock');
-        } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
-          availabilityString = intl.get('pre-order');
-        } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
-          availability = true;
-          availabilityString = intl.get('back-order');
-        } else {
-          availabilityString = intl.get('out-of-stock');
-        }
-      }
-      const productTitle = productData._definition[0]['display-name'];
-      const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
-      const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
-      const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
-      const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
+      const { listPrice, itemPrice } = this.extractPrice(productData);
+
+      const { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
+
+      const {
+        featuredProductAttribute, productImage, productDescriptionValue, productTitle,
+      } = this.extractProductDetails(productData);
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');
       Config.indi.productReview.description = intl.get('indi-product-review-description');
@@ -684,28 +709,28 @@ class ProductDisplayItemMain extends React.Component {
                   />
                 </div>
               </div>
+              <PowerReview productData={productData} />
               <div className="itemdetail-tabs-wrap">
-                <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
-                  <li className="nav-item">
-                    <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
-                      {intl.get('summary')}
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link disabled" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
-                      {intl.get('reviews')}
-                      {' '}
-                      (0)
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link disabled" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
-                      {intl.get('questions')}
-                      {' '}
-                      (0)
-                    </a>
-                  </li>
-                </ul>
+                {(Config.PowerReviews.enable) ? (
+                  <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
+                    <li className="nav-item">
+                      <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
+                        {intl.get('summary')}
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                        {intl.get('reviews')}
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
+                        {intl.get('questions')}
+                      </a>
+                    </li>
+                  </ul>
+                ) : ('')
+                }
                 <div className="tab-content">
                   <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                     <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion">
@@ -713,10 +738,10 @@ class ProductDisplayItemMain extends React.Component {
                     </div>
                   </div>
                   <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                    ...
+                    <div id="pr-reviewdisplay" />
                   </div>
                   <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
-                    ...
+                    <div id="pr-questiondisplay" />
                   </div>
                 </div>
               </div>

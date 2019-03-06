@@ -41,6 +41,7 @@ import OrderReviewPage from './containers/OrderReviewPage';
 import WishListsPage from './containers/WishListsPage';
 import ShippingReturnsPage from './containers/ShippingReturns';
 import ProductsComparePage from './containers/ProductsComparePage';
+import WriteReview from './containers/WriteReviewPage';
 
 const router = [{
   path: '/',
@@ -123,6 +124,10 @@ const router = [{
 }, {
   path: '/productscompare/:products',
   component: ProductsComparePage,
+}, {
+  path: '/write-a-review',
+  component: WriteReview,
+
 }];
 
 export default router;
