@@ -60,7 +60,11 @@ class SearchFacetNavigationMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          history.push(`/search/${titleString}${res._offersearchresult[0].self.uri}`);
+          if (window.location.pathname.includes('category')) {
+            history.push(`/category/${titleString}${res._offersearchresult[0].self.uri}`);
+          } else {
+            history.push(`/search/${titleString}${res._offersearchresult[0].self.uri}`);
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
