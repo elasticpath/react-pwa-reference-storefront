@@ -79,13 +79,13 @@ class ProfilePage extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          if (!res._defaultprofile) {
+          if (res && res._defaultprofile) {
             this.setState({
-              invalidPermission: true,
+              profileData: res._defaultprofile[0],
             });
           } else {
             this.setState({
-              profileData: res._defaultprofile[0],
+              invalidPermission: true,
             });
           }
         })
@@ -112,8 +112,10 @@ class ProfilePage extends React.Component {
 
   render() {
     const { profileData } = this.state;
-    const email = profileData && profileData._emails && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
-
+    let email = '';
+    if (profileData) {
+      email = profileData && profileData._emails && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
+    }
     return (
       <div>
         <div className="container profile-container">

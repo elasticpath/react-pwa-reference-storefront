@@ -160,13 +160,15 @@ class AppHeaderNavigationMain extends React.Component {
       })
       .then(res => res.json())
       .then((res) => {
-        const cortexNavigations = res._navigations[0]._element;
-        const navigations = this.getDropDownNavigationState(cortexNavigations);
-        this.setState({
-          navigations,
-          /* eslint-disable react/no-unused-state */
-          originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
-        });
+        if (res && res._navigations) {
+          const cortexNavigations = res._navigations[0]._element;
+          const navigations = this.getDropDownNavigationState(cortexNavigations);
+          this.setState({
+            navigations,
+            /* eslint-disable react/no-unused-state */
+            originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
+          });
+        }
       })
       .catch((error) => {
         // eslint-disable-next-line no-console

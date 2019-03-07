@@ -373,7 +373,7 @@ class ProductDisplayItemMain extends React.Component {
 
   extractAvailabilityParams(productData) {
     this.funcName = 'extractAvailabilityParams';
-    let availability = (productData._addtocartform[0].links.length > 0);
+    let availability = (productData._addtocartform && productData._addtocartform[0].links.length > 0);
     let availabilityString = '';
     let productLink = '';
     if (productData._availability.length >= 0) {
@@ -413,7 +413,7 @@ class ProductDisplayItemMain extends React.Component {
 
   renderConfiguration() {
     const { productData, isLoading } = this.state;
-    if (productData._addtocartform[0].configuration) {
+    if (productData._addtocartform && productData._addtocartform[0].configuration) {
       const keys = Object.keys(productData._addtocartform[0].configuration);
       return keys.map(key => (
         <div key={key} className="form-group">
@@ -636,7 +636,7 @@ class ProductDisplayItemMain extends React.Component {
                       <div className="form-content form-content-submit col-sm-offset-4">
                         <button
                           className="ep-btn primary wide btn-itemdetail-addtocart"
-                          disabled={!availability}
+                          disabled={!availability || !productData._addtocartform}
                           id="product_display_item_add_to_cart_button"
                           type="submit"
                         >
@@ -650,7 +650,7 @@ class ProductDisplayItemMain extends React.Component {
                     </div>
 
                   </form>
-                  {(ProductDisplayItemMain.isLoggedIn() && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
+                  {(ProductDisplayItemMain.isLoggedIn() && productData._addtocartform && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
@@ -666,7 +666,7 @@ class ProductDisplayItemMain extends React.Component {
                           <button
                             onClick={this.addToWishList}
                             className="ep-btn wide btn-itemdetail-addtowishlist"
-                            disabled={!availability}
+                            disabled={!availability || !productData._addtowishlistform}
                             id="product_display_item_add_to_wish_list_button"
                             type="submit"
                           >

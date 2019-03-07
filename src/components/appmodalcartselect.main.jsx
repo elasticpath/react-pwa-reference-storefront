@@ -122,7 +122,7 @@ class AppModalCartSelectMain extends React.Component {
       return orgAuthServiceData._element.map((division, index) => {
         if (division) {
           return (
-            <div className="radio">
+            <div className="radio" key={division.name}>
               <label htmlFor={`cart-selection-option${index}`} className="custom-radio-button">
                 <input id={`cart-selection-option${index}`} type="radio" value={index} checked={selectedCart === `${index}`} onChange={this.handleCartChange} />
                 <span className="helping-el" />

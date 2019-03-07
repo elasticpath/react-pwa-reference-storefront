@@ -105,7 +105,7 @@ class AppHeaderMain extends React.Component {
     const {
       isOffline, cartData, isLoading, isSearchFocused,
     } = this.state;
-    const availability = !!cartData;
+    const availability = Boolean(cartData);
     const isInStandaloneMode = window.navigator.standalone;
     const isB2bCartSelected = localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`);
     return [
@@ -127,32 +127,28 @@ class AppHeaderMain extends React.Component {
 
           <div className="central-container">
             <div className="horizontal-menu">
-              {availability && (
               <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} />
-              )}
             </div>
           </div>
 
-          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected && availability)) && (
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
             <div className="search-container">
               <AppHeaderSearchMain isMobileView={false} />
             </div>
           )}
-          {availability && (
-            <div className="search-toggle-btn-container">
-              <button
-                className="search-toggle-btn"
-                type="button"
-                data-toggle="collapse"
-                data-target=".collapsable-container"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                onClick={this.handleInputFocus}
-              >
-                <div className="search-icon" />
-              </button>
-            </div>
-          )}
+          <div className="search-toggle-btn-container">
+            <button
+              className="search-toggle-btn"
+              type="button"
+              data-toggle="collapse"
+              data-target=".collapsable-container"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              onClick={this.handleInputFocus}
+            >
+              <div className="search-icon" />
+            </button>
+          </div>
 
           <div className="login-container">
             <AppHeaderLoginMain isMobileView={false} permission={availability} />
@@ -193,7 +189,7 @@ class AppHeaderMain extends React.Component {
         </div>
 
         <div className="collapsable-container collapse collapsed">
-          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected && availability)) && (
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
             <div className="search-container">
               <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} />
             </div>
@@ -202,7 +198,7 @@ class AppHeaderMain extends React.Component {
             <AppHeaderLocaleMain isMobileView />
           </div>
 
-          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected && availability)) && (
+          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
             <div className="mobile-cart-link-container">
               <Link
                 className="cart-link"
@@ -225,9 +221,7 @@ class AppHeaderMain extends React.Component {
           <hr className="mobile-navigation-separator" />
 
           <div className="mobile-navigation-container">
-            {availability && (
             <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
-            )}
           </div>
           {/* <hr className="mobile-navigation-separator" />
           <div className="mobile-login-container">
