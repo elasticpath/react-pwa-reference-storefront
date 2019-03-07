@@ -37,7 +37,7 @@ class ProfileemailinfoMain extends React.Component {
   constructor(props) {
     super(props);
     const { profileInfo } = this.props;
-    const email = profileInfo && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+    const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
     this.state = {
       failedSubmit: false,
       emailInEditMode: false,
@@ -100,7 +100,7 @@ class ProfileemailinfoMain extends React.Component {
   render() {
     const { emailInEditMode, failedSubmit } = this.state;
     const { profileInfo } = this.props;
-    const email = profileInfo && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+    const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
     if (emailInEditMode) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
@@ -113,7 +113,7 @@ class ProfileemailinfoMain extends React.Component {
               <div className="form-group">
                 <label htmlFor="email" data-el-label="addressForm.email" className="control-label address-form-label profile-info-email-form-label">
                   <span className="required-label">
-                        *
+                    *
                   </span>
                   {' '}
                   {intl.get('email')}
@@ -143,9 +143,10 @@ class ProfileemailinfoMain extends React.Component {
         </div>
       );
     }
-    if (profileInfo && profileInfo.links.length > 0) {
+    if (profileInfo && profileInfo._emails) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
+          <span className="feedback-label">{email === '' && intl.get('email-validation')}</span>
           <h2>
             {intl.get('personal-information')}
           </h2>
@@ -156,19 +157,21 @@ class ProfileemailinfoMain extends React.Component {
                 :
               </span>
               <span className="info-value" id="profile_personal_info_email" data-el-value="email">
-                { email }
+                {email}
               </span>
               <br />
-              <button
-                className="ep-btn small profile-email-edit-btn"
-                type="button"
-                id="profile_personal_info_edit_button"
-                onClick={() => {
-                  this.editEmail();
-                }}
-              >
-                {intl.get('edit')}
-              </button>
+              {(profileInfo._emails && profileInfo._emails[0]._emailform) ? (
+                <button
+                  className="ep-btn small profile-email-edit-btn"
+                  type="button"
+                  id="profile_personal_info_edit_button"
+                  onClick={() => {
+                    this.editEmail();
+                  }}
+                >
+                  {intl.get('edit')}
+                </button>
+              ) : ('')}
             </div>
           </div>
         </div>

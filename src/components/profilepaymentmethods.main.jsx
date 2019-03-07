@@ -35,11 +35,6 @@ class ProfilePaymentMethodsMain extends React.Component {
     history: ReactRouterPropTypes.history.isRequired,
     paymentMethods: PropTypes.objectOf(PropTypes.any).isRequired,
     onChange: PropTypes.func.isRequired,
-    isDisabled: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    isDisabled: false,
   }
 
   newPayment() {
@@ -100,8 +95,8 @@ class ProfilePaymentMethodsMain extends React.Component {
   render() {
     const {
       paymentMethods,
-      isDisabled,
     } = this.props;
+    const isDisabled = !paymentMethods._paymenttokenform;
     if (paymentMethods) {
       return (
         <div className="paymentMethodsRegions" data-region="paymentMethodsRegion" style={{ display: 'block' }}>
