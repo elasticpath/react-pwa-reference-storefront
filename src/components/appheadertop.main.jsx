@@ -28,15 +28,18 @@ import AppHeaderLocaleMain from './appheaderlocale.main';
 
 class AppHeaderTop extends React.Component {
   static propTypes = {
-    isMobileView: PropTypes.bool.isRequired,
+    isMobileView: PropTypes.bool,
   }
 
+  static defaultProps = {
+    isMobileView: false,
+  }
 
   render() {
     const { isMobileView } = this.props;
 
     return [
-      <div className={`top-header ${isMobileView ? 'mobile-view' : ''}`}>
+      <div key={`AppHeaderTop_${Math.random().toString(36).substr(2, 9)}`} className={`top-header ${isMobileView ? 'mobile-view' : ''}`}>
         <div className="top-container">
           <div className="locale-container">
             <AppHeaderLocaleMain />

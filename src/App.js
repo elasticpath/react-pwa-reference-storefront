@@ -37,7 +37,7 @@ const Config = require('Config');
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
 const Root = () => [
-  <FacebookChat config={Config.facebook} />,
+  <FacebookChat key="FacebookChat" config={Config.facebook} />,
   <AppHeaderMain key="AppHeaderMain" />,
   <div key="app-content" className="app-content">
     <Switch>
