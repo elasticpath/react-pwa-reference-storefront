@@ -34,7 +34,11 @@ const Config = require('Config');
 
 class AppHeaderLocaleMain extends React.Component {
   static propTypes = {
-    isMobileView: PropTypes.bool.isRequired,
+    isMobileView: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isMobileView: false,
   }
 
   constructor(props) {

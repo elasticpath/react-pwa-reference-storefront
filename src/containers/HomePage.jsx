@@ -76,7 +76,7 @@ class HomePage extends React.Component {
             </div>
           </div>
           <div className="section-parallax section-parallax-1 container" data-region="homeMainContentRegion">
-            <Parallax offsetYMax={10} offsetYMin={-50} slowerScrollRate tag="figure">
+            <Parallax y={[-50, 10]} tag="figure">
               <div className="parallax-image-container">
                 <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax1FileName)} onError={(e) => { e.target.src = homeEspotParallax1; }} />
               </div>
@@ -120,7 +120,7 @@ class HomePage extends React.Component {
             </div>
           </div>
           <div className="section-parallax section-parallax-2 container" data-region="homeMainContentRegion">
-            <Parallax offsetYMax={-20} offsetYMin={10} slowerScrollRate tag="figure">
+            <Parallax y={[10, -30]} tag="figure">
               <div className="parallax-image-container">
                 <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax2FileName)} onError={(e) => { e.target.src = homeEspotParallax2; }} />
               </div>
