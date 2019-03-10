@@ -39,7 +39,7 @@ class AppHeaderTop extends React.Component {
     const { isMobileView } = this.props;
 
     return [
-      <div key={`AppHeaderTop_${Math.random().toString(36).substr(2, 9)}`} className={`top-header ${isMobileView ? 'mobile-view' : ''}`}>
+      <div key="AppHeaderTop" className={`top-header ${isMobileView ? 'mobile-view' : ''}`}>
         <div className="top-container">
           <div className="locale-container">
             <AppHeaderLocaleMain />
