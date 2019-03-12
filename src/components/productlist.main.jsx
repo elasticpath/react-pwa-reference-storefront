@@ -112,6 +112,7 @@ class ProductListMain extends React.Component {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
             <ProductListItemMain offerData={product} />
+            {this.checkComparison(product)}
           </li>
         );
       }
