@@ -35,11 +35,6 @@ class ProfileAddressesMain extends React.Component {
     history: ReactRouterPropTypes.history.isRequired,
     addresses: PropTypes.objectOf(PropTypes.any).isRequired,
     onChange: PropTypes.func.isRequired,
-    isDisabled: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    isDisabled: false,
   }
 
   newAddress() {
@@ -131,8 +126,8 @@ class ProfileAddressesMain extends React.Component {
   render() {
     const {
       addresses,
-      isDisabled,
     } = this.props;
+    const isDisabled = !addresses._addressform;
     if (addresses) {
       return (
         <div className="profile-addresses-container" data-region="profileAddressesRegion" style={{ display: 'block' }}>

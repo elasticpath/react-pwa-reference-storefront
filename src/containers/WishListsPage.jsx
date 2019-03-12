@@ -55,6 +55,7 @@ class WishListsPage extends React.Component {
     this.state = {
       wishListData: undefined,
       isLoading: false,
+      invalidPermission: false,
     };
   }
 
@@ -81,16 +82,40 @@ class WishListsPage extends React.Component {
       })
         .then(res => res.json())
         .then((res) => {
-          this.setState({
-            wishListData: res._defaultwishlist[0],
-            isLoading: false,
-          });
+          if (!res._defaultwishlist) {
+            this.setState({
+              invalidPermission: true,
+            });
+          } else {
+            this.setState({
+              wishListData: res._defaultwishlist[0],
+              isLoading: false,
+            });
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
         });
     });
+  }
+
+  checkPermissions() {
+    const { invalidPermission, wishListData, isLoading } = this.state;
+    if (Config.b2b.enable && invalidPermission) {
+      return (
+        <div className="message-permission">
+          <h2>{intl.get('permission-message')}</h2>
+        </div>
+      );
+    }
+    return (
+      (!wishListData || isLoading) && (
+        <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
+          <div className="loader" />
+        </div>
+      )
+    );
   }
 
   render() {
@@ -117,11 +142,9 @@ class WishListsPage extends React.Component {
               <WishListMain empty={!wishListData._lineitems[0]._element} wishListData={wishListData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
             </div>
           )}
-          {(!wishListData || isLoading) && (
-            <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
-              <div className="loader" />
-            </div>
-          )}
+          <div>
+            {this.checkPermissions()}
+          </div>
         </div>
       </div>
     );

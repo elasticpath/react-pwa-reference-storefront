@@ -185,7 +185,7 @@ class ProfileInfoMain extends React.Component {
         </div>
       );
     }
-    if (profileInfo.links.length > 0) {
+    if (profileInfo) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <div>
@@ -210,10 +210,11 @@ class ProfileInfoMain extends React.Component {
                 </span>
               </div>
             </div>
-
-            <button className="ep-btn small profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" disabled={isDisabled} onClick={() => { this.editPersonalInfo(); }}>
-              {intl.get('edit')}
-            </button>
+            {(profileInfo.links && profileInfo.links.length > 0) ? (
+              <button className="ep-btn small profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" disabled={isDisabled} onClick={() => { this.editPersonalInfo(); }}>
+                {intl.get('edit')}
+              </button>
+            ) : ('')}
           </div>
         </div>
       );

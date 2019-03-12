@@ -38,6 +38,7 @@ const zoomArray = [
   'defaultprofile:purchases',
   'defaultprofile:purchases:element',
   'defaultprofile:addresses',
+  'defaultprofile:addresses:addressform',
   'defaultprofile:emails',
   'defaultprofile:emails:element',
   'defaultprofile:emails:element:list',
@@ -47,6 +48,7 @@ const zoomArray = [
   'defaultprofile:addresses:element',
   'defaultprofile:addresses:billingaddresses:default',
   'defaultprofile:paymentmethods',
+  'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
 ];
 
@@ -55,6 +57,7 @@ class ProfilePage extends React.Component {
     super(props);
     this.state = {
       profileData: undefined,
+      invalidPermission: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
   }
@@ -78,9 +81,15 @@ class ProfilePage extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.setState({
-            profileData: res._defaultprofile[0],
-          });
+          if (res && res._defaultprofile) {
+            this.setState({
+              profileData: res._defaultprofile[0],
+            });
+          } else {
+            this.setState({
+              invalidPermission: true,
+            });
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -89,9 +98,22 @@ class ProfilePage extends React.Component {
     });
   }
 
+  checkPermissions() {
+    const { invalidPermission } = this.state;
+    if (Config.b2b.enable && invalidPermission) {
+      return (
+        <div className="message-permission">
+          <h2>{intl.get('permission-message')}</h2>
+        </div>
+      );
+    }
+    return (
+      <div className="loader" />
+    );
+  }
+
   render() {
     const { profileData } = this.state;
-    const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
     return (
       <div>
         <div className="container profile-container">
@@ -102,14 +124,23 @@ class ProfilePage extends React.Component {
           </div>
           {profileData ? (
             <div>
-              <span className="feedback-label">{ email === '' && intl.get('email-validation') }</span>
               <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
-              <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} isDisabled={email === ''} />
-              <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
-              <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} isDisabled={email === ''} />
-              <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} isDisabled={email === ''} />
+              <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+              {(profileData._purchases) ? (
+                <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
+              ) : ('')}
+              {(profileData._addresses) ? (
+                <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
+              ) : ('')}
+              {(profileData._paymentmethods) ? (
+                <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
+              ) : ('')}
             </div>
-          ) : <div className="loader" />}
+          ) : (
+            <div>
+              {this.checkPermissions()}
+            </div>
+          )}
         </div>
       </div>
     );

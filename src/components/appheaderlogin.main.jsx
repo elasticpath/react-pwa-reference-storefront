@@ -40,6 +40,7 @@ class AppHeaderLoginMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
     isMobileView: PropTypes.bool,
+    permission: PropTypes.bool.isRequired,
   }
 
   static defaultProps = {
@@ -91,7 +92,9 @@ class AppHeaderLoginMain extends React.Component {
   }
 
   render() {
-    const { isMobileView } = this.props;
+    const {
+      isMobileView, permission,
+    } = this.props;
     const {
       openModal, openCartModal,
     } = this.state;
@@ -131,15 +134,17 @@ class AppHeaderLoginMain extends React.Component {
                     </div>
                   </Link>
                 </li>
-                <li className="dropdown-item">
-                  <Link to="/wishlists" className="wishlist-link">
-                    <div>
-                      <span id="header_navbar_login_menu_wishlist_link">
-                        {intl.get('wishlists')}
-                      </span>
-                    </div>
-                  </Link>
-                </li>
+                {permission && (
+                  <li className="dropdown-item">
+                    <Link to="/wishlists" className="wishlist-link">
+                      <div>
+                        <span id="header_navbar_login_menu_wishlist_link">
+                          {intl.get('wishlists')}
+                        </span>
+                      </div>
+                    </Link>
+                  </li>
+                )}
                 <li className="dropdown-item">
                   {(Config.b2b.enable) ? (
                     <a href={`${keycloakLogoutRedirectUrl}`} className="login-auth-service-btn">
