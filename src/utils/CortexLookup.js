@@ -310,7 +310,7 @@ export function cortexFetchItemLookupForm() {
 export function cortexFetchBatchItemLookupForm() {
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_batchLookupForm`) === null) {
-      cortexFetch('/?zoom=lookups:batchitemslookupform', {
+      cortexFetch('/?zoom=lookups:batchitemslookupform,lookups:batchofferslookupform', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -318,7 +318,12 @@ export function cortexFetchBatchItemLookupForm() {
       })
         .then(res => res.json())
         .then((res) => {
-          const batchForm = res._lookups[0]._batchitemslookupform[0].links.find(link => link.rel === 'batchitemslookupaction').uri;
+          let batchForm = '';
+          if (res._lookups[0]._batchofferslookupform) {
+            batchForm = res._lookups[0]._batchofferslookupform[0].links.find(link => link.rel === 'batchofferslookupaction').uri;
+          } else {
+            batchForm = res._lookups[0]._batchitemslookupform[0].links.find(link => link.rel === 'batchitemslookupaction').uri;
+          }
           localStorage.setItem(`${Config.cortexApi.scope}_batchLookupForm`, batchForm);
           resolve();
         })

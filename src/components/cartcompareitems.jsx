@@ -366,7 +366,7 @@ class CartCompareItems extends React.Component {
 
   renderConfiguration() {
     const { productData, isLoading } = this.state;
-    if (productData._addtocartform[0].configuration) {
+    if (productData._addtocartform && productData._addtocartform[0].configuration) {
       const keys = Object.keys(productData._addtocartform[0].configuration);
       return keys.map(key => (
         <div key={key} className="form-group">
@@ -480,7 +480,7 @@ class CartCompareItems extends React.Component {
       if (productData._price) {
         itemPrice = productData._price[0]['purchase-price'][0].display;
       }
-      let availability = (productData._addtocartform[0].links.length > 0);
+      let availability = (productData._addtocartform && productData._addtocartform[0].links.length > 0);
       let availabilityString = '';
       let productLink = '';
       if (productData._availability.length >= 0) {
