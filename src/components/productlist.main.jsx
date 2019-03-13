@@ -95,7 +95,7 @@ class ProductListMain extends React.Component {
             />
             <span className="helping-el" />
             <span className="label-text">
-          &nbsp;
+              &nbsp;
               {intl.get('compare')}
             </span>
           </label>
@@ -107,11 +107,15 @@ class ProductListMain extends React.Component {
 
   renderProducts() {
     const { categoryModel } = this.state;
+    const { showCompareButton } = this.props;
     return categoryModel._element.map((product) => {
       if (product.self.type === 'offers.offer') {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
             <ProductListItemMain offerData={product} />
+            {(showCompareButton) ? (
+              this.checkComparison(product)
+            ) : ('')}
           </li>
         );
       }
@@ -140,7 +144,7 @@ class ProductListMain extends React.Component {
         <div className="product-list-container" data-region="categoryBrowseRegion">
           {showCompareButton ? (
             <div className="compare-button">
-              <button type="button" className="ep-btn primary top-compare-link" onClick={(compareList.length <= 1) ? () => this.handleCompare(isCompare) : ''}>
+              <button type="button" className="ep-btn primary top-compare-link" onClick={(compareList.length <= 1) ? () => this.handleCompare(isCompare) : () => { }}>
                 {(compareList.length > 1) ? (
                   <Link className="toggle-compare-link" to={compareLink}>{intl.get('compare-products')}</Link>
                 ) : `${intl.get('compare')}`}
