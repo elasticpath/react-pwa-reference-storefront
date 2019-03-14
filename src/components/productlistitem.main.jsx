@@ -133,10 +133,17 @@ class ProductListItemMain extends React.Component {
               <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
             </Link>
           </div>
-          <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`} style={{ minHeight: '43px' }}>
-            <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
-              {productData._definition[0]['display-name']}
-            </Link>
+          <div className="category-item-title-container">
+            <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`}>
+              <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
+                {productData._definition[0]['display-name']}
+              </Link>
+            </div>
+            {(Config.b2b.enable) && (
+              <h4 className="category-item-title-sku" id={`category_item_title_sku_${productData._code[0].code}`}>
+                {productData._code[0].code}
+              </h4>
+            )}
           </div>
           <div data-region="priceRegion">
             <div data-region="itemPriceRegion">
