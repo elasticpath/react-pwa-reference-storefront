@@ -71,7 +71,7 @@ class FeaturedProducts extends React.Component {
     } = this.state;
     const settings = {
       dots: false,
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
