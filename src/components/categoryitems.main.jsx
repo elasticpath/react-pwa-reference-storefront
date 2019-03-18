@@ -59,6 +59,7 @@ class CategoryItemsMain extends React.Component {
 
   getCategoryData(categoryProps) {
     this.setState({ isLoading: true });
+    const { categoryModel } = this.state;
     let categoryId = categoryProps.match.params;
     let categoryUrl = '';
     if (!categoryId['0'] || categoryId['0'] === undefined) {
@@ -82,10 +83,14 @@ class CategoryItemsMain extends React.Component {
             if (categoryUrl !== '') {
               navigationLookup(categoryUrl)
                 .then((res) => {
-                  this.setState({
+                  const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
+                  this.setState(prevState => ({
+                    categoryModel: {
+                      ...prevState.categoryModel,
+                      [productNode]: [res],
+                    },
                     isLoading: false,
-                    categoryModel: res,
-                  });
+                  }));
                 });
             } else {
               this.setState({
@@ -101,7 +106,14 @@ class CategoryItemsMain extends React.Component {
   }
 
   handleProductsChange(products) {
-    this.setState({ categoryModel: products });
+    const { categoryModel } = this.state;
+    const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
+    this.setState(prevState => ({
+      categoryModel: {
+        ...prevState.categoryModel,
+        [productNode]: [products],
+      },
+    }));
   }
 
   render() {
@@ -109,7 +121,7 @@ class CategoryItemsMain extends React.Component {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName,
     } = this.state;
     let products = '';
-    let featuredOffers = '';
+    let featuredOffers = {};
     if (categoryModel._offers) {
       [products] = categoryModel._offers;
     } else {
