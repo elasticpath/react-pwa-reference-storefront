@@ -36,12 +36,14 @@ class ProductListItemMain extends React.Component {
     productId: PropTypes.string,
     offerData: PropTypes.objectOf(PropTypes.any),
     productElement: PropTypes.objectOf(PropTypes.any),
+    featuredProductAttribute: PropTypes.bool,
   }
 
   static defaultProps = {
     productId: '',
     offerData: {},
     productElement: {},
+    featuredProductAttribute: false,
   }
 
   constructor(props) {
@@ -82,7 +84,7 @@ class ProductListItemMain extends React.Component {
 
   render() {
     const { productData } = this.state;
-    const { offerData } = this.props;
+    const { offerData, featuredProductAttribute } = this.props;
     if (productData) {
       let listPrice = 'n/a';
       let itemPrice = 'n/a';
@@ -117,11 +119,10 @@ class ProductListItemMain extends React.Component {
           availabilityString = intl.get('out-of-stock');
         }
       }
-      const featuredProductAttribute = (productData._definition && productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       return (
         <div className="category-item-inner">
           <div className="category-item-thumbnail-container">
-            {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
+            {(featuredProductAttribute)
               ? (
                 <div className="featured">
                   {intl.get('featured')}

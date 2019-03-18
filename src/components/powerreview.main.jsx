@@ -95,9 +95,8 @@ class PowerReview extends React.Component {
     const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
     const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
     const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
-    const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return {
-      featuredProductAttribute, productImage, productDescriptionValue, productTitle,
+      productImage, productDescriptionValue, productTitle,
     };
   }
 

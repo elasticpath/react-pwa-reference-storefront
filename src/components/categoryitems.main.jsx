@@ -26,6 +26,7 @@ import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
 import ProductListMain from './productlist.main';
 import SearchFacetNavigationMain from './searchfacetnavigation.main';
+import FeaturedProducts from './featuredproducts.main';
 import ProductListPagination from './productlistpagination.main';
 import ProductListLoadMore from './productlistloadmore';
 
@@ -108,10 +109,14 @@ class CategoryItemsMain extends React.Component {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName,
     } = this.state;
     let products = '';
+    let featuredOffers = '';
     if (categoryModel._offers) {
       [products] = categoryModel._offers;
     } else {
       products = categoryModel._items ? categoryModel._items[0] : categoryModel;
+    }
+    if (categoryModel._featuredoffers) {
+      [featuredOffers] = categoryModel._featuredoffers;
     }
     const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
     const categoryModelIdString = categoryModelId;
@@ -137,9 +142,9 @@ class CategoryItemsMain extends React.Component {
                 <div className="menu-history">
                   {categoryModelParentDisplayName}
                   {categoryModelParentDisplayName && (
-                  <span className="arrow">
-                    &nbsp;﹥&nbsp;
-                  </span>
+                    <span className="arrow">
+                      &nbsp;﹥&nbsp;
+                    </span>
                   )}
                   {categoryModelDisplayName}
                   <h1 className="category-title">
@@ -149,6 +154,7 @@ class CategoryItemsMain extends React.Component {
                 <SearchFacetNavigationMain productData={products} titleString={categoryModelIdString} />
                 <div className="products-container">
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
+                  <FeaturedProducts productData={featuredOffers} />
                   <ProductListMain productData={products} />
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />
                 </div>
