@@ -51,6 +51,7 @@ class AppModalLoginMain extends React.Component {
     this.setPassword = this.setPassword.bind(this);
     this.loginRegisteredUser = this.loginRegisteredUser.bind(this);
     this.registerNewUser = this.registerNewUser.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
   }
 
   componentWillMount() {
@@ -123,6 +124,12 @@ class AppModalLoginMain extends React.Component {
     }
   }
 
+  resetPassword() {
+    const { history, handleModalClose } = this.props;
+    history.push('/password_reset', { returnPage: '/' });
+    handleModalClose();
+  }
+
   render() {
     const { failedLogin, isLoading } = this.state;
     const { handleModalClose, openModal } = this.props;
@@ -162,6 +169,7 @@ class AppModalLoginMain extends React.Component {
                   {
                     (isLoading) ? <div className="miniLoader" /> : ('')
                   }
+                  <button type="button" className="label-link" onClick={this.resetPassword}>Forgot password?</button>
                   <div className="form-input btn-container">
                     <button className="ep-btn primary btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {intl.get('login')}
