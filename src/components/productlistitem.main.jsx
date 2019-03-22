@@ -122,14 +122,6 @@ class ProductListItemMain extends React.Component {
       return (
         <div className="category-item-inner">
           <div className="category-item-thumbnail-container">
-            {(featuredProductAttribute)
-              ? (
-                <div className="featured">
-                  {intl.get('featured')}
-                </div>
-              )
-              : ('')
-            }
             <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
               <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
             </Link>
@@ -146,6 +138,14 @@ class ProductListItemMain extends React.Component {
               </h4>
             )}
           </div>
+          {(featuredProductAttribute)
+            ? (
+              <div className="featured">
+                {intl.get('featured')}
+              </div>
+            )
+            : ('')
+          }
           <div data-region="priceRegion">
             <div data-region="itemPriceRegion">
               <ul className="category-item-price-container">

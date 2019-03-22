@@ -22,6 +22,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
+import intl from 'react-intl-universal';
 import ProductListItemMain from './productlistitem.main';
 
 import './featuredproducts.main.less';
@@ -70,42 +71,67 @@ class FeaturedProducts extends React.Component {
       categoryModel,
     } = this.state;
     const settings = {
-      dots: false,
-      infinite: false,
+      dots: true,
+      infinite: (categoryModel._element && categoryModel._element.length > 4),
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
       responsive: [
         {
-          breakpoint: 767,
+          breakpoint: 1091,
           settings: {
             slidesToShow: 3,
             slidesToScroll: 3,
           },
         },
         {
-          breakpoint: 600,
+          breakpoint: 767,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
+            arrows: false,
           },
         },
       ],
     };
     if (categoryModel._element && categoryModel._element.length > 0) {
       return (
-        <div className="featured-products-container" data-region="categoryBrowseRegion">
-          <div className="product-image-carousel">
-            <Slider {...settings}>
-              {this.renderFeaturedProducts()}
-            </Slider>
+        <div>
+          <div className="featured-products-title">
+            {intl.get('viewing')}
+            {' '}
+            {(categoryModel._element.length > 4) && (
+              <span className="featured-products-on-page-l">
+                4
+                {' '}
+                {intl.get('of')}
+              </span>
+            )}
+            {(categoryModel._element.length > 3) && (
+              <span className="featured-products-on-page-m">
+                3
+                {' '}
+                {intl.get('of')}
+              </span>
+            )}
+            {(categoryModel._element.length > 2) && (
+              <span className="featured-products-on-page-s">
+                2
+                {' '}
+                {intl.get('of')}
+              </span>
+            )}
+            {' '}
+            {categoryModel._element.length}
+            {' '}
+            {intl.get('featured-products')}
+          </div>
+          <div className="featured-products-container" data-region="categoryBrowseRegion">
+            <div className="product-image-carousel">
+              <Slider {...settings}>
+                {this.renderFeaturedProducts()}
+              </Slider>
+            </div>
           </div>
         </div>
       );

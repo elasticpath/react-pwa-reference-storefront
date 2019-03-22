@@ -21,11 +21,120 @@
 
 @import './../style/common.less';
 
-.featured-products-container {
-  margin-bottom: 50px;
+.featured-products-title {
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.featured-products-on-page-m,
+.featured-products-on-page-s {
+  display: none;
+}
 
+.featured-products-container {
+  margin-bottom: 30px;
+
+  .product-image-carousel {
+    padding: 0 0 40px;
+    border-bottom: 1px solid #CCCCCC;
+  }
   .slick-list {
-    max-width: 600px;
     margin:0 auto;
+  }
+  .slick-slider {
+    .slick-arrow {
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      top: auto;
+      bottom: -20px;
+      transform: none;
+      border: 1px solid #979797;
+      z-index: 3;
+      &:before {
+        width: 10px;
+        height: 10px;
+        border-bottom-width: 2px;
+        border-left-width: 2px;
+        top: 6px;
+        color: #40B1F3;
+        opacity: 1;
+      }
+      &:hover {
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+      }
+    }
+    .slick-prev {
+      left: auto;
+      right: 60px;
+      &:before {
+        left: 8px;
+      }
+    }
+    .slick-next {
+      right: 15px;
+      &:before {
+        right: 8px;
+      }
+    }
+    .slick-disabled {
+      border-color: #CCCCCC;
+      &:before {
+        color: #CCCCCC;
+      }
+    }
+  }
+  .slick-dots {
+    bottom: -6px;
+    li {
+      display: inline-block;
+      margin: 3px;
+    }
+    button {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #D3F0FE;
+    }
+    .slick-active {
+      button {
+        background: @mainBlueColor;
+      }
+    }
+  }
+  .featured {
+    position: relative;
+    width: auto;
+    margin-bottom: 10px;
+  }
+  .category-item-container {
+    padding: 0 10px;
+  }
+  .category-item-inner {
+    text-align: left;
+    .category-item-title-container {
+      min-height: 35px;
+    }
+  }
+}
+
+@media (max-width: @tabletWidth - 1px) {
+  .featured-products-on-page-l {
+    display: none;
+  }
+  .featured-products-on-page-m {
+    display: inline;
+  }
+}
+
+@media (max-width: @mobileWidth - 1px) {
+  .featured-products-on-page-m {
+    display: none;
+  }
+  .featured-products-on-page-s {
+    display: inline;
   }
 }

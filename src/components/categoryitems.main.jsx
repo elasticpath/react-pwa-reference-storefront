@@ -151,22 +151,22 @@ class CategoryItemsMain extends React.Component {
 
             return (
               <div>
-                <div className="menu-history">
-                  {categoryModelParentDisplayName}
-                  {categoryModelParentDisplayName && (
-                    <span className="arrow">
-                      &nbsp;﹥&nbsp;
-                    </span>
-                  )}
-                  {categoryModelDisplayName}
-                  <h1 className="category-title">
-                    {categoryModelDisplayName}
-                  </h1>
-                </div>
                 <SearchFacetNavigationMain productData={products} titleString={categoryModelIdString} />
                 <div className="products-container">
-                  <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
+                  <div className="menu-history">
+                    {categoryModelParentDisplayName}
+                    {categoryModelParentDisplayName && (
+                      <span className="arrow">
+                      &nbsp;﹥&nbsp;
+                      </span>
+                    )}
+                    {categoryModelDisplayName}
+                    <h1 className="category-title">
+                      {categoryModelDisplayName}
+                    </h1>
+                  </div>
                   <FeaturedProducts productData={featuredOffers} />
+                  <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
                   <ProductListMain productData={products} />
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />
                 </div>
