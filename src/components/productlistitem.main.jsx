@@ -36,12 +36,14 @@ class ProductListItemMain extends React.Component {
     productId: PropTypes.string,
     offerData: PropTypes.objectOf(PropTypes.any),
     productElement: PropTypes.objectOf(PropTypes.any),
+    featuredProductAttribute: PropTypes.bool,
   }
 
   static defaultProps = {
     productId: '',
     offerData: {},
     productElement: {},
+    featuredProductAttribute: false,
   }
 
   constructor(props) {
@@ -82,7 +84,7 @@ class ProductListItemMain extends React.Component {
 
   render() {
     const { productData } = this.state;
-    const { offerData } = this.props;
+    const { offerData, featuredProductAttribute } = this.props;
     if (productData) {
       let listPrice = 'n/a';
       let itemPrice = 'n/a';
@@ -117,18 +119,9 @@ class ProductListItemMain extends React.Component {
           availabilityString = intl.get('out-of-stock');
         }
       }
-      const featuredProductAttribute = (productData._definition && productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
       return (
         <div className="category-item-inner">
           <div className="category-item-thumbnail-container">
-            {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
-              ? (
-                <div className="featured">
-                  {intl.get('featured')}
-                </div>
-              )
-              : ('')
-            }
             <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
               <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
             </Link>
@@ -145,6 +138,14 @@ class ProductListItemMain extends React.Component {
               </h4>
             )}
           </div>
+          {(featuredProductAttribute)
+            ? (
+              <div className="featured">
+                {intl.get('featured')}
+              </div>
+            )
+            : ('')
+          }
           <div data-region="priceRegion">
             <div data-region="itemPriceRegion">
               <ul className="category-item-price-container">
