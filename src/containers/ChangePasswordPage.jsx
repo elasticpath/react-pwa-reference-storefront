@@ -104,7 +104,7 @@ class ChangePasswordForm extends React.Component {
     }
     login()
       .then((response) => {
-        cortexFetch(`/passwords/${Config.cortexApi.scope}`, {
+        cortexFetch(`/passwords/${Config.cortexApi.scope}/reset/form/?zoom=resetpasswordaction`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
