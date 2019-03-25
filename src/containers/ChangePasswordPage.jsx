@@ -104,8 +104,7 @@ class ChangePasswordForm extends React.Component {
     }
     login()
       .then((response) => {
-        console.log(response);
-        cortexFetch(`/passwords/${Config.cortexApi.scope}/reset/form/?zoom=resetpasswordaction`, {
+        cortexFetch(`/passwords/${Config.cortexApi.scope}`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
@@ -133,11 +132,9 @@ class ChangePasswordForm extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          const { email } = this.state;
           if (res && res._defaultprofile) {
             this.setState({ email: res._defaultprofile[0]._emails[0]._element[0].email });
           }
-          console.log(res, email);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
