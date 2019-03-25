@@ -105,6 +105,11 @@ class ProductDisplayItemMain extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
     productId: PropTypes.string.isRequired,
+    featuredProductAttribute: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    featuredProductAttribute: false,
   }
 
   constructor(props) {
@@ -365,9 +370,8 @@ class ProductDisplayItemMain extends React.Component {
     const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
     const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
     const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
-    const featuredProductAttribute = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return {
-      featuredProductAttribute, productImage, productDescriptionValue, productTitle,
+      productImage, productDescriptionValue, productTitle,
     };
   }
 
@@ -513,13 +517,14 @@ class ProductDisplayItemMain extends React.Component {
     const {
       productData, addToCartFailedMessage, isLoading, itemQuantity,
     } = this.state;
+    const { featuredProductAttribute } = this.props;
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
 
       const { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
 
       const {
-        featuredProductAttribute, productImage, productDescriptionValue, productTitle,
+        productImage, productDescriptionValue, productTitle,
       } = this.extractProductDetails(productData);
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');
@@ -531,7 +536,7 @@ class ProductDisplayItemMain extends React.Component {
             <div className="itemdetail-assets">
               <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
                 <div className="itemdetail-asset-container">
-                  {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
+                  {(featuredProductAttribute)
                     ? (
                       <div className="featured">
                         {intl.get('featured')}

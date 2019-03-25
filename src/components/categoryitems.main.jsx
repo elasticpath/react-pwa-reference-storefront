@@ -26,6 +26,7 @@ import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
 import ProductListMain from './productlist.main';
 import SearchFacetNavigationMain from './searchfacetnavigation.main';
+import FeaturedProducts from './featuredproducts.main';
 import ProductListPagination from './productlistpagination.main';
 import ProductListLoadMore from './productlistloadmore';
 
@@ -58,6 +59,7 @@ class CategoryItemsMain extends React.Component {
 
   getCategoryData(categoryProps) {
     this.setState({ isLoading: true });
+    const { categoryModel } = this.state;
     let categoryId = categoryProps.match.params;
     let categoryUrl = '';
     if (!categoryId['0'] || categoryId['0'] === undefined) {
@@ -81,10 +83,14 @@ class CategoryItemsMain extends React.Component {
             if (categoryUrl !== '') {
               navigationLookup(categoryUrl)
                 .then((res) => {
-                  this.setState({
+                  const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
+                  this.setState(prevState => ({
+                    categoryModel: {
+                      ...prevState.categoryModel,
+                      [productNode]: [res],
+                    },
                     isLoading: false,
-                    categoryModel: res,
-                  });
+                  }));
                 });
             } else {
               this.setState({
@@ -100,7 +106,14 @@ class CategoryItemsMain extends React.Component {
   }
 
   handleProductsChange(products) {
-    this.setState({ categoryModel: products });
+    const { categoryModel } = this.state;
+    const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
+    this.setState(prevState => ({
+      categoryModel: {
+        ...prevState.categoryModel,
+        [productNode]: [products],
+      },
+    }));
   }
 
   render() {
@@ -108,10 +121,14 @@ class CategoryItemsMain extends React.Component {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName,
     } = this.state;
     let products = '';
+    let featuredOffers = {};
     if (categoryModel._offers) {
       [products] = categoryModel._offers;
     } else {
       products = categoryModel._items ? categoryModel._items[0] : categoryModel;
+    }
+    if (categoryModel._featuredoffers) {
+      [featuredOffers] = categoryModel._featuredoffers;
     }
     const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
     const categoryModelIdString = categoryModelId;
@@ -134,20 +151,21 @@ class CategoryItemsMain extends React.Component {
 
             return (
               <div>
-                <div className="menu-history">
-                  {categoryModelParentDisplayName}
-                  {categoryModelParentDisplayName && (
-                  <span className="arrow">
-                    &nbsp;﹥&nbsp;
-                  </span>
-                  )}
-                  {categoryModelDisplayName}
-                  <h1 className="category-title">
-                    {categoryModelDisplayName}
-                  </h1>
-                </div>
                 <SearchFacetNavigationMain productData={products} titleString={categoryModelIdString} />
                 <div className="products-container">
+                  <div className="menu-history">
+                    {categoryModelParentDisplayName}
+                    {categoryModelParentDisplayName && (
+                      <span className="arrow">
+                      &nbsp;﹥&nbsp;
+                      </span>
+                    )}
+                    {categoryModelDisplayName}
+                    <h1 className="category-title">
+                      {categoryModelDisplayName}
+                    </h1>
+                  </div>
+                  <FeaturedProducts productData={featuredOffers} />
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
                   <ProductListMain productData={products} />
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />

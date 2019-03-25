@@ -46,12 +46,14 @@ class CartLineItem extends React.Component {
     handleErrorMessage: PropTypes.func,
     hideRemoveButton: PropTypes.bool,
     itemQuantity: PropTypes.number,
+    featuredProductAttribute: PropTypes.bool,
   }
 
   static defaultProps = {
     handleErrorMessage: () => { },
     hideRemoveButton: false,
     itemQuantity: 1,
+    featuredProductAttribute: false,
   }
 
   constructor(props) {
@@ -373,7 +375,7 @@ class CartLineItem extends React.Component {
   }
 
   render() {
-    const { item, hideRemoveButton } = this.props;
+    const { item, hideRemoveButton, featuredProductAttribute } = this.props;
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
     let availability = (itemAvailability[0].state === 'AVAILABLE');
@@ -405,11 +407,10 @@ class CartLineItem extends React.Component {
     if (item._definition) {
       itemDisplayName = item._definition[0]['display-name'];
     }
-    const featuredProductAttribute = (item._item && item._item[0]._definition[0].details) ? (item._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Featured')) : '';
     return (
       <div id={`cart_lineitem_${itemCodeString}`} className="cart-lineitem-row">
         <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
-          {(featuredProductAttribute !== undefined && featuredProductAttribute !== '')
+          {(featuredProductAttribute)
             ? (
               <div className="featured">
                 {intl.get('featured')}
