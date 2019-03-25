@@ -44,6 +44,7 @@ const zoomArray = [
   'defaultprofile:paymentmethods',
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
+  'passwordresetform',
 ];
 
 class ChangePasswordForm extends React.Component {
@@ -60,6 +61,7 @@ class ChangePasswordForm extends React.Component {
       newPasswordConfirmed: '',
       failedSubmit: false,
       email: '',
+      passwordResetUri: '',
     };
     this.setOldPassword = this.setOldPassword.bind(this);
     this.setNewPassword = this.setNewPassword.bind(this);
@@ -97,28 +99,30 @@ class ChangePasswordForm extends React.Component {
   submitNewPassword(event) {
     event.preventDefault();
     const {
-      oldPassword, newPassword, newPasswordConfirmed, email,
+      oldPassword, newPassword, newPasswordConfirmed, email, passwordResetUri,
     } = this.state;
     if (!oldPassword || !newPassword || !newPasswordConfirmed) {
       this.setState({ failedSubmit: true });
     }
-    login()
-      .then((response) => {
-        cortexFetch(`/passwords/${Config.cortexApi.scope}/reset/form/?zoom=resetpasswordaction`, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({ 'user-id': email }),
+    if (passwordResetUri) {
+      login()
+        .then((response) => {
+          cortexFetch(`${passwordResetUri}/?zoom=resetpasswordaction`, {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+            body: JSON.stringify({ 'user-id': email }),
+          })
+            .then(() => {});
+          return response;
         })
-          .then(() => {});
-        return response;
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    }
   }
 
   fetchProfileData() {
@@ -132,6 +136,9 @@ class ChangePasswordForm extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
+          if (res && res._passwordresetform) {
+            this.setState({ passwordResetUri: res._passwordresetform[0].self.uri });
+          }
           if (res && res._defaultprofile) {
             this.setState({ email: res._defaultprofile[0]._emails[0]._element[0].email });
           }
