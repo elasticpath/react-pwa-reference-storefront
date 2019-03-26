@@ -36,7 +36,7 @@ deb-src http://deb.debian.org/debian/ jessie main \n\
 deb http://security.debian.org/ jessie/updates main \n\
 deb-src http://security.debian.org/ jessie/updates main \n\
 deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main \n\
-deb-src [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
+deb-src [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list
 
 RUN cat /etc/apt/sources.list
 
