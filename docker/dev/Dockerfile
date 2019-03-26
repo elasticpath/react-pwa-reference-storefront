@@ -31,7 +31,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN deb http://archive.debian.org/debian jessie-backports main
+RUN echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 
 RUN apt-get clean
 
