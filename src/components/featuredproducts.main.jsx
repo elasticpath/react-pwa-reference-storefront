@@ -37,12 +37,28 @@ class FeaturedProducts extends React.Component {
     const { productData } = this.props;
     this.state = {
       categoryModel: productData,
+      slidesOnPage: 4,
     };
+  }
+
+  componentDidMount() {
+    this.updateDimensions();
+    window.addEventListener('resize', this.updateDimensions.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
     const { productData } = nextProps;
     this.setState({ categoryModel: productData });
+  }
+
+  updateDimensions() {
+    if (window.innerWidth <= 1091 && window.innerWidth > 767) {
+      this.setState({ slidesOnPage: 3 });
+    } else if (window.innerWidth <= 767) {
+      this.setState({ slidesOnPage: 2 });
+    } else {
+      this.setState({ slidesOnPage: 4 });
+    }
   }
 
   renderFeaturedProducts() {
@@ -68,11 +84,11 @@ class FeaturedProducts extends React.Component {
 
   render() {
     const {
-      categoryModel,
+      categoryModel, slidesOnPage,
     } = this.state;
     const settings = {
       dots: true,
-      infinite: (categoryModel._element && categoryModel._element.length > 4),
+      infinite: false,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
@@ -95,6 +111,11 @@ class FeaturedProducts extends React.Component {
       ],
     };
     if (categoryModel._element && categoryModel._element.length > 0) {
+      const additionalSlides = categoryModel._element.length > slidesOnPage ? (slidesOnPage - (categoryModel._element.length % slidesOnPage)) : 0;
+      const additionalSlidesArr = [];
+      for (let i = 1; i <= additionalSlides; i++) {
+        additionalSlidesArr.push(i);
+      }
       return (
         <div>
           <div className="featured-products-title">
@@ -130,6 +151,7 @@ class FeaturedProducts extends React.Component {
             <div className="product-image-carousel">
               <Slider {...settings}>
                 {this.renderFeaturedProducts()}
+                {additionalSlidesArr.map(el => <li key={el} />)}
               </Slider>
             </div>
           </div>
