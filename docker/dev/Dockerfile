@@ -40,11 +40,8 @@ deb-src [check-valid-until=no] http://archive.debian.org/debian jessie-backports
 
 RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
 
-RUN cat /etc/apt/sources.list
-
-RUN apt-get clean
-
-RUN apt-get update && \
+RUN apt-get clean && \
+apt-get update && \
 apt-get install -yq gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
