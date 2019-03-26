@@ -31,6 +31,8 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
+RUN deb http://archive.debian.org/debian jessie-backports main
+
 RUN apt-get clean
 
 RUN apt-get update && \
