@@ -38,7 +38,7 @@ deb-src http://security.debian.org/ jessie/updates main \n\
 deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main \n\
 deb-src [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list
 
-RUN echo 'Acquire::Check-Valid-Until "false";' | sudo tee /etc/apt/apt.conf.d/90ignore-release-date
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/90ignore-release-date
 
 RUN cat /etc/apt/sources.list
 
