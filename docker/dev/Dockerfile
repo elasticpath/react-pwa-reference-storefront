@@ -38,6 +38,8 @@ deb-src http://security.debian.org/ jessie/updates main \n\
 deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main \n\
 deb-src [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 
+RUN cat /etc/apt/sources.list
+
 RUN apt-get clean
 
 RUN apt-get update && \
