@@ -27,6 +27,7 @@ import AppHeaderLoginMain from './appheaderlogin.main';
 import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
 import AppHeaderTop from './appheadertop.main';
+import BulkOrder from './bulkorder.main';
 import headerLogo from '../images/site-images/Company-Logo-v1.png';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
@@ -166,6 +167,9 @@ class AppHeaderMain extends React.Component {
               </Link>
             </div>
           )}
+          <div className="cart-link-container">
+            <BulkOrder />
+          </div>
 
           <div className="toggle-btn-container">
             {(isInStandaloneMode) ? (
