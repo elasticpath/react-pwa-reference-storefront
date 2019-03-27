@@ -51,6 +51,7 @@ const zoomArray = [
   'defaultprofile:paymentmethods',
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
+  'passwordresetform',
 ];
 
 class ProfilePage extends React.Component {
@@ -63,6 +64,7 @@ class ProfilePage extends React.Component {
     this.state = {
       profileData: undefined,
       invalidPermission: false,
+      showResetPasswordButton: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.changePassword = this.changePassword.bind(this);
@@ -96,6 +98,9 @@ class ProfilePage extends React.Component {
               invalidPermission: true,
             });
           }
+          if (res && res._passwordresetform) {
+            this.setState({ showResetPasswordButton: true });
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -124,7 +129,7 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    const { profileData } = this.state;
+    const { profileData, showResetPasswordButton } = this.state;
     return (
       <div>
         <div className="container profile-container">
@@ -137,9 +142,11 @@ class ProfilePage extends React.Component {
             <div>
               <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
               <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+              {showResetPasswordButton && (
               <div className="personal-information-container">
                 <button className="ep-btn primary change-password-btn wide" type="button" onClick={this.changePassword}>Reset Password</button>
               </div>
+              )}
               {(profileData._purchases) ? (
                 <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
               ) : ('')}
