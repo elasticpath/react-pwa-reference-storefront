@@ -24,6 +24,16 @@ import intl from 'react-intl-universal';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import './ResetPasswordPage.less';
+import { login } from '../utils/AuthService';
+import { cortexFetch } from '../utils/Cortex';
+
+const Config = require('Config');
+
+// Array of zoom parameters to pass to Cortex
+
+const zoomArray = [
+  'passwordresetform',
+];
 
 class ResetPasswordForm extends React.Component {
   static propTypes = {
@@ -35,20 +45,70 @@ class ResetPasswordForm extends React.Component {
     this.state = {
       emailReset: '',
       failedSubmit: false,
+      passwordResetUri: '',
     };
     this.setEmailReset = this.setEmailReset.bind(this);
     this.submitResetEmail = this.submitResetEmail.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchPasswordResetData();
   }
 
   setEmailReset(event) {
     this.setState({ emailReset: event.target.value });
   }
 
+  fetchPasswordResetData() {
+    login().then(() => {
+      cortexFetch(`/?zoom=${zoomArray.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          if (res && res._passwordresetform) {
+            this.setState({ passwordResetUri: res._passwordresetform[0].self.uri });
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
   submitResetEmail(event) {
     event.preventDefault();
-    const { emailReset } = this.state;
-    if (!emailReset) {
+    const { emailReset, passwordResetUri } = this.state;
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailReset);
+    if (!emailReset || !isValid) {
       this.setState({ failedSubmit: true });
+    } else {
+      this.setState({ failedSubmit: false });
+      if (passwordResetUri) {
+        login()
+          .then((response) => {
+            cortexFetch(`${passwordResetUri}/?zoom=resetpasswordaction`, {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+              body: JSON.stringify({ 'user-id': emailReset }),
+            })
+              .then(() => {
+              });
+            return response;
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      }
     }
   }
 
@@ -67,7 +127,7 @@ class ResetPasswordForm extends React.Component {
           {intl.get('reset-password')}
         </div>
         <div className="feedback-label feedback-container">
-          {failedSubmit ? intl.get('failed-to-save-message') : ''}
+          {failedSubmit ? intl.get('incorect-email') : ''}
         </div>
         <form className="form-horizontal" onSubmit={this.submitResetEmail}>
           <div className="form-group">
@@ -77,7 +137,7 @@ class ResetPasswordForm extends React.Component {
               <p>
                 {intl.get('reset-email-txt')}
               </p>
-              <input id="email_reset" name="EmailReset" className="form-control" type="email" value={emailReset} onChange={this.setOldPassword} />
+              <input id="email_reset" name="EmailReset" className="form-control" type="email" value={emailReset} onChange={this.setEmailReset} />
             </div>
           </div>
           <div className="form-group">
