@@ -83,11 +83,8 @@ class FeaturedProducts extends React.Component {
   }
 
   render() {
-    const {
-      categoryModel, slidesOnPage,
-    } = this.state;
+    const { categoryModel } = this.state;
     const settings = {
-      dots: true,
       infinite: false,
       speed: 500,
       slidesToShow: 4,
@@ -106,16 +103,12 @@ class FeaturedProducts extends React.Component {
             slidesToShow: 2,
             slidesToScroll: 2,
             arrows: false,
+            dots: true,
           },
         },
       ],
     };
     if (categoryModel._element && categoryModel._element.length > 0) {
-      const additionalSlides = categoryModel._element.length > slidesOnPage ? (slidesOnPage - (categoryModel._element.length % slidesOnPage)) : 0;
-      const additionalSlidesArr = [];
-      for (let i = 1; i <= additionalSlides; i++) {
-        additionalSlidesArr.push(i);
-      }
       return (
         <div>
           <div className="featured-products-title">
@@ -151,7 +144,6 @@ class FeaturedProducts extends React.Component {
             <div className="product-image-carousel">
               <Slider {...settings}>
                 {this.renderFeaturedProducts()}
-                {additionalSlidesArr.map(el => <li key={el} />)}
               </Slider>
             </div>
           </div>
