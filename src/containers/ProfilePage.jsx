@@ -21,6 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { login } from '../utils/AuthService';
 import ProfileInfoMain from '../components/profileInfo.main';
 import ProfileemailinfoMain from '../components/profileemailinfo.main';
@@ -50,16 +51,23 @@ const zoomArray = [
   'defaultprofile:paymentmethods',
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
+  'passwordresetform',
 ];
 
 class ProfilePage extends React.Component {
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       profileData: undefined,
       invalidPermission: false,
+      showResetPasswordButton: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
+    this.changePassword = this.changePassword.bind(this);
   }
 
   componentDidMount() {
@@ -90,6 +98,9 @@ class ProfilePage extends React.Component {
               invalidPermission: true,
             });
           }
+          if (res && res._passwordresetform) {
+            this.setState({ showResetPasswordButton: true });
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -112,8 +123,13 @@ class ProfilePage extends React.Component {
     );
   }
 
+  changePassword() {
+    const { history } = this.props;
+    history.push('/password_change', { returnPage: '/profile' });
+  }
+
   render() {
-    const { profileData } = this.state;
+    const { profileData, showResetPasswordButton } = this.state;
     return (
       <div>
         <div className="container profile-container">
@@ -126,6 +142,11 @@ class ProfilePage extends React.Component {
             <div>
               <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
               <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+              {showResetPasswordButton && (
+              <div className="personal-information-container">
+                <button className="ep-btn primary change-password-btn wide" type="button" onClick={this.changePassword}>Reset Password</button>
+              </div>
+              )}
               {(profileData._purchases) ? (
                 <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
               ) : ('')}

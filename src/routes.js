@@ -42,6 +42,8 @@ import WishListsPage from './containers/WishListsPage';
 import ShippingReturnsPage from './containers/ShippingReturns';
 import ProductsComparePage from './containers/ProductsComparePage';
 import WriteReview from './containers/WriteReviewPage';
+import ChangePasswordForm from './containers/ChangePasswordPage';
+import ResetPasswordForm from './containers/ResetPasswordPage';
 
 const router = [{
   path: '/',
@@ -128,6 +130,12 @@ const router = [{
   path: '/write-a-review',
   component: WriteReview,
 
+}, {
+  path: '/password_change',
+  component: ChangePasswordForm,
+}, {
+  path: '/password_reset',
+  component: ResetPasswordForm,
 }];
 
 export default router;

@@ -213,6 +213,14 @@
   "gdpr-label": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "incorect-sku": "Incorect SKU",
   "no-divisions-found": "Sorry, you do not have any available shopping privileges.",
+  "old-password": "Old password",
+  "new-password": "New password",
+  "confirm-new-password": "Confirm new password",
+  "change-password": "Change password",
+  "reset-password": "Reset your password",
+  "reset-email-txt": "Enter your email address and we will send you a link to reset your password.",
+  "reset-email": "Send password reset email",
   "viewing": "Viewing",
-  "featured-products": "featured products"
+  "featured-products": "featured products",
+  "incorect-email": "Please enter valid email"
 }
