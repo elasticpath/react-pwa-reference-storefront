@@ -37,28 +37,12 @@ class FeaturedProducts extends React.Component {
     const { productData } = this.props;
     this.state = {
       categoryModel: productData,
-      slidesOnPage: 4,
     };
-  }
-
-  componentDidMount() {
-    this.updateDimensions();
-    window.addEventListener('resize', this.updateDimensions.bind(this));
   }
 
   componentWillReceiveProps(nextProps) {
     const { productData } = nextProps;
     this.setState({ categoryModel: productData });
-  }
-
-  updateDimensions() {
-    if (window.innerWidth <= 1091 && window.innerWidth > 767) {
-      this.setState({ slidesOnPage: 3 });
-    } else if (window.innerWidth <= 767) {
-      this.setState({ slidesOnPage: 2 });
-    } else {
-      this.setState({ slidesOnPage: 4 });
-    }
   }
 
   renderFeaturedProducts() {
