@@ -138,7 +138,7 @@ class ProductDisplayItemMain extends React.Component {
     const { productId } = this.props;
     login().then(() => {
       cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId)
+        .then(() => itemLookup(productId, false)
           .then((res) => {
             if (Config.arKit.enable) {
               this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
