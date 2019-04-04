@@ -23,10 +23,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import QuickOrderMain from './quickorder.main';
+import ReorderMain from './reorder.main';
 import PaymentMethodContainer from './paymentmethod.container';
 import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
 import './purchasedetails.main.less';
+
+const Config = require('Config');
 
 const PurchaseDetailsMain = (props) => {
   const { data } = props;
@@ -231,6 +234,11 @@ const PurchaseDetailsMain = (props) => {
     );
   };
 
+  const canReorder = (items) => {
+    const isReorder = items.find(item => item._item);
+    return isReorder && Config.b2b.enable;
+  };
+
   return (
     <div data-region="purchaseInformationRegion" style={{ display: 'block' }}>
       <div className="purchase-information-container container">
@@ -314,6 +322,9 @@ const PurchaseDetailsMain = (props) => {
           </ul>
         </div>
       </div>
+      {(canReorder(data._lineitems[0]._element)) ? (
+        <ReorderMain productsData={data} />
+      ) : ('')}
     </div>
   );
 };
