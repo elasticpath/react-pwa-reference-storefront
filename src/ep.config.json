@@ -83,5 +83,10 @@
     "api_key": "",
     "merchant_group_id": "",
     "merchant_id": ""
+  },
+  "formatQueryParameter": {
+    "standardlinks": true,
+    "noself": true,
+    "nodatalinks": true
   }
 }
