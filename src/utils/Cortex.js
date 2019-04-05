@@ -44,7 +44,7 @@ export function cortexFetch(input, init) {
     queryFormat = `${queryCharacter}format=${standardlinks}${noself}${nodatalinks}`;
   }
 
-  return fetch(`${Config.cortexApi.path + input + queryFormat}`, requestInit)
+  return fetch(`${Config.cortexApi.path}${input}${queryFormat}`, requestInit)
     .then((res) => {
       if (res.status >= 500) {
         if (window.location.href.indexOf('/maintenance') === -1) {
