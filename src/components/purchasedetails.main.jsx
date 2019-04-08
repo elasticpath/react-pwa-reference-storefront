@@ -219,14 +219,12 @@ const PurchaseDetailsMain = (props) => {
                 </span>
               </td>
             </tr>
-            {(purchaseItem._item) ? (
-              <tr>
-                <QuickOrderMain isBuyItAgain productData={purchaseItem._item[0]} />
-              </tr>
-            ) : ('')
-            }
           </tbody>
         </table>
+        {(purchaseItem._item) ? (
+          <QuickOrderMain isBuyItAgain productData={purchaseItem._item[0]} />
+        ) : ('')
+        }
       </li>
     );
   };

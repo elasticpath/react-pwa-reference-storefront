@@ -85,8 +85,8 @@
     "merchant_id": ""
   },
   "formatQueryParameter": {
-    "standardlinks": true,
-    "noself": true,
+    "standardlinks": false,
+    "noself": false,
     "nodatalinks": true
   }
 }

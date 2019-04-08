@@ -99,7 +99,7 @@ class ProductListPagination extends React.Component {
       paginationData, paginationNextLink, paginationPreviousLink, searchUrl,
     } = this.state;
     const { isTop, titleString } = this.props;
-    if (paginationData.links.length > 0) {
+    if (paginationData.pagination) {
       const urlPrefix = (searchUrl) ? ('search') : ('category');
       return (
         <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
