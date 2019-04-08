@@ -167,7 +167,6 @@ describe('Profile', () => {
     await page.waitForSelector(CHECKING_FIRST_NAME);
     const element = await page.$(CHECKING_FIRST_NAME);
     const text = await page.evaluate(el => el.textContent, element);
-    await page.waitForSelector(EDIT_PERSONAL_INFO_BUTTON);
 
     await browser.close();
   }, 50000);
