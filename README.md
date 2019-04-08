@@ -93,6 +93,9 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`PowerReviews.api_key`| Optional| String| The PowerReviews API Key used to connect the PowerReviews component.|
 |`PowerReviews.merchant_group_id`| Optional| String| The PowerReviews Merchant Group Identifier used to connect the PowerReviews component.|
 |`PowerReviews.merchant_id`| Optional| String| The PowerReviews Merchant Identifier used to connect the PowerReviews component.|
+|`formatQueryParameter.standardlinks`| Optional| String| The configuration passed to Cortex to request standard and slimmer links without uri and rev. Use this parameter to get smaller zoom responses. The storefront may behave different than usual with this enabled. |
+|`formatQueryParameter.noself`| Optional| String| The configuration passed to Cortex to omit self in zoomed resources. The storefront may behave different than usual with this enabled. |
+|`formatQueryParameter.nodatalinks`| Optional| String| The configuration passed to Cortex to request standard and slimmer links without data. Use this parameter to get smaller zoom responses. The storefront may behave different than usual with this enabled. |
 
 ### Configuring Sample Data
 

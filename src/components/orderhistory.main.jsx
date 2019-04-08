@@ -42,7 +42,7 @@ class OrderHistoryMain extends React.Component {
     const {
       purchases,
     } = this.state;
-    if (purchases.links && purchases.links.length > 0) {
+    if (purchases.links && purchases._element) {
       return (
         <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
           <div className="table-responsive">
