@@ -27,8 +27,8 @@ import AppHeaderLoginMain from './appheaderlogin.main';
 import AppHeaderLocaleMain from './appheaderlocale.main';
 import AppHeaderNavigationMain from './appheadernavigation.main';
 import AppHeaderTop from './appheadertop.main';
-import BulkOrder from './bulkorder.main';
-import headerLogo from '../images/site-images/Company-Logo-v1.png';
+import BulkOrderMain from './bulkorder.main';
+import headerLogo from '../images/site-images/Company-Logo-v2.png';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 
@@ -36,11 +36,12 @@ import './appheader.main.less';
 
 const Config = require('Config');
 
-const headerLogoFileName = 'Company-Logo-v1.png';
+// const headerLogoFileName = 'Company-Logo-v2.png';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
   'defaultcart',
+  'defaultcart:additemstocartform',
 ];
 
 class AppHeaderMain extends React.Component {
@@ -55,7 +56,10 @@ class AppHeaderMain extends React.Component {
       isLoading: false,
       isOffline: false,
       isSearchFocused: false,
+      isBulkModalOpened: false,
     };
+
+    this.handleBulkModalClose = this.handleBulkModalClose.bind(this);
   }
 
   componentDidMount() {
@@ -102,9 +106,22 @@ class AppHeaderMain extends React.Component {
     });
   }
 
+  openModal() {
+    const { isBulkModalOpened } = this.state;
+    this.setState({
+      isBulkModalOpened: !isBulkModalOpened,
+    });
+  }
+
+  handleBulkModalClose() {
+    this.setState({
+      isBulkModalOpened: false,
+    });
+  }
+
   render() {
     const {
-      isOffline, cartData, isLoading, isSearchFocused,
+      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened,
     } = this.state;
     const availability = Boolean(cartData);
     const isInStandaloneMode = window.navigator.standalone;
@@ -120,7 +137,7 @@ class AppHeaderMain extends React.Component {
               <img
                 className="logo-image"
                 alt="Header logo"
-                src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)}
+                src="../images/site-images/Company-Logo-v2.png"
                 onError={(e) => { e.target.src = headerLogo; }}
               />
             </Link>
@@ -132,43 +149,45 @@ class AppHeaderMain extends React.Component {
             </div>
           </div>
 
-          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
-            <div className="search-container">
-              <AppHeaderSearchMain isMobileView={false} />
+          <div className="icons-header-container">
+            {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
+              <div className="search-container">
+                <AppHeaderSearchMain isMobileView={false} />
+              </div>
+            )}
+            <div className="search-toggle-btn-container">
+              <button
+                className="search-toggle-btn"
+                type="button"
+                data-toggle="collapse"
+                data-target=".collapsable-container"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                onClick={this.handleInputFocus}
+              >
+                <div className="search-icon" />
+              </button>
             </div>
-          )}
-          <div className="search-toggle-btn-container">
-            <button
-              className="search-toggle-btn"
-              type="button"
-              data-toggle="collapse"
-              data-target=".collapsable-container"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              onClick={this.handleInputFocus}
-            >
-              <div className="search-icon" />
-            </button>
+
+            {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected && availability)) && (
+              <div className="cart-link-container">
+                <Link className="cart-link" to="/mybag">
+                  {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                    <span className="cart-link-counter">
+                      {cartData['total-quantity']}
+                    </span>
+                  )}
+                  {intl.get('shopping-bag-nav')}
+                </Link>
+              </div>
+            )}
+            <div className="bulk-container">
+              <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
+            </div>
           </div>
 
           <div className="login-container">
             <AppHeaderLoginMain isMobileView={false} permission={availability} />
-          </div>
-
-          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected && availability)) && (
-            <div className="cart-link-container">
-              <Link className="cart-link" to="/mybag">
-                {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
-                  <span className="cart-link-counter">
-                    {cartData['total-quantity']}
-                  </span>
-                )}
-                {intl.get('shopping-bag-nav')}
-              </Link>
-            </div>
-          )}
-          <div className="cart-link-container">
-            <BulkOrder />
           </div>
 
           <div className="toggle-btn-container">
@@ -189,7 +208,7 @@ class AppHeaderMain extends React.Component {
               <span className="icon glyphicon glyphicon-align-justify" />
             </button>
           </div>
-
+          <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} />
         </div>
 
         <div className="collapsable-container collapse collapsed">

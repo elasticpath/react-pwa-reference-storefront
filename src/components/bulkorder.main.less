@@ -1,16 +1,176 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.hideModal{
+  display: none;
+}
 
 .bulk-order-component {
-  border: 1px solid #f00;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 460px;
+  border-bottom: 0;
+
+  .bulk-order-close-button{
+    background: #ffffff url(../images/header-icons/baseline_close_black_22dp.png) no-repeat 0px;
+    width: 70px;
+    height: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 20;
+    cursor:pointer;
+
+    .bulk-order-hide{
+      padding-left: 25px;
+      padding-top: 3px;
+      font-size: 16px;
+      color: #333333;
+    }
+  }
 
   .bulk-modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 1000px;
-    height: 800px;
+    position: relative;
     background-color: #fff;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
-    padding: 40px;
+    box-shadow: 1px 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 20px 0 10px 20px;
     z-index: 10;
+
+    p {
+      color: black;
+      padding: 0;
+      margin-top:0;
+      border:none;
+    }
+
+    .tab-content{
+      padding-top:10px;
+
+      .tab-pane{
+        max-height: ~'calc(100vh - 255px)';
+        overflow-y: auto;
+        padding-right: 20px;
+
+        p{
+          font-size: small;
+        }
+
+        .bulk-text-area-title{
+          color: gray;
+        }
+
+        .tab-bulk-order{
+          margin-top: 15px;
+        }
+
+        .bulk-csv{
+          width: 100%;
+          min-height: 300px;
+          border: 1px solid @mainGrey;
+          border-radius: 6px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .itemdetail-tabs {
+      &-wrap {
+        margin-top: 30px;
+      }
+
+      .nav-item {
+        margin-bottom: 0;
+      }
+
+      .nav-item {
+        .nav-link {
+          padding: 5px 20px;
+          font-size: 16px;
+          color: #333;
+
+          &:hover {
+            border-color: transparent;
+            color: @mainTextColor;
+          }
+
+          &.active {
+            color: @mainTextColor;
+            font-weight: bold;
+            border-bottom: 3px solid #0099DE;
+          }
+
+          &.disabled {
+            cursor: default;
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+
+  .btn-itemdetail-addtocart {
+    padding: 2px 25px;
+    text-transform: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: @tabletWidth - 1px) {
+  .bulk-order-component {
+    .bulk-modal .tab-content .tab-pane {
+      max-height: ~'calc(100vh - 180px)';
+    }
+
+    .bulk-modal .tab-content .tab-pane .bulk-csv {
+      margin-bottom: 90px;
+    }
+  }
+}
+
+@media (max-width: @mobileWidth - 1px) {
+  .bulk-order-component {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+
+    .bulk-modal .tab-content .tab-pane {
+      max-height: ~'calc(100vh - 120px)';
+      padding-right: 20px;
+
+      .bulk-csv {
+        margin-bottom: 105px;
+      }
+    }
+
+    .bulk-order-close-button {
+      width:25px;
+
+      .bulk-order-hide {
+        display: none;
+      }
+    }
   }
 }

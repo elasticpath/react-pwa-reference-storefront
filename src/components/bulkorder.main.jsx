@@ -20,129 +20,161 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
+import PropTypes from 'prop-types';
+import { login } from '../utils/AuthService';
+import QuickOrderForm from './quickorderform';
+import { cortexFetch } from '../utils/Cortex';
 
 import './bulkorder.main.less';
 
 const Config = require('Config');
 
-class TextEdit extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: props.value || '',
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value });
-    }
-  }
-
-  handleChange(newValue) {
-    this.setState({ value: newValue });
-  }
-
-  handleBlur() {
-    if (this.props.value !== this.state.value && this.props.onUpdate) {
-      this.props.onUpdate(this.state.value);
-    }
-  }
-
-  render() {
-    return (
-      <input
-        value={this.state.value}
-        onChange={e => this.handleChange(e.target.value)}
-        onBlur={() => this.handleBlur()}
-      />
-    );
-  }
-}
-
 export class BulkOrder extends React.Component {
+  static propTypes = {
+    cartData: PropTypes.objectOf(PropTypes.any).isRequired,
+    isBulkModalOpened: PropTypes.bool.isRequired,
+    handleClose: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
+    const defaultItem = { code: '', quantity: 1, product: {} };
+    const defaultItemsCount = 10;
 
     this.state = {
-      items: [
-        { sku: 'asd', quantity: 1 },
-        { sku: 'qwe', quantity: 1 },
-        { sku: 'zxc', quantity: 2 },
-      ],
-      freeItemSku: '',
-      freeItemQty: 1,
+      items: Array(defaultItemsCount).fill(defaultItem),
+      bulkOrderItems: {},
+      defaultItemsCount,
+      defaultItem,
       csvText: '',
     };
+    this.addAllToCart = this.addAllToCart.bind(this);
+    this.quickFormSubmit = this.quickFormSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.updateCsvText();
-  }
-
-  updateCsvText() {
-    this.setState({ csvText: this.state.items.map(item => `${item.sku}   ${item.quantity}`).join('\n') });
+  addAllToCart(orderItems) {
+    const { cartData } = this.props;
+    const { defaultItemsCount, defaultItem } = this.state;
+    const arrayItems = orderItems
+      .filter(item => item.code !== '')
+      .map(item => ({ code: item.code, quantity: item.quantity }));
+    login().then(() => {
+      const addToCartLink = cartData._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
+      const body = {};
+      if (arrayItems) {
+        body.items = arrayItems;
+      }
+      cortexFetch(addToCartLink.uri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(body),
+        })
+        .then(() => {
+          this.setState({
+            items: Array(defaultItemsCount).fill(defaultItem),
+            csvText: '',
+          });
+        })
+        .catch((error) => {
+          console.error(error.message);
+        });
+    });
   }
 
   parseCsvText() {
-    const items = this.state.csvText
+    const { csvText } = this.state;
+    const bulkOrderItems = csvText
       .split('\n')
       .filter(l => l.trim().length)
       .map(l => l.split(/[ ,;]+/))
-      .map(p => ({ sku: p[0] || '', quantity: isNaN(parseInt(p[1])) ? 1 : parseInt(p[1])}));
-
-    this.setState({ items });
-  }
-
-  handleUpdateSku(item, newSku) {
-    item.sku = newSku;
-    this.setState({ items: this.state.items }, () => this.updateCsvText());
-  }
-
-  handleQtyChange(item, newQty) {
-    item.quantity = newQty;
-    this.setState({ items: this.state.items }, () => this.updateCsvText());
-  }
-
-  handleFreeItemUpdateSku(newSku) {
-    const newItem = { sku: newSku, quantity: this.state.freeItemQty };
-    this.state.items.push(newItem);
-
-    this.setState({ items: this.state.items, freeItemSku: '', freeItemQty: 1 }, () => this.updateCsvText());
-  }
-
-  handleFreeItemQtyChange(newQty) {
-    this.setState({ freeItemQty: newQty });
+      // eslint-disable-next-line no-restricted-globals, radix
+      .map(p => ({ code: p[0] || '', quantity: isNaN(parseInt(p[1])) ? 1 : parseInt(p[1]) }));
+    this.setState({ bulkOrderItems });
   }
 
   handleCsvChange(newCsvValue) {
     this.setState({ csvText: newCsvValue }, () => this.parseCsvText());
   }
 
+  quickFormSubmit(updatedItem, index) {
+    const { defaultItem, items } = this.state;
+    const submittedItems = items.map((stateItem, i) => (index === i ? { ...stateItem, ...updatedItem } : stateItem));
+    const emptyItem = submittedItems.find(item => item.code === '');
+    if (!emptyItem) submittedItems.push(defaultItem);
+    this.setState({ items: submittedItems });
+  }
+
   render() {
-    const quantities = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(q => <option key={q} value={q}>{q}</option>);
+    const { isBulkModalOpened, handleClose } = this.props;
+    const {
+      items,
+      bulkOrderItems,
+      csvText,
+    } = this.state;
+
 
     return (
-      <div className="bulk-order-component">
+      <div className={`bulk-order-component ${(isBulkModalOpened === false) ? 'hideModal' : ''}`}>
+        <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
+          <p className="bulk-order-hide">{intl.get('hide')}</p>
+        </div>
         <div className="bulk-modal">
-          <div className="items-title">Items</div>
-          <div className="items-list">
-            {this.state.items.map(item => (
-              <div key={item.sku} className="bulk-item">
-                <TextEdit value={item.sku} onUpdate={(newSku) => this.handleUpdateSku(item, newSku)} />
-                <select value={item.quantity} onChange={e => this.handleQtyChange(item, e.target.value)}>{quantities}</select>
+          <p className="view-title">{intl.get('order-form')}</p>
+          <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
+            <li className="nav-item">
+              <a className="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quick-order" role="tab" aria-selected="true">
+                {intl.get('quick-order-title')}
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" id="bulk-order-tab" data-toggle="tab" href="#bulk-order" role="tab" aria-selected="false">
+                {intl.get('bulk-order-title')}
+              </a>
+            </li>
+          </ul>
+          <div className="tab-content">
+            <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick-order-tab">
+              <div className="form-content form-content-submit col-sm-offset-4">
+                <button
+                  className="ep-btn primary small btn-itemdetail-addtocart"
+                  id="product_display_item_add_to_cart_button"
+                  type="submit"
+                  onClick={() => { this.addAllToCart(items); }}
+                >
+                  {intl.get('add-all-to-cart')}
+                </button>
               </div>
-            ))}
-            <div className="bulk-item free-item">
-              <TextEdit value={this.state.freeItemSku} onUpdate={(newSku) => this.handleFreeItemUpdateSku(newSku)} />
-              <select value={this.state.freeItemQty} onChange={e => this.handleFreeItemQtyChange(e.target.value)}>{quantities}</select>
+              <div className="quickOrderRegion" data-region="quickOrderRegion">
+                {items.map((item, i) => (
+                  <QuickOrderForm item={item} index={i} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
+                ))}
+              </div>
+            </div>
+            <div className="tab-pane fade" id="bulk-order" role="tabpanel" aria-labelledby="bulk-order-tab">
+              <div className="form-content form-content-submit col-sm-offset-4">
+                <button
+                  className="ep-btn primary small btn-itemdetail-addtocart"
+                  id="product_display_item_add_to_cart_button"
+                  type="submit"
+                  onClick={() => { this.addAllToCart(bulkOrderItems); }}
+                >
+                  {intl.get('add-all-to-cart')}
+                </button>
+              </div>
+              <div className="tab-bulk-order" id="bulkOrderRegion" data-region="bulkOrderRegion">
+                <p>{intl.get('copy-and-paste-a-product-sku-and-quantity')}</p>
+                <p>{intl.get('item-#1-qty')}</p>
+                <p>{intl.get('item-#2-qty')}</p>
+                <p className="bulk-text-area-title"><b>{intl.get('copy-and-paste-in-input-below')}</b></p>
+                <textarea className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
+              </div>
             </div>
           </div>
-          <textarea className="bulk-csv" rows={5} value={this.state.csvText} onChange={e => this.handleCsvChange(e.target.value)}></textarea>
-          <code><pre>
-            {JSON.stringify(this.state, null, 2)}
-          </pre></code>
         </div>
       </div>
     );

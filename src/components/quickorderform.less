@@ -1,0 +1,279 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+.bulk-item-wrap{
+  .miniLoader {
+    border: 3px solid @complimentGrey;
+    border-top: 3px solid @complimentBlueColor;
+    width: 30px;
+    height: 30px !important;
+    margin-left: 86px;
+  }
+}
+
+.bulk-item {
+  display: flex;
+  align-items: flex-end;
+}
+.bulk-item-col {
+  display: inline-block;
+}
+
+.control-label {
+  height: 15px;
+  width: 100%;
+  margin: 10px 0 0;
+  color: #777777;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.input-group-btn {
+  width: 100px;
+  height: 34px;
+  border: solid 1px @mainGrey;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+
+  .quantity-right-plus,
+  .quantity-left-minus {
+    background-color: white;
+    border-radius: 0 !important;
+    overflow: hidden;
+    position: relative;
+    text-shadow: 1px 1px 1px #fff;
+    color: #666;
+    text-transform: none;
+    font-weight: normal;
+    float: right;
+    margin: 5px 0;
+    font-size: 12px;
+  }
+
+  .quantity-left-minus {
+    border-right: 0 !important;
+  }
+
+  .quantity-right-plus {
+    border-left: 0 !important;
+  }
+
+  .form-content-quantity {
+    width: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .form-control-quantity {
+      border: none;
+      display: block;
+      width: 40px;
+      height: 32px;
+      font-size: 16px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance:textfield;
+    }
+  }
+}
+
+.show-product {
+  display: inline-block;
+  margin-top:15px;
+  height: 60px;
+
+  .product-image{
+    width: 60px;
+    display: inline-block;
+    float: left;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .title-col{
+    vertical-align: top;
+    background: transparent;
+    padding-left: 15px;
+    font-weight: bold;
+    line-height: 19px;
+    overflow: hidden;
+
+    p{
+      color: #777777;
+      font-size: 14px;
+    }
+  }
+}
+
+.quick-order-sku-wrap {
+  flex-grow: 1;
+}
+
+.clear-field-btn {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #EEEEEE;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &.hide{
+    display:none;
+  }
+
+  &:before, &:after {
+    position: absolute;
+    left: 9px;
+    content: ' ';
+    height: 10px;
+    width: 3px;
+    background-color: white;
+    top: 5px;
+    cursor: pointer;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.sku-field-wrap {
+  width: 200px;
+
+  .form-horizontal {
+    position: relative;
+
+    input[type=text] {
+      padding-right:30px;
+      color: #333333;
+      font-size: 14px;
+      height: 34px;
+      width: 200px;
+      padding-left: 10px;
+      border: solid 1px #D4D3D3;
+      border-radius: 4px;
+      vertical-align: middle;
+      outline: 1px solid transparent;
+
+      &:active {
+        border: 1px solid rgba(0,153,222,0.12);
+        box-shadow: 1px 1px 2px 1px rgba(0,153,222,0.12);
+      }
+
+      &:focus {
+        border: 1px solid rgba(0,153,222,0.5);
+      }
+    }
+  }
+}
+
+.total-price-item{
+  min-width: 60px;
+  text-align: right;
+  display: inline-block;
+
+  p {
+    margin-bottom: 7px;
+  }
+}
+
+.btn-itemdetail-addtocart{
+  padding: 2px 25px;
+  text-transform: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.total-price{
+  float: right;
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}
+
+.total-price-title{
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.product-quantity-wrap {
+  max-width: 160px;
+  padding: 0 30px;
+}
+
+@media (max-width: @mobileWidth - 1px) {
+  .bulk-item-wrap{
+    .miniLoader {
+      border: 2px solid @complimentGrey;
+      border-top: 2px solid @complimentBlueColor;
+      width: 20px;
+      height: 20px !important;
+      margin-left: 76px;
+    }
+  }
+
+  .bulk-item {
+    position: relative;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .product-quantity-wrap {
+    width: 100%;
+    padding: 0;
+  }
+
+  .quick-order-sku-wrap {
+    width: 60%;
+  }
+
+  .bulk-item .total-price-item {
+    max-width: 40%;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    }
+}
