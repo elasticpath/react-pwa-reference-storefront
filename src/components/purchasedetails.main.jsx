@@ -29,8 +29,6 @@ import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
 import './purchasedetails.main.less';
 
-const Config = require('Config');
-
 const PurchaseDetailsMain = (props) => {
   const { data } = props;
   const { status } = data;
@@ -234,19 +232,21 @@ const PurchaseDetailsMain = (props) => {
     );
   };
 
-  const canReorder = (items) => {
-    const isReorder = items.find(item => item._item);
-    return isReorder && Config.b2b.enable;
-  };
+  const canReorder = items => items.find(item => item._item);
 
   return (
     <div data-region="purchaseInformationRegion" style={{ display: 'block' }}>
       <div className="purchase-information-container container">
         <div data-region="purchaseSummaryRegion" style={{ display: 'block' }}>
           <div>
-            <h3>
+            <h3 className="purchase-summary-title">
               {intl.get('summary')}
             </h3>
+            {(canReorder(data._lineitems[0]._element)) ? (
+              <div className="purchase-reorder">
+                <ReorderMain productsData={data} />
+              </div>
+            ) : ('')}
             <table className="table table-striped">
               <tbody>
                 <tr>
@@ -322,9 +322,6 @@ const PurchaseDetailsMain = (props) => {
           </ul>
         </div>
       </div>
-      {(canReorder(data._lineitems[0]._element)) ? (
-        <ReorderMain productsData={data} />
-      ) : ('')}
     </div>
   );
 };

@@ -1,8 +1,8 @@
 {
   "cortexApi": {
     "path": "/cortex",
-    "scope": "mobee",
-    "pathForProxy": "http://10.11.12.82:9080"
+    "scope": "vestri",
+    "pathForProxy": "http://localhost:9080"
   },
   "supportedLocales": [
     {
@@ -30,15 +30,15 @@
   "siteImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%fileName%",
   "enableOfflineMode": false,
   "b2b": {
-    "enable": true,
+    "enable": false,
     "authServiceAPI": {
       "path": "/admin",
-      "pathForProxy": "http://10.11.12.100:8080"
+      "pathForProxy": ""
     },
     "keycloak": {
-      "callbackUrl": "http://localhost:8080/",
-      "loginRedirectUrl": "http://10.11.12.100:8081/auth/realms/Commerce/protocol/openid-connect/auth",
-      "logoutRedirectUrl": "http://10.11.12.100:8081/auth/realms/Commerce/protocol/openid-connect/logout",
+      "callbackUrl": "",
+      "loginRedirectUrl": "",
+      "logoutRedirectUrl": "",
       "client_id": "reference-storefront"
     }
   },

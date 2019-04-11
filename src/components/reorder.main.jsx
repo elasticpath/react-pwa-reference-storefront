@@ -97,7 +97,7 @@ class ReorderMain extends React.Component {
             <button
               className="ep-btn reorder-btn"
               type="button"
-              onClick={() => { this.reorderAll(productsData._lineitems[0]._element); }}
+              onClick={() => { this.reorderAll(); }}
             >
               {intl.get('reorder')}
             </button>
