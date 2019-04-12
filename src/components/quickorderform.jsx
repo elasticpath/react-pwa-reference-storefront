@@ -46,6 +46,7 @@ class QuickOrderForm extends React.Component {
       quantity: 1,
       product: {},
       isLoading: false,
+      skuErrorMessage: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -68,17 +69,41 @@ class QuickOrderForm extends React.Component {
   }
 
   addToCart(productId) {
+    const { code, quantity } = this.state;
+    const { onItemSubmit } = this.props;
     return login().then(() => {
       cortexFetchItemLookupForm()
         .then(() => itemLookup(productId, false)
           .then((res) => {
-            this.setState({
-              product: res,
-              isLoading: false,
-            });
+            if (res._definition[0]._options) {
+              this.setState({
+                product: res,
+                isLoading: false,
+                skuErrorMessage: `${productId} ${intl.get('configurable-product-message')}`,
+              });
+              onItemSubmit({
+                code, quantity, product: {}, isValidField: false,
+              });
+            } else {
+              onItemSubmit({
+                code,
+                quantity,
+                product: res,
+                isValidField: true,
+              });
+              this.setState({
+                product: res,
+                isLoading: false,
+              });
+            }
           })
           .catch((error) => {
-            // eslint-disable-next-line no-console
+            onItemSubmit({
+              code, quantity, product: {}, isValidField: false,
+            });
+            this.setState({
+              skuErrorMessage: `${productId} ${intl.get('sku-invalid-message')}`,
+            });
             console.error(error.message);
             this.setState({
               isLoading: false,
@@ -95,19 +120,27 @@ class QuickOrderForm extends React.Component {
     event.preventDefault();
     onItemSubmit({ code, quantity, product });
     this.setState({
+      product: {},
       isLoading: true,
     });
     this.addToCart(code);
   }
 
   handleChange(event) {
+    if (event.target.value === '') {
+      this.handleRemoveSku();
+    }
     this.setState({ code: event.target.value });
   }
 
   handleRemoveSku() {
     const { onItemSubmit } = this.props;
-    this.setState({ code: '', product: {}, quantity: 1 });
-    onItemSubmit({ code: '', quantity: 1, product: {} });
+    this.setState({
+      skuErrorMessage: '', code: '', product: {}, quantity: 1,
+    });
+    onItemSubmit({
+      code: '', quantity: 1, product: {}, isValidField: false,
+    });
   }
 
   handleQuantityDecrement() {
@@ -139,7 +172,7 @@ class QuickOrderForm extends React.Component {
   render() {
     const { item } = this.props;
     const {
-      code, product, isLoading,
+      code, product, isLoading, skuErrorMessage, quantity,
     } = this.state;
     return (
       <div key={item.quantity} className="bulk-item-wrap">
@@ -172,7 +205,7 @@ class QuickOrderForm extends React.Component {
                 <span className="glyphicon glyphicon-minus" />
               </button>
               <div className="quantity-col form-content form-content-quantity">
-                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" max="9999" value={(item.code !== '') ? item.quantity : 0} onChange={this.handleQtyChange} />
+                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" max="9999" value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
               </div>
               <button
                 type="button"
@@ -215,6 +248,9 @@ class QuickOrderForm extends React.Component {
         ) : ('')}
         {
           (isLoading) ? (<div className="miniLoader" />) : ''
+        }
+        {
+          (skuErrorMessage !== '') ? (<div className="container-error-message"><p className="content-error-message">{skuErrorMessage}</p></div>) : ''
         }
       </div>
     );

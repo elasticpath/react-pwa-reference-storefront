@@ -36,7 +36,7 @@ import './appheader.main.less';
 
 const Config = require('Config');
 
-// const headerLogoFileName = 'Company-Logo-v2.png';
+const headerLogoFileName = 'Company-Logo-v2.png';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
@@ -137,7 +137,7 @@ class AppHeaderMain extends React.Component {
               <img
                 className="logo-image"
                 alt="Header logo"
-                src="../images/site-images/Company-Logo-v2.png"
+                src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)}
                 onError={(e) => { e.target.src = headerLogo; }}
               />
             </Link>
@@ -181,9 +181,11 @@ class AppHeaderMain extends React.Component {
                 </Link>
               </div>
             )}
+            {/* {(Config.b2b.enable && isB2bCartSelected && availability) && ( */}
             <div className="bulk-container">
               <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
             </div>
+            {/* )} */}
           </div>
 
           <div className="login-container">

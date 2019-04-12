@@ -39,7 +39,9 @@ export class BulkOrder extends React.Component {
 
   constructor(props) {
     super(props);
-    const defaultItem = { code: '', quantity: 1, product: {} };
+    const defaultItem = {
+      code: '', quantity: 1, product: {}, isValidField: false,
+    };
     const defaultItemsCount = 10;
 
     this.state = {
@@ -48,6 +50,7 @@ export class BulkOrder extends React.Component {
       defaultItemsCount,
       defaultItem,
       csvText: '',
+      bulkOrderErrorMessage: '',
     };
     this.addAllToCart = this.addAllToCart.bind(this);
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
@@ -74,14 +77,21 @@ export class BulkOrder extends React.Component {
           },
           body: JSON.stringify(body),
         })
-        .then(() => {
-          this.setState({
-            items: Array(defaultItemsCount).fill(defaultItem),
-            csvText: '',
-          });
+        .then((res) => {
+          if (res.status === 201) {
+            this.setState({
+              items: Array(defaultItemsCount).fill(defaultItem),
+              csvText: '',
+            });
+          }
+          if (res.status >= 400) {
+            this.setState({
+              bulkOrderErrorMessage: `${intl.get('bulk-order-invalid-message')}`,
+            });
+          }
         })
         .catch((error) => {
-          console.error(error.message);
+          console.error('error.message:', error.message);
         });
     });
   }
@@ -98,14 +108,12 @@ export class BulkOrder extends React.Component {
   }
 
   handleCsvChange(newCsvValue) {
-    this.setState({ csvText: newCsvValue }, () => this.parseCsvText());
+    this.setState({ csvText: newCsvValue, bulkOrderErrorMessage: '' }, () => this.parseCsvText());
   }
 
   quickFormSubmit(updatedItem, index) {
-    const { defaultItem, items } = this.state;
+    const { items } = this.state;
     const submittedItems = items.map((stateItem, i) => (index === i ? { ...stateItem, ...updatedItem } : stateItem));
-    const emptyItem = submittedItems.find(item => item.code === '');
-    if (!emptyItem) submittedItems.push(defaultItem);
     this.setState({ items: submittedItems });
   }
 
@@ -115,9 +123,11 @@ export class BulkOrder extends React.Component {
       items,
       bulkOrderItems,
       csvText,
+      bulkOrderErrorMessage,
     } = this.state;
-
-
+    const isValid = Boolean(items.find(item => (item.code !== '' && item.isValidField === false)));
+    const isEmpty = Boolean(items.find(item => (item.code !== '' && item.isValidField === true)));
+    const isDisabled = isValid || !isEmpty;
     return (
       <div className={`bulk-order-component ${(isBulkModalOpened === false) ? 'hideModal' : ''}`}>
         <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
@@ -142,7 +152,8 @@ export class BulkOrder extends React.Component {
               <div className="form-content form-content-submit col-sm-offset-4">
                 <button
                   className="ep-btn primary small btn-itemdetail-addtocart"
-                  id="product_display_item_add_to_cart_button"
+                  id="add_to_cart_quick_order_button"
+                  disabled={isDisabled}
                   type="submit"
                   onClick={() => { this.addAllToCart(items); }}
                 >
@@ -151,7 +162,7 @@ export class BulkOrder extends React.Component {
               </div>
               <div className="quickOrderRegion" data-region="quickOrderRegion">
                 {items.map((item, i) => (
-                  <QuickOrderForm item={item} index={i} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
+                  <QuickOrderForm item={item} index={i} onError={this.onError} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
                 ))}
               </div>
             </div>
@@ -159,13 +170,17 @@ export class BulkOrder extends React.Component {
               <div className="form-content form-content-submit col-sm-offset-4">
                 <button
                   className="ep-btn primary small btn-itemdetail-addtocart"
-                  id="product_display_item_add_to_cart_button"
+                  id="add_to_cart_bulk_order_button"
                   type="submit"
+                  disabled={!csvText}
                   onClick={() => { this.addAllToCart(bulkOrderItems); }}
                 >
                   {intl.get('add-all-to-cart')}
                 </button>
               </div>
+              {
+                (bulkOrderErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderErrorMessage}</p></div>) : ''
+              }
               <div className="tab-bulk-order" id="bulkOrderRegion" data-region="bulkOrderRegion">
                 <p>{intl.get('copy-and-paste-a-product-sku-and-quantity')}</p>
                 <p>{intl.get('item-#1-qty')}</p>
