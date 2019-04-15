@@ -224,6 +224,14 @@
   "copy-and-paste-in-input-below": "C-o-p-y- -a-n-d- -P-a-s-t-e- -i-n- -i-n-p-u-t- -b-e-l-o-w",
   "incorect-sku": "I-n-c-o-r-e-c-t- -S-K-U-",
   "no-divisions-found": "S-o-r-r-y-,- -y-o-u- -d-o- -n-o-t- -h-a-v-e- -a-n-y- -a-v-a-i-l-a-b-l-e- -s-h-o-p-p-i-n-g- -p-r-i-v-i-l-e-g-e-s",
+  "old-password": "O-l-d- -p-a-s-s-w-o-r-d-",
+  "new-password": "N-e-w- -p-a-s-s-w-o-r-d-",
+  "confirm-new-password": "C-o-n-f-i-r-m- -n-e-w- -p-a-s-s-w-o-r-d-",
+  "change-password": "C-h-a-n-g-e- -p-a-s-s-w-o-r-d-",
+  "reset-password": "R-e-s-e-t- -y-o-u-r- -p-a-s-s-w-o-r-d-",
+  "reset-email-txt": "E-n-t-e-r- -y-o-u-r- -e-m-a-i-l- -a-d-d-r-e-s-s- -a-n-d- -w-e- -w-i-l-l- -s-e-n-d- -y-o-u- -a- -l-i-n-k- -t-o- -r-e-s-e-t- -y-o-u-r- -p-a-s-s-w-o-r-d-.",
+  "reset-email": "S-e-n-d- -p-a-s-s-w-o-r-d- -r-e-s-e-t- -e-m-a-i-l-",
   "viewing": "V-i-e-w-i-n-g-",
-  "featured-products": "f-e-a-t-u-r-e-d- -p-r-o-d-u-c-t-s-"
+  "featured-products": "f-e-a-t-u-r-e-d- -p-r-o-d-u-c-t-s-",
+  "incorect-email": "P-l-e-a-s-e- -e-n-t-e-r- -v-a-l-i-d- -e-m-a-i-l-"
 }

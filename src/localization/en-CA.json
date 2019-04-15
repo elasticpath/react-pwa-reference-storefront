@@ -225,6 +225,14 @@
   "copy-and-paste-in-input-below": "Copy and Paste in input below",
   "incorect-sku": "Incorect SKU",
   "no-divisions-found": "Sorry, you do not have any available shopping privileges.",
+  "old-password": "Old password",
+  "new-password": "New password",
+  "confirm-new-password": "Confirm new password",
+  "change-password": "Change password",
+  "reset-password": "Reset your password",
+  "reset-email-txt": "Enter your email address and we will send you a link to reset your password.",
+  "reset-email": "Send password reset email",
   "viewing": "Viewing",
-  "featured-products": "featured products"
+  "featured-products": "featured products",
+  "incorect-email": "Please enter valid email"
 }

@@ -26,10 +26,17 @@ import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
-import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
+import { login, loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
 import './appmodallogin.main.less';
+import { cortexFetch } from '../utils/Cortex';
 
 const Config = require('Config');
+
+// Array of zoom parameters to pass to Cortex
+
+const zoomArray = [
+  'passwordresetform',
+];
 
 class AppModalLoginMain extends React.Component {
   static propTypes = {
@@ -46,11 +53,13 @@ class AppModalLoginMain extends React.Component {
       password: '',
       failedLogin: false,
       isLoading: false,
+      showForgotPasswordLink: false,
     };
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.loginRegisteredUser = this.loginRegisteredUser.bind(this);
     this.registerNewUser = this.registerNewUser.bind(this);
+    this.resetPassword = this.resetPassword.bind(this);
   }
 
   componentWillMount() {
@@ -83,6 +92,10 @@ class AppModalLoginMain extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.fetchPasswordResetData();
+  }
+
   setUsername(event) {
     this.setState({ username: event.target.value });
   }
@@ -94,6 +107,28 @@ class AppModalLoginMain extends React.Component {
   registerNewUser() {
     const { handleModalClose } = this.props;
     handleModalClose();
+  }
+
+  fetchPasswordResetData() {
+    login().then(() => {
+      cortexFetch(`/?zoom=${zoomArray.join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          if (res && res._passwordresetform) {
+            this.setState({ showForgotPasswordLink: true });
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
   }
 
   loginRegisteredUser(event) {
@@ -123,8 +158,14 @@ class AppModalLoginMain extends React.Component {
     }
   }
 
+  resetPassword() {
+    const { history, handleModalClose } = this.props;
+    history.push('/password_reset', { returnPage: '/' });
+    handleModalClose();
+  }
+
   render() {
-    const { failedLogin, isLoading } = this.state;
+    const { failedLogin, isLoading, showForgotPasswordLink } = this.state;
     const { handleModalClose, openModal } = this.props;
 
     return (
@@ -162,6 +203,7 @@ class AppModalLoginMain extends React.Component {
                   {
                     (isLoading) ? <div className="miniLoader" /> : ('')
                   }
+                  {showForgotPasswordLink && <button type="button" className="label-link" onClick={this.resetPassword}>Forgot password?</button>}
                   <div className="form-input btn-container">
                     <button className="ep-btn primary btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {intl.get('login')}

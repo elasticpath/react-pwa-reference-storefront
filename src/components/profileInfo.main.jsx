@@ -210,11 +210,9 @@ class ProfileInfoMain extends React.Component {
                 </span>
               </div>
             </div>
-            {(profileInfo.links && profileInfo.links.length > 0) ? (
-              <button className="ep-btn small profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" disabled={isDisabled} onClick={() => { this.editPersonalInfo(); }}>
-                {intl.get('edit')}
-              </button>
-            ) : ('')}
+            <button className="ep-btn small profile-personal-info-edit-btn" type="button" id="profile_personal_info_edit_button" disabled={isDisabled} onClick={() => { this.editPersonalInfo(); }}>
+              {intl.get('edit')}
+            </button>
           </div>
         </div>
       );

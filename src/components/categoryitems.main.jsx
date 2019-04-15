@@ -130,7 +130,7 @@ class CategoryItemsMain extends React.Component {
     if (categoryModel._featuredoffers) {
       [featuredOffers] = categoryModel._featuredoffers;
     }
-    const noProducts = !products || !products.links || products.links.length === 0 || !products.pagination;
+    const noProducts = !products || !products.links || !products._element || !products.pagination;
     const categoryModelIdString = categoryModelId;
 
     return (

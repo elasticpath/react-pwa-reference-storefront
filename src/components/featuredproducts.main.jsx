@@ -67,12 +67,9 @@ class FeaturedProducts extends React.Component {
   }
 
   render() {
-    const {
-      categoryModel,
-    } = this.state;
+    const { categoryModel } = this.state;
     const settings = {
-      dots: true,
-      infinite: (categoryModel._element && categoryModel._element.length > 4),
+      infinite: false,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
@@ -90,6 +87,7 @@ class FeaturedProducts extends React.Component {
             slidesToShow: 2,
             slidesToScroll: 2,
             arrows: false,
+            dots: true,
           },
         },
       ],

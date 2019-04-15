@@ -125,7 +125,6 @@ class AppHeaderMain extends React.Component {
     } = this.state;
     const availability = Boolean(cartData);
     const isInStandaloneMode = window.navigator.standalone;
-    const isB2bCartSelected = localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`);
     return [
       <header key="app-header" className="app-header">
         <AppHeaderTop />
@@ -214,16 +213,14 @@ class AppHeaderMain extends React.Component {
         </div>
 
         <div className="collapsable-container collapse collapsed">
-          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
-            <div className="search-container">
-              <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} />
-            </div>
-          )}
+          <div className="search-container">
+            <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} />
+          </div>
           <div className="mobile-locale-container">
             <AppHeaderLocaleMain isMobileView />
           </div>
 
-          {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
+          {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
             <div className="mobile-cart-link-container">
               <Link
                 className="cart-link"
