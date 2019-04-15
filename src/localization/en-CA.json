@@ -215,5 +215,6 @@
   "incorect-sku": "Incorect SKU",
   "no-divisions-found": "Sorry, you do not have any available shopping privileges.",
   "viewing": "Viewing",
-  "featured-products": "featured products"
+  "featured-products": "featured products",
+  "configurable-product-message": "configurable-product-message"
 }

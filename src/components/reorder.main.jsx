@@ -21,14 +21,20 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
 import Modal from 'react-responsive-modal';
 import CartLineItem from './cart.lineitem';
+import { cortexFetch } from '../utils/Cortex';
+import { login } from '../utils/AuthService';
 import './reorder.main.less';
+
+const Config = require('Config');
 
 class ReorderMain extends React.Component {
   static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
     productsData: PropTypes.objectOf(PropTypes.any),
   };
 
@@ -40,21 +46,59 @@ class ReorderMain extends React.Component {
     super(props);
     this.state = {
       openModal: false,
+      errorMassages: {},
+      isLoading: false,
     };
 
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleError = this.handleError.bind(this);
+    this.reorderAll = this.reorderAll.bind(this);
   }
 
-  reorderAll(items) {
-    const bulkOrderItems = items.map(item => ({
-      sku: item._item[0]._code[0].code,
+  reorderAll() {
+    const { productsData, history } = this.props;
+    const bulkOrderItems = productsData._lineitems[0]._element.map(item => ({
+      code: item._item[0]._code[0].code,
       quantity: item.quantity,
     }));
-    console.warn(bulkOrderItems, this);
+    if (productsData._defaultcart) {
+      this.setState({ isLoading: true });
+      login().then(() => {
+        const addToCartLink = productsData._defaultcart[0]._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
+        const body = {};
+        if (bulkOrderItems) {
+          body.items = bulkOrderItems;
+        }
+        cortexFetch(addToCartLink.uri,
+          {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+            body: JSON.stringify(body),
+          })
+          .then(() => {
+            this.setState({ isLoading: false });
+            history.push('/mybag');
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      });
+    }
   }
 
   handleModalOpen() {
+    const { productsData } = this.props;
+    productsData._lineitems[0]._element.forEach((product) => {
+      const isConfigurable = product._item[0]._definition[0].links.find(link => link.rel === 'options');
+      if (isConfigurable) {
+        this.handleError(product._item[0]._code[0].code, intl.get('configurable-product-message'));
+      }
+    });
     this.setState({ openModal: true });
   }
 
@@ -62,8 +106,13 @@ class ReorderMain extends React.Component {
     this.setState({ openModal: false });
   }
 
+  handleError(code, message) {
+    const { errorMassages } = this.state;
+    this.setState({ errorMassages: { ...errorMassages, [code]: message } });
+  }
+
   render() {
-    const { openModal } = this.state;
+    const { openModal, errorMassages, isLoading } = this.state;
     const { productsData } = this.props;
 
     return (
@@ -82,25 +131,39 @@ class ReorderMain extends React.Component {
               {productsData._lineitems[0]._element.map((item) => {
                 const { quantity, _code } = item._item[0];
                 return (
-                  <CartLineItem
-                    key={_code[0].code}
-                    item={item._item[0]}
-                    itemQuantity={quantity}
-                    hideAddToBagButton
-                    handleQuantityChange={() => { }}
-                    hideRemoveButton
-                    handleErrorMessage={(e) => { console.warn(e); }}
-                  />
+                  <div>
+                    <CartLineItem
+                      key={_code[0].code}
+                      item={item._item[0]}
+                      itemQuantity={quantity}
+                      hideAddToBagButton
+                      handleQuantityChange={() => { }}
+                      hideRemoveButton
+                      handleErrorMessage={(error) => { this.handleError(_code[0].code, error.message); }}
+                    />
+                    { errorMassages[_code[0].code]
+                      ? <div className="feedback-label">{ errorMassages[_code[0].code] }</div>
+                      : ''
+                    }
+                  </div>
                 );
               })}
             </div>
-            <button
-              className="ep-btn reorder-btn"
-              type="button"
-              onClick={() => { this.reorderAll(); }}
-            >
-              {intl.get('reorder')}
-            </button>
+            {isLoading
+              ? <div className="loader" />
+              : (
+                <button
+                  className="ep-btn reorder-btn"
+                  type="button"
+                  disabled={Object.keys(errorMassages).length}
+                  onClick={() => {
+                    this.reorderAll();
+                  }}
+                >
+                  {intl.get('reorder')}
+                </button>
+              )
+            }
           </div>
         </Modal>
       </div>

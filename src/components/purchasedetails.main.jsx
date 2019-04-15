@@ -232,7 +232,7 @@ const PurchaseDetailsMain = (props) => {
     );
   };
 
-  const canReorder = items => items.find(item => item._item);
+  const canReorder = productsData => productsData._defaultcart && productsData._defaultcart[0]._additemstocartform;
 
   return (
     <div data-region="purchaseInformationRegion" style={{ display: 'block' }}>
@@ -242,7 +242,7 @@ const PurchaseDetailsMain = (props) => {
             <h3 className="purchase-summary-title">
               {intl.get('summary')}
             </h3>
-            {(canReorder(data._lineitems[0]._element)) ? (
+            {(canReorder(data)) ? (
               <div className="purchase-reorder">
                 <ReorderMain productsData={data} />
               </div>
