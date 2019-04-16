@@ -80,7 +80,6 @@ class ReorderMain extends React.Component {
             body: JSON.stringify(body),
           })
           .then((res) => {
-            console.warn(res);
             this.setState({ isLoading: false });
             if (res.status !== 201) {
               res.json().then((json) => {
@@ -102,7 +101,6 @@ class ReorderMain extends React.Component {
   handleModalOpen() {
     const { productsData } = this.props;
     productsData._lineitems[0]._element.forEach((product) => {
-      console.warn(product);
       const SKUCode = product._item[0]._code[0].code;
       const isConfigurable = product._item[0]._definition[0].links.find(link => link.rel === 'options');
 
