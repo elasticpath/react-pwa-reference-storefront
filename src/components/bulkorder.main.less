@@ -1,0 +1,192 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.hideModal{
+  display: none;
+}
+
+.bulk-order-component {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 460px;
+  border-bottom: 0;
+  height: calc(100vh - 100%);
+  background-color: #fff;
+  box-shadow: 1px 20px 30px rgba(0, 0, 0, 0.5);
+
+  .bulk-order-close-button{
+    background: #ffffff url(../images/header-icons/baseline_close_black_22dp.png) no-repeat 0px;
+    width: 70px;
+    height: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 20;
+    cursor:pointer;
+
+    .bulk-order-hide{
+      padding-left: 25px;
+      padding-top: 3px;
+      font-size: 16px;
+      color: #333333;
+    }
+  }
+
+  .bulk-modal {
+    position: relative;
+    background-color: #fff;
+    padding: 20px 0 10px 20px;
+    z-index: 10;
+    min-width: 295px;
+
+    p {
+      color: black;
+      padding: 0;
+      margin-top:0;
+      border:none;
+    }
+
+    .tab-content{
+      padding-top:10px;
+
+      .tab-pane{
+        max-height: ~'calc(100vh - 255px)';
+        overflow-y: auto;
+        padding-right: 20px;
+
+        .miniLoader {
+          border: 2px solid @complimentGrey;
+          border-top: 2px solid @complimentBlueColor;
+          width: 20px;
+          height: 20px !important;
+          margin-left: 65px;
+        }
+
+        p{
+          font-size: small;
+        }
+
+        .bulk-text-area-title{
+          padding-top: 40px;
+          color: gray;
+        }
+
+        .tab-bulk-order{
+          margin-top: 5px;
+        }
+
+        .bulk-csv{
+          width: 100%;
+          min-height: 300px;
+          border: 1px solid @mainGrey;
+          border-radius: 6px;
+          margin-bottom: 10px;
+        }
+
+        .bulk-order-error-message{
+          p{
+            padding-top: 5px;
+            color: #E02020;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 0
+          ;
+          }
+        }
+      }
+    }
+
+    .itemdetail-tabs {
+      &-wrap {
+        margin-top: 30px;
+      }
+
+      .nav-item {
+        margin-bottom: 0;
+      }
+
+      .nav-item {
+        .nav-link {
+          padding: 5px 20px;
+          font-size: 16px;
+          color: #333;
+
+          &:hover {
+            border-color: transparent;
+            color: @mainTextColor;
+          }
+
+          &.active {
+            color: @mainTextColor;
+            font-weight: bold;
+            border-bottom: 3px solid @generalizedBlueColor;
+          }
+
+          &.disabled {
+            cursor: default;
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+
+  .btn-itemdetail-addtocart {
+    padding: 2px 25px;
+    text-transform: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: @tabletWidth - 1px) {
+  .bulk-order-component {
+    .bulk-modal .tab-content .tab-pane {
+      max-height: ~'calc(100vh - 160px)';
+    }
+
+    .bulk-modal .tab-content .tab-pane .bulk-csv {
+      margin-bottom: 90px;
+    }
+  }
+}
+
+@media (max-width: @mobileWidth - 1px) {
+  .bulk-order-component {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    height: 100vh;
+
+    .bulk-modal .tab-content .tab-pane {
+      max-height: ~'calc(100vh - 120px)';
+      padding-right: 20px;
+
+      .bulk-csv {
+        margin-bottom: 105px;
+      }
+    }
+  }
+}
