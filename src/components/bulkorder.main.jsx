@@ -89,10 +89,15 @@ export class BulkOrder extends React.Component {
             });
           }
           if (res.status >= 400) {
-            this.setState({
+            let debugMessages = '';
+            res.json().then((json) => {
+              for (let i = 0; i < json.messages.length; i++) {
+                debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
+              }
+            }).then(() => this.setState({
               isLoading: false,
-              bulkOrderErrorMessage: `${intl.get('bulk-order-invalid-message')}`,
-            });
+              bulkOrderErrorMessage: `${intl.get('bulk-order-invalid-message')} ${debugMessages}`,
+            }));
           }
         })
         .catch((error) => {
