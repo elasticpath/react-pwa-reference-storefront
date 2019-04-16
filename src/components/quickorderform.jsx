@@ -92,8 +92,19 @@ class QuickOrderForm extends React.Component {
                 isValidField: true,
               });
               this.setState({
+                skuErrorMessage: '',
                 product: res,
                 isLoading: false,
+              });
+            }
+            if (res._availability[0].state !== 'AVAILABLE') {
+              this.setState({
+                product: res,
+                isLoading: false,
+                skuErrorMessage: `${intl.get('not-available-message')}`,
+              });
+              onItemSubmit({
+                code, quantity, product: {}, isValidField: false,
               });
             }
           })
@@ -103,11 +114,10 @@ class QuickOrderForm extends React.Component {
             });
             this.setState({
               skuErrorMessage: `${productId} ${intl.get('sku-invalid-message')}`,
-            });
-            console.error(error.message);
-            this.setState({
               isLoading: false,
             });
+            // eslint-disable-next-line no-console
+            console.error(error.message);
           }));
     });
   }
@@ -139,7 +149,7 @@ class QuickOrderForm extends React.Component {
       skuErrorMessage: '', code: '', product: {}, quantity: 1,
     });
     onItemSubmit({
-      code: '', quantity: 1, product: {}, isValidField: false,
+      code: '', quantity: 1, product: {}, isValidField: false, isDuplicated: false,
     });
   }
 
@@ -174,8 +184,9 @@ class QuickOrderForm extends React.Component {
     const {
       code, product, isLoading, skuErrorMessage, quantity,
     } = this.state;
+
     return (
-      <div key={item.quantity} className="bulk-item-wrap">
+      <div key={item.code} className="bulk-item-wrap">
         <div className="bulk-item">
           <div className="bulk-item-col quick-order-sku-wrap">
             <label htmlFor="item_sku_label" className="control-label">
@@ -183,8 +194,8 @@ class QuickOrderForm extends React.Component {
             </label>
             <div className="sku-field-wrap">
               <form className="form-horizontal" onSubmit={this.handleSubmit}>
-                <span role="presentation" className={`clear-field-btn ${code === '' ? 'hide' : ''}`} onClick={this.handleRemoveSku} />
-                <input className="sku-input" type="text" value={code} name="code" onChange={this.handleChange} />
+                <input className={`sku-input ${skuErrorMessage ? 'input-code-error' : ''}`} type="text" value={code} name="code" onChange={this.handleChange} />
+                <span role="presentation" className={`clear-field-btn ${code === '' ? 'hide' : ''} ${(skuErrorMessage !== '') ? 'input-error-icon' : ''}`} onClick={this.handleRemoveSku} />
               </form>
             </div>
           </div>
@@ -229,7 +240,7 @@ class QuickOrderForm extends React.Component {
         </div>
         {(code && product._definition) ? (
           <div className="show-product">
-            <p className="product-image">
+            <div className="product-image">
               <img
                 src={Config.skuImagesUrl.replace('%sku%', product._code[0].code)}
                 onError={(e) => {
@@ -238,7 +249,7 @@ class QuickOrderForm extends React.Component {
                 alt="Not Available"
                 className="cart-lineitem-thumbnail"
               />
-            </p>
+            </div>
             <div className="title-col" data-el-value="lineItem.displayName">
               <p>
                 {product._definition[0]['display-name']}
@@ -251,6 +262,9 @@ class QuickOrderForm extends React.Component {
         }
         {
           (skuErrorMessage !== '') ? (<div className="container-error-message"><p className="content-error-message">{skuErrorMessage}</p></div>) : ''
+        }
+        {
+         (skuErrorMessage === '' && item.isDuplicated) ? (<div className="container-error-message"><p className="content-error-message">{intl.get('quick-duplicated-error-message')}</p></div>) : ''
         }
       </div>
     );

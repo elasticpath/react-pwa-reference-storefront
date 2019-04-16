@@ -31,7 +31,7 @@
 
   .container-error-message{
     .content-error-message{
-      padding-top: 5px;
+      padding-top: 10px;
       color: #E02020;
       font-size: 13px;
       font-weight: 600;
@@ -120,7 +120,6 @@
 .show-product {
   display: inline-block;
   margin-top:15px;
-  height: 50px;
 
   .product-image{
     width: 60px;
@@ -184,6 +183,14 @@
   &:after {
     transform: rotate(-45deg);
   }
+
+  &.input-error-icon{
+    background: url('../images/header-icons/baseline_error_24.png') no-repeat center center;
+    pointer-events: visible;
+    &:before, &:after {
+      display: none;
+    }
+  }
 }
 
 .sku-field-wrap {
@@ -211,6 +218,20 @@
 
       &:focus {
         border: 1px solid rgba(0,153,222,0.5);
+      }
+    }
+
+    .input-code-error{
+      border: 1px solid rgba(224,32,32,0.2);
+      background-color: rgba(224,32,32,0.1);
+      &:focus {
+        background-color: #FFFFFF;
+        + .clear-field-btn {
+          background: #EEEEEE;
+          &:before, &:after {
+            display: inline-block;
+          }
+        }
       }
     }
   }

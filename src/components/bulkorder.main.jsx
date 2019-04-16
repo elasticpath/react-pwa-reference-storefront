@@ -40,7 +40,7 @@ export class BulkOrder extends React.Component {
   constructor(props) {
     super(props);
     const defaultItem = {
-      code: '', quantity: 1, product: {}, isValidField: false,
+      code: '', quantity: 1, product: {}, isValidField: false, isDuplicated: false,
     };
     const defaultItemsCount = 10;
 
@@ -49,8 +49,10 @@ export class BulkOrder extends React.Component {
       bulkOrderItems: {},
       defaultItemsCount,
       defaultItem,
+      isLoading: false,
       csvText: '',
       bulkOrderErrorMessage: '',
+      bulkOrderDuplicatedErrorMessage: '',
     };
     this.addAllToCart = this.addAllToCart.bind(this);
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
@@ -59,6 +61,7 @@ export class BulkOrder extends React.Component {
   addAllToCart(orderItems) {
     const { cartData } = this.props;
     const { defaultItemsCount, defaultItem } = this.state;
+    this.setState({ isLoading: true });
     const arrayItems = orderItems
       .filter(item => item.code !== '')
       .map(item => ({ code: item.code, quantity: item.quantity }));
@@ -80,17 +83,21 @@ export class BulkOrder extends React.Component {
         .then((res) => {
           if (res.status === 201) {
             this.setState({
+              isLoading: false,
               items: Array(defaultItemsCount).fill(defaultItem),
               csvText: '',
             });
           }
           if (res.status >= 400) {
             this.setState({
+              isLoading: false,
               bulkOrderErrorMessage: `${intl.get('bulk-order-invalid-message')}`,
             });
           }
         })
         .catch((error) => {
+          this.setState({ isLoading: false });
+          // eslint-disable-next-line no-console
           console.error('error.message:', error.message);
         });
     });
@@ -104,17 +111,43 @@ export class BulkOrder extends React.Component {
       .map(l => l.split(/[ ,;]+/))
       // eslint-disable-next-line no-restricted-globals, radix
       .map(p => ({ code: p[0] || '', quantity: isNaN(parseInt(p[1])) ? 1 : parseInt(p[1]) }));
-    this.setState({ bulkOrderItems });
+    this.setState({ bulkOrderItems }, () => this.checkDuplication());
   }
 
   handleCsvChange(newCsvValue) {
-    this.setState({ csvText: newCsvValue, bulkOrderErrorMessage: '' }, () => this.parseCsvText());
+    this.setState({ csvText: newCsvValue, bulkOrderErrorMessage: '', bulkOrderDuplicatedErrorMessage: '' }, () => this.parseCsvText());
   }
 
   quickFormSubmit(updatedItem, index) {
     const { items } = this.state;
-    const submittedItems = items.map((stateItem, i) => (index === i ? { ...stateItem, ...updatedItem } : stateItem));
+    let duplicatedField = false;
+    if (updatedItem.code !== '') {
+      const itemIndex = items.findIndex(item => item.code === updatedItem.code);
+      if (itemIndex !== index && itemIndex !== -1) {
+        duplicatedField = true;
+      }
+    }
+    const submittedItems = items.map((stateItem, i) => (index === i ? { ...stateItem, ...updatedItem, isDuplicated: duplicatedField } : stateItem));
     this.setState({ items: submittedItems });
+  }
+
+  checkDuplication() {
+    const { bulkOrderItems } = this.state;
+    let isDuplicated = false;
+    const arrayItems = bulkOrderItems.map(item => item.code).sort();
+    const results = [];
+    for (let i = 0; i < arrayItems.length - 1; i++) {
+      if (arrayItems[i] !== '' && arrayItems[i + 1] === arrayItems[i]) {
+        if (results.indexOf(arrayItems[i]) === -1) {
+          results.push(arrayItems[i]);
+        }
+        isDuplicated = true;
+      }
+    }
+    const SKUCodes = results.join(', ');
+    if (isDuplicated) {
+      this.setState({ bulkOrderDuplicatedErrorMessage: `${intl.get('duplicated-error-message', { SKUCodes })}` });
+    }
   }
 
   render() {
@@ -123,11 +156,14 @@ export class BulkOrder extends React.Component {
       items,
       bulkOrderItems,
       csvText,
+      isLoading,
       bulkOrderErrorMessage,
+      bulkOrderDuplicatedErrorMessage,
     } = this.state;
     const isValid = Boolean(items.find(item => (item.code !== '' && item.isValidField === false)));
     const isEmpty = Boolean(items.find(item => (item.code !== '' && item.isValidField === true)));
-    const isDisabled = isValid || !isEmpty;
+    const duplicatedFields = Boolean(items.find(item => (item.code !== '' && item.isDuplicated === true)));
+    const isDisabled = isValid || !isEmpty || duplicatedFields;
     return (
       <div className={`bulk-order-component ${(isBulkModalOpened === false) ? 'hideModal' : ''}`}>
         <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
@@ -159,10 +195,13 @@ export class BulkOrder extends React.Component {
                 >
                   {intl.get('add-all-to-cart')}
                 </button>
+                {
+                  (isLoading) ? (<div className="miniLoader" />) : ''
+                }
               </div>
               <div className="quickOrderRegion" data-region="quickOrderRegion">
                 {items.map((item, i) => (
-                  <QuickOrderForm item={item} index={i} onError={this.onError} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
+                  <QuickOrderForm item={item} onError={this.onError} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
                 ))}
               </div>
             </div>
@@ -172,21 +211,27 @@ export class BulkOrder extends React.Component {
                   className="ep-btn primary small btn-itemdetail-addtocart"
                   id="add_to_cart_bulk_order_button"
                   type="submit"
-                  disabled={!csvText}
+                  disabled={!csvText || bulkOrderDuplicatedErrorMessage !== ''}
                   onClick={() => { this.addAllToCart(bulkOrderItems); }}
                 >
                   {intl.get('add-all-to-cart')}
                 </button>
+                {
+                  (isLoading) ? (<div className="miniLoader" />) : ''
+                }
               </div>
               {
                 (bulkOrderErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderErrorMessage}</p></div>) : ''
+              }
+              {
+                (bulkOrderDuplicatedErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderDuplicatedErrorMessage}</p></div>) : ''
               }
               <div className="tab-bulk-order" id="bulkOrderRegion" data-region="bulkOrderRegion">
                 <p>{intl.get('copy-and-paste-a-product-sku-and-quantity')}</p>
                 <p>{intl.get('item-#1-qty')}</p>
                 <p>{intl.get('item-#2-qty')}</p>
                 <p className="bulk-text-area-title"><b>{intl.get('copy-and-paste-in-input-below')}</b></p>
-                <textarea className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
+                <textarea spellCheck="false" className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
               </div>
             </div>
           </div>

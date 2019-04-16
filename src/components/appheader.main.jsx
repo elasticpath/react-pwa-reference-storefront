@@ -149,11 +149,9 @@ class AppHeaderMain extends React.Component {
           </div>
 
           <div className="icons-header-container">
-            {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected)) && (
-              <div className="search-container">
-                <AppHeaderSearchMain isMobileView={false} />
-              </div>
-            )}
+            <div className="search-container">
+              <AppHeaderSearchMain isMobileView={false} />
+            </div>
             <div className="search-toggle-btn-container">
               <button
                 className="search-toggle-btn"
@@ -168,7 +166,7 @@ class AppHeaderMain extends React.Component {
               </button>
             </div>
 
-            {(!Config.b2b.enable || (Config.b2b.enable && isB2bCartSelected && availability)) && (
+            {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
               <div className="cart-link-container">
                 <Link className="cart-link" to="/mybag">
                   {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
@@ -180,7 +178,7 @@ class AppHeaderMain extends React.Component {
                 </Link>
               </div>
             )}
-            {/* {(Config.b2b.enable && isB2bCartSelected && availability) && ( */}
+            {/* {(Config.b2b.enable && availability) && ( */}
             <div className="bulk-container">
               <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
             </div>

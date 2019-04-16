@@ -75,6 +75,14 @@
         overflow-y: auto;
         padding-right: 20px;
 
+        .miniLoader {
+          border: 2px solid @complimentGrey;
+          border-top: 2px solid @complimentBlueColor;
+          width: 20px;
+          height: 20px !important;
+          margin-left: 65px;
+        }
+
         p{
           font-size: small;
         }
@@ -84,7 +92,7 @@
         }
 
         .tab-bulk-order{
-          margin-top: 30px;
+          margin-top: 5px;
         }
 
         .bulk-csv{
@@ -96,9 +104,6 @@
         }
 
         .bulk-order-error-message{
-          position: absolute;
-          min-height: 15px;
-
           p{
             padding-top: 5px;
             color: #E02020;
@@ -172,6 +177,7 @@
     width: 100vw;
     top: 0;
     left: 0;
+    height: 100vh;
 
     .bulk-modal .tab-content .tab-pane {
       max-height: ~'calc(100vh - 120px)';
