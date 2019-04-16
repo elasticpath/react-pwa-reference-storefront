@@ -55,7 +55,7 @@
         display: block;
 
         .logo-image {
-          height: 20px;
+          height: 35px;
         }
       }
     }
@@ -71,42 +71,64 @@
       }
     }
 
-    .search-container {
-      padding-top: 20px;
-      padding-left: 5px;
-      padding-right: 9px;
+    .icons-header-container {
+      display: flex;
+      flex-direction: row;
+
+      .search-container {
+        padding-top: 20px;
+        padding-left: 5px;
+        padding-right: 9px;
+      }
+
+      .cart-link-container {
+        padding-top: 20px;
+        padding-left: 9px;
+        padding-right: 9px;
+        vertical-align: top;
+
+        .cart-link {
+          display: block;
+          width: 23px;
+          padding: 10px;
+          height: 21px;
+          background: #ffffff00 url(../images/header-icons/bag-icon.png) no-repeat 0px;
+          background-position: center top;
+          line-height: 0;
+          font-size: 0;
+          background-size: cover;
+          position: relative;
+
+          .cart-link-counter {
+            right: 0;
+            left: unset;
+            transform: translate(25%, -25%);
+          }
+        }
+      }
+
+      .bulk-container {
+        padding-top: 20px;
+        padding-left: 8px;
+        padding-right: 8px;
+
+        .bulk-button {
+          border: none;
+          width: 25px;
+          height: 21px;
+          background: #ffffff00 url(../images/header-icons/bulk-cart.svg) no-repeat center center;
+        }
+      }
+    }
+
+    .search-toggle-btn-container {
+      display: none;
     }
 
     .login-container {
       padding-top: 20px;
       padding-left: 5px;
       padding-right: 9px;
-    }
-
-    .cart-link-container {
-      margin-right:20px;
-      padding-top: 20px;
-      padding-left: 9px;
-      padding-right: 9px;
-
-      .cart-link {
-        display: block;
-        width: 23px;
-        padding: 10px;
-        height: 21px;
-        background: #ffffff00 url(../images/header-icons/bag-icon.png) no-repeat 0px;
-        background-position: center top;
-        line-height: 0;
-        font-size: 0;
-        background-size: cover;
-        position: relative;
-
-        .cart-link-counter {
-          right: 0;
-          left: unset;
-          transform: translate(25%, -25%);
-        }
-      }
     }
 
     .locale-container {
@@ -130,10 +152,6 @@
           font-size: 22px;
         }
       }
-    }
-
-    .search-toggle-btn-container {
-      display: none;
     }
   }
 
@@ -162,13 +180,19 @@
       justify-content: flex-end;
 
       .logo-container {
-        padding-left: 0px;
-        padding-top: 0px;
+        padding-left: 0;
+        padding-top: 0;
         display: block;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
+      }
+
+      .icons-header-container {
+        .bulk-link-container, .cart-link-container {
+          margin-right: 0;
+        }
       }
 
       .central-container {
@@ -274,7 +298,13 @@
         padding-top: 0;
         display: block;
         position: absolute;
-        left: 100px;
+        left: 70px;
+      }
+
+      .icons-header-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
       }
 
       .search-container {
@@ -288,6 +318,7 @@
         .search-toggle-btn {
           border: none;
           background: none;
+          outline: 0 auto transparent;
 
           .search-icon {
             background: #ffffff00 url('../images/header-icons/magnifying-glass.png') no-repeat 9px center;
