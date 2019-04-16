@@ -178,11 +178,11 @@ class AppHeaderMain extends React.Component {
                 </Link>
               </div>
             )}
-            {/* {(Config.b2b.enable && availability) && ( */}
+            {(Config.b2b.enable && availability) && (
             <div className="bulk-container">
               <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
             </div>
-            {/* )} */}
+            )}
           </div>
 
           <div className="login-container">

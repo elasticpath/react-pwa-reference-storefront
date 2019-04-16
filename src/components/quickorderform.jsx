@@ -60,6 +60,7 @@ class QuickOrderForm extends React.Component {
     const { code } = this.state;
     const { item } = nextProps;
     if (item.code !== code) {
+      this.handleRemoveSku();
       this.setState({
         code: item.code,
         product: item.product,
@@ -79,7 +80,7 @@ class QuickOrderForm extends React.Component {
               this.setState({
                 product: res,
                 isLoading: false,
-                skuErrorMessage: `${productId} ${intl.get('configurable-product-message')}`,
+                skuErrorMessage: intl.get('configurable-product-message', { SKUCode: productId }),
               });
               onItemSubmit({
                 code, quantity, product: {}, isValidField: false,

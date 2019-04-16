@@ -227,10 +227,10 @@ export class BulkOrder extends React.Component {
                 (bulkOrderDuplicatedErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderDuplicatedErrorMessage}</p></div>) : ''
               }
               <div className="tab-bulk-order" id="bulkOrderRegion" data-region="bulkOrderRegion">
-                <p>{intl.get('copy-and-paste-a-product-sku-and-quantity')}</p>
+                <p>{intl.get('enter-product-sku-and-quantity')}</p>
                 <p>{intl.get('item-#1-qty')}</p>
                 <p>{intl.get('item-#2-qty')}</p>
-                <p className="bulk-text-area-title"><b>{intl.get('copy-and-paste-in-input-below')}</b></p>
+                <p className="bulk-text-area-title"><b>{intl.get('enter-product-sku-and-quantity-in-input')}</b></p>
                 <textarea spellCheck="false" className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
               </div>
             </div>
