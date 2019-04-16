@@ -78,45 +78,50 @@ class GdprSupportModal extends React.Component {
         .then(res => res.json())
         .then((res) => {
           if (res && res.links) {
-            for (let i = 0; i < res.links.length; i++) {
-              if (res.links[i].type === 'datapolicies.data-policy') {
-                cortexFetch(res.links[i].uri,
-                  {
-                    headers: {
-                      'Content-Type': 'application/json',
-                      Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                      'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
-                    },
-                  })
-                  .then(datapolicies => datapolicies.json())
-                  .then((datapolicies) => {
-                    if (datapolicies['data-policy-consent'] === 'false') {
-                      cortexFetch(`${datapolicies.links[1].uri}?followlocation`,
-                        {
-                          method: 'post',
-                          headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                            'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
-                          },
-                          body: JSON.stringify({ 'data-policy-consent': true }),
-                        })
-                        .then(() => {
-                          window.location.reload();
-                        })
-                        .catch((error) => {
-                          // eslint-disable-next-line no-console
-                          console.error(error.message);
-                          window.location.reload();
-                        });
-                    }
-                  })
-                  .catch((error) => {
-                    // eslint-disable-next-line no-console
-                    console.error(error.message);
-                    window.location.reload();
-                  });
+            const dataPolicyLink = res.links.find(el => el.type === 'datapolicies.data-policy');
+            if (dataPolicyLink) {
+              for (let i = 0; i < res.links.length; i++) {
+                if (res.links[i].type === 'datapolicies.data-policy') {
+                  cortexFetch(res.links[i].uri,
+                    {
+                      headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                        'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+                      },
+                    })
+                    .then(datapolicies => datapolicies.json())
+                    .then((datapolicies) => {
+                      if (datapolicies['data-policy-consent'] === 'false') {
+                        cortexFetch(`${datapolicies.links[1].uri}?followlocation`,
+                          {
+                            method: 'post',
+                            headers: {
+                              'Content-Type': 'application/json',
+                              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                              'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+                            },
+                            body: JSON.stringify({ 'data-policy-consent': true }),
+                          })
+                          .then(() => {
+                            window.location.reload();
+                          })
+                          .catch((error) => {
+                            // eslint-disable-next-line no-console
+                            console.error(error.message);
+                            window.location.reload();
+                          });
+                      }
+                    })
+                    .catch((error) => {
+                      // eslint-disable-next-line no-console
+                      console.error(error.message);
+                      window.location.reload();
+                    });
+                }
               }
+            } else {
+              window.location.reload();
             }
           }
         })
