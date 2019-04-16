@@ -24,6 +24,8 @@ import intl from 'react-intl-universal';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import './gdprsupport.main.less';
+import { login } from '../utils/AuthService';
+import { cortexFetch } from '../utils/Cortex';
 
 const Config = require('Config');
 
@@ -57,10 +59,73 @@ class GdprSupportModal extends React.Component {
   handleAcceptGdpr() {
     const { checked } = this.state;
     if (checked) {
-      localStorage.setItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`, 'true');
-      this.setState({ open: false });
-      window.location.reload();
+      this.dataPolicyConsent();
     }
+  }
+
+  dataPolicyConsent() {
+    localStorage.setItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`, 'true');
+    this.setState({ open: false });
+    login().then(() => {
+      cortexFetch(`/datapolicies/${Config.cortexApi.scope}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          if (res && res.links) {
+            for (let i = 0; i < res.links.length; i++) {
+              if (res.links[i].type === 'datapolicies.data-policy') {
+                cortexFetch(res.links[i].uri,
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                      'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+                    },
+                  })
+                  .then(datapolicies => datapolicies.json())
+                  .then((datapolicies) => {
+                    if (datapolicies['data-policy-consent'] === 'false') {
+                      cortexFetch(`${datapolicies.links[1].uri}?followlocation`,
+                        {
+                          method: 'post',
+                          headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                            'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+                          },
+                          body: JSON.stringify({ 'data-policy-consent': true }),
+                        })
+                        .then(() => {
+                          window.location.reload();
+                        })
+                        .catch((error) => {
+                          // eslint-disable-next-line no-console
+                          console.error(error.message);
+                          window.location.reload();
+                        });
+                    }
+                  })
+                  .catch((error) => {
+                    // eslint-disable-next-line no-console
+                    console.error(error.message);
+                    window.location.reload();
+                  });
+              }
+            }
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          window.location.reload();
+        });
+    });
   }
 
   handleDeclineGdpr() {
