@@ -80,6 +80,7 @@
   "save": "S-a-v-e",
   "cancel": "C-a-n-c-e-l",
   "buy-it-again": "B-u-y- -I-t- -A-g-a-i-n",
+  "reorder": "R-e-o-r-d-e-r",
   "vestri": "V-e-s-t-r-i",
   "store-description-message": "C-o-m-m-e-r-c-e- -s-o-f-t-w-a-r-e- -t-h-a-t- -p-o-w-e-r-s- -t-h-e- -n-e-x-t- -g-e-n-e-r-a-t-i-o-n- -o-f- -d-i-g-i-t-a-l- -e-x-p-e-r-i-e-n-c-e",
   "assistance": "A-s-s-i-s-t-a-n-c-e",
@@ -236,5 +237,6 @@
   "reset-email": "S-e-n-d- -p-a-s-s-w-o-r-d- -r-e-s-e-t- -e-m-a-i-l-",
   "viewing": "V-i-e-w-i-n-g-",
   "featured-products": "f-e-a-t-u-r-e-d- -p-r-o-d-u-c-t-s-",
-  "incorect-email": "P-l-e-a-s-e- -e-n-t-e-r- -v-a-l-i-d- -e-m-a-i-l-"
+  "incorect-email": "P-l-e-a-s-e- -e-n-t-e-r- -v-a-l-i-d- -e-m-a-i-l-",
+  "out-of-stock-product-message": "{SKUCode} i-s- -o-u-t- -o-f- -s-t-o-c-k."
 }

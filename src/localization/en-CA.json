@@ -80,6 +80,7 @@
   "save": "Save",
   "cancel": "Cancel",
   "buy-it-again": "Buy It Again",
+  "reorder": "Reorder",
   "vestri": "Vestri",
   "store-description-message": "Commerce software that powers the next generation of digital experience",
   "assistance": "Assistance",
@@ -237,5 +238,6 @@
   "reset-email": "Send password reset email",
   "viewing": "Viewing",
   "featured-products": "featured products",
-  "incorect-email": "Please enter valid email"
+  "incorect-email": "Please enter valid email",
+  "out-of-stock-product-message": "{SKUCode} is out of stock."
 }

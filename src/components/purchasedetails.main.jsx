@@ -23,6 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import QuickOrderMain from './quickorder.main';
+import ReorderMain from './reorder.main';
 import PaymentMethodContainer from './paymentmethod.container';
 import ShippingOptionContainer from './shippingoption.container';
 import AddressContainer from './address.container';
@@ -229,14 +230,21 @@ const PurchaseDetailsMain = (props) => {
     );
   };
 
+  const canReorder = productsData => productsData._defaultcart && productsData._defaultcart[0]._additemstocartform;
+
   return (
     <div data-region="purchaseInformationRegion" style={{ display: 'block' }}>
       <div className="purchase-information-container container">
         <div data-region="purchaseSummaryRegion" style={{ display: 'block' }}>
           <div>
-            <h3>
+            <h3 className="purchase-summary-title">
               {intl.get('summary')}
             </h3>
+            {(canReorder(data)) ? (
+              <div className="purchase-reorder">
+                <ReorderMain productsData={data} />
+              </div>
+            ) : ('')}
             <table className="table table-striped">
               <tbody>
                 <tr>

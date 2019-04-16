@@ -26,6 +26,13 @@ import { login } from '../utils/AuthService';
 import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
 import PurchaseDetailsMain from '../components/purchasedetails.main';
 import './OrderHistoryPage.less';
+import { cortexFetch } from '../utils/Cortex';
+
+const Config = require('Config');
+
+const zoomArray = [
+  'defaultcart:additemstocartform',
+];
 
 class OrderHistoryPage extends React.Component {
   static propTypes = {
@@ -47,17 +54,20 @@ class OrderHistoryPage extends React.Component {
     const { match } = this.props;
     const orderId = decodeURIComponent(match.params.url);
     login().then(() => {
-      cortexFetchPurchaseLookupForm()
-        .then(() => purchaseLookup(orderId)
-          .then((res) => {
-            this.setState({
-              purchaseData: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
+      const defaultCartFetch = cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      }).then(res => res.json());
+      const purchaseFormFetch = cortexFetchPurchaseLookupForm().then(() => purchaseLookup(orderId));
+
+      Promise.all([purchaseFormFetch, defaultCartFetch])
+        .then((res) => {
+          this.setState({
+            purchaseData: { ...res[0], _defaultcart: res[1]._defaultcart },
+          });
+        });
     });
   }
 

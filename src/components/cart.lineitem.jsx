@@ -45,6 +45,7 @@ class CartLineItem extends React.Component {
     handleQuantityChange: PropTypes.func.isRequired,
     handleErrorMessage: PropTypes.func,
     hideRemoveButton: PropTypes.bool,
+    hideAddToBagButton: PropTypes.bool,
     itemQuantity: PropTypes.number,
     featuredProductAttribute: PropTypes.bool,
   }
@@ -54,6 +55,7 @@ class CartLineItem extends React.Component {
     hideRemoveButton: false,
     itemQuantity: 1,
     featuredProductAttribute: false,
+    hideAddToBagButton: false,
   }
 
   constructor(props) {
@@ -375,7 +377,12 @@ class CartLineItem extends React.Component {
   }
 
   render() {
-    const { item, hideRemoveButton, featuredProductAttribute } = this.props;
+    const {
+      item,
+      hideRemoveButton,
+      featuredProductAttribute,
+      hideAddToBagButton,
+    } = this.props;
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
     let availability = (itemAvailability[0].state === 'AVAILABLE');
@@ -509,7 +516,7 @@ class CartLineItem extends React.Component {
           </div>
         ) : ('')
         }
-        {(item._addtocartform) ? (
+        {(item._addtocartform && !hideAddToBagButton) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-addToCart" type="button" onClick={this.handleConfiguratorAddToCartBtnClicked}>
               <span className="btn-text">
