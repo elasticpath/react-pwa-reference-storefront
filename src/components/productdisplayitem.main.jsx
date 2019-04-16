@@ -631,7 +631,7 @@ class ProductDisplayItemMain extends React.Component {
                           <span className="glyphicon glyphicon-minus" />
                         </button>
                         <div className="quantity-col form-content form-content-quantity">
-                          <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
+                          <input id="product_display_quantity_field" className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
                         </div>
                         <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
                           <span className="glyphicon glyphicon-plus" />
