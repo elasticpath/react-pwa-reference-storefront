@@ -487,7 +487,6 @@ class ProductDisplayItemMain extends React.Component {
   renderProductImage() {
     const { productData, arFileExists } = this.state;
     const arBrowserSupported = document.createElement('a');
-    const isInStandaloneMode = window.navigator.standalone;
     const settings = {
       dots: false,
       infinite: true,
@@ -495,7 +494,7 @@ class ProductDisplayItemMain extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-    if (arBrowserSupported.relList.supports('ar') && !isInStandaloneMode && arFileExists) {
+    if (arBrowserSupported.relList.supports('ar') && arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
           <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
