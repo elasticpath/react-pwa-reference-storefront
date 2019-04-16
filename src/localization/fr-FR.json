@@ -238,6 +238,5 @@
   "viewing": "V-i-e-w-i-n-g-",
   "featured-products": "f-e-a-t-u-r-e-d- -p-r-o-d-u-c-t-s-",
   "incorect-email": "P-l-e-a-s-e- -e-n-t-e-r- -v-a-l-i-d- -e-m-a-i-l-",
-  "configurable-product-message": "{SKUCode} i-s- -a- -c-o-n-f-i-g-u-r-a-b-l-e- -p-r-o-d-u-c-t-.- -P-l-e-a-s-e- -v-i-s-i-t- -t-h-e- -p-r-o-d-u-c-t- -p-a-g-e- -t-o- -a-d-d- -i-t- -t-o- -t-h-e- -c-a-r-t.",
   "out-of-stock-product-message": "{SKUCode} i-s- -o-u-t- -o-f- -s-t-o-c-k."
 }
