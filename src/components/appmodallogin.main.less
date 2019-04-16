@@ -78,6 +78,26 @@
   }
 }
 
+.login-modal-content {
+  .form-group {
+    position: relative;
+  }
+  .label-link {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    &:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+  }
+}
+
 @media (max-width: @mobileWidth - 1) {
   .login-modal-content,
   .buy-it-again-modal-content {

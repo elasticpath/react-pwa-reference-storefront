@@ -130,7 +130,7 @@ class QuickOrderMain extends React.Component {
     } = this.state;
     const { isBuyItAgain } = this.props;
     const orderModal = data => (
-      <Modal open={openModal} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
+      <Modal open={openModal || false} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
         <div id="buy-it-again-modal">
           <div className="modal-content" id="simplemodal-container">
             <div className="modal-header">
@@ -147,9 +147,11 @@ class QuickOrderMain extends React.Component {
     if (isBuyItAgain) {
       return (
         <div style={{ display: 'block' }}>
-          <button className="ep-btn small buy-it-again-btn" type="button" onClick={() => this.handleModalOpen()}>
-            {intl.get('buy-it-again')}
-          </button>
+          <div className="buy-it-again-btn-wrap">
+            <button className="ep-btn small buy-it-again-btn" type="button" onClick={() => this.handleModalOpen()}>
+              {intl.get('buy-it-again')}
+            </button>
+          </div>
           {orderModal(productDataInfo)}
           <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
             {addToCartFailedMessage}
