@@ -46,7 +46,7 @@ class ReorderMain extends React.Component {
     super(props);
     this.state = {
       openModal: false,
-      errorMassages: {},
+      errorMessages: {},
       isLoading: false,
     };
 
@@ -79,9 +79,17 @@ class ReorderMain extends React.Component {
             },
             body: JSON.stringify(body),
           })
-          .then(() => {
+          .then((res) => {
+            console.warn(res);
             this.setState({ isLoading: false });
-            history.push('/mybag');
+            if (res.status !== 201) {
+              res.json().then((json) => {
+                const code = json.messages[0].data['item-code'];
+                this.handleError(code, json.messages[0]['debug-message']);
+              });
+            } else {
+              history.push('/mybag');
+            }
           })
           .catch((error) => {
             // eslint-disable-next-line no-console
@@ -94,11 +102,19 @@ class ReorderMain extends React.Component {
   handleModalOpen() {
     const { productsData } = this.props;
     productsData._lineitems[0]._element.forEach((product) => {
+      console.warn(product);
+      const SKUCode = product._item[0]._code[0].code;
       const isConfigurable = product._item[0]._definition[0].links.find(link => link.rel === 'options');
+
       if (isConfigurable) {
-        this.handleError(product._item[0]._code[0].code, intl.get('configurable-product-message'));
+        this.handleError(SKUCode, intl.get('configurable-product-message', { SKUCode }));
+      }
+
+      if (product._item[0]._availability[0].state !== 'AVAILABLE') {
+        this.handleError(SKUCode, intl.get('out-of-stock-product-message', { SKUCode }));
       }
     });
+
     this.setState({ openModal: true });
   }
 
@@ -107,12 +123,12 @@ class ReorderMain extends React.Component {
   }
 
   handleError(code, message) {
-    const { errorMassages } = this.state;
-    this.setState({ errorMassages: { ...errorMassages, [code]: message } });
+    const { errorMessages } = this.state;
+    this.setState({ errorMessages: { ...errorMessages, [code]: message } });
   }
 
   render() {
-    const { openModal, errorMassages, isLoading } = this.state;
+    const { openModal, errorMessages, isLoading } = this.state;
     const { productsData } = this.props;
 
     return (
@@ -141,8 +157,8 @@ class ReorderMain extends React.Component {
                       hideRemoveButton
                       handleErrorMessage={(error) => { this.handleError(_code[0].code, error.message); }}
                     />
-                    { errorMassages[_code[0].code]
-                      ? <div className="feedback-label">{ errorMassages[_code[0].code] }</div>
+                    { errorMessages[_code[0].code]
+                      ? <div className="feedback-label">{ errorMessages[_code[0].code] }</div>
                       : ''
                     }
                   </div>
@@ -155,7 +171,7 @@ class ReorderMain extends React.Component {
                 <button
                   className="ep-btn reorder-btn"
                   type="button"
-                  disabled={Object.keys(errorMassages).length}
+                  disabled={Object.keys(errorMessages).length}
                   onClick={() => {
                     this.reorderAll();
                   }}

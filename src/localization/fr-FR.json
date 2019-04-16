@@ -215,5 +215,7 @@
   "incorect-sku": "I-n-c-o-r-e-c-t- -S-K-U-",
   "no-divisions-found": "S-o-r-r-y-,- -y-o-u- -d-o- -n-o-t- -h-a-v-e- -a-n-y- -a-v-a-i-l-a-b-l-e- -s-h-o-p-p-i-n-g- -p-r-i-v-i-l-e-g-e-s",
   "viewing": "V-i-e-w-i-n-g-",
-  "featured-products": "f-e-a-t-u-r-e-d- -p-r-o-d-u-c-t-s-"
+  "featured-products": "f-e-a-t-u-r-e-d- -p-r-o-d-u-c-t-s-",
+  "configurable-product-message": "{SKUCode} i-s- -a- -c-o-n-f-i-g-u-r-a-b-l-e- -p-r-o-d-u-c-t-.- -P-l-e-a-s-e- -v-i-s-i-t- -t-h-e- -p-r-o-d-u-c-t- -p-a-g-e- -t-o- -a-d-d- -i-t- -t-o- -t-h-e- -c-a-r-t.",
+  "out-of-stock-product-message": "{SKUCode} i-s- -o-u-t- -o-f- -s-t-o-c-k."
 }

@@ -216,5 +216,6 @@
   "no-divisions-found": "Sorry, you do not have any available shopping privileges.",
   "viewing": "Viewing",
   "featured-products": "featured products",
-  "configurable-product-message": "configurable-product-message"
+  "configurable-product-message": "{SKUCode} is a configurable product. Please visit the product page to add it to the cart",
+  "out-of-stock-product-message": "{SKUCode} is out of stock."
 }
