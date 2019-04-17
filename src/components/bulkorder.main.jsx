@@ -88,7 +88,7 @@ export class BulkOrder extends React.Component {
           if (res.status === 201) {
             this.setState({
               isLoading: false,
-              items: Array(defaultItemsCount).fill(defaultItem),
+              items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
               csvText: '',
               bulkOrderErrorMessage: '',
               bulkOrderDuplicatedErrorMessage: '',
