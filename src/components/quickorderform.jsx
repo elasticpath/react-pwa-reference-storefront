@@ -124,11 +124,12 @@ class QuickOrderForm extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     const {
       code, quantity, product,
     } = this.state;
+    if (code === '') return;
     const { onItemSubmit } = this.props;
-    event.preventDefault();
     onItemSubmit({ code, quantity, product });
     this.setState({
       product: {},
@@ -195,7 +196,7 @@ class QuickOrderForm extends React.Component {
             </label>
             <div className="sku-field-wrap">
               <form className="form-horizontal" onSubmit={this.handleSubmit}>
-                <input className={`sku-input ${skuErrorMessage ? 'input-code-error' : ''}`} type="text" value={code} name="code" onChange={this.handleChange} onBlur={code !== '' ? this.handleSubmit : ''} />
+                <input className={`sku-input ${skuErrorMessage ? 'input-code-error' : ''}`} type="text" value={code} name="code" onChange={this.handleChange} onBlur={this.handleSubmit} />
                 <span role="presentation" className={`clear-field-btn ${code === '' ? 'hide' : ''} ${(skuErrorMessage !== '') ? 'input-error-icon' : ''}`} onClick={this.handleRemoveSku} />
               </form>
             </div>

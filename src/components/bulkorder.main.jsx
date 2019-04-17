@@ -31,8 +31,12 @@ import './bulkorder.main.less';
 const Config = require('Config');
 
 export class BulkOrder extends React.Component {
+  static defaultProps = {
+    cartData: undefined,
+  };
+
   static propTypes = {
-    cartData: PropTypes.objectOf(PropTypes.any).isRequired,
+    cartData: PropTypes.objectOf(PropTypes.any),
     isBulkModalOpened: PropTypes.bool.isRequired,
     handleClose: PropTypes.func.isRequired,
   };
@@ -45,7 +49,7 @@ export class BulkOrder extends React.Component {
     const defaultItemsCount = 10;
 
     this.state = {
-      items: Array(defaultItemsCount).fill(defaultItem),
+      items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
       bulkOrderItems: {},
       defaultItemsCount,
       defaultItem,
@@ -84,8 +88,10 @@ export class BulkOrder extends React.Component {
           if (res.status === 201) {
             this.setState({
               isLoading: false,
-              items: Array(defaultItemsCount).fill(defaultItem),
+              items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
               csvText: '',
+              bulkOrderErrorMessage: '',
+              bulkOrderDuplicatedErrorMessage: '',
             });
           }
           if (res.status >= 400) {
@@ -206,7 +212,7 @@ export class BulkOrder extends React.Component {
               </div>
               <div className="quickOrderRegion" data-region="quickOrderRegion">
                 {items.map((item, i) => (
-                  <QuickOrderForm item={item} onError={this.onError} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
+                  <QuickOrderForm item={item} key={item.key} onError={this.onError} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
                 ))}
               </div>
             </div>
@@ -216,7 +222,7 @@ export class BulkOrder extends React.Component {
                   className="ep-btn primary small btn-itemdetail-addtocart"
                   id="add_to_cart_bulk_order_button"
                   type="submit"
-                  disabled={!csvText || bulkOrderDuplicatedErrorMessage !== ''}
+                  disabled={!csvText || bulkOrderDuplicatedErrorMessage !== '' || bulkOrderErrorMessage !== ''}
                   onClick={() => { this.addAllToCart(bulkOrderItems); }}
                 >
                   {intl.get('add-all-to-cart')}

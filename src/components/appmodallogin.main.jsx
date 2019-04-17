@@ -203,7 +203,7 @@ class AppModalLoginMain extends React.Component {
                   {
                     (isLoading) ? <div className="miniLoader" /> : ('')
                   }
-                  {showForgotPasswordLink && <button type="button" className="label-link" onClick={this.resetPassword}>Forgot password?</button>}
+                  {showForgotPasswordLink && <button type="button" className="label-link" onClick={this.resetPassword}>{intl.get('forgot-password')}</button>}
                   <div className="form-input btn-container">
                     <button className="ep-btn primary btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {intl.get('login')}

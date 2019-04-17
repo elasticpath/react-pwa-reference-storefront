@@ -233,6 +233,7 @@
   "new-password": "New password",
   "confirm-new-password": "Confirm new password",
   "change-password": "Change password",
+  "forgot-password": "Forgot password?",
   "reset-password": "Reset your password",
   "reset-email-txt": "Enter your email address and we will send you a link to reset your password.",
   "reset-email": "Send password reset email",
