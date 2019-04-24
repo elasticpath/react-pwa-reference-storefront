@@ -18,7 +18,7 @@
   * [Configuring Jenkins Pipeline](#configuring-jenkins-pipeline)
       * [Prerequisites](#prerequisites)
       * [Configuring the Jenkinfile](#configuring-the-jenkinfile)
-      * [Jenkins Pipeline Parameter Descriptions](jenkins-pipeline-parameter-descriptions)
+      * [Jenkins Pipeline Parameter Descriptions](#jenkins-pipeline-parameter-descriptions)
       * [Configuring the Jenkins Job](#configuring-the-jenkins-job)
       * [Jenkins Pipeline Workflow](#jenkins-pipeline-workflow)
   * [Terms And Conditions](#terms-and-conditions)
@@ -75,11 +75,11 @@ You must configure the following parameters in the `./src/ep.config.json` file:
 |`arKit.skuArImagesUrl`| Optional| String| The path to the USDZ files hosted on an external CMS used for ARKit Quick Look. Set this parameter to the complete URL of the files by replacing the `sku/file-name` with `%sku%`. This value is populated when the page is loaded with values retrieved by Cortex.|
 |`b2b.enable`| Optional| Boolean| The general configuration to enable the B2B e-commerce shopping flow components in the storefront.|
 |`b2b.authServiceAPI.path`| Optional| String| The URL, which is composed of the hostname and port, to access the Admin APIs. By default, a web proxy is configured in the [Webpack](https://webpack.js.org/) configuration of the project. For local development, set this value to `/admin` to redirect Cortex calls to the local proxy.|
-|`b2b.authServiceAPI.pathForProxy`| Optional| String| The path to which the [Webpack](https://webpack.js.org/) proxy uses to route Cortex calls from the storefront to the publically hosted Account Management service. This value is a URL consisting of a hostname and port of a running Cortex for Account Management service instance. Leave this field blank to disable proxy.|
+|`b2b.authServiceAPI.pathForProxy`| Optional| String| The path to which the [Webpack](https://webpack.js.org/) proxy uses to route Cortex calls from the storefront to the publicly hosted Account Management service. This value is a URL consisting of a hostname and port of a running Cortex for Account Management service instance. Leave this field blank to disable proxy.|
 |`b2b.keycloak.callbackUrl`| Optional| String| The URL that is passed to keycloak, and redirected to upon a successful login.|
 |`b2b.keycloak.loginRedirectUrl`| Optional| String| The keycloak log on URL.|
 |`b2b.keycloak.logoutRedirectUrl`| Optional| String| The keycloak log off URL.|
-|`b2b.keycloak.client_id`| Optional| String| The keycloak client configuration ID. Set this value to the identifier of the client configured in keycloak for the storefront. A default configuration is preset, however older environemnts may use `eam`. For more information, see the [Deploying and Configuring Keycloak](https://developers.elasticpath.com/accountmanagementdeployment/7.4.1/Elastic-Path-Account-Management-Deployment/Deploying-Account-Management-Service/Deploying-and-Configuring-Keycloak) section.|
+|`b2b.keycloak.client_id`| Optional| String| The keycloak client configuration ID. Set this value to the identifier of the client configured in keycloak for the storefront. A default configuration is preset, however older environments may use `eam`. For more information, see the [Deploying and Configuring Keycloak](https://developers.elasticpath.com/accountmanagementdeployment/7.4.1/Elastic-Path-Account-Management-Deployment/Deploying-Account-Management-Service/Deploying-and-Configuring-Keycloak) section.|
 |`gaTrackingId`| Optional| String| The Google Analytics tracking ID to integrate with Google Analytics Suite to track enhanced e-commerce activity on the site.|
 |`indi.enable`| Optional| Boolean| Enable the integration component for Indi. More information may be found available here `https://indi.com/`.|
 |`indi.carousel`| Optional| Values| Configurations for the Indi carousel component.|
