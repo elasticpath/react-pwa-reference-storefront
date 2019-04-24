@@ -178,10 +178,10 @@ class AppHeaderMain extends React.Component {
                 </Link>
               </div>
             )}
-            {(Config.b2b.enable && availability) && (
-            <div className="bulk-container">
-              <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
-            </div>
+            {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
+              <div className="bulk-container">
+                <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
+              </div>
             )}
           </div>
 
