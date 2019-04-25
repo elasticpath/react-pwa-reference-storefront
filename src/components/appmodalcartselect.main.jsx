@@ -154,7 +154,10 @@ class AppModalCartSelectMain extends React.Component {
           <div className="modal-content" id="simplemodal-container">
             <div className="modal-header">
               <h2 className="modal-title">
-                {intl.get('change-carts')}
+                {(orgAuthServiceData && !orgAuthServiceData._element)
+                  ? (intl.get('change-carts-permission-denied'))
+                  : (intl.get('change-carts'))
+                }
               </h2>
             </div>
 
