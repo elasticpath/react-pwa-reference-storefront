@@ -95,34 +95,10 @@ class FeaturedProducts extends React.Component {
     if (categoryModel._element && categoryModel._element.length > 0) {
       return (
         <div>
-          <div className="featured-products-title">
-            {intl.get('viewing')}
-            {' '}
-            {(categoryModel._element.length > 4) && (
-              <span className="featured-products-on-page-l">
-                4
-                {' '}
-                {intl.get('of')}
-              </span>
-            )}
-            {(categoryModel._element.length > 3) && (
-              <span className="featured-products-on-page-m">
-                3
-                {' '}
-                {intl.get('of')}
-              </span>
-            )}
-            {(categoryModel._element.length > 2) && (
-              <span className="featured-products-on-page-s">
-                2
-                {' '}
-                {intl.get('of')}
-              </span>
-            )}
-            {' '}
-            {categoryModel._element.length}
-            {' '}
-            {intl.get('featured-products')}
+          <div className="product-featured">
+            <span className="product-title">
+              {intl.get('featured')}
+            </span>
           </div>
           <div className="featured-products-container" data-region="categoryBrowseRegion">
             <div className="product-image-carousel">

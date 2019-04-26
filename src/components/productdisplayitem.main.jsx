@@ -31,7 +31,7 @@ import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
 } from '../utils/Analytics';
-import imgPlaceholder from '../images/img-placeholder.png';
+import imgPlaceholder from '../images/img_missing_horizontal@3x.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
 import IndiRecommendationsDisplayMain from './indirecommendations.main';
 import BundleConstituentsDisplayMain from './bundleconstituents.main';

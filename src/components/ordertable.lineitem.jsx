@@ -22,7 +22,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import imgPlaceholder from '../images/img-placeholder.png';
+import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import './ordertable.lineitem.less';
 
 const Config = require('Config');

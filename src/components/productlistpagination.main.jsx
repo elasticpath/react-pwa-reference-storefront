@@ -107,17 +107,17 @@ class ProductListPagination extends React.Component {
             isTop ? (
               <div className="total-results">
                 <span className="total-results-value">
-                  {paginationData.pagination.results}
+                  {intl.get('viewing')}
                   &nbsp;
-                  {intl.get('results')}
+                  {paginationData.pagination['results-on-page']}
                 </span>
                 &nbsp;
                 <span className="results-displayed-value">
-                  (
-                  {paginationData.pagination['results-on-page']}
+                  {intl.get('of')}
                   &nbsp;
-                  {intl.get('results-on-page')}
-                  )
+                  {paginationData.pagination.results}
+                  &nbsp;
+                  {intl.get('products')}
                 </span>
               </div>
             ) : ('')}
