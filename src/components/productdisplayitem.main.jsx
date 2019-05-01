@@ -97,6 +97,24 @@ const zoomArray = [
   'code',
 ];
 
+function mapCortexproductDataToFlatProductData(productData) {
+  console.warn('Config', Config);
+  console.warn('productData', productData);
+  const { code } = productData._code[0];
+  const image = {
+    src: Config.skuImagesUrl.replace('%sku%', code),
+    href: Config.arKit.skuArImagesUrl.replace('%sku%', code),
+  };
+
+  return {
+    code,
+    image,
+    title: '',
+    price: '',
+    ...productData,
+  };
+}
+
 class ProductDisplayItemMain extends React.Component {
   static isLoggedIn() {
     return (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
@@ -143,14 +161,14 @@ class ProductDisplayItemMain extends React.Component {
             if (Config.arKit.enable) {
               this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
                 this.setState({
-                  productData: res,
+                  productData: mapCortexproductDataToFlatProductData(res),
                   arFileExists: exists,
                 });
                 this.trackImpressionAnalytics();
               });
             } else {
               this.setState({
-                productData: res,
+                productData: mapCortexproductDataToFlatProductData(res),
               });
               this.trackImpressionAnalytics();
             }
@@ -192,7 +210,7 @@ class ProductDisplayItemMain extends React.Component {
     if (isAnalyticsConfigured()) {
       const { productData, itemQuantity } = this.state;
       const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-      trackAddImpression(productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+      trackAddImpression(productData._definition[0]['display-name'], productData.code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
       setDetailAnalytics();
     }
   }
@@ -278,7 +296,7 @@ class ProductDisplayItemMain extends React.Component {
           if (res.status === 200 || res.status === 201) {
             if (isAnalyticsConfigured()) {
               const categoryTag = (productData._definition[0].details) ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-              trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData._code[0].code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
+              trackAddItemAnalytics(productData.self.uri.split(`/items/${Config.cortexApi.scope}/`)[1], productData._definition[0]['display-name'], productData.code, productData._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', itemQuantity);
               setAddAnalytics();
               sendAddToCartAnalytics();
             }
@@ -369,7 +387,7 @@ class ProductDisplayItemMain extends React.Component {
     const productTitle = productData._definition[0]['display-name'];
     const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
     const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
-    const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
+    const productImage = Config.skuImagesUrl.replace('%sku%', productData.code);
     return {
       productImage, productDescriptionValue, productTitle,
     };
@@ -382,7 +400,7 @@ class ProductDisplayItemMain extends React.Component {
     let productLink = '';
     if (productData._availability.length >= 0) {
       if (productData._code) {
-        productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
+        productLink = `${window.location.origin}/itemdetail/${productData.code}`;
       }
       if (productData._availability[0].state === 'AVAILABLE') {
         availabilityString = intl.get('in-stock');
@@ -496,8 +514,8 @@ class ProductDisplayItemMain extends React.Component {
     };
     if (arBrowserSupported.relList.supports('ar') && arFileExists) {
       return (
-        <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
-          <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+        <a href={productData.image.href} rel="ar">
+          <img src={productData.image.src} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
         </a>
       );
     }
@@ -505,7 +523,7 @@ class ProductDisplayItemMain extends React.Component {
       <div className="product-image-carousel">
         <Slider {...settings}>
           <div>
-            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+            <img src={productData.image.src} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
           </div>
         </Slider>
       </div>
@@ -551,12 +569,12 @@ class ProductDisplayItemMain extends React.Component {
             <div className="itemdetail-details">
               <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
                 <div>
-                  <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
+                  <h1 className="itemdetail-title" id={`category_item_title_${productData.code}`}>
                     {productData._definition[0]['display-name']}
                   </h1>
                   {(Config.b2b.enable) && (
-                    <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
-                      {productData._code[0].code}
+                    <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData.code}`}>
+                      {productData.code}
                     </h4>
                   )}
                 </div>
@@ -569,17 +587,17 @@ class ProductDisplayItemMain extends React.Component {
                         listPrice !== itemPrice
                           ? (
                             <li className="itemdetail-purchase-price">
-                              <h1 className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
+                              <h1 className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData.code}`}>
                                 {itemPrice}
                               </h1>
-                              <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
+                              <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData.code}`}>
                                 {listPrice}
                               </span>
                             </li>
                           )
                           : (
                             <li className="itemdetail-purchase-price">
-                              <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                              <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData.code}`}>
                                 {itemPrice}
                               </h1>
                             </li>
@@ -593,7 +611,7 @@ class ProductDisplayItemMain extends React.Component {
               <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
                 <ul className="itemdetail-availability-container">
                   <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                    <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
+                    <label htmlFor={`category_item_availability_${productData.code}`}>
                       {(availability) ? (
                         <div>
                           <span className="icon glyphicon glyphicon-ok" />
@@ -607,11 +625,11 @@ class ProductDisplayItemMain extends React.Component {
                     </label>
                   </li>
                   <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                    <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
+                    <label htmlFor={`category_item_release_date_${productData.code}_label`} className="itemdetail-release-date-label">
                       {intl.get('expected-release-date')}
                       :&nbsp;
                     </label>
-                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
+                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData.code}`}>
                       {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
                     </span>
                   </li>
@@ -758,7 +776,7 @@ class ProductDisplayItemMain extends React.Component {
           </div>
           <BundleConstituentsDisplayMain productData={productData} />
           <ProductRecommendationsDisplayMain productData={productData} />
-          <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
+          <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData.code} />
         </div>
       );
     }
