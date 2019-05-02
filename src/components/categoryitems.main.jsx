@@ -59,7 +59,6 @@ class CategoryItemsMain extends React.Component {
 
   getCategoryData(categoryProps) {
     this.setState({ isLoading: true });
-    const { categoryModel } = this.state;
     let categoryId = categoryProps.match.params;
     let categoryUrl = '';
     if (!categoryId['0'] || categoryId['0'] === undefined) {
@@ -83,6 +82,7 @@ class CategoryItemsMain extends React.Component {
             if (categoryUrl !== '') {
               navigationLookup(categoryUrl)
                 .then((res) => {
+                  const { categoryModel } = this.state;
                   const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
                   this.setState(prevState => ({
                     categoryModel: {
@@ -121,6 +121,7 @@ class CategoryItemsMain extends React.Component {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName,
     } = this.state;
     let products = '';
+    let noProducts = true;
     let featuredOffers = {};
     if (categoryModel._offers) {
       [products] = categoryModel._offers;
@@ -130,8 +131,8 @@ class CategoryItemsMain extends React.Component {
     if (categoryModel._featuredoffers) {
       [featuredOffers] = categoryModel._featuredoffers;
     }
-    const noProducts = !products || !products.links || !products._element || !products.pagination;
     const categoryModelIdString = categoryModelId;
+    noProducts = !products || !products._facets || !products._element || !products.pagination;
 
     return (
       <div className="category-items-container container-3">
@@ -150,21 +151,22 @@ class CategoryItemsMain extends React.Component {
             }
 
             return (
+
               <div>
+                <div className="menu-history">
+                  {categoryModelParentDisplayName}
+                  {categoryModelParentDisplayName && (
+                    <span className="arrow">
+                      &nbsp;﹥&nbsp;
+                    </span>
+                  )}
+                  {categoryModelDisplayName}
+                  <h1 className="category-title">
+                    {categoryModelDisplayName}
+                  </h1>
+                </div>
                 <SearchFacetNavigationMain productData={products} titleString={categoryModelIdString} />
                 <div className="products-container">
-                  <div className="menu-history">
-                    {categoryModelParentDisplayName}
-                    {categoryModelParentDisplayName && (
-                      <span className="arrow">
-                      &nbsp;﹥&nbsp;
-                      </span>
-                    )}
-                    {categoryModelDisplayName}
-                    <h1 className="category-title">
-                      {categoryModelDisplayName}
-                    </h1>
-                  </div>
                   <FeaturedProducts productData={featuredOffers} />
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
                   <ProductListMain productData={products} />

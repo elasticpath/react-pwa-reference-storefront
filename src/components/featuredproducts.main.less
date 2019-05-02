@@ -21,6 +21,30 @@
 
 @import './../style/common.less';
 
+.product-featured {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+
+  .product-title {
+    font-size: 12px;
+    display: inline-block;
+    padding: 0 15px;
+    background: #ffffff;
+    position: relative;
+  }
+}
+
+.product-featured:before {
+  content: "";
+  border-top: 1px solid #CCCCCC;
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
 .featured-products-title {
   font-size: 13px;
   color: #888;
@@ -68,14 +92,11 @@
       }
     }
     .slick-prev {
-      left: auto;
-      right: 60px;
       &:before {
         left: 8px;
       }
     }
     .slick-next {
-      right: 15px;
       &:before {
         right: 8px;
       }

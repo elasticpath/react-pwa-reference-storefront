@@ -28,12 +28,23 @@
   padding-bottom: 30px;
 
   .card-stack {
+    margin-top: 11px;
+
     .card {
-      margin-top: 5px;
+      border-radius: 0;
+      margin-top: -1px;
 
       .card-title {
         .facet {
+          color: #40B1F3;
+          font-weight: 500;
+          display: inline-block;
+          width: 100%;
           .glyphicon {
+            display: inline-block;
+            height: 12px;
+            width: 16px;
+            background: url('../images/header-icons/baseline-filter_list-24px.svg') no-repeat center center;
             margin-right:10px;
           }
 
@@ -48,8 +59,8 @@
       .facet-value {
         padding-left: 12.5px;
 
-        button, {
-          color: #000000;
+        button {
+          color: #777777;
           display: inline-block;
           vertical-align: middle;
           position: relative;
@@ -58,20 +69,35 @@
           background:none;
           border:none;
 
-          &:before {
-            content:"\e157";
-            font-family:"Glyphicons Halflings";
-            font-size: 18px;
-            font-weight: 100;
-            padding-right: 10px;
-            vertical-align: bottom;
-            -webkit-text-stroke: 1px white;
+          .checkmark {
+            top: 4px;
+            position: relative;
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            border: #cccccc 2px solid;
+            border-radius: 2px;
+
+            &.chosen {
+              border-color: #40B1F3;
+              &:before {
+                content: "";
+                position: absolute;
+                left: 4px;
+                top: 1px;
+                width: 6px;
+                height: 10px;
+                border: solid #40B1F3;
+                border-width: 0 2px 2px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+              }
+            }
           }
 
           &.chosen {
-            &:before {
-                content:"\e067";
-            }
             color: @mainBlueColor;
           }
 
@@ -79,6 +105,10 @@
             text-decoration: none;
             color: @mainBlueColor;
             cursor: pointer;
+          }
+
+          &:focus {
+            outline: 0 auto transparent;
           }
         }
       }

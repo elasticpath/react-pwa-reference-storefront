@@ -29,7 +29,7 @@ import { login } from '../utils/AuthService';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, setRemoveAnalytics, sendRemoveFromCartAnalytics,
 } from '../utils/Analytics';
-import imgPlaceholder from '../images/img-placeholder.png';
+import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from './appmodalbundleconfiguration.main';

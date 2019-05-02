@@ -27,7 +27,7 @@ import './quickorderform.less';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
-import imgPlaceholder from '../images/img-placeholder.png';
+import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
 

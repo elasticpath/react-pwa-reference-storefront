@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import imgPlaceholder from '../images/img-placeholder.png';
+import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 
 import './productlistitem.main.less';
 
