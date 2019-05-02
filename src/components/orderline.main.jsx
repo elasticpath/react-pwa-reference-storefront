@@ -41,7 +41,7 @@ class OrderLine extends React.Component {
     const {
       purchase,
     } = this.state;
-    const { status } = purchase.status;
+    const { status } = purchase;
     let statusString;
     switch (status) {
       case 'CANCELLED':
