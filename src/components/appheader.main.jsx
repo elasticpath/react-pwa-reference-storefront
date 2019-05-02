@@ -165,18 +165,7 @@ class AppHeaderMain extends React.Component {
                 <div className="search-icon" />
               </button>
             </div>
-            {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
-              <div className="bulk-container">
-                <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
-              </div>
-            )}
-          </div>
 
-          <div className="login-container">
-            <AppHeaderLoginMain isMobileView={false} permission={availability} />
-          </div>
-
-          <div className="icons-header-container">
             {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
               <div className="cart-link-container">
                 <Link className="cart-link" to="/mybag">
@@ -189,6 +178,15 @@ class AppHeaderMain extends React.Component {
                 </Link>
               </div>
             )}
+            {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
+              <div className="bulk-container">
+                <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
+              </div>
+            )}
+          </div>
+
+          <div className="login-container">
+            <AppHeaderLoginMain isMobileView={false} permission={availability} />
           </div>
 
           <div className="toggle-btn-container">
