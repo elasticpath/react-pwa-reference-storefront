@@ -495,7 +495,7 @@ export function purchaseLookup(purchaseLookupCode) {
 
 export function searchLookup(searchKeyword) {
   return new Promise(((resolve, reject) => {
-    if (searchKeyword.includes('/') && searchKeyword.includes(Config.cortexApi.scope)) {
+    if (searchKeyword.includes('/') && searchKeyword.includes(Config.cortexApi.scope.toLowerCase())) {
       cortexFetch(`/${searchKeyword}?zoom=${searchFormZoomArray.join()}`,
         {
           headers: {
