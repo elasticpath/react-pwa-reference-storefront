@@ -24,6 +24,7 @@
   "sku-invalid-message": "is invalid. Please clear SKU to submit order.",
   "bulk-order-invalid-message": "Some codes of products are invalid. Please review all codes.",
   "configurable-product-message": "{SKUCode} is a configurable product. Please visit the product page to add it to the cart.",
+  "product-message-without-price": "{SKUCode} does not have a price.",
   "duplicated-error-message": "There are multiple entries of {SKUCodes} in the form. Please combine duplicate SKUs to the one entry.",
   "quick-duplicated-error-message": "This product code already in form. Please combine duplicate SKUs to the one entry.",
   "not-available-message": "Sorry, this product is not available right now.",

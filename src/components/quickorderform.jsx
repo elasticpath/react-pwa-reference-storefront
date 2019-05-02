@@ -108,6 +108,14 @@ class QuickOrderForm extends React.Component {
                 code, quantity, product: {}, isValidField: false,
               });
             }
+            if (!res._price) {
+              this.setState({
+                skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: productId })}`,
+              });
+              onItemSubmit({
+                code, quantity, product: {}, isValidField: false,
+              });
+            }
           })
           .catch((error) => {
             onItemSubmit({
