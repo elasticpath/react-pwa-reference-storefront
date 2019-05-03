@@ -53,7 +53,7 @@ class QuickOrderForm extends React.Component {
     this.handleRemoveSku = this.handleRemoveSku.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleQtyChange = this.handleQtyChange.bind(this);
-    this.addToCart = this.addToCart.bind(this);
+    this.getProductInfo = this.getProductInfo.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -69,7 +69,7 @@ class QuickOrderForm extends React.Component {
     }
   }
 
-  addToCart(productId) {
+  getProductInfo(productId) {
     const { code, quantity } = this.state;
     const { onItemSubmit } = this.props;
     return login().then(() => {
@@ -143,7 +143,7 @@ class QuickOrderForm extends React.Component {
       product: {},
       isLoading: true,
     });
-    this.addToCart(code);
+    this.getProductInfo(code);
   }
 
   handleChange(event) {
