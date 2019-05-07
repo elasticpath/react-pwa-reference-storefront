@@ -22,5 +22,7 @@
 @import './../style/common.less';
 
 .products-container {
-  overflow: hidden;
+  @media (min-width: @tabletWidth) {
+    overflow: hidden;
+  }
 }

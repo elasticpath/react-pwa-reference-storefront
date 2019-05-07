@@ -1,5 +1,101 @@
 @import './../style/common.less';
 
+.products-container {
+  position: relative;
+
+  .loading-product {
+    .category-items-listing {
+      position: relative;
+
+      &:before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        background: rgba(255,255,255,0.8);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+    }
+  }
+
+  .loader {
+    z-index: 999;
+    left: calc(50% - 60px);
+    top: 20%;
+    position: absolute;
+    border: 10px solid @complimentGrey;
+    border-top: 10px solid @complimentBlueColor;
+  }
+
+    .sort-product-menu {
+      position: absolute;
+      top: 34px;
+      right: 15px;
+
+      .dropdown-sort-field {
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+
+        .sort-title {
+          display: inline-block;
+          margin-right: 10px;
+          margin-bottom: 0;
+        }
+
+      .dropdown {
+        color: #8a8a8a;
+        font-weight: 500;
+        text-transform: uppercase;
+
+        .dropdown-toggle {
+          border: 1px solid #c4c4c4;
+          display: block;
+          font-size: 14px;
+          color: #000;
+          background-color: #fff;
+          width: 180px;
+          text-align: left;
+          border-radius: 0;
+
+          &:focus {
+            box-shadow: none;
+          }
+          &:after {
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            border-width: 5px;
+            border-bottom-width: 0;
+          }
+        }
+
+        .dropdown-menu {
+          border: 1px solid #c4c4c4;
+          margin: 0;
+          padding: 0;
+          width: 180px;
+          border-radius: 0;
+
+            button:hover{
+              color: @complimentBlueColor;
+            }
+        }
+
+        &.show {
+          .dropdown-toggle {
+            &:after {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .menu-history {
   font-weight: bold;
   font-size: 15px;
@@ -16,5 +112,15 @@
 
   .arrow{
     color: @mainGrey;
+  }
+}
+
+@media (max-width: @mobileWidth) {
+  .products-container .sort-product-menu .dropdown-sort-field {
+      margin-top: 50px;
+    }
+
+  .product-list-container .compare-button {
+    margin-bottom: 44px;
   }
 }
