@@ -156,6 +156,7 @@ class OrderReviewPage extends React.Component {
           this.setState({
             isLoading: false,
           });
+          this.giftCertificatesAddToCart();
           this.trackTransactionAnalytics();
           history.push('/purchaseReceipt', { data: res });
         })
@@ -164,6 +165,74 @@ class OrderReviewPage extends React.Component {
           console.error(error.message);
         });
     });
+  }
+
+  giftCertificatesAddToCart() {
+    const chosenGiftCertificates = JSON.parse(localStorage.getItem('chosenGiftCertificatesArr'));
+    if (chosenGiftCertificates.length !== 0) {
+      this.setState({
+        isLoading: true,
+      });
+      chosenGiftCertificates.forEach((card) => {
+        login()
+          .then(() => {
+            cortexFetch(`/giftcertificates/${Config.cortexApi.scope}/lookup/form?followlocation=true`,
+              {
+                method: 'post',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                },
+                body: JSON.stringify({
+                  'gift-certificate-code': card,
+                }),
+              })
+              .then(data => data.json())
+              .then((data) => {
+                cortexFetch(data.links[0].uri,
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                    },
+                  })
+                  .then(res => res.json())
+                  .then((res) => {
+                    cortexFetch(res.links[0].uri,
+                      {
+                        method: 'post',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                        },
+                        body: JSON.stringify({}),
+                      })
+                      .then(() => {
+                        this.setState({
+                          isLoading: false,
+                        });
+                        localStorage.removeItem('chosenGiftCertificatesArr');
+                        const giftCertificatesCode = JSON.parse(localStorage.getItem('giftCertificatesCodeArr'));
+                        const filteredGiftCertificatesCode = giftCertificatesCode.filter(el => el !== card);
+                        localStorage.setItem('giftCertificatesCodeArr', JSON.stringify(filteredGiftCertificatesCode));
+                      })
+                      .catch((error) => {
+                        // eslint-disable-next-line no-console
+                        console.error(error.message);
+                      });
+                  })
+                  .catch((error) => {
+                    // eslint-disable-next-line no-console
+                    console.error(error.message);
+                  });
+              })
+              .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
+              });
+          });
+      });
+    }
   }
 
   goToCheckOut() {

@@ -98,12 +98,11 @@ class CheckoutSummaryList extends React.Component {
           </label>
           <br />
           {data._appliedpromotions[0]._element.map(promotion => (
-            <span className="cart-summary-value-col cart-applied-promotions" key={promotion.name}>&nbsp;&nbsp;
+            <span className="cart-summary-value-col cart-applied-promotions" key={promotion.name}>
               {(promotion['display-name'])
                 ? (promotion['display-name'])
                 : (promotion.name)
               }
-              &nbsp;&nbsp;
             </span>
           ))}
         </li>

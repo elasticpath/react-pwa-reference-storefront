@@ -244,5 +244,17 @@
   "viewing": "Viewing",
   "featured-products": "featured products",
   "incorect-email": "Please enter valid email",
-  "out-of-stock-product-message": "{SKUCode} is out of stock."
+  "out-of-stock-product-message": "{SKUCode} is out of stock.",
+  "gift-certificates": "Gift Certificates",
+  "gift-card": "gift card",
+  "gift-certificates-number": "gift card number",
+  "gift-certificates-add": "Add Gift Certificates",
+  "add-new-gift-certificate": "Add a new Gift Certificate",
+  "general": "General",
+  "shipping": "Shipping",
+  "payment": "Payment",
+  "order-summary": "Order Summary",
+  "apply-order-balance": "Apply balance to order",
+  "incorrect-gift-card-code": "Incorrect gift card code",
+  "no-gift-cards-message": "No saved gift cards"
 }

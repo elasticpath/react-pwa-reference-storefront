@@ -243,5 +243,17 @@
   "viewing": "V-i-e-w-i-n-g-",
   "featured-products": "f-e-a-t-u-r-e-d- -p-r-o-d-u-c-t-s-",
   "incorect-email": "P-l-e-a-s-e- -e-n-t-e-r- -v-a-l-i-d- -e-m-a-i-l-",
-  "out-of-stock-product-message": "{SKUCode} i-s- -o-u-t- -o-f- -s-t-o-c-k."
+  "out-of-stock-product-message": "{SKUCode} i-s- -o-u-t- -o-f- -s-t-o-c-k.",
+  "gift-certificates": "G-i-f-t- -C-e-r-t-i-f-i-c-a-t-e-s-",
+  "gift-card": "g-i-f-t- -c-a-r-d-",
+  "gift-certificates-number": "g-i-f-t- -c-a-r-d- -n-u-m-b-e-r-",
+  "gift-certificates-add": "A-d-d- -G-i-f-t- -C-e-r-t-i-f-i-c-a-t-e-s-",
+  "add-new-gift-certificate": "A-d-d- -a- -n-e-w- -G-i-f-t- -C-e-r-t-i-f-i-c-a-t-e-",
+  "general": "G-e-n-e-r-a-l-",
+  "shipping": "S-h-i-p-p-i-n-g-",
+  "payment": "P-a-y-m-e-n-t-",
+  "order-summary": "O-r-d-e-r- -S-u-m-m-a-r-y-",
+  "apply-order-balance": "A-p-p-l-y- -b-a-l-a-n-c-e- -t-o- -o-r-d-e-r-",
+  "incorrect-gift-card-code": "I-n-c-o-r-r-e-c-t- -g-i-f-t- -c-a-r-d- -c-o-d-e-",
+  "no-gift-cards-message": "N-o- -s-a-v-e-d- -g-i-f-t- -c-a-r-d-s-"
 }
