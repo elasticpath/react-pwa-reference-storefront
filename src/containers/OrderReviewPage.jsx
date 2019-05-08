@@ -168,7 +168,7 @@ class OrderReviewPage extends React.Component {
   }
 
   giftCertificatesAddToCart() {
-    const chosenGiftCertificates = JSON.parse(localStorage.getItem('chosenGiftCertificatesArr'));
+    const chosenGiftCertificates = JSON.parse(localStorage.getItem('chosenGiftCertificatesArr')) || [];
     if (chosenGiftCertificates.length !== 0) {
       this.setState({
         isLoading: true,

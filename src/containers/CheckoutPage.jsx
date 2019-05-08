@@ -86,6 +86,7 @@ class CheckoutPage extends React.Component {
       orderData: undefined,
       isLoading: false,
       profileData: undefined,
+      showGiftCard: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
   }
@@ -93,6 +94,7 @@ class CheckoutPage extends React.Component {
   componentDidMount() {
     this.fetchOrderData();
     this.fetchProfileData();
+    this.fetchGiftCardsData();
   }
 
   componentWillReceiveProps() {
@@ -113,6 +115,28 @@ class CheckoutPage extends React.Component {
           this.setState({
             profileData: res._defaultprofile[0],
           });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
+  fetchGiftCardsData() {
+    login().then(() => {
+      cortexFetch(`/giftcertificates/${Config.cortexApi.scope}/lookup/form`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          if (res) {
+            this.setState({ showGiftCard: true });
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -511,7 +535,9 @@ class CheckoutPage extends React.Component {
   }
 
   render() {
-    const { orderData, isLoading, profileData } = this.state;
+    const {
+      orderData, isLoading, profileData, showGiftCard,
+    } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
       let debugMessages = '';
@@ -576,11 +602,13 @@ class CheckoutPage extends React.Component {
                   <h3 className="profile-info-container-title">
                     {intl.get('payment')}
                   </h3>
+                  {showGiftCard && (
                   <div className="profile-info-col">
                     <div className="profile-info-block">
                       <GiftcertificateFormMain />
                     </div>
                   </div>
+                  )}
                   <div className="profile-info-col">
                     <div className="profile-info-block">
                       <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>

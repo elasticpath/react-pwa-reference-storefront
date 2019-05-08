@@ -50,7 +50,7 @@ class GiftcertificateFormMain extends React.Component {
   }
 
   componentDidMount() {
-    const savedGiftCertificates = JSON.parse(localStorage.getItem('giftCertificatesCodeArr'));
+    const savedGiftCertificates = JSON.parse(localStorage.getItem('giftCertificatesCodeArr')) || [];
     savedGiftCertificates.forEach((el) => {
       login().then(() => {
         cortexFetch(`/giftcertificates/${Config.cortexApi.scope}/lookup/form?followlocation=true`,
