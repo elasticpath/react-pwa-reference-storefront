@@ -32,6 +32,7 @@ import ProductListPagination from './productlistpagination.main';
 import ProductListLoadMore from './productlistloadmore';
 
 import './categoryitems.main.less';
+import SortProductMenu from './sortproductmenu.main';
 
 const Config = require('Config');
 
@@ -79,7 +80,7 @@ class CategoryItemsMain extends React.Component {
     this.state = {
       isLoading: true,
       categoryModel: { links: [] },
-      productData: [],
+      productData: {},
       loadSortedProduct: false,
     };
 
@@ -152,7 +153,6 @@ class CategoryItemsMain extends React.Component {
     });
     login().then(() => {
       cortexFetch(`${selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
-        // cortexFetch(`${selfUri}?followlocation=true&zoom=${zoomArray.sort().join()}`,
         {
           method: 'post',
           headers: {
@@ -186,38 +186,6 @@ class CategoryItemsMain extends React.Component {
         [productNode]: [products],
       },
     }));
-  }
-
-  renderSortSelection() {
-    const { categoryModel, productData } = this.state;
-    let products = '';
-    if (categoryModel._offers) {
-      [products] = categoryModel._offers;
-    } else {
-      products = categoryModel._items ? categoryModel : categoryModel;
-    }
-    if (products._sortattributes) {
-      const chosenSelect = productData._chosen ? productData._chosen[0]._description[0]['display-name'] : products._sortattributes[0]._chosen[0]._description[0]['display-name'];
-
-      return (
-        <div className="dropdown-sort-field">
-          <p className="sort-title">Sort By</p>
-          <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {chosenSelect}
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {(products._sortattributes[0]._choice) ? products._sortattributes[0]._choice.map(sortChoice => (
-                <button type="button" onClick={this.handleSortSelection} className="dropdown-item" key={sortChoice._description[0]['display-name']} id={`product_display_item_sku_option_${sortChoice._description[0]['display-name']}`} value={(sortChoice._selectaction) ? sortChoice._selectaction[0].self.uri : ''}>
-                  {sortChoice._description[0]['display-name']}
-                </button>
-              )) : ''}
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return null;
   }
 
   render() {
@@ -263,7 +231,6 @@ class CategoryItemsMain extends React.Component {
             }
 
             return (
-
               <div>
                 <div className="menu-history">
                   {categoryModelParentDisplayName}
@@ -279,13 +246,11 @@ class CategoryItemsMain extends React.Component {
                 </div>
                 <SearchFacetNavigationMain productData={products} titleString={categoryModelIdString} />
                 <div className="products-container">
-                  <div className="sort-product-menu">
-                    {this.renderSortSelection()}
-                  </div>
                   <FeaturedProducts productData={featuredOffers} />
-                  <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
-                  <div className={`${loadSortedProduct ? 'loader' : ''}`} />
+                  <SortProductMenu handleSortSelection={this.handleSortSelection} productData={productData} categoryModel={categoryModel} />
+                  <ProductListPagination paginationDataProps={products} isProductoading={loadSortedProduct} titleString={categoryModelIdString} isTop />
                   <div className={`${loadSortedProduct ? 'loading-product' : ''}`}>
+                    <div className={`${loadSortedProduct ? 'sort-product-loader' : ''}`} />
                     <ProductListMain productData={productList} />
                   </div>
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />

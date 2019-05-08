@@ -4,6 +4,8 @@
   position: relative;
 
   .loading-product {
+    position: relative;
+
     .category-items-listing {
       position: relative;
 
@@ -20,79 +22,23 @@
     }
   }
 
-  .loader {
-    z-index: 999;
-    left: calc(50% - 60px);
-    top: 20%;
-    position: absolute;
-    border: 10px solid @complimentGrey;
-    border-top: 10px solid @complimentBlueColor;
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
-    .sort-product-menu {
-      position: absolute;
-      top: 34px;
-      right: 15px;
-
-      .dropdown-sort-field {
-        margin-top: 6px;
-        display: flex;
-        align-items: center;
-
-        .sort-title {
-          display: inline-block;
-          margin-right: 10px;
-          margin-bottom: 0;
-        }
-
-      .dropdown {
-        color: #8a8a8a;
-        font-weight: 500;
-        text-transform: uppercase;
-
-        .dropdown-toggle {
-          border: 1px solid #c4c4c4;
-          display: block;
-          font-size: 14px;
-          color: #000;
-          background-color: #fff;
-          width: 180px;
-          text-align: left;
-          border-radius: 0;
-
-          &:focus {
-            box-shadow: none;
-          }
-          &:after {
-            position: absolute;
-            top: 12px;
-            right: 10px;
-            border-width: 5px;
-            border-bottom-width: 0;
-          }
-        }
-
-        .dropdown-menu {
-          border: 1px solid #c4c4c4;
-          margin: 0;
-          padding: 0;
-          width: 180px;
-          border-radius: 0;
-
-            button:hover{
-              color: @complimentBlueColor;
-            }
-        }
-
-        &.show {
-          .dropdown-toggle {
-            &:after {
-              transform: rotate(180deg);
-            }
-          }
-        }
-      }
-    }
+  .sort-product-loader {
+    top: 170px;
+    z-index: 99;
+    left: calc(50% - 30px);
+    position: absolute;
+    border: 6px solid @complimentGrey;
+    border-top: 6px solid @complimentBlueColor;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px !important;
+    animation: spin 0.5s linear infinite;
+    margin: 0 auto;
   }
 }
 
@@ -107,7 +53,7 @@
     font-weight: 600;
     font-size: 35px;
     margin: 12px;
-    color: black;
+    color: #000;
   }
 
   .arrow{
@@ -116,10 +62,6 @@
 }
 
 @media (max-width: @mobileWidth) {
-  .products-container .sort-product-menu .dropdown-sort-field {
-      margin-top: 50px;
-    }
-
   .product-list-container .compare-button {
     margin-bottom: 44px;
   }
