@@ -107,6 +107,16 @@ const navigationFormZoomArray = [
   'featuredoffers:element:items:element:rate',
   'featuredoffers:element:items:element:code',
   'parent',
+  'sortattributes',
+  'sortattributes:choice',
+  'sortattributes:choice:description',
+  'sortattributes:choice:selectaction',
+  'sortattributes:choice:selector',
+  'sortattributes:chosen',
+  'sortattributes:chosen:description',
+  'sortattributes:chosen:selectaction',
+  'sortattributes:chosen:selector',
+  'sortattributes:offersearchresult',
 ];
 
 // Array of zoom parameters to pass to Cortex for itemDetails
