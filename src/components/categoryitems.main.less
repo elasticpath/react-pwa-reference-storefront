@@ -1,5 +1,47 @@
 @import './../style/common.less';
 
+.products-container {
+  position: relative;
+
+  .loading-product {
+    position: relative;
+
+    .category-items-listing {
+      position: relative;
+
+      &:before {
+        content: "";
+        height: 100%;
+        width: 100%;
+        background: rgba(255,255,255,0.8);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+    }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .sort-product-loader {
+    top: 170px;
+    z-index: 99;
+    left: calc(50% - 30px);
+    position: absolute;
+    border: 6px solid @complimentGrey;
+    border-top: 6px solid @complimentBlueColor;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px !important;
+    animation: spin 0.5s linear infinite;
+    margin: 0 auto;
+  }
+}
+
 .menu-history {
   font-weight: bold;
   font-size: 15px;
@@ -11,10 +53,16 @@
     font-weight: 600;
     font-size: 35px;
     margin: 12px;
-    color: black;
+    color: #000;
   }
 
   .arrow{
     color: @mainGrey;
+  }
+}
+
+@media (max-width: @mobileWidth) {
+  .product-list-container .compare-button {
+    margin-bottom: 44px;
   }
 }

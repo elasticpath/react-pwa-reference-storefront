@@ -24,6 +24,7 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
+import { cortexFetch } from '../utils/Cortex';
 import ProductListMain from './productlist.main';
 import SearchFacetNavigationMain from './searchfacetnavigation.main';
 import FeaturedProducts from './featuredproducts.main';
@@ -31,6 +32,38 @@ import ProductListPagination from './productlistpagination.main';
 import ProductListLoadMore from './productlistloadmore';
 
 import './categoryitems.main.less';
+import SortProductMenu from './sortproductmenu.main';
+
+const Config = require('Config');
+
+const zoomArray = [
+  'chosen',
+  'chosen:description',
+  'offersearchresult',
+  'offersearchresult:element',
+  'offersearchresult:element:availability',
+  'offersearchresult:element:definition',
+  'offersearchresult:element:price',
+  'offersearchresult:element:rate',
+  'offersearchresult:element:code',
+  'offersearchresult:element:pricerange',
+  'offersearchresult:element:items',
+  'offersearchresult:element:items:element',
+  'offersearchresult:element:items:element:availability',
+  'offersearchresult:element:items:element:definition',
+  'offersearchresult:element:items:element:price',
+  'offersearchresult:element:items:element:rate',
+  'offersearchresult:element:items:element:code',
+  'offersearchresult:facets',
+  'offersearchresult:facets:element',
+  'offersearchresult:facets:element:facetselector',
+  'offersearchresult:facets:element:facetselector:choice:description',
+  'offersearchresult:facets:element:facetselector:choice:selector',
+  'offersearchresult:facets:element:facetselector:choice:selectaction',
+  'offersearchresult:facets:element:facetselector:chosen:description',
+  'offersearchresult:facets:element:facetselector:chosen:selector',
+  'offersearchresult:facets:element:facetselector:chosen:selectaction',
+];
 
 class CategoryItemsMain extends React.Component {
   static propTypes = {
@@ -42,9 +75,12 @@ class CategoryItemsMain extends React.Component {
     this.state = {
       isLoading: true,
       categoryModel: { links: [] },
+      productData: {},
+      loadSortedProduct: false,
     };
 
     this.handleProductsChange = this.handleProductsChange.bind(this);
+    this.handleSortSelection = this.handleSortSelection.bind(this);
   }
 
   componentDidMount() {
@@ -105,6 +141,37 @@ class CategoryItemsMain extends React.Component {
     });
   }
 
+  handleSortSelection(event) {
+    const selfUri = event.target.value;
+    this.setState({
+      loadSortedProduct: true,
+    });
+    login().then(() => {
+      cortexFetch(`${selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            productData: res,
+            loadSortedProduct: false,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          this.setState({
+            loadSortedProduct: false,
+          });
+        });
+    });
+  }
+
   handleProductsChange(products) {
     const { categoryModel } = this.state;
     const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
@@ -118,18 +185,26 @@ class CategoryItemsMain extends React.Component {
 
   render() {
     const {
-      isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName,
+      isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName, productData, loadSortedProduct,
     } = this.state;
     let products = '';
+    let productList = '';
     let noProducts = true;
     let featuredOffers = {};
     if (categoryModel._offers) {
       [products] = categoryModel._offers;
+      [productList] = categoryModel._offers;
     } else {
       products = categoryModel._items ? categoryModel._items[0] : categoryModel;
+      productList = categoryModel._items ? categoryModel._items[0] : categoryModel;
     }
+
     if (categoryModel._featuredoffers) {
       [featuredOffers] = categoryModel._featuredoffers;
+    }
+
+    if (productData._offersearchresult && productData._offersearchresult[0]._element) {
+      [productList] = productData._offersearchresult;
     }
     const categoryModelIdString = categoryModelId;
     noProducts = !products || !products._facets || !products._element || !products.pagination;
@@ -151,7 +226,6 @@ class CategoryItemsMain extends React.Component {
             }
 
             return (
-
               <div>
                 <div className="menu-history">
                   {categoryModelParentDisplayName}
@@ -168,8 +242,12 @@ class CategoryItemsMain extends React.Component {
                 <SearchFacetNavigationMain productData={products} titleString={categoryModelIdString} />
                 <div className="products-container">
                   <FeaturedProducts productData={featuredOffers} />
-                  <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop />
-                  <ProductListMain productData={products} />
+                  <SortProductMenu handleSortSelection={this.handleSortSelection} productData={productData} categoryModel={categoryModel} />
+                  <ProductListPagination paginationDataProps={products} isProductoading={loadSortedProduct} titleString={categoryModelIdString} isTop />
+                  <div className={`${loadSortedProduct ? 'loading-product' : ''}`}>
+                    <div className={`${loadSortedProduct ? 'sort-product-loader' : ''}`} />
+                    <ProductListMain productData={productList} />
+                  </div>
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />
                 </div>
               </div>
