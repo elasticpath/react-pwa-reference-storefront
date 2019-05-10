@@ -50,6 +50,7 @@ class ProductListItemMain extends React.Component {
     super(props);
     this.state = {
       productData: undefined,
+      imageStatus: 'loading',
     };
   }
 
@@ -82,8 +83,12 @@ class ProductListItemMain extends React.Component {
     }
   }
 
+  handleImageLoaded() {
+    this.setState({ imageStatus: 'loaded' });
+  }
+
   render() {
-    const { productData } = this.state;
+    const { productData, imageStatus } = this.state;
     const { offerData, featuredProductAttribute } = this.props;
     if (productData) {
       let listPrice = 'n/a';
@@ -121,9 +126,9 @@ class ProductListItemMain extends React.Component {
       }
       return (
         <div className="category-item-inner">
-          <div className="category-item-thumbnail-container">
+          <div className={`category-item-thumbnail-container ${imageStatus === 'loaded' ? 'loaded' : ''}`}>
             <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
-              <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
+              <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" onLoad={this.handleImageLoaded.bind(this)} title="" />
             </Link>
           </div>
           <div className="category-item-title-container">
