@@ -63,6 +63,13 @@ const zoomArray = [
   'offersearchresult:facets:element:facetselector:chosen:description',
   'offersearchresult:facets:element:facetselector:chosen:selector',
   'offersearchresult:facets:element:facetselector:chosen:selectaction',
+  'offersearchresult:sortattributes',
+  'offersearchresult:sortattributes:choice',
+  'offersearchresult:sortattributes:choice:description',
+  'offersearchresult:sortattributes:choice:selectaction',
+  'offersearchresult:sortattributes:chosen',
+  'offersearchresult:sortattributes:chosen:description',
+  'offersearchresult:sortattributes:chosen:selectaction',
 ];
 
 class CategoryItemsMain extends React.Component {
@@ -75,7 +82,6 @@ class CategoryItemsMain extends React.Component {
     this.state = {
       isLoading: true,
       categoryModel: { links: [] },
-      productData: {},
       loadSortedProduct: false,
     };
 
@@ -142,6 +148,7 @@ class CategoryItemsMain extends React.Component {
   }
 
   handleSortSelection(event) {
+    const { categoryModel } = this.state;
     const selfUri = event.target.value;
     this.setState({
       loadSortedProduct: true,
@@ -157,10 +164,14 @@ class CategoryItemsMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          this.setState({
-            productData: res,
+          const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
+          this.setState(prevState => ({
+            categoryModel: {
+              ...prevState.categoryModel,
+              [productNode]: [res._offersearchresult[0]],
+            },
             loadSortedProduct: false,
-          });
+          }));
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -185,7 +196,7 @@ class CategoryItemsMain extends React.Component {
 
   render() {
     const {
-      isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName, productData, loadSortedProduct,
+      isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName, loadSortedProduct,
     } = this.state;
     let products = '';
     let productList = '';
@@ -201,10 +212,6 @@ class CategoryItemsMain extends React.Component {
 
     if (categoryModel._featuredoffers) {
       [featuredOffers] = categoryModel._featuredoffers;
-    }
-
-    if (productData._offersearchresult && productData._offersearchresult[0]._element) {
-      [productList] = productData._offersearchresult;
     }
     const categoryModelIdString = categoryModelId;
     noProducts = !products || !products._facets || !products._element || !products.pagination;
@@ -242,7 +249,7 @@ class CategoryItemsMain extends React.Component {
                 <SearchFacetNavigationMain productData={products} titleString={categoryModelIdString} />
                 <div className="products-container">
                   <FeaturedProducts productData={featuredOffers} />
-                  <SortProductMenu handleSortSelection={this.handleSortSelection} productData={productData} categoryModel={categoryModel} />
+                  <SortProductMenu handleSortSelection={this.handleSortSelection} categoryModel={categoryModel} />
                   <ProductListPagination paginationDataProps={products} isProductoading={loadSortedProduct} titleString={categoryModelIdString} isTop />
                   <div className={`${loadSortedProduct ? 'loading-product' : ''}`}>
                     <div className={`${loadSortedProduct ? 'sort-product-loader' : ''}`} />

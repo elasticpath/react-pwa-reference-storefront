@@ -29,7 +29,6 @@ class SortProductMenu extends React.Component {
   static propTypes = {
     handleSortSelection: PropTypes.func.isRequired,
     categoryModel: PropTypes.objectOf(PropTypes.any).isRequired,
-    productData: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   constructor(props) {
@@ -43,7 +42,7 @@ class SortProductMenu extends React.Component {
   }
 
   render() {
-    const { categoryModel, productData } = this.props;
+    const { categoryModel } = this.props;
     let products = '';
     let chosenSelect = '';
     if (categoryModel._offers) {
@@ -51,8 +50,8 @@ class SortProductMenu extends React.Component {
     } else {
       products = categoryModel._items ? categoryModel : categoryModel;
     }
-    if (products._sortattributes) {
-      chosenSelect = productData._chosen ? productData._chosen[0]._description[0]['display-name'] : products._sortattributes[0]._chosen[0]._description[0]['display-name'];
+    if (products._sortattributes && products._sortattributes[0]._chosen) {
+      chosenSelect = products._sortattributes[0]._chosen[0]._description[0]['display-name'];
       return (
         <div className="sort-product-menu">
           <div className="dropdown-sort-field">
