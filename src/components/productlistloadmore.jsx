@@ -68,6 +68,8 @@ class ProductListLoadMore extends React.Component {
               pagination: updatedPagination,
               self: res.self,
               _element: _element.concat(res._element),
+              _sortattributes: res._sortattributes,
+              _facets: res._facets,
             };
             handleDataChange(updatedItems);
             this.setState({ isLoading: false });
