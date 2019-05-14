@@ -28,8 +28,10 @@ import AddressContainer from '../components/address.container';
 import ShippingOptionContainer from '../components/shippingoption.container';
 import PaymentMethodContainer from '../components/paymentmethod.container';
 import { cortexFetch } from '../utils/Cortex';
-import './CheckoutPage.less';
 import ProfileemailinfoMain from '../components/profileemailinfo.main';
+import GiftcertificateFormMain from '../components/giftcertificateform.main';
+
+import './CheckoutPage.less';
 
 const Config = require('Config');
 
@@ -84,13 +86,17 @@ class CheckoutPage extends React.Component {
       orderData: undefined,
       isLoading: false,
       profileData: undefined,
+      showGiftCard: false,
+      certificates: [],
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
+    this.handleCertificate = this.handleCertificate.bind(this);
   }
 
   componentDidMount() {
     this.fetchOrderData();
     this.fetchProfileData();
+    this.fetchGiftCardsData();
   }
 
   componentWillReceiveProps() {
@@ -111,6 +117,28 @@ class CheckoutPage extends React.Component {
           this.setState({
             profileData: res._defaultprofile[0],
           });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
+  fetchGiftCardsData() {
+    login().then(() => {
+      cortexFetch(`/giftcertificates/${Config.cortexApi.scope}/lookup/form`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          if (res) {
+            this.setState({ showGiftCard: true });
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -200,6 +228,12 @@ class CheckoutPage extends React.Component {
   reviewOrder() {
     const { history } = this.props;
     history.push('/order');
+  }
+
+  handleCertificate(certificate) {
+    this.setState({
+      certificates: certificate,
+    });
   }
 
   renderShippingAddress() {
@@ -509,7 +543,9 @@ class CheckoutPage extends React.Component {
   }
 
   render() {
-    const { orderData, isLoading, profileData } = this.state;
+    const {
+      orderData, isLoading, profileData, showGiftCard, certificates,
+    } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
       let debugMessages = '';
@@ -517,6 +553,8 @@ class CheckoutPage extends React.Component {
       for (let i = 0; i < messages.length; i++) {
         debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
       }
+      const deliveries = orderData._order[0]._deliveries;
+      const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">
@@ -527,39 +565,84 @@ class CheckoutPage extends React.Component {
                 </h1>
               </div>
             </div>
-            <div className="checkout-main-container">
-              { profileData ? (
-                <div className="profile-email-info">
-                  <span className="feedback-label">{ email === '' && intl.get('email-validation') }</span>
-                  <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
-                </div>
-              ) : (<div />)}
-              <div data-region="billingAddressesRegion" style={{ display: 'block' }}>
-                {this.renderBillingAddressSelector()}
-              </div>
-              <div className="checkout-shipping-container">
-                {this.renderShippingAddressSelector()}
-                <div data-region="shippingOptionsRegion">
-                  {this.renderShippingOptionsSelector()}
-                </div>
-              </div>
-              <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
-                {this.renderPaymentSelector()}
-              </div>
-            </div>
-            <div className="checkout-sidebar" data-region="checkoutOrderRegion" style={{ display: 'block' }}>
-              <div>
-                <div className="checkout-sidebar-inner">
-                  <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                    <CheckoutSummaryList data={orderData} />
+            <div className="checkout-main-container-wrap">
+              <div className="checkout-main-container">
+                { profileData ? (
+                  <div className="profile-info-container">
+                    <h3 className="profile-info-container-title">
+                      {intl.get('general')}
+                    </h3>
+                    <div className="profile-info-col">
+                      <div className="profile-info-block">
+                        <div className="profile-email-info">
+                          <span className="feedback-label">{ email === '' && intl.get('email-validation') }</span>
+                          <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="feedback-label" id="checkout_feedback_container">
-                    {(debugMessages !== '') ? (debugMessages) : ('')}
+                ) : (<div />)}
+                <div className="profile-info-container">
+                  <h3 className="profile-info-container-title">
+                    {intl.get('shipping')}
+                  </h3>
+                  <div className="profile-info-col">
+                    <div className="profile-info-block">
+                      <div data-region="billingAddressesRegion" style={{ display: 'block' }}>
+                        {this.renderBillingAddressSelector()}
+                      </div>
+                    </div>
                   </div>
-                  <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
-                    <button className="ep-btn primary wide btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
-                      {intl.get('complete-order')}
-                    </button>
+                  {(needShipmentDetails || deliveries) && (
+                    <div className="profile-info-col">
+                      <div className="profile-info-block">
+                        <div className="checkout-shipping-container">
+                          {this.renderShippingAddressSelector()}
+                          <div data-region="shippingOptionsRegion">
+                            {this.renderShippingOptionsSelector()}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="profile-info-container">
+                  <h3 className="profile-info-container-title">
+                    {intl.get('payment')}
+                  </h3>
+                  {showGiftCard && (
+                  <div className="profile-info-col">
+                    <div className="profile-info-block">
+                      <GiftcertificateFormMain updateCertificate={this.handleCertificate} />
+                    </div>
+                  </div>
+                  )}
+                  <div className="profile-info-col">
+                    <div className="profile-info-block">
+                      <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
+                        {this.renderPaymentSelector()}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="checkout-sidebar" data-region="checkoutOrderRegion" style={{ display: 'block' }}>
+                <div>
+                  <h2>
+                    {intl.get('order-summary')}
+                  </h2>
+                  <div className="checkout-sidebar-inner">
+                    <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
+                      <CheckoutSummaryList data={orderData} giftCards={certificates} />
+                    </div>
+                    <div className="feedback-label" id="checkout_feedback_container">
+                      {(debugMessages !== '') ? (debugMessages) : ('')}
+                    </div>
+                    <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
+                      <button className="ep-btn primary btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
+                        {intl.get('complete-order')}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

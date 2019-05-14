@@ -139,23 +139,50 @@ class ProfilePage extends React.Component {
             </h1>
           </div>
           {profileData ? (
-            <div>
-              <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
-              <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
-              {showResetPasswordButton && (
-              <div className="personal-information-container">
-                <button className="ep-btn primary change-password-btn wide" type="button" onClick={this.changePassword}>Reset Password</button>
+            <div className="profile-data">
+              <div className="profile-info-container">
+                <h3 className="profile-info-container-title">
+                  {intl.get('general')}
+                </h3>
+                <div className="profile-info-col">
+                  <div className="profile-info-block">
+                    <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+                    <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
+                    {showResetPasswordButton && (
+                      <div className="personal-information-container">
+                        <button className="ep-btn primary change-password-btn wide" type="button" onClick={this.changePassword}>Reset Password</button>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-              )}
               {(profileData._purchases) ? (
                 <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
               ) : ('')}
-              {(profileData._addresses) ? (
-                <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
-              ) : ('')}
-              {(profileData._paymentmethods) ? (
-                <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
-              ) : ('')}
+              <div className="profile-info-container">
+                <h3 className="profile-info-container-title">
+                  {intl.get('shipping')}
+                </h3>
+                <div className="profile-info-col">
+                  <div className="profile-info-block">
+                    {(profileData._addresses) ? (
+                      <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
+                    ) : ('')}
+                  </div>
+                </div>
+              </div>
+              <div className="profile-info-container">
+                <h3 className="profile-info-container-title">
+                  {intl.get('payment')}
+                </h3>
+                <div className="profile-info-col">
+                  <div className="profile-info-block">
+                    {(profileData._paymentmethods) ? (
+                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
+                    ) : ('')}
+                  </div>
+                </div>
+              </div>
             </div>
           ) : (
             <div>

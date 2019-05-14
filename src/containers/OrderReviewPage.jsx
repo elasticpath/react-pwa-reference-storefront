@@ -83,12 +83,14 @@ class OrderReviewPage extends React.Component {
     super(props);
     this.state = {
       orderData: undefined,
+      giftCertificateEntity: [],
       isLoading: false,
     };
   }
 
   componentDidMount() {
     this.fetchOrderData();
+    this.fetchGiftCards();
   }
 
   fetchOrderData() {
@@ -109,6 +111,36 @@ class OrderReviewPage extends React.Component {
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
+        });
+    });
+  }
+
+  fetchGiftCards() {
+    const chosenGiftCertificates = JSON.parse(localStorage.getItem('chosenGiftCertificatesArr')) || [];
+    chosenGiftCertificates.forEach((card) => {
+      login()
+        .then(() => {
+          cortexFetch(`/giftcertificates/${Config.cortexApi.scope}/lookup/form?followlocation=true`,
+            {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+              body: JSON.stringify({
+                'gift-certificate-code': card,
+              }),
+            })
+            .then(data => data.json())
+            .then((data) => {
+              this.setState(prevState => ({
+                giftCertificateEntity: [...prevState.giftCertificateEntity, data],
+              }));
+            })
+            .catch((error) => {
+            // eslint-disable-next-line no-console
+              console.error(error.message);
+            });
         });
     });
   }
@@ -156,12 +188,60 @@ class OrderReviewPage extends React.Component {
           this.setState({
             isLoading: false,
           });
+          this.giftCertificatesAddToCart();
           this.trackTransactionAnalytics();
           history.push('/purchaseReceipt', { data: res });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
+        });
+    });
+  }
+
+  giftCertificatesAddToCart() {
+    const { giftCertificateEntity } = this.state;
+    giftCertificateEntity.forEach((card) => {
+      login()
+        .then(() => {
+          cortexFetch(card.links[0].uri,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+            })
+            .then(res => res.json())
+            .then((res) => {
+              cortexFetch(`${res.links[0].uri}?followlocation=true`,
+                {
+                  method: 'post',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                  },
+                  body: JSON.stringify({}),
+                })
+                .then(() => {
+                  this.setState({
+                    isLoading: false,
+                  });
+                  localStorage.removeItem('chosenGiftCertificatesArr');
+                  const giftCertificatesCode = JSON.parse(localStorage.getItem('giftCertificatesCodeArr'));
+                  const filteredGiftCertificatesCode = giftCertificatesCode.filter(el => el !== card.code);
+                  if (!(card.balance > 0)) {
+                    localStorage.setItem('giftCertificatesCodeArr', JSON.stringify(filteredGiftCertificatesCode));
+                  }
+                })
+                .catch((error) => {
+                  // eslint-disable-next-line no-console
+                  console.error(error.message);
+                });
+            })
+            .catch((error) => {
+              // eslint-disable-next-line no-console
+              console.error(error.message);
+            });
         });
     });
   }
@@ -247,7 +327,7 @@ class OrderReviewPage extends React.Component {
   }
 
   render() {
-    const { orderData, isLoading } = this.state;
+    const { orderData, giftCertificateEntity, isLoading } = this.state;
     const isValid = (orderData && orderData._order[0]._purchaseform[0].links[0] && orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri);
     let debugMessages = '';
     if (orderData && orderData._order[0]) {
@@ -284,7 +364,7 @@ class OrderReviewPage extends React.Component {
                   <div>
                     <div className="checkout-sidebar-inner">
                       <div className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                        <CheckoutSummaryList data={orderData} isLoading={false} />
+                        <CheckoutSummaryList data={orderData} isLoading={false} giftCards={giftCertificateEntity} />
                       </div>
                       <div className="feedback-label" id="checkout_feedback_container">
                         {(debugMessages !== '') ? (debugMessages) : ('')}

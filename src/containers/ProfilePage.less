@@ -37,9 +37,12 @@
   }
 
   h2 {
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 20px;
     margin-bottom: 10px;
+    font-weight: 600;
+    color: @mainTextColor;
+    line-height: 19px;
   }
 
   .btn,
@@ -101,4 +104,53 @@
   .change-password-btn {
     margin-top: 10px;
   }
+}
+
+.profile-info {
+  &-container {
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: 20px;
+    &-title {
+      padding: 0 10px;
+      font-size: 12px;
+      color: #333333;
+      text-transform: uppercase;
+    }
+    &:after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+    .paymentMethodsRegions {
+      margin-bottom: 0;
+    }
+    .profile-addresses-container {
+      margin-bottom: 0;
+    }
+    .ep-btn {
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+  }
+  &-col {
+    width: 50%;
+    float: left;
+    padding: 0 10px;
+    @media (max-width: 991px) {
+      width: 100%;
+      +.profile-info-col {
+        margin-top: 15px;
+      }
+    }
+  }
+  &-block {
+    padding: 0 10px 15px 20px;
+    border: 1px solid #CCCCCC;
+  }
+}
+
+.profile-data {
+  margin-bottom: 32px;
 }
