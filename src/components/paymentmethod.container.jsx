@@ -24,15 +24,25 @@ import PropTypes from 'prop-types';
 
 const PaymentMethodContainer = (props) => {
   const { displayName } = props;
+  const displayAppliedAmount = (displayName['applied-amount-display']) ? (` - ${displayName['applied-amount-display'] || ''}`) : '';
+  const displayTransactionType = (displayName['transaction-type']) ? (` - ${displayName['transaction-type'] || ''}`) : '';
+
+  let displayNameVar = displayName['display-value'] || displayName['display-name'];
+  if (!displayNameVar) {
+    displayNameVar = `${displayName.provider.toLowerCase().replace(/_/g, ' ')}`;
+  }
+
   return (
-    <span className="payment-method-container">
-      {displayName}
-    </span>
+    <p className="payment-method-container">
+      {displayNameVar}
+      {displayAppliedAmount}
+      {displayTransactionType}
+    </p>
   );
 };
 
 PaymentMethodContainer.propTypes = {
-  displayName: PropTypes.string.isRequired,
+  displayName: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default PaymentMethodContainer;

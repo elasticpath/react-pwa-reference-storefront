@@ -62,7 +62,7 @@ const ADD_NEW_ADDRESS_CSS = 'button[class="ep-btn primary wide checkout-new-addr
 const ADD_NEW_PAYMENT_CSS = 'button[class="ep-btn primary wide checkout-new-payment-btn"]';
 const ANONYMOUS_EMAIL_INPUT_CSS = 'div[data-region="anonymousCheckoutFeedbackRegion"] ~div input[id="Email"]';
 const CHECKOUT_AUTH_BUTTON_CSS = 'button[class="ep-btn primary wide checkout-auth-option-anonymous-checkout-btn"]';
-const COMPLETE_ORDER_BUTTON_CSS = 'button[class="ep-btn primary wide btn-cmd-submit-order"]';
+const COMPLETE_ORDER_BUTTON_CSS = 'button.btn-cmd-submit-order';
 const ORDER_MAIN_CONTAINER_CSS = 'div.order-main-container';
 const ORDER_STATUS_CSS = 'td[data-el-value="status"]';
 const CHECKOUT_MAIN_CONTAINER_CSS = 'div.checkout-main-container';

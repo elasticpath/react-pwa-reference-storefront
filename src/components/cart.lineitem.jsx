@@ -492,14 +492,14 @@ class CartLineItem extends React.Component {
         <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
           {(quantity !== undefined) ? [
             <span className="input-group-btn">
-              <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                <span className="glyphicon glyphicon-plus" />
+              <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+                <span className="glyphicon glyphicon-minus" />
               </button>
               <div className="quantity-col form-content form-content-quantity">
                 <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
               </div>
-              <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                <span className="glyphicon glyphicon-minus" />
+              <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+                <span className="glyphicon glyphicon-plus" />
               </button>
             </span>,
             <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value="Update Quantity" />,

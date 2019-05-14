@@ -492,14 +492,13 @@ class CheckoutPage extends React.Component {
           const {
             checked, deletable, selectaction,
           } = payment;
-          const displayName = payment['display-name'];
           return (
             <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
               <div className="payment-ctrl-cell" data-region="paymentSelector">
                 <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 <label htmlFor="paymentMethod">
                   <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
-                    <PaymentMethodContainer displayName={displayName} />
+                    <PaymentMethodContainer displayName={payment} />
                   </div>
                 </label>
               </div>
