@@ -87,8 +87,10 @@ class CheckoutPage extends React.Component {
       isLoading: false,
       profileData: undefined,
       showGiftCard: false,
+      certificates: [],
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
+    this.handleCertificate = this.handleCertificate.bind(this);
   }
 
   componentDidMount() {
@@ -226,6 +228,12 @@ class CheckoutPage extends React.Component {
   reviewOrder() {
     const { history } = this.props;
     history.push('/order');
+  }
+
+  handleCertificate(certificate) {
+    this.setState({
+      certificates: certificate,
+    });
   }
 
   renderShippingAddress() {
@@ -536,7 +544,7 @@ class CheckoutPage extends React.Component {
 
   render() {
     const {
-      orderData, isLoading, profileData, showGiftCard,
+      orderData, isLoading, profileData, showGiftCard, certificates,
     } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
@@ -605,7 +613,7 @@ class CheckoutPage extends React.Component {
                   {showGiftCard && (
                   <div className="profile-info-col">
                     <div className="profile-info-block">
-                      <GiftcertificateFormMain />
+                      <GiftcertificateFormMain updateCertificate={this.handleCertificate} />
                     </div>
                   </div>
                   )}
@@ -625,7 +633,7 @@ class CheckoutPage extends React.Component {
                   </h2>
                   <div className="checkout-sidebar-inner">
                     <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                      <CheckoutSummaryList data={orderData} />
+                      <CheckoutSummaryList data={orderData} giftCards={certificates} />
                     </div>
                     <div className="feedback-label" id="checkout_feedback_container">
                       {(debugMessages !== '') ? (debugMessages) : ('')}

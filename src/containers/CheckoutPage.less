@@ -267,9 +267,7 @@
         float: left;
         width: 100%;
         position: relative;
-        min-height: 1px;
         padding-right: 15px;
-        margin-bottom: 10px;
 
         @media (min-width: @tabletWidth) {
           float: left;
@@ -359,6 +357,14 @@
         .checkout-tax {
           display: flex;
           flex-direction: row;
+        }
+      }
+      .gift-card {
+        label {
+          text-transform: capitalize;
+        }
+        span {
+          color: red;
         }
       }
       [data-region="checkoutShippingTotalRegion"] {

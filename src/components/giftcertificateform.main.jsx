@@ -22,6 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -31,6 +32,10 @@ import './giftcertificateform.main.less';
 const Config = require('Config');
 
 class GiftcertificateFormMain extends React.Component {
+  static propTypes = {
+    updateCertificate: PropTypes.func.isRequired,
+  }
+
   constructor() {
     super();
     this.state = {
@@ -51,6 +56,7 @@ class GiftcertificateFormMain extends React.Component {
 
   componentDidMount() {
     const savedGiftCertificates = JSON.parse(localStorage.getItem('giftCertificatesCodeArr')) || [];
+    localStorage.removeItem('chosenGiftCertificatesArr');
     savedGiftCertificates.forEach((el) => {
       login().then(() => {
         cortexFetch(`/giftcertificates/${Config.cortexApi.scope}/lookup/form?followlocation=true`,
@@ -139,11 +145,14 @@ class GiftcertificateFormMain extends React.Component {
   }
 
   handleCheck(el, index) {
+    const { updateCertificate } = this.props;
     const { giftCertificateEntity, chosenGiftCertificates } = this.state;
     const checked = !el.isChecked;
     const giftCertificateEntityArr = [...giftCertificateEntity];
     giftCertificateEntityArr[index] = { ...giftCertificateEntityArr[index], isChecked: checked };
     this.setState({ giftCertificateEntity: giftCertificateEntityArr });
+    const giftCertificateEntityCheckedArr = giftCertificateEntityArr.filter(giftCard => giftCard.isChecked === true);
+    updateCertificate(giftCertificateEntityCheckedArr);
     if (checked) {
       const chosenGiftCertificatesArr = [...chosenGiftCertificates, el.code];
       this.setState({ chosenGiftCertificates: chosenGiftCertificatesArr });
@@ -160,10 +169,13 @@ class GiftcertificateFormMain extends React.Component {
   }
 
   handleDelete(index) {
+    const { updateCertificate } = this.props;
     const { giftCertificateEntity, giftCertificatesCodeArr, chosenGiftCertificates } = this.state;
     const newGiftCertificateEntity = [...giftCertificateEntity];
     newGiftCertificateEntity.splice(index, 1);
     this.setState({ giftCertificateEntity: newGiftCertificateEntity });
+    const giftCertificateEntityCheckedArr = newGiftCertificateEntity.filter(giftCard => giftCard.isChecked === true);
+    updateCertificate(giftCertificateEntityCheckedArr);
 
     const currentGiftCard = giftCertificateEntity[index].code;
     const newGiftCertificatesCodeArr = [...giftCertificatesCodeArr];
@@ -194,7 +206,7 @@ class GiftcertificateFormMain extends React.Component {
               {el.code.slice(-4)}
             </span>
             <span className="gift-card-amount">
-              {el['amount-display']}
+              {el['balance-display']}
             </span>
           </div>
           <div className="checkbox-wrap">

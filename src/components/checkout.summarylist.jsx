@@ -32,10 +32,12 @@ const Config = require('Config');
 class CheckoutSummaryList extends React.Component {
   static propTypes = {
     data: PropTypes.objectOf(PropTypes.any).isRequired,
+    giftCards: PropTypes.arrayOf(PropTypes.any),
     onChange: PropTypes.func,
   }
 
   static defaultProps = {
+    giftCards: [],
     onChange: () => {},
   }
 
@@ -190,7 +192,8 @@ class CheckoutSummaryList extends React.Component {
   }
 
   renderCheckoutTotal() {
-    const { data } = this.props;
+    const { data, giftCards } = this.props;
+    const giftCardsAmount = giftCards.map(el => el.balance).reduce((total, amount) => total + amount, 0);
     if (data._order && data._order[0]._total) {
       return (
         <li className="checkout-total">
@@ -199,6 +202,30 @@ class CheckoutSummaryList extends React.Component {
             :&nbsp;
           </label>
           <span data-el-value="checkout.total">
+            {giftCardsAmount > 0 ? `$${Math.max(0, data._order[0]._total[0].cost[0].amount - giftCardsAmount)}` : data._order[0]._total[0].cost[0].display}
+          </span>
+        </li>
+      );
+    }
+    return null;
+  }
+
+  renderChosenGiftCardsTotal() {
+    const { data, giftCards } = this.props;
+    const giftCardsAmount = giftCards.map(el => el.balance).reduce((total, amount) => total + amount, 0);
+    if (giftCardsAmount > 0) {
+      return (
+        <li className="gift-card">
+          <label className="cart-summary-label-col" htmlFor="gift-card-total">
+            {intl.get('gift-card')}
+            :&nbsp;
+          </label>
+          <span data-el-value="gift-card.total">
+            $
+            {giftCardsAmount}
+            &nbsp;
+             -
+            &nbsp;
             {data._order[0]._total[0].cost[0].display}
           </span>
         </li>
@@ -234,6 +261,7 @@ class CheckoutSummaryList extends React.Component {
         {this.renderDiscount()}
         {this.renderShipping()}
         {this.renderTax()}
+        {this.renderChosenGiftCardsTotal()}
         {this.renderCheckoutTotal()}
       </ul>
     );
