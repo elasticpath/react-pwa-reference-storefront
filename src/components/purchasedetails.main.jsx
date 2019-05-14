@@ -95,13 +95,15 @@ const PurchaseDetailsMain = (props) => {
   };
 
   const renderPaymentMethod = () => {
-    const displayName = data._paymentmeans[0]._element[0]['display-name'];
+    const postedPayments = data._postedpayments || data._paymentmeans;
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
         <h3>
           {intl.get('payment-method')}
         </h3>
-        <PaymentMethodContainer displayName={displayName} />
+        {postedPayments[0]._element.map(postedpayment => (
+          <PaymentMethodContainer displayName={postedpayment} />
+        ))}
       </div>
     );
   };
