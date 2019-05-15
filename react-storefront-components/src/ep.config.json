@@ -1,7 +1,7 @@
 {
   "cortexApi": {
-    "path": "/cortex",
-    "scope": "vestri",
+    "path": "http://localhost:9080/cortex",
+    "scope": "VESTRI_B2C",
     "pathForProxy": "http://localhost:9080"
   },
   "supportedLocales": [
@@ -44,7 +44,7 @@
   },
   "gaTrackingId": "",
   "arKit": {
-    "enable": true,
+    "enable": false,
     "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"
   },
   "indi": {
@@ -83,10 +83,5 @@
     "api_key": "",
     "merchant_group_id": "",
     "merchant_id": ""
-  },
-  "formatQueryParameter": {
-    "standardlinks": false,
-    "noself": false,
-    "nodatalinks": false
   }
 }

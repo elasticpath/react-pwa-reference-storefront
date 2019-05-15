@@ -23,6 +23,7 @@ import React from 'react';
 import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
+import ep from '@elasticpath/react-storefront-components';
 import router from './routes';
 import withAnalytics from './utils/Analytics';
 import AppHeaderMain from './components/appheader.main';
@@ -32,6 +33,11 @@ import FacebookChat from './components/facebookchat.main';
 import './App.less';
 
 const Config = require('Config');
+
+ep.init({
+  config: Config,
+  intl: { get: str => str },
+});
 
 // eslint-disable-next-line react/no-array-index-key
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);

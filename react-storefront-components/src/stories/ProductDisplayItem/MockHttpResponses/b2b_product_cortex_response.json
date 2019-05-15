@@ -1,0 +1,277 @@
+{
+	"self": {
+		"type": "items.item",
+		"uri": "/items/vestri_b2c/qgqvhjjvhezdmna=?zoom=addtocartform,addtowishlistform,availability,code,definition,definition:assets:element,definition:components,definition:components:element,definition:components:element:code,definition:components:element:standaloneitem,definition:components:element:standaloneitem:availability,definition:components:element:standaloneitem:code,definition:components:element:standaloneitem:definition,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:crosssell:element:availability,recommendations:crosssell:element:code,recommendations:crosssell:element:definition,recommendations:crosssell:element:price,recommendations:recommendation,recommendations:recommendation:element:availability,recommendations:recommendation:element:code,recommendations:recommendation:element:definition,recommendations:recommendation:element:price,recommendations:replacement,recommendations:replacement:element:availability,recommendations:replacement:element:code,recommendations:replacement:element:definition,recommendations:replacement:element:price,recommendations:upsell,recommendations:upsell:element:availability,recommendations:upsell:element:code,recommendations:upsell:element:definition,recommendations:upsell:element:price,recommendations:warranty,recommendations:warranty:element:availability,recommendations:warranty:element:code,recommendations:warranty:element:definition,recommendations:warranty:element:price",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/vestri_b2c/qgqvhjjvhezdmna=?zoom=addtocartform,addtowishlistform,availability,code,definition,definition:assets:element,definition:components,definition:components:element,definition:components:element:code,definition:components:element:standaloneitem,definition:components:element:standaloneitem:availability,definition:components:element:standaloneitem:code,definition:components:element:standaloneitem:definition,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:crosssell:element:availability,recommendations:crosssell:element:code,recommendations:crosssell:element:definition,recommendations:crosssell:element:price,recommendations:recommendation,recommendations:recommendation:element:availability,recommendations:recommendation:element:code,recommendations:recommendation:element:definition,recommendations:recommendation:element:price,recommendations:replacement,recommendations:replacement:element:availability,recommendations:replacement:element:code,recommendations:replacement:element:definition,recommendations:replacement:element:price,recommendations:upsell,recommendations:upsell:element:availability,recommendations:upsell:element:code,recommendations:upsell:element:definition,recommendations:upsell:element:price,recommendations:warranty,recommendations:warranty:element:availability,recommendations:warranty:element:code,recommendations:warranty:element:definition,recommendations:warranty:element:price"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "availability",
+		"rev": "item",
+		"type": "availabilities.availability-for-item",
+		"uri": "/availabilities/items/vestri_b2c/qgqvhjjvhezdmna=",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/availabilities/items/vestri_b2c/qgqvhjjvhezdmna="
+	}, {
+		"rel": "addtocartform",
+		"type": "carts.add-to-default-cart-form",
+		"uri": "/carts/items/vestri_b2c/qgqvhjjvhezdmna=/form",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/carts/items/vestri_b2c/qgqvhjjvhezdmna=/form"
+	}, {
+		"rel": "cartmemberships",
+		"type": "carts.read-cart-memberships",
+		"uri": "/carts/memberships/items/vestri_b2c/qgqvhjjvhezdmna=",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/carts/memberships/items/vestri_b2c/qgqvhjjvhezdmna="
+	}, {
+		"rel": "definition",
+		"rev": "item",
+		"type": "itemdefinitions.item-definition",
+		"uri": "/itemdefinitions/vestri_b2c/qgqvhjjvhezdmna=",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjvhezdmna="
+	}, {
+		"rel": "code",
+		"rev": "item",
+		"type": "items.code-for-item",
+		"uri": "/items/code/items/vestri_b2c/qgqvhjjvhezdmna=",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/code/items/vestri_b2c/qgqvhjjvhezdmna="
+	}, {
+		"rel": "offer",
+		"type": "offers.offer",
+		"uri": "/offers/vestri_b2c/qgqvbk2tkbaverk7inauetcf=",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/offers/vestri_b2c/qgqvbk2tkbaverk7inauetcf="
+	}, {
+		"rel": "price",
+		"rev": "item",
+		"type": "prices.price-for-item",
+		"uri": "/prices/items/vestri_b2c/qgqvhjjvhezdmna=",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/prices/items/vestri_b2c/qgqvhjjvhezdmna="
+	}, {
+		"rel": "appliedpromotions",
+		"rev": "item",
+		"type": "promotions.applied-promotions-for-item",
+		"uri": "/promotions/items/vestri_b2c/qgqvhjjvhezdmna=/applied",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/promotions/items/vestri_b2c/qgqvhjjvhezdmna=/applied"
+	}, {
+		"rel": "recommendations",
+		"type": "recommendations.item-recommendation-groups",
+		"uri": "/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjvhezdmna="
+	}, {
+		"rel": "addtowishlistform",
+		"type": "wishlists.add-item-to-wishlist-form",
+		"uri": "/wishlists/items/vestri_b2c/qgqvhjjvhezdmna=/form",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/wishlists/items/vestri_b2c/qgqvhjjvhezdmna=/form"
+	}, {
+		"rel": "wishlistmemberships",
+		"type": "wishlists.read-wishlist-memberships",
+		"uri": "/wishlists/memberships/items/vestri_b2c/qgqvhjjvhezdmna=",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/wishlists/memberships/items/vestri_b2c/qgqvhjjvhezdmna="
+	}],
+	"_addtocartform": [{
+		"self": {
+			"type": "carts.add-to-default-cart-form",
+			"uri": "/carts/items/vestri_b2c/qgqvhjjvhezdmna=/form",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/carts/items/vestri_b2c/qgqvhjjvhezdmna=/form"
+		},
+		"messages": [],
+		"links": [{
+			"rel": "addtodefaultcartaction",
+			"type": "carts.add-to-default-cart-form",
+			"uri": "/carts/items/vestri_b2c/qgqvhjjvhezdmna=/form",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/carts/items/vestri_b2c/qgqvhjjvhezdmna=/form"
+		}],
+		"configuration": {
+			"FaultCode": "",
+			"Hours": "",
+			"SerialNumber": ""
+		},
+		"quantity": 0
+	}],
+	"_addtowishlistform": [{
+		"self": {
+			"type": "wishlists.add-item-to-wishlist-form",
+			"uri": "/wishlists/items/vestri_b2c/qgqvhjjvhezdmna=/form",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/wishlists/items/vestri_b2c/qgqvhjjvhezdmna=/form"
+		},
+		"messages": [],
+		"links": [{
+			"rel": "addtodefaultwishlistaction",
+			"type": "wishlists.add-item-to-wishlist-form",
+			"uri": "/wishlists/items/vestri_b2c/qgqvhjjvhezdmna=/form",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/wishlists/items/vestri_b2c/qgqvhjjvhezdmna=/form"
+		}]
+	}],
+	"_availability": [{
+		"self": {
+			"type": "availabilities.availability-for-item",
+			"uri": "/availabilities/items/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/availabilities/items/vestri_b2c/qgqvhjjvhezdmna="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "availability",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/vestri_b2c/qgqvhjjvhezdmna="
+		}],
+		"state": "AVAILABLE"
+	}],
+	"_code": [{
+		"self": {
+			"type": "items.code-for-item",
+			"uri": "/items/code/items/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/code/items/vestri_b2c/qgqvhjjvhezdmna="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "code",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/vestri_b2c/qgqvhjjvhezdmna="
+		}],
+		"code": "59264"
+	}],
+	"_definition": [{
+		"self": {
+			"type": "itemdefinitions.item-definition",
+			"uri": "/itemdefinitions/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjvhezdmna="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "definition",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/vestri_b2c/qgqvhjjvhezdmna="
+		}, {
+			"rel": "fromprice",
+			"rev": "definition",
+			"type": "prices.price-for-itemdefinition",
+			"uri": "/prices/itemdefinitions/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/prices/itemdefinitions/vestri_b2c/qgqvhjjvhezdmna="
+		}],
+		"details": [{
+			"display-name": "Description",
+			"display-value": "Keep an extra charging cable in the car so you are never without and can be used as an extension cord with either the mobile charge or wall charge when you can't part close enough.",
+			"name": "DESCRIPTION",
+			"value": "Keep an extra charging cable in the car so you are never without and can be used as an extension cord with either the mobile charge or wall charge when you can't part close enough."
+		}, {
+			"display-name": "Image Name",
+			"display-value": "SPARE_CABLE",
+			"name": "IMAGE_NAME",
+			"value": "SPARE_CABLE"
+		}],
+		"display-name": "Spare Cable"
+	}],
+	"_price": [{
+		"self": {
+			"type": "prices.price-for-item",
+			"uri": "/prices/items/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/prices/items/vestri_b2c/qgqvhjjvhezdmna="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "price",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/vestri_b2c/qgqvhjjvhezdmna="
+		}],
+		"list-price": [{
+			"amount": 115.20,
+			"currency": "CAD",
+			"display": "$115.20"
+		}],
+		"purchase-price": [{
+			"amount": 115.20,
+			"currency": "CAD",
+			"display": "$115.20"
+		}]
+	}],
+	"_recommendations": [{
+		"self": {
+			"type": "recommendations.item-recommendation-groups",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjvhezdmna="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "accessory",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/accessory",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/accessory"
+		}, {
+			"rel": "crosssell",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/crosssell",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/crosssell"
+		}, {
+			"rel": "recommendation",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/recommendation",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/recommendation"
+		}, {
+			"rel": "replacement",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/replacement",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/replacement"
+		}, {
+			"rel": "upsell",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/upsell",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/upsell"
+		}, {
+			"rel": "warranty",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/warranty",
+			"href": "http://vestri-consumer-dev.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjvhezdmna=/warranty"
+		}],
+		"_crosssell": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_recommendation": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_replacement": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_upsell": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_warranty": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}]
+	}]
+}

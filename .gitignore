@@ -2,18 +2,19 @@
 
 .idea/
 # dependencies
-/node_modules
+reference-storefront/node_modules/
+react-storefront-components/node_modules/
 
 # testing
-/coverage
+reference-storefront/coverage
 
 # _site directory
-/_site
+reference-storefront/_site
 
 # production
-/build
-/dist
-/webpack/dist
+reference-storefront/build
+reference-storefront/dist
+reference-storefront/webpack/dist
 
 # misc
 .DS_Store
@@ -22,6 +23,6 @@
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+reference-storefront/npm-debug.log*
+reference-storefront/yarn-debug.log*
+reference-storefront/yarn-error.log*

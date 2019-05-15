@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@babel/runtime": "^7.0.0",
+    "@elasticpath/react-storefront-components": "0.0.1",
     "appcache-webpack-plugin": "^1.4.0",
     "aws-sdk": "^2.287.0",
     "bluebird": "3.3.3",

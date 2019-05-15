@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import ProductDisplayItemMain from '../components/productdisplayitem.main';
+import { ProductDisplayItemMain } from '@elasticpath/react-storefront-components';
 
 function ProductDetailPage(props) {
   return (
