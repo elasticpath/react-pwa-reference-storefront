@@ -4,6 +4,7 @@
 # dependencies
 reference-storefront/node_modules/
 react-storefront-components/node_modules/
+node_modules/
 
 # testing
 reference-storefront/coverage
