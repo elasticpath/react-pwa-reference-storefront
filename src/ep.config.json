@@ -87,6 +87,6 @@
   "formatQueryParameter": {
     "standardlinks": false,
     "noself": false,
-    "nodatalinks": false
+    "nodatalinks": true
   }
 }
