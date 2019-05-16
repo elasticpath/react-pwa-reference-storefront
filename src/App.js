@@ -20,10 +20,9 @@
  */
 
 import React from 'react';
-import {
-  BrowserRouter as Router, Switch, withRouter, Route,
-} from 'react-router-dom';
-import router from './routes';
+import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
+import routes from './routes';
+import RouteWithSubRoutes from './RouteWithSubRoutes';
 import withAnalytics from './utils/Analytics';
 import AppHeaderMain from './components/appheader.main';
 import AppFooterMain from './components/appfooter.main';
@@ -33,15 +32,14 @@ import './App.less';
 
 const Config = require('Config');
 
-// eslint-disable-next-line react/no-array-index-key
-const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
-
 const Root = () => [
   <FacebookChat key="FacebookChat" config={Config.facebook} />,
   <AppHeaderMain key="AppHeaderMain" />,
   <div key="app-content" className="app-content">
     <Switch>
-      {routeComponents}
+      {routes.map(route => (
+        <RouteWithSubRoutes key={route.path} {...route} />
+      ))}
     </Switch>
   </div>,
   <AppFooterMain key="AppFooterMain" />,

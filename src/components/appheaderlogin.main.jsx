@@ -175,6 +175,9 @@ class AppHeaderLoginMain extends React.Component {
                   ) : ('')
                   }
                   <ul className="login-cart-list">
+                    <li className="dropdown-item">
+                      <Link to="/b2b">{intl.get('admin')}</Link>
+                    </li>
                     <li>
                       <button className="dropdown-item" type="button" data-toggle="modal" onClick={() => this.handleCartModalOpen()} data-target="#cart-select-modal">
                         <span className="cart-select-btn">{intl.get('change-carts')}</span>

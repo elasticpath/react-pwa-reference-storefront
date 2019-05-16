@@ -44,21 +44,27 @@ import ProductsComparePage from './containers/ProductsComparePage';
 import WriteReview from './containers/WriteReviewPage';
 import ChangePasswordForm from './containers/ChangePasswordPage';
 import ResetPasswordForm from './containers/ResetPasswordPage';
+import B2BMain from './containers/b2b/B2BMain';
+import Dashboard from './containers/b2b/Dashboard';
 
 const router = [{
   path: '/',
+  exact: true,
   component: HomePage,
 }, {
   path: '/mybag',
   component: CartPage,
 }, {
   path: '/category',
+  exact: true,
   component: CategoryPage,
 }, {
   path: '/category/:id',
+  exact: true,
   component: CategoryPage,
 }, {
   path: '/category/:id/*',
+  exact: true,
   component: CategoryPage,
 }, {
   path: '/checkout',
@@ -68,6 +74,7 @@ const router = [{
   component: EditAddressPage,
 }, {
   path: '/itemdetail',
+  exact: true,
   component: ProductDetailPage,
 }, {
   path: '/itemdetail/:url',
@@ -98,12 +105,15 @@ const router = [{
   component: CheckoutAuthPage,
 }, {
   path: '/search',
+  exact: true,
   component: SearchResultsPage,
 }, {
   path: '/search/:keywords',
+  exact: true,
   component: SearchResultsPage,
 }, {
   path: '/search/:keywords/*',
+  exact: true,
   component: SearchResultsPage,
 }, {
   path: '/aboutus',
@@ -129,13 +139,46 @@ const router = [{
 }, {
   path: '/write-a-review',
   component: WriteReview,
-
 }, {
   path: '/password_change',
   component: ChangePasswordForm,
 }, {
   path: '/password_reset',
   component: ResetPasswordForm,
+}, {
+  path: '/b2b',
+  component: B2BMain,
+  routes: [
+    {
+      path: '/b2b',
+      exact: true,
+      component: Dashboard,
+    },
+    {
+      path: '/b2b/address-book',
+      render: () => 'Address Book',
+    },
+    {
+      path: '/b2b/orders',
+      render: () => 'Orders',
+    },
+    {
+      path: '/b2b/approvals',
+      render: () => 'Approvals',
+    },
+    {
+      path: '/b2b/invitations',
+      render: () => 'Invitations',
+    },
+    {
+      path: '/b2b/requisition-lists',
+      render: () => 'Requisition Lists',
+    },
+    {
+      path: '/b2b/quotes',
+      render: () => 'Quotes',
+    },
+  ],
 }];
 
 export default router;
