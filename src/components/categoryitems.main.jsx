@@ -214,7 +214,7 @@ class CategoryItemsMain extends React.Component {
       [featuredOffers] = categoryModel._featuredoffers;
     }
     const categoryModelIdString = categoryModelId;
-    noProducts = !products || !products._facets || !products._element || !products.pagination;
+    noProducts = !products || !products._element || !products.pagination;
 
     return (
       <div className="category-items-container container-3">
