@@ -20,13 +20,28 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { ProductDisplayItemMain } from '@elasticpath/react-storefront-components';
 
 function ProductDetailPage(props) {
+  ProductDetailPage.propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+  };
+
+  const { history } = props;
+
+  function handleAddToCart() {
+    history.push('/mybag');
+  }
+
+  function handleAddToWishList() {
+    history.push('/wishlists');
+  }
+
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} />
+      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} />
     </div>
   );
 }

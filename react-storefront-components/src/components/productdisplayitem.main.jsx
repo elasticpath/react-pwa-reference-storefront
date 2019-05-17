@@ -20,16 +20,12 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-// import {
-//   isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
-// } from '../utils/Analytics';
 import imgPlaceholder from '../images/img-placeholder.png';
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
 import IndiRecommendationsDisplayMain from './indirecommendations.main';
@@ -38,11 +34,6 @@ import { cortexFetch } from '../utils/Cortex';
 import { getConfig } from '../utils/ConfigProvider';
 
 import './productdisplayitem.main.less';
-// import PowerReview from './powerreview.main';
-
-// import {
-//   isAnalyticsConfigured, trackAddItemAnalytics, trackAddImpression, setAddAnalytics, sendAddToCartAnalytics, setDetailAnalytics,
-// } from '../utils/Analytics';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
@@ -108,17 +99,22 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
     productId: PropTypes.string.isRequired,
     imageUrl: PropTypes.string,
     dataSet: PropTypes.shape({
       cartBtnOverride: PropTypes.string,
     }),
+    customClass: PropTypes.string,
+    onAddToCart: PropTypes.func,
+    onAddToWishList: PropTypes.func,
   }
 
   static defaultProps = {
     imageUrl: undefined,
     dataSet: undefined,
+    customClass: '',
+    onAddToCart: () => {},
+    onAddToWishList: () => {},
   }
 
   constructor(props) {
@@ -296,6 +292,7 @@ class ProductDisplayItemMain extends React.Component {
 
   addToCart(event) {
     const { productData, itemQuantity, itemConfiguration } = this.state;
+    const { onAddToCart } = this.props;
     login().then(() => {
       const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
       const body = {};
@@ -323,7 +320,7 @@ class ProductDisplayItemMain extends React.Component {
             // const skuCode = productData._code[0].code;
             // logProductPageAddToCart(skuCode);
 
-            window.location = '/mybag';
+            onAddToCart();
           } else {
             let debugMessages = '';
             res.json().then((json) => {
@@ -343,6 +340,7 @@ class ProductDisplayItemMain extends React.Component {
 
   addToWishList(event) {
     const { productData, itemQuantity, itemConfiguration } = this.state;
+    const { onAddToWishList } = this.props;
     login().then(() => {
       const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
       const body = {};
@@ -361,7 +359,7 @@ class ProductDisplayItemMain extends React.Component {
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
-            window.location = '/wishlists';
+            onAddToWishList();
           } else {
             let debugMessages = '';
             res.json().then((json) => {
@@ -517,6 +515,7 @@ class ProductDisplayItemMain extends React.Component {
     const {
       productData, addToCartFailedMessage, isLoading, itemQuantity,
     } = this.state;
+    const { customClass } = this.props;
     if (productData) {
       let listPrice = 'n/a';
       if (productData._price) {
@@ -556,7 +555,7 @@ class ProductDisplayItemMain extends React.Component {
       Config.indi.productReview.description = intl.get('indi-product-review-description');
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
       return (
-        <div className="itemdetail-component container-3">
+        <div className={`itemdetail-component container-3 ${customClass}`}>
           <div>
             <div className="itemdetail-assets">
               <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
