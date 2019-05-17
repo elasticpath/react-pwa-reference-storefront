@@ -30,7 +30,7 @@ import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import './productlistitem.main.less';
 
 let Config = {};
-let { intl } = getConfig();
+let intl = { get: str => str };
 
 class ProductListItemMain extends React.Component {
   static propTypes = {

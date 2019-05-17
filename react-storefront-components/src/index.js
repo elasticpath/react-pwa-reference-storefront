@@ -20,8 +20,20 @@
  */
 import { init } from './utils/ConfigProvider';
 import ProductDisplayItemMain from './components/productdisplayitem.main';
-// eslint-disable-next-line
+import ProductListMain from './components/productlist.main';
+import ProductListItemMain from './components/productlistitem.main';
+import ProductRecommendationsDisplayMain from './components/productrecommendations.main';
+import BundleConstituentsDisplayMain from './components/bundleconstituents.main';
+import CategoryItemsMain from './components/categoryitems.main';
 
 export default { init };
 
-export { init, ProductDisplayItemMain };
+export {
+  init,
+  ProductDisplayItemMain,
+  ProductListMain,
+  ProductListItemMain,
+  ProductRecommendationsDisplayMain,
+  BundleConstituentsDisplayMain,
+  CategoryItemsMain,
+};

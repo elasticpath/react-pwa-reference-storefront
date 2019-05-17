@@ -24,6 +24,7 @@ import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
 import ep from '@elasticpath/react-storefront-components';
+import intl from 'react-intl-universal';
 import router from './routes';
 import withAnalytics from './utils/Analytics';
 import AppHeaderMain from './components/appheader.main';
@@ -36,7 +37,7 @@ const Config = require('Config');
 
 ep.init({
   config: Config,
-  intl: { get: str => str },
+  intl,
 });
 
 // eslint-disable-next-line react/no-array-index-key

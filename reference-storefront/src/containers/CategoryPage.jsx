@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import CategoryItemsMain from '../components/categoryitems.main';
+import { CategoryItemsMain } from '@elasticpath/react-storefront-components';
 
 function CategoryPage(props) {
   return (
