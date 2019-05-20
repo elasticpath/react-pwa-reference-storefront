@@ -150,6 +150,9 @@ class OrderReviewPage extends React.Component {
     this.setState({
       isLoading: true,
     });
+    const { history } = this.props;
+    const { orderData } = this.state;
+
     const purchaseZoomArray = [
       'paymentmeans:element',
       'postedpayments:element',
@@ -174,31 +177,125 @@ class OrderReviewPage extends React.Component {
       'lineitems:element:dependentlineitems:element:item:definition',
       'lineitems:element:dependentlineitems:element:item:code',
     ];
-    const { orderData } = this.state;
-    const { history } = this.props;
-    const purchaseform = orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri;
-    login().then(() => {
-      cortexFetch(`${purchaseform}?followlocation=true&zoom=${purchaseZoomArray.sort().join()}`, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
-          this.giftCertificatesAddToCart();
-          this.trackTransactionAnalytics();
-          history.push('/purchaseReceipt', { data: res });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+
+    if (orderData && orderData._order && orderData._order[0]._paymentmethodinfo && orderData._order[0]._billingaddressinfo) {
+      const purchaseform = orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri;
+      const uriForRequest = 'https://iojbbbi1o8.execute-api.us-east-2.amazonaws.com/test/sign';
+      const uriForCreateToken = 'https://testsecureacceptance.cybersource.com/silent/token/create';
+      let bodyCybersourceRequest = {
+        reference_number: '12345',
+        currency: '',
+        payment_method: 'card',
+        bill_to_email: '',
+        locale: 'en-us',
+        bill_to_address_line1: '',
+        bill_to_address_city: '',
+        bill_to_address_state: '',
+        bill_to_address_country: '',
+        bill_to_address_postal_code: '',
+      };
+
+      const zoomArrayProfile = [
+        'defaultcart',
+        'defaultcart:total',
+        'defaultprofile',
+        'defaultprofile:emails',
+        'defaultprofile:emails:element',
+      ];
+      const addressLink = orderData._order[0]._deliveries[0]._element[0]._destinationinfo[0]._destination[0].self.uri;
+      login()
+        .then(() => {
+          cortexFetch(addressLink, {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+          })
+            .then(billingData => billingData.json())
+            .then((billingData) => {
+              bodyCybersourceRequest = {
+                ...bodyCybersourceRequest,
+                bill_to_address_line1: billingData.address['street-address'],
+                bill_to_address_city: billingData.address.locality,
+                bill_to_address_state: billingData.address.region,
+                bill_to_address_country: billingData.address['country-name'],
+                bill_to_address_postal_code: billingData.address['postal-code'],
+              };
+              cortexFetch(`/?zoom=${zoomArrayProfile.join()}`,
+                {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                  },
+                })
+                .then(profileData => profileData.json())
+                .then((profileData) => {
+                  bodyCybersourceRequest = {
+                    ...bodyCybersourceRequest,
+                    currency: profileData._defaultcart[0]._total[0].cost[0].currency,
+                    bill_to_email: profileData._defaultprofile[0]._emails[0]._element[0].email,
+                  };
+                  fetch(`${uriForRequest}`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bodyCybersourceRequest),
+                  })
+                    .then(cybersourceData => cybersourceData.json())
+                    .then((cybersourceData) => {
+                      // eslint-disable-next-line
+                      const formEncodedBody = Object.keys(cybersourceData).filter(k => cybersourceData.hasOwnProperty(k)).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(cybersourceData[k])).join('&');
+                      fetch(`${uriForCreateToken}`, {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: formEncodedBody,
+                      })
+                        .then(data => data.text())
+                        .then((data) => {
+                          const parser = new DOMParser();
+                          const doc = parser.parseFromString(data, 'text/html');
+                          const form = doc.querySelector('form[id="custom_redirect"]');
+                          const elemets = form.elements;
+                          // eslint-disable-next-line
+                          for (const element of elemets) {
+                            if (element.id === 'payment_token') {
+                              const token = element.value;
+                              console.warn(token);
+                            }
+                          }
+                          cortexFetch(`${purchaseform}?followlocation=true&zoom=${purchaseZoomArray.sort().join()}`, {
+                            method: 'post',
+                            headers: {
+                              'Content-Type': 'application/json',
+                              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                            },
+                          })
+                            .then(res => res.json())
+                            .then((res) => {
+                              this.setState({
+                                isLoading: false,
+                              });
+                              this.giftCertificatesAddToCart();
+                              this.trackTransactionAnalytics();
+                              history.push('/purchaseReceipt', { data: res });
+                            })
+                            .catch((error) => {
+                              // eslint-disable-next-line no-console
+                              console.error(error.message);
+                            });
+                        });
+                    });
+                })
+                .catch((error) => {
+                  // eslint-disable-next-line no-console
+                  console.error(error.message);
+                });
+            });
         });
-    });
+    }
   }
 
   giftCertificatesAddToCart() {
