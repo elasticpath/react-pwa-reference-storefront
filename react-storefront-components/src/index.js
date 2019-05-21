@@ -34,6 +34,11 @@ import CheckoutSummaryList from './components/checkout.summarylist';
 import ProductListLoadMore from './components/productlistloadmore';
 import IndiRecommendationsDisplayMain from './components/indirecommendations.main';
 import SearchFacetNavigationMain from './components/searchfacetnavigation.main';
+import ProfileAddressesMain from './components/profileaddresses.main';
+import ProfileemailinfoMain from './components/profileemailinfo.main';
+import ProfileInfoMain from './components/profileInfo.main';
+import ProfilePaymentMethodsMain from './components/profilepaymentmethods.main';
+import OrderHistoryMain from './components/orderhistory.main';
 
 export default { init };
 
@@ -54,4 +59,9 @@ export {
   ProductRecommendationsDisplayMain,
   SortProductMenu,
   CategoryItemsMain,
+  ProfileAddressesMain,
+  ProfileemailinfoMain,
+  ProfileInfoMain,
+  ProfilePaymentMethodsMain,
+  OrderHistoryMain,
 };

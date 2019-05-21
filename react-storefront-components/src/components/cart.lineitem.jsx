@@ -28,7 +28,7 @@ import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
-// import AppModalBundleConfigurationMain from './appmodalbundleconfiguration.main';
+import AppModalBundleConfigurationMain from './appmodalbundleconfiguration.main';
 import './cart.lineitem.less';
 
 let Config = {};
