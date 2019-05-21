@@ -25,15 +25,33 @@ import ProductListItemMain from './components/productlistitem.main';
 import ProductRecommendationsDisplayMain from './components/productrecommendations.main';
 import BundleConstituentsDisplayMain from './components/bundleconstituents.main';
 import CategoryItemsMain from './components/categoryitems.main';
+import FeaturedProducts from './components/featuredproducts.main';
+import ProductListPagination from './components/productlistpagination.main';
+import SortProductMenu from './components/sortproductmenu.main';
+import CartLineItem from './components/cart.lineitem';
+import CartMain from './components/cart.main';
+import CheckoutSummaryList from './components/checkout.summarylist';
+import ProductListLoadMore from './components/productlistloadmore';
+import IndiRecommendationsDisplayMain from './components/indirecommendations.main';
+import SearchFacetNavigationMain from './components/searchfacetnavigation.main';
 
 export default { init };
 
 export {
   init,
+  BundleConstituentsDisplayMain,
+  CartLineItem,
+  CartMain,
+  CheckoutSummaryList,
   ProductDisplayItemMain,
   ProductListMain,
   ProductListItemMain,
+  ProductListLoadMore,
+  ProductListPagination,
+  FeaturedProducts,
+  IndiRecommendationsDisplayMain,
+  SearchFacetNavigationMain,
   ProductRecommendationsDisplayMain,
-  BundleConstituentsDisplayMain,
+  SortProductMenu,
   CategoryItemsMain,
 };

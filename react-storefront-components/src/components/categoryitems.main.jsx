@@ -76,6 +76,11 @@ const zoomArray = [
 class CategoryItemsMain extends React.Component {
   static propTypes = {
     categoryProps: PropTypes.objectOf(PropTypes.any).isRequired,
+    onProductFacetSelection: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onProductFacetSelection: () => {},
   }
 
   constructor(props) {
@@ -198,6 +203,12 @@ class CategoryItemsMain extends React.Component {
     }));
   }
 
+  handleFacetSelection(res) {
+    const { categoryModelId } = this.state;
+    const { onProductFacetSelection } = this.props;
+    onProductFacetSelection(res, categoryModelId);
+  }
+
   render() {
     const {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName, loadSortedProduct,
@@ -250,7 +261,7 @@ class CategoryItemsMain extends React.Component {
                     {categoryModelDisplayName}
                   </h1>
                 </div>
-                <SearchFacetNavigationMain productData={products} titleString={categoryModelIdString} />
+                <SearchFacetNavigationMain productData={products} onFacetSelection={this.handleFacetSelection} />
                 <div className="products-container">
                   <FeaturedProducts productData={featuredOffers} />
                   <SortProductMenu handleSortSelection={this.handleSortSelection} categoryModel={categoryModel} />
