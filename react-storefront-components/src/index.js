@@ -25,6 +25,11 @@ import ProductListItemMain from './components/productlistitem.main';
 import ProductRecommendationsDisplayMain from './components/productrecommendations.main';
 import BundleConstituentsDisplayMain from './components/bundleconstituents.main';
 import CategoryItemsMain from './components/categoryitems.main';
+import ProfileAddressesMain from './components/profileaddresses.main';
+import ProfileemailinfoMain from './components/profileemailinfo.main';
+import ProfileInfoMain from './components/profileInfo.main';
+import ProfilePaymentMethodsMain from './components/profilepaymentmethods.main';
+import OrderHistoryMain from './components/orderhistory.main';
 
 export default { init };
 
@@ -36,4 +41,9 @@ export {
   ProductRecommendationsDisplayMain,
   BundleConstituentsDisplayMain,
   CategoryItemsMain,
+  ProfileAddressesMain,
+  ProfileemailinfoMain,
+  ProfileInfoMain,
+  ProfilePaymentMethodsMain,
+  OrderHistoryMain,
 };

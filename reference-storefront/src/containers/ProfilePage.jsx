@@ -22,12 +22,10 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import {
+  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain,
+} from '@elasticpath/react-storefront-components';
 import { login } from '../utils/AuthService';
-import ProfileInfoMain from '../components/profileInfo.main';
-import ProfileemailinfoMain from '../components/profileemailinfo.main';
-import OrderHistoryMain from '../components/orderhistory.main';
-import ProfileAddressesMain from '../components/profileaddresses.main';
-import ProfilePaymentMethodsMain from '../components/profilepaymentmethods.main';
 import { cortexFetch } from '../utils/Cortex';
 import './ProfilePage.less';
 
@@ -68,6 +66,9 @@ class ProfilePage extends React.Component {
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.changePassword = this.changePassword.bind(this);
+    this.handleNewPayment = this.handleNewPayment.bind(this);
+    this.handleNewAddress = this.handleNewAddress.bind(this);
+    this.handleEditAddress = this.handleEditAddress.bind(this);
   }
 
   componentDidMount() {
@@ -128,6 +129,21 @@ class ProfilePage extends React.Component {
     history.push('/password_change', { returnPage: '/profile' });
   }
 
+  handleNewPayment() {
+    const { history } = this.props;
+    history.push('/newpaymentform', { returnPage: '/profile' });
+  }
+
+  handleNewAddress() {
+    const { history } = this.props;
+    history.push('/newaddressform', { returnPage: '/profile' });
+  }
+
+  handleEditAddress(addressLink) {
+    const { history } = this.props;
+    history.push('/editaddress', { returnPage: '/profile', address: addressLink });
+  }
+
   render() {
     const { profileData, showResetPasswordButton } = this.state;
     return (
@@ -166,7 +182,7 @@ class ProfilePage extends React.Component {
                 <div className="profile-info-col">
                   <div className="profile-info-block">
                     {(profileData._addresses) ? (
-                      <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} />
+                      <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
                     ) : ('')}
                   </div>
                 </div>
@@ -178,7 +194,7 @@ class ProfilePage extends React.Component {
                 <div className="profile-info-col">
                   <div className="profile-info-block">
                     {(profileData._paymentmethods) ? (
-                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
+                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} onAddNewPayment={this.handleNewPayment} />
                     ) : ('')}
                   </div>
                 </div>
