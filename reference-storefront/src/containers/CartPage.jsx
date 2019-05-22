@@ -62,6 +62,7 @@ const zoomArray = [
 class CartPage extends React.Component {
   static propTypes = {
     history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
   }
 
   constructor(props) {
@@ -71,6 +72,9 @@ class CartPage extends React.Component {
       isLoading: false,
       invalidPermission: false,
     };
+    this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
+    this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
+    this.handleItemRemove = this.handleItemRemove.bind(this);
   }
 
   componentDidMount() {
@@ -141,6 +145,21 @@ class CartPage extends React.Component {
     );
   }
 
+  handleItemConfiguratorAddToCart() {
+    const { history } = this.props;
+    history.push('/mybag');
+  }
+
+  handleItemMoveToCart() {
+    const { history } = this.props;
+    history.push('/mybag');
+  }
+
+  handleItemRemove() {
+    const { history, location } = this.props;
+    history.push(location.pathname);
+  }
+
   renderDiscount() {
     const { cartData } = this.state;
     if (cartData._discount) {
@@ -185,7 +204,14 @@ class CartPage extends React.Component {
           </div>
           {cartData && !isLoading && (
             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
-              <CartMain empty={!cartData['total-quantity'] || cartData._lineitems === undefined} cartData={cartData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
+              <CartMain
+                empty={!cartData['total-quantity'] || cartData._lineitems === undefined}
+                cartData={cartData}
+                handleQuantityChange={() => { this.handleQuantityChange(); }}
+                onItemConfiguratorAddToCart={this.handleItemConfiguratorAddToCart}
+                onItemMoveToCart={this.handleItemMoveToCart}
+                onItemRemove={this.handleItemRemove}
+              />
             </div>
           )}
           {(cartData && !isLoading) && (

@@ -21,38 +21,23 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import CartLineItem from './cart.lineitem';
 import { getConfig } from '../utils/ConfigProvider';
-import './cart.main.less';
+import CartLineItem from './cart.lineitem';
+import './wishlist.main.less';
 
-let intl = { get: str => str };
 
-const CartMain = (props) => {
-  CartMain.propTypes = {
+const WishListMain = (props) => {
+  WishListMain.propTypes = {
     onItemConfiguratorAddToCart: PropTypes.func,
     onItemMoveToCart: PropTypes.func,
     onItemRemove: PropTypes.func,
   };
 
-  CartMain.defaultProps = {
+  WishListMain.defaultProps = {
     onItemConfiguratorAddToCart: () => {},
     onItemMoveToCart: () => {},
     onItemRemove: () => {},
   };
-
-  ({ intl } = getConfig());
-  const {
-    empty, cartData, handleQuantityChange,
-  } = props;
-  if (empty) {
-    return (
-      <div className="cart-empty-container">
-        <span className="cart-empty-message">
-          {intl.get('shopping-cart-empty-message')}
-        </span>
-      </div>
-    );
-  }
 
   function handleConfiguratorAddToCart() {
     const { onItemConfiguratorAddToCart } = props;
@@ -69,9 +54,24 @@ const CartMain = (props) => {
     onItemRemove();
   }
 
+  const { intl } = getConfig();
+
+  const {
+    empty, wishListData, handleQuantityChange,
+  } = props;
+  if (empty) {
+    return (
+      <div className="wish-list-empty-container">
+        <span className="wish-list-empty-message">
+          {intl.get('wish-list-empty-message')}
+        </span>
+      </div>
+    );
+  }
+
   return (
-    <div className="cart-main-inner table-responsive">
-      {cartData._lineitems[0]._element.map(product => (
+    <div className="wish-list-main-inner table-responsive">
+      {wishListData._lineitems[0]._element.map(product => (
         <CartLineItem
           key={product._item[0]._code[0].code}
           item={product}
@@ -85,10 +85,10 @@ const CartMain = (props) => {
   );
 };
 
-CartMain.propTypes = {
+WishListMain.propTypes = {
   empty: PropTypes.bool.isRequired,
-  cartData: PropTypes.objectOf(PropTypes.any).isRequired,
+  wishListData: PropTypes.objectOf(PropTypes.any).isRequired,
   handleQuantityChange: PropTypes.func.isRequired,
 };
 
-export default CartMain;
+export default WishListMain;

@@ -62,6 +62,15 @@ class AppModalBundleConfigurationMain extends React.Component {
     bundleConfigurationItems: PropTypes.objectOf(PropTypes.any).isRequired,
     handleModalClose: PropTypes.func.isRequired,
     openModal: PropTypes.bool.isRequired,
+    onItemConfiguratorAddToCart: PropTypes.func,
+    onItemMoveToCart: PropTypes.func,
+    onItemRemove: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onItemConfiguratorAddToCart: () => {},
+    onItemMoveToCart: () => {},
+    onItemRemove: () => {},
   }
 
   constructor(props) {
@@ -126,6 +135,21 @@ class AppModalBundleConfigurationMain extends React.Component {
     });
   }
 
+  handleConfiguratorAddToCart() {
+    const { onItemConfiguratorAddToCart } = this.props;
+    onItemConfiguratorAddToCart();
+  }
+
+  handleMoveToCart() {
+    const { onItemMoveToCart } = this.props;
+    onItemMoveToCart();
+  }
+
+  handleRemove() {
+    const { onItemRemove } = this.props;
+    onItemRemove();
+  }
+
   render() {
     const { isLoading, registrationErrors, dependantItemData } = this.state;
     const { bundleConfigurationItems, handleModalClose, openModal } = this.props;
@@ -151,7 +175,16 @@ class AppModalBundleConfigurationMain extends React.Component {
                   </h2>
                   <div className="table-responsive">
                     {dependantItemData._dependentlineitems[0]._element.map(product => (
-                      <CartLineItem key={product._item[0]._code[0].code} item={product} handleQuantityChange={() => { this.handleQuantityChange(); }} hideQuantitySelector handleErrorMessage={this.handleErrorMessage} />
+                      <CartLineItem
+                        key={product._item[0]._code[0].code}
+                        item={product}
+                        handleQuantityChange={() => { this.handleQuantityChange(); }}
+                        hideQuantitySelector
+                        handleErrorMessage={this.handleErrorMessage}
+                        onRemove={this.handleRemove}
+                        onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
+                        onMoveToCart={this.handleMoveToCart}
+                      />
                     ))}
                   </div>
                 </div>
@@ -165,7 +198,17 @@ class AppModalBundleConfigurationMain extends React.Component {
                   </h2>
                   <div className="table-responsive">
                     {dependantItemData._dependentoptions[0]._element.map(product => (
-                      <CartLineItem key={product._code[0].code} item={product} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton hideQuantitySelector handleErrorMessage={this.handleErrorMessage} />
+                      <CartLineItem
+                        key={product._code[0].code}
+                        item={product}
+                        handleQuantityChange={() => { this.handleQuantityChange(); }}
+                        hideRemoveButton
+                        hideQuantitySelector
+                        handleErrorMessage={this.handleErrorMessage}
+                        onRemove={this.handleRemove}
+                        onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
+                        onMoveToCart={this.handleMoveToCart}
+                      />
                     ))}
                   </div>
                 </div>

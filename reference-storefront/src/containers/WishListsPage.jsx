@@ -21,8 +21,9 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { WishListMain } from '@elasticpath/react-storefront-components';
 import { login } from '../utils/AuthService';
-import WishListMain from '../components/wishlist.main';
 import { cortexFetch } from '../utils/Cortex';
 import './WishListsPage.less';
 
@@ -50,6 +51,11 @@ const zoomArray = [
 ];
 
 class WishListsPage extends React.Component {
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -57,6 +63,9 @@ class WishListsPage extends React.Component {
       isLoading: false,
       invalidPermission: false,
     };
+    this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
+    this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
+    this.handleItemRemove = this.handleItemRemove.bind(this);
   }
 
   componentDidMount() {
@@ -118,6 +127,21 @@ class WishListsPage extends React.Component {
     );
   }
 
+  handleItemConfiguratorAddToCart() {
+    const { history } = this.props;
+    history.push('/mybag');
+  }
+
+  handleItemMoveToCart() {
+    const { history } = this.props;
+    history.push('/mybag');
+  }
+
+  handleItemRemove() {
+    const { history, location } = this.props;
+    history.push(location.pathname);
+  }
+
   render() {
     const { wishListData, isLoading } = this.state;
     return (
@@ -139,7 +163,14 @@ class WishListsPage extends React.Component {
           </div>
           {wishListData && !isLoading && (
             <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
-              <WishListMain empty={!wishListData._lineitems[0]._element} wishListData={wishListData} handleQuantityChange={() => { this.handleQuantityChange(); }} />
+              <WishListMain
+                empty={!wishListData._lineitems[0]._element}
+                wishListData={wishListData}
+                handleQuantityChange={() => { this.handleQuantityChange(); }}
+                onItemConfiguratorAddToCart={this.handleItemConfiguratorAddToCart}
+                onItemMoveToCart={this.handleItemMoveToCart}
+                onItemRemove={this.handleItemRemove}
+              />
             </div>
           )}
           <div>
