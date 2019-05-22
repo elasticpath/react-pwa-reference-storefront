@@ -20,12 +20,39 @@
  */
 
 import React from 'react';
-import AddressFormMain from '../components/addressform.main';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { AddressFormMain } from '@elasticpath/react-storefront-components';
 
-const EditAddressPage = props => (
-  <div>
-    <AddressFormMain {...props} />
-  </div>
-);
+function EditAddressPage(props) {
+  EditAddressPage.propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
+  };
+
+  const { history, location } = props;
+
+  function redirectToProfilePage() {
+    history.push('/profile');
+  }
+
+  function redirectToMainPage() {
+    history.push('/');
+  }
+
+  function redirectToReturnedPage(pathPage) {
+    history.push(`${pathPage}`);
+  }
+
+  let addressData;
+  if (location.state) {
+    addressData = location.state;
+  }
+
+  return (
+    <div>
+      <AddressFormMain {...props} onMainPage={redirectToMainPage} onProfilePage={redirectToProfilePage} onReturnedPage={pathPage => redirectToReturnedPage(pathPage)} addressData={addressData} />
+    </div>
+  );
+}
 
 export default EditAddressPage;

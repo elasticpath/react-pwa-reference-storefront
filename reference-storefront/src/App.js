@@ -23,11 +23,10 @@ import React from 'react';
 import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
-import ep from '@elasticpath/react-storefront-components';
+import { init, AppHeaderMain } from '@elasticpath/react-storefront-components';
 import intl from 'react-intl-universal';
 import router from './routes';
 import withAnalytics from './utils/Analytics';
-import AppHeaderMain from './components/appheader.main';
 import AppFooterMain from './components/appfooter.main';
 import FacebookChat from './components/facebookchat.main';
 
@@ -35,7 +34,7 @@ import './App.less';
 
 const Config = require('Config');
 
-ep.init({
+init({
   config: Config,
   intl,
 });
@@ -43,9 +42,45 @@ ep.init({
 // eslint-disable-next-line react/no-array-index-key
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
+function redirectToProfilePage(keywords) {
+  window.location = `/search/${keywords}`;
+}
+
+function redirectToMainPage() {
+  window.location = '/';
+}
+
+function handlePathName() {
+  const checkLocation = window.location.pathname === '/maintenance';
+  return checkLocation;
+}
+
+function handleResetPassword() {
+  window.location = ('/password_reset', { returnPage: '/' });
+}
+
+function handleCurrencyChange() {
+  window.location.reload();
+}
+
+function handleLocaleChange() {
+  window.location.reload();
+}
+
+function handleContinueCart() {
+  window.location.reload();
+}
+
+function handleGoBack() {
+  window.history.back();
+}
+
+const locationData = window.location.search;
+const isInStandaloneMode = window.navigator.standalone;
+
 const Root = () => [
   <FacebookChat key="FacebookChat" config={Config.facebook} />,
-  <AppHeaderMain key="AppHeaderMain" />,
+  <AppHeaderMain key="AppHeaderMain" onSearchPage={keywords => redirectToProfilePage(keywords)} redirectToMainPage={redirectToMainPage} checkedLocation={handlePathName()} handleResetPassword={handleResetPassword} onCurrencyChange={handleCurrencyChange} onLocaleChange={handleLocaleChange} onContinueCart={handleContinueCart} onGoBack={handleGoBack} locationSearchData={locationData} isInStandaloneMode={isInStandaloneMode} />,
   <div key="app-content" className="app-content">
     <Switch>
       {routeComponents}

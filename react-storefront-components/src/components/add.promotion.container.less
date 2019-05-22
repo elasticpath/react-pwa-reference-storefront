@@ -19,13 +19,26 @@
  *
  */
 
-@mainColor: #040060;
-@mainGrey: #d0d0d0;
-@mainTextColor: #333333;
-@complimentGrey: #f3f3f3;
-@mainBlueColor: #40b1f3;
-@complimentBlueColor: #00a3dd;
-@generalizedBlueColor: #0099DE;
+ @import './../style/common.less';
 
-@mobileWidth: 768px;
-@tabletWidth: 1092px;
+.add-promotion-container {
+  .btn-add-promotion{
+    text-transform: uppercase;
+    margin: 5px;
+    text-shadow: none;
+    color: @complimentBlueColor;
+    background-color: #ffffff;
+    border: solid 1px @complimentBlueColor;
+    text-align: middle;
+    white-space: nowrap;
+    min-width: 120px;
+    height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+
+    &:hover {
+      background-color: @complimentBlueColor;
+      color: #ffffff;
+    }
+  }
+}

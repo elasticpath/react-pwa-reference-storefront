@@ -25,6 +25,20 @@ import ProductListItemMain from './components/productlistitem.main';
 import ProductRecommendationsDisplayMain from './components/productrecommendations.main';
 import BundleConstituentsDisplayMain from './components/bundleconstituents.main';
 import CategoryItemsMain from './components/categoryitems.main';
+import AddPromotionContainer from './components/add.promotion.container';
+import AddressContainer from './components/address.container';
+import AddressFormMain from './components/addressform.main';
+import AppFooterMain from './components/appfooter.main';
+import AppHeaderMain from './components/appheader.main';
+import AppHeaderLocaleMain from './components/appheaderlocale.main';
+import AppHeaderLoginMain from './components/appheaderlogin.main';
+import AppHeaderNavigationMain from './components/appheadernavigation.main';
+import AppHeaderSearchMain from './components/appheadersearch.main';
+import AppHeaderTop from './components/appheadertop.main';
+import AppModalCartSelectMain from './components/appmodalcartselect.main';
+import AppModalLoginMain from './components/appmodallogin.main';
+import BulkOrderMain from './components/bulkorder.main';
+import QuickOrderForm from './components/quickorderform';
 
 export default { init };
 
@@ -36,4 +50,18 @@ export {
   ProductRecommendationsDisplayMain,
   BundleConstituentsDisplayMain,
   CategoryItemsMain,
+  AddPromotionContainer,
+  AddressContainer,
+  AddressFormMain,
+  AppFooterMain,
+  AppHeaderMain,
+  AppHeaderLocaleMain,
+  AppHeaderLoginMain,
+  AppHeaderNavigationMain,
+  AppHeaderSearchMain,
+  AppHeaderTop,
+  AppModalCartSelectMain,
+  AppModalLoginMain,
+  BulkOrderMain,
+  QuickOrderForm,
 };
