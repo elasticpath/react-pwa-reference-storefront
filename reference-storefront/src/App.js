@@ -80,7 +80,19 @@ const isInStandaloneMode = window.navigator.standalone;
 
 const Root = () => [
   <FacebookChat key="FacebookChat" config={Config.facebook} />,
-  <AppHeaderMain key="AppHeaderMain" onSearchPage={keywords => redirectToProfilePage(keywords)} redirectToMainPage={redirectToMainPage} checkedLocation={handlePathName()} handleResetPassword={handleResetPassword} onCurrencyChange={handleCurrencyChange} onLocaleChange={handleLocaleChange} onContinueCart={handleContinueCart} onGoBack={handleGoBack} locationSearchData={locationData} isInStandaloneMode={isInStandaloneMode} />,
+  <AppHeaderMain
+    key="AppHeaderMain"
+    onSearchPage={keywords => redirectToProfilePage(keywords)}
+    redirectToMainPage={redirectToMainPage}
+    checkedLocation={handlePathName()}
+    handleResetPassword={handleResetPassword}
+    onCurrencyChange={handleCurrencyChange}
+    onLocaleChange={handleLocaleChange}
+    onContinueCart={handleContinueCart}
+    onGoBack={handleGoBack}
+    locationSearchData={locationData}
+    isInStandaloneMode={isInStandaloneMode}
+  />,
   <div key="app-content" className="app-content">
     <Switch>
       {routeComponents}
