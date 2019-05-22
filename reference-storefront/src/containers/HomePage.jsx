@@ -23,7 +23,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
-import GdprSupportModal from '../components/gdprsupport.main';
+import { GdprSupportModal } from '@elasticpath/react-storefront-components';
 import Carousel from '../components/carousel.homepage';
 
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
@@ -50,6 +50,9 @@ const gdprSupportDecline = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_
 
 class HomePage extends React.Component {
   render() {
+    function handleAcceptDataPolicy() {
+      window.location.reload();
+    }
     // Set the language-specific configuration for indi integration
     Config.indi.brandAmbassador.title = intl.get('indi-brand-ambassador-title');
     Config.indi.brandAmbassador.description = intl.get('indi-brand-ambassador-description');
@@ -136,7 +139,7 @@ class HomePage extends React.Component {
               </div>
             </div>
           </div>
-          {showGDPR && !gdprSupportAccept && !gdprSupportDecline && <GdprSupportModal />}
+          {showGDPR && !gdprSupportAccept && !gdprSupportDecline && <GdprSupportModal onAcceptDataPolicy={handleAcceptDataPolicy} />}
         </div>
       </ParallaxProvider>
     );

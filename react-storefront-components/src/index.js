@@ -30,6 +30,8 @@ import ProfileemailinfoMain from './components/profileemailinfo.main';
 import ProfileInfoMain from './components/profileInfo.main';
 import ProfilePaymentMethodsMain from './components/profilepaymentmethods.main';
 import OrderHistoryMain from './components/orderhistory.main';
+import GdprSupportModal from './components/gdprsupport.main';
+import GiftcertificateFormMain from './components/giftcertificateform.main';
 
 export default { init };
 
@@ -46,4 +48,6 @@ export {
   ProfileInfoMain,
   ProfilePaymentMethodsMain,
   OrderHistoryMain,
+  GdprSupportModal,
+  GiftcertificateFormMain,
 };
