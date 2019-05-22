@@ -16,6 +16,7 @@ reference-storefront/_site
 reference-storefront/build
 reference-storefront/dist
 reference-storefront/webpack/dist
+react-storefront-components/lib
 
 # misc
 .DS_Store

@@ -1,0 +1,234 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.cart-lineitem-row {
+  border-bottom: 1px solid @mainGrey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  overflow: auto;
+
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .thumbnail-col {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+    img {
+      max-width: 60px;
+    }
+  }
+
+  .featured {
+    font-size: 11px;
+  }
+
+  .title-col {
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding-bottom: 3px;
+    width: 60%;
+    vertical-align: top;
+  }
+
+  .options-col {
+    display: inline-block;
+    width: 50%;
+
+    .bundle-configuration {
+      .option-name {
+        font-weight: bold;
+        color: @mainBlueColor;
+      }
+    }
+  }
+
+  .promotions-col {
+    display: block;
+    width: 33%;
+    text-align: left;
+  }
+
+  .availability-col {
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+
+    .availability-container {
+      .itemdetail-availability-state {
+        padding: 0;
+
+        div {
+          float: right;
+          background-color: #fff;
+          border-radius: 10px;
+          border: solid @mainColor;
+          border-width: 1px 1px;
+          color: @mainColor;
+          padding: 3px 10px;
+          font-size: 10px;
+          text-transform: uppercase;
+        }
+
+        .icon {
+          position: relative;
+          top: 1px;
+          display: inline-block;
+          font-family: 'Glyphicons Halflings';
+          font-style: normal;
+          font-weight: normal;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+          margin-right: 6px;
+          margin-top: -4px;
+        }
+
+        .icon:before {
+          content: "\e013";
+        }
+      }
+    }
+  }
+
+  .unit-price-col {
+    display: inline-block;
+    width: 50%;
+    .cart-unit-list-price {
+      text-decoration: line-through;
+    }
+  }
+
+  .total-price-col {
+    display: inline-block;
+    width: 50%;
+    .cart-total-purchase-price {
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+
+  .remove-btn-col,
+  .move-to-cart-btn-col,
+  .configure-btn-col {
+    float:right;
+  }
+
+  th:last-child,
+  td:last-child {
+    text-align: center;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 30px;
+  }
+
+  .quantity-col {
+    display: inline-block;
+    width: 105px;
+    height: 30px;
+
+    .form-control {
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: normal;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+    }
+
+    .input-group-btn {
+      float: left;
+      border: solid 1px @mainGrey;
+      justify-content: space-between;
+      align-items: center;
+
+      .quantity-right-plus,
+      .quantity-left-minus {
+        background-color: white;
+        border-radius: 0 !important;
+        overflow: hidden;
+        position: relative;
+        text-shadow: 1px 1px 1px #fff;
+        color: #666;
+        text-transform: none;
+        font-weight: normal;
+        float: right;
+        height: 24px;
+      }
+
+      .quantity-left-minus {
+        border-right: 0 !important;
+        float: left;
+      }
+
+      .quantity-right-plus {
+        border-left: 0 !important;
+      }
+
+      .form-content-quantity {
+        width: 50px;
+
+        .form-control-quantity {
+          width: 50px;
+          font-size: 14px;
+          text-align: center;
+        }
+
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance:textfield;
+        }
+      }
+    }
+
+    .product-display-item-quantity-update-button {
+      background: none !important;
+      border: none;
+      padding: 0 !important;
+      font-size: 12px;
+      cursor: pointer;
+
+      &:hover {
+        color: @mainBlueColor;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .quantity-select {
+    min-width: 70px;
+  }
+}

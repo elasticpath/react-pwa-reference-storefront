@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { getConfig } from '../utils/ConfigProvider';
@@ -33,9 +32,12 @@ let Config = {};
 
 class SearchFacetNavigationMain extends React.Component {
   static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
-    titleString: PropTypes.string.isRequired,
+    onFacetSelection: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onFacetSelection: () => {},
   }
 
   constructor(props) {
@@ -49,7 +51,7 @@ class SearchFacetNavigationMain extends React.Component {
   }
 
   handleFacetSelection(facetUri) {
-    const { history, titleString } = this.props;
+    const { onFacetSelection } = this.props;
     login().then(() => {
       cortexFetch(`${decodeURIComponent(facetUri)}?followlocation=true&zoom=offersearchresult`,
         {
@@ -62,11 +64,7 @@ class SearchFacetNavigationMain extends React.Component {
         })
         .then(res => res.json())
         .then((res) => {
-          if (window.location.pathname.includes('category')) {
-            history.push(`/category/${titleString}${res._offersearchresult[0].self.uri}`);
-          } else {
-            history.push(`/search/${titleString}${res._offersearchresult[0].self.uri}`);
-          }
+          onFacetSelection(res);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

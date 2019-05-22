@@ -1,0 +1,94 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../style/common.less';
+
+.cart-summary-list {
+  padding: 0;
+
+  ul {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .cart-applied-promotions {
+    display: inline-block;
+    margin-bottom: 5px;
+    width: 100%;
+
+    .cart-applied-promotions {
+      font-weight: 500;
+    }
+  }
+  .cart-coupons {
+    align-content: center;
+  }
+  .cart-remove-promotion {
+    text-transform: uppercase;
+    margin: 5px;
+    text-shadow: none;
+    color: @complimentBlueColor;
+    background-color: #ffffff;
+    border: solid 1px @complimentBlueColor;
+    text-align: middle;
+    white-space: nowrap;
+    min-width: 60px;
+    height: 20px;
+    font-size: 9px;
+
+    &:hover {
+      background-color: @complimentBlueColor;
+      color: #ffffff;
+    }
+  }
+
+  .cart-coupons {
+    margin-bottom: 10px;
+
+    .promotions-table {
+      .promotion-display {
+        text-align: right;
+        padding-right: 5px;
+        margin: 6px 0 6px 0;
+        font-weight: 500;
+      }
+
+      .promotion-remove {
+        text-align: left;
+        padding-left: 5px;
+      }
+      min-width: 150px;
+      width:100%;
+    }
+  }
+  .checkout-tax {
+    .checkout-tax-list {
+      padding-left: 16px;
+      margin-bottom: 16px;
+    }
+  }
+}
