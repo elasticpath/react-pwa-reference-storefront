@@ -527,11 +527,8 @@ class ProductDisplayItemMain extends React.Component {
       }
       let availability = (productData._addtocartform[0].links.length > 0);
       let availabilityString = '';
-      let productLink = '';
+      const productLink = window.location.href;
       if (productData._availability.length >= 0) {
-        if (productData._code) {
-          productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
-        }
         if (productData._availability[0].state === 'AVAILABLE') {
           availabilityString = intl.get('in-stock');
         } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
