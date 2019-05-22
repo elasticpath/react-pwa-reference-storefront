@@ -56,6 +56,10 @@ import OrderHistoryMain from './components/orderhistory.main';
 import GdprSupportModal from './components/gdprsupport.main';
 import GiftcertificateFormMain from './components/giftcertificateform.main';
 import WishListMain from './components/wishlist.main';
+import OrderTableMain from './components/ordertable.main';
+import PaymentMethodContainer from './components/paymentmethod.container';
+import ShippingOptionContainer from './components/shippingoption.container';
+import OrderTableLineItem from './components/ordertable.lineitem';
 
 export default { init };
 
@@ -98,4 +102,8 @@ export {
   GdprSupportModal,
   GiftcertificateFormMain,
   WishListMain,
+  OrderTableMain,
+  PaymentMethodContainer,
+  ShippingOptionContainer,
+  OrderTableLineItem,
 };
