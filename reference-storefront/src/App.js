@@ -23,12 +23,12 @@ import React from 'react';
 import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
-import { init, AppHeaderMain } from '@elasticpath/react-storefront-components';
+import {
+  init, AppHeaderMain, FacebookChat, AppFooterMain,
+} from '@elasticpath/react-storefront-components';
 import intl from 'react-intl-universal';
 import router from './routes';
 import withAnalytics from './utils/Analytics';
-import AppFooterMain from './components/appfooter.main';
-import FacebookChat from './components/facebookchat.main';
 
 import './App.less';
 
@@ -75,12 +75,37 @@ function handleGoBack() {
   window.history.back();
 }
 
+function handleFbAsyncInit() {
+  // eslint-disable-next-line
+  window.fbAsyncInit = function () {
+    // eslint-disable-next-line
+    FB.init({
+      appId: Config.facebook.applicationId,
+      status: true,
+      xfbml: true,
+      version: 'v2.10',
+    });
+  };
+}
+
 const locationData = window.location.search;
 const isInStandaloneMode = window.navigator.standalone;
 
 const Root = () => [
-  <FacebookChat key="FacebookChat" config={Config.facebook} />,
-  <AppHeaderMain key="AppHeaderMain" onSearchPage={keywords => redirectToProfilePage(keywords)} redirectToMainPage={redirectToMainPage} checkedLocation={handlePathName()} handleResetPassword={handleResetPassword} onCurrencyChange={handleCurrencyChange} onLocaleChange={handleLocaleChange} onContinueCart={handleContinueCart} onGoBack={handleGoBack} locationSearchData={locationData} isInStandaloneMode={isInStandaloneMode} />,
+  <FacebookChat key="FacebookChat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
+  <AppHeaderMain
+    key="AppHeaderMain"
+    onSearchPage={keywords => redirectToProfilePage(keywords)}
+    redirectToMainPage={redirectToMainPage}
+    checkedLocation={handlePathName()}
+    handleResetPassword={handleResetPassword}
+    onCurrencyChange={handleCurrencyChange}
+    onLocaleChange={handleLocaleChange}
+    onContinueCart={handleContinueCart}
+    onGoBack={handleGoBack}
+    locationSearchData={locationData}
+    isInStandaloneMode={isInStandaloneMode}
+  />,
   <div key="app-content" className="app-content">
     <Switch>
       {routeComponents}

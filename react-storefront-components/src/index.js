@@ -56,6 +56,9 @@ import OrderHistoryMain from './components/orderhistory.main';
 import GdprSupportModal from './components/gdprsupport.main';
 import GiftcertificateFormMain from './components/giftcertificateform.main';
 import WishListMain from './components/wishlist.main';
+import PaymentFormMain from './components/paymentform.main';
+import OrderHistoryLineMain from './components/orderhistoryline.main';
+import FacebookChat from './components/facebookchat.main';
 
 export default { init };
 
@@ -98,4 +101,7 @@ export {
   GdprSupportModal,
   GiftcertificateFormMain,
   WishListMain,
+  PaymentFormMain,
+  OrderHistoryLineMain,
+  FacebookChat,
 };

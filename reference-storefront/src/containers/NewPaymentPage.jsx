@@ -20,12 +20,39 @@
  */
 
 import React from 'react';
-import PaymentFormMain from '../components/paymentform.main';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { PaymentFormMain } from '@elasticpath/react-storefront-components';
 
-const NewPaymentPage = props => (
-  <div>
-    <PaymentFormMain {...props} />
-  </div>
-);
+function NewPaymentPage(props) {
+  NewPaymentPage.propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+    location: ReactRouterPropTypes.location.isRequired,
+  };
+
+  const { history, location } = props;
+
+  function redirectToProfilePage() {
+    history.push('/profile');
+  }
+
+  function redirectToMainPage() {
+    history.push('/');
+  }
+
+  function redirectToReturnedPage() {
+    history.push(location.state.returnPage);
+  }
+
+  let addressData;
+  if (location.state) {
+    addressData = location.state;
+  }
+
+  return (
+    <div>
+      <PaymentFormMain {...props} onMainPage={redirectToMainPage} onProfilePage={redirectToProfilePage} onReturnedPage={redirectToReturnedPage} addressData={addressData} />
+    </div>
+  );
+}
 
 export default NewPaymentPage;
