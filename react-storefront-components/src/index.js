@@ -59,6 +59,16 @@ import WishListMain from './components/wishlist.main';
 import PaymentFormMain from './components/paymentform.main';
 import OrderHistoryLineMain from './components/orderhistoryline.main';
 import FacebookChat from './components/facebookchat.main';
+import OrderTableMain from './components/ordertable.main';
+import PaymentMethodContainer from './components/paymentmethod.container';
+import ShippingOptionContainer from './components/shippingoption.container';
+import OrderTableLineItem from './components/ordertable.lineitem';
+import PowerReview from './components/powerreview.main';
+import PurchaseDetailsMain from './components/purchasedetails.main';
+import QuickOrderMain from './components/quickorder.main';
+import RegistrationFormMain from './components/registrationform.main';
+import ReorderMain from './components/reorder.main';
+
 
 export default { init };
 
@@ -104,4 +114,13 @@ export {
   PaymentFormMain,
   OrderHistoryLineMain,
   FacebookChat,
+  OrderTableMain,
+  PaymentMethodContainer,
+  ShippingOptionContainer,
+  OrderTableLineItem,
+  PowerReview,
+  PurchaseDetailsMain,
+  QuickOrderMain,
+  RegistrationFormMain,
+  ReorderMain,
 };

@@ -22,12 +22,17 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import PurchaseDetailsMain from '../components/purchasedetails.main';
+import { PurchaseDetailsMain } from '@elasticpath/react-storefront-components';
 
 import './PurchaseReceiptPage.less';
 
 const PurchaseReceiptPage = (props) => {
-  const { location } = props;
+  const { location, history } = props;
+
+  const handleReorderAllProducts = () => {
+    history.push('/mybag');
+  };
+
   return (
     <div>
       <div className="app-main" style={{ display: 'block' }}>
@@ -35,7 +40,7 @@ const PurchaseReceiptPage = (props) => {
           <h2>
             {intl.get('order-processed-message')}
           </h2>
-          <PurchaseDetailsMain data={location.state.data} />
+          <PurchaseDetailsMain data={location.state.data} onReorderAllProducts={handleReorderAllProducts} />
         </div>
       </div>
     </div>
@@ -43,6 +48,7 @@ const PurchaseReceiptPage = (props) => {
 };
 
 PurchaseReceiptPage.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
 };
 

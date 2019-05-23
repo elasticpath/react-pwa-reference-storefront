@@ -19,30 +19,9 @@
  *
  */
 
-import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { RegistrationFormMain } from '@elasticpath/react-storefront-components';
+@import './../style/common.less';
 
-function RegistrationPage(props) {
-  RegistrationPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  };
-
-  function handleRegisterSuccess() {
-    const { location, history } = props;
-    if (location.state && location.returnPage) {
-      history.push(location.state.returnPage);
-    } else {
-      history.push('/');
-    }
-  }
-
-  return (
-    <div>
-      <RegistrationFormMain onRegisterSuccess={handleRegisterSuccess} />
-    </div>
-  );
+.ep-btn.reorder-btn {
+  margin: 10px auto;
+  display: block;
 }
-
-export default RegistrationPage;
