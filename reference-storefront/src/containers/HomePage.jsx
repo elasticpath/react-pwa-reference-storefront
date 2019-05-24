@@ -23,8 +23,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
-import { GdprSupportModal } from '@elasticpath/react-storefront-components';
-import Carousel from '../components/carousel.homepage';
+import { GdprSupportModal, Carousel } from '@elasticpath/react-storefront-components';
 
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
 import homeEspot3 from '../images/site-images/charging-icon.jpg';

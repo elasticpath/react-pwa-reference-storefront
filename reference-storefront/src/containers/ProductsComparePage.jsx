@@ -21,54 +21,46 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { login } from '../utils/AuthService';
-import { cortexFetchBatchItemLookupForm, batchLookup } from '../utils/CortexLookup';
-import CartCompareItems from '../components/cartcompareitems';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { ProductDisplayItemMain } from '@elasticpath/react-storefront-components';
 
 import './ProductsComparePage.less';
 
 class ProductsComparePage extends React.Component {
   static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
     match: PropTypes.objectOf(PropTypes.any).isRequired,
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-      productData: undefined,
-    };
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleAddToWishList = this.handleAddToWishList.bind(this);
   }
 
-  componentDidMount() {
-    const { match } = this.props;
-    const params = match.params.products;
-    const productCodes = decodeURIComponent(params).split(',');
-    login().then(() => {
-      cortexFetchBatchItemLookupForm()
-        .then(() => batchLookup(productCodes)
-          .then((res) => {
-            this.setState({
-              productData: res,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+  handleAddToCart() {
+    const { history } = this.props;
+    history.push('/mybag');
+  }
+
+  handleAddToWishList() {
+    const { history } = this.props;
+    history.push('/wishlists');
   }
 
   render() {
-    const { productData } = this.state;
+    const { match } = this.props;
+    const params = match.params.products;
+    const productCodes = decodeURIComponent(params).split(',');
     return (
       <div className="main-compare container-3">
-        { productData && productData._element && (
-          productData._element.map(product => (
-            <div key={product._code[0].code} className="compare-product">
-              <CartCompareItems key={product._code[0].code} productId={product._code[0].code} productData={product} />
+        {
+          productCodes.map(code => (
+            <div key={code} className="compare-product">
+              <ProductDisplayItemMain productId={code} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList} />
             </div>
           ))
-        )}
+        }
       </div>
     );
   }

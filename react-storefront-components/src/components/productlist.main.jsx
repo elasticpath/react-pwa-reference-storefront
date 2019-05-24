@@ -83,15 +83,15 @@ class ProductListMain extends React.Component {
 
   checkComparison(product) {
     const { compareList, isCompare } = this.state;
-    const isChecked = compareList.indexOf(product._code[0].code) !== -1;
+    const isChecked = compareList.indexOf(product._items[0]._element[0]._code[0].code) !== -1;
     if (product._definition && isCompare) {
       return (
         <div className="compare-checkbox">
-          <label htmlFor={product._definition[0]['display-name']}>
+          <label htmlFor={product._code[0].code}>
             <input
-              id={product._definition[0]['display-name']}
+              id={product._code[0].code}
               checked={isChecked}
-              name={product._code[0].code}
+              name={product._items[0]._element[0]._code[0].code}
               disabled={compareList.length > 2 && !isChecked}
               type="checkbox"
               onChange={this.handleCompareToggle}

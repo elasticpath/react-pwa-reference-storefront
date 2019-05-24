@@ -454,7 +454,7 @@ class ProductDisplayItemMain extends React.Component {
         return productKindsSelection;
       });
       return (productKindsSelection.map(Component => (
-        <fieldset key={`${Component.toString()}_fieldset`} onChange={this.handleSelectionChange}>
+        <fieldset key={`${Component.displayName}_fieldset`} onChange={this.handleSelectionChange}>
           <span className="selector-title">
             {Component.displayName}
           </span>
