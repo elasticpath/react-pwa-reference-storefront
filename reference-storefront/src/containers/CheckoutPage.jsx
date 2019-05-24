@@ -22,13 +22,11 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import { GiftcertificateFormMain, AddressContainer } from '@elasticpath/react-storefront-components';
+import {
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain,
+} from '@elasticpath/react-storefront-components';
 import { login } from '../utils/AuthService';
-import CheckoutSummaryList from '../components/checkout.summarylist';
-import ShippingOptionContainer from '../components/shippingoption.container';
-import PaymentMethodContainer from '../components/paymentmethod.container';
 import { cortexFetch } from '../utils/Cortex';
-import ProfileemailinfoMain from '../components/profileemailinfo.main';
 
 import './CheckoutPage.less';
 

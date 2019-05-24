@@ -23,7 +23,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
-import { GdprSupportModal, Carousel } from '@elasticpath/react-storefront-components';
+import { GdprSupportModal, Carousel, IndiRecommendationsDisplayMain } from '@elasticpath/react-storefront-components';
 
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
 import homeEspot3 from '../images/site-images/charging-icon.jpg';
@@ -32,8 +32,6 @@ import homeEspotParallax1 from '../images/site-images/car-inside.jpg';
 import homeEspotParallax2 from '../images/site-images/car-dashboard.jpg';
 
 import './HomePage.less';
-
-import IndiRecommendationsDisplayMain from '../components/indirecommendations.main';
 
 const Config = require('Config');
 

@@ -24,7 +24,7 @@ import queryString from 'query-string';
 import scriptjs from 'scriptjs';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import * as UserPrefs from '../utils/UserPrefs';
-import '../components/powerreviews.less';
+import './WriteReviewPage.less';
 
 const Config = require('Config');
 

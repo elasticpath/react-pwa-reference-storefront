@@ -69,6 +69,7 @@ import PurchaseDetailsMain from './components/purchasedetails.main';
 import QuickOrderMain from './components/quickorder.main';
 import RegistrationFormMain from './components/registrationform.main';
 import ReorderMain from './components/reorder.main';
+import SearchResultsItemsMain from './components/searchresultsitems.main';
 
 export default { init };
 
@@ -124,4 +125,5 @@ export {
   QuickOrderMain,
   RegistrationFormMain,
   ReorderMain,
+  SearchResultsItemsMain,
 };

@@ -22,9 +22,9 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
+import { PurchaseDetailsMain } from '@elasticpath/react-storefront-components';
 import { login } from '../utils/AuthService';
 import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
-import PurchaseDetailsMain from '../components/purchasedetails.main';
 import './OrderHistoryPage.less';
 import { cortexFetch } from '../utils/Cortex';
 

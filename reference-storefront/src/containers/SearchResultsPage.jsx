@@ -20,13 +20,27 @@
  */
 
 import React from 'react';
-import SearchResultsItemsMain from '../components/searchresultsitems.main';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import { SearchResultsItemsMain } from '@elasticpath/react-storefront-components';
 
 function SearchResultsPage(props) {
+  SearchResultsPage.propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+  };
+
+  function handleProductFacetSelection(offerSearch, title) {
+    const { history } = props;
+    if (window.location.pathname.includes('category')) {
+      history.push(`/category/${title}${offerSearch._offersearchresult[0].self.uri}`);
+    } else {
+      history.push(`/search/${title}${offerSearch._offersearchresult[0].self.uri}`);
+    }
+  }
+
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <SearchResultsItemsMain searchKeywordsProps={props} />
+      <SearchResultsItemsMain searchKeywordsProps={props} onProductFacetSelection={handleProductFacetSelection} />
     </div>
   );
 }
