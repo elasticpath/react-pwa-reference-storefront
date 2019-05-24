@@ -79,6 +79,7 @@
   "street-address": "Street Address",
   "extended-address": "Extended Address",
   "country": "Country",
+  "city": "City",
   "postal-code": "Postal Code",
   "save": "Save",
   "cancel": "Cancel",

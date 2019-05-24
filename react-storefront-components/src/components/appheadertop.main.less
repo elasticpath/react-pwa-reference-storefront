@@ -1,0 +1,54 @@
+@import './../style/common.less';
+
+.top-header {
+  display: none;
+}
+
+@media screen and (min-width: @tabletWidth) {
+  .top-header {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    border-bottom: #3b3384 solid 1px;
+    display: block;
+
+    .top-container {
+      height: 100%;
+      background-color: @mainColor;
+    }
+    .locale-container {
+      position: absolute;
+      margin-top: 12px;
+      margin-left: 35px;
+        button{
+          color: #a7a6b9;
+          font-size: 12px;
+        }
+    }
+    .top-container-menu {
+      position: absolute;
+      right: 30px;
+      top: 12px;
+
+      ul {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      li {
+        font-size: 12px;
+        margin: 0 11px;
+        display: inline-block;
+
+        a {
+          color: #a7a6b9;
+          text-decoration: none;
+        }
+        :hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+

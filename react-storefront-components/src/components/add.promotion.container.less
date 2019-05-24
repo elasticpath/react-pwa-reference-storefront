@@ -19,30 +19,26 @@
  *
  */
 
-import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { RegistrationFormMain } from '@elasticpath/react-storefront-components';
+ @import './../style/common.less';
 
-function RegistrationPage(props) {
-  RegistrationPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  };
+.add-promotion-container {
+  .btn-add-promotion{
+    text-transform: uppercase;
+    margin: 5px;
+    text-shadow: none;
+    color: @complimentBlueColor;
+    background-color: #ffffff;
+    border: solid 1px @complimentBlueColor;
+    text-align: middle;
+    white-space: nowrap;
+    min-width: 120px;
+    height: 30px;
+    font-size: 12px;
+    font-weight: bold;
 
-  function handleRegisterSuccess() {
-    const { location, history } = props;
-    if (location.state && location.returnPage) {
-      history.push(location.state.returnPage);
-    } else {
-      history.push('/');
+    &:hover {
+      background-color: @complimentBlueColor;
+      color: #ffffff;
     }
   }
-
-  return (
-    <div>
-      <RegistrationFormMain onRegisterSuccess={handleRegisterSuccess} />
-    </div>
-  );
 }
-
-export default RegistrationPage;

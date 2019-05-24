@@ -19,30 +19,46 @@
  *
  */
 
-import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { RegistrationFormMain } from '@elasticpath/react-storefront-components';
+ @import './../style/common.less';
 
-function RegistrationPage(props) {
-  RegistrationPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  };
+.order-lineitem-row {
 
-  function handleRegisterSuccess() {
-    const { location, history } = props;
-    if (location.state && location.returnPage) {
-      history.push(location.state.returnPage);
-    } else {
-      history.push('/');
+  a {
+    color: @mainTextColor;
+    text-decoration: none;
+  }
+
+  .quantity-col{
+    text-align: center;
+  }
+
+  .thumbnail-col {
+    img {
+      max-width: 60px;
     }
   }
 
-  return (
-    <div>
-      <RegistrationFormMain onRegisterSuccess={handleRegisterSuccess} />
-    </div>
-  );
-}
+  .title-col {
+    font-size: 16px;
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding-bottom: 3px;
+    width: 60%;
+  }
 
-export default RegistrationPage;
+  .bundle-configuration {
+    .option-name {
+      font-weight: bold;
+      color: @mainBlueColor;
+    }
+  }
+
+  .purchase-price {
+    font-weight: bold;
+  }
+
+  .order-lineitem-option-name {
+    font-weight: bold;
+  }
+}

@@ -23,19 +23,18 @@ import React from 'react';
 import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
-import ep from '@elasticpath/react-storefront-components';
+import {
+  init, AppHeaderMain, FacebookChat, AppFooterMain,
+} from '@elasticpath/react-storefront-components';
 import intl from 'react-intl-universal';
 import router from './routes';
 import withAnalytics from './utils/Analytics';
-import AppHeaderMain from './components/appheader.main';
-import AppFooterMain from './components/appfooter.main';
-import FacebookChat from './components/facebookchat.main';
 
 import './App.less';
 
 const Config = require('Config');
 
-ep.init({
+init({
   config: Config,
   intl,
 });
@@ -43,9 +42,70 @@ ep.init({
 // eslint-disable-next-line react/no-array-index-key
 const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
+function redirectToProfilePage(keywords) {
+  window.location = `/search/${keywords}`;
+}
+
+function redirectToMainPage() {
+  window.location = '/';
+}
+
+function handlePathName() {
+  const checkLocation = window.location.pathname === '/maintenance';
+  return checkLocation;
+}
+
+function handleResetPassword() {
+  window.location = ('/password_reset', { returnPage: '/' });
+}
+
+function handleCurrencyChange() {
+  window.location.reload();
+}
+
+function handleLocaleChange() {
+  window.location.reload();
+}
+
+function handleContinueCart() {
+  window.location.reload();
+}
+
+function handleGoBack() {
+  window.history.back();
+}
+
+function handleFbAsyncInit() {
+  // eslint-disable-next-line
+  window.fbAsyncInit = function () {
+    // eslint-disable-next-line
+    FB.init({
+      appId: Config.facebook.applicationId,
+      status: true,
+      xfbml: true,
+      version: 'v2.10',
+    });
+  };
+}
+
+const locationData = window.location.search;
+const isInStandaloneMode = window.navigator.standalone;
+
 const Root = () => [
-  <FacebookChat key="FacebookChat" config={Config.facebook} />,
-  <AppHeaderMain key="AppHeaderMain" />,
+  <FacebookChat key="FacebookChat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
+  <AppHeaderMain
+    key="AppHeaderMain"
+    onSearchPage={keywords => redirectToProfilePage(keywords)}
+    redirectToMainPage={redirectToMainPage}
+    checkedLocation={handlePathName()}
+    handleResetPassword={handleResetPassword}
+    onCurrencyChange={handleCurrencyChange}
+    onLocaleChange={handleLocaleChange}
+    onContinueCart={handleContinueCart}
+    onGoBack={handleGoBack}
+    locationSearchData={locationData}
+    isInStandaloneMode={isInStandaloneMode}
+  />,
   <div key="app-content" className="app-content">
     <Switch>
       {routeComponents}

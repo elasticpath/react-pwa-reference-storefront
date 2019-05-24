@@ -20,29 +20,33 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { RegistrationFormMain } from '@elasticpath/react-storefront-components';
+import PropTypes from 'prop-types';
 
-function RegistrationPage(props) {
-  RegistrationPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  };
-
-  function handleRegisterSuccess() {
-    const { location, history } = props;
-    if (location.state && location.returnPage) {
-      history.push(location.state.returnPage);
-    } else {
-      history.push('/');
-    }
-  }
-
+const ShippingOptionContainer = (props) => {
+  const { option } = props;
   return (
-    <div>
-      <RegistrationFormMain onRegisterSuccess={handleRegisterSuccess} />
-    </div>
+    <ul className="shipping-option-container">
+      <li className="shippingOptionDisplayName">
+        {option['display-name']}
+      </li>
+      <li className="shippingOptionCarrier">
+        {option.carrier}
+      </li>
+      <li className="shippingOptionCost">
+        {option.cost[0].display}
+      </li>
+    </ul>
   );
-}
+};
 
-export default RegistrationPage;
+ShippingOptionContainer.propTypes = {
+  option: PropTypes.shape({
+    'display-name': PropTypes.string,
+    carrier: PropTypes.string,
+    cost: PropTypes.arrayOf(PropTypes.shape({
+      display: PropTypes.string,
+    })),
+  }).isRequired,
+};
+
+export default ShippingOptionContainer;

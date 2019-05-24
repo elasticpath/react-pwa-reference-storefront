@@ -20,29 +20,27 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { RegistrationFormMain } from '@elasticpath/react-storefront-components';
+import PropTypes from 'prop-types';
+import OrderTableLineItem from './ordertable.lineitem';
+import './ordertable.main.less';
 
-function RegistrationPage(props) {
-  RegistrationPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  };
-
-  function handleRegisterSuccess() {
-    const { location, history } = props;
-    if (location.state && location.returnPage) {
-      history.push(location.state.returnPage);
-    } else {
-      history.push('/');
-    }
-  }
-
+const OrderTableMain = (props) => {
+  const { data } = props;
   return (
-    <div>
-      <RegistrationFormMain onRegisterSuccess={handleRegisterSuccess} />
+    <div className="order-main-inner table-responsive">
+      <table className="table table-borderless order-table">
+        <tbody>
+          {data._lineitems[0]._element.map(product => (
+            <OrderTableLineItem key={product._item[0]._code[0].code} item={product} />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
-export default RegistrationPage;
+OrderTableMain.propTypes = {
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+export default OrderTableMain;
