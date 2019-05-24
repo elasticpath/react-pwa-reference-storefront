@@ -54,6 +54,7 @@ class AppHeaderNavigationMain extends React.Component {
     checkedLocation: PropTypes.bool,
     isMobileView: PropTypes.bool.isRequired,
     onFetchNavigationError: PropTypes.func,
+    appHeaderNavigationLinks: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   static defaultProps = {
@@ -221,11 +222,13 @@ class AppHeaderNavigationMain extends React.Component {
     );
   }
 
-  static renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj, path) {
+  renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj, path) {
+    const { appHeaderNavigationLinks } = this.props;
+
     if (subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
       return (
         <li key={`${path}`}>
-          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} id={`header_navbar_sub_category_button_${nestedChildObj.name}`} title={subcategoryChildKeyName} to={`/category/${nestedChildObj.name}`}>
+          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} id={`header_navbar_sub_category_button_${nestedChildObj.name}`} title={subcategoryChildKeyName} to={appHeaderNavigationLinks.categories + nestedChildObj.name}>
             <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{subcategoryChildKeyName}</div>
           </Link>
         </li>
@@ -246,7 +249,7 @@ class AppHeaderNavigationMain extends React.Component {
         if (Object.keys(nestedChildObj).length > 2) {
           return this.renderSubCategoriesWithChildren(subcategoryChildKeyName, nestedChildObj, currentPath, isLeftDropDownStyling, categoryLevel);
         }
-        return AppHeaderNavigationMain.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj, currentPath);
+        return this.renderSubCategoriesWithNoChildren(subcategoryChildKeyName, nestedChildObj, currentPath);
       }
       return null;
     });
@@ -254,9 +257,11 @@ class AppHeaderNavigationMain extends React.Component {
 
   renderCategoriesWithNoChildren(categoryKey, path) {
     const { navigations } = this.state;
+    const { appHeaderNavigationLinks } = this.props;
+
     return (
       <li className="nav-item" key={`${path}`} data-name={categoryKey} data-el-container="category-nav-item-container">
-        <Link className="nav-link" to={`/category/${navigations[categoryKey].name}`} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false" data-target="#">
+        <Link className="nav-link" to={appHeaderNavigationLinks.categories + navigations[categoryKey].name} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false" data-target="#">
           <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{categoryKey}</div>
         </Link>
       </li>

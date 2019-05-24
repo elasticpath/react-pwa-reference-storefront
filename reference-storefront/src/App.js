@@ -107,6 +107,18 @@ const appHeaderLoginLinks = {
   profile: '/profile',
   wishlists: '/wishlists',
 };
+const appHeaderNavigationLinks = {
+  categories: '/category/',
+  subCategories: '/category/',
+};
+const appHeaderTopLinks = {
+  shippingreturns: '/shippingreturns',
+  aboutus: '/aboutus',
+  contactus: '/contactus',
+};
+const appModalLoginLinks = {
+  registration: '/registration',
+};
 
 const Root = () => [
   <FacebookChat key="FacebookChat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
@@ -124,6 +136,9 @@ const Root = () => [
     isInStandaloneMode={isInStandaloneMode}
     appHeaderLinks={appHeaderLinks}
     appHeaderLoginLinks={appHeaderLoginLinks}
+    appHeaderNavigationLinks={appHeaderNavigationLinks}
+    appHeaderTopLinks={appHeaderTopLinks}
+    appModalLoginLinks={appModalLoginLinks}
   />,
   <div key="app-content" className="app-content">
     <Switch>

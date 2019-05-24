@@ -34,6 +34,7 @@ class AppHeaderTop extends React.Component {
     isMobileView: PropTypes.bool,
     onCurrencyChange: PropTypes.func,
     onLocaleChange: PropTypes.func,
+    appHeaderTopLinks: PropTypes.objectOf(PropTypes.any).isRequired,
   };
 
   static defaultProps = {
@@ -48,7 +49,12 @@ class AppHeaderTop extends React.Component {
   }
 
   render() {
-    const { isMobileView, onCurrencyChange, onLocaleChange } = this.props;
+    const {
+      isMobileView,
+      onCurrencyChange,
+      onLocaleChange,
+      appHeaderTopLinks,
+    } = this.props;
 
     return [
       <div key="AppHeaderTop" className={`top-header ${isMobileView ? 'mobile-view' : ''}`}>
@@ -60,17 +66,17 @@ class AppHeaderTop extends React.Component {
           <div className="top-container-menu">
             <ul>
               <li>
-                <Link to="/shippingreturns">
+                <Link to={appHeaderTopLinks.shippingreturns}>
                   {intl.get('shipping-returns')}
                 </Link>
               </li>
               <li>
-                <Link to="/aboutus">
+                <Link to={appHeaderTopLinks.aboutus}>
                   {intl.get('help')}
                 </Link>
               </li>
               <li>
-                <Link to="/contactus">
+                <Link to={appHeaderTopLinks.contactus}>
                   {intl.get('contact')}
                 </Link>
               </li>

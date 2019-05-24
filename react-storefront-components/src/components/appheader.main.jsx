@@ -65,6 +65,9 @@ class AppHeaderMain extends React.Component {
     locationSearchData: PropTypes.string,
     appHeaderLinks: PropTypes.objectOf(PropTypes.any).isRequired,
     appHeaderLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    appHeaderNavigationLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    appHeaderTopLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    appModalLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   static defaultProps = {
@@ -169,11 +172,14 @@ class AppHeaderMain extends React.Component {
       redirectToMainPage,
       appHeaderLinks,
       appHeaderLoginLinks,
+      appHeaderNavigationLinks,
+      appHeaderTopLinks,
+      appModalLoginLinks,
     } = this.props;
     const availability = Boolean(cartData);
     return [
       <header key="app-header" className="app-header">
-        <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
+        <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
 
         <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
 
@@ -190,7 +196,14 @@ class AppHeaderMain extends React.Component {
 
           <div className="central-container">
             <div className="horizontal-menu">
-              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} onFetchNavigationError={redirectToMainPage} checkedLocation={checkedLocation} />
+              <AppHeaderNavigationMain
+                isOfflineCheck={this.handleIsOffline}
+                isOffline={isOffline}
+                isMobileView={false}
+                onFetchNavigationError={redirectToMainPage}
+                checkedLocation={checkedLocation}
+                appHeaderNavigationLinks={appHeaderNavigationLinks}
+              />
             </div>
           </div>
 
@@ -241,6 +254,7 @@ class AppHeaderMain extends React.Component {
               onContinueCart={onContinueCart}
               locationSearchData={locationSearchData}
               appHeaderLoginLinks={appHeaderLoginLinks}
+              appModalLoginLinks={appModalLoginLinks}
             />
           </div>
 
@@ -296,7 +310,13 @@ class AppHeaderMain extends React.Component {
           <hr className="mobile-navigation-separator" />
 
           <div className="mobile-navigation-container">
-            <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView onFetchNavigationError={redirectToMainPage} checkedLocation={checkedLocation} />
+            <AppHeaderNavigationMain
+              isOfflineCheck={this.handleIsOffline}
+              isMobileView
+              onFetchNavigationError={redirectToMainPage}
+              checkedLocation={checkedLocation}
+              appHeaderNavigationLinks={appHeaderNavigationLinks}
+            />
           </div>
           {/* <hr className="mobile-navigation-separator" />
           <div className="mobile-login-container">

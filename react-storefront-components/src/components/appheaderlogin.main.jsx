@@ -46,6 +46,7 @@ class AppHeaderLoginMain extends React.Component {
     onResetPassword: PropTypes.func,
     locationSearchData: PropTypes.string,
     appHeaderLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    appModalLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   static defaultProps = {
@@ -105,7 +106,7 @@ class AppHeaderLoginMain extends React.Component {
 
   render() {
     const {
-      isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks,
+      isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks,
     } = this.props;
     const {
       openModal, openCartModal,
@@ -225,7 +226,7 @@ class AppHeaderLoginMain extends React.Component {
               )}
           </button>
         )}
-        <AppModalLoginMain key="app-modal-login-main" handleModalClose={this.handleModalClose} openModal={openModal} onLogin={onLogin} onResetPassword={onResetPassword} locationSearchData={locationSearchData} />
+        <AppModalLoginMain key="app-modal-login-main" handleModalClose={this.handleModalClose} openModal={openModal} onLogin={onLogin} onResetPassword={onResetPassword} locationSearchData={locationSearchData} appModalLoginLinks={appModalLoginLinks} />
         <div data-region="authMainRegion" className="auth-nav-container" />
       </div>
     );

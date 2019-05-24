@@ -45,6 +45,7 @@ class AppModalLoginMain extends React.Component {
     onLogin: PropTypes.func,
     onResetPassword: PropTypes.func,
     locationSearchData: PropTypes.string,
+    appModalLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   static defaultProps = {
@@ -175,7 +176,7 @@ class AppModalLoginMain extends React.Component {
 
   render() {
     const { failedLogin, isLoading, showForgotPasswordLink } = this.state;
-    const { handleModalClose, openModal } = this.props;
+    const { handleModalClose, openModal, appModalLoginLinks } = this.props;
 
     return (
       <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'login-modal-content' }}>
@@ -217,7 +218,7 @@ class AppModalLoginMain extends React.Component {
                     <button className="ep-btn primary btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {intl.get('login')}
                     </button>
-                    <Link to="/registration">
+                    <Link to={appModalLoginLinks.registration}>
                       <button className="ep-btn btn-auth-register" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={this.registerNewUser}>
                         {intl.get('register')}
                       </button>
