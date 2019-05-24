@@ -43,13 +43,12 @@ const AddressContainer = (props) => {
           {address.locality}
           ,&nbsp;
         </span>
-        {(address.region)
-          ? (
-            <span className="address-region">
-              {address.region}
-              ,&nbsp;
-            </span>
-          ) : ('')}
+        <span className="address-region">
+          {(address.region)
+            ? (
+              `${address.region}, `
+            ) : ('')}
+        </span>
         <span className="address-country">
           {address['country-name']}
           &nbsp;

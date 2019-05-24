@@ -89,13 +89,13 @@ class ProfileAddressesMain extends React.Component {
                       <span className="address-city" data-el-value="address.city">
                         {`${address.locality}, `}
                       </span>
-                      {(address.region)
-                        ? (
-                          <span className="address-region" data-el-value="address.region">
-                            {`${address.region}, `}
-                          </span>
-                        ) : ('')
-                      }
+                      <span className="address-region" data-el-value="address.region">
+                        {(address.region)
+                          ? (
+                            `${address.region}, `
+                          ) : ('')
+                        }
+                      </span>
                       <span className="address-country" data-el-value="address.country">
                         {`${address['country-name']}, `}
                       </span>
