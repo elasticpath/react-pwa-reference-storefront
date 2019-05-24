@@ -90,6 +90,23 @@ function handleFbAsyncInit() {
 
 const locationData = window.location.search;
 const isInStandaloneMode = window.navigator.standalone;
+const appFooterLinks = {
+  aboutus: '/aboutus',
+  contactus: '/contactus',
+  shippingreturns: '/shippingreturns',
+  termsandconditions: '/termsandconditions',
+  shareFacebook: '/',
+  shareTwitter: '/',
+  shareInstagram: '/',
+};
+const appHeaderLinks = {
+  mainPage: '/',
+  myBag: '/mybag',
+};
+const appHeaderLoginLinks = {
+  profile: '/profile',
+  wishlists: '/wishlists',
+};
 
 const Root = () => [
   <FacebookChat key="FacebookChat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
@@ -105,13 +122,15 @@ const Root = () => [
     onGoBack={handleGoBack}
     locationSearchData={locationData}
     isInStandaloneMode={isInStandaloneMode}
+    appHeaderLinks={appHeaderLinks}
+    appHeaderLoginLinks={appHeaderLoginLinks}
   />,
   <div key="app-content" className="app-content">
     <Switch>
       {routeComponents}
     </Switch>
   </div>,
-  <AppFooterMain key="AppFooterMain" />,
+  <AppFooterMain key="AppFooterMain" appFooterLinks={appFooterLinks} />,
 ];
 
 const App = withRouter(withAnalytics(Root));

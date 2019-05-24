@@ -23,13 +23,12 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import {
-  OrderTableMain, PaymentMethodContainer, ShippingOptionContainer, CheckoutSummaryList,
+  OrderTableMain, PaymentMethodContainer, ShippingOptionContainer, CheckoutSummaryList, AddressContainer,
 } from '@elasticpath/react-storefront-components';
 import { login } from '../utils/AuthService';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddTransactionAnalytics, sendAnalytics,
 } from '../utils/Analytics';
-import AddressContainer from '../components/address.container';
 import { cortexFetch } from '../utils/Cortex';
 import './OrderReviewPage.less';
 

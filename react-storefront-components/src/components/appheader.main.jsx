@@ -55,7 +55,6 @@ class AppHeaderMain extends React.Component {
   static propTypes = {
     onSearchPage: PropTypes.func,
     redirectToMainPage: PropTypes.func,
-    handlePathName: PropTypes.func,
     handleResetPassword: PropTypes.func,
     onCurrencyChange: PropTypes.func,
     onLocaleChange: PropTypes.func,
@@ -64,6 +63,8 @@ class AppHeaderMain extends React.Component {
     checkedLocation: PropTypes.bool,
     isInStandaloneMode: PropTypes.bool,
     locationSearchData: PropTypes.string,
+    appHeaderLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    appHeaderLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   static defaultProps = {
@@ -72,7 +73,6 @@ class AppHeaderMain extends React.Component {
     locationSearchData: undefined,
     onSearchPage: () => {},
     redirectToMainPage: () => {},
-    handlePathName: () => {},
     handleResetPassword: () => {},
     onLocaleChange: () => {},
     onCurrencyChange: () => {},
@@ -94,8 +94,6 @@ class AppHeaderMain extends React.Component {
     };
 
     this.handleBulkModalClose = this.handleBulkModalClose.bind(this);
-    this.handleSearchPage = this.handleSearchPage.bind(this);
-    this.handleMainPage = this.handleMainPage.bind(this);
   }
 
   componentDidMount() {
@@ -155,27 +153,22 @@ class AppHeaderMain extends React.Component {
     });
   }
 
-  handleSearchPage(keywords) {
-    const { onSearchPage } = this.props;
-    onSearchPage(keywords);
-  }
-
-  handleMainPage(keywords) {
-    const { redirectToMainPage } = this.props;
-    redirectToMainPage(keywords);
-  }
-
-  handlePathName() {
-    const { handlePathName } = this.props;
-    handlePathName();
-  }
-
   render() {
     const {
       isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened,
     } = this.state;
     const {
-      checkedLocation, handleResetPassword, onCurrencyChange, onLocaleChange, onContinueCart, locationSearchData, isInStandaloneMode,
+      checkedLocation,
+      handleResetPassword,
+      onCurrencyChange,
+      onLocaleChange,
+      onContinueCart,
+      locationSearchData,
+      isInStandaloneMode,
+      onSearchPage,
+      redirectToMainPage,
+      appHeaderLinks,
+      appHeaderLoginLinks,
     } = this.props;
     const availability = Boolean(cartData);
     return [
@@ -185,7 +178,7 @@ class AppHeaderMain extends React.Component {
         <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
 
           <div className="logo-container">
-            <Link to="/" className="logo">
+            <Link to={appHeaderLinks.mainPage} className="logo">
               <img
                 className="logo-image"
                 alt="Header logo"
@@ -197,13 +190,13 @@ class AppHeaderMain extends React.Component {
 
           <div className="central-container">
             <div className="horizontal-menu">
-              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} onFetchNavigationError={this.handleMainPage} checkedLocation={checkedLocation} />
+              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} onFetchNavigationError={redirectToMainPage} checkedLocation={checkedLocation} />
             </div>
           </div>
 
           <div className="icons-header-container">
             <div className="search-container">
-              <AppHeaderSearchMain isMobileView={false} onSearchPage={keywords => this.handleSearchPage(keywords)} />
+              <AppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
             </div>
             <div className="search-toggle-btn-container">
               <button
@@ -221,7 +214,7 @@ class AppHeaderMain extends React.Component {
 
             {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
               <div className="cart-link-container">
-                <Link className="cart-link" to="/mybag">
+                <Link className="cart-link" to={appHeaderLinks.myBag}>
                   {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
                     <span className="cart-link-counter">
                       {cartData['total-quantity']}
@@ -239,7 +232,16 @@ class AppHeaderMain extends React.Component {
           </div>
 
           <div className="login-container">
-            <AppHeaderLoginMain isMobileView={false} permission={availability} onLogout={this.handleMainPage} onLogin={this.handleMainPage} onResetPassword={handleResetPassword} onContinueCart={onContinueCart} locationSearchData={locationSearchData} />
+            <AppHeaderLoginMain
+              isMobileView={false}
+              permission={availability}
+              onLogout={redirectToMainPage}
+              onLogin={redirectToMainPage}
+              onResetPassword={handleResetPassword}
+              onContinueCart={onContinueCart}
+              locationSearchData={locationSearchData}
+              appHeaderLoginLinks={appHeaderLoginLinks}
+            />
           </div>
 
           <div className="toggle-btn-container">
@@ -265,7 +267,7 @@ class AppHeaderMain extends React.Component {
 
         <div className="collapsable-container collapse collapsed">
           <div className="search-container">
-            <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={keywords => this.handleSearchPage(keywords)} />
+            <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
           </div>
           <div className="mobile-locale-container">
             <AppHeaderLocaleMain isMobileView onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
@@ -275,7 +277,7 @@ class AppHeaderMain extends React.Component {
             <div className="mobile-cart-link-container">
               <Link
                 className="cart-link"
-                to="/mybag"
+                to={appHeaderLinks.myBag}
               >
                 <div data-toggle="collapse" data-target=".collapsable-container">
                   {intl.get('shopping-bag-nav')}
@@ -294,7 +296,7 @@ class AppHeaderMain extends React.Component {
           <hr className="mobile-navigation-separator" />
 
           <div className="mobile-navigation-container">
-            <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView onFetchNavigationError={this.handleMainPage} checkedLocation={checkedLocation} />
+            <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView onFetchNavigationError={redirectToMainPage} checkedLocation={checkedLocation} />
           </div>
           {/* <hr className="mobile-navigation-separator" />
           <div className="mobile-login-container">

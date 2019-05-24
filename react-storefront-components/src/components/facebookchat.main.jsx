@@ -59,16 +59,6 @@ class FacebookChat extends React.Component {
   setFbAsync() {
     const { handleFbAsyncInit } = this.props;
     handleFbAsyncInit();
-    // eslint-disable-next-line
-    // window.fbAsyncInit = function () {
-    //   // eslint-disable-next-line
-    //   FB.init({
-    //     appId: config.applicationId,
-    //     status: true,
-    //     xfbml: true,
-    //     version: 'v2.10',
-    //   });
-    // };
   }
 
   render() {

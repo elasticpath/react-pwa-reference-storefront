@@ -22,10 +22,9 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import { GiftcertificateFormMain } from '@elasticpath/react-storefront-components';
+import { GiftcertificateFormMain, AddressContainer } from '@elasticpath/react-storefront-components';
 import { login } from '../utils/AuthService';
 import CheckoutSummaryList from '../components/checkout.summarylist';
-import AddressContainer from '../components/address.container';
 import ShippingOptionContainer from '../components/shippingoption.container';
 import PaymentMethodContainer from '../components/paymentmethod.container';
 import { cortexFetch } from '../utils/Cortex';

@@ -38,10 +38,13 @@ function ProductDetailPage(props) {
     history.push('/wishlists');
   }
 
+  const handleProductLink = window.location.href;
+  const isInStandaloneMode = window.navigator.standalone;
+
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} />
+      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} />
     </div>
   );
 }

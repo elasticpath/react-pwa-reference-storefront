@@ -22,9 +22,8 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import { CartMain, CheckoutSummaryList } from '@elasticpath/react-storefront-components';
+import { CartMain, CheckoutSummaryList, AddPromotionContainer } from '@elasticpath/react-storefront-components';
 import { login } from '../utils/AuthService';
-import AddPromotionContainer from '../components/add.promotion.container';
 import { cortexFetch } from '../utils/Cortex';
 import './CartPage.less';
 

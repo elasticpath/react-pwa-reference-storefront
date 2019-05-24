@@ -45,6 +45,7 @@ class AppHeaderLoginMain extends React.Component {
     onContinueCart: PropTypes.func,
     onResetPassword: PropTypes.func,
     locationSearchData: PropTypes.string,
+    appHeaderLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   static defaultProps = {
@@ -104,7 +105,7 @@ class AppHeaderLoginMain extends React.Component {
 
   render() {
     const {
-      isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData,
+      isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks,
     } = this.props;
     const {
       openModal, openCartModal,
@@ -137,7 +138,7 @@ class AppHeaderLoginMain extends React.Component {
                   </li>
                 ) : ('')}
                 <li className="dropdown-item">
-                  <Link to="/profile" className="profile-link">
+                  <Link to={appHeaderLoginLinks.profile} className="profile-link">
                     <div>
                       <span id="header_navbar_login_menu_profile_link">
                         {intl.get('my-profile')}
@@ -147,7 +148,7 @@ class AppHeaderLoginMain extends React.Component {
                 </li>
                 {permission && (
                   <li className="dropdown-item">
-                    <Link to="/wishlists" className="wishlist-link">
+                    <Link to={appHeaderLoginLinks.wishlists} className="wishlist-link">
                       <div>
                         <span id="header_navbar_login_menu_wishlist_link">
                           {intl.get('wishlists')}

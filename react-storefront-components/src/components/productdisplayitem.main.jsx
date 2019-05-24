@@ -107,6 +107,8 @@ class ProductDisplayItemMain extends React.Component {
     customClass: PropTypes.string,
     onAddToCart: PropTypes.func,
     onAddToWishList: PropTypes.func,
+    productLink: PropTypes.string,
+    isInStandaloneMode: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -115,6 +117,8 @@ class ProductDisplayItemMain extends React.Component {
     customClass: '',
     onAddToCart: () => {},
     onAddToWishList: () => {},
+    productLink: '',
+    isInStandaloneMode: false,
   }
 
   constructor(props) {
@@ -477,9 +481,8 @@ class ProductDisplayItemMain extends React.Component {
 
   renderProductImage() {
     const { productData, arFileExists } = this.state;
-    const { imageUrl } = this.props;
+    const { imageUrl, isInStandaloneMode } = this.props;
     const arBrowserSupported = document.createElement('a');
-    const isInStandaloneMode = window.navigator.standalone;
     const settings = {
       dots: false,
       infinite: true,
@@ -515,7 +518,7 @@ class ProductDisplayItemMain extends React.Component {
     const {
       productData, addToCartFailedMessage, isLoading, itemQuantity,
     } = this.state;
-    const { customClass } = this.props;
+    const { customClass, productLink } = this.props;
     if (productData) {
       let listPrice = 'n/a';
       if (productData._price) {
@@ -527,7 +530,6 @@ class ProductDisplayItemMain extends React.Component {
       }
       let availability = (productData._addtocartform[0].links.length > 0);
       let availabilityString = '';
-      const productLink = window.location.href;
       if (productData._availability.length >= 0) {
         if (productData._availability[0].state === 'AVAILABLE') {
           availabilityString = intl.get('in-stock');
