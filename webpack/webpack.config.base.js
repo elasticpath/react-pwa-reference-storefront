@@ -31,7 +31,6 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const AppCachePlugin = require('appcache-webpack-plugin');
 const epConfig = require('../src/ep.config.json');
 
 module.exports = {
@@ -39,8 +38,8 @@ module.exports = {
     app: './src/index.js',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'), // directory for output files
-    filename: '[name].js', // using [name] will create a bundle with same file name as source
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
     publicPath: '/',
   },
   module: {
@@ -70,7 +69,7 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.(png|jp(e*)g|svg|gif|jp2)$/,
+        test: /\.(png|jp(e*)g|svg|gif|jp2|ico)$/,
         use: [{
           loader: 'url-loader',
           options: {
@@ -102,15 +101,18 @@ module.exports = {
   plugins: [
     HtmlWebpackPluginConfig,
     new WorkboxPlugin.GenerateSW({
-      exclude: [
-        /app\.js$/,
-        /runtime\.js$/,
-        /vendors~app\.js$/,
-      ],
       runtimeCaching: [
         {
-          urlPattern: /\.(?:js|css|html)$/,
-          handler: 'networkFirst',
+          urlPattern: /\.(?:woff|woff2|jpg|png|json|ico|jpeg)$/,
+          handler: 'CacheFirst',
+        },
+        {
+          urlPattern: new RegExp('^https://fonts.(?:googleapis|gstatic).com/(.*)'),
+          handler: 'CacheFirst',
+        },
+        {
+          urlPattern: /.*/,
+          handler: 'NetworkFirst',
         },
       ],
     }),
@@ -129,13 +131,6 @@ module.exports = {
           destination: path.join('assets', 'icons'),
         },
       ],
-    }),
-    new AppCachePlugin({
-      cache: ['*'],
-      network: ['*'],
-      settings: ['prefer-online'],
-      fallback: [],
-      output: 'manifest.appcache',
     }),
   ],
   externals: {
