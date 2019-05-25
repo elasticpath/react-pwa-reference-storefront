@@ -24,8 +24,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './src/index.html',
-  filename: 'index.html',
+  template: path.resolve(__dirname, '../src', 'index.html'),
+  filename: './index.html',
   inject: 'body',
 });
 
@@ -39,7 +39,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
+    filename: process.env.production ? '[name].[contenthash].js' : '[name]-[hash].js',
     publicPath: '/',
   },
   module: {

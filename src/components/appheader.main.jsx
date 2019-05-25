@@ -53,7 +53,7 @@ class AppHeaderMain extends React.Component {
     super(props);
     this.state = {
       cartData: undefined,
-      isLoading: false,
+      isLoading: true,
       isOffline: false,
       isSearchFocused: false,
       isBulkModalOpened: false,
@@ -87,7 +87,9 @@ class AppHeaderMain extends React.Component {
   }
 
   updatePredicate() {
-    this.setState({ isDesktop: window.innerWidth > 1092 });
+    this.setState({
+      isDesktop: window.innerWidth > 1092,
+    });
   }
 
   fetchCartData() {
@@ -103,6 +105,10 @@ class AppHeaderMain extends React.Component {
           if (res && res._defaultcart) {
             this.setState({
               cartData: res._defaultcart[0],
+              isLoading: false,
+            });
+          } else {
+            this.setState({
               isLoading: false,
             });
           }
@@ -152,7 +158,7 @@ class AppHeaderMain extends React.Component {
 
           <div className="central-container">
             <div className="horizontal-menu">
-              {isDesktop && (!isOffline && cartData !== undefined) ? (
+              {isDesktop && (!isOffline && !isLoading) ? (
                 <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} />
               ) : ('')}
             </div>
@@ -251,7 +257,7 @@ class AppHeaderMain extends React.Component {
           <hr className="mobile-navigation-separator" />
 
           <div className="mobile-navigation-container">
-            {!isDesktop && (!isOffline && cartData !== undefined) ? (
+            {!isDesktop && (!isOffline && !isLoading) ? (
               <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
             ) : ('')}
           </div>
