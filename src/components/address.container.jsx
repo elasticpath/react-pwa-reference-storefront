@@ -44,8 +44,10 @@ const AddressContainer = (props) => {
           ,&nbsp;
         </span>
         <span className="address-region">
-          {address.region}
-          ,&nbsp;
+          {(address.region)
+            ? (
+              `${address.region}, `
+            ) : ('')}
         </span>
         <span className="address-country">
           {address['country-name']}
