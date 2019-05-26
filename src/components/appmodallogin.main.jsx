@@ -26,17 +26,10 @@ import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
-import { login, loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
+import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
 import './appmodallogin.main.less';
-import { cortexFetch } from '../utils/Cortex';
 
 const Config = require('Config');
-
-// Array of zoom parameters to pass to Cortex
-
-const zoomArray = [
-  'passwordresetform',
-];
 
 class AppModalLoginMain extends React.Component {
   static propTypes = {
@@ -44,6 +37,7 @@ class AppModalLoginMain extends React.Component {
     location: ReactRouterPropTypes.location.isRequired,
     handleModalClose: PropTypes.func.isRequired,
     openModal: PropTypes.bool.isRequired,
+    showForgotPasswordLink: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -53,7 +47,6 @@ class AppModalLoginMain extends React.Component {
       password: '',
       failedLogin: false,
       isLoading: false,
-      showForgotPasswordLink: false,
     };
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
@@ -92,10 +85,6 @@ class AppModalLoginMain extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.fetchPasswordResetData();
-  }
-
   setUsername(event) {
     this.setState({ username: event.target.value });
   }
@@ -107,28 +96,6 @@ class AppModalLoginMain extends React.Component {
   registerNewUser() {
     const { handleModalClose } = this.props;
     handleModalClose();
-  }
-
-  fetchPasswordResetData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          if (res && res._passwordresetform) {
-            this.setState({ showForgotPasswordLink: true });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
   }
 
   loginRegisteredUser(event) {
@@ -165,8 +132,8 @@ class AppModalLoginMain extends React.Component {
   }
 
   render() {
-    const { failedLogin, isLoading, showForgotPasswordLink } = this.state;
-    const { handleModalClose, openModal } = this.props;
+    const { failedLogin, isLoading } = this.state;
+    const { handleModalClose, openModal, showForgotPasswordLink } = this.props;
 
     return (
       <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'login-modal-content' }}>

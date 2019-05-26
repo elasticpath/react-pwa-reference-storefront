@@ -26,11 +26,18 @@ import intl from 'react-intl-universal';
 import { Link, withRouter } from 'react-router-dom';
 import AppModalLoginMain from './appmodallogin.main';
 import AppModalCartSelectMain from './appmodalcartselect.main';
-import { login, logout } from '../utils/AuthService';
+import { logout } from '../utils/AuthService';
+import { cortexFetch } from '../utils/Cortex';
 
 import './appheaderlogin.main.less';
 
 const Config = require('Config');
+
+// Array of zoom parameters to pass to Cortex
+
+const zoomArray = [
+  'passwordresetform',
+];
 
 class AppHeaderLoginMain extends React.Component {
   static isLoggedIn() {
@@ -52,6 +59,7 @@ class AppHeaderLoginMain extends React.Component {
     this.state = {
       openModal: false,
       openCartModal: false,
+      showForgotPasswordLink: false,
     };
     this.handleModalClose = this.handleModalClose.bind(this);
   }
@@ -64,15 +72,14 @@ class AppHeaderLoginMain extends React.Component {
 
   logoutRegisteredUser() {
     logout().then(() => {
-      login().then(() => {
-        const { history } = this.props;
-        history.push('/');
-        window.location.reload();
-      });
+      const { history } = this.props;
+      history.push('/');
+      window.location.reload();
     });
   }
 
   handleModalOpen() {
+    this.fetchPasswordResetData();
     this.setState({
       openModal: true,
     });
@@ -91,12 +98,32 @@ class AppHeaderLoginMain extends React.Component {
     });
   }
 
+  fetchPasswordResetData() {
+    cortexFetch(`/?zoom=${zoomArray.join()}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+      .then(res => res.json())
+      .then((res) => {
+        if (res && res._passwordresetform) {
+          this.setState({ showForgotPasswordLink: true });
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+  }
+
   render() {
     const {
       isMobileView, permission,
     } = this.props;
     const {
-      openModal, openCartModal,
+      openModal, openCartModal, showForgotPasswordLink,
     } = this.state;
     let keycloakLoginRedirectUrl = '';
     let keycloakLogoutRedirectUrl = '';
@@ -120,7 +147,7 @@ class AppHeaderLoginMain extends React.Component {
             </button>
             <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
               <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
-                { userName !== 'undefined' ? (
+                {userName !== 'undefined' ? (
                   <li className="dropdown-header">
                     {userName}
                   </li>
@@ -213,7 +240,7 @@ class AppHeaderLoginMain extends React.Component {
               )}
           </button>
         )}
-        <AppModalLoginMain key="app-modal-login-main" handleModalClose={this.handleModalClose} openModal={openModal} />
+        <AppModalLoginMain key="app-modal-login-main" handleModalClose={this.handleModalClose} openModal={openModal} showForgotPasswordLink={showForgotPasswordLink} />
         <div data-region="authMainRegion" className="auth-nav-container" />
       </div>
     );

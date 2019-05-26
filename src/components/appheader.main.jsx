@@ -53,21 +53,25 @@ class AppHeaderMain extends React.Component {
     super(props);
     this.state = {
       cartData: undefined,
-      isLoading: false,
+      isLoading: true,
       isOffline: false,
       isSearchFocused: false,
       isBulkModalOpened: false,
+      isDesktop: false,
     };
 
     this.handleBulkModalClose = this.handleBulkModalClose.bind(this);
+    this.updatePredicate = this.updatePredicate.bind(this);
   }
 
   componentDidMount() {
+    this.updatePredicate();
+    window.addEventListener('resize', this.updatePredicate);
     this.fetchCartData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchCartData();
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updatePredicate);
   }
 
   handleIsOffline = (isOfflineValue) => {
@@ -79,6 +83,12 @@ class AppHeaderMain extends React.Component {
   handleInputFocus = () => {
     this.setState({
       isSearchFocused: true,
+    });
+  }
+
+  updatePredicate() {
+    this.setState({
+      isDesktop: window.innerWidth > 1092,
     });
   }
 
@@ -95,6 +105,10 @@ class AppHeaderMain extends React.Component {
           if (res && res._defaultcart) {
             this.setState({
               cartData: res._defaultcart[0],
+              isLoading: false,
+            });
+          } else {
+            this.setState({
               isLoading: false,
             });
           }
@@ -121,7 +135,7 @@ class AppHeaderMain extends React.Component {
 
   render() {
     const {
-      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened,
+      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop,
     } = this.state;
     const availability = Boolean(cartData);
     const isInStandaloneMode = window.navigator.standalone;
@@ -144,7 +158,9 @@ class AppHeaderMain extends React.Component {
 
           <div className="central-container">
             <div className="horizontal-menu">
-              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} />
+              {isDesktop && (!isOffline && !isLoading) ? (
+                <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isOffline={isOffline} isMobileView={false} />
+              ) : ('')}
             </div>
           </div>
 
@@ -241,7 +257,9 @@ class AppHeaderMain extends React.Component {
           <hr className="mobile-navigation-separator" />
 
           <div className="mobile-navigation-container">
-            <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
+            {!isDesktop && (!isOffline && !isLoading) ? (
+              <AppHeaderNavigationMain isOfflineCheck={this.handleIsOffline} isMobileView />
+            ) : ('')}
           </div>
           {/* <hr className="mobile-navigation-separator" />
           <div className="mobile-login-container">
