@@ -32,6 +32,11 @@ let intl = { get: str => str };
 class FeaturedProducts extends React.Component {
   static propTypes = {
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
+    itemDetailLink: PropTypes.string,
+  }
+
+  static defaultProps = {
+    itemDetailLink: '',
   }
 
   constructor(props) {
@@ -50,18 +55,19 @@ class FeaturedProducts extends React.Component {
 
   renderFeaturedProducts() {
     const { categoryModel } = this.state;
+    const { itemDetailLink } = this.props;
     return categoryModel._element.map((product) => {
       if (product.self.type === 'offers.offer') {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain offerData={product} featuredProductAttribute />
+            <ProductListItemMain offerData={product} featuredProductAttribute itemDetailLink={itemDetailLink} />
           </li>
         );
       }
       if (product._code) {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain productElement={product} featuredProductAttribute />
+            <ProductListItemMain productElement={product} featuredProductAttribute itemDetailLink={itemDetailLink} />
           </li>
         );
       }

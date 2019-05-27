@@ -27,17 +27,7 @@ import './wishlist.main.less';
 
 
 const WishListMain = (props) => {
-  WishListMain.propTypes = {
-    onItemConfiguratorAddToCart: PropTypes.func,
-    onItemMoveToCart: PropTypes.func,
-    onItemRemove: PropTypes.func,
-  };
-
-  WishListMain.defaultProps = {
-    onItemConfiguratorAddToCart: () => {},
-    onItemMoveToCart: () => {},
-    onItemRemove: () => {},
-  };
+  const { itemDetailLink } = props;
 
   function handleConfiguratorAddToCart() {
     const { onItemConfiguratorAddToCart } = props;
@@ -79,6 +69,7 @@ const WishListMain = (props) => {
           onRemove={handleRemove}
           onConfiguratorAddToCart={handleConfiguratorAddToCart}
           onMoveToCart={handleMoveToCart}
+          itemDetailLink={itemDetailLink}
         />
       ))}
     </div>
@@ -89,6 +80,17 @@ WishListMain.propTypes = {
   empty: PropTypes.bool.isRequired,
   wishListData: PropTypes.objectOf(PropTypes.any).isRequired,
   handleQuantityChange: PropTypes.func.isRequired,
+  onItemConfiguratorAddToCart: PropTypes.func,
+  onItemMoveToCart: PropTypes.func,
+  onItemRemove: PropTypes.func,
+  itemDetailLink: PropTypes.string,
+};
+
+WishListMain.defaultProps = {
+  onItemConfiguratorAddToCart: () => {},
+  onItemMoveToCart: () => {},
+  onItemRemove: () => {},
+  itemDetailLink: '',
 };
 
 export default WishListMain;

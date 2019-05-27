@@ -65,12 +65,14 @@ class AppModalBundleConfigurationMain extends React.Component {
     onItemConfiguratorAddToCart: PropTypes.func,
     onItemMoveToCart: PropTypes.func,
     onItemRemove: PropTypes.func,
+    itemDetailLink: PropTypes.string,
   }
 
   static defaultProps = {
     onItemConfiguratorAddToCart: () => {},
     onItemMoveToCart: () => {},
     onItemRemove: () => {},
+    itemDetailLink: '',
   }
 
   constructor(props) {
@@ -152,7 +154,9 @@ class AppModalBundleConfigurationMain extends React.Component {
 
   render() {
     const { isLoading, registrationErrors, dependantItemData } = this.state;
-    const { bundleConfigurationItems, handleModalClose, openModal } = this.props;
+    const {
+      bundleConfigurationItems, handleModalClose, openModal, itemDetailLink,
+    } = this.props;
     let itemCodeString = '';
     if (dependantItemData && dependantItemData._dependentoptions && dependantItemData._dependentlineitems && (dependantItemData._dependentoptions[0]._element || dependantItemData._dependentlineitems[0]._element)) {
       if (bundleConfigurationItems._item && bundleConfigurationItems._item[0]._code[0]) {
@@ -184,6 +188,7 @@ class AppModalBundleConfigurationMain extends React.Component {
                         onRemove={this.handleRemove}
                         onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
                         onMoveToCart={this.handleMoveToCart}
+                        itemDetailLink={itemDetailLink}
                       />
                     ))}
                   </div>

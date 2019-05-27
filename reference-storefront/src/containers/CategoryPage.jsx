@@ -37,10 +37,17 @@ function CategoryPage(props) {
     }
   }
 
+  const productLinks = {
+    itemDetail: '/itemdetail',
+    productsCompare: '/productscompare',
+    productSearch: '/search',
+    productCategory: '/category',
+  };
+
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <CategoryItemsMain categoryProps={props} onProductFacetSelection={handleProductFacetSelection} />
+      <CategoryItemsMain categoryProps={props} onProductFacetSelection={handleProductFacetSelection} productLinks={productLinks} />
     </div>
   );
 }

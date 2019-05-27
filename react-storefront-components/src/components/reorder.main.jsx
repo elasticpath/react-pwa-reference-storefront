@@ -36,11 +36,13 @@ class ReorderMain extends React.Component {
   static propTypes = {
     productsData: PropTypes.objectOf(PropTypes.any),
     onReorderAll: PropTypes.func,
+    itemDetailLink: PropTypes.string,
   };
 
   static defaultProps = {
     productsData: {},
     onReorderAll: () => {},
+    itemDetailLink: '',
   };
 
   constructor(props) {
@@ -131,7 +133,7 @@ class ReorderMain extends React.Component {
 
   render() {
     const { openModal, errorMessages, isLoading } = this.state;
-    const { productsData } = this.props;
+    const { productsData, itemDetailLink } = this.props;
 
     return (
       <div>
@@ -158,6 +160,7 @@ class ReorderMain extends React.Component {
                       handleQuantityChange={() => { }}
                       hideRemoveButton
                       handleErrorMessage={(error) => { this.handleError(_code[0].code, error.message); }}
+                      itemDetailLink={itemDetailLink}
                     />
                     { errorMessages[_code[0].code]
                       ? <div className="feedback-label">{ errorMessages[_code[0].code] }</div>

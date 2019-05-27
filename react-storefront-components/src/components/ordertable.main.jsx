@@ -25,13 +25,13 @@ import OrderTableLineItem from './ordertable.lineitem';
 import './ordertable.main.less';
 
 const OrderTableMain = (props) => {
-  const { data } = props;
+  const { data, itemDetailLink } = props;
   return (
     <div className="order-main-inner table-responsive">
       <table className="table table-borderless order-table">
         <tbody>
           {data._lineitems[0]._element.map(product => (
-            <OrderTableLineItem key={product._item[0]._code[0].code} item={product} />
+            <OrderTableLineItem key={product._item[0]._code[0].code} item={product} itemDetailLink={itemDetailLink} />
           ))}
         </tbody>
       </table>
@@ -41,6 +41,11 @@ const OrderTableMain = (props) => {
 
 OrderTableMain.propTypes = {
   data: PropTypes.objectOf(PropTypes.any).isRequired,
+  itemDetailLink: PropTypes.string,
+};
+
+OrderTableMain.defaultProps = {
+  itemDetailLink: '',
 };
 
 export default OrderTableMain;

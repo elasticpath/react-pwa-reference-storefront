@@ -36,11 +36,13 @@ class QuickOrderMain extends React.Component {
   static propTypes = {
     isBuyItAgain: PropTypes.bool,
     productData: PropTypes.objectOf(PropTypes.any),
+    itemDetailLink: PropTypes.string,
   }
 
   static defaultProps = {
     isBuyItAgain: false,
     productData: {},
+    itemDetailLink: '',
   }
 
   constructor(props) {
@@ -130,7 +132,7 @@ class QuickOrderMain extends React.Component {
     const {
       failedSubmit, isLoading, addToCartFailedMessage, productId, itemQuantity, openModal, productDataInfo, productItemInfo, showFailedMessage,
     } = this.state;
-    const { isBuyItAgain } = this.props;
+    const { isBuyItAgain, itemDetailLink } = this.props;
     const orderModal = data => (
       <Modal open={openModal || false} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
         <div id="buy-it-again-modal">
@@ -140,7 +142,7 @@ class QuickOrderMain extends React.Component {
                 {intl.get('buy-it-again')}
               </h2>
             </div>
-            <CartLineItem key={productId} item={data} itemQuantity={itemQuantity} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton handleErrorMessage={this.handleErrorMessage} />
+            <CartLineItem key={productId} item={data} itemQuantity={itemQuantity} handleQuantityChange={() => { this.handleQuantityChange(); }} hideRemoveButton handleErrorMessage={this.handleErrorMessage} itemDetailLink={itemDetailLink} />
           </div>
         </div>
       </Modal>

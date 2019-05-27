@@ -179,6 +179,7 @@ class CartPage extends React.Component {
 
   render() {
     const { cartData, isLoading } = this.state;
+    const itemDetailLink = '/itemdetail';
     return (
       <div className="cart-container container">
         <div className="cart-container-inner">
@@ -210,6 +211,7 @@ class CartPage extends React.Component {
                 onItemConfiguratorAddToCart={this.handleItemConfiguratorAddToCart}
                 onItemMoveToCart={this.handleItemMoveToCart}
                 onItemRemove={this.handleItemRemove}
+                itemDetailLink={itemDetailLink}
               />
             </div>
           )}

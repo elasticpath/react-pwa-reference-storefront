@@ -33,6 +33,8 @@ const PurchaseReceiptPage = (props) => {
     history.push('/mybag');
   };
 
+  const itemDetailLink = '/itemdetail';
+
   return (
     <div>
       <div className="app-main" style={{ display: 'block' }}>
@@ -40,7 +42,7 @@ const PurchaseReceiptPage = (props) => {
           <h2>
             {intl.get('order-processed-message')}
           </h2>
-          <PurchaseDetailsMain data={location.state.data} onReorderAllProducts={handleReorderAllProducts} />
+          <PurchaseDetailsMain data={location.state.data} onReorderAllProducts={handleReorderAllProducts} itemDetailLink={itemDetailLink} />
         </div>
       </div>
     </div>

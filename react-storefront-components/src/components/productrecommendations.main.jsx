@@ -32,6 +32,11 @@ let intl = { get: str => str };
 class ProductRecommendationsDisplayMain extends React.Component {
   static propTypes = {
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
+    itemDetailLink: PropTypes.string,
+  }
+
+  static defaultProps = {
+    itemDetailLink: '',
   }
 
   constructor(props) {
@@ -40,15 +45,17 @@ class ProductRecommendationsDisplayMain extends React.Component {
     this.state = {
       maxItemsInView: 4,
     };
+    this.renderProductAssocitationView = this.renderProductAssocitationView.bind(this);
   }
 
-  static renderProductAssocitationView(product, maxItemsInView) {
+  renderProductAssocitationView(product, maxItemsInView) {
     const data = [];
+    const { itemDetailLink } = this.props;
     product.forEach((element, index) => {
       if (index < maxItemsInView && element._code) {
         data.push(
           <div className="category-item-container card" key={`_${Math.random().toString(36).substr(2, 9)}`}>
-            <ProductListItemMain productElement={element} />
+            <ProductListItemMain productElement={element} itemDetailLink={itemDetailLink} />
           </div>,
         );
       }
@@ -69,7 +76,7 @@ class ProductRecommendationsDisplayMain extends React.Component {
             {intl.get('product-recommendations')}
           </label>
           <div className="card-deck">
-            {ProductRecommendationsDisplayMain.renderProductAssocitationView(product, maxItemsInView)}
+            {this.renderProductAssocitationView(product, maxItemsInView)}
           </div>
         </div>,
       );

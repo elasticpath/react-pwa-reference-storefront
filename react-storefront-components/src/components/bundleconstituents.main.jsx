@@ -32,19 +32,26 @@ let intl = { get: str => str };
 class BundleConstituentsDisplayMain extends React.Component {
   static propTypes = {
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
+    itemDetailLink: PropTypes.string,
+  }
+
+  static defaultProps = {
+    itemDetailLink: '',
   }
 
   constructor(props) {
     super(props);
     ({ intl } = getConfig());
+    this.renderProductAssocitationView = this.renderProductAssocitationView.bind(this);
   }
 
-  static renderProductAssocitationView(product) {
+  renderProductAssocitationView(product) {
     const data = [];
+    const { itemDetailLink } = this.props;
     product.forEach((element) => {
       data.push(
         <div className="category-item-container card" key={`_${Math.random().toString(36).substr(2, 9)}`}>
-          <ProductListItemMain productElement={element._standaloneitem[0]} />
+          <ProductListItemMain productElement={element._standaloneitem[0]} itemDetailLink={itemDetailLink} />
         </div>,
       );
     });
@@ -64,7 +71,7 @@ class BundleConstituentsDisplayMain extends React.Component {
               {intl.get('product-bundle-constituents')}
             </label>
             <div className="card-deck">
-              {BundleConstituentsDisplayMain.renderProductAssocitationView(product)}
+              {this.renderProductAssocitationView(product)}
             </div>
           </div>,
         );

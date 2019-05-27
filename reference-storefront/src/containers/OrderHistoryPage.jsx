@@ -73,6 +73,7 @@ class OrderHistoryPage extends React.Component {
 
   render() {
     const { purchaseData } = this.state;
+    const itemDetailLink = '/itemdetail';
     if (purchaseData) {
       return (
         <div>
@@ -81,7 +82,7 @@ class OrderHistoryPage extends React.Component {
               <h2 className="view-title">
                 {intl.get('purchase-details')}
               </h2>
-              <PurchaseDetailsMain data={purchaseData} />
+              <PurchaseDetailsMain data={purchaseData} itemDetailLink={itemDetailLink} />
             </div>
           </div>
         </div>

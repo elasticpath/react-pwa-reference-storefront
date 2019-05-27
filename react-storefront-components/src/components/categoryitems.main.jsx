@@ -77,10 +77,17 @@ class CategoryItemsMain extends React.Component {
   static propTypes = {
     categoryProps: PropTypes.objectOf(PropTypes.any).isRequired,
     onProductFacetSelection: PropTypes.func,
+    productLinks: PropTypes.objectOf(PropTypes.string),
   }
 
   static defaultProps = {
     onProductFacetSelection: () => {},
+    productLinks: {
+      itemDetail: '',
+      productsCompare: '',
+      productSearch: '',
+      productCategory: '',
+    },
   }
 
   constructor(props) {
@@ -213,6 +220,7 @@ class CategoryItemsMain extends React.Component {
     const {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName, loadSortedProduct,
     } = this.state;
+    const { productLinks } = this.props;
     let products = '';
     let productList = '';
     let noProducts = true;
@@ -263,12 +271,12 @@ class CategoryItemsMain extends React.Component {
                 </div>
                 <SearchFacetNavigationMain productData={products} onFacetSelection={this.handleFacetSelection} />
                 <div className="products-container">
-                  <FeaturedProducts productData={featuredOffers} />
+                  <FeaturedProducts productData={featuredOffers} itemDetailLink={productLinks.itemDetail} />
                   <SortProductMenu handleSortSelection={this.handleSortSelection} categoryModel={categoryModel} />
-                  <ProductListPagination paginationDataProps={products} isProductoading={loadSortedProduct} titleString={categoryModelIdString} isTop />
+                  <ProductListPagination paginationDataProps={products} isProductoading={loadSortedProduct} titleString={categoryModelIdString} isTop productListPaginationLinks={productLinks} />
                   <div className={`${loadSortedProduct ? 'loading-product' : ''}`}>
                     <div className={`${loadSortedProduct ? 'sort-product-loader' : ''}`} />
-                    <ProductListMain productData={productList} />
+                    <ProductListMain productData={productList} productListLinks={productLinks} />
                   </div>
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />
                 </div>
