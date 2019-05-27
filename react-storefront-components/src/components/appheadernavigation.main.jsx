@@ -25,9 +25,6 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { login, logout } from '../utils/AuthService';
-import {
-  cortexFetchNavigationLookupForm, cortexFetchItemLookupForm, cortexFetchPurchaseLookupForm,
-} from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig } from '../utils/ConfigProvider';
 
@@ -153,12 +150,6 @@ class AppHeaderNavigationMain extends React.Component {
             });
           });
         }
-        return res;
-      })
-      .then((res) => {
-        cortexFetchNavigationLookupForm()
-          .then(() => cortexFetchItemLookupForm())
-          .then(() => cortexFetchPurchaseLookupForm());
         return res;
       })
       .then(res => res.json())

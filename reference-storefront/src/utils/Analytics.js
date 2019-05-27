@@ -25,7 +25,8 @@ import ga from 'react-ga';
 
 const Config = require('Config');
 
-const gdprSupportAccept = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`);
+const showGDPR = Config.GDPR.enable;
+const gdprSupportAccept = (showGDPR ? localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`) : true);
 
 if (Config.gaTrackingId !== '' && gdprSupportAccept) {
   ga.initialize(Config.gaTrackingId);
@@ -52,8 +53,10 @@ export default Component => class WithAnalytics extends React.Component {
   }
 
   trackPageAnalytics = (page) => {
-    ga.set({ page });
-    ga.pageview(page);
+    if (Config.gaTrackingId !== '' && gdprSupportAccept) {
+      ga.set({ page });
+      ga.pageview(page);
+    }
   };
 
   render() {
