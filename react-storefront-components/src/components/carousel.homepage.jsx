@@ -21,6 +21,7 @@
 
 import React from 'react';
 import Slider from 'react-slick';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getConfig } from '../utils/ConfigProvider';
 
@@ -43,7 +44,8 @@ const carouselBaner4FileName = 'baner_4.jpg';
 
 const carouselBanerNameArray = [carouselBaner1FileName, carouselBaner2FileName, carouselBaner3FileName, carouselBaner4FileName];
 
-function Carousel() {
+function Carousel(props) {
+  const { carouselLink } = props;
   const epConfig = getConfig();
   Config = epConfig.config;
   ({ intl } = epConfig);
@@ -76,7 +78,7 @@ function Carousel() {
           <br />
           {intl.get('home-carousel-txt3')}
         </h2>
-        <Link to="/category/VESTRI_ACCESSORIES" className="ep-btn">
+        <Link to={carouselLink} className="ep-btn">
           {intl.get('home-carousel-btn')}
         </Link>
       </div>
@@ -121,5 +123,13 @@ function Carousel() {
     </div>
   );
 }
+
+Carousel.propTypes = {
+  carouselLink: PropTypes.string,
+};
+
+Carousel.defaultProps = {
+  carouselLink: '',
+};
 
 export default Carousel;

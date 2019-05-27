@@ -37,10 +37,15 @@ class ProductListPagination extends React.Component {
     paginationDataProps: PropTypes.objectOf(PropTypes.any).isRequired,
     titleString: PropTypes.string.isRequired,
     isTop: PropTypes.bool,
+    productListPaginationLinks: PropTypes.objectOf(PropTypes.string),
   }
 
   static defaultProps = {
     isTop: false,
+    productListPaginationLinks: {
+      search: '',
+      category: '',
+    },
   }
 
   constructor(props) {
@@ -100,9 +105,10 @@ class ProductListPagination extends React.Component {
     const {
       paginationData, paginationNextLink, paginationPreviousLink, searchUrl,
     } = this.state;
-    const { isTop, titleString } = this.props;
+    const { isTop, titleString, productListPaginationLinks } = this.props;
+    const { productSearch, productCategory } = productListPaginationLinks;
     if (paginationData.pagination) {
-      const urlPrefix = (searchUrl) ? ('search') : ('category');
+      const urlPrefix = searchUrl ? productSearch : productCategory;
       return (
         <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
           {
@@ -128,7 +134,7 @@ class ProductListPagination extends React.Component {
               <div className="pagination-navigation-container">
                 {paginationPreviousLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${titleString}${paginationPreviousLink}`} className="btn-pagination prev" role="button">
+                    <Link to={`${urlPrefix}/${titleString}${paginationPreviousLink}`} className="btn-pagination prev" role="button">
                       <span className="icon" />
                       {intl.get('previous')}
                     </Link>
@@ -155,7 +161,7 @@ class ProductListPagination extends React.Component {
                 </span>
                 {paginationNextLink !== ''
                   ? (
-                    <Link to={`/${urlPrefix}/${titleString}${paginationNextLink}`} className="btn-pagination next" role="button">
+                    <Link to={`${urlPrefix}/${titleString}${paginationNextLink}`} className="btn-pagination next" role="button">
                       {intl.get('next')}
                       <span className="icon" />
                     </Link>

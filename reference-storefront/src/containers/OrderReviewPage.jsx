@@ -336,6 +336,8 @@ class OrderReviewPage extends React.Component {
         debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
       }
     }
+    const itemDetailLink = '/itemdetail';
+
     return (
       <div>
         <div className="app-main" style={{ display: 'block' }}>
@@ -355,7 +357,7 @@ class OrderReviewPage extends React.Component {
                     {(orderData._order[0]._paymentmethodinfo) && this.renderPaymentMethod()}
                   </div>
                   <div className="order-items-container" style={{ display: 'block' }}>
-                    <OrderTableMain data={orderData} />
+                    <OrderTableMain data={orderData} itemDetailLink={itemDetailLink} />
                   </div>
                 </div>
               )}

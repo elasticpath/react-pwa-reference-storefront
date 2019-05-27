@@ -32,7 +32,7 @@ import './purchasedetails.main.less';
 let intl = { get: str => str };
 
 const PurchaseDetailsMain = (props) => {
-  const { data } = props;
+  const { data, itemDetailLink } = props;
   const { status } = data;
   ({ intl } = getConfig());
   let statusString;
@@ -228,7 +228,7 @@ const PurchaseDetailsMain = (props) => {
           </tbody>
         </table>
         {(purchaseItem._item) ? (
-          <QuickOrderMain isBuyItAgain productData={purchaseItem._item[0]} />
+          <QuickOrderMain isBuyItAgain productData={purchaseItem._item[0]} itemDetailLink={itemDetailLink} />
         ) : ('')
         }
       </li>
@@ -252,7 +252,7 @@ const PurchaseDetailsMain = (props) => {
             </h3>
             {(canReorder(data)) ? (
               <div className="purchase-reorder">
-                <ReorderMain productsData={data} onReorderAll={handleReorderAll} />
+                <ReorderMain productsData={data} onReorderAll={handleReorderAll} itemDetailLink={itemDetailLink} />
               </div>
             ) : ('')}
             <table className="table table-striped">
@@ -337,10 +337,12 @@ const PurchaseDetailsMain = (props) => {
 PurchaseDetailsMain.propTypes = {
   data: PropTypes.objectOf(PropTypes.any).isRequired,
   onReorderAllProducts: PropTypes.func,
+  itemDetailLink: PropTypes.string,
 };
 
 PurchaseDetailsMain.defaultProps = {
   onReorderAllProducts: () => {},
+  itemDetailLink: '',
 };
 
 export default PurchaseDetailsMain;

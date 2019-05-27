@@ -52,12 +52,13 @@ class ProductsComparePage extends React.Component {
     const { match } = this.props;
     const params = match.params.products;
     const productCodes = decodeURIComponent(params).split(',');
+    const itemDetailLink = '/itemdetail';
     return (
       <div className="main-compare container-3">
         {
           productCodes.map(code => (
             <div key={code} className="compare-product">
-              <ProductDisplayItemMain productId={code} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList} />
+              <ProductDisplayItemMain productId={code} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList} itemDetailLink={itemDetailLink} />
             </div>
           ))
         }

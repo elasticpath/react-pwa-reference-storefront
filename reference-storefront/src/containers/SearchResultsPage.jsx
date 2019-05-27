@@ -37,10 +37,17 @@ function SearchResultsPage(props) {
     }
   }
 
+  const productLinks = {
+    itemDetail: '/itemdetail',
+    productsCompare: '/productscompare',
+    productSearch: '/search',
+    productCategory: '/category',
+  };
+
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <SearchResultsItemsMain searchKeywordsProps={props} onProductFacetSelection={handleProductFacetSelection} />
+      <SearchResultsItemsMain searchKeywordsProps={props} onProductFacetSelection={handleProductFacetSelection} productLinks={productLinks} />
     </div>
   );
 }

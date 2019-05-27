@@ -144,6 +144,7 @@ class WishListsPage extends React.Component {
 
   render() {
     const { wishListData, isLoading } = this.state;
+    const itemDetailLink = '/itemdetail';
     return (
       <div className="wish-list-container container">
         <div className="wish-list-container-inner">
@@ -170,6 +171,7 @@ class WishListsPage extends React.Component {
                 onItemConfiguratorAddToCart={this.handleItemConfiguratorAddToCart}
                 onItemMoveToCart={this.handleItemMoveToCart}
                 onItemRemove={this.handleItemRemove}
+                itemDetailLink={itemDetailLink}
               />
             </div>
           )}

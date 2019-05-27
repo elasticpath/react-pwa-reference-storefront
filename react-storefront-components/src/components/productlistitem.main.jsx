@@ -39,6 +39,7 @@ class ProductListItemMain extends React.Component {
     productElement: PropTypes.objectOf(PropTypes.any),
     featuredProductAttribute: PropTypes.bool,
     customClass: PropTypes.string,
+    itemDetailLink: PropTypes.string,
   }
 
   static defaultProps = {
@@ -47,6 +48,7 @@ class ProductListItemMain extends React.Component {
     productElement: {},
     featuredProductAttribute: false,
     customClass: '',
+    itemDetailLink: '',
   }
 
   constructor(props) {
@@ -90,7 +92,9 @@ class ProductListItemMain extends React.Component {
 
   render() {
     const { productData } = this.state;
-    const { offerData, featuredProductAttribute, customClass } = this.props;
+    const {
+      offerData, featuredProductAttribute, customClass, itemDetailLink,
+    } = this.props;
     if (productData) {
       let listPrice = 'n/a';
       let itemPrice = 'n/a';
@@ -128,13 +132,13 @@ class ProductListItemMain extends React.Component {
       return (
         <div className={`category-item-inner ${customClass}`}>
           <div className="category-item-thumbnail-container">
-            <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
+            <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
               <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" title="" />
             </Link>
           </div>
           <div className="category-item-title-container">
             <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`}>
-              <Link to={`/itemdetail/${encodeURIComponent(productData._code[0].code)}`}>
+              <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
                 {productData._definition[0]['display-name']}
               </Link>
             </div>

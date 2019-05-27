@@ -46,6 +46,7 @@ class CartLineItem extends React.Component {
     onConfiguratorAddToCart: PropTypes.func,
     onMoveToCart: PropTypes.func,
     onRemove: PropTypes.func,
+    itemDetailLink: PropTypes.string,
   }
 
   static defaultProps = {
@@ -57,6 +58,7 @@ class CartLineItem extends React.Component {
     onConfiguratorAddToCart: () => { },
     onMoveToCart: () => { },
     onRemove: () => { },
+    itemDetailLink: '',
   }
 
   constructor(props) {
@@ -374,6 +376,7 @@ class CartLineItem extends React.Component {
       hideRemoveButton,
       featuredProductAttribute,
       hideAddToBagButton,
+      itemDetailLink,
     } = this.props;
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
@@ -417,12 +420,12 @@ class CartLineItem extends React.Component {
             )
             : ('')
           }
-          <Link to={`/itemdetail/${encodeURIComponent(itemCodeString)}`}>
+          <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
             <img src={Config.skuImagesUrl.replace('%sku%', itemCodeString)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
           </Link>
         </div>
         <div className="title-col" data-el-value="lineItem.displayName">
-          <Link to={`/itemdetail/${encodeURIComponent(itemCodeString)}`}>
+          <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
             {itemDisplayName}
           </Link>
         </div>
@@ -525,7 +528,7 @@ class CartLineItem extends React.Component {
                 {intl.get('configure-bundle')}
               </span>
             </button>
-            <AppModalBundleConfigurationMain key={`app-modal-bundle-configuration-main_${itemCodeString}`} handleModalClose={this.handleModalClose} bundleConfigurationItems={item} openModal={openModal} />
+            <AppModalBundleConfigurationMain key={`app-modal-bundle-configuration-main_${itemCodeString}`} handleModalClose={this.handleModalClose} bundleConfigurationItems={item} openModal={openModal} itemDetailLink={itemDetailLink} />
           </div>
         ) : ('')
         }

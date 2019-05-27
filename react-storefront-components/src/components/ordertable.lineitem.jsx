@@ -29,7 +29,7 @@ import './ordertable.lineitem.less';
 let Config = {};
 
 const OrderTableLineItem = (props) => {
-  const { item } = props;
+  const { item, itemDetailLink } = props;
   const { code } = item._item[0]._code[0];
   const displayName = item._item[0]._definition[0]['display-name'];
   const options = item._item[0]._definition[0]._options;
@@ -101,7 +101,7 @@ const OrderTableLineItem = (props) => {
         <img className="thumbnail" src={Config.skuImagesUrl.replace('%sku%', code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" />
       </td>
       <td className="title-col">
-        <Link to={`/itemdetail/${encodeURIComponent(code)}`}>
+        <Link to={`${itemDetailLink}/${encodeURIComponent(code)}`}>
           {displayName}
         </Link>
       </td>
@@ -130,6 +130,11 @@ const OrderTableLineItem = (props) => {
 
 OrderTableLineItem.propTypes = {
   item: PropTypes.objectOf(PropTypes.any).isRequired,
+  itemDetailLink: PropTypes.string,
+};
+
+OrderTableLineItem.defaultProps = {
+  itemDetailLink: '',
 };
 
 export default OrderTableLineItem;

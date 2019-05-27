@@ -33,10 +33,15 @@ class ProductListMain extends React.Component {
   static propTypes = {
     productData: PropTypes.objectOf(PropTypes.any).isRequired,
     showCompareButton: PropTypes.bool,
+    productListLinks: PropTypes.objectOf(PropTypes.string),
   }
 
   static defaultProps = {
     showCompareButton: true,
+    productListLinks: {
+      itemDetail: '',
+      productsCompare: '',
+    },
   }
 
   constructor(props) {
@@ -65,18 +70,19 @@ class ProductListMain extends React.Component {
 
   handleCompareToggle(event) {
     const { compareList } = this.state;
+    const { productListLinks } = this.props;
     const elementCode = event.target.name;
     const index = compareList.indexOf(elementCode);
     if (index === -1 && compareList.length > 2) return;
     if (index !== -1) {
       this.setState({
         compareList: compareList.slice(0, index).concat(compareList.slice(index + 1)),
-        compareLink: `/productscompare/${encodeURIComponent(compareList.slice(0, index).concat(compareList.slice(index + 1)).join())}`,
+        compareLink: `${productListLinks.productsCompare}/${encodeURIComponent(compareList.slice(0, index).concat(compareList.slice(index + 1)).join())}`,
       });
     } else {
       this.setState({
         compareList: [...compareList, elementCode],
-        compareLink: `/productscompare/${encodeURIComponent([...compareList, elementCode].join())}`,
+        compareLink: `${productListLinks.productsCompare}/${encodeURIComponent([...compareList, elementCode].join())}`,
       });
     }
   }
@@ -110,12 +116,12 @@ class ProductListMain extends React.Component {
 
   renderProducts() {
     const { categoryModel } = this.state;
-    const { showCompareButton } = this.props;
+    const { showCompareButton, productListLinks } = this.props;
     return categoryModel._element.map((product) => {
       if (product.self.type === 'offers.offer') {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain offerData={product} />
+            <ProductListItemMain offerData={product} itemDetailLink={productListLinks.itemDetail} />
             {(showCompareButton) ? (
               this.checkComparison(product)
             ) : ('')}
@@ -125,7 +131,7 @@ class ProductListMain extends React.Component {
       if (product._code) {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
-            <ProductListItemMain productElement={product} />
+            <ProductListItemMain productElement={product} itemDetailLink={productListLinks.itemDetail} />
             {this.checkComparison(product)}
           </li>
         );

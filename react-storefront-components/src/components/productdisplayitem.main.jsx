@@ -109,6 +109,7 @@ class ProductDisplayItemMain extends React.Component {
     onAddToWishList: PropTypes.func,
     productLink: PropTypes.string,
     isInStandaloneMode: PropTypes.bool,
+    itemDetailLink: PropTypes.string,
   }
 
   static defaultProps = {
@@ -119,6 +120,7 @@ class ProductDisplayItemMain extends React.Component {
     onAddToWishList: () => {},
     productLink: '',
     isInStandaloneMode: false,
+    itemDetailLink: '',
   }
 
   constructor(props) {
@@ -518,7 +520,7 @@ class ProductDisplayItemMain extends React.Component {
     const {
       productData, addToCartFailedMessage, isLoading, itemQuantity,
     } = this.state;
-    const { customClass, productLink } = this.props;
+    const { customClass, productLink, itemDetailLink } = this.props;
     if (productData) {
       let listPrice = 'n/a';
       if (productData._price) {
@@ -765,8 +767,8 @@ class ProductDisplayItemMain extends React.Component {
               </div>
             </div>
           </div>
-          <BundleConstituentsDisplayMain productData={productData} />
-          <ProductRecommendationsDisplayMain productData={productData} />
+          <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
+          <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
         </div>
       );

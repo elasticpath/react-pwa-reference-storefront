@@ -28,18 +28,7 @@ import './cart.main.less';
 let intl = { get: str => str };
 
 const CartMain = (props) => {
-  CartMain.propTypes = {
-    onItemConfiguratorAddToCart: PropTypes.func,
-    onItemMoveToCart: PropTypes.func,
-    onItemRemove: PropTypes.func,
-  };
-
-  CartMain.defaultProps = {
-    onItemConfiguratorAddToCart: () => {},
-    onItemMoveToCart: () => {},
-    onItemRemove: () => {},
-  };
-
+  const { itemDetailLink } = props;
   ({ intl } = getConfig());
   const {
     empty, cartData, handleQuantityChange,
@@ -79,6 +68,7 @@ const CartMain = (props) => {
           onRemove={handleRemove}
           onConfiguratorAddToCart={handleConfiguratorAddToCart}
           onMoveToCart={handleMoveToCart}
+          itemDetailLink={itemDetailLink}
         />
       ))}
     </div>
@@ -89,6 +79,17 @@ CartMain.propTypes = {
   empty: PropTypes.bool.isRequired,
   cartData: PropTypes.objectOf(PropTypes.any).isRequired,
   handleQuantityChange: PropTypes.func.isRequired,
+  onItemConfiguratorAddToCart: PropTypes.func,
+  onItemMoveToCart: PropTypes.func,
+  onItemRemove: PropTypes.func,
+  itemDetailLink: PropTypes.string,
+};
+
+CartMain.defaultProps = {
+  onItemConfiguratorAddToCart: () => {},
+  onItemMoveToCart: () => {},
+  onItemRemove: () => {},
+  itemDetailLink: '',
 };
 
 export default CartMain;

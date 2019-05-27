@@ -38,10 +38,17 @@ class SearchResultsItemsMain extends React.Component {
   static propTypes = {
     searchKeywordsProps: PropTypes.objectOf(PropTypes.any).isRequired,
     onProductFacetSelection: PropTypes.func,
+    productLinks: PropTypes.objectOf(PropTypes.string),
   }
 
   static defaultProps = {
     onProductFacetSelection: () => {},
+    productLinks: {
+      itemDetail: '',
+      productsCompare: '',
+      productSearch: '',
+      productCategory: '',
+    },
   }
 
   constructor(props) {
@@ -111,6 +118,7 @@ class SearchResultsItemsMain extends React.Component {
 
   render() {
     const { isLoading, searchResultsModel, searchKeywords } = this.state;
+    const { productLinks } = this.props;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products || products.links.length === 0 || !products._element;
     const searchKeywordString = searchKeywords;
@@ -144,8 +152,8 @@ class SearchResultsItemsMain extends React.Component {
               <div>
                 <SearchFacetNavigationMain onFacetSelection={this.handleFacetSelection} productData={products} />
                 <div className="products-container">
-                  <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop />
-                  <ProductListMain productData={products} showCompareButton={propCompareButton} />
+                  <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop productListPaginationLinks={productLinks} />
+                  <ProductListMain productData={products} showCompareButton={propCompareButton} productListLinks={productLinks} />
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={searchLookup} />
                 </div>
               </div>
