@@ -232,6 +232,16 @@ const searchFormZoomArray = [
   'facets:element:facetselector:chosen:description',
   'facets:element:facetselector:chosen:selector',
   'facets:element:facetselector:chosen:selectaction',
+  'sortattributes',
+  'sortattributes:choice',
+  'sortattributes:choice:description',
+  'sortattributes:choice:selectaction',
+  'sortattributes:choice:selector',
+  'sortattributes:chosen',
+  'sortattributes:chosen:description',
+  'sortattributes:chosen:selectaction',
+  'sortattributes:chosen:selector',
+  'sortattributes:offersearchresult',
 ];
 
 // Array of zoom parameters to pass to Cortex for batches

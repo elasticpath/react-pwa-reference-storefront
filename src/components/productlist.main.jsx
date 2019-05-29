@@ -150,7 +150,7 @@ class ProductListMain extends React.Component {
                 ) : `${intl.get('compare')}`}
               </button>
             </div>
-          ) : ''}
+          ) : <div className="compare-button" />}
           <ul className="category-items-listing equalize" id="category_items_listing">
             {this.renderProducts()}
           </ul>
