@@ -24,14 +24,68 @@ import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { searchLookup } from '../utils/CortexLookup';
+import { cortexFetch } from '../utils/Cortex';
 import ProductListMain from './productlist.main';
 import ProductListPagination from './productlistpagination.main';
 import SearchFacetNavigationMain from './searchfacetnavigation.main';
 import ProductListLoadMore from './productlistloadmore';
 
 import './searchresultsitems.main.less';
+import SortProductMenu from './sortproductmenu.main';
 
 const Config = require('Config');
+
+const zoomArray = [
+  'chosen',
+  'chosen:description',
+  'offersearchresult',
+  'offersearchresult:offers',
+  'offersearchresult:offers:element',
+  'offersearchresult:offers:element:code',
+  'offersearchresult:offers:element:availability',
+  'offersearchresult:offers:element:definition',
+  'offersearchresult:offers:element:definition:assets:element',
+  'offersearchresult:offers:element:pricerange',
+  'offersearchresult:offers:element:items',
+  'offersearchresult:offers:element:items:element',
+  'offersearchresult:offers:element:items:element:availability',
+  'offersearchresult:offers:element:items:element:definition',
+  'offersearchresult:offers:element:items:element:definition:assets:element',
+  'offersearchresult:offers:element:items:element:price',
+  'offersearchresult:offers:element:items:element:rate',
+  'offersearchresult:offers:element:items:element:code',
+  'offersearchresult:offers:element:rate',
+  'offersearchresult:element',
+  'offersearchresult:element:availability',
+  'offersearchresult:element:definition',
+  'offersearchresult:element:price',
+  'offersearchresult:element:rate',
+  'offersearchresult:element:code',
+  'offersearchresult:element:pricerange',
+  'offersearchresult:element:items',
+  'offersearchresult:element:items:element',
+  'offersearchresult:element:items:element:availability',
+  'offersearchresult:element:items:element:definition',
+  'offersearchresult:element:items:element:price',
+  'offersearchresult:element:items:element:rate',
+  'offersearchresult:element:items:element:code',
+  'offersearchresult:facets',
+  'offersearchresult:facets:element',
+  'offersearchresult:facets:element:facetselector',
+  'offersearchresult:facets:element:facetselector:choice:description',
+  'offersearchresult:facets:element:facetselector:choice:selector',
+  'offersearchresult:facets:element:facetselector:choice:selectaction',
+  'offersearchresult:facets:element:facetselector:chosen:description',
+  'offersearchresult:facets:element:facetselector:chosen:selector',
+  'offersearchresult:facets:element:facetselector:chosen:selectaction',
+  'offersearchresult:sortattributes',
+  'offersearchresult:sortattributes:choice',
+  'offersearchresult:sortattributes:choice:description',
+  'offersearchresult:sortattributes:choice:selectaction',
+  'offersearchresult:sortattributes:chosen',
+  'offersearchresult:sortattributes:chosen:description',
+  'offersearchresult:sortattributes:chosen:selectaction',
+];
 
 class SearchResultsItemsMain extends React.Component {
   static propTypes = {
@@ -44,10 +98,12 @@ class SearchResultsItemsMain extends React.Component {
     this.state = {
       isLoading: true,
       searchResultsModel: { links: [] },
+      loadSortedProduct: false,
       searchKeywords: searchKeywordsProps,
     };
 
     this.handleProductsChange = this.handleProductsChange.bind(this);
+    this.handleSortSelection = this.handleSortSelection.bind(this);
   }
 
   componentDidMount() {
@@ -89,14 +145,52 @@ class SearchResultsItemsMain extends React.Component {
     });
   }
 
+  handleSortSelection(event) {
+    const { searchResultsModel } = this.state;
+    const selfUri = event.target.value;
+    this.setState({
+      loadSortedProduct: true,
+    });
+    login().then(() => {
+      cortexFetch(`${selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          const productNode = (searchResultsModel._offers) ? ('_offers') : ('_items');
+          this.setState(prevState => ({
+            searchResultsModel: {
+              ...prevState.searchResultsModel,
+              [productNode]: [res._offersearchresult[0]],
+            },
+            loadSortedProduct: false,
+          }));
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          this.setState({
+            loadSortedProduct: false,
+          });
+        });
+    });
+  }
+
   handleProductsChange(products) {
     this.setState({ searchResultsModel: products });
   }
 
   render() {
-    const { isLoading, searchResultsModel, searchKeywords } = this.state;
+    const {
+      isLoading, searchResultsModel, searchKeywords, loadSortedProduct,
+    } = this.state;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
-    const noProducts = !products || products.links.length === 0 || !products._element;
+    const noProducts = !products || !products._element;
     const searchKeywordString = searchKeywords;
     const propCompareButton = false;
     return (
@@ -128,8 +222,12 @@ class SearchResultsItemsMain extends React.Component {
               <div>
                 <SearchFacetNavigationMain productData={products} titleString={searchKeywordString} />
                 <div className="products-container">
+                  <SortProductMenu handleSortSelection={this.handleSortSelection} categoryModel={searchResultsModel} />
                   <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop />
-                  <ProductListMain productData={products} showCompareButton={propCompareButton} />
+                  <div className={`${loadSortedProduct ? 'loading-product' : ''}`}>
+                    <div className={`${loadSortedProduct ? 'sort-product-loader' : ''}`} />
+                    <ProductListMain productData={products} showCompareButton={propCompareButton} />
+                  </div>
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={searchLookup} />
                 </div>
               </div>
