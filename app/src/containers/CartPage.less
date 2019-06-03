@@ -1,0 +1,111 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../theme/common.less';
+
+.cart-container {
+  min-height: 100%;
+  margin-bottom: 0px;
+
+  .cart-total-quantity {
+    display: none;
+  }
+
+  .cart-main-container {
+    float: left;
+    width: 100%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 0px;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .cart-empty-container {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      text-align: center;
+    }
+  }
+
+  .cart-container-inner {
+    .cart-title-container {
+      border-bottom: 1px solid @mainGrey;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #ffffff;
+      z-index: 4;
+
+      .view-title {
+        border: none;
+      }
+
+      h1 {
+        display: inline-block;
+        position: relative;
+        width: 70%;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 5px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: gray;
+      }
+    }
+
+    .cart-sidebar {
+      display: block;
+      width: 100%;
+      min-height: 1px;
+      margin-bottom: 20px;
+
+      .cart-sidebar-inner {
+        display: inline-block;
+        padding: 32px;
+        border-top: 1px solid @mainGrey;
+        border-radius: 0;
+        background-color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
+        background: #ffffff;
+        font-weight: bold;
+        width: 100%;
+
+        h3 {
+          margin: 0 0 32px 0;
+        }
+      }
+    }
+  }
+
+  .form-content-quantity .form-control-quantity {
+    box-shadow: none;
+    background: transparent;
+  }
+}

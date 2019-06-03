@@ -1,0 +1,405 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../theme/common.less';
+
+.checkout-container {
+  position: relative;
+
+  .cart-summary-label-col {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    /* IE8-9 */
+
+    line-height: normal;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: @mainTextColor;
+    line-height: 19px;
+  }
+
+  .checkout-container-inner {
+    .view-title {
+      color: #000000;
+      text-transform: capitalize;
+    }
+
+    .checkout-title-container {
+      h1 {
+        float: left;
+        position: relative;
+        width: 70%;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 5px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: gray;
+        width: 100%;
+        border-bottom: 1px solid @mainGrey;
+        background: #ffffff;
+        z-index: 4;
+      }
+    }
+
+    .checkout-sidebar {
+      float: left;
+      width: 100%;
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      @media (max-width: @tabletWidth - 1px) {
+        float: left;
+        width: 100%;
+        text-align: center;
+      }
+
+      @media (max-width: @mobileWidth - 1px) {
+        float: left;
+        width: 100%;
+      }
+
+      .checkout-sidebar-inner {
+        display: block;
+        position: relative;
+        display: inline-block;
+        border-radius: 0;
+        background-color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        bottom: 0;
+        background: #ffffff;
+        font-weight: bold;
+        width: 100%;
+
+        .feedback-label {
+          color: red;
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        .checkout-subtotal {
+          margin-bottom: 24px;
+        }
+
+        @media screen and (min-width: @tabletWidth) {
+          position: relative;
+          display: block;
+        }
+
+        @media screen and (max-width: @mobileWidth - 1px) {
+          width: 100%;
+        }
+
+        h3 {
+          margin: 0 0 32px 0;
+        }
+      }
+    }
+  }
+
+  .checkout-main-container {
+    float: left;
+    width: 100%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 32px;
+    margin-top: 32px;
+
+    @media (max-width: @tabletWidth - 1px) {
+      float: left;
+      width: 66%;
+    }
+
+    @media (max-width: @mobileWidth - 1px) {
+      float: left;
+      width: 100%;
+    }
+    .profile-email-info {
+
+      .feedback-label {
+       color: red;
+       font-size: 16px;
+       font-weight: bold;
+      }
+  }
+
+    .checkout-address-radio,
+    .shipping-option-radio,
+    .payment-option-radio {
+      vertical-align: top;
+      margin-right: 16px;
+    }
+
+    [data-region="billingAddressesRegion"],
+    [data-region="shippingAddressesRegion"],
+    [data-region="shippingOptionsRegion"],
+    [data-region="paymentMethodSelectorsRegion"] {
+      position: relative;
+    }
+
+    [data-region="billingAddressesRegion"],
+    [data-region="paymentMethodsRegion"] {
+      margin-bottom: 48px;
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-left: 0;
+      padding-right: 0;
+
+      h2 {
+        margin-top: 0;
+      }
+
+      @media (min-width: @tabletWidth) {
+        float: left;
+      }
+    }
+
+    .address-btn-cell {
+      float: left;
+      width: 100%;
+      position: relative;
+      min-height: 1px;
+      padding-left: 0;
+      padding-right: 0;
+      margin-bottom: 10px;
+
+      @media (min-width: @tabletWidth) {
+        float: left;
+      }
+    }
+
+    .checkout-region-inner-container {
+      float: left;
+      width: 100%;
+
+      .address-ctrl-cell {
+        float: left;
+        width: 100%;
+        position: relative;
+        min-height: 1px;
+        padding-left: 0;
+        padding-right: 0;
+
+        label {
+          width: 90%;
+        }
+
+        @media (min-width: @tabletWidth) {
+          float: left;
+        }
+      }
+
+      .paymentMethodComponentRegion {
+        @media screen and (max-width: @mobileWidth - 1px) {
+          width: 230px;
+        }
+      }
+    }
+
+    .checkout-shipping-container {
+      clear: both;
+
+      &:after {
+        clear: both;
+      }
+
+      &:before,
+      &:after {
+        content: " ";
+        display: table;
+      }
+
+      [data-region="shippingAddressesRegion"] {
+        position: relative;
+        min-height: 1px;
+        padding-left: 0;
+        padding-right: 0;
+
+        @media (min-width: @tabletWidth) {
+          float: left;
+        }
+      }
+
+      [data-region="shippingOptionsRegion"] {
+        float: left;
+        width: 100%;
+        position: relative;
+        padding-right: 15px;
+
+        @media (min-width: @tabletWidth) {
+          float: left;
+          padding-right: 0;
+        }
+
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+  .checkout-main-container-wrap {
+    display: flex;
+    flex-direction: row;
+    clear: both;
+    margin-bottom: 30px;
+    @media (max-width: 991px) {
+      display: block;
+    }
+    .checkout-main-container {
+      flex-grow: 1;
+      margin: 0;
+      float: none;
+      padding: 0;
+      @media (max-width: 991px) {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 20px;
+      }
+      .profile-info-container:first-child {
+        margin-top: 0;
+      }
+    }
+    .checkout-sidebar {
+      max-width: 260px;
+      padding: 0 20px 10px;
+      float: none;
+      border: 1px solid #CCCCCC;
+      margin-left: 20px;
+      @media (max-width: 991px) {
+        max-width: 100%;
+        margin-left: 0;
+      }
+      h2 {
+        margin-bottom: 30px;
+      }
+    }
+    .btn-cmd-submit-order {
+      width: 100%;
+      min-height: 44px;
+      font-weight: 500;
+      text-transform: capitalize;
+      margin: 0;
+    }
+    .cart-summary-list {
+      li {
+        display: flex;
+        font-size: 12px;
+        label {
+          flex-grow: 1;
+          text-align: left;
+        }
+        span {
+          text-align: right;
+          font-weight: normal;
+        }
+        &.checkout-tax {
+          flex-direction: column;
+        }
+        &.checkout-total {
+          font-size: 15px;
+          padding-top: 5px;
+          border-top: 1px solid #979797;
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+      .checkout-tax-total,
+      .checkout-shipping-total {
+        display: flex;
+      }
+      .checkout-tax-list {
+        padding: 0;
+        margin-bottom: 10px;
+        .checkout-tax {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+      .gift-card {
+        label {
+          text-transform: capitalize;
+        }
+        span {
+          color: red;
+        }
+      }
+      [data-region="checkoutShippingTotalRegion"] {
+        width: 100%;
+      }
+    }
+    .profile-info-col {
+      @media (max-width: 991px) {
+        width: 100%;
+        +.profile-info-col {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+  .checkout-summary-container {
+    display: block !important;
+  }
+}
+
+
+.profile-info {
+  &-container {
+    .profile-info-block {
+      [data-region="billingAddressesRegion"],
+      [data-region="paymentMethodsRegion"] {
+        float: none;
+        margin-bottom: 0;
+        h2 {
+          margin-top: 20px;
+        }
+      }
+      [data-region="shippingAddressesRegion"] {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
