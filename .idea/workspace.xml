@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edabbdcd-b1f9-4570-8b98-455797f0e5f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/AddressForm/addressform.main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/AddressForm/addressform.main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/GdprSupport/gdprsupport.main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/GdprSupport/gdprsupport.main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/AddressForm/addressform.main.stories.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/AddressForm/addressform.main.stories.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -134,8 +132,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/src/AddressForm/addressform.main.stories.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="644">
-                  <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+                <state relative-caret-position="299">
+                  <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                     <element signature="e#105#134#0" expanded="true" />
@@ -161,7 +159,7 @@
             <entry file="file://$PROJECT_DIR$/components/package.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="414">
-                  <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+                  <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
@@ -170,7 +168,7 @@
             <entry file="file://$PROJECT_DIR$/components/src/AddressForm/MockHttpResponses/public_user_authentication_response.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="161">
-                  <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+                  <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -179,7 +177,7 @@
             <entry file="file://$PROJECT_DIR$/components/src/AddressForm/MockHttpResponses/geographies_cortex_response.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="115">
-                  <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+                  <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -221,7 +219,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>renderSubCategoriesWithNoChildren</find>
       <find>onFetchNavigationError</find>
       <find>appHeaderNavigationLinks</find>
       <find>onContinueCart</find>
@@ -251,6 +248,7 @@
       <find>countr</find>
       <find>_eleme</find>
       <find>geoData</find>
+      <find>console.lo</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -272,11 +270,11 @@
       <dir>$PROJECT_DIR$/reference-storefront</dir>
       <dir>$PROJECT_DIR$/reference-storefront/src</dir>
       <dir>$PROJECT_DIR$/react-storefront-components/src</dir>
-      <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/reference-storefront/src/containers</dir>
       <dir>$PROJECT_DIR$/reference-storefront/src/components</dir>
       <dir>$PROJECT_DIR$/react-storefront-components/src/components</dir>
       <dir>$PROJECT_DIR$/app/src/containers</dir>
+      <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -334,8 +332,8 @@
         <option value="$PROJECT_DIR$/components/package.json" />
         <option value="$PROJECT_DIR$/components/src/AddressForm/addressform.main.api.mocks.js" />
         <option value="$PROJECT_DIR$/app/src/ep.config.json" />
-        <option value="$PROJECT_DIR$/components/src/AddressForm/addressform.main.stories.jsx" />
         <option value="$PROJECT_DIR$/components/src/AddressForm/addressform.main.jsx" />
+        <option value="$PROJECT_DIR$/components/src/AddressForm/addressform.main.stories.jsx" />
       </list>
     </option>
   </component>
@@ -568,7 +566,7 @@
       <workItem from="1558341096781" duration="95136000" />
       <workItem from="1559545055235" duration="4265000" />
       <workItem from="1559637225851" duration="3825000" />
-      <workItem from="1559642135226" duration="8046000" />
+      <workItem from="1559642135226" duration="8289000" />
     </task>
     <servers />
   </component>
@@ -605,7 +603,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1385500000" />
+    <option name="totallyTimeSpent" value="1385743000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -799,7 +797,7 @@
     <entry file="file://$PROJECT_DIR$/components/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -820,14 +818,14 @@
     <entry file="file://$PROJECT_DIR$/components/src/AddressForm/MockHttpResponses/public_user_authentication_response.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/src/AddressForm/MockHttpResponses/geographies_cortex_response.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
-          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -841,22 +839,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/components/src/AddressForm/addressform.main.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="191" selection-start-line="191" selection-end-line="191" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/src/AddressForm/addressform.main.stories.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        <state relative-caret-position="299">
+          <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#105#134#0" expanded="true" />
             <element signature="e#247#295#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/src/AddressForm/addressform.main.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="191" selection-start-line="191" selection-end-line="191" />
         </state>
       </provider>
     </entry>
