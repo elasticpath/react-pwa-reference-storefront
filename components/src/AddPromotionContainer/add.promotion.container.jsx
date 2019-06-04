@@ -32,8 +32,13 @@ let intl = { get: str => str };
 
 class AddPromotionContainer extends React.Component {
   static propTypes = {
-    onSubmittedPromotion: PropTypes.func.isRequired,
+    onSubmittedPromotion: PropTypes.func,
     data: PropTypes.objectOf(PropTypes.any).isRequired,
+  }
+
+  static defaultProps = {
+    onSubmittedPromotion: () => {
+    },
   }
 
   constructor() {

@@ -30,7 +30,7 @@ let intl = { get: str => str };
 
 function AppfooterMain(props) {
   AppfooterMain.propTypes = {
-    appFooterLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    appFooterLinks: PropTypes.objectOf(PropTypes.any),
   };
 
   const { appFooterLinks } = props;
@@ -103,5 +103,9 @@ function AppfooterMain(props) {
     </footer>
   );
 }
+
+AppfooterMain.defaultProps = {
+  appFooterLinks: {},
+};
 
 export default AppfooterMain;
