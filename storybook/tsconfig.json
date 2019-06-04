@@ -2,6 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true
