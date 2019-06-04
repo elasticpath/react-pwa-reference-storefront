@@ -1,7 +1,3 @@
-
-import ComponentOne from './ComponentOne/ComponentOne';
-import { ProductItem } from './ProductItem/ProductItem';
-
 import { init } from './utils/ConfigProvider';
 import AddPromotionContainer from './AddPromotionContainer/add.promotion.container';
 import AddressContainer from './AddressContainer/address.container';
@@ -79,7 +75,6 @@ export {
   CartMain,
   CategoryItemsMain,
   CheckoutSummaryList,
-  ComponentOne,
   FacebookChat,
   FeaturedProductsMain,
   GdprSupportModal,
@@ -94,7 +89,6 @@ export {
   PaymentMethodContainer,
   PowerReviewMain,
   ProductDisplayItemMain,
-  ProductItem,
   ProductListMain,
   ProductListItemMain,
   ProductListLoadmore,

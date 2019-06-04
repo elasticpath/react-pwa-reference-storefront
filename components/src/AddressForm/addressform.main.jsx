@@ -349,9 +349,7 @@ class AddressFormMain extends React.Component {
           {newOrEdit}
           {' '}
           {intl.get('address')}
-
-          hello
-        </div>
+          </div>
         <div className="feedback-label feedback-container" data-region="componentAddressFeedbackRegion">
           {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
         </div>
