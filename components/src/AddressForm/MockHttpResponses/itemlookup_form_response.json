@@ -1,0 +1,71 @@
+{
+	"self": {
+		"type": "elasticpath.collections.links",
+		"uri": "/?zoom=lookups:itemlookupform",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/?zoom=lookups:itemlookupform"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "defaultcart",
+		"type": "carts.default-cart",
+		"uri": "/carts/vestri_b2c/default",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/carts/vestri_b2c/default"
+	}, {
+		"rel": "data-policies",
+		"type": "datapolicies.data-policies",
+		"uri": "/datapolicies/vestri_b2c",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/datapolicies/vestri_b2c"
+	}, {
+		"rel": "countries",
+		"type": "geographies.countries",
+		"uri": "/geographies/vestri_b2c/countries",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/geographies/vestri_b2c/countries"
+	}, {
+		"rel": "lookups",
+		"type": "lookups.lookups",
+		"uri": "/lookups/vestri_b2c",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/lookups/vestri_b2c"
+	}, {
+		"rel": "navigations",
+		"type": "navigations.navigations",
+		"uri": "/navigations/vestri_b2c",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/navigations/vestri_b2c"
+	}, {
+		"rel": "defaultprofile",
+		"type": "profiles.default-profile",
+		"uri": "/profiles/vestri_b2c/default",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/profiles/vestri_b2c/default"
+	}, {
+		"rel": "newaccountform",
+		"type": "registrations.new-account-registration-form",
+		"uri": "/registrations/vestri_b2c/newaccount/form",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/registrations/vestri_b2c/newaccount/form"
+	}, {
+		"rel": "searches",
+		"type": "searches.searches",
+		"uri": "/searches/vestri_b2c",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/searches/vestri_b2c"
+	}, {
+		"rel": "defaultwishlist",
+		"type": "wishlists.default-wishlist",
+		"uri": "/wishlists/vestri_b2c/default",
+		"href": "http://vestri-consumer-dev.epdemos.com/cortex/wishlists/vestri_b2c/default"
+	}],
+	"_lookups": [{
+		"_itemlookupform": [{
+			"self": {
+				"type": "items.lookup-item-form",
+				"uri": "/items/vestri_b2c/lookups/form",
+				"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/vestri_b2c/lookups/form"
+			},
+			"messages": [],
+			"links": [{
+				"rel": "itemlookupaction",
+				"type": "items.lookup-item-form",
+				"uri": "/items/vestri_b2c/lookups/form",
+				"href": "http://vestri-consumer-dev.epdemos.com/cortex/items/vestri_b2c/lookups/form"
+			}],
+			"code": ""
+		}]
+	}]
+}

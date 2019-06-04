@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
@@ -186,4 +185,4 @@ class GdprSupportModal extends React.Component {
   }
 }
 
-export default withRouter(GdprSupportModal);
+export default GdprSupportModal;
