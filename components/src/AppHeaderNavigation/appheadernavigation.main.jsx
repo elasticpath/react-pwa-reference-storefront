@@ -21,7 +21,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { login, logout } from '../utils/AuthService';
@@ -51,13 +50,14 @@ class AppHeaderNavigationMain extends React.Component {
     checkedLocation: PropTypes.bool,
     isMobileView: PropTypes.bool.isRequired,
     onFetchNavigationError: PropTypes.func,
-    appHeaderNavigationLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    appHeaderNavigationLinks: PropTypes.objectOf(PropTypes.any),
   }
 
   static defaultProps = {
     isOffline: undefined,
     onFetchNavigationError: () => {},
     checkedLocation: false,
+    appHeaderNavigationLinks: {},
   }
 
   constructor(props) {
@@ -307,4 +307,4 @@ class AppHeaderNavigationMain extends React.Component {
   }
 }
 
-export default withRouter(AppHeaderNavigationMain);
+export default AppHeaderNavigationMain;

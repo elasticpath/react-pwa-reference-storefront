@@ -21,7 +21,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
 
 import './appheadersearch.main.less';
 import { getConfig } from '../utils/ConfigProvider';
@@ -87,4 +86,4 @@ class AppHeaderSearchMain extends React.Component {
   }
 }
 
-export default withRouter(AppHeaderSearchMain);
+export default AppHeaderSearchMain;
