@@ -1,1 +1,7 @@
-*       text eol=lf
+* text eol=lf
+
+*.png binary
+*.jpeg binary
+*.jpg binary
+*.woff binary
+*.zip binary
