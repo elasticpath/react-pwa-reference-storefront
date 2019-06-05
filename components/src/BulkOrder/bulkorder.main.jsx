@@ -195,7 +195,7 @@ export class BulkOrder extends React.Component {
     const isValid = Boolean(items.find(item => (item.code !== '' && item.isValidField === false)));
     const isEmpty = Boolean(items.find(item => (item.code !== '' && item.isValidField === true)));
     const duplicatedFields = Boolean(items.find(item => (item.code !== '' && item.isDuplicated === true)));
-    const isDisabled = isValid || !isEmpty || duplicatedFields;
+    const isDisabledButton = (!Config.b2b.enable || (isValid || !isEmpty || duplicatedFields));
     return (
       <div className={`bulk-order-component ${(isBulkModalOpened === false) ? 'hideModal' : ''}`}>
         <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
@@ -221,7 +221,7 @@ export class BulkOrder extends React.Component {
                 <button
                   className="ep-btn primary small btn-itemdetail-addtocart"
                   id="add_to_cart_quick_order_button"
-                  disabled={isDisabled}
+                  disabled={isDisabledButton}
                   type="submit"
                   onClick={() => { this.addAllToCart(items, true); }}
                 >
@@ -246,7 +246,7 @@ export class BulkOrder extends React.Component {
                   className="ep-btn primary small btn-itemdetail-addtocart"
                   id="add_to_cart_bulk_order_button"
                   type="submit"
-                  disabled={!csvText || bulkOrderDuplicatedErrorMessage !== '' || bulkOrderErrorMessage !== ''}
+                  disabled={!Config.b2b.enable || (!csvText || bulkOrderDuplicatedErrorMessage !== '' || bulkOrderErrorMessage !== '')}
                   onClick={() => { this.addAllToCart(bulkOrderItems, false); }}
                 >
                   {intl.get('add-all-to-cart')}
