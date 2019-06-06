@@ -40,9 +40,6 @@ const zoomArray = [
 ];
 
 class AppHeaderLoginMain extends React.Component {
-  static isLoggedIn() {
-    return (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
-  }
 
   static propTypes = {
     isMobileView: PropTypes.bool,
@@ -54,11 +51,14 @@ class AppHeaderLoginMain extends React.Component {
     locationSearchData: PropTypes.string,
     appHeaderLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
     appModalLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
+    disableLogin: PropTypes.bool,
   }
 
   static defaultProps = {
     isMobileView: false,
     locationSearchData: undefined,
+    disableLogin: false,
     onLogout: () => {},
     onLogin: () => {},
     onContinueCart: () => {},
@@ -133,7 +133,7 @@ class AppHeaderLoginMain extends React.Component {
 
   render() {
     const {
-      isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks,
+      isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin,
     } = this.props;
     const {
       openModal, openCartModal, showForgotPasswordLink,
@@ -146,7 +146,7 @@ class AppHeaderLoginMain extends React.Component {
     }
     const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`);
 
-    if (AppHeaderLoginMain.isLoggedIn()) {
+    if (isLoggedIn) {
       return (
         <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
           <div className="auth-container dropdown">
@@ -253,7 +253,17 @@ class AppHeaderLoginMain extends React.Component {
               )}
           </button>
         )}
-        <AppModalLoginMain key="app-modal-login-main" handleModalClose={this.handleModalClose} openModal={openModal} onLogin={onLogin} onResetPassword={onResetPassword} locationSearchData={locationSearchData} appModalLoginLinks={appModalLoginLinks} showForgotPasswordLink={showForgotPasswordLink} />
+        <AppModalLoginMain
+          key="app-modal-login-main"
+          handleModalClose={this.handleModalClose}
+          openModal={openModal}
+          onLogin={onLogin}
+          onResetPassword={onResetPassword}
+          locationSearchData={locationSearchData}
+          appModalLoginLinks={appModalLoginLinks}
+          showForgotPasswordLink={showForgotPasswordLink}
+          disableLogin={disableLogin}
+        />
         <div data-region="authMainRegion" className="auth-nav-container" />
       </div>
     );

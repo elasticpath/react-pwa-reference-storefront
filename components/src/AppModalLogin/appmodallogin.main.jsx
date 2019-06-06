@@ -40,12 +40,14 @@ class AppModalLoginMain extends React.Component {
     locationSearchData: PropTypes.string,
     appModalLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
     showForgotPasswordLink: PropTypes.bool.isRequired,
+    disableLogin: PropTypes.bool,
   }
 
   static defaultProps = {
     onLogin: () => {},
     onResetPassword: () => {},
     locationSearchData: undefined,
+    disableLogin: false,
   }
 
   constructor(props) {
@@ -110,27 +112,32 @@ class AppModalLoginMain extends React.Component {
 
   loginRegisteredUser(event) {
     const { username, password } = this.state;
-    const { handleModalClose, onLogin } = this.props;
+    const { handleModalClose, onLogin, disableLogin } = this.props;
     this.setState({ isLoading: true });
-    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-      loginRegistered(username, password).then((resStatus) => {
-        if (resStatus === 401) {
-          this.setState({
-            failedLogin: true,
-            isLoading: false,
-          });
-        }
-        if (resStatus === 400) {
-          this.setState({
-            failedLogin: true,
-            isLoading: false,
-          });
-        } else if (resStatus === 200) {
-          this.setState({ failedLogin: false });
-          handleModalClose();
-          onLogin();
-        }
-      });
+    if (!disableLogin) {
+      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
+        loginRegistered(username, password).then((resStatus) => {
+          if (resStatus === 401) {
+            this.setState({
+              failedLogin: true,
+              isLoading: false,
+            });
+          }
+          if (resStatus === 400) {
+            this.setState({
+              failedLogin: true,
+              isLoading: false,
+            });
+          } else if (resStatus === 200) {
+            this.setState({ failedLogin: false });
+            handleModalClose();
+            onLogin();
+          }
+        });
+        event.preventDefault();
+      }
+    } else {
+      this.setState({ isLoading: false });
       event.preventDefault();
     }
   }

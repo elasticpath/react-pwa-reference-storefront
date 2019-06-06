@@ -100,6 +100,7 @@ class AppHeaderMain extends React.Component {
       isSearchFocused: false,
       isBulkModalOpened: false,
       isDesktop: false,
+      isLoggedInUser: localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED',
     };
 
     this.handleBulkModalClose = this.handleBulkModalClose.bind(this);
@@ -181,7 +182,7 @@ class AppHeaderMain extends React.Component {
 
   render() {
     const {
-      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop,
+      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop, isLoggedInUser,
     } = this.state;
     const {
       checkedLocation,
@@ -280,6 +281,7 @@ class AppHeaderMain extends React.Component {
               locationSearchData={locationSearchData}
               appHeaderLoginLinks={appHeaderLoginLinks}
               appModalLoginLinks={appModalLoginLinks}
+              isLoggedIn={isLoggedInUser}
             />
           </div>
 
