@@ -60,6 +60,7 @@
     "react-intl-universal": "^2.0.3",
     "react-router-dom": "^5.0.0",
     "react-router-prop-types": "^1.0.4",
+    "react-scripts": "^3.0.1",
     "react-scroll-parallax": "^2.0.1",
     "react-slick": "^0.23.2",
     "resolve": "1.10.0",
@@ -78,6 +79,7 @@
   "scripts": {
     "start": "BROWSER=none node scripts/start.js",
     "build": "node scripts/build.js",
+    "test": "react-scripts test --runInBand --env=jsdom --testPathIgnorePatterns common.js",
     "lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe"
   },
   "browserslist": {
@@ -93,7 +95,9 @@
     ]
   },
   "devDependencies": {
+    "babel-jest": "^24.8.0",
     "less": "^3.9.0",
+    "puppeteer": "^1.17.0",
     "typescript": "^3.4.5"
   }
 }

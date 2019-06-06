@@ -1,13 +1,24 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "esnext",
     "noImplicitAny": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "allowJs": true,
-    "lib": ["es5", "es2015", "dom"]
+    "lib": [
+      "es5",
+      "es2015",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noEmit": true
   },
   "exclude": [
     "config-overrides.js",
@@ -18,5 +29,8 @@
     "webpack",
     "jest",
     "config"
+  ],
+  "include": [
+    "src"
   ]
 }

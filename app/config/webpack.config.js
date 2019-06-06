@@ -321,7 +321,7 @@ module.exports = function(webpackEnv) {
         //       options: {
         //         formatter: require.resolve('react-dev-utils/eslintFormatter'),
         //         eslintPath: require.resolve('eslint'),
-                
+        
         //       },
         //       loader: require.resolve('eslint-loader'),
         //     },
@@ -358,6 +358,7 @@ module.exports = function(webpackEnv) {
                 : isEnvProduction && workspacesConfig.production
                   ? [paths.appSrc, workspacesConfig.paths]
                   : paths.appSrc,
+              exclude: path.resolve(paths.appPath, '../__test__/'),
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
@@ -408,7 +409,7 @@ module.exports = function(webpackEnv) {
             // Unlike the application JS, we only compile the standard ES features.
             {
               test: /\.(js|mjs)$/,
-              exclude: /@babel(?:\/|\\{1,2})runtime/,
+              exclude: [/@babel(?:\/|\\{1,2})runtime/, path.resolve(paths.appPath, '../src/__test__/')],
               loader: require.resolve('babel-loader'),
               options: {
                 babelrc: false,
