@@ -12,7 +12,7 @@ const appHeaderTopLinks = {
 
 storiesOf('AppHeaderTop', module)
   .addDecorator(story => (
-    <MemoryRouter initialEntries={['/productdetails']}>{story()}</MemoryRouter>
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('AppHeaderTop', () => {
     return (

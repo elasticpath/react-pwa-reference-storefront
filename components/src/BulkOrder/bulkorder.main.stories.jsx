@@ -9,12 +9,12 @@ function handleBulkModalClose() {
 
 storiesOf('BulkOrder', module)
   .addDecorator(story => (
-    <MemoryRouter initialEntries={['/productdetails']}>{story()}</MemoryRouter>
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('BulkOrder', () => {
     return (
         <div style={{'position':'relative'}}>
-          <BulkOrder handleClose={handleBulkModalClose}/>
+          <BulkOrder handleClose={handleBulkModalClose} isBulkModalOpened={true} />
         </div>
     );
   });

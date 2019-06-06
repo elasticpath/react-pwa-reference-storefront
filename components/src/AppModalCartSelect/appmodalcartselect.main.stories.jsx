@@ -9,12 +9,10 @@ function handleModalClose() {
 
 storiesOf('AppModalCartSelectMain', module)
     .addDecorator(story => (
-        <MemoryRouter initialEntries={['/productdetails']}>{story()}</MemoryRouter>
+        <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
     ))
   .add('AppModalCartSelectMain', () => {
     return (
-        <div style={{'background-color':'red'}}>
-            <AppModalCartSelectMain handleModalClose={handleModalClose} openModal={true} />
-        </div>
+        <AppModalCartSelectMain handleModalClose={handleModalClose} openModal={true} />
     );
   });

@@ -13,7 +13,7 @@ function handleIsOffline(isOfflineValue) {
 storiesOf('AppHeaderNavigationMain', module)
   .add('AppHeaderNavigationMain', () => {
     return (
-      <div style={{'background-color':'#040060'}}>
+      <div style={{'backgroundColor':'#040060'}}>
         <MemoryRouter initialEntries={['/']}><AppHeaderNavigationMain isMobileView={false} isOffline={false} isOfflineCheck={handleIsOffline} /></MemoryRouter>
       </div>
     );
