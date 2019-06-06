@@ -208,10 +208,8 @@ class AddressFormMain extends React.Component {
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       })
-        .then(res => {console.warn(res); return res;})
         .then(res => res.json())
         .then((res) => {
-          console.warn(res);
           this.setState({
             firstName: res.name['given-name'],
             lastName: res.name['family-name'],
