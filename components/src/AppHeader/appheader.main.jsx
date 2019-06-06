@@ -63,11 +63,11 @@ class AppHeaderMain extends React.Component {
     checkedLocation: PropTypes.bool,
     isInStandaloneMode: PropTypes.bool,
     locationSearchData: PropTypes.string,
-    appHeaderLinks: PropTypes.objectOf(PropTypes.any).isRequired,
-    appHeaderLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
-    appHeaderNavigationLinks: PropTypes.objectOf(PropTypes.any).isRequired,
-    appHeaderTopLinks: PropTypes.objectOf(PropTypes.any).isRequired,
-    appModalLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
+    appHeaderLinks: PropTypes.objectOf(PropTypes.any),
+    appHeaderLoginLinks: PropTypes.objectOf(PropTypes.any),
+    appHeaderNavigationLinks: PropTypes.objectOf(PropTypes.any),
+    appHeaderTopLinks: PropTypes.objectOf(PropTypes.any),
+    appModalLoginLinks: PropTypes.objectOf(PropTypes.any),
   }
 
   static defaultProps = {
@@ -81,6 +81,11 @@ class AppHeaderMain extends React.Component {
     onCurrencyChange: () => {},
     onContinueCart: () => {},
     onGoBack: () => {},
+    appHeaderLinks: {},
+    appHeaderLoginLinks: {},
+    appHeaderNavigationLinks: {},
+    appHeaderTopLinks: {},
+    appModalLoginLinks: {},
   }
 
   constructor(props) {
@@ -95,6 +100,7 @@ class AppHeaderMain extends React.Component {
       isSearchFocused: false,
       isBulkModalOpened: false,
       isDesktop: false,
+      isLoggedInUser: localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED',
     };
 
     this.handleBulkModalClose = this.handleBulkModalClose.bind(this);
@@ -176,7 +182,7 @@ class AppHeaderMain extends React.Component {
 
   render() {
     const {
-      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop,
+      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop, isLoggedInUser,
     } = this.state;
     const {
       checkedLocation,
@@ -275,6 +281,7 @@ class AppHeaderMain extends React.Component {
               locationSearchData={locationSearchData}
               appHeaderLoginLinks={appHeaderLoginLinks}
               appModalLoginLinks={appModalLoginLinks}
+              isLoggedIn={isLoggedInUser}
             />
           </div>
 

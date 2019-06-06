@@ -28,4 +28,7 @@ const cartData = {
 };
 
 storiesOf('AddPromotionContainer', module)
-  .add('AddPromotionContainer', () => <MemoryRouter initialEntries={['/']}><AddPromotionContainer data={cartData} /></MemoryRouter>);
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('AddPromotionContainer', () => <AddPromotionContainer data={cartData} />);
