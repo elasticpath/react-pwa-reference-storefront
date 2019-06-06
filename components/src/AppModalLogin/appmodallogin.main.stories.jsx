@@ -14,4 +14,4 @@ storiesOf('AppModalLoginMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppModalLoginMain', () => <AppModalLoginMain andleModalClose={() => {}} openModal={true} appModalLoginLinks={appModalLoginLinks} disableLogin={true} showForgotPasswordLink={false} />);
+  .add('AppModalLoginMain', () => <AppModalLoginMain handleModalClose={() => {}} openModal={true} appModalLoginLinks={appModalLoginLinks} disableLogin={true} showForgotPasswordLink={false} />);
