@@ -19,6 +19,8 @@ epConfig.supportedLocales.forEach((locale) => {
   locales[locale.value] = require(`./localization/${locale.value}.json`);
 });
 
+console.warn(UserPrefs.getSelectedLocaleValue());
+
 // localisation init
 intl.init({
   currentLocale: UserPrefs.getSelectedLocaleValue(),
