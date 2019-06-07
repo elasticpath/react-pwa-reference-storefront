@@ -26,7 +26,7 @@
     "scripts",
     "acceptance-tests",
     "webpack",
-    "jest",
-    "config"
+    "config",
+    "src/tests"
   ]
 }

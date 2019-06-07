@@ -20,7 +20,7 @@
  */
 
 /* eslint-disable */
-import { loginUser } from "./common";
+const { loginUser } = require('./common');
 const puppeteer = require('puppeteer');
 
 const host = process.env.TEST_HOST;

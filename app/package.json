@@ -79,7 +79,7 @@
   "scripts": {
     "start": "BROWSER=none node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "react-scripts test --runInBand --env=jsdom --testPathIgnorePatterns common.js",
+    "test": "node scripts/test.js",
     "lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe"
   },
   "browserslist": {

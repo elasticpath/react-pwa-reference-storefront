@@ -21,14 +21,14 @@
 
 /* eslint-disable */
 
-import {
+const {
   registerUser,
   addAddress,
   addPaymentMethod,
   loginUserRegister,
   loginUser,
   addProductToCart
-} from "./common";
+} = require('./common');
 const puppeteer = require('puppeteer');
 
 const host = process.env.TEST_HOST;
@@ -39,7 +39,7 @@ const desktopViewport = {
   height: 700,
 };
 
-export async function getChartItems(page) {
+async function getChartItems(page) {
   const CART_LINE_ITEM_NAME_CSS = 'div[data-el-value="lineItem.displayName"]';
 
   await page.waitForSelector(CART_LINE_ITEM_NAME_CSS);
