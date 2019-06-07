@@ -6,6 +6,7 @@ import cartData from './MockHttpResponses/cart_data_response';
 import CartLineItem from './cart.lineitem';
 
 function handleQuantityChange(){}
+function handleRemove() {}
 
 storiesOf('CartLineItem', module)
   .addDecorator(story => (
@@ -15,7 +16,7 @@ storiesOf('CartLineItem', module)
     return (
         <div>
             {cartData._defaultcart[0]._lineitems[0]._element.map(product => (
-             <CartLineItem handleQuantityChange={handleQuantityChange} item={product} key={product._item[0]._code[0].code} />
+             <CartLineItem handleQuantityChange={handleQuantityChange} item={product} key={product._item[0]._code[0].code} onRemove={handleRemove}/>
             ))}
         </div>
       );

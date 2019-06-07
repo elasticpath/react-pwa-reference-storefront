@@ -7,6 +7,6 @@ import AppHeaderMain from './appheader.main';
 storiesOf('AppHeaderMain', module)
   .add('AppHeaderMain', () => {
     return (
-      <MemoryRouter initialEntries={['/']}><AppHeaderMain  /></MemoryRouter>
+      <MemoryRouter initialEntries={['/']}><AppHeaderMain /></MemoryRouter>
   );
   });
