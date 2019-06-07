@@ -17,8 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "isolatedModules": true,
-    "noEmit": true,
-    "strict": true
+    "noEmit": true
   },
   "exclude": [
     "config-overrides.js",
@@ -29,8 +28,5 @@
     "webpack",
     "jest",
     "config"
-  ],
-  "include": [
-    "src"
   ]
 }
