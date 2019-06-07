@@ -1,0 +1,2809 @@
+{
+  "self": {
+    "type": "offersearches.offer-search-result",
+    "uri": "/offersearches/vestri/offers/qkwwgylumvtw64tzfvrw6zdfwjleku2ukjev6qkdincvgu2pkjeuku5jobqwozjnonuxuzncgiya=/filters/qgqka=/1",
+    "href": "http://reference.epdemos.com/cortex/offersearches/vestri/offers/qkwwgylumvtw64tzfvrw6zdfwjleku2ukjev6qkdincvgu2pkjeuku5jobqwozjnonuxuzncgiya=/filters/qgqka=/1"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+    },
+    {
+      "rel": "facets",
+      "rev": "offersearchresult",
+      "type": "offersearches.facets",
+      "uri": "/offersearches/vestri/offers/qkwwgylumvtw64tzfvrw6zdfwjleku2ukjev6qkdincvgu2pkjeuku5jobqwozjnonuxuzncgiya=/filters/qgqka=/facets",
+      "href": "http://reference.epdemos.com/cortex/offersearches/vestri/offers/qkwwgylumvtw64tzfvrw6zdfwjleku2ukjev6qkdincvgu2pkjeuku5jobqwozjnonuxuzncgiya=/filters/qgqka=/facets"
+    }
+  ],
+  "_element": [
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "availability",
+          "rev": "offer",
+          "type": "availabilities.availability-for-offer",
+          "uri": "/availabilities/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+          "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+        },
+        {
+          "rel": "definition",
+          "rev": "offer",
+          "type": "offerdefinitions.offer-definition",
+          "uri": "/offerdefinitions/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+          "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+        },
+        {
+          "rel": "code",
+          "rev": "offer",
+          "type": "offers.code-for-offer",
+          "uri": "/offers/code/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+          "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+        },
+        {
+          "rel": "items",
+          "rev": "offer",
+          "type": "offers.offer-items",
+          "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/items",
+          "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/items"
+        },
+        {
+          "rel": "pricerange",
+          "rev": "offer",
+          "type": "prices.offer-price-range",
+          "uri": "/prices/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+          "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+        }
+      ],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "availability",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+            }
+          ],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "code",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+            }
+          ],
+          "code": "VESTRI_1-18_SCALE_DIECAST_P85_MODEL"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "definition",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+            }
+          ],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "The CR550 diecast scale model was officially commissioned by Vestri.  Every detail was meticulously overseen directly by the Vestri Design Team in California.\n\nThe same 3D CAD data used to manufacture the actual Model S was used to precisely replicate every detail, curve and surface found in the scale model.",
+              "name": "summary",
+              "value": "The CR550 diecast scale model was officially commissioned by Vestri.  Every detail was meticulously overseen directly by the Vestri Design Team in California.\n\nThe same 3D CAD data used to manufacture the actual Model S was used to precisely replicate every detail, curve and surface found in the scale model."
+            },
+            {
+              "display-name": "",
+              "display-value": "vestri:Accessories",
+              "name": "tag",
+              "value": [
+                "vestri:Accessories"
+              ]
+            }
+          ],
+          "display-name": "1:18 Scale Diecast P85 CR550"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/items"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "element",
+              "rev": "list",
+              "type": "items.item",
+              "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+              "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+            },
+            {
+              "rel": "offer",
+              "rev": "items",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+            }
+          ],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "availability",
+                  "rev": "item",
+                  "type": "availabilities.availability-for-item",
+                  "uri": "/availabilities/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                  "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                },
+                {
+                  "rel": "addtocartform",
+                  "type": "carts.add-to-default-cart-form",
+                  "uri": "/carts/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/form",
+                  "href": "http://reference.epdemos.com/cortex/carts/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/form"
+                },
+                {
+                  "rel": "cartmemberships",
+                  "type": "carts.read-cart-memberships",
+                  "uri": "/carts/memberships/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                  "href": "http://reference.epdemos.com/cortex/carts/memberships/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                },
+                {
+                  "rel": "definition",
+                  "rev": "item",
+                  "type": "itemdefinitions.item-definition",
+                  "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                  "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                },
+                {
+                  "rel": "code",
+                  "rev": "item",
+                  "type": "items.code-for-item",
+                  "uri": "/items/code/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                  "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                },
+                {
+                  "rel": "price",
+                  "rev": "item",
+                  "type": "prices.price-for-item",
+                  "uri": "/prices/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                  "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                },
+                {
+                  "rel": "appliedpromotions",
+                  "rev": "item",
+                  "type": "promotions.applied-promotions-for-item",
+                  "uri": "/promotions/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/applied",
+                  "href": "http://reference.epdemos.com/cortex/promotions/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/applied"
+                },
+                {
+                  "rel": "recommendations",
+                  "type": "recommendations.item-recommendation-groups",
+                  "uri": "/recommendations/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                  "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                },
+                {
+                  "rel": "addtowishlistform",
+                  "type": "wishlists.add-item-to-wishlist-form",
+                  "uri": "/wishlists/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/form",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=/form"
+                },
+                {
+                  "rel": "wishlistmemberships",
+                  "type": "wishlists.read-wishlist-memberships",
+                  "uri": "/wishlists/memberships/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/memberships/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                }
+              ],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "availability",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                    }
+                  ],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "code",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                    }
+                  ],
+                  "code": "VESTRI_1-18_SCALE_DIECAST_P85_MODEL"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "definition",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                    },
+                    {
+                      "rel": "fromprice",
+                      "rev": "definition",
+                      "type": "prices.price-for-itemdefinition",
+                      "uri": "/prices/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                      "href": "http://reference.epdemos.com/cortex/prices/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                    }
+                  ],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "The CR550 diecast scale model was officially commissioned by Vestri.  Every detail was meticulously overseen directly by the Vestri Design Team in California.\n\nThe same 3D CAD data used to manufacture the actual Model S was used to precisely replicate every detail, curve and surface found in the scale model.",
+                      "name": "summary",
+                      "value": "The CR550 diecast scale model was officially commissioned by Vestri.  Every detail was meticulously overseen directly by the Vestri Design Team in California.\n\nThe same 3D CAD data used to manufacture the actual Model S was used to precisely replicate every detail, curve and surface found in the scale model."
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "vestri:Accessories",
+                      "name": "tag",
+                      "value": [
+                        "vestri:Accessories"
+                      ]
+                    }
+                  ],
+                  "display-name": "1:18 Scale Diecast P85 CR550"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "price",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                    }
+                  ],
+                  "list-price": [
+                    {
+                      "amount": 210,
+                      "currency": "USD",
+                      "display": "$210.00"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 199.5,
+                      "currency": "USD",
+                      "display": "$199.50"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_pricerange": [
+        {
+          "self": {
+            "type": "prices.offer-price-range",
+            "uri": "/prices/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+            "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "pricerange",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+            }
+          ],
+          "list-price-range": {
+            "from-price": [
+              {
+                "amount": 210,
+                "currency": "USD",
+                "display": "$210.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 210,
+                "currency": "USD",
+                "display": "$210.00"
+              }
+            ]
+          },
+          "purchase-price-range": {
+            "from-price": [
+              {
+                "amount": 210,
+                "currency": "USD",
+                "display": "$210.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 210,
+                "currency": "USD",
+                "display": "$210.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "availability",
+          "rev": "offer",
+          "type": "availabilities.availability-for-offer",
+          "uri": "/availabilities/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+          "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+        },
+        {
+          "rel": "definition",
+          "rev": "offer",
+          "type": "offerdefinitions.offer-definition",
+          "uri": "/offerdefinitions/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+          "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+        },
+        {
+          "rel": "code",
+          "rev": "offer",
+          "type": "offers.code-for-offer",
+          "uri": "/offers/code/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+          "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+        },
+        {
+          "rel": "items",
+          "rev": "offer",
+          "type": "offers.offer-items",
+          "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/items",
+          "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/items"
+        },
+        {
+          "rel": "pricerange",
+          "rev": "offer",
+          "type": "prices.offer-price-range",
+          "uri": "/prices/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+          "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+        }
+      ],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "availability",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+            }
+          ],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "code",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+            }
+          ],
+          "code": "VESTRI_CORSICANA_TOTE"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "definition",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+            }
+          ],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "With its unique yet classic style, the Corsicana Tote is optimized for originality. Designed in true Vestri fashion, these robust and timeless totes are made of supple automotive-grade leather, just like the seats in your car. Suitable for use as an everyday handbag or as a business case, the Corsicana tote will comfortably hold a 15-inch laptop as well as all your other business necessities. The Corsicana Tote is named after a Vestri Supercharger location in Texas.",
+              "name": "summary",
+              "value": "With its unique yet classic style, the Corsicana Tote is optimized for originality. Designed in true Vestri fashion, these robust and timeless totes are made of supple automotive-grade leather, just like the seats in your car. Suitable for use as an everyday handbag or as a business case, the Corsicana tote will comfortably hold a 15-inch laptop as well as all your other business necessities. The Corsicana Tote is named after a Vestri Supercharger location in Texas."
+            },
+            {
+              "display-name": "",
+              "display-value": "vestri:Womens/Designer-Collection, vestri:Accessories",
+              "name": "tag",
+              "value": [
+                "vestri:Womens/Designer-Collection",
+                "vestri:Accessories"
+              ]
+            }
+          ],
+          "display-name": "Corsicana Tote"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/items"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "element",
+              "rev": "list",
+              "type": "items.item",
+              "uri": "/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+              "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+            },
+            {
+              "rel": "offer",
+              "rev": "items",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+            }
+          ],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "availability",
+                  "rev": "item",
+                  "type": "availabilities.availability-for-item",
+                  "uri": "/availabilities/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                  "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                },
+                {
+                  "rel": "addtocartform",
+                  "type": "carts.add-to-default-cart-form",
+                  "uri": "/carts/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/form",
+                  "href": "http://reference.epdemos.com/cortex/carts/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/form"
+                },
+                {
+                  "rel": "cartmemberships",
+                  "type": "carts.read-cart-memberships",
+                  "uri": "/carts/memberships/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                  "href": "http://reference.epdemos.com/cortex/carts/memberships/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                },
+                {
+                  "rel": "definition",
+                  "rev": "item",
+                  "type": "itemdefinitions.item-definition",
+                  "uri": "/itemdefinitions/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                  "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                },
+                {
+                  "rel": "code",
+                  "rev": "item",
+                  "type": "items.code-for-item",
+                  "uri": "/items/code/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                  "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                },
+                {
+                  "rel": "price",
+                  "rev": "item",
+                  "type": "prices.price-for-item",
+                  "uri": "/prices/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                  "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                },
+                {
+                  "rel": "appliedpromotions",
+                  "rev": "item",
+                  "type": "promotions.applied-promotions-for-item",
+                  "uri": "/promotions/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/applied",
+                  "href": "http://reference.epdemos.com/cortex/promotions/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/applied"
+                },
+                {
+                  "rel": "recommendations",
+                  "type": "recommendations.item-recommendation-groups",
+                  "uri": "/recommendations/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                  "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                },
+                {
+                  "rel": "addtowishlistform",
+                  "type": "wishlists.add-item-to-wishlist-form",
+                  "uri": "/wishlists/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/form",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=/form"
+                },
+                {
+                  "rel": "wishlistmemberships",
+                  "type": "wishlists.read-wishlist-memberships",
+                  "uri": "/wishlists/memberships/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/memberships/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                }
+              ],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "availability",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                    }
+                  ],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "code",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                    }
+                  ],
+                  "code": "VESTRI_CORSICANA_TOTE"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "definition",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                    },
+                    {
+                      "rel": "fromprice",
+                      "rev": "definition",
+                      "type": "prices.price-for-itemdefinition",
+                      "uri": "/prices/itemdefinitions/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                      "href": "http://reference.epdemos.com/cortex/prices/itemdefinitions/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                    }
+                  ],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "With its unique yet classic style, the Corsicana Tote is optimized for originality. Designed in true Vestri fashion, these robust and timeless totes are made of supple automotive-grade leather, just like the seats in your car. Suitable for use as an everyday handbag or as a business case, the Corsicana tote will comfortably hold a 15-inch laptop as well as all your other business necessities. The Corsicana Tote is named after a Vestri Supercharger location in Texas.",
+                      "name": "summary",
+                      "value": "With its unique yet classic style, the Corsicana Tote is optimized for originality. Designed in true Vestri fashion, these robust and timeless totes are made of supple automotive-grade leather, just like the seats in your car. Suitable for use as an everyday handbag or as a business case, the Corsicana tote will comfortably hold a 15-inch laptop as well as all your other business necessities. The Corsicana Tote is named after a Vestri Supercharger location in Texas."
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "vestri:Womens/Designer-Collection, vestri:Accessories",
+                      "name": "tag",
+                      "value": [
+                        "vestri:Womens/Designer-Collection",
+                        "vestri:Accessories"
+                      ]
+                    }
+                  ],
+                  "display-name": "Corsicana Tote"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "price",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+                    }
+                  ],
+                  "list-price": [
+                    {
+                      "amount": 300,
+                      "currency": "USD",
+                      "display": "$300.00"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 285,
+                      "currency": "USD",
+                      "display": "$285.00"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_pricerange": [
+        {
+          "self": {
+            "type": "prices.offer-price-range",
+            "uri": "/prices/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+            "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "pricerange",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbnkwivjviusjl5bu6ustjfbuctsbl5ke6vcf="
+            }
+          ],
+          "list-price-range": {
+            "from-price": [
+              {
+                "amount": 300,
+                "currency": "USD",
+                "display": "$300.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 300,
+                "currency": "USD",
+                "display": "$300.00"
+              }
+            ]
+          },
+          "purchase-price-range": {
+            "from-price": [
+              {
+                "amount": 300,
+                "currency": "USD",
+                "display": "$300.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 300,
+                "currency": "USD",
+                "display": "$300.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "availability",
+          "rev": "offer",
+          "type": "availabilities.availability-for-offer",
+          "uri": "/availabilities/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+          "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+        },
+        {
+          "rel": "definition",
+          "rev": "offer",
+          "type": "offerdefinitions.offer-definition",
+          "uri": "/offerdefinitions/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+          "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+        },
+        {
+          "rel": "code",
+          "rev": "offer",
+          "type": "offers.code-for-offer",
+          "uri": "/offers/code/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+          "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+        },
+        {
+          "rel": "items",
+          "rev": "offer",
+          "type": "offers.offer-items",
+          "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=/items",
+          "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=/items"
+        },
+        {
+          "rel": "pricerange",
+          "rev": "offer",
+          "type": "prices.offer-price-range",
+          "uri": "/prices/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+          "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+        }
+      ],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "availability",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+            }
+          ],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "code",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+            }
+          ],
+          "code": "VESTRI_GOLF_BAG"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "definition",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+            }
+          ],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "Designed with a lightweight and durable construction, the Vestri Golf Bag has all the features you expect from a full-size cart bag. With 8 functional pockets, you can store all of the gear you need while you are out on the course. The standing legs, capped with gripping ends, keep your bag stable on the course. The bag features a ‘valuables’ waterproof pocket with ultra-soft fleece lining to keep your watch, wallet and other similar items safe. The double-strap system keeps you comfortable for hours by distributing the bag's weight evenly across your shoulders.",
+              "name": "summary",
+              "value": "Designed with a lightweight and durable construction, the Vestri Golf Bag has all the features you expect from a full-size cart bag. With 8 functional pockets, you can store all of the gear you need while you are out on the course. The standing legs, capped with gripping ends, keep your bag stable on the course. The bag features a ‘valuables’ waterproof pocket with ultra-soft fleece lining to keep your watch, wallet and other similar items safe. The double-strap system keeps you comfortable for hours by distributing the bag's weight evenly across your shoulders."
+            },
+            {
+              "display-name": "",
+              "display-value": "vestri:Accessories",
+              "name": "tag",
+              "value": [
+                "vestri:Accessories"
+              ]
+            }
+          ],
+          "display-name": "Vestri Golf Bag"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=/items"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "element",
+              "rev": "list",
+              "type": "items.item",
+              "uri": "/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+              "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+            },
+            {
+              "rel": "offer",
+              "rev": "items",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+            }
+          ],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "availability",
+                  "rev": "item",
+                  "type": "availabilities.availability-for-item",
+                  "uri": "/availabilities/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                  "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                },
+                {
+                  "rel": "addtocartform",
+                  "type": "carts.add-to-default-cart-form",
+                  "uri": "/carts/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=/form",
+                  "href": "http://reference.epdemos.com/cortex/carts/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=/form"
+                },
+                {
+                  "rel": "cartmemberships",
+                  "type": "carts.read-cart-memberships",
+                  "uri": "/carts/memberships/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                  "href": "http://reference.epdemos.com/cortex/carts/memberships/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                },
+                {
+                  "rel": "definition",
+                  "rev": "item",
+                  "type": "itemdefinitions.item-definition",
+                  "uri": "/itemdefinitions/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                  "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                },
+                {
+                  "rel": "code",
+                  "rev": "item",
+                  "type": "items.code-for-item",
+                  "uri": "/items/code/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                  "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                },
+                {
+                  "rel": "price",
+                  "rev": "item",
+                  "type": "prices.price-for-item",
+                  "uri": "/prices/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                  "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                },
+                {
+                  "rel": "appliedpromotions",
+                  "rev": "item",
+                  "type": "promotions.applied-promotions-for-item",
+                  "uri": "/promotions/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=/applied",
+                  "href": "http://reference.epdemos.com/cortex/promotions/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=/applied"
+                },
+                {
+                  "rel": "recommendations",
+                  "type": "recommendations.item-recommendation-groups",
+                  "uri": "/recommendations/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                  "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                },
+                {
+                  "rel": "addtowishlistform",
+                  "type": "wishlists.add-item-to-wishlist-form",
+                  "uri": "/wishlists/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=/form",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=/form"
+                },
+                {
+                  "rel": "wishlistmemberships",
+                  "type": "wishlists.read-wishlist-memberships",
+                  "uri": "/wishlists/memberships/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/memberships/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                }
+              ],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "availability",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                    }
+                  ],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "code",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                    }
+                  ],
+                  "code": "VESTRI_GOLF_BAG"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "definition",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                    },
+                    {
+                      "rel": "fromprice",
+                      "rev": "definition",
+                      "type": "prices.price-for-itemdefinition",
+                      "uri": "/prices/itemdefinitions/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                      "href": "http://reference.epdemos.com/cortex/prices/itemdefinitions/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                    }
+                  ],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "Designed with a lightweight and durable construction, the Vestri Golf Bag has all the features you expect from a full-size cart bag. With 8 functional pockets, you can store all of the gear you need while you are out on the course. The standing legs, capped with gripping ends, keep your bag stable on the course. The bag features a ‘valuables’ waterproof pocket with ultra-soft fleece lining to keep your watch, wallet and other similar items safe. The double-strap system keeps you comfortable for hours by distributing the bag's weight evenly across your shoulders.",
+                      "name": "summary",
+                      "value": "Designed with a lightweight and durable construction, the Vestri Golf Bag has all the features you expect from a full-size cart bag. With 8 functional pockets, you can store all of the gear you need while you are out on the course. The standing legs, capped with gripping ends, keep your bag stable on the course. The bag features a ‘valuables’ waterproof pocket with ultra-soft fleece lining to keep your watch, wallet and other similar items safe. The double-strap system keeps you comfortable for hours by distributing the bag's weight evenly across your shoulders."
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "vestri:Accessories",
+                      "name": "tag",
+                      "value": [
+                        "vestri:Accessories"
+                      ]
+                    }
+                  ],
+                  "display-name": "Vestri Golf Bag"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "price",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhl2wivjviusjl5du6tcgl5becry="
+                    }
+                  ],
+                  "list-price": [
+                    {
+                      "amount": 174.99,
+                      "currency": "USD",
+                      "display": "$174.99"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 166.24,
+                      "currency": "USD",
+                      "display": "$166.24"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_pricerange": [
+        {
+          "self": {
+            "type": "prices.offer-price-range",
+            "uri": "/prices/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+            "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "pricerange",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbl2wivjviusjl5du6tcgl5becry="
+            }
+          ],
+          "list-price-range": {
+            "from-price": [
+              {
+                "amount": 174.99,
+                "currency": "USD",
+                "display": "$174.99"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 174.99,
+                "currency": "USD",
+                "display": "$174.99"
+              }
+            ]
+          },
+          "purchase-price-range": {
+            "from-price": [
+              {
+                "amount": 174.99,
+                "currency": "USD",
+                "display": "$174.99"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 174.99,
+                "currency": "USD",
+                "display": "$174.99"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "availability",
+          "rev": "offer",
+          "type": "availabilities.availability-for-offer",
+          "uri": "/availabilities/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+          "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+        },
+        {
+          "rel": "definition",
+          "rev": "offer",
+          "type": "offerdefinitions.offer-definition",
+          "uri": "/offerdefinitions/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+          "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+        },
+        {
+          "rel": "code",
+          "rev": "offer",
+          "type": "offers.code-for-offer",
+          "uri": "/offers/code/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+          "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+        },
+        {
+          "rel": "items",
+          "rev": "offer",
+          "type": "offers.offer-items",
+          "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/items",
+          "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/items"
+        },
+        {
+          "rel": "pricerange",
+          "rev": "offer",
+          "type": "prices.offer-price-range",
+          "uri": "/prices/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+          "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+        }
+      ],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "availability",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+            }
+          ],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "code",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+            }
+          ],
+          "code": "VESTRI_MENS_TOUCH_SCREEN_GLOVES"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "definition",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+            }
+          ],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "Traditional craftsmanship meets high-tech innovation in our stylish driving gloves, the perfect pairing for your Model S.\n\nArtfully crafted from ultra-soft sheepskin leather, our gloves will keep you warm during the cold winter months while allowing you to use your touchscreen or smartphone without having to be removed.",
+              "name": "summary",
+              "value": "Traditional craftsmanship meets high-tech innovation in our stylish driving gloves, the perfect pairing for your Model S.\n\nArtfully crafted from ultra-soft sheepskin leather, our gloves will keep you warm during the cold winter months while allowing you to use your touchscreen or smartphone without having to be removed."
+            },
+            {
+              "display-name": "",
+              "display-value": "vestri:Accessories, vestri:Mens/Designer-Collection",
+              "name": "tag",
+              "value": [
+                "vestri:Accessories",
+                "vestri:Mens/Designer-Collection"
+              ]
+            }
+          ],
+          "display-name": "Men's Touch Screen Leather Driving Gloves"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/items"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "element",
+              "rev": "list",
+              "type": "items.item",
+              "uri": "/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+              "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+            },
+            {
+              "rel": "offer",
+              "rev": "items",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+            }
+          ],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "availability",
+                  "rev": "item",
+                  "type": "availabilities.availability-for-item",
+                  "uri": "/availabilities/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                  "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                },
+                {
+                  "rel": "addtocartform",
+                  "type": "carts.add-to-default-cart-form",
+                  "uri": "/carts/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/form",
+                  "href": "http://reference.epdemos.com/cortex/carts/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/form"
+                },
+                {
+                  "rel": "cartmemberships",
+                  "type": "carts.read-cart-memberships",
+                  "uri": "/carts/memberships/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                  "href": "http://reference.epdemos.com/cortex/carts/memberships/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                },
+                {
+                  "rel": "definition",
+                  "rev": "item",
+                  "type": "itemdefinitions.item-definition",
+                  "uri": "/itemdefinitions/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                  "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                },
+                {
+                  "rel": "code",
+                  "rev": "item",
+                  "type": "items.code-for-item",
+                  "uri": "/items/code/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                  "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                },
+                {
+                  "rel": "price",
+                  "rev": "item",
+                  "type": "prices.price-for-item",
+                  "uri": "/prices/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                  "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                },
+                {
+                  "rel": "appliedpromotions",
+                  "rev": "item",
+                  "type": "promotions.applied-promotions-for-item",
+                  "uri": "/promotions/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/applied",
+                  "href": "http://reference.epdemos.com/cortex/promotions/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/applied"
+                },
+                {
+                  "rel": "recommendations",
+                  "type": "recommendations.item-recommendation-groups",
+                  "uri": "/recommendations/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                  "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                },
+                {
+                  "rel": "addtowishlistform",
+                  "type": "wishlists.add-item-to-wishlist-form",
+                  "uri": "/wishlists/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/form",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=/form"
+                },
+                {
+                  "rel": "wishlistmemberships",
+                  "type": "wishlists.read-wishlist-memberships",
+                  "uri": "/wishlists/memberships/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/memberships/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                }
+              ],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "availability",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                    }
+                  ],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "code",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                    }
+                  ],
+                  "code": "VESTRI_MENS_TOUCH_SCREEN_GLOVES"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "definition",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                    },
+                    {
+                      "rel": "fromprice",
+                      "rev": "definition",
+                      "type": "prices.price-for-itemdefinition",
+                      "uri": "/prices/itemdefinitions/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                      "href": "http://reference.epdemos.com/cortex/prices/itemdefinitions/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                    }
+                  ],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "Traditional craftsmanship meets high-tech innovation in our stylish driving gloves, the perfect pairing for your Model S.\n\nArtfully crafted from ultra-soft sheepskin leather, our gloves will keep you warm during the cold winter months while allowing you to use your touchscreen or smartphone without having to be removed.",
+                      "name": "summary",
+                      "value": "Traditional craftsmanship meets high-tech innovation in our stylish driving gloves, the perfect pairing for your Model S.\n\nArtfully crafted from ultra-soft sheepskin leather, our gloves will keep you warm during the cold winter months while allowing you to use your touchscreen or smartphone without having to be removed."
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "vestri:Accessories, vestri:Mens/Designer-Collection",
+                      "name": "tag",
+                      "value": [
+                        "vestri:Accessories",
+                        "vestri:Mens/Designer-Collection"
+                      ]
+                    }
+                  ],
+                  "display-name": "Men's Touch Screen Leather Driving Gloves"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "price",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+                    }
+                  ],
+                  "list-price": [
+                    {
+                      "amount": 100,
+                      "currency": "USD",
+                      "display": "$100.00"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 95,
+                      "currency": "USD",
+                      "display": "$95.00"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_pricerange": [
+        {
+          "self": {
+            "type": "prices.offer-price-range",
+            "uri": "/prices/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+            "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "pricerange",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbp2wivjviusjl5guktstl5ke6vkdjbpvgq2sivcu4x2hjrhvmrkt="
+            }
+          ],
+          "list-price-range": {
+            "from-price": [
+              {
+                "amount": 100,
+                "currency": "USD",
+                "display": "$100.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 100,
+                "currency": "USD",
+                "display": "$100.00"
+              }
+            ]
+          },
+          "purchase-price-range": {
+            "from-price": [
+              {
+                "amount": 100,
+                "currency": "USD",
+                "display": "$100.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 100,
+                "currency": "USD",
+                "display": "$100.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "availability",
+          "rev": "offer",
+          "type": "availabilities.availability-for-offer",
+          "uri": "/availabilities/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+          "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+        },
+        {
+          "rel": "definition",
+          "rev": "offer",
+          "type": "offerdefinitions.offer-definition",
+          "uri": "/offerdefinitions/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+          "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+        },
+        {
+          "rel": "code",
+          "rev": "offer",
+          "type": "offers.code-for-offer",
+          "uri": "/offers/code/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+          "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+        },
+        {
+          "rel": "items",
+          "rev": "offer",
+          "type": "offers.offer-items",
+          "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=/items",
+          "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=/items"
+        },
+        {
+          "rel": "pricerange",
+          "rev": "offer",
+          "type": "prices.offer-price-range",
+          "uri": "/prices/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+          "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+        }
+      ],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "availability",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+            }
+          ],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "code",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+            }
+          ],
+          "code": "VESTRI_GOLF_BALLS"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "definition",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+            }
+          ],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "Take Vestri to the links with the new Pro V1 Vestri branded golf balls. Working with the #1 ball in golf shows Vestri's dedication to align itself with the very best quality and performance in all fields, including golf. Paired with the VESTRI brand, these golf balls provide the exceptional distance and durability golfers count on, while delivering increased spin control and a more consistent flight.  Packaged and sold by the dozen.",
+              "name": "summary",
+              "value": "Take Vestri to the links with the new Pro V1 Vestri branded golf balls. Working with the #1 ball in golf shows Vestri's dedication to align itself with the very best quality and performance in all fields, including golf. Paired with the VESTRI brand, these golf balls provide the exceptional distance and durability golfers count on, while delivering increased spin control and a more consistent flight.  Packaged and sold by the dozen."
+            },
+            {
+              "display-name": "",
+              "display-value": "vestri:Accessories",
+              "name": "tag",
+              "value": [
+                "vestri:Accessories"
+              ]
+            }
+          ],
+          "display-name": "Vestri Titleist ProV1 Golf Balls"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=/items"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "element",
+              "rev": "list",
+              "type": "items.item",
+              "uri": "/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+              "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+            },
+            {
+              "rel": "offer",
+              "rev": "items",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+            }
+          ],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "availability",
+                  "rev": "item",
+                  "type": "availabilities.availability-for-item",
+                  "uri": "/availabilities/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                  "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                },
+                {
+                  "rel": "addtocartform",
+                  "type": "carts.add-to-default-cart-form",
+                  "uri": "/carts/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=/form",
+                  "href": "http://reference.epdemos.com/cortex/carts/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=/form"
+                },
+                {
+                  "rel": "cartmemberships",
+                  "type": "carts.read-cart-memberships",
+                  "uri": "/carts/memberships/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                  "href": "http://reference.epdemos.com/cortex/carts/memberships/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                },
+                {
+                  "rel": "definition",
+                  "rev": "item",
+                  "type": "itemdefinitions.item-definition",
+                  "uri": "/itemdefinitions/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                  "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                },
+                {
+                  "rel": "code",
+                  "rev": "item",
+                  "type": "items.code-for-item",
+                  "uri": "/items/code/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                  "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                },
+                {
+                  "rel": "price",
+                  "rev": "item",
+                  "type": "prices.price-for-item",
+                  "uri": "/prices/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                  "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                },
+                {
+                  "rel": "appliedpromotions",
+                  "rev": "item",
+                  "type": "promotions.applied-promotions-for-item",
+                  "uri": "/promotions/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=/applied",
+                  "href": "http://reference.epdemos.com/cortex/promotions/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=/applied"
+                },
+                {
+                  "rel": "recommendations",
+                  "type": "recommendations.item-recommendation-groups",
+                  "uri": "/recommendations/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                  "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                },
+                {
+                  "rel": "addtowishlistform",
+                  "type": "wishlists.add-item-to-wishlist-form",
+                  "uri": "/wishlists/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=/form",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=/form"
+                },
+                {
+                  "rel": "wishlistmemberships",
+                  "type": "wishlists.read-wishlist-memberships",
+                  "uri": "/wishlists/memberships/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/memberships/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                }
+              ],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "availability",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                    }
+                  ],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "code",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                    }
+                  ],
+                  "code": "VESTRI_GOLF_BALLS"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "definition",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                    },
+                    {
+                      "rel": "fromprice",
+                      "rev": "definition",
+                      "type": "prices.price-for-itemdefinition",
+                      "uri": "/prices/itemdefinitions/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                      "href": "http://reference.epdemos.com/cortex/prices/itemdefinitions/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                    }
+                  ],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "Take Vestri to the links with the new Pro V1 Vestri branded golf balls. Working with the #1 ball in golf shows Vestri's dedication to align itself with the very best quality and performance in all fields, including golf. Paired with the VESTRI brand, these golf balls provide the exceptional distance and durability golfers count on, while delivering increased spin control and a more consistent flight.  Packaged and sold by the dozen.",
+                      "name": "summary",
+                      "value": "Take Vestri to the links with the new Pro V1 Vestri branded golf balls. Working with the #1 ball in golf shows Vestri's dedication to align itself with the very best quality and performance in all fields, including golf. Paired with the VESTRI brand, these golf balls provide the exceptional distance and durability golfers count on, while delivering increased spin control and a more consistent flight.  Packaged and sold by the dozen."
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "vestri:Accessories",
+                      "name": "tag",
+                      "value": [
+                        "vestri:Accessories"
+                      ]
+                    }
+                  ],
+                  "display-name": "Vestri Titleist ProV1 Golf Balls"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "price",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhmkwivjviusjl5du6tcgl5bectcmkm="
+                    }
+                  ],
+                  "list-price": [
+                    {
+                      "amount": 175,
+                      "currency": "USD",
+                      "display": "$175.00"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 166.25,
+                      "currency": "USD",
+                      "display": "$166.25"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_pricerange": [
+        {
+          "self": {
+            "type": "prices.offer-price-range",
+            "uri": "/prices/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+            "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "pricerange",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbmkwivjviusjl5du6tcgl5bectcmkm="
+            }
+          ],
+          "list-price-range": {
+            "from-price": [
+              {
+                "amount": 175,
+                "currency": "USD",
+                "display": "$175.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 175,
+                "currency": "USD",
+                "display": "$175.00"
+              }
+            ]
+          },
+          "purchase-price-range": {
+            "from-price": [
+              {
+                "amount": 175,
+                "currency": "USD",
+                "display": "$175.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 175,
+                "currency": "USD",
+                "display": "$175.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "availability",
+          "rev": "offer",
+          "type": "availabilities.availability-for-offer",
+          "uri": "/availabilities/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+          "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+        },
+        {
+          "rel": "definition",
+          "rev": "offer",
+          "type": "offerdefinitions.offer-definition",
+          "uri": "/offerdefinitions/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+          "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+        },
+        {
+          "rel": "code",
+          "rev": "offer",
+          "type": "offers.code-for-offer",
+          "uri": "/offers/code/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+          "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+        },
+        {
+          "rel": "items",
+          "rev": "offer",
+          "type": "offers.offer-items",
+          "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/items",
+          "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/items"
+        },
+        {
+          "rel": "pricerange",
+          "rev": "offer",
+          "type": "prices.offer-price-range",
+          "uri": "/prices/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+          "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+        }
+      ],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "availability",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+            }
+          ],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "code",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+            }
+          ],
+          "code": "VESTRI_MODEL_X_FOR_KIDS"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "definition",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+            }
+          ],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "The Vestri CR550 for Kids is a battery powered ride on that comes equipped with high-end features to recreate the ultimate Vestri experience. You choose the paint color, performance, accessories and personalization.\n\nAvailable Colors: Red Multi-Coat, Midnight Silver Metallic, and Deep Blue Metallic",
+              "name": "summary",
+              "value": "The Vestri CR550 for Kids is a battery powered ride on that comes equipped with high-end features to recreate the ultimate Vestri experience. You choose the paint color, performance, accessories and personalization.\n\nAvailable Colors: Red Multi-Coat, Midnight Silver Metallic, and Deep Blue Metallic"
+            },
+            {
+              "display-name": "",
+              "display-value": "vestri:Accessories",
+              "name": "tag",
+              "value": [
+                "vestri:Accessories"
+              ]
+            }
+          ],
+          "display-name": "Vestri CR550 for Kids"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/items"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "element",
+              "rev": "list",
+              "type": "items.item",
+              "uri": "/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+              "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+            },
+            {
+              "rel": "offer",
+              "rev": "items",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+            }
+          ],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "availability",
+                  "rev": "item",
+                  "type": "availabilities.availability-for-item",
+                  "uri": "/availabilities/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                  "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                },
+                {
+                  "rel": "addtocartform",
+                  "type": "carts.add-to-default-cart-form",
+                  "uri": "/carts/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/form",
+                  "href": "http://reference.epdemos.com/cortex/carts/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/form"
+                },
+                {
+                  "rel": "cartmemberships",
+                  "type": "carts.read-cart-memberships",
+                  "uri": "/carts/memberships/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                  "href": "http://reference.epdemos.com/cortex/carts/memberships/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                },
+                {
+                  "rel": "definition",
+                  "rev": "item",
+                  "type": "itemdefinitions.item-definition",
+                  "uri": "/itemdefinitions/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                  "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                },
+                {
+                  "rel": "code",
+                  "rev": "item",
+                  "type": "items.code-for-item",
+                  "uri": "/items/code/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                  "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                },
+                {
+                  "rel": "price",
+                  "rev": "item",
+                  "type": "prices.price-for-item",
+                  "uri": "/prices/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                  "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                },
+                {
+                  "rel": "appliedpromotions",
+                  "rev": "item",
+                  "type": "promotions.applied-promotions-for-item",
+                  "uri": "/promotions/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/applied",
+                  "href": "http://reference.epdemos.com/cortex/promotions/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/applied"
+                },
+                {
+                  "rel": "recommendations",
+                  "type": "recommendations.item-recommendation-groups",
+                  "uri": "/recommendations/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                  "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                },
+                {
+                  "rel": "addtowishlistform",
+                  "type": "wishlists.add-item-to-wishlist-form",
+                  "uri": "/wishlists/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/form",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=/form"
+                },
+                {
+                  "rel": "wishlistmemberships",
+                  "type": "wishlists.read-wishlist-memberships",
+                  "uri": "/wishlists/memberships/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/memberships/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                }
+              ],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "availability",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                    }
+                  ],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "code",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                    }
+                  ],
+                  "code": "VESTRI_MODEL_X_FOR_KIDS"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "definition",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                    },
+                    {
+                      "rel": "fromprice",
+                      "rev": "definition",
+                      "type": "prices.price-for-itemdefinition",
+                      "uri": "/prices/itemdefinitions/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                      "href": "http://reference.epdemos.com/cortex/prices/itemdefinitions/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                    }
+                  ],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "The Vestri CR550 for Kids is a battery powered ride on that comes equipped with high-end features to recreate the ultimate Vestri experience. You choose the paint color, performance, accessories and personalization.\n\nAvailable Colors: Red Multi-Coat, Midnight Silver Metallic, and Deep Blue Metallic",
+                      "name": "summary",
+                      "value": "The Vestri CR550 for Kids is a battery powered ride on that comes equipped with high-end features to recreate the ultimate Vestri experience. You choose the paint color, performance, accessories and personalization.\n\nAvailable Colors: Red Multi-Coat, Midnight Silver Metallic, and Deep Blue Metallic"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "vestri:Accessories",
+                      "name": "tag",
+                      "value": [
+                        "vestri:Accessories"
+                      ]
+                    }
+                  ],
+                  "display-name": "Vestri CR550 for Kids"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "price",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+                    }
+                  ],
+                  "list-price": [
+                    {
+                      "amount": 499,
+                      "currency": "USD",
+                      "display": "$499.00"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 474.05,
+                      "currency": "USD",
+                      "display": "$474.05"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_pricerange": [
+        {
+          "self": {
+            "type": "prices.offer-price-range",
+            "uri": "/prices/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+            "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "pricerange",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbn2wivjviusjl5gu6rcfjrpvqx2gj5jf6s2jirjq="
+            }
+          ],
+          "list-price-range": {
+            "from-price": [
+              {
+                "amount": 499,
+                "currency": "USD",
+                "display": "$499.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 499,
+                "currency": "USD",
+                "display": "$499.00"
+              }
+            ]
+          },
+          "purchase-price-range": {
+            "from-price": [
+              {
+                "amount": 499,
+                "currency": "USD",
+                "display": "$499.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 499,
+                "currency": "USD",
+                "display": "$499.00"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "availability",
+          "rev": "offer",
+          "type": "availabilities.availability-for-offer",
+          "uri": "/availabilities/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+          "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+        },
+        {
+          "rel": "definition",
+          "rev": "offer",
+          "type": "offerdefinitions.offer-definition",
+          "uri": "/offerdefinitions/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+          "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+        },
+        {
+          "rel": "code",
+          "rev": "offer",
+          "type": "offers.code-for-offer",
+          "uri": "/offers/code/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+          "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+        },
+        {
+          "rel": "items",
+          "rev": "offer",
+          "type": "offers.offer-items",
+          "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/items",
+          "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/items"
+        },
+        {
+          "rel": "pricerange",
+          "rev": "offer",
+          "type": "prices.offer-price-range",
+          "uri": "/prices/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+          "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+        }
+      ],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "availability",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+            }
+          ],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "code",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+            }
+          ],
+          "code": "VESTRI_STAINLESS_STEEL_WATER_BOTTLE"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "definition",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+            }
+          ],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "The new Vestri stainless steel water bottle is a conveniently sized, insulated water bottle that holds 600mL / 20oz of liquid. It is BPA free, vacuum insulated, double walled, 18/8 stainless steel and perfect for cold or hot liquids.",
+              "name": "summary",
+              "value": "The new Vestri stainless steel water bottle is a conveniently sized, insulated water bottle that holds 600mL / 20oz of liquid. It is BPA free, vacuum insulated, double walled, 18/8 stainless steel and perfect for cold or hot liquids."
+            },
+            {
+              "display-name": "",
+              "display-value": "vestri:Accessories",
+              "name": "tag",
+              "value": [
+                "vestri:Accessories"
+              ]
+            }
+          ],
+          "display-name": "Stainless Steel Water Bottle"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/items"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "element",
+              "rev": "list",
+              "type": "items.item",
+              "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+              "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+            },
+            {
+              "rel": "offer",
+              "rev": "items",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+            }
+          ],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "availability",
+                  "rev": "item",
+                  "type": "availabilities.availability-for-item",
+                  "uri": "/availabilities/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                  "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                },
+                {
+                  "rel": "addtocartform",
+                  "type": "carts.add-to-default-cart-form",
+                  "uri": "/carts/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/form",
+                  "href": "http://reference.epdemos.com/cortex/carts/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/form"
+                },
+                {
+                  "rel": "cartmemberships",
+                  "type": "carts.read-cart-memberships",
+                  "uri": "/carts/memberships/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                  "href": "http://reference.epdemos.com/cortex/carts/memberships/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                },
+                {
+                  "rel": "definition",
+                  "rev": "item",
+                  "type": "itemdefinitions.item-definition",
+                  "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                  "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                },
+                {
+                  "rel": "code",
+                  "rev": "item",
+                  "type": "items.code-for-item",
+                  "uri": "/items/code/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                  "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                },
+                {
+                  "rel": "price",
+                  "rev": "item",
+                  "type": "prices.price-for-item",
+                  "uri": "/prices/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                  "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                },
+                {
+                  "rel": "appliedpromotions",
+                  "rev": "item",
+                  "type": "promotions.applied-promotions-for-item",
+                  "uri": "/promotions/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/applied",
+                  "href": "http://reference.epdemos.com/cortex/promotions/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/applied"
+                },
+                {
+                  "rel": "recommendations",
+                  "type": "recommendations.item-recommendation-groups",
+                  "uri": "/recommendations/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                  "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                },
+                {
+                  "rel": "addtowishlistform",
+                  "type": "wishlists.add-item-to-wishlist-form",
+                  "uri": "/wishlists/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/form",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=/form"
+                },
+                {
+                  "rel": "wishlistmemberships",
+                  "type": "wishlists.read-wishlist-memberships",
+                  "uri": "/wishlists/memberships/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                  "href": "http://reference.epdemos.com/cortex/wishlists/memberships/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                }
+              ],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "availability",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                    }
+                  ],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "code",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                    }
+                  ],
+                  "code": "VESTRI_STAINLESS_STEEL_WATER_BOTTLE"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "definition",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                    },
+                    {
+                      "rel": "fromprice",
+                      "rev": "definition",
+                      "type": "prices.price-for-itemdefinition",
+                      "uri": "/prices/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                      "href": "http://reference.epdemos.com/cortex/prices/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                    }
+                  ],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "The new Vestri stainless steel water bottle is a conveniently sized, insulated water bottle that holds 600mL / 20oz of liquid. It is BPA free, vacuum insulated, double walled, 18/8 stainless steel and perfect for cold or hot liquids.",
+                      "name": "summary",
+                      "value": "The new Vestri stainless steel water bottle is a conveniently sized, insulated water bottle that holds 600mL / 20oz of liquid. It is BPA free, vacuum insulated, double walled, 18/8 stainless steel and perfect for cold or hot liquids."
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "vestri:Accessories",
+                      "name": "tag",
+                      "value": [
+                        "vestri:Accessories"
+                      ]
+                    }
+                  ],
+                  "display-name": "Stainless Steel Water Bottle"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "item",
+                      "rev": "price",
+                      "type": "items.item",
+                      "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+                      "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+                    }
+                  ],
+                  "list-price": [
+                    {
+                      "amount": 30,
+                      "currency": "USD",
+                      "display": "$30.00"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 28.5,
+                      "currency": "USD",
+                      "display": "$28.50"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_pricerange": [
+        {
+          "self": {
+            "type": "prices.offer-price-range",
+            "uri": "/prices/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+            "href": "http://reference.epdemos.com/cortex/prices/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "offer",
+              "rev": "pricerange",
+              "type": "offers.offer",
+              "uri": "/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf=",
+              "href": "http://reference.epdemos.com/cortex/offers/vestri/qgqvbwjdkzcvgvcsjfpvgvcbjfheyrktknpvgvcfivgf6v2bkrcvex2cj5kfitcf="
+            }
+          ],
+          "list-price-range": {
+            "from-price": [
+              {
+                "amount": 30,
+                "currency": "USD",
+                "display": "$30.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 30,
+                "currency": "USD",
+                "display": "$30.00"
+              }
+            ]
+          },
+          "purchase-price-range": {
+            "from-price": [
+              {
+                "amount": 30,
+                "currency": "USD",
+                "display": "$30.00"
+              }
+            ],
+            "to-price": [
+              {
+                "amount": 30,
+                "currency": "USD",
+                "display": "$30.00"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "current": 1,
+    "page-size": 20,
+    "pages": 1,
+    "results": 7,
+    "results-on-page": 7
+  }
+}
