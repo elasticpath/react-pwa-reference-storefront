@@ -73,7 +73,7 @@ class OrderHistoryPage extends React.Component {
         });
     });
   }
-  
+
   moveToCart() {
     const { history } = this.props;
     history.push('/mybag');
@@ -90,7 +90,7 @@ class OrderHistoryPage extends React.Component {
               <h2 className="view-title">
                 {intl.get('purchase-details')}
               </h2>
-              <PurchaseDetailsMain data={purchaseData} itemDetailLink={itemDetailLink} onMoveToCart={this.moveToCart} onConfiguratorAddToCart={this.moveToCart} onReorderAllProducts={this.moveToCart}/>
+              <PurchaseDetailsMain data={purchaseData} itemDetailLink={itemDetailLink} onMoveToCart={this.moveToCart} onConfiguratorAddToCart={this.moveToCart} onReorderAllProducts={this.moveToCart} />
             </div>
           </div>
         </div>
