@@ -17,13 +17,13 @@ storiesOf('AppHeaderLoginMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppHeaderLocaleMain', () => {
+  .add('AppHeaderLoginMain', () => {
     return (
       <div style={{'backgroundColor' : '#040060'}}>
         <AppHeaderLoginMain permission={false} appModalLoginLinks={appModalLoginLinks} appHeaderLoginLinks={appHeaderLoginLinks} isLoggedIn={false} disableLogin={true} />
       </div>
     )
-  }).add('AppHeaderLocaleMain Logged In User', () => {
+  }).add('AppHeaderLoginMain Logged In User', () => {
     return (
       <div style={{'backgroundColor' : '#040060'}}>
         <AppHeaderLoginMain permission={false} appModalLoginLinks={appModalLoginLinks} appHeaderLoginLinks={appHeaderLoginLinks} isLoggedIn={true} disableLogin={true} />
