@@ -28,7 +28,7 @@ const dataSearch = {
   searchInvalidKeyword: 'abc'
 };
 const host = process.env.TEST_HOST;
-const APP = host || 'http://localhost:3000/';
+const APP = host || 'http://localhost:8080/';
 const desktopViewport = {
   width: 1500,
   height: 700,
