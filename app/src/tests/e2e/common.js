@@ -33,18 +33,18 @@ module.exports = {
     const FORM_PASSWORD_CSS = '#registration_form_password';
     const FORM_CONFIRM_PASSWORD_CSS = '#registration_form_passwordConfirm';
     const FORM_SUBMIT_BUTTON_CSS = '#registration_form_register_button';
-    
+
     await page.waitForSelector(LOGIN_USERNAME_INPUT_CSS);
     await page.type(LOGIN_USERNAME_INPUT_CSS, user.email);
-    
+
     await page.waitForSelector(LOGIN_PASSWORD_INPUT_CSS);
     await page.type(LOGIN_PASSWORD_INPUT_CSS, user.password);
-    
+
     await page.waitForSelector(LOGIN_BUTTON_CSS);
     await page.click(LOGIN_BUTTON_CSS);
-    
+
     await page.waitFor(3000);
-    
+
     const feedbackElement = await page.$(LOGIN_FEEDBACK_CSS);
     let feedbackText = '';
     if (feedbackElement) {
@@ -53,7 +53,7 @@ module.exports = {
     if (feedbackText) {
       const firstName = user.firstName || 'Test';
       const lastName = user.lastName || 'Test';
-      
+
       await page.waitForSelector(REGISTER_BUTTON_CSS);
       await page.click(REGISTER_BUTTON_CSS);
       await page.waitForSelector(FORM_FIRST_NAME_CSS);
@@ -62,19 +62,19 @@ module.exports = {
       await page.type(FORM_EMAIL_USER_NAME_CSS, user.email);
       await page.type(FORM_PASSWORD_CSS, user.password);
       await page.type(FORM_CONFIRM_PASSWORD_CSS, user.password);
-      
+
       await page.click(FORM_SUBMIT_BUTTON_CSS);
       await page.waitForSelector(HOME_PAGE_CSS);
     }
   },
-  
+
   addProductToCart: async function (page, productCategory, productSubCategory, productName) {
     const PARENT_CATEGORY_CSS = `.app-header-navigation-component li[data-name="${productCategory}"]`;
     const SUB_CATEGORY_CSS = `${PARENT_CATEGORY_CSS} > .dropdown-menu > li > a[title="${productSubCategory}"]`;
     const PRODUCT_CSS = '.product-list-container .category-items-listing .category-item-container';
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
     const CART_LIST = 'div[data-region="mainCartRegion"]';
-    
+
     await page.waitForSelector(PARENT_CATEGORY_CSS);
     if (productSubCategory) {
       await page.click(PARENT_CATEGORY_CSS);
@@ -84,7 +84,7 @@ module.exports = {
         page.waitForNavigation({ waitUntil: 'networkidle0' }),
       ]);
     }
-    
+
     if (productSubCategory) {
       await page.waitForSelector(SUB_CATEGORY_CSS);
       await Promise.all([
@@ -92,21 +92,21 @@ module.exports = {
         page.waitForNavigation({ waitUntil: 'networkidle0' }),
       ]);
     }
-    
+
     await page.waitForSelector(PRODUCT_CSS);
     const productLink = await page.$x(`//a[contains(text(), "${productName}")]`);
-    
+
     if (productLink.length > 0) {
       await productLink[0].click();
     } else {
       throw new Error('Product not found');
     }
-    
+
     await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
     await page.click(ADD_TO_CART_BUTTON_CSS);
     await page.waitForSelector(CART_LIST);
   },
-  
+
   registerUser: async function (page, userInfo) {
     const FORM_FIRST_NAME = '#registration_form_firstName';
     const FORM_LAST_NAME = '#registration_form_lastName';
@@ -114,17 +114,17 @@ module.exports = {
     const FORM_PASSWORD = '#registration_form_password';
     const FORM_CONFIRM_PASSWORD = '#registration_form_passwordConfirm';
     const FORM_SUBMIT_BUTTON = '#registration_form_register_button';
-    
+
     await page.waitForSelector(FORM_FIRST_NAME);
     await page.type(FORM_FIRST_NAME, userInfo.firstName);
     await page.type(FORM_LAST_NAME, userInfo.lastName);
     await page.type(FORM_EMAIL_USER_NAME, userInfo.email);
     await page.type(FORM_PASSWORD, userInfo.password);
     await page.type(FORM_CONFIRM_PASSWORD, userInfo.password);
-    
+
     await page.click(FORM_SUBMIT_BUTTON);
   },
-  
+
   addPaymentMethod: async function (page, paymentMethod) {
     const CARD_TYPE = '#CardType';
     const CARD_HOLDER_NAME = '#CardHolderName';
@@ -134,7 +134,7 @@ module.exports = {
     const SECURITY_CODE = '#SecurityCode';
     const SAVE_TO_PROFILE = '#saveToProfile';
     const CONTINUE_BUTTON = 'button.payment-save-btn';
-    
+
     await page.waitForSelector(CARD_TYPE);
     await page.type(CARD_TYPE, paymentMethod.cardType);
     await page.type(CARD_HOLDER_NAME, paymentMethod.cardHolderName);
@@ -145,7 +145,7 @@ module.exports = {
     await page.click(SAVE_TO_PROFILE);
     await page.click(CONTINUE_BUTTON);
   },
-  
+
   addAddress: async function (page, address) {
     const FIRST_NAME = '#registration_form_firstName';
     const LAST_NAME = '#registration_form_lastName';
@@ -155,7 +155,7 @@ module.exports = {
     const PROVINCE = '#Region';
     const POSTAL_CODE = '#PostalCode';
     const SAVE_BUTTON = 'button.address-save-btn';
-    
+
     await page.waitForSelector(FIRST_NAME);
     await page.type(FIRST_NAME, 'Test');
     await page.type(LAST_NAME, 'User');
@@ -164,10 +164,10 @@ module.exports = {
     await page.type(COUNTRY, address.country);
     await page.type(PROVINCE, address.province);
     await page.type(POSTAL_CODE, address.postalCode);
-    
+
     await page.click(SAVE_BUTTON);
   },
-  
+
   loginUser: async function (page, user) {
     const LOGIN_FEEDBACK = 'div[data-region="authLoginFormFeedbackRegion"]';
     const REGISTER_BUTTON_CSS = '#login_modal_register_button';
@@ -182,20 +182,20 @@ module.exports = {
     const FORM_PASSWORD = '#registration_form_password';
     const FORM_CONFIRM_PASSWORD = '#registration_form_passwordConfirm';
     const FORM_SUBMIT_BUTTON = '#registration_form_register_button';
-    
+
     await page.waitForSelector(LOGGED_IN_BUTTON);
     await page.click(LOGGED_IN_BUTTON);
-    
+
     await page.waitForSelector(LOGIN_USERNAME_INPUT);
     await page.type(LOGIN_USERNAME_INPUT, user.email);
-    
+
     await page.waitForSelector(LOGIN_PASSWORD_INPUT);
     await page.type(LOGIN_PASSWORD_INPUT, user.password);
-    
+
     await page.waitForSelector(LOGIN_BUTTON);
     await page.click(LOGIN_BUTTON);
     await page.waitFor(3000);
-    
+
     const feedbackElement = await page.$(LOGIN_FEEDBACK);
     let feedbackText = '';
     if (feedbackElement) {
@@ -204,7 +204,7 @@ module.exports = {
     if (feedbackText) {
       const firstName = user.firstName || 'Test';
       const lastName = user.lastName || 'Test';
-      
+
       await page.waitForSelector(REGISTER_BUTTON_CSS);
       await page.click(REGISTER_BUTTON_CSS);
       await page.waitForSelector(FORM_FIRST_NAME);
@@ -213,7 +213,7 @@ module.exports = {
       await page.type(FORM_EMAIL_USER_NAME, user.email);
       await page.type(FORM_PASSWORD, user.password);
       await page.type(FORM_CONFIRM_PASSWORD, user.password);
-      
+
       await page.click(FORM_SUBMIT_BUTTON);
       await page.waitForSelector(HOME_PAGE_CSS);
     } else {
