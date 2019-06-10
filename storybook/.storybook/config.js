@@ -1,6 +1,7 @@
 import { configure } from '@storybook/react';
 import { init } from '@elasticpath/store-components';
 import epConfig from '../../app/src/ep.config';
+import intl from 'react-intl-universal';
 // import { themes } from '@storybook/theming';
 
 // addParameters({
@@ -9,12 +10,26 @@ import epConfig from '../../app/src/ep.config';
 // 	}
 // });
 
+
+
+const locales = {};
+epConfig.supportedLocales.forEach((locale) => {
+  // eslint-disable-next-line import/no-dynamic-require, global-require
+  locales[locale.value] = require(`../../app/src/localization/${locale.value}.json`);
+});
+
 const comps = require.context('@elasticpath/store-components/src', true, /.stories.(j|t)sx$/);
-init({
-  config: epConfig,
-  intl: { get: src => src }
+
+intl.init({
+  currentLocale: 'en-CA',
+  locales,
 }).then(() => {
-  configure(() => {
-    comps.keys().forEach(filename => comps(filename));
-  }, module);
+  init({
+    config: epConfig,
+    intl
+  }).then(() => {
+    configure(() => {
+      comps.keys().forEach(filename => comps(filename));
+    }, module);
+  });
 });
