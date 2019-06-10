@@ -1,0 +1,1538 @@
+{
+  "self": {
+    "type": "offersearches.featured-offers",
+    "uri": "/offersearches/vestri_reference/featuredoffers/kziecx2difpu2q2mifjvg=",
+    "href": "http://reference.epdemos.com/cortex/offersearches/vestri_reference/featuredoffers/kziecx2difpu2q2mifjvg="
+  },
+  "messages": [],
+  "links": [],
+  "_element": [
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq="
+      },
+      "messages": [],
+      "links": [],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq="
+          },
+          "messages": [],
+          "links": [],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq="
+          },
+          "messages": [],
+          "links": [],
+          "code": "CABLE_ORGANIZER"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq="
+          },
+          "messages": [],
+          "links": [],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables",
+              "name": "DESCRIPTION",
+              "value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables"
+            }
+          ],
+          "display-name": "Cable Organizer"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq=/items"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjrgy2tmmi=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjrgy2tmmi="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjrgy2tmmi=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjrgy2tmmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjrgy2tmmi=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjrgy2tmmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "16561"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjrgy2tmmi=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrgy2tmmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "CABLE_ORGANIZER_OUTSIDE_SINGLE_STDPROFILE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "CABLE_ORGANIZER_OUTSIDE_SINGLE_STDPROFILE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables",
+                      "name": "DESCRIPTION",
+                      "value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables"
+                    }
+                  ],
+                  "display-name": "Cable Organizer"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjrgy2tmmi=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjrgy2tmmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 179.42,
+                      "currency": "CAD",
+                      "display": "$179.42"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 179.42,
+                      "currency": "CAD",
+                      "display": "$179.42"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjrhe4tmmi=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjrhe4tmmi="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjrhe4tmmi=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjrhe4tmmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjrhe4tmmi=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjrhe4tmmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "19961"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjrhe4tmmi=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrhe4tmmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "CABLE_ORGANIZER_INSIDE_SINGLE_LOWPROFILE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "CABLE_ORGANIZER_INSIDE_SINGLE_LOWPROFILE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables",
+                      "name": "DESCRIPTION",
+                      "value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables"
+                    }
+                  ],
+                  "display-name": "Cable Organizer"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjrhe4tmmi=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjrhe4tmmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 158.1,
+                      "currency": "CAD",
+                      "display": "$158.10"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 158.1,
+                      "currency": "CAD",
+                      "display": "$158.10"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjtgeydooi=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjtgeydooi="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjtgeydooi=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjtgeydooi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjtgeydooi=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjtgeydooi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "31079"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjtgeydooi=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjtgeydooi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "CABLE_ORGANIZER_INSIDE_SINGLE_STDPROFILE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "CABLE_ORGANIZER_INSIDE_SINGLE_STDPROFILE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables",
+                      "name": "DESCRIPTION",
+                      "value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables"
+                    }
+                  ],
+                  "display-name": "Cable Organizer"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjtgeydooi=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjtgeydooi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 127.5,
+                      "currency": "CAD",
+                      "display": "$127.50"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 127.5,
+                      "currency": "CAD",
+                      "display": "$127.50"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjvgyytgoi=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjvgyytgoi="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjvgyytgoi=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjvgyytgoi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjvgyytgoi=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjvgyytgoi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "56139"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjvgyytgoi=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjvgyytgoi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "CABLE_ORGANIZER_INSIDE_DUAL_STDPROFILE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "CABLE_ORGANIZER_INSIDE_DUAL_STDPROFILE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables",
+                      "name": "DESCRIPTION",
+                      "value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables"
+                    }
+                  ],
+                  "display-name": "Cable Organizer"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjvgyytgoi=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjvgyytgoi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 198.9,
+                      "currency": "CAD",
+                      "display": "$198.90"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 198.9,
+                      "currency": "CAD",
+                      "display": "$198.90"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjwguydcmq=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjwguydcmq="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjwguydcmq=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjwguydcmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjwguydcmq=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjwguydcmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "65012"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjwguydcmq=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjwguydcmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "CABLE_ORGANIZER_OUTSIDE_DUAL_LOWPROFILE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "CABLE_ORGANIZER_OUTSIDE_DUAL_LOWPROFILE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables",
+                      "name": "DESCRIPTION",
+                      "value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables"
+                    }
+                  ],
+                  "display-name": "Cable Organizer"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjwguydcmq=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjwguydcmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 296.72,
+                      "currency": "CAD",
+                      "display": "$296.72"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 296.72,
+                      "currency": "CAD",
+                      "display": "$296.72"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjsgeytooi=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjsgeytooi="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjsgeytooi=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjsgeytooi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjsgeytooi=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjsgeytooi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "21179"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjsgeytooi=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjsgeytooi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "CABLE_ORGANIZER_OUTSIDE_SINGLE_LOWPROFILE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "CABLE_ORGANIZER_OUTSIDE_SINGLE_LOWPROFILE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables",
+                      "name": "DESCRIPTION",
+                      "value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables"
+                    }
+                  ],
+                  "display-name": "Cable Organizer"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjsgeytooi=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjsgeytooi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 210.02,
+                      "currency": "CAD",
+                      "display": "$210.02"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 210.02,
+                      "currency": "CAD",
+                      "display": "$210.02"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjyg4ytoni=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjyg4ytoni="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjyg4ytoni=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjyg4ytoni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjyg4ytoni=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjyg4ytoni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "87175"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjyg4ytoni=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjyg4ytoni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "CABLE_ORGANIZER_OUTSIDE_DUAL_STDPROFILE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "CABLE_ORGANIZER_OUTSIDE_DUAL_STDPROFILE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables",
+                      "name": "DESCRIPTION",
+                      "value": "This cable organizer is a must have to ensure you can quickly and easily plug in at the end of a long day and not deal with a tangle of cables"
+                    }
+                  ],
+                  "display-name": "Cable Organizer"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjyg4ytoni=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjyg4ytoni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 240.62,
+                      "currency": "CAD",
+                      "display": "$240.62"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 240.62,
+                      "currency": "CAD",
+                      "display": "$240.62"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve="
+      },
+      "messages": [],
+      "links": [],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve="
+          },
+          "messages": [],
+          "links": [],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve="
+          },
+          "messages": [],
+          "links": [],
+          "code": "DUAL_CORDED_CHARGER"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve="
+          },
+          "messages": [],
+          "links": [],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "Our corded wall charger will hook up to the utility power at a higher amperage and provide faster recharge times, available for single or two car garages",
+              "name": "DESCRIPTION",
+              "value": "Our corded wall charger will hook up to the utility power at a higher amperage and provide faster recharge times, available for single or two car garages"
+            },
+            {
+              "display-name": "",
+              "display-value": "DUAL_CORDED_CHARGER",
+              "name": "IMAGE_NAME",
+              "value": "DUAL_CORDED_CHARGER"
+            }
+          ],
+          "display-name": "Dual Corded Wall Charger"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve=/items"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjvhe2dcma=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjvhe2dcma="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjvhe2dcma=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjvhe2dcma="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjvhe2dcma=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjvhe2dcma="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "59410"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjvhe2dcma=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjvhe2dcma="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "Our corded wall charger will hook up to the utility power at a higher amperage and provide faster recharge times, available for single or two car garages",
+                      "name": "DESCRIPTION",
+                      "value": "Our corded wall charger will hook up to the utility power at a higher amperage and provide faster recharge times, available for single or two car garages"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "DUAL_CORDED_CHARGER",
+                      "name": "IMAGE_NAME",
+                      "value": "DUAL_CORDED_CHARGER"
+                    }
+                  ],
+                  "display-name": "Dual Corded Wall Charger"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjvhe2dcma=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjvhe2dcma="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 882.3,
+                      "currency": "CAD",
+                      "display": "$882.30"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 882.3,
+                      "currency": "CAD",
+                      "display": "$882.30"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry="
+      },
+      "messages": [],
+      "links": [],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry="
+          },
+          "messages": [],
+          "links": [],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry="
+          },
+          "messages": [],
+          "links": [],
+          "code": "ENABLE_SUPERCHARGING"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry="
+          },
+          "messages": [],
+          "links": [],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "Haven't got a lot of time? Upgrade to super charging to bring the charge up to 80% in 20 minutes when used with our wall charger",
+              "name": "DESCRIPTION",
+              "value": "Haven't got a lot of time? Upgrade to super charging to bring the charge up to 80% in 20 minutes when used with our wall charger"
+            },
+            {
+              "display-name": "",
+              "display-value": "ENABLE_SUPERCHARGING",
+              "name": "IMAGE_NAME",
+              "value": "ENABLE_SUPERCHARGING"
+            }
+          ],
+          "display-name": "Enable Supercharging"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry=/items"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjsgy3dmni=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjsgy3dmni="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjsgy3dmni=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjsgy3dmni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjsgy3dmni=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjsgy3dmni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "26665"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjsgy3dmni=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjsgy3dmni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "Haven't got a lot of time? Upgrade to super charging to bring the charge up to 80% in 20 minutes when used with our wall charger",
+                      "name": "DESCRIPTION",
+                      "value": "Haven't got a lot of time? Upgrade to super charging to bring the charge up to 80% in 20 minutes when used with our wall charger"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "ENABLE_SUPERCHARGING",
+                      "name": "IMAGE_NAME",
+                      "value": "ENABLE_SUPERCHARGING"
+                    }
+                  ],
+                  "display-name": "Enable Supercharging"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjsgy3dmni=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjsgy3dmni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 765,
+                      "currency": "CAD",
+                      "display": "$765.00"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 765,
+                      "currency": "CAD",
+                      "display": "$765.00"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s="
+      },
+      "messages": [],
+      "links": [],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s="
+          },
+          "messages": [],
+          "links": [],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s="
+          },
+          "messages": [],
+          "links": [],
+          "code": "UNIVERSAL_MOBILE_CONNECTOR"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s="
+          },
+          "messages": [],
+          "links": [],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from",
+              "name": "DESCRIPTION",
+              "value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from"
+            }
+          ],
+          "display-name": "Universal Mobile Connector"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbosvjzevmrksknauyx2nj5bestcfl5bu6tsoivbvit2s=/items"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjtg4ztomy=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjtg4ztomy="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjtg4ztomy=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjtg4ztomy="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjtg4ztomy=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjtg4ztomy="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "37373"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjtg4ztomy=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjtg4ztomy="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "UNIVERSAL_MOBILE_CONNECTOR_EU",
+                      "name": "IMAGE_NAME_S",
+                      "value": "UNIVERSAL_MOBILE_CONNECTOR_EU"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from",
+                      "name": "DESCRIPTION",
+                      "value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from"
+                    }
+                  ],
+                  "display-name": "Universal Mobile Connector"
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjrgi2dsmq=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjrgi2dsmq="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjrgi2dsmq=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjrgi2dsmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjrgi2dsmq=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjrgi2dsmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "12492"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjrgi2dsmq=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrgi2dsmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "UNIVERSAL_MOBILE_CONNECTOR_AU",
+                      "name": "IMAGE_NAME_S",
+                      "value": "UNIVERSAL_MOBILE_CONNECTOR_AU"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from",
+                      "name": "DESCRIPTION",
+                      "value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from"
+                    }
+                  ],
+                  "display-name": "Universal Mobile Connector"
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjuga4tqni=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjuga4tqni="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjuga4tqni=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjuga4tqni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjuga4tqni=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjuga4tqni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "40985"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjuga4tqni=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjuga4tqni="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "UNIVERSAL_MOBILE_CONNECTOR_UK",
+                      "name": "IMAGE_NAME_S",
+                      "value": "UNIVERSAL_MOBILE_CONNECTOR_UK"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from",
+                      "name": "DESCRIPTION",
+                      "value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from"
+                    }
+                  ],
+                  "display-name": "Universal Mobile Connector"
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjwg43teoa=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjwg43teoa="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjwg43teoa=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjwg43teoa="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjwg43teoa=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjwg43teoa="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "67728"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjwg43teoa=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjwg43teoa="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "UNIVERSAL_MOBILE_CONNECTOR_NA",
+                      "name": "IMAGE_NAME_S",
+                      "value": "UNIVERSAL_MOBILE_CONNECTOR_NA"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from",
+                      "name": "DESCRIPTION",
+                      "value": "Our universal connector will allow you to connect and change anywhere in any plug so you never have to worry about where that next charge is coming from"
+                    }
+                  ],
+                  "display-name": "Universal Mobile Connector"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjwg43teoa=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjwg43teoa="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 264.18,
+                      "currency": "CAD",
+                      "display": "$264.18"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 264.18,
+                      "currency": "CAD",
+                      "display": "$264.18"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "self": {
+        "type": "offers.offer",
+        "uri": "/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek=",
+        "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek="
+      },
+      "messages": [],
+      "links": [],
+      "_availability": [
+        {
+          "self": {
+            "type": "availabilities.availability-for-offer",
+            "uri": "/availabilities/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek=",
+            "href": "http://reference.epdemos.com/cortex/availabilities/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek="
+          },
+          "messages": [],
+          "links": [],
+          "state": "AVAILABLE"
+        }
+      ],
+      "_code": [
+        {
+          "self": {
+            "type": "offers.code-for-offer",
+            "uri": "/offers/code/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek=",
+            "href": "http://reference.epdemos.com/cortex/offers/code/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek="
+          },
+          "messages": [],
+          "links": [],
+          "code": "WALL_CONNECTOR_AND_CABLE"
+        }
+      ],
+      "_definition": [
+        {
+          "self": {
+            "type": "offerdefinitions.offer-definition",
+            "uri": "/offerdefinitions/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek=",
+            "href": "http://reference.epdemos.com/cortex/offerdefinitions/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek="
+          },
+          "messages": [],
+          "links": [],
+          "details": [
+            {
+              "display-name": "",
+              "display-value": "Relocat the wall connector in your garage and reduce long cable with a new charging outlet closer to you car. Requires the Corded Charger",
+              "name": "DESCRIPTION",
+              "value": "Relocat the wall connector in your garage and reduce long cable with a new charging outlet closer to you car. Requires the Corded Charger"
+            }
+          ],
+          "display-name": "Wall Connector with cable"
+        }
+      ],
+      "_items": [
+        {
+          "self": {
+            "type": "offers.offer-items",
+            "uri": "/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek=/items",
+            "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek=/items"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjrgm3domi=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjrgm3domi="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjrgm3domi=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjrgm3domi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjrgm3domi=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjrgm3domi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "13671"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjrgm3domi=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrgm3domi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "WALL_CONNECTOR_96_CABLE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "WALL_CONNECTOR_96_CABLE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "Relocat the wall connector in your garage and reduce long cable with a new charging outlet closer to you car. Requires the Corded Charger",
+                      "name": "DESCRIPTION",
+                      "value": "Relocat the wall connector in your garage and reduce long cable with a new charging outlet closer to you car. Requires the Corded Charger"
+                    }
+                  ],
+                  "display-name": "Wall Connector with cable"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjrgm3domi=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjrgm3domi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 229.5,
+                      "currency": "CAD",
+                      "display": "$229.50"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 229.5,
+                      "currency": "CAD",
+                      "display": "$229.50"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "self": {
+                "type": "items.item",
+                "uri": "/items/vestri_reference/qgqvhjjsgq4domq=",
+                "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjsgq4domq="
+              },
+              "messages": [],
+              "links": [],
+              "_availability": [
+                {
+                  "self": {
+                    "type": "availabilities.availability-for-item",
+                    "uri": "/availabilities/items/vestri_reference/qgqvhjjsgq4domq=",
+                    "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjsgq4domq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "state": "AVAILABLE"
+                }
+              ],
+              "_code": [
+                {
+                  "self": {
+                    "type": "items.code-for-item",
+                    "uri": "/items/code/items/vestri_reference/qgqvhjjsgq4domq=",
+                    "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjsgq4domq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "code": "24872"
+                }
+              ],
+              "_definition": [
+                {
+                  "self": {
+                    "type": "itemdefinitions.item-definition",
+                    "uri": "/itemdefinitions/vestri_reference/qgqvhjjsgq4domq=",
+                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjsgq4domq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "details": [
+                    {
+                      "display-name": "",
+                      "display-value": "WALL_CONNECTOR_48_CABLE",
+                      "name": "IMAGE_NAME_S",
+                      "value": "WALL_CONNECTOR_48_CABLE"
+                    },
+                    {
+                      "display-name": "",
+                      "display-value": "Relocat the wall connector in your garage and reduce long cable with a new charging outlet closer to you car. Requires the Corded Charger",
+                      "name": "DESCRIPTION",
+                      "value": "Relocat the wall connector in your garage and reduce long cable with a new charging outlet closer to you car. Requires the Corded Charger"
+                    }
+                  ],
+                  "display-name": "Wall Connector with cable"
+                }
+              ],
+              "_price": [
+                {
+                  "self": {
+                    "type": "prices.price-for-item",
+                    "uri": "/prices/items/vestri_reference/qgqvhjjsgq4domq=",
+                    "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjsgq4domq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "list-price": [
+                    {
+                      "amount": 158.1,
+                      "currency": "CAD",
+                      "display": "$158.10"
+                    }
+                  ],
+                  "purchase-price": [
+                    {
+                      "amount": 158.1,
+                      "currency": "CAD",
+                      "display": "$158.10"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
