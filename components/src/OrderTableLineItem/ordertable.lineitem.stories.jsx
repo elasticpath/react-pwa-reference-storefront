@@ -1,7 +1,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import data from './MockHttpResponses/cart_data_response';
+import data from '../CommonMockHttpResponses/cart_data_response';
 
 import OrderTableLineItem from './ordertable.lineitem';
 

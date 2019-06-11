@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import orderData from './MockHttpResponses/cart_data_response';
+import orderData from '../CommonMockHttpResponses/cart_data_response';
 
 import PaymentMethodContainer from "./paymentmethod.container";
 

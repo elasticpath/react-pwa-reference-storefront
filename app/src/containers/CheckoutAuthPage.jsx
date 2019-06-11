@@ -75,6 +75,7 @@ class CheckoutAuthPage extends React.Component {
         } else if (resStatus === 200) {
           this.setState({ failedLogin: false }, () => {
             history.push('/checkout');
+            window.location.reload();
           });
         }
       });

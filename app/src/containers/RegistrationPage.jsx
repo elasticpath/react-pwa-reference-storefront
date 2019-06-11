@@ -36,6 +36,7 @@ function RegistrationPage(props) {
     } else {
       history.push('/');
     }
+    window.location.reload();
   }
 
   return (

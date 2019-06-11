@@ -214,10 +214,10 @@ module.exports = {
       await page.type(FORM_PASSWORD, user.password);
       await page.type(FORM_CONFIRM_PASSWORD, user.password);
       
-      await page.click(FORM_SUBMIT_BUTTON);
-      await page.waitForSelector(HOME_PAGE_CSS);
-    } else {
-      await page.waitForSelector(HOME_PAGE_CSS);
+      await Promise.all([
+        page.click(FORM_SUBMIT_BUTTON),
+        page.waitForNavigation({ waitUntil: 'networkidle0' }),
+      ]);
     }
   }
 };

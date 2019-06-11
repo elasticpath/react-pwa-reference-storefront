@@ -1,7 +1,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import cartData from './MockHttpResponses/cart_data_response';
+import cartData from '../CommonMockHttpResponses/cart_data_response';
 
 import CartMain from './cart.main';
 
