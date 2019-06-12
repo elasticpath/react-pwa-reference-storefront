@@ -28,6 +28,8 @@ const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpack
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 const postcssNormalize = require('postcss-normalize');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -508,6 +510,15 @@ module.exports = function(webpackEnv) {
                 'sass-loader'
               ),
             },
+            {
+              test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+              use: [{
+                loader: 'file-loader',
+                options: {
+                  name: 'static/media/[name].[hash:8].[ext]',
+                },
+              }],
+            },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
@@ -519,7 +530,7 @@ module.exports = function(webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+              exclude: [/\.(js|mjs|jsx|ts|tsx|woff(2)?|ttf|eot)$/, /\.html$/, /\.json$/],
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
@@ -658,6 +669,38 @@ module.exports = function(webpackEnv) {
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
+      new WorkboxPlugin.GenerateSW({
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:woff|woff2|jpg|png|json|ico|jpeg)$/,
+            handler: 'CacheFirst',
+          },
+          {
+            urlPattern: new RegExp('^https://fonts.(?:googleapis|gstatic).com/(.*)'),
+            handler: 'CacheFirst',
+          },
+          {
+            urlPattern: /.*/,
+            handler: 'NetworkFirst',
+          },
+        ],
+      }),
+      new WebpackPwaManifest({
+        name: 'Vestri Reference Storefront',
+        short_name: 'Vestri',
+        description: 'EP Reference Storefront',
+        background_color: '#01579b',
+        theme_color: '#01579b',
+        'theme-color': '#01579b',
+        start_url: '/',
+        icons: [
+          {
+            src: path.resolve('./src/images/manifest-images/icons-192.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

@@ -171,7 +171,6 @@ module.exports = {
   loginUser: async function (page, user) {
     const LOGIN_FEEDBACK = 'div[data-region="authLoginFormFeedbackRegion"]';
     const REGISTER_BUTTON_CSS = '#login_modal_register_button';
-    const HOME_PAGE_CSS = 'div.home-page-component';
     const LOGGED_IN_BUTTON = '#header_navbar_loggedIn_button';
     const LOGIN_USERNAME_INPUT = '#login_modal_username_input';
     const LOGIN_PASSWORD_INPUT = '#login_modal_password_input';
