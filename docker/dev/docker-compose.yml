@@ -1,0 +1,110 @@
+version: '2.3'
+services:
+  store:
+    image: ${REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:${STORE_IMAGE_TAG}
+    container_name: store
+    ports:
+      - 8080:8080
+    volumes:
+      - /etc:/etc
+    environment:
+      - CORTEX
+      - STORE
+    env_file:
+      - docker-compose.env
+    restart: always
+    depends_on:
+      cortex:
+        condition: service_healthy
+  mysql:
+    image: ${REGISTRY_ADDRESS}/${STORE_NAMESPACE}/mysql-ep-blueprint:${STORE_IMAGE_TAG}
+    container_name: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - /ep/mysql-logs:/var/log/mysql
+    env_file:
+      - docker-compose.env
+    restart: always
+    healthcheck:
+      test: ["CMD", "sh", "-c", "mysql --user=$$epDbUser --password=$$epDbPassword --execute='status' &> /dev/null"]
+      interval: 5s
+      timeout: 20s
+      retries: 10
+      start_period: 40s
+  activemq:
+    image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/activemq:${DOCKER_IMAGE_TAG}
+    container_name: activemq
+    ports:
+      - 61616:61616
+    volumes:
+      - /ep/activemq/data:/root/apache-activemq/data
+    env_file:
+      - docker-compose.env
+    restart: always
+  batch:
+    image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/batch:${DOCKER_IMAGE_TAG}
+    container_name: batch
+    ports:
+      - 8084:8080
+    depends_on:
+      activemq:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+    volumes:
+      - /ep/logs:/root/ep/logs
+      - /ep/tomcat-logs:/usr/local/tomcat/logs
+    env_file:
+      - docker-compose.env
+    restart: always
+  integration:
+    image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/integration:${DOCKER_IMAGE_TAG}
+    container_name: integration
+    ports:
+      - 8083:8080
+    depends_on:
+      activemq:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+    volumes:
+      - /ep/logs:/root/ep/logs
+      - /ep/tomcat-logs:/usr/local/tomcat/logs
+    env_file:
+      - docker-compose.env
+    restart: always
+  search:
+    image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/search:${DOCKER_IMAGE_TAG}
+    container_name: search
+    ports:
+      - 8082:8082
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+      - docker-compose.env
+    environment:
+      - EP_SEARCH_ROLE=standalone
+    restart: always
+    extra_hosts:
+      - "search:127.0.0.1"
+  cortex:
+    image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/cortex:${DOCKER_IMAGE_TAG}
+    container_name: cortex
+    ports:
+      - 9080:8080
+      - 1081:1081
+    depends_on:
+      activemq:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+      search:
+        condition: service_healthy
+    volumes:
+      - /ep/logs:/root/ep/logs
+      - /ep/tomcat-logs:/usr/local/tomcat/logs
+    env_file:
+      - docker-compose.env
+    restart: always
