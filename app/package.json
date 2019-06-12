@@ -98,6 +98,8 @@
     "babel-jest": "^24.8.0",
     "less": "^3.9.0",
     "puppeteer": "^1.17.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "webpack-pwa-manifest": "^4.0.0",
+    "workbox-webpack-plugin": "^4.3.1"
   }
 }
