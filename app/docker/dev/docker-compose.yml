@@ -96,6 +96,12 @@ services:
     restart: always
     extra_hosts:
       - "search:127.0.0.1"
+    healthcheck:
+      test: curl --max-time 3 -s -f localhost:8082/search/status | head -n 1 | grep OK
+      interval: 10s
+      retries: 3
+      start_period: 3m
+      timeout: 5s
   cortex:
     image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/cortex:${DOCKER_IMAGE_TAG}
     container_name: cortex
