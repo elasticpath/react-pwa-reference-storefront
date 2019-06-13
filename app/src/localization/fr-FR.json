@@ -145,14 +145,14 @@
   "new-payment-method": "N-e-w- -P-a-y-m-e-n-t- -M-e-t-h-o-d",
   "failed-to-save-message": "F-a-i-l-e-d- -t-o- -S-a-v-e-,- -p-l-e-a-s-e- -c-h-e-c-k- -a-l-l- -r-e-q-u-i-r-e-d- -f-i-e-l-d-s- -a-r-e- -f-i-l-l-e-d-.",
   "failed-to-save-email": "F-a-i-l-e-d- -t-o- -S-a-v-e-,- -p-l-e-a-s-e- -c-h-e-c-k- -i-f- -e-m-a-i-l- -i-s- -v-a-l-i-d- -a-n-d- -a-l-l- -r-e-q-u-i-r-e-d- -f-i-e-l-d-s- -a-r-e- -f-i-l-l-e-d-.",
-  "card-type": "C-a-r-d- -T-y-p-e",
+  "card-type": "C-r-e-d-i-t- -C-a-r-d- -T-y-p-e",
   "american-express": "A-m-e-r-i-c-a-n- -E-x-p-r-e-s-s",
   "mastercard": "M-a-s-t-e-r-c-a-r-d",
   "visa": "V-i-s-a",
-  "card-holders-name": "C-a-r-d- -H-o-l-d-e-r-'-s- -N-a-m-e",
+  "card-holders-name": "C-r-e-d-i-t- -C-a-r-d- -H-o-l-d-e-r-'-s- -N-a-m-e",
   "credit-card-number": "C-r-e-d-i-t- -C-a-r-d- -N-u-m-b-e-r",
-  "expiry-date": "E-x-p-i-r-y- -D-a-t-e",
-  "security-code": "S-e-c-u-r-i-t-y- -C-o-d-e",
+  "expiry-date": "E-x-p-i-r-a-t-i-o-n- -D-a-t-e",
+  "security-code": "C-V-V",
   "save-payment-to-profile": "S-a-v-e- -t-h-i-s- -p-a-y-m-e-n-t- -m-e-t-h-o-d- -t-o- -m-y- -p-r-o-f-i-l-e",
   "continue": "C-o-n-t-i-n-u-e",
   "none-available": "N-o-n-e- -A-v-a-i-l-a-b-l-e",
@@ -256,5 +256,6 @@
   "order-summary": "O-r-d-e-r- -S-u-m-m-a-r-y-",
   "apply-order-balance": "A-p-p-l-y- -b-a-l-a-n-c-e- -t-o- -o-r-d-e-r-",
   "incorrect-gift-card-code": "I-n-c-o-r-r-e-c-t- -g-i-f-t- -c-a-r-d- -c-o-d-e-",
-  "no-gift-cards-message": "N-o- -s-a-v-e-d- -g-i-f-t- -c-a-r-d-s-"
+  "no-gift-cards-message": "N-o- -s-a-v-e-d- -g-i-f-t- -c-a-r-d-s-",
+  "all-fields-required": "A-l-l- -f-i-e-l-d-s- -a-r-e- -r-e-q-u-i-r-e-d-"
 }

@@ -145,14 +145,14 @@
   "new-payment-method": "New Payment Method",
   "failed-to-save-message": "Failed to Save, please check all required fields are filled.",
   "failed-to-save-email": "Failed to Save, please check if email is valid and all required fields are filled.",
-  "card-type": "Card Type",
+  "card-type": "Credit Card Type",
   "american-express": "American Express",
   "mastercard": "Mastercard",
   "visa": "Visa",
-  "card-holders-name": "Card Holder's Name",
+  "card-holders-name": "Credit Card Holder's Name",
   "credit-card-number": "Credit Card Number",
-  "expiry-date": "Expiry Date",
-  "security-code": "Security Code",
+  "expiry-date": "Expiration Date",
+  "security-code": "CVV",
   "save-payment-to-profile": "Save this payment method to my profile",
   "continue": "Continue",
   "none-available": "None Available",
@@ -257,5 +257,6 @@
   "order-summary": "Order Summary",
   "apply-order-balance": "Apply balance to order",
   "incorrect-gift-card-code": "Incorrect gift card code",
-  "no-gift-cards-message": "No saved gift cards"
+  "no-gift-cards-message": "No saved gift cards",
+  "all-fields-required": "All fields are required"
 }

@@ -26,7 +26,6 @@ import CheckoutPage from './containers/CheckoutPage';
 import EditAddressPage from './containers/EditAddressPage';
 import ProductDetailPage from './containers/ProductDetailPage';
 import NewAddressPage from './containers/NewAddressPage';
-import NewPaymentPage from './containers/NewPaymentPage';
 import ProfilePage from './containers/ProfilePage';
 import OrderHistoryPage from './containers/OrderHistoryPage';
 import PurchaseReceiptPage from './containers/PurchaseReceiptPage';
@@ -75,9 +74,6 @@ const router = [{
 }, {
   path: '/newaddressform',
   component: NewAddressPage,
-}, {
-  path: '/newpaymentform',
-  component: NewPaymentPage,
 }, {
   path: '/order',
   component: OrderReviewPage,

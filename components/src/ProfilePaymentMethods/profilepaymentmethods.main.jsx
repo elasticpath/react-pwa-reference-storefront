@@ -21,6 +21,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Modal from 'react-responsive-modal';
+import { PaymentFormMain } from '@elasticpath/store-components';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -40,9 +42,13 @@ class ProfilePaymentMethodsMain extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      openNewPaymentModal: false,
+    };
     const epConfig = getConfig();
     Config = epConfig.config;
     ({ intl } = epConfig);
+    this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
   }
 
   handleDelete(link) {
@@ -61,6 +67,14 @@ class ProfilePaymentMethodsMain extends React.Component {
         console.error(error.message);
       });
     });
+  }
+
+  handleCloseNewPaymentModal() {
+    this.setState({ openNewPaymentModal: false });
+  }
+
+  newPayment() {
+    this.setState({ openNewPaymentModal: true });
   }
 
   renderPaymentMethods() {
@@ -96,8 +110,10 @@ class ProfilePaymentMethodsMain extends React.Component {
   }
 
   render() {
+    const { openNewPaymentModal } = this.state;
+    console.log(openNewPaymentModal);
     const {
-      paymentMethods, onAddNewPayment,
+      paymentMethods, onChange,
     } = this.props;
     const isDisabled = !paymentMethods._paymenttokenform;
     if (paymentMethods) {
@@ -108,9 +124,23 @@ class ProfilePaymentMethodsMain extends React.Component {
               {intl.get('payment-methods')}
             </h2>
             {this.renderPaymentMethods()}
-            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={isDisabled} onClick={onAddNewPayment}>
+            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={isDisabled} onClick={() => {this.newPayment();}}>
               {intl.get('add-new-payment-method')}
             </button>
+            <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
+              <div className="modal-lg new-payment-modal">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h2 className="modal-title">
+                      {intl.get('new-payment-method')}
+                    </h2>
+                  </div>
+                  <div className="modal-body">
+                    <PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={onChange} />
+                  </div>
+                </div>
+              </div>
+            </Modal>
           </div>
         </div>
       );

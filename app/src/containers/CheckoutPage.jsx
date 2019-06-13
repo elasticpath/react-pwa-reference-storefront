@@ -22,8 +22,9 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
+import Modal from 'react-responsive-modal';
 import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain,
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain,
 } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -84,9 +85,12 @@ class CheckoutPage extends React.Component {
       profileData: undefined,
       showGiftCard: false,
       certificates: [],
+      openNewPaymentModal: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.handleCertificate = this.handleCertificate.bind(this);
+    this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
+    this.fetchOrderData = this.fetchOrderData.bind(this);
   }
 
   componentDidMount() {
@@ -217,8 +221,7 @@ class CheckoutPage extends React.Component {
   }
 
   newPayment() {
-    const { history } = this.props;
-    history.push('/newpaymentform', { returnPage: '/checkout' });
+    this.setState({ openNewPaymentModal: true });
   }
 
   reviewOrder() {
@@ -519,8 +522,12 @@ class CheckoutPage extends React.Component {
     );
   }
 
+  handleCloseNewPaymentModal() {
+    this.setState({ openNewPaymentModal: false });
+  }
+
   renderPaymentSelector() {
-    const { profileData } = this.state;
+    const { profileData, openNewPaymentModal } = this.state;
     const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
     return (
       <div>
@@ -533,6 +540,20 @@ class CheckoutPage extends React.Component {
         <button className="ep-btn primary wide checkout-new-payment-btn" disabled={isDisabled} type="button" onClick={() => { this.newPayment(); }}>
           {intl.get('add-new-payment-method')}
         </button>
+        <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
+          <div className="modal-lg new-payment-modal">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h2 className="modal-title">
+                  {intl.get('new-payment-method')}
+                </h2>
+              </div>
+              <div className="modal-body">
+                <PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
+              </div>
+            </div>
+          </div>
+        </Modal>
       </div>
     );
   }

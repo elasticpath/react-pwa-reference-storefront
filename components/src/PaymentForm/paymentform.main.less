@@ -23,6 +23,10 @@
 
 .payment-method-container {
   text-transform: capitalize;
+  &.container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 
   .title {
     font-size: 24px;
@@ -31,12 +35,19 @@
   }
 
   .feedback-container {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #E9EDF0;
   }
 
   .form-horizontal {
+    position: relative;
+    padding-top: 10px;
     .form-group {
+      @media screen and (min-width: 681px) {
+        width: 300px;
+        display: inline-block;
+      }
       &:before, &:after {
         content: " ";
         display: block;
@@ -49,37 +60,31 @@
 
       .form-control {
         width: 100px;
+        @media screen and (min-width: 681px) {
+          width: 115px;
+        }
       }
     }
 
     .control-label {
       position: relative;
+      font-size: 13px;
+      line-height: 16px;
+      color: #333333;
+      text-transform: capitalize;
+      margin-bottom: 5px;
       min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px;
 
       .required-label {
         color: red;
         font-size: 16px;
         font-weight: bold;
       }
-
-      @media (min-width: @mobileWidth) {
-        float: left;
-        width: 25%;
-      }
     }
 
     .form-input {
       position: relative;
       min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px;
-
-      @media (min-width: @mobileWidth) {
-        float: left;
-        width: 50%;
-      }
 
       .form-control {
         display: block;
@@ -94,9 +99,102 @@
       }
 
       &.btn-container {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top: 1px solid #E9EDF0;
       }
+    }
+    .card-type-group {
+      .form-control {
+        @media screen and (min-width: 681px) {
+          width: 160px;
+        }
+      }
+    }
+    .security-code-group {
+      @media screen and (min-width: 681px) {
+        width: auto;
+        margin-left: 55px;
+        .form-control {
+          width: 100px;
+        }
+      }
+    }
+    .expiry-date-group {
+      .form-control:first-child {
+        flex-grow: 1;
+      }
+    }
+    .save-to-profile-group {
+      margin-top: 15px;
+      @media screen and (min-width: 681px) {
+        position: absolute;
+        top: 0;
+        left: 355px;
+        width: 175px;
+        margin-top: 5px;
+      }
+      .form-input {
+        float: left;
+      }
+
+      .control-label {
+        display: block;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+        margin: 0;
+      }
+    }
+    .form-btn-group {
+      width: 100%;
+      margin-bottom: 0;
+      text-align: right;
+      .control-label {
+        margin-top: 0;
+      }
+    }
+    .ep-btn {
+      min-height: 34px;
+      text-transform: none;
+    }
+    .payment-cancel-btn {
+      border-color: transparent;
+    }
+    .payment-save-btn {
+      margin-right: 0;
+      @media screen and (min-width: 481px) {
+        min-width: 130px;
+      }
+    }
+    .gray-txt {
+      font-size: 12px;
+      color: #777777;
+    }
+  }
+}
+
+.new-payment-modal {
+  width: 100%;
+  @media screen and (min-width: 681px) {
+    width: 580px;
+  }
+  .modal-header {
+    padding: 10px 20px;
+    border-bottom: none;
+  }
+  .modal-body {
+    padding: 0 10px;
+  }
+  .modal-content {
+    border: none;
+  }
+  +button {
+    top: 25px;
+    right: 27px;
+    svg {
+      width: 24px;
+      height: 24px;
     }
   }
 }
