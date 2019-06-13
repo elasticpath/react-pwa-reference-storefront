@@ -67,7 +67,7 @@ class AppModalCartSelectMain extends React.Component {
     })
       .then(res => res.json())
       .then((res) => {
-        const orgAuthServiceData = res._authorizationcontexts[0]._element.find(element => element.name === Config.cortexApi.scope.toUpperCase());
+        const orgAuthServiceData = res._authorizationcontexts[0]._element.find(element => element.name.toUpperCase() === Config.cortexApi.scope.toUpperCase());
         this.setState({
           orgAuthServiceData,
         });
