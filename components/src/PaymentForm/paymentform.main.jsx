@@ -48,7 +48,7 @@ class PaymentFormMain extends React.Component {
     Config = epConfig.config;
     ({ intl } = getConfig());
     this.state = {
-      cardType: 'amex',
+      cardType: '003',
       cardHolderName: '',
       cardNumber: '',
       expiryMonth: today.getMonth() + 1,
@@ -105,7 +105,7 @@ class PaymentFormMain extends React.Component {
   submitPayment(event) {
     event.preventDefault();
     const {
-      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm,
+      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm, expiryYear, expiryMonth
     } = this.state;
     const {fetchData, onCloseModal} = this.props;
     if (!cardHolderName || !cardNumber || !securityCode) {
@@ -120,45 +120,164 @@ class PaymentFormMain extends React.Component {
     }
     let card;
     switch (cardType) {
-      case 'visa':
+      case '001':
         card = 'Visa';
         break;
-      case 'master':
+      case '002':
         card = 'MasterCard';
         break;
       default:
         card = 'American Express';
     }
-    // set link based on savetoprofile
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({
-          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-          token: Math.random().toString(36).substr(2, 9),
-          /* token is being randomly generated here to be passed to the demo payment gateway
-          ** in a true implementation this token should be received from the actual payment gateway
-          ** when doing so, make sure you're compliant with PCI DSS
-          */
-        }),
-      }).then((res) => {
-        if (res.status === 400) {
-          this.setState({ failedSubmit: true });
-        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-          this.setState({ failedSubmit: false }, () => {
-            fetchData();
-            onCloseModal();
+
+    if(Config.creditCardTokenization && Config.creditCardTokenization.enable) {
+      const name = cardHolderName.split(' ');
+      const formatedExpiryMonth = ((expiryMonth) < 10 ? '0' : '') + (expiryMonth);
+      let paymentToken;
+      let bodyLambdaRequest = {
+        reference_number: Math.floor(Math.random() * 1000000001),
+        currency: Config.defaultCurrencyValue,
+        payment_method: 'card',
+        bill_to_email: '',
+        locale: Config.defaultLocaleValue,
+        bill_to_address_line1: '',
+        bill_to_address_city: '',
+        bill_to_address_state: '',
+        bill_to_address_country: '',
+        bill_to_address_postal_code: '',
+      };
+      const zoomArrayProfile = [
+        'defaultcart',
+        'defaultcart:total',
+        'defaultprofile',
+        'defaultprofile:addresses',
+        'defaultprofile:addresses:element',
+        'defaultprofile:emails',
+        'defaultprofile:emails:element',
+      ];
+      login().then(() => {
+          cortexFetch(`/?zoom=${zoomArrayProfile.join()}`,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+            })
+            .then(profileData => profileData.json())
+            .then((profileData) => {
+              bodyLambdaRequest = {
+                ...bodyLambdaRequest,
+                currency: profileData._defaultcart[0]._total[0].cost[0].currency,
+                bill_to_email: profileData._defaultprofile[0]._emails[0]._element[0].email,
+                bill_to_address_city: profileData._defaultprofile[0]._addresses[0]._element[0].address.locality,
+                bill_to_address_state: profileData._defaultprofile[0]._addresses[0]._element[0].address.region,
+                bill_to_address_country: profileData._defaultprofile[0]._addresses[0]._element[0].address['country-name'],
+                bill_to_address_postal_code: profileData._defaultprofile[0]._addresses[0]._element[0].address['postal-code'],
+                bill_to_address_line1: profileData._defaultprofile[0]._addresses[0]._element[0].address['street-address'],
+              };
+              fetch(Config.creditCardTokenization.lambdaURI, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bodyLambdaRequest),
+              })
+                .then(lambdaResponse => lambdaResponse.json())
+                .then((lambdaResponse) => {
+                  // eslint-disable-next-line
+                  const formEncodedBody = Object.keys(lambdaResponse)
+                    .filter(k => lambdaResponse.hasOwnProperty(k))
+                    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(lambdaResponse[k])}`)
+                    .join('&');
+                  const cardData = `&bill_to_forename=${name[0]}&bill_to_surname=${name[1]}&card_type=${cardType}&card_number=${cardNumber}&card_expiry_date=${formatedExpiryMonth}-${expiryYear}&card_cvn=${securityCode}`;
+                  const cybersourceURI = lambdaResponse.cs_endpoint_url;
+                  fetch(cybersourceURI, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: formEncodedBody + cardData,
+                  })
+                    .then(data => data.text())
+                    .then((data) => {
+                      const parser = new DOMParser();
+                      const doc = parser.parseFromString(data, 'text/html');
+                      const form = doc.querySelector('form[id="custom_redirect"]');
+                      const elemets = form.elements;
+                      // eslint-disable-next-line
+                      for (const element of elemets) {
+                        if (element.id === 'payment_token') {
+                          paymentToken = element.value;
+                        }
+                      }
+                      cortexFetch(link, {
+                        method: 'post',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                        },
+                        body: JSON.stringify({
+                          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
+                          token: paymentToken,
+                        }),
+                      })
+                        .then((res) => {
+                          if (res.status === 400) {
+                            this.setState({ failedSubmit: true });
+                          } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+                            this.setState({ failedSubmit: false }, () => {
+                              fetchData();
+                              onCloseModal();
+                            });
+                          }
+                        })
+                        .catch((error) => {
+                          // eslint-disable-next-line no-console
+                          console.error(error.message);
+                        });
+                    });
+                });
+            });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        })
+    } else{
+      login().then(() => {
+        cortexFetch(link, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({
+            'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
+            token: Math.random()
+              .toString(36)
+              .substr(2, 9),
+            /* token is being randomly generated here to be passed to the demo payment gateway
+            ** in a true implementation this token should be received from the actual payment gateway
+            ** when doing so, make sure you're compliant with PCI DSS
+            */
+          }),
+        })
+          .then((res) => {
+            if (res.status === 400) {
+              this.setState({ failedSubmit: true });
+            } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+              this.setState({ failedSubmit: false }, () => {
+                fetchData();
+                onCloseModal();
+              });
+            }
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
           });
-        }
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    });
+      })
+    }
   }
 
   fetchPaymentForms() {
@@ -232,13 +351,13 @@ class PaymentFormMain extends React.Component {
             </label>
             <div className="form-input">
               <select id="CardType" name="CardType" className="form-control" value={cardType} onChange={this.setCardType}>
-                <option value="amex">
+                <option value="003">
                   {intl.get('american-express')}
                 </option>
-                <option value="master">
+                <option value="002">
                   {intl.get('mastercard')}
                 </option>
-                <option value="visa">
+                <option value="001">
                   {intl.get('visa')}
                 </option>
               </select>
