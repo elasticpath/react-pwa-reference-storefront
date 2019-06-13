@@ -75,7 +75,7 @@ timestamps {
       }
       stage('TEST') {
         // Run unit & Puppeteer tests
-        timeout(time: 3, unit: 'MINUTES') {
+        timeout(time: 10, unit: 'MINUTES') {
            sh """
              ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST}  \"\"\"
                sleep 35 && docker exec -t store sh -c 'export TEST_HOST=http://${EC2_INSTANCE_HOST}:8080 && CI=true npm test'
