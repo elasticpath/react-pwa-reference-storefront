@@ -120,4 +120,10 @@ services:
       - /ep/tomcat-logs:/usr/local/tomcat/logs
     env_file:
       - docker-compose.env
+    healthcheck:
+      test: curl --max-time 3 -s -f localhost:8080/cortex/healthcheck
+      interval: 10s
+      retries: 3
+      start_period: 3m
+      timeout: 5s
     restart: always
