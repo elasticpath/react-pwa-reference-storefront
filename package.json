@@ -18,5 +18,11 @@
   },
   "dependencies": {
     "lerna": "^3.14.1"
+  },
+  "scripts": {
+    "start": " cd app && yarn start",
+    "build": " cd app && yarn build",
+    "test": " cd app && yarn test",
+    "storybook": " cd storybook && yarn storybook"
   }
 }

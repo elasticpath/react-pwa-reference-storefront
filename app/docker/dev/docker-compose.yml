@@ -31,7 +31,7 @@ services:
       interval: 5s
       timeout: 20s
       retries: 10
-      start_per64iod: 40s
+      start_period: 40s
   activemq:
     image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/activemq:${DOCKER_IMAGE_TAG}
     container_name: activemq

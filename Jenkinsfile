@@ -75,7 +75,6 @@ timestamps {
       }
       stage('TEST') {
         // Run unit & Puppeteer tests
-
         timeout(time: 3, unit: 'MINUTES') {
            sh """
              ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST}  \"\"\"
