@@ -111,7 +111,7 @@ module.exports = {
           handler: 'CacheFirst',
         },
         {
-          urlPattern: /.*/,
+          urlPattern: /\.(?:js|html)$/,
           handler: 'NetworkFirst',
         },
       ],

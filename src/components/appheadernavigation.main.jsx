@@ -25,7 +25,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { login, logout } from '../utils/AuthService';
+import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 
 import './appheadernavigation.main.less';
@@ -47,7 +47,6 @@ const zoomArray = [
 
 class AppHeaderNavigationMain extends React.Component {
   static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
     location: ReactRouterPropTypes.location.isRequired,
     isOfflineCheck: PropTypes.func.isRequired,
     isOffline: PropTypes.bool,
@@ -137,18 +136,6 @@ class AppHeaderNavigationMain extends React.Component {
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
         }))
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          logout().then(() => {
-            login().then(() => {
-              const { history } = this.props;
-              history.push('/');
-              window.location.reload();
-            });
-          });
-        }
-        return res;
-      })
       .then(res => res.json())
       .then((res) => {
         if (res && res._navigations) {
