@@ -41,7 +41,7 @@ timestamps {
           \"\"\"
         """
       }
-      /* stage('DEPLOY') {
+      stage('DEPLOY') {
         // Create the working directory
         sh """
           ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} "mkdir -p ref-store-service"
@@ -72,7 +72,7 @@ timestamps {
         """
 
         currentBuild.description = "Image Tag: ${DOCKER_IMAGE_TAG}"
-      } */
+      }
       stage('TEST') {
         // Run unit & Puppeteer tests
 
