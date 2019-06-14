@@ -85,12 +85,12 @@ timestamps {
       }*/
       stage('PUBLISH') {
         // Run unit & Puppeteer tests
-        sh """
-          export NPM_TOKEN=${NPM_TOKEN}
-          source ~/.profile
-          cd scm/components
-          npm publish
-        """
+        dir('scm/components') {
+          sh """
+            export NPM_TOKEN=${NPM_TOKEN}
+            npm publish
+          """
+        }
       }
     }
   }
