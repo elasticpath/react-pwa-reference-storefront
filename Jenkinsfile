@@ -88,7 +88,7 @@ timestamps {
         sh """
           ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} \"\"\"
             export NPM_TOKEN=${NPM_TOKEN}
-            ref-store-service/components
+            cd ref-store-service/components
             npm publish
           \"\"\"
         """
