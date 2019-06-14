@@ -85,12 +85,13 @@ timestamps {
       }*/
       stage('PUBLISH') {
         // Run unit & Puppeteer tests
-        dir('scm/components') {
-          sh """
+        sh """
+          ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} \"\"\"
             export NPM_TOKEN=${NPM_TOKEN}
+            ref-store-service/components
             npm publish
-          """
-        }
+          \"\"\"
+        """
       }
     }
   }
