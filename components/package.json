@@ -1,6 +1,6 @@
 {
   "name": "@elasticpath/store-components",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "main": "build/index",
   "main:src": "src/index",
   "types": "src/index",
@@ -9,7 +9,7 @@
     "build": "node scripts/build.js"
   },
   "dependencies": {
-    "@elasticpath/cortexjs": "*",
+    "@elasticpath/cortexjs": "^1.1.1",
     "fetch-mock": "^7.3.3",
     "less-vars-to-js": "^1.3.0",
     "react-router-dom": "^5.0.0"
@@ -19,9 +19,9 @@
     "babel-loader": "^8.0.6",
     "declaration-bundler-webpack-plugin": "^1.0.3",
     "react-dev-utils": "^9.0.1",
+    "react-responsive-modal": "^3.5.1",
     "react-scripts": "^3.0.1",
-    "ts-loader": "^6.0.1",
-    "react-responsive-modal": "^3.5.1"
+    "ts-loader": "^6.0.1"
   },
   "browserslist": {
     "production": [

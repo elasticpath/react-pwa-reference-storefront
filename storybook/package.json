@@ -1,11 +1,11 @@
 {
   "name": "@elasticpath/storybook",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "private": true,
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.2.2",
-    "@elasticpath/store-components": "*",
+    "@elasticpath/store-components": "^1.1.1",
     "@react-workspaces/react-scripts": "3.0.0-alpha-04",
     "@types/react-slick": "^0.23.4",
     "babel-loader": "^8.0.5",
@@ -20,11 +20,11 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.0.11",
+    "@storybook/addon-info": "^5.0.11",
     "@storybook/addon-links": "^5.0.11",
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.0.11",
     "@storybook/theming": "^5.0.11",
-    "@storybook/addon-info": "^5.0.11",
     "@types/storybook__react": "^4.0.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",
