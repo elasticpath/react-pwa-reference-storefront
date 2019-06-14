@@ -1,11 +1,11 @@
 {
   "name": "@elasticpath/ref-store",
-  "version": "1.1.1",
+  "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "7.4.3",
-    "@elasticpath/store-components": "^1.1.1",
+    "@elasticpath/store-components": "*",
     "@svgr/webpack": "4.1.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
