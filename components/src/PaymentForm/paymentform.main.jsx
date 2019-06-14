@@ -48,6 +48,7 @@ class PaymentFormMain extends React.Component {
     Config = epConfig.config;
     ({ intl } = getConfig());
     this.state = {
+      showLoader: false,
       cardType: '003',
       cardHolderName: '',
       cardNumber: '',
@@ -104,6 +105,9 @@ class PaymentFormMain extends React.Component {
 
   submitPayment(event) {
     event.preventDefault();
+    this.setState({
+      showLoader: true,
+    });
     const {
       cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm, expiryYear, expiryMonth
     } = this.state;
@@ -222,6 +226,9 @@ class PaymentFormMain extends React.Component {
                         }),
                       })
                         .then((res) => {
+                          this.setState({
+                            showLoader: false,
+                          });
                           if (res.status === 400) {
                             this.setState({ failedSubmit: true });
                           } else if (res.status === 201 || res.status === 200 || res.status === 204) {
@@ -232,6 +239,9 @@ class PaymentFormMain extends React.Component {
                           }
                         })
                         .catch((error) => {
+                          this.setState({
+                            showLoader: false,
+                          });
                           // eslint-disable-next-line no-console
                           console.error(error.message);
                         });
@@ -240,6 +250,9 @@ class PaymentFormMain extends React.Component {
             });
         })
         .catch((error) => {
+          this.setState({
+            showLoader: false,
+          });
           // eslint-disable-next-line no-console
           console.error(error.message);
         })
@@ -263,6 +276,9 @@ class PaymentFormMain extends React.Component {
           }),
         })
           .then((res) => {
+            this.setState({
+              showLoader: false,
+            });
             if (res.status === 400) {
               this.setState({ failedSubmit: true });
             } else if (res.status === 201 || res.status === 200 || res.status === 204) {
@@ -273,6 +289,9 @@ class PaymentFormMain extends React.Component {
             }
           })
           .catch((error) => {
+            this.setState({
+              showLoader: false,
+            });
             // eslint-disable-next-line no-console
             console.error(error.message);
           });
@@ -323,7 +342,7 @@ class PaymentFormMain extends React.Component {
 
   render() {
     const {
-      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit,
+      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader,
     } = this.state;
     return (
       <div className="payment-method-container container">
@@ -331,6 +350,11 @@ class PaymentFormMain extends React.Component {
           {failedSubmit ? intl.get('failed-to-save-message') : ''}
         </div>
         <form className="form-horizontal" onSubmit={this.submitPayment}>
+          {showLoader && (
+            <div className="loader-wrapper">
+              <div className="miniLoader" />
+            </div>
+          )}
           <div className="form-group">
             <span className="gray-txt">
               {intl.get('all-fields-required')}

@@ -23,7 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { login, logout } from '../utils/AuthService';
+import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig } from '../utils/ConfigProvider';
 
@@ -141,17 +141,6 @@ class AppHeaderNavigationMain extends React.Component {
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
         }))
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          logout().then(() => {
-            login().then(() => {
-              const { onFetchNavigationError } = this.props;
-              onFetchNavigationError();
-            });
-          });
-        }
-        return res;
-      })
       .then(res => res.json())
       .then((res) => {
         if (res && res._navigations) {

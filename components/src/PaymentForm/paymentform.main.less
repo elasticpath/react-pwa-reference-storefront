@@ -38,6 +38,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
     border-top: 1px solid #E9EDF0;
+    color: red;
   }
 
   .form-horizontal {
@@ -53,6 +54,19 @@
         display: block;
         clear: both;
       }
+    }
+
+    .loader-wrapper {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(255,255,255,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
     }
 
     .form-inline {

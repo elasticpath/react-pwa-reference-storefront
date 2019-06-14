@@ -47,10 +47,10 @@ const address = {
 const paymentMethod = {
   cardType: 'Visa',
   cardHolderName: 'Test User',
-  cardNumber: '411111111111111',
+  cardNumber: '4111111111111111',
   expiryMonth: '10',
   expiryYear: '2025',
-  securityCode: '111',
+  securityCode: '123',
 };
 
 const host = process.env.TEST_HOST;
@@ -91,9 +91,10 @@ const CARD_NUMBER = "#CardNumber";
 const EXPIRY_MONTH = "#ExpiryMonth";
 const EXPIRY_YEAR = "#ExpiryYear";
 const SECURITY_CODE = "#SecurityCode";
-const SAVE_TO_PROFILE = "#saveToProfile";
+const SAVE_TO_PROFILE = 'label[for="saveToProfile"]';
 const CONTINUE_BUTTON = "button.payment-save-btn";
 const ADDRESS_NAME = ".address-name";
+const CREATED_PAYMENT_METHOD = "ul.profile-payment-methods-listing:nth-child(2)";
 
 const EXPECTED_FIRST_NAME = 'john2';
 const EXPECTED_ADDRESS_NAME= 'Test User';
@@ -173,7 +174,7 @@ describe('Profile', () => {
 
   test('Create new user with Address and Payment Method', async () => {
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
+      args: ['--no-sandbox', '--disable-web-security'],
       slowMo: 20,
     });
     const page = await browser.newPage();
@@ -237,7 +238,8 @@ describe('Profile', () => {
     await page.click(CONTINUE_BUTTON);
 
     // When I navigate to the profile page
-    await page.waitForSelector(ADD_NEW_PAYMENT_METHOD);
+    await page.waitForSelector(CREATED_PAYMENT_METHOD);
+    await page.waitFor(3000);
     await page.click(DROPDOWN_LOGGED_IN_BUTTON);
     await page.waitForSelector(MY_PROFILE);
     await page.click(MY_PROFILE);
