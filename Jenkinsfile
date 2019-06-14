@@ -12,7 +12,7 @@ timestamps {
           git branch: SOLR_HOME_BRANCH, url: SOLR_HOME_GIT_URL
         }
       }
-      stage('BUILD') {
+      /*stage('BUILD') {
         dir('scm') {
           // Build the docker image, push to aws
           sh """
@@ -82,16 +82,10 @@ timestamps {
               \"\"\"
            """
         }
-      }
+      }*/
       stage('PUBLISH') {
         // Run unit & Puppeteer tests
-        dir("scm/components") {
-          sh """
-            export NPM_TOKEN=${NPM_TOKEN}
-            source ~/.profile
-            npm publish
-          """
-        }
+        sh "find ./"
       }
     }
   }
