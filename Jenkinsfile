@@ -12,7 +12,7 @@ timestamps {
           git branch: SOLR_HOME_BRANCH, url: SOLR_HOME_GIT_URL
         }
       }
-      /*stage('BUILD') {
+      stage('BUILD') {
         dir('scm') {
           // Build the docker image, push to aws
           sh """
@@ -82,12 +82,12 @@ timestamps {
               \"\"\"
            """
         }
-      }*/
+      }
       stage('PUBLISH') {
         // Run unit & Puppeteer tests
         sh """
           ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} \"\"\"
-            docker exec -t store sh -c 'export NPM_TOKEN=${NPM_TOKEN} && ls && cd .. && ls'
+            docker exec -t store sh -c 'export NPM_TOKEN=${NPM_TOKEN} && cd components &&  npm publish'
           \"\"\"
         """
       }
