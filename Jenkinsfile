@@ -87,7 +87,7 @@ timestamps {
         // Run unit & Puppeteer tests
         sh """
           ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} \"\"\"
-            docker exec -t store sh -c 'export NPM_TOKEN=${NPM_TOKEN} && find .'
+            docker exec -t store sh -c 'export NPM_TOKEN=${NPM_TOKEN} && ls && cd .. && ls'
           \"\"\"
         """
       }
