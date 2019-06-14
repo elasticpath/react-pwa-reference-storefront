@@ -22,8 +22,9 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import Modal from 'react-responsive-modal';
 import {
-  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain,
+  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain, AddressFormMain,
 } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -63,12 +64,14 @@ class ProfilePage extends React.Component {
       profileData: undefined,
       invalidPermission: false,
       showResetPasswordButton: false,
+      openAddressModal: false,
+      addressUrl: undefined,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.changePassword = this.changePassword.bind(this);
-    this.handleNewPayment = this.handleNewPayment.bind(this);
     this.handleNewAddress = this.handleNewAddress.bind(this);
     this.handleEditAddress = this.handleEditAddress.bind(this);
+    this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
   }
 
   componentDidMount() {
@@ -129,19 +132,45 @@ class ProfilePage extends React.Component {
     history.push('/password_change', { returnPage: '/profile' });
   }
 
-  handleNewPayment() {
-    const { history } = this.props;
-    history.push('/newpaymentform', { returnPage: '/profile' });
-  }
-
   handleNewAddress() {
-    const { history } = this.props;
-    history.push('/newaddressform', { returnPage: '/profile' });
+    this.setState({
+      openAddressModal: true,
+      addressUrl: undefined,
+    });
   }
 
   handleEditAddress(addressLink) {
-    const { history } = this.props;
-    history.push('/editaddress', { returnPage: '/profile', address: addressLink });
+    this.setState({
+      openAddressModal: true,
+      addressUrl: {address: addressLink},
+    });
+  }
+
+  handleCloseAddressModal() {
+    this.setState({ openAddressModal: false });
+  }
+
+  renderNewAddressModal() {
+    const { openAddressModal, addressUrl } = this.state;
+    const newOrEdit = (addressUrl && addressUrl.address) ? intl.get('edit') : intl.get('new');
+    return (
+      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal}>
+        <div className="modal-lg new-address-modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2 className="modal-title">
+                {newOrEdit}
+                {' '}
+                {intl.get('address')}
+              </h2>
+            </div>
+            <div className="modal-body">
+              <AddressFormMain onCloseModal={this.handleCloseAddressModal} fetchData={this.fetchProfileData} addressData={addressUrl} />
+            </div>
+          </div>
+        </div>
+      </Modal>
+    );
   }
 
   render() {
@@ -184,6 +213,7 @@ class ProfilePage extends React.Component {
                     {(profileData._addresses) ? (
                       <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
                     ) : ('')}
+                    {this.renderNewAddressModal()}
                   </div>
                 </div>
               </div>
@@ -194,7 +224,7 @@ class ProfilePage extends React.Component {
                 <div className="profile-info-col">
                   <div className="profile-info-block">
                     {(profileData._paymentmethods) ? (
-                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} onAddNewPayment={this.handleNewPayment} />
+                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
                     ) : ('')}
                   </div>
                 </div>

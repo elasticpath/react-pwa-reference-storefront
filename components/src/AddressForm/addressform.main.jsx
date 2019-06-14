@@ -42,17 +42,15 @@ const zoomArray = [
 
 class AddressFormMain extends React.Component {
   static propTypes = {
-    onMainPage: PropTypes.func,
-    onProfilePage: PropTypes.func,
-    onReturnedPage: PropTypes.func,
     addressData: PropTypes.objectOf(PropTypes.any),
+    onCloseModal: PropTypes.func,
+    fetchData: PropTypes.func,
   }
 
   static defaultProps = {
-    onMainPage: () => {},
-    onProfilePage: () => {},
-    onReturnedPage: () => {},
     addressData: undefined,
+    onCloseModal: () => {},
+    fetchData: () => {},
   }
 
   constructor(props) {
@@ -129,7 +127,7 @@ class AddressFormMain extends React.Component {
 
   submitAddress(event) {
     event.preventDefault();
-    const { addressData } = this.props;
+    const { addressData, fetchData, onCloseModal } = this.props;
     const {
       addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
     } = this.state;
@@ -168,7 +166,8 @@ class AddressFormMain extends React.Component {
           this.setState({ failedSubmit: true });
         } else if (res.status === 201 || res.status === 200 || res.status === 204) {
           this.setState({ failedSubmit: false }, () => {
-            this.cancel();
+            fetchData();
+            onCloseModal();
           });
         }
       }).catch((error) => {
@@ -243,19 +242,8 @@ class AddressFormMain extends React.Component {
   }
 
   cancel() {
-    const {
-      addressData,
-      onReturnedPage,
-      onProfilePage,
-      onMainPage,
-    } = this.props;
-    if (addressData && addressData.returnPage) {
-      onReturnedPage(addressData.returnPage);
-    } else if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
-      onProfilePage();
-    } else {
-      onMainPage();
-    }
+    const { onCloseModal } = this.props;
+    onCloseModal();
   }
 
   renderCountries() {
@@ -342,14 +330,8 @@ class AddressFormMain extends React.Component {
     const {
       failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
     } = this.state;
-    const newOrEdit = (addressData && addressData.address) ? intl.get('edit') : intl.get('new');
     return (
       <div className="address-form-component container" data-region="appMain">
-        <div className="title">
-          {newOrEdit}
-          {' '}
-          {intl.get('address')}
-          </div>
         <div className="feedback-label feedback-container" data-region="componentAddressFeedbackRegion">
           {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
         </div>
@@ -441,14 +423,14 @@ class AddressFormMain extends React.Component {
               <input id="PostalCode" name="PostalCode" className="form-control" type="text" value={postalCode} onChange={this.setPostalCode} />
             </div>
           </div>
-          <div className="form-group">
+          <div className="form-group form-btn-group">
             <div className="control-label" />
             <div className="form-input btn-container">
-              <button className="ep-btn primary address-save-btn" data-el-label="addressForm.save" type="submit">
-                {intl.get('save')}
-              </button>
               <button className="ep-btn address-cancel-btn" data-el-label="addressForm.cancel" type="button" onClick={() => { this.cancel(); }}>
                 {intl.get('cancel')}
+              </button>
+              <button className="ep-btn primary address-save-btn" data-el-label="addressForm.save" type="submit">
+                {intl.get('save')}
               </button>
             </div>
           </div>

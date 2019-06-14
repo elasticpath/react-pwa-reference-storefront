@@ -22,6 +22,11 @@
 @import './../style/common.less';
 
 .address-form-component {
+  &.container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
   .title {
     font-size: 24px;
     margin-top: 20px;
@@ -29,12 +34,25 @@
   }
 
   .feedback-container {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #E9EDF0;
+    color: red;
   }
 
   .form-horizontal {
+    display: flex;
+    flex-wrap: wrap;
     .form-group {
+      width: 100%;
+      @media screen and (min-width: 681px) {
+        width: 50%;
+        padding-right: 25px;
+        &:nth-child(2n) {
+          padding-right: 0;
+          padding-left: 25px;
+        }
+      }
       &:before, &:after {
         content: " ";
         display: block;
@@ -44,9 +62,12 @@
 
     .control-label {
       position: relative;
+      font-size: 13px;
+      line-height: 16px;
+      color: #333333;
+      text-transform: capitalize;
+      margin-bottom: 5px;
       min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px;
 
       .required-label {
         color: red;
@@ -54,22 +75,11 @@
         font-weight: bold;
       }
 
-      @media (min-width: @mobileWidth) {
-        float: left;
-        width: 25%;
-      }
     }
 
     .form-input {
       position: relative;
       min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px;
-
-      @media (min-width: @mobileWidth) {
-        float: left;
-        width: 50%;
-      }
 
       .form-control {
         display: block;
@@ -84,15 +94,57 @@
       }
 
       &.btn-container {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+
+    .form-btn-group {
+      width: 100%;
+      padding: 0;
+      margin-bottom: 0;
+      text-align: right;
+      .control-label {
+        margin: 0;
+      }
+    }
+    .ep-btn {
+      min-height: 34px;
+      text-transform: none;
+    }
+    .address-cancel-btn {
+      border-color: transparent;
+    }
+    .address-save-btn {
+      margin-right: 0;
+      @media screen and (min-width: 481px) {
+        min-width: 130px;
       }
     }
   }
+}
 
-  @media (min-width: @mobileWidth) {
-    .form-horizontal .control-label {
-      text-align: right;
+.new-address-modal {
+  width: 100%;
+  @media screen and (min-width: 681px) {
+    width: 580px;
+  }
+  .modal-header {
+    padding: 10px 20px;
+    border-bottom: none;
+  }
+  .modal-body {
+    padding: 0 10px;
+  }
+  .modal-content {
+    border: none;
+  }
+  +button {
+    top: 25px;
+    right: 27px;
+    svg {
+      width: 24px;
+      height: 24px;
     }
   }
 }

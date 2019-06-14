@@ -37,7 +37,6 @@ class ProfilePaymentMethodsMain extends React.Component {
   static propTypes = {
     paymentMethods: PropTypes.objectOf(PropTypes.any).isRequired,
     onChange: PropTypes.func.isRequired,
-    onAddNewPayment: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -111,7 +110,6 @@ class ProfilePaymentMethodsMain extends React.Component {
 
   render() {
     const { openNewPaymentModal } = this.state;
-    console.log(openNewPaymentModal);
     const {
       paymentMethods, onChange,
     } = this.props;

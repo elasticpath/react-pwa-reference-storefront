@@ -24,7 +24,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain,
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain, AddressFormMain,
 } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -86,11 +86,14 @@ class CheckoutPage extends React.Component {
       showGiftCard: false,
       certificates: [],
       openNewPaymentModal: false,
+      openAddressModal: false,
+      addressUrl: undefined,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.handleCertificate = this.handleCertificate.bind(this);
     this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
     this.fetchOrderData = this.fetchOrderData.bind(this);
+    this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
   }
 
   componentDidMount() {
@@ -171,13 +174,17 @@ class CheckoutPage extends React.Component {
   }
 
   newAddress() {
-    const { history } = this.props;
-    history.push('/newaddressform', { returnPage: '/checkout' });
+    this.setState({
+      openAddressModal: true,
+      addressUrl: undefined,
+    });
   }
 
   editAddress(addressLink) {
-    const { history } = this.props;
-    history.push('/editaddress', { returnPage: '/checkout', address: addressLink });
+    this.setState({
+      openAddressModal: true,
+      addressUrl: {address: addressLink},
+    });
   }
 
   handleDelete(link) {
@@ -233,6 +240,10 @@ class CheckoutPage extends React.Component {
     this.setState({
       certificates: certificate,
     });
+  }
+
+  handleCloseAddressModal() {
+    this.setState({ openAddressModal: false });
   }
 
   renderShippingAddress() {
@@ -297,6 +308,29 @@ class CheckoutPage extends React.Component {
     );
   }
 
+  renderNewAddressModal() {
+    const { openAddressModal, addressUrl } = this.state;
+    const newOrEdit = (addressUrl && addressUrl.address) ? intl.get('edit') : intl.get('new');
+    return (
+      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal}>
+        <div className="modal-lg new-address-modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2 className="modal-title">
+                {newOrEdit}
+                {' '}
+                {intl.get('address')}
+              </h2>
+            </div>
+            <div className="modal-body">
+              <AddressFormMain onCloseModal={this.handleCloseAddressModal} fetchData={this.fetchOrderData} addressData={addressUrl} />
+            </div>
+          </div>
+        </div>
+      </Modal>
+    );
+  }
+
   renderShippingAddressSelector() {
     const { orderData } = this.state;
     const deliveries = orderData._order[0]._deliveries;
@@ -319,7 +353,6 @@ class CheckoutPage extends React.Component {
         </div>
       );
     }
-    return null;
   }
 
   renderShippingOptions() {
@@ -446,7 +479,7 @@ class CheckoutPage extends React.Component {
   }
 
   renderBillingAddressSelector() {
-    const { profileData } = this.state;
+    const { profileData, openAddressModal } = this.state;
     const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
     return (
       <div>
@@ -606,6 +639,7 @@ class CheckoutPage extends React.Component {
                     <div className="profile-info-block">
                       <div data-region="billingAddressesRegion" style={{ display: 'block' }}>
                         {this.renderBillingAddressSelector()}
+                        {this.renderNewAddressModal()}
                       </div>
                     </div>
                   </div>

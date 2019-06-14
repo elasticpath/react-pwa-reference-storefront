@@ -25,7 +25,6 @@ import CategoryPage from './containers/CategoryPage';
 import CheckoutPage from './containers/CheckoutPage';
 import EditAddressPage from './containers/EditAddressPage';
 import ProductDetailPage from './containers/ProductDetailPage';
-import NewAddressPage from './containers/NewAddressPage';
 import ProfilePage from './containers/ProfilePage';
 import OrderHistoryPage from './containers/OrderHistoryPage';
 import PurchaseReceiptPage from './containers/PurchaseReceiptPage';
@@ -71,9 +70,6 @@ const router = [{
 }, {
   path: '/itemdetail/:url',
   component: ProductDetailPage,
-}, {
-  path: '/newaddressform',
-  component: NewAddressPage,
 }, {
   path: '/order',
   component: OrderReviewPage,
