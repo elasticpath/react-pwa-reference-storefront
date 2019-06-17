@@ -18,7 +18,8 @@ timestamps {
           sh """
             docker build --tag ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:\$(jq -r .version package.json) \
               --build-arg BUILD_DATE="\$(date --rfc-3339=seconds)" --build-arg VERSION=\$(jq -r .version package.json) \
-              --build-arg VCS_REF=\$(git rev-parse HEAD) -f ./app/docker/dev/Dockerfile .
+              --build-arg VCS_REF=\$(git rev-parse HEAD) \
+              --build-arg NPM_TOKEN=\$(NPM_TOKEN) -f ./docker/dev/Dockerfile .
             eval "\$(aws ecr get-login --no-include-email)"
             docker push ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:\$(jq -r .version package.json)
           """
@@ -65,7 +66,7 @@ timestamps {
             export CORTEX=http://${EC2_INSTANCE_HOST}:9080
             export STORE=${STORE_NAME}
 
-            cd ref-store-service/app/docker/dev
+            cd ref-store-service/docker/dev
             eval '\$(aws ecr get-login --no-include-email)'
             docker-compose up -d
           \"\"\"
@@ -82,14 +83,6 @@ timestamps {
               \"\"\"
            """
         }
-      }
-      stage('PUBLISH') {
-        // Run unit & Puppeteer tests
-        sh """
-          ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} \"\"\"
-            docker exec -t store sh -c 'export NPM_TOKEN=${NPM_TOKEN} && cd components &&  npm publish'
-          \"\"\"
-        """
       }
     }
   }
