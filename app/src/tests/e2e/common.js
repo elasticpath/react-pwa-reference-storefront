@@ -132,7 +132,7 @@ module.exports = {
     const EXPIRY_MONTH = '#ExpiryMonth';
     const EXPIRY_YEAR = '#ExpiryYear';
     const SECURITY_CODE = '#SecurityCode';
-    const SAVE_TO_PROFILE = '#saveToProfile';
+    const SAVE_TO_PROFILE = 'label[for="saveToProfile"]';
     const CONTINUE_BUTTON = 'button.payment-save-btn';
 
     await page.waitForSelector(CARD_TYPE);
@@ -156,6 +156,7 @@ module.exports = {
     const POSTAL_CODE = '#PostalCode';
     const SAVE_BUTTON = 'button.address-save-btn';
 
+    await page.waitFor(2000);
     await page.waitForSelector(FIRST_NAME);
     await page.type(FIRST_NAME, 'Test');
     await page.type(LAST_NAME, 'User');
@@ -212,7 +213,7 @@ module.exports = {
       await page.type(FORM_EMAIL_USER_NAME, user.email);
       await page.type(FORM_PASSWORD, user.password);
       await page.type(FORM_CONFIRM_PASSWORD, user.password);
-      
+
       await Promise.all([
         page.click(FORM_SUBMIT_BUTTON),
         page.waitForNavigation({ waitUntil: 'networkidle0' }),

@@ -77,6 +77,8 @@ const CHECKOUT_ADDRESS_SELECTOR_CSS = 'div[data-region="checkoutAddressSelector"
 const BILLING_ADDRESS_SELECTORS_REGION_CSS = 'div[data-region="billingAddressSelectorsRegion"]';
 const PAYMENT_SELECTOR_CSS = 'div[data-region="paymentSelector"]';
 const PAYMENT_METHOD_REGION_CSS = 'div[data-region="paymentMethodSelectorsRegion"]';
+const CREATED_PAYMENT_METHOD = ".paymentMethodComponentRegion";
+const CREATED_ADDRESS_METHOD = ".address-ctrl-cell";
 
 describe('Purchase feature', () => {
 
@@ -84,8 +86,8 @@ describe('Purchase feature', () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
-      slowMo: 10
+      args: ['--no-sandbox', '--disable-web-security'],
+      slowMo: 10,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
@@ -109,7 +111,7 @@ describe('Purchase feature', () => {
       password: '12345678_test',
     } ;
     await registerUser(page, userInfo);
-
+    await page.waitFor(2000);
     await page.waitForSelector(HOME_PAGE_CSS);
 
     await page.waitForSelector(CART_LINK_CSS);
@@ -128,21 +130,23 @@ describe('Purchase feature', () => {
       country: 'United States',
     } ;
     await addAddress(page, address);
-
-    await page.waitForSelector(ADD_NEW_PAYMENT_CSS);
+    await page.waitForSelector(CREATED_ADDRESS_METHOD);
+    await page.waitFor(3000);
     await page.click(ADD_NEW_PAYMENT_CSS);
 
     const paymentMethod = {
       cardType: 'Visa',
       cardHolderName: 'Test User',
-      cardNumber: '411111111111111',
+      cardNumber: '4111111111111111',
       expiryMonth: '10',
       expiryYear: '2025',
-      securityCode: '111',
+      securityCode: '123',
     };
 
     await addPaymentMethod(page, paymentMethod);
 
+    await page.waitForSelector(CREATED_PAYMENT_METHOD);
+    await page.waitFor(3000);
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
     await page.click(COMPLETE_ORDER_BUTTON_CSS);
 
@@ -163,8 +167,8 @@ describe('Purchase feature', () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
-      slowMo: 10
+      args: ['--no-sandbox', '--disable-web-security'],
+      slowMo: 10,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
@@ -189,6 +193,8 @@ describe('Purchase feature', () => {
       country: 'United States',
     } ;
     await addAddress(page, address);
+    await page.waitForSelector(CREATED_ADDRESS_METHOD);
+    await page.waitFor(3000);
 
     await page.waitForSelector(ADD_NEW_PAYMENT_CSS);
     await page.click(ADD_NEW_PAYMENT_CSS);
@@ -196,14 +202,15 @@ describe('Purchase feature', () => {
     const paymentMethod = {
       cardType: 'Visa',
       cardHolderName: 'Test User',
-      cardNumber: '411111111111111',
+      cardNumber: '4111111111111111',
       expiryMonth: '10',
       expiryYear: '2025',
-      securityCode: '111',
+      securityCode: '123',
     };
 
     await addPaymentMethod(page, paymentMethod);
-
+    await page.waitForSelector(CREATED_PAYMENT_METHOD);
+    await page.waitFor(3000);
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
     await page.click(COMPLETE_ORDER_BUTTON_CSS);
 
@@ -224,8 +231,8 @@ describe('Purchase feature', () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
-      slowMo: 10
+      args: ['--no-sandbox', '--disable-web-security'],
+      slowMo: 10,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
@@ -260,6 +267,8 @@ describe('Purchase feature', () => {
         country: 'United States',
       } ;
       await addAddress(page, address);
+      await page.waitForSelector(CREATED_ADDRESS_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(PAYMENT_METHOD_REGION_CSS);
@@ -272,13 +281,15 @@ describe('Purchase feature', () => {
       const paymentMethod = {
         cardType: 'Visa',
         cardHolderName: 'Test User',
-        cardNumber: '411111111111111',
+        cardNumber: '4111111111111111',
         expiryMonth: '10',
         expiryYear: '2025',
-        securityCode: '111',
+        securityCode: '123',
       };
 
       await addPaymentMethod(page, paymentMethod);
+      await page.waitForSelector(CREATED_PAYMENT_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(CHECKOUT_MAIN_CONTAINER_CSS);
@@ -314,8 +325,8 @@ describe('Purchase feature', () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
-      slowMo: 10
+      args: ['--no-sandbox', '--disable-web-security'],
+      slowMo: 10,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
@@ -346,6 +357,8 @@ describe('Purchase feature', () => {
         country: 'United States',
       } ;
       await addAddress(page, address);
+      await page.waitForSelector(CREATED_ADDRESS_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(PAYMENT_METHOD_REGION_CSS);
@@ -357,13 +370,15 @@ describe('Purchase feature', () => {
       const paymentMethod = {
         cardType: 'Visa',
         cardHolderName: 'Test User',
-        cardNumber: '411111111111111',
+        cardNumber: '4111111111111111',
         expiryMonth: '10',
         expiryYear: '2025',
-        securityCode: '111',
+        securityCode: '123',
       };
 
       await addPaymentMethod(page, paymentMethod);
+      await page.waitForSelector(CREATED_PAYMENT_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
@@ -399,8 +414,8 @@ describe('Purchase feature', () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
-      slowMo: 10
+      args: ['--no-sandbox', '--disable-web-security'],
+      slowMo: 10,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
@@ -432,6 +447,8 @@ describe('Purchase feature', () => {
         country: 'United States',
       } ;
       await addAddress(page, address);
+      await page.waitForSelector(CREATED_ADDRESS_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(PAYMENT_METHOD_REGION_CSS);
@@ -443,13 +460,15 @@ describe('Purchase feature', () => {
       const paymentMethod = {
         cardType: 'Visa',
         cardHolderName: 'Test User',
-        cardNumber: '411111111111111',
+        cardNumber: '4111111111111111',
         expiryMonth: '10',
         expiryYear: '2025',
-        securityCode: '111',
+        securityCode: '123',
       };
 
       await addPaymentMethod(page, paymentMethod);
+      await page.waitForSelector(CREATED_PAYMENT_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
@@ -486,7 +505,7 @@ describe('Purchase feature', () => {
 
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 10
+      slowMo: 10,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
@@ -568,14 +587,14 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 50000);
+  }, 80000);
 
   test('Purchase multi-sku item as a registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox'],
-      slowMo: 10
+      args: ['--no-sandbox', '--disable-web-security'],
+      slowMo: 10,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
@@ -618,6 +637,8 @@ describe('Purchase feature', () => {
       country: 'United States',
     } ;
     await addAddress(page, address);
+    await page.waitForSelector(CREATED_ADDRESS_METHOD);
+    await page.waitFor(3000);
 
     await page.waitForSelector(ADD_NEW_PAYMENT_CSS);
     await page.click(ADD_NEW_PAYMENT_CSS);
@@ -625,14 +646,15 @@ describe('Purchase feature', () => {
     const paymentMethod = {
       cardType: 'Visa',
       cardHolderName: 'Test User',
-      cardNumber: '411111111111111',
+      cardNumber: '4111111111111111',
       expiryMonth: '10',
       expiryYear: '2025',
-      securityCode: '111',
+      securityCode: '123',
     };
 
     await addPaymentMethod(page, paymentMethod);
-
+    await page.waitForSelector(CREATED_PAYMENT_METHOD);
+    await page.waitFor(3000);
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
     await page.click(COMPLETE_ORDER_BUTTON_CSS);
 
@@ -660,5 +682,5 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 40000);
+  }, 60000);
 });

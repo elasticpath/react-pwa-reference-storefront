@@ -1,46 +1,17 @@
+# REACT PWA Reference Storefront Quick Start Guide
 
-# Reference Experience Monorepo
+## Overview
 
-Reference experience store project broken up into multiple sub-projects. Optimized for fast development and easy deployment and consumption through `npm`.
+The REACT PWA Reference Storefront is a flexible e-commerce website built on Elastic Path’s RESTful e-commerce API, Cortex API. Through the Cortex API, the storefront uses the e-commerce capabilities provided by Elastic Path Commerce and gets data in a RESTful manner. For more information about the storefront, see [REACT PWA Reference Storefront Documentation](https://documentation.elasticpath.com/storefront-react).
 
-Main project folders are:
-- `/app` - reference store front application. 
-- `/components` - reference components that will be published to `@elasticpath/store-components`.
-- `/storybook` - a storybook project demonstrating the use of all of the components.
-- `/cortexjs` - javascript library responsible for all networking calls to cortex.
+The Storefront is designed as an open source mobile Progressive Web Application (PWA) that has the capabilities for local browser storage page caching and persistent session management. This PWA is built using the ['React.js'](https://reactjs.org/), [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/), and [Babel](https://babeljs.io/) technologies. [Webpack](https://webpack.js.org/) and [node.js](https://nodejs.org/en/) enable the application layer interactions through the configurable web server. For more information about the software requirements, see the [Requirements and Specifications](https://documentation.elasticpath.com/storefront-react/docs/requirements.html) section.
 
-## Requirements
+### Documentation
 
-Project depends on yarn [workspaces](https://yarnpkg.com/en/docs/workspaces) and in order to work with it you need to have `yarn` package manager globally installed. An easiest way to install it is with `npm`:
+- [REACT PWA Reference Storefront Overview](https://developers.elasticpath.com/reference-experiences)
+- [REACT PWA Reference Storefront Documentation](https://documentation.elasticpath.com/storefront-react)
 
-```
-$ npm install -g yarn
-```
+## Terms And Conditions
 
-## How to run it
-
-After running git clone, `cd` into the folder and run:
-
-```bash
-$ yarn
-```
-
-This will install all the dependencies for all sub-project and create necessary symlinks in-between them. Before running the application you first need to build `cortexjs` by running:
-
-```bash
-$ cd cortexjs
-$ yarn build
-```
-
-In order to run main application run:
-
-```bash
-$ cd app
-$ yarn start
-```
-
-In order to run the storybook project run:
-```bash
-$ cd storybook
-$ yarn storybook
-```
+- Any changes to this project must be reviewed and approved by the repository owner. For more information about contributing, see the [Contribution Guide](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/.github/CONTRIBUTING.md).
+- For more information about the license, see [GPLv3 License](https://github.com/elasticpath/react-pwa-reference-storefront/blob/master/LICENSE).
