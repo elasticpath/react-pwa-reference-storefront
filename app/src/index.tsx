@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import intl from 'react-intl-universal';
 import './theme/index.less';
-import * as serviceWorker from './serviceWorker';
 import epConfig from './ep.config.json';
 import * as UserPrefs from './utils/UserPrefs';
 import { init } from '@elasticpath/store-components';
@@ -31,11 +30,14 @@ intl.init({
       intl
     })
       .then(() => {
-         ReactDOM.render(<App />, document.getElementById('root'));
+        ReactDOM.render(<App />, document.getElementById('root'));
 
-        // If you want your app to work offline and load faster, you can change
-        // unregister() to register() below. Note this comes with some pitfalls.
-        // Learn more about service workers: http://bit.ly/CRA-PWA
-        serviceWorker.unregister();
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+            // eslint-disable-next-line no-console
+            .then(() => console.log('Service Worker registered successfully.'))
+            // eslint-disable-next-line no-console
+            .catch(error => console.log('Service Worker registration failed:', error));
+        }
       });
-});
+  });
