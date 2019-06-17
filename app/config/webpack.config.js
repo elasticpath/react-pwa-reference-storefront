@@ -14,7 +14,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
@@ -643,13 +642,14 @@ module.exports = function(webpackEnv) {
         ],
       }),
       new WebpackPwaManifest({
+        filename: "manifest.json",
         name: 'Vestri Reference Storefront',
         short_name: 'Vestri',
         description: 'EP Reference Storefront',
         background_color: '#01579b',
         theme_color: '#01579b',
         'theme-color': '#01579b',
-        start_url: '/',
+        start_url: '.',
         icons: [
           {
             src: path.resolve('./src/images/manifest-images/icons-192.png'),
