@@ -156,7 +156,7 @@ module.exports = {
     const POSTAL_CODE = '#PostalCode';
     const SAVE_BUTTON = 'button.address-save-btn';
 
-    await page.waitFor(1000);
+    await page.waitFor(2000);
     await page.waitForSelector(FIRST_NAME);
     await page.type(FIRST_NAME, 'Test');
     await page.type(LAST_NAME, 'User');

@@ -95,6 +95,7 @@ const SAVE_TO_PROFILE = 'label[for="saveToProfile"]';
 const CONTINUE_BUTTON = "button.payment-save-btn";
 const ADDRESS_NAME = ".address-name";
 const CREATED_PAYMENT_METHOD = "ul.profile-payment-methods-listing:nth-child(2)";
+const CREATED_ADDRESS_METHOD = "ul.profile-addresses-listing:nth-child(2)";
 
 const EXPECTED_FIRST_NAME = 'john2';
 const EXPECTED_ADDRESS_NAME= 'Test User';
@@ -224,7 +225,8 @@ describe('Profile', () => {
     await page.click(SAVE_BUTTON);
 
     // And I click to add payment method
-    await page.waitForSelector(ADD_NEW_PAYMENT_METHOD);
+    await page.waitForSelector(CREATED_ADDRESS_METHOD);
+    await page.waitFor(3000);
     await page.click(ADD_NEW_PAYMENT_METHOD);
 
     await page.waitForSelector(CARD_TYPE);

@@ -78,6 +78,7 @@ const BILLING_ADDRESS_SELECTORS_REGION_CSS = 'div[data-region="billingAddressSel
 const PAYMENT_SELECTOR_CSS = 'div[data-region="paymentSelector"]';
 const PAYMENT_METHOD_REGION_CSS = 'div[data-region="paymentMethodSelectorsRegion"]';
 const CREATED_PAYMENT_METHOD = ".paymentMethodComponentRegion";
+const CREATED_ADDRESS_METHOD = ".address-ctrl-cell";
 
 describe('Purchase feature', () => {
 
@@ -129,8 +130,8 @@ describe('Purchase feature', () => {
       country: 'United States',
     } ;
     await addAddress(page, address);
-
-    await page.waitForSelector(ADD_NEW_PAYMENT_CSS);
+    await page.waitForSelector(CREATED_ADDRESS_METHOD);
+    await page.waitFor(3000);
     await page.click(ADD_NEW_PAYMENT_CSS);
 
     const paymentMethod = {
@@ -192,7 +193,8 @@ describe('Purchase feature', () => {
       country: 'United States',
     } ;
     await addAddress(page, address);
-    await page.waitFor(2000);
+    await page.waitForSelector(CREATED_ADDRESS_METHOD);
+    await page.waitFor(3000);
 
     await page.waitForSelector(ADD_NEW_PAYMENT_CSS);
     await page.click(ADD_NEW_PAYMENT_CSS);
@@ -265,6 +267,8 @@ describe('Purchase feature', () => {
         country: 'United States',
       } ;
       await addAddress(page, address);
+      await page.waitForSelector(CREATED_ADDRESS_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(PAYMENT_METHOD_REGION_CSS);
@@ -353,6 +357,8 @@ describe('Purchase feature', () => {
         country: 'United States',
       } ;
       await addAddress(page, address);
+      await page.waitForSelector(CREATED_ADDRESS_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(PAYMENT_METHOD_REGION_CSS);
@@ -441,6 +447,8 @@ describe('Purchase feature', () => {
         country: 'United States',
       } ;
       await addAddress(page, address);
+      await page.waitForSelector(CREATED_ADDRESS_METHOD);
+      await page.waitFor(3000);
     }
 
     await page.waitForSelector(PAYMENT_METHOD_REGION_CSS);
@@ -629,6 +637,8 @@ describe('Purchase feature', () => {
       country: 'United States',
     } ;
     await addAddress(page, address);
+    await page.waitForSelector(CREATED_ADDRESS_METHOD);
+    await page.waitFor(3000);
 
     await page.waitForSelector(ADD_NEW_PAYMENT_CSS);
     await page.click(ADD_NEW_PAYMENT_CSS);
