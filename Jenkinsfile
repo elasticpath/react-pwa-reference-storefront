@@ -64,6 +64,7 @@ timestamps {
             export SOLR_HOME_CONFIG=\$(basename ${SOLR_HOME_PATH})
             export CORTEX=http://${EC2_INSTANCE_HOST}:9080
             export STORE=${STORE_NAME}
+            export NPM_TOKEN=${NPM_TOKEN}
 
             cd ref-store-service/app/docker/dev
             eval '\$(aws ecr get-login --no-include-email)'
@@ -82,14 +83,6 @@ timestamps {
               \"\"\"
            """
         }
-      }
-      stage('PUBLISH') {
-        // Run unit & Puppeteer tests
-        sh """
-          ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} \"\"\"
-            docker exec -t store sh -c 'ls -a && cd .. && ls -a'
-          \"\"\"
-        """
       }
     }
   }
