@@ -104,6 +104,79 @@
   .change-password-btn {
     margin-top: 10px;
   }
+
+  .profile-address-container {
+
+    .edit-address-btn {
+      + .delete-address-btn {
+        position: relative;
+        margin-left: 10px;
+        &:before {
+          content: '';
+          height: 14px;
+          width: 2px;
+          border-left: 2px solid #CCCCCC;
+          position: absolute;
+          top: 2px;
+          left: -10px;
+        }
+      }
+    }
+  }
+
+  .personal-info-email,
+  .profile-address-container,
+  .profile-payment-method-container {
+    .ep-btn {
+      height: auto;
+      width: auto;
+      font-weight: 600;
+      min-height: 0;
+      line-height: 20px;
+      padding: 0;
+      min-width: 0;
+      border: none;
+      &:hover {
+        color: @mainBlueColor;
+        text-decoration: underline;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .profile-personal-info-edit-btn.ep-btn {
+    height: auto;
+    width: auto;
+    font-weight: 600;
+    min-height: 0;
+    line-height: 20px;
+    padding: 0;
+    min-width: 0;
+    border: none;
+    &:hover {
+      color: @mainBlueColor;
+      text-decoration: underline;
+      background-color: transparent;
+    }
+  }
+
+  .address-container {
+    margin-bottom: 0;
+  }
+
+  .payment-btn-cell {
+    position: relative;
+    top: -5px;
+    .ep-btn {
+      margin-top: 0;
+    }
+  }
+
+  .personal-info-email {
+    .ep-btn {
+      margin-top: 10px;
+    }
+  }
 }
 
 .profile-info {

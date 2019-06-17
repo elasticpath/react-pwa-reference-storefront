@@ -353,6 +353,7 @@ class CheckoutPage extends React.Component {
         </div>
       );
     }
+    return null;
   }
 
   renderShippingOptions() {
