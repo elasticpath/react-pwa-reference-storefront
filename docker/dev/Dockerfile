@@ -49,7 +49,8 @@ libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
 
 # Publish components to npm
-RUN npm publish components/
+# RUN npm publish components/
+RUN ls
 
 RUN yarn
 
