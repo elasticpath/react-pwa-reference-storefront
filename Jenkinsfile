@@ -18,7 +18,9 @@ timestamps {
           sh """
             docker build --tag ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:\$(jq -r .version package.json) \
               --build-arg BUILD_DATE="\$(date --rfc-3339=seconds)" --build-arg VERSION=\$(jq -r .version package.json) \
-              --build-arg VCS_REF=\$(git rev-parse HEAD) -f ./docker/dev/Dockerfile .
+              --build-arg VCS_REF=\$(git rev-parse HEAD) \
+              --build-arg NPM_USER=\${NPM_USER} \
+              --build-arg NPM_TOKEN=\${NPM_TOKEN} -f ./docker/dev/Dockerfile .
             eval "\$(aws ecr get-login --no-include-email)"
             docker push ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:\$(jq -r .version package.json)
           """
@@ -75,11 +77,13 @@ timestamps {
       }
       stage('TEST') {
         // Run unit & Puppeteer tests
-         sh """
-            ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST}  \"\"\"
-              sleep 35 && docker exec -t store sh -c 'export TEST_HOST=http://${EC2_INSTANCE_HOST}:8080 && CI=true npm test'
-             \"\"\"
-          """
+        timeout(time: 10, unit: 'MINUTES') {
+           sh """
+             ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST}  \"\"\"
+               sleep 35 && docker exec -t store sh -c 'export TEST_HOST=http://${EC2_INSTANCE_HOST}:8080 && CI=true npm test'
+              \"\"\"
+           """
+        }
       }
     }
   }

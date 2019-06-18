@@ -1,6 +1,6 @@
 {
   "name": "@elasticpath/store-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "build/index",
   "main:src": "src/index",
   "types": "src/index",
