@@ -6,29 +6,31 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@elasticpath/store-components": "*",
-    "@react-workspaces/react-scripts": "3.0.0-alpha-04",
+    "@react-workspaces/react-scripts": "^2.1.1-workspaces-09",
     "@types/react-slick": "^0.23.4",
     "babel-loader": "^8.0.5",
-    "cross-env": "5.0.5",
+    "cross-env": "5.2.0",
+    "lerna": "^3.15.0",
     "less-loader": "^5.0.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.3"
+    "react-dom": "^16.7.3",
+    "storybook": "^1.0.0"
   },
   "scripts": {
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.0.11",
-    "@storybook/addon-links": "^5.0.11",
-    "@storybook/addons": "^5.0.11",
-    "@storybook/react": "^5.0.11",
-    "@storybook/theming": "^5.0.11",
-    "@storybook/addon-info": "^5.0.11",
-    "@types/storybook__react": "^4.0.1",
+    "@storybook/addon-actions": "^5.1.8",
+    "@storybook/addon-info": "^5.1.8",
+    "@storybook/addon-links": "^5.1.8",
+    "@storybook/addons": "^5.1.8",
+    "@storybook/react": "^5.1.8",
+    "@storybook/theming": "^5.1.8",
+    "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",
     "babel-preset-react": "^6.24.1",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.2"
   }
 }
