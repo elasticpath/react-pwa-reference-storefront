@@ -51,11 +51,11 @@ libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxc
 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
 
-RUN export
 # Publish components to npm
+RUN  export NPM_TOKEN=${NPM_TOKEN}
+RUN echo "_auth = $NPM_TOKEN" > ~/.npmrc
 RUN npm publish components/
 
-RUN  export NPM_TOKEN=${NPM_TOKEN}
 
 # Bundle app source
 COPY . .

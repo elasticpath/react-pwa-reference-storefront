@@ -19,7 +19,8 @@ timestamps {
             docker build --tag ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:\$(jq -r .version package.json) \
               --build-arg BUILD_DATE="\$(date --rfc-3339=seconds)" --build-arg VERSION=\$(jq -r .version package.json) \
               --build-arg VCS_REF=\$(git rev-parse HEAD) \
-              --build-arg NPM_TOKEN=\$(NPM_TOKEN) -f ./docker/dev/Dockerfile .
+              --build-arg NPM_USER=\${NPM_USER} \
+              --build-arg NPM_TOKEN=\${NPM_TOKEN} -f ./docker/dev/Dockerfile .
             eval "\$(aws ecr get-login --no-include-email)"
             docker push ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:\$(jq -r .version package.json)
           """
