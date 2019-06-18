@@ -23,7 +23,7 @@ RUN apt-get install jq
 RUN jq -e '.cortexApi.scope|="NGINX_REPLACE_CORTEX_API_SCOPE"' ./app/src/ep.config.json > ./src/ep.config.json.tmp && cp ./app/src/ep.config.json.tmp ./app/src/ep.config.json
 
 # Remove the temp file used for replacements since jq cannot handle in-line replacements
-RUN rm ./src/ep.config.json.tmp
+RUN rm ./app/src/ep.config.json.tmp
 
 RUN yarn build
 
