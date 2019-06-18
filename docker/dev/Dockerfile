@@ -53,9 +53,7 @@ libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
 
 # Publish components to npm
-RUN export NPM_TOKEN=${NPM_TOKEN}
-RUN echo "_auth = $NPM_TOKEN" > ~/.npmrc
-RUN echo "email = $NPM_USER" >> ~/.npmrc
+RUN npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
 RUN npm publish components/
 
 
