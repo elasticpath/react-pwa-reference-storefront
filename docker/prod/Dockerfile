@@ -2,10 +2,8 @@ FROM node:10.9.0 as builder
 
 WORKDIR /project
 
-ADD ./package.json /project
-ADD ./package-lock.json /project
-RUN yarn
 ADD ./ /project
+RUN yarn
 
 RUN echo "deb http://deb.debian.org/debian/ jessie main \n\
 deb-src http://deb.debian.org/debian/ jessie main \n\
@@ -30,7 +28,7 @@ RUN rm ./src/ep.config.json.tmp
 RUN yarn build
 
 FROM nginx:1.15.1
-COPY --from=builder /project/webpack/dist/ /usr/share/nginx/www
+COPY --from=builder /project/app/build/ /usr/share/nginx/www
 COPY ./docker/prod/nginx.conf /etc/nginx/conf.d/default.conf.template
 
 ENV uri \$uri
