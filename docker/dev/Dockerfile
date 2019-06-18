@@ -13,6 +13,7 @@ ARG BUILD_DATE
 ARG VERSION
 ARG VCS_REF
 ARG NPM_TOKEN
+ARG NPM_USER
 
 ENV CORTEX=http://localhost:9080
 ENV STORE=vestri
@@ -52,8 +53,9 @@ libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
 
 # Publish components to npm
-RUN  export NPM_TOKEN=${NPM_TOKEN}
+RUN export NPM_TOKEN=${NPM_TOKEN}
 RUN echo "_auth = $NPM_TOKEN" > ~/.npmrc
+RUN echo "email = $NPM_USER" >> ~/.npmrc
 RUN npm publish components/
 
 
