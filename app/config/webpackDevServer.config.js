@@ -10,6 +10,8 @@ const fs = require('fs');
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 
+const epConfig = require(paths.appEpConfig);
+
 module.exports = function(proxy, allowedHost) {
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
@@ -80,8 +82,18 @@ module.exports = function(proxy, allowedHost) {
       // See https://github.com/facebook/create-react-app/issues/387.
       disableDotRule: true,
     },
+    ...(epConfig.cortexApi.pathForProxy !== '' ? {
+      proxy: [
+        {
+          context: ['/admin'],
+          target: epConfig.b2b.authServiceAPI.pathForProxy,
+        },
+        {
+          context: ['/cortex'],
+          target: epConfig.cortexApi.pathForProxy,
+        }],
+    } : {}),
     public: allowedHost,
-    proxy,
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
