@@ -20,7 +20,7 @@ RUN apt-get update
 RUN apt-get install jq
 
 # Add additional replacements for configurations below as necessary
-RUN jq -e '.cortexApi.scope|="NGINX_REPLACE_CORTEX_API_SCOPE"' ./app/src/ep.config.json > ./src/ep.config.json.tmp && cp ./app/src/ep.config.json.tmp ./app/src/ep.config.json
+RUN jq -e '.cortexApi.scope|="NGINX_REPLACE_CORTEX_API_SCOPE"' ./app/src/ep.config.json > ./app/src/ep.config.json.tmp && cp ./app/src/ep.config.json.tmp ./app/src/ep.config.json
 
 # Remove the temp file used for replacements since jq cannot handle in-line replacements
 RUN rm ./app/src/ep.config.json.tmp
