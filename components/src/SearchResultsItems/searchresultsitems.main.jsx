@@ -221,7 +221,7 @@ class SearchResultsItemsMain extends React.Component {
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
           {
-            ((typeof searchKeywords === 'object' || searchKeywords instanceof Object) || ((typeof searchKeywords === 'string' || searchKeywords instanceof String) && searchKeywords.includes('/') && searchKeywords.includes(Config.cortexApi.scope))) ? (
+            ((typeof searchKeywords === 'object' || searchKeywords instanceof Object) || ((typeof searchKeywords === 'string' || searchKeywords instanceof String) && searchKeywords.includes('/') && searchKeywords.includes(Config.cortexApi.scope.toLowerCase()))) ? (
               <h1 className="view-title">
                 {intl.get('search-results')}
               </h1>
