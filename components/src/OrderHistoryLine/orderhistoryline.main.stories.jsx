@@ -8,4 +8,4 @@ storiesOf('OrderHistoryLineMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('OrderHistoryLineMain', () => <OrderHistoryLineMain orderHistoryLineUrlProps='/purchases/vestri/giydcmbw=' />);
+  .add('OrderHistoryLineMain', () => <OrderHistoryLineMain orderHistoryLineUrlProps='' />);
