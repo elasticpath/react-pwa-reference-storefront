@@ -202,9 +202,11 @@ class OrderHistoryLineMain extends React.Component {
               {intl.get('todays-subtotal')}
               :&nbsp;
             </label>
-            <span className="cart-summary-value-col">
-              {orderModel['monetary-total'][0].display}
-            </span>
+            {orderModel['monetary-total'] ? (
+              <span className="cart-summary-value-col">
+                {orderModel['monetary-total'][0].display}
+              </span>
+            ) : ('')}
           </li>
           {this.renderDiscount()}
           {this.renderShipping()}

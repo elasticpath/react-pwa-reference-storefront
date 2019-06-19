@@ -557,8 +557,8 @@
                     "street-address": "224 Hudson Str"
                   },
                   "name": {
-                    "family-name": "Dubno",
-                    "given-name": "Peter"
+                    "family-name": "LastName",
+                    "given-name": "FirstName"
                   }
                 }
               ]
@@ -613,8 +613,8 @@
                             "street-address": "224 Hudson Str"
                           },
                           "name": {
-                            "family-name": "Dubno",
-                            "given-name": "Peter"
+                            "family-name": "LastName",
+                            "given-name": "FirstName"
                           }
                         }
                       ]

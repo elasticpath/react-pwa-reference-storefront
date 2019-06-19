@@ -90,17 +90,17 @@
       "links": [],
       "address": {
         "country-name": "US",
-        "extended-address": "horodotska 5",
-        "locality": "lviv",
+        "extended-address": "224 Hudson St",
+        "locality": "Denver",
         "organization": null,
         "phone-number": null,
-        "postal-code": "79016",
+        "postal-code": "80220",
         "region": "NY",
-        "street-address": "horodotska 5"
+        "street-address": "224 Hudson St"
       },
       "name": {
-        "family-name": "Dubno",
-        "given-name": "Peter"
+        "family-name": "LastName",
+        "given-name": "FirstName"
       }
     }
   ],
@@ -677,17 +677,17 @@
               "links": [],
               "address": {
                 "country-name": "US",
-                "extended-address": "horodotska 5",
-                "locality": "lviv",
+                "extended-address": "224 Hudson St",
+                "locality": "Denver",
                 "organization": null,
                 "phone-number": null,
-                "postal-code": "79016",
+                "postal-code": "80220",
                 "region": "NY",
-                "street-address": "horodotska 5"
+                "street-address": "224 Hudson St"
               },
               "name": {
-                "family-name": "Dubno",
-                "given-name": "Peter"
+                "family-name": "LastName",
+                "given-name": "FirstName"
               }
             }
           ],

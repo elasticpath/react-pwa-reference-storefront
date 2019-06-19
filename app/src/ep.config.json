@@ -90,7 +90,7 @@
     "nodatalinks": true
   },
   "creditCardTokenization": {
-    "enable": true,
-    "lambdaURI": "https://iojbbbi1o8.execute-api.us-east-2.amazonaws.com/test/sign"
+    "enable": false,
+    "lambdaURI": ""
   }
 }

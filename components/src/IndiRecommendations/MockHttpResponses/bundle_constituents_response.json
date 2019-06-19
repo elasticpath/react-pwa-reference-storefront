@@ -1,0 +1,483 @@
+{
+  "self": {
+    "type": "items.item",
+    "uri": "/items/vestri_reference/qgqvhjjrhaydqny=?zoom=addtocartform,addtowishlistform,availability,code,definition,definition:assets:element,definition:components,definition:components:element,definition:components:element:code,definition:components:element:standaloneitem,definition:components:element:standaloneitem:availability,definition:components:element:standaloneitem:code,definition:components:element:standaloneitem:definition,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:crosssell:element:availability,recommendations:crosssell:element:code,recommendations:crosssell:element:definition,recommendations:crosssell:element:price,recommendations:recommendation,recommendations:recommendation:element:availability,recommendations:recommendation:element:code,recommendations:recommendation:element:definition,recommendations:recommendation:element:price,recommendations:replacement,recommendations:replacement:element:availability,recommendations:replacement:element:code,recommendations:replacement:element:definition,recommendations:replacement:element:price,recommendations:upsell,recommendations:upsell:element:availability,recommendations:upsell:element:code,recommendations:upsell:element:definition,recommendations:upsell:element:price,recommendations:warranty,recommendations:warranty:element:availability,recommendations:warranty:element:code,recommendations:warranty:element:definition,recommendations:warranty:element:price",
+    "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjrhaydqny=?zoom=addtocartform,addtowishlistform,availability,code,definition,definition:assets:element,definition:components,definition:components:element,definition:components:element:code,definition:components:element:standaloneitem,definition:components:element:standaloneitem:availability,definition:components:element:standaloneitem:code,definition:components:element:standaloneitem:definition,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:crosssell:element:availability,recommendations:crosssell:element:code,recommendations:crosssell:element:definition,recommendations:crosssell:element:price,recommendations:recommendation,recommendations:recommendation:element:availability,recommendations:recommendation:element:code,recommendations:recommendation:element:definition,recommendations:recommendation:element:price,recommendations:replacement,recommendations:replacement:element:availability,recommendations:replacement:element:code,recommendations:replacement:element:definition,recommendations:replacement:element:price,recommendations:upsell,recommendations:upsell:element:availability,recommendations:upsell:element:code,recommendations:upsell:element:definition,recommendations:upsell:element:price,recommendations:warranty,recommendations:warranty:element:availability,recommendations:warranty:element:code,recommendations:warranty:element:definition,recommendations:warranty:element:price"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "availability",
+      "rev": "item",
+      "type": "availabilities.availability-for-item",
+      "uri": "/availabilities/items/vestri_reference/qgqvhjjrhaydqny=",
+      "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjrhaydqny="
+    },
+    {
+      "rel": "addtocartform",
+      "type": "carts.add-to-default-cart-form",
+      "uri": "/carts/items/vestri_reference/qgqvhjjrhaydqny=/form",
+      "href": "http://reference.epdemos.com/cortex/carts/items/vestri_reference/qgqvhjjrhaydqny=/form"
+    },
+    {
+      "rel": "cartmemberships",
+      "type": "carts.read-cart-memberships",
+      "uri": "/carts/memberships/items/vestri_reference/qgqvhjjrhaydqny=",
+      "href": "http://reference.epdemos.com/cortex/carts/memberships/items/vestri_reference/qgqvhjjrhaydqny="
+    },
+    {
+      "rel": "definition",
+      "rev": "item",
+      "type": "itemdefinitions.item-definition",
+      "uri": "/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=",
+      "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrhaydqny="
+    },
+    {
+      "rel": "code",
+      "rev": "item",
+      "type": "items.code-for-item",
+      "uri": "/items/code/items/vestri_reference/qgqvhjjrhaydqny=",
+      "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjrhaydqny="
+    },
+    {
+      "rel": "price",
+      "rev": "item",
+      "type": "prices.price-for-item",
+      "uri": "/prices/items/vestri_reference/qgqvhjjrhaydqny=",
+      "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjrhaydqny="
+    },
+    {
+      "rel": "appliedpromotions",
+      "rev": "item",
+      "type": "promotions.applied-promotions-for-item",
+      "uri": "/promotions/items/vestri_reference/qgqvhjjrhaydqny=/applied",
+      "href": "http://reference.epdemos.com/cortex/promotions/items/vestri_reference/qgqvhjjrhaydqny=/applied"
+    },
+    {
+      "rel": "recommendations",
+      "type": "recommendations.item-recommendation-groups",
+      "uri": "/recommendations/items/vestri_reference/qgqvhjjrhaydqny=",
+      "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri_reference/qgqvhjjrhaydqny="
+    },
+    {
+      "rel": "addtowishlistform",
+      "type": "wishlists.add-item-to-wishlist-form",
+      "uri": "/wishlists/items/vestri_reference/qgqvhjjrhaydqny=/form",
+      "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri_reference/qgqvhjjrhaydqny=/form"
+    },
+    {
+      "rel": "wishlistmemberships",
+      "type": "wishlists.read-wishlist-memberships",
+      "uri": "/wishlists/memberships/items/vestri_reference/qgqvhjjrhaydqny=",
+      "href": "http://reference.epdemos.com/cortex/wishlists/memberships/items/vestri_reference/qgqvhjjrhaydqny="
+    }
+  ],
+  "_addtocartform": [
+    {
+      "self": {
+        "type": "carts.add-to-default-cart-form",
+        "uri": "/carts/items/vestri_reference/qgqvhjjrhaydqny=/form",
+        "href": "http://reference.epdemos.com/cortex/carts/items/vestri_reference/qgqvhjjrhaydqny=/form"
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "addtodefaultcartaction",
+          "type": "carts.add-to-default-cart-form",
+          "uri": "/carts/items/vestri_reference/qgqvhjjrhaydqny=/form",
+          "href": "http://reference.epdemos.com/cortex/carts/items/vestri_reference/qgqvhjjrhaydqny=/form"
+        }
+      ],
+      "configuration": {},
+      "quantity": 0
+    }
+  ],
+  "_addtowishlistform": [
+    {
+      "self": {
+        "type": "wishlists.add-item-to-wishlist-form",
+        "uri": "/wishlists/items/vestri_reference/qgqvhjjrhaydqny=/form",
+        "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri_reference/qgqvhjjrhaydqny=/form"
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "addtodefaultwishlistaction",
+          "type": "wishlists.add-item-to-wishlist-form",
+          "uri": "/wishlists/items/vestri_reference/qgqvhjjrhaydqny=/form",
+          "href": "http://reference.epdemos.com/cortex/wishlists/items/vestri_reference/qgqvhjjrhaydqny=/form"
+        }
+      ]
+    }
+  ],
+  "_availability": [
+    {
+      "self": {
+        "type": "availabilities.availability-for-item",
+        "uri": "/availabilities/items/vestri_reference/qgqvhjjrhaydqny=",
+        "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjrhaydqny="
+      },
+      "messages": [],
+      "links": [],
+      "state": "AVAILABLE"
+    }
+  ],
+  "_code": [
+    {
+      "self": {
+        "type": "items.code-for-item",
+        "uri": "/items/code/items/vestri_reference/qgqvhjjrhaydqny=",
+        "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjrhaydqny="
+      },
+      "messages": [],
+      "links": [],
+      "code": "18087"
+    }
+  ],
+  "_definition": [
+    {
+      "self": {
+        "type": "itemdefinitions.item-definition",
+        "uri": "/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=",
+        "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrhaydqny="
+      },
+      "messages": [],
+      "links": [],
+      "_components": [
+        {
+          "self": {
+            "type": "itemdefinitions.item-definition-components",
+            "uri": "/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=/components",
+            "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=/components"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "itemdefinitions.item-definition-component",
+                "uri": "/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=/components/shmsizbvgrqwenrrgmwwmyzshewtin3gmmwwezrzmuwwcnjvgyzdmolemjrdqna=",
+                "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=/components/shmsizbvgrqwenrrgmwwmyzshewtin3gmmwwezrzmuwwcnjvgyzdmolemjrdqna="
+              },
+              "messages": [],
+              "links": [],
+              "_standaloneitem": [
+                {
+                  "self": {
+                    "type": "items.item",
+                    "uri": "/items/vestri_reference/qgqvhjjrga2dqna=",
+                    "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjrga2dqna="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "_availability": [
+                    {
+                      "self": {
+                        "type": "availabilities.availability-for-item",
+                        "uri": "/availabilities/items/vestri_reference/qgqvhjjrga2dqna=",
+                        "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjrga2dqna="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "state": "AVAILABLE"
+                    }
+                  ],
+                  "_code": [
+                    {
+                      "self": {
+                        "type": "items.code-for-item",
+                        "uri": "/items/code/items/vestri_reference/qgqvhjjrga2dqna=",
+                        "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjrga2dqna="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "code": "10484"
+                    }
+                  ],
+                  "_definition": [
+                    {
+                      "self": {
+                        "type": "itemdefinitions.item-definition",
+                        "uri": "/itemdefinitions/vestri_reference/qgqvhjjrga2dqna=",
+                        "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrga2dqna="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "details": [
+                        {
+                          "display-name": "",
+                          "display-value": "Combine all the popular options into one east to use trim package which allows you to get everything you want.",
+                          "name": "DESCRIPTION",
+                          "value": "Combine all the popular options into one east to use trim package which allows you to get everything you want."
+                        }
+                      ],
+                      "display-name": "V Trim Package"
+                    }
+                  ]
+                }
+              ],
+              "details": [
+                {
+                  "display-name": "",
+                  "display-value": "Combine all the popular options into one east to use trim package which allows you to get everything you want.",
+                  "name": "DESCRIPTION",
+                  "value": "Combine all the popular options into one east to use trim package which allows you to get everything you want."
+                }
+              ],
+              "display-name": "V Trim Package",
+              "quantity": 1
+            },
+            {
+              "self": {
+                "type": "itemdefinitions.item-definition-component",
+                "uri": "/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=/components/shmsiyjsgnrdmnjsg4wtkyrsgywtizdghewtsyrrmiwtkzjxgmzdczlbha2dgmy=",
+                "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=/components/shmsiyjsgnrdmnjsg4wtkyrsgywtizdghewtsyrrmiwtkzjxgmzdczlbha2dgmy="
+              },
+              "messages": [],
+              "links": [],
+              "_standaloneitem": [
+                {
+                  "self": {
+                    "type": "items.item",
+                    "uri": "/items/vestri_reference/qgqvhjjzg43temy=",
+                    "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjzg43temy="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "_availability": [
+                    {
+                      "self": {
+                        "type": "availabilities.availability-for-item",
+                        "uri": "/availabilities/items/vestri_reference/qgqvhjjzg43temy=",
+                        "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjzg43temy="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "state": "AVAILABLE"
+                    }
+                  ],
+                  "_code": [
+                    {
+                      "self": {
+                        "type": "items.code-for-item",
+                        "uri": "/items/code/items/vestri_reference/qgqvhjjzg43temy=",
+                        "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjzg43temy="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "code": "97723"
+                    }
+                  ],
+                  "_definition": [
+                    {
+                      "self": {
+                        "type": "itemdefinitions.item-definition",
+                        "uri": "/itemdefinitions/vestri_reference/qgqvhjjzg43temy=",
+                        "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjzg43temy="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "details": [
+                        {
+                          "display-name": "",
+                          "display-value": "Cruise Control is great when you leave the city limits. But what about when you’re driving on busy highways and freeways? Adaptive Cruise Control lets you cruise in traffic by ‘reading’ the traffic ahead and managing your speed and distance as it changes.",
+                          "name": "DESCRIPTION",
+                          "value": "Cruise Control is great when you leave the city limits. But what about when you’re driving on busy highways and freeways? Adaptive Cruise Control lets you cruise in traffic by ‘reading’ the traffic ahead and managing your speed and distance as it changes."
+                        }
+                      ],
+                      "display-name": "Adaptive Cruise Control"
+                    }
+                  ]
+                }
+              ],
+              "details": [
+                {
+                  "display-name": "",
+                  "display-value": "Cruise Control is great when you leave the city limits. But what about when you’re driving on busy highways and freeways? Adaptive Cruise Control lets you cruise in traffic by ‘reading’ the traffic ahead and managing your speed and distance as it changes.",
+                  "name": "DESCRIPTION",
+                  "value": "Cruise Control is great when you leave the city limits. But what about when you’re driving on busy highways and freeways? Adaptive Cruise Control lets you cruise in traffic by ‘reading’ the traffic ahead and managing your speed and distance as it changes."
+                }
+              ],
+              "display-name": "Adaptive Cruise Control",
+              "quantity": 1
+            },
+            {
+              "self": {
+                "type": "itemdefinitions.item-definition-component",
+                "uri": "/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=/components/shmsintdgvqtmnrqhawtemlggmwtinjxmewwenldmuwtiyjxgm2tcmrqmm4tioa=",
+                "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjrhaydqny=/components/shmsintdgvqtmnrqhawtemlggmwtinjxmewwenldmuwtiyjxgm2tcmrqmm4tioa="
+              },
+              "messages": [],
+              "links": [],
+              "_standaloneitem": [
+                {
+                  "self": {
+                    "type": "items.item",
+                    "uri": "/items/vestri_reference/qgqvhjjugu3dgmq=",
+                    "href": "http://reference.epdemos.com/cortex/items/vestri_reference/qgqvhjjugu3dgmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "_availability": [
+                    {
+                      "self": {
+                        "type": "availabilities.availability-for-item",
+                        "uri": "/availabilities/items/vestri_reference/qgqvhjjugu3dgmq=",
+                        "href": "http://reference.epdemos.com/cortex/availabilities/items/vestri_reference/qgqvhjjugu3dgmq="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "state": "AVAILABLE"
+                    }
+                  ],
+                  "_code": [
+                    {
+                      "self": {
+                        "type": "items.code-for-item",
+                        "uri": "/items/code/items/vestri_reference/qgqvhjjugu3dgmq=",
+                        "href": "http://reference.epdemos.com/cortex/items/code/items/vestri_reference/qgqvhjjugu3dgmq="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "code": "45632"
+                    }
+                  ],
+                  "_definition": [
+                    {
+                      "self": {
+                        "type": "itemdefinitions.item-definition",
+                        "uri": "/itemdefinitions/vestri_reference/qgqvhjjugu3dgmq=",
+                        "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri_reference/qgqvhjjugu3dgmq="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "details": [
+                        {
+                          "display-name": "",
+                          "display-value": "Vestri's Blind Spot Warning System with cross-traffic alert, is a driver assist feature that helps detect vehicles in blind spots during normal driving and traffic approaching from the sides when reversing out of parking spots.",
+                          "name": "DESCRIPTION",
+                          "value": "Vestri's Blind Spot Warning System with cross-traffic alert, is a driver assist feature that helps detect vehicles in blind spots during normal driving and traffic approaching from the sides when reversing out of parking spots."
+                        }
+                      ],
+                      "display-name": "Blind Spot Warning"
+                    }
+                  ]
+                }
+              ],
+              "details": [
+                {
+                  "display-name": "",
+                  "display-value": "Vestri's Blind Spot Warning System with cross-traffic alert, is a driver assist feature that helps detect vehicles in blind spots during normal driving and traffic approaching from the sides when reversing out of parking spots.",
+                  "name": "DESCRIPTION",
+                  "value": "Vestri's Blind Spot Warning System with cross-traffic alert, is a driver assist feature that helps detect vehicles in blind spots during normal driving and traffic approaching from the sides when reversing out of parking spots."
+                }
+              ],
+              "display-name": "Blind Spot Warning",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "details": [
+        {
+          "display-name": "",
+          "display-value": "Step up to the next level by including everything in our V package and more, with our top of the line premium package.",
+          "name": "DESCRIPTION",
+          "value": "Step up to the next level by including everything in our V package and more, with our top of the line premium package."
+        }
+      ],
+      "display-name": "VE Trim Package"
+    }
+  ],
+  "_price": [
+    {
+      "self": {
+        "type": "prices.price-for-item",
+        "uri": "/prices/items/vestri_reference/qgqvhjjrhaydqny=",
+        "href": "http://reference.epdemos.com/cortex/prices/items/vestri_reference/qgqvhjjrhaydqny="
+      },
+      "messages": [],
+      "links": [],
+      "list-price": [
+        {
+          "amount": 477.36,
+          "currency": "CAD",
+          "display": "$477.36"
+        }
+      ],
+      "purchase-price": [
+        {
+          "amount": 477.36,
+          "currency": "CAD",
+          "display": "$477.36"
+        }
+      ]
+    }
+  ],
+  "_recommendations": [
+    {
+      "self": {
+        "type": "recommendations.item-recommendation-groups",
+        "uri": "/recommendations/items/vestri_reference/qgqvhjjrhaydqny=",
+        "href": "http://reference.epdemos.com/cortex/recommendations/items/vestri_reference/qgqvhjjrhaydqny="
+      },
+      "messages": [],
+      "links": [],
+      "_crosssell": [
+        {
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ],
+      "_recommendation": [
+        {
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ],
+      "_replacement": [
+        {
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ],
+      "_upsell": [
+        {
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ],
+      "_warranty": [
+        {
+          "pagination": {
+            "current": 1,
+            "page-size": 5,
+            "pages": 1,
+            "results": 0,
+            "results-on-page": 0
+          }
+        }
+      ]
+    }
+  ]
+}

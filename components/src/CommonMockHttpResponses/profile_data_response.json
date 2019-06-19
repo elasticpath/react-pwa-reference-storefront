@@ -205,8 +205,8 @@
                   },
                   "messages": [],
                   "links": [],
-                  "family-name": "Dubno",
-                  "given-name": "Peter"
+                  "family-name": "LastName",
+                  "given-name": "FirstName"
                 }
               ],
               "email": "test1@test.com"
@@ -240,8 +240,8 @@
               },
               "messages": [],
               "links": [],
-              "family-name": "Dubno",
-              "given-name": "Peter"
+              "family-name": "LastName",
+              "given-name": "FirstName"
             }
           ]
         }
@@ -367,8 +367,8 @@
           ]
         }
       ],
-      "family-name": "Dubno",
-      "given-name": "Peter"
+      "family-name": "LastName",
+      "given-name": "FirstName"
     }
   ]
 }
