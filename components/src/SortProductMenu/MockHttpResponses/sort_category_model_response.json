@@ -1,0 +1,191 @@
+{
+  "self": {
+    "type": "offersearches.offer-search-result",
+    "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1?zoom=sortattributes:choice:description,sortattributes:chosen:description",
+    "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1?zoom=sortattributes:choice:description,sortattributes:chosen:description"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offers/mobee/qgqvbj2hjezdsmzyhe="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offers/mobee/qgqvbj2hjuytamrzgm="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offers/mobee/qgqvbj2hjeytqmrzgm="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offers/mobee/qgqvbj2hieytsojsga="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offers/mobee/qgqvbj2hjezdsojthe="
+    },
+    {
+      "rel": "next",
+      "type": "offersearches.offer-search-result",
+      "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/2"
+    },
+    {
+      "rel": "facets",
+      "type": "offersearches.facets",
+      "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/facets"
+    },
+    {
+      "rel": "sortattributes",
+      "type": "offersearches.sort-attribute-selector",
+      "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector"
+    }
+  ],
+  "_sortattributes": [
+    {
+      "_choice": [
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/mi2daojwmm3dkllegaygmljumrrtmljzhe2dmllfmi3tiyzuha3dmnjsmm=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/mi2daojwmm3dkllegaygmljumrrtmljzhe2dmllfmi3tiyzuha3dmnjsmm=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "name A-Z"
+            }
+          ]
+        },
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/mztdoyrrguzweljug44weljugazggljzgi4tkllbmm2wgnjqgbtdizjvgy=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/mztdoyrrguzweljug44weljugazggljzgi4tkllbmm2wgnjqgbtdizjvgy=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "name Z-A"
+            }
+          ]
+        },
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/hbrdmy3gg42gklldgzsweljug43giljzg44gmljwmuydgojqhe3tkzdcme=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/hbrdmy3gg42gklldgzsweljug43giljzg44gmljwmuydgojqhe3tkzdcme=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "rating high to low"
+            }
+          ]
+        },
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/gzsgenbymizdclldgm3tiljuguztallbmfswcljwhfrtcztemq4tkzrvga=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/gzsgenbymizdclldgm3tiljuguztallbmfswcljwhfrtcztemq4tkzrvga=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "rating low to high"
+            }
+          ]
+        },
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/he3wcobtgi2dallgmzqtqljugfqtsljyguydkllgge4tsmzuga2dknzxgi=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/he3wcobtgi2dallgmzqtqljugfqtsljyguydkllgge4tsmzuga2dknzxgi=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "featured"
+            }
+          ]
+        },
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/mm4dizjyg4yweljzgi2giljumqztmljygjsdgljwga4wgmzxmntgknbyg4=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/mm4dizjyg4yweljzgi2giljumqztmljygjsdgljwga4wgmzxmntgknbyg4=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "Not Featured"
+            }
+          ]
+        },
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/mq4wcmlehbrgillegaygiljumq4ggllbhazwclldgm4tqytggu2denjzg4=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/mq4wcmlehbrgillegaygiljumq4ggllbhazwclldgm4tqytggu2denjzg4=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "Price high to low"
+            }
+          ]
+        },
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/gu2dmmtdmfswmljtmi3tgljug5rdaljygrqtkljwgfrtgzdfmy4tkztbgm=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/gu2dmmtdmfswmljtmi3tgljug5rdaljygrqtkljwgfrtgzdfmy4tkztbgm=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "Best Match"
+            }
+          ]
+        }
+      ],
+      "_chosen": [
+        {
+          "_description": [
+            {
+              "self": {
+                "type": "offersearches.sort-attribute",
+                "uri": "/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/hezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/sortattribute",
+                "href": "http://bammbamm-1-facetedsearch.elasticpath.net:8080/cortex/offersearches/mobee/offers/qowwgylumvtw64tzfvrw6zdfuvdwc3lfoouxaylhmuwxg2l2mwqtljdtn5zhjwjehezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/filters/qgqka=/1/sort-attribute-selector/choice/hezgkobyg44tklldgyydeljugvrteljzhftgcljxmyydmmtbhaydmmrsgy=/sortattribute"
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "Price low to high"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "current": 1,
+    "page-size": 5,
+    "pages": 2,
+    "results": 7,
+    "results-on-page": 5
+  }
+}

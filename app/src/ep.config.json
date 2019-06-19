@@ -1,8 +1,8 @@
 {
   "cortexApi": {
-    "path": "/cortex",
+    "path": "http://reference.epdemos.com/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://localhost:9080"
+    "pathForProxy": "http://reference.epdemos.com"
   },
   "supportedLocales": [
     {
@@ -90,7 +90,7 @@
     "nodatalinks": true
   },
   "creditCardTokenization": {
-    "enable": true,
-    "lambdaURI": "https://iojbbbi1o8.execute-api.us-east-2.amazonaws.com/test/sign"
+    "enable": false,
+    "lambdaURI": ""
   }
 }

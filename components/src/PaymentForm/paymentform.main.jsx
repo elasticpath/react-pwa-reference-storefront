@@ -134,7 +134,7 @@ class PaymentFormMain extends React.Component {
         card = 'American Express';
     }
 
-    if(Config.creditCardTokenization && Config.creditCardTokenization.enable) {
+    if(Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
       const name = cardHolderName.split(' ');
       const formatedExpiryMonth = ((expiryMonth) < 10 ? '0' : '') + (expiryMonth);
       let paymentToken;

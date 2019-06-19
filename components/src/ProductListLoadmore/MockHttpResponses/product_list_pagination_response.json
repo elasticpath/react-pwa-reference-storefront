@@ -1,0 +1,150 @@
+{
+  "self": {
+    "type": "offersearches.offer-search-result",
+    "uri": "/offersearches/vestri_reference/offers/qkugwzlzo5xxezdtu5gs2y3mmfzxhklqmftwklltnf5gljdoovwgy=/filters/qgqka=/1?zoom=element,element:availability,element:code,element:definition,element:definition:assets:element,element:items,element:items:element,element:items:element:availability,element:items:element:code,element:items:element:definition,element:items:element:definition:assets:element,element:items:element:price,element:items:element:rate,element:price,element:pricerange,element:rate,facets,facets:element,facets:element:facetselector,facets:element:facetselector:choice:description,facets:element:facetselector:choice:selectaction,facets:element:facetselector:choice:selector,facets:element:facetselector:chosen:description,facets:element:facetselector:chosen:selectaction,facets:element:facetselector:chosen:selector,sortattributes,sortattributes:choice,sortattributes:choice:description,sortattributes:choice:selectaction,sortattributes:choice:selector,sortattributes:chosen,sortattributes:chosen:description,sortattributes:chosen:selectaction,sortattributes:chosen:selector,sortattributes:offersearchresult",
+    "href": "http://reference.epdemos.com/cortex/offersearches/vestri_reference/offers/qkugwzlzo5xxezdtu5gs2y3mmfzxhklqmftwklltnf5gljdoovwgy=/filters/qgqka=/1?zoom=element,element:availability,element:code,element:definition,element:definition:assets:element,element:items,element:items:element,element:items:element:availability,element:items:element:code,element:items:element:definition,element:items:element:definition:assets:element,element:items:element:price,element:items:element:rate,element:price,element:pricerange,element:rate,facets,facets:element,facets:element:facetselector,facets:element:facetselector:choice:description,facets:element:facetselector:choice:selectaction,facets:element:facetselector:choice:selector,facets:element:facetselector:chosen:description,facets:element:facetselector:chosen:selectaction,facets:element:facetselector:chosen:selector,sortattributes,sortattributes:choice,sortattributes:choice:description,sortattributes:choice:selectaction,sortattributes:choice:selector,sortattributes:chosen,sortattributes:chosen:description,sortattributes:chosen:selectaction,sortattributes:chosen:selector,sortattributes:offersearchresult"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbkknfvbwyyltomwug=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbkknfvbwyyltomwug="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbosnl5bwyyltonptgmc7ijavivcfkjmv6vkqi5jecrcf=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbosnl5bwyyltonptgmc7ijavivcfkjmv6vkqi5jecrcf="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbokbirffku2uifbeyrk7knkvgucfjzjust2ol5fusva=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbokbirffku2uifbeyrk7knkvgucfjzjust2ol5fusva="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbk2ij5huix2qifhektct=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbk2ij5huix2qifhektct="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbj2tkbhustcfki=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbj2tkbhustcfki="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbl2ujfjekx2siviecsksl5fusva=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbl2ujfjekx2siviecsksl5fusva="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbocxifgeyx2dj5he4rkdkrhvex2bjzcf6q2bijgek="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbosdjbje6tkfl5buktsuivjf6q2pjzju6tcfl5kfeskn=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbosdjbje6tkfl5buktsuivjf6q2pjzju6tcfl5kfeskn="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvblsxjbcuktc7jrhugs27kncvi=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvblsxjbcuktc7jrhugs27kncvi="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbmjuga3v6vkojreu2skuivcf6vktiu=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbmjuga3v6vkojreu2skuivcf6vktiu="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbl2ukjau4u2qj5heirksl42dany=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbl2ukjau4u2qj5heirksl42dany="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbksgj5dv6tcji5efiuy=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbksgj5dv6tcji5efiuy="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbocjjzkekusjj5jf6qkdincu4vc7jreuoscujfheo=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbocjjzkekusjj5jf6qkdincu4vc7jreuoscujfheo="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbnkbjrgf6u2fifju6ts7izge6t2sl5gucvct=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbnkbjrgf6u2fifju6ts7izge6t2sl5gucvct="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvblsdj5jeirkel5buqqksi5cve=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvblsdj5jeirkel5buqqksi5cve="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbncfjzauetcfl5jvkucfkjbuqqksi5eu4ry="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbncdjbaver2fkjpuststkrauytcbkreu6tq=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbncdjbaver2fkjpuststkrauytcbkreu6tq="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbl2difbeyrk7j5jeoqkojfnekuq="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbm2ekvauyx2dj5jeirkel5buqqksi5cve="
+    },
+    {
+      "rel": "element",
+      "type": "offers.offer",
+      "uri": "/offers/vestri_reference/qgqvbk2tkbaverk7inauetcf=",
+      "href": "http://reference.epdemos.com/cortex/offers/vestri_reference/qgqvbk2tkbaverk7inauetcf="
+    },
+    {
+      "rel": "next",
+      "type": "offersearches.offer-search-result",
+      "uri": "/offersearches/vestri_reference/offers/qkugwzlzo5xxezdtu5gs2y3mmfzxhklqmftwklltnf5gljdoovwgy=/filters/qgqka=/2",
+      "href": "http://reference.epdemos.com/cortex/offersearches/vestri_reference/offers/qkugwzlzo5xxezdtu5gs2y3mmfzxhklqmftwklltnf5gljdoovwgy=/filters/qgqka=/2"
+    },
+    {
+      "rel": "facets",
+      "rev": "offersearchresult",
+      "type": "offersearches.facets",
+      "uri": "/offersearches/vestri_reference/offers/qkugwzlzo5xxezdtu5gs2y3mmfzxhklqmftwklltnf5gljdoovwgy=/filters/qgqka=/facets",
+      "href": "http://reference.epdemos.com/cortex/offersearches/vestri_reference/offers/qkugwzlzo5xxezdtu5gs2y3mmfzxhklqmftwklltnf5gljdoovwgy=/filters/qgqka=/facets"
+    }
+  ],
+  "pagination": {
+    "current": 1,
+    "page-size": 0,
+    "pages": 2,
+    "results": 29,
+    "results-on-page": 20
+  }
+}
