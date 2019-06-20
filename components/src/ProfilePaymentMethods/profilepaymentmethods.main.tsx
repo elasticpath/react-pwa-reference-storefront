@@ -19,25 +19,27 @@
  *
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Modal from 'react-responsive-modal';
 import { PaymentFormMain } from '@elasticpath/store-components';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profilepaymentmethods.main.less';
 
-let Config = {};
+let Config: IEpConfig;
 let intl = { get: str => str };
 
-class ProfilePaymentMethodsMain extends React.Component {
-  static propTypes = {
-    paymentMethods: PropTypes.objectOf(PropTypes.any).isRequired,
-    onChange: PropTypes.func.isRequired,
-  }
+interface IProps {
+  paymentMethods: any,
+  onChange?: () => void
+}
+interface IState {
+    openNewPaymentModal: boolean
+}
+class ProfilePaymentMethodsMain extends React.Component<IProps, IState> {
 
   constructor(props) {
     super(props);
@@ -114,6 +116,7 @@ class ProfilePaymentMethodsMain extends React.Component {
       paymentMethods, onChange,
     } = this.props;
     const isDisabled = !paymentMethods._paymenttokenform;
+    const age = 123;
     if (paymentMethods) {
       return (
         <div className="paymentMethodsRegions" data-region="paymentMethodsRegion" style={{ display: 'block' }}>
