@@ -20,34 +20,36 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 
 import './add.promotion.container.less';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config = {};
 let intl = { get: str => str };
 
 interface IProps {
-  data: any;
-  onSubmittedPromotion: () => void;
+  data: any,
+  onSubmittedPromotion: () => void
 }
 
-class AddPromotionContainer extends React.Component<IProps> {
-  static propTypes = {
-    onSubmittedPromotion: PropTypes.func,
-    data: PropTypes.objectOf(PropTypes.any).isRequired,
-  }
+interface IState {
+  isPromotionFormOpen: boolean,
+  failedPromotion: boolean,
+  promotionCode: string,
+  couponFormLink: string,
+}
+
+class AddPromotionContainer extends React.Component<IProps, IState> {
 
   static defaultProps = {
     onSubmittedPromotion: () => {
     },
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     const epConfig = getConfig();
     Config = epConfig.config;
     ({ intl } = getConfig());

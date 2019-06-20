@@ -33,7 +33,6 @@ let intl = { get: str => str };
 
 function AppfooterMain(props: IProps) {
 
-  const { appFooterLinks } = props;
   const linkTo = props.appFooterLinks;
   ({ intl } = getConfig());
   return (
@@ -103,5 +102,9 @@ function AppfooterMain(props: IProps) {
     </footer>
   );
 }
+
+AppfooterMain.defaultProps = {
+  appFooterLinks: {},
+};
 
 export default AppfooterMain;
