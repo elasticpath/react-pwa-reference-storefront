@@ -22,16 +22,16 @@
 import React from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-
-import './add.promotion.container.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-let Config = {};
+import './add.promotion.container.less';
+
+let Config: IEpConfig;
 let intl = { get: str => str };
 
 interface IProps {
   data: any,
-  onSubmittedPromotion: () => void
+  onSubmittedPromotion?: () => void
 }
 
 interface IState {
@@ -42,11 +42,6 @@ interface IState {
 }
 
 class AddPromotionContainer extends React.Component<IProps, IState> {
-
-  static defaultProps = {
-    onSubmittedPromotion: () => {
-    },
-  }
 
   constructor(props) {
     super(props);

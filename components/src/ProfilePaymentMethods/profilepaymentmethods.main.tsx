@@ -116,7 +116,6 @@ class ProfilePaymentMethodsMain extends React.Component<IProps, IState> {
       paymentMethods, onChange,
     } = this.props;
     const isDisabled = !paymentMethods._paymenttokenform;
-    const age = 123;
     if (paymentMethods) {
       return (
         <div className="paymentMethodsRegions" data-region="paymentMethodsRegion" style={{ display: 'block' }}>

@@ -19,13 +19,28 @@
  *
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import './address.container.less';
 
-const AddressContainer = (props) => {
+interface IProps {
+    name: {
+        'given-name': string,
+        'family-name': string,
+    },
+    address: {
+        'street-address': string,
+        'extended-address': string,
+        locality: string,
+        region: string,
+        'country-name': string,
+        'postal-code': string,
+    },
+};
+
+function AddressContainer(props: IProps) {
     const { name, address } = props;
+
     return (
         <ul className="address-container">
             <li className="address-name">
@@ -59,21 +74,6 @@ const AddressContainer = (props) => {
             </li>
         </ul>
     );
-};
-
-AddressContainer.propTypes = {
-    name: PropTypes.shape({
-        'given-name': PropTypes.string,
-        'family-name': PropTypes.string,
-    }).isRequired,
-    address: PropTypes.shape({
-        'street-address': PropTypes.string,
-        'extended-address': PropTypes.string,
-        locality: PropTypes.string,
-        region: PropTypes.string,
-        'country-name': PropTypes.string,
-        'postal-code': PropTypes.string,
-    }).isRequired,
 };
 
 export default AddressContainer;
