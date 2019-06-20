@@ -20,21 +20,21 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import './appfooter.main.less';
 import { getConfig } from '../utils/ConfigProvider';
 
+interface IProps {
+  appFooterLinks?: any;
+}
+
 let intl = { get: str => str };
 
-function AppfooterMain(props) {
-  AppfooterMain.propTypes = {
-    appFooterLinks: PropTypes.objectOf(PropTypes.any),
-  };
+function AppfooterMain(props: IProps) {
 
   const { appFooterLinks } = props;
-  const linkTo = appFooterLinks;
+  const linkTo = props.appFooterLinks;
   ({ intl } = getConfig());
   return (
     <footer className="app-footer">
@@ -103,9 +103,5 @@ function AppfooterMain(props) {
     </footer>
   );
 }
-
-AppfooterMain.defaultProps = {
-  appFooterLinks: {},
-};
 
 export default AppfooterMain;
