@@ -29,7 +29,7 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profilepaymentmethods.main.less';
 
-let Config: IEpConfig;
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface IProps {

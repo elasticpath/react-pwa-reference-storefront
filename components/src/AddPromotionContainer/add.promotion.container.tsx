@@ -26,7 +26,7 @@ import { cortexFetch } from '../utils/Cortex';
 import './add.promotion.container.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface IProps {
