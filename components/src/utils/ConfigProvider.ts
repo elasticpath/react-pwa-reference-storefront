@@ -19,7 +19,7 @@
  *
  */
 
-interface IEpConfig {
+export interface IEpConfig {
   cortexApi: {
     path: string,
     scope: string,
@@ -103,8 +103,9 @@ interface IEpConfig {
     lambdaURI: string
   }
 }
+
 interface IConfig {
-  config: IEpConfig | {},
+  config: IEpConfig | any,
   intl: any
 }
 

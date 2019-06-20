@@ -26,7 +26,7 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './add.promotion.container.less';
 
-let Config: IEpConfig;
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface IProps {
