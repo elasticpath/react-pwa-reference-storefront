@@ -20,15 +20,33 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './addressform.main.less';
-import { getConfig } from '../utils/ConfigProvider';
 
-let Config = {};
+let Config: IEpConfig;
 let intl = { get: str => str };
+
+interface IProps {
+    addressData?: any,
+    onCloseModal?: () => void
+    fetchData?: () => void
+}
+interface IState {
+    geoData: any,
+    firstName: string,
+    lastName: string,
+    address: string
+    extendedAddress: string,
+    city: string,
+    country: string,
+    subCountry: string,
+    postalCode: string,
+    failedSubmit: boolean,
+    addressForm: any,
+}
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
@@ -40,18 +58,7 @@ const zoomArray = [
   'countries:element:regions:element',
 ];
 
-class AddressFormMain extends React.Component {
-  static propTypes = {
-    addressData: PropTypes.objectOf(PropTypes.any),
-    onCloseModal: PropTypes.func,
-    fetchData: PropTypes.func,
-  }
-
-  static defaultProps = {
-    addressData: undefined,
-    onCloseModal: () => {},
-    fetchData: () => {},
-  }
+class AddressFormMain extends React.Component<IProps, IState> {
 
   constructor(props) {
     super(props);
@@ -330,6 +337,7 @@ class AddressFormMain extends React.Component {
     const {
       failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
     } = this.state;
+
     return (
       <div className="address-form-component container" data-region="appMain">
         <div className="feedback-label feedback-container" data-region="componentAddressFeedbackRegion">
