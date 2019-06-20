@@ -12,8 +12,6 @@ FROM node:10.5.0
 ARG BUILD_DATE
 ARG VERSION
 ARG VCS_REF
-ARG NPM_TOKEN
-ARG NPM_USER
 
 ENV CORTEX=http://localhost:9080
 ENV STORE=vestri
@@ -51,11 +49,6 @@ libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 li
 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
-
-# Publish components to npm
-RUN npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
-RUN npm publish components/
-
 
 # Bundle app source
 COPY . .

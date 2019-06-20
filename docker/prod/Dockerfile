@@ -1,8 +1,15 @@
 FROM node:10.9.0 as builder
 
+ARG NPM_TOKEN
+
 WORKDIR /project
 
 ADD ./ /project
+
+# Publish components to npm
+RUN npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
+RUN npm publish components/ || echo "Components publish failed"
+
 RUN yarn
 
 RUN echo "deb http://deb.debian.org/debian/ jessie main \n\
