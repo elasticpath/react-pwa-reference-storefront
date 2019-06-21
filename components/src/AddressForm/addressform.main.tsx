@@ -26,19 +26,21 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './addressform.main.less';
 
-let Config: IEpConfig;
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-interface IProps {
-    addressData?: any,
-    onCloseModal?: () => void
-    fetchData?: () => void
+interface AddressFormMainProps {
+    addressData?:  {
+        [key: string]: any
+    },
+    onCloseModal?: (...args: any[]) => any,
+    fetchData?:(...args: any[]) => any,
 }
-interface IState {
+interface AddressFormMainState {
     geoData: any,
     firstName: string,
     lastName: string,
-    address: string
+    address: string,
     extendedAddress: string,
     city: string,
     country: string,
@@ -58,7 +60,13 @@ const zoomArray = [
   'countries:element:regions:element',
 ];
 
-class AddressFormMain extends React.Component<IProps, IState> {
+class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormMainState> {
+
+    static defaultProps = {
+        addressData: undefined,
+        onCloseModal: () => {},
+        fetchData: () => {},
+    };
 
   constructor(props) {
     super(props);
@@ -333,7 +341,6 @@ class AddressFormMain extends React.Component<IProps, IState> {
   }
 
   render() {
-    const { addressData } = this.props;
     const {
       failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
     } = this.state;

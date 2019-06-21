@@ -25,13 +25,15 @@ import { Link } from 'react-router-dom';
 import './appfooter.main.less';
 import { getConfig } from '../utils/ConfigProvider';
 
-interface IProps {
-  appFooterLinks?: any;
+interface AppFooterMainProps {
+  appFooterLinks?: {
+      [key: string]: any
+  }
 }
 
 let intl = { get: str => str };
 
-function AppfooterMain(props: IProps) {
+function AppFooterMain(props: AppFooterMainProps) {
 
   const linkTo = props.appFooterLinks;
   ({ intl } = getConfig());
@@ -103,8 +105,5 @@ function AppfooterMain(props: IProps) {
   );
 }
 
-AppfooterMain.defaultProps = {
-  appFooterLinks: {},
-};
 
-export default AppfooterMain;
+export default AppFooterMain;

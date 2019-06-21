@@ -2,7 +2,7 @@ import React from 'react';
 import {storiesOf} from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import AppfooterMain from "./appfooter.main";
+import AppFooterMain from "./appfooter.main";
 
 const appFooterLinks = {
   aboutus: '',
@@ -14,8 +14,8 @@ const appFooterLinks = {
   shareInstagram: '',
 };
 
-storiesOf('AppfooterMain', module)
+storiesOf('AppFooterMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppfooterMain', () => <AppfooterMain appFooterLinks={appFooterLinks} />);
+  .add('AppFooterMain', () => <AppFooterMain appFooterLinks={appFooterLinks} />);

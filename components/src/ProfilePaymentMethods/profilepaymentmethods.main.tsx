@@ -32,14 +32,16 @@ import './profilepaymentmethods.main.less';
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-interface IProps {
-  paymentMethods: any,
-  onChange?: () => void
+interface ProfilePaymentMethodsMainProps {
+  paymentMethods: {
+      [key: string]: any
+  },
+  onChange: (...args: any[]) => any,
 }
-interface IState {
+interface ProfilePaymentMethodsMainState {
     openNewPaymentModal: boolean
 }
-class ProfilePaymentMethodsMain extends React.Component<IProps, IState> {
+class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMainProps, ProfilePaymentMethodsMainState> {
 
   constructor(props) {
     super(props);

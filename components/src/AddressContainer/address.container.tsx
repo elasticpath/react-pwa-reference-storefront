@@ -23,7 +23,7 @@ import * as React from 'react';
 
 import './address.container.less';
 
-interface IProps {
+interface AddressContainerProps {
     name: {
         'given-name': string,
         'family-name': string,
@@ -38,7 +38,7 @@ interface IProps {
     },
 };
 
-function AddressContainer(props: IProps) {
+function AddressContainer(props: AddressContainerProps) {
     const { name, address } = props;
 
     return (

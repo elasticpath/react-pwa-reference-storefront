@@ -29,19 +29,21 @@ import './add.promotion.container.less';
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-interface IProps {
-  data: any,
-  onSubmittedPromotion?: () => void
+interface AddPromotionContainerProps {
+  data: {
+      [key: string]: any
+  },
+  onSubmittedPromotion: (...args: any[]) => any,
 }
 
-interface IState {
+interface AddPromotionContainerState {
   isPromotionFormOpen: boolean,
   failedPromotion: boolean,
   promotionCode: string,
   couponFormLink: string,
 }
 
-class AddPromotionContainer extends React.Component<IProps, IState> {
+class AddPromotionContainer extends React.Component<AddPromotionContainerProps, AddPromotionContainerState> {
 
   constructor(props) {
     super(props);
