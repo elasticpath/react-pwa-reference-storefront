@@ -22,19 +22,33 @@
 
 import React from 'react';
 
-
 import './quickorderform.less';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 
-let Config = {};
-let intl = { get: str => str };
+let Config: IEpConfig | any = {};
+let intl = { get: (str, ...args: any[]) => str };
 
-class QuickOrderForm extends React.Component {
+interface QuickOrderFormProps {
+  item: {
+    [key: string]: any
+  },
+  onItemSubmit: (...args: any[]) => any
+}
+
+interface QuickOrderFormState {
+  code: any | string,
+  product: any | {},
+  quantity: any | number,
+  isLoading: boolean,
+  skuErrorMessage: any | string
+}
+
+class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderFormState> {
   static propTypes = {
     item: PropTypes.objectOf(PropTypes.any).isRequired,
     onItemSubmit: PropTypes.func.isRequired,
@@ -258,7 +272,8 @@ class QuickOrderForm extends React.Component {
               <img
                 src={Config.skuImagesUrl.replace('%sku%', product._code[0].code)}
                 onError={(e) => {
-                  e.target.src = imgPlaceholder;
+                  const element: any = e.target;
+                  element.src = imgPlaceholder;
                 }}
                 alt="Not Available"
                 className="cart-lineitem-thumbnail"

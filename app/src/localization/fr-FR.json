@@ -20,6 +20,7 @@
   "register": "R-e-g-i-s-t-e-r",
   "i-have-an-account": "I- -h-a-v-e- -a-n- -a-c-c-o-u-n-t",
   "registration-error": "E-r-r-o-r- -r-e-g-i-s-t-e-r-i-n-g- -y-o-u-r- -a-c-c-o-u-n-t-.",
+  "password-confirm-error": "T-h-e- -s-p-e-c-i-f-i-e-d- -p-a-s-s-w-o-r-d-s- -d-o- -n-o-t- -m-a-t-c-h",
   "invalid-username-or-password": "Y-o-u-r- -u-s-e-r-n-a-m-e- -o-r- -p-a-s-s-w-o-r-d- -i-s- -i-n-v-a-l-i-d-.",
   "sku-invalid-message": "i-s- -i-n-v-a-l-i-d-.- -P-l-e-a-s-e- -c-l-e-a-r- -S-K-U- -t-o- -s-u-b-m-i-t- -o-r-d-e-r.",
   "bulk-order-invalid-message": "S-o-m-e- -c-o-d-e-s- -o-f- -p-r-o-d-u-c-t-s- -a-r-e- -i-n-v-a-l-i-d-.- -P-l-e-a-s-e- -r-e-v-i-e-w- -a-l-l- -c-o-d-e-s.",

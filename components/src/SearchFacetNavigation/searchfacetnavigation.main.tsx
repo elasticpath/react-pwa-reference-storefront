@@ -22,19 +22,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 
 import './searchfacetnavigation.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 
-class SearchFacetNavigationMain extends React.Component {
-  static propTypes = {
-    productData: PropTypes.objectOf(PropTypes.any).isRequired,
-    onFacetSelection: PropTypes.func,
-  }
+interface SearchFacetNavigationMainProps {
+  productData: {
+    [key: string]: any
+  },
+  onFacetSelection?: (res: any) => any
+}
+
+interface SearchFacetNavigationMainState {
+  facetModel: any
+}
+
+class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMainProps, SearchFacetNavigationMainState> {
 
   static defaultProps = {
     onFacetSelection: () => {},
@@ -74,7 +81,6 @@ class SearchFacetNavigationMain extends React.Component {
   }
 
   renderFacetSelectorsChosen(facetselector) {
-    this.funcName = 'renderFacetSelectors';
     if (facetselector[0]._chosen) {
       return facetselector[0]._chosen.map((chosen) => {
         if (chosen._description && chosen._selector) {
@@ -94,7 +100,6 @@ class SearchFacetNavigationMain extends React.Component {
   }
 
   renderFacetSelectors(facetselector) {
-    this.funcName = 'renderFacetSelectors';
     if (facetselector[0]._choice) {
       return facetselector[0]._choice.map((choice) => {
         if (choice._description && choice._selector) {

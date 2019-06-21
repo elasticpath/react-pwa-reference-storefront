@@ -20,18 +20,20 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { getConfig } from '../utils/ConfigProvider';
 
 import './sortproductmenu.main.less';
 
 let intl = { get: str => str };
 
-class SortProductMenu extends React.Component {
-  static propTypes = {
-    handleSortSelection: PropTypes.func.isRequired,
-    categoryModel: PropTypes.objectOf(PropTypes.any).isRequired,
+interface SortProductMenuProps {
+  handleSortSelection: (event: React.MouseEvent<HTMLElement>) => void,
+  categoryModel: {
+    [key: string]: any
   }
+}
+
+class SortProductMenu extends React.Component<SortProductMenuProps, {}> {
 
   constructor(props) {
     super(props);
@@ -46,7 +48,7 @@ class SortProductMenu extends React.Component {
 
   render() {
     const { categoryModel } = this.props;
-    let products = '';
+    let products: any = '';
     let chosenSelect = '';
     if (categoryModel._offers) {
       [products] = categoryModel._offers;

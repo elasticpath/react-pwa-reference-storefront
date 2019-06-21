@@ -20,9 +20,18 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const ShippingOptionContainer = (props) => {
+interface ShippingOptionContainerProps {
+  option: {
+    "display-name"?: string,
+    carrier?: string,
+    cost?: {
+      display?: string
+    }[]
+  }
+}
+
+const ShippingOptionContainer: React.FunctionComponent<ShippingOptionContainerProps> = props => {
   const { option } = props;
   return (
     <ul className="shipping-option-container">
@@ -37,16 +46,6 @@ const ShippingOptionContainer = (props) => {
       </li>
     </ul>
   );
-};
-
-ShippingOptionContainer.propTypes = {
-  option: PropTypes.shape({
-    'display-name': PropTypes.string,
-    carrier: PropTypes.string,
-    cost: PropTypes.arrayOf(PropTypes.shape({
-      display: PropTypes.string,
-    })),
-  }).isRequired,
 };
 
 export default ShippingOptionContainer;

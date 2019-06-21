@@ -20,6 +20,7 @@
   "register": "Register",
   "i-have-an-account": "I have an account",
   "registration-error": "Error registering your account.",
+  "password-confirm-error": "The specified passwords do not match",
   "invalid-username-or-password": "Your username or password is invalid.",
   "sku-invalid-message": "is invalid. Please clear SKU to submit order.",
   "bulk-order-invalid-message": "Some codes of products are invalid. Please review all codes.",

@@ -24,7 +24,7 @@ import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { searchLookup } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ProductListMain from '../ProductList/productlist.main';
 import ProductListPagination from '../ProductListPagination/productlistpagination.main';
 import SearchFacetNavigationMain from '../SearchFacetNavigation/searchfacetnavigation.main';
@@ -33,8 +33,8 @@ import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
 
 import './searchresultsitems.main.less';
 
-let Config = {};
-let intl = { get: str => str };
+let Config: IEpConfig | any = {};
+let intl = { get: (str, ...args: any[]) => str };
 
 const zoomArray = [
   'chosen',
@@ -88,12 +88,26 @@ const zoomArray = [
   'offersearchresult:sortattributes:chosen:selectaction',
 ];
 
-class SearchResultsItemsMain extends React.Component {
-  static propTypes = {
-    searchKeywordsProps: PropTypes.objectOf(PropTypes.any).isRequired,
-    onProductFacetSelection: PropTypes.func,
-    productLinks: PropTypes.objectOf(PropTypes.string),
+interface SearchResultsItemsMainProps {
+  searchKeywordsProps: {
+    [key: string]: any
+  },
+  onProductFacetSelection?: (...args: any[]) => any,
+  productLinks?: {
+    [key: string]: string
   }
+}
+
+interface SearchResultsItemsMainState {
+  isLoading: boolean,
+  searchResultsModel: {
+    [key: string]: any
+  },
+  loadSortedProduct: boolean,
+  searchKeywords: any
+}
+
+class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps, SearchResultsItemsMainState> {
 
   static defaultProps = {
     onProductFacetSelection: () => {},

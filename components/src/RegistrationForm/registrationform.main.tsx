@@ -22,19 +22,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 import {
   login, loginRegistered, registerUser, getRegistrationForm,
 } from '../utils/AuthService';
 import './registrationform.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class RegistrationFormMain extends React.Component {
-  static propTypes = {
-    onRegisterSuccess: PropTypes.func,
-  }
+interface RegistrationFormMainProps {
+  onRegisterSuccess?: (...args: any[]) => any
+}
+
+interface RegistrationFormMainState {
+  firstname: any | string,
+  lastname: any | string,
+  username: any | string,
+  password: any | string,
+  passwordConfirm: any | string,
+  failedRegistration: boolean,
+  failedLogin: boolean,
+  registrationErrors: string
+}
+
+class RegistrationFormMain extends React.Component<RegistrationFormMainProps, RegistrationFormMainState> {
 
   static defaultProps = {
     onRegisterSuccess: () => {},
@@ -53,12 +65,14 @@ class RegistrationFormMain extends React.Component {
       failedLogin: false,
       failedRegistration: false,
       registrationErrors: '',
+      passwordConfirm: ''
     };
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.registerNewUser = this.registerNewUser.bind(this);
+    this.setPasswordConfirmation = this.setPasswordConfirmation.bind(this);
   }
 
   componentDidMount() {
@@ -83,10 +97,21 @@ class RegistrationFormMain extends React.Component {
     this.setState({ password: event.target.value });
   }
 
+  setPasswordConfirmation(event) {
+    this.setState({ passwordConfirm: event.target.value });
+  }
+
   registerNewUser() {
     const {
-      lastname, firstname, username, password,
+      lastname, firstname, username, password, passwordConfirm,
     } = this.state;
+    if(password !== passwordConfirm) {
+      this.setState({
+        registrationErrors: `- ${intl.get('password-confirm-error')}`,
+        failedRegistration: true
+      });
+      return;
+    }
     const { onRegisterSuccess } = this.props;
     login().then(() => {
       registerUser(lastname, firstname, username, password).then((res) => {

@@ -23,21 +23,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import Modal from 'react-responsive-modal';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 import './reorder.main.less';
 
-let Config = {};
-let intl = { get: str => str };
+let Config: IEpConfig | any = {};
+let intl = { get: (str, ...args: any[]) => str };
 
-class ReorderMain extends React.Component {
-  static propTypes = {
-    productsData: PropTypes.objectOf(PropTypes.any),
-    onReorderAll: PropTypes.func,
-    itemDetailLink: PropTypes.string,
-  };
+interface ReorderMainProps {
+  productsData?: {
+    [key: string]: any
+  },
+  onReorderAll?: (...args: any[]) => any,
+  itemDetailLink?: string
+}
+
+interface ReorderMainState {
+  openModal: boolean,
+  errorMessages: {},
+  isLoading: boolean
+}
+
+class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
 
   static defaultProps = {
     productsData: {},
@@ -72,7 +81,7 @@ class ReorderMain extends React.Component {
       this.setState({ isLoading: true });
       login().then(() => {
         const addToCartLink = productsData._defaultcart[0]._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
-        const body = {};
+        const body: { [key: string]: any } = {};
         if (bulkOrderItems) {
           body.items = bulkOrderItems;
         }
@@ -176,7 +185,7 @@ class ReorderMain extends React.Component {
                 <button
                   className="ep-btn reorder-btn"
                   type="button"
-                  disabled={Object.keys(errorMessages).length}
+                  disabled={Boolean(Object.keys(errorMessages).length)}
                   onClick={() => {
                     this.reorderAll();
                   }}

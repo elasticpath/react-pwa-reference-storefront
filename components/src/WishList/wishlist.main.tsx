@@ -20,13 +20,23 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { getConfig } from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import './wishlist.main.less';
 
+interface WishListMainProps {
+  empty: boolean,
+  wishListData: {
+    [key: string]: any
+  },
+  handleQuantityChange: (...args: any[]) => any,
+  onItemConfiguratorAddToCart?: (...args: any[]) => any,
+  onItemMoveToCart?: (...args: any[]) => any,
+  onItemRemove?: (...args: any[]) => any,
+  itemDetailLink?: string
+}
 
-const WishListMain = (props) => {
+const WishListMain: React.FunctionComponent<WishListMainProps> = props => {
   const { itemDetailLink } = props;
 
   function handleConfiguratorAddToCart() {
@@ -74,16 +84,6 @@ const WishListMain = (props) => {
       ))}
     </div>
   );
-};
-
-WishListMain.propTypes = {
-  empty: PropTypes.bool.isRequired,
-  wishListData: PropTypes.objectOf(PropTypes.any).isRequired,
-  handleQuantityChange: PropTypes.func.isRequired,
-  onItemConfiguratorAddToCart: PropTypes.func,
-  onItemMoveToCart: PropTypes.func,
-  onItemRemove: PropTypes.func,
-  itemDetailLink: PropTypes.string,
 };
 
 WishListMain.defaultProps = {
