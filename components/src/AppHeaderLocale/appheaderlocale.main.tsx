@@ -20,24 +20,28 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as UserPrefs from '../utils/UserPrefs';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import currencyLogoCad from '../images/header-icons/ca.svg';
 import currencyLogoEur from '../images/header-icons/eu.svg';
 import headerLogo from '../images/site-images/Company-Logo-v1.png';
 
 import './appheaderlocale.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class AppHeaderLocaleMain extends React.Component {
-  static propTypes = {
-    isMobileView: PropTypes.bool,
-    onCurrencyChange: PropTypes.func,
-    onLocaleChange: PropTypes.func,
-  }
+interface AppHeaderLocaleMainProps {
+    isMobileView?: boolean,
+    onCurrencyChange?: (...args: any[]) => any,
+    onLocaleChange?: (...args: any[]) => any,
+}
+interface AppHeaderLocaleMainState {
+    selectedLocaleValue: any,
+    selectedCurrencyValue: any,
+}
+
+class AppHeaderLocaleMain extends React.Component<AppHeaderLocaleMainProps, AppHeaderLocaleMainState> {
 
   static defaultProps = {
     isMobileView: false,
@@ -87,7 +91,10 @@ class AppHeaderLocaleMain extends React.Component {
             className="currency-logo"
             alt="Header logo"
             src={selectedCurrencyLogo}
-            onError={(e) => { e.target.src = headerLogo; }}
+            onError={(e) => {
+                const element: any = e.target;
+                element.src = headerLogo;
+            }}
           />
           {title}
         </button>

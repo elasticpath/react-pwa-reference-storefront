@@ -21,7 +21,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 
 import './appheadertop.main.less';
@@ -29,13 +28,16 @@ import { getConfig } from '../utils/ConfigProvider';
 
 let intl = { get: str => str };
 
-class AppHeaderTop extends React.Component {
-  static propTypes = {
-    isMobileView: PropTypes.bool,
-    onCurrencyChange: PropTypes.func,
-    onLocaleChange: PropTypes.func,
-    appHeaderTopLinks: PropTypes.objectOf(PropTypes.any).isRequired,
-  };
+interface AppHeaderTopProps {
+    isMobileView?: boolean,
+    onCurrencyChange?: (...args: any[]) => any,
+    onLocaleChange?: (...args: any[]) => any,
+    appHeaderTopLinks: {
+        [key: string]: any
+    }
+}
+
+class AppHeaderTop extends React.Component<AppHeaderTopProps> {
 
   static defaultProps = {
     isMobileView: false,
