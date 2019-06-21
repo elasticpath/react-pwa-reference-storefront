@@ -20,16 +20,15 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './appheadernavigation.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 
 const zoomArray = [
   'navigations:element',
@@ -43,15 +42,21 @@ const zoomArray = [
   'navigations:element:child:child:child:child:child:child:child:child',
 ];
 
-class AppHeaderNavigationMain extends React.Component {
-  static propTypes = {
-    isOfflineCheck: PropTypes.func.isRequired,
-    isOffline: PropTypes.bool,
-    checkedLocation: PropTypes.bool,
-    isMobileView: PropTypes.bool.isRequired,
-    onFetchNavigationError: PropTypes.func,
-    appHeaderNavigationLinks: PropTypes.objectOf(PropTypes.any),
-  }
+interface AppHeaderNavigationMainProps {
+  isOfflineCheck: (...args: any[]) => any,
+  isOffline?: boolean,
+  checkedLocation?: boolean,
+  isMobileView: boolean,
+  onFetchNavigationError?: (...args: any[]) => any,
+  appHeaderNavigationLinks?: { [key: string]: any },
+}
+
+interface AppHeaderNavigationMainState {
+  navigations: { [key: string]: any },
+  originalMinimizedNav: { [key: string]: any },
+}
+
+class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
 
   static defaultProps = {
     isOffline: undefined,
@@ -191,10 +196,11 @@ class AppHeaderNavigationMain extends React.Component {
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} key={`${path}`}>
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <div className={`dropdown-item dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
+        {/* e
+        slint-disable jsx-a11y/click-events-have-key-events */}
+        <Link className={`dropdown-item dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
-        </div>
+        </Link>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${nestedChildObj.show ? 'show' : ''} nestedCategory${currentCategoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
           {this.renderSubCategories(subcategoryChildKeyName, path, !isLeftDropDownStyling, currentCategoryLevel)}
         </ul>
@@ -254,9 +260,9 @@ class AppHeaderNavigationMain extends React.Component {
       <li className="nav-item" key={`${path}`} data-name={category} data-el-container="category-nav-item-container">
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <div className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <Link className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {category}
-        </div>
+        </Link>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''} nestedCategory${categoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
           {this.renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel)}
         </ul>
