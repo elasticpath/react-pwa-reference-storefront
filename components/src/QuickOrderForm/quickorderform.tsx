@@ -28,7 +28,7 @@ import PropTypes from 'prop-types';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
-import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };

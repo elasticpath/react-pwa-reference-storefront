@@ -23,14 +23,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 
 import './profileemailinfo.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class ProfileemailinfoMain extends React.Component {
+type ProfileemailinfoMainProps = {
+  profileInfo: {
+    [key: string]: any
+  },
+  onChange: (...args: any[]) => any
+};
+type ProfileemailinfoMainState = {
+  failedSubmit: boolean,
+  emailInEditMode: boolean,
+  email: string
+};
+
+class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, ProfileemailinfoMainState> {
   static propTypes = {
     profileInfo: PropTypes.objectOf(PropTypes.any).isRequired,
     onChange: PropTypes.func.isRequired,

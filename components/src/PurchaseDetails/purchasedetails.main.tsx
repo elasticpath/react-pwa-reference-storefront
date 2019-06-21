@@ -31,7 +31,17 @@ import './purchasedetails.main.less';
 
 let intl = { get: str => str };
 
-const PurchaseDetailsMain = (props) => {
+interface PurchaseDetailsMainProps {
+  data: {
+    [key: string]: any
+},
+onReorderAllProducts?: (...args: any[]) => any,
+  itemDetailLink?: string,
+  onMoveToCart?: (...args: any[]) => any,
+  onConfiguratorAddToCart?: (...args: any[]) => any
+}
+
+const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = props => {
   const { data, itemDetailLink, onMoveToCart, onConfiguratorAddToCart } = props;
   const { status } = data;
   ({ intl } = getConfig());

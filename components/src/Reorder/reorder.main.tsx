@@ -20,10 +20,9 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import Modal from 'react-responsive-modal';
-import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';

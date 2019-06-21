@@ -21,7 +21,6 @@
 
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import Modal from 'react-responsive-modal';
 import { getConfig } from '../utils/ConfigProvider';
@@ -32,15 +31,33 @@ import './quickorder.main.less';
 
 let intl = { get: str => str };
 
-class QuickOrderMain extends React.Component {
-  static propTypes = {
-    isBuyItAgain: PropTypes.bool,
-    productData: PropTypes.objectOf(PropTypes.any),
-    itemDetailLink: PropTypes.string,
-    onMoveToCart: PropTypes.func,
-    onConfiguratorAddToCart: PropTypes.func,
-  }
+interface QuickOrderMainProps {
+  isBuyItAgain?: boolean,
+  productData?: {
+    [key: string]: any
+  },
+  itemDetailLink?: string,
+  onMoveToCart?: (...args: any[]) => any,
+  onConfiguratorAddToCart?: (...args: any[]) => any
+}
 
+interface QuickOrderMainState {
+  isLoading: boolean,
+  productId: string,
+  itemQuantity: number,
+  openModal: boolean,
+  productItemInfo: {
+    [key: string]: any
+  },
+  showFailedMessage: boolean,
+  failedSubmit: boolean,
+  productDataInfo: {
+    [key: string]: any
+  },
+  addToCartFailedMessage: string
+}
+
+class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMainState> {
   static defaultProps = {
     isBuyItAgain: false,
     productData: {},
@@ -52,6 +69,7 @@ class QuickOrderMain extends React.Component {
   constructor(props) {
     super(props);
     ({ intl } = getConfig());
+    const { productData } = this.props;
     this.state = {
       failedSubmit: false,
       productId: '',
@@ -60,15 +78,10 @@ class QuickOrderMain extends React.Component {
       addToCartFailedMessage: '',
       isLoading: false,
       openModal: false,
-      productItemInfo: {},
+      productItemInfo: productData !== {} ? productData : {},
       showFailedMessage: false,
     };
-    const { productData } = this.props;
-    if (productData !== {}) {
-      this.state = {
-        productDataInfo: productData,
-      };
-    }
+
     this.addToCart = this.addToCart.bind(this);
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
@@ -160,7 +173,6 @@ class QuickOrderMain extends React.Component {
               itemQuantity={itemQuantity}
               handleQuantityChange={() => { this.handleQuantityChange(); }}
               hideRemoveButton
-              handleErrorMessage={this.handleErrorMessage}
               itemDetailLink={itemDetailLink}
               onMoveToCart={onMoveToCart}
               onConfiguratorAddToCart={onConfiguratorAddToCart}
@@ -205,7 +217,7 @@ class QuickOrderMain extends React.Component {
                     <input id="quick_order_form_sku" className="form-control" type="text" placeholder={intl.get('quick-order-sku-title')} value={productId || ''} onChange={e => this.setState({ productId: e.target.value, showFailedMessage: false })} />
                   </div>
                   <div className="quantity-col">
-                    <input id="quick_order_form_quantity" className="quantity-select form-control" type="number" step="1" min="1" max="9999" placeholder="1" value={itemQuantity || 1} onChange={e => this.setState({ itemQuantity: e.target.value })} />
+                    <input id="quick_order_form_quantity" className="quantity-select form-control" type="number" step="1" min="1" max="9999" placeholder="1" value={itemQuantity || 1} onChange={e => this.setState({ itemQuantity: Number(e.target.value) })} />
                   </div>
                 </div>
               </div>

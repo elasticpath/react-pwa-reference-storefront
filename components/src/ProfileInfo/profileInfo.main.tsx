@@ -23,14 +23,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileInfo.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class ProfileInfoMain extends React.Component {
+interface ProfileInfoMainProps {
+  profileInfo: {
+    [key: string]: any
+  },
+  onChange: (...args: any[]) => any,
+  isDisabled?: boolean
+}
+
+interface ProfileInfoMainState {
+  inEditMode: boolean,
+  failedSubmit: boolean,
+  firstName: any,
+  lastName: any
+}
+
+class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoMainState> {
   static propTypes = {
     profileInfo: PropTypes.objectOf(PropTypes.any).isRequired,
     onChange: PropTypes.func.isRequired,
