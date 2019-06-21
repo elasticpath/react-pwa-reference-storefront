@@ -25,6 +25,9 @@
     "declaration": false,
     "outDir": "build"
   },
+  "files": [
+    "custom_typings/image-loader.d.ts"
+  ],
   "include": [
     "src"
   ]

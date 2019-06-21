@@ -34,7 +34,7 @@ interface AddressFormMainProps {
         [key: string]: any
     },
     onCloseModal?: (...args: any[]) => any,
-    fetchData?:(...args: any[]) => any,
+    fetchData?: (...args: any[]) => any,
 }
 interface AddressFormMainState {
     geoData: any,

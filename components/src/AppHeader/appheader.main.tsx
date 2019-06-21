@@ -21,54 +21,67 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import AppHeaderSearchMain from '../AppHeaderSearch/appheadersearch.main';
 import AppHeaderLoginMain from '../AppHeaderLogin/appheaderlogin.main';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
 import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
-import headerLogo from '../images/site-images/Company-Logo-v2.png';
+import * as headerLogo from '../images/site-images/Company-Logo-v2.png';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 
 import './appheader.main.less';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 const headerLogoFileName = 'Company-Logo-v2.png';
+interface AppHeaderMainProps {
+  onSearchPage: (...args: any[]) => any,
+    redirectToMainPage: (...args: any[]) => any,
+    handleResetPassword: (...args: any[]) => any,
+    onCurrencyChange: (...args: any[]) => any,
+    onLocaleChange: (...args: any[]) => any,
+    onContinueCart: (...args: any[]) => any,
+    onGoBack: (...args: any[]) => any,
+    checkedLocation: boolean,
+    isInStandaloneMode: boolean,
+    locationSearchData: string,
+    appHeaderLinks: {
+        [key: string]: any
+    },
+    appHeaderLoginLinks: {
+        [key: string]: any
+    },
+    appHeaderNavigationLinks: {
+        [key: string]: any
+    },
+    appHeaderTopLinks: {
+        [key: string]: any
+    },
+    appModalLoginLinks: {
+        [key: string]: any
+    },
+}
 
+interface AppHeaderMainState {
+    cartData: any,
+    isLoading: boolean,
+    isOffline: boolean,
+    isSearchFocused: boolean,
+    isBulkModalOpened: boolean,
+    isDesktop: boolean,
+    isLoggedInUser: boolean,
+}
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
   'defaultcart',
   'defaultcart:additemstocartform',
 ];
 
-class AppHeaderMain extends React.Component {
-  static goBack() {
-    const { onGoBack } = this.props;
-    onGoBack();
-  }
-
-  static propTypes = {
-    onSearchPage: PropTypes.func,
-    redirectToMainPage: PropTypes.func,
-    handleResetPassword: PropTypes.func,
-    onCurrencyChange: PropTypes.func,
-    onLocaleChange: PropTypes.func,
-    onContinueCart: PropTypes.func,
-    onGoBack: PropTypes.func,
-    checkedLocation: PropTypes.bool,
-    isInStandaloneMode: PropTypes.bool,
-    locationSearchData: PropTypes.string,
-    appHeaderLinks: PropTypes.objectOf(PropTypes.any),
-    appHeaderLoginLinks: PropTypes.objectOf(PropTypes.any),
-    appHeaderNavigationLinks: PropTypes.objectOf(PropTypes.any),
-    appHeaderTopLinks: PropTypes.objectOf(PropTypes.any),
-    appModalLoginLinks: PropTypes.objectOf(PropTypes.any),
-  }
+class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainState> {
 
   static defaultProps = {
     checkedLocation: false,
@@ -167,6 +180,11 @@ class AppHeaderMain extends React.Component {
     });
   }
 
+  goBack() {
+    const { onGoBack } = this.props;
+    onGoBack();
+    }
+
   openModal() {
     const { isBulkModalOpened } = this.state;
     this.setState({
@@ -213,7 +231,10 @@ class AppHeaderMain extends React.Component {
                 className="logo-image"
                 alt="Header logo"
                 src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)}
-                onError={(e) => { e.target.src = headerLogo; }}
+                onError={(e) => {
+                  const element: any = e.target;
+                  element.src = headerLogo;
+                }}
               />
             </Link>
           </div>
@@ -287,7 +308,7 @@ class AppHeaderMain extends React.Component {
 
           <div className="toggle-btn-container">
             {(isInStandaloneMode) ? (
-              <button className="back-btn" aria-label="back button" type="button" onClick={AppHeaderMain.goBack}>
+              <button className="back-btn" aria-label="back button" type="button" onClick={this.goBack}>
                 <span className="icon glyphicon glyphicon-chevron-left" />
               </button>
             ) : ('')
