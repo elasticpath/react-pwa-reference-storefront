@@ -52,8 +52,8 @@ interface AppHeaderNavigationMainProps {
 }
 
 interface AppHeaderNavigationMainState {
-  navigations: { [key: string]: any },
-  originalMinimizedNav: { [key: string]: any },
+  navigations: any,
+  originalMinimizedNav: any,
 }
 
 class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {

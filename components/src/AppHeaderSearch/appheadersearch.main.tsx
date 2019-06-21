@@ -20,19 +20,24 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './appheadersearch.main.less';
 import { getConfig } from '../utils/ConfigProvider';
 
 let intl = { get: str => str };
 
-class AppHeaderSearchMain extends React.Component {
-  static propTypes = {
-    isMobileView: PropTypes.bool.isRequired,
-    isFocused: PropTypes.bool,
-    onSearchPage: PropTypes.func,
-  }
+interface AppHeaderSearchMainProps {
+    isMobileView: boolean,
+    isFocused?: boolean,
+    onSearchPage?: (...args: any[]) => any,
+}
+interface AppHeaderSearchMainState{
+    keywords: string,
+}
+
+class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppHeaderSearchMainState> {
+
+  private searchInput: React.RefObject<HTMLInputElement>;
 
   static defaultProps = {
     isFocused: false,
@@ -45,6 +50,7 @@ class AppHeaderSearchMain extends React.Component {
     this.state = {
       keywords: '',
     };
+    this.searchInput = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
   }
@@ -52,7 +58,7 @@ class AppHeaderSearchMain extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isFocused === true) {
       setTimeout(() => {
-        this.searchInput.focus();
+        this.searchInput.current.focus();
       }, 500);
     }
   }
@@ -68,7 +74,7 @@ class AppHeaderSearchMain extends React.Component {
       document.querySelector('.collapsable-container').classList.remove('show');
       onSearchPage(keywords);
     }
-    this.searchInput.value = '';
+    this.searchInput.current.value = '';
     event.preventDefault();
   }
 
@@ -78,7 +84,7 @@ class AppHeaderSearchMain extends React.Component {
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={this.search}>
-          <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={(input) => { this.searchInput = input; }} />
+          <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} />
           <div className="search-icon" />
         </form>
       </div>

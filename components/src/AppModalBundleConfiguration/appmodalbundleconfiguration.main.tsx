@@ -20,10 +20,9 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 /* eslint-disable-next-line import/no-cycle */
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { login } from '../utils/AuthService';
@@ -54,19 +53,27 @@ const zoomArray = [
   'dependentlineitems:element:dependentlineitems:element:item:definition',
 ];
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class AppModalBundleConfigurationMain extends React.Component {
-  static propTypes = {
-    bundleConfigurationItems: PropTypes.objectOf(PropTypes.any).isRequired,
-    handleModalClose: PropTypes.func.isRequired,
-    openModal: PropTypes.bool.isRequired,
-    onItemConfiguratorAddToCart: PropTypes.func,
-    onItemMoveToCart: PropTypes.func,
-    onItemRemove: PropTypes.func,
-    itemDetailLink: PropTypes.string,
-  }
+interface AppModalBundleConfigurationMainProps {
+    bundleConfigurationItems: {
+        [key: string]: any
+    },
+    handleModalClose: (...args: any[]) => any,
+    openModal: boolean
+    onItemConfiguratorAddToCart?: (...args: any[]) => any,
+    onItemMoveToCart?: (...args: any[]) => any,
+    onItemRemove?: (...args: any[]) => any,
+    itemDetailLink?: string,
+}
+interface AppModalBundleConfigurationMainState {
+    dependantItemData: any,
+    isLoading: boolean,
+    registrationErrors: string,
+}
+
+class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConfigurationMainProps, AppModalBundleConfigurationMainState> {
 
   static defaultProps = {
     onItemConfiguratorAddToCart: () => {},
@@ -163,7 +170,7 @@ class AppModalBundleConfigurationMain extends React.Component {
         itemCodeString = bundleConfigurationItems._item[0]._code[0].code;
       }
       return (
-        <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'bundle-configurator-modal-content' }} id={`bundle-configuration-modal-${itemCodeString}`}>
+        <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'bundle-configurator-modal-content' }}>
           <div className="modal-dialog">
             <div className="modal-content" id="simplemodal-container">
               <div className="modal-header">
