@@ -29,7 +29,6 @@ export function cortexFetch(input, init) {
 
   if (requestInit && requestInit.headers) {
     requestInit.headers['x-ep-user-traits'] = `LOCALE=${UserPrefs.getSelectedLocaleValue()}, CURRENCY=${UserPrefs.getSelectedCurrencyValue()}`;
-    requestInit.headers['accept-encoding'] = `gzip, deflate, br`;
   }
 
   if (Config.enableOfflineMode) {
@@ -57,7 +56,6 @@ export function adminFetch(input, init) {
 
   if (requestInit && requestInit.headers) {
     requestInit.headers['x-ep-user-traits'] = `LOCALE=${UserPrefs.getSelectedLocaleValue()}, CURRENCY=${UserPrefs.getSelectedCurrencyValue()}`;
-    requestInit.headers['accept-encoding'] = `gzip, deflate, br`;
   }
 
   if (Config.enableOfflineMode) {
