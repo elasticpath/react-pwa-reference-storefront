@@ -20,15 +20,21 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import './ordertable.lineitem.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 
-const OrderTableLineItem = (props) => {
+interface OrderTableLineItemProps {
+    item: {
+        [key: string]: any
+    },
+    itemDetailLink?: string,
+}
+
+const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (props) => {
   const { item, itemDetailLink } = props;
   const { code } = item._item[0]._code[0];
   const displayName = item._item[0]._definition[0]['display-name'];
@@ -98,7 +104,14 @@ const OrderTableLineItem = (props) => {
   return (
     <tr className="order-lineitem-row">
       <td className="thumbnail-col">
-        <img className="thumbnail" src={Config.skuImagesUrl.replace('%sku%', code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" />
+        <img className="thumbnail"
+             src={Config.skuImagesUrl.replace('%sku%', code)}
+             alt="Not Available"
+             onError={(e) => {
+                 const element:any = e.target;
+                 element.target.src = imgPlaceholder;
+             }}
+        />
       </td>
       <td className="title-col">
         <Link to={`${itemDetailLink}/${encodeURIComponent(code)}`}>
@@ -126,11 +139,6 @@ const OrderTableLineItem = (props) => {
       </td>
     </tr>
   );
-};
-
-OrderTableLineItem.propTypes = {
-  item: PropTypes.objectOf(PropTypes.any).isRequired,
-  itemDetailLink: PropTypes.string,
 };
 
 OrderTableLineItem.defaultProps = {

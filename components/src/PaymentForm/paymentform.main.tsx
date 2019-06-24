@@ -20,22 +20,36 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import './paymentform.main.less';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 const today = new Date();
 
-class PaymentFormMain extends React.Component {
-  static propTypes = {
-    onCloseModal: PropTypes.func,
-    fetchData: PropTypes.func,
-  }
+interface PaymentFormMainProps {
+    onCloseModal?: (...args: any[]) => any,
+    fetchData?: (...args: any[]) => any,
+}
+
+interface PaymentFormMainState {
+    showLoader: boolean,
+    cardType: string,
+    cardHolderName: string,
+    cardNumber: string,
+    expiryMonth: number,
+    expiryYear: number,
+    securityCode: string,
+    saveToProfile: boolean,
+    failedSubmit: boolean,
+    paymentForm: any,
+    orderPaymentForm: any,
+}
+
+class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormMainState> {
 
   static defaultProps = {
     onCloseModal: () => {},
@@ -206,7 +220,7 @@ class PaymentFormMain extends React.Component {
                     .then((data) => {
                       const parser = new DOMParser();
                       const doc = parser.parseFromString(data, 'text/html');
-                      const form = doc.querySelector('form[id="custom_redirect"]');
+                      const form: any = doc.querySelector('form[id="custom_redirect"]');
                       const elemets = form.elements;
                       // eslint-disable-next-line
                       for (const element of elemets) {
@@ -450,7 +464,7 @@ class PaymentFormMain extends React.Component {
             </label>
             <div className="form-input">
               {/* eslint-disable-next-line max-len */}
-              <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength="4" type="text" pattern="\d*" value={securityCode} onChange={this.setSecurityCode} />
+              <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength={4} type="text" pattern="\d*" value={securityCode} onChange={this.setSecurityCode} />
             </div>
           </div>
           <div className="form-group save-to-profile-group" data-el-label="payment.saveToProfileFormGroup">

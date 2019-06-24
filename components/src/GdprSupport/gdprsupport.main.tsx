@@ -21,20 +21,24 @@
 
 import React from 'react';
 import Modal from 'react-responsive-modal';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 
 import './gdprsupport.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class GdprSupportModal extends React.Component {
-  static propTypes = {
-    onAcceptDataPolicy: PropTypes.func,
-  }
+interface GdprSupportModalProps {
+  onAcceptDataPolicy?: (...args: any[]) => any,
+}
+interface GdprSupportModalState {
+    open: boolean,
+    checked: boolean,
+}
+
+class GdprSupportModal extends React.Component<GdprSupportModalProps, GdprSupportModalState> {
 
   static defaultProps = {
     onAcceptDataPolicy: () => {},

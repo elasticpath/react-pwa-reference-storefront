@@ -20,12 +20,11 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 // Array of zoom parameters to pass to Cortex
@@ -53,10 +52,14 @@ const zoomArray = [
   'lineitems:element:item:definition:options:element:selector:chosen:selectaction',
 ];
 
-class OrderHistoryLineMain extends React.Component {
-  static propTypes = {
-    orderHistoryLineUrlProps: PropTypes.string.isRequired,
-  }
+interface OrderHistoryLineMainProps {
+    orderHistoryLineUrlProps: string,
+}
+interface OrderHistoryLineMainState {
+    orderModel: any,
+}
+
+class OrderHistoryLineMain extends React.Component<OrderHistoryLineMainProps, OrderHistoryLineMainState> {
 
   constructor(props) {
     super(props);
