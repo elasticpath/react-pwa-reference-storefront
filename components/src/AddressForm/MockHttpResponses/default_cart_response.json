@@ -1,0 +1,142 @@
+{
+  "self": {
+    "type": "elasticpath.collections.links",
+    "uri": "/?zoom=defaultcart,defaultcart:additemstocartform",
+    "href": "http://reference.epdemos.com/cortex/?zoom=defaultcart,defaultcart:additemstocartform"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "defaultcart",
+      "type": "carts.default-cart",
+      "uri": "/carts/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/carts/vestri/default"
+    },
+    {
+      "rel": "data-policies",
+      "type": "datapolicies.data-policies",
+      "uri": "/datapolicies/vestri",
+      "href": "http://reference.epdemos.com/cortex/datapolicies/vestri"
+    },
+    {
+      "rel": "countries",
+      "type": "geographies.countries",
+      "uri": "/geographies/vestri/countries",
+      "href": "http://reference.epdemos.com/cortex/geographies/vestri/countries"
+    },
+    {
+      "rel": "lookups",
+      "type": "lookups.lookups",
+      "uri": "/lookups/vestri",
+      "href": "http://reference.epdemos.com/cortex/lookups/vestri"
+    },
+    {
+      "rel": "navigations",
+      "type": "navigations.navigations",
+      "uri": "/navigations/vestri",
+      "href": "http://reference.epdemos.com/cortex/navigations/vestri"
+    },
+    {
+      "rel": "defaultprofile",
+      "type": "profiles.default-profile",
+      "uri": "/profiles/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/profiles/vestri/default"
+    },
+    {
+      "rel": "newaccountform",
+      "type": "registrations.new-account-registration-form",
+      "uri": "/registrations/vestri/newaccount/form",
+      "href": "http://reference.epdemos.com/cortex/registrations/vestri/newaccount/form"
+    },
+    {
+      "rel": "searches",
+      "type": "searches.searches",
+      "uri": "/searches/vestri",
+      "href": "http://reference.epdemos.com/cortex/searches/vestri"
+    },
+    {
+      "rel": "defaultwishlist",
+      "type": "wishlists.default-wishlist",
+      "uri": "/wishlists/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/wishlists/vestri/default"
+    }
+  ],
+  "_defaultcart": [
+    {
+      "self": {
+        "type": "carts.cart",
+        "uri": "/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=",
+        "href": "http://reference.epdemos.com/cortex/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme="
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "lineitems",
+          "rev": "cart",
+          "type": "carts.line-items",
+          "uri": "/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/lineitems",
+          "href": "http://reference.epdemos.com/cortex/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/lineitems"
+        },
+        {
+          "rel": "additemstocartform",
+          "type": "carts.add-items-to-cart-form",
+          "uri": "/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/form",
+          "href": "http://reference.epdemos.com/cortex/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/form"
+        },
+        {
+          "rel": "discount",
+          "rev": "cart",
+          "type": "discounts.discount-for-cart",
+          "uri": "/discounts/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=",
+          "href": "http://reference.epdemos.com/cortex/discounts/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme="
+        },
+        {
+          "rel": "order",
+          "rev": "cart",
+          "type": "orders.order",
+          "uri": "/orders/vestri/gy3tmnjqmzqwillfmm2ggljumi3dollcmuztaljwha4diyzqga4teobyga=",
+          "href": "http://reference.epdemos.com/cortex/orders/vestri/gy3tmnjqmzqwillfmm2ggljumi3dollcmuztaljwha4diyzqga4teobyga="
+        },
+        {
+          "rel": "appliedpromotions",
+          "rev": "cart",
+          "type": "promotions.applied-promotions-for-cart",
+          "uri": "/promotions/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/applied",
+          "href": "http://reference.epdemos.com/cortex/promotions/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/applied"
+        },
+        {
+          "rel": "total",
+          "rev": "cart",
+          "type": "totals.cart-total",
+          "uri": "/totals/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=",
+          "href": "http://reference.epdemos.com/cortex/totals/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme="
+        }
+      ],
+      "_additemstocartform": [
+        {
+          "self": {
+            "type": "carts.add-items-to-cart-form",
+            "uri": "/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/form",
+            "href": "http://reference.epdemos.com/cortex/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/form"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "additemstocartaction",
+              "type": "carts.add-items-to-cart-form",
+              "uri": "/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/form",
+              "href": "http://reference.epdemos.com/cortex/carts/vestri/gjstanrwgzstiljtha2daljumjrdqljygeztsljxgvrgkolgg44gemleme=/form"
+            }
+          ],
+          "items": [
+            {
+              "code": "",
+              "quantity": 0
+            }
+          ]
+        }
+      ],
+      "total-quantity": 0
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "self": {
+    "type": "addresses.address",
+    "uri": "/addresses/vestri/gi4dqytemy3tsljwmmzwiljuguywcljzmq4gkljqmvrtqzjugnrtcojsgy=",
+    "href": "http://reference.epdemos.com/cortex/addresses/vestri/gi4dqytemy3tsljwmmzwiljuguywcljzmq4gkljqmvrtqzjugnrtcojsgy="
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "list",
+      "type": "addresses.addresses",
+      "uri": "/addresses/vestri",
+      "href": "http://reference.epdemos.com/cortex/addresses/vestri"
+    },
+    {
+      "rel": "profile",
+      "type": "profiles.profile",
+      "uri": "/profiles/vestri/mq3tamlfmuzwkljyme2ggljumftdgljygnswkllgmrtgkm3bhe4tczrygq=",
+      "href": "http://reference.epdemos.com/cortex/profiles/vestri/mq3tamlfmuzwkljyme2ggljumftdgljygnswkllgmrtgkm3bhe4tczrygq="
+    }
+  ],
+  "address": {
+    "country-name": "US",
+    "extended-address": "5555",
+    "locality": "Washington",
+    "organization": null,
+    "phone-number": null,
+    "postal-code": "12345",
+    "region": "WA",
+    "street-address": "555 Main Street"
+  },
+  "name": {
+    "family-name": "Test",
+    "given-name": "User"
+  }
+}

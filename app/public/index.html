@@ -1,0 +1,146 @@
+<!--
+    Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+
+    This is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This software is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this license. If not, see
+
+        https://www.gnu.org/licenses/
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="Elastic Path&trade; Visual Cortex - App Framework">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5bc0de" />
+
+  <meta property="og:image" content="<%= require('../src/images/manifest-images/icons-512.png') %>">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="200">
+  <meta property="og:image:height" content="200">
+
+  <meta name='viewport' content='viewport-fit=cover, user-scalable=no, width=device-width, height=device-height, initial-scale=1.0'>
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+  <!-- iPhone ICON -->
+  <link href="<%= require('../src/images/manifest-images/icons-192.png') %>" sizes="57x57" rel="apple-touch-icon">
+  <!-- iPad ICON-->
+  <link href="<%= require('../src/images/manifest-images/icons-192.png') %>" sizes="72x72" rel="apple-touch-icon">
+  <!-- iPhone (Retina) ICON-->
+  <link href="<%= require('../src/images/manifest-images/icons-512.png') %>" sizes="114x114" rel="apple-touch-icon">
+  <!-- iPad (Retina) ICON-->
+  <link href="<%= require('../src/images/manifest-images/icons-512.png') %>" sizes="144x144" rel="apple-touch-icon">
+  <!-- iPhone X ICON -->
+  <link href="<%= require('../src/images/manifest-images/icons-192.png') %>" sizes="192x192" rel="apple-touch-icon">
+
+  <link href="<%= require('../src/images/manifest-images/iphone5_splash.png') %>" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+  <link href="<%= require('../src/images/manifest-images/iphone6_splash.png') %>" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+  <link href="<%= require('../src/images/manifest-images/iphoneplus_splash.png') %>" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+  <link href="<%= require('../src/images/manifest-images/iphonex_splash.png') %>" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+  <link href="<%= require('../src/images/manifest-images/iphonexsmax_splash.png') %>" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+  <link href="<%= require('../src/images/manifest-images/iphonexr_splash.png') %>" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+  <link href="<%= require('../src/images/manifest-images/ipad_splash.png') %>" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+  <link href="<%= require('../src/images/manifest-images/ipadpro1_splash.png') %>" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+  <link href="<%= require('../src/images/manifest-images/ipadpro2_splash.png') %>" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+
+  <title>Elastic Path&trade; Storefront Reference Application</title>
+
+  <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
+
+  <link rel="icon" href="<%= require('../src/images/manifest-images/favicon_0.ico') %>">
+
+  <link rel="manifest" href="/manifest.json" />
+
+</head>
+
+<body>
+
+<!-- Viewport -->
+<div class="viewport ui-container" data-region="viewPortRegion"></div>
+
+<div id="root"></div>
+
+<noscript>
+  <style type="text/css">
+    body {
+      overflow: hidden;
+    }
+
+    .noscript-overlay {
+      background-color: white;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2000;
+    }
+
+    .noscript-contain {
+      height: 200px;
+      left: 50%;
+      margin-left: -300px;
+      margin-top: -100px;
+      position: absolute;
+      top: 50%;
+      width: 600px;
+    }
+
+    .ep-style-wrapper .regular,
+    .ep-style-wrapper p {
+      font-weight: 400;
+    }
+
+    .ep-style-wrapper .font-xl {
+      font-size: 32px;
+      line-height: 36px;
+    }
+  </style>
+  <div class="noscript-overlay">
+    <div class="noscript-contain ep-style-wrapper">
+        <span class="font-xl regular colour-dark-blue margin-s-bottom block" style="display: block;">This website requires
+          JavaScript
+        </span>
+      <p class="font-xs margin-s-bottom">The features of this website require JavasScript to function. Please check your
+        browser settings and turn on JavaScript.</p>
+      <p class="font-xs">If you can't find the setting, try searching the web for your browser name (Chrome, Firefox, etc.)
+        and "turning on JavaScript".
+      </p>
+    </div>
+  </div>
+</noscript>
+
+<!-- Modal Window PLaceholder -->
+<div data-region="modalRegion" class="modal-container"></div>
+
+</body>
+
+</html>

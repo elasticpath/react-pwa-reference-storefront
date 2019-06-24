@@ -1,0 +1,752 @@
+{
+  "self": {
+    "type": "elasticpath.collections.links",
+    "uri": "/?zoom=defaultcart,defaultcart:appliedpromotions:element,defaultcart:discount,defaultcart:lineitems:element,defaultcart:lineitems:element:dependentlineitems,defaultcart:lineitems:element:dependentlineitems:element,defaultcart:lineitems:element:dependentlineitems:element:item:addtocartform,defaultcart:lineitems:element:dependentlineitems:element:item:availability,defaultcart:lineitems:element:dependentlineitems:element:item:code,defaultcart:lineitems:element:dependentlineitems:element:item:definition,defaultcart:lineitems:element:item,defaultcart:lineitems:element:item:code,defaultcart:lineitems:element:item:definition,defaultcart:lineitems:element:item:definition:options:element,defaultcart:lineitems:element:item:definition:options:element:value,defaultcart:lineitems:element:item:price,defaultcart:lineitems:element:total,defaultcart:order,defaultcart:order:billingaddressinfo:billingaddress,defaultcart:order:couponinfo:coupon,defaultcart:order:couponinfo:couponform,defaultcart:order:deliveries:element:destinationinfo:destination,defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption,defaultcart:order:paymentmethodinfo:paymentmethod,defaultcart:order:postedpayments,defaultcart:order:purchaseform,defaultcart:order:tax,defaultcart:order:total,defaultcart:total",
+    "href": "http://reference.epdemos.com/cortex/?zoom=defaultcart,defaultcart:appliedpromotions:element,defaultcart:discount,defaultcart:lineitems:element,defaultcart:lineitems:element:dependentlineitems,defaultcart:lineitems:element:dependentlineitems:element,defaultcart:lineitems:element:dependentlineitems:element:item:addtocartform,defaultcart:lineitems:element:dependentlineitems:element:item:availability,defaultcart:lineitems:element:dependentlineitems:element:item:code,defaultcart:lineitems:element:dependentlineitems:element:item:definition,defaultcart:lineitems:element:item,defaultcart:lineitems:element:item:code,defaultcart:lineitems:element:item:definition,defaultcart:lineitems:element:item:definition:options:element,defaultcart:lineitems:element:item:definition:options:element:value,defaultcart:lineitems:element:item:price,defaultcart:lineitems:element:total,defaultcart:order,defaultcart:order:billingaddressinfo:billingaddress,defaultcart:order:couponinfo:coupon,defaultcart:order:couponinfo:couponform,defaultcart:order:deliveries:element:destinationinfo:destination,defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption,defaultcart:order:paymentmethodinfo:paymentmethod,defaultcart:order:postedpayments,defaultcart:order:purchaseform,defaultcart:order:tax,defaultcart:order:total,defaultcart:total"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "defaultcart",
+      "type": "carts.default-cart",
+      "uri": "/carts/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/carts/vestri/default"
+    },
+    {
+      "rel": "data-policies",
+      "type": "datapolicies.data-policies",
+      "uri": "/datapolicies/vestri",
+      "href": "http://reference.epdemos.com/cortex/datapolicies/vestri"
+    },
+    {
+      "rel": "countries",
+      "type": "geographies.countries",
+      "uri": "/geographies/vestri/countries",
+      "href": "http://reference.epdemos.com/cortex/geographies/vestri/countries"
+    },
+    {
+      "rel": "lookups",
+      "type": "lookups.lookups",
+      "uri": "/lookups/vestri",
+      "href": "http://reference.epdemos.com/cortex/lookups/vestri"
+    },
+    {
+      "rel": "navigations",
+      "type": "navigations.navigations",
+      "uri": "/navigations/vestri",
+      "href": "http://reference.epdemos.com/cortex/navigations/vestri"
+    },
+    {
+      "rel": "defaultprofile",
+      "type": "profiles.default-profile",
+      "uri": "/profiles/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/profiles/vestri/default"
+    },
+    {
+      "rel": "newaccountform",
+      "type": "registrations.new-account-registration-form",
+      "uri": "/registrations/vestri/newaccount/form",
+      "href": "http://reference.epdemos.com/cortex/registrations/vestri/newaccount/form"
+    },
+    {
+      "rel": "searches",
+      "type": "searches.searches",
+      "uri": "/searches/vestri",
+      "href": "http://reference.epdemos.com/cortex/searches/vestri"
+    },
+    {
+      "rel": "defaultwishlist",
+      "type": "wishlists.default-wishlist",
+      "uri": "/wishlists/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/wishlists/vestri/default"
+    }
+  ],
+  "_defaultcart": [
+    {
+      "self": {
+        "type": "carts.cart",
+        "uri": "/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=",
+        "href": "http://reference.epdemos.com/cortex/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq="
+      },
+      "messages": [],
+      "links": [],
+      "_discount": [
+        {
+          "self": {
+            "type": "discounts.discount-for-cart",
+            "uri": "/discounts/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=",
+            "href": "http://reference.epdemos.com/cortex/discounts/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq="
+          },
+          "messages": [],
+          "links": [],
+          "discount": [
+            {
+              "amount": 0,
+              "currency": "USD",
+              "display": "$0.00"
+            }
+          ]
+        }
+      ],
+      "_lineitems": [
+        {
+          "_element": [
+            {
+              "self": {
+                "type": "carts.line-item",
+                "uri": "/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/gu2tonzugm2tallfgzqwcljugu4giljyme4wgljzge4tqnzymu3demjrge=",
+                "href": "http://reference.epdemos.com/cortex/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/gu2tonzugm2tallfgzqwcljugu4giljyme4wgljzge4tqnzymu3demjrge="
+              },
+              "messages": [],
+              "links": [],
+              "_dependentlineitems": [
+                {}
+              ],
+              "_item": [
+                {
+                  "self": {
+                    "type": "items.item",
+                    "uri": "/items/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=",
+                    "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "_code": [
+                    {
+                      "self": {
+                        "type": "items.code-for-item",
+                        "uri": "/items/code/items/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=",
+                        "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "code": "VESTRI_WORDMARK_FITTED_HAT_RD"
+                    }
+                  ],
+                  "_definition": [
+                    {
+                      "self": {
+                        "type": "itemdefinitions.item-definition",
+                        "uri": "/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=",
+                        "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "_options": [
+                        {
+                          "_element": [
+                            {
+                              "self": {
+                                "type": "itemdefinitions.item-definition-option",
+                                "uri": "/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=/options/ififaqksivgf6q2pjrhvex2wivjviusj=",
+                                "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=/options/ififaqksivgf6q2pjrhvex2wivjviusj="
+                              },
+                              "messages": [],
+                              "links": [],
+                              "_value": [
+                                {
+                                  "self": {
+                                    "type": "itemdefinitions.item-definition-option-value",
+                                    "uri": "/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/kjcuix2wivjviusj=",
+                                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/kjcuix2wivjviusj="
+                                  },
+                                  "messages": [],
+                                  "links": [],
+                                  "display-name": "Red",
+                                  "name": "RED_VESTRI"
+                                }
+                              ],
+                              "display-name": "Color",
+                              "name": "APPAREL_COLOR_VESTRI"
+                            },
+                            {
+                              "self": {
+                                "type": "itemdefinitions.item-definition-option",
+                                "uri": "/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=/options/ififaqksivgf6u2jljcvgx2wivjviusj=",
+                                "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=/options/ififaqksivgf6u2jljcvgx2wivjviusj="
+                              },
+                              "messages": [],
+                              "links": [],
+                              "_value": [
+                                {
+                                  "self": {
+                                    "type": "itemdefinitions.item-definition-option-value",
+                                    "uri": "/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj=",
+                                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/izeviu27ifgeyx2wivjviusj="
+                                  },
+                                  "messages": [],
+                                  "links": [],
+                                  "display-name": "Fits All",
+                                  "name": "FITS_ALL_VESTRI"
+                                }
+                              ],
+                              "display-name": "Size",
+                              "name": "APPAREL_SIZES_VESTRI"
+                            }
+                          ]
+                        }
+                      ],
+                      "details": [
+                        {
+                          "display-name": "",
+                          "display-value": "The Wordmark Fitted Hat is designed with style in mind. It features the Vestri wordmark across the front with Flexfit built in for a comfortable fit.",
+                          "name": "summary",
+                          "value": "The Wordmark Fitted Hat is designed with style in mind. It features the Vestri wordmark across the front with Flexfit built in for a comfortable fit."
+                        },
+                        {
+                          "display-name": "",
+                          "display-value": "vestri:Mens/Hats",
+                          "name": "tag",
+                          "value": [
+                            "vestri:Mens/Hats"
+                          ]
+                        }
+                      ],
+                      "display-name": "Wordmark Fitted Hat"
+                    }
+                  ],
+                  "_price": [
+                    {
+                      "self": {
+                        "type": "prices.price-for-item",
+                        "uri": "/prices/items/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei=",
+                        "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhpkwivjviusjl5lu6usejvaves27izevivcfirpuqqkul5jei="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "list-price": [
+                        {
+                          "amount": 24,
+                          "currency": "USD",
+                          "display": "$24.00"
+                        }
+                      ],
+                      "purchase-price": [
+                        {
+                          "amount": 22.8,
+                          "currency": "USD",
+                          "display": "$22.80"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "_total": [
+                {
+                  "self": {
+                    "type": "totals.cart-line-item-total",
+                    "uri": "/totals/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/gu2tonzugm2tallfgzqwcljugu4giljyme4wgljzge4tqnzymu3demjrge=",
+                    "href": "http://reference.epdemos.com/cortex/totals/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/gu2tonzugm2tallfgzqwcljugu4giljyme4wgljzge4tqnzymu3demjrge="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "cost": [
+                    {
+                      "amount": 22.8,
+                      "currency": "USD",
+                      "display": "$22.80"
+                    }
+                  ]
+                }
+              ],
+              "configuration": {},
+              "quantity": 1
+            },
+            {
+              "self": {
+                "type": "carts.line-item",
+                "uri": "/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/gq2tqnzrhfqwkljvga2taljugjsgellcmq4dellcg4ytcnrqha2giolemm=",
+                "href": "http://reference.epdemos.com/cortex/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/gq2tqnzrhfqwkljvga2taljugjsgellcmq4dellcg4ytcnrqha2giolemm="
+              },
+              "messages": [],
+              "links": [],
+              "_dependentlineitems": [
+                {}
+              ],
+              "_item": [
+                {
+                  "self": {
+                    "type": "items.item",
+                    "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                    "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "_code": [
+                    {
+                      "self": {
+                        "type": "items.code-for-item",
+                        "uri": "/items/code/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                        "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "code": "VESTRI_1-18_SCALE_DIECAST_P85_MODEL"
+                    }
+                  ],
+                  "_definition": [
+                    {
+                      "self": {
+                        "type": "itemdefinitions.item-definition",
+                        "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                        "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "details": [
+                        {
+                          "display-name": "",
+                          "display-value": "The CR550 diecast scale model was officially commissioned by Vestri.  Every detail was meticulously overseen directly by the Vestri Design Team in California.\n\nThe same 3D CAD data used to manufacture the actual Model S was used to precisely replicate every detail, curve and surface found in the scale model.",
+                          "name": "summary",
+                          "value": "The CR550 diecast scale model was officially commissioned by Vestri.  Every detail was meticulously overseen directly by the Vestri Design Team in California.\n\nThe same 3D CAD data used to manufacture the actual Model S was used to precisely replicate every detail, curve and surface found in the scale model."
+                        },
+                        {
+                          "display-name": "",
+                          "display-value": "vestri:Accessories",
+                          "name": "tag",
+                          "value": [
+                            "vestri:Accessories"
+                          ]
+                        }
+                      ],
+                      "display-name": "1:18 Scale Diecast P85 CR550"
+                    }
+                  ],
+                  "_price": [
+                    {
+                      "self": {
+                        "type": "prices.price-for-item",
+                        "uri": "/prices/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm=",
+                        "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhwjdkzcvgvcsjfptcljrhbpvgq2bjrcv6rcjivbucu2ul5idqnk7jvhuirkm="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "list-price": [
+                        {
+                          "amount": 210,
+                          "currency": "USD",
+                          "display": "$210.00"
+                        }
+                      ],
+                      "purchase-price": [
+                        {
+                          "amount": 199.5,
+                          "currency": "USD",
+                          "display": "$199.50"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "_total": [
+                {
+                  "self": {
+                    "type": "totals.cart-line-item-total",
+                    "uri": "/totals/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/gq2tqnzrhfqwkljvga2taljugjsgellcmq4dellcg4ytcnrqha2giolemm=",
+                    "href": "http://reference.epdemos.com/cortex/totals/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/gq2tqnzrhfqwkljvga2taljugjsgellcmq4dellcg4ytcnrqha2giolemm="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "cost": [
+                    {
+                      "amount": 199.5,
+                      "currency": "USD",
+                      "display": "$199.50"
+                    }
+                  ]
+                }
+              ],
+              "configuration": {},
+              "quantity": 1
+            },
+            {
+              "self": {
+                "type": "carts.line-item",
+                "uri": "/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/g4ydemzvmfsdgljqgjsteljugjrtiljygazweljvgjrdmylbmzsgeyrxga=",
+                "href": "http://reference.epdemos.com/cortex/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/g4ydemzvmfsdgljqgjsteljugjrtiljygazweljvgjrdmylbmzsgeyrxga="
+              },
+              "messages": [],
+              "links": [],
+              "_dependentlineitems": [
+                {}
+              ],
+              "_item": [
+                {
+                  "self": {
+                    "type": "items.item",
+                    "uri": "/items/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=",
+                    "href": "http://reference.epdemos.com/cortex/items/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "_code": [
+                    {
+                      "self": {
+                        "type": "items.code-for-item",
+                        "uri": "/items/code/items/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=",
+                        "href": "http://reference.epdemos.com/cortex/items/code/items/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "code": "VESTRI_MENS_SOFT_SHELL_JACKET_RD_LG"
+                    }
+                  ],
+                  "_definition": [
+                    {
+                      "self": {
+                        "type": "itemdefinitions.item-definition",
+                        "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=",
+                        "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "_options": [
+                        {
+                          "_element": [
+                            {
+                              "self": {
+                                "type": "itemdefinitions.item-definition-option",
+                                "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=/options/ififaqksivgf6q2pjrhvex2wivjviusj=",
+                                "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=/options/ififaqksivgf6q2pjrhvex2wivjviusj="
+                              },
+                              "messages": [],
+                              "links": [],
+                              "_value": [
+                                {
+                                  "self": {
+                                    "type": "itemdefinitions.item-definition-option-value",
+                                    "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/kjcuix2wivjviusj=",
+                                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=/options/ififaqksivgf6q2pjrhvex2wivjviusj=/values/kjcuix2wivjviusj="
+                                  },
+                                  "messages": [],
+                                  "links": [],
+                                  "display-name": "Red",
+                                  "name": "RED_VESTRI"
+                                }
+                              ],
+                              "display-name": "Color",
+                              "name": "APPAREL_COLOR_VESTRI"
+                            },
+                            {
+                              "self": {
+                                "type": "itemdefinitions.item-definition-option",
+                                "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=/options/ififaqksivgf6u2jljcvgx2wivjviusj=",
+                                "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=/options/ififaqksivgf6u2jljcvgx2wivjviusj="
+                              },
+                              "messages": [],
+                              "links": [],
+                              "_value": [
+                                {
+                                  "self": {
+                                    "type": "itemdefinitions.item-definition-option-value",
+                                    "uri": "/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/jraver2fl5leku2ukjeq=",
+                                    "href": "http://reference.epdemos.com/cortex/itemdefinitions/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=/options/ififaqksivgf6u2jljcvgx2wivjviusj=/values/jraver2fl5leku2ukjeq="
+                                  },
+                                  "messages": [],
+                                  "links": [],
+                                  "display-name": "Large",
+                                  "name": "LARGE_VESTRI"
+                                }
+                              ],
+                              "display-name": "Size",
+                              "name": "APPAREL_SIZES_VESTRI"
+                            }
+                          ]
+                        }
+                      ],
+                      "details": [
+                        {
+                          "display-name": "",
+                          "display-value": "Stay warm and dry in this wind and water resistant jacket, perfect for cool and rainy climates. Designed for high activity, this Thermolite Active-insulated jacket is 94% polyester and 6% spandex, with a detachable hood. Reflective Vestri logos are printed on the front and back of the jacket, with a reflective stripe on the center front zipper closure and pockets. Custom logo ‘T’ zipper. Zip chest pocket with hand-warming liners and bonded tape styling. Adjustable drawstring system at hem. MP3 cord holder.",
+                          "name": "summary",
+                          "value": "Stay warm and dry in this wind and water resistant jacket, perfect for cool and rainy climates. Designed for high activity, this Thermolite Active-insulated jacket is 94% polyester and 6% spandex, with a detachable hood. Reflective Vestri logos are printed on the front and back of the jacket, with a reflective stripe on the center front zipper closure and pockets. Custom logo ‘T’ zipper. Zip chest pocket with hand-warming liners and bonded tape styling. Adjustable drawstring system at hem. MP3 cord holder."
+                        },
+                        {
+                          "display-name": "",
+                          "display-value": "vestri:Mens/Outerwear",
+                          "name": "tag",
+                          "value": [
+                            "vestri:Mens/Outerwear"
+                          ]
+                        }
+                      ],
+                      "display-name": "Men's Soft Shell Jacket"
+                    }
+                  ],
+                  "_price": [
+                    {
+                      "self": {
+                        "type": "prices.price-for-item",
+                        "uri": "/prices/items/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch=",
+                        "href": "http://reference.epdemos.com/cortex/prices/items/vestri/qgqvhwjdkzcvgvcsjfpu2rkoknpvgt2gkrpvgscfjrgf6ssbinfukvc7kjcf6tch="
+                      },
+                      "messages": [],
+                      "links": [],
+                      "list-price": [
+                        {
+                          "amount": 179,
+                          "currency": "USD",
+                          "display": "$179.00"
+                        }
+                      ],
+                      "purchase-price": [
+                        {
+                          "amount": 170.05,
+                          "currency": "USD",
+                          "display": "$170.05"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "_total": [
+                {
+                  "self": {
+                    "type": "totals.cart-line-item-total",
+                    "uri": "/totals/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/g4ydemzvmfsdgljqgjsteljugjrtiljygazweljvgjrdmylbmzsgeyrxga=",
+                    "href": "http://reference.epdemos.com/cortex/totals/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=/lineitems/g4ydemzvmfsdgljqgjsteljugjrtiljygazweljvgjrdmylbmzsgeyrxga="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "cost": [
+                    {
+                      "amount": 170.05,
+                      "currency": "USD",
+                      "display": "$170.05"
+                    }
+                  ]
+                }
+              ],
+              "configuration": {},
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "_order": [
+        {
+          "self": {
+            "type": "orders.order",
+            "uri": "/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=",
+            "href": "http://reference.epdemos.com/cortex/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi="
+          },
+          "messages": [],
+          "links": [],
+          "_billingaddressinfo": [
+            {
+              "_billingaddress": [
+                {
+                  "self": {
+                    "type": "addresses.address",
+                    "uri": "/addresses/vestri/g44dozjrguydsljtmzstqljugy3tcllbgvtdmlleha2dmmtggrrdaodbgu=",
+                    "href": "http://reference.epdemos.com/cortex/addresses/vestri/g44dozjrguydsljtmzstqljugy3tcllbgvtdmlleha2dmmtggrrdaodbgu="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "address": {
+                    "country-name": "US",
+                    "extended-address": "224 Hudson Str",
+                    "locality": "Syracuse",
+                    "organization": null,
+                    "phone-number": null,
+                    "postal-code": "13207",
+                    "region": "NY",
+                    "street-address": "224 Hudson Str"
+                  },
+                  "name": {
+                    "family-name": "LastName",
+                    "given-name": "FirstName"
+                  }
+                }
+              ]
+            }
+          ],
+          "_couponinfo": [
+            {
+              "_couponform": [
+                {
+                  "self": {
+                    "type": "coupons.apply-coupon-to-order-form",
+                    "uri": "/coupons/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=/form",
+                    "href": "http://reference.epdemos.com/cortex/coupons/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=/form"
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "applycouponaction",
+                      "type": "coupons.apply-coupon-to-order-form",
+                      "uri": "/coupons/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=/form",
+                      "href": "http://reference.epdemos.com/cortex/coupons/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=/form"
+                    }
+                  ],
+                  "code": ""
+                }
+              ]
+            }
+          ],
+          "_deliveries": [
+            {
+              "_element": [
+                {
+                  "_destinationinfo": [
+                    {
+                      "_destination": [
+                        {
+                          "self": {
+                            "type": "addresses.address",
+                            "uri": "/addresses/vestri/g44dozjrguydsljtmzstqljugy3tcllbgvtdmlleha2dmmtggrrdaodbgu=",
+                            "href": "http://reference.epdemos.com/cortex/addresses/vestri/g44dozjrguydsljtmzstqljugy3tcllbgvtdmlleha2dmmtggrrdaodbgu="
+                          },
+                          "messages": [],
+                          "links": [],
+                          "address": {
+                            "country-name": "US",
+                            "extended-address": "224 Hudson Str",
+                            "locality": "Syracuse",
+                            "organization": null,
+                            "phone-number": null,
+                            "postal-code": "13207",
+                            "region": "NY",
+                            "street-address": "224 Hudson Str"
+                          },
+                          "name": {
+                            "family-name": "LastName",
+                            "given-name": "FirstName"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "_shippingoptioninfo": [
+                    {
+                      "_shippingoption": [
+                        {
+                          "self": {
+                            "type": "shipmentdetails.shipping-option",
+                            "uri": "/shipmentdetails/vestri/qkug64temvzc22le3esgkyjugzqtsnlefu3wmnryfu2gcmbrfu4wiobyfvsdknrxg4ztcnzwmrrgfk3tnbuxa3lfnz2c22levbjuqskqjvcu4va=/shippingoptions/izswirlyknugs4dqnfxgo=",
+                            "href": "http://reference.epdemos.com/cortex/shipmentdetails/vestri/qkug64temvzc22le3esgkyjugzqtsnlefu3wmnryfu2gcmbrfu4wiobyfvsdknrxg4ztcnzwmrrgfk3tnbuxa3lfnz2c22levbjuqskqjvcu4va=/shippingoptions/izswirlyknugs4dqnfxgo="
+                          },
+                          "messages": [],
+                          "links": [],
+                          "carrier": "Fed Ex",
+                          "cost": [
+                            {
+                              "amount": 29.99,
+                              "currency": "USD",
+                              "display": "$29.99"
+                            }
+                          ],
+                          "display-name": "FedEx Shipping",
+                          "name": "FedExShipping"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "_paymentmethodinfo": [
+            {
+              "_paymentmethod": [
+                {
+                  "self": {
+                    "type": "elasticpath.paymenttokens.payment-token",
+                    "uri": "/paymentmethods/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=",
+                    "href": "http://reference.epdemos.com/cortex/paymentmethods/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "display-name": "TestCardName's American Express Ending In: ****1111",
+                  "token": "8liv2p5i9"
+                }
+              ]
+            }
+          ],
+          "_purchaseform": [
+            {
+              "self": {
+                "type": "purchases.create-purchase-form",
+                "uri": "/purchases/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=/form",
+                "href": "http://reference.epdemos.com/cortex/purchases/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=/form"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "submitorderaction",
+                  "type": "purchases.create-purchase-form",
+                  "uri": "/purchases/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=/form",
+                  "href": "http://reference.epdemos.com/cortex/purchases/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=/form"
+                }
+              ]
+            }
+          ],
+          "_tax": [
+            {
+              "self": {
+                "type": "taxes.order-tax",
+                "uri": "/taxes/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=",
+                "href": "http://reference.epdemos.com/cortex/taxes/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi="
+              },
+              "messages": [],
+              "links": [],
+              "cost": [
+                {
+                  "amount": 16.89,
+                  "currency": "USD",
+                  "display": "$16.89",
+                  "title": "States Sales Tax"
+                }
+              ],
+              "total": {
+                "amount": 16.89,
+                "currency": "USD",
+                "display": "$16.89"
+              }
+            }
+          ],
+          "_total": [
+            {
+              "self": {
+                "type": "totals.order-total",
+                "uri": "/totals/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi=",
+                "href": "http://reference.epdemos.com/cortex/totals/orders/vestri/mvqtintbhe2wiljxmy3dqljumeydcljzmq4dqllegu3donztge3tmzdcmi="
+              },
+              "messages": [],
+              "links": [],
+              "cost": [
+                {
+                  "amount": 439.23,
+                  "currency": "USD",
+                  "display": "$439.23"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_total": [
+        {
+          "self": {
+            "type": "totals.cart-total",
+            "uri": "/totals/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq=",
+            "href": "http://reference.epdemos.com/cortex/totals/carts/vestri/me2dmmzthftdkllbga2taljugrrdallcmm2diljqgjstinbsgiydenrymq="
+          },
+          "messages": [],
+          "links": [],
+          "cost": [
+            {
+              "amount": 392.35,
+              "currency": "USD",
+              "display": "$392.35"
+            }
+          ]
+        }
+      ],
+      "total-quantity": 3
+    }
+  ]
+}

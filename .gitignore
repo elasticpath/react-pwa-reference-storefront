@@ -2,18 +2,17 @@
 
 .idea/
 # dependencies
-/node_modules
+node_modules
 
 # testing
-/coverage
+coverage
 
 # _site directory
-/_site
+_site
 
 # production
-/build
-/dist
-/webpack/dist
+build
+dist
 
 # misc
 .DS_Store

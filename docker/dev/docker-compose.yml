@@ -37,10 +37,17 @@ services:
     container_name: activemq
     ports:
       - 61616:61616
+      - 8161:8161
     volumes:
       - /ep/activemq/data:/root/apache-activemq/data
     env_file:
       - docker-compose.env
+    healthcheck:
+      test: curl --max-time 3 -s -f -u admin:admin http://localhost:8161/api/jolokia | grep "\"status\":200"
+      interval: 10s
+      retries: 3
+      start_period: 1m
+      timeout: 5s
     restart: always
   batch:
     image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/batch:${DOCKER_IMAGE_TAG}
@@ -89,6 +96,12 @@ services:
     restart: always
     extra_hosts:
       - "search:127.0.0.1"
+    healthcheck:
+      test: curl --max-time 3 -s -f localhost:8082/search/status | head -n 1 | grep OK
+      interval: 10s
+      retries: 3
+      start_period: 3m
+      timeout: 5s
   cortex:
     image: ${REGISTRY_ADDRESS}/${CORTEX_NAMESPACE}/cortex:${DOCKER_IMAGE_TAG}
     container_name: cortex
@@ -107,4 +120,10 @@ services:
       - /ep/tomcat-logs:/usr/local/tomcat/logs
     env_file:
       - docker-compose.env
+    healthcheck:
+      test: curl --max-time 3 -s -f localhost:8080/cortex/healthcheck
+      interval: 10s
+      retries: 3
+      start_period: 3m
+      timeout: 5s
     restart: always

@@ -1,0 +1,374 @@
+{
+  "self": {
+    "type": "elasticpath.collections.links",
+    "uri": "/?zoom=defaultprofile,defaultprofile:addresses,defaultprofile:addresses:addressform,defaultprofile:addresses:billingaddresses:default,defaultprofile:addresses:element,defaultprofile:emails,defaultprofile:emails:element,defaultprofile:emails:element:list,defaultprofile:emails:element:profile,defaultprofile:emails:emailform,defaultprofile:emails:profile,defaultprofile:paymentmethods,defaultprofile:paymentmethods:element,defaultprofile:paymentmethods:paymenttokenform,defaultprofile:purchases,defaultprofile:purchases:element,passwordresetform",
+    "href": "http://reference.epdemos.com/cortex/?zoom=defaultprofile,defaultprofile:addresses,defaultprofile:addresses:addressform,defaultprofile:addresses:billingaddresses:default,defaultprofile:addresses:element,defaultprofile:emails,defaultprofile:emails:element,defaultprofile:emails:element:list,defaultprofile:emails:element:profile,defaultprofile:emails:emailform,defaultprofile:emails:profile,defaultprofile:paymentmethods,defaultprofile:paymentmethods:element,defaultprofile:paymentmethods:paymenttokenform,defaultprofile:purchases,defaultprofile:purchases:element,passwordresetform"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "defaultcart",
+      "type": "carts.default-cart",
+      "uri": "/carts/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/carts/vestri/default"
+    },
+    {
+      "rel": "data-policies",
+      "type": "datapolicies.data-policies",
+      "uri": "/datapolicies/vestri",
+      "href": "http://reference.epdemos.com/cortex/datapolicies/vestri"
+    },
+    {
+      "rel": "countries",
+      "type": "geographies.countries",
+      "uri": "/geographies/vestri/countries",
+      "href": "http://reference.epdemos.com/cortex/geographies/vestri/countries"
+    },
+    {
+      "rel": "lookups",
+      "type": "lookups.lookups",
+      "uri": "/lookups/vestri",
+      "href": "http://reference.epdemos.com/cortex/lookups/vestri"
+    },
+    {
+      "rel": "navigations",
+      "type": "navigations.navigations",
+      "uri": "/navigations/vestri",
+      "href": "http://reference.epdemos.com/cortex/navigations/vestri"
+    },
+    {
+      "rel": "defaultprofile",
+      "type": "profiles.default-profile",
+      "uri": "/profiles/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/profiles/vestri/default"
+    },
+    {
+      "rel": "newaccountform",
+      "type": "registrations.new-account-registration-form",
+      "uri": "/registrations/vestri/newaccount/form",
+      "href": "http://reference.epdemos.com/cortex/registrations/vestri/newaccount/form"
+    },
+    {
+      "rel": "searches",
+      "type": "searches.searches",
+      "uri": "/searches/vestri",
+      "href": "http://reference.epdemos.com/cortex/searches/vestri"
+    },
+    {
+      "rel": "defaultwishlist",
+      "type": "wishlists.default-wishlist",
+      "uri": "/wishlists/vestri/default",
+      "href": "http://reference.epdemos.com/cortex/wishlists/vestri/default"
+    }
+  ],
+  "_defaultprofile": [
+    {
+      "self": {
+        "type": "profiles.profile",
+        "uri": "/profiles/vestri/gfstemrqmuydellbgy4gmljumfsdkllcmqzgcljtgvtdenjsha3dcnbqmq=",
+        "href": "http://reference.epdemos.com/cortex/profiles/vestri/gfstemrqmuydellbgy4gmljumfsdkllcmqzgcljtgvtdenjsha3dcnbqmq="
+      },
+      "messages": [],
+      "links": [],
+      "_addresses": [
+        {
+          "self": {
+            "type": "addresses.addresses",
+            "uri": "/addresses/vestri",
+            "href": "http://reference.epdemos.com/cortex/addresses/vestri"
+          },
+          "messages": [],
+          "links": [],
+          "_addressform": [
+            {
+              "self": {
+                "type": "addresses.address-form",
+                "uri": "/addresses/vestri/form",
+                "href": "http://reference.epdemos.com/cortex/addresses/vestri/form"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "createaddressaction",
+                  "type": "addresses.address-form",
+                  "uri": "/addresses/vestri/form",
+                  "href": "http://reference.epdemos.com/cortex/addresses/vestri/form"
+                }
+              ],
+              "address": {
+                "country-name": "",
+                "extended-address": "",
+                "locality": "",
+                "organization": "",
+                "phone-number": "",
+                "postal-code": "",
+                "region": "",
+                "street-address": ""
+              },
+              "name": {
+                "family-name": "",
+                "given-name": ""
+              }
+            }
+          ],
+          "_billingaddresses": [
+            {
+              "_default": [
+                {
+                  "self": {
+                    "type": "addresses.address",
+                    "uri": "/addresses/vestri/g5qtoyleme3daljzgbsdqljumzswmljygbqwcljzg5sday3dgy2wgnjqmu=",
+                    "href": "http://reference.epdemos.com/cortex/addresses/vestri/g5qtoyleme3daljzgbsdqljumzswmljygbqwcljzg5sday3dgy2wgnjqmu="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "address": {
+                    "country-name": "CA",
+                    "extended-address": "3807 21 St NE",
+                    "locality": "Calgary",
+                    "organization": null,
+                    "phone-number": null,
+                    "postal-code": "29341",
+                    "region": "NU",
+                    "street-address": "3807 21 St NE"
+                  },
+                  "name": {
+                    "family-name": "LastName",
+                    "given-name": "FirstName"
+                  }
+                }
+              ]
+            }
+          ],
+          "_element": [
+            {
+              "self": {
+                "type": "addresses.address",
+                "uri": "/addresses/vestri/g5qtoyleme3daljzgbsdqljumzswmljygbqwcljzg5sday3dgy2wgnjqmu=",
+                "href": "http://reference.epdemos.com/cortex/addresses/vestri/g5qtoyleme3daljzgbsdqljumzswmljygbqwcljzg5sday3dgy2wgnjqmu="
+              },
+              "messages": [],
+              "links": [],
+              "address": {
+                "country-name": "CA",
+                "extended-address": "3807 21 St NE",
+                "locality": "Calgary",
+                "organization": null,
+                "phone-number": null,
+                "postal-code": "29341",
+                "region": "NU",
+                "street-address": "3807 21 St NE"
+              },
+              "name": {
+                "family-name": "LastName",
+                "given-name": "FirstName"
+              }
+            }
+          ]
+        }
+      ],
+      "_emails": [
+        {
+          "self": {
+            "type": "emails.emails",
+            "uri": "/emails/vestri",
+            "href": "http://reference.epdemos.com/cortex/emails/vestri"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "emails.email",
+                "uri": "/emails/vestri/orsxg5brib2gk43ufzrw63i=",
+                "href": "http://reference.epdemos.com/cortex/emails/vestri/orsxg5brib2gk43ufzrw63i="
+              },
+              "messages": [],
+              "links": [],
+              "_list": [
+                {
+                  "self": {
+                    "type": "emails.emails",
+                    "uri": "/emails/vestri",
+                    "href": "http://reference.epdemos.com/cortex/emails/vestri"
+                  },
+                  "messages": [],
+                  "links": []
+                }
+              ],
+              "_profile": [
+                {
+                  "self": {
+                    "type": "profiles.profile",
+                    "uri": "/profiles/vestri/gfstemrqmuydellbgy4gmljumfsdkllcmqzgcljtgvtdenjsha3dcnbqmq=",
+                    "href": "http://reference.epdemos.com/cortex/profiles/vestri/gfstemrqmuydellbgy4gmljumfsdkllcmqzgcljtgvtdenjsha3dcnbqmq="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "family-name": "LastName",
+                  "given-name": "FirstName"
+                }
+              ],
+              "email": "test1@test.com"
+            }
+          ],
+          "_emailform": [
+            {
+              "self": {
+                "type": "emails.add-email-form",
+                "uri": "/emails/vestri/form",
+                "href": "http://reference.epdemos.com/cortex/emails/vestri/form"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "createemailaction",
+                  "type": "emails.add-email-form",
+                  "uri": "/emails/vestri/form",
+                  "href": "http://reference.epdemos.com/cortex/emails/vestri/form"
+                }
+              ],
+              "email": ""
+            }
+          ],
+          "_profile": [
+            {
+              "self": {
+                "type": "profiles.profile",
+                "uri": "/profiles/vestri/gfstemrqmuydellbgy4gmljumfsdkllcmqzgcljtgvtdenjsha3dcnbqmq=",
+                "href": "http://reference.epdemos.com/cortex/profiles/vestri/gfstemrqmuydellbgy4gmljumfsdkllcmqzgcljtgvtdenjsha3dcnbqmq="
+              },
+              "messages": [],
+              "links": [],
+              "family-name": "LastName",
+              "given-name": "FirstName"
+            }
+          ]
+        }
+      ],
+      "_paymentmethods": [
+        {
+          "self": {
+            "type": "elasticpath.collections.links",
+            "uri": "/paymentmethods/vestri",
+            "href": "http://reference.epdemos.com/cortex/paymentmethods/vestri"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "elasticpath.paymenttokens.payment-token",
+                "uri": "/paymentmethods/vestri/gizdamjrgm=",
+                "href": "http://reference.epdemos.com/cortex/paymentmethods/vestri/gizdamjrgm="
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "qwert's American Express ending in: ****4111",
+              "token": "8liv2p5i9"
+            },
+            {
+              "self": {
+                "type": "elasticpath.paymenttokens.payment-token",
+                "uri": "/paymentmethods/vestri/gizdanbrge=",
+                "href": "http://reference.epdemos.com/cortex/paymentmethods/vestri/gizdanbrge="
+              },
+              "messages": [],
+              "links": [],
+              "display-name": "TestCardName's American Express ending in: ****1111",
+              "token": "qdsmtukhc"
+            }
+          ],
+          "_paymenttokenform": [
+            {
+              "self": {
+                "type": "elasticpath.paymenttokens.payment-token",
+                "uri": "/paymenttokens/vestri/form",
+                "href": "http://reference.epdemos.com/cortex/paymenttokens/vestri/form"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "createpaymenttokenaction",
+                  "uri": "/paymenttokens/vestri",
+                  "href": "http://reference.epdemos.com/cortex/paymenttokens/vestri"
+                }
+              ],
+              "display-name": "",
+              "token": ""
+            }
+          ]
+        }
+      ],
+      "_purchases": [
+        {
+          "self": {
+            "type": "purchases.purchases",
+            "uri": "/purchases/vestri",
+            "href": "http://reference.epdemos.com/cortex/purchases/vestri"
+          },
+          "messages": [],
+          "links": [],
+          "_element": [
+            {
+              "self": {
+                "type": "purchases.purchase",
+                "uri": "/purchases/vestri/giydcmbx=",
+                "href": "http://reference.epdemos.com/cortex/purchases/vestri/giydcmbx="
+              },
+              "messages": [],
+              "links": [],
+              "monetary-total": [
+                {
+                  "amount": 646.71,
+                  "currency": "USD",
+                  "display": "$646.71"
+                }
+              ],
+              "purchase-date": {
+                "display-value": "June 6, 2019 2:34:11 PM",
+                "value": 1559831651000
+              },
+              "purchase-number": "20107",
+              "status": "IN_PROGRESS",
+              "tax-total": {
+                "amount": 24.87,
+                "currency": "USD",
+                "display": "$24.87"
+              }
+            },
+            {
+              "self": {
+                "type": "purchases.purchase",
+                "uri": "/purchases/vestri/giydcmbw=",
+                "href": "http://reference.epdemos.com/cortex/purchases/vestri/giydcmbw="
+              },
+              "messages": [],
+              "links": [],
+              "monetary-total": [
+                {
+                  "amount": 646.71,
+                  "currency": "USD",
+                  "display": "$646.71"
+                }
+              ],
+              "purchase-date": {
+                "display-value": "June 6, 2019 2:34:11 PM",
+                "value": 1559831651000
+              },
+              "purchase-number": "20106",
+              "status": "IN_PROGRESS",
+              "tax-total": {
+                "amount": 24.87,
+                "currency": "USD",
+                "display": "$24.87"
+              }
+            }
+          ]
+        }
+      ],
+      "family-name": "LastName",
+      "given-name": "FirstName"
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './icon-fonts.less';
+@import './common.less';
+
+html {
+  height: 100%;
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 62.5%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: @mainTextColor;
+  background-color: @mainColor;
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top); /* iOS 11.2 */
+}
+
+.h1, h1 {
+  font-size: 2.5rem;
+}
+
+#root {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.app-main {
+  padding-bottom: 64px;
+}
+
+// Fix for Bootstrap issue with dropdowns outside of navbars
+// https://github.com/twbs/bootstrap/issues/23553
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu {
+  font-size: 1.3rem !important;
+}
+
+.dropdown-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  &:active {
+    background-color: transparent;
+  }
+}
+
+.dropdown-header {
+  font-size: 1.3rem !important;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader {
+  border: 16px solid @complimentGrey;
+  border-top: 16px solid @complimentBlueColor;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px !important;
+  animation: spin 0.5s linear infinite;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.miniLoader {
+  border: 10px solid @complimentGrey;
+  border-top: 10px solid @complimentBlueColor;
+  width: 30px;
+  height: 30px !important;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.featured {
+  position: absolute;
+  display: inline-block;
+  padding: 4px 10px;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.25px;
+  background: @mainColor;
+  border-radius: 0 13px 13px 0;
+  color: #fff;
+  z-index: 2;
+}
+
+.container-3 {
+  width: 1070px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (max-width: @mobileWidth - 1px) {
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
+    width: 100%;
+  }
+}
+
+.view-title {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
+.message-permission {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  max-width: 460px;
+  background-color: @complimentGrey;
+  margin: 0 auto;
+
+  h2{
+    color: @mainTextColor;
+    margin: 10px 0;
+  }
+}
+
+.ep-btn {
+  // width: 100%;
+  min-height: 40px;
+  min-width: 100px;
+  margin-right: 10px;
+  border: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  transition: 0.1s;
+  background-color: #fff;
+  border: 1px solid @mainBlueColor;
+  color: @mainBlueColor;
+  cursor: pointer;
+
+  &:hover {
+    background-color: @mainBlueColor;
+    color: #fff;
+  }
+
+  &:focus {
+    outline: 2px solid #007bff80;
+  }
+
+  &:active {
+    background-color: #0062cc;
+  }
+
+  &:disabled {
+    color: lighten(@mainBlueColor, 25%);
+    border-color: lighten(@mainBlueColor, 25%);
+    cursor: default;
+
+    &:hover {
+      background-color: #fff;
+    }
+
+    &:focus, &:active {
+      outline: none;
+      background-color: #fff;
+    }
+  }
+
+  &.primary {
+    border: 0;
+    color: #fff;
+    background-color: @mainBlueColor;
+
+    &:focus {
+      outline: 2px solid #007bff80;
+    }
+
+    &:active {
+      background-color: #0062cc;
+    }
+
+    &:disabled {
+      cursor: default;
+      background-color: lighten(@mainBlueColor, 25%);
+      outline: 0;
+    }
+  }
+
+  &.wide {
+    width: 280px;
+
+    @media (max-width: @mobileWidth) {
+      width: 100%;
+    }
+  }
+
+  &.small {
+    min-height: 30px;
+  }
+}
+
+.style-checkbox {
+  display: none;
+  +label {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    padding-left: 25px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #777777;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 0;
+    &:before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border: 2px solid #777777;
+      border-radius: 2px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  &:checked {
+    +label {
+      &:before {
+        border-color: #6dd401;
+        background-color: #6dd401;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 1px;
+        width: 12px;
+        height: 7px;
+        border: solid 2px #FFFFFF;
+        border-right: none;
+        border-top: none;
+        transform: translate(2px, 1px) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.styles_modal__gNwvD {
+  margin: auto;
+}

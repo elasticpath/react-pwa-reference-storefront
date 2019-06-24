@@ -1,0 +1,14 @@
+{
+  "name": "@elasticpath/cortexjs",
+  "version": "1.0.0",
+  "main": "build/index",
+  "main:src": "src/index",
+  "types": "src/index",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.2"
+  }
+}
