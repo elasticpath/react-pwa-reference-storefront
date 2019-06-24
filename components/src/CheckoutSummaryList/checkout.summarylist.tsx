@@ -20,22 +20,23 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import './checkout.summarylist.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class CheckoutSummaryList extends React.Component {
-  static propTypes = {
-    data: PropTypes.objectOf(PropTypes.any).isRequired,
-    giftCards: PropTypes.arrayOf(PropTypes.any),
-    onChange: PropTypes.func,
-  }
+interface CheckoutSummaryListProps {
+    data: {
+        [key: string]: any
+    },
+    giftCards?: any[],
+    onChange?: (...args: any[]) => any,
+}
+class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
 
   static defaultProps = {
     giftCards: [],

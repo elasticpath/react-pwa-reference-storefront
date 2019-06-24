@@ -20,11 +20,10 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ProductListMain from '../ProductList/productlist.main';
 import SearchFacetNavigationMain from '../SearchFacetNavigation/searchfacetnavigation.main';
 import FeaturedProducts from '../FeaturedProducts/featuredproducts.main';
@@ -34,7 +33,7 @@ import ProductListLoadMore from '../ProductListLoadmore/productlistloadmore';
 import './categoryitems.main.less';
 import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 const zoomArray = [
@@ -72,13 +71,24 @@ const zoomArray = [
   'offersearchresult:sortattributes:chosen:description',
   'offersearchresult:sortattributes:chosen:selectaction',
 ];
-
-class CategoryItemsMain extends React.Component {
-  static propTypes = {
-    categoryProps: PropTypes.objectOf(PropTypes.any).isRequired,
-    onProductFacetSelection: PropTypes.func,
-    productLinks: PropTypes.objectOf(PropTypes.string),
-  }
+interface CategoryItemsMainProps {
+    categoryProps: {
+        [key: string]: any
+    },
+    onProductFacetSelection?: (...args: any[]) => any,
+    productLinks?: {
+        [key: string]: any
+    },
+}
+interface CategoryItemsMainState {
+    isLoading: boolean,
+    categoryModel: any,
+    loadSortedProduct: boolean,
+    categoryModelDisplayName: any,
+    categoryModelParentDisplayName: any,
+    categoryModelId: any,
+}
+class CategoryItemsMain extends React.Component<CategoryItemsMainProps, CategoryItemsMainState> {
 
   static defaultProps = {
     onProductFacetSelection: () => {},
@@ -99,6 +109,9 @@ class CategoryItemsMain extends React.Component {
       isLoading: true,
       categoryModel: { links: [] },
       loadSortedProduct: false,
+        categoryModelDisplayName: undefined,
+        categoryModelParentDisplayName: undefined,
+        categoryModelId: undefined,
     };
 
     this.handleProductsChange = this.handleProductsChange.bind(this);
@@ -222,7 +235,7 @@ class CategoryItemsMain extends React.Component {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName, loadSortedProduct,
     } = this.state;
     const { productLinks } = this.props;
-    let products = '';
+    let products: { [key: string]: any } = {};
     let productList = '';
     let noProducts = true;
     let featuredOffers = {};

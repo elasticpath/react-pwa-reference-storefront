@@ -20,14 +20,13 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { getConfig } from '../utils/ConfigProvider';
 import './cart.main.less';
 
 let intl = { get: str => str };
 
-const CartMain = (props) => {
+const CartMain: React.FunctionComponent<CartMainProps> = (props) => {
   const { itemDetailLink } = props;
   ({ intl } = getConfig());
   const {
@@ -75,14 +74,16 @@ const CartMain = (props) => {
   );
 };
 
-CartMain.propTypes = {
-  empty: PropTypes.bool.isRequired,
-  cartData: PropTypes.objectOf(PropTypes.any).isRequired,
-  handleQuantityChange: PropTypes.func.isRequired,
-  onItemConfiguratorAddToCart: PropTypes.func,
-  onItemMoveToCart: PropTypes.func,
-  onItemRemove: PropTypes.func,
-  itemDetailLink: PropTypes.string,
+interface CartMainProps {
+  empty: boolean,
+  cartData: {
+      [key: string]: any
+  },
+  handleQuantityChange: (...args: any[]) => any,
+  onItemConfiguratorAddToCart?: (...args: any[]) => any,
+  onItemMoveToCart?: (...args: any[]) => any,
+  onItemRemove?: (...args: any[]) => any,
+  itemDetailLink?: string,
 };
 
 CartMain.defaultProps = {

@@ -168,7 +168,7 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
               </h2>
             </div>
             <CartLineItem
-              key={productId}
+              key={Math.floor(Math.random() * 1000000001)}
               item={data}
               itemQuantity={itemQuantity}
               handleQuantityChange={() => { this.handleQuantityChange(); }}

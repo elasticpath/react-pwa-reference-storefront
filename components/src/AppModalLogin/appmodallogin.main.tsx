@@ -20,28 +20,35 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
 import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
 import './appmodallogin.main.less';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class AppModalLoginMain extends React.Component {
-  static propTypes = {
-    handleModalClose: PropTypes.func.isRequired,
-    openModal: PropTypes.bool.isRequired,
-    onLogin: PropTypes.func,
-    onResetPassword: PropTypes.func,
-    locationSearchData: PropTypes.string,
-    appModalLoginLinks: PropTypes.objectOf(PropTypes.any).isRequired,
-    showForgotPasswordLink: PropTypes.bool.isRequired,
-    disableLogin: PropTypes.bool,
-  }
+interface AppModalLoginMainProps {
+    handleModalClose: (...args: any[]) => any,
+    openModal: boolean,
+    onLogin?: (...args: any[]) => any,
+    onResetPassword?: (...args: any[]) => any,
+    locationSearchData?: string,
+    appModalLoginLinks: {
+        [key: string]: any
+    },
+    showForgotPasswordLink: boolean,
+    disableLogin?: boolean,
+}
+interface AppModalLoginMainState {
+    username: string,
+    password: string,
+    failedLogin: boolean,
+    isLoading: boolean,
+}
+class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModalLoginMainState> {
 
   static defaultProps = {
     onLogin: () => {},
