@@ -20,10 +20,9 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import { cortexFetch } from '../utils/Cortex';
@@ -31,23 +30,29 @@ import { cortexFetch } from '../utils/Cortex';
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';
 import './cart.lineitem.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class CartLineItem extends React.Component {
-  static propTypes = {
-    item: PropTypes.objectOf(PropTypes.any).isRequired,
-    handleQuantityChange: PropTypes.func.isRequired,
-    handleErrorMessage: PropTypes.func,
-    hideRemoveButton: PropTypes.bool,
-    hideAddToBagButton: PropTypes.bool,
-    itemQuantity: PropTypes.number,
-    featuredProductAttribute: PropTypes.bool,
-    onConfiguratorAddToCart: PropTypes.func,
-    onMoveToCart: PropTypes.func,
-    onRemove: PropTypes.func,
-    itemDetailLink: PropTypes.string,
-  }
+interface CartLineItemProps {
+  item: { [key: string]: any },
+  handleQuantityChange: (...args: any[]) => any,
+  handleErrorMessage?: (...args: any[]) => any,
+  hideRemoveButton?: boolean,
+  hideAddToBagButton?: boolean,
+  itemQuantity?: number,
+  featuredProductAttribute?: boolean,
+  onConfiguratorAddToCart?: (...args: any[]) => any,
+  onMoveToCart?: (...args: any[]) => any,
+  onRemove?: (...args: any[]) => any,
+  itemDetailLink?: string,
+}
+
+interface CartLineItemState {
+  quantity: any,
+  openModal: boolean,
+}
+
+class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState> {
 
   static defaultProps = {
     handleErrorMessage: () => { },
@@ -83,9 +88,9 @@ class CartLineItem extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { quantity } = this.state;
     if (nextProps.item.quantity !== quantity) {
-      this.state = {
+      this.setState({
         quantity: nextProps.item.quantity,
-      };
+      });
     }
   }
 
@@ -421,7 +426,7 @@ class CartLineItem extends React.Component {
             : ('')
           }
           <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
-            <img src={Config.skuImagesUrl.replace('%sku%', itemCodeString)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
+            <img src={Config.skuImagesUrl.replace('%sku%', itemCodeString)} onError={(e) => { const element: any = e.target; element.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
           </Link>
         </div>
         <div className="title-col" data-el-value="lineItem.displayName">

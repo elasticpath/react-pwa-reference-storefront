@@ -21,7 +21,6 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
-import PropTypes from 'prop-types';
 import { getConfig } from '../utils/ConfigProvider';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
@@ -29,11 +28,12 @@ import './bundleconstituents.main.less';
 
 let intl = { get: str => str };
 
-class BundleConstituentsDisplayMain extends React.Component {
-  static propTypes = {
-    productData: PropTypes.objectOf(PropTypes.any).isRequired,
-    itemDetailLink: PropTypes.string,
-  }
+interface BundleConstituentsDisplayMainProps {
+  productData: { [key: string]: any },
+  itemDetailLink?: string,
+}
+
+class BundleConstituentsDisplayMain extends React.Component<BundleConstituentsDisplayMainProps> {
 
   static defaultProps = {
     itemDetailLink: '',

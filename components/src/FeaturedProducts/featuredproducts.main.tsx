@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 import { getConfig } from '../utils/ConfigProvider';
@@ -29,11 +28,15 @@ import './featuredproducts.main.less';
 
 let intl = { get: str => str };
 
-class FeaturedProducts extends React.Component {
-  static propTypes = {
-    productData: PropTypes.objectOf(PropTypes.any).isRequired,
-    itemDetailLink: PropTypes.string,
-  }
+interface FeaturedProductsProps {
+  productData: { [key: string]: any },
+  itemDetailLink?: string,
+}
+interface FeaturedProductsState {
+  categoryModel: { [key: string]: any },
+}
+
+class FeaturedProducts extends React.Component<FeaturedProductsProps, FeaturedProductsState> {
 
   static defaultProps = {
     itemDetailLink: '',

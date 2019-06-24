@@ -21,9 +21,8 @@
 
 import React from 'react';
 import Slider from 'react-slick';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import carouselBaner1 from '../images/carousel-images/baner_1.jpg';
 import carouselBaner2 from '../images/carousel-images/baner_2.jpg';
@@ -34,7 +33,7 @@ import './carousel.homepage.less';
 
 const carouselBanerArray = [carouselBaner1, carouselBaner2, carouselBaner3, carouselBaner4];
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 const carouselBaner1FileName = 'baner_1.jpg';
@@ -44,7 +43,11 @@ const carouselBaner4FileName = 'baner_4.jpg';
 
 const carouselBanerNameArray = [carouselBaner1FileName, carouselBaner2FileName, carouselBaner3FileName, carouselBaner4FileName];
 
-function Carousel(props) {
+interface CarouselProps {
+    carouselLink?: string,
+}
+
+const Carousel: React.FunctionComponent<CarouselProps> = props => {
     const { carouselLink } = props;
     const epConfig = getConfig();
     Config = epConfig.config;
@@ -54,7 +57,7 @@ function Carousel(props) {
         customPaging(i) {
             return (
                 <div className="">
-                    <img alt="img" src={Config.siteImagesUrl.replace('%fileName%', carouselBanerNameArray[i])} onError={(e) => { e.target.src = carouselBanerArray[i]; }} />
+                    <img alt="img" src={Config.siteImagesUrl.replace('%fileName%', carouselBanerNameArray[i])} onError={(e) => { const element: any = e.target; element.src = carouselBanerArray[i]; }} />
                 </div>
             );
         },
@@ -88,7 +91,8 @@ function Carousel(props) {
                         alt="img"
                         src={Config.siteImagesUrl.replace('%fileName%', carouselBaner1FileName)}
                         onError={(e) => {
-                            e.target.src = carouselBaner1;
+                            const element: any = e.target;
+                            element.src = carouselBaner1;
                         }}
                     />
                 </div>
@@ -97,7 +101,8 @@ function Carousel(props) {
                         alt="img"
                         src={Config.siteImagesUrl.replace('%fileName%', carouselBaner2FileName)}
                         onError={(e) => {
-                            e.target.src = carouselBaner2;
+                            const element: any = e.target;
+                            element.src = carouselBaner2;
                         }}
                     />
                 </div>
@@ -106,7 +111,8 @@ function Carousel(props) {
                         alt="img"
                         src={Config.siteImagesUrl.replace('%fileName%', carouselBaner3FileName)}
                         onError={(e) => {
-                            e.target.src = carouselBaner3;
+                            const element: any = e.target;
+                            element.src = carouselBaner3;
                         }}
                     />
                 </div>
@@ -115,7 +121,8 @@ function Carousel(props) {
                         alt="img"
                         src={Config.siteImagesUrl.replace('%fileName%', carouselBaner4FileName)}
                         onError={(e) => {
-                            e.target.src = carouselBaner4;
+                            const element: any = e.target;
+                            element.src = carouselBaner4;
                         }}
                     />
                 </div>
@@ -123,10 +130,6 @@ function Carousel(props) {
         </div>
     );
 }
-
-Carousel.propTypes = {
-    carouselLink: PropTypes.string,
-};
 
 Carousel.defaultProps = {
     carouselLink: '',

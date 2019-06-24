@@ -20,14 +20,13 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import './appmodalcartselect.main.less';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 const zoomArray = [
@@ -37,13 +36,17 @@ const zoomArray = [
   'authorizationcontexts:element:element:accesstokenform',
 ];
 
+interface AppModalCartSelectMainProps {
+  handleModalClose: (...args: any[]) => any,
+  openModal: boolean,
+  onContinueCart?: (...args: any[]) => any,
+}
+interface AppModalCartSelectMainState {
+  orgAuthServiceData: any,
+  selectedCart: string,
+}
 
-class AppModalCartSelectMain extends React.Component {
-  static propTypes = {
-    handleModalClose: PropTypes.func.isRequired,
-    openModal: PropTypes.bool.isRequired,
-    onContinueCart: PropTypes.func,
-  }
+class AppModalCartSelectMain extends React.Component<AppModalCartSelectMainProps, AppModalCartSelectMainState> {
 
   static defaultProps = {
     onContinueCart: () => {},
@@ -159,7 +162,7 @@ class AppModalCartSelectMain extends React.Component {
     const selectedCartName = orgAuthServiceData && orgAuthServiceData._element ? orgAuthServiceData._element[selectedCart].name : '';
 
     return (
-      <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'cart-selection-modal-content' }} id="cart-select-modal">
+      <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'cart-selection-modal-content' }}>
         <div className="modal-lg">
           <div className="modal-content" id="simplemodal-container">
             <div className="modal-header">
