@@ -21,7 +21,6 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
-import PropTypes from 'prop-types';
 import { getConfig } from '../utils/ConfigProvider';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
@@ -29,11 +28,18 @@ import './productrecommendations.main.less';
 
 let intl = { get: str => str };
 
-class ProductRecommendationsDisplayMain extends React.Component {
-  static propTypes = {
-    productData: PropTypes.objectOf(PropTypes.any).isRequired,
-    itemDetailLink: PropTypes.string,
-  }
+interface ProductRecommendationsDisplayMainProps {
+  productData: {
+    [key: string]: any
+  },
+  itemDetailLink?: string
+}
+
+interface ProductRecommendationsDisplayMainState {
+  maxItemsInView: number
+}
+
+class ProductRecommendationsDisplayMain extends React.Component<ProductRecommendationsDisplayMainProps, ProductRecommendationsDisplayMainState> {
 
   static defaultProps = {
     itemDetailLink: '',

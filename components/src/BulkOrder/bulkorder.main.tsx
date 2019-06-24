@@ -26,20 +26,40 @@ import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
 
 import './bulkorder.main.less';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 
-let Config = {};
-let intl = { get: str => str };
+let Config: IEpConfig | any = {};
+let intl = { get: (str, ...args: any[]) => str };
 
-export class BulkOrder extends React.Component {
+interface BulkOrderProps {
+  cartData?: {
+    [key: string]: any
+  },
+  isBulkModalOpened: boolean,
+  handleClose: (...args: any[]) => any
+}
+
+interface BulkOrderState {
+  items: any[],
+  bulkOrderItems: any[],
+  defaultItemsCount: number,
+  defaultItem: {
+    code: string,
+    quantity: number,
+    product: {},
+    isValidField: boolean,
+    isDuplicated: boolean
+  },
+  isLoading: boolean,
+  csvText: string,
+  bulkOrderErrorMessage: string,
+  quickOrderErrorMessage: string,
+  bulkOrderDuplicatedErrorMessage: string
+}
+
+export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
   static defaultProps = {
     cartData: undefined,
-  };
-
-  static propTypes = {
-    cartData: PropTypes.objectOf(PropTypes.any),
-    isBulkModalOpened: PropTypes.bool.isRequired,
-    handleClose: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -77,7 +97,7 @@ export class BulkOrder extends React.Component {
       .map(item => ({ code: item.code, quantity: item.quantity }));
     login().then(() => {
       const addToCartLink = cartData._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
-      const body = {};
+      const body: { [key: string]: any } = {};
       if (arrayItems) {
         body.items = arrayItems;
       }
@@ -236,7 +256,7 @@ export class BulkOrder extends React.Component {
               }
               <div className="quickOrderRegion" data-region="quickOrderRegion">
                 {items.map((item, i) => (
-                  <QuickOrderForm item={item} key={item.key} onError={this.onError} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
+                  <QuickOrderForm item={item} key={item.key} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
                 ))}
               </div>
             </div>
@@ -266,7 +286,7 @@ export class BulkOrder extends React.Component {
                 <p>{intl.get('item-#1-qty')}</p>
                 <p>{intl.get('item-#2-qty')}</p>
                 <p className="bulk-text-area-title"><b>{intl.get('enter-product-sku-and-quantity-in-input')}</b></p>
-                <textarea spellCheck="false" className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
+                <textarea className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
               </div>
             </div>
           </div>

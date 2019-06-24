@@ -20,24 +20,26 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileaddresses.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class ProfileAddressesMain extends React.Component {
-  static propTypes = {
-    addresses: PropTypes.objectOf(PropTypes.any).isRequired,
-    onChange: PropTypes.func.isRequired,
-    onAddNewAddress: PropTypes.func.isRequired,
-    onEditAddress: PropTypes.func.isRequired,
-  }
+interface ProfileAddressesMainProps {
+  addresses: {
+    [key: string]: any
+  },
+  onChange: () => void,
+  onAddNewAddress: () => void,
+  onEditAddress: (address: string) => void
+}
+
+class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}> {
 
   constructor(props) {
     super(props);
