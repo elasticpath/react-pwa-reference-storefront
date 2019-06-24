@@ -190,7 +190,10 @@ describe('Profile', () => {
     await page.waitForSelector(LOGGED_IN_BUTTON);
     await page.click(LOGGED_IN_BUTTON);
     await page.waitForSelector(REGISTER_BUTTON);
-    await page.click(REGISTER_BUTTON);
+    await Promise.all([
+      page.click(REGISTER_BUTTON),
+      page.waitForNavigation({ waitUntil: 'networkidle0' }),
+    ]);
 
     await page.waitForSelector(FIRST_NAME);
     await page.type(FIRST_NAME, userInfo.firstName);
