@@ -21,15 +21,18 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { getConfig } from '../utils/ConfigProvider';
 
 let intl = { get: str => str };
 
-class OrderLine extends React.Component {
-  static propTypes = {
-    orderLine: PropTypes.objectOf(PropTypes.any).isRequired,
-  }
+interface OrderLineProps {
+  orderLine: { [key: string]: any },
+}
+interface OrderLineState {
+  purchase: { [key: string]: any },
+}
+
+class OrderLine extends React.Component<OrderLineProps, OrderLineState> {
 
   constructor(props) {
     super(props);

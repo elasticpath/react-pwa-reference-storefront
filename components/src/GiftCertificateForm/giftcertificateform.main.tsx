@@ -21,21 +21,30 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
-import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './giftcertificateform.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class GiftcertificateFormMain extends React.Component {
-  static propTypes = {
-    updateCertificate: PropTypes.func.isRequired,
-  }
+interface GiftcertificateFormMainProps {
+  updateCertificate: (...args: any[]) => any,
+}
+interface GiftcertificateFormMainState {
+  open: boolean,
+  giftCertificatesCode: string,
+  giftCertificatesCodeArr: any[],
+  giftCertificateEntity: any[],
+  chosenGiftCertificates: any[],
+  showErrorMsg: boolean,
+  showLoader: boolean,
+}
+
+class GiftcertificateFormMain extends React.Component<GiftcertificateFormMainProps, GiftcertificateFormMainState> {
 
   constructor(props) {
     super(props);
@@ -273,7 +282,7 @@ class GiftcertificateFormMain extends React.Component {
                 </h2>
               </div>
               <div className="modal-body">
-                <form className="form-horizontal" onSubmit={this.submitGiftCertificatesCode}>
+                <form className="form-horizontal">
                   <div className="form-group">
                     <label htmlFor="GiftCertificatesCode" data-el-label="giftCertificate.cardHolderName" className="control-label form-label">
                       {intl.get('gift-certificates-number')}

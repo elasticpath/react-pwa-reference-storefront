@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { getConfig } from '../utils/ConfigProvider';
 import OrderLine from '../OrderLine/orderline.main';
 
@@ -28,10 +27,14 @@ import './orderhistory.main.less';
 
 let intl = { get: str => str };
 
-class OrderHistoryMain extends React.Component {
-  static propTypes = {
-    purchaseHistory: PropTypes.objectOf(PropTypes.any).isRequired,
-  }
+interface OrderHistoryMainProps {
+  purchaseHistory: { [key: string]: any },
+}
+interface OrderHistoryMainState {
+  purchases: { [key: string]: any },
+}
+
+class OrderHistoryMain extends React.Component<OrderHistoryMainProps, OrderHistoryMainState> {
 
   constructor(props) {
     super(props);

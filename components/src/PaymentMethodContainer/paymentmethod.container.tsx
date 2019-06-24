@@ -20,9 +20,12 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const PaymentMethodContainer = (props) => {
+interface PaymentMethodContainerProps {
+  displayName: { [key: string]: any },
+}
+
+const PaymentMethodContainer: React.FunctionComponent<PaymentMethodContainerProps> = props => {
   const { displayName } = props;
   const displayAppliedAmount = (displayName['applied-amount-display']) ? (` - ${displayName['applied-amount-display'] || ''}`) : '';
   const displayTransactionType = (displayName['transaction-type']) ? (` - ${displayName['transaction-type'] || ''}`) : '';
@@ -39,10 +42,6 @@ const PaymentMethodContainer = (props) => {
       {displayTransactionType}
     </p>
   );
-};
-
-PaymentMethodContainer.propTypes = {
-  displayName: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default PaymentMethodContainer;
