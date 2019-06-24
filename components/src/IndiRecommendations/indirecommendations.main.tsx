@@ -20,18 +20,22 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import scriptjs from 'scriptjs';
 
 const remoteScriptUrl = 'https://embed.indi.com/widgets/v1/indi-embed.js';
 
-class IndiRecommendationsDisplayMain extends React.Component {
-  static propTypes = {
-    render: PropTypes.arrayOf(PropTypes.string).isRequired,
-    configuration: PropTypes.objectOf(PropTypes.any).isRequired,
-    keywords: PropTypes.string,
-  }
+interface IndiRecommendationsDisplayMainProps {
+    render: any[],
+    configuration: {
+        [key: string]: any
+    },
+    keywords?: string,
+}
+
+class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendationsDisplayMainProps> {
+
+  private instance: React.RefObject<HTMLDivElement>;
 
   static defaultProps = {
     keywords: '',
@@ -48,7 +52,7 @@ class IndiRecommendationsDisplayMain extends React.Component {
           carouselElement.type = 'text/javascript';
           carouselElement.async = true;
           carouselElement.innerHTML = `var indi_carousel = new indi.carousel("#indi-carousel-root", ${JSON.stringify(configuration.carousel)});`;
-          this.instance.appendChild(carouselElement);
+          this.instance.current.appendChild(carouselElement);
         }
 
         if (render.includes('product')) {
@@ -57,7 +61,7 @@ class IndiRecommendationsDisplayMain extends React.Component {
           productReviewElement.type = 'text/javascript';
           productReviewElement.async = true;
           productReviewElement.innerHTML = `var indi_forum = new indi.forum("#indi-forum-root", ${JSON.stringify(configuration.productReview)});`;
-          this.instance.appendChild(productReviewElement);
+          this.instance.current.appendChild(productReviewElement);
         }
 
         if (render.includes('brand')) {
@@ -65,7 +69,7 @@ class IndiRecommendationsDisplayMain extends React.Component {
           brandAmbassadorElement.type = 'text/javascript';
           brandAmbassadorElement.async = true;
           brandAmbassadorElement.innerHTML = `var indi_forum = new indi.forum("#indi-forum-root", ${JSON.stringify(configuration.brandAmbassador)});`;
-          this.instance.appendChild(brandAmbassadorElement);
+          this.instance.current.appendChild(brandAmbassadorElement);
         }
       });
     }
@@ -81,7 +85,7 @@ class IndiRecommendationsDisplayMain extends React.Component {
           <div id="indi-carousel-root" />
           <div id="indi-forum-root" />
           {/* eslint-disable-next-line no-return-assign */}
-          <div ref={el => (this.instance = el)} />
+          <div ref={this.instance} />
         </div>
       );
     }

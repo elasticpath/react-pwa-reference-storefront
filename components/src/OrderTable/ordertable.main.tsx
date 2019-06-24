@@ -20,11 +20,17 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import OrderTableLineItem from '../OrderTableLineItem/ordertable.lineitem';
 import './ordertable.main.less';
 
-const OrderTableMain = (props) => {
+interface OrderTableMainProps {
+    data: {
+        [key: string]: any
+    },
+    itemDetailLink?: string,
+}
+
+const OrderTableMain: React.FunctionComponent<OrderTableMainProps> = (props) => {
   const { data, itemDetailLink } = props;
   return (
     <div className="order-main-inner table-responsive">
@@ -37,11 +43,6 @@ const OrderTableMain = (props) => {
       </table>
     </div>
   );
-};
-
-OrderTableMain.propTypes = {
-  data: PropTypes.objectOf(PropTypes.any).isRequired,
-  itemDetailLink: PropTypes.string,
 };
 
 OrderTableMain.defaultProps = {

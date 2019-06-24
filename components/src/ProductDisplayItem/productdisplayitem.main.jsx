@@ -358,7 +358,7 @@ class ProductDisplayItemMain extends React.Component {
     }
     return { listPrice, itemPrice };
   }
-  
+
   extractProductDetails(productData) {
     this.funcName = 'extractProductDetails';
     const productTitle = productData._definition[0]['display-name'];
@@ -369,7 +369,7 @@ class ProductDisplayItemMain extends React.Component {
       productImage, productDescriptionValue, productTitle,
     };
   }
-  
+
   extractAvailabilityParams(productData) {
     this.funcName = 'extractAvailabilityParams';
     let availability = (productData._addtocartform && productData._addtocartform[0].links.length > 0);
@@ -458,7 +458,7 @@ class ProductDisplayItemMain extends React.Component {
         return productKindsSelection;
       });
       return (productKindsSelection.map(Component => (
-          <fieldset onChange={this.handleSelectionChange}>
+          <fieldset onChange={this.handleSelectionChange} key={Math.random().toString(36).substr(2, 9)}>
           <span className="selector-title">
             {Component.displayName}
           </span>
@@ -514,9 +514,9 @@ class ProductDisplayItemMain extends React.Component {
     const { featuredProductAttribute, productLink, itemDetailLink } = this.props;
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
-      
+
       const { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
-      
+
       const {
         productImage, productDescriptionValue, productTitle,
       } = this.extractProductDetails(productData);
