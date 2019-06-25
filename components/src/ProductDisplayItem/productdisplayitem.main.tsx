@@ -100,6 +100,7 @@ interface ProductDisplayItemMainProps {
   customClass?: string,
   onAddToCart?: (...args: any[]) => any,
   onAddToWishList?: (...args: any[]) => any,
+  onChangeProductFeature?: (...args: any[]) => any,
   productLink?: string,
   isInStandaloneMode?: boolean,
   itemDetailLink?: string,
@@ -127,6 +128,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     customClass: '',
     onAddToCart: () => {},
     onAddToWishList: () => {},
+    onChangeItem: () => {},
     productLink: '',
     isInStandaloneMode: false,
     itemDetailLink: '',
@@ -240,6 +242,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 
   handleSkuSelection(event) {
+    const { onChangeProductFeature } = this.props;
     const selfUri = event.target.value;
     this.setState({
       isLoading: true,
@@ -259,6 +262,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
           this.setState({
             isLoading: false,
           });
+          onChangeProductFeature(res._code[0].code);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -492,7 +496,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
 
   renderProductImage() {
     const { productData, arFileExists } = this.state;
-    const arBrowserSupported = document.createElement('a');
+    const arBrowserSupported: any = document.createElement('a');
     const settings = {
       dots: false,
       infinite: true,
