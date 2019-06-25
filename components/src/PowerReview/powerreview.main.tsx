@@ -20,21 +20,26 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import scriptjs from 'scriptjs';
-import { getConfig } from '../utils/ConfigProvider';
-import './powerreviews.less';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+import './powerreview.less';
 import * as UserPrefs from '../utils/UserPrefs';
 
 const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class PowerReview extends React.Component {
-  static propTypes = {
-    productData: PropTypes.objectOf(PropTypes.any).isRequired,
-  }
+interface PowerReviewProps {
+    productData: {
+        [key: string]: any
+    },
+}
+
+class PowerReview extends React.Component<PowerReviewProps> {
+
+  private POWERREVIEWS: any;
+  private funcName: any;
 
   constructor(props) {
     super(props);
@@ -68,7 +73,7 @@ class PowerReview extends React.Component {
 
     if (mounted) {
       // eslint-disable-next-line no-undef
-      POWERREVIEWS.display.render({
+      this.POWERREVIEWS.display.render({
         api_key: Config.PowerReviews.api_key,
         locale: UserPrefs.getSelectedLocaleValue().replace('-', '_'),
         merchant_group_id: Config.PowerReviews.merchant_group_id,

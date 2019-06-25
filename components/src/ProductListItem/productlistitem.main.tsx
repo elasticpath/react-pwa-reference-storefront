@@ -22,26 +22,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getConfig } from '../utils/ConfigProvider';
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 
 import './productlistitem.main.less';
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class ProductListItemMain extends React.Component {
-  static propTypes = {
-    productId: PropTypes.string,
-    offerData: PropTypes.objectOf(PropTypes.any),
-    productElement: PropTypes.objectOf(PropTypes.any),
-    featuredProductAttribute: PropTypes.bool,
-    customClass: PropTypes.string,
-    itemDetailLink: PropTypes.string,
-  }
-  productData
+interface ProductListItemMainProps {
+    productId?: string,
+    offerData?: {
+        [key: string]: any
+    },
+    productElement?: {
+        [key: string]: any
+    },
+    featuredProductAttribute?: boolean,
+    customClass?: string,
+    itemDetailLink?: string,
+}
+interface ProductListItemMainState {
+    productData: any,
+    imageStatus: string,
+}
+
+class ProductListItemMain extends React.Component<ProductListItemMainProps, ProductListItemMainState> {
+
   static defaultProps = {
     productId: '',
     offerData: {},
@@ -138,7 +147,7 @@ class ProductListItemMain extends React.Component {
         <div className={`category-item-inner ${customClass}`}>
           <div className={`category-item-thumbnail-container ${imageStatus === 'loaded' ? 'loaded' : ''}`}>
             <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
-              <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" onLoad={this.handleImageLoaded.bind(this)} title="" />
+              <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e: any) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" onLoad={this.handleImageLoaded.bind(this)} title="" />
             </Link>
           </div>
           <div className="category-item-title-container">

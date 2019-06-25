@@ -29,12 +29,22 @@ import { getConfig } from '../utils/ConfigProvider';
 
 let intl = { get: str => str };
 
-class ProductListMain extends React.Component {
-  static propTypes = {
-    productData: PropTypes.objectOf(PropTypes.any).isRequired,
-    showCompareButton: PropTypes.bool,
-    productListLinks: PropTypes.objectOf(PropTypes.string),
-  }
+interface ProductListMainProps {
+    productData: {
+        [key: number]: any
+    },
+    showCompareButton?: boolean,
+    productListLinks?: {
+        [key: string]: any
+    },
+}
+interface ProductListMainState {
+    isCompare: boolean,
+    compareLink: string,
+    categoryModel: any,
+    compareList: any,
+}
+class ProductListMain extends React.Component<ProductListMainProps, ProductListMainState> {
 
   static defaultProps = {
     showCompareButton: true,

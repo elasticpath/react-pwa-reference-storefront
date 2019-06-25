@@ -28,7 +28,18 @@ import './productlistloadmore.less';
 
 let intl = { get: str => str };
 
-class ProductListLoadMore extends React.Component {
+interface ProductListLoadMoreProps{
+    dataProps: {
+        [key: string]: any
+    },
+    handleDataChange: (...args: any[]) => any,
+    onLoadMore: (...args: any[]) => any,
+}
+interface ProductListLoadMoreState {
+    canLoadMore: boolean,
+    isLoading: boolean,
+}
+class ProductListLoadMore extends React.Component<ProductListLoadMoreProps, ProductListLoadMoreState> {
   static propTypes = {
     dataProps: PropTypes.objectOf(PropTypes.any).isRequired,
     handleDataChange: PropTypes.func.isRequired,
