@@ -111,6 +111,7 @@ class ProductDisplayItemMain extends React.Component {
     productLink: PropTypes.string,
     isInStandaloneMode: PropTypes.bool,
     itemDetailLink: PropTypes.string,
+    onChangeProductFeature: PropTypes.func,
   }
 
   static defaultProps = {
@@ -122,6 +123,7 @@ class ProductDisplayItemMain extends React.Component {
     productLink: '',
     isInStandaloneMode: false,
     itemDetailLink: '',
+    onChangeProductFeature: () => {},
   }
 
   constructor(props) {
@@ -229,6 +231,7 @@ class ProductDisplayItemMain extends React.Component {
   }
 
   handleSkuSelection(event) {
+    const { onChangeProductFeature } = this.props;
     const selfUri = event.target.value;
     this.setState({
       isLoading: true,
@@ -248,6 +251,7 @@ class ProductDisplayItemMain extends React.Component {
           this.setState({
             isLoading: false,
           });
+          onChangeProductFeature(res._code[0].code);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -459,15 +463,15 @@ class ProductDisplayItemMain extends React.Component {
         return productKindsSelection;
       });
       return (productKindsSelection.map(Component => (
-          <fieldset onChange={this.handleSelectionChange}>
+          <fieldset onChange={this.handleSelectionChange} key={Math.floor(Math.random() * 100001)}>
           <span className="selector-title">
             {Component.displayName}
           </span>
             <div className="guide" id={`${(Component.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
               {Component.map(Element => (
                 <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
-                  <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
-                  <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}`} style={{ background: Element._description[0]['display-name'] }}>
+                  <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
+                  <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} style={{ background: Element._description[0]['display-name'] }}>
                     {Element._description[0]['display-name']}
                   </label>
                 </div>
