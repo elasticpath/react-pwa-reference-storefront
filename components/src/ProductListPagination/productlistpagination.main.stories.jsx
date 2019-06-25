@@ -9,4 +9,4 @@ storiesOf('ProductListPagination', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ProductListPagination', () => <ProductListPagination paginationDataProps={paginationDataProps} isProductoading={true} titleString={''} isTop productListPaginationLinks={{}} />);
+  .add('ProductListPagination', () => <ProductListPagination paginationDataProps={paginationDataProps} titleString={''} isTop productListPaginationLinks={{}} />);
