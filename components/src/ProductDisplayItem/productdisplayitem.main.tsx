@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
@@ -31,7 +30,7 @@ import ProductRecommendationsDisplayMain from '../ProductRecommendations/product
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
@@ -91,26 +90,35 @@ const zoomArray = [
   'code',
 ];
 
-let Config = {};
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-class ProductDisplayItemMain extends React.Component {
+interface ProductDisplayItemMainProps {
+  productId: string,
+  imageUrl?: string,
+  dataSet?: { cartBtnOverride?: string },
+  customClass?: string,
+  onAddToCart?: (...args: any[]) => any,
+  onAddToWishList?: (...args: any[]) => any,
+  productLink?: string,
+  isInStandaloneMode?: boolean,
+  itemDetailLink?: string,
+  featuredProductAttribute?: boolean,
+}
+
+interface ProductDisplayItemMainState {
+  productData: any,
+  itemQuantity: number,
+  addToCartFailedMessage: string,
+  isLoading: boolean,
+  arFileExists: boolean,
+  itemConfiguration: { [key: string]: any },
+  selectionValue: string,
+}
+
+class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
   static isLoggedIn(config) {
     return (localStorage.getItem(`${config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
-  }
-
-  static propTypes = {
-    productId: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string,
-    dataSet: PropTypes.shape({
-      cartBtnOverride: PropTypes.string,
-    }),
-    customClass: PropTypes.string,
-    onAddToCart: PropTypes.func,
-    onAddToWishList: PropTypes.func,
-    productLink: PropTypes.string,
-    isInStandaloneMode: PropTypes.bool,
-    itemDetailLink: PropTypes.string,
   }
 
   static defaultProps = {
@@ -122,7 +130,10 @@ class ProductDisplayItemMain extends React.Component {
     productLink: '',
     isInStandaloneMode: false,
     itemDetailLink: '',
+    featuredProductAttribute: false,
   }
+
+  private funcName: any;
 
   constructor(props) {
     super(props);
@@ -261,7 +272,7 @@ class ProductDisplayItemMain extends React.Component {
     const { onAddToCart } = this.props;
     login().then(() => {
       const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      const body = {};
+      const body:any = {};
       body.quantity = itemQuantity;
       if (itemConfiguration) {
         body.configuration = itemConfiguration;
@@ -300,7 +311,7 @@ class ProductDisplayItemMain extends React.Component {
     const { onAddToWishList } = this.props;
     login().then(() => {
       const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
-      const body = {};
+      const body:any = {};
       body.quantity = itemQuantity;
       if (itemConfiguration) {
         body.configuration = itemConfiguration;
@@ -492,7 +503,7 @@ class ProductDisplayItemMain extends React.Component {
     if (arBrowserSupported.relList.supports('ar') && arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
-          <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+          <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
         </a>
       );
     }
@@ -500,7 +511,7 @@ class ProductDisplayItemMain extends React.Component {
       <div className="product-image-carousel">
         <Slider {...settings}>
           <div>
-            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { e.target.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
           </div>
         </Slider>
       </div>
@@ -614,7 +625,7 @@ class ProductDisplayItemMain extends React.Component {
               </div>
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={event => this.addToCart(event, '/mybag')}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={event => this.addToCart(event)}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
                     <div className="form-group">
@@ -654,7 +665,7 @@ class ProductDisplayItemMain extends React.Component {
                     </div>
 
                   </form>
-                  {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform && !Object.keys(productData._addtocartform[0].configuration).length > 0) ? (
+                  {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform && !(Object.keys(productData._addtocartform[0].configuration).length > 0)) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
