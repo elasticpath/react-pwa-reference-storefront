@@ -20,13 +20,12 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import { CategoryItemsMain } from '@elasticpath/store-components';
 
-function CategoryPage(props) {
-  CategoryPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-  };
+interface CategoryPageProps {
+    history: any,
+}
+function CategoryPage(props: CategoryPageProps) {
 
   function handleProductFacetSelection(offerSearch, title) {
     const { history } = props;

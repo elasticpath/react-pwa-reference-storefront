@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { CartMain, CheckoutSummaryList, AddPromotionContainer } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
@@ -57,11 +56,17 @@ const zoomArray = [
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
 ];
 
-class CartPage extends React.Component {
-  static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  }
+interface CartPageProps {
+    history: any,
+    location: any,
+}
+interface CartPageState {
+    cartData: any,
+    isLoading: boolean,
+    invalidPermission: boolean,
+}
+
+class CartPage extends React.Component<CartPageProps, CartPageState> {
 
   constructor(props) {
     super(props);
