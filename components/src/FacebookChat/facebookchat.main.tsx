@@ -18,31 +18,31 @@
  *
  *
  */
-
 import React from 'react';
-import PropTypes from 'prop-types';
 import scriptjs from 'scriptjs';
-// eslint-disable-next-line
-import * as styles from '!!../utils/less-var-loader!../style/common.less';
+//@ts-ignore
+import styles from '../style/common.less';
 
-class FacebookChat extends React.Component {
+interface FacebookChatProps {
+  config: {
+    [key: string]: any
+  },
+  handleFbAsyncInit?: (...args: any[]) => any
+}
+
+class FacebookChat extends React.Component<FacebookChatProps, {}> {
   static loadSDKAsynchronously() {
     scriptjs('https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js', () => {
       // eslint-disable-next-line (unaccepted unnamed function)
       (function loadSdk(d, s, id) {
         const fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
-        const js = d.createElement(s); js.id = id;
+        const js: any = d.createElement(s); js.id = id;
         js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     });
   }
-
-  static propTypes = {
-    config: PropTypes.objectOf(PropTypes.any).isRequired,
-    handleFbAsyncInit: PropTypes.func,
-  };
 
   static defaultProps = {
     handleFbAsyncInit: () => {},
@@ -66,11 +66,10 @@ class FacebookChat extends React.Component {
     return (
       <div>
         <div id="fb-root" />
-        <div
-          className="fb-customerchat"
-          page_id={config.pageId}
-          theme_color={styles['@mainColor']}
-        />
+        {() => {
+          const allowedProps = { page_id: config.pageId, theme_color: styles['@mainColor']};
+          return (<div className="fb-customerchat" {...allowedProps} />)
+        }}
       </div>
     );
   }
