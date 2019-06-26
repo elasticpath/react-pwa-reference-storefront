@@ -1,9 +1,9 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import productData from './MockHttpResponses/bundle_constituents_response';
+import productData from './MockHttpResponses/bundle_constituents_response.json';
 
-import ProductRecommendationsDisplayMain from "./productrecommendations.main";
+import ProductRecommendationsDisplayMain from './productrecommendations.main';
 
 storiesOf('ProductRecommendationsDisplayMain', module)
   .addDecorator(story => (

@@ -1,7 +1,7 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import productsData from './MockHttpResponses/product_list_pagination_response'
+import productsData from './MockHttpResponses/product_list_pagination_response.json'
 
 import ProductListLoadMore from './productlistloadmore';
 

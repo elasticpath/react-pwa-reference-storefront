@@ -1,8 +1,8 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 
-import PurchaseDetailsMain from "./purchasedetails.main";
-import purchaseDetail from "./MockHttpResponses/purchase_detail_response";
+import PurchaseDetailsMain from './purchasedetails.main';
+import purchaseDetail from './MockHttpResponses/purchase_detail_response.json';
 
 function handleReorderAllProducts(){}
 const itemDetailLink = '/';

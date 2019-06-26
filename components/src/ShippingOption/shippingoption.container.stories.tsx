@@ -1,8 +1,8 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import ShippingOptionContainer from "./shippingoption.container";
+import ShippingOptionContainer from './shippingoption.container';
 
 const option= {
   "self": {

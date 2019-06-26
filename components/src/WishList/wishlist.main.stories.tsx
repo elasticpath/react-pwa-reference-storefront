@@ -1,7 +1,7 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import wishListData from './MockHttpResponses/wish_list_response';
+import wishListData from './MockHttpResponses/wish_list_response.json';
 
 import WishListMain from './wishlist.main';
 

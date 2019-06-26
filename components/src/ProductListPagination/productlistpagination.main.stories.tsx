@@ -1,9 +1,9 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import paginationDataProps from './MockHttpResponses/product_list_pagination_response'
+import paginationDataProps from './MockHttpResponses/product_list_pagination_response.json'
 
-import ProductListPagination from "./productlistpagination.main";
+import ProductListPagination from './productlistpagination.main';
 
 storiesOf('ProductListPagination', module)
   .addDecorator(story => (

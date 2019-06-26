@@ -1,9 +1,9 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import profileData from '../CommonMockHttpResponses/profile_data_response';
-import ProfilePaymentMethodsMain from "./profilepaymentmethods.main";
+import profileData from '../CommonMockHttpResponses/profile_data_response.json';
+import ProfilePaymentMethodsMain from './profilepaymentmethods.main';
 
 function fetchProfileData(){}
 function handleNewPayment(){}

@@ -1,9 +1,9 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import categoryModel from './MockHttpResponses/sort_category_model_response'
+import categoryModel from './MockHttpResponses/sort_category_model_response.json'
 
-import SortProductMenu from "./sortproductmenu.main";
+import SortProductMenu from './sortproductmenu.main';
 
 function handleSortSelection(){}
 

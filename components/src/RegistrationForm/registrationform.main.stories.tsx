@@ -1,8 +1,8 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import RegistrationFormMain from "./registrationform.main";
+import RegistrationFormMain from './registrationform.main';
 
 function handleRegisterSuccess(){}
 

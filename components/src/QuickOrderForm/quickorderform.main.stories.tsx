@@ -1,9 +1,9 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import productData from './MockHttpResponses/bundle_constituents_response';
+import productData from './MockHttpResponses/bundle_constituents_response.json';
 
-import QuickOrderForm from "./quickorderform";
+import QuickOrderForm from './quickorderform';
 function onItemSubmit(){}
 
 storiesOf('QuickOrderForm', module)

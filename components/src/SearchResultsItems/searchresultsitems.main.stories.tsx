@@ -1,8 +1,8 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import SearchResultsItemsMain from "./searchresultsitems.main";
+import SearchResultsItemsMain from './searchresultsitems.main';
 
 function handleProductFacetSelection(){}
 const props = {
@@ -13,10 +13,15 @@ const props = {
         }
     }
 };
-const productLinks = '';
+const productLinks = {};
 
 storiesOf('SearchResultsItemsMain', module)
     .addDecorator(story => (
         <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
     ))
-    .add('SearchResultsItemsMain', () => <SearchResultsItemsMain searchKeywordsProps={props} onProductFacetSelection={handleProductFacetSelection} productLinks={productLinks} />);
+    .add('SearchResultsItemsMain', () =>
+      <SearchResultsItemsMain
+        searchKeywordsProps={props}
+        onProductFacetSelection={handleProductFacetSelection}
+        productLinks={productLinks}
+      />);

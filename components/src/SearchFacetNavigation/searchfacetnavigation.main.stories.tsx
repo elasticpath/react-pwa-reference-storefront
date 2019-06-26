@@ -1,9 +1,9 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import purchaseDetail from "./MockHttpResponses/cart_data_response";
-import SearchFacetNavigationMain from "./searchfacetnavigation.main";
+import purchaseDetail from './MockHttpResponses/cart_data_response.json';
+import SearchFacetNavigationMain from './searchfacetnavigation.main';
 
 function handleFacetSelection(){}
 

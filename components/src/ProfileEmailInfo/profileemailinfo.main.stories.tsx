@@ -1,9 +1,9 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import profileData from '../CommonMockHttpResponses/profile_data_response';
-import ProfileemailinfoMain from "./profileemailinfo.main";
+import profileData from '../CommonMockHttpResponses/profile_data_response.json';
+import ProfileemailinfoMain from './profileemailinfo.main';
 
 function fetchProfileData(){}
 
