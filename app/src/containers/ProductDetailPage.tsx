@@ -20,13 +20,9 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import { ProductDisplayItemMain } from '@elasticpath/store-components';
 
 function ProductDetailPage(props) {
-  ProductDetailPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-  };
 
   const { history } = props;
 
@@ -43,7 +39,8 @@ function ProductDetailPage(props) {
   }
 
   const handleProductLink = window.location.href;
-  const isInStandaloneMode = window.navigator.standalone;
+  const windowNavigator: any = window.navigator;
+  const isInStandaloneMode = windowNavigator.standalone;
 
   return (
     <div>
