@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import QuickOrderMain from '../QuickOrder/quickorder.main';
 import ReorderMain from '../Reorder/reorder.main';
 import { getConfig } from '../utils/ConfigProvider';
@@ -342,14 +341,6 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = p
       </div>
     </div>
   );
-};
-
-PurchaseDetailsMain.propTypes = {
-  data: PropTypes.objectOf(PropTypes.any).isRequired,
-  onReorderAllProducts: PropTypes.func,
-  itemDetailLink: PropTypes.string,
-  onMoveToCart: PropTypes.func,
-  onConfiguratorAddToCart: PropTypes.func,
 };
 
 PurchaseDetailsMain.defaultProps = {

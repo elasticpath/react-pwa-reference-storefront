@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -46,12 +45,6 @@ interface ProfileInfoMainState {
 }
 
 class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoMainState> {
-  static propTypes = {
-    profileInfo: PropTypes.objectOf(PropTypes.any).isRequired,
-    onChange: PropTypes.func.isRequired,
-    isDisabled: PropTypes.bool,
-  }
-
   static defaultProps = {
     isDisabled: false,
   }

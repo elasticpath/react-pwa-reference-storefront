@@ -25,7 +25,7 @@ import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
 import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
 import './appmodallogin.main.less';
-import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };

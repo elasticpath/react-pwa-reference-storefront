@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { searchLookup } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';

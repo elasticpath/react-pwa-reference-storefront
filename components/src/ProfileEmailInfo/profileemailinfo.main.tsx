@@ -20,10 +20,9 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileemailinfo.main.less';
 
@@ -43,11 +42,6 @@ type ProfileemailinfoMainState = {
 };
 
 class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, ProfileemailinfoMainState> {
-  static propTypes = {
-    profileInfo: PropTypes.objectOf(PropTypes.any).isRequired,
-    onChange: PropTypes.func.isRequired,
-  }
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();

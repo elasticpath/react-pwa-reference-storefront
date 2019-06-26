@@ -17,8 +17,13 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "strict": false
   },
+  "files": [
+    "custom_typings/image-loader.d.ts",
+    "custom_typings/json-loader.d.ts"
+  ],
   "exclude": [
     "config-overrides.js",
     "node_modules",

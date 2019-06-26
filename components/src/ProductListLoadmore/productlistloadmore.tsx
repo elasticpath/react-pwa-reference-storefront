@@ -20,7 +20,6 @@
  */
 import React from 'react';
 import { withRouter } from 'react-router';
-import PropTypes from 'prop-types';
 import { getConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 
@@ -40,12 +39,6 @@ interface ProductListLoadMoreState {
     isLoading: boolean,
 }
 class ProductListLoadMore extends React.Component<ProductListLoadMoreProps, ProductListLoadMoreState> {
-  static propTypes = {
-    dataProps: PropTypes.objectOf(PropTypes.any).isRequired,
-    handleDataChange: PropTypes.func.isRequired,
-    onLoadMore: PropTypes.func.isRequired,
-  }
-
   constructor(props) {
     super(props);
     ({ intl } = getConfig());

@@ -21,7 +21,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import './ordertable.lineitem.less';
 

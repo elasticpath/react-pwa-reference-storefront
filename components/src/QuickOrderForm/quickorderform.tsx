@@ -24,7 +24,6 @@ import React from 'react';
 
 import './quickorderform.less';
 import { withRouter } from 'react-router';
-import PropTypes from 'prop-types';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
@@ -49,11 +48,6 @@ interface QuickOrderFormState {
 }
 
 class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderFormState> {
-  static propTypes = {
-    item: PropTypes.objectOf(PropTypes.any).isRequired,
-    onItemSubmit: PropTypes.func.isRequired,
-  };
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();

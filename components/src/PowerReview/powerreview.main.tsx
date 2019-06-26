@@ -21,7 +21,7 @@
 
 import React from 'react';
 import scriptjs from 'scriptjs';
-import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './powerreview.less';
 import * as UserPrefs from '../utils/UserPrefs';
 
