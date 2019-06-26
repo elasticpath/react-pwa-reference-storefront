@@ -61,15 +61,21 @@ class FacebookChat extends React.Component<FacebookChatProps, {}> {
     handleFbAsyncInit();
   }
 
+  getFbDiv() {
+    const { config } = this.props;
+    const props = {
+      page_id: config.pageId,
+      theme_color: styles['@mainColor']
+    };
+    return (<div className="fb-customerchat" { ...props }/>)
+  }
+
   render() {
     const { config } = this.props;
     return (
       <div>
         <div id="fb-root" />
-        {() => {
-          const allowedProps = { page_id: config.pageId, theme_color: styles['@mainColor']};
-          return (<div className="fb-customerchat" {...allowedProps} />)
-        }}
+        {this.getFbDiv()}
       </div>
     );
   }
