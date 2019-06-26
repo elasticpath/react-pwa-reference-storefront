@@ -20,8 +20,8 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
+import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
   GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain, AddressFormMain,
@@ -72,10 +72,18 @@ const zoomArray = [
   'defaultcart:order:paymentmethodinfo:selector:choice:description',
 ];
 
-class CheckoutPage extends React.Component {
-  static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-  }
+interface CheckoutPageState {
+    orderData: any,
+    isLoading: boolean,
+    profileData: any,
+    showGiftCard: boolean,
+    certificates: any,
+    openNewPaymentModal: boolean,
+    openAddressModal: boolean,
+    addressUrl: any,
+}
+
+class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageState> {
 
   constructor(props) {
     super(props);

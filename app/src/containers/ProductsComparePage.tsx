@@ -20,17 +20,19 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import { ProductDisplayItemMain } from '@elasticpath/store-components';
 
 import './ProductsComparePage.less';
 
-class ProductsComparePage extends React.Component {
-  static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    match: PropTypes.objectOf(PropTypes.any).isRequired,
-  };
+interface ProductsComparePageProps extends React.Component<RouteComponentProps> {
+    history: any,
+    match: {
+        [key: string]: any
+    },
+}
+
+class ProductsComparePage extends React.Component<ProductsComparePageProps> {
 
   constructor(props) {
     super(props);

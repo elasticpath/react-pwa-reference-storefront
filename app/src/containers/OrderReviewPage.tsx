@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import {
   OrderTableMain, PaymentMethodContainer, ShippingOptionContainer, CheckoutSummaryList, AddressContainer,
@@ -73,10 +73,12 @@ const zoomArray = [
   'defaultcart:order:purchaseform',
 ];
 
-class OrderReviewPage extends React.Component {
-  static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-  }
+interface OrderReviewPageState {
+    orderData: any,
+    giftCertificateEntity: any,
+    isLoading: boolean,
+}
+class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPageState> {
 
   constructor(props) {
     super(props);

@@ -21,8 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import { PurchaseDetailsMain } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
@@ -35,11 +34,17 @@ const zoomArray = [
   'defaultcart:additemstocartform',
 ];
 
-class OrderHistoryPage extends React.Component {
-  static propTypes = {
-    match: PropTypes.objectOf(PropTypes.any).isRequired,
-    history: ReactRouterPropTypes.history.isRequired,
-  };
+interface OrderHistoryPageProps  extends React.Component<RouteComponentProps> {
+    match: {
+        [key: string]: any
+    },
+    history: any,
+}
+interface OrderHistoryPageState {
+    purchaseData: any,
+}
+
+class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHistoryPageState> {
 
   constructor(props) {
     super(props);

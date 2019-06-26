@@ -23,7 +23,6 @@ import HomePage from './containers/HomePage';
 import CartPage from './containers/CartPage';
 import CategoryPage from './containers/CategoryPage';
 import CheckoutPage from './containers/CheckoutPage';
-import EditAddressPage from './containers/EditAddressPage';
 import ProductDetailPage from './containers/ProductDetailPage';
 import ProfilePage from './containers/ProfilePage';
 import OrderHistoryPage from './containers/OrderHistoryPage';
@@ -61,9 +60,6 @@ const router = [{
 }, {
   path: '/checkout',
   component: CheckoutPage,
-}, {
-  path: '/editaddress',
-  component: EditAddressPage,
 }, {
   path: '/itemdetail',
   component: ProductDetailPage,

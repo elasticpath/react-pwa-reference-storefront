@@ -21,7 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
@@ -45,11 +45,16 @@ const zoomArray = [
   'passwordresetform',
 ];
 
-class ChangePasswordForm extends React.Component {
-  static propTypes = {
-    location: ReactRouterPropTypes.location.isRequired,
-    history: ReactRouterPropTypes.history.isRequired,
-  }
+interface ChangePasswordFormState {
+    oldPassword: string,
+    newPassword: string,
+    newPasswordConfirmed: string,
+    failedSubmit: boolean,
+    email: string,
+    passwordResetUri: string,
+}
+
+class ChangePasswordForm extends React.Component<RouteComponentProps, ChangePasswordFormState> {
 
   constructor(props) {
     super(props);

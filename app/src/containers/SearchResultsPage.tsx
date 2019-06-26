@@ -20,13 +20,10 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import { SearchResultsItemsMain } from '@elasticpath/store-components';
 
-function SearchResultsPage(props) {
-  SearchResultsPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-  };
+function SearchResultsPage(props: RouteComponentProps) {
 
   function handleProductFacetSelection(offerSearch, title) {
     const { history } = props;

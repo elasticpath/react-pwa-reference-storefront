@@ -21,7 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
   ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain, AddressFormMain,
@@ -53,10 +53,15 @@ const zoomArray = [
   'passwordresetform',
 ];
 
-class ProfilePage extends React.Component {
-  static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-  }
+interface ProfilePageState {
+    profileData: any,
+    invalidPermission: boolean,
+    showResetPasswordButton: boolean,
+    openAddressModal: boolean,
+    addressUrl: any,
+}
+
+class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState> {
 
   constructor(props) {
     super(props);

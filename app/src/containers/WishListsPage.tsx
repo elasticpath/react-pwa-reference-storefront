@@ -21,7 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import { WishListMain } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -50,11 +50,12 @@ const zoomArray = [
   'defaultwishlist:lineitems:element:movetocartform',
 ];
 
-class WishListsPage extends React.Component {
-  static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  }
+interface WishListsPageState {
+    wishListData: any,
+    isLoading: boolean,
+    invalidPermission: boolean,
+}
+class WishListsPage extends React.Component<RouteComponentProps, WishListsPageState> {
 
   constructor(props) {
     super(props);

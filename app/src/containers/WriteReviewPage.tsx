@@ -22,7 +22,7 @@
 import React from 'react';
 import queryString from 'query-string';
 import scriptjs from 'scriptjs';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import * as UserPrefs from '../utils/UserPrefs';
 import Config from '../ep.config.json';
 
@@ -30,21 +30,18 @@ import './WriteReviewPage.less';
 
 const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 
-class WriteReview extends React.Component {
-  static propTypes = {
-    location: ReactRouterPropTypes.location.isRequired,
-  }
+class WriteReview extends React.Component<RouteComponentProps> {
+    private POWERREVIEWS: any;
 
   componentDidMount() {
     const { location } = this.props;
     const url = location.search;
     const params = queryString.parse(url);
-
     const productCode = params.pr_page_id;
 
     scriptjs(powerReviewsRemoteScriptUrl, () => {
       // eslint-disable-next-line no-undef
-      POWERREVIEWS.display.render({
+      this.POWERREVIEWS.display.render({
         api_key: Config.PowerReviews.api_key,
         locale: UserPrefs.getSelectedLocaleValue().replace('-', '_'),
         merchant_group_id: Config.PowerReviews.merchant_group_id,

@@ -21,6 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import { RouteComponentProps } from 'react-router-dom';
 import { CartMain, CheckoutSummaryList, AddPromotionContainer } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 import { login } from '../utils/AuthService';
@@ -56,17 +57,13 @@ const zoomArray = [
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
 ];
 
-interface CartPageProps {
-    history: any,
-    location: any,
-}
 interface CartPageState {
     cartData: any,
     isLoading: boolean,
     invalidPermission: boolean,
 }
 
-class CartPage extends React.Component<CartPageProps, CartPageState> {
+class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   constructor(props) {
     super(props);

@@ -20,14 +20,10 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import { RegistrationFormMain } from '@elasticpath/store-components';
 
-function RegistrationPage(props) {
-  RegistrationPage.propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-    location: ReactRouterPropTypes.location.isRequired,
-  };
+function RegistrationPage(props: RouteComponentProps) {
 
   function handleRegisterSuccess() {
     const { location, history } = props;

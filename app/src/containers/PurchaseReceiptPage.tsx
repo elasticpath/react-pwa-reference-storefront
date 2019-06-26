@@ -20,13 +20,13 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import { PurchaseDetailsMain } from '@elasticpath/store-components';
 
 import './PurchaseReceiptPage.less';
 
-const PurchaseReceiptPage = (props) => {
+const PurchaseReceiptPage = (props: RouteComponentProps) => {
   const { location, history } = props;
 
   const handleReorderAllProducts = () => {
@@ -47,11 +47,6 @@ const PurchaseReceiptPage = (props) => {
       </div>
     </div>
   );
-};
-
-PurchaseReceiptPage.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
-  location: ReactRouterPropTypes.location.isRequired,
 };
 
 export default PurchaseReceiptPage;

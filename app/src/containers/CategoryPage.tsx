@@ -20,12 +20,10 @@
  */
 
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { CategoryItemsMain } from '@elasticpath/store-components';
 
-interface CategoryPageProps {
-    history: any,
-}
-function CategoryPage(props: CategoryPageProps) {
+function CategoryPage(props: RouteComponentProps) {
 
   function handleProductFacetSelection(offerSearch, title) {
     const { history } = props;

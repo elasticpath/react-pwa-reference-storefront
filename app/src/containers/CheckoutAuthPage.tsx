@@ -20,18 +20,23 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
+import { RouteComponentProps } from 'react-router-dom';
 import { login, loginRegistered } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
 import './CheckoutAuthPage.less';
 
-class CheckoutAuthPage extends React.Component {
-  static propTypes = {
-    history: ReactRouterPropTypes.history.isRequired,
-  }
+interface CheckoutAuthPageState{
+    username: string,
+    password: string,
+    email: string,
+    failedLogin: boolean,
+    badEmail: boolean,
+}
+
+class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuthPageState> {
 
   constructor(props) {
     super(props);
