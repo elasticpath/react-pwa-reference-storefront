@@ -31,6 +31,7 @@ const desktopViewport = {
 };
 
 async function getPrice(page, selector) {
+  await page.waitFor(2000);
   await page.waitForSelector(selector);
   const element = await page.$(selector);
   const text = await page.evaluate(el => el.textContent, element);

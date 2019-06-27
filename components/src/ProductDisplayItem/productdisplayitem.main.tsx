@@ -25,7 +25,7 @@ import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import imgPlaceholder from '../images/img-placeholder.png';
+import imgMissingHorizontal from '../images/img_missing_horizontal@2x.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
@@ -507,7 +507,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     if (arBrowserSupported.relList.supports('ar') && arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
-          <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+          <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
         </a>
       );
     }
@@ -515,7 +515,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       <div className="product-image-carousel">
         <Slider {...settings}>
           <div>
-            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgPlaceholder; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
           </div>
         </Slider>
       </div>
