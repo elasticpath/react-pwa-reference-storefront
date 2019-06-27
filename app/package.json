@@ -80,7 +80,8 @@
     "start": "BROWSER=none node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js src/test",
-    "lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe"
+    "lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe",
+    "deploy": "aws s3 sync build/ s3://ref-store-new"
   },
   "browserslist": {
     "production": [
