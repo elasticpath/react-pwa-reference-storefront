@@ -21,12 +21,12 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.1.8",
-    "@storybook/addon-info": "^5.1.8",
-    "@storybook/addon-links": "^5.1.8",
-    "@storybook/addons": "^5.1.8",
-    "@storybook/react": "^5.1.8",
-    "@storybook/theming": "^5.1.8",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-info": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/react": "^5.1.9",
+    "@storybook/theming": "^5.1.9",
     "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",
