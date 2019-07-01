@@ -38,7 +38,7 @@ class ProductsComparePage extends React.Component<ProductsComparePageProps> {
     super(props);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleAddToWishList = this.handleAddToWishList.bind(this);
-    this.onChangeProductFeature = this.onChangeProductFeature.bind(this);
+    this.handleChangeProductFeature = this.handleChangeProductFeature.bind(this);
   }
 
   handleAddToCart() {
@@ -51,7 +51,7 @@ class ProductsComparePage extends React.Component<ProductsComparePageProps> {
     history.push('/wishlists');
   }
 
-  onChangeProductFeature(path){
+  handleChangeProductFeature(path){
     const { history } = this.props;
     history.push(`/itemdetail/${path}`);
   }
@@ -66,7 +66,7 @@ class ProductsComparePage extends React.Component<ProductsComparePageProps> {
         {
           productCodes.map(code => (
             <div key={code} className="compare-product">
-              <ProductDisplayItemMain productId={code} onChangeProductFeature={this.onChangeProductFeature} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList}  itemDetailLink={itemDetailLink} />
+              <ProductDisplayItemMain productId={code} onChangeProductFeature={this.handleChangeProductFeature} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList}  itemDetailLink={itemDetailLink} />
             </div>
           ))
         }

@@ -480,8 +480,8 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
             <div className="guide" id={`${(Component.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
               {Component.map(Element => (
                 <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
-                  <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
-                  <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}`} style={{ background: Element._description[0]['display-name'] }}>
+                  <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
+                  <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} style={{ background: Element._description[0]['display-name'] }}>
                     {Element._description[0]['display-name']}
                   </label>
                 </div>
