@@ -169,7 +169,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       cortexFetchItemLookupForm()
         .then(() => itemLookup(productId, false)
           .then((res) => {
-            if (Config.arKit.enable) {
+            if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
               this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
                 this.setState({
                   productData: res,
@@ -351,10 +351,11 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
 
   urlExists(url, callback) {
     this.funcName = 'UrlExists';
-    fetch(url)
-      .then((res) => {
-        callback(res.ok);
-      });
+    fetch(url, {
+      method: 'HEAD'
+    }).then((res) => {
+      callback(res.ok);
+    });
   }
 
   handleSelectionChange(event) {
@@ -496,7 +497,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
 
   renderProductImage() {
     const { productData, arFileExists } = this.state;
-    const arBrowserSupported: any = document.createElement('a');
     const settings = {
       dots: false,
       infinite: true,
@@ -504,7 +504,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-    if (arBrowserSupported.relList.supports('ar') && arFileExists) {
+    if (arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
           <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
