@@ -196,8 +196,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     return (
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} key={`${path}`}>
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-        {/* e
-        slint-disable jsx-a11y/click-events-have-key-events */}
+        {/* eslint-disable jsx-a11y/click-events-have-key-events */}
         <Link className={`dropdown-item dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
         </Link>
