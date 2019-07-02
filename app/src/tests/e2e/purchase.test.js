@@ -181,7 +181,10 @@ describe('Purchase feature', () => {
 
     await page.waitForSelector(ANONYMOUS_EMAIL_INPUT_CSS);
     await page.type(ANONYMOUS_EMAIL_INPUT_CSS, `test_${Math.random().toString(36).substring(7)}@test.com`);
-    await page.click(CHECKOUT_AUTH_BUTTON_CSS);
+    await Promise.all([
+      page.click(CHECKOUT_AUTH_BUTTON_CSS),
+      page.waitForNavigation({ waitUntil: 'networkidle0' })
+    ]);
 
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
     await page.click(ADD_NEW_ADDRESS_CSS);
@@ -225,7 +228,7 @@ describe('Purchase feature', () => {
     await browser.close();
 
     expect(text).toEqual(SUCCESS_ORDER_STATUS);
-  }, 50000);
+  }, 60000);
 
   test('Purchase physical item as an existing registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';

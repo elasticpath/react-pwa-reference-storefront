@@ -25,6 +25,10 @@
     "declaration": false,
     "outDir": "build"
   },
+  "files": [
+    "custom_typings/image-loader.d.ts",
+    "custom_typings/json-loader.d.ts"
+  ],
   "include": [
     "src"
   ]

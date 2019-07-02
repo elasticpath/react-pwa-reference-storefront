@@ -196,6 +196,7 @@ describe('Profile', () => {
     ]);
 
     await page.waitForSelector(FIRST_NAME);
+    await page.waitFor(2000);
     await page.type(FIRST_NAME, userInfo.firstName);
     await page.type(LAST_NAME, userInfo.lastName);
     await page.type(FORM_EMAIL_USER_NAME, userInfo.email);

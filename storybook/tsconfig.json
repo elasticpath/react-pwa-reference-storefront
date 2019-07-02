@@ -5,7 +5,10 @@
     "noImplicitAny": false,
     "resolveJsonModule": true,
     "jsx": "react",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true
-  }
+  },
+  "files": [
+    "custom_typings/image-loader.d.ts"
+  ]
 }
