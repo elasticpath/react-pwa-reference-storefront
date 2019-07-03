@@ -1,0 +1,99 @@
+.dashboard-component {
+
+  .admin-address-book {
+    width: 100%;
+    display: flex;
+    margin-bottom: 26px;
+
+    .admin-section {
+      margin-right: 20px;
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .user-icon {
+          height: 100%;
+          margin-right: 15px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+
+          img {
+            height: 100%;
+          }
+        }
+
+        .user-details {
+          flex: 1 0;
+
+          .user-email {
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 4px;
+          }
+
+          .user-name {
+            font-size: 13px;
+            color: #777;
+          }
+        }
+      }
+    }
+
+    .address-book-section {
+      .section-content {
+        display: flex;
+
+        .address {
+          flex: 1 0;
+
+          .address-title {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 18px;
+          }
+
+          .address-content {
+            font-size: 13px;
+            color: #777;
+          }
+
+        }
+      }
+    }
+  }
+
+  .recent-orders {
+    margin-bottom: 26px;
+
+    .section-content {
+      .recent-orders-table {
+        td.order-id {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .accounts {
+    margin-bottom: 100px;
+
+    .section-content {
+      .accounts-table {
+        td.name {
+          font-weight: bold;
+        }
+
+        .arrow {
+          width: 20px;
+        }
+      }
+    }
+  }
+}
