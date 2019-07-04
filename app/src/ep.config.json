@@ -1,8 +1,8 @@
 {
   "cortexApi": {
     "path": "/cortex",
-    "scope": "mobee",
-    "pathForProxy": "http://10.11.12.144:8080"
+    "scope": "vestri",
+    "pathForProxy": "http://localhost:9080"
   },
   "supportedLocales": [
     {
@@ -87,6 +87,10 @@
   "formatQueryParameter": {
     "standardlinks": false,
     "noself": false,
-    "nodatalinks": false
+    "nodatalinks": true
+  },
+  "creditCardTokenization": {
+    "enable": false,
+    "lambdaURI": ""
   }
 }
