@@ -1,8 +1,8 @@
 {
   "cortexApi": {
     "path": "/cortex",
-    "scope": "vestri",
-    "pathForProxy": "http://localhost:9080"
+    "scope": "mobee",
+    "pathForProxy": "http://10.11.12.144:8080"
   },
   "supportedLocales": [
     {
@@ -30,15 +30,15 @@
   "siteImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%fileName%",
   "enableOfflineMode": false,
   "b2b": {
-    "enable": false,
+    "enable": true,
     "authServiceAPI": {
       "path": "/admin",
-      "pathForProxy": ""
+      "pathForProxy": "https://app.qa.am.reference.elasticpath.com"
     },
     "keycloak": {
-      "callbackUrl": "",
-      "loginRedirectUrl": "",
-      "logoutRedirectUrl": "",
+      "callbackUrl": "http://localhost:8080",
+      "loginRedirectUrl": "https://login.qa.am.reference.elasticpath.com/auth/realms/Commerce/protocol/openid-connect/auth",
+      "logoutRedirectUrl": "https://login.qa.am.reference.elasticpath.com/auth/realms/Commerce/protocol/openid-connect/logout",
       "client_id": "reference-storefront"
     }
   },
@@ -87,10 +87,6 @@
   "formatQueryParameter": {
     "standardlinks": false,
     "noself": false,
-    "nodatalinks": true
-  },
-  "creditCardTokenization": {
-    "enable": false,
-    "lambdaURI": ""
+    "nodatalinks": false
   }
 }

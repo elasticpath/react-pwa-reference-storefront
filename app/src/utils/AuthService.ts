@@ -21,7 +21,7 @@
 
 import { cortexFetch, adminFetch } from './Cortex';
 
-import Config from '../ep.config.json';
+import * as Config from '../ep.config.json';
 
 let userFormBody = [];
 let userFormBodyString = '';

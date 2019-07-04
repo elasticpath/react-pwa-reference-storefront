@@ -19,7 +19,7 @@
  *
  */
 
-import Config from '../ep.config.json';
+import * as Config from '../ep.config.json';
 
 export function getSelectedLocaleValue() {
   const storedLocaleValue = localStorage.getItem(`${Config.cortexApi.scope}_locale`);
