@@ -127,6 +127,24 @@
     .mobile-table-title {
       display: none;
     }
+    .arrow-btn {
+      position: relative;
+      height: 16px;
+      width: 16px;
+      border: none;
+      background: transparent;
+      &:before {
+        content: "";
+        border-top: 2px solid #cccccc;
+        border-right: 2px solid #cccccc;
+        height: 9px;
+        width: 9px;
+        position: absolute;
+        transform: rotate(45deg);
+        top: 3px;
+        right: 5px;
+      }
+    }
     @media (max-width: 575px) {
       display: block;
       thead, tbody, th, td {
@@ -134,7 +152,7 @@
       }
       tr {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 30px;
         padding: 5px 0;
       }
       td.external-id {
