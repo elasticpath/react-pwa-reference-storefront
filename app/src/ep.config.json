@@ -30,16 +30,16 @@
   "siteImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%fileName%",
   "enableOfflineMode": false,
   "b2b": {
-    "enable": true,
+    "enable": false,
     "authServiceAPI": {
-      "path": "/admin",
-      "pathForProxy": "https://app.qa.am.reference.elasticpath.com"
+      "path": "",
+      "pathForProxy": ""
     },
     "keycloak": {
       "callbackUrl": "http://localhost:8080",
-      "loginRedirectUrl": "https://login.qa.am.reference.elasticpath.com/auth/realms/Commerce/protocol/openid-connect/auth",
-      "logoutRedirectUrl": "https://login.qa.am.reference.elasticpath.com/auth/realms/Commerce/protocol/openid-connect/logout",
-      "client_id": "reference-storefront"
+      "loginRedirectUrl": "",
+      "logoutRedirectUrl": "",
+      "client_id": ""
     }
   },
   "gaTrackingId": "",
