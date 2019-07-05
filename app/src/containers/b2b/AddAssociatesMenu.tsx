@@ -20,9 +20,8 @@
  */
 
 import * as React from 'react';
+import intl from 'react-intl-universal';
 import './AddAssociatesMenu.less';
-
-let intl = { get: str => str };
 
 interface AddAssociatesMenuProps {
     onSpreeadsheetClicked?: (...args: any[]) => any,

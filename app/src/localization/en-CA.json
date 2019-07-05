@@ -287,5 +287,6 @@
   "upload-spreadsheet": "Upload spreadsheet",
   "download-list": "Download List",
   "add-associates": "Add Associates",
-  "all-fields-required": "All fields are required"
+  "all-fields-required": "All fields are required",
+  "no-file-selected": "no file selected"
 }

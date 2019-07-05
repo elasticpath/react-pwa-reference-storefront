@@ -34,6 +34,7 @@ interface DashboardProps {
 }
 interface DashboardState {
     isImportDialogOpen: boolean,
+    fileUploadMessage: string
 }
 
 export default class B2BMain extends React.Component<DashboardProps, DashboardState> {
@@ -43,7 +44,9 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
 
         this.state = {
             isImportDialogOpen: false,
+            fileUploadMessage: intl.get('no-file-selected')
         };
+        this.handleFileChange = this.handleFileChange.bind(this);
     }
 
     handleSpreeadsheetClicked() {
@@ -54,9 +57,18 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
         this.setState({ isImportDialogOpen: false });
     }
 
+    handleFileChange(event) {
+        const files = event.target.files;
+        const value = event.target.value;
+
+        if (files) {
+          this.setState({ fileUploadMessage: value.split( '\\' ).pop() })
+        }
+    }
+
     render() {
         const { routes } = this.props;
-        const { isImportDialogOpen } = this.state;
+        const { isImportDialogOpen, fileUploadMessage } = this.state;
 
         return (
             <div className="b2b-main-component">
@@ -89,7 +101,9 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
                         <div className="download-sample">{intl.getHTML('download-sample-csv', { link: '#' })}</div>
                         <div className="upload-title">{intl.get('upload-associatess-csv')}</div>
                         <div className="chose-btn-container">
-                            <input className="chose-btn" type="file" />
+                            <label className="chose-btn-label" htmlFor="file-upload">Choose file</label>
+                            <span className="chose-btn-message">{ fileUploadMessage }</span>
+                            <input id="file-upload" className="chose-btn" type="file" onChange={this.handleFileChange}/>
                         </div>
                     </div>
                     <div className="dialog-footer">
