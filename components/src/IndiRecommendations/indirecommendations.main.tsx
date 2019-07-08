@@ -35,7 +35,7 @@ interface IndiRecommendationsDisplayMainProps {
 
 class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendationsDisplayMainProps> {
 
-  private instance: React.RefObject<HTMLDivElement>;
+  private instance;
 
   static defaultProps = {
     keywords: '',
