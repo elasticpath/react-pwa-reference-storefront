@@ -48,7 +48,14 @@ const accountsZoomArray = [
   "accounts:element:subaccounts:accountform",
   "accounts:element:subaccounts:parentaccount",
   "accounts:element:associateroleassignments",
-  "accounts:element:associateroleassignments:associateform"
+  "accounts:element:associateroleassignments:element",
+  "accounts:element:associateroleassignments:element:associateroleassignments",
+  "accounts:element:associateroleassignments:element:roleinfo",
+  "accounts:element:associateroleassignments:element:roleinfo:roles",
+  "accounts:element:associateroleassignments:element:roleinfo:roles:element",
+  "accounts:element:associateroleassignments:element:roleinfo:selector",
+  "accounts:element:associateroleassignments:element:associate",
+  "accounts:element:associateroleassignments:element:associate:primaryemail",
 ];
 
 export default class Dashboard extends React.Component<DashboardState> {
@@ -57,15 +64,6 @@ export default class Dashboard extends React.Component<DashboardState> {
     super(props);
     this.state = {
       isLoading: true,
-      admins: [
-        {
-          name: 'Anthony Richards',
-          email: 'arichards@vestri.com',
-        }, {
-          name: 'Anthony Kiedis',
-          email: 'anthony@rhcp.com',
-        },
-      ],
       defaultBillingAddress: {
         name: 'Inez Larson',
         address: '198 Bendar Knoll',
@@ -113,6 +111,7 @@ export default class Dashboard extends React.Component<DashboardState> {
         },
       ],
       accounts: [],
+      admins: [],
     };
     this.getAdminData();
   }
@@ -135,7 +134,20 @@ export default class Dashboard extends React.Component<DashboardState> {
                 status: account._statusinfo[0]._status[0].status.toLowerCase(),
               }
             });
-            this.setState({ accounts, isLoading: false });
+            let map = new Map();
+            res._accounts[0]._element.reduce((accum, account) => {
+              account._associateroleassignments[0]._element.forEach(associate => {
+                if (associate._roleinfo[0]._roles[0]._element[0].name === 'BUYER_ADMIN') {
+                  const name = associate._associate[0].name;
+                  const email = associate._associate[0]._primaryemail[0].email;
+                    map.set(email, { name, email });
+                }
+              });
+              return accum;
+            }, []);
+            const admins = Array.from(map.values());
+
+              this.setState({ accounts, admins, isLoading: false });
           }
         });
     });
