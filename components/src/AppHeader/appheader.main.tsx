@@ -219,7 +219,6 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
       appModalLoginLinks,
     } = this.props;
     const availability = Boolean(cartData);
-    console.log(headerLogo)
     return [
       <header key="app-header" className="app-header">
         <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
