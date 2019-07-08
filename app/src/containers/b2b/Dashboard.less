@@ -127,6 +127,22 @@
     .mobile-table-title {
       display: none;
     }
+    .icons-status {
+      @size: 14px;
+      display: inline-block;
+      width: @size;
+      height: @size;
+      background-repeat: no-repeat;
+      background-size: contain;
+      vertical-align: sub;
+      margin: 0 6px 1px 0;
+      &.enabled {
+        background-image: url('../../images/icons/check-circle.svg');
+      }
+      &.disabled {
+        background-image: url('../../images/icons/remove-circle.svg');
+      }
+    }
     .arrow-btn {
       position: relative;
       height: 16px;

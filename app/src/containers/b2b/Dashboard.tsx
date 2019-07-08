@@ -306,7 +306,10 @@ export default class Dashboard extends React.Component<DashboardState> {
                                 <tr key={account.externalId}>
                                     <td className="name">{account.name}</td>
                                     <td className="external-id">{account.externalId}</td>
-                                    <td className="status">{intl.get(account.status)}</td>
+                                    <td className="status">
+                                      <i className={`icons-status ${account.status.toLowerCase()}`} />
+                                      {intl.get(account.status)}
+                                    </td>
                                     <td className="arrow">
                                         <button className="arrow-btn"></button>
                                     </td>
