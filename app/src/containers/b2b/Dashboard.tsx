@@ -34,8 +34,8 @@ interface DashboardState {
     defaultBillingAddress: any,
     defaultShippingAddress: any,
     recentOrders: any,
-    accounts: any
-
+    accounts: any,
+    searchAccounts: string,
 }
 
 const accountsZoomArray = [
@@ -64,6 +64,8 @@ export default class Dashboard extends React.Component<DashboardState> {
     super(props);
     this.state = {
       isLoading: true,
+      noSearchResults: false,
+      showSearchLoader: false,
       defaultBillingAddress: {
         name: 'Inez Larson',
         address: '198 Bendar Knoll',
@@ -112,8 +114,16 @@ export default class Dashboard extends React.Component<DashboardState> {
       ],
       accounts: [],
       admins: [],
+      searchAccounts: '',
     };
     this.getAdminData();
+    this.setSearchAccounts = this.setSearchAccounts.bind(this);
+    this.getSearchAccounts = this.getSearchAccounts.bind(this);
+    this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
+  }
+
+  setSearchAccounts(event) {
+    this.setState({ searchAccounts: event.target.value });
   }
 
   getAdminData() {
@@ -147,10 +157,64 @@ export default class Dashboard extends React.Component<DashboardState> {
             }, []);
             const admins = Array.from(map.values());
 
-              this.setState({ accounts, admins, isLoading: false });
+              this.setState({ accounts, admins, isLoading: false, noSearchResults: false });
           }
         });
     });
+  }
+
+  getSearchAccounts() {
+    const { searchAccounts } = this.state;
+    this.setState({ showSearchLoader: true });
+    login().then(() => {
+        adminFetch('/accounts/am/search/form?followlocation&format=standardlinks,zoom.nodatalinks', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+            },
+            body: JSON.stringify({ keywords: searchAccounts, page: "1", 'page-size': "10" }),
+        })
+            .then(data => data.json())
+            .then(data => {
+                adminFetch(`${data.self.uri}?zoom=element,element:statusinfo:status`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+                    }
+                })
+                    .then(searchResult => searchResult.json())
+                    .then(searchResult => {
+                        if (searchResult && searchResult._element) {
+                            const accounts = searchResult._element.map(account => {
+                                return {
+                                    name: account.name,
+                                    externalId: account['external-id'],
+                                    status: account._statusinfo[0]._status[0].status.toLowerCase(),
+                                }
+                            });
+                            this.setState({ accounts, showSearchLoader: false, noSearchResults: false });
+                        } else {
+                            this.setState({ showSearchLoader: false, noSearchResults: true })
+                        }
+                    })
+                    .catch((error) => {
+                        // eslint-disable-next-line no-console
+                        console.error(error.message);
+                    });
+            })
+            .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
+            });
+    });
+
+  }
+
+  handleEnterKeyPress(e) {
+      if(e.keyCode == 13){
+          this.getSearchAccounts();
+      }
   }
 
 
@@ -161,7 +225,10 @@ export default class Dashboard extends React.Component<DashboardState> {
           defaultShippingAddress,
           recentOrders,
           accounts,
-          isLoading
+          isLoading,
+          searchAccounts,
+          showSearchLoader,
+          noSearchResults,
       } = this.state;
 
       return (
@@ -280,11 +347,14 @@ export default class Dashboard extends React.Component<DashboardState> {
                     <div className="section-header">
                         <div className="section-title">{intl.get('accounts')}</div>
                         <div className="section-header-right">
-                            <Link to="/">{intl.get('view-all')}</Link>
+                            <div className="accounts-search">
+                                <input type="text" placeholder={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
+                                {showSearchLoader && <div className="miniLoader" />}
+                            </div>
                         </div>
                     </div>
                     <div className="section-content">
-                        <table className="b2b-table accounts-table">
+                        { !noSearchResults ? (<table className="b2b-table accounts-table">
                             <thead>
                             <tr>
                                 <th className="name">
@@ -316,7 +386,7 @@ export default class Dashboard extends React.Component<DashboardState> {
                                 </tr>
                             ))}
                             </tbody>
-                        </table>
+                        </table>) : <p className="no-results">{intl.get('no-results-found')}</p>}
                     </div>
                 </div>
               </div>

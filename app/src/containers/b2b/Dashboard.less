@@ -82,6 +82,9 @@
   }
   .accounts {
     margin-bottom: 100px;
+    .section-header {
+      align-items: center;
+    }
     .section-content {
       .accounts-table {
         td.name {
@@ -182,5 +185,37 @@
         display: none;
       }
     }
+  }
+  .accounts-search {
+    position: relative;
+    margin-bottom: 10px;
+    input {
+      height: 32px;
+      width: 250px;
+      padding: 0 30px;
+      font-size: 14px;
+      line-height: 18px;
+      color: #777777;
+      border: 1px solid #D4D3D3;
+      border-radius: 4px;
+      background: #ffffff00 url('../../images/header-icons/search_icon.svg') no-repeat 10px center;
+      outline: 0 auto transparent;
+      @media (max-width: 480px) {
+        width: 150px;
+      }
+    }
+    .miniLoader {
+      width: 20px;
+      height: 20px !important;
+      border-width: 5px;
+      position: absolute;
+      top: -5px;
+      right: 5px;
+    }
+  }
+  .no-results {
+    font-size: 14px;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
   }
 }
