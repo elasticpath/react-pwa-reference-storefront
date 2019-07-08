@@ -27,7 +27,7 @@ import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
 import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
-import * as headerLogo from '../images/site-images/Company-Logo-v2.png';
+import headerLogo from '../images/site-images/Company-Logo-v2.svg';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 
@@ -37,7 +37,7 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-const headerLogoFileName = 'Company-Logo-v2.png';
+const headerLogoFileName = 'Company-Logo-v2.svg';
 interface AppHeaderMainProps {
   onSearchPage: (...args: any[]) => any,
     redirectToMainPage: (...args: any[]) => any,
