@@ -19,7 +19,7 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import geographiesCortexResponse from './MockHttpResponses/geographies_cortex_response.json';
+import fetchGeoDataResponse from './MockHttpResponses/fetchGeoData_response.json';
 import fetchAddressFormResponse from './MockHttpResponses/fetchAddressForm_response.json';
 import profileAddressResponse from './MockHttpResponses/profile_address_response.json';
 import publicUserAuthenticationResponse from './MockHttpResponses/public_user_authentication_response.json';
@@ -36,7 +36,7 @@ export function mockCountryDataAPI() {
     .mock(
       /* eslint-disable max-len */
       '/cortex/geographies/vestri/countries/?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element',
-      geographiesCortexResponse,
+      fetchGeoDataResponse,
     )
     .mock(
       '/cortex/?zoom=defaultprofile:addresses:addressform',
