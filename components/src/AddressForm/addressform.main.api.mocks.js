@@ -18,7 +18,7 @@
  *
  *
  */
-import fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock/es5/client';
 import geographiesCortexResponse from './MockHttpResponses/geographies_cortex_response.json';
 import defaultCartResponse from './MockHttpResponses/default_cart_response.json';
 import profileAddressResponse from './MockHttpResponses/profile_address_response.json';
@@ -28,6 +28,7 @@ import publicUserAuthenticationResponse from './MockHttpResponses/public_user_au
 
 export function mockCountryDataAPI() {
   fetchMock
+    .restore()
     .mock(
       '/cortex/oauth2/tokens',
       publicUserAuthenticationResponse,
@@ -44,6 +45,5 @@ export function mockCountryDataAPI() {
     .mock(
       '/cortex/addresses/vestri/test',
       profileAddressResponse,
-    )
-    .restore();
+    );
 }
