@@ -1,0 +1,86 @@
+{
+	"self": {
+		"type": "elasticpath.collections.links",
+		"uri": "/?zoom=defaultprofile:addresses:addressform",
+		"href": "https://vestri.us.epdemos.com/cortex/?zoom=defaultprofile:addresses:addressform"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "defaultcart",
+		"type": "carts.default-cart",
+		"uri": "/carts/vestri_b2c/default",
+		"href": "https://vestri.us.epdemos.com/cortex/carts/vestri_b2c/default"
+	}, {
+		"rel": "data-policies",
+		"type": "datapolicies.data-policies",
+		"uri": "/datapolicies/vestri_b2c",
+		"href": "https://vestri.us.epdemos.com/cortex/datapolicies/vestri_b2c"
+	}, {
+		"rel": "countries",
+		"type": "geographies.countries",
+		"uri": "/geographies/vestri_b2c/countries",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries"
+	}, {
+		"rel": "lookups",
+		"type": "lookups.lookups",
+		"uri": "/lookups/vestri_b2c",
+		"href": "https://vestri.us.epdemos.com/cortex/lookups/vestri_b2c"
+	}, {
+		"rel": "navigations",
+		"type": "navigations.navigations",
+		"uri": "/navigations/vestri_b2c",
+		"href": "https://vestri.us.epdemos.com/cortex/navigations/vestri_b2c"
+	}, {
+		"rel": "defaultprofile",
+		"type": "profiles.default-profile",
+		"uri": "/profiles/vestri_b2c/default",
+		"href": "https://vestri.us.epdemos.com/cortex/profiles/vestri_b2c/default"
+	}, {
+		"rel": "newaccountform",
+		"type": "registrations.new-account-registration-form",
+		"uri": "/registrations/vestri_b2c/newaccount/form",
+		"href": "https://vestri.us.epdemos.com/cortex/registrations/vestri_b2c/newaccount/form"
+	}, {
+		"rel": "searches",
+		"type": "searches.searches",
+		"uri": "/searches/vestri_b2c",
+		"href": "https://vestri.us.epdemos.com/cortex/searches/vestri_b2c"
+	}, {
+		"rel": "defaultwishlist",
+		"type": "wishlists.default-wishlist",
+		"uri": "/wishlists/vestri_b2c/default",
+		"href": "https://vestri.us.epdemos.com/cortex/wishlists/vestri_b2c/default"
+	}],
+	"_defaultprofile": [{
+		"_addresses": [{
+			"_addressform": [{
+				"self": {
+					"type": "addresses.address-form",
+					"uri": "/addresses/vestri_b2c/form",
+					"href": "https://vestri.us.epdemos.com/cortex/addresses/vestri_b2c/form"
+				},
+				"messages": [],
+				"links": [{
+					"rel": "createaddressaction",
+					"type": "addresses.address-form",
+					"uri": "/addresses/vestri_b2c/form",
+					"href": "https://vestri.us.epdemos.com/cortex/addresses/vestri_b2c/form"
+				}],
+				"address": {
+					"country-name": "",
+					"extended-address": "",
+					"locality": "",
+					"organization": "",
+					"phone-number": "",
+					"postal-code": "",
+					"region": "",
+					"street-address": ""
+				},
+				"name": {
+					"family-name": "",
+					"given-name": ""
+				}
+			}]
+		}]
+	}]
+}

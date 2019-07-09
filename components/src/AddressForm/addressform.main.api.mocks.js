@@ -20,7 +20,7 @@
  */
 import fetchMock from 'fetch-mock/es5/client';
 import geographiesCortexResponse from './MockHttpResponses/geographies_cortex_response.json';
-import defaultCartResponse from './MockHttpResponses/default_cart_response.json';
+import fetchAddressFormResponse from './MockHttpResponses/fetchAddressForm_response.json';
 import profileAddressResponse from './MockHttpResponses/profile_address_response.json';
 import publicUserAuthenticationResponse from './MockHttpResponses/public_user_authentication_response.json';
 
@@ -40,7 +40,7 @@ export function mockCountryDataAPI() {
     )
     .mock(
       '/cortex/?zoom=defaultprofile:addresses:addressform',
-      defaultCartResponse,
+      fetchAddressFormResponse,
     )
     .mock(
       '/cortex/addresses/vestri/test',
