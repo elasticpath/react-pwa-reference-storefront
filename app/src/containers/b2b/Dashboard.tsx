@@ -241,7 +241,7 @@ export default class Dashboard extends React.Component<DashboardState> {
                             <div className="section-title">{intl.get('admins')}</div>
                         </div>
                         <div className="section-content">
-                            {admins.map(admin => (
+                            {admins.slice(0, 2).map(admin => (
                                 <div key={admin.email} className="user-info">
                                     <div className="user-icon">
                                         <img src={userIcon} alt="" />
@@ -381,7 +381,7 @@ export default class Dashboard extends React.Component<DashboardState> {
                                       {intl.get(account.status)}
                                     </td>
                                     <td className="arrow">
-                                        <button className="arrow-btn"></button>
+                                        <Link to="/b2b/account" className="arrow-btn" />
                                     </td>
                                 </tr>
                             ))}

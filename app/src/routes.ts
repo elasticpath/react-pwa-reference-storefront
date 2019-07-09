@@ -43,6 +43,7 @@ import ChangePasswordForm from './containers/ChangePasswordPage';
 import ResetPasswordForm from './containers/ResetPasswordPage';
 import B2BMain from './containers/b2b/B2BMain';
 import Dashboard from './containers/b2b/Dashboard';
+import AccountMain from './containers/b2b/AccountMain';
 
 const router = [{
   path: '/',
@@ -133,6 +134,9 @@ const router = [{
 }, {
   path: '/password_reset',
   component: ResetPasswordForm,
+}, {
+  path: '/b2b/account',
+  component: AccountMain,
 }, {
   path: '/b2b',
   component: B2BMain,

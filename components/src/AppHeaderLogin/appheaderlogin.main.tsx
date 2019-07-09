@@ -222,8 +222,12 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                                     ) : ('')
                                     }
                                     <ul className="login-cart-list">
-                                        <li className="dropdown-item">
-                                            <Link to="/b2b">{intl.get('admin')}</Link>
+                                        <li>
+                                            <Link className="cart-select-btn" to="/b2b">
+                                                <button className="dropdown-item" type="button">
+                                                    <span className="cart-select-btn">{intl.get('admin')}</span>
+                                                </button>
+                                            </Link>
                                         </li>
                                         <li>
                                             <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>

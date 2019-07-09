@@ -10,7 +10,8 @@
     "lib": [
       "es5",
       "es2015",
-      "dom"
+      "dom",
+      "es6"
     ],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
