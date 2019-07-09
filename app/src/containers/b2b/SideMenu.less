@@ -1,3 +1,5 @@
+@import '../../theme/common.less';
+
 .side-menu-component {
   position: relative;
   .menu-item {
@@ -8,12 +10,12 @@
     font-size: 13px;
     margin-bottom: 10px;
     border-left: 3px solid transparent;
-    color: #333 !important;
+    color: @mainTextColor !important;
     text-decoration: none;
     &.selected {
       font-weight: bold;
-      color: #40b1f3 !important;
-      border-left: 3px solid #0099de;
+      color: @mainBlueColor !important;
+      border-left: 3px solid @generalizedBlueColor;
     }
   }
   &-title {
@@ -23,9 +25,9 @@
     min-height: 50px;
     padding: 0 25px;
     background: transparent;
-    border: 1px solid #CCCCCC;
-    border-left: 3px solid #0099de;
-    color: #0099de;
+    border: 1px solid @borderColor;
+    border-left: 3px solid @generalizedBlueColor;
+    color: @generalizedBlueColor;
     font-weight: bold;
     text-align: left;
     &:focus {
@@ -33,8 +35,8 @@
     }
     &:before {
       content: "";
-      border-bottom: 2px solid #40b1f3;
-      border-right: 2px solid #40b1f3;
+      border-bottom: 2px solid @mainBlueColor;
+      border-right: 2px solid @mainBlueColor;
       height: 8px;
       width: 8px;
       position: absolute;
@@ -52,8 +54,8 @@
       position: absolute;
       top: 100%;
       left: 0;
-      background: #ffffff;
-      border: 1px solid #CCCCCC;
+      background: @backgroundColor;
+      border: 1px solid @borderColor;
       &.hidden {
         display: none;
       }

@@ -38,7 +38,7 @@
           }
           .user-name {
             font-size: 13px;
-            color: #777;
+            color: @darkTextColor;
           }
         }
       }
@@ -57,7 +57,7 @@
           }
           .address-content {
             font-size: 13px;
-            color: #777;
+            color: @darkTextColor;
           }
         }
       }
@@ -75,7 +75,7 @@
       .recent-orders-table {
         td.order-id {
           font-weight: bold;
-          color: #40b1f3;
+          color: @mainBlueColor;
         }
       }
     }
@@ -155,8 +155,8 @@
       background: transparent;
       &:before {
         content: "";
-        border-top: 2px solid #cccccc;
-        border-right: 2px solid #cccccc;
+        border-top: 2px solid @borderColor;
+        border-right: 2px solid @borderColor;
         height: 9px;
         width: 9px;
         position: absolute;
@@ -196,10 +196,10 @@
       padding: 0 30px;
       font-size: 14px;
       line-height: 18px;
-      color: #777777;
-      border: 1px solid #D4D3D3;
+      color: @darkTextColor;
+      border: 1px solid @lightBorderColor;
       border-radius: 4px;
-      background: #ffffff00 url('../../images/header-icons/search_icon.svg') no-repeat 10px center;
+      background: @backgroundColor url('../../images/header-icons/search_icon.svg') no-repeat 10px center;
       outline: 0 auto transparent;
       @media (max-width: 480px) {
         width: 150px;

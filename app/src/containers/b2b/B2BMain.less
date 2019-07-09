@@ -6,13 +6,13 @@
     padding-top: 50px;
   }
   a {
-    color: #40b1f3 !important;
+    color: @mainBlueColor !important;
   }
   .container {
     position: relative;
   }
   .b2b-section {
-    border: 1px solid #ccc;
+    border: 1px solid @borderColor;
     padding: 15px 15px 20px;
     @media (min-width: 576px) {
       padding: 20px 20px 30px;
@@ -42,11 +42,11 @@
   .b2b-table {
     width: 100%;
     thead {
-      background-color: #f7f7f7;
+      background-color: @tableBackgroundColor;
       th {
         padding: 5px;
         vertical-align: middle;
-        color: #777;
+        color: @darkTextColor;
         @media (min-width: 576px) {
           height: 50px;
           padding: 0 10px;
@@ -58,7 +58,7 @@
       }
     }
     tr {
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid @tableBorderColor;
       @media (min-width: 576px) {
         height: 50px;
       }
@@ -134,7 +134,7 @@
     font-size: 20px;
     padding-right: 25px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #e9edf0;
+    border-bottom: 1px solid @lightBorderColor;
   }
   .dialog-content {
     flex: 1 0 auto;
@@ -143,15 +143,15 @@
       padding-top: 20px;
       padding-bottom: 10px;
       font-weight: bold;
-      color: #777;
+      color: @darkTextColor;
       a {
-        color: #40b1f3;
+        color: @mainBlueColor;
       }
     }
     .upload-title {
       padding-top: 20px;
       padding-bottom: 20px;
-      color: #777;
+      color: @darkTextColor;
     }
     .chose-btn {
       display: none;
@@ -159,9 +159,9 @@
     @width: 150px;
     @margin: 24px;
     .chose-btn-label {
-      border: 1px solid #ccc;
+      border: 1px solid @borderColor;
       cursor: pointer;
-      color: #333333;
+      color: @mainTextColor;
       font-weight: bold;
       padding: 6px 17px;
       width: @width;
@@ -170,7 +170,7 @@
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
 
       &:hover {
-        background-color: #f2f2f2;
+        background-color: @complimentGrey;
       }
     }
     .chose-btn-message {
@@ -198,26 +198,26 @@
         width: 133px;
       }
       &.cancel {
-        color: #40b1f3;
+        color: @mainBlueColor;
         margin-right: 10px;
         @media (min-width: 576px) {
           margin-right: 20px;
         }
         &:hover {
-          color: lighten(#0099de, 3%);
+          color: lighten(@generalizedBlueColor, 3%);
         }
         &:active {
-          color: lighten(#0099de, -3%);
+          color: lighten(@generalizedBlueColor, -3%);
         }
       }
       &.upload {
-        background-color: #40b1f3;
-        color: #fff;
+        background-color: @mainBlueColor;
+        color: @backgroundColor;
         &:hover {
-          background-color: lighten(#40b1f3, 3%);
+          background-color: lighten(@mainBlueColor, 3%);
         }
         &:active {
-          background-color: lighten(#40b1f3, -5%);
+          background-color: lighten(@mainBlueColor, -5%);
         }
       }
     }
