@@ -4,14 +4,13 @@ import { mockAddressFormSubmitSuccess, mockAddressFormSubmitFailure } from './ad
 
 import AddressFormMain from './addressform.main';
 
-const addressData = {
-  address: '/addresses/vestri_b2c',
-  returnPage: '/profile'
-}
-
 storiesOf('AddressFormMain', module)
   .add('AddressFormMain edit mode', () => {
     mockAddressFormSubmitSuccess();
+    const addressData = {
+      address: '/addresses/vestri_b2c',
+      returnPage: '/profile'
+    }
     return <AddressFormMain addressData={addressData}/>
   })
   .add('AddressFormMain Submit Success', () => {
