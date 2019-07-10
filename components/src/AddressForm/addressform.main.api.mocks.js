@@ -19,10 +19,11 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import fetchGeoDataResponse from './MockHttpResponses/fetchGeoData_response.json';
-import fetchAddressFormResponse from './MockHttpResponses/fetchAddressForm_response.json';
-import profileAddressResponse from './MockHttpResponses/profile_address_response.json';
-import publicUserAuthenticationResponse from './MockHttpResponses/public_user_authentication_response.json';
+import fetchGeoDataResponse from './MockHttpResponses/GET/fetchGeoData_response.json';
+import fetchAddressFormResponse from './MockHttpResponses/GET/fetchAddressForm_response.json';
+import fetchAddressDataResponse from './MockHttpResponses/GET/fetchAddressData_response.json';
+import loginResponse from './MockHttpResponses/POST/login_response.json';
+import submitAddressResponse from './MockHttpResponses/POST/submitAddress_response.json';
 
 // TODO: Need to check that the request contains a particular body.
 
@@ -31,7 +32,7 @@ export function mockCountryDataAPI() {
     .restore()
     .mock(
       '/cortex/oauth2/tokens',
-      publicUserAuthenticationResponse,
+      loginResponse,
     )
     .mock(
       /* eslint-disable max-len */
@@ -44,6 +45,10 @@ export function mockCountryDataAPI() {
     )
     .mock(
       '/cortex/addresses/vestri/test',
-      profileAddressResponse,
+      fetchAddressDataResponse,
+    )
+    .mock(
+      '/cortex/addresses/vestri_b2c/form?followlocation',
+      submitAddressResponse
     );
 }
