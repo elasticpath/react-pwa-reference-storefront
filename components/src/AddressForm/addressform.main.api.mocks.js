@@ -35,7 +35,7 @@ function mockLoginResponse(mockObj) {
 function mockCountriesResponse(mockObj) {
   mockObj.get(
     /* eslint-disable max-len */
-    /\/cortex\/geographies\/(.*)\/countries\/\?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element/,
+    /\/cortex\/geographies\/[a-zA-Z0-9]*\/countries\/\?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element/,
     fetchGeoDataResponse,
   );
 }
@@ -49,7 +49,7 @@ function mockAddressFormResponse(mockObj) {
 
 function mockAddressDataResponse(mockObj) {
   mockObj.get(
-    /(.*)\/cortex\/addresses\/(.*)/,
+    /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
     fetchAddressDataResponse,
   );
 }
@@ -57,11 +57,11 @@ function mockAddressDataResponse(mockObj) {
 function mockSubmitAddressResponseSuccessResponse(mockObj) {
   mockObj
     .put(
-      /(.*)\/cortex\/addresses\/(.*)/,
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
       submitAddressResponse
     )
     .post(
-      /(.*)\/cortex\/addresses\/(.*)/,
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
       submitAddressResponse
     );
 }
@@ -69,11 +69,11 @@ function mockSubmitAddressResponseSuccessResponse(mockObj) {
 function mockSubmitAddressResponseFailureResponse(mockObj) {
   mockObj
     .put(
-      /(.*)\/cortex\/addresses\/(.*)/,
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
       400
     )
     .post(
-      /(.*)\/cortex\/addresses\/(.*)/,
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
       400
     );
 }
