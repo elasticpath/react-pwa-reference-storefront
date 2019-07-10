@@ -35,7 +35,7 @@ function mockLoginResponse(mockObj) {
 function mockCountriesResponse(mockObj) {
   mockObj.get(
     /* eslint-disable max-len */
-    '/cortex/geographies/vestri/countries/?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element',
+    /\/cortex\/geographies\/(.*)\/countries\/\?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element/,
     fetchGeoDataResponse,
   );
 }
@@ -49,7 +49,7 @@ function mockAddressFormResponse(mockObj) {
 
 function mockAddressDataResponse(mockObj) {
   mockObj.get(
-    '/cortex/addresses/vestri_b2c',
+    /(.*)\/cortex\/addresses\/(.*)/,
     fetchAddressDataResponse,
   );
 }
@@ -57,11 +57,11 @@ function mockAddressDataResponse(mockObj) {
 function mockSubmitAddressResponseSuccessResponse(mockObj) {
   mockObj
     .put(
-      'path:/cortex/addresses/vestri_b2c',
+      /(.*)\/cortex\/addresses\/(.*)/,
       submitAddressResponse
     )
     .post(
-      'path:/cortex/addresses/vestri_b2c/form',
+      /(.*)\/cortex\/addresses\/(.*)/,
       submitAddressResponse
     );
 }
@@ -69,11 +69,11 @@ function mockSubmitAddressResponseSuccessResponse(mockObj) {
 function mockSubmitAddressResponseFailureResponse(mockObj) {
   mockObj
     .put(
-      'path:/cortex/addresses/vestri_b2c',
+      /(.*)\/cortex\/addresses\/(.*)/,
       400
     )
     .post(
-      'path:/cortex/addresses/vestri_b2c/form',
+      /(.*)\/cortex\/addresses\/(.*)/,
       400
     );
 }
