@@ -25,30 +25,64 @@ import fetchAddressDataResponse from './MockHttpResponses/GET/fetchAddressData_r
 import loginResponse from './MockHttpResponses/POST/login_response.json';
 import submitAddressResponse from './MockHttpResponses/POST/submitAddress_response.json';
 
-// TODO: Need to check that the request contains a particular body.
+function mockLoginResponse(mockObj) {
+  mockObj.mock(
+    '/cortex/oauth2/tokens',
+    loginResponse,
+  );
+}
 
-export function mockCountryDataAPI() {
-  fetchMock
-    .restore()
-    .mock(
-      '/cortex/oauth2/tokens',
-      loginResponse,
-    )
-    .mock(
-      /* eslint-disable max-len */
-      '/cortex/geographies/vestri/countries/?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element',
-      fetchGeoDataResponse,
-    )
-    .mock(
-      '/cortex/?zoom=defaultprofile:addresses:addressform',
-      fetchAddressFormResponse,
-    )
-    .mock(
-      '/cortex/addresses/vestri/test',
-      fetchAddressDataResponse,
-    )
-    .mock(
-      '/cortex/addresses/vestri_b2c/form?followlocation',
-      submitAddressResponse
-    );
+function mockCountriesResponse(mockObj) {
+  mockObj.mock(
+    /* eslint-disable max-len */
+    '/cortex/geographies/vestri/countries/?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element',
+    fetchGeoDataResponse,
+  );
+}
+
+function mockAddressFormResponse(mockObj) {
+  mockObj.mock(
+    '/cortex/?zoom=defaultprofile:addresses:addressform',
+    fetchAddressFormResponse,
+  )
+}
+
+function mockAddressDataResponse(mockObj) {
+  mockObj.mock(
+    '/cortex/addresses/vestri/test',
+    fetchAddressDataResponse,
+  );
+}
+
+function mockSubmitAddressResponseSuccessResponse(mockObj) {
+  mockObj.mock(
+    'path:/cortex/addresses/vestri_b2c/form',
+    submitAddressResponse
+  );
+}
+
+function mockSubmitAddressResponseFailureResponse(mockObj) {
+  mockObj.mock(
+    'path:/cortex/addresses/vestri_b2c/form',
+    400
+  );
+}
+
+function mockCommonAddressFormResponses(mockObj) {
+    mockLoginResponse(mockObj);
+    mockCountriesResponse(mockObj);
+    mockAddressFormResponse(mockObj);
+    mockAddressDataResponse(mockObj);
+}
+
+export function mockAddressFormSubmitSuccess() {
+    fetchMock.restore();
+    mockCommonAddressFormResponses(fetchMock);
+    mockSubmitAddressResponseSuccessResponse(fetchMock);
+}
+
+export function mockAddressFormSubmitFailure() {
+  fetchMock.restore();
+  mockCommonAddressFormResponses(fetchMock);
+  mockSubmitAddressResponseFailureResponse(fetchMock);
 }
