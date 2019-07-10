@@ -5,7 +5,7 @@ import { mockAddressFormSubmitSuccess, mockAddressFormSubmitFailure } from './ad
 import AddressFormMain from './addressform.main';
 
 const addressData = {
-  address: '/addresses/vestri/test',
+  address: '/addresses/vestri_b2c',
   returnPage: '/profile'
 }
 

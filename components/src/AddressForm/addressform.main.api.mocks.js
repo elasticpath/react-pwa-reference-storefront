@@ -26,14 +26,14 @@ import loginResponse from './MockHttpResponses/POST/login_response.json';
 import submitAddressResponse from './MockHttpResponses/POST/submitAddress_response.json';
 
 function mockLoginResponse(mockObj) {
-  mockObj.mock(
+  mockObj.post(
     '/cortex/oauth2/tokens',
     loginResponse,
   );
 }
 
 function mockCountriesResponse(mockObj) {
-  mockObj.mock(
+  mockObj.get(
     /* eslint-disable max-len */
     '/cortex/geographies/vestri/countries/?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element',
     fetchGeoDataResponse,
@@ -41,31 +41,41 @@ function mockCountriesResponse(mockObj) {
 }
 
 function mockAddressFormResponse(mockObj) {
-  mockObj.mock(
+  mockObj.get(
     '/cortex/?zoom=defaultprofile:addresses:addressform',
     fetchAddressFormResponse,
   )
 }
 
 function mockAddressDataResponse(mockObj) {
-  mockObj.mock(
-    '/cortex/addresses/vestri/test',
+  mockObj.get(
+    '/cortex/addresses/vestri_b2c',
     fetchAddressDataResponse,
   );
 }
 
 function mockSubmitAddressResponseSuccessResponse(mockObj) {
-  mockObj.mock(
-    'path:/cortex/addresses/vestri_b2c/form',
-    submitAddressResponse
-  );
+  mockObj
+    .put(
+      'path:/cortex/addresses/vestri_b2c',
+      submitAddressResponse
+    )
+    .post(
+      'path:/cortex/addresses/vestri_b2c/form',
+      submitAddressResponse
+    );
 }
-
+// Should change the put request.
 function mockSubmitAddressResponseFailureResponse(mockObj) {
-  mockObj.mock(
-    'path:/cortex/addresses/vestri_b2c/form',
-    400
-  );
+  mockObj
+    .put(
+      'path:/cortex/addresses/vestri_b2c',
+      400
+    )
+    .post(
+      'path:/cortex/addresses/vestri_b2c/form',
+      400
+    );
 }
 
 function mockCommonAddressFormResponses(mockObj) {
