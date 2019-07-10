@@ -65,7 +65,7 @@ function mockSubmitAddressResponseSuccessResponse(mockObj) {
       submitAddressResponse
     );
 }
-// Should change the put request.
+
 function mockSubmitAddressResponseFailureResponse(mockObj) {
   mockObj
     .put(
