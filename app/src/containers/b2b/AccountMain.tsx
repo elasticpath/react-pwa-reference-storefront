@@ -107,7 +107,7 @@ export default class AccountMain extends React.Component {
                 <div key="account-header" className="account-header">
                 <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
                   <div className="name-container">
-                    <Link className="back-link-mobile" to="/"><div className="back-arrow" />{intl.get('back')}</Link>
+                    <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
                     <div className="name">{legalName}
                         <span className="status">
                             <i className={`icons-status ${status.toLowerCase()}`} />
