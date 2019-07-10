@@ -1,0 +1,169 @@
+@import './../../theme/common.less';
+
+  .account-component {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .account-header {
+      flex: 0 0 auto;
+      padding: 20px 0px 10px;
+
+      @media (max-width: @tabletWidth - 1px) {
+        display: flex;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        padding: 16px 15px;
+      }
+
+      .back-link {
+        font-weight: bold;
+        color: @generalizedBlueColor;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        .back-arrow {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          background: url('../../images/icons/outline-chevron_left-24px.svg') no-repeat;
+        }
+
+        @media (max-width: @tabletWidth - 1px) {
+          display: none;
+        }
+      }
+
+      .name-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .back-link-mobile {
+          font-weight: bold;
+          flex: 0 1 auto;
+          display: flex;
+          align-items: center;
+          margin-right: 20px;
+
+          .back-arrow {
+            width: 24px;
+            height: 24px;
+            background: url('../../images/icons/outline-chevron_left-24px.svg') no-repeat;
+          }
+
+          @media (min-width: @tabletWidth) {
+            display: none;
+          }
+        }
+
+        .name {
+          margin-left: 5px;
+          flex: 1 0 auto;
+          font-weight: bold;
+          font-size: 24px;
+          margin-right: 10px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          @media (max-width: @tabletWidth - 1px) {
+            font-size: 16px;
+          }
+
+          @media (max-width: @mobileWidth - 1px) {
+            display: flex;
+            justify-content: center;
+          }
+
+          .status {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            letter-spacing: normal;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333333;
+            vertical-align: middle;
+            margin-left: 10px;
+          }
+        }
+
+        .status {
+          flex: 1 1 0;
+
+          .status-icon {
+            margin-right: 6px;
+
+            &.enabled {
+              color: #66ce66;
+            }
+
+            &.disabled {
+              color: #888;
+            }
+          }
+
+          .status-title {
+            @media (max-width: @mobileWidth - 1px) {
+              display: none;
+            }
+          }
+        }
+
+        .settings {
+          display: flex;
+          align-items: center;
+          color: @mainColor;
+          cursor: pointer;
+
+          .setting-icons {
+            font-size: 16px;
+            margin-right: 6px;
+            width: 20px;
+            height: 20px;
+            background: url('../../images/icons/round-settings-20px.svg') no-repeat;
+
+            @media (max-width: @mobileWidth - 1px) {
+              font-size: 22px;
+              margin-right: 0px;
+            }
+          }
+
+          .settings-title {
+            font-weight: bold;
+            color: @generalizedBlueColor;
+            @media (max-width: @mobileWidth - 1px) {
+              display: none;
+            }
+          }
+        }
+
+        .icons-status {
+          @size: 14px;
+          display: inline-block;
+          width: @size;
+          height: @size;
+          background-repeat: no-repeat;
+          background-size: contain;
+          vertical-align: sub;
+          margin: 0 6px 1px 0;
+          &.enabled {
+            background-image: url('../../images/icons/check-circle.svg');
+          }
+          &.disabled {
+            background-image: url('../../images/icons/remove-circle.svg');
+          }
+        }
+      }
+    }
+  }
+
+@media (min-width: 1092px) {
+  .account-content-wrapper {
+    width: 960px;
+    margin: 0 auto;
+  }
+}

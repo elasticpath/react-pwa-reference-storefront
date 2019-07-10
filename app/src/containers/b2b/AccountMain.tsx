@@ -21,9 +21,13 @@
  */
 
 import * as React from 'react';
+import intl from "react-intl-universal";
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import * as Config from '../../ep.config.json';
+import { Link } from 'react-router-dom';
+
+import './AccountMain.less';
 
 const accountZoomArray = [
   "selfsignupinfo",
@@ -77,7 +81,7 @@ export default class AccountMain extends React.Component {
         .then(res => {
           this.setState({
             isLoading: false,
-            legalName: res['legal-name'],
+            legalName: res.name,
             status: res._statusinfo[0]._status[0].status,
             data: res
           })
@@ -91,14 +95,35 @@ export default class AccountMain extends React.Component {
     });
   }
 
-  render() {
-    const { isLoading, legalName, status } = this.state;
-    return (<div>
-      {isLoading ? (
-          <div className="loader" />
-        ) : (
-          <div>{legalName} {status}</div>
-        )}
-    </div>);
-  }
+    render() {
+        const { isLoading, legalName, status } = this.state;
+        console.log(legalName, status);
+        return (
+            <div className="account-content-wrapper">
+                {isLoading ? (
+                  <div className="loader" />
+                ) : (
+            <div className="account-component">
+                <div key="account-header" className="account-header">
+                <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
+                  <div className="name-container">
+                    <Link className="back-link-mobile" to="/"><div className="back-arrow" />{intl.get('back')}</Link>
+                    <div className="name">{legalName}
+                        <span className="status">
+                            <i className={`icons-status ${status.toLowerCase()}`} />
+                            {intl.get(status.toLowerCase())}
+                        </span>
+                    </div>
+                    <div className="settings" /*onClick={() => {this.handleAccountSettingsClicked()}}*/ >
+                      <div className="setting-icons" />
+                      <span className="settings-title">{intl.get('account-settings')}</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+                )}
+            </div>
+        );
+    }
+
 }
