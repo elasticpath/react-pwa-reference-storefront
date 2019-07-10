@@ -21,17 +21,84 @@
  */
 
 import * as React from 'react';
+import { adminFetch } from '../../utils/Cortex';
+import { login } from '../../utils/AuthService';
+import * as Config from '../../ep.config.json';
 
-
+const accountZoomArray = [
+  "selfsignupinfo",
+  "statusinfo",
+  "statusinfo:status",
+  "subaccounts",
+  "subaccounts:account",
+  "subaccounts:account:subaccounts",
+  "subaccounts:accountform",
+  "associateroleassignments",
+  "associateroleassignments:element",
+  "associateroleassignments:element:associate",
+  "associateroleassignments:element:associate:primaryemail",
+  "associateroleassignments:element:roleinfo",
+  "associateroleassignments:element:roleinfo:selector",
+  "associateroleassignments:element:roleinfo:selector:chosen",
+  "associateroleassignments:element:roleinfo:selector:chosen:description",
+  "associateroleassignments:element:roleinfo:selector:chosen:selectaction",
+  "associateroleassignments:element:roleinfo:selector:chosen:selector",
+  "associateroleassignments:element:roleinfo:selector:choice",
+  "associateroleassignments:element:roleinfo:selector:choice:description",
+  "associateroleassignments:element:roleinfo:selector:choice:selectaction",
+  "associateroleassignments:element:roleinfo:selector:choice:selector",
+  "associateroleassignments:element:roleinfo:roles",
+  "associateroleassignments:element:roleinfo:roles:element",
+  "associateroleassignments:associateform",
+  "associateroleassignments:associateform:addassociateaction",
+];
 
 export default class AccountMain extends React.Component {
-    constructor(props: any) {
-        super(props);
-    }
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      legalName: '',
+      status: '',
+      data: {}
+    };
+    this.getAccountData();
+  }
 
-    render() {
-        return (
-            <div><h1>Account</h1></div>
-        );
-    }
+  getAccountData() {
+    login().then(() => {
+      adminFetch(`/accounts/am/${this.props.match.params.uri}/?zoom=${accountZoomArray.join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        }
+      })
+        .then(res => res.json())
+        .then(res => {
+          this.setState({
+            isLoading: false,
+            legalName: res['legal-name'],
+            status: res._statusinfo[0]._status[0].status,
+            data: res
+          })
+        })
+        .catch(() => {
+          this.setState({ isLoading: false })
+        });
+    })
+    .catch(() => {
+      this.setState({ isLoading: false })
+    });
+  }
+
+  render() {
+    const { isLoading, legalName, status } = this.state;
+    return (<div>
+      {isLoading ? (
+          <div className="loader" />
+        ) : (
+          <div>{legalName} {status}</div>
+        )}
+    </div>);
+  }
 }

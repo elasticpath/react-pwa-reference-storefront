@@ -138,15 +138,20 @@ export default class Dashboard extends React.Component<DashboardState> {
         .then(res => {
           if (res && res._accounts) {
             const accounts = res._accounts[0]._element.map(account => {
+              const uri = account.self.uri.split('/').pop();
               return {
                 name: account.name,
                 externalId: account['external-id'],
                 status: account._statusinfo[0]._status[0].status.toLowerCase(),
+                uri
               }
             });
             let map = new Map();
             res._accounts[0]._element.reduce((accum, account) => {
-              account._associateroleassignments[0]._element.forEach(associate => {
+              const associates = account._associateroleassignments[0]._element;
+              if(!associates) return accum;
+
+              associates.forEach(associate => {
                 if (associate._roleinfo[0]._roles[0]._element[0].name === 'BUYER_ADMIN') {
                   const name = associate._associate[0].name;
                   const email = associate._associate[0]._primaryemail[0].email;
@@ -381,7 +386,7 @@ export default class Dashboard extends React.Component<DashboardState> {
                                       {intl.get(account.status)}
                                     </td>
                                     <td className="arrow">
-                                        <Link to="/b2b/account" className="arrow-btn" />
+                                        <Link to={`/b2b/account/${account.uri}`} className="arrow-btn" />
                                     </td>
                                 </tr>
                             ))}

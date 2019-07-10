@@ -135,7 +135,7 @@ const router = [{
   path: '/password_reset',
   component: ResetPasswordForm,
 }, {
-  path: '/b2b/account',
+  path: '/b2b/account/:uri',
   component: AccountMain,
 }, {
   path: '/b2b',
