@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router';
 import '../style/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/style.less';
-import { mockProductDisplayItemMain } from './productdisplayitem.main.api.mocks';
+import { mockProductDisplayItemMainPlain, mockProductDisplayItemMainColorAndSize} from './productdisplayitem.main.api.mocks';
 
 // Import custom required scripts
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -17,14 +17,13 @@ storiesOf('ProductDisplayItemMain', module)
     <MemoryRouter initialEntries={['/itemdetail']}>{story()}</MemoryRouter>
   ))
   .add('ProductDisplayItemMain Plain', () =>  {
-    mockProductDisplayItemMain();
+    mockProductDisplayItemMainPlain();
     return <ProductDisplayItemMain productId='83992' />
   })
   .add('ProductDisplayItemMain Color/size', () =>  {
-    mockProductDisplayItemMain();
+    mockProductDisplayItemMainColorAndSize();
     return <ProductDisplayItemMain productId='VESTRI_WORDMARK_FITTED_HAT_RD' />
   })
   .add('ProductDisplayItemMain Input', () =>  {
-    mockProductDisplayItemMain();
     return <ProductDisplayItemMain productId='250HR_PMKIT' />
   });
