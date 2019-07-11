@@ -1,0 +1,278 @@
+{
+	"self": {
+		"type": "items.item",
+		"uri": "/items/vestri_b2c/qgqvhjjyhazdama=?zoom=addtocartform,addtowishlistform,availability,code,definition,definition:assets:element,definition:components,definition:components:element,definition:components:element:code,definition:components:element:standaloneitem,definition:components:element:standaloneitem:availability,definition:components:element:standaloneitem:code,definition:components:element:standaloneitem:definition,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:crosssell:element:availability,recommendations:crosssell:element:code,recommendations:crosssell:element:definition,recommendations:crosssell:element:price,recommendations:recommendation,recommendations:recommendation:element:availability,recommendations:recommendation:element:code,recommendations:recommendation:element:definition,recommendations:recommendation:element:price,recommendations:replacement,recommendations:replacement:element:availability,recommendations:replacement:element:code,recommendations:replacement:element:definition,recommendations:replacement:element:price,recommendations:upsell,recommendations:upsell:element:availability,recommendations:upsell:element:code,recommendations:upsell:element:definition,recommendations:upsell:element:price,recommendations:warranty,recommendations:warranty:element:availability,recommendations:warranty:element:code,recommendations:warranty:element:definition,recommendations:warranty:element:price",
+		"href": "http://localhost:8080/cortex/items/vestri_b2c/qgqvhjjyhazdama=?zoom=addtocartform,addtowishlistform,availability,code,definition,definition:assets:element,definition:components,definition:components:element,definition:components:element:code,definition:components:element:standaloneitem,definition:components:element:standaloneitem:availability,definition:components:element:standaloneitem:code,definition:components:element:standaloneitem:definition,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:crosssell:element:availability,recommendations:crosssell:element:code,recommendations:crosssell:element:definition,recommendations:crosssell:element:price,recommendations:recommendation,recommendations:recommendation:element:availability,recommendations:recommendation:element:code,recommendations:recommendation:element:definition,recommendations:recommendation:element:price,recommendations:replacement,recommendations:replacement:element:availability,recommendations:replacement:element:code,recommendations:replacement:element:definition,recommendations:replacement:element:price,recommendations:upsell,recommendations:upsell:element:availability,recommendations:upsell:element:code,recommendations:upsell:element:definition,recommendations:upsell:element:price,recommendations:warranty,recommendations:warranty:element:availability,recommendations:warranty:element:code,recommendations:warranty:element:definition,recommendations:warranty:element:price"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "availability",
+		"rev": "item",
+		"type": "availabilities.availability-for-item",
+		"uri": "/availabilities/items/vestri_b2c/qgqvhjjyhazdama=",
+		"href": "http://localhost:8080/cortex/availabilities/items/vestri_b2c/qgqvhjjyhazdama="
+	}, {
+		"rel": "addtocartform",
+		"type": "carts.add-to-default-cart-form",
+		"uri": "/carts/items/vestri_b2c/qgqvhjjyhazdama=/form",
+		"href": "http://localhost:8080/cortex/carts/items/vestri_b2c/qgqvhjjyhazdama=/form"
+	}, {
+		"rel": "cartmemberships",
+		"type": "carts.read-cart-memberships",
+		"uri": "/carts/memberships/items/vestri_b2c/qgqvhjjyhazdama=",
+		"href": "http://localhost:8080/cortex/carts/memberships/items/vestri_b2c/qgqvhjjyhazdama="
+	}, {
+		"rel": "definition",
+		"rev": "item",
+		"type": "itemdefinitions.item-definition",
+		"uri": "/itemdefinitions/vestri_b2c/qgqvhjjyhazdama=",
+		"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qgqvhjjyhazdama="
+	}, {
+		"rel": "code",
+		"rev": "item",
+		"type": "items.code-for-item",
+		"uri": "/items/code/items/vestri_b2c/qgqvhjjyhazdama=",
+		"href": "http://localhost:8080/cortex/items/code/items/vestri_b2c/qgqvhjjyhazdama="
+	}, {
+		"rel": "offer",
+		"type": "offers.offer",
+		"uri": "/offers/vestri_b2c/qgqvbkchj5gemx2cifdq=",
+		"href": "http://localhost:8080/cortex/offers/vestri_b2c/qgqvbkchj5gemx2cifdq="
+	}, {
+		"rel": "price",
+		"rev": "item",
+		"type": "prices.price-for-item",
+		"uri": "/prices/items/vestri_b2c/qgqvhjjyhazdama=",
+		"href": "http://localhost:8080/cortex/prices/items/vestri_b2c/qgqvhjjyhazdama="
+	}, {
+		"rel": "appliedpromotions",
+		"rev": "item",
+		"type": "promotions.applied-promotions-for-item",
+		"uri": "/promotions/items/vestri_b2c/qgqvhjjyhazdama=/applied",
+		"href": "http://localhost:8080/cortex/promotions/items/vestri_b2c/qgqvhjjyhazdama=/applied"
+	}, {
+		"rel": "recommendations",
+		"type": "recommendations.item-recommendation-groups",
+		"uri": "/recommendations/items/vestri_b2c/qgqvhjjyhazdama=",
+		"href": "http://localhost:8080/cortex/recommendations/items/vestri_b2c/qgqvhjjyhazdama="
+	}, {
+		"rel": "addtowishlistform",
+		"type": "wishlists.add-item-to-wishlist-form",
+		"uri": "/wishlists/items/vestri_b2c/qgqvhjjyhazdama=/form",
+		"href": "http://localhost:8080/cortex/wishlists/items/vestri_b2c/qgqvhjjyhazdama=/form"
+	}, {
+		"rel": "wishlistmemberships",
+		"type": "wishlists.read-wishlist-memberships",
+		"uri": "/wishlists/memberships/items/vestri_b2c/qgqvhjjyhazdama=",
+		"href": "http://localhost:8080/cortex/wishlists/memberships/items/vestri_b2c/qgqvhjjyhazdama="
+	}],
+	"_addtocartform": [{
+		"self": {
+			"type": "carts.add-to-default-cart-form",
+			"uri": "/carts/items/vestri_b2c/qgqvhjjyhazdama=/form",
+			"href": "http://localhost:8080/cortex/carts/items/vestri_b2c/qgqvhjjyhazdama=/form"
+		},
+		"messages": [],
+		"links": [{
+			"rel": "addtodefaultcartaction",
+			"type": "carts.add-to-default-cart-form",
+			"uri": "/carts/items/vestri_b2c/qgqvhjjyhazdama=/form",
+			"href": "http://localhost:8080/cortex/carts/items/vestri_b2c/qgqvhjjyhazdama=/form"
+		}],
+		"configuration": {},
+		"quantity": 0
+	}],
+	"_addtowishlistform": [{
+		"self": {
+			"type": "wishlists.add-item-to-wishlist-form",
+			"uri": "/wishlists/items/vestri_b2c/qgqvhjjyhazdama=/form",
+			"href": "http://localhost:8080/cortex/wishlists/items/vestri_b2c/qgqvhjjyhazdama=/form"
+		},
+		"messages": [],
+		"links": [{
+			"rel": "addtodefaultwishlistaction",
+			"type": "wishlists.add-item-to-wishlist-form",
+			"uri": "/wishlists/items/vestri_b2c/qgqvhjjyhazdama=/form",
+			"href": "http://localhost:8080/cortex/wishlists/items/vestri_b2c/qgqvhjjyhazdama=/form"
+		}]
+	}],
+	"_availability": [{
+		"self": {
+			"type": "availabilities.availability-for-item",
+			"uri": "/availabilities/items/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/availabilities/items/vestri_b2c/qgqvhjjyhazdama="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "availability",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/items/vestri_b2c/qgqvhjjyhazdama="
+		}],
+		"state": "AVAILABLE"
+	}],
+	"_code": [{
+		"self": {
+			"type": "items.code-for-item",
+			"uri": "/items/code/items/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/items/code/items/vestri_b2c/qgqvhjjyhazdama="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "code",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/items/vestri_b2c/qgqvhjjyhazdama="
+		}],
+		"code": "88200"
+	}],
+	"_definition": [{
+		"self": {
+			"type": "itemdefinitions.item-definition",
+			"uri": "/itemdefinitions/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qgqvhjjyhazdama="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "definition",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/items/vestri_b2c/qgqvhjjyhazdama="
+		}, {
+			"rel": "fromprice",
+			"rev": "definition",
+			"type": "prices.price-for-itemdefinition",
+			"uri": "/prices/itemdefinitions/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/prices/itemdefinitions/vestri_b2c/qgqvhjjyhazdama="
+		}],
+		"details": [{
+			"display-name": "Description",
+			"display-value": "This Vestri branded bag is used by more touring professionals on the PGA, Champions, and LPGA tours than any other product in golf. These professionals travel weekly with the tools of their trade and they trust them to this quality product. Quite simply, it is the best golf travel bag in the world. Comes with a limited lifetime warranty.",
+			"name": "DESCRIPTION",
+			"value": "This Vestri branded bag is used by more touring professionals on the PGA, Champions, and LPGA tours than any other product in golf. These professionals travel weekly with the tools of their trade and they trust them to this quality product. Quite simply, it is the best golf travel bag in the world. Comes with a limited lifetime warranty."
+		}, {
+			"display-name": "Image Name",
+			"display-value": "GOLF_BAG",
+			"name": "IMAGE_NAME",
+			"value": "GOLF_BAG"
+		}, {
+			"display-name": "Tag",
+			"display-value": "VESTRI_BM_ACCESSORIES",
+			"name": "tag",
+			"value": "VESTRI_BM_ACCESSORIES"
+		}],
+		"display-name": "Vestri Golf Bag"
+	}],
+	"_price": [{
+		"self": {
+			"type": "prices.price-for-item",
+			"uri": "/prices/items/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/prices/items/vestri_b2c/qgqvhjjyhazdama="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "price",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/items/vestri_b2c/qgqvhjjyhazdama="
+		}],
+		"list-price": [{
+			"amount": 342.34,
+			"currency": "CAD",
+			"display": "$342.34"
+		}],
+		"purchase-price": [{
+			"amount": 342.34,
+			"currency": "CAD",
+			"display": "$342.34"
+		}]
+	}],
+	"_recommendations": [{
+		"self": {
+			"type": "recommendations.item-recommendation-groups",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjyhazdama=",
+			"href": "http://localhost:8080/cortex/recommendations/items/vestri_b2c/qgqvhjjyhazdama="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "accessory",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/accessory",
+			"href": "http://localhost:8080/cortex/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/accessory"
+		}, {
+			"rel": "crosssell",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/crosssell",
+			"href": "http://localhost:8080/cortex/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/crosssell"
+		}, {
+			"rel": "recommendation",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/recommendation",
+			"href": "http://localhost:8080/cortex/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/recommendation"
+		}, {
+			"rel": "replacement",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/replacement",
+			"href": "http://localhost:8080/cortex/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/replacement"
+		}, {
+			"rel": "upsell",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/upsell",
+			"href": "http://localhost:8080/cortex/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/upsell"
+		}, {
+			"rel": "warranty",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/warranty",
+			"href": "http://localhost:8080/cortex/recommendations/items/vestri_b2c/qgqvhjjyhazdama=/warranty"
+		}],
+		"_crosssell": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_recommendation": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_replacement": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_upsell": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_warranty": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}]
+	}]
+}

@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router';
 import '../style/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/style.less';
+import { mockProductDisplayItemMain } from './productdisplayitem.main.api.mocks';
 
 // Import custom required scripts
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -15,6 +16,15 @@ storiesOf('ProductDisplayItemMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/itemdetail']}>{story()}</MemoryRouter>
   ))
-  .add('ProductDisplayItemMain Plain', () =>  <ProductDisplayItemMain productId='VESTRI_GOLF_BALLS' />)
-  .add('ProductDisplayItemMain Color/size', () =>  <ProductDisplayItemMain productId='VESTRI_WORDMARK_FITTED_HAT_RD' />)
-  .add('ProductDisplayItemMain Input', () =>  <ProductDisplayItemMain productId='250HR_PMKIT' />);
+  .add('ProductDisplayItemMain Plain', () =>  {
+    mockProductDisplayItemMain();
+    return <ProductDisplayItemMain productId='83992' />
+  })
+  .add('ProductDisplayItemMain Color/size', () =>  {
+    mockProductDisplayItemMain();
+    return <ProductDisplayItemMain productId='VESTRI_WORDMARK_FITTED_HAT_RD' />
+  })
+  .add('ProductDisplayItemMain Input', () =>  {
+    mockProductDisplayItemMain();
+    return <ProductDisplayItemMain productId='250HR_PMKIT' />
+  });
