@@ -35,7 +35,7 @@ function mockLoginResponse(mockObj) {
 function mockCountriesResponse(mockObj) {
   mockObj.get(
     /* eslint-disable max-len */
-    /\/cortex\/geographies\/[a-zA-Z0-9]*\/countries\/\?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element/,
+    /\/cortex\/geographies\/vestri_b2c\/countries\/\?zoom(.*)/,
     fetchGeoDataResponse,
   );
 }
