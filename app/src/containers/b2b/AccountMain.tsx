@@ -21,7 +21,7 @@
  */
 
 import * as React from 'react';
-import intl from "react-intl-universal";
+import * as intl from "react-intl-universal";
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import * as Config from '../../ep.config.json';
@@ -64,7 +64,8 @@ export default class AccountMain extends React.Component {
       isLoading: true,
       legalName: '',
       status: '',
-      data: {}
+      data: {},
+      associates: {}
     };
     this.getAccountData();
   }
@@ -79,12 +80,13 @@ export default class AccountMain extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
-          this.setState({
+            this.setState({
             isLoading: false,
+            associates: res._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
             legalName: res.name,
             status: res._statusinfo[0]._status[0].status,
             data: res
-          })
+          });
         })
         .catch(() => {
           this.setState({ isLoading: false })
@@ -95,35 +97,74 @@ export default class AccountMain extends React.Component {
     });
   }
 
-    render() {
-        const { isLoading, legalName, status } = this.state;
-        console.log(legalName, status);
-        return (
-            <div className="account-content-wrapper">
-                {isLoading ? (
-                  <div className="loader" />
-                ) : (
-            <div className="account-component">
-                <div key="account-header" className="account-header">
-                <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
-                  <div className="name-container">
-                    <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
-                    <div className="name">{legalName}
-                        <span className="status">
-                            <i className={`icons-status ${status.toLowerCase()}`} />
-                            {intl.get(status.toLowerCase())}
-                        </span>
-                    </div>
-                    <div className="settings" /*onClick={() => {this.handleAccountSettingsClicked()}}*/ >
-                      <div className="setting-icons" />
-                      <span className="settings-title">{intl.get('account-settings')}</span>
-                    </div>
-                  </div>
-                </div>
-            </div>
-                )}
-            </div>
-        );
-    }
+  render() {
+      const { isLoading, legalName, status, associates } = this.state;
 
+      return (
+          <div className="account-content-wrapper">
+              {isLoading ? (
+                <div className="loader" />
+              ) : (
+          <div className="account-component">
+              <div key="account-header" className="account-header">
+                  <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
+                  <div className="name-container">
+                      <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
+                      <div className="name">{legalName}
+                          <span className="status">
+                              <i className={`icons-status ${status.toLowerCase()}`} />
+                              {intl.get(status.toLowerCase())}
+                          </span>
+                      </div>
+                      <div className="settings">
+                          <div className="setting-icons" />
+                          <span className="settings-title">{intl.get('account-settings')}</span>
+                      </div>
+                  </div>
+              </div>
+              <div className="associates-container">
+                  <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
+                      <thead>
+                      <tr>
+                          <th className="name-email">{intl.get('name-and-email')}</th>
+                          <th className="name">{intl.get('name')}</th>
+                          <th className="email">{intl.get('email')}</th>
+                          <th className="roles">{intl.get('roles')}</th>
+                          <th className="action">&nbsp;</th>
+                          <th className="arrow">&nbsp;</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {associates.length === 0 && (
+                          <tr><td>{intl.get('account-no-associates')}</td></tr>
+                      )}
+                      {associates.map(associate => (
+                          <tr key={associate.associate.name} className="associates-table-row">
+                              <td className="name">
+                                  <div className="name-part">{associate.associate.name}</div>
+                              </td>
+                              <td className="email">
+                                  <div className="email-part">{associate.associate._primaryemail[0].email}</div>
+                              </td>
+                              <td className="name-email">
+                                  <div className="name-part">{associate.associate.name}</div>
+                                  <div className="email-part">{associate.associate._primaryemail[0].email}</div>
+                              </td>
+                              <td className="roles">
+                              {associate.roles._roles.length ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
+                              </td>
+                              <td className="action">
+                                  <button className="edit-associate" />
+                                  <button className="delete-associate" />
+                              </td>
+                          </tr>
+                      ))}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          )}
+          </div>
+      );
+    }
 }
