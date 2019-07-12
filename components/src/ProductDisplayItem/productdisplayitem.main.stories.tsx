@@ -22,7 +22,7 @@ function dummyOnChangeProductFeature(path) {
   window.location.reload();
 }
 
-function handleAddToCart() {
+function dummyHandleAddToCart() {
   alert(`container passed addToCart callback invoked`);
   window.location.reload();
 }
@@ -34,13 +34,13 @@ storiesOf('ProductDisplayItemMain', module)
   .add('ProductDisplayItemMain Plain', () =>  {
     mockProductDisplayItemMainPlain();
     
-    return <ProductDisplayItemMain productId='83992'onAddToCart={handleAddToCart} />
+    return <ProductDisplayItemMain productId='83992'onAddToCart={dummyHandleAddToCart} />
   })
   .add('ProductDisplayItemMain Color/size', () =>  {
     mockProductDisplayItemMainColorAndSize();
-    return <ProductDisplayItemMain productId='VESTRI_WORDMARK_FITTED_HAT_RD' onChangeProductFeature={dummyOnChangeProductFeature} onAddToCart={handleAddToCart} />
+    return <ProductDisplayItemMain productId='VESTRI_WORDMARK_FITTED_HAT_RD' onChangeProductFeature={dummyOnChangeProductFeature} onAddToCart={dummyHandleAddToCart} />
   })
   .add('ProductDisplayItemMain Input', () =>  {
     mockProductDisplayItemMainInput();
-    return <ProductDisplayItemMain productId='250HR_PMKIT' onAddToCart={handleAddToCart} />
+    return <ProductDisplayItemMain productId='250HR_PMKIT' onAddToCart={dummyHandleAddToCart} />
   });
