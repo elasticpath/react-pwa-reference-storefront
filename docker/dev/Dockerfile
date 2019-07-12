@@ -33,6 +33,8 @@ COPY package*.json ./
 COPY yarn.lock ./
 ADD components ./components
 
+RUN yarn
+
 RUN echo "deb http://deb.debian.org/debian/ jessie main \n\
 deb-src http://deb.debian.org/debian/ jessie main \n\
 deb http://security.debian.org/ jessie/updates main \n\
@@ -49,8 +51,6 @@ libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 li
 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
-
-RUN yarn
 
 # Bundle app source
 COPY . .

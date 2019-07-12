@@ -16,11 +16,11 @@ timestamps {
         dir('scm') {
           // Build the docker image, push to aws
           sh """
-            docker build --tag ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:${STORE_IMAGE_TAG} \
-              --build-arg BUILD_DATE="\$(date --rfc-3339=seconds)" --build-arg VERSION=${STORE_IMAGE_TAG} \
+            docker build --tag ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:\$(jq -r .version package.json) \
+              --build-arg BUILD_DATE="\$(date --rfc-3339=seconds)" --build-arg VERSION=\$(jq -r .version package.json) \
               --build-arg VCS_REF=\$(git rev-parse HEAD) -f ./docker/dev/Dockerfile .
             eval "\$(aws ecr get-login --no-include-email)"
-            docker push ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:${STORE_IMAGE_TAG}
+            docker push ${DOCKER_REGISTRY_ADDRESS}/${STORE_NAMESPACE}/ep-blueprint-dev:\$(jq -r .version package.json)
           """
         }
       }
@@ -60,6 +60,7 @@ timestamps {
             export STORE_NAMESPACE=${STORE_NAMESPACE}
             export CORTEX_NAMESPACE=${CORTEX_NAMESPACE}
             export STORE_IMAGE_TAG=${STORE_IMAGE_TAG}
+            export DB_IMAGE_TAG=${DB_IMAGE_TAG}
             export DOCKER_IMAGE_TAG=${DOCKER_IMAGE_TAG}
             export SOLR_HOME_CONFIG=\$(basename ${SOLR_HOME_PATH})
             export CORTEX=http://${EC2_INSTANCE_HOST}:9080
