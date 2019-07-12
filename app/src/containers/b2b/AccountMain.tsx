@@ -21,7 +21,7 @@
  */
 
 import * as React from 'react';
-import intl from "react-intl-universal";
+import * as intl from "react-intl-universal";
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import EditAccountModal from './EditAccountModal';
@@ -69,8 +69,11 @@ export default class AccountMain extends React.Component {
       externalId: '',
       registrationNumber: '',
       selfSignUpCode: '',
-      uri: ''
-  };
+      uri: '',
+      data: {},
+      associates: {}
+    };
+
     this.getAccountData();
     this.handleAccountSettingsClose = this.handleAccountSettingsClose.bind(this);
     this.handleAccountSettingsClicked = this.handleAccountSettingsClicked.bind(this);
@@ -97,8 +100,10 @@ export default class AccountMain extends React.Component {
             legalName: res['legal-name'],
             status: res._statusinfo[0]._status[0].status,
             selfSignUpCode: res._selfsignupinfo[0]['self-signup-code'],
-            uri: accountUri
-          })
+            uri: accountUri,
+            associates: res._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
+            data: res
+          });
         })
         .catch(() => {
           this.setState({ isLoading: false })
@@ -122,7 +127,8 @@ export default class AccountMain extends React.Component {
   }
 
   render() {
-    const { isLoading, name, status, isSettingsDialogOpen } = this.state;
+    const { isLoading, name, status, associates, isSettingsDialogOpen } = this.state;
+
     return (
       <div className="account-content-wrapper">
         {isLoading ? (
@@ -139,11 +145,51 @@ export default class AccountMain extends React.Component {
                     {intl.get(status.toLowerCase())}
                   </span>
                 </div>
-                <div className="settings" onClick={this.handleAccountSettingsClicked}>
+                <div className="settings">
                   <div className="setting-icons" />
-                  <span className="settings-title">{intl.get('account-settings')}</span>
+                  <span className="settings-title" onClick={this.handleAccountSettingsClicked}>{intl.get('account-settings')}</span>
                 </div>
               </div>
+            </div>
+            <div className="associates-container">
+              <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
+                <thead>
+                <tr>
+                  <th className="name-email">{intl.get('name-and-email')}</th>
+                  <th className="name">{intl.get('name')}</th>
+                  <th className="email">{intl.get('email')}</th>
+                  <th className="roles">{intl.get('roles')}</th>
+                  <th className="action">&nbsp;</th>
+                  <th className="arrow">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                {associates.length === 0 && (
+                  <tr><td>{intl.get('account-no-associates')}</td></tr>
+                )}
+                {associates.map(associate => (
+                  <tr key={associate.associate._primaryemail[0].email} className="associates-table-row">
+                    <td className="name">
+                      <div className="name-part">{associate.associate.name}</div>
+                    </td>
+                    <td className="email">
+                      <div className="email-part">{associate.associate._primaryemail[0].email}</div>
+                    </td>
+                    <td className="name-email">
+                      <div className="name-part">{associate.associate.name}</div>
+                      <div className="email-part">{associate.associate._primaryemail[0].email}</div>
+                    </td>
+                    <td className="roles">
+                    {associate.roles._roles.length ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
+                    </td>
+                    <td className="action">
+                      <button className="edit-associate" />
+                      <button className="delete-associate" />
+                    </td>
+                  </tr>
+                ))}
+                </tbody>
+              </table>
             </div>
             <EditAccountModal
               handleClose={this.handleAccountSettingsClose}
@@ -155,5 +201,4 @@ export default class AccountMain extends React.Component {
       </div>
     );
   }
-
 }

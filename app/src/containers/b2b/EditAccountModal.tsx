@@ -134,21 +134,21 @@ export default class EditAccountModal extends React.Component<EditAccountModalPr
             <div className="b2b-form-row">
               <label className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('name')}</p>
-                <input className="b2b-input" value={name} onChange={this.changeHandler} name="name" type="text"/>
+                <input className="b2b-input" value={name || ''} onChange={this.changeHandler} name="name" type="text"/>
               </label>
               <label className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('legal-name')}</p>
-                <input className="b2b-input" value={legalName} onChange={this.changeHandler} name="legalName" type="text"/>
+                <input className="b2b-input" value={legalName || ''} onChange={this.changeHandler} name="legalName" type="text"/>
               </label>
             </div>
             <div className="b2b-form-row">
               <label className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('external-id')}</p>
-                <input className="b2b-input" value={externalId} onChange={this.changeHandler} name="externalId" type="text"/>
+                <input className="b2b-input" value={externalId || ''} onChange={this.changeHandler} name="externalId" type="text"/>
               </label>
               <label className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('registration-number')}</p>
-                <input className="b2b-input" value={registrationNumber} onChange={this.changeHandler} name="registrationNumber" type="text"/>
+                <input className="b2b-input" value={registrationNumber || ''} onChange={this.changeHandler} name="registrationNumber" type="text"/>
               </label>
             </div>
             <div className="b2b-form-row">
