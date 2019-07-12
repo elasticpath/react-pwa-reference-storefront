@@ -92,6 +92,14 @@ function mockAllColorOptions(fetchMock) {
   );
 }
 
+function mockAddToCart(fetchMock) {
+  `/cortex/carts/items/vestri_b2c/qgqvhjjygm4tkmi=/form`;
+  fetchMock.post(
+    /\/cortex\/carts\/items\/[a-zA-Z0-9_]*\/[a-zA-Z0-9_=]*\/form/,
+    201
+  );
+}
+
 function mockItemSelections(fetchMock) {
   mockAllSizeOptions(fetchMock);
   mockAllColorOptions(fetchMock);
@@ -100,6 +108,7 @@ function mockItemSelections(fetchMock) {
 function mockCommonProductDisplayResponses(fetchMock) {
   mockLoginResponse(fetchMock);
   mockLookupForm(fetchMock);
+  mockAddToCart(fetchMock);
 }
 
 export function mockProductDisplayItemMainPlain() {
