@@ -17,7 +17,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ProductDisplayItemMain from './productdisplayitem.main';
 
 function dummyOnChangeProductFeature(path) {
-  // TODO: May want to include: https://github.com/gvaldambrini/storybook-router into project to show multi sku option transitions.
+  // TODO: aChan - May want to include: https://github.com/gvaldambrini/storybook-router into project to show multi sku option transitions.
   alert(`container passed in callback invoked with selected options sku: ${path}`);
   window.location.reload();
 }

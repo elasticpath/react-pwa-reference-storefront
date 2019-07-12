@@ -25,6 +25,9 @@ import itemLookupColorAndSizeResponse from './MockHttpResponses/POST/itemLookupC
 import itemLookupInputResponse from './MockHttpResponses/POST/itemLookupInput_response.json';
 import yellowMultiSkuSelectionResponse from './MockHttpResponses/POST/yellowMultiSkuSelection_response.json';
 import blackMultiSkuSelectionResponse from './MockHttpResponses/POST/blackMultiSkuSelection_response.json';
+import largeMultiSkuSelectionResponse from './MockHttpResponses/POST/largeMultiSkuSelection_response.json';
+import mediumMultiSkuSelectionResponse from './MockHttpResponses/POST/mediumMultiSkuSelection_response.json';
+import smallMultiSkuSelectionResponse from './MockHttpResponses/POST/smallMultiSkuSelection_response.json';
 import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
 function mockLoginResponse(mockObj) {
@@ -62,14 +65,22 @@ function mockItemLookupInputResponse(mockObj) {
   );
 }
 
-function mockAllSizeOptions() {
+function mockAllSizeOptions(fetchMock) {
+  fetchMock.post( // large
+    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjsgqydioa=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpuyqksi5cq(.*)/,
+    largeMultiSkuSelectionResponse
+  )
+  .post( // medium
+    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpu2rkejfku2(.*)/,
+    mediumMultiSkuSelectionResponse
+  )
+  .post( // small
+    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpvgtkbjrga(.*)/,
+    smallMultiSkuSelectionResponse
+  );
 }
 
-function mockAllColorOptions() {
-  
-}
-
-function mockItemSelections(fetchMock) {
+function mockAllColorOptions(fetchMock) {
   fetchMock
   .post( // Yellow
     /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6wkfjrge6vy=(.*)/,
@@ -79,6 +90,11 @@ function mockItemSelections(fetchMock) {
     /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjrg44tgmy=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6qsmifbuw(.*)/,
     blackMultiSkuSelectionResponse
   );
+}
+
+function mockItemSelections(fetchMock) {
+  mockAllSizeOptions(fetchMock);
+  mockAllColorOptions(fetchMock);
 }
 
 function mockCommonProductDisplayResponses(fetchMock) {
