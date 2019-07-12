@@ -23,6 +23,8 @@ import itemLookupFormResponse from './MockHttpResponses/GET/itemLookupForm_respo
 import itemLookupPlainResponse from './MockHttpResponses/POST/itemLookupPlain_response.json';
 import itemLookupColorAndSizeResponse from './MockHttpResponses/POST/itemLookupColorAndSize_response.json';
 import itemLookupInputResponse from './MockHttpResponses/POST/itemLookupInput_response.json';
+import yellowMultiSkuSelectionResponse from './MockHttpResponses/POST/yellowMultiSkuSelection_response.json';
+import blackMultiSkuSelectionResponse from './MockHttpResponses/POST/blackMultiSkuSelection_response.json';
 import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
 function mockLoginResponse(mockObj) {
@@ -60,6 +62,25 @@ function mockItemLookupInputResponse(mockObj) {
   );
 }
 
+function mockAllSizeOptions() {
+}
+
+function mockAllColorOptions() {
+  
+}
+
+function mockItemSelections(fetchMock) {
+  fetchMock
+  .post( // Yellow
+    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6wkfjrge6vy=(.*)/,
+    yellowMultiSkuSelectionResponse
+  )
+  .post( // Black
+    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjrg44tgmy=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6qsmifbuw(.*)/,
+    blackMultiSkuSelectionResponse
+  );
+}
+
 function mockCommonProductDisplayResponses(fetchMock) {
   mockLoginResponse(fetchMock);
   mockLookupForm(fetchMock);
@@ -75,6 +96,7 @@ export function mockProductDisplayItemMainColorAndSize() {
   fetchMock.restore();
   mockCommonProductDisplayResponses(fetchMock);
   mockItemLookupColorAndSize(fetchMock);
+  mockItemSelections(fetchMock)
 }
 
 export function mockProductDisplayItemMainInput() {
