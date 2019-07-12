@@ -127,7 +127,7 @@ export default class AccountMain extends React.Component {
   }
 
   render() {
-      const { isLoading, legalName, status, associates, isSettingsDialogOpen } = this.state;
+      const { isLoading, name, status, associates, isSettingsDialogOpen } = this.state;
 
       return (
           <div className="account-content-wrapper">
@@ -139,7 +139,7 @@ export default class AccountMain extends React.Component {
                   <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
                   <div className="name-container">
                       <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
-                      <div className="name">{legalName}
+                      <div className="name">{name}
                           <span className="status">
                               <i className={`icons-status ${status.toLowerCase()}`} />
                               {intl.get(status.toLowerCase())}
@@ -147,7 +147,7 @@ export default class AccountMain extends React.Component {
                       </div>
                       <div className="settings">
                           <div className="setting-icons" />
-                          <span className="settings-title">{intl.get('account-settings')}</span>
+                          <span className="settings-title" onClick={this.handleAccountSettingsClicked}>{intl.get('account-settings')}</span>
                       </div>
                   </div>
               </div>
@@ -168,7 +168,7 @@ export default class AccountMain extends React.Component {
                           <tr><td>{intl.get('account-no-associates')}</td></tr>
                       )}
                       {associates.map(associate => (
-                          <tr key={associate.associate.name} className="associates-table-row">
+                          <tr key={associate.associate._primaryemail[0].email} className="associates-table-row">
                               <td className="name">
                                   <div className="name-part">{associate.associate.name}</div>
                               </td>
