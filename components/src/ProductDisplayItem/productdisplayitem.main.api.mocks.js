@@ -22,6 +22,7 @@ import fetchMock from 'fetch-mock/es5/client';
 import itemLookupFormResponse from './MockHttpResponses/GET/itemLookupForm_response.json';
 import itemLookupPlainResponse from './MockHttpResponses/POST/itemLookupPlain_response.json';
 import itemLookupColorAndSizeResponse from './MockHttpResponses/POST/itemLookupColorAndSize_response.json';
+import itemLookupInputResponse from './MockHttpResponses/POST/itemLookupInput_response.json';
 import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
 function mockLoginResponse(mockObj) {
@@ -52,6 +53,13 @@ function mockItemLookupColorAndSize(mockObj) {
   );
 }
 
+function mockItemLookupInputResponse(mockObj) {
+  mockObj.post(
+    /\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
+    itemLookupInputResponse
+  );
+}
+
 function mockCommonProductDisplayResponses(fetchMock) {
   mockLoginResponse(fetchMock);
   mockLookupForm(fetchMock);
@@ -67,4 +75,10 @@ export function mockProductDisplayItemMainColorAndSize() {
   fetchMock.restore();
   mockCommonProductDisplayResponses(fetchMock);
   mockItemLookupColorAndSize(fetchMock);
+}
+
+export function mockProductDisplayItemMainInput() {
+  fetchMock.restore();
+  mockCommonProductDisplayResponses(fetchMock);
+  mockItemLookupInputResponse(fetchMock);
 }
