@@ -290,5 +290,17 @@
   "download-list": "D-o-w-n-l-o-a-d- -L-i-s-t-",
   "add-associates": "A-d-d- -A-s-s-o-c-i-a-t-e-s-",
   "all-fields-required": "A-l-l- -f-i-e-l-d-s- -a-r-e- -r-e-q-u-i-r-e-d-",
-  "no-file-selected": "n-o- -f-i-l-e- -s-e-l-e-c-t-e-d"
+  "no-file-selected": "n-o- -f-i-l-e- -s-e-l-e-c-t-e-d",
+  "add-associate": "A-d-d- -A-s-s-o-c-i-a-t-e",
+  "associate-email": "A-s-s-o-c-i-a-t-e- -E-m-a-i-l",
+  "associate-role": "R-o-l-e",
+  "associate-sub-account": "S-u-b---a-c-c-o-u-n-t",
+  "associate-account": "A-c-c-o-u-n-t",
+  "associate-email-notify": "A-s-s-o-c-i-a-t-e- -w-i-l-l- -r-e-c-e-i-v-e- -a- -c-o-n-f-i-r-m-a-t-i-o-n- -e-m-a-i-l",
+  "self-sign-up-account-code": "S-e-l-f- -S-i-g-n- -U-p- -A-c-c-o-u-n-t- -C-o-d-e",
+  "registration-number": "R-e-g-i-s-t-r-a-t-i-o-n- -N-u-m-b-e-r",
+  "legal-name": "L-e-g-a-l- -N-a-m-e",
+  "edit-account": "E-d-i-t- -A-c-c-o-u-n-t",
+  "copy-to-clipboard": "C-o-p-y- -t-o- -c-l-i-p-b-o-a-r-d",
+  "copied": "C-o-p-i-e-d"
 }

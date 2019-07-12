@@ -291,5 +291,17 @@
   "download-list": "Download List",
   "add-associates": "Add Associates",
   "all-fields-required": "All fields are required",
-  "no-file-selected": "no file selected"
+  "no-file-selected": "no file selected",
+  "add-associate": "Add Associate",
+  "associate-email": "Associate Email",
+  "associate-role": "Role",
+  "associate-sub-account": "Sub-account",
+  "associate-account": "Account",
+  "associate-email-notify": "Associate will receive a confirmation email",
+  "self-sign-up-account-code": "Self Sign Up Account Code",
+  "registration-number": "Registration Number",
+  "legal-name": "Legal Name",
+  "edit-account": "Edit Account",
+  "copy-to-clipboard": "Copy to clipboard",
+  "copied": "Copied"
 }

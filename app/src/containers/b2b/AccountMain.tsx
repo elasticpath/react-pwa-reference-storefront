@@ -24,6 +24,7 @@ import * as React from 'react';
 import intl from "react-intl-universal";
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
+import EditAccountModal from './EditAccountModal';
 import * as Config from '../../ep.config.json';
 import { Link } from 'react-router-dom';
 
@@ -64,14 +65,23 @@ export default class AccountMain extends React.Component {
       isLoading: true,
       legalName: '',
       status: '',
-      data: {}
-    };
+      isSettingsDialogOpen: false,
+      externalId: '',
+      registrationNumber: '',
+      selfSignUpCode: '',
+      uri: ''
+  };
     this.getAccountData();
+    this.handleAccountSettingsClose = this.handleAccountSettingsClose.bind(this);
+    this.handleAccountSettingsClicked = this.handleAccountSettingsClicked.bind(this);
+    this.handleAccountSettingsUpdate = this.handleAccountSettingsUpdate.bind(this);
   }
 
   getAccountData() {
+    const accountUri = this.props.match.params.uri;
+    this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(`/accounts/am/${this.props.match.params.uri}/?zoom=${accountZoomArray.join()}`, {
+      adminFetch(`/accounts/am/${accountUri}/?zoom=${accountZoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
@@ -80,10 +90,14 @@ export default class AccountMain extends React.Component {
         .then(res => res.json())
         .then(res => {
           this.setState({
+            name: res.name,
+            externalId: res['external-id'],
+            registrationNumber: res['registration-id'],
             isLoading: false,
-            legalName: res.name,
+            legalName: res['legal-name'],
             status: res._statusinfo[0]._status[0].status,
-            data: res
+            selfSignUpCode: res._selfsignupinfo[0]['self-signup-code'],
+            uri: accountUri
           })
         })
         .catch(() => {
@@ -95,35 +109,51 @@ export default class AccountMain extends React.Component {
     });
   }
 
-    render() {
-        const { isLoading, legalName, status } = this.state;
-        console.log(legalName, status);
-        return (
-            <div className="account-content-wrapper">
-                {isLoading ? (
-                  <div className="loader" />
-                ) : (
-            <div className="account-component">
-                <div key="account-header" className="account-header">
-                <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
-                  <div className="name-container">
-                    <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
-                    <div className="name">{legalName}
-                        <span className="status">
-                            <i className={`icons-status ${status.toLowerCase()}`} />
-                            {intl.get(status.toLowerCase())}
-                        </span>
-                    </div>
-                    <div className="settings" /*onClick={() => {this.handleAccountSettingsClicked()}}*/ >
-                      <div className="setting-icons" />
-                      <span className="settings-title">{intl.get('account-settings')}</span>
-                    </div>
-                  </div>
+  handleAccountSettingsClicked() {
+    this.setState({ isSettingsDialogOpen: true });
+  }
+
+  handleAccountSettingsClose() {
+    this.setState({ isSettingsDialogOpen: false });
+  }
+
+  handleAccountSettingsUpdate() {
+    this.getAccountData();
+  }
+
+  render() {
+    const { isLoading, name, status, isSettingsDialogOpen } = this.state;
+    return (
+      <div className="account-content-wrapper">
+        {isLoading ? (
+          <div className="loader" />
+        ) : (
+          <div className="account-component">
+            <div key="account-header" className="account-header">
+              <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
+              <div className="name-container">
+                <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
+                <div className="name">{name}
+                  <span className="status">
+                    <i className={`icons-status ${status.toLowerCase()}`} />
+                    {intl.get(status.toLowerCase())}
+                  </span>
                 </div>
+                <div className="settings" onClick={this.handleAccountSettingsClicked}>
+                  <div className="setting-icons" />
+                  <span className="settings-title">{intl.get('account-settings')}</span>
+                </div>
+              </div>
             </div>
-                )}
-            </div>
-        );
-    }
+            <EditAccountModal
+              handleClose={this.handleAccountSettingsClose}
+              handleUpdate={this.handleAccountSettingsUpdate}
+              isOpen={isSettingsDialogOpen}
+              accountData={this.state}/>
+          </div>
+        )}
+      </div>
+    );
+  }
 
 }
