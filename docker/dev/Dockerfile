@@ -33,8 +33,6 @@ COPY package*.json ./
 COPY yarn.lock ./
 ADD components ./components
 
-RUN yarn
-
 RUN echo "deb http://deb.debian.org/debian/ jessie main \n\
 deb-src http://deb.debian.org/debian/ jessie main \n\
 deb http://security.debian.org/ jessie/updates main \n\
@@ -54,6 +52,8 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 
 # Bundle app source
 COPY . .
+
+RUN yarn
 
 EXPOSE 8080
 
