@@ -84,7 +84,7 @@ describe('Cart feature', () => {
     await page.waitForSelector(SKU_BUTTON_SELECT_CSS);
     await Promise.all([
       page.click(SKU_BUTTON_SELECT_CSS),
-      // page.waitForNavigation()
+      page.waitForNavigation()
     ]);
 
     // And I update cart quantity to 2
