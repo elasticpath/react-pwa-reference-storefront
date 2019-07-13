@@ -183,7 +183,7 @@ describe('Purchase feature', () => {
     await page.type(ANONYMOUS_EMAIL_INPUT_CSS, `test_${Math.random().toString(36).substring(7)}@test.com`);
     await Promise.all([
       page.click(CHECKOUT_AUTH_BUTTON_CSS),
-      page.waitForNavigation({ waitUntil: 'networkidle0' })
+      page.waitForNavigation()
     ]);
 
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
