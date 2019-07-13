@@ -247,6 +247,8 @@ describe('Purchase feature', () => {
     await page.click(CHECKOUT_BUTTON_CSS);
 
     const userInfo = {
+      firstName: 'John',
+      lastName: 'Test',
       email: 'john@ep.com',
       password: 'password'
     };
@@ -329,13 +331,15 @@ describe('Purchase feature', () => {
 
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-web-security'],
-      slowMo: 10,
+      slowMo: 20,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP);
 
     const userInfo = {
+      firstName: 'John',
+      lastName: 'Test',
       email: 'johntest@ep.com',
       password: 'password',
     };
@@ -425,6 +429,8 @@ describe('Purchase feature', () => {
     await page.goto(APP);
 
     const userInfo = {
+      firstName: 'John',
+      lastName: 'Test',
       email: 'john@ep.com',
       password: 'password'
     };
@@ -539,6 +545,8 @@ describe('Purchase feature', () => {
     expect(await getChartItems(page)).toEqual(expectedChartItems);
 
     const userInfo = {
+      firstName: 'John',
+      lastName: 'Test',
       email: 'john@ep.com',
       password: 'password'
     };
