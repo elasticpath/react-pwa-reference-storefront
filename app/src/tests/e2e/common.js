@@ -207,6 +207,7 @@ module.exports = {
 
       await page.waitForSelector(REGISTER_BUTTON_CSS);
       await page.click(REGISTER_BUTTON_CSS);
+      await page.waitFor(3000);
       await page.waitForSelector(FORM_FIRST_NAME);
       await page.type(FORM_FIRST_NAME, firstName);
       await page.type(FORM_LAST_NAME, lastName);
