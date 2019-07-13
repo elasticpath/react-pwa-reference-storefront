@@ -216,7 +216,7 @@ module.exports = {
 
       await Promise.all([
         page.click(FORM_SUBMIT_BUTTON),
-        page.waitForNavigation({ waitUntil: 'networkidle0' }),
+        page.waitForNavigation(),
       ]);
     }
   }
