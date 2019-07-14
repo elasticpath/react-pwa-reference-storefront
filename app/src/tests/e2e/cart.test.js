@@ -84,7 +84,7 @@ describe('Cart feature', () => {
     await page.waitForSelector(SKU_BUTTON_SELECT_CSS);
     await Promise.all([
       page.click(SKU_BUTTON_SELECT_CSS),
-      // page.waitForNavigation()
+      page.waitForNavigation()
     ]);
 
     // And I update cart quantity to 2
@@ -97,6 +97,7 @@ describe('Cart feature', () => {
     page.click(ADD_TO_CART_BUTTON_CSS);
 
     // Then the expected cart lineitem total price is EXPECTED_ITEM_TOTAL
+    await page.waitForSelector(CART_LINE_ITEM_PRICE_CSS);
     const price = await getPrice(page, CART_LINE_ITEM_PRICE_CSS);
 
     await browser.close();

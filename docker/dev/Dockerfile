@@ -53,6 +53,8 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 # Bundle app source
 COPY . .
 
+RUN yarn
+
 EXPOSE 8080
 
 ENTRYPOINT [ "./docker/dev/entrypoint.sh" ]
