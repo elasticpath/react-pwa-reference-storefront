@@ -24,7 +24,7 @@ import * as React from 'react';
 import * as intl from "react-intl-universal";
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
-import EditAccountModal from './EditAccountModal';
+import EditAccount from './EditAccount';
 import EditAssociate from './EditAssociate';
 import * as Config from '../../ep.config.json';
 import { Link } from 'react-router-dom';
@@ -59,12 +59,20 @@ const accountZoomArray = [
   "associateroleassignments:associateform:addassociateaction",
 ];
 interface AccountMainState {
-    isLoading: boolean,
-    isEditAssociateOpen: boolean,
-    legalName: string,
-    status: string,
-    data: any,
-    associates: any
+  isLoading: boolean,
+  isEditAssociateOpen: boolean,
+  legalName: string,
+  name: string,
+  status: string,
+  isSettingsDialogOpen: boolean,
+  externalId: string,
+  registrationNumber: string,
+  selfSignUpCode: string,
+  uri: string,
+  selector: string,
+  associates: {
+    [key: string]: any
+  }
 }
 
 export default class AccountMain extends React.Component<AccountMainState> {
@@ -74,6 +82,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
       isLoading: true,
       isEditAssociateOpen: false,
       legalName: '',
+      name: '',
       status: '',
       isSettingsDialogOpen: false,
       externalId: '',
@@ -81,7 +90,6 @@ export default class AccountMain extends React.Component<AccountMainState> {
       selfSignUpCode: '',
       uri: '',
       selector: '',
-      data: {},
       associates: {}
     };
 
@@ -114,8 +122,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
             associates: res._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
             status: res._statusinfo[0]._status[0].status,
             selfSignUpCode: res._selfsignupinfo[0]['self-signup-code'],
-            uri: accountUri,
-            data: res
+            uri: accountUri
           });
         })
         .catch(() => {
@@ -166,9 +173,9 @@ export default class AccountMain extends React.Component<AccountMainState> {
                               {intl.get(status.toLowerCase())}
                           </span>
                       </div>
-                      <div className="settings">
+                      <div className="settings" onClick={this.handleAccountSettingsClicked}>
                           <div className="setting-icons" />
-                          <span className="settings-title" onClick={this.handleAccountSettingsClicked}>{intl.get('account-settings')}</span>
+                          <span className="settings-title">{intl.get('account-settings')}</span>
                       </div>
                   </div>
               </div>
@@ -213,7 +220,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
                   </table>
               </div>
 
-            <EditAccountModal
+            <EditAccount
               handleClose={this.handleAccountSettingsClose}
               handleUpdate={this.handleAccountSettingsUpdate}
               isOpen={isSettingsDialogOpen}

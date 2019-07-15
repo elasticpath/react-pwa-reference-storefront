@@ -175,31 +175,41 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                                 <li className="dropdown-item">
                                     <Link to={appHeaderLoginLinks.profile} className="profile-link">
                                         <div>
-                      <span id="header_navbar_login_menu_profile_link">
-                        {intl.get('my-profile')}
-                      </span>
+                                          <span id="header_navbar_login_menu_profile_link">
+                                            {intl.get('my-profile')}
+                                          </span>
                                         </div>
                                     </Link>
                                 </li>
+                                {(Config.b2b.enable) ? (
+                                  <li className="dropdown-item">
+                                    <Link className="dashboard-link" to="/b2b">
+                                      <div>
+                                        <span className="dashboard-nav">
+                                          {intl.get('dashboard')}
+                                        </span>
+                                      </div>
+                                  </Link>
+                                </li>) : ('')}
                                 {permission && (
                                     <li className="dropdown-item">
                                         <Link to={appHeaderLoginLinks.wishlists} className="wishlist-link">
                                             <div>
-                        <span id="header_navbar_login_menu_wishlist_link">
-                          {intl.get('wishlists')}
-                        </span>
+                                                <span id="header_navbar_login_menu_wishlist_link">
+                                                  {intl.get('wishlists')}
+                                                </span>
                                             </div>
                                         </Link>
                                     </li>
                                 )}
                                 <li className="dropdown-item">
                                     {(Config.b2b.enable) ? (
-                                        <a href={`${keycloakLogoutRedirectUrl}`} className="login-auth-service-btn">
+                                        <Link to={`${keycloakLogoutRedirectUrl}`} className="login-auth-service-btn">
                                             <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                                                 <span className="icon" />
                                                 {intl.get('logout')}
                                             </button>
-                                        </a>
+                                        </Link>
                                     ) : (
                                         <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                                             <span className="icon" />
@@ -207,37 +217,24 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                                         </button>
                                     )}
                                 </li>
+                                {(localStorage.getItem(`${Config.b2b.enable && Config.cortexApi.scope}_b2bCart`)) ? (
+                                  <li className="dropdown-item change-carts">
+                                      <div className="using-cart-link">
+                                          <span>
+                                            {`${intl.get('using-cart')} ${(localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`))}`}
+                                          </span>
+                                      </div>
+                                  </li>
+                                ) : ('')}
+                                {(Config.b2b.enable) ? (
+                                    <li>
+                                        <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>
+                                            <span className="cart-select-btn">{intl.get('change-carts')}</span>
+                                        </button>
+                                        <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} onContinueCart={onContinueCart} />
+                                    </li>
+                                  ) : ('')}
                             </ul>
-                            {(Config.b2b.enable) ? (
-                                <div className="dropdown-login-cart">
-                                    {(localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)) ? (
-                                        <ul>
-                                            <li className="dropdown-item change-carts">
-                                                {intl.get('using-cart')}
-                                                <p className="using-cart">
-                                                    {` ${(localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`))}`}
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    ) : ('')
-                                    }
-                                    <ul className="login-cart-list">
-                                        <li>
-                                            <Link className="cart-select-btn" to="/b2b">
-                                                <button className="dropdown-item" type="button">
-                                                    <span className="cart-select-btn">{intl.get('admin')}</span>
-                                                </button>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>
-                                                <span className="cart-select-btn">{intl.get('change-carts')}</span>
-                                            </button>
-                                            <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} onContinueCart={onContinueCart} />
-                                        </li>
-                                    </ul>
-                                </div>
-                            ) : ('')}
                         </div>
                     </div>
                 </div>

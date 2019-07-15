@@ -8,11 +8,11 @@ import clipboardIcon from '../../images/icons/copy.svg';
 import copiedIcon from '../../images/icons/check-circle-filled.svg';
 import copy from 'copy-to-clipboard';
 
-import './EditAccountModal.less';
+import './EditAccount.less';
 
 const COPIED_TIMEOUT_LENGTH = 4000;
 
-interface EditAccountModalProps {
+interface EditAccountProps {
   isOpen: boolean,
   handleClose: () => void,
   handleUpdate: () => void,
@@ -26,7 +26,7 @@ interface EditAccountModalProps {
   }
 }
 
-interface EditAccountModalState {
+interface EditAccountState {
   name: string,
   legalName: string,
   externalId: string,
@@ -36,7 +36,7 @@ interface EditAccountModalState {
 }
 
 
-export default class EditAccountModal extends React.Component<EditAccountModalProps, EditAccountModalState> {
+export default class EditAccount extends React.Component<EditAccountProps, EditAccountState> {
   copiedTimeout?: number;
 
   constructor(props) {
@@ -65,6 +65,7 @@ export default class EditAccountModal extends React.Component<EditAccountModalPr
 
     if (this.copiedTimeout) {
       clearTimeout(this.copiedTimeout);
+      this.setState({ isShowingCopied: false });
       this.copiedTimeout = undefined;
     }
   }
