@@ -259,95 +259,95 @@ export default class Dashboard extends React.Component<DashboardState> {
                             ))}
                         </div>
                     </div>
-                    <div className="b2b-section section-2 address-book-section">
-                        <div className="section-header">
-                            <div className="section-title">{intl.get('addresses')}</div>
-                            <div className="section-header-right">
-                                <Link to="/">{intl.get('edit')}</Link>
-                            </div>
-                        </div>
-                        <div className="section-content">
-                            <div className="address default-billing">
-                                <div className="address-title">{intl.get('default-billing')}</div>
-                                <div className="address-content">
-                                    <div className="name-line">{defaultBillingAddress.name}</div>
-                                    <div className="address-line">{defaultBillingAddress.address}</div>
-                                    <div className="state-line">
-                                        {defaultBillingAddress.city}
-                                        ,&nbsp;
-                                        {defaultBillingAddress.state}
-                                        ,&nbsp;
-                                        {defaultBillingAddress.zip}
-                                    </div>
-                                    <div className="country-line">{defaultBillingAddress.country}</div>
-                                </div>
-                            </div>
-                            <div className="address default-shipping">
-                                <div className="address-title">{intl.get('default-shipping')}</div>
-                                <div className="address-content">
-                                    <div className="name-line">{defaultShippingAddress.name}</div>
-                                    <div className="address-line">{defaultShippingAddress.address}</div>
-                                    <div className="state-line">
-                                        {defaultShippingAddress.city}
-                                        ,&nbsp;
-                                        {defaultShippingAddress.state}
-                                        ,&nbsp;
-                                        {defaultShippingAddress.zip}
-                                    </div>
-                                    <div className="country-line">{defaultShippingAddress.country}</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="b2b-section section-2 address-book-section" style={{border: 'none'}}>
+                        {/*<div className="section-header">*/}
+                            {/*<div className="section-title">{intl.get('addresses')}</div>*/}
+                            {/*<div className="section-header-right">*/}
+                                {/*/!*<Link to="/">{intl.get('edit')}</Link>*!/*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                        {/*<div className="section-content">*/}
+                            {/*<div className="address default-billing">*/}
+                                {/*<div className="address-title">{intl.get('default-billing')}</div>*/}
+                                {/*<div className="address-content">*/}
+                                    {/*<div className="name-line">{defaultBillingAddress.name}</div>*/}
+                                    {/*<div className="address-line">{defaultBillingAddress.address}</div>*/}
+                                    {/*<div className="state-line">*/}
+                                        {/*{defaultBillingAddress.city}*/}
+                                        {/*,&nbsp;*/}
+                                        {/*{defaultBillingAddress.state}*/}
+                                        {/*,&nbsp;*/}
+                                        {/*{defaultBillingAddress.zip}*/}
+                                    {/*</div>*/}
+                                    {/*<div className="country-line">{defaultBillingAddress.country}</div>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                            {/*<div className="address default-shipping">*/}
+                                {/*<div className="address-title">{intl.get('default-shipping')}</div>*/}
+                                {/*<div className="address-content">*/}
+                                    {/*<div className="name-line">{defaultShippingAddress.name}</div>*/}
+                                    {/*<div className="address-line">{defaultShippingAddress.address}</div>*/}
+                                    {/*<div className="state-line">*/}
+                                        {/*{defaultShippingAddress.city}*/}
+                                        {/*,&nbsp;*/}
+                                        {/*{defaultShippingAddress.state}*/}
+                                        {/*,&nbsp;*/}
+                                        {/*{defaultShippingAddress.zip}*/}
+                                    {/*</div>*/}
+                                    {/*<div className="country-line">{defaultShippingAddress.country}</div>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
-                <div className="b2b-section recent-orders">
-                    <div className="section-header">
-                        <div className="section-title">{intl.get('recent-orders')}</div>
-                        <div className="section-header-right">
-                            <Link to="/">{intl.get('view-all')}</Link>
-                        </div>
-                    </div>
-                    <div className="section-content">
-                        <table className="b2b-table recent-orders-table">
-                            <thead>
-                            <tr>
-                                <th className="order-id">
-                                    {intl.get('order')}
-                                    <span className="mobile-table-title">
-                                        {' '}
-                                        &
-                                        {' '}
-                                        {intl.get('date')}
-                                    </span>
-                                </th>
-                                <th className="date">{intl.get('date')}</th>
-                                <th className="ship-to">
-                                    {intl.get('ship-to')}
-                                    <span className="mobile-table-title">
-                                        {' '}
-                                        &
-                                        {' '}
-                                        {intl.get('order-total')}
-                                    </span>
-                                </th>
-                                <th className="order-total">{intl.get('order-total')}</th>
-                                <th className="status">{intl.get('status')}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {recentOrders.map(order => (
-                                <tr key={order.orderId}>
-                                    <td className="order-id">{order.orderId}</td>
-                                    <td className="date">{order.date}</td>
-                                    <td className="ship-to">{order.shipTo}</td>
-                                    <td className="order-total">{order.orderTotal}</td>
-                                    <td className="status">{order.status}</td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                {/*<div className="b2b-section recent-orders">*/}
+                    {/*<div className="section-header">*/}
+                        {/*<div className="section-title">{intl.get('recent-orders')}</div>*/}
+                        {/*<div className="section-header-right">*/}
+                            {/*/!*<Link to="/">{intl.get('view-all')}</Link>*!/*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                    {/*<div className="section-content">*/}
+                        {/*<table className="b2b-table recent-orders-table">*/}
+                            {/*<thead>*/}
+                            {/*<tr>*/}
+                                {/*<th className="order-id">*/}
+                                    {/*{intl.get('order')}*/}
+                                    {/*<span className="mobile-table-title">*/}
+                                        {/*{' '}*/}
+                                        {/*&*/}
+                                        {/*{' '}*/}
+                                        {/*{intl.get('date')}*/}
+                                    {/*</span>*/}
+                                {/*</th>*/}
+                                {/*<th className="date">{intl.get('date')}</th>*/}
+                                {/*<th className="ship-to">*/}
+                                    {/*{intl.get('ship-to')}*/}
+                                    {/*<span className="mobile-table-title">*/}
+                                        {/*{' '}*/}
+                                        {/*&*/}
+                                        {/*{' '}*/}
+                                        {/*{intl.get('order-total')}*/}
+                                    {/*</span>*/}
+                                {/*</th>*/}
+                                {/*<th className="order-total">{intl.get('order-total')}</th>*/}
+                                {/*<th className="status">{intl.get('status')}</th>*/}
+                            {/*</tr>*/}
+                            {/*</thead>*/}
+                            {/*<tbody>*/}
+                            {/*{recentOrders.map(order => (*/}
+                                {/*<tr key={order.orderId}>*/}
+                                    {/*<td className="order-id">{order.orderId}</td>*/}
+                                    {/*<td className="date">{order.date}</td>*/}
+                                    {/*<td className="ship-to">{order.shipTo}</td>*/}
+                                    {/*<td className="order-total">{order.orderTotal}</td>*/}
+                                    {/*<td className="status">{order.status}</td>*/}
+                                {/*</tr>*/}
+                            {/*))}*/}
+                            {/*</tbody>*/}
+                        {/*</table>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
                 <div className="b2b-section accounts">
                     <div className="section-header">
                         <div className="section-title">{intl.get('accounts')}</div>

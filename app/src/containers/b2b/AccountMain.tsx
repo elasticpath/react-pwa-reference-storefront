@@ -205,7 +205,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
                               </td>
                               <td className="action">
                                   <button className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associate.associate._primaryemail[0].email)} />
-                                  <button className="delete-associate" />
+                                  {/*<button className="delete-associate" />*/}
                               </td>
                           </tr>
                       ))}

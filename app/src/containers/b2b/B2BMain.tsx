@@ -76,7 +76,7 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
                     <div className="b2b-header">
                         <div className="page-title">{intl.get('business-account')}</div>
                         <div className="quick-menu">
-                            <AddAssociatesMenu onSpreeadsheetClicked={() => this.handleSpreeadsheetClicked()} />
+                            {/*<AddAssociatesMenu onSpreeadsheetClicked={() => this.handleSpreeadsheetClicked()} />*/}
                         </div>
                     </div>
                     <div className="b2b-central">

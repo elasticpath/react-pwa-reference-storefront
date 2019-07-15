@@ -43,12 +43,12 @@ export default class SideMenu extends React.Component<SideMenuProps, SideMenuSta
             isOpen: false,
             sideMenuItems: [
                 { to: '/b2b', children: 'dashboard' },
-                { to: '/b2b/address-book', children: 'address-book' },
-                { to: '/b2b/orders', children: 'orders' },
-                { to: '/b2b/approvals', children: 'approvals' },
-                { to: '/b2b/invitations', children: 'invitations' },
-                { to: '/b2b/requisition-lists', children: 'requisition-lists' },
-                { to: '/b2b/quotes', children: 'quotes' },
+                // { to: '/b2b/address-book', children: 'address-book' },
+                // { to: '/b2b/orders', children: 'orders' },
+                // { to: '/b2b/approvals', children: 'approvals' },
+                // { to: '/b2b/invitations', children: 'invitations' },
+                // { to: '/b2b/requisition-lists', children: 'requisition-lists' },
+                // { to: '/b2b/quotes', children: 'quotes' },
             ],
         };
 
