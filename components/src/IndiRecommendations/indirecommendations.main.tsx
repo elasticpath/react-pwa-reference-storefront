@@ -35,7 +35,7 @@ interface IndiRecommendationsDisplayMainProps {
 
 class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendationsDisplayMainProps> {
 
-  private instance: React.RefObject<HTMLDivElement>;
+  private instance;
 
   static defaultProps = {
     keywords: '',
@@ -52,7 +52,7 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
           carouselElement.type = 'text/javascript';
           carouselElement.async = true;
           carouselElement.innerHTML = `var indi_carousel = new indi.carousel("#indi-carousel-root", ${JSON.stringify(configuration.carousel)});`;
-          this.instance.current.appendChild(carouselElement);
+          this.instance.appendChild(carouselElement);
         }
 
         if (render.includes('product')) {
@@ -60,8 +60,8 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
           const productReviewElement = document.createElement('script');
           productReviewElement.type = 'text/javascript';
           productReviewElement.async = true;
-          productReviewElement.innerHTML = `var indi_forum = new indi.forum("#indi-forum-root", ${JSON.stringify(configuration.productReview)});`;
-          this.instance.current.appendChild(productReviewElement);
+          productReviewElement.innerHTML = `var indi_reviews = new indi.reviews("#indi-reviews-root", ${JSON.stringify(configuration.productReview)});`;
+          this.instance.appendChild(productReviewElement);
         }
 
         if (render.includes('brand')) {
@@ -69,7 +69,7 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
           brandAmbassadorElement.type = 'text/javascript';
           brandAmbassadorElement.async = true;
           brandAmbassadorElement.innerHTML = `var indi_forum = new indi.forum("#indi-forum-root", ${JSON.stringify(configuration.brandAmbassador)});`;
-          this.instance.current.appendChild(brandAmbassadorElement);
+          this.instance.appendChild(brandAmbassadorElement);
         }
       });
     }
@@ -83,9 +83,10 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
       return (
         <div className="indi-content-component">
           <div id="indi-carousel-root" />
+          <div id="indi-reviews-root" />
           <div id="indi-forum-root" />
           {/* eslint-disable-next-line no-return-assign */}
-          <div ref={this.instance} />
+          <div ref={el => (this.instance = el)} />
         </div>
       );
     }

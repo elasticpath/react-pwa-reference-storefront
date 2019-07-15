@@ -17,7 +17,7 @@ services:
       cortex:
         condition: service_healthy
   mysql:
-    image: ${REGISTRY_ADDRESS}/${STORE_NAMESPACE}/mysql-ep-blueprint:${STORE_IMAGE_TAG}
+    image: ${REGISTRY_ADDRESS}/${STORE_NAMESPACE}/mysql-ep-blueprint:${DB_IMAGE_TAG}
     container_name: mysql
     ports:
       - 3306:3306

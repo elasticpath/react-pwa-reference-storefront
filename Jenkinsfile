@@ -60,6 +60,7 @@ timestamps {
             export STORE_NAMESPACE=${STORE_NAMESPACE}
             export CORTEX_NAMESPACE=${CORTEX_NAMESPACE}
             export STORE_IMAGE_TAG=${STORE_IMAGE_TAG}
+            export DB_IMAGE_TAG=${DB_IMAGE_TAG}
             export DOCKER_IMAGE_TAG=${DOCKER_IMAGE_TAG}
             export SOLR_HOME_CONFIG=\$(basename ${SOLR_HOME_PATH})
             export CORTEX=http://${EC2_INSTANCE_HOST}:9080

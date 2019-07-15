@@ -52,8 +52,8 @@
     "carousel": {
       "apikey": "",
       "id": "",
-      "size": "large",
-      "theme": "large",
+      "size": "medium",
+      "theme": "light",
       "round_corners": false,
       "show_title": false,
       "show_views": false,
@@ -62,12 +62,30 @@
       "animate": true
     },
     "productReview": {
-      "submit_button_url": "",
-      "thumbnail_url": ""
+      "apikey": "",
+      "id": "",
+      "reviews_title": "",
+      "size": "medium",
+      "theme": "light",
+      "round_corners": false,
+      "show_title": false,
+      "show_views": false,
+      "show_likes": false,
+      "show_buzz": false,
+      "animate": true,
+      "submit_link_label": "",
+      "allowanon": true,
+      "return_url": "",
+      "show_submit_thumbnail": true,
+      "submit_prompt_title": "",
+      "submit_prompt_desc": ""
     },
     "brandAmbassador": {
+      "title": "",
+      "description": "",
       "submit_button_url": "",
-      "thumbnail_url": ""
+      "thumbnail_url": "",
+      "return_url": ""
     }
   },
   "facebook": {
