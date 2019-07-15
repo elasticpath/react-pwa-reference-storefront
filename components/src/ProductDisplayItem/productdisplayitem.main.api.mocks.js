@@ -121,7 +121,7 @@ export function mockProductDisplayItemMainColorAndSize() {
   fetchMock.restore();
   mockCommonProductDisplayResponses(fetchMock);
   mockItemLookupColorAndSize(fetchMock);
-  mockItemSelections(fetchMock)
+  mockItemSelections(fetchMock);
 }
 
 export function mockProductDisplayItemMainInput() {
