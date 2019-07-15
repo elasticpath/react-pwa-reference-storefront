@@ -8,7 +8,7 @@ import { mockProductListLoadMoreFromSearchResponse } from './productlistloadmore
 import { searchLookup } from '../utils/CortexLookup';
 
 function handleDataChange(updateItems){
-  alert(`handleDataChange called to update container items.  Check console to see the value that it is given.  `);
+  alert(`handleDataChange called to update container items.  Check console to see the value that it is given.`);
   console.log(updateItems);
 }
 
