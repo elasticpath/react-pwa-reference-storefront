@@ -18,32 +18,81 @@
  *
  *
  */
-import fetchMock from 'fetch-mock';
-import geographiesCortexResponse from './MockHttpResponses/geographies_cortex_response.json';
-import defaultCartResponse from './MockHttpResponses/default_cart_response.json';
-import profileAddressResponse from './MockHttpResponses/profile_address_response.json';
-import publicUserAuthenticationResponse from './MockHttpResponses/public_user_authentication_response.json';
+import fetchMock from 'fetch-mock/es5/client';
+import fetchGeoDataResponse from './MockHttpResponses/GET/fetchGeoData_response.json';
+import fetchAddressFormResponse from './MockHttpResponses/GET/fetchAddressForm_response.json';
+import fetchAddressDataResponse from './MockHttpResponses/GET/fetchAddressData_response.json';
+import loginResponse from './MockHttpResponses/POST/login_response.json';
+import submitAddressResponse from './MockHttpResponses/POST/submitAddress_response.json';
 
-// TODO: Need to check that the request contains a particular body.
+function mockLoginResponse(mockObj) {
+  mockObj.post(
+    '/cortex/oauth2/tokens',
+    loginResponse,
+  );
+}
 
-export function mockCountryDataAPI() {
-  fetchMock
-    .mock(
-      '/cortex/oauth2/tokens',
-      publicUserAuthenticationResponse,
+function mockCountriesResponse(mockObj) {
+  mockObj.get(
+    /* eslint-disable max-len */
+    /\/cortex\/geographies\/vestri_b2c\/countries\/\?zoom(.*)/,
+    fetchGeoDataResponse,
+  );
+}
+
+function mockAddressFormResponse(mockObj) {
+  mockObj.get(
+    '/cortex/?zoom=defaultprofile:addresses:addressform',
+    fetchAddressFormResponse,
+  )
+}
+
+function mockAddressDataResponse(mockObj) {
+  mockObj.get(
+    /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+    fetchAddressDataResponse,
+  );
+}
+
+function mockSubmitAddressResponseSuccessResponse(mockObj) {
+  mockObj
+    .put(
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+      submitAddressResponse
     )
-    .mock(
-      /* eslint-disable max-len */
-      '/cortex/geographies/vestri/countries/?zoom=element,element:regions,element:regions:element,countries:element,countries:element:regions,countries:element:regions:element',
-      geographiesCortexResponse,
+    .post(
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+      submitAddressResponse
+    );
+}
+
+function mockSubmitAddressResponseFailureResponse(mockObj) {
+  mockObj
+    .put(
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+      400
     )
-    .mock(
-      '/cortex/?zoom=defaultprofile:addresses:addressform',
-      defaultCartResponse,
-    )
-    .mock(
-      '/cortex/addresses/vestri/test',
-      profileAddressResponse,
-    )
-    .restore();
+    .post(
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+      400
+    );
+}
+
+function mockCommonAddressFormResponses(mockObj) {
+    mockLoginResponse(mockObj);
+    mockCountriesResponse(mockObj);
+    mockAddressFormResponse(mockObj);
+    mockAddressDataResponse(mockObj);
+}
+
+export function mockAddressFormSubmitSuccess() {
+    fetchMock.restore();
+    mockCommonAddressFormResponses(fetchMock);
+    mockSubmitAddressResponseSuccessResponse(fetchMock);
+}
+
+export function mockAddressFormSubmitFailure() {
+  fetchMock.restore();
+  mockCommonAddressFormResponses(fetchMock);
+  mockSubmitAddressResponseFailureResponse(fetchMock);
 }
