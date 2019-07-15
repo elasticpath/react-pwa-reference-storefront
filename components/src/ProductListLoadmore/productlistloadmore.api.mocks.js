@@ -25,7 +25,7 @@ function mockSearchResponse(fetchMock) {
     fetchMock.get(
         /\/cortex\/\/offersearches\/[a-zA-Z0-9_]*\/offers\/(.*)/,
         searchLookupResponse,
-    )
+    );
 }
 
 export function mockProductListLoadMoreFromSearchResponse() {
