@@ -1,0 +1,79 @@
+@import './../../theme/common.less';
+
+.dialog-header {
+  flex: 0 0 auto;
+  font-size: 20px;
+  padding-right: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid @lightBorderColor;
+}
+.dialog-content {
+  padding: 50px 20px;
+  flex: 1 0 auto;
+
+  .associate-email-title {
+    font-weight: 700;
+    color: #777;
+    margin-bottom: 6px;
+  }
+
+  .role-title {
+    font-weight: 700;
+    color: #777;
+    margin-bottom: 6px;
+    margin-top: 40px;
+  }
+
+    .am-field-editor {
+    .field-editor-input {
+      width: 240px;
+      height: 32px;
+      border: 1px solid #b9b9b9;
+      border-radius: 5px;
+      color: #b9b9b9;
+      background-color: #f5f5f5;
+      padding: 4px 20px 4px 11px;
+    }
+  }
+
+}
+.dialog-footer {
+  flex: 0 0 auto;
+  text-align: right;
+  padding-bottom: 10px;
+  button {
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+    width: 120px;
+    height: 44px;
+    cursor: pointer;
+    outline: 0;
+    @media (min-width: 576px) {
+      width: 133px;
+    }
+    &.cancel {
+      color: @mainBlueColor;
+      margin-right: 10px;
+      @media (min-width: 576px) {
+        margin-right: 20px;
+      }
+      &:hover {
+        color: lighten(@generalizedBlueColor, 3%);
+      }
+      &:active {
+        color: lighten(@generalizedBlueColor, -3%);
+      }
+    }
+    &.upload {
+      background-color: @mainBlueColor;
+      color: @backgroundColor;
+      &:hover {
+        background-color: lighten(@mainBlueColor, 3%);
+      }
+      &:active {
+        background-color: lighten(@mainBlueColor, -5%);
+      }
+    }
+  }
+}

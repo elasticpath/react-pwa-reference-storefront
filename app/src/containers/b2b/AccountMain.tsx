@@ -25,6 +25,7 @@ import * as intl from "react-intl-universal";
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import EditAccountModal from './EditAccountModal';
+import EditAssociate from './EditAssociate';
 import * as Config from '../../ep.config.json';
 import { Link } from 'react-router-dom';
 
@@ -57,12 +58,21 @@ const accountZoomArray = [
   "associateroleassignments:associateform",
   "associateroleassignments:associateform:addassociateaction",
 ];
+interface AccountMainState {
+    isLoading: boolean,
+    isEditAssociateOpen: boolean,
+    legalName: string,
+    status: string,
+    data: any,
+    associates: any
+}
 
-export default class AccountMain extends React.Component {
+export default class AccountMain extends React.Component<AccountMainState> {
   constructor(props: any) {
     super(props);
     this.state = {
       isLoading: true,
+      isEditAssociateOpen: false,
       legalName: '',
       status: '',
       isSettingsDialogOpen: false,
@@ -70,6 +80,7 @@ export default class AccountMain extends React.Component {
       registrationNumber: '',
       selfSignUpCode: '',
       uri: '',
+      selector: '',
       data: {},
       associates: {}
     };
@@ -78,6 +89,8 @@ export default class AccountMain extends React.Component {
     this.handleAccountSettingsClose = this.handleAccountSettingsClose.bind(this);
     this.handleAccountSettingsClicked = this.handleAccountSettingsClicked.bind(this);
     this.handleAccountSettingsUpdate = this.handleAccountSettingsUpdate.bind(this);
+    this.handleEditAssociateClicked = this.handleEditAssociateClicked.bind(this);
+    this.isEditAssociateClose = this.isEditAssociateClose.bind(this);
   }
 
   getAccountData() {
@@ -126,8 +139,16 @@ export default class AccountMain extends React.Component {
     this.getAccountData();
   }
 
+    handleEditAssociateClicked(selector, associateEditEmail) {
+        this.setState({isEditAssociateOpen: true, selector, associateEditEmail});
+    }
+
+    isEditAssociateClose(){
+        this.setState({ isEditAssociateOpen: false })
+    }
+
   render() {
-      const { isLoading, name, status, associates, isSettingsDialogOpen } = this.state;
+      const {isLoading, name, status, associates, isSettingsDialogOpen, isEditAssociateOpen, selector, associateEditEmail } = this.state;
 
       return (
           <div className="account-content-wrapper">
@@ -183,7 +204,7 @@ export default class AccountMain extends React.Component {
                               {associate.roles._roles.length ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
                               </td>
                               <td className="action">
-                                  <button className="edit-associate" />
+                                  <button className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associate.associate._primaryemail[0].email)} />
                                   <button className="delete-associate" />
                               </td>
                           </tr>
@@ -191,11 +212,13 @@ export default class AccountMain extends React.Component {
                       </tbody>
                   </table>
               </div>
+
             <EditAccountModal
               handleClose={this.handleAccountSettingsClose}
               handleUpdate={this.handleAccountSettingsUpdate}
               isOpen={isSettingsDialogOpen}
               accountData={this.state}/>
+              <EditAssociate isEditAssociateOpen={isEditAssociateOpen} rolesSelector={selector} associateEmail={associateEditEmail} />
           </div>
           )}
           </div>
