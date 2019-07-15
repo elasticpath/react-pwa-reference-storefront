@@ -23,11 +23,16 @@
 import * as React from 'react';
 import * as intl from "react-intl-universal";
 import Modal from "react-responsive-modal";
+import {adminFetch} from "../../utils/Cortex";
+import * as Config from '../../ep.config.json';
+
 import './EditAssociate.less';
 
 interface EditAssociateProps {
+    isOpen: boolean,
+    handleClose: () => void,
+    handleUpdate: () => void,
     associateEmail: string;
-    isEditAssociateOpen: boolean;
     rolesSelector: any;
 }
 interface EditAssociateState {}
@@ -36,52 +41,96 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
     constructor(props: any) {
         super(props);
         this.state={
-            isModalOpen: false,
-        }
+            changedRoles: [],
+            isLoading: false,
+        };
         this.renderRoleSelection = this.renderRoleSelection.bind(this);
-
+        this.handleRoleChange= this.handleRoleChange.bind(this);
+        this.handleSaveClicked= this.handleSaveClicked.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.warn(nextProps);
-        this.setState({ isModalOpen: nextProps.isEditAssociateOpen });
-    }
-
-    isEditAssociateClose(){
-        this.setState({ isModalOpen: false })
-    }
     renderRoleSelection(){
         const { rolesSelector } = this.props;
-        console.log(rolesSelector);
-        if (rolesSelector && rolesSelector._choice && rolesSelector._chosen){
-            const chosenRoles = [{name: "", role:""}];
-            const choiceRoles = [];
-            const roleName = {};
-            const allAssociateRoles = [];
-            // rolesSelector._choice.map(choiceElement => {
-            //     choiceRoles.push(name: choiceElement._description[0].name, url: )
-            // })
-            // rolesSelector._chosen.map(chosenElement => {
-            //     chosenRoles.push(name: chosenElement._description[0].name, url: )
-            // })
 
+        if (rolesSelector){
+            const allAssociateRoles = [];
+            if (rolesSelector._choice) {
+                rolesSelector._choice.forEach(choiceElement => {
+                    allAssociateRoles.push({
+                        roleName: choiceElement._description[0].name,
+                        selectRoleURI: choiceElement._selectaction[0].self.uri,
+                        selected: false
+                    })
+                });
+            }
+            if(rolesSelector._chosen) {
+                rolesSelector._chosen.forEach(chosenElement => {
+                    allAssociateRoles.push({
+                        roleName: chosenElement._description[0].name,
+                        selectRoleURI: chosenElement._selectaction[0].self.uri,
+                        selected: true
+                    })
+                });
+            }
+            return (
+                <div>
+                    {allAssociateRoles.map(role => (
+                    <div key={role.roleName} className="role-checkbox">
+                        <input id={role.roleName} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} />
+                        <label htmlFor={role.roleName} className="role-title">{intl.get(role.roleName.toLowerCase()) || role.roleName}</label>
+                    </div>
+                    ))}
+                </div>
+            );
         }
     }
 
-    handleChangeChk(){
+    handleRoleChange(role) {
+        const { changedRoles } = this.state;
 
+            const changes = changedRoles;
+            const roleIndex = changes.findIndex(r => r.roleName === role.roleName);
+            if (roleIndex !== -1) {
+                changes.splice(roleIndex, 1);
+            } else {
+                changes.push(role);
+            }
+            this.setState({changedRoles: changes})
     }
 
+    handleSaveClicked() {
+        const { changedRoles } = this.state;
+        const { handleClose, handleUpdate } = this.props;
+        this.setState({ isLoading: true });
+        changedRoles.forEach(selection => {
+            adminFetch(`${selection.selectRoleURI}?followlocation&format=standardlinks,zoom.nodatalinks`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+                },
+                body: JSON.stringify({}),
+            })
+            .then(res => res.json())
+            .then(() => {
+                this.setState({isLoading: false});
+                handleClose();
+                handleUpdate();
+            })
+            .catch(() => {
+                this.setState({isLoading: false})
+            });
+        })
+    }
 
     render () {
-        const { rolesSelector, associateEmail } = this.props;
-        const { isModalOpen } = this.state;
-        const allAssociateRoles = [];
+        const { associateEmail, handleClose, isOpen } = this.props;
+        const { isLoading } = this.state;
 
         return (
             <Modal
-                open={isModalOpen}
-                onClose={() => this.isEditAssociateClose()}
+                open={isOpen}
+                onClose={handleClose}
                 classNames={{ modal: 'b2b-edit-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
             >
                 <div className="dialog-header">{intl.get('edit-associate')}</div>
@@ -96,18 +145,19 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                             onChange={(e) => this.setState({ associateEmail: e.target.value })}
                         />
                     </div>
-                    <div className="role-title">{intl.get('role')}</div>
+                    <div className="checkbox-role-title">{intl.get('role')}</div>
                     {this.renderRoleSelection()}
-                    {/*{allAssociateRoles.map(role => (*/}
-                        {/*<div key={role} className="role-checkbox">*/}
-                            {/*<input type="checkbox" value={intl.get(role) || role}  onChange={this.handleChangeChk} />*/}
-                        {/*</div>*/}
-                    {/*))}*/}
                 </div>
                 <div className="dialog-footer">
-                    <button className="cancel" type="button" onClick={() => this.isEditAssociateClose()}>{intl.get('cancel')}</button>
-                    <button className="upload" type="button">{intl.get('save')}</button>
+                    <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
+                    <button className="upload" type="button" onClick={() => this.handleSaveClicked()}>{intl.get('save')}
+                    </button>
                 </div>
+                {isLoading ? (
+                    <div className="loader-wrapper">
+                        <div className="miniLoader" />
+                    </div>
+                ) : ''}
             </Modal>
         )
     }

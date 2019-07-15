@@ -218,7 +218,12 @@ export default class AccountMain extends React.Component<AccountMainState> {
               handleUpdate={this.handleAccountSettingsUpdate}
               isOpen={isSettingsDialogOpen}
               accountData={this.state}/>
-              <EditAssociate isEditAssociateOpen={isEditAssociateOpen} rolesSelector={selector} associateEmail={associateEditEmail} />
+            <EditAssociate
+               handleClose={this.isEditAssociateClose}
+               handleUpdate={this.handleAccountSettingsUpdate}
+               rolesSelector={selector}
+               associateEmail={associateEditEmail}
+               isOpen={isEditAssociateOpen} />
           </div>
           )}
           </div>
