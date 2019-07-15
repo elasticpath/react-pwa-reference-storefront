@@ -1,0 +1,88 @@
+{
+	"self": {
+		"type": "elasticpath.collections.links",
+		"uri": "/?zoom=searches:keywordsearchform,searches:offersearchform",
+		"href": "http://localhost:8080/cortex/?zoom=searches:keywordsearchform,searches:offersearchform"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "defaultcart",
+		"type": "carts.default-cart",
+		"uri": "/carts/vestri_b2c/default",
+		"href": "http://localhost:8080/cortex/carts/vestri_b2c/default"
+	}, {
+		"rel": "data-policies",
+		"type": "datapolicies.data-policies",
+		"uri": "/datapolicies/vestri_b2c",
+		"href": "http://localhost:8080/cortex/datapolicies/vestri_b2c"
+	}, {
+		"rel": "countries",
+		"type": "geographies.countries",
+		"uri": "/geographies/vestri_b2c/countries",
+		"href": "http://localhost:8080/cortex/geographies/vestri_b2c/countries"
+	}, {
+		"rel": "lookups",
+		"type": "lookups.lookups",
+		"uri": "/lookups/vestri_b2c",
+		"href": "http://localhost:8080/cortex/lookups/vestri_b2c"
+	}, {
+		"rel": "navigations",
+		"type": "navigations.navigations",
+		"uri": "/navigations/vestri_b2c",
+		"href": "http://localhost:8080/cortex/navigations/vestri_b2c"
+	}, {
+		"rel": "defaultprofile",
+		"type": "profiles.default-profile",
+		"uri": "/profiles/vestri_b2c/default",
+		"href": "http://localhost:8080/cortex/profiles/vestri_b2c/default"
+	}, {
+		"rel": "newaccountform",
+		"type": "registrations.new-account-registration-form",
+		"uri": "/registrations/vestri_b2c/newaccount/form",
+		"href": "http://localhost:8080/cortex/registrations/vestri_b2c/newaccount/form"
+	}, {
+		"rel": "searches",
+		"type": "searches.searches",
+		"uri": "/searches/vestri_b2c",
+		"href": "http://localhost:8080/cortex/searches/vestri_b2c"
+	}, {
+		"rel": "defaultwishlist",
+		"type": "wishlists.default-wishlist",
+		"uri": "/wishlists/vestri_b2c/default",
+		"href": "http://localhost:8080/cortex/wishlists/vestri_b2c/default"
+	}],
+	"_searches": [{
+		"_keywordsearchform": [{
+			"self": {
+				"type": "searches.keyword-search-form",
+				"uri": "/searches/vestri_b2c/keywords/form",
+				"href": "http://localhost:8080/cortex/searches/vestri_b2c/keywords/form"
+			},
+			"messages": [],
+			"links": [{
+				"rel": "itemkeywordsearchaction",
+				"type": "searches.keyword-search-form",
+				"uri": "/searches/vestri_b2c/keywords/form",
+				"href": "http://localhost:8080/cortex/searches/vestri_b2c/keywords/form"
+			}],
+			"keywords": "",
+			"page-size": 20
+		}],
+		"_offersearchform": [{
+			"self": {
+				"type": "offersearches.offer-search-form",
+				"uri": "/offersearches/vestri_b2c/offers/form",
+				"href": "http://localhost:8080/cortex/offersearches/vestri_b2c/offers/form"
+			},
+			"messages": [],
+			"links": [{
+				"rel": "offersearchaction",
+				"type": "offersearches.offer-search-form",
+				"uri": "/offersearches/vestri_b2c/offers/form",
+				"href": "http://localhost:8080/cortex/offersearches/vestri_b2c/offers/form"
+			}],
+			"keywords": "",
+			"page-size": 20
+		}]
+	}]
+}
