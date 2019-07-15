@@ -21,6 +21,7 @@
 import fetchMock from 'fetch-mock/es5/client';
 import getSearchFromResponse from './MockHttpResponses/GET/getSearchForm_response.json';
 import offerSearchResponse from './MockHttpResponses/POST/offerSearch_response.json';
+import loginResponse from '../CommonMockHttpResponses/login_response.json';
  
 function mockGetSearchForm(fetchMock) {
      fetchMock.get(
@@ -36,8 +37,16 @@ function mockOfferSearch(fetchMock) {
     );
 }
 
+function mockLoginResponse(fetchMock) {
+    fetchMock.post(
+      '/cortex/oauth2/tokens',
+      loginResponse,
+    );
+  }
+
 export function mockSearchResults() {
     fetchMock.restore();
+    mockLoginResponse(fetchMock);
     mockGetSearchForm(fetchMock);
     mockOfferSearch(fetchMock);
 }
