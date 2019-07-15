@@ -1,0 +1,71 @@
+{
+	"self": {
+		"type": "elasticpath.collections.links",
+		"uri": "/?zoom=lookups:itemlookupform",
+		"href": "http://localhost:8080/cortex/?zoom=lookups:itemlookupform"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "defaultcart",
+		"type": "carts.default-cart",
+		"uri": "/carts/vestri_b2c/default",
+		"href": "http://localhost:8080/cortex/carts/vestri_b2c/default"
+	}, {
+		"rel": "data-policies",
+		"type": "datapolicies.data-policies",
+		"uri": "/datapolicies/vestri_b2c",
+		"href": "http://localhost:8080/cortex/datapolicies/vestri_b2c"
+	}, {
+		"rel": "countries",
+		"type": "geographies.countries",
+		"uri": "/geographies/vestri_b2c/countries",
+		"href": "http://localhost:8080/cortex/geographies/vestri_b2c/countries"
+	}, {
+		"rel": "lookups",
+		"type": "lookups.lookups",
+		"uri": "/lookups/vestri_b2c",
+		"href": "http://localhost:8080/cortex/lookups/vestri_b2c"
+	}, {
+		"rel": "navigations",
+		"type": "navigations.navigations",
+		"uri": "/navigations/vestri_b2c",
+		"href": "http://localhost:8080/cortex/navigations/vestri_b2c"
+	}, {
+		"rel": "defaultprofile",
+		"type": "profiles.default-profile",
+		"uri": "/profiles/vestri_b2c/default",
+		"href": "http://localhost:8080/cortex/profiles/vestri_b2c/default"
+	}, {
+		"rel": "newaccountform",
+		"type": "registrations.new-account-registration-form",
+		"uri": "/registrations/vestri_b2c/newaccount/form",
+		"href": "http://localhost:8080/cortex/registrations/vestri_b2c/newaccount/form"
+	}, {
+		"rel": "searches",
+		"type": "searches.searches",
+		"uri": "/searches/vestri_b2c",
+		"href": "http://localhost:8080/cortex/searches/vestri_b2c"
+	}, {
+		"rel": "defaultwishlist",
+		"type": "wishlists.default-wishlist",
+		"uri": "/wishlists/vestri_b2c/default",
+		"href": "http://localhost:8080/cortex/wishlists/vestri_b2c/default"
+	}],
+	"_lookups": [{
+		"_itemlookupform": [{
+			"self": {
+				"type": "items.lookup-item-form",
+				"uri": "/items/vestri_b2c/lookups/form",
+				"href": "http://localhost:8080/cortex/items/vestri_b2c/lookups/form"
+			},
+			"messages": [],
+			"links": [{
+				"rel": "itemlookupaction",
+				"type": "items.lookup-item-form",
+				"uri": "/items/vestri_b2c/lookups/form",
+				"href": "http://localhost:8080/cortex/items/vestri_b2c/lookups/form"
+			}],
+			"code": ""
+		}]
+	}]
+}
