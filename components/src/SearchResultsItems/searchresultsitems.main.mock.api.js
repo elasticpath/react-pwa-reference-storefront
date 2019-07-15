@@ -18,25 +18,26 @@
  *
  *
  */
- import fetchMock from 'fetch-mock/es5/client';
- import getSearchFromResponse from './MockHttpResponses/GET/getSearchForm_response.json';
- import offerSearchResponse from './MockHttpResponses/POST/offerSearch_response.json';
+import fetchMock from 'fetch-mock/es5/client';
+import getSearchFromResponse from './MockHttpResponses/GET/getSearchForm_response.json';
+import offerSearchResponse from './MockHttpResponses/POST/offerSearch_response.json';
  
- function mockGetSearchForm(fetchMock) {
+function mockGetSearchForm(fetchMock) {
      fetchMock.get(
         '/cortex/?zoom=searches:keywordsearchform,searches:offersearchform',
         getSearchFromResponse
      );
  }
+
 function mockOfferSearch(fetchMock) {
     fetchMock.post(
         /\/cortex\/offersearches\/[a-zA-Z0-9_]*\/offers\/form?(.*)/,
         offerSearchResponse
     );
-
 }
- export function mockSearchResults() {
-     fetchMock.restore();
-     mockGetSearchForm(fetchMock);
-     mockOfferSearch(fetchMock);
- }
+
+export function mockSearchResults() {
+    fetchMock.restore();
+    mockGetSearchForm(fetchMock);
+    mockOfferSearch(fetchMock);
+}
