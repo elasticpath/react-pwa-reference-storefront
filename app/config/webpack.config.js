@@ -628,7 +628,11 @@ module.exports = function(webpackEnv) {
       new WorkboxPlugin.GenerateSW({
         runtimeCaching: [
           {
-            urlPattern: /\.(?:woff|woff2|jpg|png|json|ico|jpeg)$/,
+            urlPattern: /\.(?:jpg|png|json|ico|jpeg)$/,
+            handler: 'StaleWhileRevalidate',
+          },
+          {
+            urlPattern: /\.(?:woff|woff2)$/,
             handler: 'CacheFirst',
           },
           {
@@ -636,7 +640,7 @@ module.exports = function(webpackEnv) {
             handler: 'CacheFirst',
           },
           {
-            urlPattern: /\.(?:js|html)$/,
+            urlPattern: /\.(?:js|css|html)$/,
             handler: 'NetworkFirst',
           },
         ],
