@@ -35,7 +35,7 @@ function mockLoginResponse(mockObj) {
 function mockCountriesResponse(mockObj) {
   mockObj.get(
     /* eslint-disable max-len */
-    /\/cortex\/geographies\/vestri_b2c\/countries\/\?zoom(.*)/,
+    /\/cortex\/geographies\/[a-zA-Z0-9_]*\/countries\/\?zoom(.*)/,
     fetchGeoDataResponse,
   );
 }
@@ -49,7 +49,7 @@ function mockAddressFormResponse(mockObj) {
 
 function mockAddressDataResponse(mockObj) {
   mockObj.get(
-    /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+    /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
     fetchAddressDataResponse,
   );
 }
@@ -57,11 +57,11 @@ function mockAddressDataResponse(mockObj) {
 function mockSubmitAddressResponseSuccessResponse(mockObj) {
   mockObj
     .put(
-      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
       submitAddressResponse
     )
     .post(
-      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
       submitAddressResponse
     );
 }
@@ -69,11 +69,11 @@ function mockSubmitAddressResponseSuccessResponse(mockObj) {
 function mockSubmitAddressResponseFailureResponse(mockObj) {
   mockObj
     .put(
-      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
       400
     )
     .post(
-      /(.*)\/cortex\/addresses\/[a-zA-Z0-9]*/,
+      /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
       400
     );
 }
