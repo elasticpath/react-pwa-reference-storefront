@@ -1,0 +1,1331 @@
+{
+	"self": {
+		"type": "geographies.countries",
+		"uri": "/geographies/vestri_b2c/countries?zoom=countries:element,countries:element:regions,countries:element:regions:element,element,element:regions,element:regions:element",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries?zoom=countries:element,countries:element:regions,countries:element:regions:element,element,element:regions,element:regions:element"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/ircq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ircq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jzhq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jzhq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kjkq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kjkq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/izeq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/izeq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/krlq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/krlq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jbfq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jbfq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/ijcq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ijcq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kbka=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kbka="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jjia=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jjia="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/irfq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/irfq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/izja=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/izja="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kvaq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvaq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jzna=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jzna="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jbkq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jbkq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kncq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kncq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kndq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kndq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/i5ba=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/i5ba="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jfca=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfca="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jfcq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfcq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kvjq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/inaq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jfga=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfga="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kvna=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvna="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jfha=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfha="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/inea=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inea="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/ljaq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ljaq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jnja=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jnja="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jfjq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfjq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/i5ja=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/i5ja="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jfka=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfka="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/inha=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inha="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/ivjq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ivjq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/ifka=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ifka="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/ifkq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ifkq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/inna=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inna="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kbfq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kbfq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kbga=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kbga="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/kjhq=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kjhq="
+	}, {
+		"rel": "element",
+		"rev": "list",
+		"type": "geographies.country",
+		"uri": "/geographies/vestri_b2c/countries/jzga=",
+		"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jzga="
+	}],
+	"_element": [{
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/ircq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ircq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Germany",
+		"name": "DE"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jzhq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jzhq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Norway",
+		"name": "NO"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kjkq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kjkq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Russian Federation",
+		"name": "RU"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/izeq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/izeq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Finland",
+		"name": "FI"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/krlq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/krlq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Taiwan",
+		"name": "TW"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jbfq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jbfq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Hong Kong",
+		"name": "HK"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/ijcq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ijcq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Belgium",
+		"name": "BE"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kbka=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kbka="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Portugal",
+		"name": "PT"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jjia=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jjia="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Japan",
+		"name": "JP"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/irfq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/irfq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Denmark",
+		"name": "DK"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/izja=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/izja="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "France",
+		"name": "FR"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kvaq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvaq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Ukraine",
+		"name": "UA"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jzna=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jzna="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "New Zealand",
+		"name": "NZ"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jbkq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jbkq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Hungary",
+		"name": "HU"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kncq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kncq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Sweden",
+		"name": "SE"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kndq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kndq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Singapore",
+		"name": "SG"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/i5ba=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/i5ba="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Great Britain (UK)",
+		"name": "GB"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jfca=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfca="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Indonesia",
+		"name": "ID"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jfcq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfcq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Ireland",
+		"name": "IE"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kvjq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{
+			"self": {
+				"type": "geographies.regions",
+				"uri": "/geographies/vestri_b2c/countries/kvjq=/regions",
+				"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions"
+			},
+			"messages": [],
+			"links": [],
+			"_element": [{
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/ircq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/ircq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Delaware",
+				"name": "DE"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jbeq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jbeq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Hawaii",
+				"name": "HI"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/krma=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/krma="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Texas",
+				"name": "TX"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jvaq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jvaq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Massachusetts",
+				"name": "MA"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jvca=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jvca="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Maryland",
+				"name": "MD"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jvcq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jvcq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Maine",
+				"name": "ME"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jfaq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jfaq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Iowa",
+				"name": "IA"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jfca=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jfca="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Idaho",
+				"name": "ID"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jveq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jveq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Michigan",
+				"name": "MI"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/kvka=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/kvka="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Utah",
+				"name": "UT"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jvha=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jvha="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Minnesota",
+				"name": "MN"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jvhq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jvhq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Missouri",
+				"name": "MO"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jfga=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jfga="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Illinois",
+				"name": "IL"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jfha=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jfha="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Indiana",
+				"name": "IN"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jvjq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jvjq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Mississippi",
+				"name": "MS"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jvka=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jvka="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Montana",
+				"name": "MT"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/iffq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/iffq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Alaska",
+				"name": "AK"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/kzaq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/kzaq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Virginia ",
+				"name": "VA"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/ifga=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/ifga="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Alabama",
+				"name": "AL"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/ifja=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/ifja="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Arkansas",
+				"name": "AR"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jzbq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jzbq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "North Carolina",
+				"name": "NC"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jzca=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jzca="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "North Dakota",
+				"name": "ND"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/kjeq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/kjeq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Rhode Island",
+				"name": "RI"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jzcq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jzcq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Nebraska",
+				"name": "NE"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/ifna=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/ifna="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Arizona",
+				"name": "AZ"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jzea=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jzea="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "New Hampshire",
+				"name": "NH"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jzfa=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jzfa="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "New Jersey",
+				"name": "NJ"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/kzka=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/kzka="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Vermont",
+				"name": "VT"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jzgq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jzgq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "New Mexico",
+				"name": "NM"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/izga=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/izga="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Florida",
+				"name": "FL"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jzla=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jzla="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Nevada",
+				"name": "NV"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/k5aq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/k5aq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Washington",
+				"name": "WA"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jzmq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jzmq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "New York",
+				"name": "NY"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/knbq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/knbq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "South Carolina",
+				"name": "SC"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/knca=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/knca="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "South Dakota",
+				"name": "SD"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/k5eq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/k5eq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Wisconsin",
+				"name": "WI"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/j5ea=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/j5ea="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Ohio",
+				"name": "OH"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/i5aq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/i5aq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Georgia",
+				"name": "GA"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/j5fq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/j5fq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Oklahoma",
+				"name": "OK"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/inaq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/inaq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "California",
+				"name": "CA"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/k5la=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/k5la="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "West Virginia",
+				"name": "WV"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/k5mq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/k5mq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Wyoming",
+				"name": "WY"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/j5ja=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/j5ja="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Oregon",
+				"name": "OR"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jnjq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jnjq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Kansas",
+				"name": "KS"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/inhq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/inhq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Colorado",
+				"name": "CO"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jnmq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jnmq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Kentucky",
+				"name": "KY"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/kbaq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/kbaq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Pennsylvania",
+				"name": "PA"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/inka=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/inka="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Connecticut",
+				"name": "CT"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/jraq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/jraq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Louisiana",
+				"name": "LA"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/krha=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/krha="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Tennessee",
+				"name": "TN"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/kvjq=/regions/irbq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvjq=/regions/irbq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "District of Columbia ",
+				"name": "DC"
+			}]
+		}],
+		"display-name": "United States",
+		"name": "US"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/inaq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{
+			"self": {
+				"type": "geographies.regions",
+				"uri": "/geographies/vestri_b2c/countries/inaq=/regions",
+				"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions"
+			},
+			"messages": [],
+			"links": [],
+			"_element": [{
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/ijbq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/ijbq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "British Columbia",
+				"name": "BC"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/ifba=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/ifba="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Alberta",
+				"name": "AB"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/jzjq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/jzjq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Nova Scotia",
+				"name": "NS"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/jzka=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/jzka="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Northwest Territories",
+				"name": "NT"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/jzkq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/jzkq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Nunavut",
+				"name": "NU"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/kfbq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/kfbq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Quebec",
+				"name": "QC"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/jzba=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/jzba="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "New Brunswick",
+				"name": "NB"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/kbcq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/kbcq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Prince Edward Isl",
+				"name": "PE"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/jvba=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/jvba="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Manitoba",
+				"name": "MB"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/knfq=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/knfq="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Saskatchewan",
+				"name": "SK"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/lfka=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/lfka="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Yukon",
+				"name": "YT"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/jzga=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/jzga="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Newfoundland & Labrador",
+				"name": "NL"
+			}, {
+				"self": {
+					"type": "geographies.region",
+					"uri": "/geographies/vestri_b2c/countries/inaq=/regions/j5ha=",
+					"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inaq=/regions/j5ha="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "Ontario",
+				"name": "ON"
+			}]
+		}],
+		"display-name": "Canada",
+		"name": "CA"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jfga=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfga="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Israel",
+		"name": "IL"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kvna=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kvna="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Uzbekistan",
+		"name": "UZ"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jfha=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfha="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "India",
+		"name": "IN"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/inea=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inea="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Switzerland",
+		"name": "CH"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/ljaq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ljaq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "South Africa",
+		"name": "ZA"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jnja=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jnja="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Korea (South)",
+		"name": "KR"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jfjq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfjq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Iceland",
+		"name": "IS"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/i5ja=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/i5ja="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Greece",
+		"name": "GR"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jfka=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jfka="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Italy",
+		"name": "IT"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/inha=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inha="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "China",
+		"name": "CN"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/ivjq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ivjq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Spain",
+		"name": "ES"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/ifka=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ifka="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Austria",
+		"name": "AT"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/ifkq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/ifkq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Australia",
+		"name": "AU"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/inna=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/inna="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Czech Republic",
+		"name": "CZ"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kbfq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kbfq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Pakistan",
+		"name": "PK"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kbga=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kbga="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Poland",
+		"name": "PL"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/kjhq=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/kjhq="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Romania",
+		"name": "RO"
+	}, {
+		"self": {
+			"type": "geographies.country",
+			"uri": "/geographies/vestri_b2c/countries/jzga=",
+			"href": "https://vestri.us.epdemos.com/cortex/geographies/vestri_b2c/countries/jzga="
+		},
+		"messages": [],
+		"links": [],
+		"_regions": [{}],
+		"display-name": "Netherlands",
+		"name": "NL"
+	}]
+}

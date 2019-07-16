@@ -1,20 +1,23 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { mockCountryDataAPI } from './addressform.main.api.mocks';
+import { mockAddressFormSubmitSuccess, mockAddressFormSubmitFailure } from './addressform.main.api.mocks';
 
 import AddressFormMain from './addressform.main';
 
-const addressData = {
-  address: '/addresses/vestri/test',
-  returnPage: '/profile'
-}
-
 storiesOf('AddressFormMain', module)
   .add('AddressFormMain edit mode', () => {
-    mockCountryDataAPI();
+    mockAddressFormSubmitSuccess();
+    const addressData = {
+      address: '/addresses/vestri_b2c',
+      returnPage: '/profile'
+    }
     return <AddressFormMain addressData={addressData}/>
   })
-  .add('AddressFormMain', () => {
-    mockCountryDataAPI();
+  .add('AddressFormMain Submit Success', () => {
+    mockAddressFormSubmitSuccess();
+    return <AddressFormMain />
+  })
+  .add('AddressFormMain Submit Failure', () => {
+    mockAddressFormSubmitFailure();
     return <AddressFormMain />
   });

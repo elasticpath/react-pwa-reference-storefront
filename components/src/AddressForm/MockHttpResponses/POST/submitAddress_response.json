@@ -1,0 +1,33 @@
+{
+	"self": {
+		"type": "addresses.address",
+		"uri": "/addresses/vestri_b2c/gnsdomtggm4teljrguztqljumm4dallbhfrdkljxgmzgcy3bgjtdeojthe=",
+		"href": "https://vestri.us.epdemos.com/cortex/addresses/vestri_b2c/gnsdomtggm4teljrguztqljumm4dallbhfrdkljxgmzgcy3bgjtdeojthe="
+	},
+	"messages": [],
+	"links": [{
+		"rel": "list",
+		"type": "addresses.addresses",
+		"uri": "/addresses/vestri_b2c",
+		"href": "https://vestri.us.epdemos.com/cortex/addresses/vestri_b2c"
+	}, {
+		"rel": "profile",
+		"type": "profiles.profile",
+		"uri": "/profiles/vestri_b2c/me3toobsg4zdcllbmq2dcljuguztkljzgazwcllfmmytmmddmfrdgyrvmq=",
+		"href": "https://vestri.us.epdemos.com/cortex/profiles/vestri_b2c/me3toobsg4zdcllbmq2dcljuguztkljzgazwcllfmmytmmddmfrdgyrvmq="
+	}],
+	"address": {
+		"country-name": "US",
+		"extended-address": "1231",
+		"locality": "WA",
+		"organization": null,
+		"phone-number": "213123",
+		"postal-code": "12312",
+		"region": "WA",
+		"street-address": "12324 Main Street"
+	},
+	"name": {
+		"family-name": "Test",
+		"given-name": "User"
+	}
+}
