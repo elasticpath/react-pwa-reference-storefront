@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import productData from './MockHttpResponses/bundle_constituents_response.json';
+import productData from './MockHttpResponses/crosssell_response.json';
 
 import ProductRecommendationsDisplayMain from './productrecommendations.main';
 
