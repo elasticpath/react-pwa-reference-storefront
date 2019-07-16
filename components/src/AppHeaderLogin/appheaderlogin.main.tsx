@@ -181,7 +181,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                                         </div>
                                     </Link>
                                 </li>
-                                {(Config.b2b.enable) ? (
+                                {(Config.b2b.enable && Config.b2b.dashboard) ? (
                                   <li className="dropdown-item">
                                     <Link className="dashboard-link" to="/b2b">
                                       <div>

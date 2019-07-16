@@ -49,6 +49,7 @@
   },
   "indi": {
     "enable": false,
+    "dashboard": false,
     "carousel": {
       "apikey": "",
       "id": "",
