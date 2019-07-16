@@ -283,6 +283,7 @@
   "default-billing": "Default Billing",
   "default-shipping": "Default Shipping",
   "accounts": "Accounts",
+  "account": "Account",
   "view-all": "View All",
   "external-id": "External Id",
   "recent-orders": "Recent Orders",

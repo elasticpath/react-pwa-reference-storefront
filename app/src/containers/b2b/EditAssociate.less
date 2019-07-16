@@ -13,30 +13,68 @@
 
   .associate-email-title {
     font-weight: 700;
-    color: #777;
+    color: @darkTextColor;
     margin-bottom: 6px;
   }
 
   .checkbox-role-title {
     font-weight: 700;
-    color: #777;
+    color: @darkTextColor;
     margin-bottom: 6px;
     margin-top: 40px;
   }
+  .role-checkbox {
+    margin-bottom: 5px;
 
-    .am-field-editor {
-    .field-editor-input {
-      width: 240px;
-      height: 32px;
-      border: 1px solid #b9b9b9;
-      border-radius: 5px;
-      color: #b9b9b9;
-      background-color: #f5f5f5;
-      padding: 4px 20px 4px 11px;
+    .style-checkbox {
+      +label {
+        color: @darkTextColor;
+        &:before {
+          border: 2px solid @borderColor;
+        }
+      }
+      &:checked {
+        +label {
+          &:before {
+            background-color: @backgroundColor;
+            border-color: @mainBlueColor;
+          }
+          &:after {
+            border: solid 2px @mainBlueColor;
+            border-right: none;
+            border-top: none;
+          }
+        }
+      }
     }
   }
 
+  .am-columns {
+    display: flex;
+
+    .am-field-editor {
+      width: 50%;
+      margin-right: 30px;
+
+      .field-editor-input {
+        cursor: not-allowed;
+        width: 240px;
+        height: 32px;
+        border: 1px solid @borderColor;
+        border-radius: 5px;
+        color: @borderColor;
+        background-color: @tableBackgroundColor;
+        padding: 4px 20px 4px 11px;
+      }
+    }
+    .account-title {
+      font-weight: 700;
+      color: @darkTextColor;
+      margin-bottom: 5px;
+    }
+  }
 }
+
 .dialog-footer {
   flex: 0 0 auto;
   text-align: right;

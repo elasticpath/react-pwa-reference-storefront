@@ -33,6 +33,7 @@ interface EditAssociateProps {
     handleClose: () => void,
     handleUpdate: () => void,
     associateEmail: string;
+    accountName: string;
     rolesSelector: any;
 }
 interface EditAssociateState {}
@@ -72,11 +73,22 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                     })
                 });
             }
+            allAssociateRoles.sort(function (a, b) {
+                if (a.roleName > b.roleName) {
+                    return 1;
+                }
+                if (a.roleName < b.roleName) {
+                    return -1;
+                }
+                return 0;
+            });
+
             return (
                 <div>
                     {allAssociateRoles.map(role => (
                     <div key={role.roleName} className="role-checkbox">
-                        <input id={role.roleName} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} />
+                        <input id={role.roleName} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} className="style-checkbox" />
+                        <label htmlFor={role.roleName} />
                         <label htmlFor={role.roleName} className="role-title">{intl.get(role.roleName.toLowerCase()) || role.roleName}</label>
                     </div>
                     ))}
@@ -124,7 +136,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
     }
 
     render () {
-        const { associateEmail, handleClose, isOpen } = this.props;
+        const { associateEmail, handleClose, isOpen, accountName } = this.props;
         const { isLoading } = this.state;
 
         return (
@@ -135,15 +147,21 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
             >
                 <div className="dialog-header">{intl.get('edit-associate')}</div>
                 <div className="dialog-content">
-                    <div className="associate-email-title">{intl.get('associate-email')}</div>
-                    <div className="am-field-editor">
-                        <input
-                            className="field-editor-input"
-                            autoFocus={true}
-                            disabled={true}
-                            value={associateEmail}
-                            onChange={(e) => this.setState({ associateEmail: e.target.value })}
-                        />
+                    <div className="am-columns">
+                        <div className="am-field-editor">
+                            <div className="associate-email-title">{intl.get('associate-email')}</div>
+                            <input
+                                className="field-editor-input"
+                                autoFocus={true}
+                                disabled={true}
+                                value={associateEmail}
+                                onChange={(e) => this.setState({ associateEmail: e.target.value })}
+                            />
+                        </div>
+                        <div>
+                            <div className="account-title">{intl.get('account')}</div>
+                            <p>{accountName}</p>
+                        </div>
                     </div>
                     <div className="checkbox-role-title">{intl.get('role')}</div>
                     {this.renderRoleSelection()}
