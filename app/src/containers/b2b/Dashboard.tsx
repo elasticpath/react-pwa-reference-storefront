@@ -152,7 +152,7 @@ export default class Dashboard extends React.Component<DashboardState> {
               if(!associates) return accum;
 
               associates.forEach(associate => {
-                if (associate._roleinfo[0]._roles[0]._element[0].name === 'BUYER_ADMIN') {
+                if (associate._roleinfo[0]._roles[0]._element && associate._roleinfo[0]._roles[0]._element[0].name === 'BUYER_ADMIN') {
                   const name = associate._associate[0].name;
                   const email = associate._associate[0]._primaryemail[0].email;
                     map.set(email, { name, email });

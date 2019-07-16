@@ -72,7 +72,8 @@ interface AccountMainState {
   selector: string,
   associates: {
     [key: string]: any
-  }
+  },
+  userEmail: string
 }
 
 export default class AccountMain extends React.Component<AccountMainState> {
@@ -90,7 +91,8 @@ export default class AccountMain extends React.Component<AccountMainState> {
       selfSignUpCode: '',
       uri: '',
       selector: '',
-      associates: {}
+      associates: {},
+      userEmail: ''
     };
 
     this.getAccountData();
@@ -105,24 +107,37 @@ export default class AccountMain extends React.Component<AccountMainState> {
     const accountUri = this.props.match.params.uri;
     this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(`/accounts/am/${accountUri}/?zoom=${accountZoomArray.join()}`, {
+
+      const profilePromice =  adminFetch(`/?zoom=myprofile:primaryemail`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
         }
-      })
-        .then(res => res.json())
+      });
+
+      const accountsPromice = adminFetch(`/accounts/am/${accountUri}/?zoom=${accountZoomArray.join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        }
+      });
+
+      Promise.all([accountsPromice, profilePromice])
+        .then(responses => Promise.all(responses.map(res => res.json())))
         .then(res => {
+          const accounts = res[0];
+          const profile = res[1];
           this.setState({
-            name: res.name,
-            externalId: res['external-id'],
-            registrationNumber: res['registration-id'],
+            name: accounts.name,
+            externalId: accounts['external-id'],
+            registrationNumber: accounts['registration-id'],
             isLoading: false,
-            legalName: res['legal-name'],
-            associates: res._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
-            status: res._statusinfo[0]._status[0].status,
-            selfSignUpCode: res._selfsignupinfo[0]['self-signup-code'],
-            uri: accountUri
+            legalName: accounts['legal-name'],
+            associates: accounts._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
+            status: accounts._statusinfo[0]._status[0].status,
+            selfSignUpCode: accounts._selfsignupinfo[0]['self-signup-code'],
+            uri: accountUri,
+            userEmail: profile._myprofile[0]._primaryemail[0].email
           });
         })
         .catch(() => {
@@ -155,7 +170,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
     }
 
   render() {
-      const {isLoading, name, status, associates, isSettingsDialogOpen, isEditAssociateOpen, selector, associateEditEmail } = this.state;
+      const {isLoading, name, status, associates, isSettingsDialogOpen, isEditAssociateOpen, selector, associateEditEmail, userEmail } = this.state;
 
       return (
           <div className="account-content-wrapper">
@@ -208,7 +223,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
                                   <div className="email-part">{associate.associate._primaryemail[0].email}</div>
                               </td>
                               <td className="roles">
-                              {associate.roles._roles.length ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
+                              {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
                               </td>
                               <td className="action">
                                   <button className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associate.associate._primaryemail[0].email)} />
@@ -230,6 +245,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
                handleUpdate={this.handleAccountSettingsUpdate}
                accountName={name}
                rolesSelector={selector}
+               isSelf={associateEditEmail === userEmail}
                associateEmail={associateEditEmail}
                isOpen={isEditAssociateOpen} />
           </div>

@@ -32,11 +32,16 @@ interface EditAssociateProps {
     isOpen: boolean,
     handleClose: () => void,
     handleUpdate: () => void,
-    associateEmail: string;
-    accountName: string;
-    rolesSelector: any;
+    associateEmail: string,
+    accountName: string,
+    rolesSelector: any,
+    isSelf: boolean,
 }
-interface EditAssociateState {}
+
+interface EditAssociateState {
+    changedRoles: any,
+    isLoading: boolean,
+}
 
 export default  class EditAssociate extends React.Component<EditAssociateProps, EditAssociateState> {
     constructor(props: any) {
@@ -51,7 +56,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
     }
 
     renderRoleSelection(){
-        const { rolesSelector } = this.props;
+        const { rolesSelector, isSelf } = this.props;
 
         if (rolesSelector){
             const allAssociateRoles = [];
@@ -87,7 +92,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                 <div>
                     {allAssociateRoles.map(role => (
                     <div key={role.roleName} className="role-checkbox">
-                        <input id={role.roleName} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} className="style-checkbox" />
+                        <input id={role.roleName} disabled={isSelf && role.roleName === 'BUYER_ADMIN'} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} className="style-checkbox" />
                         <label htmlFor={role.roleName} />
                         <label htmlFor={role.roleName} className="role-title">{intl.get(role.roleName.toLowerCase()) || role.roleName}</label>
                     </div>
@@ -113,6 +118,10 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
     handleSaveClicked() {
         const { changedRoles } = this.state;
         const { handleClose, handleUpdate } = this.props;
+        if (!changedRoles.length) {
+            handleClose();
+            return;
+        }
         this.setState({ isLoading: true });
         changedRoles.forEach(selection => {
             adminFetch(`${selection.selectRoleURI}?followlocation&format=standardlinks,zoom.nodatalinks`, {
