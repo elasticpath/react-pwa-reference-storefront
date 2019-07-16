@@ -23,7 +23,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import ga from 'react-ga';
 
-import Config from '../ep.config.json';
+import * as Config from '../ep.config.json';
 
 const showGDPR = Config.GDPR.enable;
 const gdprSupportAccept = (showGDPR ? localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`) : true);

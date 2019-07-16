@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
  *
@@ -18,22 +19,10 @@
  *
  *
  */
-
-@mainColor: #040060;
-@mainGrey: #d0d0d0;
-@mainTextColor: #333333;
-@complimentGrey: #f3f3f3;
-@mainBlueColor: #40b1f3;
-@complimentBlueColor: #00a3dd;
-@generalizedBlueColor: #0099DE;
-
-// b2b Dashboard colors
-@backgroundColor: #ffffff;
-@tableBackgroundColor: #f7f7f7;
-@borderColor: #cccccc;
-@lightBorderColor: #D4D3D3;
-@darkTextColor: #777777;
-@tableBorderColor: #eeeeee;
-
-@mobileWidth: 768px;
-@tabletWidth: 1092px;
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var react_router_dom_1 = require("react-router-dom");
+function RouteWithSubRoutes(route) {
+    return (<react_router_dom_1.Route path={route.path} exact={route.exact} render={route.render || (function (props) { return <route.component {...props} routes={route.routes}/>; })}/>);
+}
+exports.default = RouteWithSubRoutes;

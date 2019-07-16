@@ -31,15 +31,16 @@
   "enableOfflineMode": false,
   "b2b": {
     "enable": false,
+    "dashboard": false,
     "authServiceAPI": {
-      "path": "/admin",
+      "path": "",
       "pathForProxy": ""
     },
     "keycloak": {
-      "callbackUrl": "",
+      "callbackUrl": "http://localhost:8080",
       "loginRedirectUrl": "",
       "logoutRedirectUrl": "",
-      "client_id": "reference-storefront"
+      "client_id": ""
     }
   },
   "gaTrackingId": "",

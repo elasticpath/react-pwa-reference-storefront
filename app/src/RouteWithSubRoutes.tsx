@@ -19,21 +19,15 @@
  *
  */
 
-@mainColor: #040060;
-@mainGrey: #d0d0d0;
-@mainTextColor: #333333;
-@complimentGrey: #f3f3f3;
-@mainBlueColor: #40b1f3;
-@complimentBlueColor: #00a3dd;
-@generalizedBlueColor: #0099DE;
+import * as React from 'react';
+import { Route } from 'react-router-dom';
 
-// b2b Dashboard colors
-@backgroundColor: #ffffff;
-@tableBackgroundColor: #f7f7f7;
-@borderColor: #cccccc;
-@lightBorderColor: #D4D3D3;
-@darkTextColor: #777777;
-@tableBorderColor: #eeeeee;
-
-@mobileWidth: 768px;
-@tabletWidth: 1092px;
+export default function RouteWithSubRoutes(route) {
+    return (
+        <Route
+            path={route.path}
+            exact={route.exact}
+            render={route.render || (props => <route.component {...props} routes={route.routes} />)}
+        />
+    );
+}

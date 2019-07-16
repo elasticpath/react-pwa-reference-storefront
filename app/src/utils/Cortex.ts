@@ -22,7 +22,7 @@
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
 
-import Config from '../ep.config.json';
+import * as Config from '../ep.config.json';
 
 export function cortexFetch(input, init): any {
   const requestInit = init;

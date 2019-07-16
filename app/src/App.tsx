@@ -19,21 +19,17 @@
  *
  */
 
-import React from 'react';
-import {
-  BrowserRouter as Router, Switch, withRouter, Route,
-} from 'react-router-dom';
+import * as React from 'react';
+import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
+import routes from './routes';
+import RouteWithSubRoutes from './RouteWithSubRoutes';
 import {
   AppHeaderMain, FacebookChat, AppFooterMain,
 } from '@elasticpath/store-components';
-import router from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 
 import './App.less';
-
-// eslint-disable-next-line react/no-array-index-key
-const routeComponents = router.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
 
 declare global {
   interface Window { fbAsyncInit: any; }
@@ -142,7 +138,9 @@ const Root = () => [
   />,
   <div key="app-content" className="app-content">
     <Switch>
-      {routeComponents}
+        {routes.map(route => (
+            <RouteWithSubRoutes key={route.path} {...route} />
+        ))}
     </Switch>
   </div>,
   <AppFooterMain key="AppFooterMain" appFooterLinks={appFooterLinks} />,

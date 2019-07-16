@@ -24,3 +24,11 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+app/src/containers/*.jsx
+app/src/containers/*/*.jsx
+app/src/utils/*.js
+app/src/utils/*.jsx
+app/src/routes.js
+app/src/index.jsx
+app/src/App.jsx
