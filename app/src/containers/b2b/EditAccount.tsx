@@ -129,7 +129,7 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
         open={isOpen}
         onClose={handleClose}
         classNames={{ modal: 'b2b-edit-account-dialog', closeButton: 'b2b-dialog-close-btn' }}>
-        <div className="dialog-header">{intl.get('add-associates')}</div>
+        <div className="dialog-header">{intl.get('edit-account')}</div>
         <div className="dialog-content">
           <form onSubmit={this.editAccount}>
             <div className="b2b-form-row">

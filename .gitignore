@@ -23,7 +23,7 @@ dist
 
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*v
+yarn-error.log*
 
 app/src/containers/*.jsx
 app/src/containers/*/*.jsx
