@@ -34,13 +34,16 @@ interface EditAssociateProps {
     handleUpdate: () => void,
     associateEmail: string,
     accountName: string,
+    addAssociateUri: string,
     rolesSelector: any,
     isSelf: boolean,
+    isAddAssociateOpen: boolean,
 }
 
 interface EditAssociateState {
     changedRoles: any,
     isLoading: boolean,
+    newAssociateEmail: string
 }
 
 export default  class EditAssociate extends React.Component<EditAssociateProps, EditAssociateState> {
@@ -49,6 +52,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
         this.state={
             changedRoles: [],
             isLoading: false,
+            newAssociateEmail: ''
         };
         this.renderRoleSelection = this.renderRoleSelection.bind(this);
         this.handleRoleChange= this.handleRoleChange.bind(this);
@@ -58,8 +62,8 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
     renderRoleSelection(){
         const { rolesSelector, isSelf } = this.props;
 
-        if (rolesSelector){
-            const allAssociateRoles = [];
+        const allAssociateRoles = [];
+        if (rolesSelector) {
             if (rolesSelector._choice) {
                 rolesSelector._choice.forEach(choiceElement => {
                     allAssociateRoles.push({
@@ -69,7 +73,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                     })
                 });
             }
-            if(rolesSelector._chosen) {
+            if (rolesSelector._chosen) {
                 rolesSelector._chosen.forEach(chosenElement => {
                     allAssociateRoles.push({
                         roleName: chosenElement._description[0].name,
@@ -87,7 +91,16 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                 }
                 return 0;
             });
-
+        } else {
+           const defaultRoles = ["Buyer", "Buyer Admin", "Catalog Browser"];
+            defaultRoles.forEach(role => {
+                allAssociateRoles.push({
+                    roleName: role,
+                    selectRoleURI: '',
+                    selected: false
+                })
+            })
+        }
             return (
                 <div>
                     {allAssociateRoles.map(role => (
@@ -99,7 +112,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                     ))}
                 </div>
             );
-        }
+
     }
 
     handleRoleChange(role) {
@@ -138,16 +151,51 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                 handleClose();
                 handleUpdate();
             })
-            .catch(() => {
+            .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
                 this.setState({isLoading: false})
             });
         })
     }
 
-    render () {
-        const { associateEmail, handleClose, isOpen, accountName } = this.props;
-        const { isLoading } = this.state;
+    handleAddAssociateClicked() {
+        const { addAssociateUri, handleClose, handleUpdate } = this.props;
+        const { changedRoles, newAssociateEmail } = this.state;
+        if (!changedRoles.length) {
+            handleClose();
+            return;
+        }
 
+        this.setState({ isLoading: true });
+        const roles = changedRoles.map(role => role.roleName.replace(' ', '_').toUpperCase());
+        adminFetch(`${addAssociateUri}?followlocation&format=standardlinks,zoom.nodatalinks`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+            },
+            body: JSON.stringify({'associate-id': newAssociateEmail, roles}),
+
+        })
+        .then(res => res.json())
+        .then(() => {
+            this.setState({isLoading: false});
+            handleClose();
+            handleUpdate();
+        })
+            .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
+                this.setState({isLoading: false})
+            });
+    }
+
+    render () {
+        const { associateEmail, handleClose, isOpen, accountName, isAddAssociateOpen } = this.props;
+        const { isLoading, newAssociateEmail } = this.state;
+
+        const isDisabled = !!associateEmail;
         return (
             <Modal
                 open={isOpen}
@@ -162,9 +210,9 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                             <input
                                 className="field-editor-input"
                                 autoFocus={true}
-                                disabled={true}
-                                value={associateEmail}
-                                onChange={(e) => this.setState({ associateEmail: e.target.value })}
+                                disabled={isDisabled}
+                                value={associateEmail ? associateEmail : newAssociateEmail}
+                                onChange={(e) => this.setState({ newAssociateEmail: e.target.value })}
                             />
                         </div>
                         <div>
@@ -177,7 +225,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                 </div>
                 <div className="dialog-footer">
                     <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
-                    <button className="upload" type="button" onClick={() => this.handleSaveClicked()}>{intl.get('save')}
+                    <button className="upload" type="button" onClick={isAddAssociateOpen ? () => this.handleAddAssociateClicked() : () => this.handleSaveClicked()}>{intl.get('save')}
                     </button>
                 </div>
                 {isLoading ? (

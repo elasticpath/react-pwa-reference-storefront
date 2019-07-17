@@ -143,8 +143,32 @@
   .associates-container {
     margin-top: 20px;
 
-    .associates-table {
+    .title-associate-table {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
+    .add-associate-container {
+      display: flex;
+      justify-content: flex-end;
+
+      .add-associate-button {
+        text-transform: none;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-right: 0;
+
+        .add-associate-icon {
+          width: 14px;
+          height: 14px;
+          background: url('../../images/icons/outline-add_circle_outline-14px.svg') no-repeat;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .associates-table {
       &.name-email {
         @media (min-width: @tabletWidth) {
           display: none;

@@ -62,14 +62,18 @@
       margin-right: 30px;
 
       .field-editor-input {
-        cursor: not-allowed;
         width: 240px;
         height: 32px;
         border: 1px solid @borderColor;
         border-radius: 5px;
-        color: @borderColor;
-        background-color: @tableBackgroundColor;
         padding: 4px 20px 4px 11px;
+
+        &:disabled {
+          background-color: @tableBackgroundColor;
+          cursor: not-allowed;
+          color: @borderColor;
+
+        }
       }
     }
     .account-title {

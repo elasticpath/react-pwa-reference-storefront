@@ -70,10 +70,12 @@ interface AccountMainState {
   selfSignUpCode: string,
   uri: string,
   selector: string,
+  associateEditEmail: string,
   associates: {
     [key: string]: any
   },
-  userEmail: string
+  userEmail: string,
+  isAddAssociateOpen: boolean
 }
 
 export default class AccountMain extends React.Component<AccountMainState> {
@@ -82,6 +84,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
     this.state = {
       isLoading: true,
       isEditAssociateOpen: false,
+      isAddAssociateOpen: false,
       legalName: '',
       name: '',
       status: '',
@@ -92,7 +95,9 @@ export default class AccountMain extends React.Component<AccountMainState> {
       uri: '',
       selector: '',
       associates: {},
-      userEmail: ''
+      userEmail: '',
+      associateEditEmail: '',
+      addAssociateUri: ''
     };
 
     this.getAccountData();
@@ -100,6 +105,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
     this.handleAccountSettingsClicked = this.handleAccountSettingsClicked.bind(this);
     this.handleAccountSettingsUpdate = this.handleAccountSettingsUpdate.bind(this);
     this.handleEditAssociateClicked = this.handleEditAssociateClicked.bind(this);
+    this.handleAddAssociateClicked = this.handleAddAssociateClicked.bind(this);
     this.isEditAssociateClose = this.isEditAssociateClose.bind(this);
   }
 
@@ -137,7 +143,8 @@ export default class AccountMain extends React.Component<AccountMainState> {
             status: accounts._statusinfo[0]._status[0].status,
             selfSignUpCode: accounts._selfsignupinfo[0]['self-signup-code'],
             uri: accountUri,
-            userEmail: profile._myprofile[0]._primaryemail[0].email
+            userEmail: profile._myprofile[0]._primaryemail[0].email,
+            addAssociateUri: accounts._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri
           });
         })
         .catch(() => {
@@ -165,12 +172,28 @@ export default class AccountMain extends React.Component<AccountMainState> {
         this.setState({isEditAssociateOpen: true, selector, associateEditEmail});
     }
 
+    handleAddAssociateClicked() {
+        this.setState({isEditAssociateOpen: true, isAddAssociateOpen: true});
+    }
+
     isEditAssociateClose(){
-        this.setState({ isEditAssociateOpen: false })
+        this.setState({ isEditAssociateOpen: false, associateEditEmail: '', selector: '', isAddAssociateOpen: false })
     }
 
   render() {
-      const {isLoading, name, status, associates, isSettingsDialogOpen, isEditAssociateOpen, selector, associateEditEmail, userEmail } = this.state;
+      const {
+        isLoading,
+        name,
+        status,
+        associates,
+        isSettingsDialogOpen,
+        isEditAssociateOpen,
+        selector,
+        associateEditEmail,
+        userEmail,
+        addAssociateUri,
+        isAddAssociateOpen,
+      } = this.state;
 
       return (
           <div className="account-content-wrapper">
@@ -195,6 +218,13 @@ export default class AccountMain extends React.Component<AccountMainState> {
                   </div>
               </div>
               <div className="associates-container">
+                  <div className="add-associate-container">
+                      <button className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
+                          <span className="add-associate-icon" />
+                          {intl.get('add-associate')}
+                      </button>
+                  </div>
+                  <h3 className="title-associate-table">{intl.get('associates')}</h3>
                   <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
                       <thead>
                       <tr>
@@ -210,27 +240,28 @@ export default class AccountMain extends React.Component<AccountMainState> {
                       {associates.length === 0 && (
                           <tr><td>{intl.get('account-no-associates')}</td></tr>
                       )}
-                      {associates.map(associate => (
-                          <tr key={associate.associate._primaryemail[0].email} className="associates-table-row">
+                      {associates.map(associate => {
+                        const associateEmail = associate.associate._primaryemail[0].email;
+                        return (<tr key={associateEmail} className="associates-table-row">
                               <td className="name">
                                   <div className="name-part">{associate.associate.name}</div>
                               </td>
                               <td className="email">
-                                  <div className="email-part">{associate.associate._primaryemail[0].email}</div>
+                                  <div className="email-part">{associateEmail}</div>
                               </td>
                               <td className="name-email">
                                   <div className="name-part">{associate.associate.name}</div>
-                                  <div className="email-part">{associate.associate._primaryemail[0].email}</div>
+                                  <div className="email-part">{associateEmail}</div>
                               </td>
                               <td className="roles">
                               {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
                               </td>
                               <td className="action">
-                                  <button className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associate.associate._primaryemail[0].email)} />
+                                  <button className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)} />
                                   {/*<button className="delete-associate" />*/}
                               </td>
-                          </tr>
-                      ))}
+                          </tr>)}
+                      )}
                       </tbody>
                   </table>
               </div>
@@ -247,7 +278,10 @@ export default class AccountMain extends React.Component<AccountMainState> {
                rolesSelector={selector}
                isSelf={associateEditEmail === userEmail}
                associateEmail={associateEditEmail}
-               isOpen={isEditAssociateOpen} />
+               isOpen={isEditAssociateOpen}
+               isAddAssociateOpen={isAddAssociateOpen}
+               addAssociateUri={addAssociateUri}
+            />
           </div>
           )}
           </div>

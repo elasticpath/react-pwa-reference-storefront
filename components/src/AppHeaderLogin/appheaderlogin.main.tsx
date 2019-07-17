@@ -28,8 +28,8 @@ import { logout } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 
 import './appheaderlogin.main.less';
-import {login} from "../../../app/src/utils/AuthService";
-import {adminFetch} from "../../../app/src/utils/Cortex";
+import { login } from "../../../app/src/utils/AuthService";
+import { adminFetch } from "../../../app/src/utils/Cortex";
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
