@@ -55,7 +55,7 @@ interface AppHeaderLoginMainState {
     openModal: boolean,
     openCartModal: boolean,
     showForgotPasswordLink: boolean,
-    accountsData: any,
+    accountData: any,
 }
 
 // Array of zoom parameters to pass to Cortex
@@ -84,7 +84,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
             openModal: false,
             openCartModal: false,
             showForgotPasswordLink: false,
-            accountsData: [],
+            accountData: [],
         };
         this.handleModalClose = this.handleModalClose.bind(this);
         this.getAccountData = this.getAccountData.bind(this);
@@ -93,8 +93,8 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
     componentDidMount() {
         if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
             this.handleCartModalOpen();
+            this.getAccountData();
         }
-        this.getAccountData();
     }
 
     logoutRegisteredUser() {
@@ -134,7 +134,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
             })
             .then(res => res.json())
             .then((res) => {
-                this.setState({ accountsData: res });
+                this.setState({ accountData: res });
             })
                 .catch((error) => {
                     // eslint-disable-next-line no-console
@@ -168,7 +168,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
             isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin,
         } = this.props;
         const {
-            openModal, openCartModal, showForgotPasswordLink, accountsData
+            openModal, openCartModal, showForgotPasswordLink, accountData
         } = this.state;
         let keycloakLoginRedirectUrl = '';
         let keycloakLogoutRedirectUrl = '';
@@ -206,7 +206,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                                         </div>
                                     </Link>
                                 </li>
-                                {(Config.b2b.enable && accountsData._accounts) ? (
+                                {(Config.b2b.enable && accountData._accounts) ? (
                                   <li className="dropdown-item">
                                     <Link className="dashboard-link" to="/b2b">
                                       <div>
