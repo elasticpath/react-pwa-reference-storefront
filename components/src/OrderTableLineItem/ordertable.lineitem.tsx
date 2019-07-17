@@ -109,7 +109,7 @@ const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (pr
              alt="Not Available"
              onError={(e) => {
                  const element:any = e.target;
-                 element.target.src = imgPlaceholder;
+                 element.src = imgPlaceholder;
              }}
         />
       </td>

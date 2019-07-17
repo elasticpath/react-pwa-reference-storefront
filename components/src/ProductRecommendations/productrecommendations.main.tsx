@@ -51,10 +51,10 @@ class ProductRecommendationsDisplayMain extends React.Component<ProductRecommend
     this.state = {
       maxItemsInView: 4,
     };
-    this.renderProductAssocitationView = this.renderProductAssocitationView.bind(this);
+    this.renderProductAssociationView = this.renderProductAssociationView.bind(this);
   }
 
-  renderProductAssocitationView(product, maxItemsInView) {
+  renderProductAssociationView(product, maxItemsInView) {
     const data = [];
     const { itemDetailLink } = this.props;
     product.forEach((element, index) => {
@@ -82,7 +82,7 @@ class ProductRecommendationsDisplayMain extends React.Component<ProductRecommend
             {intl.get('product-recommendations')}
           </label>
           <div className="card-deck">
-            {this.renderProductAssocitationView(product, maxItemsInView)}
+            {this.renderProductAssociationView(product, maxItemsInView)}
           </div>
         </div>,
       );
