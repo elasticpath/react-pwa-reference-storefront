@@ -31,7 +31,6 @@
   "enableOfflineMode": false,
   "b2b": {
     "enable": false,
-    "dashboard": false,
     "authServiceAPI": {
       "path": "",
       "pathForProxy": ""
