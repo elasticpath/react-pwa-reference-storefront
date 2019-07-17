@@ -24,7 +24,7 @@ import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent,
 } from '@elasticpath/store-components';
 import router from './routes';
 import withAnalytics from './utils/Analytics';
@@ -146,6 +146,7 @@ const Root = () => [
     </Switch>
   </div>,
   <AppFooterMain key="AppFooterMain" appFooterLinks={appFooterLinks} />,
+  <ChatComponent />,
 ];
 
 const App = withRouter(withAnalytics(Root));
