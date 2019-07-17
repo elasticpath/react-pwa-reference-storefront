@@ -10,4 +10,3 @@ storiesOf('ProductRecommendationsDisplayMain', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('ProductRecommendationsDisplayMain', () => <ProductRecommendationsDisplayMain productData={crosssellProductData} />);
-  
