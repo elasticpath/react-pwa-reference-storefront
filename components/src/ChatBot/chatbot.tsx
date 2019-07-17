@@ -20,10 +20,16 @@
  */
 
 import React from 'react';
+import { Interactions } from 'aws-amplify';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
 
+import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+
+let Config: IEpConfig | any = {};
+
+const botName = "EPConversationalInterface";
 
 const theme = {
     background: '#f5f8fb',
@@ -46,6 +52,8 @@ class ChatComponent extends React.Component<ChatComponentState> {
 
     constructor(props) {
         super(props);
+        const epConfig = getConfig();
+        Config = epConfig.config;
         this.state = {
             opened: false,
             triggerId: 'userMessage',
@@ -58,8 +66,14 @@ class ChatComponent extends React.Component<ChatComponentState> {
         this.setState({ opened: !opened });
     }
 
+    componentWillMount() {
+        AuthenticateModel();
+    }
+
     render() {
         const { opened, triggerId } = this.state;
+
+        const isLoggedInUser = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED';
 
         const steps = [
             {
@@ -91,20 +105,28 @@ class ChatComponent extends React.Component<ChatComponentState> {
             },
         ];
 
-
-        return (
-            <div className="rsc-wrapper">
-                <ThemeProvider theme={theme}>
-                    <ChatBot
-                        steps={steps}
-                        floating={true}
-                        opened={opened}
-                        toggleFloating={this.toggleFloating}
-                    />
-                </ThemeProvider>
-            </div>
-        );
+        if (isLoggedInUser) {
+            return (
+                <div className="rsc-wrapper">
+                    <ThemeProvider theme={theme}>
+                        <ChatBot
+                            steps={steps}
+                            floating={true}
+                            opened={opened}
+                            toggleFloating={this.toggleFloating}
+                        />
+                    </ThemeProvider>
+                </div>
+            );
+        }
+        return null;
     }
+}
+
+async function AuthenticateModel() {
+    const authInput = localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`);
+
+    await Interactions.send(botName, authInput);
 }
 
 export default ChatComponent;
