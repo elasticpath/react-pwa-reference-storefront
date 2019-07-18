@@ -31,7 +31,7 @@ function mockLoginResponse(mockObj) {
 
 function mockFetchDependantItemData(fetchMock) {
     fetchMock.get(
-        '/cortex/addresses/vestri_b2c/hezwcobygizdcljvhfrwmljumizgillbgyzgiljymy2wknbwgi2taoddme=/?zoom=dependentlineitems,dependentlineitems:element,dependentlineitems:element:dependentlineitems,dependentlineitems:element:dependentlineitems:element:item:definition,dependentlineitems:element:dependentoptions,dependentlineitems:element:dependentoptions:element,dependentlineitems:element:item:availability,dependentlineitems:element:item:code,dependentlineitems:element:item:definition,dependentlineitems:element:item:definition:options:element,dependentlineitems:element:item:definition:options:element:value,dependentlineitems:element:item:price,dependentoptions,dependentoptions:element,dependentoptions:element:addtocartform,dependentoptions:element:availability,dependentoptions:element:code,dependentoptions:element:definition,dependentoptions:element:definition:options:element,dependentoptions:element:definition:options:element:value,dependentoptions:element:price',
+        /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*\/(.*)/,
         mockFetchDependantItemDataResponse,
     );
 }
