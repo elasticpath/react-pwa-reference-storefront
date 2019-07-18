@@ -31,7 +31,7 @@ function mockLoginResponse(mockObj) {
 
 function mockFetchDependantItemData(fetchMock) {
     fetchMock.get(
-        /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*\/(.*)/,
+        /(.*)\/cortex\/carts\/[a-zA-Z0-9_]*\/(.*)/,
         mockFetchDependantItemDataResponse,
     );
 }
