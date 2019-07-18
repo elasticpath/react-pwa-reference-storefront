@@ -26,8 +26,9 @@ import './chatbot.review.less';
 
 Amplify.configure(awsmobile);
 
-// Global values
-const botName = "EPConversationalInterface";
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+
+let Config: IEpConfig | any = {};
 
 interface ReviewProps {
     steps?: any,
@@ -36,50 +37,34 @@ interface ReviewProps {
 
 interface ReviewState {
     userMessage: string,
-    finalMessage: string,
     productImageUrl: string,
 }
 
 class Review extends React.Component<ReviewProps, ReviewState> {
     constructor(props) {
         super(props);
-
+        const epConfig = getConfig();
+        Config = epConfig.config;
         this.state = {
             userMessage: '',
-            finalMessage: '',
             productImageUrl: '',
         };
     }
 
-    // Performs actions of using Interactions.send(botName, targetInput)
     async submitMessage() {
-        const { steps, triggerNextStep } = this.props;
+        const { steps } = this.props;
         const { message } = steps.userMessage;
 
-        // Send input to Lex
         const response = await InvokeIntent(message);
 
-        // CUSTOM - Check for response card, log imageUrl
         if (response.responseCard) {
-            // currentImage = response.responseCard.genericAttachments[0].imageUrl;
             this.setState({ productImageUrl: response.responseCard.genericAttachments[0].imageUrl });
         }
 
         this.setState({ userMessage: response.message });
-        // CUSTOM - Display final message upon transaction completion.
-        if (response.dialogState === 'Fulfilled') {
-            if (response.intentName === 'CheckoutCartIntent') {
-                const finalMessage = response.message;
-                this.setState({ finalMessage });
-                // document.getElementsByClassName('rsc-input')[0].disabled = true;
-                // document.getElementsByClassName('rsc-submit-button')[0].disabled = true;
-                // triggerNextStep({trigger: 'end-message'});
-            }
-        }
     }
 
     componentWillMount() {
-
         this.submitMessage();
     }
 
@@ -105,17 +90,17 @@ class Review extends React.Component<ReviewProps, ReviewState> {
     }
 }
 
-// This function calls the intent defined by @param modelInput.
 async function InvokeIntent(utterance) {
+    const botName = Config.chatbot.name;
     const response = await Interactions.send(botName, utterance);
     Interactions.onComplete(botName, handleCompleteIntent);
     return response;
 }
 
-// Function for handling external fulfillent of Lex Intents
 const handleCompleteIntent = function (err, confirmation) {
     if (err) {
-        console.log('Conversation failed...');
+        // eslint-disable-next-line no-console
+        console.error('Conversation failed...');
         return;
     }
     return 'Conversation success!';

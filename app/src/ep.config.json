@@ -110,5 +110,9 @@
   "creditCardTokenization": {
     "enable": false,
     "lambdaURI": ""
+  },
+  "chatbot": {
+    "enable": true,
+    "name": "EPConversationalInterface"
   }
 }

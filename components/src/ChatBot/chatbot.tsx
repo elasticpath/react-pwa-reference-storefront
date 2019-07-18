@@ -25,11 +25,9 @@ import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
 
-import {getConfig, IEpConfig} from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
-
-const botName = "EPConversationalInterface";
 
 const theme = {
     background: '#f5f8fb',
@@ -77,6 +75,7 @@ class ChatComponent extends React.Component<ChatComponentState> {
         const { opened, triggerId } = this.state;
 
         const isLoggedInUser = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED';
+        const botEnable = Config.chatbot.enable;
 
         const steps = [
             {
@@ -101,14 +100,9 @@ class ChatComponent extends React.Component<ChatComponentState> {
                 asMessage: true,
                 trigger: triggerId,
             },
-            {
-                id: 'end-message',
-                message: 'Thanks! Goodbye!',
-                end: true,
-            },
         ];
 
-        if (isLoggedInUser) {
+        if (isLoggedInUser && botEnable) {
             return (
                 <div className="rsc-wrapper">
                     <ThemeProvider theme={theme}>
@@ -127,6 +121,7 @@ class ChatComponent extends React.Component<ChatComponentState> {
 }
 
 async function AuthenticateModel() {
+    const botName = Config.chatbot.name;
     const authInput = localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`);
 
     await Interactions.send(botName, authInput);
