@@ -1,9 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import Item from '../CommonMockHttpResponses/cart_data_response.json';
+import bundleLineItem from './MockHttpResponses/GET/bundleLineItem_response.json';
 
 import AppModalBundleConfigurationMain from './appmodalbundleconfiguration.main';
+
+import { mockAppModalBundleConfigurationMain } from './appModalBundleConfiguration.main.api.mock';
 
 const isOpenModal = true;
 
@@ -14,7 +16,8 @@ storiesOf('AppModalBundleConfigurationMain', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('AppModalBundleConfigurationMain', () => {
+    mockAppModalBundleConfigurationMain();
     return (
-        <AppModalBundleConfigurationMain handleModalClose={handleModalClose} bundleConfigurationItems={Item._defaultcart[0]._lineitems[0]._element[0]} openModal={isOpenModal} />
+        <AppModalBundleConfigurationMain handleModalClose={handleModalClose} bundleConfigurationItems={bundleLineItem} openModal={isOpenModal} />
   );
   });

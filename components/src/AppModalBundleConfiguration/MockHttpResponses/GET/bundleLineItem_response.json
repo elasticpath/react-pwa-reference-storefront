@@ -1,0 +1,33 @@
+{
+	"self": {
+		"type": "addresses.address",
+		"uri": "/addresses/vestri_b2c/hezwcobygizdcljvhfrwmljumizgillbgyzgiljymy2wknbwgi2taoddme=",
+		"href": "https://vestri.us.epdemos.com/cortex/addresses/vestri_b2c/hezwcobygizdcljvhfrwmljumizgillbgyzgiljymy2wknbwgi2taoddme="
+	},
+	"messages": [],
+	"links": [{
+		"rel": "list",
+		"type": "addresses.addresses",
+		"uri": "/addresses/vestri_b2c",
+		"href": "https://vestri.us.epdemos.com/cortex/addresses/vestri_b2c"
+	}, {
+		"rel": "profile",
+		"type": "profiles.profile",
+		"uri": "/profiles/vestri_b2c/me3toobsg4zdcllbmq2dcljuguztkljzgazwcllfmmytmmddmfrdgyrvmq=",
+		"href": "https://vestri.us.epdemos.com/cortex/profiles/vestri_b2c/me3toobsg4zdcllbmq2dcljuguztkljzgazwcllfmmytmmddmfrdgyrvmq="
+	}],
+	"address": {
+		"country-name": "US",
+		"extended-address": "5555",
+		"locality": "Washington",
+		"organization": "null",
+		"phone-number": "null",
+		"postal-code": "12345",
+		"region": "WA",
+		"street-address": "555 Main Street"
+	},
+	"name": {
+		"family-name": "Test",
+		"given-name": "User"
+	}
+}
