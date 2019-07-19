@@ -351,6 +351,12 @@ describe('Purchase feature', () => {
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
 
+    await Promise.all([
+      page.click(CHECKOUT_BUTTON_CSS),
+      page.waitForNavigation({ waitUntil: 'networkidle0' }),
+    ]);
+
+    await page.waitFor(3000);
     await page.waitForSelector(BILLING_ADDRESS_SELECTORS_REGION_CSS);
     const address = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
     if (!address) {
