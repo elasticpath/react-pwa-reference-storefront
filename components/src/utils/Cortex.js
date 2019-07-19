@@ -37,18 +37,6 @@ export function cortexFetch(input, init) {
 
   return fetch(`${Config.cortexApi.path + input}`, requestInit)
     .then((res) => {
-      if (res.status === 401 || res.status === 403) {
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
-        window.location.pathname = '/';
-        window.location.reload();
-      }
       if (res.status >= 500) {
         if (window.location.href.indexOf('/maintenance') === -1) {
           window.location.pathname = '/maintenance';
