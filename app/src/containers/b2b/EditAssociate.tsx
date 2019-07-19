@@ -202,7 +202,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                 onClose={handleClose}
                 classNames={{ modal: 'b2b-edit-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
             >
-                <div className="dialog-header">{intl.get('edit-associate')}</div>
+                <div className="dialog-header">{isAddAssociateOpen ? intl.get('add-associate') : intl.get('edit-associate')}</div>
                 <div className="dialog-content">
                     <div className="am-columns">
                         <div className="am-field-editor">

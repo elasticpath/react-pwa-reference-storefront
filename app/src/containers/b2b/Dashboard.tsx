@@ -192,10 +192,12 @@ export default class Dashboard extends React.Component<DashboardState> {
                     .then(searchResult => {
                         if (searchResult && searchResult._element) {
                             const accounts = searchResult._element.map(account => {
+                                const uri = account.self.uri.split('/').pop();
                                 return {
                                     name: account.name,
                                     externalId: account['external-id'],
                                     status: account._statusinfo[0]._status[0].status.toLowerCase(),
+                                    uri,
                                 }
                             });
                             this.setState({ accounts, showSearchLoader: false, noSearchResults: false });

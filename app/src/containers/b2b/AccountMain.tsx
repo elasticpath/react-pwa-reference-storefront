@@ -26,6 +26,7 @@ import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import EditAccount from './EditAccount';
 import EditAssociate from './EditAssociate';
+import AddSubAccount from './AddSubAccount';
 import * as Config from '../../ep.config.json';
 import { Link } from 'react-router-dom';
 
@@ -65,6 +66,7 @@ interface AccountMainState {
   name: string,
   status: string,
   isSettingsDialogOpen: boolean,
+  isAddSubAccountOpen: boolean,
   externalId: string,
   registrationNumber: string,
   selfSignUpCode: string,
@@ -75,7 +77,9 @@ interface AccountMainState {
     [key: string]: any
   },
   userEmail: string,
-  isAddAssociateOpen: boolean
+  isAddAssociateOpen: boolean,
+  addAssociateUri: string,
+  AddSubAccountUri: string,
 }
 
 export default class AccountMain extends React.Component<AccountMainState> {
@@ -89,6 +93,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
       name: '',
       status: '',
       isSettingsDialogOpen: false,
+      isAddSubAccountOpen: false,
       externalId: '',
       registrationNumber: '',
       selfSignUpCode: '',
@@ -97,7 +102,8 @@ export default class AccountMain extends React.Component<AccountMainState> {
       associates: {},
       userEmail: '',
       associateEditEmail: '',
-      addAssociateUri: ''
+      addAssociateUri: '',
+      AddSubAccountUri: '',
     };
 
     this.getAccountData();
@@ -106,6 +112,8 @@ export default class AccountMain extends React.Component<AccountMainState> {
     this.handleAccountSettingsUpdate = this.handleAccountSettingsUpdate.bind(this);
     this.handleEditAssociateClicked = this.handleEditAssociateClicked.bind(this);
     this.handleAddAssociateClicked = this.handleAddAssociateClicked.bind(this);
+    this.handleAddSubAccountClicked = this.handleAddSubAccountClicked.bind(this);
+    this.handleAddSubAccountClose = this.handleAddSubAccountClose.bind(this);
     this.isEditAssociateClose = this.isEditAssociateClose.bind(this);
   }
 
@@ -144,7 +152,8 @@ export default class AccountMain extends React.Component<AccountMainState> {
             selfSignUpCode: accounts._selfsignupinfo[0]['self-signup-code'],
             uri: accountUri,
             userEmail: profile._myprofile[0]._primaryemail[0].email,
-            addAssociateUri: accounts._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri
+            addAssociateUri: accounts._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
+            AddSubAccountUri: accounts._subaccounts[0]._accountform[0].self.uri,
           });
         })
         .catch(() => {
@@ -168,17 +177,25 @@ export default class AccountMain extends React.Component<AccountMainState> {
     this.getAccountData();
   }
 
-    handleEditAssociateClicked(selector, associateEditEmail) {
-        this.setState({isEditAssociateOpen: true, selector, associateEditEmail});
-    }
+  handleAddSubAccountClicked() {
+    this.setState({ isAddSubAccountOpen: true });
+  }
 
-    handleAddAssociateClicked() {
-        this.setState({isEditAssociateOpen: true, isAddAssociateOpen: true});
-    }
+  handleAddSubAccountClose() {
+      this.setState({ isAddSubAccountOpen: false });
+  }
 
-    isEditAssociateClose(){
-        this.setState({ isEditAssociateOpen: false, associateEditEmail: '', selector: '', isAddAssociateOpen: false })
-    }
+  handleEditAssociateClicked(selector, associateEditEmail) {
+      this.setState({isEditAssociateOpen: true, selector, associateEditEmail});
+  }
+
+  handleAddAssociateClicked() {
+      this.setState({isEditAssociateOpen: true, isAddAssociateOpen: true});
+  }
+
+  isEditAssociateClose(){
+      this.setState({ isEditAssociateOpen: false, associateEditEmail: '', selector: '', isAddAssociateOpen: false })
+  }
 
   render() {
       const {
@@ -187,11 +204,13 @@ export default class AccountMain extends React.Component<AccountMainState> {
         status,
         associates,
         isSettingsDialogOpen,
+        isAddSubAccountOpen,
         isEditAssociateOpen,
         selector,
         associateEditEmail,
         userEmail,
         addAssociateUri,
+        AddSubAccountUri,
         isAddAssociateOpen,
       } = this.state;
 
@@ -200,90 +219,114 @@ export default class AccountMain extends React.Component<AccountMainState> {
               {isLoading ? (
                 <div className="loader" />
               ) : (
-          <div className="account-component">
-              <div key="account-header" className="account-header">
-                  <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
-                  <div className="name-container">
-                      <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
-                      <div className="name">{name}
-                          <span className="status">
+                  <div>
+                      <div key="account-header" className="account-header">
+                          <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
+                          <div className="name-container">
+                              <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
+                              <div className="name">{name}
+                                  <span className="status">
                               <i className={`icons-status ${status.toLowerCase()}`} />
-                              {intl.get(status.toLowerCase())}
+                                      {intl.get(status.toLowerCase())}
                           </span>
+                              </div>
+                              <div className="settings" onClick={this.handleAccountSettingsClicked}>
+                                  <div className="setting-icons" />
+                                  <span className="settings-title">{intl.get('account-settings')}</span>
+                              </div>
+                          </div>
                       </div>
-                      <div className="settings" onClick={this.handleAccountSettingsClicked}>
-                          <div className="setting-icons" />
-                          <span className="settings-title">{intl.get('account-settings')}</span>
-                      </div>
-                  </div>
-              </div>
-              <div className="associates-container">
-                  <div className="add-associate-container">
-                      <button className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
-                          <span className="add-associate-icon" />
-                          {intl.get('add-associate')}
-                      </button>
-                  </div>
-                  <h3 className="title-associate-table">{intl.get('associates')}</h3>
-                  <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
-                      <thead>
-                      <tr>
-                          <th className="name-email">{intl.get('name-and-email')}</th>
-                          <th className="name">{intl.get('name')}</th>
-                          <th className="email">{intl.get('email')}</th>
-                          <th className="roles">{intl.get('roles')}</th>
-                          <th className="action">&nbsp;</th>
-                          <th className="arrow">&nbsp;</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      {associates.length === 0 && (
-                          <tr><td>{intl.get('account-no-associates')}</td></tr>
-                      )}
-                      {associates.map(associate => {
-                        const associateEmail = associate.associate._primaryemail[0].email;
-                        return (<tr key={associateEmail} className="associates-table-row">
-                              <td className="name">
-                                  <div className="name-part">{associate.associate.name}</div>
-                              </td>
-                              <td className="email">
-                                  <div className="email-part">{associateEmail}</div>
-                              </td>
-                              <td className="name-email">
-                                  <div className="name-part">{associate.associate.name}</div>
-                                  <div className="email-part">{associateEmail}</div>
-                              </td>
-                              <td className="roles">
-                              {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
-                              </td>
-                              <td className="action">
-                                  <button className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)} />
-                                  {/*<button className="delete-associate" />*/}
-                              </td>
-                          </tr>)}
-                      )}
-                      </tbody>
-                  </table>
-              </div>
+                      <div className="account-component">
+                          <div key="account-tree-section" className="account-tree-section">
+                              <div className="add-new-account-container">
+                                  <button className="ep-btn primary small add-associate-button" onClick={() => this.handleAddSubAccountClicked()}>
+                                      <span className="add-associate-icon" />
+                                      {intl.get('add-sub-account')}
+                                  </button>
+                              </div>
+                              <div className="account-tree-container">
+                                  <div className="name">{name}
+                                  </div>
+                                  <span className="status">
+                                        <i className={`icons-status ${status.toLowerCase()}`} />
+                                      {intl.get(status.toLowerCase())}
+                                    </span>
+                              </div>
+                          </div>
+                          <div className="associates-container">
+                              <div className="add-associate-container">
+                                  <button className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
+                                      <span className="add-associate-icon" />
+                                      {intl.get('add-associate')}
+                                  </button>
+                              </div>
+                              <h3 className="title-associate-table">{intl.get('associates')}</h3>
+                              <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
+                                  <thead>
+                                  <tr>
+                                      <th className="name-email">{intl.get('name-and-email')}</th>
+                                      <th className="name">{intl.get('name')}</th>
+                                      <th className="email">{intl.get('email')}</th>
+                                      <th className="roles">{intl.get('roles')}</th>
+                                      <th className="action">&nbsp;</th>
+                                      <th className="arrow">&nbsp;</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  {associates.length === 0 && (
+                                      <tr><td>{intl.get('account-no-associates')}</td></tr>
+                                  )}
+                                  {associates.map(associate => {
+                                    const associateEmail = associate.associate._primaryemail[0].email;
+                                    return (<tr key={associateEmail} className="associates-table-row">
+                                          <td className="name">
+                                              <div className="name-part">{associate.associate.name}</div>
+                                          </td>
+                                          <td className="email">
+                                              <div className="email-part">{associateEmail}</div>
+                                          </td>
+                                          <td className="name-email">
+                                              <div className="name-part">{associate.associate.name}</div>
+                                              <div className="email-part">{associateEmail}</div>
+                                          </td>
+                                          <td className="roles">
+                                          {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
+                                          </td>
+                                          <td className="action">
+                                              <button className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)} />
+                                              {/*<button className="delete-associate" />*/}
+                                          </td>
+                                      </tr>)}
+                                  )}
+                                  </tbody>
+                              </table>
+                          </div>
 
-            <EditAccount
-              handleClose={this.handleAccountSettingsClose}
-              handleUpdate={this.handleAccountSettingsUpdate}
-              isOpen={isSettingsDialogOpen}
-              accountData={this.state}/>
-            <EditAssociate
-               handleClose={this.isEditAssociateClose}
-               handleUpdate={this.handleAccountSettingsUpdate}
-               accountName={name}
-               rolesSelector={selector}
-               isSelf={associateEditEmail === userEmail}
-               associateEmail={associateEditEmail}
-               isOpen={isEditAssociateOpen}
-               isAddAssociateOpen={isAddAssociateOpen}
-               addAssociateUri={addAssociateUri}
-            />
-          </div>
-          )}
+                        <EditAccount
+                          handleClose={this.handleAccountSettingsClose}
+                          handleUpdate={this.handleAccountSettingsUpdate}
+                          isOpen={isSettingsDialogOpen}
+                          accountData={this.state}/>
+                        <EditAssociate
+                           handleClose={this.isEditAssociateClose}
+                           handleUpdate={this.handleAccountSettingsUpdate}
+                           accountName={name}
+                           rolesSelector={selector}
+                           isSelf={associateEditEmail === userEmail}
+                           associateEmail={associateEditEmail}
+                           isOpen={isEditAssociateOpen}
+                           isAddAssociateOpen={isAddAssociateOpen}
+                           addAssociateUri={addAssociateUri}
+                        />
+                        <AddSubAccount
+                            handleClose={this.handleAddSubAccountClose}
+                            handleUpdate={this.handleAccountSettingsUpdate}
+                            isOpen={isAddSubAccountOpen}
+                            AddSubAccountUri={AddSubAccountUri}
+                        />
+                      </div>
+                  </div>
+              )}
           </div>
       );
     }
