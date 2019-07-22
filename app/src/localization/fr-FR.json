@@ -190,6 +190,7 @@
   "quick-order-title": "Q-u-i-c-k- -O-r-d-e-r",
   "quick-order-description": "O-r-d-e-r- -o-n-l-i-n-e- -f-r-o-m- -a-n-y- -o-f- -o-u-r- -c-a-t-a-l-o-g-s-.- -S-i-m-p-l-y- -e-n-t-e-r- -t-h-e- -S-K-U- -n-u-m-b-e-r- -f-r-o-m- -t-h-e- -c-a-t-a-l-o-g- -a-n-d- -t-h-e- -q-u-a-n-t-i-t-y- -f-o-r- -t-h-e- -i-t-e-m-s- -t-o- -b-e- -a-d-d-e-d- -t-o- -t-h-i-s- -o-r-d-e-r-.",
   "quick-order-sku-title": "S-K-U",
+  "bulk-order-title": "B-u-l-k- -O-r-d-e-r",
   "items": "I-t-e-m-s",
   "item-#1-qty": "I-t-e-m- -#-1-,-Q-t-y",
   "item-#2-qty": "I-t-e-m- -#-2-,-Q-t-y",
@@ -258,5 +259,7 @@
   "apply-order-balance": "A-p-p-l-y- -b-a-l-a-n-c-e- -t-o- -o-r-d-e-r-",
   "incorrect-gift-card-code": "I-n-c-o-r-r-e-c-t- -g-i-f-t- -c-a-r-d- -c-o-d-e-",
   "no-gift-cards-message": "N-o- -s-a-v-e-d- -g-i-f-t- -c-a-r-d-s-",
-  "all-fields-required": "A-l-l- -f-i-e-l-d-s- -a-r-e- -r-e-q-u-i-r-e-d-"
+  "all-fields-required": "A-l-l- -f-i-e-l-d-s- -a-r-e- -r-e-q-u-i-r-e-d-",
+  "chatbot-welcome-msg": "W-e-l-c-o-m-e- -b-a-c-k- -t-o- -E-P-!- -H-o-w- -m-a-y- -I- -a-s-s-i-s-t-?",
+  "enter-your-message": "P-l-e-a-s-e- -e-n-t-e-r- -y-o-u-r- -m-e-s-s-a-g-e-"
 }

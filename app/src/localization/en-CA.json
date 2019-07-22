@@ -259,5 +259,7 @@
   "apply-order-balance": "Apply balance to order",
   "incorrect-gift-card-code": "Incorrect gift card code",
   "no-gift-cards-message": "No saved gift cards",
-  "all-fields-required": "All fields are required"
+  "all-fields-required": "All fields are required",
+  "chatbot-welcome-msg": "Welcome back to EP! How may I assist?",
+  "enter-your-message": "Please enter your message"
 }

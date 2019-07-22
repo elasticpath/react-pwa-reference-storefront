@@ -112,7 +112,7 @@
     "lambdaURI": ""
   },
   "chatbot": {
-    "enable": true,
+    "enable": false,
     "name": "EPConversationalInterface"
   }
 }

@@ -24,21 +24,25 @@ import { Interactions } from 'aws-amplify';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
+import * as styles from '!!../utils/less-var-loader!./chatbot.less'
 
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
+let intl = { get: str => str };
+
+import './chatbot.less';
 
 const theme = {
-    background: '#f5f8fb',
-    fontFamily: 'Helvetica Neue',
-    headerBgColor: '#6e48aa',
-    headerFontColor: '#fff',
-    headerFontSize: '15px',
-    botBubbleColor: '#6e48aa',
-    botFontColor: '#fff',
-    userBubbleColor: '#fff',
-    userFontColor: '#4a4a4a',
+    background: styles['@chatBackground'],
+    fontFamily: styles['@chatFontFamily'],
+    headerBgColor: styles['@chatHeaderBgColor'],
+    headerFontColor: styles['@chatHeaderFontColor'],
+    headerFontSize: styles['@chatHeaderFontSize'],
+    botBubbleColor: styles['@chatBotBubbleColor'],
+    botFontColor: styles['@chatBotFontColor'],
+    userBubbleColor: styles['@chatUserBubbleColor'],
+    userFontColor: styles['@chatUserFontColor'],
 };
 
 interface ChatComponentState {
@@ -52,6 +56,7 @@ class ChatComponent extends React.Component<ChatComponentState> {
         super(props);
         const epConfig = getConfig();
         Config = epConfig.config;
+        ({ intl } = epConfig);
         this.state = {
             opened: false,
             triggerId: 'userMessage',
@@ -80,7 +85,7 @@ class ChatComponent extends React.Component<ChatComponentState> {
         const steps = [
             {
                 id: '0',
-                message: 'Welcome back to EP! How may I assist?',
+                message: intl.get('chatbot-welcome-msg'),
                 trigger: 'userMessage',
             },
             {
@@ -88,7 +93,7 @@ class ChatComponent extends React.Component<ChatComponentState> {
                 user: true,
                 validator: (value) => {
                     if (!(value)) {
-                        return 'Please enter your message';
+                        return intl.get('enter-your-message');
                     }
                     return true;
                 },
