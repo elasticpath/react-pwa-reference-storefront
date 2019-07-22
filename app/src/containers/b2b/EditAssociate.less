@@ -25,33 +25,6 @@
   }
   .role-checkbox {
     margin-bottom: 5px;
-
-    .style-checkbox {
-      +label {
-        color: @darkTextColor;
-        &:before {
-          border: 2px solid @borderColor;
-        }
-      }
-      &:checked {
-        +label {
-          &:before {
-            background-color: @backgroundColor;
-            border-color: @mainBlueColor;
-          }
-          &:after {
-            border: solid 2px @mainBlueColor;
-            border-right: none;
-            border-top: none;
-          }
-        }
-      }
-      &:disabled {
-        +label {
-          opacity: .3;
-        }
-      }
-    }
   }
 
   .am-columns {

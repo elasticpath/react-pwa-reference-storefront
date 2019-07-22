@@ -24,10 +24,11 @@ import * as React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import userIcon from '../../images/header-icons/account-icon-blue.svg';
-import './Dashboard.less';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import Config from '../../ep.config.json'
+
+import './Dashboard.less';
 
 interface DashboardState {
     admins: any,
@@ -226,6 +227,7 @@ export default class Dashboard extends React.Component<DashboardState> {
 
 
   render() {
+      const { history } = this.props;
       const {
           admins,
           defaultBillingAddress,
@@ -380,7 +382,7 @@ export default class Dashboard extends React.Component<DashboardState> {
                             </thead>
                             <tbody>
                             {accounts.map(account => (
-                                <tr key={account.externalId}>
+                                <tr key={account.externalId} onClick={() => { history.push(`/b2b/account/${account.uri}`) }} className="account-list-rows">
                                     <td className="name">{account.name}</td>
                                     <td className="external-id">{account.externalId}</td>
                                     <td className="status">

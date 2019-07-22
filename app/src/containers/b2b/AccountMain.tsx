@@ -79,7 +79,7 @@ interface AccountMainState {
   userEmail: string,
   isAddAssociateOpen: boolean,
   addAssociateUri: string,
-  AddSubAccountUri: string,
+  addSubAccountUri: string,
 }
 
 export default class AccountMain extends React.Component<AccountMainState> {
@@ -103,7 +103,8 @@ export default class AccountMain extends React.Component<AccountMainState> {
       userEmail: '',
       associateEditEmail: '',
       addAssociateUri: '',
-      AddSubAccountUri: '',
+      addSubAccountUri: '',
+      subAccounts: {},
     };
 
     this.getAccountData();
@@ -153,7 +154,8 @@ export default class AccountMain extends React.Component<AccountMainState> {
             uri: accountUri,
             userEmail: profile._myprofile[0]._primaryemail[0].email,
             addAssociateUri: accounts._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
-            AddSubAccountUri: accounts._subaccounts[0]._accountform[0].self.uri,
+            addSubAccountUri: accounts._subaccounts[0]._accountform[0].self.uri,
+            subAccounts: accounts._subaccounts[0].elemet,
           });
         })
         .catch(() => {
@@ -210,7 +212,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
         associateEditEmail,
         userEmail,
         addAssociateUri,
-        AddSubAccountUri,
+        addSubAccountUri,
         isAddAssociateOpen,
       } = this.state;
 
@@ -225,10 +227,6 @@ export default class AccountMain extends React.Component<AccountMainState> {
                           <div className="name-container">
                               <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
                               <div className="name">{name}
-                                  <span className="status">
-                              <i className={`icons-status ${status.toLowerCase()}`} />
-                                      {intl.get(status.toLowerCase())}
-                          </span>
                               </div>
                               <div className="settings" onClick={this.handleAccountSettingsClicked}>
                                   <div className="setting-icons" />
@@ -322,7 +320,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
                             handleClose={this.handleAddSubAccountClose}
                             handleUpdate={this.handleAccountSettingsUpdate}
                             isOpen={isAddSubAccountOpen}
-                            AddSubAccountUri={AddSubAccountUri}
+                            addSubAccountUri={addSubAccountUri}
                         />
                       </div>
                   </div>

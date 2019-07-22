@@ -85,6 +85,20 @@
     .section-header {
       align-items: center;
     }
+    @media (max-width: @mobileWidth) {
+      .section-header {
+        display: flex;
+        flex-direction: column;
+        align-items: unset;
+        .section-header-right {
+          width: 100%
+        }
+
+        input {
+          width: 100%
+        }
+      }
+    }
     .section-content {
       .accounts-table {
         td.name {
@@ -100,7 +114,7 @@
     .mobile-table-title {
       display: none;
     }
-    @media (max-width: 575px) {
+    @media (max-width: @mobileWidth) {
       display: block;
       thead, tbody, th, td {
         display: block;
@@ -124,9 +138,26 @@
       th.date, th.order-total {
         display: none;
       }
+
     }
   }
   .accounts-table {
+    .account-list-rows {
+      cursor: pointer;
+      @media (max-width: @mobileWidth) {
+        .arrow {
+          grid-row: ~"1 / 3";
+          grid-column: ~"3 / 4";
+          align-self: center;
+        }
+        .status {
+          grid-row: ~"1 / 3";
+          grid-column: ~"2 / 3";
+          align-self: center;
+        }
+      }
+    }
+
     .mobile-table-title {
       display: none;
     }

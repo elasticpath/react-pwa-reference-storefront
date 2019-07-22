@@ -33,7 +33,7 @@ interface AddSubAccountProps {
     isOpen: boolean,
     handleClose: () => void,
     handleUpdate: () => void,
-    AddSubAccountUri: string,
+    addSubAccountUri: string,
 }
 
 interface AddSubAccountState {
@@ -64,13 +64,13 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
     }
 
     addSubAccount(event) {
-        const { AddSubAccountUri, handleClose, handleUpdate } = this.props;
+        const { addSubAccountUri, handleClose, handleUpdate } = this.props;
         const { name, legalName, externalId, registrationNumber } = this.state;
 
         event.preventDefault();
         this.setState({ isLoading: true });
         login().then(() => {
-            adminFetch(`${AddSubAccountUri}?followlocation&format=standardlinks,zoom.nodatalinks`, {
+            adminFetch(`${addSubAccountUri}?followlocation&format=standardlinks,zoom.nodatalinks`, {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
