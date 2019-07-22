@@ -1,0 +1,225 @@
+@import './../../theme/common.less';
+
+.b2b-main-component {
+  font-size: 13px;
+  @media screen and (max-width: 991px) {
+    padding-top: 50px;
+  }
+  a {
+    color: @mainBlueColor !important;
+  }
+  .container {
+    position: relative;
+  }
+  .b2b-section {
+    border: 1px solid @borderColor;
+    padding: 15px 15px 20px;
+    @media (min-width: 576px) {
+      padding: 20px 20px 30px;
+    }
+    &.section-1 {
+      flex: 1 0;
+    }
+    &.section-2 {
+      flex: 2 0;
+    }
+    .section-header {
+      display: flex;
+      margin-bottom: 10px;
+      .section-title {
+        flex: 1 0;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      .section-header-right {
+        a {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .b2b-table {
+    width: 100%;
+    thead {
+      background-color: @tableBackgroundColor;
+      th {
+        padding: 5px;
+        vertical-align: middle;
+        color: @darkTextColor;
+        @media (min-width: 576px) {
+          height: 50px;
+          padding: 0 10px;
+        }
+        @media (min-width: @mobileWidth) {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+    }
+    tr {
+      border-bottom: 1px solid @tableBorderColor;
+      @media (min-width: 576px) {
+        height: 50px;
+      }
+      td {
+        padding: 5px;
+        vertical-align: middle;
+        @media (min-width: 576px) {
+          padding: 0 10px;
+        }
+        @media (min-width: @mobileWidth) {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+    }
+  }
+  .b2b-header {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    .page-title {
+      display: none;
+      flex: 1 0 auto;
+      padding-right: 5px;
+      font-size: 24px;
+      font-weight: bold;
+      @media screen and (min-width: 992px) {
+        display: block;
+      }
+    }
+    .quick-menu {
+    }
+  }
+  .b2b-central {
+    @media screen and (min-width: 992px) {
+      display: flex;
+    }
+    .b2b-side {
+      width: 100%;
+      position: absolute;
+      top: -50px;
+      left: 0;
+      @media (min-width: 576px) {
+        width: ~'calc(100% - 30px)';
+        left: 15px;
+      }
+      @media screen and (min-width: 992px) {
+        position: static;
+        width: 190px;
+      }
+    }
+    .b2b-content {
+      flex: 1 0;
+    }
+  }
+}
+.b2b-import-associate-dialog {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px;
+  @media (max-width: 575px) {
+    width: 100%;
+    height: 100%;
+    padding: 15px 20px;
+  }
+  .b2b-dialog-close-btn {
+    right: 20px;
+    opacity: 0.5;
+  }
+  .dialog-header {
+    flex: 0 0 auto;
+    font-size: 20px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid @lightBorderColor;
+  }
+  .dialog-content {
+    flex: 1 0 auto;
+    padding-bottom: 40px;
+    .download-sample {
+      padding-top: 20px;
+      padding-bottom: 10px;
+      font-weight: bold;
+      color: @darkTextColor;
+      a {
+        color: @mainBlueColor;
+      }
+    }
+    .upload-title {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      color: @darkTextColor;
+    }
+    .chose-btn {
+      display: none;
+    }
+    @width: 150px;
+    @margin: 24px;
+    .chose-btn-label {
+      border: 1px solid @borderColor;
+      cursor: pointer;
+      color: @mainTextColor;
+      font-weight: bold;
+      padding: 6px 17px;
+      width: @width;
+      margin-right: @margin;
+      text-align: center;
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+
+      &:hover {
+        background-color: @complimentGrey;
+      }
+    }
+    .chose-btn-message {
+      display: inline-block;
+      width: calc(100% - (@margin + @width));
+      overflow: hidden;
+      vertical-align: middle;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .dialog-footer {
+    flex: 0 0 auto;
+    text-align: right;
+    padding-bottom: 10px;
+    button {
+      border: 0;
+      font-size: 14px;
+      font-weight: bold;
+      width: 120px;
+      height: 44px;
+      cursor: pointer;
+      outline: 0;
+      @media (min-width: 576px) {
+        width: 133px;
+      }
+      &.cancel {
+        color: @mainBlueColor;
+        margin-right: 10px;
+        @media (min-width: 576px) {
+          margin-right: 20px;
+        }
+        &:hover {
+          color: lighten(@generalizedBlueColor, 3%);
+        }
+        &:active {
+          color: lighten(@generalizedBlueColor, -3%);
+        }
+      }
+      &.upload {
+        background-color: @mainBlueColor;
+        color: @backgroundColor;
+        &:hover {
+          background-color: lighten(@mainBlueColor, 3%);
+        }
+        &:active {
+          background-color: lighten(@mainBlueColor, -5%);
+        }
+      }
+    }
+  }
+}

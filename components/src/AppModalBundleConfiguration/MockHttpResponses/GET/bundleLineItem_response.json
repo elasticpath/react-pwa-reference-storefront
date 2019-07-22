@@ -1,0 +1,711 @@
+{
+	"self": {
+		"type": "carts.line-item",
+		"uri": "/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga=",
+		"href": "http://localhost:8080/cortex/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga="
+	},
+	"messages": [],
+	"links": [],
+	"_appliedpromotions": [{
+		"self": {
+			"type": "promotions.applied-promotions-for-cart-line-item",
+			"uri": "/promotions/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga=/applied",
+			"href": "http://localhost:8080/cortex/promotions/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga=/applied"
+		},
+		"messages": [],
+		"links": []
+	}],
+	"_availability": [{
+		"self": {
+			"type": "availabilities.availability-for-cart-line-item",
+			"uri": "/availabilities/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga=",
+			"href": "http://localhost:8080/cortex/availabilities/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga="
+		},
+		"messages": [],
+		"links": [],
+		"state": "AVAILABLE"
+	}],
+	"_dependentoptions": [{
+		"_element": [{
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkoxe2x2djravgu27ijku4rcmiu=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkoxe2x2djravgu27ijku4rcmiu="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MCLASS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MCLASS"
+				}],
+				"display-name": "M-Class Bundle"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostcnjrguyq=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostcnjrguyq="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_BLACK_XL",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_BLACK_XL"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostembzgiyq=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostembzgiyq="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_GREY_L",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_GREY_L"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostemjtga3a=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostemjtga3a="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_RED_L",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_RED_L"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostemrxgq4a=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostemrxgq4a="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_BLACK_L",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_BLACK_L"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostemzvgm3q=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostemzvgm3q="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_BLUE_M",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_BLUE_M"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostgnbsha4q=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostgnbsha4q="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_GREY_M",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_GREY_M"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostkmjyguzq=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostkmjyguzq="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_YELLOW_S",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_YELLOW_S"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostknbzguza=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostknbzguza="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_RED_M",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_RED_M"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostkobygu4q=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostkobygu4q="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_BLACK_M",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_BLACK_M"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostkobyg4za=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostkobyg4za="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_RED_XL",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_RED_XL"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostkojqgm2q=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostkojqgm2q="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_YELLOW_XL",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_YELLOW_XL"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmmbwgiya=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmmbwgiya="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_GREY_S",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_GREY_S"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmmjwgq3a=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmmjwgq3a="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_BLUE_L",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_BLUE_L"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmnbvha4a=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmnbvha4a="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_YELLOW_L",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_YELLOW_L"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmnrzgy3q=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmnrzgy3q="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_BLUE_XL",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_BLUE_XL"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmnzqg42q=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmnzqg42q="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_GREY_XL",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_GREY_XL"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmnzwgy4a=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostmnzwgy4a="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_YELLOW_M",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_YELLOW_M"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostombvgqya=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostombvgqya="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_RED_S",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_RED_S"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostqnrtgqza=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostqnrtgqza="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_BLUE_S",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_BLUE_S"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostsnjvheza=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkostsnjvheza="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Image Name Sku",
+					"display-value": "MENS_ATHLETIC_TSHIRT_BLACK_S",
+					"name": "IMAGE_NAME_S",
+					"value": "MENS_ATHLETIC_TSHIRT_BLACK_S"
+				}, {
+					"display-name": "Description",
+					"display-value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions.",
+					"name": "DESCRIPTION",
+					"value": "A perfect layering piece for those tough days at the gym, you can wear the this athletic shirt through warm-up or cool down, but is built to still be comfortable through those uncomfortable lifting sessions."
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Men's Athletic T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkosdsobyha=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkosdsobyha="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Description",
+					"display-value": "This is our new Zero line T-Shirt",
+					"name": "DESCRIPTION",
+					"value": "This is our new Zero line T-Shirt"
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Zero T-Shirt"
+			}]
+		}, {
+			"_definition": [{
+				"self": {
+					"type": "itemdefinitions.item-definition",
+					"uri": "/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkosdsojzhe=",
+					"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qksfaq2mjhmsiytbgm2dinrqguwtsmddmqwtimtfguwtszbvgywwgmzzgi2demjyg5sgemfbkosdsojzhe="
+				},
+				"messages": [],
+				"links": [],
+				"details": [{
+					"display-name": "Description",
+					"display-value": "This is our new Zero line T-Shirt",
+					"name": "DESCRIPTION",
+					"value": "This is our new Zero line T-Shirt"
+				}, {
+					"display-name": "Tag",
+					"display-value": "VESTRI_APPAREL_MENS",
+					"name": "tag",
+					"value": "VESTRI_APPAREL_MENS"
+				}],
+				"display-name": "Zero T-Shirt"
+			}]
+		}]
+	}],
+	"_item": [{
+		"self": {
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhnswivjviusjl5buyt2ujbeu4r27ijku4rcmiu=",
+			"href": "http://localhost:8080/cortex/items/vestri_b2c/qgqvhnswivjviusjl5buyt2ujbeu4r27ijku4rcmiu="
+		},
+		"messages": [],
+		"links": [],
+		"_code": [{
+			"self": {
+				"type": "items.code-for-item",
+				"uri": "/items/code/items/vestri_b2c/qgqvhnswivjviusjl5buyt2ujbeu4r27ijku4rcmiu=",
+				"href": "http://localhost:8080/cortex/items/code/items/vestri_b2c/qgqvhnswivjviusjl5buyt2ujbeu4r27ijku4rcmiu="
+			},
+			"messages": [],
+			"links": [],
+			"code": "VESTRI_CLOTHING_BUNDLE"
+		}],
+		"_definition": [{
+			"self": {
+				"type": "itemdefinitions.item-definition",
+				"uri": "/itemdefinitions/vestri_b2c/qgqvhnswivjviusjl5buyt2ujbeu4r27ijku4rcmiu=",
+				"href": "http://localhost:8080/cortex/itemdefinitions/vestri_b2c/qgqvhnswivjviusjl5buyt2ujbeu4r27ijku4rcmiu="
+			},
+			"messages": [],
+			"links": [],
+			"_item": [{
+				"self": {
+					"type": "items.item",
+					"uri": "/items/vestri_b2c/qgqvhnswivjviusjl5buyt2ujbeu4r27ijku4rcmiu=",
+					"href": "http://localhost:8080/cortex/items/vestri_b2c/qgqvhnswivjviusjl5buyt2ujbeu4r27ijku4rcmiu="
+				},
+				"messages": [],
+				"links": []
+			}],
+			"details": [{
+				"display-name": "Tag",
+				"display-value": "VESTRI_BM_APPAREL",
+				"name": "tag",
+				"value": "VESTRI_BM_APPAREL"
+			}],
+			"display-name": "Clothing Bundle"
+		}]
+	}],
+	"_price": [{
+		"self": {
+			"type": "prices.price-for-cart-line-item",
+			"uri": "/prices/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga=",
+			"href": "http://localhost:8080/cortex/prices/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga="
+		},
+		"messages": [],
+		"links": [],
+		"list-price": [{
+			"amount": 0,
+			"currency": "CAD",
+			"display": "$0.00"
+		}],
+		"purchase-price": [{
+			"amount": 0,
+			"currency": "CAD",
+			"display": "$0.00"
+		}]
+	}],
+	"_total": [{
+		"self": {
+			"type": "totals.cart-line-item-total",
+			"uri": "/totals/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga=",
+			"href": "http://localhost:8080/cortex/totals/carts/vestri_b2c/gm2teyzygzqwiljymnqwcljumi3gillbhfqtsljyg44wkobumy4wizlfg4=/lineitems/mjqtgnbugyydkljzgbrwiljugjstkljzmq2tmlldgm4tenbsge4dozdcga="
+		},
+		"messages": [],
+		"links": [],
+		"cost": [{
+			"amount": 0,
+			"currency": "CAD",
+			"display": "$0.00"
+		}]
+	}],
+	"configuration": {},
+	"quantity": 1
+}

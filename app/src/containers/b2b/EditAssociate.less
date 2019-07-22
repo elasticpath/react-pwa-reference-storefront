@@ -1,0 +1,134 @@
+@import './../../theme/common.less';
+
+.dialog-header {
+  flex: 0 0 auto;
+  font-size: 20px;
+  padding-right: 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid @lightBorderColor;
+}
+.dialog-content {
+  padding: 50px 20px;
+  flex: 1 0 auto;
+
+  .associate-email-title {
+    font-weight: 700;
+    color: @darkTextColor;
+    margin-bottom: 6px;
+  }
+
+  .checkbox-role-title {
+    font-weight: 700;
+    color: @darkTextColor;
+    margin-bottom: 6px;
+    margin-top: 40px;
+  }
+  .role-checkbox {
+    margin-bottom: 5px;
+
+    .style-checkbox {
+      +label {
+        color: @darkTextColor;
+        &:before {
+          border: 2px solid @borderColor;
+        }
+      }
+      &:checked {
+        +label {
+          &:before {
+            background-color: @backgroundColor;
+            border-color: @mainBlueColor;
+          }
+          &:after {
+            border: solid 2px @mainBlueColor;
+            border-right: none;
+            border-top: none;
+          }
+        }
+      }
+      &:disabled {
+        +label {
+          opacity: .3;
+        }
+      }
+    }
+  }
+
+  .am-columns {
+    display: flex;
+
+    .am-field-editor {
+      width: 50%;
+      margin-right: 30px;
+
+      .field-editor-input {
+        cursor: not-allowed;
+        width: 240px;
+        height: 32px;
+        border: 1px solid @borderColor;
+        border-radius: 5px;
+        color: @borderColor;
+        background-color: @tableBackgroundColor;
+        padding: 4px 20px 4px 11px;
+      }
+    }
+    .account-title {
+      font-weight: 700;
+      color: @darkTextColor;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.dialog-footer {
+  flex: 0 0 auto;
+  text-align: right;
+  padding-bottom: 10px;
+  button {
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+    width: 120px;
+    height: 44px;
+    cursor: pointer;
+    outline: 0;
+    @media (min-width: 576px) {
+      width: 133px;
+    }
+    &.cancel {
+      color: @mainBlueColor;
+      margin-right: 10px;
+      @media (min-width: 576px) {
+        margin-right: 20px;
+      }
+      &:hover {
+        color: lighten(@generalizedBlueColor, 3%);
+      }
+      &:active {
+        color: lighten(@generalizedBlueColor, -3%);
+      }
+    }
+    &.upload {
+      background-color: @mainBlueColor;
+      color: @backgroundColor;
+      &:hover {
+        background-color: lighten(@mainBlueColor, 3%);
+      }
+      &:active {
+        background-color: lighten(@mainBlueColor, -5%);
+      }
+    }
+  }
+}
+.loader-wrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}

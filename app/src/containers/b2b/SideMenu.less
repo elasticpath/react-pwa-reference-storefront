@@ -1,0 +1,67 @@
+@import '../../theme/common.less';
+
+.side-menu-component {
+  position: relative;
+  .menu-item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    border-left: 3px solid transparent;
+    color: @mainTextColor !important;
+    text-decoration: none;
+    &.selected {
+      font-weight: bold;
+      color: @mainBlueColor !important;
+      border-left: 3px solid @generalizedBlueColor;
+    }
+  }
+  &-title {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-height: 50px;
+    padding: 0 25px;
+    background: transparent;
+    border: 1px solid @borderColor;
+    border-left: 3px solid @generalizedBlueColor;
+    color: @generalizedBlueColor;
+    font-weight: bold;
+    text-align: left;
+    &:focus {
+      outline: 0 auto transparent;
+    }
+    &:before {
+      content: "";
+      border-bottom: 2px solid @mainBlueColor;
+      border-right: 2px solid @mainBlueColor;
+      height: 8px;
+      width: 8px;
+      position: absolute;
+      transform: rotate(45deg) translate(0, -50%);
+      top: 45%;
+      right: 20px;
+    }
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+  &-dropdown {
+    @media screen and (max-width: 991px) {
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: @backgroundColor;
+      border: 1px solid @borderColor;
+      &.hidden {
+        display: none;
+      }
+      .menu-item.selected {
+        display: none;
+      }
+    }
+  }
+}
