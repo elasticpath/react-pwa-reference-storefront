@@ -52,6 +52,7 @@ import SearchResultsItemsMain from './SearchResultsItems/searchresultsitems.main
 import ShippingOptionContainer from './ShippingOption/shippingoption.container';
 import SortProductMenuMain from './SortProductMenu/sortproductmenu.main';
 import WishListMain from './WishList/wishlist.main';
+import ChatComponent from './ChatBot/chatbot';
 
 export {
   init,
@@ -108,4 +109,5 @@ export {
   ShippingOptionContainer,
   SortProductMenuMain,
   WishListMain,
+  ChatComponent,
 };
