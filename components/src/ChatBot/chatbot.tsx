@@ -71,7 +71,8 @@ class ChatComponent extends React.Component<ChatComponentState> {
 
     componentWillMount() {
         const isLoggedInUser = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED';
-        if (isLoggedInUser) {
+        const botEnable = Config.chatbot.enable;
+        if (isLoggedInUser && botEnable) {
             AuthenticateModel();
         }
     }
