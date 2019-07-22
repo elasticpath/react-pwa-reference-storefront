@@ -128,7 +128,7 @@ class ChatComponent extends React.Component<ChatComponentState> {
 
 async function AuthenticateModel() {
     const botName = Config.chatbot.name;
-    const authInput = localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`);
+    const authInput = "ep-auth " + localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`).split(' ')[1];
 
     await Interactions.send(botName, authInput);
 }
