@@ -23,21 +23,21 @@ import loginResponse from '../CommonMockHttpResponses/login_response.json';
 import mockFetchDependantItemDataResponse from './MockHttpResponses/GET/fetchDependantItemData_response.json';
 
 function mockLoginResponse(mockObj) {
-    mockObj.post(
-        '/cortex/oauth2/tokens',
-        loginResponse,
-    );
+  mockObj.post(
+    '/cortex/oauth2/tokens',
+    loginResponse,
+  );
 }
 
-function mockFetchDependantItemData(fetchMock) {
-    fetchMock.get(
-        /(.*)\/cortex\/carts\/[a-zA-Z0-9_]*\/(.*)/,
-        mockFetchDependantItemDataResponse,
-    );
+function mockFetchDependantItemData(mockObj) {
+  mockObj.get(
+    /(.*)\/cortex\/carts\/[a-zA-Z0-9_]*\/(.*)/,
+    mockFetchDependantItemDataResponse,
+  );
 }
 
-export function mockAppModalBundleConfigurationMain() {
-    fetchMock.restore();
-    mockLoginResponse(fetchMock)
-    mockFetchDependantItemData(fetchMock);
+export default function mockAppModalBundleConfigurationMain() {
+  fetchMock.restore();
+  mockLoginResponse(fetchMock);
+  mockFetchDependantItemData(fetchMock);
 }
