@@ -74,13 +74,12 @@ interface AppModalBundleConfigurationMainState {
 }
 
 class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConfigurationMainProps, AppModalBundleConfigurationMainState> {
-
   static defaultProps = {
     onItemConfiguratorAddToCart: () => {},
     onItemMoveToCart: () => {},
     onItemRemove: () => {},
     itemDetailLink: '',
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -161,14 +160,8 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
 
   render() {
     const { isLoading, registrationErrors, dependantItemData } = this.state;
-    const {
-      bundleConfigurationItems, handleModalClose, openModal, itemDetailLink,
-    } = this.props;
-    let itemCodeString = '';
+    const { handleModalClose, openModal, itemDetailLink } = this.props;
     if (dependantItemData && dependantItemData._dependentoptions && dependantItemData._dependentlineitems && (dependantItemData._dependentoptions[0]._element || dependantItemData._dependentlineitems[0]._element)) {
-      if (bundleConfigurationItems._item && bundleConfigurationItems._item[0]._code[0]) {
-        itemCodeString = bundleConfigurationItems._item[0]._code[0].code;
-      }
       return (
         <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'bundle-configurator-modal-content' }}>
           <div className="modal-dialog">

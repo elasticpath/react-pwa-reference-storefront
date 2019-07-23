@@ -36,9 +36,6 @@ interface AppHeaderSearchMainState{
 }
 
 class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppHeaderSearchMainState> {
-
-  private searchInput: React.RefObject<HTMLInputElement>;
-
   static defaultProps = {
     isFocused: false,
     onSearchPage: () => {},
@@ -62,6 +59,8 @@ class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppH
       }, 500);
     }
   }
+
+  private searchInput: React.RefObject<HTMLInputElement>;
 
   handleChange(event) {
     this.setState({ keywords: event.target.value });

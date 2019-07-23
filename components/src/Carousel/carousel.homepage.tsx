@@ -47,92 +47,92 @@ interface CarouselProps {
     carouselLink?: string,
 }
 
-const Carousel: React.FunctionComponent<CarouselProps> = props => {
-    const { carouselLink } = props;
-    const epConfig = getConfig();
-    Config = epConfig.config;
-    ({ intl } = epConfig);
+const Carousel: React.FunctionComponent<CarouselProps> = (props) => {
+  const { carouselLink } = props;
+  const epConfig = getConfig();
+  Config = epConfig.config;
+  ({ intl } = epConfig);
 
-    const settings = {
-        customPaging(i) {
-            return (
-                <div className="">
-                    <img alt="img" src={Config.siteImagesUrl.replace('%fileName%', carouselBanerNameArray[i])} onError={(e) => { const element: any = e.target; element.src = carouselBanerArray[i]; }} />
-                </div>
-            );
-        },
-        dots: true,
-        dotsClass: 'slick-dots slick-thumb',
-        arrows: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-    };
-    return (
-        <div className="carousel">
-            <div className="carousel-txt">
-                <h2>
-                    {intl.get('home-carousel-txt1')}
-                    <strong>
-                        {' '}
-                        {intl.get('home-carousel-txt2')}
-                    </strong>
-                    <br />
-                    {intl.get('home-carousel-txt3')}
-                </h2>
-                <Link to={carouselLink} className="ep-btn">
-                    {intl.get('home-carousel-btn')}
-                </Link>
-            </div>
-            <Slider {...settings}>
-                <div>
-                    <img
-                        alt="img"
-                        src={Config.siteImagesUrl.replace('%fileName%', carouselBaner1FileName)}
-                        onError={(e) => {
-                            const element: any = e.target;
-                            element.src = carouselBaner1;
-                        }}
-                    />
-                </div>
-                <div>
-                    <img
-                        alt="img"
-                        src={Config.siteImagesUrl.replace('%fileName%', carouselBaner2FileName)}
-                        onError={(e) => {
-                            const element: any = e.target;
-                            element.src = carouselBaner2;
-                        }}
-                    />
-                </div>
-                <div>
-                    <img
-                        alt="img"
-                        src={Config.siteImagesUrl.replace('%fileName%', carouselBaner3FileName)}
-                        onError={(e) => {
-                            const element: any = e.target;
-                            element.src = carouselBaner3;
-                        }}
-                    />
-                </div>
-                <div>
-                    <img
-                        alt="img"
-                        src={Config.siteImagesUrl.replace('%fileName%', carouselBaner4FileName)}
-                        onError={(e) => {
-                            const element: any = e.target;
-                            element.src = carouselBaner4;
-                        }}
-                    />
-                </div>
-            </Slider>
+  const settings = {
+    customPaging(i) {
+      return (
+        <div className="">
+          <img alt="img" src={Config.siteImagesUrl.replace('%fileName%', carouselBanerNameArray[i])} onError={(e) => { const element: any = e.target; element.src = carouselBanerArray[i]; }} />
         </div>
-    );
-}
+      );
+    },
+    dots: true,
+    dotsClass: 'slick-dots slick-thumb',
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  return (
+    <div className="carousel">
+      <div className="carousel-txt">
+        <h2>
+          {intl.get('home-carousel-txt1')}
+          <strong>
+            {' '}
+            {intl.get('home-carousel-txt2')}
+          </strong>
+          <br />
+          {intl.get('home-carousel-txt3')}
+        </h2>
+        <Link to={carouselLink} className="ep-btn">
+          {intl.get('home-carousel-btn')}
+        </Link>
+      </div>
+      <Slider {...settings}>
+        <div>
+          <img
+            alt="img"
+            src={Config.siteImagesUrl.replace('%fileName%', carouselBaner1FileName)}
+            onError={(e) => {
+              const element: any = e.target;
+              element.src = carouselBaner1;
+            }}
+          />
+        </div>
+        <div>
+          <img
+            alt="img"
+            src={Config.siteImagesUrl.replace('%fileName%', carouselBaner2FileName)}
+            onError={(e) => {
+              const element: any = e.target;
+              element.src = carouselBaner2;
+            }}
+          />
+        </div>
+        <div>
+          <img
+            alt="img"
+            src={Config.siteImagesUrl.replace('%fileName%', carouselBaner3FileName)}
+            onError={(e) => {
+              const element: any = e.target;
+              element.src = carouselBaner3;
+            }}
+          />
+        </div>
+        <div>
+          <img
+            alt="img"
+            src={Config.siteImagesUrl.replace('%fileName%', carouselBaner4FileName)}
+            onError={(e) => {
+              const element: any = e.target;
+              element.src = carouselBaner4;
+            }}
+          />
+        </div>
+      </Slider>
+    </div>
+  );
+};
 
 Carousel.defaultProps = {
-    carouselLink: '',
+  carouselLink: '',
 };
 
 export default Carousel;

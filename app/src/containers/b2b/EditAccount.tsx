@@ -121,7 +121,6 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
           this.setState({ isLoading: false });
         })
         .catch((err) => {
-          console.error(err);
           this.setState({ isLoading: false });
         });
     });

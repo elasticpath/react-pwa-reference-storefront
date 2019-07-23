@@ -21,7 +21,6 @@
 
 import React from 'react';
 import scriptjs from 'scriptjs';
-// @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
 import * as styles from '!!../utils/less-var-loader!../style/common.less';
 

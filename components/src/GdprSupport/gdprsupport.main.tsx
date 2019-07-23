@@ -39,10 +39,9 @@ interface GdprSupportModalState {
 }
 
 class GdprSupportModal extends React.Component<GdprSupportModalProps, GdprSupportModalState> {
-
   static defaultProps = {
     onAcceptDataPolicy: () => {},
-  }
+  };
 
   constructor(props) {
     super(props);

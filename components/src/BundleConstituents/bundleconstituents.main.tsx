@@ -34,7 +34,6 @@ interface BundleConstituentsDisplayMainProps {
 }
 
 class BundleConstituentsDisplayMain extends React.Component<BundleConstituentsDisplayMainProps> {
-
   static defaultProps = {
     itemDetailLink: '',
   }

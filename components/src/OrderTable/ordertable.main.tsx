@@ -30,7 +30,7 @@ interface OrderTableMainProps {
     itemDetailLink?: string,
 }
 
-const OrderTableMain: React.FunctionComponent<OrderTableMainProps> = (props) => {
+const OrderTableMain: React.FunctionComponent<OrderTableMainProps> = (props: OrderTableMainProps) => {
   const { data, itemDetailLink } = props;
   return (
     <div className="order-main-inner table-responsive">

@@ -57,13 +57,12 @@ interface AppHeaderNavigationMainState {
 }
 
 class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
-
   static defaultProps = {
     isOffline: undefined,
     onFetchNavigationError: () => {},
     checkedLocation: false,
     appHeaderNavigationLinks: {},
-  }
+  };
 
   constructor(props) {
     super(props);

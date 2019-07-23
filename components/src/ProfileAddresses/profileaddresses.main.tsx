@@ -40,7 +40,6 @@ interface ProfileAddressesMainProps {
 }
 
 class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}> {
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -92,9 +91,9 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
                       </span>
                       <span className="address-region" data-el-value="address.region">
                         {(address.region)
-                            ? (
-                                `${address.region}, `
-                            ) : ('')
+                          ? (
+                            `${address.region}, `
+                          ) : ('')
                         }
                       </span>
                       <span className="address-country" data-el-value="address.country">

@@ -30,7 +30,7 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AddressFormMainProps {
-    addressData?:  {
+    addressData?: {
         [key: string]: any
     },
     onCloseModal?: (...args: any[]) => any,
@@ -61,12 +61,11 @@ const zoomArray = [
 ];
 
 class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormMainState> {
-
-    static defaultProps = {
-        addressData: undefined,
-        onCloseModal: () => {},
-        fetchData: () => {},
-    };
+  static defaultProps = {
+    addressData: undefined,
+    onCloseModal: () => {},
+    fetchData: () => {},
+  };
 
   constructor(props) {
     super(props);
@@ -186,7 +185,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           });
         }
       }).catch((error) => {
-        // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
         console.error(error.message);
       });
     });
@@ -194,7 +193,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
 
   fetchGeoData() {
     login().then(() => {
-      // 7.4 Will expose the countries API at the root. In versions earlier than 7.4 we have to invoke geographies ourselves.
+    // 7.4 Will expose the countries API at the root. In versions earlier than 7.4 we have to invoke geographies ourselves.
       cortexFetch(`/geographies/${Config.cortexApi.scope}/countries/?zoom=${zoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
@@ -208,7 +207,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           });
         })
         .catch((error) => {
-          // eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console
           console.error(error.message);
         });
     });
@@ -299,7 +298,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
             <div>
               <label htmlFor="Region" data-el-label="addressForm.region" className="control-label">
                 <span className="required-label">
-                  *
+                *
                 </span>
                 {' '}
                 {intl.get('province')}
@@ -325,7 +324,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
         <div>
           <label htmlFor="Region" data-el-label="addressForm.region" className="control-label">
             <span className="required-label">
-              *
+            *
             </span>
             {' '}
             {intl.get('province')}
@@ -354,7 +353,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           <div className="form-group">
             <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label">
               <span className="required-label">
-                *
+              *
               </span>
               {' '}
               {intl.get('first-name')}
@@ -367,7 +366,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           <div className="form-group">
             <label htmlFor="LastName" data-el-label="addressForm.lastName" className="control-label">
               <span className="required-label">
-                *
+              *
               </span>
               {' '}
               {intl.get('last-name')}
@@ -380,7 +379,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           <div className="form-group">
             <label htmlFor="StreetAddress" data-el-label="addressForm.streetAddress" className="control-label">
               <span className="required-label">
-                *
+              *
               </span>
               {' '}
               {intl.get('street-address')}
@@ -401,7 +400,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           <div className="form-group">
             <label htmlFor="City" data-el-label="addressForm.city" className="control-label">
               <span className="required-label">
-                *
+              *
               </span>
               {' '}
               {intl.get('city')}
@@ -413,7 +412,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           <div data-region="addressCountryRegion" className="form-group" style={{ display: 'block' }}>
             <label htmlFor="Country" data-el-label="addressForm.country" className="control-label">
               <span className="required-label">
-                *
+              *
               </span>
               {' '}
               {intl.get('country')}
@@ -429,7 +428,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           <div className="form-group">
             <label htmlFor="PostalCode" data-el-label="addressForm.postalCode" className="control-label">
               <span className="required-label">
-                *
+              *
               </span>
               {' '}
               {intl.get('postal-code')}

@@ -23,9 +23,6 @@
           ".ts",
           ".tsx"
         ]
-      },
-      "webpack": {
-        "config": "config/webpack.config.js"
       }
     }
   },
@@ -45,6 +42,7 @@
         ]
       }
     ],
+    "react/default-props-match-prop-types": ["off"],
     "no-unused-vars": ["off"],
     "import/extensions": [
       "error",
@@ -81,6 +79,7 @@
         }
       }
     ],
+    "camelcase": ["warn"],
     "header/header": [
       2,
       "block", [

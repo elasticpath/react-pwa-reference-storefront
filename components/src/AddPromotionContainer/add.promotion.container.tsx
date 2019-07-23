@@ -44,7 +44,6 @@ interface AddPromotionContainerState {
 }
 
 class AddPromotionContainer extends React.Component<AddPromotionContainerProps, AddPromotionContainerState> {
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();

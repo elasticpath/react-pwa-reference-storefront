@@ -36,44 +36,45 @@ interface AddressContainerProps {
         'country-name': string,
         'postal-code': string,
     },
-};
+}
 
 function AddressContainer(props: AddressContainerProps) {
-    const { name, address } = props;
+  const { name, address } = props;
 
-    return (
-        <ul className="address-container">
-            <li className="address-name">
-                {name['given-name']}&nbsp;
-                {name['family-name']}
-            </li>
-            <li className="address-street-address">
-                {address['street-address']}
-            </li>
-            <li className="address-extended-address">
-                {address['extended-address']}
-            </li>
-            <li>
+  return (
+    <ul className="address-container">
+      <li className="address-name">
+        {name['given-name']}
+        &nbsp;
+        {name['family-name']}
+      </li>
+      <li className="address-street-address">
+        {address['street-address']}
+      </li>
+      <li className="address-extended-address">
+        {address['extended-address']}
+      </li>
+      <li>
         <span className="address-city">
           {address.locality}
             ,&nbsp;
         </span>
-                <span className="address-region">
+        <span className="address-region">
           {(address.region)
-              ? (
-                  `${address.region}, `
-              ) : ('')}
+            ? (
+              `${address.region}, `
+            ) : ('')}
         </span>
-                <span className="address-country">
+        <span className="address-country">
           {address['country-name']}
                     &nbsp;
         </span>
-                <span className="address-postal-code">
+        <span className="address-postal-code">
           {address['postal-code']}
         </span>
-            </li>
-        </ul>
-    );
-};
+      </li>
+    </ul>
+  );
+}
 
 export default AddressContainer;

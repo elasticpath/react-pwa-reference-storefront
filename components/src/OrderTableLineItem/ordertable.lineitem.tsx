@@ -34,7 +34,7 @@ interface OrderTableLineItemProps {
     itemDetailLink?: string,
 }
 
-const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (props) => {
+const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (props: OrderTableLineItemProps) => {
   const { item, itemDetailLink } = props;
   const { code } = item._item[0]._code[0];
   const displayName = item._item[0]._definition[0]['display-name'];
@@ -104,13 +104,14 @@ const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (pr
   return (
     <tr className="order-lineitem-row">
       <td className="thumbnail-col">
-        <img className="thumbnail"
-             src={Config.skuImagesUrl.replace('%sku%', code)}
-             alt="Not Available"
-             onError={(e) => {
-                 const element:any = e.target;
-                 element.src = imgPlaceholder;
-             }}
+        <img
+          className="thumbnail"
+          src={Config.skuImagesUrl.replace('%sku%', code)}
+          alt="Not Available"
+          onError={(e) => {
+            const element:any = e.target;
+            element.src = imgPlaceholder;
+          }}
         />
       </td>
       <td className="title-col">
