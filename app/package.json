@@ -8,7 +8,7 @@
     "@elasticpath/store-components": "*",
     "@svgr/webpack": "4.3.0",
     "@types/es6-shim": "^0.31.39",
-    "@types/react": "^16.8.22",
+    "@types/react": "^16.8.23",
     "@typescript-eslint/eslint-plugin": "1.10.2",
     "@typescript-eslint/parser": "1.10.2",
     "babel-eslint": "10.0.2",
@@ -99,7 +99,12 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.12.0",
+    "@typescript-eslint/parser": "^1.12.0",
     "babel-jest": "^24.8.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-header": "^3.0.0",
     "less": "^3.9.0",
     "puppeteer": "^1.18.1",
     "typescript": "^3.5.2"

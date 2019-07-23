@@ -107,7 +107,6 @@ interface SearchResultsItemsMainState {
 }
 
 class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps, SearchResultsItemsMainState> {
-
   static defaultProps = {
     onProductFacetSelection: () => {},
     productLinks: {
@@ -183,31 +182,31 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
     });
     login().then(() => {
       cortexFetch(`${selfUri}?followlocation&zoom=${zoomArray.sort().join()}`,
-          {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+        .then(res => res.json())
+        .then((res) => {
+          const productNode = (searchResultsModel._offers) ? ('_offers') : ('_items');
+          this.setState(prevState => ({
+            searchResultsModel: {
+              ...prevState.searchResultsModel,
+              [productNode]: [res._offersearchresult[0]],
             },
-          })
-          .then(res => res.json())
-          .then((res) => {
-            const productNode = (searchResultsModel._offers) ? ('_offers') : ('_items');
-            this.setState(prevState => ({
-              searchResultsModel: {
-                ...prevState.searchResultsModel,
-                [productNode]: [res._offersearchresult[0]],
-              },
-              loadSortedProduct: false,
-            }));
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-            this.setState({
-              loadSortedProduct: false,
-            });
+            loadSortedProduct: false,
+          }));
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          this.setState({
+            loadSortedProduct: false,
           });
+        });
     });
   }
 

@@ -20,46 +20,48 @@
  *
  */
 
-import * as React from 'react';
+import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import userIcon from '../../images/header-icons/account-icon-blue.svg';
 import './Dashboard.less';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
-import Config from '../../ep.config.json'
+import userIcon from '../../images/header-icons/account-icon-blue.svg';
+import Config from '../../ep.config.json';
 
 interface DashboardState {
-    admins: any,
-    defaultBillingAddress: any,
-    defaultShippingAddress: any,
-    recentOrders: any,
-    accounts: any,
-    searchAccounts: string,
+  admins: any,
+  defaultBillingAddress: any,
+  defaultShippingAddress: any,
+  recentOrders: any,
+  accounts: any,
+  searchAccounts: string,
+  isLoading: boolean,
+  showSearchLoader: boolean,
+  noSearchResults: boolean,
 }
 
 const accountsZoomArray = [
-  "accounts",
-  "accounts:element",
-  "accounts:element:selfsignupinfo",
-  "accounts:element:statusinfo",
-  "accounts:element:statusinfo:status",
-  "accounts:element:subaccounts",
-  "accounts:element:subaccounts:accountform",
-  "accounts:element:subaccounts:parentaccount",
-  "accounts:element:associateroleassignments",
-  "accounts:element:associateroleassignments:element",
-  "accounts:element:associateroleassignments:element:associateroleassignments",
-  "accounts:element:associateroleassignments:element:roleinfo",
-  "accounts:element:associateroleassignments:element:roleinfo:roles",
-  "accounts:element:associateroleassignments:element:roleinfo:roles:element",
-  "accounts:element:associateroleassignments:element:roleinfo:selector",
-  "accounts:element:associateroleassignments:element:associate",
-  "accounts:element:associateroleassignments:element:associate:primaryemail",
+  'accounts',
+  'accounts:element',
+  'accounts:element:selfsignupinfo',
+  'accounts:element:statusinfo',
+  'accounts:element:statusinfo:status',
+  'accounts:element:subaccounts',
+  'accounts:element:subaccounts:accountform',
+  'accounts:element:subaccounts:parentaccount',
+  'accounts:element:associateroleassignments',
+  'accounts:element:associateroleassignments:element',
+  'accounts:element:associateroleassignments:element:associateroleassignments',
+  'accounts:element:associateroleassignments:element:roleinfo',
+  'accounts:element:associateroleassignments:element:roleinfo:roles',
+  'accounts:element:associateroleassignments:element:roleinfo:roles:element',
+  'accounts:element:associateroleassignments:element:roleinfo:selector',
+  'accounts:element:associateroleassignments:element:associate',
+  'accounts:element:associateroleassignments:element:associate:primaryemail',
 ];
 
-export default class Dashboard extends React.Component<DashboardState> {
-
+export default class Dashboard extends React.Component<{}, DashboardState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -132,37 +134,39 @@ export default class Dashboard extends React.Component<DashboardState> {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-        }
+        },
       })
         .then(res => res.json())
-        .then(res => {
+        .then((res) => {
           if (res && res._accounts) {
-            const accounts = res._accounts[0]._element.map(account => {
+            const accounts = res._accounts[0]._element.map((account) => {
               const uri = account.self.uri.split('/').pop();
               return {
                 name: account.name,
                 externalId: account['external-id'],
                 status: account._statusinfo[0]._status[0].status.toLowerCase(),
-                uri
-              }
+                uri,
+              };
             });
-            let map = new Map();
+            const map = new Map();
             res._accounts[0]._element.reduce((accum, account) => {
               const associates = account._associateroleassignments[0]._element;
-              if(!associates) return accum;
+              if (!associates) return accum;
 
-              associates.forEach(associate => {
+              associates.forEach((associate) => {
                 if (associate._roleinfo[0]._roles[0]._element && associate._roleinfo[0]._roles[0]._element[0].name === 'BUYER_ADMIN') {
-                  const name = associate._associate[0].name;
-                  const email = associate._associate[0]._primaryemail[0].email;
-                    map.set(email, { name, email });
+                  const { name } = associate._associate[0];
+                  const { email } = associate._associate[0]._primaryemail[0];
+                  map.set(email, { name, email });
                 }
               });
               return accum;
             }, []);
             const admins = Array.from(map.values());
 
-              this.setState({ accounts, admins, isLoading: false, noSearchResults: false });
+            this.setState({
+              accounts, admins, isLoading: false, noSearchResults: false,
+            });
           }
         });
     });
@@ -172,233 +176,232 @@ export default class Dashboard extends React.Component<DashboardState> {
     const { searchAccounts } = this.state;
     this.setState({ showSearchLoader: true });
     login().then(() => {
-        adminFetch('/accounts/am/search/form?followlocation&format=standardlinks,zoom.nodatalinks', {
-            method: 'post',
+      adminFetch('/accounts/am/search/form?followlocation&format=standardlinks,zoom.nodatalinks', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        },
+        body: JSON.stringify({ keywords: searchAccounts, page: '1', 'page-size': '10' }),
+      })
+        .then(data => data.json())
+        .then((data) => {
+          adminFetch(`${data.self.uri}?zoom=element,element:statusinfo:status`, {
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
             },
-            body: JSON.stringify({ keywords: searchAccounts, page: "1", 'page-size': "10" }),
-        })
-            .then(data => data.json())
-            .then(data => {
-                adminFetch(`${data.self.uri}?zoom=element,element:statusinfo:status`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-                    }
-                })
-                    .then(searchResult => searchResult.json())
-                    .then(searchResult => {
-                        if (searchResult && searchResult._element) {
-                            const accounts = searchResult._element.map(account => {
-                                return {
-                                    name: account.name,
-                                    externalId: account['external-id'],
-                                    status: account._statusinfo[0]._status[0].status.toLowerCase(),
-                                }
-                            });
-                            this.setState({ accounts, showSearchLoader: false, noSearchResults: false });
-                        } else {
-                            this.setState({ showSearchLoader: false, noSearchResults: true })
-                        }
-                    })
-                    .catch((error) => {
-                        // eslint-disable-next-line no-console
-                        console.error(error.message);
-                    });
+          })
+            .then(searchResult => searchResult.json())
+            .then((searchResult) => {
+              if (searchResult && searchResult._element) {
+                const accounts = searchResult._element.map(account => ({
+                  name: account.name,
+                  externalId: account['external-id'],
+                  status: account._statusinfo[0]._status[0].status.toLowerCase(),
+                }));
+                this.setState({ accounts, showSearchLoader: false, noSearchResults: false });
+              } else {
+                this.setState({ showSearchLoader: false, noSearchResults: true });
+              }
             })
             .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
+              // eslint-disable-next-line no-console
+              console.error(error.message);
             });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     });
-
   }
 
   handleEnterKeyPress(e) {
-      if(e.keyCode == 13){
-          this.getSearchAccounts();
-      }
+    if (e.keyCode === 13) {
+      this.getSearchAccounts();
+    }
   }
 
 
   render() {
-      const {
-          admins,
-          defaultBillingAddress,
-          defaultShippingAddress,
-          recentOrders,
-          accounts,
-          isLoading,
-          searchAccounts,
-          showSearchLoader,
-          noSearchResults,
-      } = this.state;
+    const {
+      admins,
+      defaultBillingAddress,
+      defaultShippingAddress,
+      recentOrders,
+      accounts,
+      isLoading,
+      searchAccounts,
+      showSearchLoader,
+      noSearchResults,
+    } = this.state;
 
-      return (
-          <div className="dashboard-component">
-            {!isLoading ? (
-              <div>
-                <div className="admin-address-book">
-                    <div className="b2b-section section-1 admin-section">
-                        <div className="section-header">
-                            <div className="section-title">{intl.get('admins')}</div>
-                        </div>
-                        <div className="section-content">
-                            {admins.slice(0, 2).map(admin => (
-                                <div key={admin.email} className="user-info">
-                                    <div className="user-icon">
-                                        <img src={userIcon} alt="" />
-                                    </div>
-                                    <div className="user-details">
-                                        <div className="user-email">{admin.email}</div>
-                                        <div className="user-name">{admin.name}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="b2b-section section-2 address-book-section" style={{border: 'none'}}>
-                        {/*<div className="section-header">*/}
-                            {/*<div className="section-title">{intl.get('addresses')}</div>*/}
-                            {/*<div className="section-header-right">*/}
-                                {/*/!*<Link to="/">{intl.get('edit')}</Link>*!/*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                        {/*<div className="section-content">*/}
-                            {/*<div className="address default-billing">*/}
-                                {/*<div className="address-title">{intl.get('default-billing')}</div>*/}
-                                {/*<div className="address-content">*/}
-                                    {/*<div className="name-line">{defaultBillingAddress.name}</div>*/}
-                                    {/*<div className="address-line">{defaultBillingAddress.address}</div>*/}
-                                    {/*<div className="state-line">*/}
-                                        {/*{defaultBillingAddress.city}*/}
-                                        {/*,&nbsp;*/}
-                                        {/*{defaultBillingAddress.state}*/}
-                                        {/*,&nbsp;*/}
-                                        {/*{defaultBillingAddress.zip}*/}
-                                    {/*</div>*/}
-                                    {/*<div className="country-line">{defaultBillingAddress.country}</div>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                            {/*<div className="address default-shipping">*/}
-                                {/*<div className="address-title">{intl.get('default-shipping')}</div>*/}
-                                {/*<div className="address-content">*/}
-                                    {/*<div className="name-line">{defaultShippingAddress.name}</div>*/}
-                                    {/*<div className="address-line">{defaultShippingAddress.address}</div>*/}
-                                    {/*<div className="state-line">*/}
-                                        {/*{defaultShippingAddress.city}*/}
-                                        {/*,&nbsp;*/}
-                                        {/*{defaultShippingAddress.state}*/}
-                                        {/*,&nbsp;*/}
-                                        {/*{defaultShippingAddress.zip}*/}
-                                    {/*</div>*/}
-                                    {/*<div className="country-line">{defaultShippingAddress.country}</div>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    </div>
+    return (
+      <div className="dashboard-component">
+        {!isLoading ? (
+          <div>
+            <div className="admin-address-book">
+              <div className="b2b-section section-1 admin-section">
+                <div className="section-header">
+                  <div className="section-title">{intl.get('admins')}</div>
                 </div>
-                {/*<div className="b2b-section recent-orders">*/}
-                    {/*<div className="section-header">*/}
-                        {/*<div className="section-title">{intl.get('recent-orders')}</div>*/}
-                        {/*<div className="section-header-right">*/}
-                            {/*/!*<Link to="/">{intl.get('view-all')}</Link>*!/*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-                    {/*<div className="section-content">*/}
-                        {/*<table className="b2b-table recent-orders-table">*/}
-                            {/*<thead>*/}
-                            {/*<tr>*/}
-                                {/*<th className="order-id">*/}
-                                    {/*{intl.get('order')}*/}
-                                    {/*<span className="mobile-table-title">*/}
-                                        {/*{' '}*/}
-                                        {/*&*/}
-                                        {/*{' '}*/}
-                                        {/*{intl.get('date')}*/}
-                                    {/*</span>*/}
-                                {/*</th>*/}
-                                {/*<th className="date">{intl.get('date')}</th>*/}
-                                {/*<th className="ship-to">*/}
-                                    {/*{intl.get('ship-to')}*/}
-                                    {/*<span className="mobile-table-title">*/}
-                                        {/*{' '}*/}
-                                        {/*&*/}
-                                        {/*{' '}*/}
-                                        {/*{intl.get('order-total')}*/}
-                                    {/*</span>*/}
-                                {/*</th>*/}
-                                {/*<th className="order-total">{intl.get('order-total')}</th>*/}
-                                {/*<th className="status">{intl.get('status')}</th>*/}
-                            {/*</tr>*/}
-                            {/*</thead>*/}
-                            {/*<tbody>*/}
-                            {/*{recentOrders.map(order => (*/}
-                                {/*<tr key={order.orderId}>*/}
-                                    {/*<td className="order-id">{order.orderId}</td>*/}
-                                    {/*<td className="date">{order.date}</td>*/}
-                                    {/*<td className="ship-to">{order.shipTo}</td>*/}
-                                    {/*<td className="order-total">{order.orderTotal}</td>*/}
-                                    {/*<td className="status">{order.status}</td>*/}
-                                {/*</tr>*/}
-                            {/*))}*/}
-                            {/*</tbody>*/}
-                        {/*</table>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
-                <div className="b2b-section accounts">
-                    <div className="section-header">
-                        <div className="section-title">{intl.get('accounts')}</div>
-                        <div className="section-header-right">
-                            <div className="accounts-search">
-                                <input type="text" placeholder={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
-                                {showSearchLoader && <div className="miniLoader" />}
-                            </div>
-                        </div>
+                <div className="section-content">
+                  {admins.slice(0, 2).map(admin => (
+                    <div key={admin.email} className="user-info">
+                      <div className="user-icon">
+                        <img src={userIcon} alt="" />
+                      </div>
+                      <div className="user-details">
+                        <div className="user-email">{admin.email}</div>
+                        <div className="user-name">{admin.name}</div>
+                      </div>
                     </div>
-                    <div className="section-content">
-                        { !noSearchResults ? (<table className="b2b-table accounts-table">
-                            <thead>
-                            <tr>
-                                <th className="name">
-                                    {intl.get('name')}
-                                    <span className="mobile-table-title">
-                                        {' '}
-                                        &
-                                        {' '}
-                                        {intl.get('external-id')}
-                                    </span>
-                                </th>
-                                <th className="external-id">{intl.get('external-id')}</th>
-                                <th className="status">{intl.get('status')}</th>
-                                <th className="arrow" />
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {accounts.map(account => (
-                                <tr key={account.externalId}>
-                                    <td className="name">{account.name}</td>
-                                    <td className="external-id">{account.externalId}</td>
-                                    <td className="status">
-                                      <i className={`icons-status ${account.status.toLowerCase()}`} />
-                                      {intl.get(account.status)}
-                                    </td>
-                                    <td className="arrow">
-                                        <Link to={`/b2b/account/${account.uri}`} className="arrow-btn" />
-                                    </td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>) : <p className="no-results">{intl.get('no-results-found')}</p>}
-                    </div>
+                  ))}
                 </div>
               </div>
-            ) : (
-              <div className="loader" />
-            )}
+              <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }}>
+                {/* <div className="section-header"> */}
+                {/* <div className="section-title">{intl.get('addresses')}</div> */}
+                {/* <div className="section-header-right"> */}
+                {/* /!*<Link to="/">{intl.get('edit')}</Link>*!/ */}
+                {/* </div> */}
+                {/* </div> */}
+                {/* <div className="section-content"> */}
+                {/* <div className="address default-billing"> */}
+                {/* <div className="address-title">{intl.get('default-billing')}</div> */}
+                {/* <div className="address-content"> */}
+                {/* <div className="name-line">{defaultBillingAddress.name}</div> */}
+                {/* <div className="address-line">{defaultBillingAddress.address}</div> */}
+                {/* <div className="state-line"> */}
+                {/* {defaultBillingAddress.city} */}
+                {/* ,&nbsp; */}
+                {/* {defaultBillingAddress.state} */}
+                {/* ,&nbsp; */}
+                {/* {defaultBillingAddress.zip} */}
+                {/* </div> */}
+                {/* <div className="country-line">{defaultBillingAddress.country}</div> */}
+                {/* </div> */}
+                {/* </div> */}
+                {/* <div className="address default-shipping"> */}
+                {/* <div className="address-title">{intl.get('default-shipping')}</div> */}
+                {/* <div className="address-content"> */}
+                {/* <div className="name-line">{defaultShippingAddress.name}</div> */}
+                {/* <div className="address-line">{defaultShippingAddress.address}</div> */}
+                {/* <div className="state-line"> */}
+                {/* {defaultShippingAddress.city} */}
+                {/* ,&nbsp; */}
+                {/* {defaultShippingAddress.state} */}
+                {/* ,&nbsp; */}
+                {/* {defaultShippingAddress.zip} */}
+                {/* </div> */}
+                {/* <div className="country-line">{defaultShippingAddress.country}</div> */}
+                {/* </div> */}
+                {/* </div> */}
+                {/* </div> */}
+              </div>
+            </div>
+            {/* <div className="b2b-section recent-orders"> */}
+            {/* <div className="section-header"> */}
+            {/* <div className="section-title">{intl.get('recent-orders')}</div> */}
+            {/* <div className="section-header-right"> */}
+            {/* /!*<Link to="/">{intl.get('view-all')}</Link>*!/ */}
+            {/* </div> */}
+            {/* </div> */}
+            {/* <div className="section-content"> */}
+            {/* <table className="b2b-table recent-orders-table"> */}
+            {/* <thead> */}
+            {/* <tr> */}
+            {/* <th className="order-id"> */}
+            {/* {intl.get('order')} */}
+            {/* <span className="mobile-table-title"> */}
+            {/* {' '} */}
+            {/* & */}
+            {/* {' '} */}
+            {/* {intl.get('date')} */}
+            {/* </span> */}
+            {/* </th> */}
+            {/* <th className="date">{intl.get('date')}</th> */}
+            {/* <th className="ship-to"> */}
+            {/* {intl.get('ship-to')} */}
+            {/* <span className="mobile-table-title"> */}
+            {/* {' '} */}
+            {/* & */}
+            {/* {' '} */}
+            {/* {intl.get('order-total')} */}
+            {/* </span> */}
+            {/* </th> */}
+            {/* <th className="order-total">{intl.get('order-total')}</th> */}
+            {/* <th className="status">{intl.get('status')}</th> */}
+            {/* </tr> */}
+            {/* </thead> */}
+            {/* <tbody> */}
+            {/* {recentOrders.map(order => ( */}
+            {/* <tr key={order.orderId}> */}
+            {/* <td className="order-id">{order.orderId}</td> */}
+            {/* <td className="date">{order.date}</td> */}
+            {/* <td className="ship-to">{order.shipTo}</td> */}
+            {/* <td className="order-total">{order.orderTotal}</td> */}
+            {/* <td className="status">{order.status}</td> */}
+            {/* </tr> */}
+            {/* ))} */}
+            {/* </tbody> */}
+            {/* </table> */}
+            {/* </div> */}
+            {/* </div> */}
+            <div className="b2b-section accounts">
+              <div className="section-header">
+                <div className="section-title">{intl.get('accounts')}</div>
+                <div className="section-header-right">
+                  <div className="accounts-search">
+                    <input type="text" placeholder={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
+                    {showSearchLoader && <div className="miniLoader" />}
+                  </div>
+                </div>
+              </div>
+              <div className="section-content">
+                { !noSearchResults ? (
+                  <table className="b2b-table accounts-table">
+                    <thead>
+                      <tr>
+                        <th className="name">
+                          {intl.get('name')}
+                          <span className="mobile-table-title">
+                            {' '}
+                                        &
+                            {' '}
+                            {intl.get('external-id')}
+                          </span>
+                        </th>
+                        <th className="external-id">{intl.get('external-id')}</th>
+                        <th className="status">{intl.get('status')}</th>
+                        <th className="arrow" />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {accounts.map(account => (
+                        <tr key={account.externalId}>
+                          <td className="name">{account.name}</td>
+                          <td className="external-id">{account.externalId}</td>
+                          <td className="status">
+                            <i className={`icons-status ${account.status.toLowerCase()}`} />
+                            {intl.get(account.status)}
+                          </td>
+                          <td className="arrow">
+                            <Link to={`/b2b/account/${account.uri}`} className="arrow-btn" />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : <p className="no-results">{intl.get('no-results-found')}</p>}
+              </div>
+            </div>
           </div>
-      );
+        ) : (
+          <div className="loader" />
+        )}
+      </div>
+    );
   }
 }

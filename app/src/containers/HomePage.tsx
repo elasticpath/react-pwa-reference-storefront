@@ -44,7 +44,7 @@ const showGDPR = Config.GDPR.enable;
 const gdprSupportAccept = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`);
 const gdprSupportDecline = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Decline`);
 
-class HomePage extends React.Component {
+class HomePage extends React.FunctionComponent {
   render() {
     const carouselLink = '/category/VESTRI_ACCESSORIES';
     function handleAcceptDataPolicy() {
@@ -61,7 +61,6 @@ class HomePage extends React.Component {
           <Carousel carouselLink={carouselLink} />
           <IndiRecommendationsDisplayMain render={['carousel', 'brand']} configuration={Config.indi} />
           {/* eslint-disable-next-line no-return-assign */}
-          <div/>
           <div className="section section-3 container">
             <div className="sub-section">
               <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e) => { e.target.src = homeEspot2; }} />

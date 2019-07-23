@@ -20,10 +20,10 @@
  */
 
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { ProductDisplayItemMain } from '@elasticpath/store-components';
 
-function ProductDetailPage(props) {
-
+function ProductDetailPage(props: RouteComponentProps) {
   const { history } = props;
 
   function handleAddToCart() {
@@ -34,7 +34,7 @@ function ProductDetailPage(props) {
     history.push('/wishlists');
   }
 
- function handleChangeProductFeature(path){
+  function handleChangeProductFeature(path) {
     history.push(`/itemdetail/${path}`);
   }
 
@@ -45,7 +45,7 @@ function ProductDetailPage(props) {
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onChangeProductFeature={handleChangeProductFeature} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} itemDetailLink={'/itemdetail'} />
+      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onChangeProductFeature={handleChangeProductFeature} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} itemDetailLink="/itemdetail" />
     </div>
   );
 }

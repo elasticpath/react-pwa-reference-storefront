@@ -56,7 +56,6 @@ interface WishListsPageState {
     invalidPermission: boolean,
 }
 class WishListsPage extends React.Component<RouteComponentProps, WishListsPageState> {
-
   constructor(props) {
     super(props);
     this.state = {

@@ -20,8 +20,7 @@
  */
 
 import React from 'react';
-
-let intl = { get: str => str };
+import intl from 'react-intl-universal';
 
 function ContactUsPage() {
   return (

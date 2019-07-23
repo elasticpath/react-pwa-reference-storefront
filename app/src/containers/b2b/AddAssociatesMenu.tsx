@@ -19,7 +19,7 @@
  *
  */
 
-import * as React from 'react';
+import React from 'react';
 import intl from 'react-intl-universal';
 import './AddAssociatesMenu.less';
 
@@ -31,68 +31,67 @@ interface AddAssociatesMenuState {
 }
 
 export default class AddAssociatesMenu extends React.Component<AddAssociatesMenuProps, AddAssociatesMenuState> {
-
     static defaultProps = {
-        onSpreeadsheetClicked: null,
+      onSpreeadsheetClicked: null,
     };
 
     constructor(props) {
-        super(props);
+      super(props);
 
-        this.state = {
-            isOpen: false,
-        };
+      this.state = {
+        isOpen: false,
+      };
 
-        this.clickListener = this.clickListener.bind(this);
+      this.clickListener = this.clickListener.bind(this);
     }
 
     handleSwitcherClicked(e) {
-        this.setState({ isOpen: true });
-        document.addEventListener('click', this.clickListener);
+      this.setState({ isOpen: true });
+      document.addEventListener('click', this.clickListener);
 
-        e.preventDefault();
-        e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
     }
 
     clickListener() {
-        this.setState({ isOpen: false });
-        document.removeEventListener('click', this.clickListener);
+      this.setState({ isOpen: false });
+      document.removeEventListener('click', this.clickListener);
     }
 
     handleUploadSpreadsheetClicked() {
-        const { onSpreeadsheetClicked } = this.props;
+      const { onSpreeadsheetClicked } = this.props;
 
-        if (onSpreeadsheetClicked) {
-            onSpreeadsheetClicked();
-        }
+      if (onSpreeadsheetClicked) {
+        onSpreeadsheetClicked();
+      }
     }
 
     render() {
-        const { isOpen } = this.state;
-        return (
+      const { isOpen } = this.state;
+      return (
+        <div
+          className="add-associates-menu-component"
+          onClick={e => this.handleSwitcherClicked(e)}
+          onKeyDown={e => this.handleSwitcherClicked(e)}
+          role="button"
+          tabIndex={0}
+        >
+          <div className="selected-title">
+            {intl.get('add-associates')}
+          </div>
+          <div className={`associate-menu ${isOpen ? '' : 'hidden'}`}>
             <div
-                className="add-associates-menu-component"
-                onClick={e => this.handleSwitcherClicked(e)}
-                onKeyDown={e => this.handleSwitcherClicked(e)}
-                role="button"
-                tabIndex={0}
+              className="menu-item"
+              onClick={() => this.handleUploadSpreadsheetClicked()}
+              onKeyDown={() => this.handleUploadSpreadsheetClicked()}
+              role="button"
+              tabIndex={0}
             >
-                <div className="selected-title">
-                    {intl.get('add-associates')}
-                </div>
-                <div className={`associate-menu ${isOpen ? '' : 'hidden'}`}>
-                    <div
-                        className="menu-item"
-                        onClick={() => this.handleUploadSpreadsheetClicked()}
-                        onKeyDown={() => this.handleUploadSpreadsheetClicked()}
-                        role="button"
-                        tabIndex={0}
-                    >
-                        {intl.get('upload-spreadsheet')}
-                    </div>
-                    <div className="menu-item">{intl.get('download-list')}</div>
-                </div>
+              {intl.get('upload-spreadsheet')}
             </div>
-        );
+            <div className="menu-item">{intl.get('download-list')}</div>
+          </div>
+        </div>
+      );
     }
 }

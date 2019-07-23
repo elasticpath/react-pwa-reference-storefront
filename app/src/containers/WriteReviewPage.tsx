@@ -31,8 +31,6 @@ import './WriteReviewPage.less';
 const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 
 class WriteReview extends React.Component<RouteComponentProps> {
-    private POWERREVIEWS: any;
-
   componentDidMount() {
     const { location } = this.props;
     const url = location.search;
@@ -40,7 +38,7 @@ class WriteReview extends React.Component<RouteComponentProps> {
     const productCode = params.pr_page_id;
 
     scriptjs(powerReviewsRemoteScriptUrl, () => {
-      // eslint-disable-next-line no-undef
+    // eslint-disable-next-line no-undef
       this.POWERREVIEWS.display.render({
         api_key: Config.PowerReviews.api_key,
         locale: UserPrefs.getSelectedLocaleValue().replace('-', '_'),
@@ -54,6 +52,8 @@ class WriteReview extends React.Component<RouteComponentProps> {
       });
     });
   }
+
+  private POWERREVIEWS: any;
 
   render() {
     return (<div id="pr-write" />);

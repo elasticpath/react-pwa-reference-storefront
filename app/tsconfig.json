@@ -13,13 +13,13 @@
       "dom",
       "es6"
     ],
+    "strict": false,
+    "noEmit": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "isolatedModules": true,
-    "noEmit": true,
-    "strict": false
+    "isolatedModules": true
   },
   "files": [
     "custom_typings/image-loader.d.ts",

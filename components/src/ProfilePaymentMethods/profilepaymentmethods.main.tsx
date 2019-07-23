@@ -19,7 +19,7 @@
  *
  */
 
-import * as React from 'react';
+import React from 'react';
 import Modal from 'react-responsive-modal';
 import { PaymentFormMain } from '@elasticpath/store-components';
 import { withRouter } from 'react-router';

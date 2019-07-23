@@ -133,9 +133,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     isInStandaloneMode: false,
     itemDetailLink: '',
     featuredProductAttribute: false,
-  }
-
-  private funcName: any;
+  };
 
   constructor(props) {
     super(props);
@@ -212,6 +210,8 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         });
     });
   }
+
+  private funcName: any;
 
   handleQuantityChange(event) {
     if (event.target.value === '') {
@@ -352,7 +352,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   urlExists(url, callback) {
     this.funcName = 'UrlExists';
     fetch(url, {
-      method: 'HEAD'
+      method: 'HEAD',
     }).then((res) => {
       callback(res.ok);
     });
@@ -474,22 +474,29 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         return productKindsSelection;
       });
       return (productKindsSelection.map(Component => (
-          <fieldset onChange={this.handleSelectionChange} key={Math.random().toString(36).substr(2, 9)}>
+        <fieldset onChange={this.handleSelectionChange} key={Math.random().toString(36).substr(2, 9)}>
           <span className="selector-title">
             {Component.displayName}
           </span>
-            <div className="guide" id={`${(Component.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
-              {Component.map(Element => (
-                <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
-                  <input key={Element._description[0].name} type="radio" name={Component.displayName} id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''} defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue} />
-                  <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} style={{ background: Element._description[0]['display-name'] }}>
-                    {Element._description[0]['display-name']}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </fieldset>
-        ))
+          <div className="guide" id={`${(Component.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
+            {Component.map(Element => (
+              <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
+                <input
+                  key={Element._description[0].name}
+                  type="radio"
+                  name={Component.displayName}
+                  id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`}
+                  value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''}
+                  defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue}
+                />
+                <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} style={{ background: Element._description[0]['display-name'] }}>
+                  {Element._description[0]['display-name']}
+                </label>
+              </div>
+            ))}
+          </div>
+        </fieldset>
+      ))
       );
     }
     return null;
@@ -507,7 +514,15 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     if (arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
-          <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+          <img
+            src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)}
+            onError={(e) => {
+              const element: any = e.target;
+              element.src = imgMissingHorizontal;
+            }}
+            alt={intl.get('none-available')}
+            className="itemdetail-main-img"
+          />
         </a>
       );
     }
@@ -526,7 +541,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     const {
       productData, addToCartFailedMessage, isLoading, itemQuantity,
     } = this.state;
-    const { featuredProductAttribute, productLink, itemDetailLink } = this.props;
+    const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
 
