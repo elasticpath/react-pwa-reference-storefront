@@ -95,21 +95,22 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
     this.handleErrorMessage = this.handleErrorMessage.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleConfiguratorAddToCart = this.handleConfiguratorAddToCart.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   componentDidMount() {
-    this.fetchDependantItemData();
+    const { bundleConfigurationItems } = this.props;
+    this.fetchDependantItemData(bundleConfigurationItems);
   }
 
   componentWillReceiveProps(nextProps) {
     const { bundleConfigurationItems } = this.props;
     if (bundleConfigurationItems !== nextProps.bundleConfigurationItems) {
-      this.fetchDependantItemData();
+      this.fetchDependantItemData(nextProps.bundleConfigurationItems);
     }
   }
 
-  fetchDependantItemData() {
-    const { bundleConfigurationItems } = this.props;
+  fetchDependantItemData(bundleConfigurationItems) {
     login().then(() => {
       cortexFetch(`${bundleConfigurationItems.self.uri}/?zoom=${zoomArray.sort().join()}`, {
         headers: {
