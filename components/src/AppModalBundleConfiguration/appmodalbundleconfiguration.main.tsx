@@ -94,6 +94,7 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
     };
     this.handleErrorMessage = this.handleErrorMessage.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.handleConfiguratorAddToCart = this.handleConfiguratorAddToCart.bind(this);
   }
 
   componentDidMount() {

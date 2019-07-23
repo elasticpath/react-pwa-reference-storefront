@@ -533,7 +533,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
                 {intl.get('configure-bundle')}
               </span>
             </button>
-            <AppModalBundleConfigurationMain key={`app-modal-bundle-configuration-main_${itemCodeString}`} handleModalClose={this.handleModalClose} bundleConfigurationItems={item} openModal={openModal} itemDetailLink={itemDetailLink} />
+            <AppModalBundleConfigurationMain key={`app-modal-bundle-configuration-main_${itemCodeString}`} handleModalClose={this.handleModalClose} bundleConfigurationItems={item} openModal={openModal} itemDetailLink={itemDetailLink} onItemConfiguratorAddToCart={this.props.onConfiguratorAddToCart}/>
           </div>
         ) : ('')
         }
