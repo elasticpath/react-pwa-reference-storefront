@@ -104,7 +104,7 @@ describe('Profile', () => {
   test('Navigate Profile', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 20,
+      slowMo: 1200,
     });
     const page = await browser.newPage();
 
