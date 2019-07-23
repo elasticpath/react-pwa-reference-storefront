@@ -103,11 +103,13 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
     this.fetchDependantItemData(bundleConfigurationItems);
   }
 
-  componentWillReceiveProps(nextProps) {
+
+  componentDidUpdate(prevProps) {
     const { bundleConfigurationItems } = this.props;
-    if (bundleConfigurationItems !== nextProps.bundleConfigurationItems) {
-      this.fetchDependantItemData(nextProps.bundleConfigurationItems);
-    }
+    if (JSON.stringify(bundleConfigurationItems) !== JSON.stringify(prevProps.bundleConfigurationItems)) {
+        this.fetchDependantItemData(bundleConfigurationItems);
+      }
+    
   }
 
   fetchDependantItemData(bundleConfigurationItems) {
