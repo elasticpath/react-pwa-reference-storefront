@@ -89,7 +89,6 @@ interface CategoryItemsMainState {
     categoryModelId: any,
 }
 class CategoryItemsMain extends React.Component<CategoryItemsMainProps, CategoryItemsMainState> {
-
   static defaultProps = {
     onProductFacetSelection: () => {},
     productLinks: {
@@ -98,7 +97,7 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
       productSearch: '',
       productCategory: '',
     },
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -109,9 +108,9 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
       isLoading: true,
       categoryModel: { links: [] },
       loadSortedProduct: false,
-        categoryModelDisplayName: undefined,
-        categoryModelParentDisplayName: undefined,
-        categoryModelId: undefined,
+      categoryModelDisplayName: undefined,
+      categoryModelParentDisplayName: undefined,
+      categoryModelId: undefined,
     };
 
     this.handleProductsChange = this.handleProductsChange.bind(this);

@@ -50,7 +50,6 @@ interface PaymentFormMainState {
 }
 
 class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormMainState> {
-
   static defaultProps = {
     onCloseModal: () => {},
     fetchData: () => {},
@@ -123,9 +122,9 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
       showLoader: true,
     });
     const {
-      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm, expiryYear, expiryMonth
+      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm, expiryYear, expiryMonth,
     } = this.state;
-    const {fetchData, onCloseModal} = this.props;
+    const { fetchData, onCloseModal } = this.props;
     if (!cardHolderName || !cardNumber || !securityCode) {
       this.setState({ failedSubmit: true });
       return;
@@ -148,7 +147,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
         card = 'American Express';
     }
 
-    if(Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
+    if (Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
       const name = cardHolderName.split(' ');
       const formatedExpiryMonth = ((expiryMonth) < 10 ? '0' : '') + (expiryMonth);
       let paymentToken;
@@ -174,103 +173,104 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
         'defaultprofile:emails:element',
       ];
       login().then(() => {
-          cortexFetch(`/?zoom=${zoomArrayProfile.join()}`,
-            {
+        cortexFetch(`/?zoom=${zoomArrayProfile.join()}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+          })
+          .then(profileData => profileData.json())
+          .then((profileData) => {
+            bodyLambdaRequest = {
+              ...bodyLambdaRequest,
+              currency: profileData._defaultcart[0]._total[0].cost[0].currency,
+              bill_to_email: profileData._defaultprofile[0]._emails[0]._element[0].email,
+              bill_to_address_city: profileData._defaultprofile[0]._addresses[0]._element[0].address.locality,
+              bill_to_address_state: profileData._defaultprofile[0]._addresses[0]._element[0].address.region,
+              bill_to_address_country: profileData._defaultprofile[0]._addresses[0]._element[0].address['country-name'],
+              bill_to_address_postal_code: profileData._defaultprofile[0]._addresses[0]._element[0].address['postal-code'],
+              bill_to_address_line1: profileData._defaultprofile[0]._addresses[0]._element[0].address['street-address'],
+            };
+            fetch(Config.creditCardTokenization.lambdaURI, {
+              method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
               },
+              body: JSON.stringify(bodyLambdaRequest),
             })
-            .then(profileData => profileData.json())
-            .then((profileData) => {
-              bodyLambdaRequest = {
-                ...bodyLambdaRequest,
-                currency: profileData._defaultcart[0]._total[0].cost[0].currency,
-                bill_to_email: profileData._defaultprofile[0]._emails[0]._element[0].email,
-                bill_to_address_city: profileData._defaultprofile[0]._addresses[0]._element[0].address.locality,
-                bill_to_address_state: profileData._defaultprofile[0]._addresses[0]._element[0].address.region,
-                bill_to_address_country: profileData._defaultprofile[0]._addresses[0]._element[0].address['country-name'],
-                bill_to_address_postal_code: profileData._defaultprofile[0]._addresses[0]._element[0].address['postal-code'],
-                bill_to_address_line1: profileData._defaultprofile[0]._addresses[0]._element[0].address['street-address'],
-              };
-              fetch(Config.creditCardTokenization.lambdaURI, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(bodyLambdaRequest),
-              })
-                .then(lambdaResponse => lambdaResponse.json())
-                .then((lambdaResponse) => {
-                  // eslint-disable-next-line
+              .then(lambdaResponse => lambdaResponse.json())
+              .then((lambdaResponse) => {
+                // eslint-disable-next-line
                   const formEncodedBody = Object.keys(lambdaResponse)
-                    .filter(k => lambdaResponse.hasOwnProperty(k))
-                    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(lambdaResponse[k])}`)
-                    .join('&');
-                  const cardData = `&bill_to_forename=${name[0]}&bill_to_surname=${name[1]}&card_type=${cardType}&card_number=${cardNumber}&card_expiry_date=${formatedExpiryMonth}-${expiryYear}&card_cvn=${securityCode}`;
-                  const cybersourceURI = lambdaResponse.cs_endpoint_url;
-                  fetch(cybersourceURI, {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: formEncodedBody + cardData,
-                  })
-                    .then(data => data.text())
-                    .then((data) => {
-                      const parser = new DOMParser();
-                      const doc = parser.parseFromString(data, 'text/html');
-                      const form: any = doc.querySelector('form[id="custom_redirect"]');
-                      const elemets = form.elements;
-                      // eslint-disable-next-line
+                  // eslint-disable-next-line no-prototype-builtins
+                  .filter(k => lambdaResponse.hasOwnProperty(k))
+                  .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(lambdaResponse[k])}`)
+                  .join('&');
+                const cardData = `&bill_to_forename=${name[0]}&bill_to_surname=${name[1]}&card_type=${cardType}&card_number=${cardNumber}&card_expiry_date=${formatedExpiryMonth}-${expiryYear}&card_cvn=${securityCode}`;
+                const cybersourceURI = lambdaResponse.cs_endpoint_url;
+                fetch(cybersourceURI, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: formEncodedBody + cardData,
+                })
+                  .then(data => data.text())
+                  .then((data) => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const form: any = doc.querySelector('form[id="custom_redirect"]');
+                    const elemets = form.elements;
+                    // eslint-disable-next-line
                       for (const element of elemets) {
-                        if (element.id === 'payment_token') {
-                          paymentToken = element.value;
-                        }
+                      if (element.id === 'payment_token') {
+                        paymentToken = element.value;
                       }
-                      cortexFetch(link, {
-                        method: 'post',
-                        headers: {
-                          'Content-Type': 'application/json',
-                          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                        },
-                        body: JSON.stringify({
-                          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-                          token: paymentToken,
-                        }),
-                      })
-                        .then((res) => {
-                          this.setState({
-                            showLoader: false,
-                          });
-                          if (res.status === 400) {
-                            this.setState({ failedSubmit: true });
-                          } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-                            this.setState({ failedSubmit: false }, () => {
-                              fetchData();
-                              onCloseModal();
-                            });
-                          }
-                        })
-                        .catch((error) => {
-                          this.setState({
-                            showLoader: false,
-                          });
-                          // eslint-disable-next-line no-console
-                          console.error(error.message);
+                    }
+                    cortexFetch(link, {
+                      method: 'post',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                      },
+                      body: JSON.stringify({
+                        'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
+                        token: paymentToken,
+                      }),
+                    })
+                      .then((res) => {
+                        this.setState({
+                          showLoader: false,
                         });
-                    });
-                });
-            });
-        })
+                        if (res.status === 400) {
+                          this.setState({ failedSubmit: true });
+                        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+                          this.setState({ failedSubmit: false }, () => {
+                            fetchData();
+                            onCloseModal();
+                          });
+                        }
+                      })
+                      .catch((error) => {
+                        this.setState({
+                          showLoader: false,
+                        });
+                        // eslint-disable-next-line no-console
+                        console.error(error.message);
+                      });
+                  });
+              });
+          });
+      })
         .catch((error) => {
           this.setState({
             showLoader: false,
           });
           // eslint-disable-next-line no-console
           console.error(error.message);
-        })
-    } else{
+        });
+    } else {
       login().then(() => {
         cortexFetch(link, {
           method: 'post',
@@ -309,7 +309,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
             // eslint-disable-next-line no-console
             console.error(error.message);
           });
-      })
+      });
     }
   }
 
@@ -471,7 +471,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
             <div className="form-input">
               {/* eslint-disable-next-line max-len */}
               <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" className="style-checkbox" checked={saveToProfile} onChange={this.setSaveToProfile} />
-              <label htmlFor="saveToProfile"/>
+              <label htmlFor="saveToProfile" />
             </div>
             <label htmlFor="saveToProfile" className="control-label form-label">
               {intl.get('save-payment-to-profile')}

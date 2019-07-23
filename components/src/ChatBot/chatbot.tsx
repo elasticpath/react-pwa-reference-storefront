@@ -24,25 +24,33 @@ import { Interactions } from 'aws-amplify';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
-import * as styles from '!!../utils/less-var-loader!./chatbot.less'
+// eslint-disable-next-line import/no-unresolved,import/no-webpack-loader-syntax
+import * as styles from '!!../utils/less-var-loader!./chatbot.less';
 
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+
+import './chatbot.less';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-import './chatbot.less';
+async function AuthenticateModel() {
+  const botName = Config.chatbot.name;
+  const authInput = `ep-auth ${localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`).split(' ')[1]}`;
+
+  await Interactions.send(botName, authInput);
+}
 
 const theme = {
-    background: styles['@chatBackground'],
-    fontFamily: styles['@chatFontFamily'],
-    headerBgColor: styles['@chatHeaderBgColor'],
-    headerFontColor: styles['@chatHeaderFontColor'],
-    headerFontSize: styles['@chatHeaderFontSize'],
-    botBubbleColor: styles['@chatBotBubbleColor'],
-    botFontColor: styles['@chatBotFontColor'],
-    userBubbleColor: styles['@chatUserBubbleColor'],
-    userFontColor: styles['@chatUserFontColor'],
+  background: styles['@chatBackground'],
+  fontFamily: styles['@chatFontFamily'],
+  headerBgColor: styles['@chatHeaderBgColor'],
+  headerFontColor: styles['@chatHeaderFontColor'],
+  headerFontSize: styles['@chatHeaderFontSize'],
+  botBubbleColor: styles['@chatBotBubbleColor'],
+  botFontColor: styles['@chatBotFontColor'],
+  userBubbleColor: styles['@chatUserBubbleColor'],
+  userFontColor: styles['@chatUserFontColor'],
 };
 
 interface ChatComponentState {
@@ -50,87 +58,79 @@ interface ChatComponentState {
     triggerId: string,
 }
 
-class ChatComponent extends React.Component<ChatComponentState> {
+class ChatComponent extends React.Component<{}, ChatComponentState> {
+  constructor(props) {
+    super(props);
+    const epConfig = getConfig();
+    Config = epConfig.config;
+    ({ intl } = epConfig);
+    this.state = {
+      opened: false,
+      triggerId: 'userMessage',
+    };
+    this.toggleFloating = this.toggleFloating.bind(this);
+  }
 
-    constructor(props) {
-        super(props);
-        const epConfig = getConfig();
-        Config = epConfig.config;
-        ({ intl } = epConfig);
-        this.state = {
-            opened: false,
-            triggerId: 'userMessage',
-        }
-        this.toggleFloating = this.toggleFloating.bind(this);
+  componentWillMount() {
+    const isLoggedInUser = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED';
+    const botEnable = Config.chatbot.enable;
+    if (isLoggedInUser && botEnable) {
+      AuthenticateModel();
     }
+  }
 
-    toggleFloating () {
-        const { opened } = this.state;
-        this.setState({ opened: !opened });
+  toggleFloating() {
+    const { opened } = this.state;
+    this.setState({ opened: !opened });
+  }
+
+  render() {
+    const { opened, triggerId } = this.state;
+
+    const isLoggedInUser = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED';
+    const botEnable = Config.chatbot.enable;
+
+    const steps = [
+      {
+        id: '0',
+        message: intl.get('chatbot-welcome-msg'),
+        trigger: 'userMessage',
+      },
+      {
+        id: 'userMessage',
+        user: true,
+        validator: (value) => {
+          if (!(value)) {
+            return intl.get('enter-your-message');
+          }
+          return true;
+        },
+        trigger: 'review',
+      },
+      {
+        id: 'review',
+        component: <Review />,
+        asMessage: true,
+        trigger: triggerId,
+      },
+    ];
+
+    if (isLoggedInUser && botEnable) {
+      return (
+        <div className="rsc-wrapper">
+          <ThemeProvider theme={theme}>
+            <ChatBot
+              steps={steps}
+              floating
+              opened={opened}
+              toggleFloating={this.toggleFloating}
+            />
+          </ThemeProvider>
+        </div>
+      );
     }
-
-    componentWillMount() {
-        const isLoggedInUser = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED';
-        const botEnable = Config.chatbot.enable;
-        if (isLoggedInUser && botEnable) {
-            AuthenticateModel();
-        }
-    }
-
-    render() {
-        const { opened, triggerId } = this.state;
-
-        const isLoggedInUser = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED';
-        const botEnable = Config.chatbot.enable;
-
-        const steps = [
-            {
-                id: '0',
-                message: intl.get('chatbot-welcome-msg'),
-                trigger: 'userMessage',
-            },
-            {
-                id: 'userMessage',
-                user: true,
-                validator: (value) => {
-                    if (!(value)) {
-                        return intl.get('enter-your-message');
-                    }
-                    return true;
-                },
-                trigger: 'review',
-            },
-            {
-                id: 'review',
-                component: <Review />,
-                asMessage: true,
-                trigger: triggerId,
-            },
-        ];
-
-        if (isLoggedInUser && botEnable) {
-            return (
-                <div className="rsc-wrapper">
-                    <ThemeProvider theme={theme}>
-                        <ChatBot
-                            steps={steps}
-                            floating={true}
-                            opened={opened}
-                            toggleFloating={this.toggleFloating}
-                        />
-                    </ThemeProvider>
-                </div>
-            );
-        }
-        return null;
-    }
-}
-
-async function AuthenticateModel() {
-    const botName = Config.chatbot.name;
-    const authInput = "ep-auth " + localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`).split(' ')[1];
-
-    await Interactions.send(botName, authInput);
+    return null;
+  }
 }
 
 export default ChatComponent;

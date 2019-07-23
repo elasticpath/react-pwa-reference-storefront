@@ -41,7 +41,6 @@ interface SearchFacetNavigationMainState {
 }
 
 class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMainProps, SearchFacetNavigationMainState> {
-
   static defaultProps = {
     onFacetSelection: () => {},
   }

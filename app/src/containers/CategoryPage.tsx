@@ -20,11 +20,10 @@
  */
 
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import { CategoryItemsMain } from '@elasticpath/store-components';
+import { RouteComponentProps } from 'react-router-dom';
 
 function CategoryPage(props: RouteComponentProps) {
-
   function handleProductFacetSelection(offerSearch, title) {
     const { history } = props;
     if (window.location.pathname.includes('category')) {
@@ -44,7 +43,11 @@ function CategoryPage(props: RouteComponentProps) {
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <CategoryItemsMain categoryProps={props} onProductFacetSelection={handleProductFacetSelection} productLinks={productLinks} />
+      <CategoryItemsMain
+        categoryProps={props}
+        onProductFacetSelection={handleProductFacetSelection}
+        productLinks={productLinks}
+      />
     </div>
   );
 }

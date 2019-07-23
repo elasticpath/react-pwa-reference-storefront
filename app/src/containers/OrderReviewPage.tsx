@@ -79,7 +79,6 @@ interface OrderReviewPageState {
     isLoading: boolean,
 }
 class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPageState> {
-
   constructor(props) {
     super(props);
     this.state = {

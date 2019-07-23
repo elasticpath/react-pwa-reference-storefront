@@ -82,7 +82,6 @@ const zoomArray = [
 ];
 
 class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainState> {
-
   static defaultProps = {
     checkedLocation: false,
     isInStandaloneMode: false,
@@ -99,7 +98,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
     appHeaderNavigationLinks: {},
     appHeaderTopLinks: {},
     appModalLoginLinks: {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -138,13 +137,13 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
     this.setState({
       isOffline: isOfflineValue,
     });
-  }
+  };
 
   handleInputFocus = () => {
     this.setState({
       isSearchFocused: true,
     });
-  }
+  };
 
   updatePredicate() {
     this.setState({
@@ -183,7 +182,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
   goBack() {
     const { onGoBack } = this.props;
     onGoBack();
-    }
+  }
 
   openModal() {
     const { isBulkModalOpened } = this.state;

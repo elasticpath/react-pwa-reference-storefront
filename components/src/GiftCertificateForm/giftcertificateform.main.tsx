@@ -45,7 +45,6 @@ interface GiftcertificateFormMainState {
 }
 
 class GiftcertificateFormMain extends React.Component<GiftcertificateFormMainProps, GiftcertificateFormMainState> {
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();

@@ -40,7 +40,6 @@ interface ResetPasswordFormState {
 }
 
 class ResetPasswordForm extends React.Component<RouteComponentProps, ResetPasswordFormState> {
-
   constructor(props) {
     super(props);
     this.state = {

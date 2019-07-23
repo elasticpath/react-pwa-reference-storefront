@@ -55,7 +55,6 @@ interface ChangePasswordFormState {
 }
 
 class ChangePasswordForm extends React.Component<RouteComponentProps, ChangePasswordFormState> {
-
   constructor(props) {
     super(props);
     this.state = {

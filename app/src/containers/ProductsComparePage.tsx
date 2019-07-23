@@ -20,20 +20,18 @@
  */
 
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import { ProductDisplayItemMain } from '@elasticpath/store-components';
 
 import './ProductsComparePage.less';
 
-interface ProductsComparePageProps extends React.Component<RouteComponentProps> {
-    history: any,
-    match: {
-        [key: string]: any
-    },
+interface ProductsComparePageProps {
+  history: any,
+  match: {
+    [key: string]: any
+  },
 }
 
 class ProductsComparePage extends React.Component<ProductsComparePageProps> {
-
   constructor(props) {
     super(props);
     this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -51,7 +49,7 @@ class ProductsComparePage extends React.Component<ProductsComparePageProps> {
     history.push('/wishlists');
   }
 
-  handleChangeProductFeature(path){
+  handleChangeProductFeature(path) {
     const { history } = this.props;
     history.push(`/itemdetail/${path}`);
   }
@@ -66,7 +64,7 @@ class ProductsComparePage extends React.Component<ProductsComparePageProps> {
         {
           productCodes.map(code => (
             <div key={code} className="compare-product">
-              <ProductDisplayItemMain productId={code} onChangeProductFeature={this.handleChangeProductFeature} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList}  itemDetailLink={itemDetailLink} />
+              <ProductDisplayItemMain productId={code} onChangeProductFeature={this.handleChangeProductFeature} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList} itemDetailLink={itemDetailLink} />
             </div>
           ))
         }

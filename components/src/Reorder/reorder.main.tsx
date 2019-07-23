@@ -46,7 +46,6 @@ interface ReorderMainState {
 }
 
 class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
-
   static defaultProps = {
     productsData: {},
     onReorderAll: () => {},
