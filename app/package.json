@@ -103,6 +103,7 @@
     "babel-jest": "^24.8.0",
     "eslint": "^6.0.1",
     "eslint-config-airbnb": "^17.1.1",
+    "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-plugin-header": "^3.0.0",
     "less": "^3.9.0",
     "puppeteer": "^1.18.1",

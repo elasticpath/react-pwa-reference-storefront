@@ -12,7 +12,10 @@
       ".js",
       ".jsx",
       ".ts",
-      ".tsx"
+      ".tsx",
+      ".json",
+      ".png",
+      ".jpg"
     ],
     "import/resolver": {
       "node": {
@@ -37,8 +40,13 @@
       "error",
       {
         "extensions": [
+          ".js",
           ".jsx",
-          ".tsx"
+          ".ts",
+          ".tsx",
+          ".json",
+          ".png",
+          ".jpg"
         ]
       }
     ],
@@ -51,7 +59,10 @@
         "js": "never",
         "jsx": "never",
         "ts": "never",
-        "tsx": "never"
+        "tsx": "never",
+        ".json": "never",
+        ".png": "never",
+        ".jpg": "never"
       }
     ],
     "import/no-extraneous-dependencies": ["off"],
