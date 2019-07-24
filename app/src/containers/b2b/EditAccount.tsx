@@ -14,6 +14,7 @@ const COPIED_TIMEOUT_LENGTH = 4000;
 
 interface EditAccountProps {
   isOpen: boolean,
+  editSubAccountUri: string,
   handleClose: () => void,
   handleUpdate: () => void,
   accountData: {
@@ -44,6 +45,7 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
     this.state = {
       name: '',
       legalName: '',
+      editSubAccountUri: '',
       externalId: '',
       registrationNumber: '',
       isShowingCopied: false,
@@ -71,13 +73,13 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
   }
 
   editAccount(event) {
-    const { accountData, handleClose, handleUpdate } = this.props;
+    const { handleClose, handleUpdate, editSubAccountUri } = this.props;
     const { name, legalName, externalId, registrationNumber } = this.state;
 
     event.preventDefault();
     this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(`/accounts/am/${accountData.uri}`, {
+      adminFetch(`${editSubAccountUri}`, {
         method: 'put',
         headers: {
           'Content-Type': 'application/json',

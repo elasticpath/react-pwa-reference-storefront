@@ -27,6 +27,7 @@ import { login } from '../../utils/AuthService';
 import EditAccount from './EditAccount';
 import EditAssociate from './EditAssociate';
 import AddSubAccount from './AddSubAccount';
+import SubAccountList from './SubAccountList';
 import * as Config from '../../ep.config.json';
 import { Link } from 'react-router-dom';
 
@@ -37,8 +38,35 @@ const accountZoomArray = [
   "statusinfo",
   "statusinfo:status",
   "subaccounts",
-  "subaccounts:account",
-  "subaccounts:account:subaccounts",
+  "subaccounts:element",
+  "subaccounts:element:subaccounts",
+  "subaccounts:element:subaccounts:element",
+  "subaccounts:element:statusinfo",
+  "subaccounts:element:statusinfo:status",
+  // "subaccounts:element:statusinfo:associateroleassignments",
+  "subaccounts:element:associateroleassignments",
+  "subaccounts:element:associateroleassignments:element",
+  "subaccounts:element:associateroleassignments:element",
+  "subaccounts:element:associateroleassignments:element:associate",
+  "subaccounts:element:associateroleassignments:element:associate:primaryemail",
+  "subaccounts:element:associateroleassignments:element:roleinfo",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:description",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selectaction",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selector",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector:choice",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:description",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selectaction",
+  "subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selector",
+  "subaccounts:element:associateroleassignments:element:roleinfo:roles",
+  "subaccounts:element:associateroleassignments:element:roleinfo:roles:element",
+  "subaccounts:element:associateroleassignments:associateform",
+  "subaccounts:element:associateroleassignments:associateform:addassociateaction",
+  "subaccounts:element:subaccounts:accountform",
+  "subaccounts:element:subaccounts:element:subaccounts:element",
+  "subaccounts:element:subaccounts:element:statusinfo",
+  "subaccounts:element:subaccounts:element:statusinfo:status",
   "subaccounts:accountform",
   "associateroleassignments",
   "associateroleassignments:element",
@@ -64,6 +92,7 @@ interface AccountMainState {
   isEditAssociateOpen: boolean,
   legalName: string,
   name: string,
+  mainAccountName: string,
   status: string,
   isSettingsDialogOpen: boolean,
   isAddSubAccountOpen: boolean,
@@ -80,6 +109,8 @@ interface AccountMainState {
   isAddAssociateOpen: boolean,
   addAssociateUri: string,
   addSubAccountUri: string,
+  editSubAccountUri: string,
+  subAccounts: any,
 }
 
 export default class AccountMain extends React.Component<AccountMainState> {
@@ -91,19 +122,20 @@ export default class AccountMain extends React.Component<AccountMainState> {
       isAddAssociateOpen: false,
       legalName: '',
       name: '',
+      mainAccountName: '',
       status: '',
       isSettingsDialogOpen: false,
       isAddSubAccountOpen: false,
       externalId: '',
       registrationNumber: '',
       selfSignUpCode: '',
-      uri: '',
       selector: '',
       associates: {},
       userEmail: '',
       associateEditEmail: '',
       addAssociateUri: '',
       addSubAccountUri: '',
+      editSubAccountUri: '',
       subAccounts: {},
     };
 
@@ -116,6 +148,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
     this.handleAddSubAccountClicked = this.handleAddSubAccountClicked.bind(this);
     this.handleAddSubAccountClose = this.handleAddSubAccountClose.bind(this);
     this.isEditAssociateClose = this.isEditAssociateClose.bind(this);
+    this.subAccountData = this.subAccountData.bind(this);
   }
 
   getAccountData() {
@@ -144,18 +177,19 @@ export default class AccountMain extends React.Component<AccountMainState> {
           const profile = res[1];
           this.setState({
             name: accounts.name,
+            mainAccountName: accounts.name,
             externalId: accounts['external-id'],
             registrationNumber: accounts['registration-id'],
             isLoading: false,
             legalName: accounts['legal-name'],
             associates: accounts._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
             status: accounts._statusinfo[0]._status[0].status,
-            selfSignUpCode: accounts._selfsignupinfo[0]['self-signup-code'],
-            uri: accountUri,
+            editSubAccountUri: accounts.self.uri,
+            selfSignUpCode: 'no code', //accounts._selfsignupinfo[0]['self-signup-code'],
             userEmail: profile._myprofile[0]._primaryemail[0].email,
             addAssociateUri: accounts._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
             addSubAccountUri: accounts._subaccounts[0]._accountform[0].self.uri,
-            subAccounts: accounts._subaccounts[0].elemet,
+            subAccounts: accounts._subaccounts[0],
           });
         })
         .catch(() => {
@@ -165,6 +199,19 @@ export default class AccountMain extends React.Component<AccountMainState> {
     .catch(() => {
       this.setState({ isLoading: false })
     });
+  }
+
+  subAccountData(data) {
+      this.setState({
+          name: data.name,
+          externalId: data['external-id'],
+          registrationNumber: data['registration-id'],
+          legalName: data['legal-name'],
+          associates: data._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
+          addAssociateUri: data._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
+          addSubAccountUri: data._subaccounts[0]._accountform[0].self.uri,
+          editSubAccountUri: data.self.uri,
+      })
   }
 
   handleAccountSettingsClicked() {
@@ -213,7 +260,10 @@ export default class AccountMain extends React.Component<AccountMainState> {
         userEmail,
         addAssociateUri,
         addSubAccountUri,
+        editSubAccountUri,
         isAddAssociateOpen,
+        subAccounts,
+        mainAccountName,
       } = this.state;
 
       return (
@@ -242,14 +292,20 @@ export default class AccountMain extends React.Component<AccountMainState> {
                                       {intl.get('add-sub-account')}
                                   </button>
                               </div>
-                              <div className="account-tree-container">
-                                  <div className="name">{name}
+                              <div className="account-tree-container" onClick={() => this.getAccountData()}>
+                                  <div className="name">{mainAccountName}
                                   </div>
                                   <span className="status">
-                                        <i className={`icons-status ${status.toLowerCase()}`} />
+                                      <i className={`icons-status ${status.toLowerCase()}`} />
                                       {intl.get(status.toLowerCase())}
-                                    </span>
+                                  </span>
                               </div>
+                              {(subAccounts._element && subAccounts._element.length > 0) ? (
+                                  <div className="sub-account-list-container">
+                                    <SubAccountList getAccountData={this.subAccountData} subAccounts={subAccounts} />
+                                  </div>
+                              ) : ''}
+
                           </div>
                           <div className="associates-container">
                               <div className="add-associate-container">
@@ -304,7 +360,9 @@ export default class AccountMain extends React.Component<AccountMainState> {
                           handleClose={this.handleAccountSettingsClose}
                           handleUpdate={this.handleAccountSettingsUpdate}
                           isOpen={isSettingsDialogOpen}
-                          accountData={this.state}/>
+                          accountData={this.state}
+                          editSubAccountUri={editSubAccountUri}
+                        />
                         <EditAssociate
                            handleClose={this.isEditAssociateClose}
                            handleUpdate={this.handleAccountSettingsUpdate}

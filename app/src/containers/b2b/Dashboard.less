@@ -144,6 +144,10 @@
   .accounts-table {
     .account-list-rows {
       cursor: pointer;
+       &:hover {
+         background-color: @complimentGrey;
+       }
+
       @media (max-width: @mobileWidth) {
         .arrow {
           grid-row: ~"1 / 3";
