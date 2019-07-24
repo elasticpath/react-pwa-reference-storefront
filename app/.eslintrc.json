@@ -1,3 +1,10 @@
 {
-  "extends": ["../base-eslintrc.json"]
+  "extends": ["../base-eslintrc.json"],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "config/webpack.config.js"
+      }
+    }
+  }
 }

@@ -37,7 +37,6 @@ interface CheckoutSummaryListProps {
     onChange?: (...args: any[]) => any,
 }
 class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
-
   static defaultProps = {
     giftCards: [],
     onChange: () => {},

@@ -42,7 +42,6 @@ interface ProfilePaymentMethodsMainState {
     openNewPaymentModal: boolean
 }
 class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMainProps, ProfilePaymentMethodsMainState> {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -126,7 +125,7 @@ class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMai
               {intl.get('payment-methods')}
             </h2>
             {this.renderPaymentMethods()}
-            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={isDisabled} onClick={() => {this.newPayment();}}>
+            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={isDisabled} onClick={() => { this.newPayment(); }}>
               {intl.get('add-new-payment-method')}
             </button>
             <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>

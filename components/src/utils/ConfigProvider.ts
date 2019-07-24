@@ -48,7 +48,7 @@ export interface IEpConfig {
       callbackUrl: string,
       loginRedirectUrl: string,
       logoutRedirectUrl: string,
-      client_id: string
+      'client_id': string
     }
   },
   gaTrackingId: string,
@@ -63,20 +63,20 @@ export interface IEpConfig {
       id: string,
       size: string,
       theme: string,
-      round_corners: boolean,
-      show_title: boolean,
-      show_views: boolean,
-      show_likes: boolean,
-      show_buzz: boolean,
+      'round_corners': boolean,
+      'show_title': boolean,
+      'show_views': boolean,
+      'show_likes': boolean,
+      'show_buzz': boolean,
       animate: boolean
     },
     productReview: {
-      submit_button_url: string,
-      thumbnail_url: string
+      'submit_button_url': string,
+      'thumbnail_url': string
     },
     brandAmbassador: {
-      submit_button_url: string,
-      thumbnail_url: string
+      'submit_button_url': string,
+      'thumbnail_url': string
     }
   },
   facebook: {
@@ -89,9 +89,9 @@ export interface IEpConfig {
   },
   PowerReviews: {
     enable: boolean,
-    api_key: string,
-    merchant_group_id: string,
-    merchant_id: string
+    'api_key': string,
+    'merchant_group_id': string,
+    'merchant_id': string
   },
   formatQueryParameter: {
     standardlinks: boolean,
@@ -109,7 +109,7 @@ interface IConfig {
   intl: any
 }
 
-let config: IConfig  = {
+let config: IConfig = {
   config: {},
   intl: { get: str => str },
 };

@@ -60,7 +60,6 @@ interface OrderHistoryLineMainState {
 }
 
 class OrderHistoryLineMain extends React.Component<OrderHistoryLineMainProps, OrderHistoryLineMainState> {
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -105,7 +104,8 @@ class OrderHistoryLineMain extends React.Component<OrderHistoryLineMainProps, Or
           </label>
           <br />
           {orderModel._appliedpromotions[0]._element.map(promotion => (
-            <span className="cart-summary-value-col cart-applied-promotions" key={promotion.name} data-el-value="checkout.appliedPromotions">&nbsp;&nbsp;
+            <span className="cart-summary-value-col cart-applied-promotions" key={promotion.name} data-el-value="checkout.appliedPromotions">
+              &nbsp;&nbsp;
               {promotion['display-name']}
             </span>
           ))}

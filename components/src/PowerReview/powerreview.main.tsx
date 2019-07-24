@@ -37,10 +37,6 @@ interface PowerReviewProps {
 }
 
 class PowerReview extends React.Component<PowerReviewProps> {
-
-  private POWERREVIEWS: any;
-  private funcName: any;
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -55,6 +51,10 @@ class PowerReview extends React.Component<PowerReviewProps> {
       });
     }
   }
+
+  private POWERREVIEWS: any;
+
+  private funcName: any;
 
   mountPowerReview() {
     const {

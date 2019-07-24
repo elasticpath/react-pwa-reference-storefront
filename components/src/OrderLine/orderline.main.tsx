@@ -33,7 +33,6 @@ interface OrderLineState {
 }
 
 class OrderLine extends React.Component<OrderLineProps, OrderLineState> {
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();

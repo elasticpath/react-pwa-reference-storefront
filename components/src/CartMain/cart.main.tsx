@@ -26,7 +26,19 @@ import './cart.main.less';
 
 let intl = { get: str => str };
 
-const CartMain: React.FunctionComponent<CartMainProps> = (props) => {
+interface CartMainProps {
+  empty: boolean,
+  cartData: {
+    [key: string]: any
+  },
+  handleQuantityChange: (...args: any[]) => any,
+  onItemConfiguratorAddToCart?: (...args: any[]) => any,
+  onItemMoveToCart?: (...args: any[]) => any,
+  onItemRemove?: (...args: any[]) => any,
+  itemDetailLink?: string,
+}
+
+const CartMain: React.FunctionComponent<CartMainProps> = (props: CartMainProps) => {
   const { itemDetailLink } = props;
   ({ intl } = getConfig());
   const {
@@ -72,18 +84,6 @@ const CartMain: React.FunctionComponent<CartMainProps> = (props) => {
       ))}
     </div>
   );
-};
-
-interface CartMainProps {
-  empty: boolean,
-  cartData: {
-      [key: string]: any
-  },
-  handleQuantityChange: (...args: any[]) => any,
-  onItemConfiguratorAddToCart?: (...args: any[]) => any,
-  onItemMoveToCart?: (...args: any[]) => any,
-  onItemRemove?: (...args: any[]) => any,
-  itemDetailLink?: string,
 };
 
 CartMain.defaultProps = {

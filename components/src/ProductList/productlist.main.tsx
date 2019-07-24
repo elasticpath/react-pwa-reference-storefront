@@ -44,14 +44,13 @@ interface ProductListMainState {
     compareList: any,
 }
 class ProductListMain extends React.Component<ProductListMainProps, ProductListMainState> {
-
   static defaultProps = {
     showCompareButton: true,
     productListLinks: {
       itemDetail: '',
       productsCompare: '',
     },
-  }
+  };
 
   constructor(props) {
     super(props);

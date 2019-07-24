@@ -42,7 +42,6 @@ interface AppHeaderLocaleMainState {
 }
 
 class AppHeaderLocaleMain extends React.Component<AppHeaderLocaleMainProps, AppHeaderLocaleMainState> {
-
   static defaultProps = {
     isMobileView: false,
     onCurrencyChange: () => {},
@@ -92,8 +91,8 @@ class AppHeaderLocaleMain extends React.Component<AppHeaderLocaleMainProps, AppH
             alt="Header logo"
             src={selectedCurrencyLogo}
             onError={(e) => {
-                const element: any = e.target;
-                element.src = headerLogo;
+              const element: any = e.target;
+              element.src = headerLogo;
             }}
           />
           {title}

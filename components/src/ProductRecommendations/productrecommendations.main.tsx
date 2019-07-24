@@ -40,10 +40,9 @@ interface ProductRecommendationsDisplayMainState {
 }
 
 class ProductRecommendationsDisplayMain extends React.Component<ProductRecommendationsDisplayMainProps, ProductRecommendationsDisplayMainState> {
-
   static defaultProps = {
     itemDetailLink: '',
-  }
+  };
 
   constructor(props) {
     super(props);
