@@ -24,6 +24,8 @@ import { Interactions } from 'aws-amplify';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
 import * as styles from '!!../utils/less-var-loader!./chatbot.less'
 
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -50,7 +52,7 @@ interface ChatComponentState {
     triggerId: string,
 }
 
-class ChatComponent extends React.Component<ChatComponentState> {
+class ChatComponent extends React.Component<{}, ChatComponentState> {
 
     constructor(props) {
         super(props);

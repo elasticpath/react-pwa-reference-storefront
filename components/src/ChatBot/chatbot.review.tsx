@@ -21,6 +21,8 @@
 
 import React from "react";
 import Amplify, { Interactions } from 'aws-amplify';
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
 import awsmobile from "../../../app/src/aws-exports";
 import './chatbot.review.less';
 
@@ -32,7 +34,6 @@ let Config: IEpConfig | any = {};
 
 interface ReviewProps {
     steps?: any,
-    triggerNextStep: (...args: any[]) => any,
 }
 
 interface ReviewState {
@@ -55,7 +56,7 @@ class Review extends React.Component<ReviewProps, ReviewState> {
         const { steps } = this.props;
         const { message } = steps.userMessage;
 
-        const response = await InvokeIntent(message);
+        const response: any = await InvokeIntent(message);
 
         if (response.responseCard) {
             this.setState({ productImageUrl: response.responseCard.genericAttachments[0].imageUrl });
