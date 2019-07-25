@@ -19,6 +19,7 @@
   "dependencies": {
     "aws-amplify": "^1.1.29",
     "aws-amplify-react": "^2.3.9",
+    "core-js": "^2.6.9",
     "lerna": "^3.14.1",
     "react-simple-chatbot": "^0.6.1",
     "styled-components": "^4.3.2"

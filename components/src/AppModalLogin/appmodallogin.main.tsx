@@ -49,7 +49,6 @@ interface AppModalLoginMainState {
     isLoading: boolean,
 }
 class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModalLoginMainState> {
-
   static defaultProps = {
     onLogin: () => {},
     onResetPassword: () => {},

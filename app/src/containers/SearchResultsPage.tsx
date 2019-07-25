@@ -24,7 +24,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import { SearchResultsItemsMain } from '@elasticpath/store-components';
 
 function SearchResultsPage(props: RouteComponentProps) {
-
   function handleProductFacetSelection(offerSearch, title) {
     const { history } = props;
     if (window.location.pathname.includes('category')) {

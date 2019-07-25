@@ -37,7 +37,6 @@ interface FeaturedProductsState {
 }
 
 class FeaturedProducts extends React.Component<FeaturedProductsProps, FeaturedProductsState> {
-
   static defaultProps = {
     itemDetailLink: '',
   }

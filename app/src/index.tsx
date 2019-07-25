@@ -1,11 +1,32 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import intl from 'react-intl-universal';
+import { init } from '@elasticpath/store-components';
+import App from './App';
 import './theme/index.less';
 import epConfig from './ep.config.json';
 import * as UserPrefs from './utils/UserPrefs';
-import { init } from '@elasticpath/store-components';
 
 import '@elasticpath/store-components/src/style/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,7 +48,7 @@ intl.init({
     // EP Configs init
     init({
       config: epConfig,
-      intl
+      intl,
     })
       .then(() => {
         ReactDOM.render(<App />, document.getElementById('root'));

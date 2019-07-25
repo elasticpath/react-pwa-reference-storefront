@@ -35,7 +35,6 @@ interface OrderHistoryMainState {
 }
 
 class OrderHistoryMain extends React.Component<OrderHistoryMainProps, OrderHistoryMainState> {
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();

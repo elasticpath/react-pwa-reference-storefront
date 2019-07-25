@@ -19,13 +19,13 @@
  *
  */
 
-import * as React from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
-import routes from './routes';
-import RouteWithSubRoutes from './RouteWithSubRoutes';
 import {
   AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent,
 } from '@elasticpath/store-components';
+import routes from './routes';
+import RouteWithSubRoutes from './RouteWithSubRoutes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 
@@ -35,6 +35,7 @@ declare global {
   interface Window { fbAsyncInit: any; }
 }
 
+// eslint-disable-next-line
 declare var FB: any;
 
 function redirectToProfilePage(keywords) {
@@ -138,9 +139,9 @@ const Root = () => [
   />,
   <div key="app-content" className="app-content">
     <Switch>
-        {routes.map(route => (
-            <RouteWithSubRoutes key={route.path} {...route} />
-        ))}
+      {routes.map(route => (
+        <RouteWithSubRoutes key={route.path} {...route} />
+      ))}
     </Switch>
   </div>,
   <AppFooterMain key="AppFooterMain" appFooterLinks={appFooterLinks} />,

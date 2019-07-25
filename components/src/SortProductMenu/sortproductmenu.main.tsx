@@ -34,7 +34,6 @@ interface SortProductMenuProps {
 }
 
 class SortProductMenu extends React.Component<SortProductMenuProps, {}> {
-
   constructor(props) {
     super(props);
     ({ intl } = getConfig());

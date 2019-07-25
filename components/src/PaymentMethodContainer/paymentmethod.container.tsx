@@ -25,7 +25,7 @@ interface PaymentMethodContainerProps {
   displayName: { [key: string]: any },
 }
 
-const PaymentMethodContainer: React.FunctionComponent<PaymentMethodContainerProps> = props => {
+const PaymentMethodContainer: React.FunctionComponent<PaymentMethodContainerProps> = (props: PaymentMethodContainerProps) => {
   const { displayName } = props;
   const displayAppliedAmount = (displayName['applied-amount-display']) ? (` - ${displayName['applied-amount-display'] || ''}`) : '';
   const displayTransactionType = (displayName['transaction-type']) ? (` - ${displayName['transaction-type'] || ''}`) : '';

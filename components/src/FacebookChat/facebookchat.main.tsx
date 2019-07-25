@@ -18,10 +18,12 @@
  *
  *
  */
+
 import React from 'react';
 import scriptjs from 'scriptjs';
-//@ts-ignore
-import styles from '../style/common.less';
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
+import * as styles from '!!../utils/less-var-loader!../style/common.less';
 
 interface FacebookChatProps {
   config: {
@@ -65,9 +67,9 @@ class FacebookChat extends React.Component<FacebookChatProps, {}> {
     const { config } = this.props;
     const props = {
       page_id: config.pageId,
-      theme_color: styles['@mainColor']
+      theme_color: styles['@mainColor'],
     };
-    return (<div className="fb-customerchat" { ...props }/>)
+    return (<div className="fb-customerchat" {...props} />);
   }
 
   render() {

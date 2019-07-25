@@ -40,8 +40,10 @@ onReorderAllProducts?: (...args: any[]) => any,
   onConfiguratorAddToCart?: (...args: any[]) => any
 }
 
-const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = props => {
-  const { data, itemDetailLink, onMoveToCart, onConfiguratorAddToCart } = props;
+const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (props: PurchaseDetailsMainProps) => {
+  const {
+    data, itemDetailLink, onMoveToCart, onConfiguratorAddToCart,
+  } = props;
   const { status } = data;
   ({ intl } = getConfig());
   let statusString;
@@ -204,7 +206,8 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = p
               </td>
               <td>
                 <span id="lineItemAmount">
-                  &nbsp;{subTotal}
+                  &nbsp;
+                  {subTotal}
                 </span>
               </td>
             </tr>
@@ -217,7 +220,8 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = p
               </td>
               <td>
                 <span id="lineItemTax">
-                  &nbsp;{tax}
+                  &nbsp;
+                  {tax}
                 </span>
               </td>
             </tr>

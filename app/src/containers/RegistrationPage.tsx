@@ -19,12 +19,11 @@
  *
  */
 
-import * as React from 'react';
+import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { RegistrationFormMain } from '@elasticpath/store-components';
 
 function RegistrationPage(props: RouteComponentProps) {
-
   function handleRegisterSuccess() {
     const { location, history } = props;
     if (location.state && location.returnPage) {

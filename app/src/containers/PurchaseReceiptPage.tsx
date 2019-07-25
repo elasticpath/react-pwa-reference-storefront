@@ -20,8 +20,8 @@
  */
 
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
+import { RouteComponentProps } from 'react-router-dom';
 import { PurchaseDetailsMain } from '@elasticpath/store-components';
 
 import './PurchaseReceiptPage.less';

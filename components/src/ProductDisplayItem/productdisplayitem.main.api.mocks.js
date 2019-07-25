@@ -40,63 +40,63 @@ function mockLoginResponse(mockObj) {
 function mockLookupForm(mockObj) {
   mockObj.get(
     '/cortex/?zoom=lookups:itemlookupform',
-    itemLookupFormResponse
+    itemLookupFormResponse,
   );
 }
 
 function mockItemLookupPlain(mockObj) {
   mockObj.post(
     /\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
-    itemLookupPlainResponse
+    itemLookupPlainResponse,
   );
 }
 
 function mockItemLookupColorAndSize(mockObj) {
   mockObj.post(
     /\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
-    itemLookupColorAndSizeResponse
+    itemLookupColorAndSizeResponse,
   );
 }
 
 function mockItemLookupInputResponse(mockObj) {
   mockObj.post(
     /\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
-    itemLookupInputResponse
+    itemLookupInputResponse,
   );
 }
 
 function mockAllSizeOptions(fetchMock) {
   fetchMock.post( // large
     /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjsgqydioa=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpuyqksi5cq(.*)/,
-    largeMultiSkuSelectionResponse
+    largeMultiSkuSelectionResponse,
   )
-  .post( // medium
-    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpu2rkejfku2(.*)/,
-    mediumMultiSkuSelectionResponse
-  )
-  .post( // small
-    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpvgtkbjrga(.*)/,
-    smallMultiSkuSelectionResponse
-  );
+    .post( // medium
+      /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpu2rkejfku2(.*)/,
+      mediumMultiSkuSelectionResponse,
+    )
+    .post( // small
+      /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpvgtkbjrga(.*)/,
+      smallMultiSkuSelectionResponse,
+    );
 }
 
 function mockAllColorOptions(fetchMock) {
   fetchMock
-  .post( // Yellow
-    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6wkfjrge6vy=(.*)/,
-    yellowMultiSkuSelectionResponse
-  )
-  .post( // Black
-    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjrg44tgmy=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6qsmifbuw(.*)/,
-    blackMultiSkuSelectionResponse
-  );
+    .post( // Yellow
+      /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6wkfjrge6vy=(.*)/,
+      yellowMultiSkuSelectionResponse,
+    )
+    .post( // Black
+      /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjrg44tgmy=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6qsmifbuw(.*)/,
+      blackMultiSkuSelectionResponse,
+    );
 }
 
 function mockAddToCart(fetchMock) {
   `/cortex/carts/items/vestri_b2c/qgqvhjjygm4tkmi=/form`;
   fetchMock.post(
     /\/cortex\/carts\/items\/[a-zA-Z0-9_]*\/[a-zA-Z0-9_=]*\/form/,
-    201
+    201,
   );
 }
 

@@ -64,7 +64,6 @@ interface CartPageState {
 }
 
 class CartPage extends React.Component<RouteComponentProps, CartPageState> {
-
   constructor(props) {
     super(props);
     this.state = {

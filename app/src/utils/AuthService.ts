@@ -30,12 +30,12 @@ let newaccountform = '';
 interface PublicUserDetailsInterface {
   username?: string,
   password?: string,
-  grant_type?: string,
+  'grant_type'?: string,
   role?: string,
   scope?: string,
   code?: string,
-  redirect_uri?: string,
-  client_id?: string,
+  'redirect_uri'?: string,
+  'client_id'?: string,
 }
 
 function generateFormBody(userDetails) {
@@ -51,7 +51,7 @@ export function login() {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       userFormBodyString = '';
       userFormBody = [];
-      let publicUserDetails: PublicUserDetailsInterface = {
+      const publicUserDetails: PublicUserDetailsInterface = {
         username: '',
         password: '',
         grant_type: 'password',

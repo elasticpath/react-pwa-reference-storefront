@@ -46,10 +46,9 @@ interface RegistrationFormMainState {
 }
 
 class RegistrationFormMain extends React.Component<RegistrationFormMainProps, RegistrationFormMainState> {
-
   static defaultProps = {
     onRegisterSuccess: () => {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -64,7 +63,7 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
       failedLogin: false,
       failedRegistration: false,
       registrationErrors: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
     };
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
@@ -104,10 +103,10 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
     const {
       lastname, firstname, username, password, passwordConfirm,
     } = this.state;
-    if(password !== passwordConfirm) {
+    if (password !== passwordConfirm) {
       this.setState({
         registrationErrors: `- ${intl.get('password-confirm-error')}`,
-        failedRegistration: true
+        failedRegistration: true,
       });
       return;
     }

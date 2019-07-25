@@ -36,7 +36,7 @@ interface WishListMainProps {
   itemDetailLink?: string
 }
 
-const WishListMain: React.FunctionComponent<WishListMainProps> = props => {
+const WishListMain: React.FunctionComponent<WishListMainProps> = (props: WishListMainProps) => {
   const { itemDetailLink } = props;
 
   function handleConfiguratorAddToCart() {
