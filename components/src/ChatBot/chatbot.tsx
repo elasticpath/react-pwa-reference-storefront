@@ -24,7 +24,8 @@ import { Interactions } from 'aws-amplify';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
-// eslint-disable-next-line import/no-unresolved,import/no-webpack-loader-syntax
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
 import * as styles from '!!../utils/less-var-loader!./chatbot.less';
 
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -33,13 +34,6 @@ import './chatbot.less';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
-
-async function AuthenticateModel() {
-  const botName = Config.chatbot.name;
-  const authInput = `ep-auth ${localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`).split(' ')[1]}`;
-
-  await Interactions.send(botName, authInput);
-}
 
 const theme = {
   background: styles['@chatBackground'],
@@ -54,8 +48,15 @@ const theme = {
 };
 
 interface ChatComponentState {
-    opened: boolean,
-    triggerId: string,
+  opened: boolean,
+  triggerId: string,
+}
+
+async function AuthenticateModel() {
+  const botName = Config.chatbot.name;
+  const authInput = `ep-auth ${localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`).split(' ')[1]}`;
+
+  await Interactions.send(botName, authInput);
 }
 
 class ChatComponent extends React.Component<{}, ChatComponentState> {

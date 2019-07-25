@@ -36,7 +36,7 @@ export function cortexFetch(input, init) {
   }
 
   return fetch(`${Config.cortexApi.path + input}`, requestInit)
-    .then(res => {
+    .then((res) => {
       if ((res.status === 401 || res.status === 403) && input != '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);

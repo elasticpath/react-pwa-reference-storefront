@@ -21,6 +21,8 @@
 
 import React from 'react';
 import Amplify, { Interactions } from 'aws-amplify';
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
 import awsmobile from '../../../app/src/aws-exports';
 import './chatbot.review.less';
 
@@ -31,13 +33,20 @@ Amplify.configure(awsmobile);
 let Config: IEpConfig | any = {};
 
 interface ReviewProps {
-  steps?: any,
-  triggerNextStep?: (...args: any[]) => any,
+    steps?: any,
 }
 
 interface ReviewState {
   userMessage: string,
   productImageUrl: string,
+}
+
+async function InvokeIntent(utterance) {
+  const botName = Config.chatbot.name;
+  const response = await Interactions.send(botName, utterance);
+  // eslint-disable-next-line no-use-before-define
+  Interactions.onComplete(botName, handleCompleteIntent);
+  return response;
 }
 
 const handleCompleteIntent = (err, confirmation) => {
@@ -49,13 +58,6 @@ const handleCompleteIntent = (err, confirmation) => {
   // eslint-disable-next-line consistent-return
   return 'Conversation success!';
 };
-
-async function InvokeIntent(utterance) {
-  const botName = Config.chatbot.name;
-  const response = await Interactions.send(botName, utterance);
-  Interactions.onComplete(botName, handleCompleteIntent);
-  return response;
-}
 
 class Review extends React.Component<ReviewProps, ReviewState> {
   constructor(props) {
@@ -76,7 +78,7 @@ class Review extends React.Component<ReviewProps, ReviewState> {
     const { steps } = this.props;
     const { message } = steps.userMessage;
 
-    const response = await InvokeIntent(message);
+    const response: any = await InvokeIntent(message);
 
     if (response.responseCard) {
       this.setState({ productImageUrl: response.responseCard.genericAttachments[0].imageUrl });

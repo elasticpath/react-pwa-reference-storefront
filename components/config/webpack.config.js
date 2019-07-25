@@ -1,4 +1,24 @@
-'use strict';
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
 
 const fs = require('fs');
 const isWsl = require('is-wsl');
@@ -18,16 +38,16 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
-const paths = require('./paths');
-const modules = require('./modules');
-const yarnWorkspaces = require('./yarn-workspaces');
-const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const DeclarationBundlerPlugin = require('declaration-bundler-webpack-plugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 const postcssNormalize = require('postcss-normalize');
+const getClientEnvironment = require('./env');
+const yarnWorkspaces = require('./yarn-workspaces');
+const modules = require('./modules');
+const paths = require('./paths');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -48,17 +68,16 @@ const workspacesConfig = yarnWorkspaces.init(paths);
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
-module.exports = function(webpackEnv) {
+module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
 
   const workspacesMainFields = [workspacesConfig.packageEntry, 'main'];
-  const mainFields =
-    isEnvDevelopment && workspacesConfig.development
+  const mainFields = isEnvDevelopment && workspacesConfig.development
+    ? workspacesMainFields
+    : isEnvProduction && workspacesConfig.production
       ? workspacesMainFields
-      : isEnvProduction && workspacesConfig.production
-        ? workspacesMainFields
-        : undefined;
+      : undefined;
 
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -73,11 +92,11 @@ module.exports = function(webpackEnv) {
     output: {
       filename: 'index.js',
       path: paths.appBuild,
-      libraryTarget: 'commonjs2'
+      libraryTarget: 'commonjs2',
     },
     resolve: {
-      extensions: ['.ts', '.tsx','.webpack.js', '.web.js', '.js', '.jsx'],
-      mainFields: ['main:src', 'main']
+      extensions: ['.ts', '.tsx', '.webpack.js', '.web.js', '.js', '.jsx'],
+      mainFields: ['main:src', 'main'],
     },
     module: {
       rules: [
@@ -88,19 +107,19 @@ module.exports = function(webpackEnv) {
         {
           test: /\.less$/,
           use: [
-            { loader: "style-loader" },
-            { loader: "css-loader"},
+            { loader: 'style-loader' },
+            { loader: 'css-loader' },
             {
-              loader: "less-loader",
+              loader: 'less-loader',
               options: {
-                javascriptEnabled: true
-              }
-            }
-          ]
+                javascriptEnabled: true,
+              },
+            },
+          ],
         },
-      ]
+      ],
     },
     plugins: [
-    ]
+    ],
   };
 };

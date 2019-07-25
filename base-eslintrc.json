@@ -12,7 +12,10 @@
       ".js",
       ".jsx",
       ".ts",
-      ".tsx"
+      ".tsx",
+      ".json",
+      ".png",
+      ".jpg"
     ],
     "import/resolver": {
       "node": {
@@ -37,23 +40,20 @@
       "error",
       {
         "extensions": [
+          ".js",
           ".jsx",
-          ".tsx"
+          ".ts",
+          ".tsx",
+          ".json",
+          ".png",
+          ".jpg"
         ]
       }
     ],
+    "react/prop-types": "off",
+    "react/sort-comp": "off",
     "react/default-props-match-prop-types": ["off"],
     "no-unused-vars": ["off"],
-    "import/extensions": [
-      "error",
-      "always",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
     "import/no-extraneous-dependencies": ["off"],
     "max-len": [
       "warn",
@@ -80,6 +80,9 @@
       }
     ],
     "camelcase": ["warn"],
+    "node/no-extraneous-import": "",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
     "header/header": [
       2,
       "block", [

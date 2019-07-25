@@ -3,7 +3,20 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "config/webpack.config.js"
+        "config": {
+          "resolve": {
+            "modules": ["../node_modules"],
+            "extentions": [
+              ".js",
+              ".jsx",
+              ".ts",
+              ".tsx",
+              ".json",
+              ".png",
+              ".jpg"
+            ]
+          }
+        }
       }
     }
   }

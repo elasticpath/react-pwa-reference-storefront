@@ -31,6 +31,8 @@ import './WriteReviewPage.less';
 const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 
 class WriteReview extends React.Component<RouteComponentProps> {
+  private POWERREVIEWS: any;
+
   componentDidMount() {
     const { location } = this.props;
     const url = location.search;
