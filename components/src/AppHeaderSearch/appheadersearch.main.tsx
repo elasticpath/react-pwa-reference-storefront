@@ -36,7 +36,6 @@ interface AppHeaderSearchMainState{
 }
 
 class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppHeaderSearchMainState> {
-
   private searchInput: React.RefObject<HTMLInputElement>;
 
   static defaultProps = {

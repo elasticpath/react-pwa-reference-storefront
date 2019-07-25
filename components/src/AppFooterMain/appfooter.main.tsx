@@ -34,8 +34,8 @@ interface AppFooterMainProps {
 let intl = { get: str => str };
 
 function AppFooterMain(props: AppFooterMainProps) {
-
-  const linkTo = props.appFooterLinks;
+  const { appFooterLinks } = props;
+  const linkTo = appFooterLinks;
   ({ intl } = getConfig());
   return (
     <footer className="app-footer">

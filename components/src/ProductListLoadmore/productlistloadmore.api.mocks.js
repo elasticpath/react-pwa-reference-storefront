@@ -22,13 +22,13 @@ import fetchMock from 'fetch-mock/es5/client';
 import searchLookupResponse from './MockHttpResponses/GET/searchLookup_response.json';
 
 function mockSearchResponse(fetchMock) {
-    fetchMock.get(
-        /\/cortex\/\/offersearches\/[a-zA-Z0-9_]*\/offers\/(.*)/,
-        searchLookupResponse,
-    );
+  fetchMock.get(
+    /\/cortex\/\/offersearches\/[a-zA-Z0-9_]*\/offers\/(.*)/,
+    searchLookupResponse,
+  );
 }
 
 export function mockProductListLoadMoreFromSearchResponse() {
-    fetchMock.restore();
-    mockSearchResponse(fetchMock);
+  fetchMock.restore();
+  mockSearchResponse(fetchMock);
 }

@@ -23,7 +23,7 @@ import React from 'react';
 
 interface ShippingOptionContainerProps {
   option: {
-    "display-name"?: string,
+    'display-name'?: string,
     carrier?: string,
     cost?: {
       display?: string
@@ -31,7 +31,7 @@ interface ShippingOptionContainerProps {
   }
 }
 
-const ShippingOptionContainer: React.FunctionComponent<ShippingOptionContainerProps> = props => {
+const ShippingOptionContainer: React.FunctionComponent<ShippingOptionContainerProps> = (props: ShippingOptionContainerProps) => {
   const { option } = props;
   return (
     <ul className="shipping-option-container">

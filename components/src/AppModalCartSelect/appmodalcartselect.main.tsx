@@ -47,10 +47,9 @@ interface AppModalCartSelectMainState {
 }
 
 class AppModalCartSelectMain extends React.Component<AppModalCartSelectMainProps, AppModalCartSelectMainState> {
-
   static defaultProps = {
     onContinueCart: () => {},
-  }
+  };
 
   constructor(props) {
     super(props);

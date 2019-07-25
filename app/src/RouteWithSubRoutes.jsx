@@ -20,7 +20,7 @@
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
+var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 function RouteWithSubRoutes(route) {
     return (<react_router_dom_1.Route path={route.path} exact={route.exact} render={route.render || (function (props) { return <route.component {...props} routes={route.routes}/>; })}/>);

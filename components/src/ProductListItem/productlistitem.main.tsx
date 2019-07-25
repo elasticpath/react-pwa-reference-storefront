@@ -49,7 +49,6 @@ interface ProductListItemMainState {
 }
 
 class ProductListItemMain extends React.Component<ProductListItemMainProps, ProductListItemMainState> {
-
   static defaultProps = {
     productId: '',
     offerData: {},
@@ -57,7 +56,7 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
     featuredProductAttribute: false,
     customClass: '',
     itemDetailLink: '',
-  }
+  };
 
   constructor(props) {
     super(props);

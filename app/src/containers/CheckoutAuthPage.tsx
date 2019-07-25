@@ -37,7 +37,6 @@ interface CheckoutAuthPageState{
 }
 
 class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuthPageState> {
-
   constructor(props) {
     super(props);
     this.state = {

@@ -6,7 +6,6 @@ React storefront components used by Reference Experiences
 
 ### Documentation
 
-- [REACT PWA Reference Storefront Overview](https://developers.elasticpath.com/reference-experiences)
 - [REACT PWA Reference Storefront Documentation](https://documentation.elasticpath.com/storefront-react)
 
 ## Terms And Conditions

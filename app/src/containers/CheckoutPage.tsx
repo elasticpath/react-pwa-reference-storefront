@@ -84,7 +84,6 @@ interface CheckoutPageState {
 }
 
 class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageState> {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -191,7 +190,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   editAddress(addressLink) {
     this.setState({
       openAddressModal: true,
-      addressUrl: {address: addressLink},
+      addressUrl: { address: addressLink },
     });
   }
 
@@ -252,6 +251,10 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   handleCloseAddressModal() {
     this.setState({ openAddressModal: false });
+  }
+
+  handleCloseNewPaymentModal() {
+    this.setState({ openNewPaymentModal: false });
   }
 
   renderShippingAddress() {
@@ -488,7 +491,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   }
 
   renderBillingAddressSelector() {
-    const { profileData, openAddressModal } = this.state;
+    const { profileData } = this.state;
     const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
     return (
       <div>
@@ -562,10 +565,6 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
         </p>
       </div>
     );
-  }
-
-  handleCloseNewPaymentModal() {
-    this.setState({ openNewPaymentModal: false });
   }
 
   renderPaymentSelector() {

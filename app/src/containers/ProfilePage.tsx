@@ -62,7 +62,6 @@ interface ProfilePageState {
 }
 
 class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState> {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -147,7 +146,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
   handleEditAddress(addressLink) {
     this.setState({
       openAddressModal: true,
-      addressUrl: {address: addressLink},
+      addressUrl: { address: addressLink },
     });
   }
 

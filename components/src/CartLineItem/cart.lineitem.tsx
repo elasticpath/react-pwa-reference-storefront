@@ -53,7 +53,6 @@ interface CartLineItemState {
 }
 
 class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState> {
-
   static defaultProps = {
     handleErrorMessage: () => { },
     hideRemoveButton: false,
@@ -64,7 +63,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     onMoveToCart: () => { },
     onRemove: () => { },
     itemDetailLink: '',
-  }
+  };
 
   constructor(props) {
     super(props);

@@ -38,7 +38,6 @@ interface AppHeaderTopProps {
 }
 
 class AppHeaderTop extends React.Component<AppHeaderTopProps> {
-
   static defaultProps = {
     isMobileView: false,
     onLocaleChange: () => {},

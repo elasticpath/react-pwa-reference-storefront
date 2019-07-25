@@ -34,12 +34,11 @@ interface IndiRecommendationsDisplayMainProps {
 }
 
 class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendationsDisplayMainProps> {
-
-  private instance;
-
   static defaultProps = {
     keywords: '',
   }
+
+  private instance;
 
   componentDidMount() {
     const {

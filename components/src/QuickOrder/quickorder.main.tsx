@@ -157,7 +157,9 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
       productItemInfo,
       showFailedMessage,
     } = this.state;
-    const { isBuyItAgain, itemDetailLink, onMoveToCart, onConfiguratorAddToCart } = this.props;
+    const {
+      isBuyItAgain, itemDetailLink, onMoveToCart, onConfiguratorAddToCart,
+    } = this.props;
     const orderModal = data => (
       <Modal open={openModal || false} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
         <div id="buy-it-again-modal">

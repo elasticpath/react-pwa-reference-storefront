@@ -141,35 +141,35 @@ const router = [{
   path: '/b2b',
   component: B2BMain,
   routes: [
-      {
-          path: '/b2b',
-          exact: true,
-          component: Dashboard,
-      },
-      {
-          path: '/b2b/address-book',
-          render: () => 'Address Book',
-      },
-      {
-          path: '/b2b/orders',
-          render: () => 'Orders',
-      },
-      {
-          path: '/b2b/approvals',
-          render: () => 'Approvals',
-      },
-      {
-          path: '/b2b/invitations',
-          render: () => 'Invitations',
-      },
-      {
-          path: '/b2b/requisition-lists',
-          render: () => 'Requisition Lists',
-      },
-      {
-          path: '/b2b/quotes',
-          render: () => 'Quotes',
-      },
+    {
+      path: '/b2b',
+      exact: true,
+      component: Dashboard,
+    },
+    {
+      path: '/b2b/address-book',
+      render: () => 'Address Book',
+    },
+    {
+      path: '/b2b/orders',
+      render: () => 'Orders',
+    },
+    {
+      path: '/b2b/approvals',
+      render: () => 'Approvals',
+    },
+    {
+      path: '/b2b/invitations',
+      render: () => 'Invitations',
+    },
+    {
+      path: '/b2b/requisition-lists',
+      render: () => 'Requisition Lists',
+    },
+    {
+      path: '/b2b/quotes',
+      render: () => 'Quotes',
+    },
   ],
 }];
 

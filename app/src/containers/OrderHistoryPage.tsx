@@ -34,7 +34,7 @@ const zoomArray = [
   'defaultcart:additemstocartform',
 ];
 
-interface OrderHistoryPageProps  extends React.Component<RouteComponentProps> {
+interface OrderHistoryPageProps extends React.Component<RouteComponentProps> {
     match: {
         [key: string]: any
     },
@@ -45,7 +45,6 @@ interface OrderHistoryPageState {
 }
 
 class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHistoryPageState> {
-
   constructor(props) {
     super(props);
     this.state = {

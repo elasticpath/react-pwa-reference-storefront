@@ -20,8 +20,9 @@
  *
  */
 
-import * as React from 'react';
-import * as intl from "react-intl-universal";
+import React from 'react';
+import intl from 'react-intl-universal';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import EditAccount from './EditAccount';
@@ -29,7 +30,6 @@ import EditAssociate from './EditAssociate';
 import AddSubAccount from './AddSubAccount';
 import SubAccountList from './SubAccountList';
 import * as Config from '../../ep.config.json';
-import { Link } from 'react-router-dom';
 
 import './AccountMain.less';
 
@@ -43,7 +43,6 @@ const accountZoomArray = [
   "subaccounts:element:subaccounts:element",
   "subaccounts:element:statusinfo",
   "subaccounts:element:statusinfo:status",
-  // "subaccounts:element:statusinfo:associateroleassignments",
   "subaccounts:element:associateroleassignments",
   "subaccounts:element:associateroleassignments:element",
   "subaccounts:element:associateroleassignments:element",
@@ -113,7 +112,7 @@ interface AccountMainState {
   subAccounts: any,
 }
 
-export default class AccountMain extends React.Component<AccountMainState> {
+export default class AccountMain extends React.Component<RouteComponentProps, AccountMainState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -155,27 +154,27 @@ export default class AccountMain extends React.Component<AccountMainState> {
   }
 
   getAccountData() {
-    const accountUri = this.props.match.params.uri;
+    const { match } = this.props;
+    const accountUri = match.params.uri;
     this.setState({ isLoading: true });
     login().then(() => {
-
-      const profilePromice =  adminFetch(`/?zoom=myprofile:primaryemail`, {
+      const profilePromice = adminFetch('/?zoom=myprofile:primaryemail', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-        }
+        },
       });
 
       const accountsPromice = adminFetch(`/accounts/am/${accountUri}/?zoom=${accountZoomArray.join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-        }
+        },
       });
 
       Promise.all([accountsPromice, profilePromice])
         .then(responses => Promise.all(responses.map(res => res.json())))
-        .then(res => {
+        .then((res) => {
           const accounts = res[0];
           const profile = res[1];
           this.setState({
@@ -196,12 +195,12 @@ export default class AccountMain extends React.Component<AccountMainState> {
           });
         })
         .catch(() => {
-          this.setState({ isLoading: false })
+          this.setState({ isLoading: false });
         });
     })
-    .catch(() => {
-      this.setState({ isLoading: false })
-    });
+      .catch(() => {
+        this.setState({ isLoading: false });
+      });
   }
 
   subAccountData(data) {
@@ -389,5 +388,5 @@ export default class AccountMain extends React.Component<AccountMainState> {
               )}
           </div>
       );
-    }
+  }
 }

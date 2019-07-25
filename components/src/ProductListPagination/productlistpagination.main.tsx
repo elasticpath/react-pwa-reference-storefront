@@ -46,7 +46,6 @@ interface ProductListPaginationState {
 }
 
 class ProductListPagination extends React.Component<ProductListPaginationProps, ProductListPaginationState> {
-
   static defaultProps = {
     isTop: false,
     productListPaginationLinks: {

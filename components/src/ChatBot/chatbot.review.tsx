@@ -19,20 +19,21 @@
  *
  */
 
-import React from "react";
+import React from 'react';
 import Amplify, { Interactions } from 'aws-amplify';
-import awsmobile from "../../../app/src/aws-exports";
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
+import awsmobile from '../../../app/src/aws-exports';
 import './chatbot.review.less';
 
-Amplify.configure(awsmobile);
-
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+
+Amplify.configure(awsmobile);
 
 let Config: IEpConfig | any = {};
 
 interface ReviewProps {
     steps?: any,
-    triggerNextStep: (...args: any[]) => any,
 }
 
 interface ReviewState {
@@ -40,70 +41,72 @@ interface ReviewState {
     productImageUrl: string,
 }
 
-class Review extends React.Component<ReviewProps, ReviewState> {
-    constructor(props) {
-        super(props);
-        const epConfig = getConfig();
-        Config = epConfig.config;
-        this.state = {
-            userMessage: '',
-            productImageUrl: '',
-        };
-    }
-
-    async submitMessage() {
-        const { steps } = this.props;
-        const { message } = steps.userMessage;
-
-        const response = await InvokeIntent(message);
-
-        if (response.responseCard) {
-            this.setState({ productImageUrl: response.responseCard.genericAttachments[0].imageUrl });
-        }
-
-        this.setState({ userMessage: response.message });
-    }
-
-    componentWillMount() {
-        this.submitMessage();
-    }
-
-    render() {
-        const { userMessage, productImageUrl } = this.state;
-        if (userMessage) {
-            return (
-                <div style={{width: '100%'}}>
-                    <div className="chatbot-review">
-                        {userMessage}
-                        {productImageUrl && <img src={productImageUrl} alt="" />}
-                    </div>
-                </div>
-            );
-        }
-        return (
-            <span className="rsc-loading">
-                <span className="sc-bdVaJa hseFPs">.</span>
-                <span className="sc-bdVaJa iTWArB">.</span>
-                <span className="sc-bdVaJa dUwKYp">.</span>
-            </span>
-        );
-    }
-}
-
 async function InvokeIntent(utterance) {
-    const botName = Config.chatbot.name;
-    const response = await Interactions.send(botName, utterance);
-    Interactions.onComplete(botName, handleCompleteIntent);
-    return response;
+  const botName = Config.chatbot.name;
+  const response = await Interactions.send(botName, utterance);
+  // eslint-disable-next-line no-use-before-define
+  Interactions.onComplete(botName, handleCompleteIntent);
+  return response;
 }
 
-const handleCompleteIntent = function (err, confirmation) {
-    if (err) {
-        // eslint-disable-next-line no-console
-        console.error('Conversation failed...');
-        return;
+const handleCompleteIntent = (err, confirmation) => {
+  if (err) {
+    // eslint-disable-next-line no-console
+    console.error('Conversation failed...');
+    return;
+  }
+  // eslint-disable-next-line consistent-return
+  return 'Conversation success!';
+};
+
+class Review extends React.Component<ReviewProps, ReviewState> {
+  constructor(props) {
+    super(props);
+    const epConfig = getConfig();
+    Config = epConfig.config;
+    this.state = {
+      userMessage: '',
+      productImageUrl: '',
+    };
+  }
+
+  componentWillMount() {
+    this.submitMessage();
+  }
+
+  async submitMessage() {
+    const { steps } = this.props;
+    const { message } = steps.userMessage;
+
+    const response: any = await InvokeIntent(message);
+
+    if (response.responseCard) {
+      this.setState({ productImageUrl: response.responseCard.genericAttachments[0].imageUrl });
     }
-    return 'Conversation success!';
+
+    this.setState({ userMessage: response.message });
+  }
+
+  render() {
+    const { userMessage, productImageUrl } = this.state;
+    if (userMessage) {
+      return (
+        <div style={{ width: '100%' }}>
+          <div className="chatbot-review">
+            {userMessage}
+            {productImageUrl && <img src={productImageUrl} alt="" />}
+          </div>
+        </div>
+      );
+    }
+    return (
+      <span className="rsc-loading">
+        <span className="sc-bdVaJa hseFPs">.</span>
+        <span className="sc-bdVaJa iTWArB">.</span>
+        <span className="sc-bdVaJa dUwKYp">.</span>
+      </span>
+    );
+  }
 }
 
 export default Review;
