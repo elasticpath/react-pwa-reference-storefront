@@ -37,7 +37,8 @@ interface SearchFacetNavigationMainProps {
 }
 
 interface SearchFacetNavigationMainState {
-  facetModel: any
+  facetModel: any,
+  showFilterMobileMenu: boolean
 }
 
 class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMainProps, SearchFacetNavigationMainState> {
@@ -51,8 +52,15 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
     Config = getConfig().config;
     this.state = {
       facetModel: productData,
+      showFilterMobileMenu: false,
     };
     this.handleFacetSelection = this.handleFacetSelection.bind(this);
+    this.handleOpenFilterMenu = this.handleOpenFilterMenu.bind(this);
+    this.handleCloseFilterMenu = this.handleCloseFilterMenu.bind(this);
+  }
+
+  componentDidMount() {
+    document.body.style.overflow = 'unset';
   }
 
   handleFacetSelection(facetUri) {
@@ -144,14 +152,37 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
     });
   }
 
+  handleOpenFilterMenu() {
+    this.setState({ showFilterMobileMenu: true });
+    document.body.style.overflow = 'hidden';
+  }
+
+  handleCloseFilterMenu() {
+    this.setState({ showFilterMobileMenu: false });
+    document.body.style.overflow = 'unset';
+  }
+
   render() {
-    const { facetModel } = this.state;
+    const { facetModel, showFilterMobileMenu } = this.state;
+    const chosenFacets = facetModel._facets[0]._element.filter(el => el._facetselector[0]._chosen);
     if (facetModel._facets && facetModel._facets.length > 0 && facetModel._element) {
       return (
         <div className="product-list-facet-navigation-component">
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div className="card-stack" id="accordion">
-              {this.renderFacets()}
+          <div className="col-xs-12 col-sm-12">
+            <div className="filter-btn-wrap">
+              <button className={`filter-btn ${chosenFacets.length > 0 ? 'filtered' : ''}`} onClick={ this.handleOpenFilterMenu }>
+                Filter
+                <span className="check-icon" />
+              </button>
+            </div>
+            <div className={`${showFilterMobileMenu ? 'show-filter-mobile-menu' : ''} card-stack`} id="accordion">
+              <div className="close-filter-mobile-menu-wrap">
+                <h2>Filter</h2>
+                <button className="close-filter-mobile-menu" onClick={ this.handleCloseFilterMenu } />
+              </div>
+              <div className="facets-container">
+                {this.renderFacets()}
+              </div>
             </div>
           </div>
         </div>
