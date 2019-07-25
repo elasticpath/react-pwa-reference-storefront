@@ -139,7 +139,6 @@ export default class AccountMain extends React.Component<AccountMainState> {
       subAccounts: {},
     };
 
-    this.getAccountData();
     this.handleAccountSettingsClose = this.handleAccountSettingsClose.bind(this);
     this.handleAccountSettingsClicked = this.handleAccountSettingsClicked.bind(this);
     this.handleAccountSettingsUpdate = this.handleAccountSettingsUpdate.bind(this);
@@ -149,6 +148,10 @@ export default class AccountMain extends React.Component<AccountMainState> {
     this.handleAddSubAccountClose = this.handleAddSubAccountClose.bind(this);
     this.isEditAssociateClose = this.isEditAssociateClose.bind(this);
     this.subAccountData = this.subAccountData.bind(this);
+  }
+
+  componentDidMount() {
+      this.getAccountData();
   }
 
   getAccountData() {
@@ -182,10 +185,10 @@ export default class AccountMain extends React.Component<AccountMainState> {
             registrationNumber: accounts['registration-id'],
             isLoading: false,
             legalName: accounts['legal-name'],
-            associates: accounts._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
+            associates: accounts._associateroleassignments[0]._element ? accounts._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})) : [],
             status: accounts._statusinfo[0]._status[0].status,
             editSubAccountUri: accounts.self.uri,
-            selfSignUpCode: 'no code', //accounts._selfsignupinfo[0]['self-signup-code'],
+            selfSignUpCode: accounts._selfsignupinfo ? accounts._selfsignupinfo[0]['self-signup-code'] : '',
             userEmail: profile._myprofile[0]._primaryemail[0].email,
             addAssociateUri: accounts._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
             addSubAccountUri: accounts._subaccounts[0]._accountform[0].self.uri,
@@ -207,7 +210,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
           externalId: data['external-id'],
           registrationNumber: data['registration-id'],
           legalName: data['legal-name'],
-          associates: data._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})),
+          associates: data._associateroleassignments[0]._element ? data._associateroleassignments[0]._element.map(element => ({associate: element._associate[0], roles: element._roleinfo[0]})) : [],
           addAssociateUri: data._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
           addSubAccountUri: data._subaccounts[0]._accountform[0].self.uri,
           editSubAccountUri: data.self.uri,
