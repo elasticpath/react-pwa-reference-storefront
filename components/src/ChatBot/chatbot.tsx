@@ -26,14 +26,14 @@ import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
-import * as styles from '!!../utils/less-var-loader!./chatbot.less'
+import * as styles from '!!../utils/less-var-loader!./chatbot.less';
 
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
+import './chatbot.less';
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
-
-import './chatbot.less';
 
 const theme = {
   background: styles['@chatBackground'],
@@ -52,8 +52,14 @@ interface ChatComponentState {
   triggerId: string,
 }
 
-class ChatComponent extends React.Component<{}, ChatComponentState> {
+async function AuthenticateModel() {
+  const botName = Config.chatbot.name;
+  const authInput = `ep-auth ${localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`).split(' ')[1]}`;
 
+  await Interactions.send(botName, authInput);
+}
+
+class ChatComponent extends React.Component<{}, ChatComponentState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -62,13 +68,8 @@ class ChatComponent extends React.Component<{}, ChatComponentState> {
     this.state = {
       opened: false,
       triggerId: 'userMessage',
-    }
+    };
     this.toggleFloating = this.toggleFloating.bind(this);
-  }
-
-  toggleFloating () {
-    const { opened } = this.state;
-    this.setState({ opened: !opened });
   }
 
   componentWillMount() {
@@ -77,6 +78,11 @@ class ChatComponent extends React.Component<{}, ChatComponentState> {
     if (isLoggedInUser && botEnable) {
       AuthenticateModel();
     }
+  }
+
+  toggleFloating() {
+    const { opened } = this.state;
+    this.setState({ opened: !opened });
   }
 
   render() {
@@ -112,27 +118,20 @@ class ChatComponent extends React.Component<{}, ChatComponentState> {
 
     if (isLoggedInUser && botEnable) {
       return (
-          <div className="rsc-wrapper">
-            <ThemeProvider theme={theme}>
-              <ChatBot
-                  steps={steps}
-                  floating={true}
-                  opened={opened}
-                  toggleFloating={this.toggleFloating}
-              />
-            </ThemeProvider>
-          </div>
+        <div className="rsc-wrapper">
+          <ThemeProvider theme={theme}>
+            <ChatBot
+              steps={steps}
+              floating
+              opened={opened}
+              toggleFloating={this.toggleFloating}
+            />
+          </ThemeProvider>
+        </div>
       );
     }
     return null;
   }
-}
-
-async function AuthenticateModel() {
-  const botName = Config.chatbot.name;
-  const authInput = "ep-auth " + localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`).split(' ')[1];
-
-  await Interactions.send(botName, authInput);
 }
 
 export default ChatComponent;

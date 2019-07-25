@@ -52,19 +52,6 @@
     ],
     "react/default-props-match-prop-types": ["off"],
     "no-unused-vars": ["off"],
-    "import/extensions": [
-      "error",
-      "always",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never",
-        ".json": "never",
-        ".png": "never",
-        ".jpg": "never"
-      }
-    ],
     "import/no-extraneous-dependencies": ["off"],
     "max-len": [
       "warn",
@@ -91,6 +78,9 @@
       }
     ],
     "camelcase": ["warn"],
+    "node/no-extraneous-import": "",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
     "header/header": [
       2,
       "block", [

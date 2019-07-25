@@ -13,10 +13,7 @@
     ],
     "nohoist": [
       "**/webpack-dev-server",
-      "**/babel-loader",
-      "**/babel-eslint",
-      "**/eslint",
-      "**/webpack-cli"
+      "**/babel-loader"
     ]
   },
   "dependencies": {

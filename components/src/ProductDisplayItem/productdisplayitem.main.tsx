@@ -135,8 +135,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     featuredProductAttribute: false,
   };
 
-  private funcName: any;
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -212,6 +210,8 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         });
     });
   }
+
+  private funcName: any;
 
   handleQuantityChange(event) {
     if (event.target.value === '') {

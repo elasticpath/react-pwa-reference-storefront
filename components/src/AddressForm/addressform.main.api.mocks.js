@@ -44,7 +44,7 @@ function mockAddressFormResponse(mockObj) {
   mockObj.get(
     '/cortex/?zoom=defaultprofile:addresses:addressform',
     fetchAddressFormResponse,
-  )
+  );
 }
 
 function mockAddressDataResponse(mockObj) {
@@ -58,11 +58,11 @@ function mockSubmitAddressResponseSuccessResponse(mockObj) {
   mockObj
     .put(
       /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
-      submitAddressResponse
+      submitAddressResponse,
     )
     .post(
       /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
-      submitAddressResponse
+      submitAddressResponse,
     );
 }
 
@@ -70,25 +70,25 @@ function mockSubmitAddressResponseFailureResponse(mockObj) {
   mockObj
     .put(
       /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
-      400
+      400,
     )
     .post(
       /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
-      400
+      400,
     );
 }
 
 function mockCommonAddressFormResponses(mockObj) {
-    mockLoginResponse(mockObj);
-    mockCountriesResponse(mockObj);
-    mockAddressFormResponse(mockObj);
-    mockAddressDataResponse(mockObj);
+  mockLoginResponse(mockObj);
+  mockCountriesResponse(mockObj);
+  mockAddressFormResponse(mockObj);
+  mockAddressDataResponse(mockObj);
 }
 
 export function mockAddressFormSubmitSuccess() {
-    fetchMock.restore();
-    mockCommonAddressFormResponses(fetchMock);
-    mockSubmitAddressResponseSuccessResponse(fetchMock);
+  fetchMock.restore();
+  mockCommonAddressFormResponses(fetchMock);
+  mockSubmitAddressResponseSuccessResponse(fetchMock);
 }
 
 export function mockAddressFormSubmitFailure() {
