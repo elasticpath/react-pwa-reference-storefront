@@ -20,7 +20,7 @@
  */
 
 module.exports = {
-  loginUserRegister: async function (page, user) {
+  async loginUserRegister(page, user) {
     const LOGIN_USERNAME_INPUT_CSS = '#registration_form_emailUsername';
     const LOGIN_PASSWORD_INPUT_CSS = '#registration_form_password';
     const LOGIN_BUTTON_CSS = 'button[data-el-label="checkoutAuthOption.login"]';
@@ -69,7 +69,7 @@ module.exports = {
     }
   },
 
-  addProductToCart: async function (page, productCategory, productSubCategory, productName) {
+  async addProductToCart(page, productCategory, productSubCategory, productName) {
     const PARENT_CATEGORY_CSS = `.app-header-navigation-component li[data-name="${productCategory}"]`;
     const SUB_CATEGORY_CSS = `${PARENT_CATEGORY_CSS} > .dropdown-menu > li > a[title="${productSubCategory}"]`;
     const PRODUCT_CSS = '.product-list-container .category-items-listing .category-item-container';
@@ -108,7 +108,7 @@ module.exports = {
     await page.waitForSelector(CART_LIST);
   },
 
-  registerUser: async function (page, userInfo) {
+  async registerUser(page, userInfo) {
     const FORM_FIRST_NAME = '#registration_form_firstName';
     const FORM_LAST_NAME = '#registration_form_lastName';
     const FORM_EMAIL_USER_NAME = '#registration_form_emailUsername';
@@ -126,7 +126,7 @@ module.exports = {
     await page.click(FORM_SUBMIT_BUTTON);
   },
 
-  addPaymentMethod: async function (page, paymentMethod) {
+  async addPaymentMethod(page, paymentMethod) {
     const CARD_TYPE = '#CardType';
     const CARD_HOLDER_NAME = '#CardHolderName';
     const CARD_NUMBER = '#CardNumber';
@@ -147,7 +147,7 @@ module.exports = {
     await page.click(CONTINUE_BUTTON);
   },
 
-  addAddress: async function (page, address) {
+  async addAddress(page, address) {
     const FIRST_NAME = '#registration_form_firstName';
     const LAST_NAME = '#registration_form_lastName';
     const STREET_ADDRESS = '#StreetAddress';
@@ -170,7 +170,7 @@ module.exports = {
     await page.click(SAVE_BUTTON);
   },
 
-  loginUser: async function (page, user) {
+  async loginUser(page, user) {
     const LOGIN_FEEDBACK = 'div[data-region="authLoginFormFeedbackRegion"]';
     const REGISTER_BUTTON_CSS = '#login_modal_register_button';
     const LOGGED_IN_BUTTON = '#header_navbar_loggedIn_button';
@@ -222,5 +222,5 @@ module.exports = {
         page.waitForNavigation({ waitUntil: 'networkidle0' }),
       ]);
     }
-  }
+  },
 };

@@ -192,37 +192,37 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
             },
-            body: JSON.stringify({ keywords: searchAccounts, page: "1", 'page-size': "10" }),
-        })
-            .then(data => data.json())
-            .then(data => {
-                adminFetch(`${data.self.uri}?zoom=element,element:statusinfo:status`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-                    }
-                })
-                    .then(searchResult => searchResult.json())
-                    .then(searchResult => {
-                        if (searchResult && searchResult._element) {
-                            const accounts = searchResult._element.map(account => {
-                                const uri = account.self.uri.split('/').pop();
-                                return {
-                                    name: account.name,
-                                    externalId: account['external-id'],
-                                    status: account._statusinfo[0]._status[0].status.toLowerCase(),
-                                    uri,
-                                }
-                            });
-                            this.setState({ accounts, showSearchLoader: false, noSearchResults: false });
-                        } else {
-                            this.setState({ showSearchLoader: false, noSearchResults: true })
-                        }
-                    })
-                    .catch((error) => {
-                        // eslint-disable-next-line no-console
-                        console.error(error.message);
+            body: JSON.stringify({ keywords: searchAccounts, page: '1', 'page-size': '10' }),
+          })
+            .then(res => res.json())
+            .then((res) => {
+              adminFetch(`${res.self.uri}?zoom=element,element:statusinfo:status`, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+                },
+              })
+                .then(searchResult => searchResult.json())
+                .then((searchResult) => {
+                  if (searchResult && searchResult._element) {
+                    const accounts = searchResult._element.map((account) => {
+                      const uri = account.self.uri.split('/').pop();
+                      return {
+                        name: account.name,
+                        externalId: account['external-id'],
+                        status: account._statusinfo[0]._status[0].status.toLowerCase(),
+                        uri,
+                      };
                     });
+                    this.setState({ accounts, showSearchLoader: false, noSearchResults: false });
+                  } else {
+                    this.setState({ showSearchLoader: false, noSearchResults: true });
+                  }
+                })
+                .catch((error) => {
+                  // eslint-disable-next-line no-console
+                  console.error(error.message);
+                });
             })
             .catch((error) => {
               // eslint-disable-next-line no-console
@@ -244,18 +244,18 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
 
 
   render() {
-      const { history } = this.props;
-      const {
-          admins,
-          defaultBillingAddress,
-          defaultShippingAddress,
-          recentOrders,
-          accounts,
-          isLoading,
-          searchAccounts,
-          showSearchLoader,
-          noSearchResults,
-      } = this.state;
+    const { history } = this.props;
+    const {
+      admins,
+      defaultBillingAddress,
+      defaultShippingAddress,
+      recentOrders,
+      accounts,
+      isLoading,
+      searchAccounts,
+      showSearchLoader,
+      noSearchResults,
+    } = this.state;
 
     return (
       <div className="dashboard-component">
@@ -266,100 +266,102 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                 <div className="section-header">
                   <div className="section-title">{intl.get('admins')}</div>
                 </div>
-                {/*<div className="b2b-section recent-orders">*/}
-                    {/*<div className="section-header">*/}
-                        {/*<div className="section-title">{intl.get('recent-orders')}</div>*/}
-                        {/*<div className="section-header-right">*/}
-                            {/*/!*<Link to="/">{intl.get('view-all')}</Link>*!/*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-                    {/*<div className="section-content">*/}
-                        {/*<table className="b2b-table recent-orders-table">*/}
-                            {/*<thead>*/}
-                            {/*<tr>*/}
-                                {/*<th className="order-id">*/}
-                                    {/*{intl.get('order')}*/}
-                                    {/*<span className="mobile-table-title">*/}
-                                        {/*{' '}*/}
-                                        {/*&*/}
-                                        {/*{' '}*/}
-                                        {/*{intl.get('date')}*/}
-                                    {/*</span>*/}
-                                {/*</th>*/}
-                                {/*<th className="date">{intl.get('date')}</th>*/}
-                                {/*<th className="ship-to">*/}
-                                    {/*{intl.get('ship-to')}*/}
-                                    {/*<span className="mobile-table-title">*/}
-                                        {/*{' '}*/}
-                                        {/*&*/}
-                                        {/*{' '}*/}
-                                        {/*{intl.get('order-total')}*/}
-                                    {/*</span>*/}
-                                {/*</th>*/}
-                                {/*<th className="order-total">{intl.get('order-total')}</th>*/}
-                                {/*<th className="status">{intl.get('status')}</th>*/}
-                            {/*</tr>*/}
-                            {/*</thead>*/}
-                            {/*<tbody>*/}
-                            {/*{recentOrders.map(order => (*/}
-                                {/*<tr key={order.orderId}>*/}
-                                    {/*<td className="order-id">{order.orderId}</td>*/}
-                                    {/*<td className="date">{order.date}</td>*/}
-                                    {/*<td className="ship-to">{order.shipTo}</td>*/}
-                                    {/*<td className="order-total">{order.orderTotal}</td>*/}
-                                    {/*<td className="status">{order.status}</td>*/}
-                                {/*</tr>*/}
-                            {/*))}*/}
-                            {/*</tbody>*/}
-                        {/*</table>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
+                {/* <div className="b2b-section recent-orders"> */}
+                {/* <div className="section-header"> */}
+                {/* <div className="section-title">{intl.get('recent-orders')}</div> */}
+                {/* <div className="section-header-right"> */}
+                {/* /!*<Link to="/">{intl.get('view-all')}</Link>*!/ */}
+                {/* </div> */}
+                {/* </div> */}
+                {/* <div className="section-content"> */}
+                {/* <table className="b2b-table recent-orders-table"> */}
+                {/* <thead> */}
+                {/* <tr> */}
+                {/* <th className="order-id"> */}
+                {/* {intl.get('order')} */}
+                {/* <span className="mobile-table-title"> */}
+                {/* {' '} */}
+                {/* & */}
+                {/* {' '} */}
+                {/* {intl.get('date')} */}
+                {/* </span> */}
+                {/* </th> */}
+                {/* <th className="date">{intl.get('date')}</th> */}
+                {/* <th className="ship-to"> */}
+                {/* {intl.get('ship-to')} */}
+                {/* <span className="mobile-table-title"> */}
+                {/* {' '} */}
+                {/* & */}
+                {/* {' '} */}
+                {/* {intl.get('order-total')} */}
+                {/* </span> */}
+                {/* </th> */}
+                {/* <th className="order-total">{intl.get('order-total')}</th> */}
+                {/* <th className="status">{intl.get('status')}</th> */}
+                {/* </tr> */}
+                {/* </thead> */}
+                {/* <tbody> */}
+                {/* {recentOrders.map(order => ( */}
+                {/* <tr key={order.orderId}> */}
+                {/* <td className="order-id">{order.orderId}</td> */}
+                {/* <td className="date">{order.date}</td> */}
+                {/* <td className="ship-to">{order.shipTo}</td> */}
+                {/* <td className="order-total">{order.orderTotal}</td> */}
+                {/* <td className="status">{order.status}</td> */}
+                {/* </tr> */}
+                {/* ))} */}
+                {/* </tbody> */}
+                {/* </table> */}
+                {/* </div> */}
+                {/* </div> */}
                 <div className="b2b-section accounts">
-                    <div className="section-header">
-                        <div className="section-title">{intl.get('accounts')}</div>
-                        <div className="section-header-right">
-                            <div className="accounts-search">
-                                <input type="text" placeholder={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
-                                {showSearchLoader && <div className="miniLoader" />}
-                            </div>
-                        </div>
+                  <div className="section-header">
+                    <div className="section-title">{intl.get('accounts')}</div>
+                    <div className="section-header-right">
+                      <div className="accounts-search">
+                        <input type="text" placeholder={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
+                        {showSearchLoader && <div className="miniLoader" />}
+                      </div>
                     </div>
-                    <div className="section-content">
-                        { !noSearchResults ? (<table className="b2b-table accounts-table">
-                            <thead>
-                            <tr>
-                                <th className="name">
-                                    {intl.get('name')}
-                                    <span className="mobile-table-title">
-                                        {' '}
+                  </div>
+                  <div className="section-content">
+                    { !noSearchResults ? (
+                      <table className="b2b-table accounts-table">
+                        <thead>
+                          <tr>
+                            <th className="name">
+                              {intl.get('name')}
+                              <span className="mobile-table-title">
+                                {' '}
                                         &
-                                        {' '}
-                                        {intl.get('external-id')}
-                                    </span>
-                                </th>
-                                <th className="external-id">{intl.get('external-id')}</th>
-                                <th className="status">{intl.get('status')}</th>
-                                <th className="arrow" />
+                                {' '}
+                                {intl.get('external-id')}
+                              </span>
+                            </th>
+                            <th className="external-id">{intl.get('external-id')}</th>
+                            <th className="status">{intl.get('status')}</th>
+                            <th className="arrow" />
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {accounts.map(account => (
+                            <tr key={account.externalId} onClick={() => { history.push(`/b2b/account/${account.uri}`); }} className="account-list-rows">
+                              <td className="name">{account.name}</td>
+                              <td className="external-id">{account.externalId}</td>
+                              <td className="status">
+                                <i className={`icons-status ${account.status.toLowerCase()}`} />
+                                {intl.get(account.status)}
+                              </td>
+                              <td className="arrow">
+                                <Link to={`/b2b/account/${account.uri}`} className="arrow-btn" />
+                              </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            {accounts.map(account => (
-                                <tr key={account.externalId} onClick={() => { history.push(`/b2b/account/${account.uri}`) }} className="account-list-rows">
-                                    <td className="name">{account.name}</td>
-                                    <td className="external-id">{account.externalId}</td>
-                                    <td className="status">
-                                      <i className={`icons-status ${account.status.toLowerCase()}`} />
-                                      {intl.get(account.status)}
-                                    </td>
-                                    <td className="arrow">
-                                        <Link to={`/b2b/account/${account.uri}`} className="arrow-btn" />
-                                    </td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>) : <p className="no-results">{intl.get('no-results-found')}</p>}
-                    </div>
-                  ))}
+                          ))}
+                        </tbody>
+                      </table>
+                    ) : <p className="no-results">{intl.get('no-results-found')}</p>}
+                  </div>
+                  ))
                 </div>
               </div>
               <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }}>

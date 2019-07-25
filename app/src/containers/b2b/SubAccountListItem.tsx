@@ -21,12 +21,13 @@
  */
 
 import * as React from 'react';
-import intl from "react-intl-universal";
+import intl from 'react-intl-universal';
 import * as Config from '../../ep.config.json';
 import './SubAccountList.less';
-import {login} from "../../utils/AuthService";
-import {adminFetch} from "../../utils/Cortex";
-import SubAccountList from "./SubAccountList";
+import { login } from '../../utils/AuthService';
+import { adminFetch } from '../../utils/Cortex';
+// eslint-disable-next-line import/no-cycle
+import SubAccountList from './SubAccountList';
 
 interface SubAccountListProps {
     accountData: any,
@@ -36,144 +37,152 @@ interface SubAccountListProps {
 interface SubAccountListState {
     subAccounts: any,
     subAccountData: any,
-    status: string,
     isLoading: boolean,
     subAccountOpened: boolean,
 }
 
 const zoom = [
-    "subaccounts",
-    "subaccounts:element",
-    "subaccounts:element:statusinfo",
-    "subaccounts:element:statusinfo:status",
-    "subaccounts:element:statusinfo:associateroleassignments",
-    "subaccounts:element:subaccounts",
-    "subaccounts:element:subaccounts:element",
-    "subaccounts:accountform",
-    "subaccounts:element:subaccounts:accountform",
-    "subaccounts:element:associateroleassignments",
-    "subaccounts:element:associateroleassignments:element",
-    "subaccounts:element:associateroleassignments:element:associate",
-    "subaccounts:element:associateroleassignments:element:associate:primaryemail",
-    "subaccounts:element:associateroleassignments:element:roleinfo",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:description",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selectaction",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selector",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector:choice",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:description",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selectaction",
-    "subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selector",
-    "subaccounts:element:associateroleassignments:element:roleinfo:roles",
-    "subaccounts:element:associateroleassignments:element:roleinfo:roles:element",
-    "subaccounts:element:associateroleassignments:associateform",
-    "subaccounts:element:associateroleassignments:associateform:addassociateaction",
-    "associateroleassignments",
-    "associateroleassignments:element",
-    "associateroleassignments:element:associate",
-    "associateroleassignments:element:associate:primaryemail",
-    "associateroleassignments:element:roleinfo",
-    "associateroleassignments:element:roleinfo:selector",
-    "associateroleassignments:element:roleinfo:selector:chosen",
-    "associateroleassignments:element:roleinfo:selector:chosen:description",
-    "associateroleassignments:element:roleinfo:selector:chosen:selectaction",
-    "associateroleassignments:element:roleinfo:selector:chosen:selector",
-    "associateroleassignments:element:roleinfo:selector:choice",
-    "associateroleassignments:element:roleinfo:selector:choice:description",
-    "associateroleassignments:element:roleinfo:selector:choice:selectaction",
-    "associateroleassignments:element:roleinfo:selector:choice:selector",
-    "associateroleassignments:element:roleinfo:roles",
-    "associateroleassignments:element:roleinfo:roles:element",
-    "associateroleassignments:associateform",
-    "associateroleassignments:associateform:addassociateaction",
+  'subaccounts',
+  'subaccounts:element',
+  'subaccounts:element:statusinfo',
+  'subaccounts:element:statusinfo:status',
+  'subaccounts:element:statusinfo:associateroleassignments',
+  'subaccounts:element:subaccounts',
+  'subaccounts:element:subaccounts:element',
+  'subaccounts:accountform',
+  'subaccounts:element:subaccounts:accountform',
+  'subaccounts:element:associateroleassignments',
+  'subaccounts:element:associateroleassignments:element',
+  'subaccounts:element:associateroleassignments:element:associate',
+  'subaccounts:element:associateroleassignments:element:associate:primaryemail',
+  'subaccounts:element:associateroleassignments:element:roleinfo',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:description',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selectaction',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selector',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:choice',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:description',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selectaction',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selector',
+  'subaccounts:element:associateroleassignments:element:roleinfo:roles',
+  'subaccounts:element:associateroleassignments:element:roleinfo:roles:element',
+  'subaccounts:element:associateroleassignments:associateform',
+  'subaccounts:element:associateroleassignments:associateform:addassociateaction',
+  'associateroleassignments',
+  'associateroleassignments:element',
+  'associateroleassignments:element:associate',
+  'associateroleassignments:element:associate:primaryemail',
+  'associateroleassignments:element:roleinfo',
+  'associateroleassignments:element:roleinfo:selector',
+  'associateroleassignments:element:roleinfo:selector:chosen',
+  'associateroleassignments:element:roleinfo:selector:chosen:description',
+  'associateroleassignments:element:roleinfo:selector:chosen:selectaction',
+  'associateroleassignments:element:roleinfo:selector:chosen:selector',
+  'associateroleassignments:element:roleinfo:selector:choice',
+  'associateroleassignments:element:roleinfo:selector:choice:description',
+  'associateroleassignments:element:roleinfo:selector:choice:selectaction',
+  'associateroleassignments:element:roleinfo:selector:choice:selector',
+  'associateroleassignments:element:roleinfo:roles',
+  'associateroleassignments:element:roleinfo:roles:element',
+  'associateroleassignments:associateform',
+  'associateroleassignments:associateform:addassociateaction',
 ];
 
 export default class SubAccountListItem extends React.Component<SubAccountListProps, SubAccountListState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      subAccounts: [],
+      subAccountData: {},
+      isLoading: false,
+      subAccountOpened: false,
+    };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            subAccounts: [],
-            subAccountData: {},
-            status: '',
+    this.handleAccountData = this.handleAccountData.bind(this);
+    this.getSubAccounts = this.getSubAccounts.bind(this);
+  }
+
+  getSubAccounts(uri, event) {
+    event.stopPropagation();
+    const { subAccountData, subAccountOpened } = this.state;
+    this.setState({ subAccountOpened: !subAccountOpened });
+    if (subAccountData.name) return;
+
+    this.setState({ isLoading: true });
+    login().then(() => {
+      adminFetch(`${uri}/?zoom=${zoom.join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            subAccountData: res,
             isLoading: false,
-            subAccountOpened: false,
-        };
-
-        this.handleAccountData = this.handleAccountData.bind(this);
-        this.getSubAccounts = this.getSubAccounts.bind(this);
-    }
-
-    getSubAccounts(uri, event) {
-        event.stopPropagation();
-        const { subAccountData, subAccountOpened } = this.state;
-        this.setState({ subAccountOpened: !subAccountOpened });
-        if(subAccountData.name) return;
-
-        this.setState({ isLoading: true});
-        login().then(() => {
-            adminFetch(`${uri}/?zoom=${zoom.join()}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-                }
-            })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    subAccountData: res,
-                    isLoading: false,
-                    subAccounts: res._subaccounts[0],
-                });
-            })
-            .catch(() => {
-                this.setState({ isLoading: false })
-            });
+            subAccounts: res._subaccounts[0],
+          });
         })
         .catch(() => {
-            this.setState({ isLoading: false })
+          this.setState({ isLoading: false });
         });
+    })
+      .catch(() => {
+        this.setState({ isLoading: false });
+      });
+  }
+
+  handleAccountData(accountData) {
+    const { subAccountData } = this.state;
+    const { handleAccount } = this.props;
+
+    if (subAccountData.name) {
+      handleAccount(subAccountData);
+    } else {
+      handleAccount(accountData);
     }
+  }
 
-    handleAccountData(accountData) {
-        const { subAccountData } = this.state;
-        const { handleAccount } = this.props;
+  render() {
+    const { accountData, handleAccount } = this.props;
+    const { subAccounts, isLoading, subAccountOpened } = this.state;
 
-        if(subAccountData.name) {
-            handleAccount(subAccountData);
-        } else {
-            handleAccount(accountData);
-        }
-    }
-
-    render() {
-        const { accountData, handleAccount } = this.props;
-        const { subAccounts, isLoading, subAccountOpened } = this.state;
-
-        return (
-            <div key={accountData['external-id']}>
-                <div className={`sub-account ${!subAccountOpened ? '' : 'hide-sub-accounts'}`} onClick={() => this.handleAccountData(accountData)}>
-                    <div className="name">
-                        {accountData.name}
-                    </div>
-                    {isLoading ?
-                        (<div className="loader-container">
-                            <div className="loader" />
-                        </div>) : (accountData._subaccounts && accountData._subaccounts[0]._element &&
-                        (<span className={`arrow-btn ${subAccountOpened ? 'up' : ''}`} onClick={(event) => this.getSubAccounts(accountData.self.uri, event)} />)
-                        )
+    return (
+      <div key={accountData['external-id']}>
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+        <div
+          className={`sub-account ${!subAccountOpened ? '' : 'hide-sub-accounts'}`}
+          onClick={() => {}}
+          onKeyPress={() => this.handleAccountData(accountData)}
+        >
+          <div className="name">
+            {accountData.name}
+          </div>
+          {isLoading
+            ? (
+              <div className="loader-container">
+                <div className="loader" />
+              </div>
+            ) : (accountData._subaccounts && accountData._subaccounts[0]._element && (
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+            <span
+              className={`arrow-btn ${subAccountOpened ? 'up' : ''}`}
+              onClick={() => {}}
+              onKeyPress={event => this.getSubAccounts(accountData.self.uri, event)}
+            />
+            ))
                     }
-                    <span className="status">
-                        <i className={`icons-status ${accountData._statusinfo[0]._status[0].status.toLowerCase()}`} />
-                        {intl.get(accountData._statusinfo[0]._status[0].status.toLowerCase())}
-                    </span>
-                </div>
-                <div className={`margin-left ${!subAccountOpened ? 'hide-sub-account' : ''}`}>
-                    {subAccounts._element && <SubAccountList subAccounts={subAccounts} getAccountData={handleAccount} /> }
-                </div>
-            </div>
-        )
-    }
+          <span className="status">
+            <i className={`icons-status ${accountData._statusinfo[0]._status[0].status.toLowerCase()}`} />
+            {intl.get(accountData._statusinfo[0]._status[0].status.toLowerCase())}
+          </span>
+        </div>
+        <div className={`margin-left ${!subAccountOpened ? 'hide-sub-account' : ''}`}>
+          {subAccounts._element && <SubAccountList subAccounts={subAccounts} getAccountData={handleAccount} /> }
+        </div>
+      </div>
+    );
+  }
 }
-

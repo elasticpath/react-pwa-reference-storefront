@@ -1,8 +1,8 @@
 {
   "cortexApi": {
-    "path": "/cortex",
+    "path": "http://reference.epdemos.com/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://localhost:9080"
+    "pathForProxy": "http://reference.epdemos.com"
   },
   "supportedLocales": [
     {
@@ -26,20 +26,21 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%sku%.png",
-  "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
+  "skuImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%sku%.png",
+  "siteImagesUrl": "https://s3-us-west-2.amazonaws.com/ep-demo-images/VESTRI_VIRTUAL/%fileName%",
   "enableOfflineMode": false,
   "b2b": {
-    "enable": false,
+    "enable": true,
+    "dashboard": true,
     "authServiceAPI": {
-      "path": "",
-      "pathForProxy": ""
+      "path": "/admin",
+      "pathForProxy": "https://app.qa.am.reference.elasticpath.com"
     },
     "keycloak": {
       "callbackUrl": "http://localhost:8080",
-      "loginRedirectUrl": "",
-      "logoutRedirectUrl": "",
-      "client_id": ""
+      "loginRedirectUrl": "https://login.qa.am.reference.elasticpath.com/auth/realms/Commerce/protocol/openid-connect/auth",
+      "logoutRedirectUrl": "https://login.qa.am.reference.elasticpath.com/auth/realms/Commerce/protocol/openid-connect/logout",
+      "client_id": "reference-storefront"
     }
   },
   "gaTrackingId": "",
@@ -110,9 +111,5 @@
   "creditCardTokenization": {
     "enable": false,
     "lambdaURI": ""
-  },
-  "chatbot": {
-    "enable": false,
-    "name": "EPConversationalInterface"
   }
 }

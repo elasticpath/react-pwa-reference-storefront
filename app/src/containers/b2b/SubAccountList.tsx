@@ -21,7 +21,8 @@
  */
 
 import * as React from 'react';
-import SubAccountListItem from "./SubAccountListItem";
+// eslint-disable-next-line import/no-cycle
+import SubAccountListItem from './SubAccountListItem';
 
 interface SubAccountListProps {
     subAccounts: any,
@@ -31,33 +32,32 @@ interface SubAccountListProps {
 
 export default class SubAccountList extends React.Component<SubAccountListProps> {
     static defaultProps = {
-        getAccountData: () => {
-        },
+      getAccountData: () => {
+      },
     };
 
     constructor(props) {
-        super(props);
+      super(props);
 
-        this.handleAccount = this.handleAccount.bind(this);
+      this.handleAccount = this.handleAccount.bind(this);
     }
 
     handleAccount(data) {
-        const { getAccountData } = this.props;
-        getAccountData(data);
+      const { getAccountData } = this.props;
+      getAccountData(data);
     }
 
     render() {
-        const { subAccounts } = this.props;
+      const { subAccounts } = this.props;
 
-        return (
-            <div className="sub-accounts-container">
-                {subAccounts._element.map( element => (
-                    <div key={element.name}>
-                        <SubAccountListItem handleAccount={this.handleAccount} accountData={element} />
-                    </div>
-                ))}
+      return (
+        <div className="sub-accounts-container">
+          {subAccounts._element.map(element => (
+            <div key={element.name}>
+              <SubAccountListItem handleAccount={this.handleAccount} accountData={element} />
             </div>
-        )
+          ))}
+        </div>
+      );
     }
 }
-

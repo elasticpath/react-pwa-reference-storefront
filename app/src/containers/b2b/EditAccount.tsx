@@ -66,7 +66,6 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
     this.state = {
       name: '',
       legalName: '',
-      editSubAccountUri: '',
       externalId: '',
       registrationNumber: '',
       isShowingCopied: false,
@@ -97,7 +96,9 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
 
   editAccount(event) {
     const { handleClose, handleUpdate, editSubAccountUri } = this.props;
-    const { name, legalName, externalId, registrationNumber } = this.state;
+    const {
+      name, legalName, externalId, registrationNumber,
+    } = this.state;
 
     event.preventDefault();
     this.setState({ isLoading: true });
