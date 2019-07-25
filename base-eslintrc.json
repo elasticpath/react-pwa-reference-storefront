@@ -50,7 +50,8 @@
         ]
       }
     ],
-    "react/prop-types": 0,
+    "react/prop-types": "off",
+    "react/sort-comp": "off",
     "react/default-props-match-prop-types": ["off"],
     "no-unused-vars": ["off"],
     "import/no-extraneous-dependencies": ["off"],
