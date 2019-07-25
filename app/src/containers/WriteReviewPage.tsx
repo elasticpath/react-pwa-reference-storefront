@@ -55,8 +55,6 @@ class WriteReview extends React.Component<RouteComponentProps> {
     });
   }
 
-  private POWERREVIEWS: any;
-
   render() {
     return (<div id="pr-write" />);
   }

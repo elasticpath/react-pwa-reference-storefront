@@ -62,8 +62,6 @@ class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppH
     }
   }
 
-  private searchInput: React.RefObject<HTMLInputElement>;
-
   handleChange(event) {
     this.setState({ keywords: event.target.value });
   }

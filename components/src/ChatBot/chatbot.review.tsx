@@ -37,8 +37,8 @@ interface ReviewProps {
 }
 
 interface ReviewState {
-  userMessage: string,
-  productImageUrl: string,
+    userMessage: string,
+    productImageUrl: string,
 }
 
 async function InvokeIntent(utterance) {

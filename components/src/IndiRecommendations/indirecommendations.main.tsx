@@ -74,8 +74,6 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
     }
   }
 
-  private instance;
-
   render() {
     const {
       configuration,
