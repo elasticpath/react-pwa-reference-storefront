@@ -38,6 +38,8 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
     keywords: '',
   }
 
+  private instance;
+
   componentDidMount() {
     const {
       render, keywords, configuration,
@@ -71,8 +73,6 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
       });
     }
   }
-
-  private instance;
 
   render() {
     const {

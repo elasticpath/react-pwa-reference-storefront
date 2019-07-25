@@ -58,6 +58,8 @@ interface EditAccountState {
 
 
 export default class EditAccount extends React.Component<EditAccountProps, EditAccountState> {
+  copiedTimeout?: number;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -90,8 +92,6 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
       this.copiedTimeout = undefined;
     }
   }
-
-  copiedTimeout?: number;
 
   editAccount(event) {
     const { accountData, handleClose, handleUpdate } = this.props;
