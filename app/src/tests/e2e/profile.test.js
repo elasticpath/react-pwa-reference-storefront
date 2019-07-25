@@ -104,7 +104,7 @@ describe('Profile', () => {
   test('Navigate Profile', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 20,
+      slowMo: 120,
     });
     const page = await browser.newPage();
 
@@ -127,7 +127,7 @@ describe('Profile', () => {
     await page.waitForSelector(PURCHASE_HISTORY);
 
     await browser.close();
-  }, 50000);
+  }, 500000);
 
   test('Update Personal Info', async () => {
     const browser = await puppeteer.launch({
@@ -176,7 +176,7 @@ describe('Profile', () => {
   test('Create new user with Address and Payment Method', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-web-security'],
-      slowMo: 20,
+      slowMo: 120,
     });
     const page = await browser.newPage();
 
@@ -189,6 +189,7 @@ describe('Profile', () => {
     // When I register a new user
     await page.waitForSelector(LOGGED_IN_BUTTON);
     await page.click(LOGGED_IN_BUTTON);
+    await page.waitFor(3000);
     await page.waitForSelector(REGISTER_BUTTON);
     await Promise.all([
       page.click(REGISTER_BUTTON),
@@ -257,5 +258,5 @@ describe('Profile', () => {
     expect(text).toEqual(EXPECTED_ADDRESS_NAME);
 
     await browser.close();
-  }, 50000);
+  }, 500000);
 });
