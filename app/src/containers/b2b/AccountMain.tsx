@@ -91,7 +91,7 @@ interface AccountMainState {
   isLoading: boolean,
   isEditAssociateOpen: boolean,
   legalName: string,
-  name: string,
+  accountName: string,
   mainAccountName: string,
   status: string,
   isSettingsDialogOpen: boolean,
@@ -121,7 +121,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
       isEditAssociateOpen: false,
       isAddAssociateOpen: false,
       legalName: '',
-      name: '',
+      accountName: '',
       mainAccountName: '',
       status: '',
       isSettingsDialogOpen: false,
@@ -179,7 +179,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
           const accounts = res[0];
           const profile = res[1];
           this.setState({
-            name: accounts.name,
+            accountName: accounts.name,
             mainAccountName: accounts.name,
             externalId: accounts['external-id'],
             registrationNumber: accounts['registration-id'],
@@ -206,7 +206,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
 
   subAccountData(data) {
       this.setState({
-          name: data.name,
+          accountName: data.name,
           externalId: data['external-id'],
           registrationNumber: data['registration-id'],
           legalName: data['legal-name'],
@@ -252,7 +252,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
   render() {
       const {
         isLoading,
-        name,
+        accountName,
         status,
         associates,
         isSettingsDialogOpen,
@@ -279,7 +279,7 @@ export default class AccountMain extends React.Component<AccountMainState> {
                           <Link className="back-link" to="/b2b"><div className="back-arrow" />{intl.get('back-to-dashboard')}</Link>
                           <div className="name-container">
                               <Link className="back-link-mobile" to="/b2b"><div className="back-arrow" />{intl.get('back')}</Link>
-                              <div className="name">{name}
+                              <div className="name">{accountName}
                               </div>
                               <div className="settings" onClick={this.handleAccountSettingsClicked}>
                                   <div className="setting-icons" />
@@ -369,7 +369,8 @@ export default class AccountMain extends React.Component<AccountMainState> {
                         <EditAssociate
                            handleClose={this.isEditAssociateClose}
                            handleUpdate={this.handleAccountSettingsUpdate}
-                           accountName={name}
+                           accountName={mainAccountName}
+                           subAccountName={accountName}
                            rolesSelector={selector}
                            isSelf={associateEditEmail === userEmail}
                            associateEmail={associateEditEmail}

@@ -34,6 +34,7 @@ interface EditAssociateProps {
     handleUpdate: () => void,
     associateEmail: string,
     accountName: string,
+    subAccountName: string,
     addAssociateUri: string,
     rolesSelector: any,
     isSelf: boolean,
@@ -220,7 +221,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
     }
 
     render () {
-        const { associateEmail, isOpen, accountName, isAddAssociateOpen } = this.props;
+        const { associateEmail, isOpen, accountName, subAccountName, isAddAssociateOpen } = this.props;
         const { isLoading, newAssociateEmail, emailErrorMessage, validEmail } = this.state;
 
         const isDisabled = !!associateEmail;
@@ -236,14 +237,14 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                         <div className="am-field-editor">
                             <div className="associate-email-title">{intl.get('associate-email')}</div>
                             <input
-                                className={`field-editor-input ${emailErrorMessage ? 'input-code-error' : ''}`}
+                                className={`field-editor-input ${(emailErrorMessage || !validEmail) ? 'input-code-error' : ''}`}
                                 type="text"
                                 onChange={() => this.handleChange(event)}
                                 autoFocus={true}
                                 disabled={isDisabled}
                                 value={associateEmail ? associateEmail : newAssociateEmail}
                             />
-                            <span className={`${(emailErrorMessage !== '') ? 'input-error-icon' : ''}`} />
+                            <span className={`${(emailErrorMessage !== '' || !validEmail) ? 'input-error-icon' : ''}`} />
                             <p className="error-message">
                                 {
                                     (emailErrorMessage !== '') ? emailErrorMessage : ''
@@ -259,8 +260,16 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                             <p>{accountName}</p>
                         </div>
                     </div>
-                    <div className="checkbox-role-title">{intl.get('role')}</div>
-                    {this.renderRoleSelection()}
+                    <div className="am-columns">
+                        <div className="am-field-editor">
+                            <div className="checkbox-role-title">{intl.get('role')}</div>
+                            {this.renderRoleSelection()}
+                        </div>
+                        <div>
+                            <div className="account-title sub">{intl.get('associate-sub-account')}</div>
+                            <p>{subAccountName}</p>
+                        </div>
+                    </div>
                 </div>
                 <div className="dialog-footer">
                     <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
