@@ -44,6 +44,8 @@ interface EditAssociateState {
     changedRoles: any,
     isLoading: boolean,
     newAssociateEmail: string
+    emailErrorMessage: string,
+    validEmail: boolean,
 }
 
 export default  class EditAssociate extends React.Component<EditAssociateProps, EditAssociateState> {
@@ -52,11 +54,14 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
         this.state={
             changedRoles: [],
             isLoading: false,
-            newAssociateEmail: ''
+            newAssociateEmail: '',
+            emailErrorMessage: '',
+            validEmail: true,
         };
         this.renderRoleSelection = this.renderRoleSelection.bind(this);
         this.handleRoleChange= this.handleRoleChange.bind(this);
         this.handleSaveClicked= this.handleSaveClicked.bind(this);
+        this.handleModalClose= this.handleModalClose.bind(this);
     }
 
     renderRoleSelection(){
@@ -132,6 +137,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
         const { changedRoles } = this.state;
         const { handleClose, handleUpdate } = this.props;
         if (!changedRoles.length) {
+            this.setState({emailErrorMessage: '',  newAssociateEmail: '', validEmail: true});
             handleClose();
             return;
         }
@@ -147,7 +153,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
             })
             .then(res => res.json())
             .then(() => {
-                this.setState({isLoading: false});
+                this.setState({isLoading: false, emailErrorMessage: '',  newAssociateEmail: '', validEmail: true});
                 handleClose();
                 handleUpdate();
             })
@@ -162,9 +168,20 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
     handleAddAssociateClicked() {
         const { addAssociateUri, handleClose, handleUpdate } = this.props;
         const { changedRoles, newAssociateEmail } = this.state;
-        if (!changedRoles.length) {
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (newAssociateEmail === '' && changedRoles.length) {
+            this.setState({ emailErrorMessage: intl.get('field-cannot-be-empty') });
+            return;
+        } else if(newAssociateEmail === '' && !changedRoles.length) {
+            this.setState({ emailErrorMessage: '', validEmail: true });
             handleClose();
             return;
+        } else if(!newAssociateEmail.match(mailformat) ) {
+            this.setState({ validEmail: false });
+            return;
+        } else {
+            this.setState({ emailErrorMessage: '',  validEmail: true })
         }
 
         this.setState({ isLoading: true });
@@ -180,7 +197,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
         })
         .then(res => res.json())
         .then(() => {
-            this.setState({isLoading: false});
+            this.setState({isLoading: false, emailErrorMessage: '', newAssociateEmail: '', validEmail: true});
             handleClose();
             handleUpdate();
         })
@@ -191,15 +208,26 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
             });
     }
 
+    handleChange(event) {
+        this.setState({ newAssociateEmail: event.target.value });
+    }
+
+    handleModalClose() {
+        const { handleClose } = this.props;
+
+        this.setState({emailErrorMessage: '', newAssociateEmail: '', validEmail: true});
+        handleClose();
+    }
+
     render () {
-        const { associateEmail, handleClose, isOpen, accountName, isAddAssociateOpen } = this.props;
-        const { isLoading, newAssociateEmail } = this.state;
+        const { associateEmail, isOpen, accountName, isAddAssociateOpen } = this.props;
+        const { isLoading, newAssociateEmail, emailErrorMessage, validEmail } = this.state;
 
         const isDisabled = !!associateEmail;
         return (
             <Modal
                 open={isOpen}
-                onClose={handleClose}
+                onClose={this.handleModalClose}
                 classNames={{ modal: 'b2b-edit-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
             >
                 <div className="dialog-header">{isAddAssociateOpen ? intl.get('add-associate') : intl.get('edit-associate')}</div>
@@ -208,13 +236,24 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                         <div className="am-field-editor">
                             <div className="associate-email-title">{intl.get('associate-email')}</div>
                             <input
-                                className="field-editor-input"
+                                className={`field-editor-input ${emailErrorMessage ? 'input-code-error' : ''}`}
+                                type="text"
+                                onChange={() => this.handleChange(event)}
                                 autoFocus={true}
                                 disabled={isDisabled}
                                 value={associateEmail ? associateEmail : newAssociateEmail}
-                                onChange={(e) => this.setState({ newAssociateEmail: e.target.value })}
                             />
+                            <span className={`${(emailErrorMessage !== '') ? 'input-error-icon' : ''}`} />
+                            <p className="error-message">
+                                {
+                                    (emailErrorMessage !== '') ? emailErrorMessage : ''
+                                }
+                                {
+                                    (!validEmail && emailErrorMessage === '') ? intl.get('invalid-email-address') : ''
+                                }
+                            </p>
                         </div>
+
                         <div>
                             <div className="account-title">{intl.get('account')}</div>
                             <p>{accountName}</p>
@@ -224,7 +263,7 @@ export default  class EditAssociate extends React.Component<EditAssociateProps, 
                     {this.renderRoleSelection()}
                 </div>
                 <div className="dialog-footer">
-                    <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
+                    <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
                     <button className="upload" type="button" onClick={isAddAssociateOpen ? () => this.handleAddAssociateClicked() : () => this.handleSaveClicked()}>{intl.get('save')}
                     </button>
                 </div>
