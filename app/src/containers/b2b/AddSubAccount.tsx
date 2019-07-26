@@ -90,6 +90,7 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
           this.setState({ isLoading: false });
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.error(err);
           this.setState({ isLoading: false });
         });
@@ -115,7 +116,7 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
         onClose={handleClose}
         classNames={{ modal: 'b2b-edit-account-dialog', closeButton: 'b2b-dialog-close-btn' }}
       >
-        <div className="dialog-header">{intl.get('edit-account')}</div>
+        <div className="dialog-header">{intl.get('add-sub-account')}</div>
         <div className="dialog-content">
           <form onSubmit={this.addSubAccount}>
             <div className="b2b-form-row">
@@ -140,7 +141,7 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
             </div>
             <div className="dialog-footer">
               <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
-              <button className="save" type="button" disabled={isLoading}>{intl.get('save')}</button>
+              <button className="save" type="submit" disabled={isLoading}>{intl.get('save')}</button>
             </div>
           </form>
         </div>

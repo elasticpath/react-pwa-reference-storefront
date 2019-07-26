@@ -98,7 +98,11 @@ export default class EditAssociate extends React.Component<EditAssociateProps, E
         return 0;
       });
     } else {
-      const defaultRoles = ['Buyer', 'Buyer Admin', 'Catalog Browser'];
+      const defaultRoles = [
+        intl.get('buyer'),
+        intl.get('catalog_browser'),
+        intl.get('buyer_admin'),
+      ];
       defaultRoles.forEach((role) => {
         allAssociateRoles.push({
           roleName: role,
@@ -113,7 +117,7 @@ export default class EditAssociate extends React.Component<EditAssociateProps, E
           <div key={role.roleName} className="role-checkbox">
             <input id={role.roleName} disabled={isSelf && role.roleName === 'BUYER_ADMIN'} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} className="style-checkbox" />
             <label htmlFor={role.roleName} />
-            <label htmlFor={role.roleName} className="role-title">{intl.get(role.roleName.toLowerCase()) || role.roleName}</label>
+            <label htmlFor={role.roleName} className="role-title">{role.roleName}</label>
           </div>
         ))}
       </div>

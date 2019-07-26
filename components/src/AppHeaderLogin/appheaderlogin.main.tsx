@@ -210,8 +210,8 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                       <Link className="dashboard-link" to="/b2b">
                         <div>
                           <span className="dashboard-nav">
-                                {intl.get('dashboard')}
-                              </span>
+                            {intl.get('dashboard')}
+                          </span>
                         </div>
                       </Link>
                     </li>) : ('')}
@@ -220,8 +220,8 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                     <Link to={appHeaderLoginLinks.wishlists} className="wishlist-link">
                       <div>
                         <span id="header_navbar_login_menu_wishlist_link">
-                                {intl.get('wishlists')}
-                              </span>
+                          {intl.get('wishlists')}
+                        </span>
                       </div>
                     </Link>
                   </li>

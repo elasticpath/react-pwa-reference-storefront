@@ -266,102 +266,18 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                 <div className="section-header">
                   <div className="section-title">{intl.get('admins')}</div>
                 </div>
-                {/* <div className="b2b-section recent-orders"> */}
-                {/* <div className="section-header"> */}
-                {/* <div className="section-title">{intl.get('recent-orders')}</div> */}
-                {/* <div className="section-header-right"> */}
-                {/* /!*<Link to="/">{intl.get('view-all')}</Link>*!/ */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* <div className="section-content"> */}
-                {/* <table className="b2b-table recent-orders-table"> */}
-                {/* <thead> */}
-                {/* <tr> */}
-                {/* <th className="order-id"> */}
-                {/* {intl.get('order')} */}
-                {/* <span className="mobile-table-title"> */}
-                {/* {' '} */}
-                {/* & */}
-                {/* {' '} */}
-                {/* {intl.get('date')} */}
-                {/* </span> */}
-                {/* </th> */}
-                {/* <th className="date">{intl.get('date')}</th> */}
-                {/* <th className="ship-to"> */}
-                {/* {intl.get('ship-to')} */}
-                {/* <span className="mobile-table-title"> */}
-                {/* {' '} */}
-                {/* & */}
-                {/* {' '} */}
-                {/* {intl.get('order-total')} */}
-                {/* </span> */}
-                {/* </th> */}
-                {/* <th className="order-total">{intl.get('order-total')}</th> */}
-                {/* <th className="status">{intl.get('status')}</th> */}
-                {/* </tr> */}
-                {/* </thead> */}
-                {/* <tbody> */}
-                {/* {recentOrders.map(order => ( */}
-                {/* <tr key={order.orderId}> */}
-                {/* <td className="order-id">{order.orderId}</td> */}
-                {/* <td className="date">{order.date}</td> */}
-                {/* <td className="ship-to">{order.shipTo}</td> */}
-                {/* <td className="order-total">{order.orderTotal}</td> */}
-                {/* <td className="status">{order.status}</td> */}
-                {/* </tr> */}
-                {/* ))} */}
-                {/* </tbody> */}
-                {/* </table> */}
-                {/* </div> */}
-                {/* </div> */}
-                <div className="b2b-section accounts">
-                  <div className="section-header">
-                    <div className="section-title">{intl.get('accounts')}</div>
-                    <div className="section-header-right">
-                      <div className="accounts-search">
-                        <input type="text" placeholder={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
-                        {showSearchLoader && <div className="miniLoader" />}
+                <div className="section-content">
+                  {admins.slice(0, 2).map(admin => (
+                    <div key={admin.email} className="user-info">
+                      <div className="user-icon">
+                        <img src={userIcon} alt="" />
+                      </div>
+                      <div className="user-details">
+                        <div className="user-email">{admin.email}</div>
+                        <div className="user-name">{admin.name}</div>
                       </div>
                     </div>
-                  </div>
-                  <div className="section-content">
-                    { !noSearchResults ? (
-                      <table className="b2b-table accounts-table">
-                        <thead>
-                          <tr>
-                            <th className="name">
-                              {intl.get('name')}
-                              <span className="mobile-table-title">
-                                {' '}
-                                        &
-                                {' '}
-                                {intl.get('external-id')}
-                              </span>
-                            </th>
-                            <th className="external-id">{intl.get('external-id')}</th>
-                            <th className="status">{intl.get('status')}</th>
-                            <th className="arrow" />
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {accounts.map(account => (
-                            <tr key={account.externalId} onClick={() => { history.push(`/b2b/account/${account.uri}`); }} className="account-list-rows">
-                              <td className="name">{account.name}</td>
-                              <td className="external-id">{account.externalId}</td>
-                              <td className="status">
-                                <i className={`icons-status ${account.status.toLowerCase()}`} />
-                                {intl.get(account.status)}
-                              </td>
-                              <td className="arrow">
-                                <Link to={`/b2b/account/${account.uri}`} className="arrow-btn" />
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    ) : <p className="no-results">{intl.get('no-results-found')}</p>}
-                  </div>
-                  ))
+                  ))}
                 </div>
               </div>
               <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }}>
@@ -484,7 +400,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                     </thead>
                     <tbody>
                       {accounts.map(account => (
-                        <tr key={account.externalId}>
+                        <tr key={account.externalId} className="account-list-rows">
                           <td className="name">{account.name}</td>
                           <td className="external-id">{account.externalId}</td>
                           <td className="status">

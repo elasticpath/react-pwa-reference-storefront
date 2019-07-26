@@ -154,7 +154,7 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
           className={`sub-account ${!subAccountOpened ? '' : 'hide-sub-accounts'}`}
-          onClick={() => {}}
+          onClick={() => this.handleAccountData(accountData)}
           onKeyPress={() => this.handleAccountData(accountData)}
         >
           <div className="name">
@@ -169,7 +169,7 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <span
               className={`arrow-btn ${subAccountOpened ? 'up' : ''}`}
-              onClick={() => {}}
+              onClick={event => this.getSubAccounts(accountData.self.uri, event)}
               onKeyPress={event => this.getSubAccounts(accountData.self.uri, event)}
             />
             ))

@@ -390,7 +390,7 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
                 handleClose={this.handleAccountSettingsClose}
                 handleUpdate={this.handleAccountSettingsUpdate}
                 isOpen={isSettingsDialogOpen}
-                accountData={this.state}
+                accountData={editAccountData}
                 editSubAccountUri={editSubAccountUri}
               />
               <EditAssociate
