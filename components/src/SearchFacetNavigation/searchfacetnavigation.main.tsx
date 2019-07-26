@@ -170,7 +170,7 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
         <div className="product-list-facet-navigation-component">
           <div className="col-xs-12 col-sm-12">
             <div className="filter-btn-wrap">
-              <button className={`filter-btn ${chosenFacets.length > 0 ? 'filtered' : ''}`} onClick={ this.handleOpenFilterMenu }>
+              <button type="button" className={`filter-btn ${chosenFacets.length > 0 ? 'filtered' : ''}`} onClick={this.handleOpenFilterMenu}>
                 Filter
                 <span className="check-icon" />
               </button>
@@ -178,7 +178,7 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
             <div className={`${showFilterMobileMenu ? 'show-filter-mobile-menu' : ''} card-stack`} id="accordion">
               <div className="close-filter-mobile-menu-wrap">
                 <h2>Filter</h2>
-                <button className="close-filter-mobile-menu" onClick={ this.handleCloseFilterMenu } />
+                <button type="button" className="close-filter-mobile-menu" onClick={this.handleCloseFilterMenu} />
               </div>
               <div className="facets-container">
                 {this.renderFacets()}
