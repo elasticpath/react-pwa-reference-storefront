@@ -381,6 +381,8 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       featuredProductAttribute,
       hideAddToBagButton,
       itemDetailLink,
+      onConfiguratorAddToCart,
+      onRemove,
     } = this.props;
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
@@ -532,7 +534,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
                 {intl.get('configure-bundle')}
               </span>
             </button>
-            <AppModalBundleConfigurationMain key={`app-modal-bundle-configuration-main_${itemCodeString}`} handleModalClose={this.handleModalClose} bundleConfigurationItems={item} openModal={openModal} itemDetailLink={itemDetailLink} onItemConfiguratorAddToCart={this.props.onConfiguratorAddToCart} onItemRemove={this.props.onRemove}/>
+            <AppModalBundleConfigurationMain key={`app-modal-bundle-configuration-main_${itemCodeString}`} handleModalClose={this.handleModalClose} bundleConfigurationItems={item} openModal={openModal} itemDetailLink={itemDetailLink} onItemConfiguratorAddToCart={onConfiguratorAddToCart} onItemRemove={onRemove} />
           </div>
         ) : ('')
         }
