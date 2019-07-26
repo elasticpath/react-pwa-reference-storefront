@@ -316,5 +316,6 @@
   "legal-name": "Legal Name",
   "edit-account": "Edit Account",
   "copy-to-clipboard": "Copy to clipboard",
-  "copied": "Copied"
+  "copied": "Copied",
+  "filter": "Filter"
 }
