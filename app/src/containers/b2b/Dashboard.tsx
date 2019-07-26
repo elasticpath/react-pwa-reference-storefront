@@ -1,6 +1,6 @@
 
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -400,7 +400,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                     </thead>
                     <tbody>
                       {accounts.map(account => (
-                        <tr key={account.externalId} className="account-list-rows">
+                        <tr key={account.externalId} onClick={() => { history.push(`/b2b/account/${account.uri}`); }} className="account-list-rows">
                           <td className="name">{account.name}</td>
                           <td className="external-id">{account.externalId}</td>
                           <td className="status">
