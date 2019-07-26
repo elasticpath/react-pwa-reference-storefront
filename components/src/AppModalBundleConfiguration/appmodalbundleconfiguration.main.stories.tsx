@@ -25,7 +25,7 @@ import bundleLineItem from './MockHttpResponses/GET/bundleLineItem_response.json
 
 import AppModalBundleConfigurationMain from './appmodalbundleconfiguration.main';
 
-import { mockAppModalBundleConfigurationMain } from './appModalBundleConfiguration.main.api.mock';
+import mockAppModalBundleConfigurationMain from './appModalBundleConfiguration.main.api.mock';
 
 const isOpenModal = true;
 

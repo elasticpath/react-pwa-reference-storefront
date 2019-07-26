@@ -29,14 +29,14 @@ function mockLoginResponse(mockObj) {
   );
 }
 
-function mockFetchDependantItemData(fetchMock) {
-  fetchMock.get(
+function mockFetchDependantItemData(mockObj) {
+  mockObj.get(
     /(.*)\/cortex\/carts\/[a-zA-Z0-9_]*\/(.*)/,
     mockFetchDependantItemDataResponse,
   );
 }
 
-export function mockAppModalBundleConfigurationMain() {
+export default function mockAppModalBundleConfigurationMain() {
   fetchMock.restore();
   mockLoginResponse(fetchMock);
   mockFetchDependantItemData(fetchMock);
