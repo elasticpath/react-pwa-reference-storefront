@@ -37,10 +37,10 @@
         +label {
           &:before {
             background-color: @backgroundColor;
-            border-color: @mainBlueColor;
+            border-color: @mainComplimentColor;
           }
           &:after {
-            border: solid 2px @mainBlueColor;
+            border: solid 2px @mainComplimentColor;
             border-right: none;
             border-top: none;
           }
@@ -96,7 +96,7 @@
       width: 133px;
     }
     &.cancel {
-      color: @mainBlueColor;
+      color: @mainComplimentColor;
       margin-right: 10px;
       @media (min-width: 576px) {
         margin-right: 20px;
@@ -109,13 +109,13 @@
       }
     }
     &.upload {
-      background-color: @mainBlueColor;
+      background-color: @mainComplimentColor;
       color: @backgroundColor;
       &:hover {
-        background-color: lighten(@mainBlueColor, 3%);
+        background-color: lighten(@mainComplimentColor, 3%);
       }
       &:active {
-        background-color: lighten(@mainBlueColor, -5%);
+        background-color: lighten(@mainComplimentColor, -5%);
       }
     }
   }

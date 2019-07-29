@@ -183,12 +183,12 @@ body {
   outline: 0;
   transition: 0.1s;
   background-color: #fff;
-  border: 1px solid @mainBlueColor;
-  color: @mainBlueColor;
+  border: 1px solid @mainComplimentColor;
+  color: @mainComplimentColor;
   cursor: pointer;
 
   &:hover {
-    background-color: @mainBlueColor;
+    background-color: @mainComplimentColor;
     color: #fff;
   }
 
@@ -201,8 +201,8 @@ body {
   }
 
   &:disabled {
-    color: lighten(@mainBlueColor, 25%);
-    border-color: lighten(@mainBlueColor, 25%);
+    color: lighten(@mainComplimentColor, 25%);
+    border-color: lighten(@mainComplimentColor, 25%);
     cursor: default;
 
     &:hover {
@@ -218,7 +218,7 @@ body {
   &.primary {
     border: 0;
     color: #fff;
-    background-color: @mainBlueColor;
+    background-color: @mainComplimentColor;
 
     &:focus {
       outline: 2px solid #007bff80;
@@ -230,7 +230,7 @@ body {
 
     &:disabled {
       cursor: default;
-      background-color: lighten(@mainBlueColor, 25%);
+      background-color: lighten(@mainComplimentColor, 25%);
       outline: 0;
     }
   }
