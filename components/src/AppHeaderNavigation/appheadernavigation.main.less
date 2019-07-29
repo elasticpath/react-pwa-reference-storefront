@@ -97,6 +97,11 @@
     }
     .dropdown-menu {
       text-align: center;
+      .dropdown-item {
+        &:hover {
+          background-color: #e2e2e2!important;
+        }
+      }
     }
 
     /** Colors of each level of mobile/tablet dropdown **/
@@ -194,7 +199,7 @@
           }
 
           &:hover {
-            background-color: #e2e2e2;
+            background-color: @mainColor;
           }
 
           &:active {
