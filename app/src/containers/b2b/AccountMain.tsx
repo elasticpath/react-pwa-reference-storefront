@@ -28,7 +28,7 @@ import { login } from '../../utils/AuthService';
 import EditAccount from './EditAccount';
 import EditAssociate from './EditAssociate';
 import AddSubAccount from './AddSubAccount';
-import SubAccountList from './SubAccountList';
+import AccountList from './AccountList';
 import * as Config from '../../ep.config.json';
 
 import './AccountMain.less';
@@ -283,6 +283,11 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
       selfSignUpCode,
       uri,
     };
+    const accountListData = {
+      status,
+      subAccounts,
+      mainAccountName,
+    };
 
     return (
       <div className="account-content-wrapper">
@@ -311,30 +316,7 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
               </div>
             </div>
             <div className="account-component">
-              <div key="account-tree-section" className="account-tree-section">
-                <div className="add-new-account-container">
-                  <button type="button" className="ep-btn primary small add-associate-button" onClick={() => this.handleAddSubAccountClicked()}>
-                    <span className="add-associate-icon" />
-                    {intl.get('add-sub-account')}
-                  </button>
-                </div>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-                <div className="account-tree-container" onClick={() => this.getAccountData()}>
-                  <div className="name">
-                    {mainAccountName}
-                  </div>
-                  <span className="status">
-                    <i className={`icons-status ${status.toLowerCase()}`} />
-                    {intl.get(status.toLowerCase())}
-                  </span>
-                </div>
-                {(subAccounts._element && subAccounts._element.length > 0) ? (
-                  <div className="sub-account-list-container">
-                    <SubAccountList getAccountData={this.subAccountData} subAccounts={subAccounts} />
-                  </div>
-                ) : ''}
-
-              </div>
+              <AccountList getAccountData={this.getAccountData} accountListData={accountListData} getSubAccountData={this.subAccountData} handleAddSubAccountClicked={this.handleAddSubAccountClicked} />
               <div className="associates-container">
                 <div className="add-associate-container">
                   <button type="button" className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
