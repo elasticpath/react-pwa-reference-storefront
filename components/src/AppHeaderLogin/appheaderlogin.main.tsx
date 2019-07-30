@@ -24,12 +24,10 @@ import { Link, withRouter } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
 import AppModalCartSelectMain from '../AppModalCartSelect/appmodalcartselect.main';
-import { logout } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { login, logout } from '../utils/AuthService';
+import { cortexFetch, adminFetch } from '../utils/Cortex';
 
 import './appheaderlogin.main.less';
-import { login } from '../utils/AuthService';
-import { adminFetch } from '../utils/Cortex';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
