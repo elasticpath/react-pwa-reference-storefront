@@ -19,6 +19,8 @@
  *
  */
 
+import packageJson from '../../package.json';
+
 export interface IEpConfig {
   cortexApi: {
     path: string,
@@ -117,7 +119,7 @@ let config: IConfig = {
 export function init(_config: IConfig) {
   return new Promise((resolve) => {
     config = Object.freeze(_config);
-    resolve();
+    resolve(packageJson.version);
   });
 }
 
