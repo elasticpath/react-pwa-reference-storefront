@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,7 +56,6 @@ export function cortexFetch(input, init): any {
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
         window.location.pathname = '/';
-        window.location.reload();
       }
       if (res.status >= 500) {
         if (window.location.href.indexOf('/maintenance') === -1) {
@@ -94,7 +93,6 @@ export function adminFetch(input, init): any {
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
         window.location.pathname = '/';
-        window.location.reload();
       }
       if (res.status >= 500) {
         if (window.location.href.indexOf('/maintenance') === -1) {

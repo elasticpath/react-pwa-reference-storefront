@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,8 @@ import { logout } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 
 import './appheaderlogin.main.less';
+import { login } from '../../../app/src/utils/AuthService';
+import { adminFetch } from '../../../app/src/utils/Cortex';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -53,6 +55,7 @@ interface AppHeaderLoginMainState {
     openModal: boolean,
     openCartModal: boolean,
     showForgotPasswordLink: boolean,
+    accountData: any,
 }
 
 // Array of zoom parameters to pass to Cortex
@@ -80,13 +83,16 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
         openModal: false,
         openCartModal: false,
         showForgotPasswordLink: false,
+        accountData: [],
       };
       this.handleModalClose = this.handleModalClose.bind(this);
+      this.getAccountData = this.getAccountData.bind(this);
     }
 
     componentDidMount() {
       if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
         this.handleCartModalOpen();
+        this.getAccountData();
       }
     }
 
@@ -117,6 +123,25 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
       });
     }
 
+    getAccountData() {
+      login().then(() => {
+        adminFetch('/?zoom=accounts', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          },
+        })
+          .then(res => res.json())
+          .then((res) => {
+            this.setState({ accountData: res });
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      });
+    }
+
     fetchPasswordResetData() {
       cortexFetch(`/?zoom=${zoomArray.join()}`,
         {
@@ -142,7 +167,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
         isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin,
       } = this.props;
       const {
-        openModal, openCartModal, showForgotPasswordLink,
+        openModal, openCartModal, showForgotPasswordLink, accountData,
       } = this.state;
       let keycloakLoginRedirectUrl = '';
       let keycloakLogoutRedirectUrl = '';
@@ -180,7 +205,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                       </div>
                     </Link>
                   </li>
-                  {(Config.b2b.enable && Config.b2b.dashboard) ? (
+                  {(Config.b2b.enable && accountData._accounts) ? (
                     <li className="dropdown-item">
                       <Link className="dashboard-link" to="/b2b">
                         <div>
