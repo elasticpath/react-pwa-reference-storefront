@@ -320,5 +320,7 @@
   "edit-account": "Edit Account",
   "copy-to-clipboard": "Copy to clipboard",
   "copied": "Copied",
-  "filter": "Filter"
+  "filter": "Filter",
+  "app-version": "App version",
+  "components-version": "Components version"
 }

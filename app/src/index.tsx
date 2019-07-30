@@ -33,6 +33,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@elasticpath/store-components/src/style/style.less';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
+import packageJson from '../package.json';
+
 const locales = {};
 epConfig.supportedLocales.forEach((locale) => {
   // eslint-disable-next-line import/no-dynamic-require, global-require
@@ -50,9 +52,18 @@ intl.init({
       config: epConfig,
       intl,
     })
-      .then(() => {
-        ReactDOM.render(<App />, document.getElementById('root'));
-
+      .then((componentsVersion) => {
+        ReactDOM.render(
+          <div>
+            {/* eslint-disable-next-line react/style-prop-object */}
+            <div className="version" style={{ display: 'none' }}>
+              <span>{ `${intl.get('app-version')}: ${packageJson.version}` }</span>
+              <span>{ `${intl.get('components-version')}: ${componentsVersion}` }</span>
+            </div>
+            <App />
+          </div>,
+          document.getElementById('root'),
+        );
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
             // eslint-disable-next-line no-console
