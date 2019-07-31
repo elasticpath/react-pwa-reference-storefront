@@ -130,7 +130,7 @@ export default class AccountList extends React.Component<AccountMainState, Accou
             </div>
             {(accountListData.subAccounts._element && accountListData.subAccounts._element.length > 0) ? (
               <div className="sub-account-list-container">
-                <SubAccountList getAccountData={this.handleAccount} subAccounts={accountListData.subAccounts} />
+                <SubAccountList getAccountData={this.handleAccount} subAccounts={accountListData.subAccounts} accountName={accountName} />
               </div>
             ) : ''}
           </div>

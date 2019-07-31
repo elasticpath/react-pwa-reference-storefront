@@ -39,6 +39,7 @@ interface SubAccountListState {
     subAccountData: any,
     isLoading: boolean,
     subAccountOpened: boolean,
+    accountName: string,
 }
 
 const zoom = [
@@ -146,14 +147,14 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
   }
 
   render() {
-    const { accountData, handleAccount } = this.props;
+    const { accountData, handleAccount, accountName } = this.props;
     const { subAccounts, isLoading, subAccountOpened } = this.state;
 
     return (
       <div key={accountData['external-id']}>
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
-          className={`sub-account ${!subAccountOpened ? '' : 'hide-sub-accounts'}`}
+          className={`sub-account ${!subAccountOpened ? '' : 'hide-sub-accounts'} ${accountName === accountData.name ? 'highlighted' : ''}`}
           onClick={() => this.handleAccountData(accountData)}
           onKeyPress={() => this.handleAccountData(accountData)}
         >
