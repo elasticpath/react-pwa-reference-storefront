@@ -17,6 +17,9 @@
     @media (min-width: 576px) {
       padding: 20px 20px 30px;
     }
+    &.address-book-section {
+      padding: 0;
+    }
     &.section-1 {
       flex: 1 0;
     }
@@ -78,7 +81,11 @@
   .b2b-header {
     display: flex;
     align-items: center;
-    height: 100px;
+    min-height: 25px;
+
+    @media screen and (min-width: 992px) {
+      height: 100px;
+    }
     .page-title {
       display: none;
       flex: 1 0 auto;

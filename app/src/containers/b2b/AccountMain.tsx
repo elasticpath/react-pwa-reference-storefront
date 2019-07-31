@@ -147,6 +147,7 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
     this.handleAddSubAccountClose = this.handleAddSubAccountClose.bind(this);
     this.isEditAssociateClose = this.isEditAssociateClose.bind(this);
     this.subAccountData = this.subAccountData.bind(this);
+    this.getAccountData = this.getAccountData.bind(this);
   }
 
   componentDidMount() {
@@ -316,7 +317,7 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
               </div>
             </div>
             <div className="account-component">
-              <AccountList getAccountData={this.getAccountData} accountListData={accountListData} getSubAccountData={this.subAccountData} handleAddSubAccountClicked={this.handleAddSubAccountClicked} />
+              <AccountList getAccountData={this.getAccountData} accountListData={accountListData} getSubAccountData={this.subAccountData} handleAddSubAccountClicked={this.handleAddSubAccountClicked} accountName={accountName} />
               <div className="associates-container">
                 <div className="add-associate-container">
                   <button type="button" className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
@@ -333,7 +334,6 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
                       <th className="email">{intl.get('email')}</th>
                       <th className="roles">{intl.get('roles')}</th>
                       <th className="action">&nbsp;</th>
-                      <th className="arrow">&nbsp;</th>
                     </tr>
                   </thead>
                   <tbody>
