@@ -119,7 +119,7 @@ let config: IConfig = {
 export function init(_config: IConfig) {
   return new Promise((resolve) => {
     config = Object.freeze(_config);
-    resolve(packageJson.version);
+    resolve({ version: packageJson.version });
   });
 }
 
