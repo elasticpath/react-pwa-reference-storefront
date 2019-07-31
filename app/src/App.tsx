@@ -24,8 +24,10 @@ import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
   AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent,
 } from '@elasticpath/store-components';
-import routes from './routes';
+import intl from 'react-intl-universal';
+import packageJson from '../package.json';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
+import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 
@@ -117,41 +119,58 @@ const appModalLoginLinks = {
   registration: '/registration',
 };
 
-const Root = () => [
-  <FacebookChat key="FacebookChat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
-  <AppHeaderMain
-    key="AppHeaderMain"
-    onSearchPage={keywords => redirectToProfilePage(keywords)}
-    redirectToMainPage={redirectToMainPage}
-    checkedLocation={handlePathName()}
-    handleResetPassword={handleResetPassword}
-    onCurrencyChange={handleCurrencyChange}
-    onLocaleChange={handleLocaleChange}
-    onContinueCart={handleContinueCart}
-    onGoBack={handleGoBack}
-    locationSearchData={locationData}
-    isInStandaloneMode={isInStandaloneMode}
-    appHeaderLinks={appHeaderLinks}
-    appHeaderLoginLinks={appHeaderLoginLinks}
-    appHeaderNavigationLinks={appHeaderNavigationLinks}
-    appHeaderTopLinks={appHeaderTopLinks}
-    appModalLoginLinks={appModalLoginLinks}
-  />,
-  <div key="app-content" className="app-content">
-    <Switch>
-      {routes.map(route => (
-        <RouteWithSubRoutes key={route.path} {...route} />
-      ))}
-    </Switch>
-  </div>,
-  <AppFooterMain key="AppFooterMain" appFooterLinks={appFooterLinks} />,
-  <ChatComponent />,
-];
+const VersionContainer = (props) => {
+  const { appVersion, componentsVersion } = props;
+  return (
+    <div className="version" style={{ display: 'none' }}>
+      <span>{ `${intl.get('app-version')}: ${appVersion}` }</span>
+      <span>{ `${intl.get('components-version')}: ${componentsVersion}` }</span>
+    </div>
+  );
+};
+
+const Root = (props) => {
+  const { componentsData } = props;
+  return [
+    <VersionContainer componentsVersion={componentsData.version} appVersion={packageJson.version} />,
+    <FacebookChat key="FacebookChat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
+    <AppHeaderMain
+      key="AppHeaderMain"
+      onSearchPage={keywords => redirectToProfilePage(keywords)}
+      redirectToMainPage={redirectToMainPage}
+      checkedLocation={handlePathName()}
+      handleResetPassword={handleResetPassword}
+      onCurrencyChange={handleCurrencyChange}
+      onLocaleChange={handleLocaleChange}
+      onContinueCart={handleContinueCart}
+      onGoBack={handleGoBack}
+      locationSearchData={locationData}
+      isInStandaloneMode={isInStandaloneMode}
+      appHeaderLinks={appHeaderLinks}
+      appHeaderLoginLinks={appHeaderLoginLinks}
+      appHeaderNavigationLinks={appHeaderNavigationLinks}
+      appHeaderTopLinks={appHeaderTopLinks}
+      appModalLoginLinks={appModalLoginLinks}
+    />,
+    <div key="app-content" className="app-content">
+      <Switch>
+        {routes.map(route => (
+          <RouteWithSubRoutes key={route.path} {...route} />
+        ))}
+      </Switch>
+    </div>,
+    <AppFooterMain key="AppFooterMain" appFooterLinks={appFooterLinks} />,
+    <ChatComponent />,
+  ];
+};
 
 const App = withRouter(withAnalytics(Root));
-const AppWithRouter = () => (
-  <Router>
-    <App />
-  </Router>
-);
+const AppWithRouter = (props) => {
+  const { componentsData } = props;
+  return (
+    <Router>
+      <App componentsData={componentsData} />
+    </Router>
+  );
+};
 export default AppWithRouter;

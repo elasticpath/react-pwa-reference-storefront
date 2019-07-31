@@ -50,9 +50,11 @@ intl.init({
       config: epConfig,
       intl,
     })
-      .then(() => {
-        ReactDOM.render(<App />, document.getElementById('root'));
-
+      .then((componentsData) => {
+        ReactDOM.render(
+          <App componentsData={componentsData} />,
+          document.getElementById('root'),
+        );
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
             // eslint-disable-next-line no-console

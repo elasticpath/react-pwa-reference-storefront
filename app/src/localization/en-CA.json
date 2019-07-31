@@ -321,5 +321,7 @@
   "copy-to-clipboard": "Copy to clipboard",
   "copied": "Copied",
   "filter": "Filter",
-  "choose-account": "Choose an account below"
+  "choose-account": "Choose an account below",
+  "app-version": "App version",
+  "components-version": "Components version"
 }
