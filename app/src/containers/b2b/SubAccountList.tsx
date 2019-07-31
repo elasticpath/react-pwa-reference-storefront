@@ -27,6 +27,7 @@ import SubAccountListItem from './SubAccountListItem';
 interface SubAccountListProps {
     subAccounts: any,
     getAccountData?: (data: any) => void,
+    accountName: string
 }
 
 
@@ -48,13 +49,13 @@ export default class SubAccountList extends React.Component<SubAccountListProps>
     }
 
     render() {
-      const { subAccounts } = this.props;
+      const { subAccounts, accountName } = this.props;
 
       return (
         <div className="sub-accounts-container">
           {subAccounts._element.map(element => (
             <div key={element.name}>
-              <SubAccountListItem handleAccount={this.handleAccount} accountData={element} />
+              <SubAccountListItem handleAccount={this.handleAccount} accountData={element} accountName={accountName} />
             </div>
           ))}
         </div>

@@ -34,10 +34,13 @@ interface AccountMainProps {
         status: string,
         subAccounts: any,
         mainAccountName: string,
-    }
+    },
+    accountName: string
 }
 
-interface AccountMainState {}
+interface AccountMainState {
+  showAccountsMobileMenu: boolean,
+}
 
 export default class AccountList extends React.Component<AccountMainState, AccountMainProps> {
     static defaultProps = {
@@ -47,8 +50,17 @@ export default class AccountList extends React.Component<AccountMainState, Accou
 
     constructor(props: any) {
       super(props);
+      this.state = {
+        showAccountsMobileMenu: false,
+      };
 
       this.handleAccount = this.handleAccount.bind(this);
+      this.handleOpenAccountsMobileMenu = this.handleOpenAccountsMobileMenu.bind(this);
+      this.handleCloseAccountsMobileMenu = this.handleCloseAccountsMobileMenu.bind(this);
+    }
+
+    componentDidMount() {
+      document.body.style.overflow = 'unset';
     }
 
     handleAccount(data) {
@@ -56,12 +68,25 @@ export default class AccountList extends React.Component<AccountMainState, Accou
       getSubAccountData(data);
     }
 
+    handleOpenAccountsMobileMenu() {
+      this.setState({ showAccountsMobileMenu: true });
+      document.body.style.overflow = 'hidden';
+    }
+
+    handleCloseAccountsMobileMenu() {
+      this.setState({ showAccountsMobileMenu: false });
+      document.body.style.overflow = 'unset';
+    }
+
     render() {
       const {
         getAccountData,
         handleAddSubAccountClicked,
         accountListData,
+        accountName,
       } = this.props;
+
+      const { showAccountsMobileMenu } = this.state;
 
       return (
         <div key="account-tree-section" className="account-tree-section">
@@ -71,22 +96,44 @@ export default class AccountList extends React.Component<AccountMainState, Accou
               {intl.get('add-sub-account')}
             </button>
           </div>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-          <div className="account-tree-container" onClick={getAccountData}>
-            <div className="name">
-              {accountListData.mainAccountName}
-            </div>
-            <span className="status">
-              <i className={`icons-status ${accountListData.status.toLowerCase()}`} />
-              {intl.get(accountListData.status.toLowerCase())}
-            </span>
+          <div className="mobile-account-selector-container">
+            <h4 className="title">
+              {intl.get('account')}
+            </h4>
+            <button type="button" className="account-selector" onClick={this.handleOpenAccountsMobileMenu}>
+              {accountName}
+            </button>
           </div>
-          {(accountListData.subAccounts._element && accountListData.subAccounts._element.length > 0) ? (
-            <div className="sub-account-list-container">
-              <SubAccountList getAccountData={this.handleAccount} subAccounts={accountListData.subAccounts} />
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+          <div className={`${showAccountsMobileMenu ? 'show-account-tree-mobile-menu' : ''} account-tree-component`}>
+            <div className="mobile-account-tree-header">
+              <div className="mobile-header">
+                <h4>
+                  {intl.get('account')}
+                </h4>
+                <button type="button" className="ep-btn primary small save-btn" onClick={this.handleCloseAccountsMobileMenu}>
+                  {intl.get('save')}
+                </button>
+              </div>
+              <p>
+                {intl.get('choose-account')}
+              </p>
             </div>
-          ) : ''}
-
+            <div className="account-tree-container" role="presentation" onClick={getAccountData}>
+              <div className="name">
+                {accountListData.mainAccountName}
+              </div>
+              <span className="status">
+                <i className={`icons-status ${accountListData.status.toLowerCase()}`} />
+                {intl.get(accountListData.status.toLowerCase())}
+              </span>
+            </div>
+            {(accountListData.subAccounts._element && accountListData.subAccounts._element.length > 0) ? (
+              <div className="sub-account-list-container">
+                <SubAccountList getAccountData={this.handleAccount} subAccounts={accountListData.subAccounts} accountName={accountName} />
+              </div>
+            ) : ''}
+          </div>
         </div>
       );
     }

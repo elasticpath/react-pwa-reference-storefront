@@ -34,10 +34,18 @@
   .am-columns {
     display: flex;
 
+    @media (max-width: 575px) {
+      display: block;
+    }
     .am-field-editor {
       width: 50%;
       margin-right: 30px;
       position: relative;
+
+      @media (max-width: 575px) {
+        width: 100%;
+        margin-right: 0;
+      }
 
       .field-editor-input {
         width: 100%;
