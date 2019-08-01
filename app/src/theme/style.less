@@ -126,7 +126,7 @@ body {
   letter-spacing: 0.25px;
   background: @mainColor;
   border-radius: 0 13px 13px 0;
-  color: #fff;
+  color: @backgroundColor;
   z-index: 2;
 }
 
@@ -182,14 +182,14 @@ body {
   text-transform: uppercase;
   outline: 0;
   transition: 0.1s;
-  background-color: #fff;
+  background-color: @backgroundColor;
   border: 1px solid @mainComplimentColor;
   color: @mainComplimentColor;
   cursor: pointer;
 
   &:hover {
     background-color: @mainComplimentColor;
-    color: #fff;
+    color: @backgroundColor;
   }
 
   &:focus {
@@ -206,18 +206,18 @@ body {
     cursor: default;
 
     &:hover {
-      background-color: #fff;
+      background-color: @backgroundColor;
     }
 
     &:focus, &:active {
       outline: none;
-      background-color: #fff;
+      background-color: @backgroundColor;
     }
   }
 
   &.primary {
     border: 0;
-    color: #fff;
+    color: @backgroundColor;
     background-color: @mainComplimentColor;
 
     &:focus {
