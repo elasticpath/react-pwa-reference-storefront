@@ -35,7 +35,8 @@ interface AccountMainProps {
         subAccounts: any,
         mainAccountName: string,
     },
-    accountName: string
+    accountName: string,
+    registrationNumber: string,
 }
 
 interface AccountMainState {
@@ -84,6 +85,7 @@ export default class AccountList extends React.Component<AccountMainState, Accou
         handleAddSubAccountClicked,
         accountListData,
         accountName,
+        registrationNumber,
       } = this.props;
 
       const { showAccountsMobileMenu } = this.state;
@@ -130,7 +132,7 @@ export default class AccountList extends React.Component<AccountMainState, Accou
             </div>
             {(accountListData.subAccounts._element && accountListData.subAccounts._element.length > 0) ? (
               <div className="sub-account-list-container">
-                <SubAccountList getAccountData={this.handleAccount} subAccounts={accountListData.subAccounts} accountName={accountName} />
+                <SubAccountList getAccountData={this.handleAccount} subAccounts={accountListData.subAccounts} accountName={accountName} registrationNumber={registrationNumber} />
               </div>
             ) : ''}
           </div>
