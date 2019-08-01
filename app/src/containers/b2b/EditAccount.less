@@ -25,7 +25,7 @@
   }
   .b2b-dark-text {
     font-weight: 700;
-    color: @darkTextColor;
+    color: @firstTextColor;
     margin-bottom: 6px;
   }
   .dialog-content {
@@ -92,7 +92,7 @@
         width: 100%;
       }
       &.cancel {
-        color: @mainComplimentColor;
+        color: @firstComplimentColor;
         margin: 0 0 20px;
         @media (min-width: 576px) {
           margin: 0 20px 0 0;
@@ -105,16 +105,16 @@
         }
       }
       &.save {
-        background-color: @mainComplimentColor;
+        background-color: @firstComplimentColor;
         color: @backgroundColor;
         &:hover {
-          background-color: lighten(@mainComplimentColor, 3%);
+          background-color: lighten(@firstComplimentColor, 3%);
         }
         &:active {
-          background-color: lighten(@mainComplimentColor, -5%);
+          background-color: lighten(@firstComplimentColor, -5%);
         }
         &:disabled {
-          background-color: darken(@mainComplimentColor, 40%);
+          background-color: darken(@firstComplimentColor, 40%);
           opacity: .4;
           cursor: unset;
         }

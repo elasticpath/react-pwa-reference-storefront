@@ -14,8 +14,8 @@
     text-decoration: none;
     &.selected {
       font-weight: bold;
-      color: @mainComplimentColor !important;
-      border-left: 3px solid @mainComplimentColor;
+      color: @firstComplimentColor !important;
+      border-left: 3px solid @firstComplimentColor;
     }
   }
   &-title {
@@ -25,9 +25,9 @@
     min-height: 50px;
     padding: 0 25px;
     background: transparent;
-    border: 1px solid @borderColor;
-    border-left: 3px solid @mainComplimentColor;
-    color: @mainComplimentColor;
+    border: 1px solid @mainBorderColor;
+    border-left: 3px solid @firstComplimentColor;
+    color: @firstComplimentColor;
     font-weight: bold;
     text-align: left;
     &:focus {
@@ -35,8 +35,8 @@
     }
     &:before {
       content: "";
-      border-bottom: 2px solid @mainComplimentColor;
-      border-right: 2px solid @mainComplimentColor;
+      border-bottom: 2px solid @firstComplimentColor;
+      border-right: 2px solid @firstComplimentColor;
       height: 8px;
       width: 8px;
       position: absolute;
@@ -55,7 +55,7 @@
       top: 100%;
       left: 0;
       background: @backgroundColor;
-      border: 1px solid @borderColor;
+      border: 1px solid @mainBorderColor;
       &.hidden {
         display: none;
       }

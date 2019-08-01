@@ -6,13 +6,13 @@
     padding-top: 50px;
   }
   a {
-    color: @mainComplimentColor !important;
+    color: @firstComplimentColor !important;
   }
   .container {
     position: relative;
   }
   .b2b-section {
-    border: 1px solid @borderColor;
+    border: 1px solid @mainBorderColor;
     padding: 15px 15px 20px;
     @media (min-width: 576px) {
       padding: 20px 20px 30px;
@@ -45,11 +45,11 @@
   .b2b-table {
     width: 100%;
     thead {
-      background-color: @tableBackgroundColor;
+      background-color: @secondComplimentBackground;
       th {
         padding: 5px;
         vertical-align: middle;
-        color: @darkTextColor;
+        color: @firstTextColor;
         @media (min-width: 576px) {
           height: 50px;
           padding: 0 10px;
@@ -61,7 +61,7 @@
       }
     }
     tr {
-      border-bottom: 1px solid @tableBorderColor;
+      border-bottom: 1px solid @lightBorderColor;
       @media (min-width: 576px) {
         height: 50px;
       }
@@ -150,15 +150,15 @@
       padding-top: 20px;
       padding-bottom: 10px;
       font-weight: bold;
-      color: @darkTextColor;
+      color: @firstTextColor;
       a {
-        color: @mainComplimentColor;
+        color: @firstComplimentColor;
       }
     }
     .upload-title {
       padding-top: 20px;
       padding-bottom: 20px;
-      color: @darkTextColor;
+      color: @firstTextColor;
     }
     .chose-btn {
       display: none;
@@ -166,7 +166,7 @@
     @width: 150px;
     @margin: 24px;
     .chose-btn-label {
-      border: 1px solid @borderColor;
+      border: 1px solid @mainBorderColor;
       cursor: pointer;
       color: @mainTextColor;
       font-weight: bold;
@@ -177,7 +177,7 @@
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
 
       &:hover {
-        background-color: @complimentBackground;
+        background-color: @firstComplimentBackground;
       }
     }
     .chose-btn-message {
@@ -205,26 +205,26 @@
         width: 133px;
       }
       &.cancel {
-        color: @mainComplimentColor;
+        color: @firstComplimentColor;
         margin-right: 10px;
         @media (min-width: 576px) {
           margin-right: 20px;
         }
         &:hover {
-          color: lighten(@mainComplimentColor, 3%);
+          color: lighten(@firstComplimentColor, 3%);
         }
         &:active {
-          color: lighten(@mainComplimentColor, -3%);
+          color: lighten(@firstComplimentColor, -3%);
         }
       }
       &.upload {
-        background-color: @mainComplimentColor;
+        background-color: @firstComplimentColor;
         color: @backgroundColor;
         &:hover {
-          background-color: lighten(@mainComplimentColor, 3%);
+          background-color: lighten(@firstComplimentColor, 3%);
         }
         &:active {
-          background-color: lighten(@mainComplimentColor, -5%);
+          background-color: lighten(@firstComplimentColor, -5%);
         }
       }
     }
