@@ -32,6 +32,8 @@ import SubAccountList from './SubAccountList';
 interface SubAccountListProps {
     accountData: any,
     handleAccount: (data: any) => void,
+    accountName: string,
+    registrationNumber: string,
 }
 
 interface SubAccountListState {
@@ -40,6 +42,7 @@ interface SubAccountListState {
     isLoading: boolean,
     subAccountOpened: boolean,
     accountName: string,
+    highlight: boolean,
 }
 
 const zoom = [
@@ -98,6 +101,7 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
       subAccountData: {},
       isLoading: false,
       subAccountOpened: false,
+      highlight: false,
     };
 
     this.handleAccountData = this.handleAccountData.bind(this);
@@ -139,6 +143,7 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
     const { subAccountData } = this.state;
     const { handleAccount } = this.props;
 
+    this.setState({ highlight: true });
     if (subAccountData.name) {
       handleAccount(subAccountData);
     } else {
@@ -147,14 +152,24 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
   }
 
   render() {
-    const { accountData, handleAccount, accountName } = this.props;
-    const { subAccounts, isLoading, subAccountOpened } = this.state;
+    const {
+      accountData,
+      handleAccount,
+      accountName,
+      registrationNumber,
+    } = this.props;
+    const {
+      subAccounts,
+      isLoading,
+      subAccountOpened,
+      highlight,
+    } = this.state;
 
     return (
       <div key={accountData['external-id']}>
         {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
-          className={`sub-account ${!subAccountOpened ? '' : 'hide-sub-accounts'} ${accountName === accountData.name ? 'highlighted' : ''}`}
+          className={`sub-account ${!subAccountOpened ? '' : 'hide-sub-accounts'} ${(accountName === accountData.name && accountData['registration-id'] === registrationNumber && highlight) ? 'highlighted' : ''}`}
           onClick={() => this.handleAccountData(accountData)}
           onKeyPress={() => this.handleAccountData(accountData)}
         >
@@ -181,7 +196,7 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
           </span>
         </div>
         <div className={`margin-left ${!subAccountOpened ? 'hide-sub-account' : ''}`}>
-          {subAccounts._element && <SubAccountList subAccounts={subAccounts} getAccountData={handleAccount} /> }
+          {subAccounts._element && <SubAccountList subAccounts={subAccounts} getAccountData={handleAccount} accountName={accountName} registrationNumber={registrationNumber} /> }
         </div>
       </div>
     );

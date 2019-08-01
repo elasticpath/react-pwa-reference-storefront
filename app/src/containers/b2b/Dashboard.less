@@ -146,7 +146,7 @@
     .account-list-rows {
       cursor: pointer;
        &:hover {
-         background-color: @complimentGrey;
+         background-color: #E1F0F7;
        }
 
       @media (max-width: @mobileWidth) {
@@ -199,6 +199,11 @@
         transform: rotate(45deg);
         top: 3px;
         right: 5px;
+      }
+      &:hover {
+        &:before {
+          border-color: @mainTextColor;
+        }
       }
     }
     @media (max-width: 575px) {
