@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@
  *
  *
  */
+
+import packageJson from '../../package.json';
 
 export interface IEpConfig {
   cortexApi: {
@@ -117,7 +119,7 @@ let config: IConfig = {
 export function init(_config: IConfig) {
   return new Promise((resolve) => {
     config = Object.freeze(_config);
-    resolve();
+    resolve({ version: packageJson.version });
   });
 }
 

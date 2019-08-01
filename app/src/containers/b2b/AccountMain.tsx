@@ -1,6 +1,6 @@
 
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,8 @@ import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import EditAccount from './EditAccount';
 import EditAssociate from './EditAssociate';
+import AddSubAccount from './AddSubAccount';
+import AccountList from './AccountList';
 import * as Config from '../../ep.config.json';
 
 import './AccountMain.less';
@@ -36,8 +38,34 @@ const accountZoomArray = [
   'statusinfo',
   'statusinfo:status',
   'subaccounts',
-  'subaccounts:account',
-  'subaccounts:account:subaccounts',
+  'subaccounts:element',
+  'subaccounts:element:subaccounts',
+  'subaccounts:element:subaccounts:element',
+  'subaccounts:element:statusinfo',
+  'subaccounts:element:statusinfo:status',
+  'subaccounts:element:associateroleassignments',
+  'subaccounts:element:associateroleassignments:element',
+  'subaccounts:element:associateroleassignments:element',
+  'subaccounts:element:associateroleassignments:element:associate',
+  'subaccounts:element:associateroleassignments:element:associate:primaryemail',
+  'subaccounts:element:associateroleassignments:element:roleinfo',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:description',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selectaction',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selector',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:choice',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:description',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selectaction',
+  'subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selector',
+  'subaccounts:element:associateroleassignments:element:roleinfo:roles',
+  'subaccounts:element:associateroleassignments:element:roleinfo:roles:element',
+  'subaccounts:element:associateroleassignments:associateform',
+  'subaccounts:element:associateroleassignments:associateform:addassociateaction',
+  'subaccounts:element:subaccounts:accountform',
+  'subaccounts:element:subaccounts:element:subaccounts:element',
+  'subaccounts:element:subaccounts:element:statusinfo',
+  'subaccounts:element:subaccounts:element:statusinfo:status',
   'subaccounts:accountform',
   'associateroleassignments',
   'associateroleassignments:element',
@@ -62,19 +90,26 @@ interface AccountMainState {
   isLoading: boolean,
   isEditAssociateOpen: boolean,
   legalName: string,
-  name: string,
+  accountName: string,
+  mainAccountName: string,
   status: string,
   isSettingsDialogOpen: boolean,
+  isAddSubAccountOpen: boolean,
   externalId: string,
   registrationNumber: string,
   selfSignUpCode: string,
   uri: string,
   selector: string,
+  associateEditEmail: string,
   associates: {
     [key: string]: any
   },
   userEmail: string,
-  associateEditEmail: string
+  isAddAssociateOpen: boolean,
+  addAssociateUri: string,
+  addSubAccountUri: string,
+  editSubAccountUri: string,
+  subAccounts: any,
 }
 
 export default class AccountMain extends React.Component<RouteComponentProps, AccountMainState> {
@@ -83,26 +118,40 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
     this.state = {
       isLoading: true,
       isEditAssociateOpen: false,
-      name: '',
+      isAddAssociateOpen: false,
+      legalName: '',
+      accountName: '',
+      mainAccountName: '',
       status: '',
       isSettingsDialogOpen: false,
+      isAddSubAccountOpen: false,
       externalId: '',
       registrationNumber: '',
       selfSignUpCode: '',
-      uri: '',
       selector: '',
       associates: {},
       userEmail: '',
-      legalName: '',
       associateEditEmail: '',
+      addAssociateUri: '',
+      addSubAccountUri: '',
+      editSubAccountUri: '',
+      subAccounts: {},
     };
 
-    this.getAccountData();
     this.handleAccountSettingsClose = this.handleAccountSettingsClose.bind(this);
     this.handleAccountSettingsClicked = this.handleAccountSettingsClicked.bind(this);
     this.handleAccountSettingsUpdate = this.handleAccountSettingsUpdate.bind(this);
     this.handleEditAssociateClicked = this.handleEditAssociateClicked.bind(this);
+    this.handleAddAssociateClicked = this.handleAddAssociateClicked.bind(this);
+    this.handleAddSubAccountClicked = this.handleAddSubAccountClicked.bind(this);
+    this.handleAddSubAccountClose = this.handleAddSubAccountClose.bind(this);
     this.isEditAssociateClose = this.isEditAssociateClose.bind(this);
+    this.subAccountData = this.subAccountData.bind(this);
+    this.getAccountData = this.getAccountData.bind(this);
+  }
+
+  componentDidMount() {
+    this.getAccountData();
   }
 
   getAccountData() {
@@ -130,16 +179,20 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
           const accounts = res[0];
           const profile = res[1];
           this.setState({
-            name: accounts.name,
+            accountName: accounts.name,
+            mainAccountName: accounts.name,
             externalId: accounts['external-id'],
             registrationNumber: accounts['registration-id'],
             isLoading: false,
             legalName: accounts['legal-name'],
-            associates: accounts._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0] })),
+            associates: accounts._associateroleassignments[0]._element ? accounts._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0] })) : [],
             status: accounts._statusinfo[0]._status[0].status,
-            selfSignUpCode: accounts._selfsignupinfo[0]['self-signup-code'],
-            uri: accountUri,
+            editSubAccountUri: accounts.self.uri,
+            selfSignUpCode: accounts._selfsignupinfo ? accounts._selfsignupinfo[0]['self-signup-code'] : '',
             userEmail: profile._myprofile[0]._primaryemail[0].email,
+            addAssociateUri: accounts._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
+            addSubAccountUri: accounts._subaccounts[0]._accountform[0].self.uri,
+            subAccounts: accounts._subaccounts[0],
           });
         })
         .catch(() => {
@@ -149,6 +202,19 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
       .catch(() => {
         this.setState({ isLoading: false });
       });
+  }
+
+  subAccountData(data) {
+    this.setState({
+      accountName: data.name,
+      externalId: data['external-id'],
+      registrationNumber: data['registration-id'],
+      legalName: data['legal-name'],
+      associates: data._associateroleassignments[0]._element ? data._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0] })) : [],
+      addAssociateUri: data._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
+      addSubAccountUri: data._subaccounts[0]._accountform[0].self.uri,
+      editSubAccountUri: data.self.uri,
+    });
   }
 
   handleAccountSettingsClicked() {
@@ -163,25 +229,46 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
     this.getAccountData();
   }
 
+  handleAddSubAccountClicked() {
+    this.setState({ isAddSubAccountOpen: true });
+  }
+
+  handleAddSubAccountClose() {
+    this.setState({ isAddSubAccountOpen: false });
+  }
+
   handleEditAssociateClicked(selector, associateEditEmail) {
     this.setState({ isEditAssociateOpen: true, selector, associateEditEmail });
   }
 
+  handleAddAssociateClicked() {
+    this.setState({ isEditAssociateOpen: true, isAddAssociateOpen: true });
+  }
+
   isEditAssociateClose() {
-    this.setState({ isEditAssociateOpen: false });
+    this.setState({
+      isEditAssociateOpen: false, associateEditEmail: '', selector: '', isAddAssociateOpen: false,
+    });
   }
 
   render() {
     const {
       isLoading,
-      name,
+      accountName,
       status,
       associates,
       isSettingsDialogOpen,
+      isAddSubAccountOpen,
       isEditAssociateOpen,
       selector,
       associateEditEmail,
       userEmail,
+      addAssociateUri,
+      addSubAccountUri,
+      editSubAccountUri,
+      isAddAssociateOpen,
+      subAccounts,
+      mainAccountName,
       legalName,
       externalId,
       registrationNumber,
@@ -189,13 +276,18 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
       uri,
     } = this.state;
 
-    const accountProps = {
-      name,
+    const editAccountData = {
+      name: accountName,
       legalName,
       externalId,
       registrationNumber,
       selfSignUpCode,
       uri,
+    };
+    const accountListData = {
+      status,
+      subAccounts,
+      mainAccountName,
     };
 
     return (
@@ -203,11 +295,11 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
         {isLoading ? (
           <div className="loader" />
         ) : (
-          <div className="account-component">
+          <div>
             <div key="account-header" className="account-header">
               <Link className="back-link" to="/b2b">
                 <div className="back-arrow" />
-                {intl.get('back-to-dashboard')}
+                {intl.get('back')}
               </Link>
               <div className="name-container">
                 <Link className="back-link-mobile" to="/b2b">
@@ -215,74 +307,93 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
                   {intl.get('back')}
                 </Link>
                 <div className="name">
-                  {name}
-                  <span className="status">
-                    <i className={`icons-status ${status.toLowerCase()}`} />
-                    {intl.get(status.toLowerCase())}
-                  </span>
+                  {accountName}
                 </div>
-                <button className="settings" type="button" onClick={this.handleAccountSettingsClicked}>
+                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                <div className="settings" onClick={this.handleAccountSettingsClicked}>
                   <div className="setting-icons" />
                   <span className="settings-title">{intl.get('account-settings')}</span>
-                </button>
+                </div>
               </div>
             </div>
-            <div className="associates-container">
-              <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
-                <thead>
-                  <tr>
-                    <th className="name-email">{intl.get('name-and-email')}</th>
-                    <th className="name">{intl.get('name')}</th>
-                    <th className="email">{intl.get('email')}</th>
-                    <th className="roles">{intl.get('roles')}</th>
-                    <th className="action">&nbsp;</th>
-                    <th className="arrow">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {associates.length === 0 && (
-                    <tr><td>{intl.get('account-no-associates')}</td></tr>
-                  )}
-                  {associates.map(associate => (
-                    <tr key={associate.associate._primaryemail[0].email} className="associates-table-row">
-                      <td className="name">
-                        <div className="name-part">{associate.associate.name}</div>
-                      </td>
-                      <td className="email">
-                        <div className="email-part">{associate.associate._primaryemail[0].email}</div>
-                      </td>
-                      <td className="name-email">
-                        <div className="name-part">{associate.associate.name}</div>
-                        <div className="email-part">{associate.associate._primaryemail[0].email}</div>
-                      </td>
-                      <td className="roles">
-                        {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
-                      </td>
-                      <td className="action">
-                        <button className="edit-associate" type="button" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associate.associate._primaryemail[0].email)} />
-                        {/* <button className="delete-associate" /> */}
-                      </td>
+            <div className="account-component">
+              <AccountList getAccountData={this.getAccountData} accountListData={accountListData} getSubAccountData={this.subAccountData} handleAddSubAccountClicked={this.handleAddSubAccountClicked} accountName={accountName} registrationNumber={registrationNumber} />
+              <div className="associates-container">
+                <div className="add-associate-container">
+                  <button type="button" className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
+                    <span className="add-associate-icon" />
+                    {intl.get('add-associate')}
+                  </button>
+                </div>
+                <h3 className="title-associate-table">{intl.get('associates')}</h3>
+                <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
+                  <thead>
+                    <tr>
+                      <th className="name-email">{intl.get('name-and-email')}</th>
+                      <th className="name">{intl.get('name')}</th>
+                      <th className="email">{intl.get('email')}</th>
+                      <th className="roles">{intl.get('roles')}</th>
+                      <th className="action">&nbsp;</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {associates.length === 0 && (
+                    <tr><td>{intl.get('account-no-associates')}</td></tr>
+                    )}
+                    {associates.map((associate) => {
+                      const associateEmail = associate.associate._primaryemail[0].email;
+                      return (
+                        <tr key={associateEmail} className="associates-table-row">
+                          <td className="name">
+                            <div className="name-part">{associate.associate.name}</div>
+                          </td>
+                          <td className="email">
+                            <div className="email-part">{associateEmail}</div>
+                          </td>
+                          <td className="name-email">
+                            <div className="name-part">{associate.associate.name}</div>
+                            <div className="email-part">{associateEmail}</div>
+                          </td>
+                          <td className="roles">
+                            {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
+                          </td>
+                          <td className="action">
+                            <button type="button" className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)} />
+                            {/* <button className="delete-associate" /> */}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
 
-            <EditAccount
-              handleClose={this.handleAccountSettingsClose}
-              handleUpdate={this.handleAccountSettingsUpdate}
-              isOpen={isSettingsDialogOpen}
-              accountData={accountProps}
-            />
-            <EditAssociate
-              handleClose={this.isEditAssociateClose}
-              handleUpdate={this.handleAccountSettingsUpdate}
-              accountName={name}
-              rolesSelector={selector}
-              isSelf={associateEditEmail === userEmail}
-              associateEmail={associateEditEmail}
-              isOpen={isEditAssociateOpen}
-            />
+              <EditAccount
+                handleClose={this.handleAccountSettingsClose}
+                handleUpdate={this.handleAccountSettingsUpdate}
+                isOpen={isSettingsDialogOpen}
+                accountData={editAccountData}
+                editSubAccountUri={editSubAccountUri}
+              />
+              <EditAssociate
+                handleClose={this.isEditAssociateClose}
+                handleUpdate={this.handleAccountSettingsUpdate}
+                accountName={mainAccountName}
+                subAccountName={accountName}
+                rolesSelector={selector}
+                isSelf={associateEditEmail === userEmail}
+                associateEmail={associateEditEmail}
+                isOpen={isEditAssociateOpen}
+                isAddAssociateOpen={isAddAssociateOpen}
+                addAssociateUri={addAssociateUri}
+              />
+              <AddSubAccount
+                handleClose={this.handleAddSubAccountClose}
+                handleUpdate={this.handleAccountSettingsUpdate}
+                isOpen={isAddSubAccountOpen}
+                addSubAccountUri={addSubAccountUri}
+              />
+            </div>
           </div>
         )}
       </div>

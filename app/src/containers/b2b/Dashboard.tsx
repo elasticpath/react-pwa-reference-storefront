@@ -1,6 +1,6 @@
 
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,12 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import './Dashboard.less';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import userIcon from '../../images/header-icons/account-icon-blue.svg';
 import Config from '../../ep.config.json';
+
+import './Dashboard.less';
 
 interface DashboardState {
   admins: any,
@@ -191,19 +192,37 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
             },
+            body: JSON.stringify({ keywords: searchAccounts, page: '1', 'page-size': '10' }),
           })
-            .then(searchResult => searchResult.json())
-            .then((searchResult) => {
-              if (searchResult && searchResult._element) {
-                const accounts = searchResult._element.map(account => ({
-                  name: account.name,
-                  externalId: account['external-id'],
-                  status: account._statusinfo[0]._status[0].status.toLowerCase(),
-                }));
-                this.setState({ accounts, showSearchLoader: false, noSearchResults: false });
-              } else {
-                this.setState({ showSearchLoader: false, noSearchResults: true });
-              }
+            .then(res => res.json())
+            .then((res) => {
+              adminFetch(`${res.self.uri}?zoom=element,element:statusinfo:status`, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+                },
+              })
+                .then(searchResult => searchResult.json())
+                .then((searchResult) => {
+                  if (searchResult && searchResult._element) {
+                    const accounts = searchResult._element.map((account) => {
+                      const uri = account.self.uri.split('/').pop();
+                      return {
+                        name: account.name,
+                        externalId: account['external-id'],
+                        status: account._statusinfo[0]._status[0].status.toLowerCase(),
+                        uri,
+                      };
+                    });
+                    this.setState({ accounts, showSearchLoader: false, noSearchResults: false });
+                  } else {
+                    this.setState({ showSearchLoader: false, noSearchResults: true });
+                  }
+                })
+                .catch((error) => {
+                  // eslint-disable-next-line no-console
+                  console.error(error.message);
+                });
             })
             .catch((error) => {
               // eslint-disable-next-line no-console
@@ -225,6 +244,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
 
 
   render() {
+    const { history } = this.props;
     const {
       admins,
       defaultBillingAddress,
@@ -380,7 +400,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                     </thead>
                     <tbody>
                       {accounts.map(account => (
-                        <tr key={account.externalId}>
+                        <tr key={account.externalId} onClick={() => { history.push(`/b2b/account/${account.uri}`); }} className="account-list-rows">
                           <td className="name">{account.name}</td>
                           <td className="external-id">{account.externalId}</td>
                           <td className="status">

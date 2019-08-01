@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -81,7 +81,43 @@ const navigationFormZoomArray = [
   'offers:facets:element:facetselector:chosen:description',
   'offers:facets:element:facetselector:chosen:selector',
   'offers:facets:element:facetselector:chosen:selectaction',
+  'offers:sortattributes',
+  'offers:sortattributes:choice',
+  'offers:sortattributes:choice:description',
+  'offers:sortattributes:choice:selectaction',
+  'offers:sortattributes:choice:selector',
+  'offers:sortattributes:chosen',
+  'offers:sortattributes:chosen:description',
+  'offers:sortattributes:chosen:selectaction',
+  'offers:sortattributes:chosen:selector',
+  'offers:sortattributes:offersearchresult',
+  'featuredoffers',
+  'featuredoffers:element',
+  'featuredoffers:element:availability',
+  'featuredoffers:element:definition',
+  'featuredoffers:element:definition:assets:element',
+  'featuredoffers:element:price',
+  'featuredoffers:element:rate',
+  'featuredoffers:element:code',
+  'featuredoffers:element:items',
+  'featuredoffers:element:items:element',
+  'featuredoffers:element:items:element:availability',
+  'featuredoffers:element:items:element:definition',
+  'featuredoffers:element:items:element:definition:assets:element',
+  'featuredoffers:element:items:element:price',
+  'featuredoffers:element:items:element:rate',
+  'featuredoffers:element:items:element:code',
   'parent',
+  'sortattributes',
+  'sortattributes:choice',
+  'sortattributes:choice:description',
+  'sortattributes:choice:selectaction',
+  'sortattributes:choice:selector',
+  'sortattributes:chosen',
+  'sortattributes:chosen:description',
+  'sortattributes:chosen:selectaction',
+  'sortattributes:chosen:selector',
+  'sortattributes:offersearchresult',
 ];
 
 // Array of zoom parameters to pass to Cortex for itemDetails
@@ -196,6 +232,16 @@ const searchFormZoomArray = [
   'facets:element:facetselector:chosen:description',
   'facets:element:facetselector:chosen:selector',
   'facets:element:facetselector:chosen:selectaction',
+  'sortattributes',
+  'sortattributes:choice',
+  'sortattributes:choice:description',
+  'sortattributes:choice:selectaction',
+  'sortattributes:choice:selector',
+  'sortattributes:chosen',
+  'sortattributes:chosen:description',
+  'sortattributes:chosen:selectaction',
+  'sortattributes:chosen:selector',
+  'sortattributes:offersearchresult',
 ];
 
 // Array of zoom parameters to pass to Cortex for batches

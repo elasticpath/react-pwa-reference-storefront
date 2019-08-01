@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,9 +50,11 @@ intl.init({
       config: epConfig,
       intl,
     })
-      .then(() => {
-        ReactDOM.render(<App />, document.getElementById('root'));
-
+      .then((componentsData) => {
+        ReactDOM.render(
+          <App componentsData={componentsData} />,
+          document.getElementById('root'),
+        );
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
             // eslint-disable-next-line no-console

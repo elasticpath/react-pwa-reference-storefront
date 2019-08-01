@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ const COPIED_TIMEOUT_LENGTH = 4000;
 
 interface EditAccountProps {
   isOpen: boolean,
+  editSubAccountUri: string,
   handleClose: () => void,
   handleUpdate: () => void,
   accountData: {
@@ -94,7 +95,7 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
   }
 
   editAccount(event) {
-    const { accountData, handleClose, handleUpdate } = this.props;
+    const { handleClose, handleUpdate, editSubAccountUri } = this.props;
     const {
       name, legalName, externalId, registrationNumber,
     } = this.state;
@@ -102,7 +103,7 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
     event.preventDefault();
     this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(`/accounts/am/${accountData.uri}`, {
+      adminFetch(`${editSubAccountUri}`, {
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
@@ -159,7 +160,7 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
       >
         <div className="dialog-header">{intl.get('edit-account')}</div>
         <div className="dialog-content">
-          <form onSubmit={this.editAccount}>
+          <form onSubmit={this.editAccount} id="editAccount">
             <div className="b2b-form-row">
               <label htmlFor="name" className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('name')}</p>
@@ -180,33 +181,40 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
                 <input id="registration-number" className="b2b-input" value={registrationNumber || ''} onChange={this.changeHandler} name="registrationNumber" type="text" />
               </label>
             </div>
-            <div className="b2b-form-row">
-              <div className="b2b-form-col">
-                <p className="b2b-dark-text">{intl.get('self-sign-up-account-code')}</p>
-                {accountData.selfSignUpCode}
+            {accountData.selfSignUpCode && (
+              <div className="b2b-form-row">
+                <div className="b2b-form-col">
+                  <p className="b2b-dark-text">{intl.get('self-sign-up-account-code')}</p>
+                  {accountData.selfSignUpCode}
+                </div>
+                <div className="b2b-form-col">
+                  {isShowingCopied
+                    ? (
+                      <div className="b2b-copy">
+                        <img src={copiedIcon} alt="icon" />
+                        {intl.get('copied')}
+                      </div>
+                    )
+                    : (
+                      /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
+                      <div
+                        className="b2b-copy"
+                        onClick={() => this.copyToClipboard(accountData.selfSignUpCode)}
+                        onKeyDown={() => this.copyToClipboard(accountData.selfSignUpCode)}
+                      >
+                        <img src={clipboardIcon} alt="icon" />
+                        {intl.get('copy-to-clipboard')}
+                      </div>
+                    )
+                  }
+                </div>
               </div>
-              <div className="b2b-form-col">
-                {isShowingCopied
-                  ? (
-                    <button className="b2b-copy" type="button" onClick={() => this.copyToClipboard(accountData.selfSignUpCode)}>
-                      <img src={copiedIcon} alt="icon" />
-                      {intl.get('copied')}
-                    </button>
-                  )
-                  : (
-                    <button className="b2b-copy" type="button" onClick={() => this.copyToClipboard(accountData.selfSignUpCode)}>
-                      <img src={clipboardIcon} alt="icon" />
-                      {intl.get('copy-to-clipboard')}
-                    </button>
-                  )
-                }
-              </div>
-            </div>
-            <div className="dialog-footer">
-              <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
-              <button className="save" type="button" disabled={isLoading}>{intl.get('save')}</button>
-            </div>
+            )}
           </form>
+        </div>
+        <div className="dialog-footer">
+          <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
+          <button className="save" type="submit" disabled={isLoading} form="editAccount">{intl.get('save')}</button>
         </div>
       </Modal>
     );
