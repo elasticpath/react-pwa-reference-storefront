@@ -26,7 +26,7 @@ import AppHeaderNavigationMain from './appheadernavigation.main';
 
 storiesOf('AppHeaderNavigationMain', module)
   .add('AppHeaderNavigationMain', () => (
-    <div style={{ backgroundColor: '#040060' }}>
+    <div style={{ mainBackgroundColor: '#040060' }}>
       <MemoryRouter initialEntries={['/']}><AppHeaderNavigationMain isMobileView={false} isOffline={false} isOfflineCheck={() => {}} /></MemoryRouter>
     </div>
   ));

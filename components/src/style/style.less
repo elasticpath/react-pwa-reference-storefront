@@ -186,14 +186,14 @@ body {
   text-transform: uppercase;
   outline: 0;
   transition: 0.1s;
-  background-color: @backgroundColor;
+  background-color: @mainBackgroundColor;
   border: 1px solid @firstComplimentColor;
   color: @firstComplimentColor;
   cursor: pointer;
 
   &:hover {
     background-color: @firstComplimentColor;
-    color: @backgroundColor;
+    color: @mainBackgroundColor;
   }
 
   &:focus {
@@ -210,18 +210,18 @@ body {
     cursor: default;
 
     &:hover {
-      background-color: @backgroundColor;
+      background-color: @mainBackgroundColor;
     }
 
     &:focus, &:active {
       outline: none;
-      background-color: @backgroundColor;
+      background-color: @mainBackgroundColor;
     }
   }
 
   &.primary {
     border: 0;
-    color: @backgroundColor;
+    color: @mainBackgroundColor;
     background-color: @firstComplimentColor;
 
     &:focus {

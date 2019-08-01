@@ -26,7 +26,7 @@ import AppHeaderSearchMain from './appheadersearch.main';
 
 storiesOf('AppHeaderSearchMain', module)
   .add('AppHeaderSearchMain', () => (
-    <div style={{ backgroundColor: '#040060' }}>
+    <div style={{ mainBackgroundColor: '#040060' }}>
       <MemoryRouter initialEntries={['/']}><AppHeaderSearchMain isMobileView={false} isFocused /></MemoryRouter>
     </div>
   ));
