@@ -32,6 +32,7 @@ import SubAccountList from './SubAccountList';
 interface SubAccountListProps {
     accountData: any,
     handleAccount: (data: any) => void,
+    accountName: string,
 }
 
 interface SubAccountListState {
@@ -181,7 +182,7 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
           </span>
         </div>
         <div className={`margin-left ${!subAccountOpened ? 'hide-sub-account' : ''}`}>
-          {subAccounts._element && <SubAccountList subAccounts={subAccounts} getAccountData={handleAccount} /> }
+          {subAccounts._element && <SubAccountList subAccounts={subAccounts} getAccountData={handleAccount} accountName={accountName} /> }
         </div>
       </div>
     );

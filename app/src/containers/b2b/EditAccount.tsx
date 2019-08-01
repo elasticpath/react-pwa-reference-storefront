@@ -160,7 +160,7 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
       >
         <div className="dialog-header">{intl.get('edit-account')}</div>
         <div className="dialog-content">
-          <form onSubmit={this.editAccount}>
+          <form onSubmit={this.editAccount} id="editAccount">
             <div className="b2b-form-row">
               <label htmlFor="name" className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('name')}</p>
@@ -210,11 +210,11 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
                 </div>
               </div>
             )}
-            <div className="dialog-footer">
-              <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
-              <button className="save" type="submit" disabled={isLoading}>{intl.get('save')}</button>
-            </div>
           </form>
+        </div>
+        <div className="dialog-footer">
+          <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
+          <button className="save" type="submit" disabled={isLoading} form="editAccount">{intl.get('save')}</button>
         </div>
       </Modal>
     );

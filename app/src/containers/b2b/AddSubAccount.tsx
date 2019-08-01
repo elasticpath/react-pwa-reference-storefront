@@ -118,7 +118,7 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
       >
         <div className="dialog-header">{intl.get('add-sub-account')}</div>
         <div className="dialog-content">
-          <form onSubmit={this.addSubAccount}>
+          <form onSubmit={this.addSubAccount} id="subAccountsForm">
             <div className="b2b-form-row">
               <label htmlFor="name" className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('name')}</p>
@@ -139,11 +139,11 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
                 <input id="registration-number" className="b2b-input" value={registrationNumber || ''} onChange={this.changeHandler} name="registrationNumber" type="text" />
               </label>
             </div>
-            <div className="dialog-footer">
-              <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
-              <button className="save" type="submit" disabled={isLoading}>{intl.get('save')}</button>
-            </div>
           </form>
+        </div>
+        <div className="dialog-footer">
+          <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
+          <button className="save" type="submit" disabled={isLoading} form="subAccountsForm">{intl.get('save')}</button>
         </div>
       </Modal>
     );

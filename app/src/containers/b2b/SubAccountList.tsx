@@ -33,8 +33,7 @@ interface SubAccountListProps {
 
 export default class SubAccountList extends React.Component<SubAccountListProps> {
     static defaultProps = {
-      getAccountData: () => {
-      },
+      getAccountData: () => {},
     };
 
     constructor(props) {
