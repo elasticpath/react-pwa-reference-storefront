@@ -73,8 +73,8 @@
         font-size: 24px;
         color: gray;
         width: 100%;
-        border-bottom: 1px solid @mainGrey;
-        background: #ffffff;
+        border-bottom: 1px solid @mainBorderColor;
+        background: @mainBackgroundColor;
         z-index: 4;
       }
     }
@@ -106,7 +106,7 @@
         background-color: rgba(255, 255, 255, 0.6);
         text-align: center;
         bottom: 0;
-        background: #ffffff;
+        background: @mainBackgroundColor;
         font-weight: bold;
         width: 100%;
 
@@ -247,7 +247,7 @@
         min-width: 0;
         border: none;
         &:hover {
-          color: @mainBlueColor;
+          color: @firstComplimentColor;
           text-decoration: underline;
           background-color: transparent;
         }

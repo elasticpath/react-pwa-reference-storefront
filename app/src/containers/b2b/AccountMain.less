@@ -38,7 +38,7 @@
     }
 
     .sub-account-list-container {
-      border: 1px solid @tableBorderColor;
+      border: 1px solid @firstBorderColor;
     }
 
     .add-new-account-container {
@@ -53,7 +53,7 @@
     }
 
     .account-tree-container {
-      border: 2px solid @tableBorderColor;
+      border: 2px solid @firstBorderColor;
       padding: 20px;
       cursor: pointer;
 
@@ -64,14 +64,14 @@
       .name {
         font-weight: bold;
         font-size: 18px;
-        color: @mainBlueColor;
+        color: @firstComplimentColor;
 
       }
       .status {
         font-family: 'Montserrat', sans-serif;
         font-weight: normal;
         font-size: 14px;
-        color: #333333;
+        color: @mainTextColor;
       }
     }
   }
@@ -213,7 +213,7 @@
       width: 100vw;
       height: 100vh;
       z-index: 9;
-      background: #fff;
+      background: @mainBackgroundColor;
       margin-top: 0;
       &.show-account-tree-mobile-menu {
         display: flex;
@@ -459,7 +459,7 @@
 
   .back-link {
     font-weight: bold;
-    color: @generalizedBlueColor;
+    color: @thirdComplimentColor;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -491,7 +491,7 @@
       display: flex;
       align-items: center;
       margin-right: 80px;
-      color: @generalizedBlueColor;
+      color: @thirdComplimentColor;
 
       @media (max-width: @mobileWidth - 1px) {
         margin-right: 20px;
@@ -557,7 +557,7 @@
 
       .settings-title {
         font-weight: bold;
-        color: @generalizedBlueColor;
+        color: @thirdComplimentColor;
         @media (max-width: @mobileWidth - 1px) {
           display: none;
         }

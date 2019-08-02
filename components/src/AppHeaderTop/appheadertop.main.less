@@ -9,7 +9,7 @@
     position: relative;
     width: 100%;
     height: 45px;
-    border-bottom: #3b3384 solid 1px;
+    border-bottom: fade(@mainColor, 70%) solid 1px;
     display: block;
 
     .top-container {
@@ -21,7 +21,7 @@
       margin-top: 12px;
       margin-left: 35px;
         button{
-          color: #a7a6b9;
+          opacity: 0.7;
           font-size: 12px;
         }
     }
@@ -41,7 +41,8 @@
         display: inline-block;
 
         a {
-          color: #a7a6b9;
+          opacity:0.7;
+          color: @mainNavigationTextColor;
           text-decoration: none;
         }
         :hover {

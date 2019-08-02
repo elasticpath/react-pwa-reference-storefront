@@ -32,11 +32,11 @@
   width: 460px;
   border-bottom: 0;
   height: calc(100vh - 100%);
-  background-color: #fff;
+  background-color: @mainBackgroundColor;
   box-shadow: 1px 20px 30px rgba(0, 0, 0, 0.5);
 
   .bulk-order-close-button{
-    background: #ffffff url(../images/header-icons/baseline_close_black_22dp.png) no-repeat 0px;
+    background: @mainBackgroundColor url(../images/header-icons/baseline_close_black_22dp.png) no-repeat 0px;
     width: 70px;
     height: 25px;
     position: absolute;
@@ -49,13 +49,13 @@
       padding-left: 25px;
       padding-top: 3px;
       font-size: 16px;
-      color: #333333;
+      color: @mainTextColor;
     }
   }
 
   .bulk-modal {
     position: relative;
-    background-color: #fff;
+    background-color: @mainBackgroundColor;
     padding: 20px 0 10px 20px;
     z-index: 10;
     min-width: 295px;
@@ -76,8 +76,8 @@
         padding-right: 20px;
 
         .miniLoader {
-          border: 2px solid @complimentGrey;
-          border-top: 2px solid @complimentBlueColor;
+          border: 2px solid @firstComplimentBackground;
+          border-top: 2px solid @secondComplimentColor;
           width: 20px;
           height: 20px !important;
           margin-left: 65px;
@@ -99,7 +99,7 @@
         .bulk-csv{
           width: 100%;
           min-height: 300px;
-          border: 1px solid @mainGrey;
+          border: 1px solid @mainBorderColor;
           border-radius: 6px;
           margin-bottom: 10px;
         }
@@ -140,7 +140,7 @@
           &.active {
             color: @mainTextColor;
             font-weight: bold;
-            border-bottom: 3px solid @generalizedBlueColor;
+            border-bottom: 3px solid @firstComplimentColor;
           }
 
           &.disabled {

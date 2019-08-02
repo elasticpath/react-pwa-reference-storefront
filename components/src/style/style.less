@@ -55,7 +55,7 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: @mainBackgroundColor;
 }
 
 .is-hidden {
@@ -96,8 +96,8 @@ body {
 }
 
 .loader {
-  border: 16px solid @complimentGrey;
-  border-top: 16px solid @complimentBlueColor;
+  border: 16px solid @firstComplimentBackground;
+  border-top: 16px solid @secondComplimentColor;
   border-radius: 50%;
   width: 120px;
   height: 120px !important;
@@ -107,8 +107,8 @@ body {
 }
 
 .miniLoader {
-  border: 10px solid @complimentGrey;
-  border-top: 10px solid @complimentBlueColor;
+  border: 10px solid @firstComplimentBackground;
+  border-top: 10px solid @secondComplimentColor;
   width: 30px;
   height: 30px !important;
   border-radius: 50%;
@@ -163,7 +163,7 @@ body {
   align-items: center;
   height: 100px;
   max-width: 460px;
-  background-color: @complimentGrey;
+  background-color: @firstComplimentBackground;
   margin: 0 auto;
 
   h2{
@@ -186,14 +186,14 @@ body {
   text-transform: uppercase;
   outline: 0;
   transition: 0.1s;
-  background-color: #fff;
-  border: 1px solid @mainBlueColor;
-  color: @mainBlueColor;
+  background-color: @mainBackgroundColor;
+  border: 1px solid @firstComplimentColor;
+  color: @firstComplimentColor;
   cursor: pointer;
 
   &:hover {
-    background-color: @mainBlueColor;
-    color: #fff;
+    background-color: @firstComplimentColor;
+    color: @mainBackgroundColor;
   }
 
   &:focus {
@@ -205,24 +205,24 @@ body {
   }
 
   &:disabled {
-    color: lighten(@mainBlueColor, 25%);
-    border-color: lighten(@mainBlueColor, 25%);
+    color: lighten(@firstComplimentColor, 25%);
+    border-color: lighten(@firstComplimentColor, 25%);
     cursor: default;
 
     &:hover {
-      background-color: #fff;
+      background-color: @mainBackgroundColor;
     }
 
     &:focus, &:active {
       outline: none;
-      background-color: #fff;
+      background-color: @mainBackgroundColor;
     }
   }
 
   &.primary {
     border: 0;
-    color: #fff;
-    background-color: @mainBlueColor;
+    color: @mainBackgroundColor;
+    background-color: @firstComplimentColor;
 
     &:focus {
       outline: 2px solid #007bff80;
@@ -234,7 +234,7 @@ body {
 
     &:disabled {
       cursor: default;
-      background-color: lighten(@mainBlueColor, 25%);
+      background-color: lighten(@firstComplimentColor, 25%);
       outline: 0;
     }
   }

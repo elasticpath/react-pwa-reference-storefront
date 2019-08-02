@@ -54,7 +54,7 @@
       padding: 6px 12px;
       font-size: 14px;
       color: #555555;
-      background-color: #ffffff;
+      background-color: @mainBackgroundColor;
       border: 1px solid #cccccc;
       border-radius: 4px;
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -67,9 +67,9 @@
       font-size: 14px;
       font-weight: normal;
       text-shadow: none;
-      color: @complimentBlueColor;
-      background-color: #ffffff;
-      border: solid 1px @complimentBlueColor;
+      color: @secondComplimentColor;
+      background-color: @mainBackgroundColor;
+      border: solid 1px @secondComplimentColor;
       border-radius: 0;
       text-align: middle;
       box-shadow: none;
@@ -79,10 +79,10 @@
 
       &.btn-primary {
         padding: 8px 14px;
-        background-color: @mainBlueColor;
+        background-color: @firstComplimentColor;
         font-size: 12px;
         font-weight: bold;
-        color: #ffffff;
+        color: @mainBackgroundColor;
         border: 0;
         border-radius: 0;
         text-transform: uppercase;

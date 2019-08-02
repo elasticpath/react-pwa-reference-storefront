@@ -20,12 +20,12 @@
     font-size: 20px;
     padding-right: 25px;
     padding-bottom: 10px;
-    border-bottom: 1px solid @lightBorderColor;
+    border-bottom: 1px solid @firstBorderColor;
     margin-bottom: 20px;
   }
   .b2b-dark-text {
     font-weight: 700;
-    color: @darkTextColor;
+    color: @firstComplimentTextColor;
     margin-bottom: 6px;
   }
   .dialog-content {
@@ -59,7 +59,7 @@
         height: 32px;
         padding: 4px 11px;
         color: #333;
-        border: 1px solid @mainGrey;
+        border: 1px solid @mainBorderColor;
         border-radius: 4px;
       }
     }
@@ -92,29 +92,29 @@
         width: 100%;
       }
       &.cancel {
-        color: @mainBlueColor;
+        color: @firstComplimentColor;
         margin: 0 0 20px;
         @media (min-width: 576px) {
           margin: 0 20px 0 0;
         }
         &:hover {
-          color: lighten(@generalizedBlueColor, 3%);
+          color: lighten(@thirdComplimentColor, 3%);
         }
         &:active {
-          color: lighten(@generalizedBlueColor, -3%);
+          color: lighten(@thirdComplimentColor, -3%);
         }
       }
       &.save {
-        background-color: @mainBlueColor;
-        color: @backgroundColor;
+        background-color: @firstComplimentColor;
+        color: @mainBackgroundColor;
         &:hover {
-          background-color: lighten(@mainBlueColor, 3%);
+          background-color: lighten(@firstComplimentColor, 3%);
         }
         &:active {
-          background-color: lighten(@mainBlueColor, -5%);
+          background-color: lighten(@firstComplimentColor, -5%);
         }
         &:disabled {
-          background-color: darken(@mainBlueColor, 40%);
+          background-color: darken(@firstComplimentColor, 40%);
           opacity: .4;
           cursor: unset;
         }

@@ -32,8 +32,8 @@
     z-index: 99;
     left: calc(50% - 30px);
     position: absolute;
-    border: 6px solid @complimentGrey;
-    border-top: 6px solid @complimentBlueColor;
+    border: 6px solid @firstComplimentBackground;
+    border-top: 6px solid @secondComplimentColor;
     border-radius: 50%;
     width: 60px;
     height: 60px !important;
@@ -45,9 +45,10 @@
 .menu-history {
   font-weight: bold;
   font-size: 15px;
-  margin: 30px 0;
+  margin: 50px 0;
   text-align: center;
-  color: #888;
+  opacity:0.7;
+  color: @mainTextColor;
 
   .category-title {
     font-weight: 600;
@@ -56,8 +57,9 @@
     color: #000;
   }
 
-  .arrow{
-    color: @mainGrey;
+  .arrow {
+    opacity: 0.5;
+    color: @mainTextColor;
   }
 }
 

@@ -22,8 +22,8 @@
 @import './../style/common.less';
 .bulk-item-wrap{
   .miniLoader {
-    border: 3px solid @complimentGrey;
-    border-top: 3px solid @complimentBlueColor;
+    border: 3px solid @firstComplimentBackground;
+    border-top: 3px solid @secondComplimentColor;
     width: 30px;
     height: 30px !important;
     margin-left: 86px;
@@ -60,7 +60,7 @@
 .input-group-btn {
   width: 100px;
   height: 34px;
-  border: solid 1px @mainGrey;
+  border: solid 1px @mainBorderColor;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -201,7 +201,7 @@
 
     input[type=text] {
       padding-right:30px;
-      color: #333333;
+      color: @mainTextColor;
       font-size: 14px;
       height: 34px;
       width: 200px;
@@ -277,8 +277,8 @@
 @media (max-width: @mobileWidth - 1px) {
   .bulk-item-wrap{
     .miniLoader {
-      border: 2px solid @complimentGrey;
-      border-top: 2px solid @complimentBlueColor;
+      border: 2px solid @firstComplimentBackground;
+      border-top: 2px solid @secondComplimentColor;
       width: 20px;
       height: 20px !important;
       margin-left: 76px;

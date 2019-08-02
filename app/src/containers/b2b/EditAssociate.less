@@ -5,7 +5,7 @@
   font-size: 20px;
   padding-right: 25px;
   padding-bottom: 10px;
-  border-bottom: 1px solid @lightBorderColor;
+  border-bottom: 1px solid @firstBorderColor;
 }
 .dialog-content {
   padding: 50px 0;
@@ -13,13 +13,13 @@
 
   .associate-email-title {
     font-weight: 700;
-    color: @darkTextColor;
+    color: @firstComplimentTextColor;
     margin-bottom: 6px;
   }
 
   .checkbox-role-title {
     font-weight: 700;
-    color: @darkTextColor;
+    color: @firstComplimentTextColor;
     margin-bottom: 6px;
     margin-top: 20px;
   }
@@ -50,14 +50,14 @@
       .field-editor-input {
         width: 100%;
         height: 32px;
-        border: 1px solid @borderColor;
+        border: 1px solid @mainBorderColor;
         border-radius: 5px;
         padding: 4px 20px 4px 11px;
 
         &:disabled {
-          background-color: @tableBackgroundColor;
+          background-color: @secondComplimentBackground;
           cursor: not-allowed;
-          color: @borderColor;
+          color: @mainBorderColor;
 
         }
         &.input-code-error{
@@ -77,7 +77,7 @@
     }
     .account-title {
       font-weight: 700;
-      color: @darkTextColor;
+      color: @firstComplimentTextColor;
       margin-bottom: 5px;
       &.sub {
         margin-top: 20px;
@@ -125,26 +125,26 @@
       width: 133px;
     }
     &.cancel {
-      color: @mainBlueColor;
+      color: @firstComplimentColor;
       margin-right: 10px;
       @media (min-width: 576px) {
         margin-right: 20px;
       }
       &:hover {
-        color: lighten(@generalizedBlueColor, 3%);
+        color: lighten(@firstComplimentColor, 3%);
       }
       &:active {
-        color: lighten(@generalizedBlueColor, -3%);
+        color: lighten(@firstComplimentColor, -3%);
       }
     }
     &.upload {
-      background-color: @mainBlueColor;
-      color: @backgroundColor;
+      background-color: @firstComplimentColor;
+      color: @mainBackgroundColor;
       &:hover {
-        background-color: lighten(@mainBlueColor, 3%);
+        background-color: lighten(@firstComplimentColor, 3%);
       }
       &:active {
-        background-color: lighten(@mainBlueColor, -5%);
+        background-color: lighten(@firstComplimentColor, -5%);
       }
     }
   }
