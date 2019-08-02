@@ -47,6 +47,7 @@ interface PaymentFormMainState {
     failedSubmit: boolean,
     paymentForm: any,
     orderPaymentForm: any,
+    cybersourceBodyRequest: any
 }
 
 class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormMainState> {
@@ -72,6 +73,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
       failedSubmit: false,
       paymentForm: undefined,
       orderPaymentForm: undefined,
+      cybersourceBodyRequest: {},
     };
     this.setCardType = this.setCardType.bind(this);
     this.setCardHolderName = this.setCardHolderName.bind(this);
@@ -82,6 +84,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     this.setSaveToProfile = this.setSaveToProfile.bind(this);
     this.submitPayment = this.submitPayment.bind(this);
     this.cancel = this.cancel.bind(this);
+    this.fetchCybersourceForm = this.fetchCybersourceForm.bind(this);
   }
 
   componentDidMount() {
@@ -162,6 +165,8 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
         bill_to_address_state: '',
         bill_to_address_country: '',
         bill_to_address_postal_code: '',
+        override_custom_receipt_page: '',
+        override_custom_cancel_page: '',
       };
       const zoomArrayProfile = [
         'defaultcart',
@@ -191,6 +196,8 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
               bill_to_address_country: profileData._defaultprofile[0]._addresses[0]._element[0].address['country-name'],
               bill_to_address_postal_code: profileData._defaultprofile[0]._addresses[0]._element[0].address['postal-code'],
               bill_to_address_line1: profileData._defaultprofile[0]._addresses[0]._element[0].address['street-address'],
+              override_custom_receipt_page: window.location.href,
+              override_custom_cancel_page: window.location.href,
             };
             fetch(Config.creditCardTokenization.lambdaURI, {
               method: 'POST',
@@ -202,66 +209,74 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
               .then(lambdaResponse => lambdaResponse.json())
               .then((lambdaResponse) => {
                 // eslint-disable-next-line
-                  const formEncodedBody = Object.keys(lambdaResponse)
-                  // eslint-disable-next-line no-prototype-builtins
-                  .filter(k => lambdaResponse.hasOwnProperty(k))
-                  .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(lambdaResponse[k])}`)
-                  .join('&');
-                const cardData = `&bill_to_forename=${name[0]}&bill_to_surname=${name[1]}&card_type=${cardType}&card_number=${cardNumber}&card_expiry_date=${formatedExpiryMonth}-${expiryYear}&card_cvn=${securityCode}`;
-                const cybersourceURI = lambdaResponse.cs_endpoint_url;
-                fetch(cybersourceURI, {
-                  method: 'POST',
+                // const formEncodedBody = Object.keys(lambdaResponse)
+                //   .filter(k => lambdaResponse.hasOwnProperty(k))
+                //   .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(lambdaResponse[k])}`)
+                //   .join('&');
+                // const cardData = `&bill_to_forename=${name[0]}&bill_to_surname=${name[1]}&card_type=${cardType}&card_number=${cardNumber}&card_expiry_date=${formatedExpiryMonth}-${expiryYear}&card_cvn=${securityCode}`;
+                const cardData = {
+                  bill_to_forename: name[0],
+                  bill_to_surname: name[1],
+                  card_type: cardType,
+                  card_number: cardNumber,
+                  cardExpiryDate: `${formatedExpiryMonth}-${expiryYear}`,
+                  card_cvn: securityCode,
+                };
+                const cybersourceBodyRequest = { ...cardData, ...lambdaResponse };
+                this.setState({ cybersourceBodyRequest });
+                // fetch(cybersourceURI, {
+                //   method: 'POST',
+                //   headers: {
+                //     'Content-Type': 'application/x-www-form-urlencoded',
+                //   },
+                //   body: formEncodedBody + cardData,
+                // })
+                //   .then(data => data.text())
+                //   .then((data) => {
+                //     const parser = new DOMParser();
+                //     const doc = parser.parseFromString(data, 'text/html');
+                //     const form = doc.querySelector('form[id="custom_redirect"]');
+                //     const elemets = form.elements;
+                //     // eslint-disable-next-line
+                //     for (const element of elemets) {
+                //       if (element.id === 'payment_token') {
+                //         paymentToken = element.value;
+                //       }
+                //     }
+                cortexFetch(link, {
+                  method: 'post',
                   headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
                   },
-                  body: formEncodedBody + cardData,
+                  body: JSON.stringify({
+                    'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
+                    token: paymentToken,
+                  }),
                 })
-                  .then(data => data.text())
-                  .then((data) => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data, 'text/html');
-                    const form: any = doc.querySelector('form[id="custom_redirect"]');
-                    const elemets = form.elements;
-                    // eslint-disable-next-line
-                      for (const element of elemets) {
-                      if (element.id === 'payment_token') {
-                        paymentToken = element.value;
-                      }
-                    }
-                    cortexFetch(link, {
-                      method: 'post',
-                      headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                      },
-                      body: JSON.stringify({
-                        'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-                        token: paymentToken,
-                      }),
-                    })
-                      .then((res) => {
-                        this.setState({
-                          showLoader: false,
-                        });
-                        if (res.status === 400) {
-                          this.setState({ failedSubmit: true });
-                        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-                          this.setState({ failedSubmit: false }, () => {
-                            fetchData();
-                            onCloseModal();
-                          });
-                        }
-                      })
-                      .catch((error) => {
-                        this.setState({
-                          showLoader: false,
-                        });
-                        // eslint-disable-next-line no-console
-                        console.error(error.message);
+                  .then((res) => {
+                    this.setState({
+                      showLoader: false,
+                    });
+                    if (res.status === 400) {
+                      this.setState({ failedSubmit: true });
+                    } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+                      this.setState({ failedSubmit: false }, () => {
+                        fetchData();
+                        onCloseModal();
                       });
+                    }
+                  })
+                  .catch((error) => {
+                    this.setState({
+                      showLoader: false,
+                    });
+                    // eslint-disable-next-line no-console
+                    console.error(error.message);
                   });
               });
           });
+        // });
       })
         .catch((error) => {
           this.setState({
@@ -313,6 +328,47 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  fetchCybersourceForm(cybersourceBodyRequest) {
+    return (
+      <form id="payment_confirmation" className="col-md-12" action={cybersourceBodyRequest.cs_endpoint_url} method="post">
+        <input type="text" id="transaction_type" name="transaction_type" value={cybersourceBodyRequest.transaction_type} />
+        <input type="text" id="amount" name="amount" value={cybersourceBodyRequest.amount} />
+        <input type="text" id="transaction_uuid" name="transaction_uuid" value={cybersourceBodyRequest.transaction_uuid} />
+        <input type="text" id="signed_date_time" name="signed_date_time" value={cybersourceBodyRequest.signed_date_time} />
+        <input type="text" id="unsigned_field_names" name="unsigned_field_names" value={cybersourceBodyRequest.unsigned_field_names} />
+        <input type="text" id="bill_to_address_postal_code" name="bill_to_address_postal_code" value={cybersourceBodyRequest.bill_to_address_postal_code} />
+        <input type="text" id="bill_to_address_state" name="bill_to_address_state" value={cybersourceBodyRequest.bill_to_address_state} />
+        <input type="text" id="signed_field_names" name="signed_field_names" value={cybersourceBodyRequest.signed_field_names} />
+        <input type="text" id="locale" name="locale" value={cybersourceBodyRequest.locale} />
+        <input type="text" id="bill_to_email" name="bill_to_email" value={cybersourceBodyRequest.bill_to_email} />
+        <input type="text" id="reference_number" name="reference_number" value={cybersourceBodyRequest.reference_number} />
+        <input type="text" id="bill_to_address_country" name="bill_to_address_country" value={cybersourceBodyRequest.bill_to_address_country} />
+        <input type="text" id="bill_to_surname" name="bill_to_surname" value={cybersourceBodyRequest.bill_to_surname} />
+        <input type="text" id="bill_to_address_line1" name="bill_to_address_line1" value={cybersourceBodyRequest.bill_to_address_line1} />
+        <input type="text" id="profile_id" name="profile_id" value={cybersourceBodyRequest.profile_id} />
+        <input type="text" id="access_key" name="access_key" value={cybersourceBodyRequest.access_key} />
+        <input type="text" id="bill_to_phone" name="bill_to_phone" value={cybersourceBodyRequest.bill_to_phone} />
+        <input type="text" id="bill_to_address_city" name="bill_to_address_city" value={cybersourceBodyRequest.bill_to_address_city} />
+        <input type="text" id="currency" name="currency" value={cybersourceBodyRequest.currency} />
+        <input type="text" id="bill_to_forename" name="bill_to_forename" value={cybersourceBodyRequest.bill_to_forename} />
+        <input type="text" id="payment_method" name="payment_method" value={cybersourceBodyRequest.payment_method} />
+        <input type="text" id="signature" name="signature" value={cybersourceBodyRequest.signature} />
+        <input type="text" id="override_custom_receipt_page" name="override_custom_receipt_page" value={cybersourceBodyRequest.override_custom_receipt_page} />
+        <input type="text" id="override_custom_cancel_page" name="override_custom_cancel_page" value={cybersourceBodyRequest.override_custom_cancel_page} />
+        <fieldset>
+          <div id="UnsignedDataSection" className="">
+            <input type="text" id="card_cvn" name="card_cvn" value={cybersourceBodyRequest.card_cvn} />
+            <input type="text" id="card_type" name="card_type" value={cybersourceBodyRequest.card_type} />
+            <input type="text" id="card_number" name="card_number" value={cybersourceBodyRequest.card_number} />
+            <input type="text" id="card_expiry_date" name="card_expiry_date" value={cybersourceBodyRequest.cardExpiryDate} />
+          </div>
+        </fieldset>
+        <input type="submit" id="submit" className="button_click_cs" value="Confirm" />
+      </form>
+    );
+  }
+
   fetchPaymentForms() {
     login().then(() => {
       cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
@@ -356,10 +412,11 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
 
   render() {
     const {
-      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader,
+      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader, cybersourceBodyRequest,
     } = this.state;
     return (
       <div className="payment-method-container container">
+        {cybersourceBodyRequest.access_key && this.fetchCybersourceForm(cybersourceBodyRequest)}
         <div className="feedback-label feedback-container" data-region="componentPaymentFeedbackRegion">
           {failedSubmit ? intl.get('failed-to-save-message') : ''}
         </div>
