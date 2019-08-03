@@ -167,8 +167,8 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
 
   render() {
     const { facetModel, showFilterMobileMenu } = this.state;
-    const chosenFacets = facetModel._facets[0]._element.filter(el => el._facetselector[0]._chosen);
     if (facetModel._facets && facetModel._facets.length > 0 && facetModel._element) {
+      const chosenFacets = facetModel._facets[0]._element.filter(el => el._facetselector[0]._chosen);
       return (
         <div className="product-list-facet-navigation-component">
           <div className="col-xs-12 col-sm-12">
