@@ -31,7 +31,7 @@ storiesOf('AppHeaderLocaleMain', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('AppHeaderLocaleMain', () => (
-    <div style={{ mainBackgroundColor: '#040060' }}>
+    <div style={{ backgroundColor: '#040060' }}>
       <AppHeaderLocaleMain />
     </div>
   ));
