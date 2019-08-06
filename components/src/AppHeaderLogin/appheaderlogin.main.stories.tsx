@@ -38,11 +38,11 @@ storiesOf('AppHeaderLoginMain', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('AppHeaderLoginMain', () => (
-    <div style={{ mainBackgroundColor: '#040060' }}>
+    <div style={{ backgroundColor: '#040060' }}>
       <AppHeaderLoginMain permission={false} appModalLoginLinks={appModalLoginLinks} appHeaderLoginLinks={appHeaderLoginLinks} isLoggedIn={false} disableLogin />
     </div>
   )).add('AppHeaderLoginMain Logged In User', () => (
-    <div style={{ mainBackgroundColor: '#040060' }}>
+    <div style={{ backgroundColor: '#040060' }}>
       <AppHeaderLoginMain permission={false} appModalLoginLinks={appModalLoginLinks} appHeaderLoginLinks={appHeaderLoginLinks} isLoggedIn disableLogin />
     </div>
   ));
