@@ -42,7 +42,8 @@ interface RegistrationFormMainState {
   passwordConfirm: any | string,
   failedRegistration: boolean,
   failedLogin: boolean,
-  registrationErrors: string
+  registrationErrors: string,
+  isLoading: boolean,
 }
 
 class RegistrationFormMain extends React.Component<RegistrationFormMainProps, RegistrationFormMainState> {
@@ -64,6 +65,7 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
       failedRegistration: false,
       registrationErrors: '',
       passwordConfirm: '',
+      isLoading: false,
     };
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
@@ -110,9 +112,11 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
       });
       return;
     }
+    this.setState({ isLoading: true });
     const { onRegisterSuccess } = this.props;
     login().then(() => {
       registerUser(lastname, firstname, username, password).then((res) => {
+        this.setState({ isLoading: false });
         if (res.status === 201) {
           this.setState({ failedRegistration: false });
           if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
@@ -154,7 +158,12 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
   }
 
   render() {
-    const { failedRegistration, failedLogin, registrationErrors } = this.state;
+    const {
+      failedRegistration,
+      failedLogin,
+      registrationErrors,
+      isLoading,
+    } = this.state;
     return (
       <div className="registration-container container">
         <h3>
@@ -228,7 +237,10 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
                   <input id="registration_form_passwordConfirm" name="passwordConfirm" className="form-control" type="password" onChange={this.setPasswordConfirmation} />
                 </div>
               </div>
-              <div className="form-group">
+              <div className="form-group register-btn-wrap">
+                {
+                  (isLoading) ? <div className="miniLoader" /> : ('')
+                }
                 <input className="btn btn-primary registration-save-btn" id="registration_form_register_button" data-cmd="register" type="button" onClick={this.registerNewUser} value="Submit" />
               </div>
             </form>
