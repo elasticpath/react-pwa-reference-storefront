@@ -322,5 +322,7 @@
   "filter": "Filter",
   "choose-account": "Choose an account below",
   "app-version": "App version",
-  "components-version": "Components version"
+  "components-version": "Components version",
+  "barcode-scanner": "Barcode scanner",
+  "scan-barcode": "Scan Barcode"
 }

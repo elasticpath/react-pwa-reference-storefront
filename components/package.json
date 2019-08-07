@@ -20,7 +20,8 @@
     "react-dev-utils": "^9.0.1",
     "react-responsive-modal": "^4.0.1",
     "react-scripts": "^3.0.1",
-    "ts-loader": "^6.0.3"
+    "ts-loader": "^6.0.3",
+    "quagga": "^0.12.1"
   },
   "browserslist": {
     "production": [
