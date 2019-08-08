@@ -22,9 +22,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent,
+  ClientProvider, AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
+import * as cortex from '@elasticpath/cortex-client';
 import packageJson from '../package.json';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';
@@ -164,13 +165,20 @@ const Root = (props) => {
   ];
 };
 
+const cortexClient = cortex.createClient({
+  serverBaseUrl: '/cortex',
+  authHeader: () => localStorage.getItem('vestri_oAuthToken') as string,
+});
+
 const App = withRouter(withAnalytics(Root));
 const AppWithRouter = (props) => {
   const { componentsData } = props;
   return (
-    <Router>
-      <App componentsData={componentsData} />
-    </Router>
+    <ClientProvider value={cortexClient}>
+      <Router>
+        <App componentsData={componentsData} />
+      </Router>
+    </ClientProvider>
   );
 };
 export default AppWithRouter;
