@@ -66,7 +66,6 @@ export default class BarcodeScanner extends React.Component<BarcodeScannerProps,
   initScanner() {
     const scannerContainer = this.scannerContainer.current;
     // eslint-disable-next-line react/destructuring-assignment
-    console.warn(this.state.barcodes);
     Quagga.init({
       inputStream: {
         name: 'Live',
@@ -80,15 +79,7 @@ export default class BarcodeScanner extends React.Component<BarcodeScannerProps,
       },
       numOfWorkers: navigator.hardwareConcurrency,
       decoder: {
-        readers: [
-          'code_128_reader',
-          'ean_reader',
-          'code_39_reader',
-          'code_39_vin_reader',
-          'codabar_reader',
-          'upc_reader',
-          'upc_e_reader',
-        ],
+        readers: ['upc_reader'],
       },
 
     }, (err) => {
@@ -150,7 +141,7 @@ export default class BarcodeScanner extends React.Component<BarcodeScannerProps,
     const { handleCodeFound, handleModalClose } = this.props;
     const { code } = result.codeResult;
 
-    if (barcodes.length >= 30) {
+    if (barcodes.length >= 20) {
       const modeCode = BarcodeScanner.findMode(barcodes);
       handleCodeFound(modeCode);
       handleModalClose();

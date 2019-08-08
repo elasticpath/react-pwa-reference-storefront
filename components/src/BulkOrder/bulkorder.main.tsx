@@ -57,6 +57,7 @@ interface BulkOrderState {
   quickOrderErrorMessage: string,
   bulkOrderDuplicatedErrorMessage: string,
   isBarcodeScannerOpen: boolean
+  isBarcodeScannerLoading: boolean
 }
 
 export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
@@ -85,6 +86,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
       quickOrderErrorMessage: '',
       bulkOrderDuplicatedErrorMessage: '',
       isBarcodeScannerOpen: false,
+      isBarcodeScannerLoading: false,
     };
     this.addAllToCart = this.addAllToCart.bind(this);
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
@@ -216,26 +218,26 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
   }
 
   handleBarcodeScanned(barcode) {
-    const { items } = this.state;
-    console.warn(barcode, items);
     login().then(() => {
       searchLookup(barcode)
         .then((res) => {
           const foundItem = res._element[0];
-          const emptyItem = items.find(item => item.code === '');
-          const updatedItems = items.map((item) => {
-            if (item.key === emptyItem.key) {
-              return {
-                ...item,
-                code: foundItem._code[0].code,
-                product: foundItem,
-              };
-            }
+          this.setState((state) => {
+            const emptyItem = state.items.find(item => item.code === '');
+            const updatedItems = state.items.map((item) => {
+              if (item.key === emptyItem.key) {
+                return {
+                  ...item,
+                  code: foundItem._code[0].code,
+                  product: foundItem,
+                };
+              }
 
-            return item;
+              return item;
+            });
+            return { ...state, items: updatedItems };
           });
-          console.warn(updatedItems);
-          // this.setState({ items: updatedItems });
+          this.checkDuplication();
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -255,6 +257,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
       quickOrderErrorMessage,
       bulkOrderDuplicatedErrorMessage,
       isBarcodeScannerOpen,
+      isBarcodeScannerLoading,
     } = this.state;
     const isValid = Boolean(items.find(item => (item.code !== '' && item.isValidField === false)));
     const isEmpty = Boolean(items.find(item => (item.code !== '' && item.isValidField === true)));
@@ -297,6 +300,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
                     <button
                       className="ep-btn primary small btn-itemdetail-addtocart"
                       type="button"
+                      disabled={isBarcodeScannerLoading}
                       onClick={this.handleBarcodeClick}
                     >
                       <span className="scan-barcode-title">{intl.get('scan-barcode')}</span>

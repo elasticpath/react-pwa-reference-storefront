@@ -72,7 +72,6 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
     const { code } = this.state;
     const { item } = nextProps;
     if (item.code !== code) {
-      this.handleRemoveSku();
       this.setState({
         code: item.code,
         product: item.product,
