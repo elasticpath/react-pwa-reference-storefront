@@ -25,6 +25,8 @@ import fetchAddressDataResponse from './MockHttpResponses/GET/fetchAddressData_r
 import loginResponse from '../CommonMockHttpResponses/login_response.json';
 import submitAddressResponse from './MockHttpResponses/POST/submitAddress_response.json';
 
+fetchMock.config.fallbackToNetwork = true;
+
 function mockLoginResponse(mockObj) {
   mockObj.post(
     '/cortex/oauth2/tokens',
