@@ -33,6 +33,7 @@ interface AddPaymentMethodProps {
 interface AddPaymentMethodState {
   isLoading: boolean,
   errorMessage: string,
+  paymentData: any,
 }
 
 class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPaymentMethodState> {
@@ -41,10 +42,11 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
     this.state = {
       isLoading: true,
       errorMessage: '',
+      paymentData: [],
     };
     this.submitPayment = this.submitPayment.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.editPayment = this.editPayment.bind(this);
+    this.goToBack = this.goToBack.bind(this);
   }
 
   componentDidMount() {
@@ -53,8 +55,11 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
 
   submitPayment() {
     const { match } = this.props;
+
     let paymentData = match.params.paymentdata;
     paymentData = paymentData.split('-');
+    this.setState({ paymentData });
+
     let cardType = '';
     if (paymentData[0] === '100') {
       switch (paymentData[4]) {
@@ -98,7 +103,7 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
                 this.setState({
                   isLoading: false,
                 });
-                // this.handleClose();
+                this.handleClose();
               })
               .catch((error) => {
                 this.setState({
@@ -126,12 +131,24 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
 
   handleClose() {
     const { history } = this.props;
-    history.goBack();
+    const { paymentData } = this.state;
+
+    if (paymentData.length === 7) {
+      history.push(`/${paymentData[6]}`);
+    } else {
+      history.push('/');
+    }
   }
 
-  editPayment() {
+  goToBack() {
     const { history } = this.props;
-    history.go(-1);
+    const { paymentData } = this.state;
+
+    if (paymentData.length === 3) {
+      history.push(`/${paymentData[2]}`);
+    } else {
+      history.push('/');
+    }
   }
 
   render() {
@@ -145,10 +162,10 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
               {errorMessage}
             </div>
             <div>
-              <button className="ep-btn payment-cancel-btn" data-el-label="paymentForm.cancel" type="button" onClick={() => { this.handleClose(); }}>
+              <button className="ep-btn payment-cancel-btn" data-el-label="paymentForm.cancel" type="button" onClick={() => { this.goToBack(); }}>
                 {intl.get('go-back')}
               </button>
-              <button className="ep-btn primary new-payment-btn" type="button" onClick={() => { this.editPayment(); }}>
+              <button className="ep-btn primary new-payment-btn" type="button" onClick={() => { this.goToBack(); }}>
                 {intl.get('add-new-payment-method')}
               </button>
             </div>

@@ -25,8 +25,8 @@ const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const fs = require('fs');
-const paths = require('./paths');
 const bodyParser = require('body-parser');
+const paths = require('./paths');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -123,10 +123,6 @@ module.exports = function (proxy, allowedHost) {
         require(paths.proxySetup)(app);
       }
 
-      app.post('*', (req, res) => {
-        res.redirect(req.originalUrl);
-      });
-
       // This service worker file is effectively a 'no-op' that will reset any
       // previous service worker registered for the same host:port combination.
       // We do this in development to avoid hitting the production cache if
@@ -139,11 +135,12 @@ module.exports = function (proxy, allowedHost) {
 
       app.post('*', (req, res) => {
         let data = '';
+        const redirectUrl = req.originalUrl.substr(1);
 
         if (req.body.payment_token) {
-          data = `${req.body.reason_code}-${req.body.payment_token}-${req.body.req_bill_to_forename}-${req.body.req_bill_to_surname}-${req.body.req_card_type}-${req.body.req_card_number}`;
+          data = `${req.body.reason_code}-${req.body.payment_token}-${req.body.req_bill_to_forename}-${req.body.req_bill_to_surname}-${req.body.req_card_type}-${req.body.req_card_number}-${redirectUrl}`;
         } else {
-          data = `${req.body.reason_code}-${req.body.message}`;
+          data = `${req.body.reason_code}-${req.body.message}-${redirectUrl}`;
         }
         res.redirect(`/paymentdata/${data}`);
       });

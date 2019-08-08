@@ -229,7 +229,6 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
                 this.setState({ cybersourceBodyRequest });
               });
           });
-        // });
       })
         .catch((error) => {
           this.setState({
