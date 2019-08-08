@@ -132,10 +132,10 @@ const VersionContainer = (props) => {
 const Root = (props) => {
   const { componentsData } = props;
   return [
-    <VersionContainer componentsVersion={componentsData.version} appVersion={packageJson.version} />,
-    <FacebookChat key="FacebookChat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
+    <VersionContainer key="version-container" componentsVersion={componentsData.version} appVersion={packageJson.version} />,
+    <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
     <AppHeaderMain
-      key="AppHeaderMain"
+      key="app-header"
       onSearchPage={keywords => redirectToProfilePage(keywords)}
       redirectToMainPage={redirectToMainPage}
       checkedLocation={handlePathName()}
@@ -159,8 +159,8 @@ const Root = (props) => {
         ))}
       </Switch>
     </div>,
-    <AppFooterMain key="AppFooterMain" appFooterLinks={appFooterLinks} />,
-    <ChatComponent />,
+    <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,
+    <ChatComponent key="chat-component" />,
   ];
 };
 
