@@ -47,7 +47,7 @@ interface PaymentFormMainState {
     failedSubmit: boolean,
     paymentForm: any,
     orderPaymentForm: any,
-    cybersourceBodyRequest: any
+    cybersourceBodyRequest: any,
 }
 
 class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormMainState> {
@@ -89,6 +89,16 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
 
   componentDidMount() {
     this.fetchPaymentForms();
+  }
+
+  componentDidUpdate() {
+    const formCardNumberExists = document.getElementById('card_number');
+    const formBillEmailExists = document.getElementById('bill_to_email');
+    const formExists = document.getElementById('payment_confirmation');
+
+    if (formExists && formCardNumberExists && formBillEmailExists) {
+      document.getElementById('payment_confirmation').submit();
+    }
   }
 
   setCardType(event) {
@@ -153,7 +163,6 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     if (Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
       const name = cardHolderName.split(' ');
       const formatedExpiryMonth = ((expiryMonth) < 10 ? '0' : '') + (expiryMonth);
-      let paymentToken;
       let bodyLambdaRequest = {
         reference_number: Math.floor(Math.random() * 1000000001),
         currency: Config.defaultCurrencyValue,
@@ -208,12 +217,6 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
             })
               .then(lambdaResponse => lambdaResponse.json())
               .then((lambdaResponse) => {
-                // eslint-disable-next-line
-                // const formEncodedBody = Object.keys(lambdaResponse)
-                //   .filter(k => lambdaResponse.hasOwnProperty(k))
-                //   .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(lambdaResponse[k])}`)
-                //   .join('&');
-                // const cardData = `&bill_to_forename=${name[0]}&bill_to_surname=${name[1]}&card_type=${cardType}&card_number=${cardNumber}&card_expiry_date=${formatedExpiryMonth}-${expiryYear}&card_cvn=${securityCode}`;
                 const cardData = {
                   bill_to_forename: name[0],
                   bill_to_surname: name[1],
@@ -224,56 +227,6 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
                 };
                 const cybersourceBodyRequest = { ...cardData, ...lambdaResponse };
                 this.setState({ cybersourceBodyRequest });
-                // fetch(cybersourceURI, {
-                //   method: 'POST',
-                //   headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded',
-                //   },
-                //   body: formEncodedBody + cardData,
-                // })
-                //   .then(data => data.text())
-                //   .then((data) => {
-                //     const parser = new DOMParser();
-                //     const doc = parser.parseFromString(data, 'text/html');
-                //     const form = doc.querySelector('form[id="custom_redirect"]');
-                //     const elemets = form.elements;
-                //     // eslint-disable-next-line
-                //     for (const element of elemets) {
-                //       if (element.id === 'payment_token') {
-                //         paymentToken = element.value;
-                //       }
-                //     }
-                cortexFetch(link, {
-                  method: 'post',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                  },
-                  body: JSON.stringify({
-                    'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-                    token: paymentToken,
-                  }),
-                })
-                  .then((res) => {
-                    this.setState({
-                      showLoader: false,
-                    });
-                    if (res.status === 400) {
-                      this.setState({ failedSubmit: true });
-                    } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-                      this.setState({ failedSubmit: false }, () => {
-                        fetchData();
-                        onCloseModal();
-                      });
-                    }
-                  })
-                  .catch((error) => {
-                    this.setState({
-                      showLoader: false,
-                    });
-                    // eslint-disable-next-line no-console
-                    console.error(error.message);
-                  });
               });
           });
         // });
@@ -331,7 +284,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
   // eslint-disable-next-line class-methods-use-this
   fetchCybersourceForm(cybersourceBodyRequest) {
     return (
-      <form id="payment_confirmation" className="col-md-12" action={cybersourceBodyRequest.cs_endpoint_url} method="post">
+      <form id="payment_confirmation" className="payment_confirmation col-md-12" action={cybersourceBodyRequest.cs_endpoint_url} method="post">
         <input type="text" id="transaction_type" name="transaction_type" value={cybersourceBodyRequest.transaction_type} />
         <input type="text" id="amount" name="amount" value={cybersourceBodyRequest.amount} />
         <input type="text" id="transaction_uuid" name="transaction_uuid" value={cybersourceBodyRequest.transaction_uuid} />
@@ -364,7 +317,6 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
             <input type="text" id="card_expiry_date" name="card_expiry_date" value={cybersourceBodyRequest.cardExpiryDate} />
           </div>
         </fieldset>
-        <input type="submit" id="submit" className="button_click_cs" value="Confirm" />
       </form>
     );
   }

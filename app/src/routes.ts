@@ -44,6 +44,7 @@ import ResetPasswordForm from './containers/ResetPasswordPage';
 import B2BMain from './containers/b2b/B2BMain';
 import Dashboard from './containers/b2b/Dashboard';
 import AccountMain from './containers/b2b/AccountMain';
+import AddPaymentMethod from './containers/AddPaymentMethod';
 
 const router = [{
   path: '/',
@@ -134,6 +135,9 @@ const router = [{
 }, {
   path: '/password_reset',
   component: ResetPasswordForm,
+}, {
+  path: '/paymentdata/:paymentdata',
+  component: AddPaymentMethod,
 }, {
   path: '/b2b/account/:uri',
   component: AccountMain,
