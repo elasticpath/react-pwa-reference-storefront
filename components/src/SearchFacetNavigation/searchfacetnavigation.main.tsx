@@ -21,9 +21,9 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
+import * as cortex from '@elasticpath/cortex-client';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { ClientContext } from '../ClientContext';
 
 import './searchfacetnavigation.main.less';
 
@@ -47,6 +47,10 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
     onFacetSelection: () => {},
   }
 
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const { productData } = this.props;
@@ -66,30 +70,19 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
     document.body.style.overflow = 'unset';
   }
 
-  handleFacetSelection(facetUri) {
+  async handleFacetSelection(facetUri) {
     const { onFacetSelection } = this.props;
-    login().then(() => {
-      cortexFetch(`${decodeURIComponent(facetUri)}?followlocation=true&zoom=offersearchresult`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({}),
-        })
-        .then(res => res.json())
-        .then((res) => {
-          onFacetSelection(res);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
+
+    const root = await this.client.serverFetch(`${decodeURIComponent(facetUri)}?followlocation=true&zoom=offersearchresult`, {
+      method: 'POST',
+      body: {},
     });
+
+    onFacetSelection(root.parsedJson);
   }
 
   renderFacetSelectorsChosen(facetselector) {
+    this.client = this.context;
     if (facetselector[0]._chosen) {
       return facetselector[0]._chosen.map((chosen) => {
         if (chosen._description && chosen._selector) {
@@ -109,6 +102,7 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
   }
 
   renderFacetSelectors(facetselector) {
+    this.client = this.context;
     if (facetselector[0]._choice) {
       return facetselector[0]._choice.map((choice) => {
         if (choice._description && choice._selector) {
