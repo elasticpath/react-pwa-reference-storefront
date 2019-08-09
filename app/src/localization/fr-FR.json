@@ -324,5 +324,6 @@
   "choose-account": "C-h-o-o-s-e- -a-n- -a-c-c-o-u-n-t- -b-e-l-o-w",
   "app-version": "A-p-p- -v-e-r-s-i-o-n",
   "components-version": "C-o-m-p-o-n-e-n-t-s- -v-e-r-s-i-o-n",
-  "barcode-scanner": "Barcode scanner"
+  "barcode-scanner": "B-a-r-c-o-d-e- -s-c-a-n-n-e-r",
+  "scan-barcode": "S-c-a-n- -B-a-r-c-o-d-e"
 }

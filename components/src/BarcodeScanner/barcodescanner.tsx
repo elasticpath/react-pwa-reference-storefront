@@ -65,7 +65,6 @@ export default class BarcodeScanner extends React.Component<BarcodeScannerProps,
 
   initScanner() {
     const scannerContainer = this.scannerContainer.current;
-    // eslint-disable-next-line react/destructuring-assignment
     Quagga.init({
       inputStream: {
         name: 'Live',
@@ -135,7 +134,6 @@ export default class BarcodeScanner extends React.Component<BarcodeScannerProps,
     return Object.keys(counted).reduce((a, b) => (counted[a] > counted[b] ? a : b));
   }
 
-  // eslint-disable-next-line class-methods-use-this
   onDetected(result) {
     const { barcodes } = this.state;
     const { handleCodeFound, handleModalClose } = this.props;
