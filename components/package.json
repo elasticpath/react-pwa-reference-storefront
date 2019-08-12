@@ -1,6 +1,6 @@
 {
   "name": "@elasticpath/store-components",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "main": "build/index",
   "main:src": "src/index",
   "types": "src/index",
@@ -20,7 +20,8 @@
     "react-dev-utils": "^9.0.1",
     "react-responsive-modal": "^4.0.1",
     "react-scripts": "^3.0.1",
-    "ts-loader": "^6.0.3"
+    "ts-loader": "^6.0.3",
+    "quagga": "^0.12.1"
   },
   "browserslist": {
     "production": [

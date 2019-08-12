@@ -66,17 +66,50 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleQtyChange = this.handleQtyChange.bind(this);
     this.getProductInfo = this.getProductInfo.bind(this);
+    this.setItemData = this.setItemData.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     const { code } = this.state;
     const { item } = nextProps;
     if (item.code !== code) {
-      this.handleRemoveSku();
+      if (!item.code) {
+        this.setState({
+          code: item.code,
+          product: item.product,
+          quantity: item.quantity,
+        });
+      } else {
+        this.setItemData(item.product, item.quantity, item.code);
+      }
+    }
+  }
+
+  setItemData(item, quantity, code) {
+    if (item._definition[0]._options) {
       this.setState({
-        code: item.code,
-        product: item.product,
-        quantity: item.quantity,
+        code,
+        product: item,
+        skuErrorMessage: intl.get('configurable-product-message', { SKUCode: code }),
+      });
+    } else {
+      this.setState({
+        skuErrorMessage: '',
+        product: item,
+        code,
+      });
+    }
+    if (item._availability[0].state !== 'AVAILABLE') {
+      this.setState({
+        code,
+        product: item,
+        skuErrorMessage: `${intl.get('not-available-message')}`,
+      });
+    }
+    if (!item._price) {
+      this.setState({
+        code,
+        skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: code })}`,
       });
     }
   }

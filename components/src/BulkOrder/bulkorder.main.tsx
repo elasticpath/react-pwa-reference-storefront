@@ -20,12 +20,14 @@
  */
 
 import React from 'react';
+import BarcodeScanner from '../BarcodeScanner/barcodescanner';
 import { login } from '../utils/AuthService';
+import { cortexFetchItemLookupForm, itemLookup, searchLookup } from '../utils/CortexLookup';
 import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './bulkorder.main.less';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
@@ -53,7 +55,10 @@ interface BulkOrderState {
   csvText: string,
   bulkOrderErrorMessage: string,
   quickOrderErrorMessage: string,
-  bulkOrderDuplicatedErrorMessage: string
+  bulkOrderDuplicatedErrorMessage: string,
+  isBarcodeScannerOpen: boolean
+  isBarcodeScannerLoading: boolean
+  barcodeScannerError: string
 }
 
 export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
@@ -81,13 +86,19 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
       bulkOrderErrorMessage: '',
       quickOrderErrorMessage: '',
       bulkOrderDuplicatedErrorMessage: '',
+      isBarcodeScannerOpen: false,
+      isBarcodeScannerLoading: false,
+      barcodeScannerError: '',
     };
     this.addAllToCart = this.addAllToCart.bind(this);
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
+    this.handleBarcodeClick = this.handleBarcodeClick.bind(this);
+    this.handleBarcodeModalClose = this.handleBarcodeModalClose.bind(this);
+    this.handleBarcodeScanned = this.handleBarcodeScanned.bind(this);
   }
 
   addAllToCart(orderItems, isQuickOrder) {
-    if (!orderItems) return;
+    if (!orderItems) return; // "\f02a"
     const { cartData } = this.props;
     const { defaultItemsCount, defaultItem } = this.state;
     this.setState({ isLoading: true });
@@ -200,6 +211,54 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
     }
   }
 
+  handleBarcodeClick() {
+    this.setState({ isBarcodeScannerOpen: true });
+  }
+
+  handleBarcodeModalClose() {
+    this.setState({ isBarcodeScannerOpen: false });
+  }
+
+  handleBarcodeScanned(barcode) {
+    this.setState({ isBarcodeScannerLoading: true, barcodeScannerError: '' });
+    login().then(() => {
+      searchLookup(barcode)
+        .then((res) => {
+          const foundItem = res._element[0];
+          const { code } = foundItem._items[0]._element[0]._code[0];
+          cortexFetchItemLookupForm()
+            .then(() => itemLookup(code, false))
+            .then((product) => {
+              if (foundItem) {
+                this.setState((state) => {
+                  const emptyItem = state.items.find(item => item.code === '');
+                  const isDuplicated = state.items.find(item => item.code === code);
+                  const updatedItems = state.items.map((item) => {
+                    if (item.key === emptyItem.key) {
+                      return {
+                        ...item,
+                        code,
+                        product,
+                        isDuplicated,
+                      };
+                    }
+                    return item;
+                  });
+                  return { ...state, items: updatedItems, isBarcodeScannerLoading: false };
+                });
+              } else {
+                this.setState({ isBarcodeScannerLoading: false, barcodeScannerError: intl.get('no-results-found') });
+              }
+            });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          this.setState({ isBarcodeScannerLoading: false, barcodeScannerError: intl.get('no-results-found') });
+        });
+    });
+  }
+
   render() {
     const { isBulkModalOpened, handleClose } = this.props;
     const {
@@ -210,6 +269,9 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
       bulkOrderErrorMessage,
       quickOrderErrorMessage,
       bulkOrderDuplicatedErrorMessage,
+      isBarcodeScannerOpen,
+      isBarcodeScannerLoading,
+      barcodeScannerError,
     } = this.state;
     const isValid = Boolean(items.find(item => (item.code !== '' && item.isValidField === false)));
     const isEmpty = Boolean(items.find(item => (item.code !== '' && item.isValidField === true)));
@@ -246,6 +308,29 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
                 >
                   {intl.get('add-all-to-cart')}
                 </button>
+                {
+                  BarcodeScanner.checkAvailability()
+                  && (
+                    <button
+                      className="ep-btn primary small btn-itemdetail-addtocart barcode-scanner"
+                      type="button"
+                      disabled={isBarcodeScannerLoading}
+                      onClick={this.handleBarcodeClick}
+                    >
+                      {
+                        (isBarcodeScannerLoading)
+                          ? <span className="miniLoader" />
+                          : (
+                            <div>
+                              <span className="scan-barcode-title">{intl.get('scan-barcode')}</span>
+                              <span className="glyphicon glyphicon-barcode" />
+                            </div>
+                          )
+                      }
+                    </button>
+                  )
+                }
+                {barcodeScannerError && <div className="bulk-order-error-message">{barcodeScannerError}</div>}
                 {
                   (isLoading) ? (<div className="miniLoader" />) : ''
                 }
@@ -290,6 +375,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
             </div>
           </div>
         </div>
+        {isBarcodeScannerOpen && <BarcodeScanner isModalOpen={isBarcodeScannerOpen} handleModalClose={this.handleBarcodeModalClose} handleCodeFound={this.handleBarcodeScanned} />}
       </div>
     );
   }
