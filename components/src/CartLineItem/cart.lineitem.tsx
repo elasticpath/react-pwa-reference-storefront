@@ -22,12 +22,13 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import * as cortex from '@elasticpath/cortex-client';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
-import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';
+import { ClientContext } from '../ClientContext';
+
 import './cart.lineitem.less';
 
 let Config: IEpConfig | any = {};
@@ -53,6 +54,8 @@ interface CartLineItemState {
 }
 
 class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     handleErrorMessage: () => { },
     hideRemoveButton: false,
@@ -64,6 +67,8 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     onRemove: () => { },
     itemDetailLink: '',
   };
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -84,6 +89,10 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     this.handleModalClose = this.handleModalClose.bind(this);
   }
 
+  componentDidMount() {
+    this.client = this.context;
+  }
+
   componentWillReceiveProps(nextProps) {
     const { quantity } = this.state;
     if (nextProps.item.quantity !== quantity) {
@@ -93,33 +102,17 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     }
   }
 
-  handleQuantityChange(event) {
+  async handleQuantityChange(event) {
     event.preventDefault();
     const { item, handleQuantityChange } = this.props;
     const { quantity } = this.state;
     if (quantity === '') {
-      this.setState({ quantity: 1 });
+      this.setState({ quantity: '1' });
     }
-    login().then(() => {
-      cortexFetch(item.self.uri,
-        {
-          method: 'put',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity,
-          }),
-        })
-        .then(() => {
-          handleQuantityChange();
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    await this.client.lineItem(item.self.uri).update({ quantity })
+      .then(() => {
+        handleQuantityChange();
+      });
   }
 
   handleQuantityDecrement() {
@@ -136,65 +129,38 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     this.setState({ quantity: newItemQuantity });
   }
 
-  handleConfiguratorAddToCartBtnClicked() {
+  // Doesn't work
+  async handleConfiguratorAddToCartBtnClicked() {
     const {
       item, handleQuantityChange, handleErrorMessage, itemQuantity, onConfiguratorAddToCart,
     } = this.props;
     handleQuantityChange();
-    login().then(() => {
-      const addToCartLink = item._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      cortexFetch(addToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity: itemQuantity || 1,
-          }),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onConfiguratorAddToCart();
-          } else {
-            res.json().then((json) => {
-              handleErrorMessage(json);
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    const quantity = itemQuantity || 1;
+    const addToCartFormUri = item.self.uri;
+
+    const itemRes = await this.client.item(addToCartFormUri).fetch({ addtocartform: {} });
+
+    itemRes.addtocartform({ quantity }).fetch()
+      .then((res) => {
+        onConfiguratorAddToCart();
+      })
+      .catch((error) => {
+        handleErrorMessage(error.message);
+      });
   }
 
-  handleMoveToCartBtnClicked() {
+  async handleMoveToCartBtnClicked() {
     const { item, onMoveToCart } = this.props;
-    login().then(() => {
-      const moveToCartLink = item._movetocartform[0].links.find(link => link.rel === 'movetocartaction');
-      cortexFetch(moveToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity: 1,
-          }),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onMoveToCart();
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    const wishListRes = await this.client.wishlistLineItem(item.self.uri).fetch({ movetocartform: {} });
+
+    wishListRes.movetocartform({ quantity: 1 }).fetch({})
+      .then(() => {
+        onMoveToCart();
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   handleRemoveBtnClicked() {
@@ -202,24 +168,15 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       item, handleQuantityChange, onRemove,
     } = this.props;
     handleQuantityChange();
-    login().then(() => {
-      cortexFetch(item.self.uri,
-        {
-          method: 'delete',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(() => {
-          handleQuantityChange();
-          onRemove();
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    this.client.availabilityForCartLineItem(item.self.uri).delete()
+      .then(() => {
+        handleQuantityChange();
+        onRemove();
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   handleModalOpen() {

@@ -22,8 +22,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
+
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './appheadernavigation.main.less';
@@ -57,12 +58,16 @@ interface AppHeaderNavigationMainState {
 }
 
 class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     isOffline: undefined,
     onFetchNavigationError: () => {},
     checkedLocation: false,
     appHeaderNavigationLinks: {},
   };
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -75,17 +80,18 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     };
   }
 
-  componentWillMount() {
+  async componentWillMount() {
+    this.client = this.context;
     const { isOffline, isOfflineCheck } = this.props;
     if (!navigator.onLine && !isOffline && isOffline !== undefined) {
       isOfflineCheck(true);
     } else if (navigator.onLine && isOffline) {
       isOfflineCheck(false);
     }
-    this.fetchNavigationData();
+    await this.fetchNavigationData();
   }
 
-  componentWillReceiveProps() {
+  async componentWillReceiveProps() {
     const { isOffline, isOfflineCheck, checkedLocation } = this.props;
     const { navigations } = this.state;
     if (!navigator.onLine && !isOffline && isOffline !== undefined) {
@@ -94,7 +100,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
       isOfflineCheck(false);
     }
     if (navigations.length === 0 && checkedLocation) {
-      this.fetchNavigationData();
+      await this.fetchNavigationData();
     }
   }
 
@@ -136,31 +142,24 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     return loPathsToChange;
   }
 
-  fetchNavigationData() {
-    login()
-      .then(() => cortexFetch(`/?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        }))
-      .then(res => res.json())
-      .then((res) => {
-        if (res && res._navigations) {
-          const cortexNavigations = res._navigations[0]._element;
-          const navigations = this.getDropDownNavigationState(cortexNavigations);
-          this.setState({
-            navigations,
-            /* eslint-disable react/no-unused-state */
-            originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
-          });
-        }
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
+  // Doesn't work
+  async fetchNavigationData() {
+    const res = await this.client.root().fetch({
+      navigations: {
+        element: {
+          child: {},
+        },
+      },
+    });
+    if (res && res.navigations && res.navigations.elements) {
+      const cortexNavigations = res.navigations.elements;
+      const navigations = this.getDropDownNavigationState(cortexNavigations);
+      this.setState({
+        navigations,
+        /* eslint-disable react/no-unused-state */
+        originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
       });
+    }
   }
 
   toggleShowForCategory(category, path) {
