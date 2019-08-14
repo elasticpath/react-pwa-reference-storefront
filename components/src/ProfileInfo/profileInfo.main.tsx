@@ -20,8 +20,8 @@
  */
 
 import React from 'react';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileInfo.main.less';
@@ -49,6 +49,10 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     isDisabled: false,
   }
 
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -64,6 +68,10 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
     this.submitPersonalInfoChange = this.submitPersonalInfoChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.client = this.context;
   }
 
   setFirstName(event) {
@@ -86,58 +94,21 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     });
   }
 
-  submitPersonalInfoChange(event) {
+
+  async submitPersonalInfoChange(event) {
     event.preventDefault();
     const {
       firstName, lastName,
     } = this.state;
-    login().then(() => {
-      cortexFetch('/', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(res => res.json())
-        .then((res) => {
-          const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
-          cortexFetch(`${profileNameLink.uri}?followlocation=true`, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-          }).then(linkRes => linkRes.json())
-            .then((linkRes) => {
-              cortexFetch(linkRes.self.uri, {
-                method: 'put',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                },
-                body: JSON.stringify({
-                  'given-name': firstName,
-                  'family-name': lastName,
-                }),
-              }).then((response) => {
-                if (response.status === 400) {
-                  this.setState({ failedSubmit: true });
-                } else if (response.status === 201 || response.status === 200 || response.status === 204) {
-                  this.cancel();
-                  const { onChange } = this.props;
-                  onChange();
-                }
-              }).catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
-            }).catch((error) => {
-            // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        }).catch((error) => {
-        // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
+    const { onChange } = this.props;
+    const root = await this.client.root().fetch({ defaultprofile: {} });
+    await this.client.profile(root.defaultprofile.uri).update({
+      givenName: firstName,
+      familyName: lastName,
+      profileId: '',
     });
+    this.cancel();
+    onChange();
   }
 
   render() {

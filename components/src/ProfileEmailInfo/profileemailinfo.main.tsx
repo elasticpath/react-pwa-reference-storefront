@@ -20,8 +20,8 @@
  */
 
 import React from 'react';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileemailinfo.main.less';
@@ -42,6 +42,10 @@ type ProfileemailinfoMainState = {
 };
 
 class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, ProfileemailinfoMainState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -58,6 +62,10 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     this.submitEmailChange = this.submitEmailChange.bind(this);
   }
 
+  componentDidMount() {
+    this.client = this.context;
+  }
+
   setEmail(event) {
     this.setState({ email: event.target.value });
   }
@@ -72,40 +80,32 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     });
   }
 
-  submitEmailChange(event) {
+  async submitEmailChange(event) {
     event.preventDefault();
     const { email } = this.state;
-    const { profileInfo } = this.props;
+    const { profileInfo, onChange } = this.props;
     if (!profileInfo) return;
-    login()
-      .then(() => {
-        cortexFetch(profileInfo._emails[0]._emailform[0].self.uri, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+
+    const root = await this.client.root().fetch(
+      {
+        defaultprofile: {
+          emails: {
+            emailform: {},
           },
-          body: JSON.stringify({ email }),
-        })
-          .then((response) => {
-            if (response.status === 400) {
-              this.setState({ failedSubmit: true });
-            } else if (response.status === 201 || response.status === 200 || response.status === 204) {
-              this.cancelEmail();
-              const { onChange } = this.props;
-              onChange();
-            }
-            return response;
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+        },
+      },
+    );
+
+    root.defaultprofile.emails.emailform({
+      emailId: '',
+      email,
+    }).fetch({}).then(() => {
+      this.setState({ failedSubmit: false });
+      this.cancelEmail();
+      onChange();
+    }).catch(() => {
+      this.setState({ failedSubmit: true });
+    });
   }
 
   render() {

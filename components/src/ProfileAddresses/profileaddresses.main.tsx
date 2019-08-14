@@ -21,8 +21,8 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileaddresses.main.less';
@@ -40,6 +40,10 @@ interface ProfileAddressesMainProps {
 }
 
 class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -47,22 +51,15 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
     ({ intl } = epConfig);
   }
 
-  handleDelete(link) {
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        const { onChange } = this.props;
-        onChange();
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    });
+  componentDidMount() {
+    this.client = this.context;
+  }
+
+  async handleDelete(link) {
+    const { onChange } = this.props;
+
+    await this.client.address(link).delete();
+    onChange();
   }
 
   renderAddresses() {
