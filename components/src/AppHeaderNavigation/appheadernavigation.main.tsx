@@ -108,7 +108,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     const dropDownNavigation = {};
 
     navigations.forEach((category) => {
-      const displayName = category['display-name'];
+      const itemDisplayName = category.displayName;
       const { name } = category;
       const show = false;
 
@@ -119,7 +119,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
         children = this.getDropDownNavigationState(categoryChildren);
       }
 
-      dropDownNavigation[displayName] = {
+      dropDownNavigation[itemDisplayName] = {
         show,
         name,
         ...children,
@@ -142,12 +142,16 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     return loPathsToChange;
   }
 
-  // Doesn't work
+  // Children don't work
   async fetchNavigationData() {
     const res = await this.client.root().fetch({
       navigations: {
         element: {
-          child: {},
+          child: {
+            child: {
+              child: {},
+            },
+          },
         },
       },
     });
