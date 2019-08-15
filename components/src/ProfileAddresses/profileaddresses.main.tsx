@@ -64,9 +64,9 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
 
   renderAddresses() {
     const { addresses, onEditAddress } = this.props;
-    if (addresses._element) {
+    if (addresses.elements) {
       return (
-        addresses._element.map((addressElement) => {
+        addresses.elements.map((addressElement) => {
           const {
             name, address,
           } = addressElement;
@@ -102,10 +102,10 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
                     </li>
                   </ul>
                 </div>
-                <button className="ep-btn small edit-address-btn" type="button" onClick={() => { onEditAddress(addressElement.self.uri); }}>
+                <button className="ep-btn small edit-address-btn" type="button" onClick={() => { onEditAddress(addressElement.uri); }}>
                   {intl.get('edit')}
                 </button>
-                <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
+                <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.uri); }} data-actionlink="">
                   {intl.get('delete')}
                 </button>
               </li>
@@ -128,7 +128,7 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
     const {
       addresses, onAddNewAddress,
     } = this.props;
-    const isDisabled = !addresses._addressform;
+    const isDisabled = !addresses.addressform;
     if (addresses) {
       return (
         <div className="profile-addresses-container" data-region="profileAddressesRegion" style={{ display: 'block' }}>

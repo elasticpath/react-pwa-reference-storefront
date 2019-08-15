@@ -52,7 +52,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     Config = epConfig.config;
     ({ intl } = epConfig);
     const { profileInfo } = this.props;
-    const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+    const email = profileInfo && profileInfo.emails && profileInfo.emails.elements ? profileInfo.emails.elements[0].email : '';
     this.state = {
       failedSubmit: false,
       emailInEditMode: false,
@@ -111,7 +111,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
   render() {
     const { emailInEditMode, failedSubmit } = this.state;
     const { profileInfo } = this.props;
-    const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+    const email = profileInfo && profileInfo.emails && profileInfo.emails.elements ? profileInfo.emails.elements[0].email : '';
     if (emailInEditMode) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
@@ -154,7 +154,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
         </div>
       );
     }
-    if (profileInfo && profileInfo._emails) {
+    if (profileInfo && profileInfo.emails) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <span className="feedback-label">{email === '' && intl.get('email-validation')}</span>
@@ -171,7 +171,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
                 {email}
               </span>
               <br />
-              {(profileInfo._emails && profileInfo._emails[0]._emailform) ? (
+              {(profileInfo.emails && profileInfo.emails.emailform) ? (
                 <button
                   className="ep-btn small profile-email-edit-btn"
                   type="button"

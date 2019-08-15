@@ -78,10 +78,10 @@ class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMai
 
   renderPaymentMethods() {
     const { paymentMethods } = this.props;
-    if (paymentMethods._element) {
+    if (paymentMethods.elements) {
       return (
-        paymentMethods._element.map((paymentElement) => {
-          const displayName = paymentElement['display-name'];
+        paymentMethods.elements.map((paymentElement) => {
+          const { displayName } = paymentElement;
           return (
             <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
               <li className="profile-payment-method-container">
@@ -90,7 +90,7 @@ class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMai
                     {displayName}
                   </span>
                 </div>
-                <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
+                <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.uri); }}>
                   {intl.get('delete')}
                 </button>
               </li>
@@ -113,7 +113,7 @@ class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMai
     const {
       paymentMethods, onChange,
     } = this.props;
-    const isDisabled = !paymentMethods._paymenttokenform;
+    const isDisabled = !paymentMethods.paymenttokenform;
     if (paymentMethods) {
       return (
         <div className="paymentMethodsRegions" data-region="paymentMethodsRegion" style={{ display: 'block' }}>
