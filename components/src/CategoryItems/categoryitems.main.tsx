@@ -379,25 +379,24 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
     const {
       isLoading, categoryModel, categoryModelId, categoryModelDisplayName, categoryModelParentDisplayName, loadSortedProduct,
     } = this.state;
-    console.log('categoryModel: ', categoryModel);
     const { productLinks } = this.props;
     let products: { [key: string]: any } = {};
     let productList = '';
     let noProducts = true;
     let featuredOffers = {};
     if (categoryModel.offers && categoryModel.offers.elements) {
-      [products] = categoryModel.offers.elements;
-      [productList] = categoryModel.offers.elements;
+      products = categoryModel.offers;
+      productList = categoryModel.offers;
     } else {
-      products = categoryModel.items && categoryModel.items.elements ? categoryModel.items.elements : categoryModel;
-      productList = categoryModel.items && categoryModel.items.elements ? categoryModel.items.elements : categoryModel;
+      products = categoryModel.items && categoryModel.items.elements ? categoryModel.items : categoryModel;
+      productList = categoryModel.items && categoryModel.items.elements ? categoryModel.items : categoryModel;
     }
 
     if (categoryModel.featuredoffers) {
       [featuredOffers] = categoryModel.featuredoffers;
     }
     const categoryModelIdString = categoryModelId;
-    noProducts = !products || !products.element || !products.pagination;
+    noProducts = !products || !products.elements || !products.pagination;
 
     return (
       <div className="category-items-container container-3">
