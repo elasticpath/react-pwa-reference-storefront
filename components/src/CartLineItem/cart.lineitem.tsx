@@ -109,7 +109,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     if (quantity === '') {
       this.setState({ quantity: '1' });
     }
-    await this.client.lineItem(item.self.uri).update({ quantity })
+    await this.client.lineItem(item.uri).update({ quantity })
       .then(() => {
         handleQuantityChange();
       });
@@ -136,7 +136,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     } = this.props;
     handleQuantityChange();
     const quantity = itemQuantity || 1;
-    const addToCartFormUri = item.self.uri;
+    const addToCartFormUri = item.uri;
 
     const itemRes = await this.client.item(addToCartFormUri).fetch({ addtocartform: {} });
 
@@ -168,7 +168,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       item, handleQuantityChange, onRemove,
     } = this.props;
     handleQuantityChange();
-    this.client.availabilityForCartLineItem(item.self.uri).delete()
+    this.client.availabilityForCartLineItem(item.uri).delete()
       .then(() => {
         handleQuantityChange();
         onRemove();
@@ -193,10 +193,10 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderUnitPrice() {
     const { item } = this.props;
-    if (item._item && (item._price || item._item[0]._price)) {
-      const itemPrice = ((item._price) ? (item._price) : (item._item[0]._price));
-      const listPrice = itemPrice[0]['list-price'][0].display;
-      const purchasePrice = itemPrice[0]['purchase-price'][0].display;
+    if (item.item && (item.price || item.item.price)) {
+      const itemPrice = ((item.price) ? (item.price) : (item.item.price));
+      const listPrice = itemPrice.listPrice.display;
+      const purchasePrice = itemPrice.purchasePrice.display;
       if (listPrice !== purchasePrice) {
         return (
           <ul className="price-container">
@@ -228,9 +228,9 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderTotalPrice() {
     const { item } = this.props;
-    let itemTotal = ((item._total) ? (item._total[0].cost[0].display) : (''));
-    if (!itemTotal && item._price) {
-      itemTotal = item._price[0]['purchase-price'][0].display;
+    let itemTotal = ((item.total) ? (item.total.cost.display) : (''));
+    if (!itemTotal && item.price) {
+      itemTotal = item.price.purchasePrice.display;
     }
     return (
       <ul className="price-container">
@@ -244,14 +244,14 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderBundleConfiguration() {
     const { item } = this.props;
-    const bundleConfigs = (item._dependentlineitems && item._dependentlineitems[0] && item._dependentlineitems[0]._element) ? (item._dependentlineitems[0]._element) : (null);
+    const bundleConfigs = (item.dependentlineitems && item.dependentlineitems && item.dependentlineitems.elements) ? (item.dependentlineitems.elements) : (null);
     if (bundleConfigs) {
       return bundleConfigs.map(config => (
-        (config._item)
+        (config.item)
           ? (
             <li className="bundle-configuration" key={config}>
               <label htmlFor="option-name" className="option-name">
-                {config._item[0]._definition[0]['display-name']}
+                {config.item.definition.displayName}
                 &nbsp;
               </label>
             </li>
@@ -288,13 +288,14 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderOptions() {
     const { item } = this.props;
-    let options = (item._item) ? (item._item[0]._definition[0]._options) : ('');
-    if (!options && item._definition) {
-      options = item._definition[0]._options;
+    let options = (item.item) ? (item.item.definition.options) : ('');
+    if (!options && item.definition) {
+      // eslint-disable-next-line prefer-destructuring
+      options = item.definition.options;
     }
     if (options) {
       return (
-        options[0]._element.map(option => (
+        options.elements.map(option => (
           <li className="option" key={option['display-name']}>
             <label htmlFor="option-value" className="option-name">
               {option['display-name']}
@@ -314,14 +315,14 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderPromotions() {
     const { item } = this.props;
-    if (item._appliedpromotions) {
-      const promotions = item._appliedpromotions[0]._element;
+    if (item.appliedpromotions) {
+      const promotions = item.appliedpromotions.elements;
       if (promotions) {
         return (
           promotions.map(promotion => (
             <li key={promotion.name}>
-              {(promotion['display-name'])
-                ? (promotion['display-name'])
+              {(promotion.displayName)
+                ? (promotion.displayName)
                 : (promotion.name)}
               &nbsp;
             </li>
@@ -342,17 +343,17 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       onRemove,
     } = this.props;
     const { quantity, openModal } = this.state;
-    const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
-    let availability = (itemAvailability[0].state === 'AVAILABLE');
+    const itemAvailability = ((item.availability) ? (item.availability) : (item.item.availability));
+    let availability = (itemAvailability.state === 'AVAILABLE');
     let availabilityString = '';
-    if (itemAvailability.length >= 0) {
-      if (itemAvailability[0].state === 'AVAILABLE') {
+    if (itemAvailability.state) {
+      if (itemAvailability.state === 'AVAILABLE') {
         availability = true;
         availabilityString = intl.get('in-stock');
-      } else if (itemAvailability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+      } else if (itemAvailability.state === 'AVAILABLE_FOR_PRE_ORDER') {
         availability = true;
         availabilityString = intl.get('pre-order');
-      } else if (itemAvailability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+      } else if (itemAvailability.state === 'AVAILABLE_FOR_BACK_ORDER') {
         availability = true;
         availabilityString = intl.get('back-order');
       } else {
@@ -362,15 +363,15 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     }
     let itemCodeString = '';
     let itemDisplayName = '';
-    if (item._item) {
-      itemCodeString = item._item[0]._code[0].code;
-      itemDisplayName = item._item[0]._definition[0]['display-name'];
+    if (item.item) {
+      itemCodeString = item.item.code.code;
+      itemDisplayName = item.item.definition.displayName;
     }
-    if (item._code) {
-      itemCodeString = item._code[0].code;
+    if (item.code) {
+      itemCodeString = item.code.code;
     }
-    if (item._definition) {
-      itemDisplayName = item._definition[0]['display-name'];
+    if (item.definition) {
+      itemDisplayName = item.definition.displayName;
     }
     return (
       <div id={`cart_lineitem_${itemCodeString}`} className="cart-lineitem-row">
@@ -392,7 +393,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
             {itemDisplayName}
           </Link>
         </div>
-        {(item._appliedpromotions && item._appliedpromotions[0]._element)
+        {(item.appliedpromotions && item.appliedpromotions.elements)
           ? (
             <div className="promotions-col">
               <ul className="promotions-container">
@@ -421,13 +422,13 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
                 {availabilityString}
               </div>
             </li>
-            <li className={`category-item-release-date${itemAvailability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+            <li className={`category-item-release-date${itemAvailability.releaseDate ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
               <label htmlFor="release-date-value" className="releasedate-label">
                 {intl.get('expected-release-date')}
                 :&nbsp;
               </label>
               <span className="release-date-value">
-                {(itemAvailability[0]['release-date']) ? itemAvailability[0]['release-date']['display-value'] : ''}
+                {(itemAvailability.releaseDate) ? itemAvailability.releaseDate.displayValue : ''}
               </span>
             </li>
           </ul>
@@ -474,7 +475,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._addtocartform && !hideAddToBagButton) ? (
+        {(item.addtocartform && !hideAddToBagButton) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-addToCart" type="button" onClick={this.handleConfiguratorAddToCartBtnClicked}>
               <span className="btn-text">
@@ -484,7 +485,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._dependentoptions && item._dependentoptions[0] && (item._dependentoptions[0]._element || item._dependentlineitems[0]._element)) ? (
+        {(item.dependentoptions && item.dependentoptions && (item.dependentoptions.elements || item.dependentlineitems.elements)) ? (
           <div className="configure-btn-col">
             <button className="ep-btn primary small btn-cart-configureBundle" type="button" onClick={() => this.handleModalOpen()}>
               <span className="btn-text">
@@ -495,7 +496,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._movetocartform) ? (
+        {(item.movetocartform) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-moveToCart" type="button" onClick={this.handleMoveToCartBtnClicked}>
               <span className="btn-text">

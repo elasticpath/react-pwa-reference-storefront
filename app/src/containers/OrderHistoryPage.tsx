@@ -21,18 +21,57 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import * as cortex from '@elasticpath/cortex-client';
 import { RouteComponentProps } from 'react-router-dom';
-import { PurchaseDetailsMain } from '@elasticpath/store-components';
-import { login } from '../utils/AuthService';
-import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
-import { cortexFetch } from '../utils/Cortex';
-import Config from '../ep.config.json';
+import { ClientContext, PurchaseDetailsMain } from '@elasticpath/store-components';
 
 import './OrderHistoryPage.less';
 
 const zoomArray = [
   'defaultcart:additemstocartform',
 ];
+
+const zoom = {
+  paymentmeans: {
+    element: {},
+  },
+  shipments: {
+    element: {
+      destination: {},
+      shippingoption: {},
+    },
+  },
+  billingaddress: {},
+  appliedpromotions: {
+    element: {},
+  },
+  lineitems: {
+    element: {
+      item: {
+        code: {},
+        availability: {},
+        definition: {},
+        addtocartform: {},
+        price: {},
+      },
+      options: {
+        element: {
+          value: {},
+        },
+      },
+      components: {
+        element: {
+          item: {
+            addtocartform: {},
+            availability: {},
+            definition: {},
+            code: {},
+          },
+        },
+      },
+    },
+  },
+};
 
 interface OrderHistoryPageProps extends React.Component<RouteComponentProps> {
     match: {
@@ -45,6 +84,10 @@ interface OrderHistoryPageState {
 }
 
 class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHistoryPageState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -54,27 +97,27 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
   }
 
   componentDidMount() {
+    this.client = this.context;
     this.fetchPurchaseData();
   }
 
-  fetchPurchaseData() {
+  async fetchPurchaseData() {
     const { match } = this.props;
-    const orderId = decodeURIComponent(match.params.url);
-    login().then(() => {
-      const defaultCartFetch = cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(res => res.json());
-      const purchaseFormFetch = cortexFetchPurchaseLookupForm().then(() => purchaseLookup(orderId));
+    const purchaseNumber = decodeURIComponent(match.params.url);
 
-      Promise.all([purchaseFormFetch, defaultCartFetch])
-        .then((res) => {
-          this.setState({
-            purchaseData: { ...res[0], _defaultcart: res[1]._defaultcart },
-          });
-        });
+    const root = await this.client.root().fetch({
+      defaultcart: {
+        additemstocartform: {},
+      },
+      lookups: {
+        purchaselookupform: {},
+      },
+    });
+
+    const purchase = await root.lookups.purchaselookupform({ purchaseNumber }).fetch(zoom);
+
+    this.setState({
+      purchaseData: purchase,
     });
   }
 
