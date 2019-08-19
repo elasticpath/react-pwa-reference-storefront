@@ -27,10 +27,6 @@ import { ClientContext, PurchaseDetailsMain } from '@elasticpath/store-component
 
 import './OrderHistoryPage.less';
 
-const zoomArray = [
-  'defaultcart:additemstocartform',
-];
-
 const zoom = {
   paymentmeans: {
     element: {},
@@ -117,7 +113,7 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
     const purchase = await root.lookups.purchaselookupform({ purchaseNumber }).fetch(zoom);
 
     this.setState({
-      purchaseData: purchase,
+      purchaseData: { ...purchase, defaultcart: root.defaultcart },
     });
   }
 

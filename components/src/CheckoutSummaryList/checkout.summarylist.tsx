@@ -69,7 +69,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
 
   renderCoupons() {
     const { data } = this.props;
-    if (data._order && data._order[0] && data._order[0]._couponinfo[0]._coupon) {
+    if (data.order && data.order.couponinfo && data.order.couponinfo.coupon) {
       return (
         <li className="cart-coupons" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart-applied-promotions" className="cart-summary-label-col">
@@ -77,14 +77,14 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <br />
-          {data._order[0]._couponinfo[0]._coupon.map(coupon => (
+          {data.order.couponinfo.coupon.map(coupon => (
             <div className="promotions-table" key={coupon.code}>
               <div className="row">
                 <div className="col-6 promotion-display">
                   {coupon.code}
                 </div>
                 <div className="col-6 promotion-remove">
-                  <button type="button" className="cart-remove-promotion" onClick={() => { this.deletePromotionCode(coupon.self.uri); }} data-actionlink="">
+                  <button type="button" className="cart-remove-promotion" onClick={() => { this.deletePromotionCode(coupon.uri); }} data-actionlink="">
                     {intl.get('remove')}
                   </button>
                 </div>
@@ -99,7 +99,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
 
   renderPromotions() {
     const { data } = this.props;
-    if (data._appliedpromotions) {
+    if (data.appliedpromotions) {
       return (
         <li className="cart-applied-promotions" data-region="cartAppliedPromotionsRegion">
           <label htmlFor="cart-applied-promotions" className="cart-summary-label-col">
@@ -107,10 +107,10 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <br />
-          {data._appliedpromotions[0]._element.map(promotion => (
+          {data.appliedpromotions.elements.map(promotion => (
             <span className="cart-summary-value-col cart-applied-promotions" key={promotion.name}>
-              {(promotion['display-name'])
-                ? (promotion['display-name'])
+              {(promotion.displayName)
+                ? (promotion.displayName)
                 : (promotion.name)
               }
             </span>
@@ -123,7 +123,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
 
   renderDiscount() {
     const { data } = this.props;
-    if (data._discount) {
+    if (data.discount) {
       return (
         <li className="cart-discount">
           <label htmlFor="cart-summary-value-col" className="cart-summary-label-col">
@@ -131,7 +131,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <span className="cart-summary-value-col">
-            {data._discount[0].discount[0].display}
+            {data.discount.discount.display}
           </span>
         </li>
       );
@@ -141,8 +141,8 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
 
   renderShipping() {
     const { data } = this.props;
-    if (data._order && data._order[0]._deliveries && data._order[0]._deliveries[0]._element[0]._shippingoptioninfo) {
-      const shippingOption = (data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption) ? (data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption[0].cost[0].display) : ('');
+    if (data.order && data.order.deliveries && data.order.deliveries.elements[0].shippingoptioninfo) {
+      const shippingOption = (data.order.deliveries.elements[0].shippingoptioninfo.shippingoption) ? (data.order.deliveries.elements[0].shippingoptioninfo.shippingoption.cost[0].display) : ('');
       return (
         <li className="checkout-shipping">
           <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
@@ -164,7 +164,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
 
   renderTax() {
     const { data } = this.props;
-    if (data._order && data._order[0]._tax && data._order[0]._tax[0].cost.length) {
+    if (data.order && data.order.tax && data.order.tax.cost.length) {
       return (
         <li className="checkout-tax">
           <div data-region="checkoutTaxTotalRegion" style={{ display: 'block' }}>
@@ -174,13 +174,13 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
                 :&nbsp;
               </label>
               <span>
-                {data._order[0]._tax[0].total.display}
+                {data.order.tax.total.display}
               </span>
             </div>
           </div>
           <div data-region="checkoutTaxBreakDownRegion" style={{ display: 'block' }}>
             <ul className="checkout-tax-list">
-              {data._order[0]._tax[0].cost.map(tax => (
+              {data.order.tax.cost.map(tax => (
                 <li className="checkout-tax" key={tax.title}>
                   <label className="cart-summary-label-col" htmlFor="checkout-tax">
                     {tax.title}
@@ -202,7 +202,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
   renderCheckoutTotal() {
     const { data, giftCards } = this.props;
     const giftCardsAmount = giftCards.map(el => el.balance).reduce((total, amount) => total + amount, 0);
-    if (data._order && data._order[0]._total) {
+    if (data.order && data.order.total) {
       return (
         <li className="checkout-total">
           <label className="cart-summary-label-col" htmlFor="checkout-total">
@@ -210,7 +210,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <span data-el-value="checkout.total">
-            {giftCardsAmount > 0 ? `$${Math.max(0, data._order[0]._total[0].cost[0].amount - giftCardsAmount)}` : data._order[0]._total[0].cost[0].display}
+            {giftCardsAmount > 0 ? `$${Math.max(0, data.order.total.cost[0].amount - giftCardsAmount)}` : data.order.total.cost[0].display}
           </span>
         </li>
       );
@@ -234,7 +234,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             &nbsp;
              -
             &nbsp;
-            {data._order[0]._total[0].cost[0].display}
+            {data.order.total.cost[0].display}
           </span>
         </li>
       );
@@ -263,7 +263,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <span className="cart-summary-value-col">
-            {data._total[0].cost[0].display}
+            {data.total.cost[0].display}
           </span>
         </li>
         {this.renderDiscount()}

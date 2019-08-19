@@ -228,7 +228,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderTotalPrice() {
     const { item } = this.props;
-    let itemTotal = ((item.total) ? (item.total.cost.display) : (''));
+    let itemTotal = ((item.total) ? (item.total.cost[0].display) : (''));
     if (!itemTotal && item.price) {
       itemTotal = item.price.purchasePrice.display;
     }
@@ -296,14 +296,14 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     if (options) {
       return (
         options.elements.map(option => (
-          <li className="option" key={option['display-name']}>
+          <li className="option" key={option.displayName}>
             <label htmlFor="option-value" className="option-name">
-              {option['display-name']}
+              {option.displayName}
               :&nbsp;
             </label>
             <span className="option-value">
-              {(option._value)
-                ? option._value[0]['display-name']
+              {(option.value)
+                ? option.value.displayName
                 : ('')}
             </span>
           </li>
@@ -342,6 +342,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       onConfiguratorAddToCart,
       onRemove,
     } = this.props;
+    console.warn(item);
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item.availability) ? (item.availability) : (item.item.availability));
     let availability = (itemAvailability.state === 'AVAILABLE');
