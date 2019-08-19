@@ -247,7 +247,7 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
     );
   };
 
-  const canReorder = productsData => false; // productsData.defaultcart && productsData.defaultcart.additemstocartform;
+  const canReorder = productsData => productsData.defaultcart && productsData.defaultcart.additemstocartform;
 
   const handleReorderAll = () => {
     const { onReorderAllProducts } = props;

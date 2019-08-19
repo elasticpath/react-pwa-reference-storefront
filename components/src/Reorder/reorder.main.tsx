@@ -79,44 +79,40 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
 
   async reorderAll() {
     const { productsData, onReorderAll } = this.props;
-    const bulkOrderItems = productsData._lineitems[0]._element.map(item => ({
-      code: item._item[0]._code[0].code,
+    const bulkOrderItems = productsData.lineitems.elements.map(item => ({
+      code: item.item.code.code,
       quantity: item.quantity,
     }));
-    if (productsData._defaultcart) {
+    if (productsData.defaultcart) {
       this.setState({ isLoading: true });
       const body: { [key: string]: any } = {};
       if (bulkOrderItems) {
         body.items = bulkOrderItems;
       }
-
-      const root = await this.client.root().fetch({
-        defaultcart: {
-          additemstocartform: {},
-        },
-      });
-
-      root.defaultcart.additemstocartform(body).fetch({}).then((res) => {
+      try {
+        await productsData.defaultcart.additemstocartform(body).fetch({});
         this.setState({ isLoading: false });
         onReorderAll();
-      }).catch((res) => {
+      } catch (error) {
+        const product = bulkOrderItems.find(item => error.debugMessage.includes(item.code));
         this.setState({ isLoading: false });
-        this.handleError(res['item-code'], res.debugMessage);
-      });
+        this.handleError(product.code, error.debugMessage);
+      }
     }
   }
 
   handleModalOpen() {
     const { productsData } = this.props;
-    productsData._lineitems[0]._element.forEach((product) => {
-      const SKUCode = product._item[0]._code[0].code;
-      const isConfigurable = product._item[0]._definition[0].links.find(link => link.rel === 'options');
+    productsData.lineitems.elements.forEach((product) => {
+      const { code, definition } = product.item;
+      const SKUCode = code.code;
+      const isConfigurable = definition.options && definition.options.elements && definition.options.elements.length;
 
       if (isConfigurable) {
         this.handleError(SKUCode, intl.get('configurable-product-message', { SKUCode }));
       }
 
-      if (product._item[0]._availability[0].state !== 'AVAILABLE') {
+      if (product.item.availability.state !== 'AVAILABLE') {
         this.handleError(SKUCode, intl.get('out-of-stock-product-message', { SKUCode }));
       }
     });
@@ -150,22 +146,21 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
                   {intl.get('buy-it-again')}
                 </h2>
               </div>
-              {productsData._lineitems[0]._element.map((item) => {
-                const { quantity, _code } = item._item[0];
+              {productsData.lineitems.elements.map((item) => {
+                const { quantity, code } = item.item;
                 return (
-                  <div>
+                  <div key={code.code}>
                     <CartLineItem
-                      key={_code[0].code}
-                      item={item._item[0]}
+                      item={item.item}
                       itemQuantity={quantity}
                       hideAddToBagButton
                       handleQuantityChange={() => { }}
                       hideRemoveButton
-                      handleErrorMessage={(error) => { this.handleError(_code[0].code, error.message); }}
+                      handleErrorMessage={(error) => { this.handleError(code.code, error.message); }}
                       itemDetailLink={itemDetailLink}
                     />
-                    { errorMessages[_code[0].code]
-                      ? <div className="feedback-label">{ errorMessages[_code[0].code] }</div>
+                    { errorMessages[code.code]
+                      ? <div className="feedback-label">{ errorMessages[code.code] }</div>
                       : ''
                     }
                   </div>

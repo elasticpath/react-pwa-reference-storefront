@@ -27,7 +27,7 @@ import { ClientContext, PurchaseDetailsMain } from '@elasticpath/store-component
 
 import './OrderHistoryPage.less';
 
-const zoom = {
+const zoom: cortex.PurchaseFetch = {
   paymentmeans: {
     element: {},
   },
@@ -46,7 +46,11 @@ const zoom = {
       item: {
         code: {},
         availability: {},
-        definition: {},
+        definition: {
+          options: {
+            element: {},
+          },
+        },
         addtocartform: {},
         price: {},
       },

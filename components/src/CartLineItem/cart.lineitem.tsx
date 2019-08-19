@@ -342,7 +342,6 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       onConfiguratorAddToCart,
       onRemove,
     } = this.props;
-    console.warn(item);
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item.availability) ? (item.availability) : (item.item.availability));
     let availability = (itemAvailability.state === 'AVAILABLE');
