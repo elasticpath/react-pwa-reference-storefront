@@ -31,25 +31,38 @@ import Config from '../ep.config.json';
 import './WishListsPage.less';
 
 // Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'defaultwishlist',
-  'defaultwishlist:lineitems',
-  'defaultwishlist:lineitems:element',
-  'defaultwishlist:lineitems:element:item:price',
-  'defaultwishlist:lineitems:element:item:availability',
-  'defaultwishlist:lineitems:element:list',
-  'defaultwishlist:lineitems:element:list:element',
-  'defaultwishlist:lineitems:element:item',
-  'defaultwishlist:lineitems:element:item:code',
-  'defaultwishlist:lineitems:element:item:definition',
-  'defaultwishlist:lineitems:element:item:definition:options:element',
-  'defaultwishlist:lineitems:element:item:definition:options:element:value',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:choice',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:chosen',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:choice:description',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:chosen:description',
-  'defaultwishlist:lineitems:element:movetocartform',
-];
+const zoomArray = {
+  defaultwishlist: {
+    lineitems: {
+      element: {
+        item: {
+          price: {},
+          availability: {},
+          code: {},
+          definition: {
+            options: {
+              element: {
+                value: {},
+                selector: {
+                  choice: {
+                    // description: {},
+                  },
+                  chosen: {
+                    // description: {},
+                  },
+                },
+              },
+            },
+          },
+        },
+        list: {
+          element: {},
+        },
+        movetocartform: {},
+      },
+    },
+  },
+};
 
 interface WishListsPageState {
     wishListData: any,
@@ -89,83 +102,24 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
     this.fetchwishListData();
   }
 
-  fetchwishListData() {
-    this.client.root().fetch({
-      defaultwishlist: {
-        lineitems: {
-          element: {
-            item: {
-              price: {},
-              availability: {},
-              code: {},
-              definition: {
-                options: {
-                  element: {
-                    value: {},
-                    selector: {
-                      choice: {
-                        // description: {},
-                      },
-                      chosen: {
-                        // description: {},
-                      },
-                    },
-                  },
-                },
-              },
-            },
-            list: {
-              element: {},
-            },
-            movetocartform: {},
-          },
-        },
-      },
-    })
-      .then((res) => {
-        console.log('res: ', res);
-        if (!res.defaultwishlist) {
-          this.setState({
-            invalidPermission: true,
-          });
-        } else {
-          this.setState({
-            wishListData: res.defaultwishlist,
-            isLoading: false,
-          });
-        }
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    // console.log('wishListRes: ', wishListRes);
+  async fetchwishListData() {
+    try {
+      const wishListRes = await this.client.root().fetch(zoomArray);
 
-    // login().then(() => {
-    //   cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-    //     },
-    //   })
-    //     .then(res => res.json())
-    //     .then((res) => {
-    //       if (!res._defaultwishlist) {
-    //         this.setState({
-    //           invalidPermission: true,
-    //         });
-    //       } else {
-    //         this.setState({
-    //           wishListData: res._defaultwishlist[0],
-    //           isLoading: false,
-    //         });
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       // eslint-disable-next-line no-console
-    //       console.error(error.message);
-    //     });
-    // });
+      if (!wishListRes.defaultwishlist) {
+        this.setState({
+          invalidPermission: true,
+        });
+      } else {
+        this.setState({
+          wishListData: wishListRes.defaultwishlist,
+          isLoading: false,
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
   }
 
   checkPermissions() {

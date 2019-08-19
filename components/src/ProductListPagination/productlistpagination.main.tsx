@@ -71,17 +71,17 @@ class ProductListPagination extends React.Component<ProductListPaginationProps, 
     paginationNextLinkVar = '';
     searchUrlVar = true;
     const { paginationData } = this.state;
-    if (paginationData.self.type.includes('navigation')) {
-      searchUrlVar = false;
-    }
-    for (let i = 0; i < paginationData.links.length; i++) {
-      if (paginationData.links[i].rel === 'previous') {
-        paginationPreviousLinkVar = paginationData.links[i].uri;
-      }
-      if (paginationData.links[i].rel === 'next') {
-        paginationNextLinkVar = paginationData.links[i].uri;
-      }
-    }
+    // if (paginationData.self.type.includes('navigation')) {
+    //   searchUrlVar = false;
+    // }
+    // for (let i = 0; i < paginationData.links.length; i++) {
+    //   if (paginationData.links[i].rel === 'previous') {
+    //     paginationPreviousLinkVar = paginationData.links[i].uri;
+    //   }
+    //   if (paginationData.links[i].rel === 'next') {
+    //     paginationNextLinkVar = paginationData.links[i].uri;
+    //   }
+    // }
     this.setState({
       paginationPreviousLink: paginationPreviousLinkVar,
       paginationNextLink: paginationNextLinkVar,

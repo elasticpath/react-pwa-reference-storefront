@@ -22,7 +22,7 @@
 import React from 'react';
 import * as cortex from '@elasticpath/cortex-client';
 import { login } from '../utils/AuthService';
-import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
+import { navigationLookup } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ProductListMain from '../ProductList/productlist.main';
@@ -125,6 +125,7 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
   }
 
   componentDidMount() {
+    this.client = this.context;
     const { categoryProps } = this.props;
     this.getCategoryData(categoryProps);
   }
@@ -134,52 +135,189 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
     this.getCategoryData(categoryProps);
   }
 
-  getCategoryData(categoryProps) {
+  async getCategoryData(categoryProps) {
     this.setState({ isLoading: true });
     let categoryId = categoryProps.match.params;
-    let categoryUrl = '';
     if (!categoryId['0'] || categoryId['0'] === undefined) {
       categoryId = categoryProps.match.params.id;
     } else {
       categoryId = categoryProps.match.params.id;
-      categoryUrl = categoryProps.match.params['0'];
     }
-    login().then(() => {
-      cortexFetchNavigationLookupForm()
-        .then(() => navigationLookup(categoryId)
-          .then((res) => {
-            this.setState({
-              categoryModel: res,
-              categoryModelDisplayName: res['display-name'],
-              categoryModelParentDisplayName: res._parent ? res._parent[0]['display-name'] : '',
-              categoryModelId: categoryId,
-            });
-          })
-          .then(() => {
-            if (categoryUrl !== '') {
-              navigationLookup(categoryUrl)
-                .then((res) => {
-                  const { categoryModel } = this.state;
-                  const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
-                  this.setState(prevState => ({
-                    categoryModel: {
-                      ...prevState.categoryModel,
-                      [productNode]: [res],
-                    },
-                    isLoading: false,
-                  }));
-                });
-            } else {
-              this.setState({
-                isLoading: false,
-              });
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+
+    const dataCode = {
+      code: categoryId,
+    };
+    try {
+      const navigationLookupFormRes = await this.client.root().fetch({ lookups: { navigationlookupform: {} } });
+      const categoryDataRes = await navigationLookupFormRes.lookups.navigationlookupform(dataCode).fetch({
+        items: {
+          element: {
+            code: {},
+            availability: {},
+            definition: {
+              // assets: {
+              //   element: {},
+              // },
+            },
+            price: {},
+            // rate: {},
+          },
+        },
+        offers: {
+          element: {
+            code: {},
+            availability: {},
+            definition: {
+              // assets: {
+              //   element: {},
+              // },
+            },
+            pricerange: {},
+            items: {
+              element: {
+                availability: {},
+                definition: {
+                  // assets: {
+                  //   element: {},
+                  // },
+                },
+                price: {},
+                // rate: {},
+                code: {},
+              },
+            },
+            // rate: {},
+          },
+          facets: {
+            element: {
+              facetselector: {
+                choice: {
+                  description: {},
+                  // selector: {},
+                  // selectaction: {},
+                },
+                chosen: {
+                  description: {},
+                  // selector: {},
+                  // selectaction: {},
+                },
+              },
+            },
+          },
+          sortattributes: {
+            choice: {
+              description: {},
+              selectaction: {},
+              selector: {},
+            },
+            chosen: {
+              description: {},
+              selectaction: {},
+              selector: {},
+            },
+            // offersearchresult: {},
+          },
+        },
+        // element: {
+        //   availability: {},
+        //   definition: {
+        //     assets: {
+        //       element: {},
+        //     },
+        //   },
+        //   price: {},
+        //   rate: {},
+        //   code: {},
+        //   items: {
+        //     element: {
+        //       availability: {},
+        //       definition: {
+        //         assets: {
+        //           element: {},
+        //         },
+        //       },
+        //       price: {},
+        //       rate: {},
+        //       code: {},
+        //     },
+        //   },
+        // },
+        // facets: {
+        //   element: {
+        //     facetselector: {
+        //       choice: {
+        //         description: {},
+        //         selector: {},
+        //         selectaction: {},
+        //       },
+        //       chosen: {
+        //         description: {},
+        //         selector: {},
+        //         selectaction: {},
+        //       },
+        //     },
+        //   },
+        // },
+        featuredoffers: {
+          element: {
+            availability: {},
+            definition: {
+              // assets: {
+              //   element: {},
+              // },
+            },
+            // price: {},
+            // rate: {},
+            code: {},
+            items: {
+              element: {
+                availability: {},
+                definition: {
+                  // assets: {
+                  //   element: {},
+                  // },
+                },
+                price: {},
+                // rate: {},
+                code: {},
+              },
+            },
+          },
+        },
+        // parent: {},
+        // sortattributes: {
+        //   choice: {
+        //     description: {},
+        //     selectaction: {},
+        //     selector: {},
+        //   },
+        //   chosen: {
+        //     description: {},
+        //     selectaction: {},
+        //     selector: {},
+        //   },
+        //   offersearchresult: {},
+        // },
+      });
+      this.setState({
+        categoryModel: categoryDataRes,
+        categoryModelDisplayName: categoryDataRes.displayName,
+        // categoryModelParentDisplayName: res.parent ? res.parent[0].displayName : '',
+        categoryModelId: categoryId,
+      });
+      const { categoryModel } = this.state;
+      const productNode = (categoryModel.offers) ? ('offers') : ('items');
+      this.setState(prevState => ({
+        categoryModel: {
+          ...prevState.categoryModel,
+          [productNode]: [categoryDataRes],
+        },
+        isLoading: false,
+      }));
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
   }
 
   handleSortSelection(event) {
@@ -199,11 +337,11 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
         })
         .then(res => res.json())
         .then((res) => {
-          const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
+          const productNode = (categoryModel.offers) ? ('offers') : ('items');
           this.setState(prevState => ({
             categoryModel: {
               ...prevState.categoryModel,
-              [productNode]: [res._offersearchresult[0]],
+              [productNode]: [res.offersearchresult[0]],
             },
             loadSortedProduct: false,
           }));
@@ -220,7 +358,7 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
 
   handleProductsChange(products) {
     const { categoryModel } = this.state;
-    const productNode = (categoryModel._offers) ? ('_offers') : ('_items');
+    const productNode = (categoryModel.offers && categoryModel.offers.elements) ? ('offers') : ('items');
     this.setState(prevState => ({
       categoryModel: {
         ...prevState.categoryModel,
@@ -244,19 +382,20 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
     let productList = '';
     let noProducts = true;
     let featuredOffers = {};
-    if (categoryModel._offers) {
-      [products] = categoryModel._offers;
-      [productList] = categoryModel._offers;
+    if (categoryModel.offers && categoryModel.offers.elements) {
+      products = categoryModel.offers;
+      productList = categoryModel.offers;
     } else {
-      products = categoryModel._items ? categoryModel._items[0] : categoryModel;
-      productList = categoryModel._items ? categoryModel._items[0] : categoryModel;
+      products = categoryModel.items && categoryModel.items.elements ? categoryModel.items : categoryModel;
+      productList = categoryModel.items && categoryModel.items.elements ? categoryModel.items : categoryModel;
     }
 
-    if (categoryModel._featuredoffers) {
-      [featuredOffers] = categoryModel._featuredoffers;
+    if (categoryModel.featuredoffers) {
+      [featuredOffers] = categoryModel.featuredoffers;
     }
     const categoryModelIdString = categoryModelId;
-    noProducts = !products || !products._element || !products.pagination;
+    noProducts = !products || !products.elements || !products.pagination;
+    console.log('isLoading', isLoading);
 
     return (
       <div className="category-items-container container-3">
