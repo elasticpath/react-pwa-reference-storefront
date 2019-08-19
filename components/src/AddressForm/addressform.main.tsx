@@ -89,12 +89,12 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
 
   client: cortex.IClient;
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
-    this.fetchGeoData();
+    await this.fetchGeoData();
     const { addressData } = this.props;
     if (addressData && addressData.address) {
-      this.fetchAddressData(addressData.address);
+      await this.fetchAddressData(addressData.address);
     }
   }
 
@@ -150,66 +150,63 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
         'postal-code': postalCode,
       },
     };
-    let request;
-    if (addressData && addressData.address) {
-      request = this.client.address(addressData.address).update(userAddress);
-    } else {
-      const rootRes = await this.client.root().fetch({
-        defaultprofile: {
-          addresses: {
-            addressform: {},
-          },
-        },
-      });
-      request = rootRes.defaultprofile.addresses.addressform(userAddress).fetch({});
-    }
 
-    request.then(() => {
+    try {
+      if (addressData && addressData.address) {
+        await this.client.address(addressData.address).update(userAddress);
+      } else {
+        const rootRes = await this.client.root().fetch({
+          defaultprofile: {
+            addresses: {
+              addressform: {},
+            },
+          },
+        });
+        await rootRes.defaultprofile.addresses.addressform(userAddress).fetch({});
+      }
+
       this.setState({ failedSubmit: false }, () => {
         fetchData();
         onCloseModal();
       });
-    })
-      .catch((error) => {
-        this.setState({ failedSubmit: true });
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+    } catch (error) {
+      this.setState({ failedSubmit: true });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  fetchGeoData() {
-    this.client.countries(`/geographies/${Config.cortexApi.scope}/countries/`).fetch({
-      element: {
-        regions: {
-          element: {},
+  async fetchGeoData() {
+    try {
+      const res = await this.client.countries(`/geographies/${Config.cortexApi.scope}/countries/`).fetch({
+        element: {
+          regions: {
+            element: {},
+          },
         },
-      },
-    })
-      .then((res) => {
-        this.setState({
-          geoData: res,
-        });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
       });
+
+      this.setState({
+        geoData: res,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  fetchAddressData(addressLink) {
-    this.client.address(addressLink).fetch({})
-      .then((res) => {
-        this.setState({
-          firstName: res.name['given-name'],
-          lastName: res.name['family-name'],
-          address: res.address['street-address'],
-          extendedAddress: res.address['extended-address'] ? res.address['extended-address'] : '',
-          city: res.address.locality,
-          country: res.address['country-name'],
-          subCountry: res.address.region,
-          postalCode: res.address['postal-code'],
-        });
-      });
+  async fetchAddressData(addressLink) {
+    const res = await this.client.address(addressLink).fetch({});
+    this.setState({
+      firstName: res.name['given-name'],
+      lastName: res.name['family-name'],
+      address: res.address['street-address'],
+      extendedAddress: res.address['extended-address'] ? res.address['extended-address'] : '',
+      city: res.address.locality,
+      country: res.address['country-name'],
+      subCountry: res.address.region,
+      postalCode: res.address['postal-code'],
+    });
   }
 
   cancel() {
