@@ -138,6 +138,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
         // eslint-disable-next-line no-console
         console.error(error.message);
       });
+
   }
 
   handleQuantityChange() {

@@ -20,9 +20,11 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import { login } from '../utils/AuthService';
 import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
+import { ClientContext } from '../ClientContext';
 
 import './bulkorder.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -57,9 +59,13 @@ interface BulkOrderState {
 }
 
 export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     cartData: undefined,
   };
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -86,7 +92,11 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
   }
 
-  addAllToCart(orderItems, isQuickOrder) {
+  componentDidMount() {
+    this.client = this.context;
+  }
+
+  async addAllToCart(orderItems, isQuickOrder) {
     if (!orderItems) return;
     const { cartData } = this.props;
     const { defaultItemsCount, defaultItem } = this.state;
@@ -94,59 +104,120 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
     const arrayItems = orderItems
       .filter(item => item.code !== '')
       .map(item => ({ code: item.code, quantity: item.quantity }));
-    login().then(() => {
-      const addToCartLink = cartData._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
-      const body: { [key: string]: any } = {};
-      if (arrayItems) {
-        body.items = arrayItems;
-      }
-      cortexFetch(addToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 201) {
-            this.setState({
-              isLoading: false,
-              items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
-              csvText: '',
-              bulkOrderErrorMessage: '',
-              quickOrderErrorMessage: '',
-              bulkOrderDuplicatedErrorMessage: '',
-            });
-          }
-          if (res.status >= 400) {
-            let debugMessages = '';
-            res.json().then((json) => {
-              for (let i = 0; i < json.messages.length; i++) {
-                debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
-              }
-            }).then(() => {
-              if (isQuickOrder) {
-                this.setState({
-                  isLoading: false,
-                  quickOrderErrorMessage: `${debugMessages}`,
-                });
-              } else {
-                this.setState({
-                  isLoading: false,
-                  bulkOrderErrorMessage: `${debugMessages}`,
-                });
-              }
-            });
-          }
-        })
-        .catch((error) => {
-          this.setState({ isLoading: false });
-          // eslint-disable-next-line no-console
-          console.error('error.message:', error.message);
-        });
-    });
+    // console.log('cartData:', cartData);
+    // const addToCartLink = cartData._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
+    const body: { [key: string]: any } = {};
+    if (arrayItems) {
+      body.items = arrayItems;
+    }
+    const addToCartFormUri = cartData.uri;
+    // console.log('body', body);
+
+    const itemRes = await this.client.cart(addToCartFormUri).fetch({ additemstocartform: {} });
+
+    itemRes.additemstocartform({ body }).fetch({})
+      .then((res) => {
+        // console.log('res', res);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+  // }
+    // cartData.additemstocartform({ body }).fetch()
+    //   .then((res) => {
+    //     console.log('res:', res);
+    //     this.setState({
+    //       isLoading: false,
+    //       items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
+    //       csvText: '',
+    //       bulkOrderErrorMessage: '',
+    //       quickOrderErrorMessage: '',
+    //       bulkOrderDuplicatedErrorMessage: '',
+    //     });
+    //     let debugMessages = '';
+    //
+    //     for (let i = 0; i < res.messages.length; i++) {
+    //       debugMessages = debugMessages.concat(`\n${res.messages[i]['debug-message']} \n `);
+    //     }
+    //     if (isQuickOrder) {
+    //       this.setState({
+    //         isLoading: false,
+    //         quickOrderErrorMessage: `${debugMessages}`,
+    //       });
+    //     } else {
+    //       this.setState({
+    //         isLoading: false,
+    //         bulkOrderErrorMessage: `${debugMessages}`,
+    //       });
+    //     }
+    //   })
+    //   .catch((error) => {
+    // let debugMessages = '';
+    //
+    // for (let i = 0; i < error.messages.length; i++) {
+    //   debugMessages = debugMessages.concat(`\n${error.messages[i]['debug-message']} \n `);
+    // }
+    // if (isQuickOrder) {
+    //   this.setState({
+    //     isLoading: false,
+    //     quickOrderErrorMessage: `${debugMessages}`,
+    //   });
+    // } else {
+    //   this.setState({
+    //     isLoading: false,
+    //     bulkOrderErrorMessage: `${debugMessages}`,
+    //   });
+    // }
+  //   this.setState({ isLoading: false });
+  // });
+    //   cortexFetch(addToCartLink.uri,
+    //     {
+    //       method: 'post',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+    //       },
+    //       body: JSON.stringify(body),
+    //     })
+    //     .then((res) => {
+    //       if (res.status === 201) {
+    //         this.setState({
+    //           isLoading: false,
+    //           items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
+    //           csvText: '',
+    //           bulkOrderErrorMessage: '',
+    //           quickOrderErrorMessage: '',
+    //           bulkOrderDuplicatedErrorMessage: '',
+    //         });
+    //       }
+    //       if (res.status >= 400) {
+    //         let debugMessages = '';
+    //         res.json().then((json) => {
+    //           for (let i = 0; i < json.messages.length; i++) {
+    //             debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
+    //           }
+    //         }).then(() => {
+    //           if (isQuickOrder) {
+    //             this.setState({
+    //               isLoading: false,
+    //               quickOrderErrorMessage: `${debugMessages}`,
+    //             });
+    //           } else {
+    //             this.setState({
+    //               isLoading: false,
+    //               bulkOrderErrorMessage: `${debugMessages}`,
+    //             });
+    //           }
+    //         });
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       this.setState({ isLoading: false });
+    //       // eslint-disable-next-line no-console
+    //       console.error('error.message:', error.message);
+    //     });
+    // });
   }
 
   parseCsvText() {

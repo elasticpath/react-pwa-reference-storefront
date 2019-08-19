@@ -21,8 +21,9 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import * as cortex from '@elasticpath/cortex-client';
 import { RouteComponentProps } from 'react-router-dom';
-import { WishListMain } from '@elasticpath/store-components';
+import { ClientContext, WishListMain } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
@@ -56,6 +57,10 @@ interface WishListsPageState {
     invalidPermission: boolean,
 }
 class WishListsPage extends React.Component<RouteComponentProps, WishListsPageState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -63,12 +68,15 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
       isLoading: false,
       invalidPermission: false,
     };
+
+
     this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
     this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
     this.handleItemRemove = this.handleItemRemove.bind(this);
   }
 
   componentDidMount() {
+    this.client = this.context;
     this.fetchwishListData();
   }
 
@@ -82,31 +90,82 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
   }
 
   fetchwishListData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+    this.client.root().fetch({
+      defaultwishlist: {
+        lineitems: {
+          element: {
+            item: {
+              price: {},
+              availability: {},
+              code: {},
+              definition: {
+                options: {
+                  element: {
+                    value: {},
+                    selector: {
+                      choice: {
+                        // description: {},
+                      },
+                      chosen: {
+                        // description: {},
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            list: {
+              element: {},
+            },
+            movetocartform: {},
+          },
         },
+      },
+    })
+      .then((res) => {
+        console.log('res: ', res);
+        if (!res.defaultwishlist) {
+          this.setState({
+            invalidPermission: true,
+          });
+        } else {
+          this.setState({
+            wishListData: res.defaultwishlist,
+            isLoading: false,
+          });
+        }
       })
-        .then(res => res.json())
-        .then((res) => {
-          if (!res._defaultwishlist) {
-            this.setState({
-              invalidPermission: true,
-            });
-          } else {
-            this.setState({
-              wishListData: res._defaultwishlist[0],
-              isLoading: false,
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+    // console.log('wishListRes: ', wishListRes);
+
+    // login().then(() => {
+    //   cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+    //     },
+    //   })
+    //     .then(res => res.json())
+    //     .then((res) => {
+    //       if (!res._defaultwishlist) {
+    //         this.setState({
+    //           invalidPermission: true,
+    //         });
+    //       } else {
+    //         this.setState({
+    //           wishListData: res._defaultwishlist[0],
+    //           isLoading: false,
+    //         });
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       // eslint-disable-next-line no-console
+    //       console.error(error.message);
+    //     });
+    // });
   }
 
   checkPermissions() {
@@ -165,7 +224,7 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
           {wishListData && !isLoading && (
             <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
               <WishListMain
-                empty={!wishListData._lineitems[0]._element}
+                empty={!wishListData.lineitems.elements}
                 wishListData={wishListData}
                 handleQuantityChange={() => { this.handleQuantityChange(); }}
                 onItemConfiguratorAddToCart={this.handleItemConfiguratorAddToCart}
