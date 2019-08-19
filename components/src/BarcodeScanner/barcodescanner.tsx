@@ -37,6 +37,8 @@ interface BarcodeScannerState {
 }
 
 export default class BarcodeScanner extends React.Component<BarcodeScannerProps, BarcodeScannerState> {
+  private scannerContainer: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
     this.state = {
