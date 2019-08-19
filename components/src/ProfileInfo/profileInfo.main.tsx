@@ -70,7 +70,7 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     this.submitPersonalInfoChange = this.submitPersonalInfoChange.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
   }
 
