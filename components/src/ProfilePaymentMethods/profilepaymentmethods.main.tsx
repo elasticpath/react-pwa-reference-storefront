@@ -57,7 +57,7 @@ class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMai
     this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
   }
 

@@ -62,7 +62,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     this.submitEmailChange = this.submitEmailChange.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
   }
 
@@ -96,16 +96,19 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
       },
     );
 
-    root.defaultprofile.emails.emailform({
-      emailId: '',
-      email,
-    }).fetch({}).then(() => {
+    try {
+      await root.defaultprofile.emails.emailform({
+        emailId: '',
+        email,
+      }).fetch({});
       this.setState({ failedSubmit: false });
       this.cancelEmail();
       onChange();
-    }).catch(() => {
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
       this.setState({ failedSubmit: true });
-    });
+    }
   }
 
   render() {

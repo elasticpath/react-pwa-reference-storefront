@@ -38,7 +38,7 @@ import Config from '../ep.config.json';
 import './ProfilePage.less';
 
 interface ProfilePageState {
-    profileData: any,
+    profileData: cortex.Profile,
     invalidPermission: boolean,
     showResetPasswordButton: boolean,
     openAddressModal: boolean,
@@ -66,13 +66,13 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
-    this.fetchProfileData();
+    await this.fetchProfileData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchProfileData();
+  async componentWillReceiveProps() {
+    await this.fetchProfileData();
   }
 
   async fetchProfileData() {

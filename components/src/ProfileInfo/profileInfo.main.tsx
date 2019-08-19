@@ -102,7 +102,7 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     } = this.state;
     const { onChange } = this.props;
     const root = await this.client.root().fetch({ defaultprofile: {} });
-    this.client.profile(root.defaultprofile.uri).update({
+    await this.client.profile(root.defaultprofile.uri).update({
       givenName: firstName,
       familyName: lastName,
       profileId: '',
