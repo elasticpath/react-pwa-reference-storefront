@@ -22,10 +22,10 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import Modal from 'react-responsive-modal';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
-import { cortexFetch } from '../utils/Cortex';
-import { login } from '../utils/AuthService';
 import './reorder.main.less';
 
 let Config: IEpConfig | any = {};
@@ -52,6 +52,10 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
     itemDetailLink: '',
   };
 
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -69,7 +73,11 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
     this.reorderAll = this.reorderAll.bind(this);
   }
 
-  reorderAll() {
+  componentDidMount() {
+    this.client = this.context;
+  }
+
+  async reorderAll() {
     const { productsData, onReorderAll } = this.props;
     const bulkOrderItems = productsData._lineitems[0]._element.map(item => ({
       code: item._item[0]._code[0].code,
@@ -77,36 +85,23 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
     }));
     if (productsData._defaultcart) {
       this.setState({ isLoading: true });
-      login().then(() => {
-        const addToCartLink = productsData._defaultcart[0]._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
-        const body: { [key: string]: any } = {};
-        if (bulkOrderItems) {
-          body.items = bulkOrderItems;
-        }
-        cortexFetch(addToCartLink.uri,
-          {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify(body),
-          })
-          .then((res) => {
-            this.setState({ isLoading: false });
-            if (res.status !== 201) {
-              res.json().then((json) => {
-                const code = json.messages[0].data['item-code'];
-                this.handleError(code, json.messages[0]['debug-message']);
-              });
-            } else {
-              onReorderAll();
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
+      const body: { [key: string]: any } = {};
+      if (bulkOrderItems) {
+        body.items = bulkOrderItems;
+      }
+
+      const root = await this.client.root().fetch({
+        defaultcart: {
+          additemstocartform: {},
+        },
+      });
+
+      root.defaultcart.additemstocartform(body).fetch({}).then((res) => {
+        this.setState({ isLoading: false });
+        onReorderAll();
+      }).catch((res) => {
+        this.setState({ isLoading: false });
+        this.handleError(res['item-code'], res.debugMessage);
       });
     }
   }
