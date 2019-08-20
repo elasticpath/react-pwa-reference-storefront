@@ -232,7 +232,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
               if (foundItem) {
                 this.setState((state) => {
                   const emptyItem = state.items.find(item => item.code === '');
-                  const isDuplicated = state.items.find(item => item.code === code);
+                  const isDuplicated = Boolean(state.items.find(item => item.code === code));
                   const updatedItems = state.items.map((item) => {
                     if (item.key === emptyItem.key) {
                       return {
