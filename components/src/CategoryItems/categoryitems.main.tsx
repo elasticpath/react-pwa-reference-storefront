@@ -395,8 +395,6 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
     }
     const categoryModelIdString = categoryModelId;
     noProducts = !products || !products.elements || !products.pagination;
-    console.log('isLoading', isLoading);
-
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">
