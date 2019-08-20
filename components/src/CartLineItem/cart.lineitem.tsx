@@ -129,7 +129,6 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     this.setState({ quantity: newItemQuantity });
   }
 
-  // Doesn't work
   async handleConfiguratorAddToCartBtnClicked() {
     const {
       item, handleQuantityChange, handleErrorMessage, itemQuantity, onConfiguratorAddToCart,
@@ -137,46 +136,42 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     handleQuantityChange();
     const quantity = itemQuantity || 1;
     const addToCartFormUri = item.uri;
+    try {
+      const addToCartFormRes = await this.client.item(addToCartFormUri).fetch({ addtocartform: {} });
 
-    const itemRes = await this.client.item(addToCartFormUri).fetch({ addtocartform: {} });
+      const itemRes = addToCartFormRes.addtocartform({ quantity }).fetch();
 
-    itemRes.addtocartform({ quantity }).fetch()
-      .then((res) => {
-        onConfiguratorAddToCart();
-      })
-      .catch((error) => {
-        handleErrorMessage(error.message);
-      });
+      onConfiguratorAddToCart();
+    } catch (error) {
+      handleErrorMessage(error.message);
+    }
   }
 
   async handleMoveToCartBtnClicked() {
     const { item, onMoveToCart } = this.props;
-    const wishListRes = await this.client.wishlistLineItem(item.self.uri).fetch({ movetocartform: {} });
-
-    wishListRes.movetocartform({ quantity: 1 }).fetch({})
-      .then(() => {
-        onMoveToCart();
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+    try {
+      const wishListRes = await this.client.wishlistLineItem(item.self.uri).fetch({ movetocartform: {} });
+      await wishListRes.movetocartform({ quantity: 1 }).fetch({});
+      onMoveToCart();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
   }
 
-  handleRemoveBtnClicked() {
+  async handleRemoveBtnClicked() {
     const {
       item, handleQuantityChange, onRemove,
     } = this.props;
     handleQuantityChange();
-    this.client.availabilityForCartLineItem(item.uri).delete()
-      .then(() => {
-        handleQuantityChange();
-        onRemove();
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+    try {
+      await this.client.availabilityForCartLineItem(item.uri).delete();
+      handleQuantityChange();
+      onRemove();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
   }
 
   handleModalOpen() {
