@@ -155,38 +155,25 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
             code: {},
             availability: {},
             definition: {
-              // assets: {
-              //   element: {},
-              // },
             },
             price: {},
-            // rate: {},
           },
         },
         offers: {
           element: {
             code: {},
             availability: {},
-            definition: {
-              // assets: {
-              //   element: {},
-              // },
-            },
+            definition: {},
             pricerange: {},
             items: {
               element: {
                 availability: {},
                 definition: {
-                  // assets: {
-                  //   element: {},
-                  // },
                 },
                 price: {},
-                // rate: {},
                 code: {},
               },
             },
-            // rate: {},
           },
           facets: {
             element: {
@@ -218,67 +205,18 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
             // offersearchresult: {},
           },
         },
-        // element: {
-        //   availability: {},
-        //   definition: {
-        //     assets: {
-        //       element: {},
-        //     },
-        //   },
-        //   price: {},
-        //   rate: {},
-        //   code: {},
-        //   items: {
-        //     element: {
-        //       availability: {},
-        //       definition: {
-        //         assets: {
-        //           element: {},
-        //         },
-        //       },
-        //       price: {},
-        //       rate: {},
-        //       code: {},
-        //     },
-        //   },
-        // },
-        // facets: {
-        //   element: {
-        //     facetselector: {
-        //       choice: {
-        //         description: {},
-        //         selector: {},
-        //         selectaction: {},
-        //       },
-        //       chosen: {
-        //         description: {},
-        //         selector: {},
-        //         selectaction: {},
-        //       },
-        //     },
-        //   },
-        // },
         featuredoffers: {
           element: {
             availability: {},
             definition: {
-              // assets: {
-              //   element: {},
-              // },
             },
-            // price: {},
-            // rate: {},
             code: {},
             items: {
               element: {
                 availability: {},
                 definition: {
-                  // assets: {
-                  //   element: {},
-                  // },
                 },
                 price: {},
-                // rate: {},
                 code: {},
               },
             },
@@ -391,7 +329,7 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
     }
 
     if (categoryModel.featuredoffers) {
-      [featuredOffers] = categoryModel.featuredoffers;
+      featuredOffers = categoryModel.featuredoffers;
     }
     const categoryModelIdString = categoryModelId;
     noProducts = !products || !products.elements || !products.pagination;
