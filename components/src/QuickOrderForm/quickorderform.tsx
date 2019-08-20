@@ -86,6 +86,7 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
   }
 
   setItemData(item, quantity, code) {
+    const { onItemSubmit } = this.props;
     if (item._definition[0]._options) {
       this.setState({
         code,
@@ -98,6 +99,7 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
         product: item,
         code,
       });
+      onItemSubmit({ isValidField: true });
     }
     if (item._availability[0].state !== 'AVAILABLE') {
       this.setState({
