@@ -62,15 +62,15 @@ class OrderLine extends React.Component<OrderLineProps, OrderLineState> {
     return (
       <tr>
         <td data-el-value="purchase.number" className="profile-purchase-number">
-          <Link to={`/orderDetails/${encodeURIComponent(purchase['purchase-number'])}`} id={`profile_purchase_number_link_${purchase['purchase-number']}`} className={`profile_purchase_number_link_${purchase['purchase-number']}`}>
-            {purchase['purchase-number']}
+          <Link to={`/orderDetails/${encodeURIComponent(purchase.purchaseNumber)}`} id={`profile_purchase_number_link_${purchase.purchaseNumber}`} className={`profile_purchase_number_link_${purchase.purchaseNumber}`}>
+            {purchase.purchaseNumber}
           </Link>
         </td>
         <td data-el-value="purchase.date" className="profile-purchase-date">
-          {purchase['purchase-date']['display-value']}
+          {purchase.purchaseDate['display-value']}
         </td>
         <td data-el-value="purchase.total" className="profile-purchase-total">
-          {purchase['monetary-total'][0].display}
+          {purchase.monetaryTotal[0].display}
         </td>
         <td data-el-value="purchase.status" className="profile-purchase-status">
           {statusString}
