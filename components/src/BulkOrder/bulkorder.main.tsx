@@ -21,9 +21,7 @@
 
 import React from 'react';
 import * as cortex from '@elasticpath/cortex-client';
-import { login } from '../utils/AuthService';
 import QuickOrderForm from '../QuickOrderForm/quickorderform';
-import { cortexFetch } from '../utils/Cortex';
 import { ClientContext } from '../ClientContext';
 
 import './bulkorder.main.less';
@@ -109,7 +107,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
       body.items = arrayItems;
     }
     try {
-      const addItemsToCartFormRes = await cartData.additemstocartform({ body }).fetch({});
+      await cartData.additemstocartform(body).fetch({});
       this.setState({
         isLoading: false,
         items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
@@ -119,7 +117,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
         bulkOrderDuplicatedErrorMessage: '',
       });
     } catch (error) {
-      const debugMessages = error.messages;
+      const debugMessages = error.debugMessage;
       if (isQuickOrder) {
         this.setState({
           isLoading: false,
