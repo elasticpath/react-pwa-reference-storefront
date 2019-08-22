@@ -68,7 +68,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     };
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     this.client = this.context;
     const { isOffline, isOfflineCheck } = this.props;
     if (!navigator.onLine && !isOffline && isOffline !== undefined) {
@@ -76,10 +76,10 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     } else if (navigator.onLine && isOffline) {
       isOfflineCheck(false);
     }
-    await this.fetchNavigationData();
+    this.fetchNavigationData();
   }
 
-  async componentWillReceiveProps() {
+  componentWillReceiveProps() {
     const { isOffline, isOfflineCheck, checkedLocation } = this.props;
     const { navigations } = this.state;
     if (!navigator.onLine && !isOffline && isOffline !== undefined) {
@@ -88,7 +88,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
       isOfflineCheck(false);
     }
     if (navigations.length === 0 && checkedLocation) {
-      await this.fetchNavigationData();
+      this.fetchNavigationData();
     }
   }
 
@@ -131,27 +131,32 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
   }
 
   async fetchNavigationData() {
-    const navigationRes = await this.client.root().fetch({
-      navigations: {
-        element: {
-          child: {
+    try {
+      const navigationRes = await this.client.root().fetch({
+        navigations: {
+          element: {
             child: {
               child: {
-                child: {},
+                child: {
+                  child: {},
+                },
               },
             },
           },
         },
-      },
-    });
-    if (navigationRes && navigationRes.navigations && navigationRes.navigations.elements) {
-      const cortexNavigations = navigationRes.navigations.elements;
-      const navigations = this.getDropDownNavigationState(cortexNavigations);
-      this.setState({
-        navigations,
-        /* eslint-disable react/no-unused-state */
-        originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
       });
+      if (navigationRes && navigationRes.navigations && navigationRes.navigations.elements) {
+        const cortexNavigations = navigationRes.navigations.elements;
+        const navigations = this.getDropDownNavigationState(cortexNavigations);
+        this.setState({
+          navigations,
+          /* eslint-disable react/no-unused-state */
+          originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
     }
   }
 

@@ -46,8 +46,8 @@ export function cortexFetch(input, init) {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
-        window.location.pathname = '/';
-        window.location.reload();
+        // window.location.pathname = '/';
+        // window.location.reload();
       }
       if (res.status >= 500) {
         if (window.location.href.indexOf('/maintenance') === -1) {
