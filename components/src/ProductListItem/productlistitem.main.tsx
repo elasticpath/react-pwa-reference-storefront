@@ -120,9 +120,9 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
           listPrice = (offerData.pricerange.listPriceRange.fromPrice) ? (offerData.pricerange.listPriceRange.fromPrice.display) : ('');
           itemPrice = (offerData.pricerange.purchasePriceRange.toPrice) ? (offerData.pricerange.purchasePriceRange.toPrice.display) : listPrice;
         }
-      } else if (productData._price) {
-        listPrice = productData.price.listPrice.display;
-        itemPrice = productData.price.purchasePrice.display;
+      } else if (productData.price) {
+        listPrice = productData.price.listPrice[0].display;
+        itemPrice = productData.price.purchasePrice[0].display;
       }
       let availability = false;
       let availabilityString = '';
