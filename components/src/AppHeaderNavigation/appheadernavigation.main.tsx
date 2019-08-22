@@ -31,18 +31,6 @@ import './appheadernavigation.main.less';
 
 let Config: IEpConfig | any = {};
 
-const zoomArray = [
-  'navigations:element',
-  'navigations:element:child',
-  'navigations:element:child:child',
-  'navigations:element:child:child:child',
-  'navigations:element:child:child:child:child',
-  'navigations:element:child:child:child:child:child',
-  'navigations:element:child:child:child:child:child:child',
-  'navigations:element:child:child:child:child:child:child:child',
-  'navigations:element:child:child:child:child:child:child:child:child',
-];
-
 interface AppHeaderNavigationMainProps {
   isOfflineCheck: (...args: any[]) => any,
   isOffline?: boolean,
@@ -112,7 +100,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
       const { name } = category;
       const show = false;
 
-      const categoryChildren = category._child;
+      const categoryChildren = category.child;
       let children;
 
       if (categoryChildren) {
@@ -142,21 +130,22 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     return loPathsToChange;
   }
 
-  // Children don't work
   async fetchNavigationData() {
-    const res = await this.client.root().fetch({
+    const navigationRes = await this.client.root().fetch({
       navigations: {
         element: {
           child: {
             child: {
-              child: {},
+              child: {
+                child: {},
+              },
             },
           },
         },
       },
     });
-    if (res && res.navigations && res.navigations.elements) {
-      const cortexNavigations = res.navigations.elements;
+    if (navigationRes && navigationRes.navigations && navigationRes.navigations.elements) {
+      const cortexNavigations = navigationRes.navigations.elements;
       const navigations = this.getDropDownNavigationState(cortexNavigations);
       this.setState({
         navigations,
