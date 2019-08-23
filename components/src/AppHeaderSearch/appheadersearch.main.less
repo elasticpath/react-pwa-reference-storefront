@@ -36,7 +36,7 @@
       transition: width 0.5s ease,
                   border-color 0.5s,
                   padding 0.5s ease-in;
-      color: #fff;
+      color: @mainNavigationTextColor;
       cursor: pointer;
       outline: 0;
       border: 0;
@@ -45,13 +45,13 @@
 
       &::placeholder {
         opacity: 0.3;
-        color: #fff;
+        color: @mainNavigationTextColor;
       }
 
       &:focus {
         width: 170px;
         padding-left: 40px;
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid @mainNavigationTextColor;
         cursor: auto;
       }
     }
