@@ -21,9 +21,9 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
 import './checkout.summarylist.less';
 
 let Config: IEpConfig | any = {};
@@ -37,6 +37,10 @@ interface CheckoutSummaryListProps {
     onChange?: (...args: any[]) => any,
 }
 class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   static defaultProps = {
     giftCards: [],
     onChange: () => {},
@@ -49,22 +53,20 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
     ({ intl } = epConfig);
   }
 
-  deletePromotionCode(link) {
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        const { onChange } = this.props;
-        onChange();
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    });
+  async componentDidMount() {
+    this.client = this.context;
+  }
+
+  async deletePromotionCode(link) {
+    const { onChange } = this.props;
+
+    try {
+      await this.client.couponinfo(link).delete();
+      onChange();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   renderCoupons() {
@@ -77,20 +79,18 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <br />
-          {data.order.couponinfo.coupon.map(coupon => (
-            <div className="promotions-table" key={coupon.code}>
-              <div className="row">
-                <div className="col-6 promotion-display">
-                  {coupon.code}
-                </div>
-                <div className="col-6 promotion-remove">
-                  <button type="button" className="cart-remove-promotion" onClick={() => { this.deletePromotionCode(coupon.uri); }} data-actionlink="">
-                    {intl.get('remove')}
-                  </button>
-                </div>
+          <div className="promotions-table">
+            <div className="row">
+              <div className="col-6 promotion-display">
+                {data.order.couponinfo.coupon.code}
+              </div>
+              <div className="col-6 promotion-remove">
+                <button type="button" className="cart-remove-promotion" onClick={() => { this.deletePromotionCode(data.order.couponinfo.coupon.uri); }} data-actionlink="">
+                  {intl.get('remove')}
+                </button>
               </div>
             </div>
-          ))}
+          </div>
         </li>
       );
     }

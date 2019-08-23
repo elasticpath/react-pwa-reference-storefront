@@ -38,10 +38,10 @@ const zoomDefaultCart = {
       element: {},
     },
     order: {
-      // couponinfo: {
-      //   coupon: {},
-      //   couponform: {},
-      // },
+      couponinfo: {
+        coupon: {},
+        couponform: {},
+      },
     },
     lineitems: {
       element: {
@@ -252,7 +252,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
               <div>
                 <div className="cart-sidebar-inner">
                   <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                    <AddPromotionContainer data={cartData} onSubmittedPromotion={() => { this.fetchCartData(); }} />
+                    <AddPromotionContainer onSubmittedPromotion={() => { this.fetchCartData(); }} />
                     <CheckoutSummaryList data={cartData} onChange={() => { this.fetchCartData(); }} />
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
