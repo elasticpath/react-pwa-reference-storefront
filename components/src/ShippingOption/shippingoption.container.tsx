@@ -23,7 +23,7 @@ import React from 'react';
 
 interface ShippingOptionContainerProps {
   option: {
-    'display-name'?: string,
+    'displayName'?: string,
     carrier?: string,
     cost?: {
       display?: string
@@ -36,7 +36,7 @@ const ShippingOptionContainer: React.FunctionComponent<ShippingOptionContainerPr
   return (
     <ul className="shipping-option-container">
       <li className="shippingOptionDisplayName">
-        {option['display-name']}
+        {option.displayName}
       </li>
       <li className="shippingOptionCarrier">
         {option.carrier}

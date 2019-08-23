@@ -252,7 +252,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <span className="cart-summary-value-col">
-            {data['total-quantity']}
+            {data.totalQuantity}
           </span>
         </li>
         {this.renderPromotions()}

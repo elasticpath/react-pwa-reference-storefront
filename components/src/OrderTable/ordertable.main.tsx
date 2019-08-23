@@ -36,8 +36,8 @@ const OrderTableMain: React.FunctionComponent<OrderTableMainProps> = (props: Ord
     <div className="order-main-inner table-responsive">
       <table className="table table-borderless order-table">
         <tbody>
-          {data._lineitems[0]._element.map(product => (
-            <OrderTableLineItem key={product._item[0]._code[0].code} item={product} itemDetailLink={itemDetailLink} />
+          {data.lineitems.elements.map(product => (
+            <OrderTableLineItem key={product.item.code.code} item={product} itemDetailLink={itemDetailLink} />
           ))}
         </tbody>
       </table>
