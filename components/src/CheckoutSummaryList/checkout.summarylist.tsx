@@ -131,7 +131,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <span className="cart-summary-value-col">
-            {data.discount.discount.display}
+            {data.discount.discount[0].display}
           </span>
         </li>
       );

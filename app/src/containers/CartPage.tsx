@@ -200,7 +200,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             :&nbsp;
             </label>
             <span className="cart-summary-value-col">
-              {cartData.discount.discount.display}
+              {cartData.discount.discount[0].display}
             </span>
           </li>
         )

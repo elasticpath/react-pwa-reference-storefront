@@ -163,59 +163,73 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
     });
   }
 
-  completeOrder() {
+  async completeOrder() {
     this.setState({
       isLoading: true,
     });
-    const purchaseZoomArray = [
-      'paymentmeans:element',
-      'postedpayments:element',
-      'shipments:element:destination',
-      'shipments:element:shippingoption',
-      'billingaddress',
-      'discount',
-      'appliedpromotions:element',
-      'lineitems:element',
-      'lineitems:element:options:element',
-      'lineitems:element:options:element:value',
-      'lineitems:element:components',
-      'lineitems:element:components:element',
-      'lineitems:element:components:element:item:addtocartform',
-      'lineitems:element:components:element:item:availability',
-      'lineitems:element:components:element:item:definition',
-      'lineitems:element:components:element:item:code',
-      'lineitems:element:dependentlineitems',
-      'lineitems:element:dependentlineitems:element',
-      'lineitems:element:dependentlineitems:element:item:addtocartform',
-      'lineitems:element:dependentlineitems:element:item:availability',
-      'lineitems:element:dependentlineitems:element:item:definition',
-      'lineitems:element:dependentlineitems:element:item:code',
-    ];
+    const purchaseZoomArray = {
+      paymentmeans: {
+        element: {},
+      },
+      postedpayments: {
+        element: {},
+      },
+      shipments: {
+        element: {
+          destination: {},
+          shippingoption: {},
+        },
+      },
+      billingaddress: {},
+      discount: {},
+      appliedpromotions: {
+        element: {},
+      },
+      lineitems: {
+        element: {
+          options: {
+            element: {
+              value: {},
+            },
+          },
+          components: {
+            element: {
+              item: {
+                addtocartform: {},
+                availability: {},
+                definition: {},
+                code: {},
+              },
+            },
+          },
+          dependentlineitems: {
+            element: {
+              item: {
+                addtocartform: {},
+                availability: {},
+                definition: {},
+                code: {},
+              },
+            },
+          },
+        },
+      },
+    };
     const { orderData } = this.state;
     const { history } = this.props;
-    const purchaseform = orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri;
-    login().then(() => {
-      cortexFetch(`${purchaseform}?followlocation=true&zoom=${purchaseZoomArray.sort().join()}`, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
-          this.giftCertificatesAddToCart();
-          this.trackTransactionAnalytics();
-          history.push('/purchaseReceipt', { data: res });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+
+    try {
+      const completePurchaseRes = await orderData.order.purchaseform({}).fetch(purchaseZoomArray);
+      this.setState({
+        isLoading: false,
+      });
+      this.giftCertificatesAddToCart();
+      this.trackTransactionAnalytics();
+      history.push('/purchaseReceipt', { data: completePurchaseRes });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
   }
 
   giftCertificatesAddToCart() {

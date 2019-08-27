@@ -60,7 +60,7 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
   const orderNumber = data.purchaseNumber;
   const orderTaxTotal = data.taxTotal.display;
   const orderPurchaseDate = data.purchaseDate.displayValue;
-  const orderDiscount = data.discount ? data.discount[0].discount[0].display : '';
+  const orderDiscount = data.discount ? data.discount.discount[0].display : '';
   const orderTotal = data.monetaryTotal[0].display;
   const { shipments } = data;
 
