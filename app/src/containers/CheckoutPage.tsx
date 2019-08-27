@@ -166,26 +166,6 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   }
 
   async fetchOrderData() {
-    // login().then(() => {
-    //   cortexFetch(`/?zoom=${zoomArray.sort().join()}`,
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-    //       },
-    //     })
-    //     .then(res => res.json())
-    //     .then((res) => {
-    //       this.setState({
-    //         orderData: res._defaultcart[0],
-    //         isLoading: false,
-    //       });
-    //     })
-    //     .catch((error) => {
-    //       // eslint-disable-next-line no-console
-    //       console.error(error.message);
-    //     });
-    // });
     try {
       const root = await this.client.root().fetch(
         {
@@ -265,24 +245,18 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     });
   }
 
-  handleDelete(link) {
+  async handleDelete(link) {
     this.setState({
       isLoading: true,
     });
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        this.fetchOrderData();
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    });
+
+    try {
+      await this.client.order(link).delete();
+      this.fetchOrderData();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   handleChange(link) {
@@ -340,7 +314,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       }
       const { selector } = orderData.order.deliveries.elements[0].destinationinfo;
       if (selector) {
-        const choices = selector.choice;
+        const choices = selector.choice || [];
         choices.map((choice) => {
           const description = { ...choice.description };
           description.selectaction = choice.uri;
@@ -440,7 +414,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderShippingOptions() {
     const { orderData } = this.state;
-    if (orderData.order.deliveries && orderData.order.deliveries.elements[0].shippingoptioninfo) {
+    if (orderData.order.deliveries && orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption) {
       const shippingOptions = [];
       const shippingOption = orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption;
       if (shippingOption) {
@@ -450,7 +424,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       }
       const { selector } = orderData.order.deliveries.elements[0].shippingoptioninfo;
       if (selector && selector.choice) {
-        const choices = selector.choice;
+        const choices = selector.choice || [];
         choices.map((choice) => {
           const description = { ...choice.description };
           description.selectaction = choice.uri;
@@ -512,7 +486,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       }
       const { selector } = orderData.order.billingaddressinfo;
       if (selector) {
-        const choices = selector.choice;
+        const choices = selector.choice || [];
         choices.map((choice) => {
           const description = { ...choice.description };
           description.selectaction = choice.uri;
