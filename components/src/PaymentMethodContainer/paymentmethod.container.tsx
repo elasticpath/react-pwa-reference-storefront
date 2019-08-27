@@ -27,10 +27,11 @@ interface PaymentMethodContainerProps {
 
 const PaymentMethodContainer: React.FunctionComponent<PaymentMethodContainerProps> = (props: PaymentMethodContainerProps) => {
   const { displayName } = props;
-  const displayAppliedAmount = (displayName.appliedAmountDisplay) ? (` - ${displayName.appliedAmountDisplay || ''}`) : '';
-  const displayTransactionType = (displayName.transactionType) ? (` - ${displayName.transactionType || ''}`) : '';
-  let displayNameVar = displayName.displayValue || displayName.displayName;
-  if (!displayNameVar && displayName.provider) {
+  const displayAppliedAmount = (displayName['applied-amount-display']) ? (` - ${displayName['applied-amount-display'] || ''}`) : '';
+  const displayTransactionType = (displayName['transaction-type']) ? (` - ${displayName['transaction-type'] || ''}`) : '';
+
+  let displayNameVar = displayName['display-value'] || displayName['display-name'];
+  if (!displayNameVar) {
     displayNameVar = `${displayName.provider.toLowerCase().replace(/_/g, ' ')}`;
   }
 

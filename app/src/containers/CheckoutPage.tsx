@@ -209,13 +209,19 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
               deliveries: {
                 element: {
                   destinationinfo: {
-                    destination: {
-                      selector: {},
+                    destination: {},
+                    selector: {
+                      choice: {
+                        description: {},
+                      },
                     },
                   },
                   shippingoptioninfo: {
-                    shippingoption: {
-                      selector: {},
+                    shippingoption: {},
+                    selector: {
+                      choice: {
+                        description: {},
+                      },
                     },
                   },
                 },
@@ -324,20 +330,20 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderShippingAddress() {
     const { orderData } = this.state;
-    if (orderData.order.deliveries && orderData.order.deliveries.elements[0]._destinationinfo) {
+    if (orderData.order.deliveries && orderData.order.deliveries.elements[0].destinationinfo) {
       const shippingAddresses = [];
-      const destination = orderData.order.deliveries.elements[0]._destinationinfo[0]._destination;
+      const { destination } = orderData.order.deliveries.elements[0].destinationinfo;
       if (destination) {
-        const [description] = destination;
+        const description = { ...destination };
         description.checked = true;
         shippingAddresses.push(description);
       }
-      const selector = orderData.order.deliveries.elements[0].destinationinfo._selector;
+      const { selector } = orderData.order.deliveries.elements[0].destinationinfo;
       if (selector) {
-        const choices = selector[0]._choice;
+        const choices = selector.choice;
         choices.map((choice) => {
-          const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
+          const description = { ...choice.description };
+          description.selectaction = choice.uri;
           description.checked = false;
           shippingAddresses.push(description);
           return description;
@@ -434,20 +440,20 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderShippingOptions() {
     const { orderData } = this.state;
-    if (orderData.order.deliveries && orderData.order.deliveries.elements[0]._shippingoptioninfo) {
-      let shippingOptions = {};
-      const shippingOption = orderData.order.deliveries.elements[0]._shippingoptioninfo[0]._shippingoption;
+    if (orderData.order.deliveries && orderData.order.deliveries.elements[0].shippingoptioninfo) {
+      const shippingOptions = [];
+      const shippingOption = orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption;
       if (shippingOption) {
         const description = { ...shippingOption };
         description.checked = true;
-        shippingOptions = { ...description };
+        shippingOptions.push(description);
       }
-      const selector = orderData.order.deliveries.elements[0]._shippingoptioninfo[0]._selector;
-      if (selector && selector[0]._choice) {
-        const choices = selector[0]._choice;
+      const { selector } = orderData.order.deliveries.elements[0].shippingoptioninfo;
+      if (selector && selector.choice) {
+        const choices = selector.choice;
         choices.map((choice) => {
-          const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
+          const description = { ...choice.description };
+          description.selectaction = choice.uri;
           description.checked = false;
           shippingOptions.push(description);
           return description;
@@ -497,12 +503,12 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   renderBillingAddress() {
     const { orderData } = this.state;
     if (orderData.order.billingaddressinfo) {
-      let billingAddresses = {};
+      const billingAddresses = [];
       const billingAddress = orderData.order.billingaddressinfo.billingaddress;
       if (billingAddress) {
         const description = { ...billingAddress };
         description.checked = true;
-        billingAddresses = { ...description };
+        billingAddresses.push(description);
       }
       const { selector } = orderData.order.billingaddressinfo;
       if (selector) {
@@ -511,32 +517,39 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
           const description = { ...choice.description };
           description.selectaction = choice.uri;
           description.checked = false;
-          billingAddresses = { ...description };
+          billingAddresses.push(description);
           return description;
         });
       }
       return (
-        <div key={`billingAddress_${Math.random().toString(36).substr(2, 9)}`}>
-          <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
-            {/* eslint-disable-next-line max-len */}
-            <input type="radio" name="billing" id="billingOption" className="checkout-address-radio" defaultChecked={billingAddresses.checked} onChange={() => this.handleChange(billingAddresses.selectaction)} />
-            <label htmlFor="billingOption">
-              <div data-region="checkoutAddressRegion" style={{ display: 'block' }}>
-                <AddressContainer name={billingAddresses.name} address={billingAddresses.address} />
+        billingAddresses.map((billingAddr) => {
+          const {
+            name, address, selectaction, checked,
+          } = billingAddr;
+          return (
+            <div key={`billingAddress_${Math.random().toString(36).substr(2, 9)}`}>
+              <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
+                {/* eslint-disable-next-line max-len */}
+                <input type="radio" name="billing" id="billingOption" className="checkout-address-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+                <label htmlFor="billingOption">
+                  <div data-region="checkoutAddressRegion" style={{ display: 'block' }}>
+                    <AddressContainer name={name} address={address} />
+                  </div>
+                </label>
               </div>
-            </label>
-          </div>
-          <div className="address-btn-cell">
-            {/* eslint-disable-next-line max-len */}
-            <button className="ep-btn small checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(billingAddresses.uri); }}>
-              {intl.get('edit')}
-            </button>
-            {/* eslint-disable-next-line max-len */}
-            <button className="ep-btn small checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(billingAddresses.uri); }}>
-              {intl.get('delete')}
-            </button>
-          </div>
-        </div>
+              <div className="address-btn-cell">
+                {/* eslint-disable-next-line max-len */}
+                <button className="ep-btn small checkout-edit-address-btn" type="button" onClick={() => { this.editAddress(billingAddr.self.uri); }}>
+                  {intl.get('edit')}
+                </button>
+                {/* eslint-disable-next-line max-len */}
+                <button className="ep-btn small checkout-delete-address-btn" type="button" onClick={() => { this.handleDelete(billingAddr.self.uri); }}>
+                  {intl.get('delete')}
+                </button>
+              </div>
+            </div>
+          );
+        })
       );
     }
     return (
@@ -569,45 +582,51 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   renderPayments() {
     const { orderData } = this.state;
     if (orderData.order.paymentmethodinfo) {
-      let paymentMethods = {};
+      const paymentMethods = [];
       const paymentMethod = orderData.order.paymentmethodinfo.paymentmethod;
       if (paymentMethod) {
         const description = { ...paymentMethod };
         description.checked = true;
         description.deletable = false;
-        paymentMethods = { ...description };
+        paymentMethods.push(description);
       }
       const { selector } = orderData.order.paymentmethodinfo;
       if (selector) {
-        const choices = selector.choice;
-        if (choices) {
-          const { description } = choices;
-          description.selectaction = choices.uri;
-          description.checked = false;
-          description.deletable = true;
-          paymentMethods = { ...paymentMethods, ...description };
-          // return description;
-        }
+        const choices = selector.choice || [];
+        // choices.map((choice) => {
+        //   const description = { ...choice.description };
+        //   description.selectaction = choice.uri;
+        //   description.checked = false;
+        //   description.deletable = true;
+        //   paymentMethods.push(description);
+        //   return description;
+        // });
       }
-      console.log('paymentMethods', paymentMethods);
       return (
-        <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
-          <div className="payment-ctrl-cell" data-region="paymentSelector">
-            <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={paymentMethods.checked} onChange={() => this.handleChange(paymentMethods.selectaction)} />
-            <label htmlFor="paymentMethod">
-              <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
-                <PaymentMethodContainer displayName={paymentMethods} />
+        paymentMethods.map((payment) => {
+          const {
+            checked, deletable, selectaction,
+          } = payment;
+          return (
+            <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
+              <div className="payment-ctrl-cell" data-region="paymentSelector">
+                <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+                <label htmlFor="paymentMethod">
+                  <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
+                    <PaymentMethodContainer displayName={payment} />
+                  </div>
+                </label>
               </div>
-            </label>
-          </div>
-          {paymentMethods.deletable && (
-            <div className="payment-btn-cell">
-              <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentMethods.uri); }}>
-                Delete
-              </button>
+              {deletable && (
+                <div className="payment-btn-cell">
+                  <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          );
+        })
       );
     }
     return (
