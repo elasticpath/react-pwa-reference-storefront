@@ -20,8 +20,8 @@
  */
 
 import React from 'react';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileemailinfo.main.less';
@@ -42,13 +42,17 @@ type ProfileemailinfoMainState = {
 };
 
 class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, ProfileemailinfoMainState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
     Config = epConfig.config;
     ({ intl } = epConfig);
     const { profileInfo } = this.props;
-    const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+    const email = profileInfo && profileInfo.emails && profileInfo.emails.elements ? profileInfo.emails.elements[0].email : '';
     this.state = {
       failedSubmit: false,
       emailInEditMode: false,
@@ -56,6 +60,10 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     };
     this.setEmail = this.setEmail.bind(this);
     this.submitEmailChange = this.submitEmailChange.bind(this);
+  }
+
+  async componentDidMount() {
+    this.client = this.context;
   }
 
   setEmail(event) {
@@ -72,46 +80,41 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     });
   }
 
-  submitEmailChange(event) {
+  async submitEmailChange(event) {
     event.preventDefault();
     const { email } = this.state;
-    const { profileInfo } = this.props;
+    const { profileInfo, onChange } = this.props;
     if (!profileInfo) return;
-    login()
-      .then(() => {
-        cortexFetch(profileInfo._emails[0]._emailform[0].self.uri, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+
+    const root = await this.client.root().fetch(
+      {
+        defaultprofile: {
+          emails: {
+            emailform: {},
           },
-          body: JSON.stringify({ email }),
-        })
-          .then((response) => {
-            if (response.status === 400) {
-              this.setState({ failedSubmit: true });
-            } else if (response.status === 201 || response.status === 200 || response.status === 204) {
-              this.cancelEmail();
-              const { onChange } = this.props;
-              onChange();
-            }
-            return response;
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+        },
+      },
+    );
+
+    try {
+      await root.defaultprofile.emails.emailform({
+        emailId: '',
+        email,
+      }).fetch({});
+      this.setState({ failedSubmit: false });
+      this.cancelEmail();
+      onChange();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      this.setState({ failedSubmit: true });
+    }
   }
 
   render() {
     const { emailInEditMode, failedSubmit } = this.state;
     const { profileInfo } = this.props;
-    const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+    const email = profileInfo && profileInfo.emails && profileInfo.emails.elements ? profileInfo.emails.elements[0].email : '';
     if (emailInEditMode) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
@@ -154,7 +157,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
         </div>
       );
     }
-    if (profileInfo && profileInfo._emails) {
+    if (profileInfo && profileInfo.emails) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
           <span className="feedback-label">{email === '' && intl.get('email-validation')}</span>
@@ -171,7 +174,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
                 {email}
               </span>
               <br />
-              {(profileInfo._emails && profileInfo._emails[0]._emailform) ? (
+              {(profileInfo.emails && profileInfo.emails.emailform) ? (
                 <button
                   className="ep-btn small profile-email-edit-btn"
                   type="button"

@@ -20,8 +20,8 @@
  */
 
 import React from 'react';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './addressform.main.less';
@@ -47,20 +47,11 @@ interface AddressFormMainState {
     subCountry: string,
     postalCode: string,
     failedSubmit: boolean,
-    addressForm: any,
 }
 
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'element',
-  'element:regions',
-  'element:regions:element',
-  'countries:element',
-  'countries:element:regions',
-  'countries:element:regions:element',
-];
-
 class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormMainState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     addressData: undefined,
     onCloseModal: () => {},
@@ -83,7 +74,6 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
       subCountry: '',
       postalCode: '',
       failedSubmit: false,
-      addressForm: undefined,
     };
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
@@ -97,13 +87,14 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
     this.cancel = this.cancel.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchGeoData();
+  client: cortex.IClient;
+
+  async componentDidMount() {
+    this.client = this.context;
+    await this.fetchGeoData();
     const { addressData } = this.props;
     if (addressData && addressData.address) {
-      this.fetchAddressData(addressData.address);
-    } else {
-      this.fetchAddressForm();
+      await this.fetchAddressData(addressData.address);
     }
   }
 
@@ -139,119 +130,82 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
     this.setState({ postalCode: event.target.value });
   }
 
-  submitAddress(event) {
+  async submitAddress(event) {
     event.preventDefault();
     const { addressData, fetchData, onCloseModal } = this.props;
     const {
-      addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
+      firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
     } = this.state;
-    let link;
-    let methodType;
-    if (addressData && addressData.address) {
-      link = addressData.address;
-      methodType = 'put';
-    } else {
-      link = addressForm;
-      methodType = 'post';
-    }
-    login().then(() => {
-      cortexFetch(link, {
-        method: methodType,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({
-          name: {
-            'given-name': firstName,
-            'family-name': lastName,
+    const userAddress = {
+      name: {
+        'given-name': firstName,
+        'family-name': lastName,
+      },
+      address: {
+        'street-address': address,
+        'extended-address': extendedAddress,
+        locality: city,
+        'country-name': country,
+        region: subCountry,
+        'postal-code': postalCode,
+      },
+    };
+
+    try {
+      if (addressData && addressData.address) {
+        await this.client.address(addressData.address).update(userAddress);
+      } else {
+        const rootRes = await this.client.root().fetch({
+          defaultprofile: {
+            addresses: {
+              addressform: {},
+            },
           },
-          address: {
-            'street-address': address,
-            'extended-address': extendedAddress,
-            locality: city,
-            'country-name': country,
-            region: subCountry,
-            'postal-code': postalCode,
-          },
-        }),
-      }).then((res) => {
-        if (res.status === 400) {
-          this.setState({ failedSubmit: true });
-        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-          this.setState({ failedSubmit: false }, () => {
-            fetchData();
-            onCloseModal();
-          });
-        }
-      }).catch((error) => {
-      // eslint-disable-next-line no-console
-        console.error(error.message);
+        });
+        await rootRes.defaultprofile.addresses.addressform(userAddress).fetch({});
+      }
+
+      this.setState({ failedSubmit: false }, () => {
+        fetchData();
+        onCloseModal();
       });
-    });
+    } catch (error) {
+      this.setState({ failedSubmit: true });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  fetchGeoData() {
-    login().then(() => {
-    // 7.4 Will expose the countries API at the root. In versions earlier than 7.4 we have to invoke geographies ourselves.
-      cortexFetch(`/geographies/${Config.cortexApi.scope}/countries/?zoom=${zoomArray.join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+  async fetchGeoData() {
+    try {
+      const res = await this.client.countries(`/geographies/${Config.cortexApi.scope}/countries/`).fetch({
+        element: {
+          regions: {
+            element: {},
+          },
         },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            geoData: res,
-          });
-        })
-        .catch((error) => {
-        // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+      });
+
+      this.setState({
+        geoData: res,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  fetchAddressData(addressLink) {
-    login().then(() => {
-      cortexFetch(addressLink, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            firstName: res.name['given-name'],
-            lastName: res.name['family-name'],
-            address: res.address['street-address'],
-            extendedAddress: res.address['extended-address'] ? res.address['extended-address'] : '',
-            city: res.address.locality,
-            country: res.address['country-name'],
-            subCountry: res.address.region,
-            postalCode: res.address['postal-code'],
-          });
-        });
-    });
-  }
-
-  fetchAddressForm() {
-    login().then(() => {
-      cortexFetch('/?zoom=defaultprofile:addresses:addressform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          const addressFormLink = res._defaultprofile[0]._addresses[0]._addressform[0].links.find(link => link.rel === 'createaddressaction').uri;
-          this.setState({
-            addressForm: addressFormLink,
-          });
-        });
+  async fetchAddressData(addressLink) {
+    const res = await this.client.address(addressLink).fetch({});
+    this.setState({
+      firstName: res.name['given-name'],
+      lastName: res.name['family-name'],
+      address: res.address['street-address'],
+      extendedAddress: res.address['extended-address'] ? res.address['extended-address'] : '',
+      city: res.address.locality,
+      country: res.address['country-name'],
+      subCountry: res.address.region,
+      postalCode: res.address['postal-code'],
     });
   }
 
@@ -263,9 +217,9 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
   renderCountries() {
     const { geoData } = this.state;
     if (geoData) {
-      const sortedCountries = [].concat(geoData._element)
+      const sortedCountries = geoData.elements
         .sort((a, b) => {
-          if (a['display-name'] > b['display-name']) {
+          if (a.displayName > b.displayName) {
             return 1;
           }
           return -1;
@@ -273,7 +227,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
       return (
         sortedCountries.map(country => (
           <option key={country.name} value={country.name}>
-            {country['display-name']}
+            {country.displayName}
           </option>
         ))
       );
@@ -284,11 +238,11 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
   renderSubCountries() {
     const { country, geoData, subCountry } = this.state;
     if (country && geoData) {
-      const countryData = geoData._element.find(element => element.name === country);
-      if (countryData._regions[0]._element) {
-        const sortedRegions = [].concat(countryData._regions[0]._element)
+      const countryData = geoData.elements.find(element => element.name === country);
+      if (countryData.regions.elements) {
+        const sortedRegions = countryData.regions.elements
           .sort((a, b) => {
-            if (a['display-name'] > b['display-name']) {
+            if (a.displayName > b.displayName) {
               return 1;
             }
             return -1;
@@ -308,7 +262,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
                   <option value="" />
                   {sortedRegions.map(region => (
                     <option key={region.name} value={region.name}>
-                      {region['display-name']}
+                      {region.displayName}
                     </option>
                   ))}
                 </select>

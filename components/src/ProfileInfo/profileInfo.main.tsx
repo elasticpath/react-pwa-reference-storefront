@@ -20,8 +20,8 @@
  */
 
 import React from 'react';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileInfo.main.less';
@@ -49,6 +49,10 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     isDisabled: false,
   }
 
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -58,12 +62,16 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     this.state = {
       inEditMode: false,
       failedSubmit: false,
-      firstName: profileInfo['given-name'],
-      lastName: profileInfo['family-name'],
+      firstName: profileInfo.givenName,
+      lastName: profileInfo.familyName,
     };
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
     this.submitPersonalInfoChange = this.submitPersonalInfoChange.bind(this);
+  }
+
+  async componentDidMount() {
+    this.client = this.context;
   }
 
   setFirstName(event) {
@@ -86,58 +94,22 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     });
   }
 
-  submitPersonalInfoChange(event) {
+
+  async submitPersonalInfoChange(event) {
     event.preventDefault();
     const {
       firstName, lastName,
     } = this.state;
-    login().then(() => {
-      cortexFetch('/', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(res => res.json())
-        .then((res) => {
-          const profileNameLink = res.links.find(link => link.rel === 'defaultprofile');
-          cortexFetch(`${profileNameLink.uri}?followlocation=true`, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-          }).then(linkRes => linkRes.json())
-            .then((linkRes) => {
-              cortexFetch(linkRes.self.uri, {
-                method: 'put',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                },
-                body: JSON.stringify({
-                  'given-name': firstName,
-                  'family-name': lastName,
-                }),
-              }).then((response) => {
-                if (response.status === 400) {
-                  this.setState({ failedSubmit: true });
-                } else if (response.status === 201 || response.status === 200 || response.status === 204) {
-                  this.cancel();
-                  const { onChange } = this.props;
-                  onChange();
-                }
-              }).catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
-            }).catch((error) => {
-            // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        }).catch((error) => {
-        // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
+    const { onChange } = this.props;
+    const root = await this.client.root().fetch({ defaultprofile: {} });
+    await this.client.profile(root.defaultprofile.uri).update({
+      givenName: firstName,
+      familyName: lastName,
+      profileId: '',
     });
+    onChange();
+    this.cancel();
+    onChange();
   }
 
   render() {
@@ -167,7 +139,7 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
                     </label>
                     <div className="address-form-input profile-info-firstname-form-input">
                       {/* eslint-disable-next-line max-len */}
-                      <input id="registration_form_firstName" name="FirstName" className="form-control" type="text" defaultValue={profileInfo['given-name']} onChange={this.setFirstName} />
+                      <input id="registration_form_firstName" name="FirstName" className="form-control" type="text" defaultValue={profileInfo.givenName} onChange={this.setFirstName} />
                     </div>
                   </div>
                   <div className="form-group">
@@ -180,7 +152,7 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
                     </label>
                     <div className="address-form-input profile-info-lastname-form-input">
                       {/* eslint-disable-next-line max-len */}
-                      <input id="registration_form_lastName" name="LastName" className="form-control" type="text" defaultValue={profileInfo['family-name']} onChange={this.setLastName} />
+                      <input id="registration_form_lastName" name="LastName" className="form-control" type="text" defaultValue={profileInfo.familyName} onChange={this.setLastName} />
                     </div>
                   </div>
                 </div>
@@ -209,7 +181,7 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
                   :
                 </span>
                 <span className="info-value" id="profile_personal_info_givenName" data-el-value="givenName">
-                  {profileInfo['given-name']}
+                  {profileInfo.givenName}
                 </span>
               </div>
               <br />
@@ -219,7 +191,7 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
                   :
                 </span>
                 <span className="info-value" id="profile_personal_info_familyName" data-el-value="familyName">
-                  {profileInfo['family-name']}
+                  {profileInfo.familyName}
                 </span>
               </div>
             </div>

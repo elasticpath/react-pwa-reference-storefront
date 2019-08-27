@@ -49,7 +49,7 @@ class OrderHistoryMain extends React.Component<OrderHistoryMainProps, OrderHisto
     const {
       purchases,
     } = this.state;
-    if (purchases.links && purchases._element) {
+    if (purchases.uri && purchases.elements) {
       return (
         <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
           <div className="table-responsive">
@@ -74,8 +74,8 @@ class OrderHistoryMain extends React.Component<OrderHistoryMainProps, OrderHisto
                 </tr>
               </thead>
               <tbody>
-                {purchases._element.map(orderLine => (
-                  <OrderLine key={orderLine['purchase-number']} orderLine={orderLine} />
+                {purchases.elements.map(orderLine => (
+                  <OrderLine key={orderLine.purchaseNumber} orderLine={orderLine} />
                 ))}
               </tbody>
             </table>
