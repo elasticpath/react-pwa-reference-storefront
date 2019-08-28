@@ -33,46 +33,6 @@ import Config from '../ep.config.json';
 
 import './CheckoutPage.less';
 
-// Array of zoom parameters to pass to Cortex
-const zoomArrayProfile = [
-  'defaultprofile',
-  'defaultprofile:emails',
-  'defaultprofile:emails:element',
-  'defaultprofile:emails:element:list',
-  'defaultprofile:emails:element:profile',
-  'defaultprofile:emails:emailform',
-  'defaultprofile:emails:profile',
-];
-
-const zoomArray = [
-  // zooms for checkout summary
-  'defaultcart',
-  'defaultcart:total',
-  'defaultcart:discount',
-  'defaultcart:order',
-  'defaultcart:order:tax',
-  'defaultcart:order:total',
-  'defaultcart:appliedpromotions:element',
-  'defaultcart:order:couponinfo:coupon',
-  'defaultcart:order:couponinfo:couponform',
-  // zooms for billing address
-  'defaultcart:order:billingaddressinfo:billingaddress',
-  'defaultcart:order:billingaddressinfo:selector:choice',
-  'defaultcart:order:billingaddressinfo:selector:choice:description',
-  // zooms for shipping address
-  'defaultcart:order:deliveries:element:destinationinfo:destination',
-  'defaultcart:order:deliveries:element:destinationinfo:selector:choice',
-  'defaultcart:order:deliveries:element:destinationinfo:selector:choice:description',
-  // zooms for shipping options
-  'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
-  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice',
-  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice:description',
-  // zooms for payment methods
-  'defaultcart:order:paymentmethodinfo:paymentmethod',
-  'defaultcart:order:paymentmethodinfo:selector:choice',
-  'defaultcart:order:paymentmethodinfo:selector:choice:description',
-];
-
 interface CheckoutPageState {
     orderData: cortex.Order,
     isLoading: boolean,
@@ -259,24 +219,19 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     }
   }
 
-  handleChange(link) {
+  async handleChange(link) {
     this.setState({
       isLoading: true,
     });
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        this.fetchOrderData();
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    });
+
+    try {
+      const selectorChoice = await this.client.shippingOptionInfoSelectorChoice(link).fetch({});
+      await selectorChoice.select();
+      this.fetchOrderData();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   newPayment() {
@@ -304,7 +259,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderShippingAddress() {
     const { orderData } = this.state;
-    if (orderData.order.deliveries && orderData.order.deliveries.elements[0].destinationinfo) {
+    if (orderData.order.deliveries && (orderData.order.deliveries.elements[0].destinationinfo.destination || orderData.order.deliveries.elements[0].destinationinfo.selector.choice)) {
       const shippingAddresses = [];
       const { destination } = orderData.order.deliveries.elements[0].destinationinfo;
       if (destination) {
@@ -476,7 +431,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderBillingAddress() {
     const { orderData } = this.state;
-    if (orderData.order.billingaddressinfo) {
+    if (orderData.order.billingaddressinfo && (orderData.order.billingaddressinfo.billingaddress || orderData.order.billingaddressinfo.selector.choice)) {
       const billingAddresses = [];
       const billingAddress = orderData.order.billingaddressinfo.billingaddress;
       if (billingAddress) {
@@ -555,7 +510,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderPayments() {
     const { orderData } = this.state;
-    if (orderData.order.paymentmethodinfo) {
+    if (orderData.order.paymentmethodinfo && (orderData.order.paymentmethodinfo.paymentmethod || orderData.order.paymentmethodinfo.selector.choice)) {
       const paymentMethods = [];
       const paymentMethod = orderData.order.paymentmethodinfo.paymentmethod;
       if (paymentMethod) {
