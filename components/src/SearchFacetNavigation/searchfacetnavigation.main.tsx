@@ -78,7 +78,6 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
   renderFacetSelectorsChosen(facetselector) {
     if (facetselector.chosen) {
       return facetselector.chosen.map((chosen) => {
-        console.warn(chosen);
         if (chosen._description && chosen._selector) {
           return (
             <li className="list-group-item facet-value" key={chosen.description.value}>
@@ -154,7 +153,6 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
 
   render() {
     const { facetModel, showFilterMobileMenu } = this.state;
-    console.warn('facetModel: ', facetModel);
     if (facetModel.facets && facetModel.facets.elements && facetModel.facets.elements.length > 0) {
       const chosenFacets = facetModel.facets.elements.filter(el => el.facetselector.chosen);
       return (
