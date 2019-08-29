@@ -95,6 +95,7 @@ interface CheckoutPageState {
     openNewPaymentModal: boolean,
     openAddressModal: boolean,
     addressUrl: any,
+    showErrorMsg: boolean,
 }
 
 class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageState> {
@@ -113,6 +114,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       openNewPaymentModal: false,
       openAddressModal: false,
       addressUrl: undefined,
+      showErrorMsg: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.handleCertificate = this.handleCertificate.bind(this);
@@ -239,8 +241,14 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   }
 
   reviewOrder() {
+    const { orderData } = this.state;
+    const { messages } = orderData.order;
     const { history } = this.props;
-    history.push('/order');
+    if (messages.length > 0) {
+      this.setState({ showErrorMsg: true });
+    } else {
+      history.push('/order');
+    }
   }
 
   handleCertificate(certificate) {
@@ -601,7 +609,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   render() {
     const {
-      orderData, isLoading, profileData, showGiftCard, certificates,
+      orderData, isLoading, profileData, showGiftCard, certificates, showErrorMsg,
     } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData.order;
@@ -615,6 +623,13 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">
+            <div className="feedback-label checkout-feedback-container" id="checkout_feedback_container">
+              {(showErrorMsg && debugMessages !== '') && (
+                <p>
+                  {debugMessages}
+                </p>
+              )}
+            </div>
             <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
               <div>
                 <h1 className="view-title">
@@ -693,11 +708,8 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
                     <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
                       <CheckoutSummaryList data={orderData} giftCards={certificates} />
                     </div>
-                    <div className="feedback-label" id="checkout_feedback_container">
-                      {(debugMessages !== '') ? (debugMessages) : ('')}
-                    </div>
                     <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
-                      <button className="ep-btn primary btn-cmd-submit-order" type="button" disabled={messages} onClick={() => { this.reviewOrder(); }}>
+                      <button className="ep-btn primary btn-cmd-submit-order" type="button" disabled={showErrorMsg && messages.length > 0} onClick={() => { this.reviewOrder(); }}>
                         {intl.get('complete-order')}
                       </button>
                     </div>
