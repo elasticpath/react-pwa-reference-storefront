@@ -109,10 +109,13 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     if (quantity === '') {
       this.setState({ quantity: '1' });
     }
-    await this.client.lineItem(item.uri).update({ quantity })
-      .then(() => {
-        handleQuantityChange();
-      });
+    try {
+      await this.client.lineItem(item.uri).update({ quantity });
+      handleQuantityChange();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   handleQuantityDecrement() {
@@ -138,12 +141,12 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     const addToCartFormUri = item.uri;
     try {
       const addToCartFormRes = await this.client.item(addToCartFormUri).fetch({ addtocartform: {} });
-
-      const itemRes = addToCartFormRes.addtocartform({ quantity }).fetch();
-
+      await addToCartFormRes.addtocartform({ quantity }).fetch();
       onConfiguratorAddToCart();
     } catch (error) {
-      handleErrorMessage(error.message);
+      handleErrorMessage(error.debugMessage);
+      // eslint-disable-next-line no-console
+      console.error('error:', error.debugMessage);
     }
   }
 
@@ -155,7 +158,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       onMoveToCart();
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error.message);
+      console.error(error);
     }
   }
 

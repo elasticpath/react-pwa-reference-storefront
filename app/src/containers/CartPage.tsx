@@ -29,11 +29,9 @@ import {
 import Config from '../ep.config.json';
 import './CartPage.less';
 
-// zoom parameters to pass to Cortex
-const zoomDefaultCart = {
+const zoomDefaultCart: cortex.RootFetch = {
   defaultcart: {
     total: {},
-    // discount: {},
     appliedpromotions: {
       element: {},
     },
@@ -54,28 +52,17 @@ const zoomDefaultCart = {
         item: {
           code: {},
           definition: {
-            // item: {},
-            // details: {},
             options: {
               element: {
                 value: {},
                 selector: {
-                  choice: {
-                    // description: {},
-                  },
-                  chosen: {
-                    // description: {},
-                  },
+                  choice: {},
+                  chosen: {},
                 },
               },
             },
           },
         },
-        // dependentoptions: {
-        //   element: {
-        //     definition: {},
-        //   },
-        // },
         dependentlineitems: {
           element: {
             item: {
@@ -89,7 +76,7 @@ const zoomDefaultCart = {
 };
 
 interface CartPageState {
-    cartData: any,
+    cartData: cortex.Cart,
     isLoading: boolean,
     invalidPermission: boolean,
 }
@@ -120,24 +107,23 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.fetchCartData();
   }
 
-  fetchCartData() {
-    this.client.root().fetch(zoomDefaultCart)
-      .then((res) => {
-        if (!res.defaultcart) {
-          this.setState({
-            invalidPermission: true,
-          });
-        } else {
-          this.setState({
-            cartData: res.defaultcart,
-            isLoading: false,
-          });
-        }
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+  async fetchCartData() {
+    try {
+      const cartRes = await this.client.root().fetch(zoomDefaultCart);
+      if (!cartRes.defaultcart) {
+        this.setState({
+          invalidPermission: true,
+        });
+      } else {
+        this.setState({
+          cartData: cartRes.defaultcart,
+          isLoading: false,
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   handleQuantityChange() {
