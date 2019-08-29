@@ -21,7 +21,7 @@
 
 import React from 'react';
 import Modal from 'react-responsive-modal';
-import { PaymentFormMain } from '@elasticpath/store-components';
+// import { PaymentFormMain } from '@elasticpath/store-components';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -137,7 +137,7 @@ class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMai
                     </h2>
                   </div>
                   <div className="modal-body">
-                    <PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={onChange} />
+                    {/* <PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={onChange} /> */}
                   </div>
                 </div>
               </div>
