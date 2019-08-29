@@ -234,15 +234,7 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
         categoryModelDisplayName: categoryDataRes.displayName,
         categoryModelId: categoryId,
       });
-      const { categoryModel } = this.state;
-      const productNode = (categoryModel.offers) ? ('offers') : ('items');
-      this.setState(prevState => ({
-        categoryModel: {
-          ...prevState.categoryModel,
-          [productNode]: [categoryDataRes],
-        },
-        isLoading: false,
-      }));
+      this.setState({ isLoading: false });
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -311,7 +303,7 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
     let productList = '';
     let noProducts = true;
     let featuredOffers = {};
-    if (categoryModel.offers && categoryModel.offers.elements) {
+    if (categoryModel && categoryModel.offers && categoryModel.offers.elements) {
       products = categoryModel.offers;
       productList = categoryModel.offers;
     } else {
