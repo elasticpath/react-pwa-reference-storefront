@@ -22,9 +22,10 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
+import * as cortex from '@elasticpath/cortex-client';
 import Modal from 'react-responsive-modal';
 import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain, AddressFormMain,
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain, AddressFormMain, ClientContext,
 } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -32,50 +33,63 @@ import Config from '../ep.config.json';
 
 import './CheckoutPage.less';
 
-// Array of zoom parameters to pass to Cortex
-const zoomArrayProfile = [
-  'defaultprofile',
-  'defaultprofile:emails',
-  'defaultprofile:emails:element',
-  'defaultprofile:emails:element:list',
-  'defaultprofile:emails:element:profile',
-  'defaultprofile:emails:emailform',
-  'defaultprofile:emails:profile',
-];
-
-const zoomArray = [
-  // zooms for checkout summary
-  'defaultcart',
-  'defaultcart:total',
-  'defaultcart:discount',
-  'defaultcart:order',
-  'defaultcart:order:tax',
-  'defaultcart:order:total',
-  'defaultcart:appliedpromotions:element',
-  'defaultcart:order:couponinfo:coupon',
-  'defaultcart:order:couponinfo:couponform',
-  // zooms for billing address
-  'defaultcart:order:billingaddressinfo:billingaddress',
-  'defaultcart:order:billingaddressinfo:selector:choice',
-  'defaultcart:order:billingaddressinfo:selector:choice:description',
-  // zooms for shipping address
-  'defaultcart:order:deliveries:element:destinationinfo:destination',
-  'defaultcart:order:deliveries:element:destinationinfo:selector:choice',
-  'defaultcart:order:deliveries:element:destinationinfo:selector:choice:description',
-  // zooms for shipping options
-  'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
-  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice',
-  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice:description',
-  // zooms for payment methods
-  'defaultcart:order:paymentmethodinfo:paymentmethod',
-  'defaultcart:order:paymentmethodinfo:selector:choice',
-  'defaultcart:order:paymentmethodinfo:selector:choice:description',
-];
+const zoomDefaultcart: cortex.RootFetch = {
+  defaultcart: {
+    total: {},
+    order: {
+      tax: {},
+      total: {},
+      couponinfo: {
+        coupon: {},
+        couponform: {},
+      },
+      billingaddressinfo: {
+        billingaddress: {},
+        selector: {
+          choice: {
+            description: {},
+          },
+        },
+      },
+      deliveries: {
+        element: {
+          destinationinfo: {
+            destination: {},
+            selector: {
+              choice: {
+                description: {},
+              },
+            },
+          },
+          shippingoptioninfo: {
+            shippingoption: {},
+            selector: {
+              choice: {
+                description: {},
+              },
+            },
+          },
+        },
+      },
+      paymentmethodinfo: {
+        paymentmethod: {},
+        selector: {
+          choice: {
+            description: {},
+          },
+        },
+      },
+    },
+    appliedpromotions: {
+      element: {},
+    },
+  },
+};
 
 interface CheckoutPageState {
-    orderData: any,
+    orderData: cortex.Order,
     isLoading: boolean,
-    profileData: any,
+    profileData: cortex.Profile,
     showGiftCard: boolean,
     certificates: any,
     openNewPaymentModal: boolean,
@@ -84,6 +98,10 @@ interface CheckoutPageState {
 }
 
 class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -103,9 +121,10 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchOrderData();
-    this.fetchProfileData();
+  async componentDidMount() {
+    this.client = this.context;
+    await this.fetchOrderData();
+    await this.fetchProfileData();
     this.fetchGiftCardsData();
   }
 
@@ -113,26 +132,28 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     this.fetchProfileData();
   }
 
-  fetchProfileData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArrayProfile.join()}`,
+  async fetchProfileData() {
+    try {
+      const root = await this.client.root().fetch(
         {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          defaultprofile: {
+            emails: {
+              element: {
+                list: {},
+                profile: {},
+              },
+              emailform: {},
+            },
           },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            profileData: res._defaultprofile[0],
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+        },
+      );
+      this.setState({
+        profileData: root.defaultprofile,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   fetchGiftCardsData() {
@@ -157,27 +178,17 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     });
   }
 
-  fetchOrderData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            orderData: res._defaultcart[0],
-            isLoading: false,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+  async fetchOrderData() {
+    try {
+      const root = await this.client.root().fetch(zoomDefaultcart);
+      this.setState({
+        orderData: root.defaultcart,
+        isLoading: false,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   newAddress() {
@@ -194,44 +205,33 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     });
   }
 
-  handleDelete(link) {
+  async handleDelete(link) {
     this.setState({
       isLoading: true,
     });
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        this.fetchOrderData();
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    });
+
+    try {
+      await this.client.order(link).delete();
+      this.fetchOrderData();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  handleChange(link) {
+  async handleChange(link) {
     this.setState({
       isLoading: true,
     });
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        this.fetchOrderData();
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    });
+
+    try {
+      const selectorChoice = await this.client.shippingOptionInfoSelectorChoice(link).fetch({});
+      await selectorChoice.select();
+      this.fetchOrderData();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   newPayment() {
@@ -259,20 +259,20 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderShippingAddress() {
     const { orderData } = this.state;
-    if (orderData._order[0]._deliveries && orderData._order[0]._deliveries[0]._element[0]._destinationinfo) {
+    if (orderData.order.deliveries && (orderData.order.deliveries.elements[0].destinationinfo.destination || orderData.order.deliveries.elements[0].destinationinfo.selector.choice)) {
       const shippingAddresses = [];
-      const destination = orderData._order[0]._deliveries[0]._element[0]._destinationinfo[0]._destination;
+      const { destination } = orderData.order.deliveries.elements[0].destinationinfo;
       if (destination) {
-        const [description] = destination;
+        const description = { ...destination };
         description.checked = true;
         shippingAddresses.push(description);
       }
-      const selector = orderData._order[0]._deliveries[0]._element[0]._destinationinfo[0]._selector;
+      const { selector } = orderData.order.deliveries.elements[0].destinationinfo;
       if (selector) {
-        const choices = selector[0]._choice;
+        const choices = selector.choice || [];
         choices.map((choice) => {
-          const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
+          const description = { ...choice.description };
+          description.selectaction = choice.uri;
           description.checked = false;
           shippingAddresses.push(description);
           return description;
@@ -344,8 +344,8 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderShippingAddressSelector() {
     const { orderData } = this.state;
-    const deliveries = orderData._order[0]._deliveries;
-    const { messages } = orderData._order[0];
+    const { deliveries } = orderData.order;
+    const { messages } = orderData.order;
     const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
     if (needShipmentDetails || deliveries) {
       return (
@@ -369,20 +369,20 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderShippingOptions() {
     const { orderData } = this.state;
-    if (orderData._order[0]._deliveries && orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo) {
+    if (orderData.order.deliveries && orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption) {
       const shippingOptions = [];
-      const shippingOption = orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption;
+      const shippingOption = orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption;
       if (shippingOption) {
-        const [description] = shippingOption;
+        const description = { ...shippingOption };
         description.checked = true;
         shippingOptions.push(description);
       }
-      const selector = orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._selector;
-      if (selector && selector[0]._choice) {
-        const choices = selector[0]._choice;
+      const { selector } = orderData.order.deliveries.elements[0].shippingoptioninfo;
+      if (selector && selector.choice) {
+        const choices = selector.choice || [];
         choices.map((choice) => {
-          const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
+          const description = { ...choice.description };
+          description.selectaction = choice.uri;
           description.checked = false;
           shippingOptions.push(description);
           return description;
@@ -413,8 +413,8 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderShippingOptionsSelector() {
     const { orderData } = this.state;
-    const deliveries = orderData._order[0]._deliveries;
-    if (deliveries && deliveries[0]._element[0]._destinationinfo) {
+    const { deliveries } = orderData.order;
+    if (deliveries && deliveries.elements[0].destinationinfo) {
       return (
         <div>
           <h2>
@@ -431,20 +431,20 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderBillingAddress() {
     const { orderData } = this.state;
-    if (orderData._order[0]._billingaddressinfo) {
+    if (orderData.order.billingaddressinfo && (orderData.order.billingaddressinfo.billingaddress || orderData.order.billingaddressinfo.selector.choice)) {
       const billingAddresses = [];
-      const billingAddress = orderData._order[0]._billingaddressinfo[0]._billingaddress;
+      const billingAddress = orderData.order.billingaddressinfo.billingaddress;
       if (billingAddress) {
-        const [description] = billingAddress;
+        const description = { ...billingAddress };
         description.checked = true;
         billingAddresses.push(description);
       }
-      const selector = orderData._order[0]._billingaddressinfo[0]._selector;
+      const { selector } = orderData.order.billingaddressinfo;
       if (selector) {
-        const choices = selector[0]._choice;
+        const choices = selector.choice || [];
         choices.map((choice) => {
-          const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
+          const description = { ...choice.description };
+          description.selectaction = choice.uri;
           description.checked = false;
           billingAddresses.push(description);
           return description;
@@ -492,7 +492,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderBillingAddressSelector() {
     const { profileData } = this.state;
-    const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
+    const isDisabled = !(!profileData || (profileData && profileData.emails.elements));
     return (
       <div>
         <h2>
@@ -510,26 +510,26 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderPayments() {
     const { orderData } = this.state;
-    if (orderData._order[0]._paymentmethodinfo) {
+    if (orderData.order.paymentmethodinfo && (orderData.order.paymentmethodinfo.paymentmethod || orderData.order.paymentmethodinfo.selector.choice)) {
       const paymentMethods = [];
-      const paymentMethod = orderData._order[0]._paymentmethodinfo[0]._paymentmethod;
+      const paymentMethod = orderData.order.paymentmethodinfo.paymentmethod;
       if (paymentMethod) {
-        const [description] = paymentMethod;
+        const description = { ...paymentMethod };
         description.checked = true;
         description.deletable = false;
         paymentMethods.push(description);
       }
-      const selector = orderData._order[0]._paymentmethodinfo[0]._selector;
+      const { selector } = orderData.order.paymentmethodinfo;
       if (selector) {
-        const choices = selector[0]._choice;
-        choices.map((choice) => {
-          const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
-          description.checked = false;
-          description.deletable = true;
-          paymentMethods.push(description);
-          return description;
-        });
+        const choices = selector.choice || [];
+        // choices.map((choice) => {
+        //   const description = { ...choice.description };
+        //   description.selectaction = choice.uri;
+        //   description.checked = false;
+        //   description.deletable = true;
+        //   paymentMethods.push(description);
+        //   return description;
+        // });
       }
       return (
         paymentMethods.map((payment) => {
@@ -569,7 +569,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderPaymentSelector() {
     const { profileData, openNewPaymentModal } = this.state;
-    const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
+    const isDisabled = !(!profileData || (profileData && profileData.emails.elements));
     return (
       <div>
         <h2>
@@ -604,13 +604,13 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       orderData, isLoading, profileData, showGiftCard, certificates,
     } = this.state;
     if (orderData && !isLoading) {
-      const { messages } = orderData._order[0];
+      const { messages } = orderData.order;
       let debugMessages = '';
-      const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
+      const email = profileData && profileData.emails.elements ? profileData.emails.elements[0].email : '';
       for (let i = 0; i < messages.length; i++) {
-        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
+        debugMessages = debugMessages.concat(`${messages[i].debugMessage} \n `);
       }
-      const deliveries = orderData._order[0]._deliveries;
+      const { deliveries } = orderData.order;
       const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
       return (
         <div className="checkout-container container">
@@ -697,7 +697,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
                       {(debugMessages !== '') ? (debugMessages) : ('')}
                     </div>
                     <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
-                      <button className="ep-btn primary btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
+                      <button className="ep-btn primary btn-cmd-submit-order" type="button" disabled={messages} onClick={() => { this.reviewOrder(); }}>
                         {intl.get('complete-order')}
                       </button>
                     </div>
