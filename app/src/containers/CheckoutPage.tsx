@@ -33,6 +33,59 @@ import Config from '../ep.config.json';
 
 import './CheckoutPage.less';
 
+const zoomDefaultcart: cortex.RootFetch = {
+  defaultcart: {
+    total: {},
+    order: {
+      tax: {},
+      total: {},
+      couponinfo: {
+        coupon: {},
+        couponform: {},
+      },
+      billingaddressinfo: {
+        billingaddress: {},
+        selector: {
+          choice: {
+            description: {},
+          },
+        },
+      },
+      deliveries: {
+        element: {
+          destinationinfo: {
+            destination: {},
+            selector: {
+              choice: {
+                description: {},
+              },
+            },
+          },
+          shippingoptioninfo: {
+            shippingoption: {},
+            selector: {
+              choice: {
+                description: {},
+              },
+            },
+          },
+        },
+      },
+      paymentmethodinfo: {
+        paymentmethod: {},
+        selector: {
+          choice: {
+            description: {},
+          },
+        },
+      },
+    },
+    appliedpromotions: {
+      element: {},
+    },
+  },
+};
+
 interface CheckoutPageState {
     orderData: cortex.Order,
     isLoading: boolean,
@@ -127,60 +180,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   async fetchOrderData() {
     try {
-      const root = await this.client.root().fetch(
-        {
-          defaultcart: {
-            total: {},
-            order: {
-              tax: {},
-              total: {},
-              couponinfo: {
-                coupon: {},
-                couponform: {},
-              },
-              billingaddressinfo: {
-                billingaddress: {},
-                selector: {
-                  choice: {
-                    description: {},
-                  },
-                },
-              },
-              deliveries: {
-                element: {
-                  destinationinfo: {
-                    destination: {},
-                    selector: {
-                      choice: {
-                        description: {},
-                      },
-                    },
-                  },
-                  shippingoptioninfo: {
-                    shippingoption: {},
-                    selector: {
-                      choice: {
-                        description: {},
-                      },
-                    },
-                  },
-                },
-              },
-              paymentmethodinfo: {
-                paymentmethod: {},
-                selector: {
-                  choice: {
-                    description: {},
-                  },
-                },
-              },
-            },
-            appliedpromotions: {
-              element: {},
-            },
-          },
-        },
-      );
+      const root = await this.client.root().fetch(zoomDefaultcart);
       this.setState({
         orderData: root.defaultcart,
         isLoading: false,
