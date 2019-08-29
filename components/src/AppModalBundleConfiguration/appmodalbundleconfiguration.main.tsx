@@ -141,7 +141,7 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
 
   handleErrorMessage(errorResponse) {
     this.setState({
-      registrationErrors: errorResponse.messages[0]['debug-message'],
+      registrationErrors: errorResponse,
       isLoading: false,
     });
   }

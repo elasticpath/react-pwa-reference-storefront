@@ -36,7 +36,7 @@ import Config from '../ep.config.json';
 
 import './OrderReviewPage.less';
 
-const zoomArray = {
+const zoomArray: cortex.RootFetch = {
   defaultcart: {
     total: {},
     order: {
@@ -97,7 +97,7 @@ const zoomArray = {
 };
 
 interface OrderReviewPageState {
-    orderData: any,
+    orderData: cortex.Order,
     giftCertificateEntity: any,
     isLoading: boolean,
 }
@@ -129,7 +129,7 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
       });
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error.message);
+      console.error(error);
     }
   }
 

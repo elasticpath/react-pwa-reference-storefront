@@ -166,22 +166,20 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
       searchUrl = searchKeywordsProps.match.params['0'];
     }
     const requestPaylod = (searchUrl === '') ? searchKeyword : searchUrl;
+    const body = { keywords: requestPaylod, pageSize: 5 };
     try {
-      const fetchFormshRes = await this.client.searches('').fetch({
+      const fetchFormshRes = await this.client.root().fetch({
         searches: {
           offersearchform: {},
           keywordsearchform: {},
         },
       });
-      const searchDataRes = await fetchFormshRes.searches.keywordsearchform({ keywords: requestPaylod }).fetch({
+      const searchDataRes = await fetchFormshRes.searches.keywordsearchform(body).fetch({
         element: {
           availability: {},
           definition: {},
           code: {},
           price: {},
-        },
-        facets: {
-          element: {},
         },
       });
       this.setState({

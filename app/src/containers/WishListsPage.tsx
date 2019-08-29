@@ -24,14 +24,11 @@ import intl from 'react-intl-universal';
 import * as cortex from '@elasticpath/cortex-client';
 import { RouteComponentProps } from 'react-router-dom';
 import { ClientContext, WishListMain } from '@elasticpath/store-components';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
 import './WishListsPage.less';
 
-// Array of zoom parameters to pass to Cortex
-const zoomArray = {
+const zoomArray: cortex.RootFetch = {
   defaultwishlist: {
     lineitems: {
       element: {
@@ -44,12 +41,8 @@ const zoomArray = {
               element: {
                 value: {},
                 selector: {
-                  choice: {
-                    // description: {},
-                  },
-                  chosen: {
-                    // description: {},
-                  },
+                  choice: {},
+                  chosen: {},
                 },
               },
             },
@@ -65,7 +58,7 @@ const zoomArray = {
 };
 
 interface WishListsPageState {
-    wishListData: any,
+    wishListData: cortex.Wishlist,
     isLoading: boolean,
     invalidPermission: boolean,
 }
@@ -118,7 +111,7 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
       }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error.message);
+      console.error(error);
     }
   }
 

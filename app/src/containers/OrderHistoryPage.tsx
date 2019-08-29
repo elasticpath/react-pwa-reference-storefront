@@ -27,7 +27,7 @@ import { ClientContext, PurchaseDetailsMain } from '@elasticpath/store-component
 
 import './OrderHistoryPage.less';
 
-const zoom: cortex.PurchaseFetch = {
+const zoomPurchase: cortex.PurchaseFetch = {
   paymentmeans: {
     element: {},
   },
@@ -80,7 +80,7 @@ interface OrderHistoryPageProps extends React.Component<RouteComponentProps> {
     history: any,
 }
 interface OrderHistoryPageState {
-    purchaseData: any,
+    purchaseData: cortex.Purchase,
 }
 
 class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHistoryPageState> {
@@ -104,21 +104,25 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
   async fetchPurchaseData() {
     const { match } = this.props;
     const purchaseNumber = decodeURIComponent(match.params.url);
+    try {
+      const root = await this.client.root().fetch({
+        defaultcart: {
+          additemstocartform: {},
+        },
+        lookups: {
+          purchaselookupform: {},
+        },
+      });
 
-    const root = await this.client.root().fetch({
-      defaultcart: {
-        additemstocartform: {},
-      },
-      lookups: {
-        purchaselookupform: {},
-      },
-    });
+      const purchase = await root.lookups.purchaselookupform({ purchaseNumber }).fetch(zoomPurchase);
 
-    const purchase = await root.lookups.purchaselookupform({ purchaseNumber }).fetch(zoom);
-
-    this.setState({
-      purchaseData: { ...purchase, defaultcart: root.defaultcart },
-    });
+      this.setState({
+        purchaseData: { ...purchase, defaultcart: root.defaultcart },
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   moveToCart() {

@@ -156,7 +156,7 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
                       hideAddToBagButton
                       handleQuantityChange={() => { }}
                       hideRemoveButton
-                      handleErrorMessage={(error) => { this.handleError(code.code, error.message); }}
+                      handleErrorMessage={(error) => { this.handleError(code.code, error.debagMessage); }}
                       itemDetailLink={itemDetailLink}
                     />
                     { errorMessages[code.code]
