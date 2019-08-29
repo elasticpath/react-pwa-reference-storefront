@@ -346,7 +346,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     const { orderData } = this.state;
     const { deliveries } = orderData.order;
     const { messages } = orderData.order;
-    const needShipmentDetails = ''; // messages.find(message => message.id === 'need.shipping.address');
+    const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
     if (needShipmentDetails || deliveries) {
       return (
         <div data-region="shippingAddressesRegion" style={{ display: 'block' }}>
@@ -605,13 +605,13 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData.order;
-      const debugMessages = '';
+      let debugMessages = '';
       const email = profileData && profileData.emails.elements ? profileData.emails.elements[0].email : '';
-      // for (let i = 0; i < messages.length; i++) {
-      //   debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
-      // }
+      for (let i = 0; i < messages.length; i++) {
+        debugMessages = debugMessages.concat(`${messages[i].debugMessage} \n `);
+      }
       const { deliveries } = orderData.order;
-      const needShipmentDetails = ''; // messages.find(message => message.id === 'need.shipping.address');
+      const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">
