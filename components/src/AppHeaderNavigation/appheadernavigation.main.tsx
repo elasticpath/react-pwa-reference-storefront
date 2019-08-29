@@ -29,6 +29,19 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './appheadernavigation.main.less';
 
+const zoomNavigation: cortex.RootFetch = {
+  navigations: {
+    element: {
+      child: {
+        child: {
+          child: {
+            child: {},
+          },
+        },
+      },
+    },
+  },
+};
 let Config: IEpConfig | any = {};
 
 interface AppHeaderNavigationMainProps {
@@ -41,7 +54,7 @@ interface AppHeaderNavigationMainProps {
 }
 
 interface AppHeaderNavigationMainState {
-  navigations: any,
+  navigations: { [key: string]: any },
   originalMinimizedNav: any,
 }
 
@@ -132,26 +145,14 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
 
   async fetchNavigationData() {
     try {
-      const navigationRes = await this.client.root().fetch({
-        navigations: {
-          element: {
-            child: {
-              child: {
-                child: {
-                  child: {},
-                },
-              },
-            },
-          },
-        },
-      });
+      const navigationRes = await this.client.root().fetch(zoomNavigation);
       if (navigationRes && navigationRes.navigations && navigationRes.navigations.elements) {
         const cortexNavigations = navigationRes.navigations.elements;
-        const navigations = this.getDropDownNavigationState(cortexNavigations);
+        const navigationData = this.getDropDownNavigationState(cortexNavigations);
         this.setState({
-          navigations,
+          navigations: navigationData,
           /* eslint-disable react/no-unused-state */
-          originalMinimizedNav: JSON.parse(JSON.stringify(navigations)),
+          originalMinimizedNav: JSON.parse(JSON.stringify(navigationData)),
         });
       }
     } catch (error) {

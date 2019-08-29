@@ -26,6 +26,16 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './add.promotion.container.less';
 
+const zoomDefaultCart: cortex.RootFetch = {
+  defaultcart: {
+    order: {
+      couponinfo: {
+        couponform: {},
+      },
+    },
+  },
+};
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -86,21 +96,9 @@ class AddPromotionContainer extends React.Component<AddPromotionContainerProps, 
     event.preventDefault();
     const { onSubmittedPromotion } = this.props;
     const { promotionCode } = this.state;
-
-    const root = await this.client.root().fetch(
-      {
-        defaultcart: {
-          order: {
-            couponinfo: {
-              couponform: {},
-            },
-          },
-        },
-      },
-    );
-
     try {
-      const couponInfo = await root.defaultcart.order.couponinfo.couponform({
+      const root = await this.client.root().fetch(zoomDefaultCart);
+      await root.defaultcart.order.couponinfo.couponform({
         couponId: '',
         parentId: '',
         parentType: '',
@@ -111,9 +109,9 @@ class AddPromotionContainer extends React.Component<AddPromotionContainerProps, 
         onSubmittedPromotion();
       });
     } catch (error) {
+      this.setState({ failedPromotion: true });
       // eslint-disable-next-line no-console
       console.error(error);
-      this.setState({ failedPromotion: true });
     }
   }
 

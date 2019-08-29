@@ -38,6 +38,86 @@ import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
+const zoomNavigation: cortex.NavigationFetch = {
+  items: {
+    element: {
+      code: {},
+      availability: {},
+      definition: {
+      },
+      price: {},
+    },
+  },
+  offers: {
+    element: {
+      code: {},
+      availability: {},
+      definition: {},
+      pricerange: {},
+      items: {
+        element: {
+          availability: {},
+          definition: {
+          },
+          price: {},
+          code: {},
+        },
+      },
+    },
+    facets: {
+      element: {
+        facetselector: {
+          choice: {},
+          chosen: {},
+        },
+      },
+    },
+    sortattributes: {
+      choice: {
+        description: {},
+        selectaction: {},
+        selector: {},
+      },
+      chosen: {
+        description: {},
+        selectaction: {},
+        selector: {},
+      },
+    },
+  },
+  featuredoffers: {
+    element: {
+      availability: {},
+      definition: {
+      },
+      code: {},
+      items: {
+        element: {
+          availability: {},
+          definition: {
+          },
+          price: {},
+          code: {},
+        },
+      },
+    },
+  },
+  // parent: {},
+  sortattributes: {
+    choice: {
+      description: {},
+      selectaction: {},
+      selector: {},
+    },
+    chosen: {
+      description: {},
+      selectaction: {},
+      selector: {},
+    },
+    offersearchresult: {},
+  },
+};
+
 const zoomArray = [
   'chosen',
   'chosen:description',
@@ -84,11 +164,11 @@ interface CategoryItemsMainProps {
 }
 interface CategoryItemsMainState {
     isLoading: boolean,
-    categoryModel: any,
+    categoryModel: cortex.Navigation,
     loadSortedProduct: boolean,
-    categoryModelDisplayName: any,
-    categoryModelParentDisplayName: any,
-    categoryModelId: any,
+    categoryModelDisplayName: string,
+    categoryModelParentDisplayName: string,
+    categoryModelId: number,
 }
 class CategoryItemsMain extends React.Component<CategoryItemsMainProps, CategoryItemsMainState> {
   static contextType = ClientContext;
@@ -149,98 +229,11 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
     };
     try {
       const navigationLookupFormRes = await this.client.root().fetch({ lookups: { navigationlookupform: {} } });
-      const categoryDataRes = await navigationLookupFormRes.lookups.navigationlookupform(dataCode).fetch({
-        items: {
-          element: {
-            code: {},
-            availability: {},
-            definition: {
-            },
-            price: {},
-          },
-        },
-        offers: {
-          element: {
-            code: {},
-            availability: {},
-            definition: {},
-            pricerange: {},
-            items: {
-              element: {
-                availability: {},
-                definition: {
-                },
-                price: {},
-                code: {},
-              },
-            },
-          },
-          facets: {
-            element: {
-              facetselector: {
-                choice: {
-                  description: {},
-                  // selector: {},
-                  // selectaction: {},
-                },
-                chosen: {
-                  description: {},
-                  // selector: {},
-                  // selectaction: {},
-                },
-              },
-            },
-          },
-          sortattributes: {
-            choice: {
-              description: {},
-              selectaction: {},
-              selector: {},
-            },
-            chosen: {
-              description: {},
-              selectaction: {},
-              selector: {},
-            },
-            // offersearchresult: {},
-          },
-        },
-        featuredoffers: {
-          element: {
-            availability: {},
-            definition: {
-            },
-            code: {},
-            items: {
-              element: {
-                availability: {},
-                definition: {
-                },
-                price: {},
-                code: {},
-              },
-            },
-          },
-        },
-        // parent: {},
-        // sortattributes: {
-        //   choice: {
-        //     description: {},
-        //     selectaction: {},
-        //     selector: {},
-        //   },
-        //   chosen: {
-        //     description: {},
-        //     selectaction: {},
-        //     selector: {},
-        //   },
-        //   offersearchresult: {},
-        // },
-      });
+      const categoryDataRes = await navigationLookupFormRes.lookups.navigationlookupform(dataCode).fetch(zoomNavigation);
       this.setState({
         categoryModel: categoryDataRes,
         categoryModelDisplayName: categoryDataRes.displayName,
-        // categoryModelParentDisplayName: res.parent ? res.parent[0].displayName : '',
+        // categoryModelParentDisplayName: categoryDataRes.parent ? categoryDataRes.parent[0].displayName : '',
         categoryModelId: categoryId,
       });
       const { categoryModel } = this.state;
@@ -254,7 +247,7 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
       }));
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error.message);
+      console.error(error);
     }
   }
 

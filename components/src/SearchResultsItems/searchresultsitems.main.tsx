@@ -101,9 +101,7 @@ interface SearchResultsItemsMainProps {
 
 interface SearchResultsItemsMainState {
   isLoading: boolean,
-  searchResultsModel: {
-    [key: string]: any
-  },
+  searchResultsModel: cortex.KeywordSearchResult,
   loadSortedProduct: boolean,
   searchKeywords: any
 }
@@ -119,7 +117,7 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
       productSearch: '',
       productCategory: '',
     },
-  }
+  };
 
   client: cortex.IClient;
 
@@ -189,7 +187,7 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
       });
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error.message);
+      console.error(error);
     }
   }
 
