@@ -22,7 +22,8 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "outDir": "build",
-    "esModuleInterop":true
+    "esModuleInterop":true,
+    "declarationMap": true
   },
   "files": [
     "custom_typings/image-loader.d.ts",

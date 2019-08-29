@@ -21,7 +21,7 @@
 const path = require('path');
 
 const CopyPlugin = require('copy-webpack-plugin');
-
+const DeclarationBundlerPlugin = require('declaration-bundler-webpack-plugin');
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
@@ -107,10 +107,12 @@ module.exports = function (webpackEnv) {
         window: 'ReactDOM'
       },
     },
-    // plugins: [
-    //   new CopyPlugin([
-    //     { from: '../src', to: '../build/src/' },
-    //   ]),
-    // ],
+    plugins: [
+      // TODO: Trying to bundle together the index.d.ts
+      new DeclarationBundlerPlugin({
+        moduleName: '@elasticpath/store-components',
+        out: '../build/index.d.ts',
+      }),
+    ],
   };
 };
