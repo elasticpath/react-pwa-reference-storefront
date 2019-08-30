@@ -81,18 +81,18 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
     this.handleItemRemove = this.handleItemRemove.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
-    this.fetchwishListData();
+    await this.fetchwishListData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchwishListData();
+  async componentWillReceiveProps() {
+    await this.fetchwishListData();
   }
 
-  handleQuantityChange() {
+  async handleQuantityChange() {
     this.setState({ isLoading: true });
-    this.fetchwishListData();
+    await this.fetchwishListData();
   }
 
   async fetchwishListData() {

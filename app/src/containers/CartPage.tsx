@@ -98,13 +98,13 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   client: cortex.IClient;
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
-    this.fetchCartData();
+    await this.fetchCartData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchCartData();
+  async componentWillReceiveProps() {
+    await this.fetchCartData();
   }
 
   async fetchCartData() {
@@ -126,10 +126,10 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     }
   }
 
-  handleQuantityChange() {
+  async handleQuantityChange() {
     const { location, history } = this.props;
     this.setState({ isLoading: true });
-    this.fetchCartData();
+    await this.fetchCartData();
     history.push(location.path);
   }
 

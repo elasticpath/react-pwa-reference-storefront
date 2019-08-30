@@ -33,7 +33,7 @@ import Config from '../ep.config.json';
 
 import './CheckoutPage.less';
 
-const zoomDefaultcart: cortex.RootFetch = {
+const zoomDefaultCart: cortex.RootFetch = {
   defaultcart: {
     total: {},
     order: {
@@ -128,8 +128,8 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     this.fetchGiftCardsData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchProfileData();
+  async componentWillReceiveProps() {
+    await this.fetchProfileData();
   }
 
   async fetchProfileData() {
@@ -180,7 +180,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   async fetchOrderData() {
     try {
-      const root = await this.client.root().fetch(zoomDefaultcart);
+      const root = await this.client.root().fetch(zoomDefaultCart);
       this.setState({
         orderData: root.defaultcart,
         isLoading: false,
@@ -212,7 +212,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
     try {
       await this.client.order(link).delete();
-      this.fetchOrderData();
+      await this.fetchOrderData();
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -227,7 +227,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     try {
       const selectorChoice = await this.client.shippingOptionInfoSelectorChoice(link).fetch({});
       await selectorChoice.select();
-      this.fetchOrderData();
+      await this.fetchOrderData();
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
@@ -527,7 +527,6 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       }
       const { selector } = orderData.order.paymentmethodinfo;
       if (selector) {
-        console.log('selector:', selector);
         const choices = selector.choice || [];
         // choices.map((choice) => {
         //   const description = { ...choice.description };

@@ -37,6 +37,7 @@ interface AddressFormMainProps {
     fetchData?: (...args: any[]) => any,
 }
 interface AddressFormMainState {
+    showLoader: boolean,
     geoData: any,
     firstName: string,
     lastName: string,
@@ -64,6 +65,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
     Config = epConfig.config;
     ({ intl } = getConfig());
     this.state = {
+      showLoader: false,
       geoData: undefined,
       firstName: '',
       lastName: '',
@@ -132,6 +134,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
 
   async submitAddress(event) {
     event.preventDefault();
+    this.setState({ showLoader: true });
     const { addressData, fetchData, onCloseModal } = this.props;
     const {
       firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
@@ -170,7 +173,10 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
         onCloseModal();
       });
     } catch (error) {
-      this.setState({ failedSubmit: true });
+      this.setState({
+        failedSubmit: true,
+        showLoader: false,
+      });
       // eslint-disable-next-line no-console
       console.error(error);
     }
@@ -295,7 +301,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
 
   render() {
     const {
-      failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
+      failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode, showLoader,
     } = this.state;
 
     return (
@@ -303,6 +309,11 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
         <div className="feedback-label feedback-container" data-region="componentAddressFeedbackRegion">
           {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
         </div>
+        {showLoader && (
+          <div className="loader-wrapper">
+            <div className="miniLoader" />
+          </div>
+        )}
         <form className="form-horizontal" onSubmit={this.submitAddress}>
           <div className="form-group">
             <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label">

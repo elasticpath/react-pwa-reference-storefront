@@ -362,13 +362,13 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
   render() {
     const { orderData, giftCertificateEntity, isLoading } = this.state;
     const isValid = (orderData && orderData.order.purchaseform && orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption && orderData.order.billingaddressinfo.billingaddress && orderData.order.paymentmethodinfo.paymentmethod);
-    const debugMessages = '';
-    // if (orderData && orderData.order) {
-    // const { messages } = orderData.order;
-    // for (let i = 0; i < messages.length; i++) {
-    // debugMessages = debugMessages.concat(`${messages[0]['debug-message']} \n `);
-    // }
-    // }
+    let debugMessages = '';
+    if (orderData && orderData.order) {
+      const { messages } = orderData.order;
+      for (let i = 0; i < messages.length; i++) {
+        debugMessages = debugMessages.concat(`${messages[0].debugMessages} \n `);
+      }
+    }
     const itemDetailLink = '/itemdetail';
 
     return (
@@ -402,8 +402,7 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
                         <CheckoutSummaryList data={orderData} isLoading={false} giftCards={giftCertificateEntity} />
                       </div>
                       <div className="feedback-label" id="checkout_feedback_container">
-                        {/* {(debugMessages !== '') ? (debugMessages) : ('')} */}
-                        {debugMessages}
+                        {(debugMessages !== '') ? (debugMessages) : ('')}
                       </div>
                       <div className="checkout-submit-container" style={{ display: 'block' }}>
                         <button className="ep-btn primary wide btn-cmd-submit-order" disabled={!isValid} type="button" onClick={() => { this.completeOrder(); }}>

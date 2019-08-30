@@ -64,7 +64,7 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
 
   renderAddresses() {
     const { addresses, onEditAddress } = this.props;
-    if (addresses.elements) {
+    if (addresses.elements && addresses.elements.length > 0) {
       return (
         addresses.elements.map((addressElement) => {
           const {

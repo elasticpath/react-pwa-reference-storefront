@@ -96,9 +96,9 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
     this.moveToCart = this.moveToCart.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
-    this.fetchPurchaseData();
+    await this.fetchPurchaseData();
   }
 
   async fetchPurchaseData() {
