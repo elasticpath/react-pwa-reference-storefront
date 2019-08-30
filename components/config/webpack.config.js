@@ -46,7 +46,7 @@ module.exports = function (webpackEnv) {
         {
           test: /\.(ts|tsx)?$/,
           use: {
-            loader: 'awesome-typescript-loader'
+            loader: 'ts-loader'
           },
           exclude: /node_modules/
         },
@@ -106,13 +106,6 @@ module.exports = function (webpackEnv) {
         var: 'react-dom',
         window: 'ReactDOM'
       },
-    },
-    plugins: [
-      // TODO: Trying to bundle together the index.d.ts
-      new DeclarationBundlerPlugin({
-        moduleName: '@elasticpath/store-components',
-        out: '../build/index.d.ts',
-      }),
-    ],
+    }
   };
 };
