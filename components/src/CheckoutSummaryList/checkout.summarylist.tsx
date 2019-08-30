@@ -44,7 +44,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
   static defaultProps = {
     giftCards: [],
     onChange: () => {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -53,7 +53,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
     ({ intl } = epConfig);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 

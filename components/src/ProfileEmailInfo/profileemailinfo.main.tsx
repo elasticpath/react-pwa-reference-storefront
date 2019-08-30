@@ -70,7 +70,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     this.submitEmailChange = this.submitEmailChange.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 

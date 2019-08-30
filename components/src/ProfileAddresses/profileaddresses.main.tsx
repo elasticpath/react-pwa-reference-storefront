@@ -51,7 +51,7 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
     ({ intl } = epConfig);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 

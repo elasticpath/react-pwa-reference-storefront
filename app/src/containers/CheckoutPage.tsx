@@ -74,9 +74,7 @@ const zoomDefaultcart: cortex.RootFetch = {
       paymentmethodinfo: {
         paymentmethod: {},
         selector: {
-          choice: {
-            description: {},
-          },
+          choice: {},
         },
       },
     },
@@ -529,6 +527,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       }
       const { selector } = orderData.order.paymentmethodinfo;
       if (selector) {
+        console.log('selector:', selector);
         const choices = selector.choice || [];
         // choices.map((choice) => {
         //   const description = { ...choice.description };

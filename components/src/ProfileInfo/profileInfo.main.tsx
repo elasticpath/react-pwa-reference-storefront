@@ -70,7 +70,7 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     this.submitPersonalInfoChange = this.submitPersonalInfoChange.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 
@@ -108,9 +108,11 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
         familyName: lastName,
         profileId: '',
       });
-      onChange();
       this.cancel();
-      onChange();
+      await onChange({
+        familyName: lastName,
+        givenName: firstName,
+      });
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

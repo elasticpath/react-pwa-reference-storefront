@@ -101,11 +101,19 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     await this.fetchProfileData();
   }
 
-  async fetchProfileData() {
+  async fetchProfileData(data) {
+    const { profileData } = this.state;
+    if (data) {
+      this.setState({
+        profileData: { ...profileData, ...data },
+      });
+      return;
+    }
     try {
       const root = await this.client.root().fetch(zoomArray);
 
       if (root) {
+        console.warn(root.defaultprofile);
         this.setState({
           profileData: root.defaultprofile,
         });
@@ -182,6 +190,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   render() {
     const { profileData, showResetPasswordButton } = this.state;
+    if (profileData) console.warn(profileData.familyName);
     return (
       <div>
         <div className="container profile-container">

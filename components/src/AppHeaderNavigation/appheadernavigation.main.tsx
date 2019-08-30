@@ -81,7 +81,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     };
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     this.client = this.context;
     const { isOffline, isOfflineCheck } = this.props;
     if (!navigator.onLine && !isOffline && isOffline !== undefined) {
@@ -89,10 +89,10 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
     } else if (navigator.onLine && isOffline) {
       isOfflineCheck(false);
     }
-    this.fetchNavigationData();
+    await this.fetchNavigationData();
   }
 
-  componentWillReceiveProps() {
+  async componentWillReceiveProps() {
     const { isOffline, isOfflineCheck, checkedLocation } = this.props;
     const { navigations } = this.state;
     if (!navigator.onLine && !isOffline && isOffline !== undefined) {
@@ -101,7 +101,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
       isOfflineCheck(false);
     }
     if (navigations.length === 0 && checkedLocation) {
-      this.fetchNavigationData();
+      await this.fetchNavigationData();
     }
   }
 

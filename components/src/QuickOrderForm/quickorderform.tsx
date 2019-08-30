@@ -72,7 +72,7 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
     this.getProductInfo = this.getProductInfo.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 

@@ -139,15 +139,15 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
     this.handleSortSelection = this.handleSortSelection.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
     const { searchKeywordsProps } = this.props;
-    this.getSearchData(searchKeywordsProps);
+    await this.getSearchData(searchKeywordsProps);
   }
 
-  componentWillReceiveProps(nextProps) {
+  async componentWillReceiveProps(nextProps) {
     const { searchKeywordsProps } = nextProps;
-    this.getSearchData(searchKeywordsProps);
+    await this.getSearchData(searchKeywordsProps);
   }
 
   async getSearchData(searchKeywordsProps) {

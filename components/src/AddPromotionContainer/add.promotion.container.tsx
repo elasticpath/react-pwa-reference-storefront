@@ -71,7 +71,7 @@ class AddPromotionContainer extends React.Component<AddPromotionContainerProps, 
     this.submitPromotionCode = this.submitPromotionCode.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 
