@@ -167,11 +167,8 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
     this.setState({
       isLoading: true,
     });
-    const purchaseZoomArray = {
+    const purchaseZoomArray: cortex.PurchaseFetch = {
       paymentmeans: {
-        element: {},
-      },
-      postedpayments: {
         element: {},
       },
       shipments: {
@@ -187,22 +184,20 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
       },
       lineitems: {
         element: {
+          item: {
+            appliedpromotions: {},
+            price: {},
+            definition: {},
+            code: {},
+            availability: {},
+            addtocartform: {},
+          },
           options: {
             element: {
               value: {},
             },
           },
           components: {
-            element: {
-              item: {
-                addtocartform: {},
-                availability: {},
-                definition: {},
-                code: {},
-              },
-            },
-          },
-          dependentlineitems: {
             element: {
               item: {
                 addtocartform: {},
