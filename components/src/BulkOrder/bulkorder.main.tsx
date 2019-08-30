@@ -31,9 +31,7 @@ let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
 
 interface BulkOrderProps {
-  cartData?: {
-    [key: string]: any
-  },
+  cartData?: cortex.Cart,
   isBulkModalOpened: boolean,
   handleClose: (...args: any[]) => any
 }

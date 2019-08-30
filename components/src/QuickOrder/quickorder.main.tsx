@@ -31,41 +31,23 @@ import './quickorder.main.less';
 
 let intl = { get: str => str };
 
-const itemFormZoom = {
+const itemFormZoom: cortex.ItemFetch = {
   availability: {},
   addtocartform: {},
   addtowishlistform: {},
   price: {},
-  rate: {},
   definition: {
-    assets: {
-      element: {},
-    },
     options: {
       element: {
         value: {},
         selector: {
           choice: {
-            description: {},
             selector: {},
-            selectaction: {},
           },
           chosen: {
-            description: {},
             selector: {},
-            selectaction: {},
           },
         },
-      },
-    },
-  },
-  components: {
-    element: {
-      code: {},
-      standaloneitem: {
-        code: {},
-        definition: {},
-        availability: {},
       },
     },
   },
@@ -210,31 +192,27 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
       isLoading: true,
     });
     event.preventDefault();
-
-    const root = await this.client.root().fetch({
-      lookups: {
-        itemlookupform: {},
-      },
-    });
-
-    root.lookups.itemlookupform({ code: productId })
-      .fetch(itemFormZoom)
-      .then((res) => {
-        this.setState({
-          productItemInfo: res,
-          isLoading: false,
-          openModal: true,
-          showFailedMessage: false,
-        });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        this.setState({
-          isLoading: false,
-          showFailedMessage: true,
-        });
+    try {
+      const root = await this.client.root().fetch({
+        lookups: {
+          itemlookupform: {},
+        },
       });
+      const dataItem = await root.lookups.itemlookupform({ code: productId }).fetch(itemFormZoom);
+      this.setState({
+        productItemInfo: dataItem,
+        isLoading: false,
+        openModal: true,
+        showFailedMessage: false,
+      });
+    } catch (error) {
+      this.setState({
+        isLoading: false,
+        showFailedMessage: true,
+      });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   render() {

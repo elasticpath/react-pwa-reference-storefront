@@ -204,15 +204,15 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
     this.handleFacetSelection = this.handleFacetSelection.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.client = this.context;
     const { categoryProps } = this.props;
-    this.getCategoryData(categoryProps);
+    await this.getCategoryData(categoryProps);
   }
 
-  componentWillReceiveProps(nextProps) {
+  async componentWillReceiveProps(nextProps) {
     const { categoryProps } = nextProps;
-    this.getCategoryData(categoryProps);
+    await this.getCategoryData(categoryProps);
   }
 
   async getCategoryData(categoryProps) {

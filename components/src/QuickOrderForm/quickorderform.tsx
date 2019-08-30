@@ -160,7 +160,7 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
     }
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     const {
       code, quantity, product,
@@ -172,7 +172,7 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
       product: {},
       isLoading: true,
     });
-    this.getProductInfo(code);
+    await this.getProductInfo(code);
   }
 
   handleChange(event) {

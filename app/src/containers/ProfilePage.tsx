@@ -101,7 +101,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     await this.fetchProfileData();
   }
 
-  async fetchProfileData(data) {
+  async fetchProfileData(data) {d
     const { profileData } = this.state;
     if (data) {
       this.setState({
@@ -189,6 +189,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   render() {
     const { profileData, showResetPasswordButton } = this.state;
+
     return (
       <div>
         <div className="container profile-container">

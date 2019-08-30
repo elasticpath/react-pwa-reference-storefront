@@ -26,6 +26,14 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './addressform.main.less';
 
+const zoomDefaultProfile: cortex.RootFetch = {
+  defaultprofile: {
+    addresses: {
+      addressform: {},
+    },
+  },
+};
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -38,7 +46,7 @@ interface AddressFormMainProps {
 }
 interface AddressFormMainState {
     showLoader: boolean,
-    geoData: any,
+    geoData: cortex.Countries,
     firstName: string,
     lastName: string,
     address: string,
@@ -158,13 +166,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
       if (addressData && addressData.address) {
         await this.client.address(addressData.address).update(userAddress);
       } else {
-        const rootRes = await this.client.root().fetch({
-          defaultprofile: {
-            addresses: {
-              addressform: {},
-            },
-          },
-        });
+        const rootRes = await this.client.root().fetch(zoomDefaultProfile);
         await rootRes.defaultprofile.addresses.addressform(userAddress).fetch({});
       }
 
@@ -191,7 +193,6 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           },
         },
       });
-
       this.setState({
         geoData: res,
       });

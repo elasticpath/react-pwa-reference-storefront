@@ -57,9 +57,13 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
 
   async handleDelete(link) {
     const { onChange } = this.props;
-
-    await this.client.address(link).delete();
-    onChange();
+    try {
+      await this.client.address(link).delete();
+      onChange();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   renderAddresses() {
