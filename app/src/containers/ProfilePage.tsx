@@ -101,7 +101,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     await this.fetchProfileData();
   }
 
-  async fetchProfileData(data) {d
+  async fetchProfileData(data) {
     const { profileData } = this.state;
     if (data) {
       this.setState({
