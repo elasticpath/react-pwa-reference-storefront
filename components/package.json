@@ -4,6 +4,7 @@
   "main": "build/index",
   "main:src": "src/index",
   "types": "build/src/index",
+  "files": ["build/*"],
   "license": "MIT",
   "scripts": {
     "build": "node scripts/build.js"
