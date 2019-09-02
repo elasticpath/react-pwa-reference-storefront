@@ -22,7 +22,6 @@
 import React from 'react';
 import * as cortex from '@elasticpath/cortex-client';
 import { login } from '../utils/AuthService';
-import { searchLookup } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ProductListMain from '../ProductList/productlist.main';
@@ -36,6 +35,15 @@ import './searchresultsitems.main.less';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
+
+const navigationZoom = {
+  element: {
+    availability: {},
+    definition: {},
+    code: {},
+    price: {},
+  },
+};
 
 const zoomArray = [
   'chosen',
@@ -172,14 +180,7 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
           keywordsearchform: {},
         },
       });
-      const searchDataRes = await fetchFormshRes.searches.keywordsearchform(body).fetch({
-        element: {
-          availability: {},
-          definition: {},
-          code: {},
-          price: {},
-        },
-      });
+      const searchDataRes = await fetchFormshRes.searches.keywordsearchform(body).fetch(navigationZoom);
       this.setState({
         isLoading: false,
         searchResultsModel: searchDataRes,
@@ -244,7 +245,6 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
     const { productLinks } = this.props;
     const products = searchResultsModel.items ? searchResultsModel.items : searchResultsModel;
     const noProducts = !products || !products.elements;
-    const searchKeywordString = searchKeywords;
     const propCompareButton = false;
     return (
       <div className="category-items-container container-3">
@@ -276,12 +276,12 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
                 <SearchFacetNavigationMain onFacetSelection={this.handleFacetSelection} productData={products} />
                 <div className="products-container">
                   <SortProductMenu handleSortSelection={this.handleSortSelection} categoryModel={searchResultsModel} />
-                  <ProductListPagination paginationDataProps={products} titleString={searchKeywordString} isTop productListPaginationLinks={productLinks} />
+                  <ProductListPagination paginationDataProps={products} />
                   <div className={`${loadSortedProduct ? 'loading-product' : ''}`}>
                     <div className={`${loadSortedProduct ? 'sort-product-loader' : ''}`} />
                     <ProductListMain productData={products} showCompareButton={propCompareButton} productListLinks={productLinks} />
                   </div>
-                  <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={searchLookup} />
+                  <ProductListLoadMore itemsZoom={navigationZoom} dataProps={products} handleDataChange={this.handleProductsChange} />
                 </div>
               </div>
             );
