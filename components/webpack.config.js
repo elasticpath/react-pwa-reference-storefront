@@ -28,10 +28,10 @@ module.exports = function (webpackEnv) {
   return {
     devtool: 'source-map',
     mode: 'development',
-    entry: '../src/index',
+    entry: './src/index',
     output: {
       filename: 'index.js',
-      path: path.resolve(__dirname, '../build'),
+      path: path.resolve(__dirname, './build'),
       library: 'index',
       libraryTarget:'umd'
     },
