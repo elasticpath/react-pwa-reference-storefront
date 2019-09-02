@@ -239,7 +239,7 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
             </tr>
           </tbody>
         </table>
-        {(purchaseItem) ? (
+        {(purchaseItem.item.addtocartform) ? (
           <QuickOrderMain isBuyItAgain productData={purchaseItem} itemDetailLink={itemDetailLink} onMoveToCart={onMoveToCart} onConfiguratorAddToCart={onConfiguratorAddToCart} />
         ) : ('')
         }
