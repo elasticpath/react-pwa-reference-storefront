@@ -21,11 +21,11 @@
 
 import React from 'react';
 import Modal from 'react-responsive-modal';
-import { PaymentFormMain } from '@elasticpath/store-components';
 import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import PaymentFormMain from '../PaymentForm/paymentform.main';
 
 import './profilepaymentmethods.main.less';
 

@@ -26,6 +26,7 @@ const DeclarationBundlerPlugin = require('declaration-bundler-webpack-plugin');
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
   return {
+    devtool: 'source-map',
     mode: 'development',
     entry: '../src/index',
     output: {
@@ -40,7 +41,7 @@ module.exports = function (webpackEnv) {
           test: /\.(js|jsx)?$/,
           exclude: /(node_modules)/,
           loaders: [
-              'babel-loader', 
+              'babel-loader',
           ]
         },
         {
@@ -70,8 +71,6 @@ module.exports = function (webpackEnv) {
           options: {
             limit: 8000, // Convert images < 8kb to base64 strings
             name: '[hash]-[name].[ext]',
-            publicPath: '/images/temp-webpack-generated-images/',
-            outputPath: '../../../../images/temp-webpack-generated-images',
           },
         }],
       },
