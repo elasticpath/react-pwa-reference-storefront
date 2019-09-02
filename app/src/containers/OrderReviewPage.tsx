@@ -220,10 +220,10 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
       });
       this.giftCertificatesAddToCart();
       this.trackTransactionAnalytics();
-      history.push('/purchaseReceipt', { data: completePurchaseRes });
+      history.push('/purchaseReceipt', { data: JSON.stringify(completePurchaseRes) });
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error.message);
+      console.error(error);
     }
   }
 
