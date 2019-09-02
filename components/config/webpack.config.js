@@ -105,6 +105,13 @@ module.exports = function (webpackEnv) {
         var: 'react-dom',
         window: 'ReactDOM'
       },
+      'graphql': {
+        commonjs: 'graphql',
+        commonjs2: 'graphql',
+        amd: 'graphql',
+        var: 'graphql',
+        window: 'graphql'
+      }
     }
   };
 };
