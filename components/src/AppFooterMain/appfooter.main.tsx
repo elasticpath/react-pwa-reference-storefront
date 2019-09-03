@@ -24,7 +24,6 @@ import { Link } from 'react-router-dom';
 
 import './appfooter.main.less';
 import { getConfig } from '../utils/ConfigProvider';
-import headerLogo from '../images/site-images/Company-Logo-v2.svg';
 
 interface AppFooterMainProps {
   appFooterLinks?: {
