@@ -193,7 +193,7 @@ interface ProductDisplayItemMainProps {
 }
 
 interface ProductDisplayItemMainState {
-  productData: any,
+  productData: cortex.Item,
   itemQuantity: number,
   addToCartFailedMessage: string,
   isLoading: boolean,
@@ -481,12 +481,11 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 
   extractAvailabilityParams(productData) {
-    console.warn(productData);
     this.funcName = 'extractAvailabilityParams';
     let availability = (productData.addtocartform);
     let availabilityString = '';
     let productLink = '';
-    if (productData.availability.length >= 0) {
+    if (productData.availability) {
       if (productData.code) {
         productLink = `${window.location.origin}/itemdetail/${productData.code.code}`;
       }
@@ -547,7 +546,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         const arraySelectors = [];
         const selectorTitle = ChoiceElement.displayName;
         const selectorWrap = ChoiceElement.selector.choice;
-        const chosenItem = ChoiceElement.selector.chosen;
+        const chosenItem = ChoiceElement.selector.chosen[0];
         if (selectorWrap) {
           selectorWrap.map(skuChoice => (
             arraySelectors.push(skuChoice)
@@ -555,17 +554,17 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         }
         arraySelectors.unshift(chosenItem);
         arraySelectors.sort((a, b) => {
-          if (a.description ? a.description.displayName : a[0].description.displayName < b.description.displayName) {
+          if (a.description.displayName < b.description.displayName) {
             return -1;
           }
-          if (a.description ? a.description.displayName : a[0].description.displayName > b.description.displayName) {
+          if (a.description.displayName > b.description.displayName) {
             return 1;
           }
           return 0;
         });
         productKindsSelection.push(arraySelectors);
         productKindsSelection[index].displayName = selectorTitle;
-        productKindsSelection[index].defaultChousen = chosenItem[0].description.displayName;
+        productKindsSelection[index].defaultChosen = chosenItem.description.displayName;
         return productKindsSelection;
       });
       return (productKindsSelection.map(Component => (
@@ -574,7 +573,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
             {Component.displayName}
           </span>
           <div className="guide" id={`${(Component.displayName === 'Color') ? 'productdisplay_item_sku_guide' : 'productdisplay_item_size_guide'}`} onChange={this.handleSkuSelection}>
-            {Component[0].map(Element => (
+            {Component.map(Element => (
               <div key={Element.description.displayName} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
                 <input
                   key={Element.description.name}
