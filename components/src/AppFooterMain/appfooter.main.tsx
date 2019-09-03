@@ -20,10 +20,11 @@
  */
 
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './appfooter.main.less';
 import { getConfig } from '../utils/ConfigProvider';
+import headerLogo from '../images/site-images/Company-Logo-v2.svg';
 
 interface AppFooterMainProps {
   appFooterLinks?: {
@@ -53,7 +54,7 @@ function AppFooterMain(props: AppFooterMainProps) {
             {intl.get('assistance')}
           </div>
           <div className="content">
-            {/* <Link to={linkTo.aboutus}>
+            <Link to={linkTo.aboutus}>
               {intl.get('about-us')}
             </Link>
             <Link to={linkTo.contactus}>
@@ -64,7 +65,7 @@ function AppFooterMain(props: AppFooterMainProps) {
             </Link>
             <Link to={linkTo.termsandconditions}>
               {intl.get('terms-and-conditions')}
-            </Link> */}
+            </Link>
           </div>
         </div>
         <div className="footer-column social">
@@ -72,7 +73,7 @@ function AppFooterMain(props: AppFooterMainProps) {
             {intl.get('find-us-online')}
           </div>
           <div className="content">
-            {/* <Link to={linkTo.shareFacebook} aria-label="share facebook">
+            <Link to={linkTo.shareFacebook} aria-label="share facebook">
               <span className="share-icon facebook" />
               {intl.get('facebook')}
             </Link>
@@ -83,7 +84,7 @@ function AppFooterMain(props: AppFooterMainProps) {
             <Link to={linkTo.shareInstagram} alt="share instagram">
               <span className="share-icon instagram" />
               {intl.get('instagram')}
-            </Link> */}
+            </Link>
           </div>
         </div>
       </div>
@@ -91,7 +92,7 @@ function AppFooterMain(props: AppFooterMainProps) {
         <div className="title">
           {intl.get('find-us-online')}
         </div>
-        {/* <Link to={linkTo.shareFacebook} aria-label="share facebook">
+        <Link to={linkTo.shareFacebook} aria-label="share facebook">
           <span className="share-icon facebook" />
         </Link>
         <Link to={linkTo.shareTwitter} aria-label="share twitter">
@@ -99,7 +100,7 @@ function AppFooterMain(props: AppFooterMainProps) {
         </Link>
         <Link to={linkTo.shareInstagram} aria-label="share instagram">
           <span className="share-icon instagram" />
-        </Link> */}
+        </Link>
       </div>
     </footer>
   );
