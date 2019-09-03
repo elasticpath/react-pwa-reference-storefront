@@ -60,7 +60,7 @@ class BundleConstituentsDisplayMain extends React.Component<BundleConstituentsDi
   render() {
     const data = [];
     const { productData } = this.props;
-    if (productData._definition[0]._components) {
+    if (productData.definition.components) {
       const product = productData._definition[0]._components[0]._element;
       if (product && product.length > 0) {
         const htmlFor = 'Recommendations';
