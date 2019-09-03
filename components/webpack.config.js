@@ -20,14 +20,13 @@
  */
 const path = require('path');
 
-const CopyPlugin = require('copy-webpack-plugin');
 const DeclarationBundlerPlugin = require('declaration-bundler-webpack-plugin');
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
   return {
     devtool: 'source-map',
-    mode: 'development',
+    mode: 'production',
     entry: './src/index',
     output: {
       filename: 'index.js',
@@ -104,13 +103,6 @@ module.exports = function (webpackEnv) {
         amd: 'react-dom',
         var: 'react-dom',
         window: 'ReactDOM'
-      },
-      'graphql': {
-        commonjs: 'graphql',
-        commonjs2: 'graphql',
-        amd: 'graphql',
-        var: 'graphql',
-        window: 'graphql'
       }
     }
   };
