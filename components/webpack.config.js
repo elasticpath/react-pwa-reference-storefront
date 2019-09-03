@@ -63,6 +63,7 @@ module.exports = function (webpackEnv) {
           options: {
             limit: 8000, // Convert images < 8kb to base64 strings
             name: '[hash]-[name].[ext]',
+            outputPath: 'src/images/'
           },
         }],
       },
