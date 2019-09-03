@@ -20,10 +20,11 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { login, loginRegistered } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { ClientContext } from '@elasticpath/store-components';
+import { loginRegistered } from '../utils/AuthService';
 import Config from '../ep.config.json';
 
 import './CheckoutAuthPage.less';
@@ -37,6 +38,10 @@ interface CheckoutAuthPageState{
 }
 
 class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuthPageState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -51,6 +56,10 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
     this.setEmail = this.setEmail.bind(this);
     this.loginRegisteredUser = this.loginRegisteredUser.bind(this);
     this.submitEmail = this.submitEmail.bind(this);
+  }
+
+  async componentDidMount() {
+    this.client = this.context;
   }
 
   setUsername(event) {
@@ -86,45 +95,21 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
     }
   }
 
-  submitEmail(event) {
+  async submitEmail(event) {
     event.preventDefault();
     const { email } = this.state;
     const { history } = this.props;
-    login().then(() => {
-      let emailForm;
-      cortexFetch('/?zoom=defaultprofile:emails:emailform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          emailForm = res._defaultprofile[0]._emails[0]._emailform[0].links.find(link => link.rel === 'createemailaction').uri;
-        })
-        .then(() => {
-          cortexFetch(emailForm, {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify({ email }),
-          })
-            .then((res) => {
-              if (res.status === 400) {
-                this.setState({ badEmail: true });
-              } else if (res.status === 201) {
-                this.setState({ badEmail: false }, () => {
-                  history.push('/checkout');
-                });
-              }
-            }).catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        });
-    });
+    try {
+      const emailFormData = await this.client.root().fetch({ defaultprofile: { emails: { emailform: {} } } });
+      await emailFormData.defaultprofile.emails.emailform({ email }).fetch({});
+      this.setState({ badEmail: false }, () => {
+        history.push('/checkout');
+      });
+    } catch (error) {
+      this.setState({ badEmail: true });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   render() {
