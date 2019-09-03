@@ -543,7 +543,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     const { productData, selectionValue } = this.state;
     const productKindsSelection = [];
     if (productData.definition.options) {
-      productData.definition.options.element.map((ChoiceElement, index) => {
+      productData.definition.options.elements.map((ChoiceElement, index) => {
         const arraySelectors = [];
         const selectorTitle = ChoiceElement.displayName;
         const selectorWrap = ChoiceElement.selector.choice;
@@ -555,17 +555,17 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         }
         arraySelectors.unshift(chosenItem);
         arraySelectors.sort((a, b) => {
-          if (a.description.displayName < b.description.displayName) {
+          if (a.description ? a.description.displayName : a[0].description.displayName < b.description.displayName) {
             return -1;
           }
-          if (a.description.displayName > b.description.displayName) {
+          if (a.description ? a.description.displayName : a[0].description.displayName > b.description.displayName) {
             return 1;
           }
           return 0;
         });
         productKindsSelection.push(arraySelectors);
         productKindsSelection[index].displayName = selectorTitle;
-        productKindsSelection[index].defaultChousen = chosenItem.description.displayName;
+        productKindsSelection[index].defaultChousen = chosenItem[0].description.displayName;
         return productKindsSelection;
       });
       return (productKindsSelection.map(Component => (
@@ -574,7 +574,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
             {Component.displayName}
           </span>
           <div className="guide" id={`${(Component.displayName === 'Color') ? 'productdisplay_item_sku_guide' : 'productdisplay_item_size_guide'}`} onChange={this.handleSkuSelection}>
-            {Component.map(Element => (
+            {Component[0].map(Element => (
               <div key={Element.description.displayName} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
                 <input
                   key={Element.description.name}
