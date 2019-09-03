@@ -21,6 +21,7 @@
 
 import React from 'react';
 import Slider from 'react-slick';
+import * as cortex from '@elasticpath/cortex-client';
 import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
@@ -31,6 +32,7 @@ import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommend
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import { ClientContext } from '../ClientContext';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
@@ -90,6 +92,89 @@ const zoomArray = [
   'code',
 ];
 
+const zoom = {
+  availability: {},
+  addtocartform: {},
+  addtowishlistform: {},
+  price: {},
+  rate: {},
+  definition: {
+    assets: {
+      element: {},
+    },
+    options: {
+      element: {
+        value: {},
+        selector: {
+          choice: {
+            description: {},
+            selector: {},
+            selectaction: {},
+          },
+          chosen: {
+            description: {},
+            selector: {},
+            selectaction: {},
+          },
+        },
+      },
+    },
+    components: {
+      element: {
+        code: {},
+        standaloneitem: {
+          code: {},
+          definition: {},
+          availability: {},
+        },
+      },
+    },
+  },
+  recommendations: {
+    crosssell: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+    recommendation: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+    replacement: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+    upsell: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+    warranty: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+  },
+  code: {},
+};
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -115,12 +200,17 @@ interface ProductDisplayItemMainState {
   arFileExists: boolean,
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
+  itemLookupForm: () => cortex.Item,
 }
 
 class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
+  static contextType = ClientContext;
+
   static isLoggedIn(config) {
     return (localStorage.getItem(`${config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
   }
+
+  client: cortex.IClient;
 
   static defaultProps = {
     imageUrl: undefined,
@@ -163,54 +253,58 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    this.client = this.context;
     const { productId } = this.props;
-    login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId, false)
-          .then((res) => {
-            if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
-              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-                this.setState({
-                  productData: res,
-                  arFileExists: exists,
-                });
-              });
-            } else {
-              this.setState({
-                productData: res,
-              });
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
+    const itemLookupFormRes = await this.client.root().fetch({
+      lookups: {
+        itemlookupform: {},
+      },
     });
+
+    this.setState({ itemLookupForm: itemLookupFormRes.lookups.itemlookupform });
+
+    const productData: cortex.Item = await itemLookupFormRes.lookups.itemlookupform({ code: productId }).fetch(zoom);
+
+    try {
+      if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
+        this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', productData.code.code), (exists) => {
+          this.setState({
+            productData,
+            arFileExists: exists,
+          });
+        });
+      } else {
+        this.setState({
+          productData,
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    login().then(() => {
-      itemLookup(nextProps.productId)
-        .then((res) => {
-          if (Config.arKit.enable) {
-            this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-              this.setState({
-                productData: res,
-                arFileExists: exists,
-              });
-            });
-          } else {
-            this.setState({
-              productData: res,
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+  async componentWillReceiveProps(nextProps) {
+    const { itemLookupForm } = this.state;
+    const productData: cortex.Item = await itemLookupForm({ code: nextProps.productId }).fetch(zoom);
+    try {
+      if (Config.arKit.enable) {
+        this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', productData.code.code), (exists) => {
+          this.setState({
+            productData,
+            arFileExists: exists,
+          });
         });
-    });
+      } else {
+        this.setState({
+          productData,
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   handleQuantityChange(event) {
@@ -365,41 +459,42 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   extractPrice(productData) {
     this.funcName = 'extractPrice';
     let listPrice = 'n/a';
-    if (productData._price) {
-      listPrice = productData._price[0]['list-price'][0].display;
+    if (productData.price) {
+      listPrice = productData.price.listPrice.display;
     }
     let itemPrice = 'n/a';
-    if (productData._price) {
-      itemPrice = productData._price[0]['purchase-price'][0].display;
+    if (productData.price) {
+      itemPrice = productData.price.purchasePrice.display;
     }
     return { listPrice, itemPrice };
   }
 
   extractProductDetails(productData) {
     this.funcName = 'extractProductDetails';
-    const productTitle = productData._definition[0]['display-name'];
-    const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
-    const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
-    const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
+    const productTitle = productData.definition.displayName;
+    const productDescription = productData.definition.details ? (productData.definition.details.find(detail => detail.displayName === 'Summary' || detail.displayName === 'Description')) : '';
+    const productDescriptionValue = productDescription !== undefined ? productDescription.displayValue : '';
+    const productImage = Config.skuImagesUrl.replace('%sku%', productData.code.code);
     return {
       productImage, productDescriptionValue, productTitle,
     };
   }
 
   extractAvailabilityParams(productData) {
+    console.warn(productData);
     this.funcName = 'extractAvailabilityParams';
-    let availability = (productData._addtocartform && productData._addtocartform[0].links.length > 0);
+    let availability = (productData.addtocartform);
     let availabilityString = '';
     let productLink = '';
-    if (productData._availability.length >= 0) {
-      if (productData._code) {
-        productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
+    if (productData.availability.length >= 0) {
+      if (productData.code) {
+        productLink = `${window.location.origin}/itemdetail/${productData.code.code}`;
       }
-      if (productData._availability[0].state === 'AVAILABLE') {
+      if (productData.availability.state === 'AVAILABLE') {
         availabilityString = intl.get('in-stock');
-      } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+      } else if (productData.availability.state === 'AVAILABLE_FOR_PRE_ORDER') {
         availabilityString = intl.get('pre-order');
-      } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+      } else if (productData.availability.state === 'AVAILABLE_FOR_BACK_ORDER') {
         availability = true;
         availabilityString = intl.get('back-order');
       } else {
@@ -411,14 +506,14 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
 
   renderAttributes() {
     const { productData } = this.state;
-    if (productData._definition[0].details) {
-      return productData._definition[0].details.map(attribute => (
+    if (productData.definition.details) {
+      return productData.definition.details.map(attribute => (
         <ul className="itemdetail-attribute" key={attribute.name}>
           <li className="itemdetail-attribute-label-col">
-            {attribute['display-name']}
+            {attribute.displayName}
           </li>
           <li className="itemdetail-attribute-value-col">
-            {attribute['display-value']}
+            {attribute.displayName}
           </li>
         </ul>
       ));
@@ -428,15 +523,15 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
 
   renderConfiguration() {
     const { productData, isLoading } = this.state;
-    if (productData._addtocartform && productData._addtocartform[0].configuration) {
-      const keys = Object.keys(productData._addtocartform[0].configuration);
+    if (productData.addtocartform && productData.addtocartform.configuration) {
+      const keys = Object.keys(productData.addtocartform.configuration);
       return keys.map(key => (
         <div key={key} className="form-group">
           <label htmlFor={`product_display_item_configuration_${key}_label`} className="control-label">
             {key}
           </label>
           <div className="form-content">
-            <input className="form-control form-control-text" disabled={isLoading} onChange={e => this.handleConfiguration(key, e)} id={`product_display_item_configuration_${key}_label`} value={productData._addtocartform[0].configuration.key} />
+            <input className="form-control form-control-text" disabled={isLoading} onChange={e => this.handleConfiguration(key, e)} id={`product_display_item_configuration_${key}_label`} value={productData.addtocartform.configuration.key} />
           </div>
         </div>
       ));
@@ -447,12 +542,12 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   renderSkuSelection() {
     const { productData, selectionValue } = this.state;
     const productKindsSelection = [];
-    if (productData._definition[0]._options) {
-      productData._definition[0]._options[0]._element.map((ChoiceElement, index) => {
+    if (productData.definition.options) {
+      productData.definition.options.element.map((ChoiceElement, index) => {
         const arraySelectors = [];
-        const selectorTitle = ChoiceElement['display-name'];
-        const selectorWrap = ChoiceElement._selector[0]._choice;
-        const chosenItem = ChoiceElement._selector[0]._chosen[0];
+        const selectorTitle = ChoiceElement.displayName;
+        const selectorWrap = ChoiceElement.selector.choice;
+        const chosenItem = ChoiceElement.selector.chosen;
         if (selectorWrap) {
           selectorWrap.map(skuChoice => (
             arraySelectors.push(skuChoice)
@@ -460,17 +555,17 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         }
         arraySelectors.unshift(chosenItem);
         arraySelectors.sort((a, b) => {
-          if (a._description[0]['display-name'] < b._description[0]['display-name']) {
+          if (a.description.displayName < b.description.displayName) {
             return -1;
           }
-          if (a._description[0]['display-name'] > b._description[0]['display-name']) {
+          if (a.description.displayName > b.description.displayName) {
             return 1;
           }
           return 0;
         });
         productKindsSelection.push(arraySelectors);
         productKindsSelection[index].displayName = selectorTitle;
-        productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
+        productKindsSelection[index].defaultChousen = chosenItem.description.displayName;
         return productKindsSelection;
       });
       return (productKindsSelection.map(Component => (
@@ -478,19 +573,19 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
           <span className="selector-title">
             {Component.displayName}
           </span>
-          <div className="guide" id={`${(Component.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
+          <div className="guide" id={`${(Component.displayName === 'Color') ? 'productdisplay_item_sku_guide' : 'productdisplay_item_size_guide'}`} onChange={this.handleSkuSelection}>
             {Component.map(Element => (
-              <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
+              <div key={Element.description.displayName} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
                 <input
-                  key={Element._description[0].name}
+                  key={Element.description.name}
                   type="radio"
                   name={Component.displayName}
-                  id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`}
-                  value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''}
-                  defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue}
+                  id={`selectorWeight_${Element.description.displayName.toLowerCase().replace(/ /g, '_')}${productData.code.code}`}
+                  value={(Element.selectaction) ? Element.selectaction.self.uri : ''}
+                  defaultChecked={Element.description.displayName === Component.defaultChousen || Element.selectaction.self.uri === selectionValue}
                 />
-                <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} style={{ background: Element._description[0]['display-name'] }}>
-                  {Element._description[0]['display-name']}
+                <label htmlFor={`selectorWeight_${Element.description.displayName.toLowerCase().replace(/ /g, '_')}${productData.code.code}`} style={{ background: Element.description.displayName }}>
+                  {Element.description.displayName}
                 </label>
               </div>
             ))}
@@ -513,9 +608,9 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     };
     if (arFileExists) {
       return (
-        <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
+        <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData.code.code)} rel="ar">
           <img
-            src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)}
+            src={Config.skuImagesUrl.replace('%sku%', productData.code.code)}
             onError={(e) => {
               const element: any = e.target;
               element.src = imgMissingHorizontal;
@@ -530,7 +625,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       <div className="product-image-carousel">
         <Slider {...settings}>
           <div>
-            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+            <img src={Config.skuImagesUrl.replace('%sku%', productData.code.code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
           </div>
         </Slider>
       </div>
@@ -576,12 +671,12 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
             <div className="itemdetail-details">
               <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
                 <div>
-                  <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
-                    {productData._definition[0]['display-name']}
+                  <h1 className="itemdetail-title" id={`category_item_title_${productData.code.code}`}>
+                    {productData.definition.displayName}
                   </h1>
                   {(Config.b2b.enable) && (
-                    <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
-                      {productData._code[0].code}
+                    <h4 className="itemdetail-title-sku" id={`categoryitem_sku_${productData.code.code}`}>
+                      {productData.code.code}
                     </h4>
                   )}
                 </div>
@@ -594,17 +689,17 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                         listPrice !== itemPrice
                           ? (
                             <li className="itemdetail-purchase-price">
-                              <h1 className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
+                              <h1 className="itemdetail-purchase-price-value price-sale" id={`categoryitem_price_${productData.code.code}`}>
                                 {itemPrice}
                               </h1>
-                              <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
+                              <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData.code.code}`}>
                                 {listPrice}
                               </span>
                             </li>
                           )
                           : (
                             <li className="itemdetail-purchase-price">
-                              <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                              <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData.code.code}`}>
                                 {itemPrice}
                               </h1>
                             </li>
@@ -618,7 +713,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
                 <ul className="itemdetail-availability-container">
                   <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                    <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
+                    <label htmlFor={`category_item_availability_${productData.code.code}`}>
                       {(availability) ? (
                         <div>
                           <span className="icon glyphicon glyphicon-ok" />
@@ -631,13 +726,13 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                       )}
                     </label>
                   </li>
-                  <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                    <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
+                  <li className={`itemdetail-release-date${productData.availability.releaseDate ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+                    <label htmlFor={`categoryitem_release_date_${productData.code.code}label`} className="itemdetail-release-date-label">
                       {intl.get('expected-release-date')}
                       :&nbsp;
                     </label>
-                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
-                      {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
+                    <span className="itemdetail-release-date-value" id={`categoryitem_release_date_${productData.code.code}`}>
+                      {productData.availability.releaseDate ? productData.availability.releaseDate.displayValue : ''}
                     </span>
                   </li>
                 </ul>
@@ -772,9 +867,9 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               </div>
             </div>
           </div>
-          <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
-          <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
-          <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
+          {/* <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} /> */}
+          {/* <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} /> */}
+          <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData.code.code} />
         </div>
       );
     }
