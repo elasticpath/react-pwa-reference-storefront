@@ -37,13 +37,6 @@ module.exports = function (webpackEnv) {
     module: {
       rules: [
         {
-          test: /\.(js|jsx)?$/,
-          exclude: /(node_modules)/,
-          loaders: [
-              'babel-loader',
-          ]
-        },
-        {
           test: /\.(ts|tsx)?$/,
           use: {
             loader: 'ts-loader'
