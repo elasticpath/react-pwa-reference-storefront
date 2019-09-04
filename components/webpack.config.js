@@ -40,8 +40,6 @@ const umdConfig = merge(configBase, {
   },
 });
 
-// TODO: Webpack currently does not support ESM libraryTarget.  Webpack 5 should provide support - aChan.
-
 module.exports = function (webpackEnv) {
   return [cjsConfig, umdConfig];
 };
