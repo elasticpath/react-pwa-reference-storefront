@@ -162,6 +162,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
         bill_to_address_state: '',
         bill_to_address_country: '',
         bill_to_address_postal_code: '',
+        receipt_page_redirect_url: 'http://localhost:8080',
       };
       const zoomArrayProfile = [
         'defaultcart',
@@ -207,57 +208,66 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
                   .filter(k => lambdaResponse.hasOwnProperty(k))
                   .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(lambdaResponse[k])}`)
                   .join('&');
-                const cardData = `&bill_to_forename=${name[0]}&bill_to_surname=${name[1]}&card_type=${cardType}&card_number=${cardNumber}&card_expiry_date=${formatedExpiryMonth}-${expiryYear}&card_cvn=${securityCode}`;
+                const cardData = `&receipt_page_redirect_url=http://localhost:8080/&cancel_page_redirect_url=http://localhost:8080/&bill_to_forename=${name[0]}&bill_to_surname=${name[1]}&card_type=${cardType}&card_number=${cardNumber}&card_expiry_date=${formatedExpiryMonth}-${expiryYear}&card_cvn=${securityCode}`;
                 const cybersourceURI = lambdaResponse.cs_endpoint_url;
-                fetch(cybersourceURI, {
+                fetch('https://bc0mz3xw33.execute-api.us-west-2.amazonaws.com/beta', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                   },
                   body: formEncodedBody + cardData,
                 })
-                  .then(data => data.text())
-                  .then((data) => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data, 'text/html');
-                    const form: any = doc.querySelector('form[id="custom_redirect"]');
-                    const elemets = form.elements;
-                    // eslint-disable-next-line
-                      for (const element of elemets) {
-                      if (element.id === 'payment_token') {
-                        paymentToken = element.value;
-                      }
-                    }
-                    cortexFetch(link, {
-                      method: 'post',
+                  .then(() => {
+                    fetch(cybersourceURI, {
+                      method: 'POST',
                       headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                        'Content-Type': 'application/x-www-form-urlencoded',
                       },
-                      body: JSON.stringify({
-                        'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-                        token: paymentToken,
-                      }),
+                      body: formEncodedBody + cardData,
                     })
-                      .then((res) => {
-                        this.setState({
-                          showLoader: false,
-                        });
-                        if (res.status === 400) {
-                          this.setState({ failedSubmit: true });
-                        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-                          this.setState({ failedSubmit: false }, () => {
-                            fetchData();
-                            onCloseModal();
-                          });
+                      .then(data => data.text())
+                      .then((data) => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(data, 'text/html');
+                        const form: any = doc.querySelector('form[id="custom_redirect"]');
+                        const elemets = form.elements;
+                        // eslint-disable-next-line
+                      for (const element of elemets) {
+                          if (element.id === 'payment_token') {
+                            paymentToken = element.value;
+                          }
                         }
-                      })
-                      .catch((error) => {
-                        this.setState({
-                          showLoader: false,
-                        });
-                        // eslint-disable-next-line no-console
-                        console.error(error.message);
+                        cortexFetch(link, {
+                          method: 'post',
+                          headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                          },
+                          body: JSON.stringify({
+                            'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
+                            token: paymentToken,
+                          }),
+                        })
+                          .then((res) => {
+                            this.setState({
+                              showLoader: false,
+                            });
+                            if (res.status === 400) {
+                              this.setState({ failedSubmit: true });
+                            } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+                              this.setState({ failedSubmit: false }, () => {
+                                fetchData();
+                                onCloseModal();
+                              });
+                            }
+                          })
+                          .catch((error) => {
+                            this.setState({
+                              showLoader: false,
+                            });
+                            // eslint-disable-next-line no-console
+                            console.error(error.message);
+                          });
                       });
                   });
               });

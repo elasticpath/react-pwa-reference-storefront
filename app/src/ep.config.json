@@ -1,8 +1,8 @@
 {
   "cortexApi": {
-    "path": "/cortex",
+    "path": "http://reference.epdemos.com/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://localhost:9080"
+    "pathForProxy": "http://reference.epdemos.com"
   },
   "supportedLocales": [
     {
@@ -109,8 +109,8 @@
     "nodatalinks": true
   },
   "creditCardTokenization": {
-    "enable": false,
-    "lambdaURI": ""
+    "enable": true,
+    "lambdaURI": "https://cybersource.cloudops.elasticpath-autobahn-test2.com/cssign"
   },
   "chatbot": {
     "enable": false,
