@@ -19,92 +19,29 @@
  *
  */
 const path = require('path');
+const merge = require('webpack-merge');
+const configBase = require('./webpack.config.base.js');
 
-const DeclarationBundlerPlugin = require('declaration-bundler-webpack-plugin');
-// This is the production and development configuration.
-// It is focused on developer experience, fast rebuilds, and a minimal bundle.
+const cjsConfig = merge(configBase, {
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, './build/cjs'),
+    library: 'index',
+    libraryTarget: 'commonjs2',
+  },
+});
+
+const umdConfig = merge(configBase, {
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, './build/umd'),
+    library: 'index',
+    libraryTarget: 'umd',
+  },
+});
+
+// TODO: Webpack currently does not support ESM libraryTarget.  Webpack 5 should provide support - aChan.
+
 module.exports = function (webpackEnv) {
-  return {
-    devtool: 'source-map',
-    mode: 'production',
-    entry: './src/index',
-    output: {
-      filename: 'index.js',
-      path: path.resolve(__dirname, './build'),
-      library: 'index',
-      libraryTarget:'umd'
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(ts|tsx)?$/,
-          use: {
-            loader: 'ts-loader'
-          },
-          exclude: /node_modules/
-        },
-        {
-          test: /\.(css|less)?$/,
-          use: [
-            { loader: 'style-loader' },
-            { loader: 'css-loader' },
-            {
-              loader: 'less-loader',
-              options: {
-                paths: [path.resolve(__dirname, 'node_modules')],
-              },
-            },
-          ],
-        },
-      {
-        test: /\.(png|jp(e*)g|svg|gif|jp2)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8000, // Convert images < 8kb to base64 strings
-            name: '[hash]-[name].[ext]',
-            outputPath: 'src/images/'
-          },
-        }],
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'fonts/',
-          },
-        }],
-      },
-      ],
-    },
-    resolve: {
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".css", ".less"],
-      mainFields: ['main'],
-    },
-    externals: {
-      react: {
-        commonjs: 'react',
-        commonjs2: 'react',
-        amd: 'react',
-        var: 'react',
-        window: 'React'
-      },
-      'react-dom': {
-        commonjs: 'react-dom',
-        commonjs2: 'react-dom',
-        amd: 'react-dom',
-        var: 'react-dom',
-        window: 'ReactDOM'
-      },
-      'react-router-dom': {
-        commonjs: 'react-router-dom',
-        commonjs2: 'react-router-dom',
-        amd: 'react-router-dom',
-        var: 'react-router-dom',
-        window: 'ReactRouterDOM'
-      }
-    }
-  };
+  return [cjsConfig, umdConfig];
 };
