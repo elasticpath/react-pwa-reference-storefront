@@ -97,6 +97,13 @@ module.exports = function (webpackEnv) {
         amd: 'react-dom',
         var: 'react-dom',
         window: 'ReactDOM'
+      },
+      'react-router-dom': {
+        commonjs: 'react-router-dom',
+        commonjs2: 'react-router-dom',
+        amd: 'react-router-dom',
+        var: 'react-router-dom',
+        window: 'ReactRouterDOM'
       }
     }
   };
