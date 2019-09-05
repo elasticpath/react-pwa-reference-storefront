@@ -51,20 +51,24 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
     ({ intl } = epConfig);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 
   async handleDelete(link) {
     const { onChange } = this.props;
-
-    await this.client.address(link).delete();
-    onChange();
+    try {
+      await this.client.address(link).delete();
+      onChange();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   renderAddresses() {
     const { addresses, onEditAddress } = this.props;
-    if (addresses.elements) {
+    if (addresses.elements && addresses.elements.length > 0) {
       return (
         addresses.elements.map((addressElement) => {
           const {

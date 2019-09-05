@@ -20,11 +20,21 @@
  */
 
 import React from 'react';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './add.promotion.container.less';
+
+const zoomDefaultCart: cortex.RootFetch = {
+  defaultcart: {
+    order: {
+      couponinfo: {
+        couponform: {},
+      },
+    },
+  },
+};
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -40,10 +50,13 @@ interface AddPromotionContainerState {
   isPromotionFormOpen: boolean,
   failedPromotion: boolean,
   promotionCode: string,
-  couponFormLink: string,
 }
 
 class AddPromotionContainer extends React.Component<AddPromotionContainerProps, AddPromotionContainerState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -53,22 +66,13 @@ class AddPromotionContainer extends React.Component<AddPromotionContainerProps, 
       isPromotionFormOpen: false,
       failedPromotion: false,
       promotionCode: '',
-      couponFormLink: '',
     };
     this.setPromotionCode = this.setPromotionCode.bind(this);
     this.submitPromotionCode = this.submitPromotionCode.bind(this);
   }
 
   componentDidMount() {
-    const { data } = this.props;
-    if (data._order) {
-      const couponFormUri = data._order[0]._couponinfo[0]._couponform[0].links.find(
-        link => link.rel === 'applycouponaction',
-      ).uri;
-      this.setState({
-        couponFormLink: couponFormUri,
-      });
-    }
+    this.client = this.context;
   }
 
   setPromotionCode(event) {
@@ -88,34 +92,27 @@ class AddPromotionContainer extends React.Component<AddPromotionContainerProps, 
     });
   }
 
-  submitPromotionCode(event) {
+  async submitPromotionCode(event) {
     event.preventDefault();
     const { onSubmittedPromotion } = this.props;
-    const { couponFormLink, promotionCode } = this.state;
-    login().then(() => {
-      cortexFetch(couponFormLink, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({
-          code: promotionCode,
-        }),
-      }).then((res) => {
-        if (res.status === 409) {
-          this.setState({ failedPromotion: true });
-        } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-          this.setState({ failedPromotion: false }, () => {
-            this.closePromotionForm();
-            onSubmittedPromotion();
-          });
-        }
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
+    const { promotionCode } = this.state;
+    try {
+      const root = await this.client.root().fetch(zoomDefaultCart);
+      await root.defaultcart.order.couponinfo.couponform({
+        couponId: '',
+        parentId: '',
+        parentType: '',
+        code: promotionCode,
+      }).fetch({});
+      this.setState({ failedPromotion: false }, () => {
+        this.closePromotionForm();
+        onSubmittedPromotion();
       });
-    });
+    } catch (error) {
+      this.setState({ failedPromotion: true });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   render() {

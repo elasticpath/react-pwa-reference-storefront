@@ -102,10 +102,10 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
     }
 
     handleModalOpen() {
-      this.fetchPasswordResetData();
       this.setState({
         openModal: true,
       });
+      this.fetchPasswordResetData();
     }
 
     handleCartModalOpen() {

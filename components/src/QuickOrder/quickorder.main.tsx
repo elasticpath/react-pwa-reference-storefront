@@ -20,16 +20,81 @@
  */
 
 import React from 'react';
-
+import * as cortex from '@elasticpath/cortex-client';
 import { withRouter } from 'react-router';
 import Modal from 'react-responsive-modal';
 import { getConfig } from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
-import { login } from '../utils/AuthService';
-import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
+import { ClientContext } from '../ClientContext';
+
 import './quickorder.main.less';
 
 let intl = { get: str => str };
+
+const itemFormZoom: cortex.ItemFetch = {
+  availability: {},
+  addtocartform: {},
+  addtowishlistform: {},
+  price: {},
+  definition: {
+    options: {
+      element: {
+        value: {},
+        selector: {
+          choice: {
+            selector: {},
+          },
+          chosen: {
+            selector: {},
+          },
+        },
+      },
+    },
+  },
+  recommendations: {
+    crosssell: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+    recommendation: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+    replacement: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+    upsell: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+    warranty: {
+      element: {
+        code: {},
+        definition: {},
+        price: {},
+        availability: {},
+      },
+    },
+  },
+  code: {},
+};
 
 interface QuickOrderMainProps {
   isBuyItAgain?: boolean,
@@ -51,20 +116,21 @@ interface QuickOrderMainState {
   },
   showFailedMessage: boolean,
   failedSubmit: boolean,
-  productDataInfo: {
-    [key: string]: any
-  },
   addToCartFailedMessage: string
 }
 
 class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMainState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     isBuyItAgain: false,
     productData: {},
     itemDetailLink: '',
     onMoveToCart: () => {},
     onConfiguratorAddToCart: () => {},
-  }
+  };
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -73,7 +139,6 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
     this.state = {
       failedSubmit: false,
       productId: '',
-      productDataInfo: {},
       itemQuantity: 1,
       addToCartFailedMessage: '',
       isLoading: false,
@@ -86,6 +151,10 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
+  }
+
+  async componentDidMount() {
+    this.client = this.context;
   }
 
   handleQuantityChange() {
@@ -115,34 +184,35 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
     });
   }
 
-  addToCart(event) {
+  async addToCart(event) {
     const {
       productId,
     } = this.state;
     this.setState({
       isLoading: true,
     });
-    login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId, false)
-          .then((res) => {
-            this.setState({
-              productItemInfo: res,
-              isLoading: false,
-              openModal: true,
-              showFailedMessage: false,
-            });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-            this.setState({
-              isLoading: false,
-              showFailedMessage: true,
-            });
-          }));
-    });
     event.preventDefault();
+    try {
+      const root = await this.client.root().fetch({
+        lookups: {
+          itemlookupform: {},
+        },
+      });
+      const dataItem = await root.lookups.itemlookupform({ code: productId }).fetch(itemFormZoom);
+      this.setState({
+        productItemInfo: dataItem,
+        isLoading: false,
+        openModal: true,
+        showFailedMessage: false,
+      });
+    } catch (error) {
+      this.setState({
+        isLoading: false,
+        showFailedMessage: true,
+      });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   render() {
@@ -153,7 +223,6 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
       productId,
       itemQuantity,
       openModal,
-      productDataInfo,
       productItemInfo,
       showFailedMessage,
     } = this.state;
@@ -171,7 +240,7 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
             </div>
             <CartLineItem
               key={Math.floor(Math.random() * 1000000001)}
-              item={data}
+              item={data.item}
               itemQuantity={itemQuantity}
               handleQuantityChange={() => { this.handleQuantityChange(); }}
               hideRemoveButton
@@ -192,7 +261,7 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
               {intl.get('buy-it-again')}
             </button>
           </div>
-          {orderModal(productDataInfo)}
+          {orderModal(productItemInfo)}
           <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
             {addToCartFailedMessage}
           </div>

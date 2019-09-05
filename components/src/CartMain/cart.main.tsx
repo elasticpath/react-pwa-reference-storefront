@@ -71,9 +71,9 @@ const CartMain: React.FunctionComponent<CartMainProps> = (props: CartMainProps) 
 
   return (
     <div className="cart-main-inner table-responsive">
-      {cartData._lineitems[0]._element.map(product => (
+      {cartData.lineitems.elements.map(product => (
         <CartLineItem
-          key={product._item[0]._code[0].code}
+          key={product.item.code.code}
           item={product}
           handleQuantityChange={() => { handleQuantityChange(); }}
           onRemove={handleRemove}

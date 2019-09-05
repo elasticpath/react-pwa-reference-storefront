@@ -97,15 +97,15 @@ class ProductListMain extends React.Component<ProductListMainProps, ProductListM
 
   checkComparison(product) {
     const { compareList, isCompare } = this.state;
-    const isChecked = compareList.indexOf(product._items[0]._element[0]._code[0].code) !== -1;
-    if (product._definition && isCompare) {
+    const isChecked = compareList.indexOf(product.code.code) !== -1;
+    if (product.definition && isCompare) {
       return (
         <div className="compare-checkbox">
-          <label htmlFor={product._code[0].code}>
+          <label htmlFor={product.code.code}>
             <input
-              id={product._code[0].code}
+              id={product.code.code}
               checked={isChecked}
-              name={product._items[0]._element[0]._code[0].code}
+              name={product.code.code}
               disabled={compareList.length > 2 && !isChecked}
               type="checkbox"
               onChange={this.handleCompareToggle}
@@ -125,18 +125,18 @@ class ProductListMain extends React.Component<ProductListMainProps, ProductListM
   renderProducts() {
     const { categoryModel } = this.state;
     const { showCompareButton, productListLinks } = this.props;
-    return categoryModel._element.map((product) => {
-      if (product.self.type === 'offers.offer') {
+    return categoryModel.elements.map((product) => {
+      if (product.items) {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
             <ProductListItemMain offerData={product} itemDetailLink={productListLinks.itemDetail} />
             {(showCompareButton) ? (
-              this.checkComparison(product)
+              this.checkComparison(product.items.elements[0])
             ) : ('')}
           </li>
         );
       }
-      if (product._code) {
+      if (product.code) {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
             <ProductListItemMain productElement={product} itemDetailLink={productListLinks.itemDetail} />
@@ -156,7 +156,7 @@ class ProductListMain extends React.Component<ProductListMainProps, ProductListM
       compareLink,
     } = this.state;
     const { showCompareButton } = this.props;
-    if (categoryModel._element && categoryModel._element.length > 0) {
+    if (categoryModel.elements && categoryModel.elements.length > 0) {
       return (
         <div className="product-list-container" data-region="categoryBrowseRegion">
           {showCompareButton ? (

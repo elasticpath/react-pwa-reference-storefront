@@ -21,41 +21,52 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import * as cortex from '@elasticpath/cortex-client';
 import { RouteComponentProps } from 'react-router-dom';
-import { WishListMain } from '@elasticpath/store-components';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { ClientContext, WishListMain } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 
 import './WishListsPage.less';
 
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'defaultwishlist',
-  'defaultwishlist:lineitems',
-  'defaultwishlist:lineitems:element',
-  'defaultwishlist:lineitems:element:item:price',
-  'defaultwishlist:lineitems:element:item:availability',
-  'defaultwishlist:lineitems:element:list',
-  'defaultwishlist:lineitems:element:list:element',
-  'defaultwishlist:lineitems:element:item',
-  'defaultwishlist:lineitems:element:item:code',
-  'defaultwishlist:lineitems:element:item:definition',
-  'defaultwishlist:lineitems:element:item:definition:options:element',
-  'defaultwishlist:lineitems:element:item:definition:options:element:value',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:choice',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:chosen',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:choice:description',
-  'defaultwishlist:lineitems:element:item:definition:options:element:selector:chosen:description',
-  'defaultwishlist:lineitems:element:movetocartform',
-];
+const zoomArray: cortex.RootFetch = {
+  defaultwishlist: {
+    lineitems: {
+      element: {
+        item: {
+          price: {},
+          availability: {},
+          code: {},
+          definition: {
+            options: {
+              element: {
+                value: {},
+                selector: {
+                  choice: {},
+                  chosen: {},
+                },
+              },
+            },
+          },
+        },
+        list: {
+          element: {},
+        },
+        movetocartform: {},
+      },
+    },
+  },
+};
 
 interface WishListsPageState {
-    wishListData: any,
+    wishListData: cortex.Wishlist,
     isLoading: boolean,
     invalidPermission: boolean,
 }
 class WishListsPage extends React.Component<RouteComponentProps, WishListsPageState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -63,50 +74,45 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
       isLoading: false,
       invalidPermission: false,
     };
+
+
     this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
     this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
     this.handleItemRemove = this.handleItemRemove.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchwishListData();
+  async componentDidMount() {
+    this.client = this.context;
+    await this.fetchwishListData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchwishListData();
+  async componentWillReceiveProps() {
+    await this.fetchwishListData();
   }
 
-  handleQuantityChange() {
+  async handleQuantityChange() {
     this.setState({ isLoading: true });
-    this.fetchwishListData();
+    await this.fetchwishListData();
   }
 
-  fetchwishListData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          if (!res._defaultwishlist) {
-            this.setState({
-              invalidPermission: true,
-            });
-          } else {
-            this.setState({
-              wishListData: res._defaultwishlist[0],
-              isLoading: false,
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+  async fetchwishListData() {
+    try {
+      const wishListRes = await this.client.root().fetch(zoomArray);
+
+      if (!wishListRes.defaultwishlist) {
+        this.setState({
+          invalidPermission: true,
         });
-    });
+      } else {
+        this.setState({
+          wishListData: wishListRes.defaultwishlist,
+          isLoading: false,
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   checkPermissions() {
@@ -165,7 +171,7 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
           {wishListData && !isLoading && (
             <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
               <WishListMain
-                empty={!wishListData._lineitems[0]._element}
+                empty={!wishListData.lineitems.elements}
                 wishListData={wishListData}
                 handleQuantityChange={() => { this.handleQuantityChange(); }}
                 onItemConfiguratorAddToCart={this.handleItemConfiguratorAddToCart}

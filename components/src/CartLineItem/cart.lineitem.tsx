@@ -22,12 +22,13 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import * as cortex from '@elasticpath/cortex-client';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { login } from '../utils/AuthService';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
-import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';
+import { ClientContext } from '../ClientContext';
+
 import './cart.lineitem.less';
 
 let Config: IEpConfig | any = {};
@@ -53,6 +54,8 @@ interface CartLineItemState {
 }
 
 class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     handleErrorMessage: () => { },
     hideRemoveButton: false,
@@ -64,6 +67,8 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     onRemove: () => { },
     itemDetailLink: '',
   };
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -84,6 +89,10 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     this.handleModalClose = this.handleModalClose.bind(this);
   }
 
+  componentDidMount() {
+    this.client = this.context;
+  }
+
   componentWillReceiveProps(nextProps) {
     const { quantity } = this.state;
     if (nextProps.item.quantity !== quantity) {
@@ -93,133 +102,79 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     }
   }
 
-  handleQuantityChange(event) {
+  async handleQuantityChange(event) {
     event.preventDefault();
     const { item, handleQuantityChange } = this.props;
     const { quantity } = this.state;
     if (quantity === '') {
       this.setState({ quantity: 1 });
     }
-    login().then(() => {
-      cortexFetch(item.self.uri,
-        {
-          method: 'put',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity,
-          }),
-        })
-        .then(() => {
-          handleQuantityChange();
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    try {
+      await this.client.lineItem(item.uri).update({ quantity });
+      handleQuantityChange();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   handleQuantityDecrement() {
     const { quantity } = this.state;
     if (quantity > 1) {
-      const newItemQuantity = parseInt(quantity, 10) - 1;
+      const newItemQuantity = quantity - 1;
       this.setState({ quantity: newItemQuantity });
     }
   }
 
   handleQuantityIncrement() {
     const { quantity } = this.state;
-    const newItemQuantity = parseInt(quantity, 10) + 1;
+    const newItemQuantity = quantity + 1;
     this.setState({ quantity: newItemQuantity });
   }
 
-  handleConfiguratorAddToCartBtnClicked() {
+  async handleConfiguratorAddToCartBtnClicked() {
     const {
       item, handleQuantityChange, handleErrorMessage, itemQuantity, onConfiguratorAddToCart,
     } = this.props;
     handleQuantityChange();
-    login().then(() => {
-      const addToCartLink = item._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      cortexFetch(addToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity: itemQuantity || 1,
-          }),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onConfiguratorAddToCart();
-          } else {
-            res.json().then((json) => {
-              handleErrorMessage(json);
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    const quantity = itemQuantity || 1;
+    const addToCartFormUri = item.uri;
+    try {
+      const addToCartFormRes = await this.client.item(addToCartFormUri).fetch({ addtocartform: {} });
+      await addToCartFormRes.addtocartform({ quantity }).fetch();
+      onConfiguratorAddToCart();
+    } catch (error) {
+      handleErrorMessage(error.debugMessage);
+      // eslint-disable-next-line no-console
+      console.error('error:', error.debugMessage);
+    }
   }
 
-  handleMoveToCartBtnClicked() {
+  async handleMoveToCartBtnClicked() {
     const { item, onMoveToCart } = this.props;
-    login().then(() => {
-      const moveToCartLink = item._movetocartform[0].links.find(link => link.rel === 'movetocartaction');
-      cortexFetch(moveToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity: 1,
-          }),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onMoveToCart();
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    try {
+      const wishListRes = await this.client.wishlistLineItem(item.self.uri).fetch({ movetocartform: {} });
+      await wishListRes.movetocartform({ quantity: 1 }).fetch({});
+      onMoveToCart();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  handleRemoveBtnClicked() {
+  async handleRemoveBtnClicked() {
     const {
       item, handleQuantityChange, onRemove,
     } = this.props;
     handleQuantityChange();
-    login().then(() => {
-      cortexFetch(item.self.uri,
-        {
-          method: 'delete',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(() => {
-          handleQuantityChange();
-          onRemove();
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    try {
+      await this.client.availabilityForCartLineItem(item.uri).delete();
+      handleQuantityChange();
+      onRemove();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
   }
 
   handleModalOpen() {
@@ -236,10 +191,10 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderUnitPrice() {
     const { item } = this.props;
-    if (item._item && (item._price || item._item[0]._price)) {
-      const itemPrice = ((item._price) ? (item._price) : (item._item[0]._price));
-      const listPrice = itemPrice[0]['list-price'][0].display;
-      const purchasePrice = itemPrice[0]['purchase-price'][0].display;
+    if (item.item && (item.price || item.item.price)) {
+      const itemPrice = ((item.price) ? (item.price) : (item.item.price));
+      const listPrice = itemPrice.listPrice.display;
+      const purchasePrice = itemPrice.purchasePrice.display;
       if (listPrice !== purchasePrice) {
         return (
           <ul className="price-container">
@@ -271,9 +226,9 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderTotalPrice() {
     const { item } = this.props;
-    let itemTotal = ((item._total) ? (item._total[0].cost[0].display) : (''));
-    if (!itemTotal && item._price) {
-      itemTotal = item._price[0]['purchase-price'][0].display;
+    let itemTotal = ((item.total) ? (item.total.cost[0].display) : (''));
+    if (!itemTotal && item.price) {
+      itemTotal = item.price.purchasePrice.display;
     }
     return (
       <ul className="price-container">
@@ -287,14 +242,14 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderBundleConfiguration() {
     const { item } = this.props;
-    const bundleConfigs = (item._dependentlineitems && item._dependentlineitems[0] && item._dependentlineitems[0]._element) ? (item._dependentlineitems[0]._element) : (null);
+    const bundleConfigs = (item.dependentlineitems && item.dependentlineitems && item.dependentlineitems.elements) ? (item.dependentlineitems.elements) : (null);
     if (bundleConfigs) {
       return bundleConfigs.map(config => (
-        (config._item)
+        (config.item)
           ? (
             <li className="bundle-configuration" key={config}>
               <label htmlFor="option-name" className="option-name">
-                {config._item[0]._definition[0]['display-name']}
+                {config.item.definition.displayName}
                 &nbsp;
               </label>
             </li>
@@ -331,21 +286,22 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderOptions() {
     const { item } = this.props;
-    let options = (item._item) ? (item._item[0]._definition[0]._options) : ('');
-    if (!options && item._definition) {
-      options = item._definition[0]._options;
+    let options = (item.item) ? (item.item.definition.options) : ('');
+    if (!options && item.definition) {
+      // eslint-disable-next-line prefer-destructuring
+      options = item.definition.options;
     }
     if (options) {
       return (
-        options[0]._element.map(option => (
-          <li className="option" key={option['display-name']}>
+        options.elements.map(option => (
+          <li className="option" key={option.displayName}>
             <label htmlFor="option-value" className="option-name">
-              {option['display-name']}
+              {option.displayName}
               :&nbsp;
             </label>
             <span className="option-value">
-              {(option._value)
-                ? option._value[0]['display-name']
+              {(option.value)
+                ? option.value.displayName
                 : ('')}
             </span>
           </li>
@@ -357,14 +313,14 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
 
   renderPromotions() {
     const { item } = this.props;
-    if (item._appliedpromotions) {
-      const promotions = item._appliedpromotions[0]._element;
+    if (item.appliedpromotions) {
+      const promotions = item.appliedpromotions.elements;
       if (promotions) {
         return (
           promotions.map(promotion => (
             <li key={promotion.name}>
-              {(promotion['display-name'])
-                ? (promotion['display-name'])
+              {(promotion.displayName)
+                ? (promotion.displayName)
                 : (promotion.name)}
               &nbsp;
             </li>
@@ -385,17 +341,17 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       onRemove,
     } = this.props;
     const { quantity, openModal } = this.state;
-    const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
-    let availability = (itemAvailability[0].state === 'AVAILABLE');
+    const itemAvailability = ((item.availability) ? (item.availability) : (item.item.availability));
+    let availability = (itemAvailability.state === 'AVAILABLE');
     let availabilityString = '';
-    if (itemAvailability.length >= 0) {
-      if (itemAvailability[0].state === 'AVAILABLE') {
+    if (itemAvailability.state) {
+      if (itemAvailability.state === 'AVAILABLE') {
         availability = true;
         availabilityString = intl.get('in-stock');
-      } else if (itemAvailability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+      } else if (itemAvailability.state === 'AVAILABLE_FOR_PRE_ORDER') {
         availability = true;
         availabilityString = intl.get('pre-order');
-      } else if (itemAvailability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+      } else if (itemAvailability.state === 'AVAILABLE_FOR_BACK_ORDER') {
         availability = true;
         availabilityString = intl.get('back-order');
       } else {
@@ -405,15 +361,15 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     }
     let itemCodeString = '';
     let itemDisplayName = '';
-    if (item._item) {
-      itemCodeString = item._item[0]._code[0].code;
-      itemDisplayName = item._item[0]._definition[0]['display-name'];
+    if (item.item) {
+      itemCodeString = item.item.code.code;
+      itemDisplayName = item.item.definition.displayName;
     }
-    if (item._code) {
-      itemCodeString = item._code[0].code;
+    if (item.code) {
+      itemCodeString = item.code.code;
     }
-    if (item._definition) {
-      itemDisplayName = item._definition[0]['display-name'];
+    if (item.definition) {
+      itemDisplayName = item.definition.displayName;
     }
     return (
       <div id={`cart_lineitem_${itemCodeString}`} className="cart-lineitem-row">
@@ -435,7 +391,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
             {itemDisplayName}
           </Link>
         </div>
-        {(item._appliedpromotions && item._appliedpromotions[0]._element)
+        {(item.appliedpromotions && item.appliedpromotions.elements)
           ? (
             <div className="promotions-col">
               <ul className="promotions-container">
@@ -464,13 +420,13 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
                 {availabilityString}
               </div>
             </li>
-            <li className={`category-item-release-date${itemAvailability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+            <li className={`category-item-release-date${itemAvailability.releaseDate ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
               <label htmlFor="release-date-value" className="releasedate-label">
                 {intl.get('expected-release-date')}
                 :&nbsp;
               </label>
               <span className="release-date-value">
-                {(itemAvailability[0]['release-date']) ? itemAvailability[0]['release-date']['display-value'] : ''}
+                {(itemAvailability.releaseDate) ? itemAvailability.releaseDate.displayValue : ''}
               </span>
             </li>
           </ul>
@@ -517,7 +473,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._addtocartform && !hideAddToBagButton) ? (
+        {(item.addtocartform && !hideAddToBagButton) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-addToCart" type="button" onClick={this.handleConfiguratorAddToCartBtnClicked}>
               <span className="btn-text">
@@ -527,7 +483,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._dependentoptions && item._dependentoptions[0] && (item._dependentoptions[0]._element || item._dependentlineitems[0]._element)) ? (
+        {(item.dependentoptions && item.dependentoptions && (item.dependentoptions.elements || item.dependentlineitems.elements)) ? (
           <div className="configure-btn-col">
             <button className="ep-btn primary small btn-cart-configureBundle" type="button" onClick={() => this.handleModalOpen()}>
               <span className="btn-text">
@@ -538,7 +494,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._movetocartform) ? (
+        {(item.movetocartform) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-moveToCart" type="button" onClick={this.handleMoveToCartBtnClicked}>
               <span className="btn-text">

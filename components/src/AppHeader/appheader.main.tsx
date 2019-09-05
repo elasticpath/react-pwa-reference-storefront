@@ -34,6 +34,12 @@ import { ClientContext } from '../ClientContext';
 import './appheader.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
+const zoomArray: cortex.RootFetch = {
+  defaultcart: {
+    additemstocartform: {},
+  },
+};
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -75,11 +81,6 @@ interface AppHeaderMainState {
     isDesktop: boolean,
     isLoggedInUser: boolean,
 }
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'defaultcart',
-  'defaultcart:additemstocartform',
-];
 
 class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainState> {
   static contextType = ClientContext;
@@ -157,16 +158,17 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
   }
 
   async fetchCartData() {
-    const root = await this.client.root().fetch({
-      defaultcart: {
-        additemstocartform: {},
-      },
-    });
+    try {
+      const root = await this.client.root().fetch(zoomArray);
 
-    this.setState({
-      cartData: root.defaultcart,
-      isLoading: false,
-    });
+      this.setState({
+        cartData: root.defaultcart,
+        isLoading: false,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   goBack() {

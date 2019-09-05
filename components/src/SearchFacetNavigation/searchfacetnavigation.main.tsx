@@ -129,16 +129,16 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
 
   renderFacets() {
     const { facetModel } = this.state;
-    return facetModel._facets[0]._element.map((facet) => {
-      if (facet['display-name']) {
-        const facetDisplayNameId = facet['display-name'].toLowerCase().replace(/ /g, '_');
+    return facetModel.facets.elements.map((facet) => {
+      if (facet.displayName) {
+        const facetDisplayNameId = facet.displayName.toLowerCase().replace(/ /g, '_');
         return (
-          <div className="card" key={facet['display-name']} id={`${facetDisplayNameId}_facet`}>
+          <div className="card" key={facet.displayName} id={`${facetDisplayNameId}_facet`}>
             <div className="card-header">
               <h4 className="card-title">
                 <a className="facet" data-toggle="collapse" href={`#${facetDisplayNameId}_facet_values`}>
                   <span className="glyphicon" />
-                  {facet['display-name']}
+                  {facet.displayName}
                 </a>
               </h4>
             </div>
@@ -167,8 +167,8 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
 
   render() {
     const { facetModel, showFilterMobileMenu } = this.state;
-    if (facetModel._facets && facetModel._facets.length > 0 && facetModel._element) {
-      const chosenFacets = facetModel._facets[0]._element.filter(el => el._facetselector[0]._chosen);
+    if (facetModel.facets && facetModel.facets.length > 0 && facetModel.element) {
+      const chosenFacets = facetModel.facets.elements.filter(el => el.facetselector.chosen);
       return (
         <div className="product-list-facet-navigation-component">
           <div className="col-xs-12 col-sm-12">

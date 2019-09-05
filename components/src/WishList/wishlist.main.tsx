@@ -71,9 +71,9 @@ const WishListMain: React.FunctionComponent<WishListMainProps> = (props: WishLis
 
   return (
     <div className="wish-list-main-inner table-responsive">
-      {wishListData._lineitems[0]._element.map(product => (
+      {wishListData.lineitems.elements.map(product => (
         <CartLineItem
-          key={product._item[0]._code[0].code}
+          key={product.item.code.code}
           item={product}
           handleQuantityChange={() => { handleQuantityChange(); }}
           onRemove={handleRemove}

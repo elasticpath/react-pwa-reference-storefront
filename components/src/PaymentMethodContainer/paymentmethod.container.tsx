@@ -35,13 +35,15 @@ const PaymentMethodContainer: React.FunctionComponent<PaymentMethodContainerProp
     displayNameVar = `${displayName.provider.toLowerCase().replace(/_/g, ' ')}`;
   }
 
-  return (
-    <p className="payment-method-container">
-      {displayNameVar}
-      {displayAppliedAmount}
-      {displayTransactionType}
-    </p>
-  );
+  return displayNameVar
+    ? (
+      <p className="payment-method-container">
+        {displayNameVar}
+        {displayAppliedAmount}
+        {displayTransactionType}
+      </p>
+    )
+    : '';
 };
 
 export default PaymentMethodContainer;

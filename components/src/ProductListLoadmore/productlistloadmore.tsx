@@ -42,7 +42,7 @@ class ProductListLoadMore extends React.Component<ProductListLoadMoreProps, Prod
   constructor(props) {
     super(props);
     ({ intl } = getConfig());
-    const nextLink = props.dataProps.links.find(link => link.rel === 'next');
+    const nextLink = props.dataProps.uri;
     this.state = {
       canLoadMore: Boolean(nextLink),
       isLoading: false,
@@ -52,7 +52,7 @@ class ProductListLoadMore extends React.Component<ProductListLoadMoreProps, Prod
   }
 
   componentWillReceiveProps(nextProps) {
-    const nextLink = nextProps.dataProps.links.find(link => link.rel === 'next');
+    const nextLink = nextProps.dataProps.uri;
     this.setState({ canLoadMore: Boolean(nextLink) });
   }
 
@@ -60,7 +60,7 @@ class ProductListLoadMore extends React.Component<ProductListLoadMoreProps, Prod
     const { dataProps, handleDataChange, onLoadMore } = this.props;
     this.setState({ isLoading: true });
     login().then(() => {
-      const nextRel = dataProps.links.find(link => link.rel === 'next');
+      const nextRel = dataProps.uri;
       if (nextRel) {
         onLoadMore(nextRel.uri)
           .then((res) => {

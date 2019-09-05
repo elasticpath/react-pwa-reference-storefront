@@ -57,16 +57,16 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
     default:
       statusString = intl.get('in-progress');
   }
-  const orderNumber = data['purchase-number'];
-  const orderTaxTotal = data['tax-total'].display;
-  const orderPurchaseDate = data['purchase-date']['display-value'];
-  const orderDiscount = data._discount[0].discount[0].display;
-  const orderTotal = data['monetary-total'][0].display;
-  const shipments = data._shipments;
+  const orderNumber = data.purchaseNumber;
+  const orderTaxTotal = data.taxTotal.display;
+  const orderPurchaseDate = data.purchaseDate.displayValue;
+  const orderDiscount = data.discount ? data.discount.discount[0].display : '';
+  const orderTotal = data.monetaryTotal[0].display;
+  const { shipments } = data;
 
   const renderShippingOption = () => {
     if (shipments) {
-      const [option] = data._shipments[0]._element[0]._shippingoption;
+      const option = data.shipments.elements[0].shippingoption;
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
           <h3>
@@ -81,7 +81,7 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
 
   const renderShippingAddress = () => {
     if (shipments) {
-      const [shippingAddress] = data._shipments[0]._element[0]._destination;
+      const shippingAddress = data.shipments.elements[0].destination;
       const { name, address } = shippingAddress;
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
@@ -96,7 +96,7 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
   };
 
   const renderBillingAddress = () => {
-    const [billingAddress] = data._billingaddress;
+    const billingAddress = data.billingaddress;
     const { name, address } = billingAddress;
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
@@ -109,13 +109,13 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
   };
 
   const renderPaymentMethod = () => {
-    const postedPayments = data._postedpayments || data._paymentmeans;
+    const postedPayments = data.postedpayments || data.paymentmeans;
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
         <h3>
           {intl.get('payment-method')}
         </h3>
-        {postedPayments[0]._element.map(postedpayment => (
+        {postedPayments.elements.map(postedpayment => (
           <PaymentMethodContainer displayName={postedpayment} />
         ))}
       </div>
@@ -124,12 +124,11 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
 
   const renderItem = (purchaseItem) => {
     const { name, quantity } = purchaseItem;
-    const subTotal = purchaseItem['line-extension-amount'][0].display;
-    const tax = purchaseItem['line-extension-tax'][0].display;
-    const itemTotal = purchaseItem['line-extension-total'][0].display;
-    const options = purchaseItem._options;
-    const configuration = purchaseItem._configuration;
-    const bundleConfiguration = purchaseItem._components;
+    const subTotal = purchaseItem.lineExtensionAmount[0].display;
+    const tax = purchaseItem.lineExtensionTax[0].display;
+    const itemTotal = purchaseItem.lineExtensionTotal[0].display;
+    const bundleConfiguration = purchaseItem.components;
+    const { options, configuration } = purchaseItem;
     return (
       <li key={name}>
         <table className="table">
@@ -147,35 +146,35 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
                 </span>
               </td>
             </tr>
-            {options && (options[0]._element.map(option => (
+            {options && (options.elements.map(option => (
               <tr key={option.name}>
                 <td>
                   <label htmlFor="option">
-                    {option['display-name']}
+                    {option.displayName}
                   </label>
                 </td>
                 <td>
                   <span id="option">
-                    {option._value[0]['display-name']}
+                    {option.value.displayName}
                   </span>
                 </td>
               </tr>
             )))}
-            {configuration && (configuration[0]._element.map(config => (
+            {configuration.elements && (configuration.elements.map(config => (
               <tr key={config.name}>
                 <td>
                   <label htmlFor="option">
-                    {config['display-name']}
+                    {config.displayName}
                   </label>
                 </td>
                 <td>
                   <span id="option">
-                    {config._value[0]['display-name']}
+                    {config.value.displayName}
                   </span>
                 </td>
               </tr>
             )))}
-            {bundleConfiguration && (bundleConfiguration[0]._element.map(config => (
+            {bundleConfiguration && (bundleConfiguration.elements.map(config => (
               <tr key={config.name}>
                 <td>
                   <span id="option">
@@ -240,15 +239,15 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
             </tr>
           </tbody>
         </table>
-        {(purchaseItem._item) ? (
-          <QuickOrderMain isBuyItAgain productData={purchaseItem._item[0]} itemDetailLink={itemDetailLink} onMoveToCart={onMoveToCart} onConfiguratorAddToCart={onConfiguratorAddToCart} />
+        {(purchaseItem.item.addtocartform) ? (
+          <QuickOrderMain isBuyItAgain productData={purchaseItem} itemDetailLink={itemDetailLink} onMoveToCart={onMoveToCart} onConfiguratorAddToCart={onConfiguratorAddToCart} />
         ) : ('')
         }
       </li>
     );
   };
 
-  const canReorder = productsData => productsData._defaultcart && productsData._defaultcart[0]._additemstocartform;
+  const canReorder = productsData => productsData.defaultcart && productsData.defaultcart.additemstocartform;
 
   const handleReorderAll = () => {
     const { onReorderAllProducts } = props;
@@ -339,7 +338,7 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
         </h3>
         <div data-region="purchaseLineItemsRegion" className="purchase-items-container" style={{ display: 'block' }}>
           <ul className="purchase-items-list">
-            {data._lineitems[0]._element.map(renderItem)}
+            {data.lineitems.elements.map(renderItem)}
           </ul>
         </div>
       </div>

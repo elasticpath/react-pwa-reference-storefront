@@ -26,6 +26,14 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './addressform.main.less';
 
+const zoomDefaultProfile: cortex.RootFetch = {
+  defaultprofile: {
+    addresses: {
+      addressform: {},
+    },
+  },
+};
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -37,7 +45,8 @@ interface AddressFormMainProps {
     fetchData?: (...args: any[]) => any,
 }
 interface AddressFormMainState {
-    geoData: any,
+    showLoader: boolean,
+    geoData: cortex.Countries,
     firstName: string,
     lastName: string,
     address: string,
@@ -64,6 +73,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
     Config = epConfig.config;
     ({ intl } = getConfig());
     this.state = {
+      showLoader: false,
       geoData: undefined,
       firstName: '',
       lastName: '',
@@ -132,6 +142,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
 
   async submitAddress(event) {
     event.preventDefault();
+    this.setState({ showLoader: true });
     const { addressData, fetchData, onCloseModal } = this.props;
     const {
       firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
@@ -155,22 +166,19 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
       if (addressData && addressData.address) {
         await this.client.address(addressData.address).update(userAddress);
       } else {
-        const rootRes = await this.client.root().fetch({
-          defaultprofile: {
-            addresses: {
-              addressform: {},
-            },
-          },
-        });
+        const rootRes = await this.client.root().fetch(zoomDefaultProfile);
         await rootRes.defaultprofile.addresses.addressform(userAddress).fetch({});
       }
 
-      this.setState({ failedSubmit: false }, () => {
-        fetchData();
+      this.setState({ failedSubmit: false }, async () => {
+        await fetchData();
         onCloseModal();
       });
     } catch (error) {
-      this.setState({ failedSubmit: true });
+      this.setState({
+        failedSubmit: true,
+        showLoader: false,
+      });
       // eslint-disable-next-line no-console
       console.error(error);
     }
@@ -185,7 +193,6 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
           },
         },
       });
-
       this.setState({
         geoData: res,
       });
@@ -295,7 +302,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
 
   render() {
     const {
-      failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode,
+      failedSubmit, firstName, lastName, address, extendedAddress, city, country, postalCode, showLoader,
     } = this.state;
 
     return (
@@ -303,6 +310,11 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
         <div className="feedback-label feedback-container" data-region="componentAddressFeedbackRegion">
           {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
         </div>
+        {showLoader && (
+          <div className="loader-wrapper">
+            <div className="miniLoader" />
+          </div>
+        )}
         <form className="form-horizontal" onSubmit={this.submitAddress}>
           <div className="form-group">
             <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label">

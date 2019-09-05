@@ -37,6 +37,32 @@ import Config from '../ep.config.json';
 
 import './ProfilePage.less';
 
+const zoomArray: cortex.RootFetch = {
+  defaultprofile: {
+    purchases: {
+      element: {},
+    },
+    addresses: {
+      addressform: {},
+      element: {},
+      billingaddresses: {
+        default: {},
+      },
+    },
+    emails: {
+      element: {
+        list: {},
+        profile: {},
+      },
+      emailform: {},
+    },
+    paymentmethods: {
+      paymenttokenform: {},
+      element: {},
+    },
+  },
+};
+
 interface ProfilePageState {
     profileData: cortex.Profile,
     invalidPermission: boolean,
@@ -75,43 +101,29 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     await this.fetchProfileData();
   }
 
-  async fetchProfileData() {
-    const root = await this.client.root().fetch(
-      {
-        defaultprofile: {
-          purchases: {
-            element: {},
-          },
-          addresses: {
-            addressform: {},
-            element: {},
-            billingaddresses: {
-              default: {},
-            },
-          },
-          emails: {
-            element: {
-              list: {},
-              profile: {},
-            },
-            emailform: {},
-          },
-          paymentmethods: {
-            paymenttokenform: {},
-            element: {},
-          },
-        },
-      },
-    );
+  async fetchProfileData(data) {
+    const { profileData } = this.state;
+    if (data) {
+      this.setState({
+        profileData: { ...profileData, ...data },
+      });
+      return;
+    }
+    try {
+      const root = await this.client.root().fetch(zoomArray);
 
-    if (root) {
-      this.setState({
-        profileData: root.defaultprofile,
-      });
-    } else {
-      this.setState({
-        invalidPermission: true,
-      });
+      if (root) {
+        this.setState({
+          profileData: root.defaultprofile,
+        });
+      } else {
+        this.setState({
+          invalidPermission: true,
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
     }
   }
 
@@ -177,6 +189,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   render() {
     const { profileData, showResetPasswordButton } = this.state;
+
     return (
       <div>
         <div className="container profile-container">

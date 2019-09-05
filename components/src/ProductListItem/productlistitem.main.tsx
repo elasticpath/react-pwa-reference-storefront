@@ -86,14 +86,14 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
             }));
       });
     }
-    if (productElement._definition) {
+    if (productElement.definition) {
       this.setState({
         productData: productElement,
       });
     }
-    if (offerData._items) {
+    if (offerData.items) {
       this.setState({
-        productData: offerData._items[0]._element[0],
+        productData: offerData.items.elements[0],
       });
     }
   }
@@ -110,30 +110,30 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
     if (productData) {
       let listPrice = 'n/a';
       let itemPrice = 'n/a';
-      if (offerData._pricerange) {
-        if (offerData._pricerange[0]['list-price-range']['from-price'] && offerData._pricerange[0]['list-price-range']['from-price'][0].amount !== offerData._pricerange[0]['list-price-range']['to-price'][0].amount) {
-          listPrice = `${offerData._pricerange[0]['list-price-range']['from-price'][0].display} - ${offerData._pricerange[0]['list-price-range']['to-price'][0].display}`;
+      if (offerData.pricerange) {
+        if (offerData.pricerange.listPriceRange.fromPrice && offerData.pricerange.listPriceRange.fromPrice.amount !== offerData.pricerange.listPriceRange.toPrice.amount) {
+          listPrice = `${offerData.pricerange.listPriceRange.fromPrice.display} - ${offerData.pricerange.listPriceRange.toPrice.display}`;
         }
-        if (offerData._pricerange[0]['purchase-price-range']['from-price'] && offerData._pricerange[0]['purchase-price-range']['from-price'][0].amount !== offerData._pricerange[0]['purchase-price-range']['to-price'][0].amount) {
-          itemPrice = `${offerData._pricerange[0]['purchase-price-range']['from-price'][0].display} - ${offerData._pricerange[0]['purchase-price-range']['to-price'][0].display}`;
+        if (offerData.pricerange.purchasePriceRange.fromPrice && offerData.pricerange.purchasePriceRange.fromPrice.amount !== offerData.pricerange.purchasePriceRange.toPrice.amount) {
+          itemPrice = `${offerData.pricerange.purchasePriceRange.fromPrice.display} - ${offerData.pricerange.purchasePriceRange.toPrice.display}`;
         } else {
-          listPrice = (offerData._pricerange[0]['list-price-range']['from-price']) ? (offerData._pricerange[0]['list-price-range']['from-price'][0].display) : ('');
-          itemPrice = (offerData._pricerange[0]['purchase-price-range']['to-price']) ? (offerData._pricerange[0]['purchase-price-range']['to-price'][0].display) : listPrice;
+          listPrice = (offerData.pricerange.listPriceRange.fromPrice) ? (offerData.pricerange.listPriceRange.fromPrice.display) : ('');
+          itemPrice = (offerData.pricerange.purchasePriceRange.toPrice) ? (offerData.pricerange.purchasePriceRange.toPrice.display) : listPrice;
         }
-      } else if (productData._price) {
-        listPrice = productData._price[0]['list-price'][0].display;
-        itemPrice = productData._price[0]['purchase-price'][0].display;
+      } else if (productData.price) {
+        listPrice = productData.price.listPrice[0].display;
+        itemPrice = productData.price.purchasePrice[0].display;
       }
       let availability = false;
       let availabilityString = '';
-      if (productData._availability && productData._availability.length >= 0) {
-        if (productData._availability[0].state === 'AVAILABLE') {
+      if (productData.availability) {
+        if (productData.availability.state === 'AVAILABLE') {
           availability = true;
           availabilityString = intl.get('in-stock');
-        } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+        } else if (productData.availability.state === 'AVAILABLE_FOR_PRE_ORDER') {
           availability = true;
           availabilityString = intl.get('pre-order');
-        } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+        } else if (productData.availability.state === 'AVAILABLE_FOR_BACK_ORDER') {
           availability = true;
           availabilityString = intl.get('back-order');
         } else {
@@ -144,19 +144,19 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
       return (
         <div className={`category-item-inner ${customClass}`}>
           <div className={`category-item-thumbnail-container ${imageStatus === 'loaded' ? 'loaded' : ''}`}>
-            <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
-              <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e: any) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" onLoad={this.handleImageLoaded.bind(this)} title="" />
+            <Link to={`${itemDetailLink}/${encodeURIComponent(productData.code.code)}`}>
+              <img src={Config.skuImagesUrl.replace('%sku%', productData.code.code)} onError={(e: any) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" onLoad={this.handleImageLoaded.bind(this)} title="" />
             </Link>
           </div>
           <div className="category-item-title-container">
-            <div className="category-item-title" id={`category_item_title_link_${productData._code[0].code}`}>
-              <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
-                {productData._definition[0]['display-name']}
+            <div className="category-item-title" id={`category_item_title_link_${productData.code.code}`}>
+              <Link to={`${itemDetailLink}/${encodeURIComponent(productData.code.code)}`}>
+                {productData.definition.displayName}
               </Link>
             </div>
             {(Config.b2b.enable) && (
-              <h4 className="category-item-title-sku" id={`category_item_title_sku_${productData._code[0].code}`}>
-                {productData._code[0].code}
+              <h4 className="category-item-title-sku" id={`category_item_title_sku_${productData.code.code}`}>
+                {productData.code.code}
               </h4>
             )}
           </div>
@@ -175,17 +175,17 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
                   listPrice !== itemPrice
                     ? (
                       <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
-                        <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData._code[0].code}`}>
+                        <span className="item-meta category-item-list-price-value" id={`category_item_list_price_${productData.code.code}`}>
                           {listPrice}
                         </span>
-                        <span className="item-meta category-item-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
+                        <span className="item-meta category-item-purchase-price-value price-sale" id={`category_item_price_${productData.code.code}`}>
                           {itemPrice}
                         </span>
                       </li>
                     )
                     : (
                       <li className="category-item-list-price category-item-purchase-price" data-region="itemListPriceRegion">
-                        <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
+                        <span className="item-meta category-item-purchase-price-value" id={`category_item_price_${productData.code.code}`}>
                           {itemPrice}
                         </span>
                       </li>
@@ -198,7 +198,7 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
           <div data-region="availabilityRegion">
             <ul className="category-item-availability-container">
               <li className="category-item-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
+                <label htmlFor={`category_item_availability_${productData.code.code}`}>
                   {(availability) ? (
                     <div>
                       <span className="icon glyphicon glyphicon-ok" />
@@ -211,13 +211,13 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
                   )}
                 </label>
               </li>
-              <li className={`category-item-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="item-meta category-item-releaseDate-label">
+              <li className={`category-item-release-date${productData.availability.releaseDate ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+                <label htmlFor={`category_item_release_date_${productData.code.code}_label`} className="item-meta category-item-releaseDate-label">
                   {intl.get('expected-release-date')}
                   :&nbsp;
                 </label>
-                <span className="item-meta category-item-releaseDate-value" id={`category_item_release_date_${productData._code[0].code}`}>
-                  {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
+                <span className="item-meta category-item-releaseDate-value" id={`category_item_release_date_${productData.code.code}`}>
+                  {productData.availability.releaseDate ? productData.availability.releaseDate.displayValue : ''}
                 </span>
               </li>
             </ul>

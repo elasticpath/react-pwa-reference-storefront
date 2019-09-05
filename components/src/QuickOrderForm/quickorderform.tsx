@@ -21,13 +21,13 @@
 
 
 import React from 'react';
-
-import './quickorderform.less';
+import * as cortex from '@elasticpath/cortex-client';
 import { withRouter } from 'react-router';
 import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
-import { login } from '../utils/AuthService';
-import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import { ClientContext } from '../ClientContext';
+
+import './quickorderform.less';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
@@ -48,6 +48,10 @@ interface QuickOrderFormState {
 }
 
 class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderFormState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -68,6 +72,10 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
     this.getProductInfo = this.getProductInfo.bind(this);
   }
 
+  componentDidMount() {
+    this.client = this.context;
+  }
+
   componentWillReceiveProps(nextProps) {
     const { code } = this.state;
     const { item } = nextProps;
@@ -81,69 +89,78 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
     }
   }
 
-  getProductInfo(productId) {
+  async getProductInfo(productId) {
     const { code, quantity } = this.state;
     const { onItemSubmit } = this.props;
-    return login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId, false)
-          .then((res) => {
-            if (res._definition[0]._options) {
-              this.setState({
-                product: res,
-                isLoading: false,
-                skuErrorMessage: intl.get('configurable-product-message', { SKUCode: productId }),
-              });
-              onItemSubmit({
-                code, quantity, product: {}, isValidField: false,
-              });
-            } else {
-              onItemSubmit({
-                code,
-                quantity,
-                product: res,
-                isValidField: true,
-              });
-              this.setState({
-                skuErrorMessage: '',
-                product: res,
-                isLoading: false,
-              });
-            }
-            if (res._availability[0].state !== 'AVAILABLE') {
-              this.setState({
-                product: res,
-                isLoading: false,
-                skuErrorMessage: `${intl.get('not-available-message')}`,
-              });
-              onItemSubmit({
-                code, quantity, product: {}, isValidField: false,
-              });
-            }
-            if (!res._price) {
-              this.setState({
-                skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: productId })}`,
-              });
-              onItemSubmit({
-                code, quantity, product: {}, isValidField: false,
-              });
-            }
-          })
-          .catch((error) => {
-            onItemSubmit({
-              code, quantity, product: {}, isValidField: false,
-            });
-            this.setState({
-              skuErrorMessage: `${productId} ${intl.get('sku-invalid-message')}`,
-              isLoading: false,
-            });
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+    try {
+      const itemLookupFormRes = await this.client.root().fetch({
+        lookups: {
+          itemlookupform: {},
+        },
+      });
+
+      const addToCartRes = await itemLookupFormRes.lookups.itemlookupform({ code: productId }).fetch({
+        availability: {},
+        price: {},
+        definition: {
+          options: {},
+        },
+        code: {},
+      });
+      if (addToCartRes.definition.options) {
+        this.setState({
+          product: addToCartRes,
+          isLoading: false,
+          skuErrorMessage: intl.get('configurable-product-message', { SKUCode: productId }),
+        });
+        onItemSubmit({
+          code, quantity, product: {}, isValidField: false,
+        });
+      } else {
+        onItemSubmit({
+          code,
+          quantity,
+          product: addToCartRes,
+          isValidField: true,
+        });
+        this.setState({
+          skuErrorMessage: '',
+          product: addToCartRes,
+          isLoading: false,
+        });
+      }
+      if (addToCartRes.availability.state !== 'AVAILABLE') {
+        this.setState({
+          product: addToCartRes,
+          isLoading: false,
+          skuErrorMessage: `${intl.get('not-available-message')}`,
+        });
+        onItemSubmit({
+          code, quantity, product: {}, isValidField: false,
+        });
+      }
+      if (!addToCartRes.price) {
+        this.setState({
+          skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: productId })}`,
+        });
+        onItemSubmit({
+          code, quantity, product: {}, isValidField: false,
+        });
+      }
+    } catch (error) {
+      onItemSubmit({
+        code, quantity, product: {}, isValidField: false,
+      });
+      this.setState({
+        skuErrorMessage: `${productId} ${intl.get('sku-invalid-message')}`,
+        isLoading: false,
+      });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     const {
       code, quantity, product,
@@ -155,7 +172,7 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
       product: {},
       isLoading: true,
     });
-    this.getProductInfo(code);
+    await this.getProductInfo(code);
   }
 
   handleChange(event) {
@@ -254,17 +271,17 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
             </div>
           </div>
           <div className="total-price-item">
-            {(product && product._price) ? (
-              <p>{`${product._price[0]['purchase-price'][0].display}`}</p>
+            {(product && product.price) ? (
+              <p>{`${product.price.purchasePrice ? product.price.purchasePrice[0].display : product.price.listPrice[0].display}`}</p>
             ) : <p>$0.00</p>
               }
           </div>
         </div>
-        {(code && product._definition) ? (
+        {(code && product.definition) ? (
           <div className="show-product">
             <div className="product-image">
               <img
-                src={Config.skuImagesUrl.replace('%sku%', product._code[0].code)}
+                src={Config.skuImagesUrl.replace('%sku%', product.code.code)}
                 onError={(e) => {
                   const element: any = e.target;
                   element.src = imgPlaceholder;
@@ -275,7 +292,7 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
             </div>
             <div className="title-col" data-el-value="lineItem.displayName">
               <p>
-                {product._definition[0]['display-name']}
+                {product.definition.displayName}
               </p>
             </div>
           </div>

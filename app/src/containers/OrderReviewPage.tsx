@@ -20,10 +20,11 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import { RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import {
-  OrderTableMain, PaymentMethodContainer, ShippingOptionContainer, CheckoutSummaryList, AddressContainer,
+  OrderTableMain, PaymentMethodContainer, ShippingOptionContainer, CheckoutSummaryList, AddressContainer, ClientContext,
 } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import {
@@ -32,53 +33,79 @@ import {
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
+
 import './OrderReviewPage.less';
 
-const zoomArray = [
-  // zooms for checkout summary
-  'defaultcart',
-  'defaultcart:total',
-  'defaultcart:discount',
-  'defaultcart:order',
-  'defaultcart:order:tax',
-  'defaultcart:order:total',
-  'defaultcart:appliedpromotions:element',
-  'defaultcart:order:couponinfo:coupon',
-  'defaultcart:order:couponinfo:couponform',
-  // zoom for billing address
-  'defaultcart:order:billingaddressinfo:billingaddress',
-  // zoom for shipping address
-  'defaultcart:order:deliveries:element:destinationinfo:destination',
-  // zoom for shipping option
-  'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
-  // zoom for payment method
-  'defaultcart:order:paymentmethodinfo:paymentmethod',
-  'defaultcart:order:postedpayments',
-  // zooms for table items
-  'defaultcart:lineitems:element',
-  'defaultcart:lineitems:element:total',
-  'defaultcart:lineitems:element:item',
-  'defaultcart:lineitems:element:item:code',
-  'defaultcart:lineitems:element:item:price',
-  'defaultcart:lineitems:element:item:definition',
-  'defaultcart:lineitems:element:item:definition:options:element',
-  'defaultcart:lineitems:element:item:definition:options:element:value',
-  'defaultcart:lineitems:element:dependentlineitems',
-  'defaultcart:lineitems:element:dependentlineitems:element',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:addtocartform',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:availability',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:definition',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:code',
-  // zoom for purchaseform
-  'defaultcart:order:purchaseform',
-];
+const zoomArray: cortex.RootFetch = {
+  defaultcart: {
+    total: {},
+    order: {
+      tax: {},
+      total: {},
+      couponinfo: {
+        coupon: {},
+        couponform: {},
+      },
+      billingaddressinfo: {
+        billingaddress: {},
+      },
+      deliveries: {
+        element: {
+          destinationinfo: {
+            destination: {},
+          },
+          shippingoptioninfo: {
+            shippingoption: {},
+          },
+        },
+      },
+      paymentmethodinfo: {
+        paymentmethod: {},
+      },
+      purchaseform: {},
+    },
+    appliedpromotions: {
+      element: {},
+    },
+    lineitems: {
+      element: {
+        total: {},
+        item: {
+          code: {},
+          price: {},
+          definition: {
+            options: {
+              element: {
+                value: {},
+              },
+            },
+          },
+        },
+        dependentlineitems: {
+          element: {
+            item: {
+              addtocartform: {},
+              availability: {},
+              definition: {},
+              code: {},
+            },
+          },
+        },
+      },
+    },
+  },
+};
 
 interface OrderReviewPageState {
-    orderData: any,
+    orderData: cortex.Order,
     giftCertificateEntity: any,
     isLoading: boolean,
 }
 class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPageState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -88,31 +115,22 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
     };
   }
 
-  componentDidMount() {
-    this.fetchOrderData();
-    this.fetchGiftCards();
+  async componentDidMount() {
+    this.client = this.context;
+    await this.fetchOrderData();
+    await this.fetchGiftCards();
   }
 
-  fetchOrderData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            orderData: res._defaultcart[0],
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+  async fetchOrderData() {
+    try {
+      const OrderDataRes = await this.client.root().fetch(zoomArray);
+      this.setState({
+        orderData: OrderDataRes.defaultcart,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   fetchGiftCards() {
@@ -145,59 +163,66 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
     });
   }
 
-  completeOrder() {
+  async completeOrder() {
     this.setState({
       isLoading: true,
     });
-    const purchaseZoomArray = [
-      'paymentmeans:element',
-      'postedpayments:element',
-      'shipments:element:destination',
-      'shipments:element:shippingoption',
-      'billingaddress',
-      'discount',
-      'appliedpromotions:element',
-      'lineitems:element',
-      'lineitems:element:options:element',
-      'lineitems:element:options:element:value',
-      'lineitems:element:components',
-      'lineitems:element:components:element',
-      'lineitems:element:components:element:item:addtocartform',
-      'lineitems:element:components:element:item:availability',
-      'lineitems:element:components:element:item:definition',
-      'lineitems:element:components:element:item:code',
-      'lineitems:element:dependentlineitems',
-      'lineitems:element:dependentlineitems:element',
-      'lineitems:element:dependentlineitems:element:item:addtocartform',
-      'lineitems:element:dependentlineitems:element:item:availability',
-      'lineitems:element:dependentlineitems:element:item:definition',
-      'lineitems:element:dependentlineitems:element:item:code',
-    ];
+    const purchaseZoomArray: cortex.PurchaseFetch = {
+      paymentmeans: {
+        element: {},
+      },
+      shipments: {
+        element: {
+          destination: {},
+          shippingoption: {},
+        },
+      },
+      billingaddress: {},
+      discount: {},
+      appliedpromotions: {
+        element: {},
+      },
+      lineitems: {
+        element: {
+          item: {
+            appliedpromotions: {},
+            price: {},
+            definition: {},
+            code: {},
+            availability: {},
+          },
+          options: {
+            element: {
+              value: {},
+            },
+          },
+          components: {
+            element: {
+              item: {
+                availability: {},
+                definition: {},
+                code: {},
+              },
+            },
+          },
+        },
+      },
+    };
     const { orderData } = this.state;
     const { history } = this.props;
-    const purchaseform = orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri;
-    login().then(() => {
-      cortexFetch(`${purchaseform}?followlocation=true&zoom=${purchaseZoomArray.sort().join()}`, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
-          this.giftCertificatesAddToCart();
-          this.trackTransactionAnalytics();
-          history.push('/purchaseReceipt', { data: res });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+
+    try {
+      const completePurchaseRes = await orderData.order.purchaseform({}).fetch(purchaseZoomArray);
+      this.setState({
+        isLoading: false,
+      });
+      this.giftCertificatesAddToCart();
+      this.trackTransactionAnalytics();
+      history.push('/purchaseReceipt', { data: completePurchaseRes });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   giftCertificatesAddToCart() {
@@ -255,11 +280,11 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
   trackTransactionAnalytics() {
     const { orderData } = this.state;
     if (isAnalyticsConfigured()) {
-      const deliveries = (orderData._order[0]._deliveries) ? orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption[0].cost[0].display : '';
-      trackAddTransactionAnalytics(orderData.self.uri.split(`/carts/${Config.cortexApi.scope}/`)[1], orderData._order[0]._total[0].cost[0].amount, deliveries, orderData._order[0]._tax[0].total.display);
-      orderData._lineitems[0]._element.map((product) => {
-        const categoryTag = (product._item[0]._definition[0].details) ? (product._item[0]._definition[0].details.find(detail => detail['display-name'] === 'Tag')) : '';
-        return (trackAddItemAnalytics(orderData.self.uri.split(`/carts/${Config.cortexApi.scope}/`)[1], product._item[0]._definition[0]['display-name'], product._item[0]._code[0].code, product._item[0]._price[0]['purchase-price'][0].display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag['display-value'] : '', product.quantity));
+      const deliveries = (orderData.order.deliveries) ? orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption.cost.display : '';
+      trackAddTransactionAnalytics(orderData.self.uri.split(`/carts/${Config.cortexApi.scope}/`)[1], orderData.order.total.cost.amount, deliveries, orderData.order.tax.total.display);
+      orderData.lineitems.elements.map((product) => {
+        const categoryTag = (product.item.definition.details) ? (product.item.definition.details.find(detail => detail.displayName === 'Tag')) : '';
+        return (trackAddItemAnalytics(orderData.self.uri.split(`/carts/${Config.cortexApi.scope}/`)[1], product.item.definition.displayName, product.item.code.code, product.item.price.purchasePrice.display, (categoryTag !== undefined && categoryTag !== '') ? categoryTag.displayValue : '', product.quantity));
       });
       sendAnalytics();
     }
@@ -267,9 +292,9 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
 
   renderShippingOption() {
     const { orderData } = this.state;
-    const deliveries = orderData._order[0]._deliveries;
+    const { deliveries } = orderData.order;
     if (deliveries) {
-      const [option] = orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption;
+      const option = orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption;
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
           <h3>
@@ -284,9 +309,9 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
 
   renderShippingAddress() {
     const { orderData } = this.state;
-    const deliveries = orderData._order[0]._deliveries;
+    const { deliveries } = orderData.order;
     if (deliveries) {
-      const [shippingAddress] = orderData._order[0]._deliveries[0]._element[0]._destinationinfo[0]._destination;
+      const shippingAddress = orderData.order.deliveries.elements[0].destinationinfo.destination;
       const { name, address } = shippingAddress;
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
@@ -302,7 +327,7 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
 
   renderBillingAddress() {
     const { orderData } = this.state;
-    const [billingAddress] = orderData._order[0]._billingaddressinfo[0]._billingaddress;
+    const billingAddress = orderData.order.billingaddressinfo.billingaddress;
     const { name, address } = billingAddress;
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
@@ -316,7 +341,7 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
 
   renderPaymentMethod() {
     const { orderData } = this.state;
-    const displayName = orderData._order[0]._paymentmethodinfo[0]._paymentmethod[0];
+    const displayName = orderData.order.paymentmethodinfo.paymentmethod;
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
         <h3>
@@ -329,12 +354,12 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
 
   render() {
     const { orderData, giftCertificateEntity, isLoading } = this.state;
-    const isValid = (orderData && orderData._order[0]._purchaseform[0].links[0] && orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri);
+    const isValid = (orderData && orderData.order.purchaseform && orderData.order.deliveries.elements[0].shippingoptioninfo.shippingoption && orderData.order.billingaddressinfo.billingaddress && orderData.order.paymentmethodinfo.paymentmethod);
     let debugMessages = '';
-    if (orderData && orderData._order[0]) {
-      const { messages } = orderData._order[0];
+    if (orderData && orderData.order) {
+      const { messages } = orderData.order;
       for (let i = 0; i < messages.length; i++) {
-        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
+        debugMessages = debugMessages.concat(`${messages[0].debugMessages} \n `);
       }
     }
     const itemDetailLink = '/itemdetail';
@@ -352,10 +377,10 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
               {orderData && (
                 <div className="order-main-container" style={{ display: 'block' }}>
                   <div className="order-options-container" style={{ display: 'block' }}>
-                    {(orderData._order[0]._deliveries) && this.renderShippingOption()}
-                    {(orderData._order[0]._deliveries) && this.renderShippingAddress()}
-                    {(orderData._order[0]._billingaddressinfo) && this.renderBillingAddress()}
-                    {(orderData._order[0]._paymentmethodinfo) && this.renderPaymentMethod()}
+                    {(orderData.order.deliveries) && this.renderShippingOption()}
+                    {(orderData.order.deliveries) && this.renderShippingAddress()}
+                    {(orderData.order.billingaddressinfo) && this.renderBillingAddress()}
+                    {(orderData.order.paymentmethodinfo) && this.renderPaymentMethod()}
                   </div>
                   <div className="order-items-container" style={{ display: 'block' }}>
                     <OrderTableMain data={orderData} itemDetailLink={itemDetailLink} />

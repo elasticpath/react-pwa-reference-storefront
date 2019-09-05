@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import { login } from '../utils/AuthService';
 import { searchLookup } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
@@ -29,6 +30,7 @@ import ProductListPagination from '../ProductListPagination/productlistpaginatio
 import SearchFacetNavigationMain from '../SearchFacetNavigation/searchfacetnavigation.main';
 import ProductListLoadMore from '../ProductListLoadmore/productlistloadmore';
 import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
+import { ClientContext } from '../ClientContext';
 
 import './searchresultsitems.main.less';
 
@@ -99,14 +101,14 @@ interface SearchResultsItemsMainProps {
 
 interface SearchResultsItemsMainState {
   isLoading: boolean,
-  searchResultsModel: {
-    [key: string]: any
-  },
+  searchResultsModel: cortex.KeywordSearchResult,
   loadSortedProduct: boolean,
   searchKeywords: any
 }
 
 class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps, SearchResultsItemsMainState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     onProductFacetSelection: () => {},
     productLinks: {
@@ -115,7 +117,9 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
       productSearch: '',
       productCategory: '',
     },
-  }
+  };
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -135,43 +139,56 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
     this.handleSortSelection = this.handleSortSelection.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    this.client = this.context;
     const { searchKeywordsProps } = this.props;
-    this.getSearchData(searchKeywordsProps);
+    await this.getSearchData(searchKeywordsProps);
   }
 
-  componentWillReceiveProps(nextProps) {
+  async componentWillReceiveProps(nextProps) {
     const { searchKeywordsProps } = nextProps;
-    this.getSearchData(searchKeywordsProps);
+    await this.getSearchData(searchKeywordsProps);
   }
 
-  getSearchData(searchKeywordsProps) {
+  async getSearchData(searchKeywordsProps) {
     this.setState({
       isLoading: true,
       searchKeywords: searchKeywordsProps,
     });
-    login().then(() => {
-      let searchKeyword = searchKeywordsProps.match.params;
-      let searchUrl = '';
-      if (!searchKeyword['0'] || searchKeyword['0'] === undefined) {
-        searchKeyword = searchKeywordsProps.match.params.keywords;
-      } else {
-        searchKeyword = searchKeywordsProps.match.params.keywords;
-        searchUrl = searchKeywordsProps.match.params['0'];
-      }
-      searchLookup((searchUrl === '') ? searchKeyword : searchUrl)
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-            searchResultsModel: res,
-            searchKeywords: searchKeyword,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    let searchKeyword = searchKeywordsProps.match.params;
+    let searchUrl = '';
+    if (!searchKeyword['0'] || searchKeyword['0'] === undefined) {
+      searchKeyword = searchKeywordsProps.match.params.keywords;
+    } else {
+      searchKeyword = searchKeywordsProps.match.params.keywords;
+      searchUrl = searchKeywordsProps.match.params['0'];
+    }
+    const requestPaylod = (searchUrl === '') ? searchKeyword : searchUrl;
+    const body = { keywords: requestPaylod, pageSize: 5 };
+    try {
+      const fetchFormshRes = await this.client.root().fetch({
+        searches: {
+          offersearchform: {},
+          keywordsearchform: {},
+        },
+      });
+      const searchDataRes = await fetchFormshRes.searches.keywordsearchform(body).fetch({
+        element: {
+          availability: {},
+          definition: {},
+          code: {},
+          price: {},
+        },
+      });
+      this.setState({
+        isLoading: false,
+        searchResultsModel: searchDataRes,
+        searchKeywords: searchKeyword,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   handleSortSelection(event) {
@@ -225,8 +242,8 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
       isLoading, searchResultsModel, searchKeywords, loadSortedProduct,
     } = this.state;
     const { productLinks } = this.props;
-    const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
-    const noProducts = !products || !products._element;
+    const products = searchResultsModel.items ? searchResultsModel.items : searchResultsModel;
+    const noProducts = !products || !products.elements;
     const searchKeywordString = searchKeywords;
     const propCompareButton = false;
     return (

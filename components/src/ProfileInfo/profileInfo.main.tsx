@@ -40,14 +40,14 @@ interface ProfileInfoMainProps {
 interface ProfileInfoMainState {
   inEditMode: boolean,
   failedSubmit: boolean,
-  firstName: any,
-  lastName: any
+  firstName: string,
+  lastName: string
 }
 
 class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoMainState> {
   static defaultProps = {
     isDisabled: false,
-  }
+  };
 
   static contextType = ClientContext;
 
@@ -70,7 +70,7 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
     this.submitPersonalInfoChange = this.submitPersonalInfoChange.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 
@@ -101,15 +101,22 @@ class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoM
       firstName, lastName,
     } = this.state;
     const { onChange } = this.props;
-    const root = await this.client.root().fetch({ defaultprofile: {} });
-    await this.client.profile(root.defaultprofile.uri).update({
-      givenName: firstName,
-      familyName: lastName,
-      profileId: '',
-    });
-    onChange();
-    this.cancel();
-    onChange();
+    try {
+      const root = await this.client.root().fetch({ defaultprofile: {} });
+      await this.client.profile(root.defaultprofile.uri).update({
+        givenName: firstName,
+        familyName: lastName,
+        profileId: '',
+      });
+      this.cancel();
+      await onChange({
+        familyName: lastName,
+        givenName: firstName,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   render() {

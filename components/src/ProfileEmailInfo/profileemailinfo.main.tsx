@@ -26,6 +26,14 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './profileemailinfo.main.less';
 
+const zoomProfileData: cortex.RootFetch = {
+  defaultprofile: {
+    emails: {
+      emailform: {},
+    },
+  },
+};
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -62,7 +70,7 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     this.submitEmailChange = this.submitEmailChange.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.client = this.context;
   }
 
@@ -86,17 +94,8 @@ class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, Pr
     const { profileInfo, onChange } = this.props;
     if (!profileInfo) return;
 
-    const root = await this.client.root().fetch(
-      {
-        defaultprofile: {
-          emails: {
-            emailform: {},
-          },
-        },
-      },
-    );
-
     try {
+      const root = await this.client.root().fetch(zoomProfileData);
       await root.defaultprofile.emails.emailform({
         emailId: '',
         email,

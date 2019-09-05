@@ -36,26 +36,26 @@ interface OrderTableLineItemProps {
 
 const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (props: OrderTableLineItemProps) => {
   const { item, itemDetailLink } = props;
-  const { code } = item._item[0]._code[0];
-  const displayName = item._item[0]._definition[0]['display-name'];
-  const options = item._item[0]._definition[0]._options;
+  const { code } = item.item.code;
+  const name = item.item.definition.displayName;
+  const definitionOptions = item.item.definition.options;
   const { quantity } = item;
-  const totalPrice = item._total[0].cost[0].display;
+  const totalPrice = item.total.cost[0].display;
   Config = getConfig().config;
 
   const renderBundleConfiguration = () => {
     let bundleConfigs = null;
-    if (item._components) {
-      bundleConfigs = (item._components && item._components[0] && item._components[0]._element) ? (item._components[0]._element) : (null);
+    if (item.components) {
+      bundleConfigs = (item.components && item.components && item.components.elements) ? (item.components.elements) : (null);
     }
-    if (item._dependentlineitems) {
-      bundleConfigs = (item._dependentlineitems && item._dependentlineitems[0] && item._dependentlineitems[0]._element) ? (item._dependentlineitems[0]._element) : (null);
+    if (item.dependentlineitems) {
+      bundleConfigs = (item.dependentlineitems && item.dependentlineitems && item.dependentlineitems.elements) ? (item.dependentlineitems.elements) : (null);
     }
     if (bundleConfigs) {
       return bundleConfigs.map(config => (
         <li className="bundle-configuration" key={config}>
           <label htmlFor="option-name" className="option-name">
-            {config._item[0]._definition[0]['display-name']}
+            {config.item.definition.displayName}
             &nbsp;
           </label>
         </li>
@@ -83,16 +83,16 @@ const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (pr
   };
 
   const renderOptions = () => {
-    if (options) {
+    if (definitionOptions) {
       return (
-        options[0]._element.map(option => (
-          <li className="order-lineitem-option" key={option['display-name']}>
+        definitionOptions.elements.map(option => (
+          <li className="order-lineitem-option" key={option.displayName}>
             <label htmlFor="order-lineitem-option-value" className="order-lineitem-option-name">
-              {option['display-name']}
+              {option.displayName}
               :&nbsp;
             </label>
             <span className="order-lineitem-option-value">
-              {option._value[0]['display-name']}
+              {option.value.displayName}
             </span>
           </li>
         ))
@@ -116,7 +116,7 @@ const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (pr
       </td>
       <td className="title-col">
         <Link to={`${itemDetailLink}/${encodeURIComponent(code)}`}>
-          {displayName}
+          {name}
         </Link>
       </td>
       <td className="options-col" style={{ display: 'table-cell' }}>

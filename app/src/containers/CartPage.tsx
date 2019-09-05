@@ -21,49 +21,69 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import * as cortex from '@elasticpath/cortex-client';
 import { RouteComponentProps } from 'react-router-dom';
-import { CartMain, CheckoutSummaryList, AddPromotionContainer } from '@elasticpath/store-components';
+import {
+  CartMain, CheckoutSummaryList, AddPromotionContainer, ClientContext,
+} from '@elasticpath/store-components';
 import Config from '../ep.config.json';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
 import './CartPage.less';
 
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'defaultcart',
-  'defaultcart:total',
-  'defaultcart:discount',
-  'defaultcart:appliedpromotions:element',
-  'defaultcart:order:couponinfo:coupon',
-  'defaultcart:order:couponinfo:couponform',
-  'defaultcart:lineitems:element',
-  'defaultcart:lineitems:element:total',
-  'defaultcart:lineitems:element:price',
-  'defaultcart:lineitems:element:availability',
-  'defaultcart:lineitems:element:appliedpromotions',
-  'defaultcart:lineitems:element:appliedpromotions:element',
-  'defaultcart:lineitems:element:item',
-  'defaultcart:lineitems:element:item:code',
-  'defaultcart:lineitems:element:item:definition',
-  'defaultcart:lineitems:element:item:definition:item',
-  'defaultcart:lineitems:element:item:definition:details',
-  'defaultcart:lineitems:element:dependentoptions:element:definition',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:definition',
-  'defaultcart:lineitems:element:item:definition:options:element',
-  'defaultcart:lineitems:element:item:definition:options:element:value',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:choice',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:chosen',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:choice:description',
-  'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
-];
+const zoomDefaultCart: cortex.RootFetch = {
+  defaultcart: {
+    total: {},
+    appliedpromotions: {
+      element: {},
+    },
+    order: {
+      couponinfo: {
+        coupon: {},
+        couponform: {},
+      },
+    },
+    lineitems: {
+      element: {
+        total: {},
+        price: {},
+        availability: {},
+        appliedpromotions: {
+          element: {},
+        },
+        item: {
+          code: {},
+          definition: {
+            options: {
+              element: {
+                value: {},
+                selector: {
+                  choice: {},
+                  chosen: {},
+                },
+              },
+            },
+          },
+        },
+        dependentlineitems: {
+          element: {
+            item: {
+              definition: {},
+            },
+          },
+        },
+      },
+    },
+  },
+};
 
 interface CartPageState {
-    cartData: any,
+    cartData: cortex.Cart,
     isLoading: boolean,
     invalidPermission: boolean,
 }
 
 class CartPage extends React.Component<RouteComponentProps, CartPageState> {
+  static contextType = ClientContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -76,46 +96,40 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.handleItemRemove = this.handleItemRemove.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchCartData();
+  client: cortex.IClient;
+
+  async componentDidMount() {
+    this.client = this.context;
+    await this.fetchCartData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchCartData();
+  async componentWillReceiveProps() {
+    await this.fetchCartData();
   }
 
-  fetchCartData() {
-    login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          if (!res._defaultcart) {
-            this.setState({
-              invalidPermission: true,
-            });
-          } else {
-            this.setState({
-              cartData: res._defaultcart[0],
-              isLoading: false,
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+  async fetchCartData() {
+    try {
+      const cartRes = await this.client.root().fetch(zoomDefaultCart);
+      if (!cartRes.defaultcart) {
+        this.setState({
+          invalidPermission: true,
         });
-    });
+      } else {
+        this.setState({
+          cartData: cartRes.defaultcart,
+          isLoading: false,
+        });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
-  handleQuantityChange() {
+  async handleQuantityChange() {
     const { location, history } = this.props;
     this.setState({ isLoading: true });
-    this.fetchCartData();
+    await this.fetchCartData();
     history.push(location.path);
   }
 
@@ -164,17 +178,19 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
   renderDiscount() {
     const { cartData } = this.state;
     if (cartData._discount) {
-      return (
-        <li className="cart-discount">
-          <label htmlFor="cart_summary_discount_label" className="cart-summary-label-col">
-            {intl.get('discount-at-checkout')}
+      return cartData.discount
+        ? (
+          <li className="cart-discount">
+            <label htmlFor="cart_summary_discount_label" className="cart-summary-label-col">
+              {intl.get('discount-at-checkout')}
             :&nbsp;
-          </label>
-          <span className="cart-summary-value-col">
-            {cartData._discount[0].discount[0].display}
-          </span>
-        </li>
-      );
+            </label>
+            <span className="cart-summary-value-col">
+              {cartData.discount.discount[0].display}
+            </span>
+          </li>
+        )
+        : '';
     }
     return ('');
   }
@@ -192,7 +208,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                   {intl.get('shopping-cart')}
                   &nbsp;
                   (
-                    {cartData['total-quantity']}
+                    {cartData.totalQuantity}
                   )
                 </h1>
               )}
@@ -207,7 +223,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
           {cartData && !isLoading && (
             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
               <CartMain
-                empty={!cartData['total-quantity'] || cartData._lineitems === undefined}
+                empty={!cartData.totalQuantity || cartData.lineitems === undefined}
                 cartData={cartData}
                 handleQuantityChange={() => { this.handleQuantityChange(); }}
                 onItemConfiguratorAddToCart={this.handleItemConfiguratorAddToCart}
@@ -227,7 +243,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                     <div>
-                      <button className="ep-btn primary wide btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
+                      <button className="ep-btn primary wide btn-cmd-checkout" disabled={!cartData.totalQuantity} type="button" onClick={() => { this.checkout(); }}>
                         {intl.get('proceed-to-checkout')}
                       </button>
                     </div>
