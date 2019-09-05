@@ -162,7 +162,8 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
         bill_to_address_state: '',
         bill_to_address_country: '',
         bill_to_address_postal_code: '',
-        receipt_page_redirect_url: 'http://localhost:8080',
+        override_custom_receipt_page: 'https://bc0mz3xw33.execute-api.us-west-2.amazonaws.com/beta',
+        override_custom_cancel_page: 'https://wvb50xo252.execute-api.us-west-2.amazonaws.com/beta',
       };
       const zoomArrayProfile = [
         'defaultcart',
