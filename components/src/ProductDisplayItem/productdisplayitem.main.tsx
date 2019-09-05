@@ -365,82 +365,43 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     });
   }
 
-  addToCart(event) {
+  async addToCart(event) {
+    event.preventDefault();
     const { productData, itemQuantity, itemConfiguration } = this.state;
     const { onAddToCart } = this.props;
-    login().then(() => {
-      const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+    try {
       const body:any = {};
       body.quantity = itemQuantity;
       if (itemConfiguration) {
         body.configuration = itemConfiguration;
       }
-      cortexFetch(addToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onAddToCart();
-          } else {
-            let debugMessages = '';
-            res.json().then((json) => {
-              for (let i = 0; i < json.messages.length; i++) {
-                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-              }
-            }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-    event.preventDefault();
+
+      await productData.addtocartform(body).fetch({});
+      onAddToCart();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      this.setState({ addToCartFailedMessage: error.debugMessage });
+    }
   }
 
-  addToWishList(event) {
+  async addToWishList(event) {
+    event.preventDefault();
     const { productData, itemQuantity, itemConfiguration } = this.state;
     const { onAddToWishList } = this.props;
-    login().then(() => {
-      const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
-      const body:any = {};
+    try {
+      const body: any = {};
       body.quantity = itemQuantity;
       if (itemConfiguration) {
         body.configuration = itemConfiguration;
       }
-      cortexFetch(addToWishListLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onAddToWishList();
-          } else {
-            let debugMessages = '';
-            res.json().then((json) => {
-              for (let i = 0; i < json.messages.length; i++) {
-                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-              }
-            }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-    event.preventDefault();
+      await productData.addtowishlistform(body).fetch({});
+      onAddToWishList();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      this.setState({ addToCartFailedMessage: error.debugMessage });
+    }
   }
 
   urlExists(url, callback) {
@@ -581,7 +542,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                   name={Component.displayName}
                   id={`selectorWeight_${Element.description.displayName.toLowerCase().replace(/ /g, '_')}${productData.code.code}`}
                   value={(Element.selectaction) ? Element.selectaction.self.uri : ''}
-                  defaultChecked={Element.description.displayName === Component.defaultChousen || Element.selectaction.self.uri === selectionValue}
+                  defaultChecked={Element.description.displayName === Component.defaultChosen || Element.selectaction.self.uri === selectionValue}
                 />
                 <label htmlFor={`selectorWeight_${Element.description.displayName.toLowerCase().replace(/ /g, '_')}${productData.code.code}`} style={{ background: Element.description.displayName }}>
                   {Element.description.displayName}
@@ -764,7 +725,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                       <div className="form-content form-content-submit col-sm-offset-4">
                         <button
                           className="ep-btn primary wide btn-itemdetail-addtocart"
-                          disabled={!availability || !productData._addtocartform}
+                          disabled={!availability || !productData.addtocartform}
                           id="product_display_item_add_to_cart_button"
                           type="submit"
                         >
@@ -778,14 +739,14 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                     </div>
 
                   </form>
-                  {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform && !(Object.keys(productData._addtocartform[0].configuration).length > 0)) ? (
+                  {(ProductDisplayItemMain.isLoggedIn(Config) && productData.addtocartform) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
                           <button
                             onClick={this.addToWishList}
                             className="ep-btn wide btn-itemdetail-addtowishlist"
-                            disabled={!availability || !productData._addtowishlistform}
+                            disabled={!availability || !productData.addtowishlistform}
                             id="product_display_item_add_to_wish_list_button"
                             type="submit"
                           >
