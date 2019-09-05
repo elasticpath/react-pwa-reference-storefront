@@ -107,7 +107,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     const { item, handleQuantityChange } = this.props;
     const { quantity } = this.state;
     if (quantity === '') {
-      this.setState({ quantity: '1' });
+      this.setState({ quantity: 1 });
     }
     try {
       await this.client.lineItem(item.uri).update({ quantity });
@@ -121,14 +121,14 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
   handleQuantityDecrement() {
     const { quantity } = this.state;
     if (quantity > 1) {
-      const newItemQuantity = parseInt(quantity, 10) - 1;
+      const newItemQuantity = quantity - 1;
       this.setState({ quantity: newItemQuantity });
     }
   }
 
   handleQuantityIncrement() {
     const { quantity } = this.state;
-    const newItemQuantity = parseInt(quantity, 10) + 1;
+    const newItemQuantity = quantity + 1;
     this.setState({ quantity: newItemQuantity });
   }
 

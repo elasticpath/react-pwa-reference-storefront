@@ -190,7 +190,6 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
             definition: {},
             code: {},
             availability: {},
-            addtocartform: {},
           },
           options: {
             element: {
@@ -200,7 +199,6 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
           components: {
             element: {
               item: {
-                addtocartform: {},
                 availability: {},
                 definition: {},
                 code: {},
@@ -220,7 +218,7 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
       });
       this.giftCertificatesAddToCart();
       this.trackTransactionAnalytics();
-      history.push('/purchaseReceipt', { data: JSON.stringify(completePurchaseRes) });
+      history.push('/purchaseReceipt', { data: completePurchaseRes });
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

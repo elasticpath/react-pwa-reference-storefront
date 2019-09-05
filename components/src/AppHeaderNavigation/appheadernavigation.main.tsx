@@ -152,7 +152,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
         this.setState({
           navigations: navigationData,
           /* eslint-disable react/no-unused-state */
-          originalMinimizedNav: JSON.parse(JSON.stringify(navigationData)),
+          originalMinimizedNav: navigationData,
         });
       }
     } catch (error) {
@@ -171,7 +171,7 @@ class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainPro
           originalMinimizedNav,
         } = state;
 
-        const returnNav = JSON.parse(JSON.stringify(originalMinimizedNav));
+        const returnNav = originalMinimizedNav;
 
         const loPathsToChange = AppHeaderNavigationMain.getListOfPathsToAlterShow(path);
 

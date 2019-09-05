@@ -525,18 +525,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
         description.deletable = false;
         paymentMethods.push(description);
       }
-      const { selector } = orderData.order.paymentmethodinfo;
-      if (selector) {
-        const choices = selector.choice || [];
-        // choices.map((choice) => {
-        //   const description = { ...choice.description };
-        //   description.selectaction = choice.uri;
-        //   description.checked = false;
-        //   description.deletable = true;
-        //   paymentMethods.push(description);
-        //   return description;
-        // });
-      }
+
       return (
         paymentMethods.map((payment) => {
           const {

@@ -170,7 +170,7 @@ class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormM
         await rootRes.defaultprofile.addresses.addressform(userAddress).fetch({});
       }
 
-      await this.setState({ failedSubmit: false }, async () => {
+      this.setState({ failedSubmit: false }, async () => {
         await fetchData();
         onCloseModal();
       });

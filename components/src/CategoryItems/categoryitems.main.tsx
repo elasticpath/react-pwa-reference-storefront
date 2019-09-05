@@ -102,7 +102,6 @@ const zoomNavigation: cortex.NavigationFetch = {
       },
     },
   },
-  // parent: {},
   sortattributes: {
     choice: {
       description: {},
@@ -233,7 +232,6 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
       this.setState({
         categoryModel: categoryDataRes,
         categoryModelDisplayName: categoryDataRes.displayName,
-        // categoryModelParentDisplayName: categoryDataRes.parent ? categoryDataRes.parent[0].displayName : '',
         categoryModelId: categoryId,
       });
       const { categoryModel } = this.state;

@@ -42,7 +42,7 @@ const PurchaseReceiptPage = (props: RouteComponentProps) => {
           <h2>
             {intl.get('order-processed-message')}
           </h2>
-          <PurchaseDetailsMain data={JSON.parse(location.state.data)} onReorderAllProducts={handleReorderAllProducts} itemDetailLink={itemDetailLink} />
+          <PurchaseDetailsMain data={location.state.data} onReorderAllProducts={handleReorderAllProducts} itemDetailLink={itemDetailLink} />
         </div>
       </div>
     </div>
