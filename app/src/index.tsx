@@ -28,9 +28,9 @@ import './theme/index.less';
 import epConfig from './ep.config.json';
 import * as UserPrefs from './utils/UserPrefs';
 
-import './App/src/theme/reset.less';
+import './theme/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App/src/theme/style.less';
+import './theme/style.less';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const locales = {};
