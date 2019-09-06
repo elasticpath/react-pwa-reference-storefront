@@ -22,9 +22,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 // Import custom required styles
-import '../style/reset.less';
+import '../../../app/src/theme/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../style/style.less';
+import '../../../app/src/theme/style.less';
+
 import {
   mockProductDisplayItemMainPlain,
   mockProductDisplayItemMainColorAndSize,
