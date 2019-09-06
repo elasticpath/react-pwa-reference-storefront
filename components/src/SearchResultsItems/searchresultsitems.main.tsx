@@ -244,7 +244,7 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
     } = this.state;
     const { productLinks } = this.props;
     const products = searchResultsModel.items ? searchResultsModel.items : searchResultsModel;
-    const noProducts = !products || !products.elements;
+    const noProducts = !products || !products.elements || !products.elements.length;
     const propCompareButton = false;
     return (
       <div className="category-items-container container-3">
