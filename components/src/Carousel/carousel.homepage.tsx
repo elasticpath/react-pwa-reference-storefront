@@ -24,10 +24,10 @@ import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-import carouselBaner1 from '../images/carousel-images/baner_1.jpg';
-import carouselBaner2 from '../images/carousel-images/baner_2.jpg';
-import carouselBaner3 from '../images/carousel-images/baner_3.jpg';
-import carouselBaner4 from '../images/carousel-images/baner_4.jpg';
+import carouselBaner1 from '../../../app/src/images/carousel-images/baner_1.jpg';
+import carouselBaner2 from '../../../app/src/images/carousel-images/baner_2.jpg';
+import carouselBaner3 from '../../../app/src/images/carousel-images/baner_3.jpg';
+import carouselBaner4 from '../../../app/src/images/carousel-images/baner_4.jpg';
 
 import './carousel.homepage.less';
 
