@@ -100,5 +100,12 @@ module.exports = {
       var: 'react-router-dom',
       window: 'ReactRouterDOM',
     },
+    'react-router': {
+        commonjs: 'react-router',
+        commonjs2: 'react-router',
+        amd: 'react-router',
+        var: 'react-router',
+        window: 'ReactRouter',
+      },
   },
 };
