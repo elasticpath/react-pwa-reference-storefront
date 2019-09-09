@@ -226,12 +226,12 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                   )}
                   <li className="dropdown-item">
                     {(Config.b2b.enable) ? (
-                      <Link to={`${keycloakLogoutRedirectUrl}`} className="login-auth-service-btn">
+                      <a href={`${keycloakLogoutRedirectUrl}`} className="login-auth-service-btn">
                         <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                           <span className="icon" />
                           {intl.get('logout')}
                         </button>
-                      </Link>
+                      </a>
                     ) : (
                       <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                         <span className="icon" />
