@@ -31,56 +31,33 @@ interface ProductListPaginationProps {
   paginationDataProps: { [key: string]: any },
 }
 
-interface ProductListPaginationState {
-  paginationData: { [key: string]: any },
-}
+function ProductListPagination(props: ProductListPaginationProps) {
+  ({ intl } = getConfig());
+  const { paginationDataProps } = props;
 
-class ProductListPagination extends React.Component<ProductListPaginationProps, ProductListPaginationState> {
-  static defaultProps = {
-    isTop: false,
-    productListPaginationLinks: {
-      search: '',
-      category: '',
-    },
-  };
-
-  constructor(props) {
-    super(props);
-    const { paginationDataProps } = this.props;
-    ({ intl } = getConfig());
-    this.state = { paginationData: paginationDataProps };
-  }
-
-  componentWillReceiveProps(nextProps: Readonly<ProductListPaginationProps>) {
-    this.setState({ paginationData: nextProps.paginationDataProps });
-  }
-
-  render() {
-    const { paginationData } = this.state;
-    if (paginationData.pagination) {
-      return (
-        <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
-          <div className="total-results">
-            <span className="total-results-value">
-              {intl.get('viewing')}
-              &nbsp;
-              {paginationData.pagination.resultsOnPage}
-            </span>
+  if (paginationDataProps.pagination) {
+    return (
+      <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
+        <div className="total-results">
+          <span className="total-results-value">
+            {intl.get('viewing')}
             &nbsp;
-            <span className="results-displayed-value">
-              {intl.get('of')}
-              &nbsp;
-              {paginationData.pagination.results}
-              &nbsp;
-              {intl.get('products')}
-            </span>
-          </div>
+            {paginationDataProps.pagination.resultsOnPage}
+          </span>
+          &nbsp;
+          <span className="results-displayed-value">
+            {intl.get('of')}
+            &nbsp;
+            {paginationDataProps.pagination.results}
+            &nbsp;
+            {intl.get('products')}
+          </span>
         </div>
-      );
-    }
-
-    return (<div className="loader" />);
+      </div>
+    );
   }
+
+  return (<div className="loader" />);
 }
 
 export default ProductListPagination;

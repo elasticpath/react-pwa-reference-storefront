@@ -33,7 +33,7 @@ interface ProductListLoadMoreProps{
         [key: string]: any
     },
     handleDataChange: (...args: any[]) => any,
-    itemsZoom: cortex.NavigationFetch | { [key: string]: any }
+    itemsZoom: cortex.NavigationFetch
 }
 interface ProductListLoadMoreState {
     canLoadMore: boolean,
