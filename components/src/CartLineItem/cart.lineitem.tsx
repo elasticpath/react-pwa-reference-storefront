@@ -24,7 +24,7 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
-import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
+import imgPlaceholder from '../../../app/src/images/img_missing_horizontal@2x.png';
 import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';

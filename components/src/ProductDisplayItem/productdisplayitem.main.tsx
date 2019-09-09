@@ -25,7 +25,7 @@ import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import imgMissingHorizontal from '../images/img_missing_horizontal@2x.png';
+import imgMissingHorizontal from '../../../app/src/images/img_missing_horizontal@2x.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';

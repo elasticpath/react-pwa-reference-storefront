@@ -24,7 +24,7 @@ import React from 'react';
 
 import './quickorderform.less';
 import { withRouter } from 'react-router';
-import imgPlaceholder from '../images/img_missing_horizontal@2x.png';
+import imgPlaceholder from '../../../app/src/images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
