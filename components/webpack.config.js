@@ -18,17 +18,28 @@
  *
  *
  */
+const path = require('path');
+const merge = require('webpack-merge');
+const configBase = require('./webpack.config.base.js');
 
-
-// This is a custom Jest transformer turning style imports into empty objects.
-// http://facebook.github.io/jest/docs/en/webpack.html
-
-module.exports = {
-  process() {
-    return 'module.exports = {};';
+const cjsConfig = merge(configBase, {
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, './build/cjs'),
+    library: 'index',
+    libraryTarget: 'commonjs2',
   },
-  getCacheKey() {
-    // The output is always the same.
-    return 'cssTransform';
+});
+
+const umdConfig = merge(configBase, {
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, './build/umd'),
+    library: 'index',
+    libraryTarget: 'umd',
   },
+});
+
+module.exports = function (webpackEnv) {
+  return [cjsConfig, umdConfig];
 };

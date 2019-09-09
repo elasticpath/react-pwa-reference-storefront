@@ -1,29 +1,29 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "esnext",
+    "module": "commonjs",
     "noImplicitAny": false,
-    "esModuleInterop": true,
     "jsx": "react",
-    "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
     "noStrictGenericChecks": true,
+    "strictNullChecks": false,
     "lib": [
       "dom",
       "dom.iterable",
+      "es2015",
       "esnext"
     ],
-    "allowJs": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
     "noEmit": false,
-    "declaration": false,
-    "outDir": "build"
+    "outDir": "build",
+    "esModuleInterop":true,
+    "declarationMap": true
   },
   "files": [
     "custom_typings/image-loader.d.ts",
@@ -31,5 +31,6 @@
   ],
   "include": [
     "src"
-  ]
+  ],
+  "exclude": ["node_modules","**/*.stories.tsx"]
 }
