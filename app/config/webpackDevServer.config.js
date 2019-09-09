@@ -25,7 +25,6 @@ const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const fs = require('fs');
-const bodyParser = require('body-parser');
 const paths = require('./paths');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
@@ -129,21 +128,6 @@ module.exports = function (proxy, allowedHost) {
       // it used the same host and port.
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware());
-
-      app.use(bodyParser.urlencoded({ extended: false }));
-      app.use(bodyParser.json());
-
-      app.post('*', (req, res) => {
-        let data = '';
-        const redirectUrl = req.originalUrl.substr(1);
-
-        if (req.body.payment_token) {
-          data = `${req.body.reason_code}-${req.body.payment_token}-${req.body.req_bill_to_forename}-${req.body.req_bill_to_surname}-${req.body.req_card_type}-${req.body.req_card_number}-${redirectUrl}`;
-        } else {
-          data = `${req.body.reason_code}-${req.body.message}-${redirectUrl}`;
-        }
-        res.redirect(`/paymentdata/${data}`);
-      });
     },
   };
 };

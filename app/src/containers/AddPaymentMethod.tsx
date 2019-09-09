@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
@@ -33,16 +34,18 @@ interface AddPaymentMethodProps {
 interface AddPaymentMethodState {
   isLoading: boolean,
   errorMessage: string,
-  paymentData: any,
 }
 
 class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPaymentMethodState> {
+  static propTypes = {
+    history: ReactRouterPropTypes.history.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
       errorMessage: '',
-      paymentData: [],
     };
     this.submitPayment = this.submitPayment.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -54,15 +57,16 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
   }
 
   submitPayment() {
-    const { match } = this.props;
-
-    let paymentData = match.params.paymentdata;
-    paymentData = paymentData.split('-');
-    this.setState({ paymentData });
-
+    const data = window.location.search.replace('?', '');
+    const paymentData = JSON.parse(`{"${decodeURI(data.replace(/&/g, '","')
+      .replace(/=/g, '":"'))}"}`);
+    let codeCardType = '';
     let cardType = '';
-    if (paymentData[0] === '100') {
-      switch (paymentData[4]) {
+    let paymentForm;
+
+    if (paymentData.payment_token && paymentData.req_card_type && paymentData.req_bill_to_forename && paymentData.req_bill_to_surname && paymentData.req_card_number) {
+      codeCardType = paymentData.req_card_type ? paymentData.req_card_type : '';
+      switch (codeCardType) {
         case '001':
           cardType = 'Visa';
           break;
@@ -74,7 +78,6 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
           break;
         default:
       }
-      let paymentForm;
       login().then(() => {
         cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
           headers: {
@@ -95,8 +98,8 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
                 Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
               },
               body: JSON.stringify({
-                'display-name': `${paymentData[2]} ${paymentData[3]}'s ${cardType} ending in: ${paymentData[5]}`,
-                token: paymentData[1],
+                'display-name': `${paymentData.req_bill_to_forename} ${paymentData.req_bill_to_surname}'s ${cardType} ending in: ${paymentData.req_card_number}`,
+                token: paymentData.payment_token,
               }),
             })
               .then(() => {
@@ -122,8 +125,9 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
           });
       });
     } else {
+      const errorMessage = paymentData.message ? paymentData.message.replace(/\+/g, ' ') : '';
       this.setState({
-        errorMessage: paymentData[1],
+        errorMessage,
         isLoading: false,
       });
     }
@@ -131,24 +135,12 @@ class AddPaymentMethod extends React.Component<AddPaymentMethodProps, AddPayment
 
   handleClose() {
     const { history } = this.props;
-    const { paymentData } = this.state;
-
-    if (paymentData.length === 7) {
-      history.push(`/${paymentData[6]}`);
-    } else {
-      history.push('/');
-    }
+    history.push('/profile');
   }
 
   goToBack() {
     const { history } = this.props;
-    const { paymentData } = this.state;
-
-    if (paymentData.length === 3) {
-      history.push(`/${paymentData[2]}`);
-    } else {
-      history.push('/');
-    }
+    history.push('/profile');
   }
 
   render() {

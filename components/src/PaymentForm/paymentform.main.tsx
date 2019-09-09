@@ -174,8 +174,8 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
         bill_to_address_state: '',
         bill_to_address_country: '',
         bill_to_address_postal_code: '',
-        override_custom_receipt_page: '',
-        override_custom_cancel_page: '',
+        override_custom_receipt_page: Config.creditCardTokenization.overrideCustomReceiptURI,
+        override_custom_cancel_page: Config.creditCardTokenization.overrideCustomCancelURI,
       };
       const zoomArrayProfile = [
         'defaultcart',
@@ -205,8 +205,6 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
               bill_to_address_country: profileData._defaultprofile[0]._addresses[0]._element[0].address['country-name'],
               bill_to_address_postal_code: profileData._defaultprofile[0]._addresses[0]._element[0].address['postal-code'],
               bill_to_address_line1: profileData._defaultprofile[0]._addresses[0]._element[0].address['street-address'],
-              override_custom_receipt_page: window.location.href,
-              override_custom_cancel_page: window.location.href,
             };
             fetch(Config.creditCardTokenization.lambdaURI, {
               method: 'POST',

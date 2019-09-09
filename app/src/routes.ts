@@ -136,7 +136,7 @@ const router = [{
   path: '/password_reset',
   component: ResetPasswordForm,
 }, {
-  path: '/paymentdata/:paymentdata',
+  path: '/newpaymentform/paymentdata',
   component: AddPaymentMethod,
 }, {
   path: '/b2b/account/:uri',

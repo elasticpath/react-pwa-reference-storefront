@@ -109,8 +109,10 @@
     "nodatalinks": true
   },
   "creditCardTokenization": {
-    "enable": false,
-    "lambdaURI": ""
+    "enable": true,
+    "lambdaURI": "",
+    "overrideCustomReceiptURI": "",
+    "overrideCustomCancelURI": ""
   },
   "chatbot": {
     "enable": false,
