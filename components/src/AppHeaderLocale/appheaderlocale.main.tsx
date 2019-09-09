@@ -22,9 +22,9 @@
 import React from 'react';
 import * as UserPrefs from '../utils/UserPrefs';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import currencyLogoCad from '../images/header-icons/ca.svg';
-import currencyLogoEur from '../images/header-icons/eu.svg';
-import headerLogo from '../images/site-images/Company-Logo-v1.png';
+import currencyLogoCad from '../../../app/src/images/header-icons/ca.svg';
+import currencyLogoEur from '../../../app/src/images/header-icons/eu.svg';
+import headerLogo from '../../../app/src/images/site-images/Company-Logo-v1.png';
 
 import './appheaderlocale.main.less';
 
