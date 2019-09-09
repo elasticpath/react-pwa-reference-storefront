@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { bloomreachSuggestionSearch } from '../utils/BloomreachSearchService';
 import './bloomreach.headersearch.main.less';
 
@@ -96,7 +96,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       });
   }
 
-  search(event?: Event) {
+  search(event?: FormEvent<HTMLFormElement>) {
     const { onSearchPage } = this.props;
     const { keywords } = this.state;
 
@@ -150,7 +150,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
-        <form className="search-form" onSubmit={this.search}>
+        <form className="search-form" onSubmit={event => this.search(event)}>
           <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onFocus={BloomreachHeaderSearchMain.inputOnFocus} onBlur={BloomreachHeaderSearchMain.inputOnFocusOut} />
           <div className="search-icon" />
           {this.suggestionsListComponent()}
