@@ -94,6 +94,38 @@
     "pageId": "<PAGE_ID>",
     "applicationId": "<APP_ID>"
   },
+  "bloomreachSearch": {
+    "enable": true,
+    "config": {
+      "baseUri": "http://core.dxpapi.com/api/v1/core/?",
+      "accountId": "account_id=6226",
+      "authKey": "auth_key=fcao6uq86z58xup0",
+      "domainKey": "domain_key=elastic_path",
+      "requestId": "request_id=1239723156472",
+      "brUID2":"_br_uid_2=uid%3D8030319374785%3Av%3D11.8%3Ats%3D1536857546532%3Ahc%3D111",
+      "url": "url=www.bloomique.com",
+      "refurl": "ref_url=www.bloomique.com",
+      "keywordSearchConfig": {
+        "requestType": "request_type=search",
+        "rows": "rows=10",
+        "start": "start=0",
+        "facetLimit": "facet.limit=20",
+        "fl": "fl=pid%2Ctitle%2Cbrand%2Cprice%2Csale_price%2Cpromotions%2Cthumb_image%2Csku_thumb_images%2Csku_swatch_images%2Csku_color_group%2Curl%2Cprice_range%2Csale_price_range%2Cdescription",
+        "searchType": "search_type=keyword"
+      },
+      "suggestionConfig": {
+        "baseUri": "http://suggest.dxpapi.com/api/v1/suggest/?",
+        "requestType": "request_type=suggest"
+      },
+      "productRecommendationConfig": {
+        "requestType": "request_type=mlt",
+        "rows": "rows=10",
+        "start": "start=0",
+        "facetLimit": "facet.limit=20",
+        "fl": "fl=pid%2Ctitle%2Cbrand%2Cprice%2Csale_price%2Cpromotions%2Cthumb_image%2Csku_thumb_images%2Csku_swatch_images%2Csku_color_group%2Curl%2Cprice_range%2Csale_price_range%2Cdescription"
+      }
+    }
+  },
   "GDPR": {
     "enable": false
   },
