@@ -335,34 +335,22 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     this.setState({ itemConfiguration });
   }
 
-  handleSkuSelection(event) {
+  async handleSkuSelection(elelent) {
     const { onChangeProductFeature } = this.props;
-    const selfUri = event.target.value;
     this.setState({
       isLoading: true,
     });
-    login().then(() => {
-      cortexFetch(`${selfUri}?followlocation=true&zoom=${zoomArray.sort().join()}`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({}),
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
-          onChangeProductFeature(res._code[0].code);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+
+    try {
+      const product = await elelent.select();
+      this.setState({
+        isLoading: false,
+      });
+      onChangeProductFeature(product.code.code);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   async addToCart(event) {
@@ -533,7 +521,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
           <span className="selector-title">
             {Component.displayName}
           </span>
-          <div className="guide" id={`${(Component.displayName === 'Color') ? 'productdisplay_item_sku_guide' : 'productdisplay_item_size_guide'}`} onChange={this.handleSkuSelection}>
+          <div className="guide" id={`${(Component.displayName === 'Color') ? 'productdisplay_item_sku_guide' : 'productdisplay_item_size_guide'}`}>
             {Component.map(Element => (
               <div key={Element.description.displayName} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
                 <input
@@ -543,6 +531,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                   id={`selectorWeight_${Element.description.displayName.toLowerCase().replace(/ /g, '_')}${productData.code.code}`}
                   value={(Element.selectaction) ? Element.selectaction.self.uri : ''}
                   defaultChecked={Element.description.displayName === Component.defaultChosen || Element.selectaction.self.uri === selectionValue}
+                  onChange={() => this.handleSkuSelection(Element)}
                 />
                 <label htmlFor={`selectorWeight_${Element.description.displayName.toLowerCase().replace(/ /g, '_')}${productData.code.code}`} style={{ background: Element.description.displayName }}>
                   {Element.description.displayName}
