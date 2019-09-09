@@ -21,157 +21,43 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { getConfig } from '../utils/ConfigProvider';
 
 import './productlistpagination.less';
 
-let paginationPreviousLinkVar = '';
-let paginationNextLinkVar = '';
-let searchUrlVar = true;
 let intl = { get: str => str };
 
 interface ProductListPaginationProps {
   paginationDataProps: { [key: string]: any },
-  titleString: string,
-  isTop?: boolean,
-  productListPaginationLinks?: { [key: string]: any },
 }
 
-interface ProductListPaginationState {
-  paginationData: { [key: string]: any },
-  paginationPreviousLink: string,
-  paginationNextLink: string,
-  searchUrl: boolean,
-}
+function ProductListPagination(props: ProductListPaginationProps) {
+  ({ intl } = getConfig());
+  const { paginationDataProps } = props;
 
-class ProductListPagination extends React.Component<ProductListPaginationProps, ProductListPaginationState> {
-  static defaultProps = {
-    isTop: false,
-    productListPaginationLinks: {
-      search: '',
-      category: '',
-    },
-  }
-
-  constructor(props) {
-    super(props);
-    const { paginationDataProps } = this.props;
-    ({ intl } = getConfig());
-    this.state = {
-      paginationData: paginationDataProps,
-      paginationPreviousLink: '',
-      paginationNextLink: '',
-      searchUrl: true,
-    };
-  }
-
-  componentDidMount() {
-    paginationPreviousLinkVar = '';
-    paginationNextLinkVar = '';
-    searchUrlVar = true;
-    this.setState({
-      paginationPreviousLink: paginationPreviousLinkVar,
-      paginationNextLink: paginationNextLinkVar,
-      searchUrl: searchUrlVar,
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    paginationPreviousLinkVar = '';
-    paginationNextLinkVar = '';
-    for (let i = 0; i < nextProps.paginationDataProps.links.length; i++) {
-      if (nextProps.paginationDataProps.links[i].rel === 'previous') {
-        paginationPreviousLinkVar = nextProps.paginationDataProps.links[i].uri;
-      }
-      if (nextProps.paginationDataProps.links[i].rel === 'next') {
-        paginationNextLinkVar = nextProps.paginationDataProps.links[i].uri;
-      }
-    }
-    this.setState({
-      paginationData: nextProps.paginationDataProps,
-      paginationPreviousLink: paginationPreviousLinkVar,
-      paginationNextLink: paginationNextLinkVar,
-    });
-  }
-
-  render() {
-    const {
-      paginationData, paginationNextLink, paginationPreviousLink, searchUrl,
-    } = this.state;
-    const { isTop, titleString, productListPaginationLinks } = this.props;
-    const { productSearch, productCategory } = productListPaginationLinks;
-    if (paginationData.pagination) {
-      const urlPrefix = searchUrl ? productSearch : productCategory;
-      return (
-        <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
-          {
-            isTop ? (
-              <div className="total-results">
-                <span className="total-results-value">
-                  {intl.get('viewing')}
-                  &nbsp;
-                  {paginationData.pagination['results-on-page']}
-                </span>
-                &nbsp;
-                <span className="results-displayed-value">
-                  {intl.get('of')}
-                  &nbsp;
-                  {paginationData.pagination.results}
-                  &nbsp;
-                  {intl.get('products')}
-                </span>
-              </div>
-            ) : ('')}
-          {!isTop && (paginationNextLink !== '' || paginationPreviousLink !== '')
-            ? (
-              <div className="pagination-navigation-container">
-                {paginationPreviousLink !== ''
-                  ? (
-                    <Link to={`${urlPrefix}/${titleString}${paginationPreviousLink}`} className="btn-pagination prev" role="button">
-                      <span className="icon" />
-                      {intl.get('previous')}
-                    </Link>
-                  )
-                  : (
-                    <div className="btn-pagination prev hide" />
-                  )}
-                <span className="pagestate-summary">
-                  <label htmlFor="pagination_curr_page_label" className="pagination-label">
-                    {intl.get('page')}
-                    &nbsp;
-                  </label>
-                  <span className="pagination-value pagination-curr-page-value">
-                    {paginationData.pagination.current}
-                  </span>
-                  <label htmlFor="pagination_total_pages_label" className="pagination-label">
-                    &nbsp;
-                    {intl.get('of')}
-                    &nbsp;
-                  </label>
-                  <span className="pagination-value pagination-total-pages-value">
-                    {paginationData.pagination.pages}
-                  </span>
-                </span>
-                {paginationNextLink !== ''
-                  ? (
-                    <Link to={`${urlPrefix}/${titleString}${paginationNextLink}`} className="btn-pagination next" role="button">
-                      {intl.get('next')}
-                      <span className="icon" />
-                    </Link>
-                  )
-                  : (
-                    <div className="btn-pagination next hide" />
-                  )}
-              </div>
-            )
-            : ('')}
+  if (paginationDataProps.pagination) {
+    return (
+      <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
+        <div className="total-results">
+          <span className="total-results-value">
+            {intl.get('viewing')}
+            &nbsp;
+            {paginationDataProps.pagination.resultsOnPage}
+          </span>
+          &nbsp;
+          <span className="results-displayed-value">
+            {intl.get('of')}
+            &nbsp;
+            {paginationDataProps.pagination.results}
+            &nbsp;
+            {intl.get('products')}
+          </span>
         </div>
-      );
-    }
-
-    return (<div className="loader" />);
+      </div>
+    );
   }
+
+  return (<div className="loader" />);
 }
 
 export default ProductListPagination;

@@ -19,9 +19,10 @@
  *
  */
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import { withRouter } from 'react-router';
 import { getConfig } from '../utils/ConfigProvider';
-import { login } from '../utils/AuthService';
+import { ClientContext } from '../ClientContext';
 
 import './productlistloadmore.less';
 
@@ -32,61 +33,58 @@ interface ProductListLoadMoreProps{
         [key: string]: any
     },
     handleDataChange: (...args: any[]) => any,
-    onLoadMore: (...args: any[]) => any,
+    itemsZoom: cortex.NavigationFetch
 }
 interface ProductListLoadMoreState {
     canLoadMore: boolean,
     isLoading: boolean,
 }
 class ProductListLoadMore extends React.Component<ProductListLoadMoreProps, ProductListLoadMoreState> {
+  static contextType = ClientContext;
+
   constructor(props) {
     super(props);
     ({ intl } = getConfig());
-    const nextLink = props.dataProps.uri;
     this.state = {
-      canLoadMore: Boolean(nextLink),
+      canLoadMore: Boolean(props.dataProps.next),
       isLoading: false,
     };
 
     this.loadMore = this.loadMore.bind(this);
   }
 
+  client: cortex.IClient;
+
   componentWillReceiveProps(nextProps) {
-    const nextLink = nextProps.dataProps.uri;
-    this.setState({ canLoadMore: Boolean(nextLink) });
+    this.setState({ canLoadMore: Boolean(nextProps.dataProps.next) });
   }
 
-  loadMore() {
-    const { dataProps, handleDataChange, onLoadMore } = this.props;
-    this.setState({ isLoading: true });
-    login().then(() => {
-      const nextRel = dataProps.uri;
-      if (nextRel) {
-        onLoadMore(nextRel.uri)
-          .then((res) => {
-            const { _element, links, pagination } = dataProps;
-            const updatedLinks = links.filter(link => link.rel === 'element');
-            const resultsOnPage = pagination['results-on-page'] + res.pagination['results-on-page'];
-            const updatedPagination = pagination;
-            updatedPagination['results-on-page'] = resultsOnPage;
-            const updatedItems = {
-              links: updatedLinks.concat(res.links),
-              messages: res.messages,
-              pagination: updatedPagination,
-              self: res.self,
-              _element: _element.concat(res._element),
-              _sortattributes: res._sortattributes,
-              _facets: res._facets,
-            };
-            handleDataChange(updatedItems);
-            this.setState({ isLoading: false });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
+  async loadMore() {
+    const {
+      dataProps, itemsZoom, handleDataChange,
+    } = this.props;
+    if (dataProps.next) {
+      this.setState({ isLoading: true });
+      try {
+        const nextPage = await dataProps.next(itemsZoom);
+        const { elements, pagination } = dataProps;
+        const resultsOnPage = pagination.resultsOnPage + nextPage.pagination.resultsOnPage;
+        const updatedPagination = { ...pagination, resultsOnPage };
+        const updatedElements = [...elements, ...nextPage.elements];
+        const updatedItems = {
+          ...nextPage,
+          elements: updatedElements,
+          pagination: updatedPagination,
+          next: nextPage.next,
+        };
+        handleDataChange(updatedItems);
+        this.setState({ isLoading: false });
+      } catch (error) {
+        this.setState({ isLoading: false });
+        // eslint-disable-next-line no-console
+        console.error(error.message);
       }
-    });
+    }
   }
 
   render() {
