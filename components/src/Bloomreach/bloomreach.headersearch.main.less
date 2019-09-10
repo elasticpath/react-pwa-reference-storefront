@@ -20,22 +20,6 @@
  */
  @import './../../../app/src/theme/common.less';
  
- .suggestions {
-    list-style: none;
-    margin-top: 0;
-    max-height: 143px;
-    overflow-y: auto;
-    padding-left: 40px;
-    width: 170px;
-    position: absolute;
-    background-color: rgba(0, 0, 0, .5);
-    .suggestion-element {
-      text-align: left;
-      color: white;
-      cursor: pointer;
-    }
-  }
-  
   .main-search-container {
     width: 170px;
     text-align: right;
@@ -43,6 +27,19 @@
     .search-form {
       position: relative;
       display: inline-block;
+
+      // If there is a focus within make suggestions display as well...
+      &:focus-within {
+        .input-search {
+          width: 170px;
+          padding-left: 40px;
+          border-bottom: 1px solid #fff;
+          cursor: auto;
+        }
+        .suggestions {
+          display:list-item;
+        }
+      }
   
       .input-search {
         background: transparent;
@@ -64,12 +61,28 @@
           opacity: 0.3;
           color: #fff;
         }
-  
+        // If there is a focus then make suggestions display...
         &:focus {
           width: 170px;
           padding-left: 40px;
           border-bottom: 1px solid #fff;
           cursor: auto;
+        }
+      }
+
+      .suggestions {
+        display: none;
+        margin-top: 0;
+        max-height: 143px;
+        overflow-y: auto;
+        padding-left: 40px;
+        width: 170px;
+        position: absolute;
+        background-color: rgba(0, 0, 0, .5);
+        .suggestion-element {
+          text-align: left;
+          color: white;
+          cursor: pointer;
         }
       }
   

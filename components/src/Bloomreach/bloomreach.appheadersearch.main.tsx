@@ -27,35 +27,20 @@ const intl = { get: str => str };
 
 interface BloomreachHeaderSearchMainProps {
     isMobileView: boolean,
-    isFocused?: boolean,
     onSearchPage?: (...args: any[]) => any,
 }
 interface BloomreachHeaderSearchMainState {
     keywords: string,
     suggestions: [],
+    focusedElement?: HTMLElement,
+    liElements?: {},
 }
 
 class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
 
   static defaultProps = {
-    isFocused: false,
     onSearchPage: () => {},
-  }
-
-  static inputOnFocusOut() {
-    const suggestionContainer = document.getElementsByClassName('suggestions');
-    if (suggestionContainer !== undefined && suggestionContainer.length > 0) {
-      suggestionContainer[0].setAttribute('style', 'display: none;');
-    }
-  }
-
-  static inputOnFocus() {
-    const suggestionContainer = document.getElementsByClassName('suggestions');
-
-    if (suggestionContainer !== undefined && suggestionContainer.length > 0) {
-      suggestionContainer[0].setAttribute('style', 'display: list-item;');
-    }
   }
 
   constructor(props) {
@@ -63,18 +48,53 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     this.state = {
       keywords: '',
       suggestions: [],
+      focusedElement: null,
+      liElements: {}
     };
     this.searchInput = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
+    this.inputOnFocusOut = this.inputOnFocusOut.bind(this);
+    this.inputOnFocus = this.inputOnFocus.bind(this);
+    this.liOnFocus = this.liOnFocus.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isFocused === true) {
-      setTimeout(() => {
-        this.searchInput.current.focus();
-      }, 500);
-    }
+  inputOnFocus(element) {
+    this.setState({focusedElement:element.currentTarget}, () => {
+      const suggestionContainer = document.getElementsByClassName('suggestions');
+
+      // if (suggestionContainer !== undefined && suggestionContainer.length > 0) {
+      //   suggestionContainer[0].setAttribute('style', 'display: list-item;');
+      // }
+    });
+  }
+
+  inputOnFocusOut(event) {
+    // Need to get the element that is focused out...
+    // Only close the suggestion container if the list inside is not selected.
+    
+    // console.log('inputOnFocusOut');
+    // console.log(document.activeElement);
+    // console.log(document.hasFocus());
+    // const suggestionContainer = document.getElementsByClassName('suggestions');
+    // const { focusedElement } = this.state;
+    // console.log('focusedElement', focusedElement);
+    // console.log(focusedElement.DOCUMENT_TYPE_NODE);
+    // console.log(document.querySelector(":focus"));
+    // if (suggestionContainer !== undefined && suggestionContainer.length > 0 && !focusedElement.DOCUMENT_TYPE_NODE) {
+    //   suggestionContainer[0].setAttribute('style', 'display: none;');
+    // }
+  }
+
+  liOnFocusOut(event) {
+    // console.log(document.activeElement);
+  }
+
+  liOnFocus(event) {
+    // console.log('lionfocus running');
+    // this.setState({focusedElement: event.target},()=>{
+    //   console.log();
+    // });
   }
 
   handleChange(event) {
@@ -124,22 +144,29 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   suggestionListHelper() {
     const { suggestions } = this.state;
 
-    return suggestions.map(suggestion => (
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-      <li className="suggestion-element" key={suggestion} onMouseDown={() => this.handleSuggestionClicked(suggestion)}>
-        {suggestion}
-      </li>
-    ));
+    return suggestions.map(suggestion=> {
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+        return (<li className="suggestion-element" tabIndex={0} onFocus={this.liOnFocus} key={suggestion} onMouseDown={() => this.handleSuggestionClicked(suggestion)}>
+          {suggestion}
+        </li>);
+      }
+    );
   }
 
   suggestionsListComponent() {
     const { suggestions } = this.state;
     if (suggestions.length !== 0) {
-      return (
-        <ul className="suggestions">
-          { this.suggestionListHelper() }
-        </ul>
-      );
+      const currentlyFocusedElementClassName = document.activeElement.className;
+      if (currentlyFocusedElementClassName == 'input-search' || currentlyFocusedElementClassName == 'suggestion-element') {
+        console.log('the currently focused element classname');
+        console.log(currentlyFocusedElementClassName);  
+        return (
+          // TODO: Should create a reference to this suggestion here...
+          <ul className="suggestions">
+            { this.suggestionListHelper() }
+          </ul>
+        );  
+      }
     }
 
     return null;
@@ -151,7 +178,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={event => this.search(event)}>
-          <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onFocus={BloomreachHeaderSearchMain.inputOnFocus} onBlur={BloomreachHeaderSearchMain.inputOnFocusOut} />
+          <input tabIndex={0} className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onFocus={this.inputOnFocus} onBlur={this.inputOnFocusOut} />
           <div className="search-icon" />
           {this.suggestionsListComponent()}
         </form>
