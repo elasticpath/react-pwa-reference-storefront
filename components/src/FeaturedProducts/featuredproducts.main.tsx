@@ -58,7 +58,7 @@ class FeaturedProducts extends React.Component<FeaturedProductsProps, FeaturedPr
   renderFeaturedProducts() {
     const { categoryModel } = this.state;
     const { itemDetailLink } = this.props;
-    return categoryModel._element.map((product) => {
+    return categoryModel.elements.map((product) => {
       if (product.self.type === 'offers.offer') {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
@@ -66,7 +66,7 @@ class FeaturedProducts extends React.Component<FeaturedProductsProps, FeaturedPr
           </li>
         );
       }
-      if (product._code) {
+      if (product.code) {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
             <ProductListItemMain productElement={product} featuredProductAttribute itemDetailLink={itemDetailLink} />
@@ -103,7 +103,7 @@ class FeaturedProducts extends React.Component<FeaturedProductsProps, FeaturedPr
         },
       ],
     };
-    if (categoryModel._element && categoryModel._element.length > 0) {
+    if (categoryModel.elements && categoryModel.elements.length > 0) {
       return (
         <div>
           <div className="product-featured">

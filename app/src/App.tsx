@@ -167,7 +167,7 @@ const Root = (props) => {
 
 const cortexClient: cortex.IClient = cortex.createClient({
   serverBaseUrl: '/cortex',
-  authHeader: () => localStorage.getItem('vestri_oAuthToken') as string,
+  authHeader: () => localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) as string,
   onAuthError: async () => {
     const result = await cortexClient.serverFetch('/oauth2/tokens', {
       method: 'post',
@@ -182,7 +182,7 @@ const cortexClient: cortex.IClient = cortex.createClient({
       },
     });
 
-    localStorage.setItem('vestri_oAuthToken', `Bearer ${result.parsedJson.access_token}`);
+    localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
 
     return true;
   },

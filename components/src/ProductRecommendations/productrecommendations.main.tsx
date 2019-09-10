@@ -72,19 +72,21 @@ class ProductRecommendationsDisplayMain extends React.Component<ProductRecommend
     const data = [];
     const { productData } = this.props;
     const { maxItemsInView } = this.state;
-    const product = productData._recommendations[0]._crosssell[0]._element;
-    if (product && product.length > 0) {
-      const htmlFor = 'Recommendations';
-      data.push(
-        <div className="display" key={htmlFor}>
-          <label className="control-label" htmlFor={htmlFor}>
-            {intl.get('product-recommendations')}
-          </label>
-          <div className="card-deck">
-            {this.renderProductAssociationView(product, maxItemsInView)}
-          </div>
-        </div>,
-      );
+    if (productData.recommendations.crosssell.elements) {
+      const product = productData.recommendations.crosssell_element;
+      if (product && product.length > 0) {
+        const htmlFor = 'Recommendations';
+        data.push(
+          <div className="display" key={htmlFor}>
+            <label className="control-label" htmlFor={htmlFor}>
+              {intl.get('product-recommendations')}
+            </label>
+            <div className="card-deck">
+              {this.renderProductAssociationView(product, maxItemsInView)}
+            </div>
+          </div>,
+        );
+      }
     }
     return (
       <div className="product-recomentations-component" data-region="categoryBrowseRegion" key="categoryBrowseRegion">
