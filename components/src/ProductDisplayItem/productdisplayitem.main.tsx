@@ -24,73 +24,15 @@ import Slider from 'react-slick';
 import * as cortex from '@elasticpath/cortex-client';
 import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
-import { login } from '../utils/AuthService';
-import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../images/img_missing_horizontal@2x.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
-import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { ClientContext } from '../ClientContext';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'availability',
-  'addtocartform',
-  'addtowishlistform',
-  'price',
-  'rate',
-  'definition',
-  'definition:assets:element',
-  'definition:options:element',
-  'definition:options:element:value',
-  'definition:options:element:selector:choice',
-  'definition:options:element:selector:chosen',
-  'definition:options:element:selector:choice:description',
-  'definition:options:element:selector:chosen:description',
-  'definition:options:element:selector:choice:selector',
-  'definition:options:element:selector:chosen:selector',
-  'definition:options:element:selector:choice:selectaction',
-  'definition:options:element:selector:chosen:selectaction',
-  'definition:components',
-  'definition:components:element',
-  'definition:components:element:code',
-  'definition:components:element:standaloneitem',
-  'definition:components:element:standaloneitem:code',
-  'definition:components:element:standaloneitem:definition',
-  'definition:components:element:standaloneitem:availability',
-  'recommendations',
-  'recommendations:crosssell',
-  'recommendations:recommendation',
-  'recommendations:replacement',
-  'recommendations:upsell',
-  'recommendations:warranty',
-  'recommendations:crosssell:element:code',
-  'recommendations:recommendation:element:code',
-  'recommendations:replacement:element:code',
-  'recommendations:upsell:element:code',
-  'recommendations:warranty:element:code',
-  'recommendations:crosssell:element:definition',
-  'recommendations:recommendation:element:definition',
-  'recommendations:replacement:element:definition',
-  'recommendations:upsell:element:definition',
-  'recommendations:warranty:element:definition',
-  'recommendations:crosssell:element:price',
-  'recommendations:recommendation:element:price',
-  'recommendations:replacement:element:price',
-  'recommendations:upsell:element:price',
-  'recommendations:warranty:element:price',
-  'recommendations:crosssell:element:availability',
-  'recommendations:recommendation:element:availability',
-  'recommendations:replacement:element:availability',
-  'recommendations:upsell:element:availability',
-  'recommendations:warranty:element:availability',
-  'code',
-];
 
 const zoom = {
   availability: {},
@@ -383,7 +325,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       if (itemConfiguration) {
         body.configuration = itemConfiguration;
       }
-      await productData.addtowishlistform(body).fetch({});
+      await productData.addtowishlistform({}).fetch({});
       onAddToWishList();
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -409,11 +351,11 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     this.funcName = 'extractPrice';
     let listPrice = 'n/a';
     if (productData.price) {
-      listPrice = productData.price.listPrice.display;
+      listPrice = productData.price.listPrice[0].display;
     }
     let itemPrice = 'n/a';
     if (productData.price) {
-      itemPrice = productData.price.purchasePrice.display;
+      itemPrice = productData.price.purchasePrice[0].display;
     }
     return { listPrice, itemPrice };
   }
@@ -458,10 +400,10 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       return productData.definition.details.map(attribute => (
         <ul className="itemdetail-attribute" key={attribute.name}>
           <li className="itemdetail-attribute-label-col">
-            {attribute.displayName}
+            {attribute['display-name']}
           </li>
           <li className="itemdetail-attribute-value-col">
-            {attribute.displayName}
+            {attribute['display-value']}
           </li>
         </ul>
       ));
@@ -816,8 +758,8 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               </div>
             </div>
           </div>
-          {/* <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} /> */}
-          {/* <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} /> */}
+          <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
+          <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData.code.code} />
         </div>
       );

@@ -126,7 +126,7 @@ class ProductListMain extends React.Component<ProductListMainProps, ProductListM
     const { categoryModel } = this.state;
     const { showCompareButton, productListLinks } = this.props;
     return categoryModel.elements.map((product) => {
-      if (product.items) {
+      if (product.self.type === 'offers.offer') {
         return (
           <li key={`_${Math.random().toString(36).substr(2, 9)}`} className="category-item-container">
             <ProductListItemMain offerData={product} itemDetailLink={productListLinks.itemDetail} />

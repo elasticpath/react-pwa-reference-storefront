@@ -44,13 +44,13 @@ class BundleConstituentsDisplayMain extends React.Component<BundleConstituentsDi
     this.renderProductAssocitationView = this.renderProductAssocitationView.bind(this);
   }
 
-  renderProductAssocitationView(product) {
+  renderProductAssocitationView(products) {
     const data = [];
     const { itemDetailLink } = this.props;
-    product.forEach((element) => {
+    products.forEach((element) => {
       data.push(
         <div className="category-item-container card" key={`_${Math.random().toString(36).substr(2, 9)}`}>
-          <ProductListItemMain productElement={element._standaloneitem[0]} itemDetailLink={itemDetailLink} />
+          <ProductListItemMain productElement={element.standaloneitem} itemDetailLink={itemDetailLink} />
         </div>,
       );
     });
@@ -61,7 +61,7 @@ class BundleConstituentsDisplayMain extends React.Component<BundleConstituentsDi
     const data = [];
     const { productData } = this.props;
     if (productData.definition.components) {
-      const product = productData._definition[0]._components[0]._element;
+      const product = productData.definition.components.elements;
       if (product && product.length > 0) {
         const htmlFor = 'Recommendations';
         data.push(
