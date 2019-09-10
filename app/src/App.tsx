@@ -165,9 +165,27 @@ const Root = (props) => {
   ];
 };
 
-const cortexClient = cortex.createClient({
+const cortexClient: cortex.IClient = cortex.createClient({
   serverBaseUrl: '/cortex',
   authHeader: () => localStorage.getItem('vestri_oAuthToken') as string,
+  onAuthError: async () => {
+    const result = await cortexClient.serverFetch('/oauth2/tokens', {
+      method: 'post',
+      useAuth: false,
+      urlEncoded: true,
+      body: {
+        username: '',
+        password: '',
+        grant_type: 'password',
+        role: 'PUBLIC',
+        scope: Config.cortexApi.scope,
+      },
+    });
+
+    localStorage.setItem('vestri_oAuthToken', `Bearer ${result.parsedJson.access_token}`);
+
+    return true;
+  },
 });
 
 const App = withRouter(withAnalytics(Root));
