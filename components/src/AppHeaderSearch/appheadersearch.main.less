@@ -1,105 +1,105 @@
-/**
- * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
- *
- * This is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this license. If not, see
- *
- *     https://www.gnu.org/licenses/
- *
- *
- */
+// /**
+//  * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+//  *
+//  * This is free software: you can redistribute it and/or modify
+//  * it under the terms of the GNU General Public License as published by
+//  * the Free Software Foundation, either version 3 of the License, or
+//  * (at your option) any later version.
+//  *
+//  * This software is distributed in the hope that it will be useful,
+//  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+//  * GNU General Public License for more details.
+//  *
+//  * You should have received a copy of the GNU General Public License
+//  * along with this license. If not, see
+//  *
+//  *     https://www.gnu.org/licenses/
+//  *
+//  *
+//  */
 
-@import './../../../app/src/theme/common.less';
+// @import './../../../app/src/theme/common.less';
 
-.main-search-container {
-  width: 170px;
-  text-align: right;
+// .main-search-container {
+//   width: 170px;
+//   text-align: right;
 
-  .search-form {
-    position: relative;
-    display: inline-block;
+//   .search-form {
+//     position: relative;
+//     display: inline-block;
 
-    .input-search {
-      background: transparent;
-      padding: 2px 0 2px 35px;
-      width: 35px;
-      transition: width 0.5s ease,
-                  border-color 0.5s,
-                  padding 0.5s ease-in;
-      color: @mainNavigationTextColor;
-      cursor: pointer;
-      outline: 0;
-      border: 0;
-      border-bottom: 1px solid transparent;
-      font-weight: 300;
+//     .input-search {
+//       background: transparent;
+//       padding: 2px 0 2px 35px;
+//       width: 35px;
+//       transition: width 0.5s ease,
+//                   border-color 0.5s,
+//                   padding 0.5s ease-in;
+//       color: @mainNavigationTextColor;
+//       cursor: pointer;
+//       outline: 0;
+//       border: 0;
+//       border-bottom: 1px solid transparent;
+//       font-weight: 300;
 
-      &::placeholder {
-        opacity: 0.3;
-        color: @mainNavigationTextColor;
-      }
+//       &::placeholder {
+//         opacity: 0.3;
+//         color: @mainNavigationTextColor;
+//       }
 
-      &:focus {
-        width: 170px;
-        padding-left: 40px;
-        border-bottom: 1px solid @mainNavigationTextColor;
-        cursor: auto;
-      }
-    }
+//       &:focus {
+//         width: 170px;
+//         padding-left: 40px;
+//         border-bottom: 1px solid @mainNavigationTextColor;
+//         cursor: auto;
+//       }
+//     }
 
-    .search-icon {
-      background: #ffffff00 url('../../../app/src/images/header-icons/magnifying-glass.svg') no-repeat 9px center;
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      width: 35px;
-      height: 24px;
-      pointer-events: none;
-    }
-  }
+//     .search-icon {
+//       background: #ffffff00 url('../../../app/src/images/header-icons/magnifying-glass.svg') no-repeat 9px center;
+//       position: absolute;
+//       left: 0px;
+//       top: 0px;
+//       width: 35px;
+//       height: 24px;
+//       pointer-events: none;
+//     }
+//   }
 
-  &.mobile-view {
-    width: 100%;
-    border-bottom: solid 1px #dedede;
+//   &.mobile-view {
+//     width: 100%;
+//     border-bottom: solid 1px #dedede;
 
-    .search-form {
-      display: block;
+//     .search-form {
+//       display: block;
 
-      .input-search {
-        color: #333;
-        background-color: @mainBackgroundColor;
-        width: 100%;
-        transition: none;
-        font-size: 18px;
-        padding: 10px 45px 10px 20px;
-        border-bottom: 0;
+//       .input-search {
+//         color: #333;
+//         background-color: @mainBackgroundColor;
+//         width: 100%;
+//         transition: none;
+//         font-size: 18px;
+//         padding: 10px 45px 10px 20px;
+//         border-bottom: 0;
 
-        &::placeholder {
-          opacity: 0.3;
-          color: #000;
-        }
+//         &::placeholder {
+//           opacity: 0.3;
+//           color: #000;
+//         }
 
-        &:focus {
-          border-bottom: 0;
-        }
-      }
+//         &:focus {
+//           border-bottom: 0;
+//         }
+//       }
 
-      .search-icon {
-        filter: invert(100%);
-        opacity: 0.5;
-        left: auto;
-        right: 10px;
-        top: 12px;
-      }
-    }
-  }
-}
+//       .search-icon {
+//         filter: invert(100%);
+//         opacity: 0.5;
+//         left: auto;
+//         right: 10px;
+//         top: 12px;
+//       }
+//     }
+//   }
+// }
