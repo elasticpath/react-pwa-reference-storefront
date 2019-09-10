@@ -22,8 +22,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
 
 import './searchfacetnavigation.main.less';
 
@@ -66,38 +64,26 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
     document.body.style.overflow = 'unset';
   }
 
-  handleFacetSelection(facetUri) {
+  async handleFacetSelection(select) {
     const { onFacetSelection } = this.props;
-    login().then(() => {
-      cortexFetch(`${decodeURIComponent(facetUri)}?followlocation=true&zoom=offersearchresult`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({}),
-        })
-        .then(res => res.json())
-        .then((res) => {
-          onFacetSelection(res);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    try {
+      const selectstion = await select();
+      // onFacetSelection(selectstion);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   renderFacetSelectorsChosen(facetselector) {
-    if (facetselector[0]._chosen) {
-      return facetselector[0]._chosen.map((chosen) => {
+    if (facetselector.chosen) {
+      return facetselector.chosen.map((chosen) => {
         if (chosen._description && chosen._selector) {
           return (
-            <li className="list-group-item facet-value" key={chosen._description[0].value}>
-              <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(encodeURIComponent(chosen._selectaction[0].self.uri))}>
+            <li className="list-group-item facet-value" key={chosen.description.value}>
+              <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(() => {})}>
                 <span className="checkmark chosen" />
-                {chosen._description[0].value}
+                {chosen.description.value}
               </button>
             </li>
           );
@@ -109,14 +95,14 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
   }
 
   renderFacetSelectors(facetselector) {
-    if (facetselector[0]._choice) {
-      return facetselector[0]._choice.map((choice) => {
-        if (choice._description && choice._selector) {
+    if (facetselector.choice) {
+      return facetselector.choice.map((choice) => {
+        if (choice.description && choice.select) {
           return (
-            <li className="list-group-item facet-value" key={choice._description[0].value}>
-              <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(encodeURIComponent(choice._selectaction[0].self.uri))}>
+            <li className="list-group-item facet-value" key={choice.description.value}>
+              <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(choice.select)}>
                 <span className="checkmark" />
-                {`${choice._description[0].value} (${choice._description[0].count})`}
+                {`${choice.description.value} (${choice.description.count})`}
               </button>
             </li>
           );
@@ -144,8 +130,8 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
             </div>
             <div id={`${facetDisplayNameId}_facet_values`} className="collapse navbar-collapse in">
               <ul className="list-group list-group-flush">
-                {this.renderFacetSelectorsChosen(facet._facetselector)}
-                {this.renderFacetSelectors(facet._facetselector)}
+                {this.renderFacetSelectorsChosen(facet.facetselector)}
+                {this.renderFacetSelectors(facet.facetselector)}
               </ul>
             </div>
           </div>
@@ -167,7 +153,7 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
 
   render() {
     const { facetModel, showFilterMobileMenu } = this.state;
-    if (facetModel.facets && facetModel.facets.length > 0 && facetModel.element) {
+    if (facetModel.facets && facetModel.facets.elements && facetModel.facets.elements.length > 0) {
       const chosenFacets = facetModel.facets.elements.filter(el => el.facetselector.chosen);
       return (
         <div className="product-list-facet-navigation-component">
