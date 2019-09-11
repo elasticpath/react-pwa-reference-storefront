@@ -31,7 +31,7 @@
       // If there is a focus within make suggestions display as well...
       &:focus-within {
         .input-search {
-          width: 170px;
+          width: 270px;
           padding-left: 40px;
           border-bottom: 1px solid #fff;
           cursor: auto;
@@ -42,7 +42,8 @@
       }
   
       .input-search {
-        background: transparent;
+        z-index:1;
+        background: @mainColor;
         padding: 2px 0 2px 35px;
         width: 35px;
         transition: width 0.5s ease,
@@ -62,12 +63,6 @@
           color: #fff;
         }
         // If there is a focus then make suggestions display...
-        &:focus {
-          width: 170px;
-          padding-left: 40px;
-          border-bottom: 1px solid #fff;
-          cursor: auto;
-        }
       }
 
       .suggestions {
@@ -75,12 +70,14 @@
         margin-top: 0;
         max-height: 143px;
         overflow-y: auto;
-        padding-left: 40px;
         width: 170px;
         position: absolute;
         background-color: #fff;
         box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
         .suggestion-element {
+          margin:10px;
+          padding-left: 40px;
+          border: 1px solid @mainBorderColor;
           text-align: left;
           color: black;
           cursor: pointer;
