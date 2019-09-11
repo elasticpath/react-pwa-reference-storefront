@@ -165,15 +165,11 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   suggestionsListComponent() {
     const { suggestions } = this.state;
     if (suggestions.length !== 0) {
-      // TODO: might not need this
-      const currentlyFocusedElementClassName = document.activeElement.className;
-      if (currentlyFocusedElementClassName == 'input-search' || currentlyFocusedElementClassName == 'suggestion-element') {
-        return (
-          <ul className="suggestions">
-            { this.suggestionListHelper() }
-          </ul>
-        );  
-      }
+      return (
+        <ul className="suggestions">
+          { this.suggestionListHelper() }
+        </ul>
+      );
     }
 
     return null;
