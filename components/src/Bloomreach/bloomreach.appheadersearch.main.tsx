@@ -84,7 +84,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       });
   }
 
-  search(event?: FormEvent<HTMLFormElement>, listElementKeyword?: string) {
+  search(event?: Event, listElementKeyword?: string) {
     const { onSearchPage } = this.props;
     const { keywords } = this.state;
 
@@ -100,16 +100,6 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     if (event != null) {
       event.preventDefault();
     }
-  }
-
-  handleSuggestionClicked(suggestion) {
-    this.setState(
-      {
-        keywords: suggestion,
-        suggestions: [],
-      },
-      this.search,
-    );
   }
 
   liHandleKeyDown(e) {
@@ -149,7 +139,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
           ref={(e)=>this.setSuggestionsList(e, i)} 
           key={suggestion} 
           onKeyDown={this.liHandleKeyDown} 
-          onMouseDown={() => this.handleSuggestionClicked(suggestion)}
+          onMouseDown={(e) => this.search(e, suggestion)}
         >
           {suggestion}
         </li>
