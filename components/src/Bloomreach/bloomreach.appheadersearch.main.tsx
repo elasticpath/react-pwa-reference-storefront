@@ -184,7 +184,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={event => this.search(event)}>
-          <input tabIndex={0} className="input-search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onKeyUp={this.inputHandleKeyDown} />
+          <input tabIndex={0} className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onKeyUp={this.inputHandleKeyDown} />
           <div className="search-icon" />
           {this.suggestionsListComponent()}
         </form>
