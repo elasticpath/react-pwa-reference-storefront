@@ -65,41 +65,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     this.liHandleKeyDown = this.liHandleKeyDown.bind(this);
   }
 
-  setSuggestionsList(element) {
-    console.log('printing the type of element', element.constructor.name);
+  setSuggestionsList(element, indexOfSuggestion) {
     this.suggestionList.push(element);
-  }
-
-  inputOnFocus(element) {
-    // 
-  }
-
-  inputOnFocusOut(event) {
-    // Need to get the element that is focused out...
-    // Only close the suggestion container if the list inside is not selected.
-    
-    // console.log('inputOnFocusOut');
-    // console.log(document.activeElement);
-    // console.log(document.hasFocus());
-    // const suggestionContainer = document.getElementsByClassName('suggestions');
-    // const { focusedElement } = this.state;
-    // console.log('focusedElement', focusedElement);
-    // console.log(focusedElement.DOCUMENT_TYPE_NODE);
-    // console.log(document.querySelector(":focus"));
-    // if (suggestionContainer !== undefined && suggestionContainer.length > 0 && !focusedElement.DOCUMENT_TYPE_NODE) {
-    //   suggestionContainer[0].setAttribute('style', 'display: none;');
-    // }
-  }
-
-  liOnFocusOut(event) {
-    // console.log(document.activeElement);
-  }
-
-  liOnFocus(event) {
-    // console.log('lionfocus running');
-    // this.setState({focusedElement: event.target},()=>{
-    //   console.log();
-    // });
   }
 
   handleChange(event) {
@@ -159,12 +126,16 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
         this.suggestionIndex = this.suggestionIndex + 1;
         this.suggestionList[this.suggestionIndex].focus();
       }
+    } else if (e.keyCode === 13) {
+      // TODO: Need to press enter here...
     }
     e.preventDefault();
   }
 
   inputHandleKeyDown(e) {
+    console.log('inputhandlekeydown being clicked');
     if (e.keyCode === 40) {
+      console.log(this.suggestionList);
       this.suggestionList[0].focus();
     }
     e.preventDefault();
@@ -172,15 +143,14 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   suggestionListHelper() {
     const { suggestions } = this.state;
-
-    return suggestions.map(suggestion=> {
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-        // Must figure out how keydown will work properly...
+    this.suggestionList = [];
+    
+    return suggestions.map((suggestion, i)=> {
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions    
         return (
         <li className="suggestion-element" 
             tabIndex={0} 
-            ref={this.setSuggestionsList} 
-            onFocus={this.liOnFocus} 
+            ref={(e)=>this.setSuggestionsList(e, i)} 
             key={suggestion} 
             onKeyDown={this.liHandleKeyDown} 
             onMouseDown={() => this.handleSuggestionClicked(suggestion)}
@@ -195,6 +165,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   suggestionsListComponent() {
     const { suggestions } = this.state;
     if (suggestions.length !== 0) {
+      // TODO: might not need this
       const currentlyFocusedElementClassName = document.activeElement.className;
       if (currentlyFocusedElementClassName == 'input-search' || currentlyFocusedElementClassName == 'suggestion-element') {
         return (
@@ -214,7 +185,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={event => this.search(event)}>
-          <input tabIndex={0} className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onFocus={this.inputOnFocus} onBlur={this.inputOnFocusOut} onKeyUp={this.inputHandleKeyDown} />
+          <input tabIndex={0} className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onKeyUp={this.inputHandleKeyDown} />
           <div className="search-icon" />
           {this.suggestionsListComponent()}
         </form>
