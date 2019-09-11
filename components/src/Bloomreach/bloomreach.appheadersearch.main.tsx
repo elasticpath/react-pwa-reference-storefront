@@ -87,15 +87,18 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       });
   }
 
-  search(event?: FormEvent<HTMLFormElement>) {
+  search(event?: FormEvent<HTMLFormElement>, listElementKeyword?: string) {
     const { onSearchPage } = this.props;
     const { keywords } = this.state;
 
-    if (keywords !== '') {
+    if (listElementKeyword) {
+      document.querySelector('.collapsable-container').classList.remove('show');
+      onSearchPage(listElementKeyword);
+    } else if (keywords !== '') {
       document.querySelector('.collapsable-container').classList.remove('show');
       onSearchPage(keywords);
     }
-
+    
     this.searchInput.current.value = '';
     if (event != null) {
       event.preventDefault();
@@ -126,8 +129,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
         this.suggestionListElements[this.suggestionIndex].focus();
       }
     } else if (e.keyCode === 13) {
-      // TODO: Need to press enter here...
-      // Check the active element and actually go to the history... or look at how input does it...
+      const { suggestions } = this.state;
+      this.search(e, suggestions[this.suggestionIndex]);
     }
     e.preventDefault();
   }
@@ -181,7 +184,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={event => this.search(event)}>
-          <input tabIndex={0} className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onKeyUp={this.inputHandleKeyDown} />
+          <input tabIndex={0} className="input-search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onKeyUp={this.inputHandleKeyDown} />
           <div className="search-icon" />
           {this.suggestionsListComponent()}
         </form>
