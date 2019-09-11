@@ -38,7 +38,7 @@ interface BloomreachHeaderSearchMainState {
 
 class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
-  private suggestionList: HTMLLIElement[];
+  private suggestionListElements: HTMLLIElement[];
   private suggestionIndex: number;
   
   static defaultProps = {
@@ -55,9 +55,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       liElements: {}
     };
     this.searchInput = React.createRef();
-    this.suggestionList = [];
+    this.suggestionListElements = [];
     this.suggestionIndex = 0;
-    // this.suggestionList = this.suggestionList.bind(this);
     this.setSuggestionsList = this.setSuggestionsList.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
@@ -65,8 +64,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     this.liHandleKeyDown = this.liHandleKeyDown.bind(this);
   }
 
-  setSuggestionsList(element, indexOfSuggestion) {
-    this.suggestionList.push(element);
+  setSuggestionsList(element, indexOfSuggestion: number) {
+    this.suggestionListElements[indexOfSuggestion] = element;
   }
 
   handleChange(event) {
@@ -115,19 +114,20 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   liHandleKeyDown(e) {
     if (e.keyCode === 38) {
-      if (this.suggestionIndex > 0) {
+      if (this.suggestionIndex > 0 && this.suggestionListElements[this.suggestionIndex - 1]) {
         this.suggestionIndex = this.suggestionIndex - 1;
-        this.suggestionList[this.suggestionIndex].focus();
+        this.suggestionListElements[this.suggestionIndex].focus();
       } else {
         this.searchInput.current.focus();
       }
     } else if (e.keyCode === 40) {
-      if (this.suggestionIndex < this.suggestionList.length - 1) {
+      if (this.suggestionIndex < this.suggestionListElements.length - 1 && this.suggestionListElements[this.suggestionIndex + 1]) {
         this.suggestionIndex = this.suggestionIndex + 1;
-        this.suggestionList[this.suggestionIndex].focus();
+        this.suggestionListElements[this.suggestionIndex].focus();
       }
     } else if (e.keyCode === 13) {
       // TODO: Need to press enter here...
+      // Check the active element and actually go to the history... or look at how input does it...
     }
     e.preventDefault();
   }
@@ -135,15 +135,15 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   inputHandleKeyDown(e) {
     console.log('inputhandlekeydown being clicked');
     if (e.keyCode === 40) {
-      console.log(this.suggestionList);
-      this.suggestionList[0].focus();
+      console.log(this.suggestionListElements);
+      this.suggestionListElements[0].focus();
     }
     e.preventDefault();
   }
 
   suggestionListHelper() {
     const { suggestions } = this.state;
-    this.suggestionList = [];
+    this.suggestionListElements = [];
     
     return suggestions.map((suggestion, i)=> {
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions    
