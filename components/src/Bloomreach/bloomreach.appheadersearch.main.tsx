@@ -136,9 +136,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   }
 
   inputHandleKeyDown(e) {
-    console.log('inputhandlekeydown being clicked');
     if (e.keyCode === 40) {
-      console.log(this.suggestionListElements);
       this.suggestionListElements[0].focus();
     }
     e.preventDefault();
