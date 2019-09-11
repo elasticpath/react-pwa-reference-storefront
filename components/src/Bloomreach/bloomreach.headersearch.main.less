@@ -20,16 +20,16 @@
  */
  @import './../../../app/src/theme/common.less';
  
-  .main-search-container {
+  .main-search-container-br {
     width: 170px;
     text-align: right;
   
-    .search-form {
+    .search-form-br {
       position: relative;
       display: inline-block;
       
       &:focus-within {
-        .input-search {
+        .input-search-br {
           width: 270px;
           padding-left: 40px;
           border-bottom: 1px solid #fff;
@@ -40,7 +40,7 @@
         }
       }
   
-      .input-search {
+      .input-search-br {
         z-index:1;
         background: @mainColor;
         padding: 2px 0 2px 35px;
@@ -81,7 +81,7 @@
         }
       }
   
-      .search-icon {
+      .search-icon-br {
         background: #ffffff00 url(../../../app/src/images/header-icons/magnifying-glass.svg) no-repeat 9px center;
         position: absolute;
         left: 0px;
@@ -91,15 +91,15 @@
         pointer-events: none;
       }
     }
-  
+
     &.mobile-view {
       width: 100%;
       border-bottom: solid 1px #dedede;
   
-      .search-form {
+      .search-form-br {
         display: block;
   
-        .input-search {
+        .input-search-br {
           color: #333;
           background-color: #fff;
           width: 100%;
@@ -118,7 +118,7 @@
           }
         }
   
-        .search-icon {
+        .search-icon-br {
           filter: invert(100%);
           opacity: 0.5;
           left: auto;

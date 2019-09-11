@@ -31,28 +31,25 @@ interface BloomreachHeaderSearchMainProps {
 }
 interface BloomreachHeaderSearchMainState {
     keywords: string,
-    focusedElement?: HTMLElement,
     suggestions: [],
-    liElements?: {},
 }
 
 class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
+
   private suggestionListElements: HTMLLIElement[];
+
   private suggestionIndex: number;
-  
+
   static defaultProps = {
     onSearchPage: () => {},
   }
-  
 
   constructor(props) {
     super(props);
     this.state = {
       keywords: '',
       suggestions: [],
-      focusedElement: null,
-      liElements: {}
     };
     this.searchInput = React.createRef();
     this.suggestionListElements = [];
@@ -98,7 +95,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       document.querySelector('.collapsable-container').classList.remove('show');
       onSearchPage(keywords);
     }
-    
+
     this.searchInput.current.value = '';
     if (event != null) {
       event.preventDefault();
@@ -145,22 +142,18 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   suggestionListHelper() {
     const { suggestions } = this.state;
     this.suggestionListElements = [];
-    
-    return suggestions.map((suggestion, i)=> {
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions    
-        return (
-        <li className="suggestion-element" 
-            tabIndex={0} 
-            ref={(e)=>this.setSuggestionsList(e, i)} 
-            key={suggestion} 
-            onKeyDown={this.liHandleKeyDown} 
-            onMouseDown={() => this.handleSuggestionClicked(suggestion)}
+
+    return suggestions.map((suggestion, i) => (
+      <li className="suggestion-element" 
+          tabIndex={0} 
+          ref={(e)=>this.setSuggestionsList(e, i)} 
+          key={suggestion} 
+          onKeyDown={this.liHandleKeyDown} 
+          onMouseDown={() => this.handleSuggestionClicked(suggestion)}
         >
           {suggestion}
         </li>
-        );
-      }
-    );
+        ));
   }
 
   suggestionsListComponent() {
@@ -180,10 +173,10 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     const { isMobileView } = this.props;
 
     return (
-      <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
-        <form className="search-form" onSubmit={event => this.search(event)}>
-          <input tabIndex={0} className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onKeyUp={this.inputHandleKeyDown} />
-          <div className="search-icon" />
+      <div className={`main-search-container-br ${isMobileView ? 'mobile-view' : ''}`}>
+        <form className="search-form-br" onSubmit={event => this.search(event)}>
+          <input tabIndex={0} className="input-search-br" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onKeyUp={this.inputHandleKeyDown} />
+          <div className="search-icon-br" />
           {this.suggestionsListComponent()}
         </form>
       </div>
