@@ -146,7 +146,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
     return suggestions.map(suggestion=> {
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-        return (<li className="suggestion-element" tabIndex={0} onFocus={this.liOnFocus} key={suggestion} onMouseDown={() => this.handleSuggestionClicked(suggestion)}>
+        // Must figure out how keydown will work properly...
+        return (<li className="suggestion-element" tabIndex={0} onFocus={this.liOnFocus} key={suggestion} onKeyDown={this._handleKeyDown} onMouseDown={() => this.handleSuggestionClicked(suggestion)}>
           {suggestion}
         </li>);
       }
@@ -158,10 +159,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     if (suggestions.length !== 0) {
       const currentlyFocusedElementClassName = document.activeElement.className;
       if (currentlyFocusedElementClassName == 'input-search' || currentlyFocusedElementClassName == 'suggestion-element') {
-        console.log('the currently focused element classname');
-        console.log(currentlyFocusedElementClassName);  
         return (
-          // TODO: Should create a reference to this suggestion here...
           <ul className="suggestions">
             { this.suggestionListHelper() }
           </ul>
