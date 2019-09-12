@@ -19,7 +19,7 @@
  *
  */
 
-import { bloomreachFetch } from './Bloomreach';
+import bloomreachFetch from './Bloomreach';
 import { searchLookup } from './CortexLookup';
 
 import { getConfig } from './ConfigProvider';

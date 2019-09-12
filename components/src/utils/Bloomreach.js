@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,7 @@
  *
  *
  */
-
-// eslint-disable-next-line import/prefer-default-export
-export function bloomreachFetch(input, requestInit) {
+export default function bloomreachFetch(input, requestInit) {
   return fetch(input, requestInit)
     .then((res) => {
       if (res.status >= 500) {
