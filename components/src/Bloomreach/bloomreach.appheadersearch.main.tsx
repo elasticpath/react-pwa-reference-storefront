@@ -134,16 +134,19 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     this.suggestionListElements = [];
 
     return suggestions.map((suggestion, i) => (
-      <li className="suggestion-element" 
-          tabIndex={0} 
-          ref={(e)=>this.setSuggestionsList(e, i)} 
-          key={suggestion} 
-          onKeyDown={this.liHandleKeyDown} 
-          onMouseDown={(e) => this.search(e, suggestion)}
-        >
-          {suggestion}
-        </li>
-        ));
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+      <li
+        className="suggestion-element"
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        tabIndex={0}
+        ref={(e) => { this.setSuggestionsList(e, i); }}
+        key={suggestion}
+        onKeyDown={this.liHandleKeyDown}
+        onMouseDown={(e) => { this.search(e, suggestion); }}
+      >
+        {suggestion}
+      </li>
+    ));
   }
 
   suggestionsListComponent() {
