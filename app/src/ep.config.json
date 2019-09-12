@@ -95,7 +95,7 @@
     "applicationId": "<APP_ID>"
   },
   "bloomreachSearch": {
-    "enable": true,
+    "enable": false,
     "config": {
       "baseUri": "http://core.dxpapi.com/api/v1/core/?",
       "accountId": "account_id=6226",
