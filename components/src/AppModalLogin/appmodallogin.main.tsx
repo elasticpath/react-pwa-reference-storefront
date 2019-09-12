@@ -20,12 +20,14 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
-import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
+import { loginRegisteredAuthService } from '../utils/AuthService';
 import './appmodallogin.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import { ClientContext } from '../ClientContext';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -49,12 +51,16 @@ interface AppModalLoginMainState {
     isLoading: boolean,
 }
 class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModalLoginMainState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     onLogin: () => {},
     onResetPassword: () => {},
     locationSearchData: undefined,
     disableLogin: false,
   }
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -75,6 +81,7 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
   }
 
   componentWillMount() {
+    this.client = this.context;
     const { locationSearchData, onLogin } = this.props;
     const url = locationSearchData;
     const params = queryString.parse(url);
@@ -116,32 +123,43 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
     handleModalClose();
   }
 
-  loginRegisteredUser(event) {
+  async loginRegisteredUser(event) {
     const { username, password } = this.state;
     const { handleModalClose, onLogin, disableLogin } = this.props;
     this.setState({ isLoading: true });
     if (!disableLogin) {
-      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-        loginRegistered(username, password).then((resStatus) => {
-          if (resStatus === 401) {
+      try {
+        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) != null) {
+          const result = await this.client.serverFetch('/oauth2/tokens', {
+            method: 'post',
+            useAuth: false,
+            urlEncoded: true,
+            body: {
+              username,
+              password,
+              grant_type: 'password',
+              role: 'REGISTERED',
+              scope: Config.cortexApi.scope,
+            },
+          });
+          localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
+          localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, username);
+          if (result.status === 401 || result.status === 400) {
             this.setState({
               failedLogin: true,
               isLoading: false,
             });
-          }
-          if (resStatus === 400) {
-            this.setState({
-              failedLogin: true,
-              isLoading: false,
-            });
-          } else if (resStatus === 200) {
+          } else if (result.status === 200) {
             this.setState({ failedLogin: false });
             handleModalClose();
             onLogin();
           }
-        });
-        event.preventDefault();
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
       }
+      event.preventDefault();
     } else {
       this.setState({ isLoading: false });
       event.preventDefault();
