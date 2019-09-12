@@ -37,42 +37,7 @@ function generateBaseBloomreachUrl(baseUri = getConfig().bloomreachSearch.config
   return `${baseUri}${accountId}&${authKey}&${domainKey}&${requestId}&${brUID2}&${url}&${refurl}`;
 }
 
-export function bloomreachKeywordSearchLookup(searchKeyword, searchQueryParams) {
-  const baseUrl = generateBaseBloomreachUrl();
-  const {
-    requestType,
-    rows,
-    start,
-    facetLimit,
-    fl,
-    searchType,
-  } = getConfig().bloomreachSearch.config.keywordSearchConfig;
-  const q = `q=${searchKeyword.keywords}`;
-
-  const fq = searchQueryParams ? `${searchQueryParams}`.replace('?', '') : null;
-  const searchUrl = `${baseUrl}&${requestType}&${rows}&${start}&${facetLimit}&${fl}&${q}&${fq}&${searchType}`;
-
-  return new Promise(((resolve, reject) => {
-    bloomreachFetch(searchUrl, {})
-      .then((res) => {
-        if (res.status >= 500) {
-          reject(res);
-        }
-        return res;
-      })
-      .then(res => res.json())
-      .then((res) => {
-        resolve(res);
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        reject(error);
-      });
-  }));
-}
-
-// TODO: We need the suggestion search here...
+// eslint-disable-next-line import/prefer-default-export
 export function bloomreachSuggestionSearch(keyword) {
   const {
     baseUri,
@@ -100,41 +65,5 @@ export function bloomreachSuggestionSearch(keyword) {
         console.error(error.message);
         reject(error);
       });
-  }));
-}
-
-export function bloomreachMtlSearch(sku) {
-  const baseUrl = generateBaseBloomreachUrl();
-  const {
-    requestType,
-    rows,
-    start,
-    facetLimit,
-    fl,
-  } = getConfig().bloomreachSearch.config.productRecommendationConfig;
-
-  return new Promise(((resolve, reject) => {
-    searchLookup(sku).then((searchRes) => {
-      const productIDCode = searchRes._element[0]._code[0].code;
-      const pid = `pid=${productIDCode}`;
-      const searchUrl = `${baseUrl}&${requestType}&${rows}&${start}&${facetLimit}&${fl}&${pid}`;
-
-      bloomreachFetch(searchUrl, {})
-        .then((res) => {
-          if (res.status >= 500) {
-            reject(res);
-          }
-          return res;
-        })
-        .then(res => res.json())
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((error) => {
-        // eslint-disable-next-line no-console
-          console.error(error.message);
-          reject(error);
-        });
-    });
   }));
 }
