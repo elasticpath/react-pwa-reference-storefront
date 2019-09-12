@@ -27,6 +27,7 @@ const intl = { get: str => str };
 
 interface BloomreachHeaderSearchMainProps {
     isMobileView: boolean,
+    isFocused: boolean,
     onSearchPage?: (...args: any[]) => any,
 }
 interface BloomreachHeaderSearchMainState {
@@ -43,6 +44,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   static defaultProps = {
     onSearchPage: () => {},
+    isFocused: false,
   }
 
   constructor(props) {
@@ -59,6 +61,16 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     this.search = this.search.bind(this);
     this.inputHandleKeyDown = this.inputHandleKeyDown.bind(this);
     this.liHandleKeyDown = this.liHandleKeyDown.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isFocused } = this.props;
+    
+    if (isFocused === true) {
+      setTimeout(() => {
+        this.searchInput.current.focus();
+      }, 500);
+    }
   }
 
   setSuggestionsList(element, indexOfSuggestion: number) {
@@ -164,7 +176,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   render() {
     const { isMobileView } = this.props;
-
+    
     return (
       <div className={`main-search-container-br ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form-br" onSubmit={event => this.search(event)}>

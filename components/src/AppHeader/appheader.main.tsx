@@ -333,7 +333,11 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
         <div className="collapsable-container collapse collapsed">
           <div className="search-container">
-            <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
+            {Config.bloomreachSearch.enable ? (
+              <BloomreachAppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
+            ) : (
+              <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
+            )}
           </div>
           <div className="mobile-locale-container">
             <AppHeaderLocaleMain isMobileView onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
