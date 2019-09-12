@@ -19,7 +19,7 @@
  *
  */
 
-import React, { FormEvent } from 'react';
+import React, { FormEvent, SyntheticEvent } from 'react';
 import { bloomreachSuggestionSearch } from '../utils/BloomreachSearchService';
 import './bloomreach.headersearch.main.less';
 
@@ -84,7 +84,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       });
   }
 
-  search(event?: Event, listElementKeyword?: string) {
+  search(event?: SyntheticEvent, listElementKeyword?: string) {
     const { onSearchPage } = this.props;
     const { keywords } = this.state;
 
