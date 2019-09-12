@@ -74,7 +74,6 @@ export function bloomreachKeywordSearchLookup(searchKeyword, searchQueryParams) 
 
 // TODO: We need the suggestion search here...
 export function bloomreachSuggestionSearch(keyword) {
-  console.log(getConfig());
   const {
     baseUri,
     requestType,
