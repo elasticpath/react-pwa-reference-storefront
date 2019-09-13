@@ -65,7 +65,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   componentDidUpdate(prevProps) {
     const { isFocused } = this.props;
-    
+
     if (isFocused === true) {
       setTimeout(() => {
         this.searchInput.current.focus();
@@ -176,7 +176,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   render() {
     const { isMobileView } = this.props;
-    
+
     return (
       <div className={`main-search-container-br ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form-br" onSubmit={event => this.search(event)}>
