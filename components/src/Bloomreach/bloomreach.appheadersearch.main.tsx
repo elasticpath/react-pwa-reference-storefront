@@ -154,7 +154,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
         ref={(e) => { this.setSuggestionsList(e, i); }}
         key={suggestion}
         onKeyDown={this.liHandleKeyDown}
-        onMouseDown={(e) => { this.search(e, suggestion); }}
+        onMouseUp={(e) => { this.search(e, suggestion); }}
       >
         {suggestion}
       </li>
