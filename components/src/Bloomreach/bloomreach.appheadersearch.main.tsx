@@ -122,16 +122,17 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       } else {
         this.searchInput.current.focus();
       }
+      e.preventDefault();
     } else if (e.keyCode === 40) {
       if (this.suggestionIndex < this.suggestionListElements.length - 1 && this.suggestionListElements[this.suggestionIndex + 1]) {
         this.suggestionIndex = this.suggestionIndex + 1;
         this.suggestionListElements[this.suggestionIndex].focus();
+        e.preventDefault();
       }
     } else if (e.keyCode === 13) {
       const { suggestions } = this.state;
       this.search(e, suggestions[this.suggestionIndex]);
     }
-    e.preventDefault();
   }
 
   inputHandleKeyDown(e) {
