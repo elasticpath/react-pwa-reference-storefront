@@ -137,11 +137,15 @@
           max-height: 100%;
           .suggestion-element {
             padding-left:0;
-            margin:17px;
+            margin-top:17px;
+            margin-bottom:17px;
             text-align: center;
             color: @mainTextColor;
-            font-size: 15px;
+            font-size: 20px;
             cursor: pointer;
+            &:active {
+              background-color: @firstComplimentBackground
+            }
           }
         }
   
