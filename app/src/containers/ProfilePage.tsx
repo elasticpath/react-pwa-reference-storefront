@@ -179,6 +179,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   render() {
     const { profileData, showResetPasswordButton } = this.state;
+    const disableAddPayment = !(profileData && profileData._addresses && profileData._addresses[0]._billingaddresses);
     return (
       <div>
         <div className="container profile-container">
@@ -228,7 +229,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 <div className="profile-info-col">
                   <div className="profile-info-block">
                     {(profileData._paymentmethods) ? (
-                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
+                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} disableAddPayment={disableAddPayment} />
                     ) : ('')}
                   </div>
                 </div>

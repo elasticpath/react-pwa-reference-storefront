@@ -131,17 +131,18 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
 
   submitPayment(event) {
     event.preventDefault();
-    this.setState({
-      showLoader: true,
-    });
     const {
       cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm, expiryYear, expiryMonth,
     } = this.state;
     const { fetchData, onCloseModal } = this.props;
-    if (!cardHolderName || !cardNumber || !securityCode) {
+    const holderName = cardHolderName.split(' ');
+    if (!cardHolderName || !cardNumber || !securityCode || !(holderName[0] && holderName[1])) {
       this.setState({ failedSubmit: true });
       return;
     }
+    this.setState({
+      showLoader: true,
+    });
     let link;
     if (saveToProfile) {
       link = paymentForm;
@@ -164,7 +165,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
       const name = cardHolderName.split(' ');
       const formatedExpiryMonth = ((expiryMonth) < 10 ? '0' : '') + (expiryMonth);
       let bodyLambdaRequest = {
-        reference_number: Math.floor(Math.random() * 1000000001),
+        reference_number: Math.floor(Math.random() * 1000000001).toString(),
         currency: Config.defaultCurrencyValue,
         payment_method: 'card',
         bill_to_email: '',
@@ -218,10 +219,10 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
                 const cardData = {
                   bill_to_forename: name[0],
                   bill_to_surname: name[1],
-                  card_type: cardType,
-                  card_number: cardNumber,
+                  card_type: cardType.toString(),
+                  card_number: cardNumber.toString(),
                   cardExpiryDate: `${formatedExpiryMonth}-${expiryYear}`,
-                  card_cvn: securityCode,
+                  card_cvn: securityCode.toString(),
                 };
                 const cybersourceBodyRequest = { ...cardData, ...lambdaResponse };
                 this.setState({ cybersourceBodyRequest });

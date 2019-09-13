@@ -110,8 +110,8 @@
   },
   "creditCardTokenization": {
     "enable": true,
-    "lambdaURI": "",
-    "overrideCustomReceiptURI": "",
+    "lambdaURI": "/cssign",
+    "overrideCustomReceiptURI": "/postredirector",
     "overrideCustomCancelURI": ""
   },
   "chatbot": {
