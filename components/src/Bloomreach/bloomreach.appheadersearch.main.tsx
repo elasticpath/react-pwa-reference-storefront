@@ -32,8 +32,32 @@ interface BloomreachHeaderSearchMainProps {
 }
 interface BloomreachHeaderSearchMainState {
     keywords: string,
-    suggestions: [],
+    suggestions: string[],
 }
+
+interface BloomreachSearchSuggestionResponse {
+  responseHeader: {
+    status: number;
+    QTime: number;
+  }
+  response: {
+    q: string;
+    suggestions: [{
+      q: string;
+      dq: string;
+    }];
+    numFound: number;
+    products: [{
+      url: string;
+      sale_price: number;
+      pid: string;
+      thumb_image: string;
+      title: string;
+    }];
+  };
+}
+
+
 
 class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
@@ -81,23 +105,15 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     this.suggestionListElements[indexOfSuggestion] = element;
   }
 
-  handleChange(event) {
-    const keywords = event.target.value;
+  async handleChange(event) {
+    const keywords: string = event.target.value;
+    
+    const res: BloomreachSearchSuggestionResponse = await bloomreachSuggestionSearch(keywords);
 
-    bloomreachSuggestionSearch(keywords)
-      .then((res) => {
-        const brSuggestions = res.response.suggestions;
-        const suggestions = brSuggestions ? brSuggestions.map(suggestion => suggestion.dq) : [];
-
-        this.setState({
-          keywords,
-          suggestions,
-        });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+    const brSuggestions = res.response.suggestions;
+    const suggestions: string[] = brSuggestions ? brSuggestions.map(suggestion => suggestion.dq) : [];
+    
+    this.setState({keywords, suggestions});
   }
 
   search(event?: SyntheticEvent, listElementKeyword?: string) {
@@ -194,7 +210,17 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     return (
       <div className={`main-search-container-br ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form-br" onSubmit={event => this.search(event)}>
-          <input tabIndex={0} className="input-search-br" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} onKeyUp={this.inputHandleKeyDown} />
+          <input 
+            tabIndex={0} 
+            className="input-search-br" 
+            type="search" 
+            onChange={
+              this.handleChange
+            }
+            placeholder={intl.get('search')} 
+            ref={this.searchInput} 
+            onKeyUp={this.inputHandleKeyDown} 
+          />
           <div className="search-icon-br" />
           {this.suggestionsListComponent()}
         </form>

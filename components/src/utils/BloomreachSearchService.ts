@@ -24,7 +24,7 @@ import { searchLookup } from './CortexLookup';
 
 import { getConfig } from './ConfigProvider';
 
-function generateBaseBloomreachUrl(baseUri = getConfig().bloomreachSearch.config.baseUri) {
+function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch.config.baseUri) {
   const {
     accountId,
     authKey,
@@ -38,7 +38,7 @@ function generateBaseBloomreachUrl(baseUri = getConfig().bloomreachSearch.config
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export function bloomreachSuggestionSearch(keyword) {
+export function bloomreachSuggestionSearch<T>(keyword): Promise<T> {
   const {
     baseUri,
     requestType,
