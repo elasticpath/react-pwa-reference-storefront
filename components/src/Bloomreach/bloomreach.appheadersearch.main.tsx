@@ -163,9 +163,9 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   }
 
   handleOnTouchEndOnSuggestionLiElement(e, suggestion) {
-    if (this.isTouchMoveEvent == false) {
+    if (this.isTouchMoveEvent === false) {
       this.search(e, suggestion);
-    } 
+    }
     this.isTouchMoveEvent = false;
   }
 
@@ -183,7 +183,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
         key={suggestion}
         onKeyDown={this.liHandleKeyDown}
         onMouseUp={(e) => { this.search(e, suggestion); }}
-        onTouchEnd={(e) => { this.handleOnTouchEndOnSuggestionLiElement(e, suggestion) }}
+        onTouchEnd={(e) => { this.handleOnTouchEndOnSuggestionLiElement(e, suggestion); }}
         onTouchMove={(e) => { this.isTouchMoveEvent = true; }}
       >
         {suggestion}
