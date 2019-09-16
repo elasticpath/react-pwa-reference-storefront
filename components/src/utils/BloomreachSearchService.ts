@@ -24,7 +24,7 @@ import { searchLookup } from './CortexLookup';
 
 import { getConfig } from './ConfigProvider';
 
-function generateBaseBloomreachUrl(baseUri = getConfig().bloomreachSearch.config.baseUri) {
+function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch.config.baseUri) {
   const {
     accountId,
     authKey,
