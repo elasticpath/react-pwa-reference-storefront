@@ -18,7 +18,7 @@
  *
  *
  */
-export default function bloomreachFetch(input, requestInit) {
+export default function bloomreachFetch(input, requestInit): any {
   return fetch(input, requestInit)
     .then((res) => {
       if (res.status >= 500) {
