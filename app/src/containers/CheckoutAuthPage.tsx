@@ -92,7 +92,8 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
           },
         });
         localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, username);
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
+
         if (result.status === 401 || result.status === 400) {
           this.setState({ failedLogin: true });
         } else if (result.status === 200) {

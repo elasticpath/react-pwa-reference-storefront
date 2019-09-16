@@ -124,6 +124,7 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
   }
 
   async loginRegisteredUser(event) {
+    event.preventDefault();
     const { username, password } = this.state;
     const { handleModalClose, onLogin, disableLogin } = this.props;
     this.setState({ isLoading: true });
@@ -143,7 +144,8 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
             },
           });
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, username);
+          localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
+
           if (result.status === 401 || result.status === 400) {
             this.setState({
               failedLogin: true,
@@ -159,10 +161,8 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
         // eslint-disable-next-line no-console
         console.error(error);
       }
-      event.preventDefault();
     } else {
       this.setState({ isLoading: false });
-      event.preventDefault();
     }
   }
 
