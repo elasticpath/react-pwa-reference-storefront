@@ -49,15 +49,15 @@ interface BloomreachSearchSuggestionResponse {
     numFound: number;
     products: [{
       url: string;
+      // eslint-disable-next-line
       sale_price: number;
       pid: string;
+      // eslint-disable-next-line
       thumb_image: string;
       title: string;
     }];
   };
 }
-
-
 
 class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
@@ -107,13 +107,13 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   async handleChange(event) {
     const keywords: string = event.target.value;
-    
+
     const res: BloomreachSearchSuggestionResponse = await bloomreachSuggestionSearch(keywords);
 
     const brSuggestions = res.response.suggestions;
     const suggestions: string[] = brSuggestions ? brSuggestions.map(suggestion => suggestion.dq) : [];
-    
-    this.setState({keywords, suggestions});
+
+    this.setState({ keywords, suggestions });
   }
 
   search(event?: SyntheticEvent, listElementKeyword?: string) {
@@ -210,16 +210,16 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     return (
       <div className={`main-search-container-br ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form-br" onSubmit={event => this.search(event)}>
-          <input 
-            tabIndex={0} 
-            className="input-search-br" 
-            type="search" 
+          <input
+            tabIndex={0}
+            className="input-search-br"
+            type="search"
             onChange={
               this.handleChange
             }
-            placeholder={intl.get('search')} 
-            ref={this.searchInput} 
-            onKeyUp={this.inputHandleKeyDown} 
+            placeholder={intl.get('search')}
+            ref={this.searchInput}
+            onKeyUp={this.inputHandleKeyDown}
           />
           <div className="search-icon-br" />
           {this.suggestionsListComponent()}
