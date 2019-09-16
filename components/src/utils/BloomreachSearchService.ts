@@ -38,7 +38,7 @@ function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export function bloomreachSuggestionSearch(keyword) {
+export function bloomreachSuggestionSearch<T>(keyword): Promise<T> {
   const {
     baseUri,
     requestType,
