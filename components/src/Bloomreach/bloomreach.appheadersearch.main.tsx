@@ -42,6 +42,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   private suggestionIndex: number;
 
+  private isTouchMoveEvent: boolean;
+
   static defaultProps = {
     onSearchPage: () => {},
     isFocused: false,
@@ -56,11 +58,13 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     this.searchInput = React.createRef();
     this.suggestionListElements = [];
     this.suggestionIndex = 0;
+    this.isTouchMoveEvent = false;
     this.setSuggestionsList = this.setSuggestionsList.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.inputHandleKeyDown = this.inputHandleKeyDown.bind(this);
     this.liHandleKeyDown = this.liHandleKeyDown.bind(this);
+    this.handleOnTouchEndOnSuggestionLiElement = this.handleOnTouchEndOnSuggestionLiElement.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -142,6 +146,13 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     e.preventDefault();
   }
 
+  handleOnTouchEndOnSuggestionLiElement(e, suggestion) {
+    if (this.isTouchMoveEvent == false) {
+      this.search(e, suggestion);
+    } 
+    this.isTouchMoveEvent = false;
+  }
+
   suggestionListHelper() {
     const { suggestions } = this.state;
     this.suggestionListElements = [];
@@ -156,6 +167,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
         key={suggestion}
         onKeyDown={this.liHandleKeyDown}
         onMouseUp={(e) => { this.search(e, suggestion); }}
+        onTouchEnd={(e) => { this.handleOnTouchEndOnSuggestionLiElement(e, suggestion) }}
+        onTouchMove={(e) => { this.isTouchMoveEvent = true; }}
       >
         {suggestion}
       </li>
