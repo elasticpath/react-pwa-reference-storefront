@@ -142,6 +142,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     }
     this.setState({
       showLoader: true,
+      failedSubmit: false,
     });
     let link;
     if (saveToProfile) {

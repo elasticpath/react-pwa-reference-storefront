@@ -109,7 +109,7 @@
     "nodatalinks": true
   },
   "creditCardTokenization": {
-    "enable": true,
+    "enable": false,
     "lambdaURI": "/cssign",
     "overrideCustomReceiptURI": "/postredirector",
     "overrideCustomCancelURI": ""
