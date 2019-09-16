@@ -1,4 +1,4 @@
-FROM node:10.9.0 as builder
+FROM node:12.10.0 as builder
 
 ARG NPM_TOKEN
 
