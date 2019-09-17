@@ -112,7 +112,11 @@ interface AccountMainState {
   subAccounts: any,
 }
 
-export default class AccountMain extends React.Component<RouteComponentProps, AccountMainState> {
+interface AccountMainRouterProps {
+  url: string;
+}
+
+export default class AccountMain extends React.Component<RouteComponentProps<AccountMainRouterProps>, AccountMainState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -157,7 +161,7 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
 
   getAccountData() {
     const { match } = this.props;
-    const accountUri = match.params['url'];
+    const accountUri = match.params.url;
     this.setState({ isLoading: true });
     login().then(() => {
       const profilePromice = adminFetch('/?zoom=myprofile:primaryemail', {

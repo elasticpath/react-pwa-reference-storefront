@@ -101,7 +101,7 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
     const { name } = event.target;
     const { value } = event.target;
 
-    // this.setState({ [name]: value });
+    this.setState({ name: value });
   }
 
   render() {
