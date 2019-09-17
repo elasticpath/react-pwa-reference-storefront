@@ -84,6 +84,7 @@
     "brandAmbassador": {
       "title": "",
       "description": "",
+      "submit_button_text": "",
       "submit_button_url": "",
       "thumbnail_url": "",
       "return_url": ""

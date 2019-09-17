@@ -56,6 +56,8 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     fetchData: () => {},
   }
 
+  formRef: React.RefObject<HTMLFormElement>;
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -85,6 +87,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     this.submitPayment = this.submitPayment.bind(this);
     this.cancel = this.cancel.bind(this);
     this.fetchCybersourceForm = this.fetchCybersourceForm.bind(this);
+    this.formRef = React.createRef<HTMLFormElement>();
   }
 
   componentDidMount() {
@@ -97,7 +100,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     const formExists = document.getElementById('payment_confirmation');
 
     if (formExists && formCardNumberExists && formBillEmailExists) {
-      document.getElementById('payment_confirmation').submit();
+      this.formRef.current.submit();
     }
   }
 
@@ -283,7 +286,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
   // eslint-disable-next-line class-methods-use-this
   fetchCybersourceForm(cybersourceBodyRequest) {
     return (
-      <form id="payment_confirmation" className="payment_confirmation col-md-12" action={cybersourceBodyRequest.cs_endpoint_url} method="post">
+      <form ref={this.formRef} id="payment_confirmation" className="payment_confirmation col-md-12" action={cybersourceBodyRequest.cs_endpoint_url} method="post">
         <input type="text" id="transaction_type" name="transaction_type" value={cybersourceBodyRequest.transaction_type} />
         <input type="text" id="amount" name="amount" value={cybersourceBodyRequest.amount} />
         <input type="text" id="transaction_uuid" name="transaction_uuid" value={cybersourceBodyRequest.transaction_uuid} />

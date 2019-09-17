@@ -128,6 +128,7 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
       externalId: '',
       registrationNumber: '',
       selfSignUpCode: '',
+      uri: '',
       selector: '',
       associates: {},
       userEmail: '',
@@ -156,7 +157,7 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
 
   getAccountData() {
     const { match } = this.props;
-    const accountUri = match.params.uri;
+    const accountUri = match.params['url'];
     this.setState({ isLoading: true });
     login().then(() => {
       const profilePromice = adminFetch('/?zoom=myprofile:primaryemail', {
@@ -317,7 +318,6 @@ export default class AccountMain extends React.Component<RouteComponentProps, Ac
               </div>
             </div>
             <div className="account-component">
-              <AccountList getAccountData={this.getAccountData} accountListData={accountListData} getSubAccountData={this.subAccountData} handleAddSubAccountClicked={this.handleAddSubAccountClicked} accountName={accountName} registrationNumber={registrationNumber} />
               <div className="associates-container">
                 <div className="add-associate-container">
                   <button type="button" className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>

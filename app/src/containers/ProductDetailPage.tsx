@@ -45,7 +45,7 @@ function ProductDetailPage(props: RouteComponentProps) {
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onChangeProductFeature={handleChangeProductFeature} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} itemDetailLink="/itemdetail" />
+      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params['url'])} onChangeProductFeature={handleChangeProductFeature} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} itemDetailLink="/itemdetail" />
     </div>
   );
 }
