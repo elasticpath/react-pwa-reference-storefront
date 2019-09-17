@@ -26,7 +26,7 @@ import { RegistrationFormMain } from '@elasticpath/store-components';
 function RegistrationPage(props: RouteComponentProps) {
   function handleRegisterSuccess() {
     const { location, history } = props;
-    if (location.state && location.returnPage) {
+    if (location.state && location.state.returnPage) {
       history.push(location.state.returnPage);
     } else {
       history.push('/');

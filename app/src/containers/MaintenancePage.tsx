@@ -56,7 +56,7 @@ function MaintenancePage() {
                 </div>
                 <div className="static-container dog-container" style={{ display: 'block' }}>
                   <div className="container" style={{ display: 'block' }}>
-                    <img alt="dog-espot-1" className="dog-espot-1" src={Config.siteImagesUrl.replace('%fileName%', dogeFileName)} onError={(e) => { e.target.src = doge; }} />
+                    <img alt="dog-espot-1" className="dog-espot-1" src={Config.siteImagesUrl.replace('%fileName%', dogeFileName)} onError={(e: any) => { e.target.src = doge; }} />
                   </div>
                   <h2 className="static-dog-name">
                     {intl.get('name-moki')}

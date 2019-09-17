@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import intl from 'react-intl-universal';
+import * as intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import { CartMain, CheckoutSummaryList, AddPromotionContainer } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
@@ -116,7 +116,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     const { location, history } = this.props;
     this.setState({ isLoading: true });
     this.fetchCartData();
-    history.push(location.path);
+    history.push(window.location.pathname);
   }
 
   checkout() {
