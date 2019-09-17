@@ -146,7 +146,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     } catch (error) {
       handleErrorMessage(error.debugMessage);
       // eslint-disable-next-line no-console
-      console.error('error:', error.debugMessage);
+      console.error(error.debugMessage);
     }
   }
 

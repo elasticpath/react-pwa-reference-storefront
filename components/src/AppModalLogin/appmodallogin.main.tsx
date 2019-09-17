@@ -80,8 +80,11 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
     this.resetPassword = this.resetPassword.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.client = this.context;
+  }
+
+  componentWillMount() {
     const { locationSearchData, onLogin } = this.props;
     const url = locationSearchData;
     const params = queryString.parse(url);
@@ -145,19 +148,17 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
           });
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
-
-          if (result.status === 401 || result.status === 400) {
-            this.setState({
-              failedLogin: true,
-              isLoading: false,
-            });
-          } else if (result.status === 200) {
+          if (result.status === 200) {
             this.setState({ failedLogin: false });
             handleModalClose();
             onLogin();
           }
         }
       } catch (error) {
+        this.setState({
+          failedLogin: true,
+          isLoading: false,
+        });
         // eslint-disable-next-line no-console
         console.error(error);
       }

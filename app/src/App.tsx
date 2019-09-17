@@ -181,9 +181,8 @@ const cortexClient: cortex.IClient = cortex.createClient({
         scope: Config.cortexApi.scope,
       },
     });
-
     localStorage.setItem('vestri_oAuthToken', `Bearer ${result.parsedJson.access_token}`);
-
+    localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
     return true;
   },
 });
