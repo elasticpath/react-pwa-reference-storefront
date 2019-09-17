@@ -35,3 +35,4 @@ storiesOf('BloomreachAppHeaderSearchMain', module)
       <MemoryRouter initialEntries={['/']}><BloomreachAppHeaderSearchMain isMobileView={true} isFocused /></MemoryRouter>
     </div>
   ));
+  
