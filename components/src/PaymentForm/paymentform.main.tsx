@@ -20,6 +20,8 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
+import { ClientContext } from '../ClientContext';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import './paymentform.main.less';
@@ -31,29 +33,33 @@ let intl = { get: str => str };
 const today = new Date();
 
 interface PaymentFormMainProps {
-    onCloseModal?: (...args: any[]) => any,
-    fetchData?: (...args: any[]) => any,
+  onCloseModal?: (...args: any[]) => any,
+  fetchData?: (...args: any[]) => any,
 }
 
 interface PaymentFormMainState {
-    showLoader: boolean,
-    cardType: string,
-    cardHolderName: string,
-    cardNumber: string,
-    expiryMonth: number,
-    expiryYear: number,
-    securityCode: string,
-    saveToProfile: boolean,
-    failedSubmit: boolean,
-    paymentForm: any,
-    orderPaymentForm: any,
+  showLoader: boolean,
+  cardType: string,
+  cardHolderName: string,
+  cardNumber: string,
+  expiryMonth: number,
+  expiryYear: number,
+  securityCode: string,
+  saveToProfile: boolean,
+  failedSubmit: boolean,
+  paymentForm: any,
+  orderPaymentForm: any,
 }
 
 class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormMainState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     onCloseModal: () => {},
     fetchData: () => {},
   }
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -84,8 +90,8 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     this.cancel = this.cancel.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchPaymentForms();
+  async componentDidMount() {
+    this.client = this.context;
   }
 
   setCardType(event) {
@@ -116,7 +122,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
     this.setState({ saveToProfile: event.target.checked });
   }
 
-  submitPayment(event) {
+  async submitPayment(event) {
     event.preventDefault();
     this.setState({
       showLoader: true,
@@ -202,8 +208,8 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
               .then(lambdaResponse => lambdaResponse.json())
               .then((lambdaResponse) => {
                 // eslint-disable-next-line
-                  const formEncodedBody = Object.keys(lambdaResponse)
-                  // eslint-disable-next-line no-prototype-builtins
+                const formEncodedBody = Object.keys(lambdaResponse)
+                // eslint-disable-next-line no-prototype-builtins
                   .filter(k => lambdaResponse.hasOwnProperty(k))
                   .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(lambdaResponse[k])}`)
                   .join('&');
@@ -223,7 +229,7 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
                     const form: any = doc.querySelector('form[id="custom_redirect"]');
                     const elemets = form.elements;
                     // eslint-disable-next-line
-                      for (const element of elemets) {
+                    for (const element of elemets) {
                       if (element.id === 'payment_token') {
                         paymentToken = element.value;
                       }
@@ -271,70 +277,44 @@ class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormM
           console.error(error.message);
         });
     } else {
-      login().then(() => {
-        cortexFetch(link, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      try {
+        const root = await this.client.root().fetch(
+          {
+            defaultcart: {
+              order: {
+                paymentmethodinfo: {
+                  paymenttokenform: {},
+                },
+              },
+            },
+            defaultprofile: {
+              paymentmethods: {
+                paymenttokenform: {
+                  createpaymenttokenaction: {},
+                },
+              },
+            },
           },
-          body: JSON.stringify({
-            'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-            token: Math.random()
-              .toString(36)
-              .substr(2, 9),
-            /* token is being randomly generated here to be passed to the demo payment gateway
-            ** in a true implementation this token should be received from the actual payment gateway
-            ** when doing so, make sure you're compliant with PCI DSS
-            */
-          }),
-        })
-          .then((res) => {
-            this.setState({
-              showLoader: false,
-            });
-            if (res.status === 400) {
-              this.setState({ failedSubmit: true });
-            } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-              this.setState({ failedSubmit: false }, () => {
-                fetchData();
-                onCloseModal();
-              });
-            }
-          })
-          .catch((error) => {
-            this.setState({
-              showLoader: false,
-            });
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
-    }
-  }
+        );
+        const cardHolder = `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`;
+        const data = {
+          'display-name': cardHolder,
+          token: Math.random().toString(36).substr(2, 9),
+        };
+        await root.defaultprofile.paymentmethods.paymenttokenform(data).fetch({});
 
-  fetchPaymentForms() {
-    login().then(() => {
-      cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          const paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenaction',
-          );
-          const orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenfororderaction',
-          );
-          this.setState({
-            paymentForm: paymentFormLink.uri,
-            orderPaymentForm: orderPaymentFormLink.uri,
-          });
+        this.setState({ showLoader: false, failedSubmit: false }, () => {
+          fetchData();
+          onCloseModal();
         });
-    });
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+        this.setState({
+          showLoader: false,
+        });
+      }
+    }
   }
 
   cancel() {
