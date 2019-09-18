@@ -27,11 +27,18 @@ const intl = { get: str => str };
 
 interface BloomreachHeaderSearchMainProps {
     isMobileView: boolean,
+    isFocused: boolean,
     onSearchPage?: (...args: any[]) => any,
 }
+
+interface BloomreachSuggestion {
+  q: string,
+  dq: string,
+}
+
 interface BloomreachHeaderSearchMainState {
     keywords: string,
-    suggestions: string[],
+    suggestions: BloomreachSuggestion[],
 }
 
 interface BloomreachSearchSuggestionResponse {
@@ -41,10 +48,7 @@ interface BloomreachSearchSuggestionResponse {
   }
   response: {
     q: string;
-    suggestions: [{
-      q: string;
-      dq: string;
-    }];
+    suggestions: BloomreachSuggestion[];
     numFound: number;
     products: [{
       url: string;
@@ -63,10 +67,11 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   private suggestionListElements: HTMLLIElement[];
 
-  private suggestionIndex: number;
+  private isTouchMoveEvent: boolean;
 
   static defaultProps = {
     onSearchPage: () => {},
+    isFocused: false,
   }
 
   constructor(props) {
@@ -77,12 +82,23 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     };
     this.searchInput = React.createRef();
     this.suggestionListElements = [];
-    this.suggestionIndex = 0;
+    this.isTouchMoveEvent = false;
     this.setSuggestionsList = this.setSuggestionsList.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.inputHandleKeyDown = this.inputHandleKeyDown.bind(this);
     this.liHandleKeyDown = this.liHandleKeyDown.bind(this);
+    this.handleOnTouchEndOnSuggestionLiElement = this.handleOnTouchEndOnSuggestionLiElement.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isFocused } = this.props;
+
+    if (isFocused === true) {
+      setTimeout(() => {
+        this.searchInput.current.focus();
+      }, 500);
+    }
   }
 
   setSuggestionsList(element, indexOfSuggestion: number) {
@@ -94,8 +110,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
     const res: BloomreachSearchSuggestionResponse = await bloomreachSuggestionSearch(keywords);
 
-    const brSuggestions = res.response.suggestions;
-    const suggestions: string[] = brSuggestions ? brSuggestions.map(suggestion => suggestion.dq) : [];
+    let { suggestions }: { suggestions: BloomreachSuggestion[]} = res.response;
+    suggestions = (suggestions === undefined) ? [] : suggestions;
 
     this.setState({ keywords, suggestions });
   }
@@ -119,23 +135,24 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   }
 
   liHandleKeyDown(e) {
+    const currentSuggestionListIndex: number = parseInt(e.currentTarget.getAttribute('data-list-index'), 10);
+
     if (e.keyCode === 38) {
-      if (this.suggestionIndex > 0 && this.suggestionListElements[this.suggestionIndex - 1]) {
-        this.suggestionIndex = this.suggestionIndex - 1;
-        this.suggestionListElements[this.suggestionIndex].focus();
+      if (currentSuggestionListIndex > 0 && this.suggestionListElements[currentSuggestionListIndex - 1]) {
+        this.suggestionListElements[currentSuggestionListIndex - 1].focus();
       } else {
         this.searchInput.current.focus();
       }
+      e.preventDefault();
     } else if (e.keyCode === 40) {
-      if (this.suggestionIndex < this.suggestionListElements.length - 1 && this.suggestionListElements[this.suggestionIndex + 1]) {
-        this.suggestionIndex = this.suggestionIndex + 1;
-        this.suggestionListElements[this.suggestionIndex].focus();
+      if (currentSuggestionListIndex < this.suggestionListElements.length - 1 && this.suggestionListElements[currentSuggestionListIndex + 1]) {
+        this.suggestionListElements[currentSuggestionListIndex + 1].focus();
+        e.preventDefault();
       }
     } else if (e.keyCode === 13) {
       const { suggestions } = this.state;
-      this.search(e, suggestions[this.suggestionIndex]);
+      this.search(e, suggestions[currentSuggestionListIndex].q);
     }
-    e.preventDefault();
   }
 
   inputHandleKeyDown(e) {
@@ -143,6 +160,13 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       this.suggestionListElements[0].focus();
     }
     e.preventDefault();
+  }
+
+  handleOnTouchEndOnSuggestionLiElement(e, suggestion) {
+    if (this.isTouchMoveEvent === false) {
+      this.search(e, suggestion);
+    }
+    this.isTouchMoveEvent = false;
   }
 
   suggestionListHelper() {
@@ -156,11 +180,14 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
         ref={(e) => { this.setSuggestionsList(e, i); }}
-        key={suggestion}
+        key={suggestion.dq}
+        data-list-index={i}
         onKeyDown={this.liHandleKeyDown}
-        onMouseDown={(e) => { this.search(e, suggestion); }}
+        onMouseUp={(e) => { this.search(e, suggestion.q); }}
+        onTouchEnd={(e) => { this.handleOnTouchEndOnSuggestionLiElement(e, suggestion.q); }}
+        onTouchMove={(e) => { this.isTouchMoveEvent = true; }}
       >
-        {suggestion}
+        {suggestion.dq}
       </li>
     ));
   }
