@@ -67,8 +67,6 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
   private suggestionListElements: HTMLLIElement[];
 
-  private suggestionIndex: number;
-
   private isTouchMoveEvent: boolean;
 
   static defaultProps = {
@@ -84,7 +82,6 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
     };
     this.searchInput = React.createRef();
     this.suggestionListElements = [];
-    this.suggestionIndex = 0;
     this.isTouchMoveEvent = false;
     this.setSuggestionsList = this.setSuggestionsList.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -138,23 +135,23 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
   }
 
   liHandleKeyDown(e) {
+    const currentSuggestionListIndex: number = parseInt(e.currentTarget.getAttribute('data-list-index'), 10);
+
     if (e.keyCode === 38) {
-      if (this.suggestionIndex > 0 && this.suggestionListElements[this.suggestionIndex - 1]) {
-        this.suggestionIndex = this.suggestionIndex - 1;
-        this.suggestionListElements[this.suggestionIndex].focus();
+      if (currentSuggestionListIndex > 0 && this.suggestionListElements[currentSuggestionListIndex - 1]) {
+        this.suggestionListElements[currentSuggestionListIndex - 1].focus();
       } else {
         this.searchInput.current.focus();
       }
       e.preventDefault();
     } else if (e.keyCode === 40) {
-      if (this.suggestionIndex < this.suggestionListElements.length - 1 && this.suggestionListElements[this.suggestionIndex + 1]) {
-        this.suggestionIndex = this.suggestionIndex + 1;
-        this.suggestionListElements[this.suggestionIndex].focus();
+      if (currentSuggestionListIndex < this.suggestionListElements.length - 1 && this.suggestionListElements[currentSuggestionListIndex + 1]) {
+        this.suggestionListElements[currentSuggestionListIndex + 1].focus();
         e.preventDefault();
       }
     } else if (e.keyCode === 13) {
       const { suggestions } = this.state;
-      this.search(e, suggestions[this.suggestionIndex].q);
+      this.search(e, suggestions[currentSuggestionListIndex].q);
     }
   }
 
@@ -184,6 +181,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
         tabIndex={0}
         ref={(e) => { this.setSuggestionsList(e, i); }}
         key={suggestion.dq}
+        data-list-index={i}
         onKeyDown={this.liHandleKeyDown}
         onMouseUp={(e) => { this.search(e, suggestion.q); }}
         onTouchEnd={(e) => { this.handleOnTouchEndOnSuggestionLiElement(e, suggestion.q); }}
