@@ -43,7 +43,7 @@ interface AccountMainState {
   showAccountsMobileMenu: boolean,
 }
 
-export default class AccountList extends React.Component<AccountMainState, AccountMainProps> {
+export default class AccountList extends React.Component<AccountMainProps, AccountMainState> {
     static defaultProps = {
       getSubAccountData: () => {
       },

@@ -62,7 +62,7 @@ const HomePage: React.FunctionComponent = () => {
         {/* eslint-disable-next-line no-return-assign */}
         <div className="section section-3 container">
           <div className="sub-section">
-            <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e) => { e.target.src = homeEspot2; }} />
+            <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e: any) => { e.target.src = homeEspot3; }} />
             <div className="text-block">
               <span className="line line-1">
                 {intl.get('home-sub-espot-container2-first-line')}
@@ -74,9 +74,9 @@ const HomePage: React.FunctionComponent = () => {
           </div>
         </div>
         <div className="section-parallax section-parallax-1 container" data-region="homeMainContentRegion">
-          <Parallax y={[-50, 10]} tag="figure">
+          <Parallax y={[-50, 10]} tagOuter="figure">
             <div className="parallax-image-container">
-              <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax1FileName)} onError={(e) => { e.target.src = homeEspotParallax1; }} />
+              <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax1FileName)} onError={(e: any) => { e.target.src = homeEspot3; }} />
             </div>
           </Parallax>
           <div className="sub-section">
@@ -92,7 +92,7 @@ const HomePage: React.FunctionComponent = () => {
         </div>
         <div className="section section-4 container">
           <div className="sub-section">
-            <img className="small-image image-1" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
+            <img className="small-image image-1" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e: any) => { e.target.src = homeEspot3; }} />
             <div className="text-block">
               <span className="line line-1">
                 {intl.get('home-sub-espot-container3-first-line')}
@@ -101,12 +101,12 @@ const HomePage: React.FunctionComponent = () => {
                 {intl.get('home-sub-espot-container3-second-line')}
               </span>
             </div>
-            <img className="small-image image-2" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e) => { e.target.src = homeEspot3; }} />
+            <img className="small-image image-2" alt="home-espot-3" src={Config.siteImagesUrl.replace('%fileName%', homeEspot3FileName)} onError={(e: any) => { e.target.src = homeEspot3; }} />
           </div>
         </div>
         <div className="section section-5 container">
           <div className="sub-section">
-            <img className="small-image" alt="home-espot-4" src={Config.siteImagesUrl.replace('%fileName%', homeEspot4FileName)} onError={(e) => { e.target.src = homeEspot4; }} />
+            <img className="small-image" alt="home-espot-4" src={Config.siteImagesUrl.replace('%fileName%', homeEspot4FileName)} onError={(e: any) => { e.target.src = homeEspot4; }} />
             <div className="text-block">
               <span className="line line-1">
                 {intl.get('home-sub-espot-container4-first-line')}
@@ -118,9 +118,9 @@ const HomePage: React.FunctionComponent = () => {
           </div>
         </div>
         <div className="section-parallax section-parallax-2 container" data-region="homeMainContentRegion">
-          <Parallax y={[10, -30]} tag="figure">
+          <Parallax y={[10, -30]} tagOuter="figure">
             <div className="parallax-image-container">
-              <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax2FileName)} onError={(e) => { e.target.src = homeEspotParallax2; }} />
+              <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax2FileName)} onError={(e: any) => { e.target.src = homeEspotParallax2; }} />
             </div>
           </Parallax>
           <div className="sub-section">

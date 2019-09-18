@@ -33,7 +33,10 @@ interface IndiRecommendationsDisplayMainProps {
     keywords?: string,
 }
 
-class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendationsDisplayMainProps> {
+interface IndiRecommendationsDisplayMainState {
+}
+
+class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendationsDisplayMainProps, IndiRecommendationsDisplayMainState> {
   static defaultProps = {
     keywords: '',
   }
@@ -93,4 +96,5 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
   }
 }
 
-export default withRouter(IndiRecommendationsDisplayMain);
+// export default withRouter(IndiRecommendationsDisplayMain);
+export default IndiRecommendationsDisplayMain;

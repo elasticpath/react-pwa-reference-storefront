@@ -30,9 +30,15 @@ interface BloomreachHeaderSearchMainProps {
     isFocused: boolean,
     onSearchPage?: (...args: any[]) => any,
 }
+
+interface BloomreachSuggestion {
+  q: string,
+  dq: string,
+}
+
 interface BloomreachHeaderSearchMainState {
     keywords: string,
-    suggestions: string[],
+    suggestions: BloomreachSuggestion[],
 }
 
 interface BloomreachSearchSuggestionResponse {
@@ -42,10 +48,7 @@ interface BloomreachSearchSuggestionResponse {
   }
   response: {
     q: string;
-    suggestions: [{
-      q: string;
-      dq: string;
-    }];
+    suggestions: BloomreachSuggestion[];
     numFound: number;
     products: [{
       url: string;
@@ -110,8 +113,8 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
 
     const res: BloomreachSearchSuggestionResponse = await bloomreachSuggestionSearch(keywords);
 
-    const brSuggestions = res.response.suggestions;
-    const suggestions: string[] = brSuggestions ? brSuggestions.map(suggestion => suggestion.dq) : [];
+    let { suggestions }: { suggestions: BloomreachSuggestion[]} = res.response;
+    suggestions = (suggestions === undefined) ? [] : suggestions;
 
     this.setState({ keywords, suggestions });
   }
@@ -151,7 +154,7 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
       }
     } else if (e.keyCode === 13) {
       const { suggestions } = this.state;
-      this.search(e, suggestions[this.suggestionIndex]);
+      this.search(e, suggestions[this.suggestionIndex].q);
     }
   }
 
@@ -180,13 +183,13 @@ class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchM
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
         ref={(e) => { this.setSuggestionsList(e, i); }}
-        key={suggestion}
+        key={suggestion.dq}
         onKeyDown={this.liHandleKeyDown}
-        onMouseUp={(e) => { this.search(e, suggestion); }}
-        onTouchEnd={(e) => { this.handleOnTouchEndOnSuggestionLiElement(e, suggestion); }}
+        onMouseUp={(e) => { this.search(e, suggestion.q); }}
+        onTouchEnd={(e) => { this.handleOnTouchEndOnSuggestionLiElement(e, suggestion.q); }}
         onTouchMove={(e) => { this.isTouchMoveEvent = true; }}
       >
-        {suggestion}
+        {suggestion.dq}
       </li>
     ));
   }
