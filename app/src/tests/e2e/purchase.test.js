@@ -112,7 +112,6 @@ describe('Purchase feature', () => {
     } ;
     await registerUser(page, userInfo);
     await page.waitFor(2000);
-    await page.waitForSelector(HOME_PAGE_CSS);
 
     await page.waitForSelector(CART_LINK_CSS);
     await page.click(CART_LINK_CSS);
@@ -629,14 +628,6 @@ describe('Purchase feature', () => {
       password: '12345678_test',
     } ;
     await registerUser(page, userInfo);
-
-    await page.waitForSelector(HOME_PAGE_CSS);
-
-    await page.waitForSelector(CART_LINK_CSS);
-    await page.click(CART_LINK_CSS);
-
-    await page.waitForSelector(CHECKOUT_BUTTON_CSS);
-    await page.click(CHECKOUT_BUTTON_CSS);
 
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
     await page.click(ADD_NEW_ADDRESS_CSS);

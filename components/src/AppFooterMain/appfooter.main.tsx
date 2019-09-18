@@ -80,7 +80,7 @@ function AppFooterMain(props: AppFooterMainProps) {
               <span className="share-icon twitter" />
               {intl.get('twitter')}
             </Link>
-            <Link to={linkTo.shareInstagram} alt="share instagram">
+            <Link to={linkTo.shareInstagram} aria-label="share instagram">
               <span className="share-icon instagram" />
               {intl.get('instagram')}
             </Link>

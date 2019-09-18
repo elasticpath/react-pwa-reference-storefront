@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "noImplicitAny": false,
+    "outDir": "./dist",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "jsx": "preserve",
@@ -14,25 +14,10 @@
       "es6"
     ],
     "strict": false,
-    "noEmit": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "isolatedModules": true
-  },
-  "files": [
-    "custom_typings/image-loader.d.ts",
-    "custom_typings/json-loader.d.ts"
-  ],
-  "exclude": [
-    "config-overrides.js",
-    "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "config",
-    "src/tests"
-  ]
+  }
 }

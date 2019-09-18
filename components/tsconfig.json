@@ -25,10 +25,6 @@
     "esModuleInterop":true,
     "declarationMap": true
   },
-  "files": [
-    "custom_typings/image-loader.d.ts",
-    "custom_typings/json-loader.d.ts"
-  ],
   "include": [
     "src"
   ],
