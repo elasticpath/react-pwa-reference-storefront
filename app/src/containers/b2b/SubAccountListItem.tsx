@@ -101,6 +101,7 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
       subAccountData: {},
       isLoading: false,
       subAccountOpened: false,
+      accountName: '',
       highlight: false,
     };
 

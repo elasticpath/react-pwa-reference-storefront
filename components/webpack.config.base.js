@@ -101,11 +101,11 @@ module.exports = {
       window: 'ReactRouterDOM',
     },
     'react-router': {
-        commonjs: 'react-router',
-        commonjs2: 'react-router',
-        amd: 'react-router',
-        var: 'react-router',
-        window: 'ReactRouter',
-      },
+      commonjs: 'react-router',
+      commonjs2: 'react-router',
+      amd: 'react-router',
+      var: 'react-router',
+      window: 'ReactRouter',
+    },
   },
 };

@@ -23,7 +23,11 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { ProductDisplayItemMain } from '@elasticpath/store-components';
 
-function ProductDetailPage(props: RouteComponentProps) {
+interface ProductDetailRouterProps {
+  url: string;
+}
+
+function ProductDetailPage(props: RouteComponentProps<ProductDetailRouterProps>) {
   const { history } = props;
 
   function handleAddToCart() {
