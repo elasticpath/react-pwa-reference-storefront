@@ -22,7 +22,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
-  ClientProvider, AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent,
+  ClientProvider, AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, AdminProvider,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
 import * as cortex from '@elasticpath/cortex-client';
@@ -167,7 +167,7 @@ const Root = (props) => {
 
 const cortexClient: cortex.IClient = cortex.createClient({
   serverBaseUrl: '/cortex',
-  authHeader: () => localStorage.getItem('vestri_oAuthToken') as string,
+  authHeader: () => localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) as string,
   onAuthError: async () => {
     const result = await cortexClient.serverFetch('/oauth2/tokens', {
       method: 'post',
@@ -181,10 +181,32 @@ const cortexClient: cortex.IClient = cortex.createClient({
         scope: Config.cortexApi.scope,
       },
     });
-    localStorage.setItem('vestri_oAuthToken', `Bearer ${result.parsedJson.access_token}`);
+    localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
     localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
     return true;
   },
+});
+
+const cortexAdmin: cortex.IClient = cortex.createClient({
+  serverBaseUrl: '/admin',
+  authHeader: () => localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) as string,
+  // onAuthError: async () => {
+  //   const result = await cortexClient.serverFetch('/oauth2/tokens', {
+  //     method: 'post',
+  //     useAuth: false,
+  //     urlEncoded: true,
+  //     body: {
+  //       username: '',
+  //       password: '',
+  //       grant_type: 'password',
+  //       role: 'PUBLIC',
+  //       scope: Config.cortexApi.scope,
+  //     },
+  //   });
+  //   localStorage.setItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`, `Bearer ${result.parsedJson.access_token}`);
+  //   localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
+  //   return true;
+  // },
 });
 
 const App = withRouter(withAnalytics(Root));
@@ -192,9 +214,11 @@ const AppWithRouter = (props) => {
   const { componentsData } = props;
   return (
     <ClientProvider value={cortexClient}>
-      <Router>
-        <App componentsData={componentsData} />
-      </Router>
+      <AdminProvider value={cortexAdmin}>
+        <Router>
+          <App componentsData={componentsData} />
+        </Router>
+      </AdminProvider>
     </ClientProvider>
   );
 };

@@ -28,9 +28,11 @@ import { loginRegisteredAuthService } from '../utils/AuthService';
 import './appmodallogin.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { ClientContext } from '../ClientContext';
+import { AdminContext } from '../AdminContext';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
+// const adminCortex = React.useContext(AdminContext);
 
 interface AppModalLoginMainProps {
     handleModalClose: (...args: any[]) => any,
@@ -84,31 +86,50 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
     this.client = this.context;
   }
 
-  componentWillMount() {
-    const { locationSearchData, onLogin } = this.props;
+  async componentWillMount() {
+    const { locationSearchData } = this.props;
     const url = locationSearchData;
     const params = queryString.parse(url);
     if (params.code) {
       localStorage.setItem(`${Config.cortexApi.scope}_keycloakCode`, params.code);
       localStorage.setItem(`${Config.cortexApi.scope}_keycloakSessionState`, params.session_state);
       if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) !== 'REGISTERED') {
-        loginRegisteredAuthService(params.code, encodeURIComponent(Config.b2b.keycloak.callbackUrl), encodeURIComponent(Config.b2b.keycloak.client_id)).then((resStatus) => {
-          if (resStatus === 401) {
-            this.setState({
-              failedLogin: true,
-              isLoading: false,
-            });
-          }
-          if (resStatus === 400) {
-            this.setState({
-              failedLogin: true,
-              isLoading: false,
-            });
-          } else if (resStatus === 200) {
-            this.setState({ failedLogin: false });
-            onLogin();
-          }
-        });
+        try {
+          const result = await this.client.serverFetch('/oauth2/tokens', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+            },
+            useAuth: false,
+            urlEncoded: true,
+            body: {
+              grant_type: 'authorization_code',
+              code: params.code,
+              redirect_uri: encodeURIComponent(Config.b2b.keycloak.callbackUrl),
+              client_id: encodeURIComponent(Config.b2b.keycloak.client_id),
+            },
+          });
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error(error);
+        }
+        // loginRegisteredAuthService(params.code, encodeURIComponent(Config.b2b.keycloak.callbackUrl), encodeURIComponent(Config.b2b.keycloak.client_id)).then((resStatus) => {
+        //   if (resStatus === 401) {
+        //     this.setState({
+        //       failedLogin: true,
+        //       isLoading: false,
+        //     });
+        //   }
+        //   if (resStatus === 400) {
+        //     this.setState({
+        //       failedLogin: true,
+        //       isLoading: false,
+        //     });
+        //   } else if (resStatus === 200) {
+        //     this.setState({ failedLogin: false });
+        //     onLogin();
+        //   }
+        // });
       }
     }
   }

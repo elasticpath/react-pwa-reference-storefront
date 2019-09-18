@@ -75,6 +75,7 @@ import SortProductMenuMain from './SortProductMenu/sortproductmenu.main';
 import WishListMain from './WishList/wishlist.main';
 import ChatComponent from './ChatBot/chatbot';
 import { ClientContext, ClientProvider, ClientConsumer } from './ClientContext';
+import { AdminContext, AdminProvider, AdminConsumer } from './AdminContext';
 
 export {
   init,
@@ -135,4 +136,7 @@ export {
   ClientContext,
   ClientProvider,
   ClientConsumer,
+  AdminContext,
+  AdminProvider,
+  AdminConsumer,
 };
