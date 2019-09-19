@@ -22,17 +22,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
-// import { bloomreachSuggestionSearch } from '../utils/BloomreachSearchService';
+import { bloomreachKeywordSearchLookup } from '../utils/BloomreachSearchService';
 // import BloomreachProductListMain from './bloomreach.productlist.main';
-// import BloomreachSearchFacetNavigationMain from './bloomreach.searchfacetnavigation.main';
+import BloomreachSearchFacetNavigationMain from '../BloomreachSearchFacetNavigation/bloomreach.searchfacetnavigation.main';
 
 // import '../searchresultsitems.main.less';
 
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
-
-
 
 interface BloomreachSearchResultsItemsMainProps {
     searchKeywordsProps: {
@@ -50,7 +48,81 @@ interface BloomreachSearchResultsItemsMainState {
       [key: string]: any
     },
     loadSortedProduct: boolean,
-    searchKeywords: any
+    searchKeywords: any,
+    searchQueryParams: any,
+}
+
+interface BloomreachKeywordSearchLookupResponse {
+    response:     Response;
+    facet_counts: FacetCounts;
+    category_map: CategoryMap;
+    did_you_mean: any[];
+}
+
+interface CategoryMap {
+    VESTRI_BM_APPAREL:   string;
+    VESTRI_APPAREL_MENS: string;
+}
+
+interface FacetCounts {
+    facet_ranges:  Facet;
+    facet_fields:  FacetFields;
+    facet_queries: Facet;
+}
+
+interface FacetFields {
+    category:     Category[];
+    sizes:        AgeGroup[];
+    brand:        any[];
+    colors:       AgeGroup[];
+    color_groups: any[];
+    color:        AgeGroup[];
+    gender:       AgeGroup[];
+    material:     AgeGroup[];
+    apparel_type: AgeGroup[];
+    age_group:    AgeGroup[];
+}
+
+interface AgeGroup {
+    count: number;
+    name:  string;
+}
+
+interface Category {
+    count:     number;
+    crumb:     string;
+    cat_name:  string;
+    parent:    string;
+    cat_id:    string;
+    tree_path: string;
+}
+
+interface Facet {
+}
+
+interface Response {
+    numFound: number;
+    start:    number;
+    docs:     Doc[];
+}
+
+interface Doc {
+    sale_price:       number;
+    price:            number;
+    description:      string;
+    title:            string;
+    url:              string;
+    brand:            string;
+    pid:              string;
+    thumb_image:      string;
+    sale_price_range: number[];
+    price_range:      number[];
+    variants:         Variant[];
+}
+
+interface Variant {
+    sku_swatch_images: string[];
+    sku_thumb_images:  string[];
 }
 
 class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchResultsItemsMainProps, BloomreachSearchResultsItemsMainState> {
@@ -65,6 +137,7 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
       searchResultsModel: {},
       loadSortedProduct: false,
       searchKeywords: searchKeywordsProps,
+      searchQueryParams: null,
     };
   }
 
@@ -78,7 +151,7 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
     this.getSearchData(searchKeywordsProps);
   }
 
-  getSearchData(searchKeywordsProps) {
+  async getSearchData(searchKeywordsProps) {
     this.setState({
       isLoading: true,
       searchKeywords: searchKeywordsProps,
@@ -86,20 +159,14 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
 
     const searchKeyword = searchKeywordsProps.match.params;
     const searchQueryParams = searchKeywordsProps.location.search;
+    
+    const res: BloomreachKeywordSearchLookupResponse = await bloomreachKeywordSearchLookup(searchKeyword, searchQueryParams);
 
-    // bloomreachKeywordSearchLookup(searchKeyword, searchQueryParams)
-    //   .then((res) => {
-    //     this.setState({
-    //       isLoading: false,
-    //       searchResultsModel: res,
-    //       searchKeywords: searchKeyword,
-    //       searchQueryParams,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     // eslint-disable-next-line no-console
-    //     console.error(error.message);
-    //   });
+    this.setState({
+        isLoading: false,
+        searchResultsModel: res,
+        searchKeywords: searchKeyword,
+    });
   }
 
   render() {
@@ -112,8 +179,6 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
     const facets = searchResultsModel.facet_counts ? searchResultsModel.facet_counts.facet_fields : searchResultsModel;
     const categoryMap = searchResultsModel.category_map;
     const propCompareButton = false;
-
-    console.log('rendering bloomreach search results items');
 
     return (
       <div className="category-items-container container-3">
@@ -143,7 +208,7 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
 
             return (
               <div>
-                {/* <BloomreachSearchFacetNavigationMain productData={facets} titleString={searchKeywords} currentFacets={searchQueryParams} categoryMap={categoryMap} /> */}
+                <BloomreachSearchFacetNavigationMain productData={facets} titleString={searchKeywords} categoryMap={categoryMap} />
                 <div className="products-container">
                   {/* <BloomreachProductListMain productData={products} showCompareButton={propCompareButton} /> */}
                 </div>

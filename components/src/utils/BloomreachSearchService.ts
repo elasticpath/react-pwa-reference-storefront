@@ -38,7 +38,7 @@ function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch
 }
 
 // TODO: Will have to use generic types here.
-export function bloomreachKeywordSearchLookup(searchKeyword, searchQueryParams) {
+export function bloomreachKeywordSearchLookup<T>(searchKeyword, searchQueryParams): Promise<T> {
   const baseUrl = generateBaseBloomreachUrl();
   const {
     requestType,
