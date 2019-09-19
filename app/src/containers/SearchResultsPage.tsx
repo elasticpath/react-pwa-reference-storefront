@@ -22,6 +22,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { SearchResultsItemsMain } from '@elasticpath/store-components';
+import Config from '../ep.config.json';
 
 function SearchResultsPage(props: RouteComponentProps) {
   function handleProductFacetSelection(offerSearch, title) {
@@ -39,6 +40,10 @@ function SearchResultsPage(props: RouteComponentProps) {
     productSearch: '/search',
     productCategory: '/category',
   };
+
+  if (Config.bloomreachSearch.enable) {
+    
+  }
 
   return (
     <div>
