@@ -54,8 +54,10 @@ class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppH
     this.search = this.search.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isFocused === true) {
+  componentDidUpdate(prevProps) {
+    const { isFocused } = this.props;
+
+    if (isFocused === true) {
       setTimeout(() => {
         this.searchInput.current.focus();
       }, 500);

@@ -95,6 +95,23 @@
     "pageId": "<PAGE_ID>",
     "applicationId": "<APP_ID>"
   },
+  "bloomreachSearch": {
+    "enable": false,
+    "config": {
+      "baseUri": "",
+      "accountId": "",
+      "authKey": "",
+      "domainKey": "",
+      "requestId": "",
+      "brUID2":"",
+      "url": "",
+      "refurl": "",
+      "suggestionConfig": {
+        "baseUri": "",
+        "requestType": ""
+      }
+    }
+  },
   "GDPR": {
     "enable": false
   },

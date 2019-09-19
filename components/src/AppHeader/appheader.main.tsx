@@ -22,6 +22,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from '../AppHeaderSearch/appheadersearch.main';
+import BloomreachAppHeaderSearchMain from '../Bloomreach/bloomreach.appheadersearch.main';
 import AppHeaderLoginMain from '../AppHeaderLogin/appheaderlogin.main';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
@@ -255,7 +256,11 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
           <div className="icons-header-container">
             <div className="search-container">
-              <AppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
+              {Config.bloomreachSearch.enable ? (
+                <BloomreachAppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
+              ) : (
+                <AppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
+              )}
             </div>
             <div className="search-toggle-btn-container">
               <button
@@ -328,7 +333,11 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
         <div className="collapsable-container collapse collapsed">
           <div className="search-container">
-            <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
+            {Config.bloomreachSearch.enable ? (
+              <BloomreachAppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
+            ) : (
+              <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
+            )}
           </div>
           <div className="mobile-locale-container">
             <AppHeaderLocaleMain isMobileView onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
