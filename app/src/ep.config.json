@@ -109,6 +109,14 @@
       "suggestionConfig": {
         "baseUri": "http://suggest.dxpapi.com/api/v1/suggest/?",
         "requestType": "request_type=suggest"
+      },
+      "keywordSearchConfig": {
+        "requestType": "request_type=search",
+        "rows": "rows=10",
+        "start": "start=0",
+        "facetLimit": "facet.limit=20",
+        "fl": "fl=pid%2Ctitle%2Cbrand%2Cprice%2Csale_price%2Cpromotions%2Cthumb_image%2Csku_thumb_images%2Csku_swatch_images%2Csku_color_group%2Curl%2Cprice_range%2Csale_price_range%2Cdescription",
+        "searchType": "search_type=keyword"
       }
     }
   },
