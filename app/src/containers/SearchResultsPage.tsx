@@ -21,7 +21,7 @@
 
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { SearchResultsItemsMain } from '@elasticpath/store-components';
+import { SearchResultsItemsMain, BloomreachSearchResultsItems } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 
 function SearchResultsPage(props: RouteComponentProps) {
@@ -42,9 +42,14 @@ function SearchResultsPage(props: RouteComponentProps) {
   };
 
   if (Config.bloomreachSearch.enable) {
-    
+    return (
+    <div>
+      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
+      <BloomreachSearchResultsItems searchKeywordsProps={props} onProductFacetSelection={handleProductFacetSelection} productLinks={productLinks} />
+    </div>
+    );
   }
-
+  
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}

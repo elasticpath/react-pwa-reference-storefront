@@ -37,6 +37,42 @@ function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch
   return `${baseUri}${accountId}&${authKey}&${domainKey}&${requestId}&${brUID2}&${url}&${refurl}`;
 }
 
+// TODO: Will have to use generic types here.
+export function bloomreachKeywordSearchLookup(searchKeyword, searchQueryParams) {
+  const baseUrl = generateBaseBloomreachUrl();
+  const {
+    requestType,
+    rows,
+    start,
+    facetLimit,
+    fl,
+    searchType,
+  } = getConfig().config.bloomreachSearch.config.keywordSearchConfig;
+  const q = `q=${searchKeyword.keywords}`;
+
+  const fq = searchQueryParams ? `${searchQueryParams}`.replace('?', '') : null;
+  const searchUrl = `${baseUrl}&${requestType}&${rows}&${start}&${facetLimit}&${fl}&${q}&${fq}&${searchType}`;
+
+  return new Promise(((resolve, reject) => {
+    bloomreachFetch(searchUrl, {})
+      .then((res) => {
+        if (res.status >= 500) {
+          reject(res);
+        }
+        return res;
+      })
+      .then(res => res.json())
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        reject(error);
+      });
+  }));
+}
+
 // eslint-disable-next-line import/prefer-default-export
 export function bloomreachSuggestionSearch<T>(keyword): Promise<T> {
   const {

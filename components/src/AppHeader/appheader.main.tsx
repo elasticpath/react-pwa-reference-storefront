@@ -22,7 +22,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from '../AppHeaderSearch/appheadersearch.main';
-import BloomreachAppHeaderSearchMain from '../Bloomreach/bloomreach.appheadersearch.main';
+import BloomreachAppHeaderSearchMain from '../BloomreachAppHeaderSearch/bloomreach.appheadersearch.main';
 import AppHeaderLoginMain from '../AppHeaderLogin/appheaderlogin.main';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
