@@ -101,6 +101,9 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
       categoryMap,
     };
     this.handleFacetSelection = this.handleFacetSelection.bind(this);
+    this.addFacetFromQueryParamsTree = this.addFacetFromQueryParamsTree.bind(this);
+    this.renderFacetSelectors = this.renderFacetSelectors.bind(this);
+    this.renderFacets = this.renderFacets.bind(this);
   }
 
   removeFacetFromQueryParamsTree(facetKey, facetName) {
@@ -132,10 +135,11 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     } else {
       currentFacets[facetKey].push(facetName);
     }
-
+    
     this.setState({
       currentFacets,
-    });
+    }
+    );
   }
 
   reconstructTreeIntoQueryParamsString() {
@@ -157,6 +161,15 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     const queryParams = paramArray.join('&');
     return queryParams ? `?${queryParams}` : '';
   }
+  
+  componentDidUpdate(prevProps, prevState) {
+    const { titleString } = this.props;
+    const { keywords } = titleString;
+    
+    const facets = this.reconstructTreeIntoQueryParamsString();
+    
+    window.history.pushState('', '', `/search/${keywords}${facets}`);
+  }
 
   handleFacetSelection(facetKey, facetId) {
     const { history, titleString } = this.props;
@@ -167,24 +180,19 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     } else {
       this.addFacetFromQueryParamsTree(facetKey, facetId);
     }
-
-    const facets = this.reconstructTreeIntoQueryParamsString();
-
-    history.push(`/search/${keywords}${facets}`);
   }
 
   hasFacetBeenSelected(facetKey, facetName) {
     const { currentFacets } = this.state;
-    
-    if (currentFacets) {
-        if (currentFacets[facetKey]) {
-            return currentFacets[facetKey].some((facet) => {
-              if (facet.includes(facetName)) {
-                return true;
-              }
-              return false;
-            });
-          }
+
+    if (currentFacets[facetKey]) {
+
+      return currentFacets[facetKey].some((facet) => {
+        if (facet.includes(facetName)) {
+          return true;
+        }
+        return false;
+      });
     }
 
     return false;
@@ -261,16 +269,17 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
             return (
               <div className="list-group-item facet-value" key={id}>
                 <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(facetKey, id)}>
-                  <span className="checkmark" />
+                  <span className="checkmark choice" />
                   {`${this.generateFacetName(facetKey, name, choice)}`}
                 </button>
               </div>
             );
           }
+
           return (
             <div className="list-group-item facet-value" key={id}>
               <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(facetKey, id)}>
-                <span className="checkmark" />
+                <span className="checkmark chosen" />
                 {`${this.generateFacetName(facetKey, name, choice)}`}
               </button>
             </div>
@@ -312,7 +321,8 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   }
 
   render() {
-    const { facetModel } = this.state;
+    const { facetModel, currentFacets } = this.state;
+    
     if (facetModel) {
       return (
         <div className="product-list-facet-navigation-component">
