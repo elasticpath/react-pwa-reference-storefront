@@ -23,7 +23,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import intl from 'react-intl-universal';
 import { bloomreachKeywordSearchLookup } from '../utils/BloomreachSearchService';
-// import BloomreachProductListMain from './bloomreach.productlist.main';
+import BloomreachProductListMain from '../BloomreachProductListMain/bloomreach.productlist.main';
 import BloomreachSearchFacetNavigationMain from '../BloomreachSearchFacetNavigation/bloomreach.searchfacetnavigation.main';
 
 // import '../searchresultsitems.main.less';
@@ -210,7 +210,7 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
               <div>
                 <BloomreachSearchFacetNavigationMain productData={facets} titleString={searchKeywords} categoryMap={categoryMap} />
                 <div className="products-container">
-                  {/* <BloomreachProductListMain productData={products} showCompareButton={propCompareButton} /> */}
+                  <BloomreachProductListMain productData={products} showCompareButton={propCompareButton} />
                 </div>
               </div>
             );
