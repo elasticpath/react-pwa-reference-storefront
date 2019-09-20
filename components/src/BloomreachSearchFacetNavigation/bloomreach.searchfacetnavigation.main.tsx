@@ -60,32 +60,35 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     // Ex. ['colors: "black"', 'category: "cat250"']
     // Ex {colors: ["black"], category: "cat250"}
     // TODO: Make this one large regex expression.
+    const filteredQueryParams: [] = [];
+
     if (queryParams) {
         let filteredQueryParams = queryParams.replace('?', '');
         filteredQueryParams = filteredQueryParams.replace(/['"]+/g, '');
         filteredQueryParams = filteredQueryParams.split('fq=');
         filteredQueryParams = filteredQueryParams.map(params => params.replace('&', ''));
-
-        const filteredQueryParamsTree = filteredQueryParams.reduce((acc, outerFacetStr) => {
-        if (outerFacetStr) {
-            const outerFacetArray = outerFacetStr.split(':');
-            const category = outerFacetArray[0];
-            const loFacets = outerFacetArray[1].split('OR');
-
-            loFacets.forEach((innerFacet) => {
-            if (acc[category] == null) {
-                acc[category] = [innerFacet];
-            } else {
-                acc[category].push(innerFacet);
-            }
-            });
-        }
-
-        return acc;
-        }, {});
-
-        return filteredQueryParamsTree;
     }
+
+    const filteredQueryParamsTree = filteredQueryParams.reduce((acc, outerFacetStr:string) => {
+      if (outerFacetStr) {
+          const outerFacetArray = outerFacetStr.split(':');
+          const category = outerFacetArray[0];
+          const loFacets = outerFacetArray[1].split('OR');
+
+          loFacets.forEach((innerFacet) => {
+          if (acc[category] == null) {
+              acc[category] = [innerFacet];
+          } else {
+              acc[category].push(innerFacet);
+          }
+          });
+      }
+
+      return acc;
+    }, {});
+
+    return filteredQueryParamsTree;
+    
   }
 
   constructor(props) {
@@ -224,7 +227,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   // eslint-disable-next-line class-methods-use-this
   generateFacetName(facetKey, name, choice) {
     const { categoryMap } = this.state;
-
+    
     if (choice.crumb) {
       const crumbs = choice.crumb.split('/');
       const crumbNames = crumbs.map((categoryCode) => {
@@ -281,6 +284,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
 
   renderFacets() {
     const { facetModel } = this.state;
+
     return Object.keys(facetModel).map((facetKey) => {
       if (facetKey && facetModel[facetKey].length > 0) {
         const facetDisplayNameId = facetKey.toLowerCase().replace(/ /g, '_');
