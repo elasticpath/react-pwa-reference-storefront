@@ -121,7 +121,6 @@ class BloomreachProductListMain extends React.Component<BloomreachProductListMai
 
   renderProducts() {
     const { categoryModel } = this.state;
-    console.log(categoryModel);
     return categoryModel.map((product) => {
       if (product.pid) {
         const sku = product.variants[0].sku_swatch_images[0];

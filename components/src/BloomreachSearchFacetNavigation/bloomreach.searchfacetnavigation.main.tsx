@@ -20,8 +20,7 @@
  */
 
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import PropTypes from 'prop-types';
+
 import { withRouter } from 'react-router';
 
 import './bloomreach.searchfacetnavigation.main.less';
@@ -31,6 +30,7 @@ interface BloomreachSearchFacetNavigationMainProps {
     titleString: any,
     categoryMap: any,
     currentFacets: any,
+    onFacetSelected: any,
     history: any,
 }
 
@@ -56,20 +56,21 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   }
 
   static turnQueryParamsIntoTree(queryParams) {
+    const decodedQueryParams = decodeURI(queryParams);
     // Ex. ?fq=colors:"black"OR"red"&fq=category:"cat250"
     // Ex. ['colors: "black"', 'category: "cat250"']
     // Ex {colors: ["black"], category: "cat250"}
     // TODO: Make this one large regex expression.
-    const filteredQueryParams: [] = [];
-
-    if (queryParams) {
-        let filteredQueryParams = queryParams.replace('?', '');
+    let filteredQueryParamsArray: string[] = [];
+    console.log(decodedQueryParams);
+    if (decodedQueryParams) {
+        let filteredQueryParams: string = decodedQueryParams.replace('?', '');
         filteredQueryParams = filteredQueryParams.replace(/['"]+/g, '');
-        filteredQueryParams = filteredQueryParams.split('fq=');
-        filteredQueryParams = filteredQueryParams.map(params => params.replace('&', ''));
+        filteredQueryParamsArray = filteredQueryParams.split('fq=');
+        filteredQueryParamsArray = filteredQueryParamsArray.map(params => params.replace('&', ''));
     }
 
-    const filteredQueryParamsTree = filteredQueryParams.reduce((acc, outerFacetStr:string) => {
+    const filteredQueryParamsTree = filteredQueryParamsArray.reduce((acc, outerFacetStr:string) => {
       if (outerFacetStr) {
           const outerFacetArray = outerFacetStr.split(':');
           const category = outerFacetArray[0];
@@ -87,26 +88,31 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
       return acc;
     }, {});
 
+    console.log(filteredQueryParamsTree);
+
     return filteredQueryParamsTree;
     
   }
 
   constructor(props) {
+    console.log('constructor being called again');
     super(props);
     const { productData, currentFacets, categoryMap } = this.props;
-
+    
     this.state = {
       facetModel: productData,
-      currentFacets: BloomreachSearchFacetNavigationMain.turnQueryParamsIntoTree(currentFacets),
+      currentFacets: BloomreachSearchFacetNavigationMain.turnQueryParamsIntoTree(window.location.search),
       categoryMap,
     };
+
+    console.log(this.state);
     this.handleFacetSelection = this.handleFacetSelection.bind(this);
     this.addFacetFromQueryParamsTree = this.addFacetFromQueryParamsTree.bind(this);
     this.renderFacetSelectors = this.renderFacetSelectors.bind(this);
     this.renderFacets = this.renderFacets.bind(this);
   }
 
-  removeFacetFromQueryParamsTree(facetKey, facetName) {
+  removeFacetFromQueryParamsTree(facetKey, facetName, onFacetFinishUpdate) {
     const { currentFacets } = this.state;
     const filteredCurrentFacets = currentFacets[facetKey].filter((facet) => {
       if (facet.includes(facetName)) {
@@ -124,10 +130,12 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
 
     this.setState({
       currentFacets,
-    });
+    },
+    onFacetFinishUpdate
+    );
   }
 
-  addFacetFromQueryParamsTree(facetKey, facetName) {
+  addFacetFromQueryParamsTree(facetKey, facetName, onFacetFinishUpdate) {
     const { currentFacets } = this.state;
 
     if (currentFacets[facetKey] == null) {
@@ -135,10 +143,14 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     } else {
       currentFacets[facetKey].push(facetName);
     }
+
+    console.log('the current facets');
+    console.log(currentFacets);
     
     this.setState({
       currentFacets,
-    }
+    },
+    onFacetFinishUpdate
     );
   }
 
@@ -161,25 +173,24 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     const queryParams = paramArray.join('&');
     return queryParams ? `?${queryParams}` : '';
   }
-  
-  componentDidUpdate(prevProps, prevState) {
-    const { titleString } = this.props;
-    const { keywords } = titleString;
-    
-    const facets = this.reconstructTreeIntoQueryParamsString();
-    
-    window.history.pushState('', '', `/search/${keywords}${facets}`);
-  }
 
   handleFacetSelection(facetKey, facetId) {
-    const { history, titleString } = this.props;
+    const { history, titleString, onFacetSelected } = this.props;
     const { keywords } = titleString;
 
-    if (this.hasFacetBeenSelected(facetKey, facetId)) {
-      this.removeFacetFromQueryParamsTree(facetKey, facetId);
-    } else {
-      this.addFacetFromQueryParamsTree(facetKey, facetId);
+    var onFacetFinishUpdate = () => {
+      const facets = this.reconstructTreeIntoQueryParamsString();
+      window.history.pushState('', '', `/search/${keywords}${facets}`);
+      onFacetSelected(facets);
     }
+
+    if (this.hasFacetBeenSelected(facetKey, facetId)) {
+      this.removeFacetFromQueryParamsTree(facetKey, facetId, onFacetFinishUpdate);
+    } else {
+      this.addFacetFromQueryParamsTree(facetKey, facetId, onFacetFinishUpdate);
+    }
+
+    // TODO: Here we should call something that changes the state here... Might want to update the state from the setState function.
   }
 
   hasFacetBeenSelected(facetKey, facetName) {
@@ -322,7 +333,8 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
 
   render() {
     const { facetModel, currentFacets } = this.state;
-    
+    console.log('checking the currentFacets');
+    console.log(currentFacets);
     if (facetModel) {
       return (
         <div className="product-list-facet-navigation-component">

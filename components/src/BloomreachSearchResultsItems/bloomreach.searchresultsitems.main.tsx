@@ -139,34 +139,49 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
       searchKeywords: searchKeywordsProps,
       searchQueryParams: null,
     };
+
+    this.onFacetSelected = this.onFacetSelected.bind(this);
   }
 
   componentDidMount() {
     const { searchKeywordsProps } = this.props;
-    this.getSearchData(searchKeywordsProps);
+    this.getSearchData(searchKeywordsProps, undefined);
   }
 
   componentWillReceiveProps(nextProps) {
     const { searchKeywordsProps } = nextProps;
-    this.getSearchData(searchKeywordsProps);
+    this.getSearchData(searchKeywordsProps, undefined);
   }
 
-  async getSearchData(searchKeywordsProps) {
+  async getSearchData(searchKeywordsProps, searchQueryParams) {
     this.setState({
       isLoading: true,
       searchKeywords: searchKeywordsProps,
     });
 
     const searchKeyword = searchKeywordsProps.match.params;
-    const searchQueryParams = searchKeywordsProps.location.search;
+    const queryParams = (searchQueryParams == undefined) ? searchKeywordsProps.location.search : searchQueryParams;
+    console.log(searchKeyword);
+    console.log(searchQueryParams);
     
-    const res: BloomreachKeywordSearchLookupResponse = await bloomreachKeywordSearchLookup(searchKeyword, searchQueryParams);
-
+    const res: BloomreachKeywordSearchLookupResponse = await bloomreachKeywordSearchLookup(searchKeyword, queryParams);
+    
+    console.log(res);
+    
     this.setState({
         isLoading: false,
         searchResultsModel: res,
         searchKeywords: searchKeyword,
     });
+  }
+
+  onFacetSelected(queryParams) {
+    // TODO: this.handleFacetSelection.
+    // This needs to change the products
+    const { searchKeywordsProps } = this.props;
+    console.log(window.location.search);
+    console.log(searchKeywordsProps); // not sure if this changed... maybe should 
+    this.getSearchData(searchKeywordsProps, window.location.search);
   }
 
   render() {
