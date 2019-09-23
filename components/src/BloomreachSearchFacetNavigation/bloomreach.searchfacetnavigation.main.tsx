@@ -288,7 +288,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   }
 
   render() {
-    const { facetModel, currentFacets } = this.state;
+    const { facetModel} = this.state;
 
     if (facetModel) {
       return (
