@@ -62,7 +62,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     // Ex {colors: ["black"], category: "cat250"}
     // TODO: Make this one large regex expression.
     let filteredQueryParamsArray: string[] = [];
-    console.log(decodedQueryParams);
+    
     if (decodedQueryParams) {
         let filteredQueryParams: string = decodedQueryParams.replace('?', '');
         filteredQueryParams = filteredQueryParams.replace(/['"]+/g, '');
@@ -88,8 +88,6 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
       return acc;
     }, {});
 
-    console.log(filteredQueryParamsTree);
-
     return filteredQueryParamsTree;
     
   }
@@ -105,7 +103,6 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
       categoryMap,
     };
 
-    console.log(this.state);
     this.handleFacetSelection = this.handleFacetSelection.bind(this);
     this.addFacetFromQueryParamsTree = this.addFacetFromQueryParamsTree.bind(this);
     this.renderFacetSelectors = this.renderFacetSelectors.bind(this);
@@ -143,9 +140,6 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     } else {
       currentFacets[facetKey].push(facetName);
     }
-
-    console.log('the current facets');
-    console.log(currentFacets);
     
     this.setState({
       currentFacets,
@@ -332,8 +326,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
 
   render() {
     const { facetModel, currentFacets } = this.state;
-    console.log('checking the currentFacets');
-    console.log(currentFacets);
+
     if (facetModel) {
       return (
         <div className="product-list-facet-navigation-component">
