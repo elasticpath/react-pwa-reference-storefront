@@ -20,7 +20,6 @@
  */
 
 import React from 'react';
-import PropTypes, { string } from 'prop-types';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';

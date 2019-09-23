@@ -25,20 +25,7 @@ import { withRouter } from 'react-router';
 
 import './bloomreach.searchfacetnavigation.main.less';
 
-interface BloomreachSearchFacetNavigationMainProps {
-    productData: any,
-    titleString: any,
-    categoryMap: any,
-    currentFacets: any,
-    onFacetSelected: any,
-    history: any,
-}
-
-interface BloomreachSearchResultsNavigationMainState {
-    facetModel: any,
-    currentFacets: any,
-    categoryMap: any,
-}
+import { BloomreachSearchFacetNavigationMainProps, BloomreachSearchResultsNavigationMainState } from './types/bloomreach.searchfacetnavigation.main';
 
 class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSearchFacetNavigationMainProps, BloomreachSearchResultsNavigationMainState> {
 
