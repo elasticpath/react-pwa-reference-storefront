@@ -164,8 +164,6 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
     
     const res: BloomreachKeywordSearchLookupResponse = await bloomreachKeywordSearchLookup(searchKeyword, queryParams);
     
-    console.log(res);
-    
     this.setState({
         isLoading: false,
         searchResultsModel: res,
