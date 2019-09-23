@@ -93,7 +93,6 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   }
 
   constructor(props) {
-    console.log('constructor being called again');
     super(props);
     const { productData, currentFacets, categoryMap } = this.props;
     
@@ -183,8 +182,6 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     } else {
       this.addFacetFromQueryParamsTree(facetKey, facetId, onFacetFinishUpdate);
     }
-
-    // TODO: Here we should call something that changes the state here... Might want to update the state from the setState function.
   }
 
   hasFacetBeenSelected(facetKey, facetName) {
@@ -201,40 +198,6 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     }
 
     return false;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  findAllParentCategories(categoryMap) {
-    const parentCategories = {};
-    Object.keys(categoryMap).forEach((categoryKey) => {
-      const l = categoryKey.length;
-      const lastTwoDigits = categoryKey.substring(l - 3, l - 1);
-      if (lastTwoDigits === '00') {
-        parentCategories[categoryKey] = categoryMap[categoryKey];
-      }
-    });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  isCategoryCodeParent(categoryCode) {
-    const l = categoryCode.length;
-    const lastTwoDigits = categoryCode.substring(l - 2, l);
-    if (lastTwoDigits === '00') {
-      return true;
-    }
-    return false;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  findParent(facetselector, choice) {
-    const { categoryMap } = this.state;
-    // const parentCategories = this.findAllParentCategories(categoryMap);
-    const id = choice.cat_id;
-    const choicePrefix = id.substring(0, id.length - 2);
-    const choiceSelector = `${choicePrefix}00`;
-
-    const parent = categoryMap[choiceSelector];
-    return parent;
   }
 
   // eslint-disable-next-line class-methods-use-this
