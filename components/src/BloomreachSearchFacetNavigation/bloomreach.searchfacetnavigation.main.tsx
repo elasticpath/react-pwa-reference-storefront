@@ -261,7 +261,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   renderFacets() {
     const { facetModel } = this.state;
 
-    return Object.keys(facetModel).map((facetKey) => {
+    return Object.keys(facetModel).map((facetKey, index) => {
       if (facetKey && facetModel[facetKey].length > 0) {
         const facetDisplayNameId = facetKey.toLowerCase().replace(/ /g, '_');
         const facetCategoryChildren = facetModel[facetKey];
@@ -275,7 +275,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
                 </div>
               </h4>
             </div>
-            <div id={`${facetDisplayNameId}_facet_values`} className="collapse">
+            <div id={`${facetDisplayNameId}_facet_values`} className={index ? "collapse" : "collapse show"}>
               <ul className="list-group list-group-flush">
                 {this.renderFacetSelectors(facetKey, facetCategoryChildren)}
               </ul>
