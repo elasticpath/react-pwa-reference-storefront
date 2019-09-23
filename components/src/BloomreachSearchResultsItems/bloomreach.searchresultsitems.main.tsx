@@ -161,8 +161,6 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
 
     const searchKeyword = searchKeywordsProps.match.params;
     const queryParams = (searchQueryParams == undefined) ? searchKeywordsProps.location.search : searchQueryParams;
-    console.log(searchKeyword);
-    console.log(searchQueryParams);
     
     const res: BloomreachKeywordSearchLookupResponse = await bloomreachKeywordSearchLookup(searchKeyword, queryParams);
     
@@ -176,11 +174,7 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
   }
 
   onFacetSelected(queryParams) {
-    // TODO: this.handleFacetSelection.
-    // This needs to change the products
     const { searchKeywordsProps } = this.props;
-    console.log(window.location.search);
-    console.log(searchKeywordsProps); // not sure if this changed... maybe should 
     this.getSearchData(searchKeywordsProps, window.location.search);
   }
 
@@ -223,7 +217,7 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
 
             return (
               <div>
-                <BloomreachSearchFacetNavigationMain productData={facets} titleString={searchKeywords} categoryMap={categoryMap} />
+                <BloomreachSearchFacetNavigationMain productData={facets} titleString={searchKeywords} categoryMap={categoryMap} onFacetSelected={this.onFacetSelected}/>
                 <div className="products-container">
                   <BloomreachProductListMain productData={products} showCompareButton={propCompareButton} />
                 </div>

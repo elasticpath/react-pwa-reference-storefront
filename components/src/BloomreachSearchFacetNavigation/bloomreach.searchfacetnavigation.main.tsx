@@ -269,16 +269,15 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   }
 
   renderFacetSelectors(facetKey, facetselector) {
-    // this.funcName = 'renderFacetSelectors';
 
     if (facetselector) {
-      return facetselector.map((choice) => {
+      return facetselector.map((choice, i) => {
         if (choice) {
           const name = choice.name ? choice.name : choice.cat_name;
           const id = choice.cat_id ? `${choice.cat_id}` : `${name}`;
           if (!this.hasFacetBeenSelected(facetKey, id)) {
             return (
-              <div className="list-group-item facet-value" key={id}>
+              <div className="list-group-item facet-value" key={id + i}>
                 <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(facetKey, id)}>
                   <span className="checkmark choice" />
                   {`${this.generateFacetName(facetKey, name, choice)}`}
@@ -288,7 +287,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
           }
 
           return (
-            <div className="list-group-item facet-value" key={id}>
+            <div className="list-group-item facet-value" key={id + i}>
               <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(facetKey, id)}>
                 <span className="checkmark chosen" />
                 {`${this.generateFacetName(facetKey, name, choice)}`}

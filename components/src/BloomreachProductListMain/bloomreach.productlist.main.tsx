@@ -28,27 +28,19 @@ import ProductListItemMain from '../ProductListItem/productlistitem.main';
 // import '../productlist.main.less';
 
 interface BloomreachProductListMainProps {
-    productData: any,
+    productData: [],
     showCompareButton: any
   }
   
 interface BloomreachProductListMainState {
     isCompare: any,
-      compareLink: any,
-      categoryModel: any,
-      compareList: any,
+    compareLink: any,
+    categoryModel: any,
+    compareList: any,
 }
 
 // TODO: Have to create types for all these files...
 class BloomreachProductListMain extends React.Component<BloomreachProductListMainProps, BloomreachProductListMainState>  {
-  static propTypes = {
-    productData: PropTypes.objectOf(PropTypes.any).isRequired,
-    showCompareButton: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    showCompareButton: true,
-  }
 
   constructor(props) {
     super(props);
