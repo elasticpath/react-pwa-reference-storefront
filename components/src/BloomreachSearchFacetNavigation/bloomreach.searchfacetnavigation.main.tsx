@@ -269,13 +269,13 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
           <div className="card" key={facetKey} id={`${facetDisplayNameId}_facet`}>
             <div className="card-header">
               <h4 className="card-title">
-                <a className="facet" data-toggle="collapse" href={`#${facetDisplayNameId}_facet_values`}>
-                  <span className="glyphicon glyphicon-tag" />
+                <div className="facet" data-toggle="collapse" data-target={`#${facetDisplayNameId}_facet_values`}>
+                  <span className="glyphicon" />
                   {facetKey}
-                </a>
+                </div>
               </h4>
             </div>
-            <div id={`${facetDisplayNameId}_facet_values`} className="collapse navbar-collapse in">
+            <div id={`${facetDisplayNameId}_facet_values`} className="collapse">
               <ul className="list-group list-group-flush">
                 {this.renderFacetSelectors(facetKey, facetCategoryChildren)}
               </ul>
