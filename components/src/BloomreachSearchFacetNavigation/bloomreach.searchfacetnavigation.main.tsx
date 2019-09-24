@@ -81,8 +81,8 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
 
   constructor(props) {
     super(props);
-    const { productData, currentFacets, categoryMap } = this.props;
-    
+    const { productData, categoryMap } = this.props;
+
     this.state = {
       facetModel: productData,
       currentFacets: BloomreachSearchFacetNavigationMain.turnQueryParamsIntoTree(window.location.search),
