@@ -216,6 +216,7 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
                         onRemove={this.handleRemove}
                         onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
                         onMoveToCart={this.handleMoveToCart}
+                        itemDetailLink={itemDetailLink}
                       />
                     ))}
                   </div>
