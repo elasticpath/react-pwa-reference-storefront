@@ -23,6 +23,7 @@ import React from 'react';
 import * as cortex from '@elasticpath/cortex-client';
 import { withRouter } from 'react-router';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import { userLogin } from '../utils/UserAuth';
 import './registrationform.main.less';
 import { ClientContext } from '../ClientContext';
 
@@ -126,25 +127,9 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
       });
       this.setState({ failedRegistration: false });
       try {
-        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-          const result = await this.client.serverFetch('/oauth2/tokens', {
-            method: 'post',
-            useAuth: false,
-            urlEncoded: true,
-            body: {
-              username,
-              password,
-              grant_type: 'password',
-              role: 'REGISTERED',
-              scope: Config.cortexApi.scope,
-            },
-          });
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
-          if (result.status === 200) {
-            onRegisterSuccess();
-          }
-        }
+        await userLogin(this.client, username, password).then(() => {
+          onRegisterSuccess();
+        });
       } catch (e) {
         this.setState({ failedLogin: true, registrationErrors: e.debugMessage });
         // eslint-disable-next-line no-console

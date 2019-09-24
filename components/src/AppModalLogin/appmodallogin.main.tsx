@@ -25,6 +25,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
 import { loginRegisteredAuthService } from '../utils/AuthService';
+import { userLogin } from '../utils/UserAuth';
 import './appmodallogin.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { ClientContext } from '../ClientContext';
@@ -133,27 +134,11 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
     this.setState({ isLoading: true });
     if (!disableLogin) {
       try {
-        if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) != null) {
-          const result = await this.client.serverFetch('/oauth2/tokens', {
-            method: 'post',
-            useAuth: false,
-            urlEncoded: true,
-            body: {
-              username,
-              password,
-              grant_type: 'password',
-              role: 'REGISTERED',
-              scope: Config.cortexApi.scope,
-            },
-          });
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
-          if (result.status === 200) {
-            this.setState({ failedLogin: false });
-            handleModalClose();
-            onLogin();
-          }
-        }
+        await userLogin(this.client, username, password).then(() => {
+          this.setState({ failedLogin: false });
+          handleModalClose();
+          onLogin();
+        });
       } catch (error) {
         this.setState({
           failedLogin: true,

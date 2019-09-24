@@ -23,7 +23,7 @@ import React from 'react';
 import * as cortex from '@elasticpath/cortex-client';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { ClientContext } from '@elasticpath/store-components';
+import { ClientContext, userLogin } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 
 import './CheckoutAuthPage.less';
@@ -78,32 +78,14 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
     const { username, password } = this.state;
     const { history } = this.props;
     try {
-      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) != null) {
-        const result = await this.client.serverFetch('/oauth2/tokens', {
-          method: 'post',
-          useAuth: false,
-          urlEncoded: true,
-          body: {
-            username,
-            password,
-            grant_type: 'password',
-            role: 'REGISTERED',
-            scope: Config.cortexApi.scope,
-          },
+      await userLogin(this.client, username, password).then(() => {
+        this.setState({ failedLogin: false }, () => {
+          history.push('/checkout');
+          window.location.reload();
         });
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${result.parsedJson.access_token}`);
-        localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, result.parsedJson.role);
-
-        if (result.status === 401 || result.status === 400) {
-          this.setState({ failedLogin: true });
-        } else if (result.status === 200) {
-          this.setState({ failedLogin: false }, () => {
-            history.push('/checkout');
-            window.location.reload();
-          });
-        }
-      }
+      });
     } catch (error) {
+      this.setState({ failedLogin: true });
       // eslint-disable-next-line no-console
       console.error(error);
     }
