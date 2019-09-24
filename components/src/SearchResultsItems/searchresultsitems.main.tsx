@@ -174,11 +174,10 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
           });
       });
     } else {
-      const searchKeyword = ' ';
       this.setState({
         isLoading: false,
         searchResultsModel: {},
-        searchKeywords: searchKeyword,
+        searchKeywords: ' ',
       });
     }
   }
