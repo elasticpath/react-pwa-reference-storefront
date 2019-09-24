@@ -53,7 +53,7 @@ class BloomreachProductListMain extends React.Component<BloomreachProductListMai
   handleCompareToggle(event) {
     const { compareList } = this.state;
     const elementCode:string = event.target.name;
-    const index = compareList.indexOf(elementCode);
+    const index: number = compareList.indexOf(elementCode);
     if (index === -1 && compareList.length > 2) return;
     if (index !== -1) {
       this.setState({

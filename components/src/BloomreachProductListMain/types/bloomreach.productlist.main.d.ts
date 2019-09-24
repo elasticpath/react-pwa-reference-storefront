@@ -1,11 +1,11 @@
 export interface BloomreachProductListMainProps {
     productData: [],
-    showCompareButton: any
+    showCompareButton: boolean
   }
   
 export interface BloomreachProductListMainState {
-    isCompare: any,
-    compareLink: any,
-    categoryModel: any,
+    isCompare: boolean,
+    compareLink: string,
+    categoryModel: {[key: string]: any},
     compareList: any,
 }
