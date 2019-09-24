@@ -23,44 +23,9 @@ import React, { FormEvent, SyntheticEvent } from 'react';
 import { bloomreachSuggestionSearch } from '../utils/BloomreachSearchService';
 import './bloomreach.headersearch.main.less';
 
+import { BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState, BloomreachSearchSuggestionResponse, BloomreachSuggestion } from './types/bloomreach.appheadersearch.main';
+
 const intl = { get: str => str };
-
-interface BloomreachHeaderSearchMainProps {
-    isMobileView: boolean,
-    isFocused: boolean,
-    onSearchPage?: (...args: any[]) => any,
-}
-
-interface BloomreachSuggestion {
-  q: string,
-  dq: string,
-}
-
-interface BloomreachHeaderSearchMainState {
-    keywords: string,
-    suggestions: BloomreachSuggestion[],
-}
-
-interface BloomreachSearchSuggestionResponse {
-  responseHeader: {
-    status: number;
-    QTime: number;
-  }
-  response: {
-    q: string;
-    suggestions: BloomreachSuggestion[];
-    numFound: number;
-    products: [{
-      url: string;
-      // eslint-disable-next-line
-      sale_price: number;
-      pid: string;
-      // eslint-disable-next-line
-      thumb_image: string;
-      title: string;
-    }];
-  };
-}
 
 class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
