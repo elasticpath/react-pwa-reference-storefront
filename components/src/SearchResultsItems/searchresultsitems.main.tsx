@@ -150,28 +150,37 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
       isLoading: true,
       searchKeywords: searchKeywordsProps,
     });
-    login().then(() => {
-      let searchKeyword = searchKeywordsProps.match.params;
-      let searchUrl = '';
-      if (!searchKeyword['0'] || searchKeyword['0'] === undefined) {
-        searchKeyword = searchKeywordsProps.match.params.keywords;
-      } else {
-        searchKeyword = searchKeywordsProps.match.params.keywords;
-        searchUrl = searchKeywordsProps.match.params['0'];
-      }
-      searchLookup((searchUrl === '') ? searchKeyword : searchUrl)
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-            searchResultsModel: res,
-            searchKeywords: searchKeyword,
+    if (searchKeywordsProps.match.params.keywords) {
+      login().then(() => {
+        let searchKeyword = searchKeywordsProps.match.params;
+        let searchUrl = '';
+        if (!searchKeyword['0'] || searchKeyword['0'] === undefined) {
+          searchKeyword = searchKeywordsProps.match.params.keywords;
+        } else {
+          searchKeyword = searchKeywordsProps.match.params.keywords;
+          searchUrl = searchKeywordsProps.match.params['0'];
+        }
+        searchLookup((searchUrl === '') ? searchKeyword : searchUrl)
+          .then((res) => {
+            this.setState({
+              isLoading: false,
+              searchResultsModel: res,
+              searchKeywords: searchKeyword,
+            });
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
           });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+      });
+    } else {
+      const searchKeyword = ' ';
+      this.setState({
+        isLoading: false,
+        searchResultsModel: {},
+        searchKeywords: searchKeyword,
+      });
+    }
   }
 
   handleSortSelection(event) {
@@ -226,7 +235,7 @@ class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps
     } = this.state;
     const { productLinks } = this.props;
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
-    const noProducts = !products || !products._element;
+    const noProducts = !products._element;
     const searchKeywordString = searchKeywords;
     const propCompareButton = false;
     return (
