@@ -1,14 +1,16 @@
+import { Value } from "aws-sdk/clients/s3";
+
 export interface BloomreachSearchFacetNavigationMainProps {
-    productData: any,
-    titleString: any,
-    categoryMap: any,
-    currentFacets: any,
-    onFacetSelected: any,
+    productData: {},
+    titleString: {keywords:string},
+    categoryMap: {},
+    currentFacets: {},
+    onFacetSelected: (queryParams: {}) => void,
     history: any,
 }
 
 export interface BloomreachSearchResultsNavigationMainState {
-    facetModel: any,
-    currentFacets: any,
-    categoryMap: any,
+    facetModel: {},
+    currentFacets: {},
+    categoryMap: {},
 }
