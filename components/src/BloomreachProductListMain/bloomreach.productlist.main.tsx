@@ -23,22 +23,8 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
+import { BloomreachProductListMainProps, BloomreachProductListMainState } from './types/bloomreach.productlist.main'
 
-// import '../productlist.main.less';
-
-interface BloomreachProductListMainProps {
-    productData: [],
-    showCompareButton: any
-  }
-  
-interface BloomreachProductListMainState {
-    isCompare: any,
-    compareLink: any,
-    categoryModel: any,
-    compareList: any,
-}
-
-// TODO: Have to create types for all these files...
 class BloomreachProductListMain extends React.Component<BloomreachProductListMainProps, BloomreachProductListMainState>  {
 
   constructor(props) {
