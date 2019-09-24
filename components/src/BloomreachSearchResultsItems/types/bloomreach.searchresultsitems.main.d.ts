@@ -17,5 +17,5 @@ export interface BloomreachSearchResultsItemsMainState {
     },
     loadSortedProduct: boolean,
     searchKeywords: any,
-    searchQueryParams: any,
+    searchQueryParams: string,
 }
