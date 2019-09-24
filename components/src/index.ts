@@ -20,6 +20,7 @@
  */
 
 import { init } from './utils/ConfigProvider';
+import { userLogin } from './utils/UserAuth';
 import AddPromotionContainer from './AddPromotionContainer/add.promotion.container';
 import AddressContainer from './AddressContainer/address.container';
 import AppFooterMain from './AppFooterMain/appfooter.main';
@@ -135,4 +136,5 @@ export {
   ClientContext,
   ClientProvider,
   ClientConsumer,
+  userLogin,
 };

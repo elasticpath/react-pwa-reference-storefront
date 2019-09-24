@@ -20,23 +20,27 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { login, loginRegistered } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { ClientContext, userLogin } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 
 import './CheckoutAuthPage.less';
 
 interface CheckoutAuthPageState{
-    username: string,
-    password: string,
-    email: string,
-    failedLogin: boolean,
-    badEmail: boolean,
+  username: string,
+  password: string,
+  email: string,
+  failedLogin: boolean,
+  badEmail: boolean,
 }
 
 class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuthPageState> {
+  static contextType = ClientContext;
+
+  client: cortex.IClient;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -53,6 +57,10 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
     this.submitEmail = this.submitEmail.bind(this);
   }
 
+  async componentDidMount() {
+    this.client = this.context;
+  }
+
   setUsername(event) {
     this.setState({ username: event.target.value });
   }
@@ -65,66 +73,39 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
     this.setState({ email: event.target.value });
   }
 
-  loginRegisteredUser(event) {
+  async loginRegisteredUser(event) {
     event.preventDefault();
     const { username, password } = this.state;
     const { history } = this.props;
-    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-      loginRegistered(username, password).then((resStatus) => {
-        if (resStatus === 401) {
-          this.setState({ failedLogin: true });
-        }
-        if (resStatus === 400) {
-          this.setState({ failedLogin: true });
-        } else if (resStatus === 200) {
-          this.setState({ failedLogin: false }, () => {
-            history.push('/checkout');
-            window.location.reload();
-          });
-        }
+    try {
+      await userLogin(this.client, username, password).then(() => {
+        this.setState({ failedLogin: false }, () => {
+          history.push('/checkout');
+          window.location.reload();
+        });
       });
+    } catch (error) {
+      this.setState({ failedLogin: true });
+      // eslint-disable-next-line no-console
+      console.error(error);
     }
   }
 
-  submitEmail(event) {
+  async submitEmail(event) {
     event.preventDefault();
     const { email } = this.state;
     const { history } = this.props;
-    login().then(() => {
-      let emailForm;
-      cortexFetch('/?zoom=defaultprofile:emails:emailform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          emailForm = res._defaultprofile[0]._emails[0]._emailform[0].links.find(link => link.rel === 'createemailaction').uri;
-        })
-        .then(() => {
-          cortexFetch(emailForm, {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify({ email }),
-          })
-            .then((res) => {
-              if (res.status === 400) {
-                this.setState({ badEmail: true });
-              } else if (res.status === 201) {
-                this.setState({ badEmail: false }, () => {
-                  history.push('/checkout');
-                });
-              }
-            }).catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        });
-    });
+    try {
+      const emailFormData = await this.client.root().fetch({ defaultprofile: { emails: { emailform: {} } } });
+      await emailFormData.defaultprofile.emails.emailform({ email }).fetch({});
+      this.setState({ badEmail: false }, () => {
+        history.push('/checkout');
+      });
+    } catch (error) {
+      this.setState({ badEmail: true });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   render() {

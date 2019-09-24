@@ -20,12 +20,15 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
-import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
+import { loginRegisteredAuthService } from '../utils/AuthService';
+import { userLogin } from '../utils/UserAuth';
 import './appmodallogin.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import { ClientContext } from '../ClientContext';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -49,12 +52,16 @@ interface AppModalLoginMainState {
     isLoading: boolean,
 }
 class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModalLoginMainState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     onLogin: () => {},
     onResetPassword: () => {},
     locationSearchData: undefined,
     disableLogin: false,
   }
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -72,6 +79,10 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
     this.loginRegisteredUser = this.loginRegisteredUser.bind(this);
     this.registerNewUser = this.registerNewUser.bind(this);
     this.resetPassword = this.resetPassword.bind(this);
+  }
+
+  componentDidMount() {
+    this.client = this.context;
   }
 
   componentWillMount() {
@@ -116,35 +127,28 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
     handleModalClose();
   }
 
-  loginRegisteredUser(event) {
+  async loginRegisteredUser(event) {
+    event.preventDefault();
     const { username, password } = this.state;
     const { handleModalClose, onLogin, disableLogin } = this.props;
     this.setState({ isLoading: true });
     if (!disableLogin) {
-      if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-        loginRegistered(username, password).then((resStatus) => {
-          if (resStatus === 401) {
-            this.setState({
-              failedLogin: true,
-              isLoading: false,
-            });
-          }
-          if (resStatus === 400) {
-            this.setState({
-              failedLogin: true,
-              isLoading: false,
-            });
-          } else if (resStatus === 200) {
-            this.setState({ failedLogin: false });
-            handleModalClose();
-            onLogin();
-          }
+      try {
+        await userLogin(this.client, username, password).then(() => {
+          this.setState({ failedLogin: false });
+          handleModalClose();
+          onLogin();
         });
-        event.preventDefault();
+      } catch (error) {
+        this.setState({
+          failedLogin: true,
+          isLoading: false,
+        });
+        // eslint-disable-next-line no-console
+        console.error(error);
       }
     } else {
       this.setState({ isLoading: false });
-      event.preventDefault();
     }
   }
 

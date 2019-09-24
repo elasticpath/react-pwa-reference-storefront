@@ -20,12 +20,13 @@
  */
 
 import React from 'react';
+import * as cortex from '@elasticpath/cortex-client';
 import { withRouter } from 'react-router';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import {
-  login, loginRegistered, registerUser, getRegistrationForm,
-} from '../utils/AuthService';
+import { userLogin } from '../utils/UserAuth';
 import './registrationform.main.less';
+import { ClientContext } from '../ClientContext';
+
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -35,20 +36,24 @@ interface RegistrationFormMainProps {
 }
 
 interface RegistrationFormMainState {
-  firstname: any | string,
-  lastname: any | string,
-  username: any | string,
-  password: any | string,
-  passwordConfirm: any | string,
+  firstname: string,
+  lastname: string,
+  username: string,
+  password: string,
+  passwordConfirm: string,
   failedRegistration: boolean,
   failedLogin: boolean,
   registrationErrors: string
 }
 
 class RegistrationFormMain extends React.Component<RegistrationFormMainProps, RegistrationFormMainState> {
+  static contextType = ClientContext;
+
   static defaultProps = {
     onRegisterSuccess: () => {},
   };
+
+  client: cortex.IClient;
 
   constructor(props) {
     super(props);
@@ -74,9 +79,7 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
   }
 
   componentDidMount() {
-    login().then(() => {
-      getRegistrationForm();
-    });
+    this.client = this.context;
   }
 
   setFirstName(event) {
@@ -99,7 +102,7 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
     this.setState({ passwordConfirm: event.target.value });
   }
 
-  registerNewUser() {
+  async registerNewUser() {
     const {
       lastname, firstname, username, password, passwordConfirm,
     } = this.state;
@@ -111,46 +114,32 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
       return;
     }
     const { onRegisterSuccess } = this.props;
-    login().then(() => {
-      registerUser(lastname, firstname, username, password).then((res) => {
-        if (res.status === 201) {
-          this.setState({ failedRegistration: false });
-          if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-            loginRegistered(username, password).then((resStatus) => {
-              if (resStatus === 401) {
-                this.setState({ failedLogin: true });
-                let debugMessages = '';
-                res.json().then((json) => {
-                  for (let i = 0; i < json.messages.length; i++) {
-                    debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-                  }
-                }).then(() => this.setState({ registrationErrors: debugMessages }));
-              }
-              if (resStatus === 400) {
-                this.setState({ failedLogin: true });
-                let debugMessages = '';
-                res.json().then((json) => {
-                  for (let i = 0; i < json.messages.length; i++) {
-                    debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-                  }
-                }).then(() => this.setState({ registrationErrors: debugMessages }));
-              } else if (resStatus === 200) {
-                onRegisterSuccess();
-              }
-            });
-          }
-        } else {
-          this.setState({ failedRegistration: true });
-          let debugMessages = '';
-          res.json().then((json) => {
-            debugMessages = debugMessages.concat(`- ${intl.get('registration-error')} \n `);
-            for (let i = 0; i < json.messages.length; i++) {
-              debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-            }
-          }).then(() => this.setState({ registrationErrors: debugMessages }));
-        }
+    try {
+      const accountRegistarationRes = await this.client.root().fetch({ newaccountform: {} });
+      await this.client.serverFetch(accountRegistarationRes.newaccountform.uri, {
+        method: 'post',
+        body: {
+          'family-name': lastname,
+          'given-name': firstname,
+          username,
+          password,
+        },
       });
-    });
+      this.setState({ failedRegistration: false });
+      try {
+        await userLogin(this.client, username, password).then(() => {
+          onRegisterSuccess();
+        });
+      } catch (e) {
+        this.setState({ failedLogin: true, registrationErrors: e.debugMessage });
+        // eslint-disable-next-line no-console
+        console.error(e);
+      }
+    } catch (error) {
+      this.setState({ failedRegistration: true, registrationErrors: error.debugMessage });
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   render() {
