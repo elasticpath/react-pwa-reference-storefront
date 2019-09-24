@@ -25,18 +25,18 @@ export interface BloomreachKeywordSearchLookupResponse {
     did_you_mean: any[];
 }
 
-export interface CategoryMap {
+interface CategoryMap {
     VESTRI_BM_APPAREL:   string;
     VESTRI_APPAREL_MENS: string;
 }
 
-export interface FacetCounts {
+interface FacetCounts {
     facet_ranges:  Facet;
     facet_fields:  FacetFields;
     facet_queries: Facet;
 }
 
-export interface FacetFields {
+interface FacetFields {
     category:     Category[];
     sizes:        AgeGroup[];
     brand:        any[];
@@ -49,12 +49,12 @@ export interface FacetFields {
     age_group:    AgeGroup[];
 }
 
-export interface AgeGroup {
+interface AgeGroup {
     count: number;
     name:  string;
 }
 
-export interface Category {
+interface Category {
     count:     number;
     crumb:     string;
     cat_name:  string;
