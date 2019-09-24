@@ -21,7 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { bloomreachKeywordSearchLookup } from '../utils/BloomreachSearchService';
+import { bloomreachKeywordSearchLookup } from '../utils/Bloomreach/BloomreachSearchService';
 import BloomreachProductListMain from '../BloomreachProductListMain/bloomreach.productlist.main';
 import BloomreachSearchFacetNavigationMain from '../BloomreachSearchFacetNavigation/bloomreach.searchfacetnavigation.main';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';

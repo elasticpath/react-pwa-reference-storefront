@@ -20,9 +20,9 @@
  */
 
 import bloomreachFetch from './Bloomreach';
-import { searchLookup } from './CortexLookup';
+import { searchLookup } from '../CortexLookup';
 
-import { getConfig } from './ConfigProvider';
+import { getConfig } from '../ConfigProvider';
 
 function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch.config.baseUri) {
   const {
