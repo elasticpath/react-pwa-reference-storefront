@@ -230,7 +230,9 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
                   <span className="checkmark choice" />
                   {`${this.generateFacetName(facetKey, name, choice)}`}
                 </button>
-                <div className="facet-count">{count}</div>
+                <div className="facet-count">
+                  <div className="circle">{count}</div>
+                </div>  
               </div>
             );
           }
@@ -241,7 +243,9 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
                 <span className="checkmark chosen" />
                 {`${this.generateFacetName(facetKey, name, choice)}`}
               </button>
-              <div className="facet-count">{count}</div>
+              <div className="facet-count">
+                <div className="circle">{count}</div>
+              </div>
             </div>
           );
         }

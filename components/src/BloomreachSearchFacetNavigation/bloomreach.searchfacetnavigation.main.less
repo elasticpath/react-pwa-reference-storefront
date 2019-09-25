@@ -59,23 +59,32 @@
        .facet-value {
          padding-left: 12.5px;
          display: flex;
-
+         justify-content: space-between;
          .facet-count {
-           flex: right;
-           width: 30%;
-           text-align: right;
+           text-align: center;
            margin-top:4px;
+           margin-right:12.5px;
            height: 18px;
            width: 18px;
            position: relative;
+           
+           .circle {
+            width:30px;
+            background: @firstBorderColor; 
+            color: @firstComplimentTextColor;
+            -moz-border-radius: 70px; 
+            -webkit-border-radius: 70px; 
+            border-radius: 70px;
+            margin-right: 10px;
+          }
          }
  
          button {
-           color: #777777;
+           color: @firstComplimentTextColor;
            display: inline-block;
            vertical-align: middle;
            position: relative;
-           padding-left: 5px;
+           padding-left: 0px;
            padding-right: 0px;
            background:none;
            border:none;
