@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,15 +20,11 @@
  */
 
 import React from 'react';
-
 import { withRouter } from 'react-router';
-
+import { BloomreachSearchFacetNavigationMainProps, BloomreachSearchResultsNavigationMainState } from './types/bloomreach.searchfacetnavigation.main';
 import './bloomreach.searchfacetnavigation.main.less';
 
-import { BloomreachSearchFacetNavigationMainProps, BloomreachSearchResultsNavigationMainState } from './types/bloomreach.searchfacetnavigation.main';
-
 class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSearchFacetNavigationMainProps, BloomreachSearchResultsNavigationMainState> {
-
   static removeSelectedFacet(facetUriStr, facetKey, facetName) {
     const splitFilters = facetUriStr.split('-');
     const facetUriStrElement = `${facetKey}:"${facetName}"`;
@@ -76,7 +72,6 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     }, {});
 
     return filteredQueryParamsTree;
-
   }
 
   constructor(props) {
@@ -173,7 +168,6 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     const { currentFacets } = this.state;
 
     if (currentFacets[facetKey]) {
-
       return currentFacets[facetKey].some((facet) => {
         if (facet.includes(facetName)) {
           return true;
@@ -188,7 +182,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   // eslint-disable-next-line class-methods-use-this
   generateFacetName(facetKey, name, choice) {
     const { categoryMap } = this.state;
-    
+
     if (choice.crumb) {
       const crumbs = choice.crumb.split('/');
       const crumbNames = crumbs.map((categoryCode) => {
@@ -211,32 +205,29 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   }
 
   renderFacetSelectors(facetKey, facetselector) {
-
     if (facetselector) {
-      return facetselector.map((choice, i) => {
-        console.log(choice);
-        
+      return facetselector.map((choice) => {
         if (choice) {
           const name = choice.name ? choice.name : choice.cat_name;
           const id = choice.cat_id ? `${choice.cat_id}` : `${name}`;
-          const count = choice.count ? choice.count : `n/a`;
-          
+          const count = choice.count ? choice.count : 'n/a';
+
           if (!this.hasFacetBeenSelected(facetKey, id)) {
             return (
-              <div className="list-group-item facet-value" key={id + i}>
+              <div className="list-group-item facet-value" key={id}>
                 <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(facetKey, id)}>
                   <span className="checkmark choice" />
                   {`${this.generateFacetName(facetKey, name, choice)}`}
                 </button>
                 <div className="facet-count">
                   <div className="circle">{count}</div>
-                </div>  
+                </div>
               </div>
             );
           }
 
           return (
-            <div className="list-group-item facet-value" key={id + i}>
+            <div className="list-group-item facet-value" key={id}>
               <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(facetKey, id)}>
                 <span className="checkmark chosen" />
                 {`${this.generateFacetName(facetKey, name, choice)}`}
@@ -256,15 +247,15 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   shouldUncollapseFacet(facetKey, index) {
     const { currentFacets } = this.state;
     // uncollapse the first facet if nothing is clicked.
-    if (Object.keys(currentFacets).length == 0 && index == 0) {
+    if (Object.keys(currentFacets).length === 0 && index === 0) {
       return true;
     }
     // uncollapse facet that has a checkbox.
-    if (currentFacets.hasOwnProperty(facetKey)) {
+    if (Object.prototype.hasOwnProperty.call(currentFacets, facetKey)) {
       return true;
     }
 
-    return false
+    return false;
   }
 
   renderFacets() {
@@ -274,7 +265,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
       if (facetKey && facetModel[facetKey].length > 0) {
         const facetDisplayNameId = facetKey.toLowerCase().replace(/ /g, '_');
         const facetCategoryChildren = facetModel[facetKey];
- 
+
         return (
           <div className="card" key={facetKey} id={`${facetDisplayNameId}_facet`}>
             <div className="card-header">

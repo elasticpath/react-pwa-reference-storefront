@@ -23,7 +23,12 @@ import React, { FormEvent, SyntheticEvent } from 'react';
 import { bloomreachSuggestionSearch } from '../utils/Bloomreach/BloomreachSearchService';
 import './bloomreach.headersearch.main.less';
 
-import { BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState, BloomreachSearchSuggestionResponse, BloomreachSuggestion } from './types/bloomreach.appheadersearch.main';
+import {
+  BloomreachHeaderSearchMainProps,
+  BloomreachHeaderSearchMainState,
+  BloomreachSearchSuggestionResponse,
+  BloomreachSuggestion,
+} from './types/bloomreach.appheadersearch.main';
 
 const intl = { get: str => str };
 

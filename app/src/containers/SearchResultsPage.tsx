@@ -43,13 +43,13 @@ function SearchResultsPage(props: RouteComponentProps) {
 
   if (Config.bloomreachSearch.enable) {
     return (
-    <div>
-      {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <BloomreachSearchResultsItems searchKeywordsProps={props} onProductFacetSelection={handleProductFacetSelection} productLinks={productLinks} />
-    </div>
+      <div>
+        {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
+        <BloomreachSearchResultsItems searchKeywordsProps={props} onProductFacetSelection={handleProductFacetSelection} productLinks={productLinks} />
+      </div>
     );
   }
-  
+
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}

@@ -26,7 +26,7 @@ import { getConfig } from '../utils/ConfigProvider';
 import './productlist.main.less';
 
 let intl = {
-  get: str => str 
+  get: str => str,
 };
 
 interface ProductListMainProps {
