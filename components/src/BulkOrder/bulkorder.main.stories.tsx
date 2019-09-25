@@ -27,12 +27,15 @@ import BulkOrder from './bulkorder.main';
 function handleBulkModalClose() {
 }
 
+function onUpdate() {
+}
+
 storiesOf('BulkOrder', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('BulkOrder', () => (
     <div style={{ position: 'relative' }}>
-      <BulkOrder handleClose={handleBulkModalClose} isBulkModalOpened />
+      <BulkOrder handleClose={handleBulkModalClose} isBulkModalOpened onUpdate={onUpdate} />
     </div>
   ));
