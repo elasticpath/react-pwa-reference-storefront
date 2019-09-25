@@ -367,7 +367,7 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
                   <div>
                     <div className="checkout-sidebar-inner">
                       <div className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                        <CheckoutSummaryList data={orderData} isLoading={false} giftCards={giftCertificateEntity} />
+                        <CheckoutSummaryList data={orderData} isLoading={false} giftCards={giftCertificateEntity} onChange={() => { this.fetchOrderData(); }} />
                       </div>
                       <div className="feedback-label" id="checkout_feedback_container">
                         {(debugMessages !== '') ? (debugMessages) : ('')}
