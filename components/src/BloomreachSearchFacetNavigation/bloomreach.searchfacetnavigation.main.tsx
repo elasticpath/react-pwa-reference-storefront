@@ -245,6 +245,20 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     return null;
   }
 
+  shouldUncollapseFacet(facetKey, index) {
+    const { currentFacets } = this.state;
+    // uncollapse the first facet if nothing is clicked.
+    if (Object.keys(currentFacets).length == 0 && index == 0) {
+      return true;
+    }
+    // uncollapse facet that has a checkbox.
+    if (currentFacets.hasOwnProperty(facetKey)) {
+      return true;
+    }
+
+    return false
+  }
+
   renderFacets() {
     const { facetModel } = this.state;
 
@@ -252,6 +266,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
       if (facetKey && facetModel[facetKey].length > 0) {
         const facetDisplayNameId = facetKey.toLowerCase().replace(/ /g, '_');
         const facetCategoryChildren = facetModel[facetKey];
+        
         return (
           <div className="card" key={facetKey} id={`${facetDisplayNameId}_facet`}>
             <div className="card-header">
@@ -262,7 +277,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
                 </div>
               </h4>
             </div>
-            <div id={`${facetDisplayNameId}_facet_values`} className={index ? "collapse" : "collapse show"}>
+            <div id={`${facetDisplayNameId}_facet_values`} className={this.shouldUncollapseFacet(facetKey, index) ? "collapse show" : "collapse"}>
               <ul className="list-group list-group-flush">
                 {this.renderFacetSelectors(facetKey, facetCategoryChildren)}
               </ul>
