@@ -36,7 +36,7 @@
 
       .card-title {
         .facet {
-          color: #40B1F3;
+          color: @firstComplimentColor;
           font-weight: 500;
           display: inline-block;
           width: 100%;
@@ -161,11 +161,11 @@
     padding: 0 10px;
     font-size: 14px;
     font-weight: 500;
-    color: #40B1F3;
+    color: @firstComplimentColor;
     border: 1px solid #EEEEEE;
     background-color: #F7F7F7;
     &:focus {
-      outline: 2px solid #007bff80;
+      outline: 2px solid @buttonFocusColor;
     }
 
     &-wrap {
@@ -182,7 +182,7 @@
       display: inline-block;
       width: 6px;
       height: 12px;
-      border: solid #40B1F3;
+      border: solid @firstComplimentColor;
       border-width: 0 2px 2px 0;
       -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);

@@ -692,7 +692,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
                   </h2>
                   <div className="checkout-sidebar-inner">
                     <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                      <CheckoutSummaryList data={orderData} giftCards={certificates} />
+                      <CheckoutSummaryList data={orderData} giftCards={certificates} onChange={() => { this.fetchOrderData(); }} />
                     </div>
                     <div className="feedback-label" id="checkout_feedback_container">
                       {(debugMessages !== '') ? (debugMessages) : ('')}
