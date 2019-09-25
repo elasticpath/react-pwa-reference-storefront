@@ -77,6 +77,8 @@ import ChatComponent from './ChatBot/chatbot';
 import BarcodeScanner from './BarcodeScanner/barcodescanner';
 import BloomreachAppHeaderSearchMain from './BloomreachAppHeaderSearch/bloomreach.appheadersearch.main';
 import BloomreachSearchResultsItems from './BloomreachSearchResultsItems/bloomreach.searchresultsitems.main';
+import BloomreachSearchFacetNavigation from './BloomreachSearchFacetNavigation/bloomreach.searchfacetnavigation.main';
+import BloomreachProductListMain from './BloomreachProductListMain/bloomreach.productlist.main';
 
 export {
   init,
@@ -137,4 +139,6 @@ export {
   BarcodeScanner,
   BloomreachAppHeaderSearchMain,
   BloomreachSearchResultsItems,
+  BloomreachSearchFacetNavigation,
+  BloomreachProductListMain
 };
