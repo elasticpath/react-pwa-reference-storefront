@@ -30,7 +30,6 @@ import { BloomreachKeywordSearchLookupResponse, BloomreachSearchResultsItemsMain
 let Config: IEpConfig | any = {};
 
 class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchResultsItemsMainProps, BloomreachSearchResultsItemsMainState> {
-
   constructor(props) {
     super(props);
     const { searchKeywordsProps } = this.props;
@@ -39,9 +38,7 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
     this.state = {
       isLoading: true,
       searchResultsModel: {},
-      loadSortedProduct: false,
       searchKeywords: searchKeywordsProps,
-      searchQueryParams: null,
     };
 
     this.onFacetSelected = this.onFacetSelected.bind(this);
@@ -64,14 +61,14 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
     });
 
     const searchKeyword = searchKeywordsProps.match.params;
-    const queryParams = (searchQueryParams == undefined) ? searchKeywordsProps.location.search : searchQueryParams;
-    
+    const queryParams = (searchQueryParams === undefined) ? searchKeywordsProps.location.search : searchQueryParams;
+
     const res: BloomreachKeywordSearchLookupResponse = await bloomreachKeywordSearchLookup(searchKeyword, queryParams);
 
     this.setState({
-        isLoading: false,
-        searchResultsModel: res,
-        searchKeywords: searchKeyword,
+      isLoading: false,
+      searchResultsModel: res,
+      searchKeywords: searchKeyword,
     });
   }
 
@@ -119,7 +116,7 @@ class BloomreachSearchResultsItemsMain extends React.Component<BloomreachSearchR
 
             return (
               <div>
-                <BloomreachSearchFacetNavigationMain productData={facets} titleString={searchKeywords} categoryMap={categoryMap} onFacetSelected={this.onFacetSelected}/>
+                <BloomreachSearchFacetNavigationMain productData={facets} titleString={searchKeywords} categoryMap={categoryMap} onFacetSelected={this.onFacetSelected} />
                 <div className="products-container">
                   <BloomreachProductListMain productData={products} showCompareButton={propCompareButton} />
                 </div>

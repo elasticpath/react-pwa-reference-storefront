@@ -49,34 +49,34 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     // Ex {colors: ["black"], category: "cat250"}
     // TODO: Make this one large regex expression.
     let filteredQueryParamsArray: string[] = [];
-    
+
     if (decodedQueryParams) {
-        let filteredQueryParams: string = decodedQueryParams.replace('?', '');
-        filteredQueryParams = filteredQueryParams.replace(/['"]+/g, '');
-        filteredQueryParamsArray = filteredQueryParams.split('fq=');
-        filteredQueryParamsArray = filteredQueryParamsArray.map(params => params.replace('&', ''));
+      let filteredQueryParams: string = decodedQueryParams.replace('?', '');
+      filteredQueryParams = filteredQueryParams.replace(/['"]+/g, '');
+      filteredQueryParamsArray = filteredQueryParams.split('fq=');
+      filteredQueryParamsArray = filteredQueryParamsArray.map(params => params.replace('&', ''));
     }
 
     const filteredQueryParamsTree = filteredQueryParamsArray.reduce((acc, outerFacetStr:string) => {
       if (outerFacetStr) {
-          const outerFacetArray = outerFacetStr.split(':');
-          const category = outerFacetArray[0];
-          const loFacets = outerFacetArray[1].split('OR');
+        const outerFacetArray = outerFacetStr.split(':');
+        const category = outerFacetArray[0];
+        const loFacets = outerFacetArray[1].split('OR');
 
-          loFacets.forEach((innerFacet) => {
+        loFacets.forEach((innerFacet) => {
           if (acc[category] == null) {
-              acc[category] = [innerFacet];
+            acc[category] = [innerFacet];
           } else {
-              acc[category].push(innerFacet);
+            acc[category].push(innerFacet);
           }
-          });
+        });
       }
 
       return acc;
     }, {});
 
     return filteredQueryParamsTree;
-    
+
   }
 
   constructor(props) {
@@ -114,8 +114,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     this.setState({
       currentFacets,
     },
-    onFacetFinishUpdate
-    );
+    onFacetFinishUpdate);
   }
 
   addFacetFromQueryParamsTree(facetKey, facetName, onFacetFinishUpdate) {
@@ -126,12 +125,11 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     } else {
       currentFacets[facetKey].push(facetName);
     }
-    
+
     this.setState({
       currentFacets,
     },
-    onFacetFinishUpdate
-    );
+    onFacetFinishUpdate);
   }
 
   reconstructTreeIntoQueryParamsString() {
@@ -158,11 +156,11 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     const { history, titleString, onFacetSelected } = this.props;
     const { keywords } = titleString;
 
-    var onFacetFinishUpdate = () => {
+    const onFacetFinishUpdate = () => {
       const facets = this.reconstructTreeIntoQueryParamsString();
       window.history.pushState('', '', `/search/${keywords}${facets}`);
       onFacetSelected(facets);
-    }
+    };
 
     if (this.hasFacetBeenSelected(facetKey, facetId)) {
       this.removeFacetFromQueryParamsTree(facetKey, facetId, onFacetFinishUpdate);
@@ -276,7 +274,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
       if (facetKey && facetModel[facetKey].length > 0) {
         const facetDisplayNameId = facetKey.toLowerCase().replace(/ /g, '_');
         const facetCategoryChildren = facetModel[facetKey];
-        
+ 
         return (
           <div className="card" key={facetKey} id={`${facetDisplayNameId}_facet`}>
             <div className="card-header">
@@ -287,7 +285,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
                 </div>
               </h4>
             </div>
-            <div id={`${facetDisplayNameId}_facet_values`} className={this.shouldUncollapseFacet(facetKey, index) ? "collapse show" : "collapse"}>
+            <div id={`${facetDisplayNameId}_facet_values`} className={this.shouldUncollapseFacet(facetKey, index) ? 'collapse show' : 'collapse'}>
               <ul className="list-group list-group-flush">
                 {this.renderFacetSelectors(facetKey, facetCategoryChildren)}
               </ul>
@@ -300,7 +298,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   }
 
   render() {
-    const { facetModel} = this.state;
+    const { facetModel } = this.state;
 
     if (facetModel) {
       return (

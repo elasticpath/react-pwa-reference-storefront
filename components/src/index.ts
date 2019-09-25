@@ -140,5 +140,5 @@ export {
   BloomreachAppHeaderSearchMain,
   BloomreachSearchResultsItems,
   BloomreachSearchFacetNavigation,
-  BloomreachProductListMain
+  BloomreachProductListMain,
 };

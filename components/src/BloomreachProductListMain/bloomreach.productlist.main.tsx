@@ -23,10 +23,9 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
-import { BloomreachProductListMainProps, BloomreachProductListMainState } from './types/bloomreach.productlist.main'
+import { BloomreachProductListMainProps, BloomreachProductListMainState } from './types/bloomreach.productlist.main';
 
-class BloomreachProductListMain extends React.Component<BloomreachProductListMainProps, BloomreachProductListMainState>  {
-
+class BloomreachProductListMain extends React.Component<BloomreachProductListMainProps, BloomreachProductListMainState> {
   constructor(props) {
     super(props);
     const { productData } = this.props;
@@ -70,7 +69,8 @@ class BloomreachProductListMain extends React.Component<BloomreachProductListMai
 
   checkComparison(product) {
     const { compareList, isCompare } = this.state;
-    const code:string = product._code[0].code;
+    const { code } = product._code[0];
+
     const isChecked = compareList.indexOf(code) !== -1;
     if (product._definition && isCompare) {
       return (
@@ -121,9 +121,9 @@ class BloomreachProductListMain extends React.Component<BloomreachProductListMai
       <div className="product-list-container" data-region="categoryBrowseRegion">
         {showCompareButton ? (
           <div className="compare-button">
-            <button 
-            type="button" 
-            className="ep-btn primary top-compare-link"
+            <button
+              type="button"
+              className="ep-btn primary top-compare-link"
             >
               {(compareList.length > 1) ? (
                 <Link className="toggle-compare-link" to={compareLink}>{intl.get('compare-products')}</Link>
