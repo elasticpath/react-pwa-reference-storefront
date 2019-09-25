@@ -113,7 +113,6 @@ class BloomreachProductListMain extends React.Component<BloomreachProductListMai
 
   render() {
     const {
-      isCompare,
       compareList,
       compareLink,
     } = this.state;
@@ -124,10 +123,7 @@ class BloomreachProductListMain extends React.Component<BloomreachProductListMai
           <div className="compare-button">
             <button 
             type="button" 
-            className="ep-btn primary top-compare-link" 
-            // onClick={
-            //   (compareList.length <= 1) ? () => this.handleCompare(isCompare) : ''
-            //   }
+            className="ep-btn primary top-compare-link"
             >
               {(compareList.length > 1) ? (
                 <Link className="toggle-compare-link" to={compareLink}>{intl.get('compare-products')}</Link>
