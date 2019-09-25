@@ -216,9 +216,13 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
 
     if (facetselector) {
       return facetselector.map((choice, i) => {
+        console.log(choice);
+        
         if (choice) {
           const name = choice.name ? choice.name : choice.cat_name;
           const id = choice.cat_id ? `${choice.cat_id}` : `${name}`;
+          const count = choice.count ? choice.count : `n/a`;
+          
           if (!this.hasFacetBeenSelected(facetKey, id)) {
             return (
               <div className="list-group-item facet-value" key={id + i}>
@@ -226,6 +230,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
                   <span className="checkmark choice" />
                   {`${this.generateFacetName(facetKey, name, choice)}`}
                 </button>
+                <div className="facet-count">{count}</div>
               </div>
             );
           }
@@ -236,6 +241,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
                 <span className="checkmark chosen" />
                 {`${this.generateFacetName(facetKey, name, choice)}`}
               </button>
+              <div className="facet-count">{count}</div>
             </div>
           );
         }
