@@ -71,6 +71,11 @@ interface Variant {
     sku_thumb_images:  string[];
 }
 
+export interface BloomreachSuggestion {
+    q: string,
+    dq: string,
+}
+
 export interface BloomreachSearchSuggestionResponse {
     responseHeader: {
       status: number;
