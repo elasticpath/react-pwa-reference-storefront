@@ -6,8 +6,6 @@ export interface BloomreachKeywordSearchLookupResponse {
 }
 
 interface CategoryMap {
-    VESTRI_BM_APPAREL:   string;
-    VESTRI_APPAREL_MENS: string;
 }
 
 interface FacetCounts {
@@ -17,16 +15,16 @@ interface FacetCounts {
 }
 
 interface FacetFields {
-    category:     Category[];
-    sizes:        AgeGroup[];
-    brand:        any[];
-    colors:       AgeGroup[];
-    color_groups: any[];
-    color:        AgeGroup[];
-    gender:       AgeGroup[];
-    material:     AgeGroup[];
-    apparel_type: AgeGroup[];
-    age_group:    AgeGroup[];
+    category?:     Category[];
+    sizes?:        AgeGroup[];
+    brand?:        any[];
+    colors?:       AgeGroup[];
+    color_groups?: any[];
+    color?:        AgeGroup[];
+    gender?:       AgeGroup[];
+    material?:     AgeGroup[];
+    apparel_type?: AgeGroup[];
+    age_group?:    AgeGroup[];
 }
 
 interface AgeGroup {
