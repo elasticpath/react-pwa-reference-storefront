@@ -210,12 +210,12 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
 
   renderFacetSelectors(facetKey, facetselector) {
     if (facetselector) {
-      return facetselector.map((choice) => {
+      return facetselector.map((choice, index) => {
         if (choice) {
           const name = choice.name ? choice.name : choice.cat_name;
-          const id = choice.cat_id ? `${choice.cat_id}` : `${name}`;
           const count = choice.count ? choice.count : 'n/a';
-
+          const id = choice.cat_id ? `${choice.cat_id}:${index}` : `${name}:${index}`;
+          
           if (!this.hasFacetBeenSelected(facetKey, id)) {
             return (
               <div className="list-group-item facet-value" key={id}>
