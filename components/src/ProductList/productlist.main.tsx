@@ -22,11 +22,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
-
-import './productlist.main.less';
 import { getConfig } from '../utils/ConfigProvider';
+import './productlist.main.less';
 
-let intl = { get: str => str };
+let intl = {
+  get: str => str,
+};
 
 interface ProductListMainProps {
     productData: {
