@@ -38,7 +38,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     return removeFacetSelection.join('-');
   }
 
-  static turnQueryParamsIntoTree(queryParams) {
+  static turnQueryParamsIntoTree(queryParams: string) {
     const decodedQueryParams = decodeURI(queryParams);
     // Ex. ?fq=colors:"black"OR"red"&fq=category:"cat250"
     // Ex. ['colors: "black"', 'category: "cat250"']
@@ -49,8 +49,12 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     if (decodedQueryParams) {
       let filteredQueryParams: string = decodedQueryParams.replace('?', '');
       filteredQueryParams = filteredQueryParams.replace(/['"]+/g, '');
-      filteredQueryParamsArray = filteredQueryParams.split('fq=');
-      filteredQueryParamsArray = filteredQueryParamsArray.map(params => params.replace('&', ''));
+      if (filteredQueryParams.includes('fq=')) {
+        filteredQueryParamsArray = filteredQueryParams.split('fq=');
+        filteredQueryParamsArray = filteredQueryParamsArray.map(params => params.replace('&', ''));
+      } else {
+        return {}
+      }
     }
 
     const filteredQueryParamsTree = filteredQueryParamsArray.reduce((acc, outerFacetStr:string) => {
