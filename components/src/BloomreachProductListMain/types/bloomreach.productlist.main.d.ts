@@ -1,5 +1,5 @@
 export interface BloomreachProductListMainProps {
-    productData: [],
+    productData: any[],
     showCompareButton: boolean
   }
   
