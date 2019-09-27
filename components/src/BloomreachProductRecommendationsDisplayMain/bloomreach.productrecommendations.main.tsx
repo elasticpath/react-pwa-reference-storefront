@@ -24,7 +24,7 @@ import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
-import { bloomreachMtlSearch } from '../utils/Bloomreach/BloomreachSearchService';
+import { bloomreachMltSearch } from '../utils/Bloomreach/BloomreachSearchService';
 import { BloomreachMltResponse } from '../utils/Bloomreach/types/BloomreachSearchService';
 import '../ProductRecommendations/productrecommendations.main.less';
 
@@ -67,7 +67,7 @@ class BloomreachProductRecommendationsDisplayMain extends React.Component<Bloomr
     const { cortexProductData } = this.props;
     const sku = cortexProductData._code[0].code;
 
-    const res: BloomreachMltResponse = await bloomreachMtlSearch(sku);
+    const res: BloomreachMltResponse = await bloomreachMltSearch(sku);
     
     this.setState({
       productData: res.response ? res.response.docs : [],
