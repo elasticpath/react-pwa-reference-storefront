@@ -5,6 +5,36 @@ export interface BloomreachKeywordSearchLookupResponse {
     did_you_mean: any[];
 }
 
+export interface BloomreachSuggestion {
+    q: string,
+    dq: string,
+}
+
+export interface BloomreachSearchSuggestionResponse {
+    responseHeader: {
+      status: number;
+      QTime: number;
+    }
+    response: {
+      q: string;
+      suggestions: BloomreachSuggestion[];
+      numFound: number;
+      products: [{
+        url: string;
+        // eslint-disable-next-line
+        sale_price: number;
+        pid: string;
+        // eslint-disable-next-line
+        thumb_image: string;
+        title: string;
+      }];
+    };
+  }
+
+export interface BloomreachMltResponse {
+    response: Response;
+}
+
 interface CategoryMap {
 }
 
@@ -68,29 +98,3 @@ interface Variant {
     sku_swatch_images: string[];
     sku_thumb_images:  string[];
 }
-
-export interface BloomreachSuggestion {
-    q: string,
-    dq: string,
-}
-
-export interface BloomreachSearchSuggestionResponse {
-    responseHeader: {
-      status: number;
-      QTime: number;
-    }
-    response: {
-      q: string;
-      suggestions: BloomreachSuggestion[];
-      numFound: number;
-      products: [{
-        url: string;
-        // eslint-disable-next-line
-        sale_price: number;
-        pid: string;
-        // eslint-disable-next-line
-        thumb_image: string;
-        title: string;
-      }];
-    };
-  }

@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 import PropTypes from 'prop-types';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 import { bloomreachMtlSearch } from '../utils/Bloomreach/BloomreachSearchService';
-
+import { BloomreachMltResponse } from '../utils/Bloomreach/types/BloomreachSearchService';
 import '../ProductRecommendations/productrecommendations.main.less';
 
 export interface BloomreachProductRecommendationsDisplayMainProps {
@@ -63,23 +63,15 @@ class BloomreachProductRecommendationsDisplayMain extends React.Component<Bloomr
     }
   }
 
-  fetchBloomreachRecommendedProducts() {
+  async fetchBloomreachRecommendedProducts() {
     const { cortexProductData } = this.props;
     const sku = cortexProductData._code[0].code;
-    console.log(sku);
-    console.log('fetching recommended products');
-    bloomreachMtlSearch(sku)
-      .then((res: any) => {
-          console.log('the result is coming back from fetching recommended products');
-          console.log(res);
-        this.setState({
-          productData: res.response ? res.response.docs : [],
-        });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+
+    const res: BloomreachMltResponse = await bloomreachMtlSearch(sku);
+    
+    this.setState({
+      productData: res.response ? res.response.docs : [],
+    });
   }
 
   static renderProductAssocitationView(productData, maxItemsInView) {

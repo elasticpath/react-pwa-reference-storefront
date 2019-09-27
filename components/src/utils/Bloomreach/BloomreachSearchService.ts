@@ -104,7 +104,7 @@ export function bloomreachSuggestionSearch<T>(keyword): Promise<T> {
   }));
 }
 
-export function bloomreachMtlSearch(sku) {
+export function bloomreachMtlSearch<T>(sku): Promise<T> {
   const baseUrl = generateBaseBloomreachUrl();
   const {
     requestType,
