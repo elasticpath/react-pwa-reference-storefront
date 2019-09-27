@@ -1,5 +1,5 @@
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,14 +30,13 @@ import '../ProductRecommendations/productrecommendations.main.less';
 export interface BloomreachProductRecommendationsDisplayMainProps {
     cortexProductData: any,
   }
-  
+
 export interface BloomreachProductRecommendationsDisplayMainState {
     maxItemsInView: number,
     productData: any
 }
 
 class BloomreachProductRecommendationsDisplayMain extends React.Component<BloomreachProductRecommendationsDisplayMainProps, BloomreachProductRecommendationsDisplayMainState> {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -67,7 +66,7 @@ class BloomreachProductRecommendationsDisplayMain extends React.Component<Bloomr
     const sku = cortexProductData._code[0].code;
 
     const res: BloomreachMltResponse = await bloomreachMltSearch(sku);
-    
+
     this.setState({
       productData: res.response ? res.response.docs : [],
     });

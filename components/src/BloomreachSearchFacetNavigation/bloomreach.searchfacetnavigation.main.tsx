@@ -53,7 +53,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
         filteredQueryParamsArray = filteredQueryParams.split('fq=');
         filteredQueryParamsArray = filteredQueryParamsArray.map(params => params.replace('&', ''));
       } else {
-        return {}
+        return {};
       }
     }
 
@@ -215,7 +215,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
           const name = choice.name ? choice.name : choice.cat_name;
           const count = choice.count ? choice.count : 'n/a';
           const id = choice.cat_id ? `${choice.cat_id}:${index}` : `${name}:${index}`;
-          
+
           if (!this.hasFacetBeenSelected(facetKey, id)) {
             return (
               <div className="list-group-item facet-value" key={id}>
