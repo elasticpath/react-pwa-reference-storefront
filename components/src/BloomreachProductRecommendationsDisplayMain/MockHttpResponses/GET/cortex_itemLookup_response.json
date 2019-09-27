@@ -1,0 +1,529 @@
+{
+	"self": {
+		"type": "items.item",
+		"uri": "/items/vestri_b2c/qgqvhjjsgezdina=?zoom=addtocartform,addtowishlistform,availability,code,definition,definition:assets:element,definition:components,definition:components:element,definition:components:element:code,definition:components:element:standaloneitem,definition:components:element:standaloneitem:availability,definition:components:element:standaloneitem:code,definition:components:element:standaloneitem:definition,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:crosssell:element:availability,recommendations:crosssell:element:code,recommendations:crosssell:element:definition,recommendations:crosssell:element:price,recommendations:recommendation,recommendations:recommendation:element:availability,recommendations:recommendation:element:code,recommendations:recommendation:element:definition,recommendations:recommendation:element:price,recommendations:replacement,recommendations:replacement:element:availability,recommendations:replacement:element:code,recommendations:replacement:element:definition,recommendations:replacement:element:price,recommendations:upsell,recommendations:upsell:element:availability,recommendations:upsell:element:code,recommendations:upsell:element:definition,recommendations:upsell:element:price,recommendations:warranty,recommendations:warranty:element:availability,recommendations:warranty:element:code,recommendations:warranty:element:definition,recommendations:warranty:element:price",
+		"href": "https://vestri-us.epdemos.com/cortex/items/vestri_b2c/qgqvhjjsgezdina=?zoom=addtocartform,addtowishlistform,availability,code,definition,definition:assets:element,definition:components,definition:components:element,definition:components:element:code,definition:components:element:standaloneitem,definition:components:element:standaloneitem:availability,definition:components:element:standaloneitem:code,definition:components:element:standaloneitem:definition,definition:options:element,definition:options:element:selector:choice,definition:options:element:selector:choice:description,definition:options:element:selector:choice:selectaction,definition:options:element:selector:choice:selector,definition:options:element:selector:chosen,definition:options:element:selector:chosen:description,definition:options:element:selector:chosen:selectaction,definition:options:element:selector:chosen:selector,definition:options:element:value,price,rate,recommendations,recommendations:crosssell,recommendations:crosssell:element:availability,recommendations:crosssell:element:code,recommendations:crosssell:element:definition,recommendations:crosssell:element:price,recommendations:recommendation,recommendations:recommendation:element:availability,recommendations:recommendation:element:code,recommendations:recommendation:element:definition,recommendations:recommendation:element:price,recommendations:replacement,recommendations:replacement:element:availability,recommendations:replacement:element:code,recommendations:replacement:element:definition,recommendations:replacement:element:price,recommendations:upsell,recommendations:upsell:element:availability,recommendations:upsell:element:code,recommendations:upsell:element:definition,recommendations:upsell:element:price,recommendations:warranty,recommendations:warranty:element:availability,recommendations:warranty:element:code,recommendations:warranty:element:definition,recommendations:warranty:element:price"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "availability",
+		"rev": "item",
+		"type": "availabilities.availability-for-item",
+		"uri": "/availabilities/items/vestri_b2c/qgqvhjjsgezdina=",
+		"href": "https://vestri-us.epdemos.com/cortex/availabilities/items/vestri_b2c/qgqvhjjsgezdina="
+	}, {
+		"rel": "addtocartform",
+		"type": "carts.add-to-default-cart-form",
+		"uri": "/carts/items/vestri_b2c/qgqvhjjsgezdina=/form",
+		"href": "https://vestri-us.epdemos.com/cortex/carts/items/vestri_b2c/qgqvhjjsgezdina=/form"
+	}, {
+		"rel": "cartmemberships",
+		"type": "carts.read-cart-memberships",
+		"uri": "/carts/memberships/items/vestri_b2c/qgqvhjjsgezdina=",
+		"href": "https://vestri-us.epdemos.com/cortex/carts/memberships/items/vestri_b2c/qgqvhjjsgezdina="
+	}, {
+		"rel": "definition",
+		"rev": "item",
+		"type": "itemdefinitions.item-definition",
+		"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=",
+		"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina="
+	}, {
+		"rel": "code",
+		"rev": "item",
+		"type": "items.code-for-item",
+		"uri": "/items/code/items/vestri_b2c/qgqvhjjsgezdina=",
+		"href": "https://vestri-us.epdemos.com/cortex/items/code/items/vestri_b2c/qgqvhjjsgezdina="
+	}, {
+		"rel": "offer",
+		"type": "offers.offer",
+		"uri": "/offers/vestri_b2c/qgqvbkkyfveugrk7laytg=",
+		"href": "https://vestri-us.epdemos.com/cortex/offers/vestri_b2c/qgqvbkkyfveugrk7laytg="
+	}, {
+		"rel": "price",
+		"rev": "item",
+		"type": "prices.price-for-item",
+		"uri": "/prices/items/vestri_b2c/qgqvhjjsgezdina=",
+		"href": "https://vestri-us.epdemos.com/cortex/prices/items/vestri_b2c/qgqvhjjsgezdina="
+	}, {
+		"rel": "appliedpromotions",
+		"rev": "item",
+		"type": "promotions.applied-promotions-for-item",
+		"uri": "/promotions/items/vestri_b2c/qgqvhjjsgezdina=/applied",
+		"href": "https://vestri-us.epdemos.com/cortex/promotions/items/vestri_b2c/qgqvhjjsgezdina=/applied"
+	}, {
+		"rel": "recommendations",
+		"type": "recommendations.item-recommendation-groups",
+		"uri": "/recommendations/items/vestri_b2c/qgqvhjjsgezdina=",
+		"href": "https://vestri-us.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjsgezdina="
+	}, {
+		"rel": "addtowishlistform",
+		"type": "wishlists.add-item-to-wishlist-form",
+		"uri": "/wishlists/items/vestri_b2c/qgqvhjjsgezdina=/form",
+		"href": "https://vestri-us.epdemos.com/cortex/wishlists/items/vestri_b2c/qgqvhjjsgezdina=/form"
+	}, {
+		"rel": "wishlistmemberships",
+		"type": "wishlists.read-wishlist-memberships",
+		"uri": "/wishlists/memberships/items/vestri_b2c/qgqvhjjsgezdina=",
+		"href": "https://vestri-us.epdemos.com/cortex/wishlists/memberships/items/vestri_b2c/qgqvhjjsgezdina="
+	}],
+	"_addtocartform": [{
+		"self": {
+			"type": "carts.add-to-default-cart-form",
+			"uri": "/carts/items/vestri_b2c/qgqvhjjsgezdina=/form",
+			"href": "https://vestri-us.epdemos.com/cortex/carts/items/vestri_b2c/qgqvhjjsgezdina=/form"
+		},
+		"messages": [],
+		"links": [{
+			"rel": "addtodefaultcartaction",
+			"type": "carts.add-to-default-cart-form",
+			"uri": "/carts/items/vestri_b2c/qgqvhjjsgezdina=/form",
+			"href": "https://vestri-us.epdemos.com/cortex/carts/items/vestri_b2c/qgqvhjjsgezdina=/form"
+		}],
+		"configuration": {},
+		"quantity": 0
+	}],
+	"_addtowishlistform": [{
+		"self": {
+			"type": "wishlists.add-item-to-wishlist-form",
+			"uri": "/wishlists/items/vestri_b2c/qgqvhjjsgezdina=/form",
+			"href": "https://vestri-us.epdemos.com/cortex/wishlists/items/vestri_b2c/qgqvhjjsgezdina=/form"
+		},
+		"messages": [],
+		"links": [{
+			"rel": "addtodefaultwishlistaction",
+			"type": "wishlists.add-item-to-wishlist-form",
+			"uri": "/wishlists/items/vestri_b2c/qgqvhjjsgezdina=/form",
+			"href": "https://vestri-us.epdemos.com/cortex/wishlists/items/vestri_b2c/qgqvhjjsgezdina=/form"
+		}]
+	}],
+	"_availability": [{
+		"self": {
+			"type": "availabilities.availability-for-item",
+			"uri": "/availabilities/items/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/availabilities/items/vestri_b2c/qgqvhjjsgezdina="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "availability",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/items/vestri_b2c/qgqvhjjsgezdina="
+		}],
+		"state": "AVAILABLE"
+	}],
+	"_code": [{
+		"self": {
+			"type": "items.code-for-item",
+			"uri": "/items/code/items/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/items/code/items/vestri_b2c/qgqvhjjsgezdina="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "code",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/items/vestri_b2c/qgqvhjjsgezdina="
+		}],
+		"code": "21244"
+	}],
+	"_definition": [{
+		"self": {
+			"type": "itemdefinitions.item-definition",
+			"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "options",
+			"rev": "definition",
+			"type": "itemdefinitions.item-definition-options",
+			"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options",
+			"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options"
+		}, {
+			"rel": "item",
+			"rev": "definition",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/items/vestri_b2c/qgqvhjjsgezdina="
+		}, {
+			"rel": "fromprice",
+			"rev": "definition",
+			"type": "prices.price-for-itemdefinition",
+			"uri": "/prices/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/prices/itemdefinitions/vestri_b2c/qgqvhjjsgezdina="
+		}],
+		"_options": [{
+			"_element": [{
+				"self": {
+					"type": "itemdefinitions.item-definition-option",
+					"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=",
+					"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek="
+				},
+				"messages": [],
+				"links": [{
+					"rel": "value",
+					"rev": "option",
+					"type": "itemdefinitions.item-definition-option-value",
+					"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm=",
+					"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm="
+				}, {
+					"rel": "list",
+					"type": "itemdefinitions.item-definition-options",
+					"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options",
+					"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options"
+				}, {
+					"rel": "selector",
+					"rev": "option",
+					"type": "itemselections.item-option-selector",
+					"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector",
+					"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector"
+				}],
+				"_selector": [{
+					"_choice": [{
+						"self": {
+							"type": "itemselections.item-option-selector-choice",
+							"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm=",
+							"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm="
+						},
+						"messages": [],
+						"links": [{
+							"rel": "description",
+							"rev": "choice",
+							"type": "itemdefinitions.item-definition-option-value",
+							"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsge2v6njvkiytm=",
+							"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsge2v6njvkiytm="
+						}, {
+							"rel": "selectaction",
+							"rev": "choice",
+							"type": "itemselections.item-option-selector-choice",
+							"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm=",
+							"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm="
+						}, {
+							"rel": "selector",
+							"type": "itemselections.item-option-selector",
+							"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector",
+							"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector"
+						}],
+						"_description": [{
+							"self": {
+								"type": "itemdefinitions.item-definition-option-value",
+								"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsge2v6njvkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsge2v6njvkiytm="
+							},
+							"messages": [],
+							"links": [{
+								"rel": "option",
+								"rev": "value",
+								"type": "itemdefinitions.item-definition-option",
+								"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek="
+							}],
+							"display-name": "215/55R16",
+							"name": "VPA_TIRE_215_55R16"
+						}],
+						"_selectaction": [{
+							"self": {
+								"type": "itemselections.item-option-selector-choice",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm="
+							},
+							"messages": [],
+							"links": [{
+								"rel": "description",
+								"rev": "choice",
+								"type": "itemdefinitions.item-definition-option-value",
+								"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsge2v6njvkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsge2v6njvkiytm="
+							}, {
+								"rel": "selectaction",
+								"rev": "choice",
+								"type": "itemselections.item-option-selector-choice",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm="
+							}, {
+								"rel": "selector",
+								"type": "itemselections.item-option-selector",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector"
+							}]
+						}],
+						"_selector": [{
+							"self": {
+								"type": "itemselections.item-option-selector",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector"
+							},
+							"messages": [],
+							"links": [{
+								"rel": "chosen",
+								"rev": "selector",
+								"type": "itemselections.item-option-selector-choice",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm="
+							}, {
+								"rel": "choice",
+								"rev": "selector",
+								"type": "itemselections.item-option-selector-choice",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm="
+							}, {
+								"rel": "option",
+								"rev": "selector",
+								"type": "itemdefinitions.item-definition-option",
+								"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek="
+							}],
+							"name": "option-value-selector",
+							"selection-rule": "1"
+						}]
+					}],
+					"_chosen": [{
+						"self": {
+							"type": "itemselections.item-option-selector-choice",
+							"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm=",
+							"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm="
+						},
+						"messages": [],
+						"links": [{
+							"rel": "description",
+							"rev": "choice",
+							"type": "itemdefinitions.item-definition-option-value",
+							"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm=",
+							"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm="
+						}, {
+							"rel": "selectaction",
+							"rev": "choice",
+							"type": "itemselections.item-option-selector-choice",
+							"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm=",
+							"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm="
+						}, {
+							"rel": "selector",
+							"type": "itemselections.item-option-selector",
+							"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector",
+							"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector"
+						}],
+						"_description": [{
+							"self": {
+								"type": "itemdefinitions.item-definition-option-value",
+								"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm="
+							},
+							"messages": [],
+							"links": [{
+								"rel": "option",
+								"rev": "value",
+								"type": "itemdefinitions.item-definition-option",
+								"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek="
+							}],
+							"display-name": "225/50R16",
+							"name": "VPA_TIRE_225_50R16"
+						}],
+						"_selectaction": [{
+							"self": {
+								"type": "itemselections.item-option-selector-choice",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm="
+							},
+							"messages": [],
+							"links": [{
+								"rel": "description",
+								"rev": "choice",
+								"type": "itemdefinitions.item-definition-option-value",
+								"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm="
+							}, {
+								"rel": "selectaction",
+								"rev": "choice",
+								"type": "itemselections.item-option-selector-choice",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm="
+							}, {
+								"rel": "selector",
+								"type": "itemselections.item-option-selector",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector"
+							}]
+						}],
+						"_selector": [{
+							"self": {
+								"type": "itemselections.item-option-selector",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector"
+							},
+							"messages": [],
+							"links": [{
+								"rel": "chosen",
+								"rev": "selector",
+								"type": "itemselections.item-option-selector-choice",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsgi2v6njqkiytm="
+							}, {
+								"rel": "choice",
+								"rev": "selector",
+								"type": "itemselections.item-option-selector-choice",
+								"uri": "/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemselections/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/selector/kziecx2ujfjekxzsge2v6njvkiytm="
+							}, {
+								"rel": "option",
+								"rev": "selector",
+								"type": "itemdefinitions.item-definition-option",
+								"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=",
+								"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek="
+							}],
+							"name": "option-value-selector",
+							"selection-rule": "1"
+						}]
+					}]
+				}],
+				"_value": [{
+					"self": {
+						"type": "itemdefinitions.item-definition-option-value",
+						"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm=",
+						"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=/values/kziecx2ujfjekxzsgi2v6njqkiytm="
+					},
+					"messages": [],
+					"links": [{
+						"rel": "option",
+						"rev": "value",
+						"type": "itemdefinitions.item-definition-option",
+						"uri": "/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek=",
+						"href": "https://vestri-us.epdemos.com/cortex/itemdefinitions/vestri_b2c/qgqvhjjsgezdina=/options/kziecx2ujfjekx2tjfnek="
+					}],
+					"display-name": "225/50R16",
+					"name": "VPA_TIRE_225_50R16"
+				}],
+				"display-name": "Tire Size",
+				"name": "VPA_TIRE_SIZE"
+			}]
+		}],
+		"details": [{
+			"display-name": "Image Name Sku",
+			"display-value": "X-ICE X13",
+			"name": "IMAGE_NAME_S",
+			"value": "X-ICE X13"
+		}, {
+			"display-name": "Description",
+			"display-value": "The X-Ice is Michelin's third-generation Studless Ice & Snow winter tire developed for the drivers of coupes, sedans, family vans and small crossover vehicles that are looking for ice and snow traction along with predictable handling in cold, dry and wet wintry conditions. Meeting Michelin's Green X standard* for low rolling resistance confirms the X-Ice contribution to reducing vehicle fuel consumption and emissions of CO2 gases. The X-Ice is designed to take on ice and snow while it provides lasting winter performance.",
+			"name": "DESCRIPTION",
+			"value": "The X-Ice is Michelin's third-generation Studless Ice & Snow winter tire developed for the drivers of coupes, sedans, family vans and small crossover vehicles that are looking for ice and snow traction along with predictable handling in cold, dry and wet wintry conditions. Meeting Michelin's Green X standard* for low rolling resistance confirms the X-Ice contribution to reducing vehicle fuel consumption and emissions of CO2 gases. The X-Ice is designed to take on ice and snow while it provides lasting winter performance."
+		}, {
+			"display-name": "Tag",
+			"display-value": "VPA_T_MCLASS",
+			"name": "tag",
+			"value": "VPA_T_MCLASS"
+		}],
+		"display-name": "X-ICE X13"
+	}],
+	"_price": [{
+		"self": {
+			"type": "prices.price-for-item",
+			"uri": "/prices/items/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/prices/items/vestri_b2c/qgqvhjjsgezdina="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "item",
+			"rev": "price",
+			"type": "items.item",
+			"uri": "/items/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/items/vestri_b2c/qgqvhjjsgezdina="
+		}],
+		"list-price": [{
+			"amount": 164.38,
+			"currency": "CAD",
+			"display": "$164.38"
+		}],
+		"purchase-price": [{
+			"amount": 164.38,
+			"currency": "CAD",
+			"display": "$164.38"
+		}]
+	}],
+	"_recommendations": [{
+		"self": {
+			"type": "recommendations.item-recommendation-groups",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjsgezdina=",
+			"href": "https://vestri-us.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjsgezdina="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "accessory",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/accessory",
+			"href": "https://vestri-us.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/accessory"
+		}, {
+			"rel": "crosssell",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/crosssell",
+			"href": "https://vestri-us.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/crosssell"
+		}, {
+			"rel": "recommendation",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/recommendation",
+			"href": "https://vestri-us.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/recommendation"
+		}, {
+			"rel": "replacement",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/replacement",
+			"href": "https://vestri-us.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/replacement"
+		}, {
+			"rel": "upsell",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/upsell",
+			"href": "https://vestri-us.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/upsell"
+		}, {
+			"rel": "warranty",
+			"type": "recommendations.item-recommendation-group",
+			"uri": "/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/warranty",
+			"href": "https://vestri-us.epdemos.com/cortex/recommendations/items/vestri_b2c/qgqvhjjsgezdina=/warranty"
+		}],
+		"_crosssell": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_recommendation": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_replacement": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_upsell": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}],
+		"_warranty": [{
+			"pagination": {
+				"current": 1,
+				"page-size": 5,
+				"pages": 1,
+				"results": 0,
+				"results-on-page": 0
+			}
+		}]
+	}]
+}

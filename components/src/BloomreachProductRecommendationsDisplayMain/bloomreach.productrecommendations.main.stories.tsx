@@ -21,16 +21,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import getSearchFromResponse from '../BloomreachSearchResultsItems/MockHttpResponses/GET/bloomreach_getKeywordSearch_response.json';
-import { BloomreachKeywordSearchLookupResponse } from '../utils/Bloomreach/types/BloomreachSearchService';
-import BloomreachProductListMain from './bloomreach.productlist.main';
+import itemLookupResponse from './MockHttpResponses/GET/cortex_itemLookup_response.json';
 
-storiesOf('BloomreachProductListMain', module)
+import BloomreachProductRecommendationsDisplayMain from './bloomreach.productrecommendations.main';
+
+storiesOf('BloomreachProductRecommendationsDisplayMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('BloomreachProductListMain', () => {
-      const searchResultsModel: BloomreachKeywordSearchLookupResponse = getSearchFromResponse;
-      const products = searchResultsModel.response ? searchResultsModel.response.docs : [];
-      return <BloomreachProductListMain productData={products} showCompareButton={false}/>
-});
+  .add('BloomreachProductRecommendationsDisplayMain', () => {
+      return (<BloomreachProductRecommendationsDisplayMain cortexProductData={itemLookupResponse}/>); 
+    });
