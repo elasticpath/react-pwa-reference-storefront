@@ -22,7 +22,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
-import PropTypes from 'prop-types';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 import { bloomreachMltSearch } from '../utils/Bloomreach/BloomreachSearchService';
 import { BloomreachMltResponse } from '../utils/Bloomreach/types/BloomreachSearchService';
