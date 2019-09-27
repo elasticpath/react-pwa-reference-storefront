@@ -26,15 +26,7 @@ import ProductListItemMain from '../ProductListItem/productlistitem.main';
 import { bloomreachMltSearch } from '../utils/Bloomreach/BloomreachSearchService';
 import { BloomreachMltResponse } from '../utils/Bloomreach/types/BloomreachSearchService';
 import '../ProductRecommendations/productrecommendations.main.less';
-
-export interface BloomreachProductRecommendationsDisplayMainProps {
-    cortexProductData: any,
-  }
-
-export interface BloomreachProductRecommendationsDisplayMainState {
-    maxItemsInView: number,
-    productData: any
-}
+import { BloomreachProductRecommendationsDisplayMainProps, BloomreachProductRecommendationsDisplayMainState } from './types/bloomreach.productrecommendations.main';
 
 class BloomreachProductRecommendationsDisplayMain extends React.Component<BloomreachProductRecommendationsDisplayMainProps, BloomreachProductRecommendationsDisplayMainState> {
   constructor(props) {
