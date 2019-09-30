@@ -117,6 +117,13 @@
         "facetLimit": "",
         "fl": "",
         "searchType": ""
+      },
+      "productRecommendationConfig": {
+        "requestType": "",
+        "rows": "",
+        "start": "",
+        "facetLimit": "",
+        "fl": ""
       }
     }
   },
