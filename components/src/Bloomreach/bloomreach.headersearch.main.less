@@ -19,15 +19,15 @@
  *
  */
  @import './../../../app/src/theme/common.less';
- 
+
   .main-search-container-br {
     width: 170px;
     text-align: right;
-  
+
     .search-form-br {
       position: relative;
       display: inline-block;
-      
+
       &:focus-within {
         .input-search-br {
           width: 275px;
@@ -39,7 +39,7 @@
           display:list-item;
         }
       }
-  
+
       .input-search-br {
         z-index:1;
         background: @mainColor;
@@ -48,7 +48,7 @@
         transition: width 0.5s ease,
                     border-color 0.5s,
                     padding 0.5s ease-in;
-        
+
         cursor: auto;
         color: #fff;
         cursor: pointer;
@@ -56,7 +56,7 @@
         border: 0;
         border-bottom: 1px solid transparent;
         font-weight: 300;
-  
+
         &::placeholder {
           opacity: 0.3;
           color: #fff;
@@ -80,9 +80,9 @@
           cursor: pointer;
         }
       }
-  
+
       .search-icon-br {
-        background: #ffffff00 url(../../../app/src/images/header-icons/magnifying-glass.svg) no-repeat 9px center;
+        background: #ffffff00 url('@{imgComponentUrl}/header-icons/magnifying-glass.svg') no-repeat 9px center;
         position: absolute;
         left: 0px;
         top: 0px;
@@ -95,16 +95,16 @@
     &.mobile-view {
       width: 100%;
       border-bottom: solid 1px #dedede;
-  
+
       .search-form-br {
         display: block;
-        
+
         &:focus-within {
           .suggestions {
             display:list-item;
           }
         }
-        
+
         .input-search-br {
           color: #333;
           background-color: #fff;
@@ -113,12 +113,12 @@
           font-size: 18px;
           padding: 10px 45px 10px 20px;
           border-bottom: 0;
-  
+
           &::placeholder {
             opacity: 0.3;
             color: #000;
           }
-  
+
           &:focus {
             border-bottom: 0;
           }
@@ -149,7 +149,7 @@
             }
           }
         }
-  
+
         .search-icon-br {
           filter: invert(100%);
           opacity: 0.5;
@@ -160,7 +160,6 @@
       }
     }
   }
-  
 
- 
- 
+
+
