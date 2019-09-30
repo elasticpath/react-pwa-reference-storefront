@@ -1,6 +1,6 @@
 {
   "name": "@elasticpath/store-components",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "main": "build/cjs/index",
   "main:src": "src/index",
   "types": "src/index",
@@ -19,7 +19,7 @@
     "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
-    "@storybook/react": "^5.1.8",
+    "@storybook/react": "^5.2.1",
     "babel-loader": "^8.0.6",
     "declaration-bundler-webpack-plugin": "^1.0.3",
     "quagga": "^0.12.1",
