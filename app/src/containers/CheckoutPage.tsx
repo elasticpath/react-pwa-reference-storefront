@@ -139,7 +139,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   fetchGiftCardsData() {
     login().then(() => {
-      cortexFetch(`/giftcertificates/${Config.cortexApi.scope}/lookup/form`,
+      cortexFetch('/?zoom=lookups:giftcertificatelookupform',
         {
           headers: {
             'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
         })
         .then(res => res.json())
         .then((res) => {
-          if (res) {
+          if (res._lookups && res._lookups[0]._giftcertificatelookupform) {
             this.setState({ showGiftCard: true });
           }
         })
