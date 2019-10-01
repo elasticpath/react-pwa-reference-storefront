@@ -48,15 +48,15 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     let filteredQueryParamsArray: string[] = [];
 
     if (decodedQueryParams) {
-      let filteredQueryParams: string = decodedQueryParams.replace('?', '');
+      const filteredQueryParams: string = decodedQueryParams.replace('?', '');
       if (filteredQueryParams.includes('fq=')) {
         filteredQueryParamsArray = filteredQueryParams.split('fq=');
         filteredQueryParamsArray = filteredQueryParamsArray.map(params => params.replace('&', ''));
       } else {
-        return {}
+        return {};
       }
     }
-    
+
     const filteredQueryParamsTree = filteredQueryParamsArray.reduce((acc, outerFacetStr:string) => {
       if (outerFacetStr) {
         const outerFacetArray = outerFacetStr.split(':');
@@ -74,7 +74,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
 
       return acc;
     }, {});
-    
+
     return filteredQueryParamsTree;
   }
 
