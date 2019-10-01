@@ -39,16 +39,16 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
   }
 
   static turnQueryParamsIntoTree(queryParams: string) {
-    const decodedQueryParams = decodeURI(queryParams);
+    // Turns the url query parameter into object to represent state
     // Ex. ?fq=colors:"black"OR"red"&fq=category:"cat250"
     // Ex. ['colors: "black"', 'category: "cat250"']
     // Ex {colors: ["black"], category: "cat250"}
-    // TODO: Make this one large regex expression.
+    const decodedQueryParams = decodeURI(queryParams);
+    
     let filteredQueryParamsArray: string[] = [];
-
+    
     if (decodedQueryParams) {
       let filteredQueryParams: string = decodedQueryParams.replace('?', '');
-      filteredQueryParams = filteredQueryParams.replace(/['"]+/g, '');
       if (filteredQueryParams.includes('fq=')) {
         filteredQueryParamsArray = filteredQueryParams.split('fq=');
         filteredQueryParamsArray = filteredQueryParamsArray.map(params => params.replace('&', ''));
@@ -56,25 +56,25 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
         return {}
       }
     }
-
+    
     const filteredQueryParamsTree = filteredQueryParamsArray.reduce((acc, outerFacetStr:string) => {
       if (outerFacetStr) {
         const outerFacetArray = outerFacetStr.split(':');
         const category = outerFacetArray[0];
-        const loFacets = outerFacetArray[1].split('OR');
-
+        const loFacets = outerFacetArray[1].split('"OR"');
         loFacets.forEach((innerFacet) => {
+          const innerFacetWithoutQuotes = innerFacet.replace(/['"]+/g, '');
           if (acc[category] == null) {
-            acc[category] = [innerFacet];
+            acc[category] = [innerFacetWithoutQuotes];
           } else {
-            acc[category].push(innerFacet);
+            acc[category].push(innerFacetWithoutQuotes);
           }
         });
       }
 
       return acc;
     }, {});
-
+    
     return filteredQueryParamsTree;
   }
 
@@ -214,11 +214,12 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
         if (choice) {
           const name = choice.name ? choice.name : choice.cat_name;
           const count = choice.count ? choice.count : 'n/a';
-          const id = choice.cat_id ? `${choice.cat_id}:${index}` : `${name}:${index}`;
-          
+          const domKey = choice.cat_id ? `${choice.cat_id}:${index}` : `${name}:${index}`;
+          const id = choice.cat_id ? `${choice.cat_id}` : `${name}`;
+
           if (!this.hasFacetBeenSelected(facetKey, id)) {
             return (
-              <div className="list-group-item facet-value" key={id}>
+              <div className="list-group-item facet-value" key={domKey}>
                 <button type="button" className="form-check-label choice" onClick={() => this.handleFacetSelection(facetKey, id)}>
                   <span className="checkmark choice" />
                   {`${this.generateFacetName(facetKey, name, choice)}`}
@@ -231,7 +232,7 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
           }
 
           return (
-            <div className="list-group-item facet-value" key={id}>
+            <div className="list-group-item facet-value" key={domKey}>
               <button type="button" className="form-check-label chosen" onClick={() => this.handleFacetSelection(facetKey, id)}>
                 <span className="checkmark chosen" />
                 {`${this.generateFacetName(facetKey, name, choice)}`}
