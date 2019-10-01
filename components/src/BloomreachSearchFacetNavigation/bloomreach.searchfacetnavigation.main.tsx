@@ -44,9 +44,9 @@ class BloomreachSearchFacetNavigationMain extends React.Component<BloomreachSear
     // Ex. ['colors: "black"', 'category: "cat250"']
     // Ex {colors: ["black"], category: "cat250"}
     const decodedQueryParams = decodeURI(queryParams);
-    
+
     let filteredQueryParamsArray: string[] = [];
-    
+
     if (decodedQueryParams) {
       let filteredQueryParams: string = decodedQueryParams.replace('?', '');
       if (filteredQueryParams.includes('fq=')) {
