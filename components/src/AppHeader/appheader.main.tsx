@@ -29,7 +29,6 @@ import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.
 import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
 import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg';
-// TODO: Have to fix this typing error later...
 import { ReactComponent as BagIcon } from '../images/header-icons/bag-icon.svg';
 
 import { cortexFetch } from '../utils/Cortex';
@@ -281,8 +280,8 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
             {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
               <div className="cart-link-container">
-                <BagIcon />
-                {/* <img src={cartImg} alt="bag-icon" className="filter-green" /> */}
+                
+                <BagIcon className="bag-icon" />
                 <Link className="cart-link" to={appHeaderLinks.myBag}>
                   {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
                     <span className="cart-link-counter">
