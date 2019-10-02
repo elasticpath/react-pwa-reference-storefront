@@ -29,7 +29,7 @@ import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.
 import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
 import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg';
-import { ReactComponent as BagIcon } from '../images/header-icons/bag-icon.svg';
+import { ReactComponent as BagIcon } from '../../../app/src/images/header-icons/bag-icon.svg';
 
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
