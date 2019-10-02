@@ -64,14 +64,15 @@ class BloomreachProductRecommendationsDisplayMain extends React.Component<Bloomr
     });
   }
 
-  static renderProductAssocitationView(productData, maxItemsInView) {
+  renderProductAssocitationView(productData, maxItemsInView) {
     const data = [];
+    const { itemDetailLink } = this.props;
     productData.forEach((element, index) => {
       if (index < maxItemsInView && element.pid) {
         const cortexSku = element.variants[0].sku_swatch_images[0];
         data.push(
           <div className="category-item-container card" key={`_${Math.random().toString(36).substr(2, 9)}`}>
-            <ProductListItemMain productId={cortexSku} />
+            <ProductListItemMain productId={cortexSku} itemDetailLink={itemDetailLink} />
           </div>,
         );
       }
@@ -90,7 +91,7 @@ class BloomreachProductRecommendationsDisplayMain extends React.Component<Bloomr
             {intl.get('more-like-this')}
           </label>
           <div className="card-deck">
-            {BloomreachProductRecommendationsDisplayMain.renderProductAssocitationView(productData, maxItemsInView)}
+            {this.renderProductAssocitationView(productData, maxItemsInView)}
           </div>
         </div>,
       );
