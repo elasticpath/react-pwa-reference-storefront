@@ -95,9 +95,8 @@
     "pageId": "<PAGE_ID>",
     "applicationId": "<APP_ID>"
   },
-  "bloomreachSearch": {
-    "enable": false,
-    "config": {
+  "bloomreach": {
+    "env": {
       "baseUri": "",
       "accountId": "",
       "authKey": "",
@@ -105,19 +104,21 @@
       "requestId": "",
       "brUID2":"",
       "url": "",
-      "refurl": "",
-      "suggestionConfig": {
-        "baseUri": "",
-        "requestType": ""
-      },
-      "keywordSearchConfig": {
-        "requestType": "",
-        "rows": "",
-        "start": "",
-        "facetLimit": "",
-        "fl": "",
-        "searchType": ""
-      }
+      "refurl": ""
+    },
+    "keywordSearch": {
+      "enable": true,
+      "requestType": "",
+      "rows": "",
+      "start": "",
+      "facetLimit": "",
+      "fl": "",
+      "searchType": ""
+    },
+    "suggestions": {
+      "enable": true,
+      "baseUri": "",
+      "requestType": ""
     }
   },
   "GDPR": {
