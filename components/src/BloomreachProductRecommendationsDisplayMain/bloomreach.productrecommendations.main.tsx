@@ -87,7 +87,7 @@ class BloomreachProductRecommendationsDisplayMain extends React.Component<Bloomr
       data.push(
         <div className="display" key={htmlFor}>
           <label className="control-label" htmlFor={htmlFor}>
-            {intl.get('product-recommendations')}
+            {intl.get('more-like-this')}
           </label>
           <div className="card-deck">
             {BloomreachProductRecommendationsDisplayMain.renderProductAssocitationView(productData, maxItemsInView)}
