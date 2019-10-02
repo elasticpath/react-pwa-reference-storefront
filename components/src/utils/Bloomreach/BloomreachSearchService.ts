@@ -112,7 +112,7 @@ export function bloomreachMltSearch<T>(sku): Promise<T> {
     start,
     facetLimit,
     fl,
-  } = getConfig().config.bloomreachSearch.config.productRecommendationConfig;
+  } = getConfig().config.bloomreach.moreLikeThis;
 
   return new Promise(((resolve, reject) => {
     searchLookup(sku).then((searchRes) => {

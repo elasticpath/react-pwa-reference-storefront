@@ -124,7 +124,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 
   static RelatedProducts(productData) {
-    if (Config.bloomreachSearch.enable) {
+    if (Config.bloomreach.moreLikeThis.enable) {
       return <BloomreachProductRecommendationsDisplayMain cortexProductData={productData} />;
     }
     return <ProductRecommendationsDisplayMain productData={productData} />;
