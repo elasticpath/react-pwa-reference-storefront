@@ -23,6 +23,7 @@ import React from 'react';
 
 import './appheadersearch.main.less';
 import { getConfig } from '../utils/ConfigProvider';
+import { ReactComponent as SearchIcon } from '../../../app/src/images/header-icons/magnifying-glass.svg';
 
 let intl = { get: str => str };
 
@@ -86,7 +87,7 @@ class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppH
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={this.search}>
           <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} />
-          <div className="search-icon" />
+          <SearchIcon className="search-icon" />
         </form>
       </div>
     );
