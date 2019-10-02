@@ -280,9 +280,8 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
             {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
               <div className="cart-link-container">
-                
-                <BagIcon className="bag-icon" />
                 <Link className="cart-link" to={appHeaderLinks.myBag}>
+                  <BagIcon className="bag-icon" />
                   {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
                     <span className="cart-link-counter">
                       {cartData['total-quantity']}
