@@ -24,7 +24,7 @@ import { searchLookup } from '../CortexLookup';
 
 import { getConfig } from '../ConfigProvider';
 
-function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch.config.baseUri) {
+function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreach.env.baseUri) {
   const {
     accountId,
     authKey,
@@ -33,7 +33,7 @@ function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch
     brUID2,
     url,
     refurl,
-  } = getConfig().config.bloomreachSearch.config;
+  } = getConfig().config.bloomreach.env;
   return `${baseUri}${accountId}&${authKey}&${domainKey}&${requestId}&${brUID2}&${url}&${refurl}`;
 }
 
@@ -47,7 +47,7 @@ export function bloomreachKeywordSearchLookup<T>(searchKeyword, searchQueryParam
     facetLimit,
     fl,
     searchType,
-  } = getConfig().config.bloomreachSearch.config.keywordSearchConfig;
+  } = getConfig().config.bloomreach.keywordSearch;
   const q = `q=${searchKeyword.keywords}`;
 
   const fq = searchQueryParams ? `${searchQueryParams}`.replace('?', '') : null;
@@ -78,7 +78,7 @@ export function bloomreachSuggestionSearch<T>(keyword): Promise<T> {
   const {
     baseUri,
     requestType,
-  } = getConfig().config.bloomreachSearch.config.suggestionConfig;
+  } = getConfig().config.bloomreach.suggestions;
 
   const baseUrl = generateBaseBloomreachUrl(baseUri);
   const q = `q=${keyword}`;

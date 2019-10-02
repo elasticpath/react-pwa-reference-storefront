@@ -41,7 +41,7 @@ function SearchResultsPage(props: RouteComponentProps) {
     productCategory: '/category',
   };
 
-  if (Config.bloomreachSearch.enable) {
+  if (Config.bloomreach.keywordSearch.enable) {
     return (
       <div>
         {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}

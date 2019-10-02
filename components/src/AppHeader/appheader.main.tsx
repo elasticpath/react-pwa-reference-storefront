@@ -256,7 +256,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
           <div className="icons-header-container">
             <div className="search-container">
-              {Config.bloomreachSearch.enable ? (
+              {Config.bloomreach.suggestions.enable ? (
                 <BloomreachAppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
               ) : (
                 <AppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
@@ -333,7 +333,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
         <div className="collapsable-container collapse collapsed">
           <div className="search-container">
-            {Config.bloomreachSearch.enable ? (
+            {Config.bloomreach.suggestions.enable ? (
               <BloomreachAppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
             ) : (
               <AppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
