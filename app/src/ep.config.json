@@ -107,7 +107,7 @@
       "refurl": ""
     },
     "keywordSearch": {
-      "enable": true,
+      "enable": false,
       "requestType": "",
       "rows": "",
       "start": "",
@@ -116,7 +116,7 @@
       "searchType": ""
     },
     "suggestions": {
-      "enable": true,
+      "enable": false,
       "baseUri": "",
       "requestType": ""
     },
