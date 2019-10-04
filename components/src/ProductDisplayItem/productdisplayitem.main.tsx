@@ -27,6 +27,7 @@ import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../app/src/images/img_missing_horizontal@2x.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
+import BloomreachProductRecommendationsDisplayMain from '../BloomreachProductRecommendationsDisplayMain/bloomreach.productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
@@ -120,6 +121,14 @@ interface ProductDisplayItemMainState {
 class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
   static isLoggedIn(config) {
     return (localStorage.getItem(`${config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
+  }
+
+  static RelatedProducts(productData) {
+    const itemDetailLink = '/itemdetail';
+    if (Config.bloomreach.moreLikeThis.enable) {
+      return <BloomreachProductRecommendationsDisplayMain cortexProductData={productData} itemDetailLink={itemDetailLink} />;
+    }
+    return <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />;
   }
 
   static defaultProps = {
@@ -773,7 +782,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
             </div>
           </div>
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
-          <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
+          {ProductDisplayItemMain.RelatedProducts(productData)}
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
         </div>
       );

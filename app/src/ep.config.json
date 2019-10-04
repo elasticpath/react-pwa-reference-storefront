@@ -107,7 +107,7 @@
       "refurl": ""
     },
     "keywordSearch": {
-      "enable": true,
+      "enable": false,
       "requestType": "",
       "rows": "",
       "start": "",
@@ -116,9 +116,17 @@
       "searchType": ""
     },
     "suggestions": {
-      "enable": true,
+      "enable": false,
       "baseUri": "",
       "requestType": ""
+    },
+    "moreLikeThis": {
+      "enable": true,
+      "requestType": "",
+      "rows": "",
+      "start": "",
+      "facetLimit": "",
+      "fl": ""
     }
   },
   "GDPR": {

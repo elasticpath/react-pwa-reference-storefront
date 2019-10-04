@@ -103,3 +103,39 @@ export function bloomreachSuggestionSearch<T>(keyword): Promise<T> {
       });
   }));
 }
+
+export function bloomreachMltSearch<T>(sku): Promise<T> {
+  const baseUrl = generateBaseBloomreachUrl();
+  const {
+    requestType,
+    rows,
+    start,
+    facetLimit,
+    fl,
+  } = getConfig().config.bloomreach.moreLikeThis;
+
+  return new Promise(((resolve, reject) => {
+    searchLookup(sku).then((searchRes) => {
+      const productIDCode = searchRes._element[0]._code[0].code;
+      const pid = `pid=${productIDCode}`;
+      const searchUrl = `${baseUrl}&${requestType}&${rows}&${start}&${facetLimit}&${fl}&${pid}`;
+
+      bloomreachFetch(searchUrl, {})
+        .then((res) => {
+          if (res.status >= 500) {
+            reject(res);
+          }
+          return res;
+        })
+        .then(res => res.json())
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((error) => {
+        // eslint-disable-next-line no-console
+          console.error(error.message);
+          reject(error);
+        });
+    });
+  }));
+}
