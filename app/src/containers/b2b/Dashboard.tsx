@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
-import userIcon from '../../images/header-icons/account-icon-blue.svg';
+import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
 import Config from '../../ep.config.json';
 
 import './Dashboard.less';
@@ -268,9 +268,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                 <div className="section-content">
                   {admins.slice(0, 2).map(admin => (
                     <div key={admin.email} className="user-info">
-                      <div className="user-icon">
-                        <img src={userIcon} alt="" />
-                      </div>
+                      <AccountIcon className="user-icon" />
                       <div className="user-details">
                         <div className="user-email">{admin.email}</div>
                         <div className="user-name">{admin.name}</div>

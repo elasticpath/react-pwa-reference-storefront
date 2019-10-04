@@ -29,7 +29,7 @@
   .login-btn {
     background-color: transparent;
     border: 0;
-    color: @mainNavigationTextColor;
+    color: @mainNavigationColor;
     cursor: pointer;
   }
 
@@ -51,18 +51,15 @@
       &:focus {
         background-color: transparent;
       }
-
-      .icon {
+      
+      .account-icon {
+        fill: @mainNavigationColor;
         display: inline-block;
-
-        &:before {
-          content: " ";
-          display: inline-block;
-          width: 25px;
-          height: 21px;
-          background: #ffffff00 url('@{imgComponentUrl}/header-icons/account-icon.png') no-repeat 0px center;
-          background-size: cover;
-        }
+        content: " ";
+        display: inline-block;
+        width: 25px;
+        height: 21px;
+        background-size: cover;
       }
     }
 
