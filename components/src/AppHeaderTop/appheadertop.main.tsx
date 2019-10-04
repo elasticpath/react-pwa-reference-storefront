@@ -24,8 +24,9 @@ import { Link } from 'react-router-dom';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 
 import './appheadertop.main.less';
-import { getConfig } from '../utils/ConfigProvider';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
+let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AppHeaderTopProps {
@@ -47,6 +48,8 @@ class AppHeaderTop extends React.Component<AppHeaderTopProps> {
   constructor(props) {
     super(props);
     ({ intl } = getConfig());
+    const epConfig = getConfig();
+    Config = epConfig.config;
   }
 
   render() {
@@ -57,12 +60,24 @@ class AppHeaderTop extends React.Component<AppHeaderTopProps> {
       appHeaderTopLinks,
     } = this.props;
 
+    const impersonating = localStorage.getItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
+    const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
+
     return [
       <div key="AppHeaderTop" className={`top-header ${isMobileView ? 'mobile-view' : ''}`}>
-        <div className="top-container">
+        <div className={impersonating ? 'top-container-impersonation' : 'top-container'}>
           <div className="locale-container">
             <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
           </div>
+
+          {
+            impersonating ? (
+              <div className="impersonation-notification">
+                {intl.get('shopper-impersonation-message')}
+                {userName}
+              </div>
+            ) : ''
+          }
 
           <div className="top-container-menu">
             <ul>
