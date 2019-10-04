@@ -30,6 +30,7 @@ import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
 import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg';
 import { ReactComponent as BagIcon } from '../../../app/src/images/header-icons/bag-icon.svg';
+import { ReactComponent as BulkCart } from '../../../app/src/images/header-icons/bulk-cart.svg';
 
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
@@ -293,7 +294,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
             )}
             {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
               <div className="bulk-container">
-                <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
+                <BulkCart className="bulk-button" onClick={() => { this.openModal(); }} />
               </div>
             )}
           </div>
