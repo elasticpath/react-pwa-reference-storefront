@@ -26,6 +26,7 @@ import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
 import AppModalCartSelectMain from '../AppModalCartSelect/appmodalcartselect.main';
 import { login, logout } from '../utils/AuthService';
 import { cortexFetch, adminFetch } from '../utils/Cortex';
+import { ReactComponent as AccountIcon } from '../../../app/src/images/header-icons/account-icon.svg';
 
 import './appheaderlogin.main.less';
 
@@ -184,7 +185,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                   ? (
                     intl.get('account-logged-in')
                   ) : (
-                    <span className="icon" />
+                    <AccountIcon className="account-icon" />
                   )}
               </button>
               <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
