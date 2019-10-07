@@ -326,5 +326,6 @@
   "app-version": "A-p-p- -v-e-r-s-i-o-n",
   "components-version": "C-o-m-p-o-n-e-n-t-s- -v-e-r-s-i-o-n",
   "barcode-scanner": "B-a-r-c-o-d-e- -s-c-a-n-n-e-r",
-  "scan-barcode": "S-c-a-n- -B-a-r-c-o-d-e"
+  "scan-barcode": "S-c-a-n- -B-a-r-c-o-d-e",
+  "shopper-impersonation-message": "S-h-o-p-p-i-n-g- -o-n- -b-e-h-a-l-f- -o-f-:- "
 }
