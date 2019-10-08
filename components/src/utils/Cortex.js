@@ -23,6 +23,15 @@ import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
 import { getConfig } from './ConfigProvider';
 
+export function timeout(ms, promise) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      reject();
+    }, ms)
+    promise.then(resolve, reject)
+  })
+}
+
 export function cortexFetch(input, init) {
   const Config = getConfig().config;
   const requestInit = init;
@@ -41,7 +50,7 @@ export function cortexFetch(input, init) {
     return mockFetch(input, requestInit);
   }
 
-  return fetch(`${Config.cortexApi.path + input}`, requestInit)
+  return timeout(Config.cortexApi.reqTimeout || 10000, fetch(`${Config.cortexApi.path + input}`, requestInit)
     .then((res) => {
       if ((res.status === 401 || res.status === 403) && input != '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
@@ -67,6 +76,11 @@ export function cortexFetch(input, init) {
     .catch((error) => {
       // eslint-disable-next-line no-console
       console.error(error.message);
+    })).catch(function (error) {
+      if (window.location.href.indexOf('/maintenance') === -1) {
+        window.location.pathname = '/maintenance';
+      }
+      return new Response(new Blob(), {});
     });
 }
 
@@ -82,7 +96,7 @@ export function adminFetch(input, init) {
     return mockFetch(input, requestInit);
   }
 
-  return fetch(`${Config.b2b.authServiceAPI.path + input}`, requestInit)
+  return timeout(Config.b2b.authServiceAPI.reqTimeout || 10000, fetch(`${Config.b2b.authServiceAPI.path + input}`, requestInit)
     .then((res) => {
       if (res.status === 401 || res.status === 403) {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
@@ -106,5 +120,10 @@ export function adminFetch(input, init) {
     .catch((error) => {
       // eslint-disable-next-line no-console
       console.error(error.message);
+    })).catch(function (error) {
+      if (window.location.href.indexOf('/maintenance') === -1) {
+        window.location.pathname = '/maintenance';
+      }
+      return new Response(new Blob(), {});
     });
 }
