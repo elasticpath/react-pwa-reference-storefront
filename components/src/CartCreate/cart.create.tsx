@@ -35,7 +35,6 @@ interface CartCreateProps {
   openModal: boolean
 }
 interface CartCreateState {
-  open: boolean,
   editMode: boolean,
   cartName: string,
 }
@@ -51,29 +50,28 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     Config = epConfig.config;
     ({ intl } = epConfig);
     this.state = {
-      open: false,
-      editMode: true,
+      editMode: false,
       cartName: '',
     };
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleOpenModal() {
-    this.setState({ open: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ open: false });
+    this.clearCartNameField = this.clearCartNameField.bind(this);
+    this.handleEditCart = this.handleEditCart.bind(this);
   }
 
   handleChange(event) {
     this.setState({ cartName: event.target.value });
   }
 
+  clearCartNameField() {
+    this.setState({ cartName: '' });
+  }
+
+  handleEditCart() {
+    this.setState({ editMode: true });
+  }
+
   render() {
-    const { open, editMode, cartName } = this.state;
+    const { editMode, cartName } = this.state;
     const { handleModalClose, openModal } = this.props;
 
     return (
@@ -97,7 +95,10 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
                       <div className="edit-mode">
                         <div className="edit-mode-form">
                           <label htmlFor="cart_edit">Name</label>
-                          <input type="text" value={cartName} id="cart_edit" className="cart-edit-field" onChange={this.handleChange} />
+                          <div className="cart-edit-field-wrap">
+                            <input type="text" value={cartName} id="cart_edit" className="cart-edit-field" onChange={this.handleChange} />
+                            {cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearCartNameField} />)}
+                          </div>
                         </div>
                       </div>
                     ) : (
@@ -109,7 +110,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
                         </div>
                         <div className="action-btn">
                           <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
-                          <button className="ep-btn edit-btn" type="button">{intl.get('edit')}</button>
+                          <button className="ep-btn edit-btn" type="button" onClick={this.handleEditCart}>{intl.get('edit')}</button>
                         </div>
                       </div>
                     )}
@@ -128,7 +129,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
               </div>
               <div className="action-row">
                 <div className="btn-container">
-                  <button type="button" className="ep-btn cancel-btn">{intl.get('cancel')}</button>
+                  <button type="button" className="ep-btn cancel-btn" onClick={handleModalClose}>{intl.get('cancel')}</button>
                   <button type="button" className="ep-btn primary save-btn">{intl.get('save')}</button>
                 </div>
               </div>
