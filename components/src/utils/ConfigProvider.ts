@@ -25,7 +25,8 @@ export interface IEpConfig {
   cortexApi: {
     path: string,
     scope: string,
-    pathForProxy: string
+    pathForProxy: string,
+    reqTimeout: string
   },
   supportedLocales: Array<{
     value: string,
@@ -44,7 +45,8 @@ export interface IEpConfig {
     enable: boolean,
     authServiceAPI: {
       path: string,
-      pathForProxy: string
+      pathForProxy: string,
+      reqTimeout: string
     },
     keycloak: {
       callbackUrl: string,

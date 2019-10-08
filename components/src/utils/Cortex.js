@@ -24,12 +24,12 @@ import mockFetch from './Mock';
 import { getConfig } from './ConfigProvider';
 
 export function timeout(ms, promise) {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
       reject();
-    }, ms)
-    promise.then(resolve, reject)
-  })
+    }, ms);
+    promise.then(resolve, reject);
+  });
 }
 
 export function cortexFetch(input, init) {
@@ -76,7 +76,8 @@ export function cortexFetch(input, init) {
     .catch((error) => {
       // eslint-disable-next-line no-console
       console.error(error.message);
-    })).catch(function (error) {
+    }))
+    .catch((error) => {
       if (window.location.href.indexOf('/maintenance') === -1) {
         window.location.pathname = '/maintenance';
       }
@@ -120,7 +121,8 @@ export function adminFetch(input, init) {
     .catch((error) => {
       // eslint-disable-next-line no-console
       console.error(error.message);
-    })).catch(function (error) {
+    }))
+    .catch((error) => {
       if (window.location.href.indexOf('/maintenance') === -1) {
         window.location.pathname = '/maintenance';
       }
