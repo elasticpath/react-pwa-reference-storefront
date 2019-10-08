@@ -59,7 +59,7 @@ export function cortexFetch(input, init): any {
     queryFormat = `${queryCharacter}format=${standardlinks}${noself}${nodatalinks}`;
   }
 
-  return timeout(Config.cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path}${input}${queryFormat}`, requestInit)
+  return timeout((<any>Config).cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path}${input}${queryFormat}`, requestInit)
     .then((res) => {
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
@@ -105,7 +105,7 @@ export function adminFetch(input, init): any {
     return mockFetch(input);
   }
 
-  return timeout(Config.b2b.authServiceAPI.reqTimeout || 30000, fetch(`${Config.b2b.authServiceAPI.path + input}`, requestInit)
+  return timeout((<any>Config).b2b.authServiceAPI.reqTimeout || 30000, fetch(`${Config.b2b.authServiceAPI.path + input}`, requestInit)
     .then((res) => {
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
