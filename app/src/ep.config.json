@@ -3,7 +3,7 @@
     "path": "/cortex",
     "scope": "vestri",
     "pathForProxy": "http://localhost:9080",
-    "reqTimeout": "10000"
+    "reqTimeout": "30000"
   },
   "supportedLocales": [
     {
@@ -36,7 +36,7 @@
     "authServiceAPI": {
       "path": "",
       "pathForProxy": "",
-      "reqTimeout": "10000"
+      "reqTimeout": "30000"
     },
     "keycloak": {
       "callbackUrl": "http://localhost:8080",
