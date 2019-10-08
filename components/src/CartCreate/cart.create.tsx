@@ -31,9 +31,13 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface CartCreateProps {
+  handleModalClose: (...args: any[]) => any,
+  openModal: boolean
 }
 interface CartCreateState {
   open: boolean,
+  editMode: boolean,
+  cartName: string,
 }
 
 class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
@@ -48,9 +52,12 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     ({ intl } = epConfig);
     this.state = {
       open: false,
+      editMode: true,
+      cartName: '',
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleOpenModal() {
@@ -61,61 +68,74 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.setState({ open: false });
   }
 
+  handleChange(event) {
+    this.setState({ cartName: event.target.value });
+  }
+
   render() {
-    const { open } = this.state;
+    const { open, editMode, cartName } = this.state;
+    const { handleModalClose, openModal } = this.props;
 
     return (
-      <div className="cart-create-container">
-        <button className="ep-btn open-modal-btn" type="button" onClick={this.handleOpenModal}>Manage Carts</button>
-        <Modal open={open} onClose={this.handleCloseModal}>
-          <div className="modal-lg cart-create-modal">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h2 className="modal-title">
+      <Modal open={openModal} onClose={handleModalClose}>
+        <div className="modal-lg cart-create-modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2 className="modal-title">
                   Manage Carts
-                </h2>
+              </h2>
+            </div>
+            <div className="modal-body">
+              <div className="create-cart-btn-wrap">
+                <button type="button" className="ep-btn create-cart-btn">Create New Cart </button>
               </div>
-              <div className="modal-body">
-                <div className="create-cart-btn-wrap">
-                  <button type="button" className="ep-btn create-cart-btn">Create New Cart </button>
-                </div>
-                <div className="carts-list-wrap">
-                  <h3>Your carts (2)</h3>
-                  <ul className="carts-list">
-                    <li className="carts-list-item">
-                      <div className="cart-info">
-                        <h4>Garage</h4>
-                        <p className="cart-quantity">5 items</p>
-                        <p className="cart-price">$336.00</p>
+              <div className="carts-list-wrap">
+                <h3>Your carts (2)</h3>
+                <ul className="carts-list">
+                  <li className="carts-list-item">
+                    {editMode ? (
+                      <div className="edit-mode">
+                        <div className="edit-mode-form">
+                          <label htmlFor="cart_edit">Name</label>
+                          <input type="text" value={cartName} id="cart_edit" className="cart-edit-field" onChange={this.handleChange} />
+                        </div>
                       </div>
-                      <div className="action-btn">
-                        <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
-                        <button className="ep-btn edit-btn" type="button">{intl.get('edit')}</button>
+                    ) : (
+                      <div>
+                        <div className="cart-info">
+                          <h4>Garage</h4>
+                          <p className="cart-quantity">5 items</p>
+                          <p className="cart-price">$336.00</p>
+                        </div>
+                        <div className="action-btn">
+                          <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
+                          <button className="ep-btn edit-btn" type="button">{intl.get('edit')}</button>
+                        </div>
                       </div>
-                    </li>
-                    <li className="carts-list-item">
-                      <div className="cart-info">
-                        <h4>Personal</h4>
-                        <p className="cart-quantity">3 items</p>
-                        <p className="cart-price">$156.00</p>
-                      </div>
-                      <div className="action-btn">
-                        <span className="default-label">Default</span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div className="action-row">
-                  <div className="btn-container">
-                    <button type="button" className="ep-btn cancel-btn">{intl.get('cancel')}</button>
-                    <button type="button" className="ep-btn primary save-btn">{intl.get('save')}</button>
-                  </div>
+                    )}
+                  </li>
+                  <li className="carts-list-item">
+                    <div className="cart-info">
+                      <h4>Personal</h4>
+                      <p className="cart-quantity">3 items</p>
+                      <p className="cart-price">$156.00</p>
+                    </div>
+                    <div className="action-btn">
+                      <span className="default-label">Default</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div className="action-row">
+                <div className="btn-container">
+                  <button type="button" className="ep-btn cancel-btn">{intl.get('cancel')}</button>
+                  <button type="button" className="ep-btn primary save-btn">{intl.get('save')}</button>
                 </div>
               </div>
             </div>
           </div>
-        </Modal>
-      </div>
+        </div>
+      </Modal>
     );
   }
 }

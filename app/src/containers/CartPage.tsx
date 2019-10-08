@@ -66,6 +66,7 @@ interface CartPageState {
     cartData: any,
     isLoading: boolean,
     invalidPermission: boolean,
+    openModal: boolean,
 }
 
 class CartPage extends React.Component<RouteComponentProps, CartPageState> {
@@ -75,10 +76,13 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       cartData: undefined,
       isLoading: false,
       invalidPermission: false,
+      openModal: false,
     };
     this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
     this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
     this.handleItemRemove = this.handleItemRemove.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   componentDidMount() {
@@ -184,8 +188,20 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     return ('');
   }
 
+  handleModalOpen() {
+    this.setState({
+      openModal: true,
+    });
+  }
+
+  handleModalClose() {
+    this.setState({
+      openModal: false,
+    });
+  }
+
   render() {
-    const { cartData, isLoading } = this.state;
+    const { cartData, isLoading, openModal } = this.state;
     const itemDetailLink = '/itemdetail';
     return (
       <div className="cart-container container">
@@ -207,7 +223,10 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                   &nbsp;
                 </h1>
               )}
-              <CartCreate />
+              <div className="cart-create-btn-wrap">
+                <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>Manage Carts</button>
+              </div>
+              <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} />
             </div>
           </div>
           {cartData && !isLoading && (

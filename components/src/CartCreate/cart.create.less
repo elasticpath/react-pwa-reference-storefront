@@ -21,22 +21,6 @@
 
 @import './../../../app/src/theme/common.less';
 
-
-.cart-create-container {
-  .open-modal-btn {
-    min-height: 1px;
-    padding: 0;
-    border: none;
-    text-transform: none;
-
-    &:hover {
-      color: @firstComplimentColor;
-      text-decoration: underline;
-      background-color: transparent;
-    }
-  }
-}
-
 .cart-create-modal {
   min-width: 580px;
 
@@ -81,6 +65,32 @@
       fill: #565656;
     }
   }
+
+  .edit-mode-form {
+    width: 316px;
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #777777;
+      margin-bottom: 2px;
+    }
+
+    .cart-edit-field {
+      height: 34px;
+      width: 100%;
+      padding: 0 30px 0 15px;
+      border: 1px solid #D4D3D3;
+      color: #1F2532;
+      border-radius: 4px;
+
+      &:focus {
+        border-color: rgba(0,153,222,0.5);
+        box-shadow: 1px 1px 2px 0 rgba(0,153,222,0.12);
+        outline: 0 auto transparent;
+      }
+    }
+  }
 }
 
 .create-cart-btn-wrap {
@@ -100,6 +110,7 @@
   }
 
   &-item {
+    min-height: 98px;
     position: relative;
     padding: 15px;
     border: 1px solid #CCCCCC;
