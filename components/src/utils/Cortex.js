@@ -77,7 +77,7 @@ export function cortexFetch(input, init) {
       // eslint-disable-next-line no-console
       console.error(error.message);
     }))
-    .catch((error) => {
+    .catch(() => {
       if (window.location.href.indexOf('/maintenance') === -1) {
         window.location.pathname = '/maintenance';
       }
@@ -122,7 +122,7 @@ export function adminFetch(input, init) {
       // eslint-disable-next-line no-console
       console.error(error.message);
     }))
-    .catch((error) => {
+    .catch(() => {
       if (window.location.href.indexOf('/maintenance') === -1) {
         window.location.pathname = '/maintenance';
       }
