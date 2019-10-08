@@ -1,0 +1,173 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../app/src/theme/common.less';
+
+
+.cart-create-container {
+  .open-modal-btn {
+    min-height: 1px;
+    padding: 0;
+    border: none;
+    text-transform: none;
+
+    &:hover {
+      color: @firstComplimentColor;
+      text-decoration: underline;
+      background-color: transparent;
+    }
+  }
+}
+
+.cart-create-modal {
+  min-width: 580px;
+
+  .modal-content {
+    padding: 0 15px;
+    border: none;
+  }
+
+  .ep-btn {
+    text-transform: none;
+  }
+
+  .create-cart-btn {
+    min-height: 44px;
+    min-width: 315px;
+    background: #F2F6FA;
+  }
+
+  .btn-container {
+    text-align: right;
+
+    .ep-btn {
+      min-height: 34px;
+    }
+
+    .cancel-btn {
+      border-color: transparent;
+    }
+
+    .save-btn {
+      margin-right: 0;
+    }
+  }
+
+  + button[class*=styles_closeButton] {
+    top: 22px;
+    right: 22px;
+    cursor: pointer;
+    [class*=styles_closeIcon] {
+      height: 24px;
+      width: 24px;
+      fill: #565656;
+    }
+  }
+}
+
+.create-cart-btn-wrap {
+  padding: 5px 0 15px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.carts-list {
+  &-wrap {
+    margin-bottom: 50px;
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 10px 0 15px;
+    }
+  }
+
+  &-item {
+    position: relative;
+    padding: 15px;
+    border: 1px solid #CCCCCC;
+    margin-bottom: 8px;
+
+    .cart-info {
+      h4 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      p {
+        line-height: 16px;
+      }
+
+      .cart-price {
+        margin: 0;
+      }
+    }
+
+    .action-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+
+      .ep-btn {
+        height: auto;
+        width: auto;
+        font-weight: 600;
+        min-height: 0;
+        line-height: 20px;
+        padding: 0;
+        min-width: 0;
+        border: none;
+
+        &:hover {
+          color: @firstComplimentColor;
+          text-decoration: underline;
+          background-color: transparent;
+        }
+      }
+
+      .delete-btn {
+        margin: 0 10px 0 0;
+
+        +.edit-btn {
+          position: relative;
+          margin: 0 0 0 10px;
+
+          &:before {
+            content: '';
+            height: 14px;
+            width: 2px;
+            border-left: 2px solid #CCCCCC;
+            position: absolute;
+            top: 2px;
+            left: -11px;
+          }
+        }
+      }
+
+      .default-label {
+        font-size: 13px;
+        line-height: 20px;
+        font-style: italic;
+        font-weight: 300;
+      }
+    }
+  }
+}

@@ -22,7 +22,12 @@
 import React from 'react';
 import * as intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { CartMain, CheckoutSummaryList, AddPromotionContainer } from '@elasticpath/store-components';
+import {
+  CartMain,
+  CheckoutSummaryList,
+  AddPromotionContainer,
+  CartCreate,
+} from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -186,7 +191,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       <div className="cart-container container">
         <div className="cart-container-inner">
           <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
-            <div>
+            <div className="cart-title-wrap">
               {cartData && !isLoading && (
                 <h1 className="view-title">
                   {intl.get('shopping-cart')}
@@ -202,6 +207,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                   &nbsp;
                 </h1>
               )}
+              <CartCreate />
             </div>
           </div>
           {cartData && !isLoading && (
