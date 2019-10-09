@@ -32,6 +32,7 @@ const zoomArray = [
   'element',
   'element:descriptor',
   'element:total',
+  'element:additemstocartform',
   'createcartform',
 ];
 
@@ -40,7 +41,12 @@ let intl = { get: str => str };
 
 interface CartCreateProps {
   handleModalClose: (...args: any[]) => any,
-  openModal: boolean
+  addToCartAction?: (...args: any[]) => any,
+  onReloadPage?: (...args: any[]) => any,
+  openModal: boolean,
+  productData?: any,
+  itemQuantity?: number,
+  itemConfiguration?: any,
 }
 interface CartCreateState {
   cartData: any,
@@ -53,6 +59,11 @@ interface CartCreateState {
 class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   static defaultProps = {
     onAcceptDataPolicy: () => {},
+    addToCartAction: () => {},
+    onReloadPage: () => {},
+    productData: {},
+    itemQuantity: 0,
+    itemConfiguration: {},
   };
 
   constructor(props) {
@@ -71,6 +82,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.clearCartNameField = this.clearCartNameField.bind(this);
     this.handleShowCartForm = this.handleShowCartForm.bind(this);
+    this.addToSelectedCart = this.addToSelectedCart.bind(this);
   }
 
   componentDidMount() {
@@ -209,12 +221,44 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     });
   }
 
-  render() {
+  addToSelectedCart(event) {
+    const { cartData } = this.state;
     const {
-      cartData, editMode, cartName, showAddNewCartForm,
-    } = this.state;
-    const { handleModalClose, openModal } = this.props;
+      handleModalClose, itemQuantity, productData, onReloadPage,
+    } = this.props;
 
+    login().then(() => {
+      const selectedCartUri = cartData && cartData._element[0]._additemstocartform[0].self.uri;
+      const body: { [key: string]: any } = {};
+      body.items = { code: productData._code[0].code, quantity: itemQuantity };
+      cortexFetch(selectedCartUri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(body),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            onReloadPage();
+            handleModalClose();
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+    event.preventDefault();
+  }
+
+  render() {
+    const { showAddNewCartForm } = this.state;
+    const {
+      handleModalClose, openModal, productData,
+    } = this.props;
     return (
       <Modal open={openModal} onClose={handleModalClose}>
         <div className="modal-lg cart-create-modal">
@@ -238,7 +282,11 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
               <div className="action-row">
                 <div className="btn-container">
                   <button type="button" className="ep-btn cancel-btn" onClick={handleModalClose}>{intl.get('cancel')}</button>
-                  <button type="button" className="ep-btn primary save-btn">{intl.get('save')}</button>
+                  {productData._addtocartform ? (
+                    <button type="button" className="ep-btn primary save-btn" onClick={event => this.addToSelectedCart(event)}>{intl.get('add-to-cart')}</button>
+                  ) : (
+                    <button type="button" className="ep-btn primary save-btn">{intl.get('save')}</button>
+                  )}
                 </div>
               </div>
             </div>

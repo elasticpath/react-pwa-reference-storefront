@@ -1,0 +1,80 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../app/src/theme/common.less';
+
+.cart-nav-container {
+  border: 1px solid @firstBorderColor;
+  background-color: @mainBackgroundColor;
+  position: absolute;
+  padding: 12px;
+  right: 26px;
+  margin-top: 12px;
+  &.dropdown-menu {
+    padding: 10px;
+  }
+  .multi-cart-menu {
+    color: @mainTextColor;
+    padding: 5px;
+    position: relative;
+  }
+}
+
+.checkout-btn-container {
+  width: 100%;
+  text-align: center;
+}
+
+.checkout-btn {
+  width: 100%;
+
+  .link-to-bag {
+    text-decoration: none;
+    color: @mainNavigationTextColor;
+  }
+  &.ep-btn {
+    margin-right: 0;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+}
+
+.thumbnail-col {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: top;
+  img {
+    max-width: 40px;
+  }
+}
+
+@media (max-width: @mobileWidth) {
+  .multi-cart-dropdown {
+  }
+}
+
+@media (max-width: @mobileWidth - 1px) {
+  .cart-nav-container {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}

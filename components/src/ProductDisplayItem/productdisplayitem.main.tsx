@@ -28,6 +28,7 @@ import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../app/src/images/img_missing_horizontal@2x.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
+import CartCreate from '../CartCreate/cart.create';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -35,6 +36,10 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
 
+const multiCartsZoomArray = [
+  'element',
+  'createcartform',
+];
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
   'availability',
@@ -101,6 +106,7 @@ interface ProductDisplayItemMainProps {
   onAddToCart?: (...args: any[]) => any,
   onAddToWishList?: (...args: any[]) => any,
   onChangeProductFeature?: (...args: any[]) => any,
+  onReloadPage?: (...args: any[]) => any,
   productLink?: string,
   isInStandaloneMode?: boolean,
   itemDetailLink?: string,
@@ -109,12 +115,14 @@ interface ProductDisplayItemMainProps {
 
 interface ProductDisplayItemMainState {
   productData: any,
+  multiCartData: any,
   itemQuantity: number,
   addToCartFailedMessage: string,
   isLoading: boolean,
   arFileExists: boolean,
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
+  addToCartModalOpened: boolean,
 }
 
 class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -129,6 +137,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     onAddToCart: () => {},
     onAddToWishList: () => {},
     onChangeItem: () => {},
+    onReloadPage: () => {},
     productLink: '',
     isInStandaloneMode: false,
     itemDetailLink: '',
@@ -144,18 +153,22 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     ({ intl } = epConfig);
     this.state = {
       productData: undefined,
+      multiCartData: undefined,
       itemQuantity: 1,
       addToCartFailedMessage: '',
       isLoading: false,
       arFileExists: false,
       itemConfiguration: {},
       selectionValue: '',
+      addToCartModalOpened: false,
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.handleConfiguration = this.handleConfiguration.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
     this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
@@ -181,6 +194,22 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                 productData: res,
               });
             }
+            cortexFetch(`/carts/${Config.cortexApi.scope}/?zoom=${multiCartsZoomArray.sort().join()}`, {
+              method: 'get',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+            }).then(multiCartRes => multiCartRes.json())
+              .then((multiCartRes) => {
+                this.setState({
+                  multiCartData: multiCartRes,
+                });
+              })
+              .catch((error) => {
+              // eslint-disable-next-line no-console
+                console.error(error.message);
+              });
           })
           .catch((error) => {
             // eslint-disable-next-line no-console
@@ -309,6 +338,20 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     });
     event.preventDefault();
   }
+
+  handleModalOpen(event) {
+    event.preventDefault();
+    this.setState({
+      addToCartModalOpened: true,
+    });
+  }
+
+  handleModalClose() {
+    this.setState({
+      addToCartModalOpened: false,
+    });
+  }
+
 
   addToWishList(event) {
     const { productData, itemQuantity, itemConfiguration } = this.state;
@@ -539,9 +582,9 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
 
   render() {
     const {
-      productData, addToCartFailedMessage, isLoading, itemQuantity,
+      productData, addToCartFailedMessage, isLoading, itemQuantity, addToCartModalOpened, multiCartData, itemConfiguration,
     } = this.state;
-    const { featuredProductAttribute, itemDetailLink } = this.props;
+    const { featuredProductAttribute, itemDetailLink, onReloadPage } = this.props;
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
 
@@ -644,7 +687,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               </div>
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={event => this.addToCart(event)}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData._createcartform) { this.handleModalOpen(event); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
                     <div className="form-group">
@@ -775,6 +818,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
+          <CartCreate handleModalClose={this.handleModalClose} openModal={addToCartModalOpened} productData={productData} itemQuantity={itemQuantity} itemConfiguration={itemConfiguration} onReloadPage={onReloadPage} />
         </div>
       );
     }
