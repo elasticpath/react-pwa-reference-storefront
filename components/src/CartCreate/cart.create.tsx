@@ -27,6 +27,14 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './cart.create.less';
 
+// Array of zoom parameters to pass to Cortex
+const zoomArray = [
+  'element',
+  'element:descriptor',
+  'element:total',
+  'createcartform',
+];
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -35,6 +43,7 @@ interface CartCreateProps {
   openModal: boolean
 }
 interface CartCreateState {
+  cartData: any,
   editMode: boolean,
   cartName: string,
 }
@@ -50,12 +59,36 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     Config = epConfig.config;
     ({ intl } = epConfig);
     this.state = {
+      cartData: undefined,
       editMode: false,
       cartName: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.clearCartNameField = this.clearCartNameField.bind(this);
     this.handleEditCart = this.handleEditCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchCartData();
+  }
+
+  fetchCartData() {
+    login().then(() => {
+      cortexFetch(`/carts/${Config.cortexApi.scope}/?zoom=${zoomArray.sort().join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({ cartData: res });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
   }
 
   handleChange(event) {
@@ -71,7 +104,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   render() {
-    const { editMode, cartName } = this.state;
+    const { cartData, editMode, cartName } = this.state;
     const { handleModalClose, openModal } = this.props;
 
     return (
