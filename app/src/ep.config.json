@@ -2,7 +2,8 @@
   "cortexApi": {
     "path": "/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://localhost:9080"
+    "pathForProxy": "http://localhost:9080",
+    "reqTimeout": "30000"
   },
   "supportedLocales": [
     {
@@ -34,7 +35,8 @@
     "dashboard": false,
     "authServiceAPI": {
       "path": "",
-      "pathForProxy": ""
+      "pathForProxy": "",
+      "reqTimeout": "30000"
     },
     "keycloak": {
       "callbackUrl": "http://localhost:8080",
