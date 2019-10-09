@@ -87,11 +87,16 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
 
   setItemData(item, quantity, code) {
     const { onItemSubmit } = this.props;
-    if (item._definition[0]._options) {
+    if (item._availability[0].state !== 'AVAILABLE') {
       this.setState({
         code,
         product: item,
-        skuErrorMessage: intl.get('configurable-product-message', { SKUCode: code }),
+        skuErrorMessage: `${intl.get('not-available-message')}`,
+      });
+    } else if (!item._price) {
+      this.setState({
+        code,
+        skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: code })}`,
       });
     } else {
       this.setState({
@@ -100,19 +105,6 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
         code,
       });
       onItemSubmit({ isValidField: true });
-    }
-    if (item._availability[0].state !== 'AVAILABLE') {
-      this.setState({
-        code,
-        product: item,
-        skuErrorMessage: `${intl.get('not-available-message')}`,
-      });
-    }
-    if (!item._price) {
-      this.setState({
-        code,
-        skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: code })}`,
-      });
     }
   }
 
@@ -123,11 +115,18 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
       cortexFetchItemLookupForm()
         .then(() => itemLookup(productId, false)
           .then((res) => {
-            if (res._definition[0]._options) {
+            if (res._availability[0].state !== 'AVAILABLE') {
               this.setState({
                 product: res,
                 isLoading: false,
-                skuErrorMessage: intl.get('configurable-product-message', { SKUCode: productId }),
+                skuErrorMessage: `${intl.get('not-available-message')}`,
+              });
+              onItemSubmit({
+                code, quantity, product: {}, isValidField: false,
+              });
+            } else if (!res._price) {
+              this.setState({
+                skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: productId })}`,
               });
               onItemSubmit({
                 code, quantity, product: {}, isValidField: false,
@@ -143,24 +142,6 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
                 skuErrorMessage: '',
                 product: res,
                 isLoading: false,
-              });
-            }
-            if (res._availability[0].state !== 'AVAILABLE') {
-              this.setState({
-                product: res,
-                isLoading: false,
-                skuErrorMessage: `${intl.get('not-available-message')}`,
-              });
-              onItemSubmit({
-                code, quantity, product: {}, isValidField: false,
-              });
-            }
-            if (!res._price) {
-              this.setState({
-                skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: productId })}`,
-              });
-              onItemSubmit({
-                code, quantity, product: {}, isValidField: false,
               });
             }
           })
