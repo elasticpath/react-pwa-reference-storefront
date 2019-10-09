@@ -46,6 +46,8 @@ interface CartCreateState {
   cartData: any,
   editMode: boolean,
   cartName: string,
+  showAddNewCartForm: boolean,
+  showLoader: boolean,
 }
 
 class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
@@ -62,10 +64,13 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       cartData: undefined,
       editMode: false,
       cartName: '',
+      showAddNewCartForm: false,
+      showLoader: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.clearCartNameField = this.clearCartNameField.bind(this);
-    this.handleEditCart = this.handleEditCart.bind(this);
+    this.handleShowCartForm = this.handleShowCartForm.bind(this);
   }
 
   componentDidMount() {
@@ -95,16 +100,119 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.setState({ cartName: event.target.value });
   }
 
+  handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      this.createNewCart();
+    }
+  }
+
   clearCartNameField() {
     this.setState({ cartName: '' });
   }
 
-  handleEditCart() {
-    this.setState({ editMode: true });
+  renderCartItems() {
+    const { cartData, editMode, cartName } = this.state;
+
+    if (cartData && cartData._element) {
+      return cartData._element.map(el => (
+        <li className="carts-list-item">
+          {editMode ? (
+            <div className="edit-mode">
+              <div className="edit-mode-form">
+                <label htmlFor="cart_edit">Name</label>
+                <div className="cart-edit-field-wrap">
+                  <input type="text" value={cartName} id="cart_edit" className="cart-edit-field" onChange={this.handleChange} />
+                  {cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearCartNameField} />)}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className="cart-info">
+                <h4>{el._descriptor[0].name || 'Default'}</h4>
+                <p className="cart-quantity">
+                  {el['total-quantity']}
+                  {' '}
+                  items
+                </p>
+                <p className="cart-price">{el._total[0].cost[0].display}</p>
+              </div>
+              <div className="action-btn">
+                {el._descriptor[0].default ? (
+                  <span className="default-label">Default</span>
+                ) : (
+                  <div>
+                    <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
+                    <button className="ep-btn edit-btn" type="button">{intl.get('edit')}</button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </li>));
+    }
+
+    return '';
+  }
+
+  renderAddNewCartForm() {
+    const { cartName, showLoader } = this.state;
+    return (
+      <div className="carts-list-item">
+        {showLoader && (
+          <div className="loader-wrapper">
+            <div className="miniLoader" />
+          </div>
+        )}
+        <div className="edit-mode">
+          <div className="edit-mode-form">
+            <label htmlFor="cart_edit">Name</label>
+            <div className="cart-edit-field-wrap">
+              <input type="text" value={cartName} id="cart_edit" className="cart-edit-field" onChange={this.handleChange} onKeyDown={this.handleKeyDown} />
+              {cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearCartNameField} />)}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  handleShowCartForm() {
+    this.setState({ showAddNewCartForm: true });
+  }
+
+  createNewCart() {
+    const { cartName } = this.state;
+    this.setState({ showLoader: true });
+    login().then(() => {
+      cortexFetch(`/carts/${Config.cortexApi.scope}/form?followlocation&format=standardlinks,zoom.nodatalinks`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({ name: cartName }),
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.fetchCartData();
+          this.setState({
+            cartName: '',
+            showAddNewCartForm: false,
+            showLoader: false,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
   }
 
   render() {
-    const { cartData, editMode, cartName } = this.state;
+    const {
+      cartData, editMode, cartName, showAddNewCartForm,
+    } = this.state;
     const { handleModalClose, openModal } = this.props;
 
     return (
@@ -118,46 +226,13 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
             </div>
             <div className="modal-body">
               <div className="create-cart-btn-wrap">
-                <button type="button" className="ep-btn create-cart-btn">Create New Cart </button>
+                <button type="button" className="ep-btn create-cart-btn" onClick={this.handleShowCartForm}>Create New Cart </button>
               </div>
               <div className="carts-list-wrap">
                 <h3>Your carts (2)</h3>
+                {showAddNewCartForm && this.renderAddNewCartForm()}
                 <ul className="carts-list">
-                  <li className="carts-list-item">
-                    {editMode ? (
-                      <div className="edit-mode">
-                        <div className="edit-mode-form">
-                          <label htmlFor="cart_edit">Name</label>
-                          <div className="cart-edit-field-wrap">
-                            <input type="text" value={cartName} id="cart_edit" className="cart-edit-field" onChange={this.handleChange} />
-                            {cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearCartNameField} />)}
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div>
-                        <div className="cart-info">
-                          <h4>Garage</h4>
-                          <p className="cart-quantity">5 items</p>
-                          <p className="cart-price">$336.00</p>
-                        </div>
-                        <div className="action-btn">
-                          <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
-                          <button className="ep-btn edit-btn" type="button" onClick={this.handleEditCart}>{intl.get('edit')}</button>
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                  <li className="carts-list-item">
-                    <div className="cart-info">
-                      <h4>Personal</h4>
-                      <p className="cart-quantity">3 items</p>
-                      <p className="cart-price">$156.00</p>
-                    </div>
-                    <div className="action-btn">
-                      <span className="default-label">Default</span>
-                    </div>
-                  </li>
+                  {this.renderCartItems()}
                 </ul>
               </div>
               <div className="action-row">

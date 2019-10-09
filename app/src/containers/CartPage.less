@@ -78,9 +78,11 @@
     }
 
     .cart-title-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @media screen and (min-width: 481px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     .cart-sidebar {
@@ -116,6 +118,8 @@
   }
 
   .cart-create-btn-wrap {
+    padding: 0 5px 10px 15px;
+
     .open-modal-btn {
       min-height: 1px;
       padding: 0;
@@ -127,6 +131,10 @@
         text-decoration: underline;
         background-color: transparent;
       }
+    }
+
+    @media screen and (min-width: 481px) {
+      padding: 0;
     }
   }
 }
