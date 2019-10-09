@@ -49,7 +49,7 @@ interface CartCreateProps {
   itemConfiguration?: any,
 }
 interface CartCreateState {
-  cartData: any,
+  cartElements: any,
   editMode: boolean,
   cartName: string,
   showAddNewCartForm: boolean,
@@ -72,7 +72,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     Config = epConfig.config;
     ({ intl } = epConfig);
     this.state = {
-      cartData: undefined,
+      cartElements: [],
       editMode: false,
       cartName: '',
       showAddNewCartForm: false,
@@ -83,6 +83,10 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.clearCartNameField = this.clearCartNameField.bind(this);
     this.handleShowCartForm = this.handleShowCartForm.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
+    this.handleEditCart = this.handleEditCart.bind(this);
+    this.handleCartFieldChange = this.handleCartFieldChange.bind(this);
+    this.clearCartNameFieldItem = this.clearCartNameFieldItem.bind(this);
+    this.handleCartItemKeyDown = this.handleCartItemKeyDown.bind(this);
   }
 
   componentDidMount() {
@@ -99,7 +103,9 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       })
         .then(res => res.json())
         .then((res) => {
-          this.setState({ cartData: res });
+          const cartElements = [...res._element];
+          const extCartElements = cartElements.map(obj => ({ ...obj, editMode: false, cartName: obj._descriptor[0].name || '' }));
+          this.setState({ cartElements: [...extCartElements] });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -122,19 +128,61 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.setState({ cartName: '' });
   }
 
-  renderCartItems() {
-    const { cartData, editMode, cartName } = this.state;
+  handleCartFieldChange(event, index) {
+    const { cartElements } = this.state;
+    const elements = [...cartElements];
+    elements[index] = { ...elements[index] };
+    elements[index].cartName = event.target.value;
+    this.setState({ cartElements: elements });
+  }
 
-    if (cartData && cartData._element) {
-      return cartData._element.map(el => (
+  clearCartNameFieldItem(index) {
+    const { cartElements } = this.state;
+    const elements = [...cartElements];
+    elements[index] = { ...elements[index] };
+    elements[index].cartName = '';
+    this.setState({ cartElements: elements });
+  }
+
+  handleCartItemKeyDown(event, index) {
+    const { cartElements } = this.state;
+    if (event.key === 'Enter' && cartElements[index].cartName.length > 0) {
+      login().then(() => {
+        cortexFetch(`/${cartElements[index]._descriptor[0].self.uri}`, {
+          method: 'put',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({ name: cartElements[index].cartName }),
+        })
+          .then(() => {
+            this.fetchCartData();
+            const elements = [...cartElements];
+            elements[index] = { ...elements[index] };
+            elements[index].editMode = false;
+            this.setState({ cartElements: elements });
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      });
+    }
+  }
+
+  renderCartItems() {
+    const { cartElements, editMode, cartName } = this.state;
+    if (cartElements.length) {
+      return cartElements.map((el, index) => (
         <li className="carts-list-item">
-          {editMode ? (
+          {el.editMode ? (
             <div className="edit-mode">
               <div className="edit-mode-form">
                 <label htmlFor="cart_edit">Name</label>
                 <div className="cart-edit-field-wrap">
-                  <input type="text" value={cartName} id="cart_edit" className="cart-edit-field" onChange={this.handleChange} />
-                  {cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearCartNameField} />)}
+                  <input type="text" value={el.cartName} id="cart_edit" className="cart-edit-field" onChange={event => this.handleCartFieldChange(event, index)} onKeyDown={event => this.handleCartItemKeyDown(event, index)} />
+                  {el.cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={() => this.clearCartNameFieldItem(index)} />)}
                 </div>
               </div>
             </div>
@@ -155,7 +203,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
                 ) : (
                   <div>
                     <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
-                    <button className="ep-btn edit-btn" type="button">{intl.get('edit')}</button>
+                    <button className="ep-btn edit-btn" type="button" onClick={() => this.handleEditCart(index)}>{intl.get('edit')}</button>
                   </div>
                 )}
               </div>
@@ -193,6 +241,14 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.setState({ showAddNewCartForm: true });
   }
 
+  handleEditCart(index) {
+    const { cartElements } = this.state;
+    const elements = [...cartElements];
+    elements[index] = { ...elements[index] };
+    elements[index].editMode = true;
+    this.setState({ cartElements: elements });
+  }
+
   createNewCart() {
     const { cartName } = this.state;
     this.setState({ showLoader: true });
@@ -222,13 +278,13 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   addToSelectedCart(event) {
-    const { cartData } = this.state;
+    const { cartElements } = this.state;
     const {
       handleModalClose, itemQuantity, productData, onReloadPage,
     } = this.props;
 
     login().then(() => {
-      const selectedCartUri = cartData && cartData._element[0]._additemstocartform[0].self.uri;
+      const selectedCartUri = cartElements && cartElements[0]._additemstocartform[0].self.uri;
       const body: { [key: string]: any } = {};
       body.items = { code: productData._code[0].code, quantity: itemQuantity };
       cortexFetch(selectedCartUri,
@@ -255,7 +311,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   render() {
-    const { showAddNewCartForm } = this.state;
+    const { cartElements, editMode, showAddNewCartForm } = this.state;
     const {
       handleModalClose, openModal, productData,
     } = this.props;
