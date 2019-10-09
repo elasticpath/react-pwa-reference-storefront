@@ -22,9 +22,12 @@
 @import './../../../app/src/theme/common.less';
 
 .cart-lineitem-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 15px;
   border-bottom: 1px solid @mainBorderColor;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 25px 0;
   overflow: auto;
 
   label {
@@ -34,12 +37,13 @@
   }
 
   .thumbnail-col {
+    grid-row: 1 / last-line;
     position: relative;
     display: inline-block;
-    margin-right: 10px;
     vertical-align: top;
     img {
-      max-width: 60px;
+      border: 1px solid #D4D3D3;
+      width: 100%;
     }
   }
 
@@ -47,36 +51,40 @@
     font-size: 11px;
   }
 
-  .title-col {
-    display: inline-block;
-    font-size: 1.6rem;
-    font-weight: bold;
-    padding-bottom: 3px;
-    width: 60%;
-    vertical-align: top;
-  }
+  .title-options-col {
+    grid-column: 2;
+    grid-row: 1 / span 3;
 
-  .options-col {
-    display: inline-block;
-    width: 50%;
+    .title-col {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: bold;
+      vertical-align: top;
+      margin-bottom: 5px;
+    }
 
-    .bundle-configuration {
-      .option-name {
-        font-weight: bold;
-        color: @firstComplimentColor;
+    .options-col {
+      display: inline-block;
+
+      .bundle-configuration {
+        .option-name {
+          font-weight: bold;
+          color: @firstComplimentColor;
+        }
       }
     }
   }
 
   .promotions-col {
     display: block;
-    width: 33%;
     text-align: left;
   }
 
   .availability-col {
+    grid-column: 2;
+    grid-row: 4;
+    align-self: end;
     display: inline-block;
-    width: 50%;
     text-align: right;
 
     .availability-container {
@@ -84,7 +92,7 @@
         padding: 0;
 
         div {
-          float: right;
+          float: left;
           background-color: @mainBackgroundColor;
           border-radius: 10px;
           border: solid @mainColor;
@@ -115,27 +123,33 @@
     }
   }
 
-  .unit-price-col {
-    display: inline-block;
-    width: 50%;
-    .cart-unit-list-price {
-      text-decoration: line-through;
-    }
-  }
-
-  .total-price-col {
-    display: inline-block;
-    width: 50%;
-    .cart-total-purchase-price {
-      font-weight: bold;
+  .unit-total-price-col {
+    grid-row: 1 / span 3;
+    .unit-price-col {
       text-align: right;
+      .cart-unit-list-price {
+        text-decoration: line-through;
+      }
+    }
+
+    .total-price-col {
+      .cart-total-purchase-price {
+        font-weight: bold;
+        text-align: right;
+      }
     }
   }
 
   .remove-btn-col,
   .move-to-cart-btn-col,
   .configure-btn-col {
-    float:right;
+    grid-row: 4;
+    grid-column: 4;
+    justify-self: right;
+
+    .ep-btn {
+      margin: 0;
+    }
   }
 
   th:last-child,
@@ -149,6 +163,9 @@
   }
 
   .quantity-col {
+    grid-column: 3;
+    grid-row: 1 / last-line;
+    justify-self: center;
     display: inline-block;
     width: 105px;
     height: 30px;
@@ -230,5 +247,20 @@
 
   .quantity-select {
     min-width: 70px;
+  }
+
+  @media (max-width: @mobileWidth - 1px) {
+    display: block;
+
+    .quantity-col,
+    .thumbnail-col,
+    .title-options-col,
+    .availability-col,
+    .unit-total-price-col,
+    .remove-btn-col,
+    .move-to-cart-btn-col,
+    .configure-btn-col {
+      grid-column: 1;
+    }
   }
 }

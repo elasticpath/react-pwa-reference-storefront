@@ -430,10 +430,19 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
             <img src={Config.skuImagesUrl.replace('%sku%', itemCodeString)} onError={(e) => { const element: any = e.target; element.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
           </Link>
         </div>
-        <div className="title-col" data-el-value="lineItem.displayName">
-          <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
-            {itemDisplayName}
-          </Link>
+        <div className="title-options-col">
+          <div className="title-col" data-el-value="lineItem.displayName">
+            <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
+              {itemDisplayName}
+            </Link>
+          </div>
+          <div className="options-col">
+            <ul className="options-container">
+              {this.renderOptions()}
+              {this.renderConfiguration()}
+              {this.renderBundleConfiguration()}
+            </ul>
+          </div>
         </div>
         {(item._appliedpromotions && item._appliedpromotions[0]._element)
           ? (
@@ -449,13 +458,6 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           )
           : ('')
         }
-        <div className="options-col">
-          <ul className="options-container">
-            {this.renderOptions()}
-            {this.renderConfiguration()}
-            {this.renderBundleConfiguration()}
-          </ul>
-        </div>
         <div className="availability-col" data-region="cartLineitemAvailabilityRegion">
           <ul className="availability-container">
             <li className="availability itemdetail-availability-state" data-i18n="AVAILABLE">
@@ -475,19 +477,21 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
             </li>
           </ul>
         </div>
-        <div className="unit-price-col" data-region="cartLineitemUnitPriceRegion">
-          <div>
-            <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
-              {this.renderUnitPrice()}
+        <div className="unit-total-price-col">
+          <div className="unit-price-col" data-region="cartLineitemUnitPriceRegion">
+            <div>
+              <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
+                {this.renderUnitPrice()}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
-          <div>
-            <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
-              {this.renderTotalPrice()}
+          <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
+            <div>
+              <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
+                {this.renderTotalPrice()}
+              </div>
+              <div data-region="itemTotalRateRegion" />
             </div>
-            <div data-region="itemTotalRateRegion" />
           </div>
         </div>
         <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>

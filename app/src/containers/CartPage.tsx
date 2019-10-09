@@ -62,11 +62,42 @@ const zoomArray = [
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
 ];
 
+const multiCartZoomArray = [
+  'element',
+  'element:total',
+  'element:discount',
+  'element:descriptor',
+  'element:appliedpromotions:element',
+  'element:order:couponinfo:coupon',
+  'element:order:couponinfo:couponform',
+  'element:lineitems:element',
+  'element:lineitems:element:total',
+  'element:lineitems:element:price',
+  'element:lineitems:element:availability',
+  'element:lineitems:element:appliedpromotions',
+  'element:lineitems:element:appliedpromotions:element',
+  'element:lineitems:element:item',
+  'element:lineitems:element:item:code',
+  'element:lineitems:element:item:definition',
+  'element:lineitems:element:item:definition:item',
+  'element:lineitems:element:item:definition:details',
+  'element:lineitems:element:dependentoptions:element:definition',
+  'element:lineitems:element:dependentlineitems:element:item:definition',
+  'element:lineitems:element:item:definition:options:element',
+  'element:lineitems:element:item:definition:options:element:value',
+  'element:lineitems:element:item:definition:options:element:selector:choice',
+  'element:lineitems:element:item:definition:options:element:selector:chosen',
+  'element:lineitems:element:item:definition:options:element:selector:choice:description',
+  'element:lineitems:element:item:definition:options:element:selector:chosen:description',
+];
+
 interface CartPageState {
-    cartData: any,
-    isLoading: boolean,
-    invalidPermission: boolean,
-    openModal: boolean,
+  cartData: any,
+  cartsData: any,
+  isLoading: boolean,
+  invalidPermission: boolean,
+  multiCartsAvailable: boolean,
+  openModal: boolean,
 }
 
 class CartPage extends React.Component<RouteComponentProps, CartPageState> {
@@ -74,7 +105,9 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     super(props);
     this.state = {
       cartData: undefined,
+      cartsData: undefined,
       isLoading: false,
+      multiCartsAvailable: false,
       invalidPermission: false,
       openModal: false,
     };
@@ -83,6 +116,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.handleItemRemove = this.handleItemRemove.bind(this);
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleCartSelect = this.handleCartSelect.bind(this);
   }
 
   componentDidMount() {
@@ -95,34 +129,59 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   fetchCartData() {
     login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
+      cortexFetch('/', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          if (!res._defaultcart) {
-            this.setState({
-              invalidPermission: true,
-            });
+      }).then(res => res.json())
+        .then((root) => {
+          if (root.links.find(link => link.rel === 'carts')) {
+            cortexFetch(`/carts/mobee?zoom=${multiCartZoomArray.sort().join()}`, {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+            })
+              .then(res => res.json())
+              .then((res) => {
+                const defaultCart = res._element.find(cart => cart._descriptor[0].default === 'true');
+                this.setState({
+                  cartsData: res,
+                  cartData: defaultCart,
+                  isLoading: false,
+                  multiCartsAvailable: true,
+                });
+              })
+              .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
+              });
           } else {
-            this.setState({
-              cartData: res._defaultcart[0],
-              isLoading: false,
-            });
+            cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+            })
+              .then(res => res.json())
+              .then((res) => {
+                this.setState({
+                  cartData: res._defaultcart[0],
+                  isLoading: false,
+                });
+              })
+              .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
+              });
           }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
         });
     });
   }
 
   handleQuantityChange() {
-    const { location, history } = this.props;
+    const { history } = this.props;
     this.setState({ isLoading: true });
     this.fetchCartData();
     history.push(window.location.pathname);
@@ -200,8 +259,41 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     });
   }
 
+  renderCartTabs() {
+    const { cartsData } = this.state;
+    return (
+      <div className="cart-tabs-container">
+        <form className="cart-tabs">
+          {cartsData._element.map((cart, index) => {
+            const name = cart._descriptor[0].default === 'true' ? intl.get('personal') : cart._descriptor[0].name;
+            const count = cart._lineitems ? cart._lineitems[0]._element.length : 0;
+            return (
+              <div className="cart-tab">
+                <input
+                  id={name}
+                  type="radio"
+                  name="cart"
+                  defaultChecked={index === 0}
+                  className="cart-tab-input"
+                  onClick={() => this.handleCartSelect(cart)}
+                />
+                <label htmlFor={name} className="cart-tab-label">{`${name} (${count})`}</label>
+              </div>
+            );
+          })}
+        </form>
+      </div>
+    );
+  }
+
+  handleCartSelect(cartData) {
+    this.setState({ cartData });
+  }
+
   render() {
-    const { cartData, isLoading, openModal } = this.state;
+    const {
+      cartData, cartsData, isLoading, openModal, multiCartsAvailable,
+    } = this.state;
     const itemDetailLink = '/itemdetail';
     return (
       <div className="cart-container container">
@@ -210,17 +302,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             <div className="cart-title-wrap">
               {cartData && !isLoading && (
                 <h1 className="view-title">
-                  {intl.get('shopping-cart')}
-                  &nbsp;
-                  (
-                    {cartData['total-quantity']}
-                  )
-                </h1>
-              )}
-              {(!cartData || isLoading) && (
-                <h1 className="view-title">
-                  {intl.get('shopping-cart')}
-                  &nbsp;
+                  {intl.get('shopping-carts')}
                 </h1>
               )}
               <div className="cart-create-btn-wrap">
@@ -228,6 +310,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
               </div>
               <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} />
             </div>
+            {cartsData && !isLoading && multiCartsAvailable && this.renderCartTabs()}
           </div>
           {cartData && !isLoading && (
             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
@@ -246,13 +329,22 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
               <div>
                 <div className="cart-sidebar-inner">
+                  <h2 className="cart-sidebar-title">
+                    {intl.get('order-summary')}
+                  </h2>
                   <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                    <AddPromotionContainer data={cartData} onSubmittedPromotion={() => { this.fetchCartData(); }} />
                     <CheckoutSummaryList data={cartData} onChange={() => { this.fetchCartData(); }} />
+                    <AddPromotionContainer data={cartData} onSubmittedPromotion={() => { this.fetchCartData(); }} />
+                  </div>
+                  <div className="estimated-total">
+                    <h2 className="cart-sidebar-title">{intl.get('estimated-total')}</h2>
+                    <h2 className="cart-sidebar-title">
+                      {cartData._total[0].cost[0].display}
+                    </h2>
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                     <div>
-                      <button className="ep-btn primary wide btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
+                      <button className="ep-btn primary btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
                         {intl.get('proceed-to-checkout')}
                       </button>
                     </div>
