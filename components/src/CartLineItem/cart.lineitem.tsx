@@ -292,7 +292,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       return bundleConfigs.map(config => (
         (config._item)
           ? (
-            <li className="bundle-configuration" key={config}>
+            <li className="bundle-configuration" key={config._item[0]._definition[0]['display-name']}>
               <label htmlFor="option-name" className="option-name">
                 {config._item[0]._definition[0]['display-name']}
                 &nbsp;
@@ -496,14 +496,14 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
         </div>
         <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
           {(quantity !== undefined) ? [
-            <span className="input-group-btn">
-              <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+            <span className="input-group-btn" key="quantity-buttons">
+              <button type="button" key="quantity-button-minus" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
                 <span className="glyphicon glyphicon-minus" />
               </button>
               <div className="quantity-col form-content form-content-quantity">
                 <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
               </div>
-              <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+              <button type="button" key="quantity-button-plus" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
                 <span className="glyphicon glyphicon-plus" />
               </button>
             </span>,

@@ -45,6 +45,7 @@ interface CartCreateProps {
   handleModalClose: (...args: any[]) => any,
   addToCartAction?: (...args: any[]) => any,
   onReloadPage?: (...args: any[]) => any,
+  handleCartsUpdate?: (...args: any[]) => any,
   openModal: boolean,
   productData?: any,
   itemQuantity?: number,
@@ -64,6 +65,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     onAcceptDataPolicy: () => {},
     addToCartAction: () => {},
     onReloadPage: () => {},
+    handleCartsUpdate: () => {},
     productData: {},
     itemQuantity: 0,
     itemConfiguration: {},
@@ -158,6 +160,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
 
   handleCartItemKeyDown(event, index) {
     const { cartElements } = this.state;
+    const { handleCartsUpdate } = this.props;
     if (event.key === 'Enter' && cartElements[index].cartName.length > 0) {
       const cartElem = [...cartElements];
       cartElem[index] = { ...cartElem[index] };
@@ -174,6 +177,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         })
           .then(() => {
             this.fetchCartData();
+            handleCartsUpdate();
             const elements = [...cartElements];
             elements[index] = { ...elements[index] };
             elements[index].editMode = false;
@@ -282,6 +286,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
 
   createNewCart() {
     const { cartName } = this.state;
+    const { handleCartsUpdate } = this.props;
     this.setState({ showLoader: true });
     login().then(() => {
       cortexFetch(`/carts/${Config.cortexApi.scope}/form?followlocation&format=standardlinks,zoom.nodatalinks`, {
@@ -295,6 +300,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         .then(res => res.json())
         .then((res) => {
           this.fetchCartData();
+          handleCartsUpdate();
           this.setState({
             cartName: '',
             showAddNewCartForm: false,

@@ -266,9 +266,9 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
         <form className="cart-tabs">
           {cartsData._element.map((cart, index) => {
             const name = cart._descriptor[0].default === 'true' ? intl.get('personal') : cart._descriptor[0].name;
-            const count = cart._lineitems ? cart._lineitems[0]._element.length : 0;
+            const count = cart._lineitems ? cart['total-quantity'] : 0;
             return (
-              <div className="cart-tab">
+              <div className="cart-tab" key={name}>
                 <input
                   id={name}
                   type="radio"
@@ -305,10 +305,12 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                   {intl.get('shopping-carts')}
                 </h1>
               )}
-              <div className="cart-create-btn-wrap">
-                <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>Manage Carts</button>
-              </div>
-              <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} />
+              {cartsData && !isLoading && multiCartsAvailable && (
+                <div className="cart-create-btn-wrap">
+                  <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>Manage Carts</button>
+                </div>
+              )}
+              <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} />
             </div>
             {cartsData && !isLoading && multiCartsAvailable && this.renderCartTabs()}
           </div>
