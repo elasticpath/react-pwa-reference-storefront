@@ -115,7 +115,8 @@
     }
   },
   "GDPR": {
-    "enable": false
+    "enable": false,
+    "dataPolicySegments": "EU_Data_Policy"
   },
   "PowerReviews": {
     "enable": false,

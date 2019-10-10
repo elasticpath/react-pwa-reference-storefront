@@ -89,7 +89,7 @@ class GdprSupportModal extends React.Component<GdprSupportModalProps, GdprSuppor
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+            'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
           },
         })
         .then(res => res.json())
@@ -104,7 +104,7 @@ class GdprSupportModal extends React.Component<GdprSupportModalProps, GdprSuppor
                       headers: {
                         'Content-Type': 'application/json',
                         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                        'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+                        'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
                       },
                     })
                     .then(datapolicies => datapolicies.json())
@@ -116,7 +116,7 @@ class GdprSupportModal extends React.Component<GdprSupportModalProps, GdprSuppor
                             headers: {
                               'Content-Type': 'application/json',
                               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                              'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+                              'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
                             },
                             body: JSON.stringify({ 'data-policy-consent': true }),
                           })
