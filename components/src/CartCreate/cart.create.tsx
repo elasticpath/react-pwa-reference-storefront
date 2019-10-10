@@ -53,6 +53,8 @@ interface CartCreateState {
   cartName: string,
   showAddNewCartForm: boolean,
   showLoader: boolean,
+  selectedCart: string,
+  selectedElement: number,
 }
 
 class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
@@ -75,6 +77,8 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       cartName: '',
       showAddNewCartForm: false,
       showLoader: false,
+      selectedCart: '',
+      selectedElement: -1,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -85,10 +89,15 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.handleCartFieldChange = this.handleCartFieldChange.bind(this);
     this.clearCartNameFieldItem = this.clearCartNameFieldItem.bind(this);
     this.handleCartItemKeyDown = this.handleCartItemKeyDown.bind(this);
+    this.handleCartSelect = this.handleCartSelect.bind(this);
   }
 
   componentDidMount() {
+    const { productData } = this.props;
     this.fetchCartData();
+    if (productData._addtocartform) {
+      this.setState({ selectedElement: 0 });
+    }
   }
 
   fetchCartData() {
@@ -105,7 +114,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           const extCartElements = cartElements.map(obj => ({
             ...obj, editMode: false, cartName: obj._descriptor[0].name || '', showLoader: false,
           }));
-          this.setState({ cartElements: [...extCartElements] });
+          this.setState({ cartElements: [...extCartElements], selectedCart: res._element[0]._additemstocartform[0].self.uri });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -177,11 +186,18 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     }
   }
 
+  handleCartSelect(el, index) {
+    const { productData } = this.props;
+    if (productData._addtocartform) {
+      this.setState({ selectedCart: el._additemstocartform[0].self.uri, selectedElement: index });
+    }
+  }
+
   renderCartItems() {
-    const { cartElements } = this.state;
+    const { cartElements, selectedElement } = this.state;
     if (cartElements.length) {
       return cartElements.map((el, index) => (
-        <li className="carts-list-item" key={`cartItem_${el._descriptor[0].name ? el._descriptor[0].name.trim() : 'default'}`}>
+        <li className={`carts-list-item ${selectedElement === index ? 'selected' : ''}`} key={`cartItem_${el._descriptor[0].name ? el._descriptor[0].name.trim() : 'default'}`} role="presentation" onClick={() => this.handleCartSelect(el, index)}>
           {el.editMode ? (
             <div className="edit-mode">
               {el.showLoader && (
@@ -289,16 +305,15 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   addToSelectedCart(event) {
-    const { cartElements } = this.state;
+    const { selectedCart } = this.state;
     const {
       handleModalClose, itemQuantity, productData, onReloadPage,
     } = this.props;
 
     login().then(() => {
-      const selectedCartUri = cartElements && cartElements[0]._additemstocartform[0].self.uri;
       const body: { [key: string]: any } = {};
       body.items = { code: productData._code[0].code, quantity: itemQuantity };
-      cortexFetch(selectedCartUri,
+      cortexFetch(selectedCart,
         {
           method: 'post',
           headers: {
