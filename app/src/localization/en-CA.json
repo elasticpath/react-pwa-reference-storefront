@@ -329,5 +329,7 @@
   "scan-barcode": "Scan Barcode",
   "estimated-total": "Estimated Total",
   "personal": "Personal",
-  "shopping-carts": "Your Carts"
+  "shopping-carts": "Your Carts",
+  "manage-carts": "Manage Carts",
+  "create-new-cart": "Create New Cart"
 }

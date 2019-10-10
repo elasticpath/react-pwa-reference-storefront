@@ -50,7 +50,6 @@ interface CartCreateProps {
 }
 interface CartCreateState {
   cartElements: any,
-  editMode: boolean,
   cartName: string,
   showAddNewCartForm: boolean,
   showLoader: boolean,
@@ -73,7 +72,6 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     ({ intl } = epConfig);
     this.state = {
       cartElements: [],
-      editMode: false,
       cartName: '',
       showAddNewCartForm: false,
       showLoader: false,
@@ -104,7 +102,9 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         .then(res => res.json())
         .then((res) => {
           const cartElements = [...res._element];
-          const extCartElements = cartElements.map(obj => ({ ...obj, editMode: false, cartName: obj._descriptor[0].name || '' }));
+          const extCartElements = cartElements.map(obj => ({
+            ...obj, editMode: false, cartName: obj._descriptor[0].name || '', showLoader: false,
+          }));
           this.setState({ cartElements: [...extCartElements] });
         })
         .catch((error) => {
@@ -119,7 +119,8 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   handleKeyDown(event) {
-    if (event.key === 'Enter') {
+    const { cartName } = this.state;
+    if (event.key === 'Enter' && cartName.length > 0) {
       this.createNewCart();
     }
   }
@@ -147,6 +148,10 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   handleCartItemKeyDown(event, index) {
     const { cartElements } = this.state;
     if (event.key === 'Enter' && cartElements[index].cartName.length > 0) {
+      const cartElem = [...cartElements];
+      cartElem[index] = { ...cartElem[index] };
+      cartElem[index].showLoader = true;
+      this.setState({ cartElements: cartElem });
       login().then(() => {
         cortexFetch(`/${cartElements[index]._descriptor[0].self.uri}`, {
           method: 'put',
@@ -161,6 +166,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
             const elements = [...cartElements];
             elements[index] = { ...elements[index] };
             elements[index].editMode = false;
+            elements[index].showLoader = false;
             this.setState({ cartElements: elements });
           })
           .catch((error) => {
@@ -172,12 +178,17 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   renderCartItems() {
-    const { cartElements, editMode, cartName } = this.state;
+    const { cartElements } = this.state;
     if (cartElements.length) {
       return cartElements.map((el, index) => (
-        <li className="carts-list-item">
+        <li className="carts-list-item" key={`cartItem_${el._descriptor[0].name ? el._descriptor[0].name.trim() : 'default'}`}>
           {el.editMode ? (
             <div className="edit-mode">
+              {el.showLoader && (
+                <div className="loader-wrapper">
+                  <div className="miniLoader" />
+                </div>
+              )}
               <div className="edit-mode-form">
                 <label htmlFor="cart_edit">Name</label>
                 <div className="cart-edit-field-wrap">
@@ -311,7 +322,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   render() {
-    const { cartElements, editMode, showAddNewCartForm } = this.state;
+    const { cartElements, showAddNewCartForm } = this.state;
     const {
       handleModalClose, openModal, productData,
     } = this.props;
@@ -321,15 +332,21 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title">
-                  Manage Carts
+                {intl.get('manage-carts')}
               </h2>
             </div>
             <div className="modal-body">
               <div className="create-cart-btn-wrap">
-                <button type="button" className="ep-btn create-cart-btn" onClick={this.handleShowCartForm}>Create New Cart </button>
+                <button type="button" className="ep-btn create-cart-btn" onClick={this.handleShowCartForm}>{intl.get('create-new-cart')}</button>
               </div>
               <div className="carts-list-wrap">
-                <h3>Your carts (2)</h3>
+                <h3>
+                  {intl.get('shopping-carts')}
+                  {' '}
+                  (
+                  {cartElements.length}
+                  )
+                </h3>
                 {showAddNewCartForm && this.renderAddNewCartForm()}
                 <ul className="carts-list">
                   {this.renderCartItems()}

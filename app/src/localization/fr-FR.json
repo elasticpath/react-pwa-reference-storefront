@@ -330,5 +330,7 @@
   "scan-barcode": "S-c-a-n- -B-a-r-c-o-d-e",
   "estimated-total": "E-s-t-i-m-a-t-e-d- -T-o-t-a-l",
   "personal": "P-e-r-s-o-n-a-l",
-  "shopping-carts": "Y-o-u-r- -C-a-r-t-s"
+  "shopping-carts": "Y-o-u-r- -C-a-r-t-s",
+  "manage-carts": "M-a-n-a-g-e- -C-a-r-t-s",
+  "create-new-cart": "C-r-e-a-t-e- -N-e-w- -C-a-r-t"
 }
