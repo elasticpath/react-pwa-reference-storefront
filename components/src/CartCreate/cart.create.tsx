@@ -21,6 +21,8 @@
 
 import React from 'react';
 import Modal from 'react-responsive-modal';
+import { Link } from 'react-router-dom';
+import imgMissingHorizontal from '@elasticpath/ref-store/src/images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -195,6 +197,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
 
   renderCartItems() {
     const { cartElements, selectedElement } = this.state;
+    const { productData } = this.props;
     if (cartElements.length) {
       return cartElements.map((el, index) => (
         <li className={`carts-list-item ${selectedElement === index ? 'selected' : ''}`} key={`cartItem_${el._descriptor[0].name ? el._descriptor[0].name.trim() : 'default'}`} role="presentation" onClick={() => this.handleCartSelect(el, index)}>
@@ -224,16 +227,17 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
                 </p>
                 <p className="cart-price">{el._total[0].cost[0].display}</p>
               </div>
-              <div className="action-btn">
-                {el._descriptor[0].default ? (
-                  <span className="default-label">Default</span>
-                ) : (
-                  <div>
-                    <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
-                    <button className="ep-btn edit-btn" type="button" onClick={() => this.handleEditCart(index)}>{intl.get('edit')}</button>
-                  </div>
-                )}
-              </div>
+              {!productData._addtocartform && (
+                <div className="action-btn">
+                  {el._descriptor[0].default ? (
+                    <span className="default-label">Default</span>
+                  ) : (
+                    <div>
+                      <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
+                      <button className="ep-btn edit-btn" type="button" onClick={() => this.handleEditCart(index)}>{intl.get('edit')}</button>
+                    </div>
+                  )}
+                </div>)}
             </div>
           )}
         </li>));
@@ -336,11 +340,37 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     event.preventDefault();
   }
 
+  renderOptions() {
+    const { productData } = this.props;
+    const productOptions = productData && productData._definition._options && productData._definition[0]._options[0];
+    return (
+      <div className="product-options">
+        <h3>{productData._definition[0]['display-name']}</h3>
+        <ul className="option-list">
+          {productOptions && productOptions._element.map(option => (
+            <li className="option" key={option['display-name']}>
+              <label htmlFor="option-value" className="option-name">
+                {option['display-name']}
+                  :&nbsp;
+              </label>
+              <span className="option-value">
+                {(option._value)
+                  ? option._value[0]['display-name']
+                  : ('')}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   render() {
     const { cartElements, showAddNewCartForm } = this.state;
     const {
       handleModalClose, openModal, productData,
     } = this.props;
+    const itemCodeString = productData._code && productData._code[0].code;
     return (
       <Modal open={openModal} onClose={handleModalClose}>
         <div className="modal-lg cart-create-modal">
@@ -351,9 +381,28 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
               </h2>
             </div>
             <div className="modal-body">
-              <div className="create-cart-btn-wrap">
-                <button type="button" className="ep-btn create-cart-btn" onClick={this.handleShowCartForm}>{intl.get('create-new-cart')}</button>
-              </div>
+              { productData && productData._definition ? (
+                <div className="product-data">
+                  <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
+                    <Link to={`itemdetail/${encodeURIComponent(itemCodeString)}`}>
+                      <img
+                        src={Config.skuImagesUrl.replace('%sku%', itemCodeString)}
+                        onError={(e) => {
+                          const element: any = e.target;
+                          element.src = imgMissingHorizontal;
+                        }}
+                        alt={intl.get('none-available')}
+                        className="cart-lineitem-thumbnail"
+                      />
+                    </Link>
+                  </div>
+                  {this.renderOptions()}
+                </div>
+              ) : (
+                <div className="create-cart-btn-wrap">
+                  <button type="button" className="ep-btn create-cart-btn" onClick={this.handleShowCartForm}>{intl.get('create-new-cart')}</button>
+                </div>
+              )}
               <div className="carts-list-wrap">
                 <h3>
                   {intl.get('shopping-carts')}
@@ -373,7 +422,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
                   {productData._addtocartform ? (
                     <button type="button" className="ep-btn primary save-btn" onClick={event => this.addToSelectedCart(event)}>{intl.get('add-to-cart')}</button>
                   ) : (
-                    <button type="button" className="ep-btn primary save-btn">{intl.get('save')}</button>
+                    <button type="button" className="ep-btn primary save-btn" onClick={handleModalClose}>{intl.get('save')}</button>
                   )}
                 </div>
               </div>

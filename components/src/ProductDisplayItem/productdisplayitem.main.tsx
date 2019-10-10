@@ -687,7 +687,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               </div>
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData._createcartform) { this.handleModalOpen(event); } else { this.addToCart(event); } }}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData && multiCartData._createcartform) { this.handleModalOpen(event); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
                     <div className="form-group">
@@ -818,7 +818,9 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
-          <CartCreate handleModalClose={this.handleModalClose} openModal={addToCartModalOpened} productData={productData} itemQuantity={itemQuantity} itemConfiguration={itemConfiguration} onReloadPage={onReloadPage} />
+          {multiCartData && multiCartData._createcartform && (
+            <CartCreate handleModalClose={this.handleModalClose} openModal={addToCartModalOpened} productData={productData} itemQuantity={itemQuantity} itemConfiguration={itemConfiguration} onReloadPage={onReloadPage} />
+          )}
         </div>
       );
     }

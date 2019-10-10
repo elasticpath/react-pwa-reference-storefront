@@ -52,7 +52,7 @@ class CartPopUp extends React.Component<CartPopUpProps, CartPopUpState> {
     return (
       <div className="cart-nav-container">
         <div className="multi-cart-menu dropdown-item">
-          <span className="">1 Item was added to your bag</span>
+          <span>1 Item was added to your bag</span>
         </div>
         <div className="checkout-btn-container">
 
