@@ -216,12 +216,12 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   handleItemConfiguratorAddToCart() {
     const { history } = this.props;
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   handleItemMoveToCart() {
     const { history } = this.props;
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   handleItemRemove() {

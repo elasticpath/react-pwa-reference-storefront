@@ -31,7 +31,7 @@ function ProductDetailPage(props: RouteComponentProps<ProductDetailRouterProps>)
   const { history, location } = props;
 
   function handleAddToCart() {
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   function onReloadPage() {

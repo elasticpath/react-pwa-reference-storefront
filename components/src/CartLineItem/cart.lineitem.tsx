@@ -38,7 +38,7 @@ interface CartLineItemProps {
   handleQuantityChange: (...args: any[]) => any,
   handleErrorMessage?: (...args: any[]) => any,
   hideRemoveButton?: boolean,
-  hideAddToBagButton?: boolean,
+  hideAddToCartButton?: boolean,
   itemQuantity?: number,
   featuredProductAttribute?: boolean,
   onConfiguratorAddToCart?: (...args: any[]) => any,
@@ -58,7 +58,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     hideRemoveButton: false,
     itemQuantity: 1,
     featuredProductAttribute: false,
-    hideAddToBagButton: false,
+    hideAddToCartButton: false,
     onConfiguratorAddToCart: () => { },
     onMoveToCart: () => { },
     onRemove: () => { },
@@ -379,7 +379,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       item,
       hideRemoveButton,
       featuredProductAttribute,
-      hideAddToBagButton,
+      hideAddToCartButton,
       itemDetailLink,
       onConfiguratorAddToCart,
       onRemove,
@@ -521,7 +521,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._addtocartform && !hideAddToBagButton) ? (
+        {(item._addtocartform && !hideAddToCartButton) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-addToCart" type="button" onClick={this.handleConfiguratorAddToCartBtnClicked}>
               <span className="btn-text">

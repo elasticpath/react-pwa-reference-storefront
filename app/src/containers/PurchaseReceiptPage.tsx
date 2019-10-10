@@ -30,7 +30,7 @@ const PurchaseReceiptPage = (props: RouteComponentProps) => {
   const { location, history } = props;
 
   const handleReorderAllProducts = () => {
-    history.push('/mybag');
+    history.push('/mycart');
   };
 
   const itemDetailLink = '/itemdetail';

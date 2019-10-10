@@ -80,7 +80,7 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
 
   moveToCart() {
     const { history } = this.props;
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   render() {

@@ -41,7 +41,7 @@ class ProductsComparePage extends React.Component<ProductsComparePageProps> {
 
   handleAddToCart() {
     const { history } = this.props;
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   handleAddToWishList() {

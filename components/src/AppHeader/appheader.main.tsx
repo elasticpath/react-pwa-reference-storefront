@@ -305,13 +305,13 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
               <div>
                 {(!multiCartData) ? (
                   <div className="cart-link-container">
-                    <Link className="cart-link" to={appHeaderLinks.myBag}>
+                    <Link className="cart-link" to={appHeaderLinks.myCart}>
                       {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
                       <span className="cart-link-counter">
                         {cartData['total-quantity']}
                       </span>
                       )}
-                      {intl.get('shopping-bag-nav')}
+                      {intl.get('shopping-cart-nav')}
                     </Link>
                   </div>
                 ) : (
@@ -322,7 +322,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
                           {cartData['total-quantity']}
                         </span>
                       )}
-                      {intl.get('shopping-bag-nav')}
+                      {intl.get('shopping-cart-nav')}
                     </button>
                     <div className={`multi-cart-container ${multiCartModalOpened ? '' : 'hide'}`}>
                       <CartPopUp appHeaderLinks={appHeaderLinks} />
@@ -390,10 +390,10 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
             <div className="mobile-cart-link-container">
               <Link
                 className="cart-link"
-                to={appHeaderLinks.myBag}
+                to={appHeaderLinks.myCart}
               >
                 <div data-toggle="collapse" data-target=".collapsable-container">
-                  {intl.get('shopping-bag-nav')}
+                  {intl.get('shopping-cart-nav')}
                   <div className="cart-link-counter-container">
                     {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
                       <span className="cart-link-counter">
