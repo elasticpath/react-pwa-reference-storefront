@@ -308,7 +308,6 @@
   "download-list": "D-o-w-n-l-o-a-d- -L-i-s-t-",
   "associates": "A-s-s-o-c-i-a-t-e-s-",
   "add-associates": "A-d-d- -A-s-s-o-c-i-a-t-e-s-",
-  "all-fields-required": "A-l-l- -f-i-e-l-d-s- -a-r-e- -r-e-q-u-i-r-e-d-",
   "field-cannot-be-empty": "F-i-e-l-d- -c-a-n-n-o-t- -b-e- -e-m-p-t-y-",
   "invalid-email-address": "I-n-v-a-l-i-d- -e-m-a-i-l- -a-d-d-r-e-s-s-",
   "no-file-selected": "n-o- -f-i-l-e- -s-e-l-e-c-t-e-d",
@@ -337,5 +336,8 @@
   "create-new-cart": "C-r-e-a-t-e- -N-e-w- -C-a-r-t",
   "cart": "C-a-r-t",
   "change": "C-h-a-n-g-e",
-  "shopper-impersonation-message": "S-h-o-p-p-i-n-g- -o-n- -b-e-h-a-l-f- -o-f-:- "
+  "shopper-impersonation-message": "S-h-o-p-p-i-n-g- -o-n- -b-e-h-a-l-f- -o-f-:- ",
+  "gdpr-revoke-consent": "R-e-v-o-k-e- -C-o-n-s-e-n-t-",
+  "gdpr-consent": "-C-o-n-s-e-n-t-",
+  "data-policy-reference-key": "-P-o-l-i-c-y- -R-e-f-e-r-e-n-c-e- -K-e-y-"
 }
