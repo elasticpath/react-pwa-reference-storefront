@@ -36,10 +36,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
 
-const multiCartsZoomArray = [
-  'element',
-  'createcartform',
-];
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
   'availability',
@@ -115,7 +111,7 @@ interface ProductDisplayItemMainProps {
 
 interface ProductDisplayItemMainState {
   productData: any,
-  multiCartData: any,
+  multiCartData: boolean,
   itemQuantity: number,
   addToCartFailedMessage: string,
   isLoading: boolean,
@@ -136,7 +132,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     customClass: '',
     onAddToCart: () => {},
     onAddToWishList: () => {},
-    onChangeItem: () => {},
     onReloadPage: () => {},
     productLink: '',
     isInStandaloneMode: false,
@@ -153,7 +148,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     ({ intl } = epConfig);
     this.state = {
       productData: undefined,
-      multiCartData: undefined,
+      multiCartData: false,
       itemQuantity: 1,
       addToCartFailedMessage: '',
       isLoading: false,
@@ -242,23 +237,14 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       }).then(res => res.json())
         .then((root) => {
           if (root.links.find(link => link.rel === 'carts')) {
-            cortexFetch(`/carts/${Config.cortexApi.scope}/?zoom=${multiCartsZoomArray.sort().join()}`, {
-              method: 'get',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-              },
-            }).then(multiCartRes => multiCartRes.json())
-              .then((multiCartRes) => {
-                this.setState({
-                  multiCartData: multiCartRes,
-                });
-              })
-              .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
+            this.setState({
+              multiCartData: true,
+            });
           }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
         });
     });
   }
@@ -708,7 +694,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               </div>
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData && multiCartData._createcartform) { this.handleModalOpen(event); } else { this.addToCart(event); } }}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData) { this.handleModalOpen(event); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
                     <div className="form-group">
@@ -839,7 +825,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
-          {multiCartData && multiCartData._createcartform && (
+          {multiCartData && (
             <CartCreate handleModalClose={this.handleModalClose} openModal={addToCartModalOpened} productData={productData} itemQuantity={itemQuantity} itemConfiguration={itemConfiguration} onReloadPage={onReloadPage} />
           )}
         </div>
