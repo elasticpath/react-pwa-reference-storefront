@@ -22,7 +22,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
@@ -62,7 +62,7 @@ const accountsZoomArray = [
   'accounts:element:associateroleassignments:element:associate:primaryemail',
 ];
 
-export default class Dashboard extends React.Component<{}, DashboardState> {
+export default class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -242,6 +242,10 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
     }
   }
 
+  handleAccountClicked(account: any) {
+    const { history } = this.props;
+    history.push(`/b2b/account/${account.uri}`);
+  }
 
   render() {
     const {
@@ -397,7 +401,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                     </thead>
                     <tbody>
                       {accounts.map(account => (
-                        <tr key={account.uri} onClick={() => { window.location.href = `/b2b/account/${account.uri}`; }} className="account-list-rows">
+                        <tr key={account.uri} onClick={() => this.handleAccountClicked(account)} className="account-list-rows">
                           <td className="name">{account.name}</td>
                           <td className="external-id">{account.externalId}</td>
                           <td className="status">
