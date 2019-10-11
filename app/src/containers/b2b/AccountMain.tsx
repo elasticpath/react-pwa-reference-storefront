@@ -322,6 +322,14 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
               </div>
             </div>
             <div className="account-component">
+              <AccountList
+                getAccountData={this.getAccountData}
+                accountListData={accountListData}
+                getSubAccountData={this.subAccountData}
+                handleAddSubAccountClicked={this.handleAddSubAccountClicked}
+                accountName={accountName}
+                registrationNumber={registrationNumber}
+              />
               <div className="associates-container">
                 <div className="add-associate-container">
                   <button type="button" className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
