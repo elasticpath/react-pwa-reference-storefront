@@ -58,6 +58,7 @@ interface CartCreateState {
   showLoader: boolean,
   selectedCart: string,
   selectedElement: number,
+  isLoading: boolean,
 }
 
 class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
@@ -81,6 +82,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       cartName: '',
       showAddNewCartForm: false,
       showLoader: false,
+      isLoading: false,
       selectedCart: '',
       selectedElement: -1,
     };
@@ -234,7 +236,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
               {!productData._addtocartform && (
                 <div className="action-btn">
                   {el._descriptor[0].default ? (
-                    <span className="default-label">Default</span>
+                    <span className="default-label">{intl.get('default')}</span>
                   ) : (
                     <div>
                       <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
@@ -314,11 +316,11 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   addToSelectedCart(event) {
-    const { selectedCart } = this.state;
+    const { selectedCart, isLoading } = this.state;
     const {
       handleModalClose, itemQuantity, productData, onReloadPage,
     } = this.props;
-
+    this.setState({ isLoading: true });
     login().then(() => {
       const body: { [key: string]: any } = {};
       body.items = { code: productData._code[0].code, quantity: itemQuantity };
@@ -333,6 +335,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
+            this.setState({ isLoading: false });
             onReloadPage();
             handleModalClose();
           }
@@ -340,6 +343,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
+          this.setState({ isLoading: false });
         });
     });
     event.preventDefault();
@@ -371,7 +375,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   render() {
-    const { cartElements, showAddNewCartForm, selectedCart } = this.state;
+    const { cartElements, showAddNewCartForm, isLoading } = this.state;
     const {
       handleModalClose, openModal, productData,
     } = this.props;
@@ -427,7 +431,15 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
                 <div className="btn-container">
                   <button type="button" className="ep-btn cancel-btn" onClick={handleModalClose}>{intl.get('cancel')}</button>
                   {productData._addtocartform ? (
-                    <button type="button" className="ep-btn primary save-btn" onClick={event => this.addToSelectedCart(event)}>{intl.get('add-to-cart')}</button>
+                    <button type="button" className="ep-btn primary save-btn" onClick={event => this.addToSelectedCart(event)}>
+                      {isLoading ? (
+                        <span className="miniLoader" />
+                      ) : (
+                        <span>
+                          {intl.get('add-to-cart')}
+                        </span>
+                      )}
+                    </button>
                   ) : (
                     <button type="button" className="ep-btn primary save-btn" onClick={handleModalClose}>{intl.get('save')}</button>
                   )}

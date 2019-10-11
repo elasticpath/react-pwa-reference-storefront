@@ -325,7 +325,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
             {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
               <div>
-                {(!multiCartData) ? (
+                {(!multiCartData || !isLoggedInUser) ? (
                   <div className="cart-link-container">
                     <Link className="cart-link" to={appHeaderLinks.myCart}>
                       {cartData && totalQuantity !== 0 && !isLoading && (
