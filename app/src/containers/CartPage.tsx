@@ -137,7 +137,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       }).then(res => res.json())
         .then((root) => {
           if (root.links.find(link => link.rel === 'carts')) {
-            cortexFetch(`/carts/mobee?zoom=${multiCartZoomArray.sort().join()}`, {
+            cortexFetch(`/carts/${Config.cortexApi.scope}?zoom=${multiCartZoomArray.sort().join()}`, {
               headers: {
                 'Content-Type': 'application/json',
                 Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -307,10 +307,10 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
               )}
               {cartsData && !isLoading && multiCartsAvailable && (
                 <div className="cart-create-btn-wrap">
-                  <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>Manage Carts</button>
+                  <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>{intl.get('manage-carts')}</button>
+                  <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} />
                 </div>
               )}
-              <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} />
             </div>
             {cartsData && !isLoading && multiCartsAvailable && this.renderCartTabs()}
           </div>

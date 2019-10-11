@@ -201,7 +201,7 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
                 <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
                   {(availability) ? (
                     <div>
-                      <span className="icon glyphicon glyphicon-ok" />
+                      <span className="icon" />
                       {availabilityString}
                     </div>
                   ) : (

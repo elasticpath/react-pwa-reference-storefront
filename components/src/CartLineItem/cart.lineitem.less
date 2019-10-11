@@ -94,30 +94,22 @@
         div {
           float: left;
           background-color: @mainBackgroundColor;
-          border-radius: 10px;
-          border: solid @mainColor;
-          border-width: 1px 1px;
-          color: @mainColor;
-          padding: 3px 10px;
+          border-radius: 12px;
+          border: 1px solid @firstBorderColor;
+          color: @firstComplimentTextColor;
+          padding: 4px 10px;
           font-size: 10px;
           text-transform: uppercase;
         }
 
         .icon {
-          position: relative;
-          top: 1px;
           display: inline-block;
-          font-family: 'Glyphicons Halflings';
-          font-style: normal;
-          font-weight: normal;
-          line-height: 1;
-          -webkit-font-smoothing: antialiased;
+          transform: rotate(45deg);
+          height: 10px;
+          width: 6px;
+          border-bottom: 2px solid #78b13f;
+          border-right: 2px solid #78b13f;
           margin-right: 6px;
-          margin-top: -4px;
-        }
-
-        .icon:before {
-          content: "\e013";
         }
       }
     }
