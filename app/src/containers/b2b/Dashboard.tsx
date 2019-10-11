@@ -387,7 +387,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                           {intl.get('name')}
                           <span className="mobile-table-title">
                             {' '}
-                                        &
+                            &
                             {' '}
                             {intl.get('external-id')}
                           </span>
@@ -399,7 +399,7 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
                     </thead>
                     <tbody>
                       {accounts.map(account => (
-                        <tr key={account.externalId} onClick={() => { window.location.href = `/b2b/account/${account.uri}`; }} className="account-list-rows">
+                        <tr key={account.uri} onClick={() => { window.location.href = `/b2b/account/${account.uri}`; }} className="account-list-rows">
                           <td className="name">{account.name}</td>
                           <td className="external-id">{account.externalId}</td>
                           <td className="status">
