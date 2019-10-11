@@ -177,45 +177,8 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 
   componentDidMount() {
-    const { productId } = this.props;
-    login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId, false)
-          .then((res) => {
-            if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
-              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-                this.setState({
-                  productData: res,
-                  arFileExists: exists,
-                });
-              });
-            } else {
-              this.setState({
-                productData: res,
-              });
-            }
-            cortexFetch(`/carts/${Config.cortexApi.scope}/?zoom=${multiCartsZoomArray.sort().join()}`, {
-              method: 'get',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-              },
-            }).then(multiCartRes => multiCartRes.json())
-              .then((multiCartRes) => {
-                this.setState({
-                  multiCartData: multiCartRes,
-                });
-              })
-              .catch((error) => {
-              // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+    this.fetchMultiCartData();
+    this.fetchProductData();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -238,6 +201,64 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
+        });
+    });
+  }
+
+  fetchProductData() {
+    const { productId } = this.props;
+
+    login().then(() => {
+      cortexFetchItemLookupForm()
+        .then(() => itemLookup(productId, false)
+          .then((res) => {
+            if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
+              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+                this.setState({
+                  productData: res,
+                  arFileExists: exists,
+                });
+              });
+            } else {
+              this.setState({
+                productData: res,
+              });
+            }
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          }));
+    });
+  }
+
+  fetchMultiCartData() {
+    login().then(() => {
+      cortexFetch('/', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      }).then(res => res.json())
+        .then((root) => {
+          if (root.links.find(link => link.rel === 'carts')) {
+            cortexFetch(`/carts/${Config.cortexApi.scope}/?zoom=${multiCartsZoomArray.sort().join()}`, {
+              method: 'get',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+              },
+            }).then(multiCartRes => multiCartRes.json())
+              .then((multiCartRes) => {
+                this.setState({
+                  multiCartData: multiCartRes,
+                });
+              })
+              .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
+              });
+          }
         });
     });
   }

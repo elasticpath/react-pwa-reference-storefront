@@ -29,6 +29,8 @@ let intl = { get: str => str };
 
 interface CartPopUpProps {
   appHeaderLinks: any,
+  itemsQuantity: number,
+  handleMultiCartModalClose: (...args: any[]) => any,
 }
 
 interface CartPopUpState {
@@ -48,15 +50,15 @@ class CartPopUp extends React.Component<CartPopUpProps, CartPopUpState> {
   componentDidMount() {}
 
   render() {
-    const { appHeaderLinks } = this.props;
+    const { appHeaderLinks, itemsQuantity, handleMultiCartModalClose } = this.props;
     return (
       <div className="cart-nav-container">
-        <div className="multi-cart-menu dropdown-item">
-          <span>1 Item was added to your cart</span>
+        <div className="multi-cart-menu">
+          <span>{`${itemsQuantity} ${intl.get('item-was-added-to-your-cart')}`}</span>
         </div>
         <div className="checkout-btn-container">
 
-          <button className="ep-btn primary checkout-btn" type="button">
+          <button className="ep-btn primary checkout-btn" type="button" onClick={handleMultiCartModalClose}>
             <Link className="link-to-cart" to={appHeaderLinks.myCart}>
               {intl.get('view-your-carts')}
             </Link>

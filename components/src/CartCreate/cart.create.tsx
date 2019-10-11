@@ -246,8 +246,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           )}
         </li>));
     }
-
-    return '';
+    return (<div className="miniLoader" />);
   }
 
   renderAddNewCartForm() {
@@ -348,7 +347,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
 
   renderOptions() {
     const { productData } = this.props;
-    const productOptions = productData && productData._definition._options && productData._definition[0]._options[0];
+    const productOptions = productData && productData._definition[0]._options && productData._definition[0]._options[0];
     return (
       <div className="product-options">
         <h3>{productData._definition[0]['display-name']}</h3>
@@ -372,18 +371,20 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   render() {
-    const { cartElements, showAddNewCartForm } = this.state;
+    const { cartElements, showAddNewCartForm, selectedCart } = this.state;
     const {
       handleModalClose, openModal, productData,
     } = this.props;
+
     const itemCodeString = productData._code && productData._code[0].code;
+    const modalTitle = productData._definition ? 'add-to-cart' : 'manage-carts';
     return (
       <Modal open={openModal} onClose={handleModalClose}>
         <div className="modal-lg cart-create-modal">
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title">
-                {intl.get('manage-carts')}
+                {intl.get(modalTitle)}
               </h2>
             </div>
             <div className="modal-body">
