@@ -41,7 +41,6 @@ interface SubAccountListState {
     subAccountData: any,
     isLoading: boolean,
     subAccountOpened: boolean,
-    accountName: string,
     highlight: boolean,
 }
 
@@ -101,7 +100,6 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
       subAccountData: {},
       isLoading: false,
       subAccountOpened: false,
-      accountName: '',
       highlight: false,
     };
 
@@ -183,14 +181,14 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
                 <div className="loader" />
               </div>
             ) : (accountData._subaccounts && accountData._subaccounts[0]._element && (
-            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-            <span
-              className={`arrow-btn ${subAccountOpened ? 'up' : ''}`}
-              onClick={event => this.getSubAccounts(accountData.self.uri, event)}
-              onKeyPress={event => this.getSubAccounts(accountData.self.uri, event)}
-            />
+              // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+              <span
+                className={`arrow-btn ${subAccountOpened ? 'up' : ''}`}
+                onClick={event => this.getSubAccounts(accountData.self.uri, event)}
+                onKeyPress={event => this.getSubAccounts(accountData.self.uri, event)}
+              />
             ))
-                    }
+          }
           <span className="status">
             <i className={`icons-status ${accountData._statusinfo[0]._status[0].status.toLowerCase()}`} />
             {intl.get(accountData._statusinfo[0]._status[0].status.toLowerCase())}
