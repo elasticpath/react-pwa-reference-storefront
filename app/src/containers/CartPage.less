@@ -55,8 +55,6 @@
       position: sticky;
       top: 0;
       z-index: 4;
-      background: @mainBackgroundColor;
-      border-bottom: 1px solid @secondBorderColor;
 
       .view-title {
         border: none;
@@ -70,46 +68,10 @@
         padding-left: 0;
         padding-right: 5px;
         margin-top: 15px;
-        margin-bottom: 15px;
+        margin-bottom: 0;
         font-size: 24px;
         color: @mainTextColor;
       }
-
-      .cart-tabs-container {
-        overflow: scroll;
-
-        .cart-tabs {
-          width: max-content;
-
-          .cart-tab {
-            display: inline-block;
-
-            .cart-tab-input {
-              display: none;
-            }
-
-            .cart-tab-label {
-              cursor: pointer;
-              padding: 10px 20px;
-              height: 40px;
-              border-bottom: 3px solid transparent;
-              margin: 0;
-            }
-
-            .cart-tab-input:checked + .cart-tab-label {
-              text-shadow: 0 0 1px @mainTextColor, 0 0 1px @mainTextColor;
-              border-bottom-color: #0099DE;
-            }
-
-          }
-        }
-      }
-    }
-
-    .cart-title-wrap {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
 
     .cart-sidebar {
@@ -208,13 +170,12 @@
   .cart-create-btn-wrap {
     display: inline-block;
     padding: 0 5px 10px 15px;
-    align-self: center;
 
     .open-modal-btn {
       min-height: 1px;
-      padding: 0;
       border: none;
       text-transform: none;
+      text-align: left;
 
       &:hover {
         color: @firstComplimentColor;

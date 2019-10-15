@@ -259,33 +259,6 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     });
   }
 
-  renderCartTabs() {
-    const { cartsData } = this.state;
-    return (
-      <div className="cart-tabs-container">
-        <form className="cart-tabs">
-          {cartsData._element.map((cart, index) => {
-            const name = cart._descriptor[0].default === 'true' ? intl.get('personal') : cart._descriptor[0].name;
-            const count = cart._lineitems ? cart['total-quantity'] : 0;
-            return (
-              <div className="cart-tab" key={name}>
-                <input
-                  id={name}
-                  type="radio"
-                  name="cart"
-                  defaultChecked={index === 0}
-                  className="cart-tab-input"
-                  onClick={() => this.handleCartSelect(cart)}
-                />
-                <label htmlFor={name} className="cart-tab-label">{`${name} (${count})`}</label>
-              </div>
-            );
-          })}
-        </form>
-      </div>
-    );
-  }
-
   handleCartSelect(cartData) {
     this.setState({ cartData });
   }
@@ -295,6 +268,9 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       cartData, cartsData, isLoading, openModal, multiCartsAvailable,
     } = this.state;
     const itemDetailLink = '/itemdetail';
+    // eslint-disable-next-line no-debugger
+    console.warn(cartData, cartData && JSON.parse(cartData._descriptor[0].default));
+    const cartName = cartData && cartData._descriptor[0].default !== 'true' ? cartData._descriptor[0].name : intl.get('default');
     return (
       <div className="cart-container container">
         <div className="cart-container-inner">
@@ -302,17 +278,16 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             <div className="cart-title-wrap">
               {cartData && !isLoading && (
                 <h1 className="view-title">
-                  {intl.get('shopping-carts')}
+                  {`${cartName} ${intl.get('cart')}`}
                 </h1>
               )}
               {cartsData && !isLoading && multiCartsAvailable && (
                 <div className="cart-create-btn-wrap">
-                  <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>{intl.get('manage-carts')}</button>
+                  <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>{intl.get('change')}</button>
                   <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} />
                 </div>
               )}
             </div>
-            {cartsData && !isLoading && multiCartsAvailable && this.renderCartTabs()}
           </div>
           {cartData && !isLoading && (
             <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>

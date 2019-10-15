@@ -333,5 +333,7 @@
   "personal": "Personal",
   "shopping-carts": "Your Carts",
   "manage-carts": "Manage Carts",
-  "create-new-cart": "Create New Cart"
+  "create-new-cart": "Create New Cart",
+  "cart": "Cart",
+  "change": "Change"
 }
