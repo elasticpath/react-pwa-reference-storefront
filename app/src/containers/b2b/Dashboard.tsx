@@ -40,11 +40,13 @@ interface DashboardState {
   isLoading: boolean,
   showSearchLoader: boolean,
   noSearchResults: boolean,
+  isSellerAdmin: boolean,
 }
 
 const accountsZoomArray = [
   'accounts',
   'accounts:element',
+  'accounts:element:accountmetadata',
   'accounts:element:selfsignupinfo',
   'accounts:element:statusinfo',
   'accounts:element:statusinfo:status',
@@ -118,6 +120,7 @@ export default class Dashboard extends React.Component<RouteComponentProps, Dash
       accounts: [],
       admins: [],
       searchAccounts: '',
+      isSellerAdmin: false,
     };
     this.getAdminData();
     this.setSearchAccounts = this.setSearchAccounts.bind(this);
@@ -144,11 +147,15 @@ export default class Dashboard extends React.Component<RouteComponentProps, Dash
               const uri = account.self.uri.split('/').pop();
               return {
                 name: account.name,
-                externalId: account['external-id'],
+                externalId: account._accountmetadata ? account._accountmetadata[0]['external-id'] : null,
                 status: account._statusinfo[0]._status[0].status.toLowerCase(),
                 uri,
               };
             });
+            let isSellerAdmin = false;
+            if (res._accounts[0]._element[0]._accountmetadata) {
+              isSellerAdmin = true;
+            }
             const map = new Map();
             res._accounts[0]._element.reduce((accum, account) => {
               const associates = account._associateroleassignments[0]._element;
@@ -166,7 +173,7 @@ export default class Dashboard extends React.Component<RouteComponentProps, Dash
             const admins = Array.from(map.values());
 
             this.setState({
-              accounts, admins, isLoading: false, noSearchResults: false,
+              accounts, admins, isLoading: false, noSearchResults: false, isSellerAdmin,
             });
           }
         });
@@ -209,12 +216,21 @@ export default class Dashboard extends React.Component<RouteComponentProps, Dash
                       const uri = account.self.uri.split('/').pop();
                       return {
                         name: account.name,
-                        externalId: account['external-id'],
+                        externalId: account._accountmetadata[0]['external-id'],
                         status: account._statusinfo[0]._status[0].status.toLowerCase(),
                         uri,
                       };
                     });
-                    this.setState({ accounts, showSearchLoader: false, noSearchResults: false });
+                    let isSellerAdmin = false;
+                    if (res._accounts[0]._element[0]._accountmetadata) {
+                      isSellerAdmin = true;
+                    }
+                    this.setState({
+                      accounts,
+                      showSearchLoader: false,
+                      noSearchResults: false,
+                      isSellerAdmin,
+                    });
                   } else {
                     this.setState({ showSearchLoader: false, noSearchResults: true });
                   }
@@ -258,6 +274,7 @@ export default class Dashboard extends React.Component<RouteComponentProps, Dash
       searchAccounts,
       showSearchLoader,
       noSearchResults,
+      isSellerAdmin,
     } = this.state;
 
     return (
@@ -387,14 +404,16 @@ export default class Dashboard extends React.Component<RouteComponentProps, Dash
                       <tr>
                         <th className="name">
                           {intl.get('name')}
-                          <span className="mobile-table-title">
-                            {' '}
-                            &
-                            {' '}
-                            {intl.get('external-id')}
-                          </span>
+                          {isSellerAdmin && (
+                            <span className="mobile-table-title">
+                              {' '}
+                              &
+                              {' '}
+                              {intl.get('external-id')}
+                            </span>)
+                           }
                         </th>
-                        <th className="external-id">{intl.get('external-id')}</th>
+                        {isSellerAdmin && <th className="external-id">{intl.get('external-id')}</th>}
                         <th className="status">{intl.get('status')}</th>
                         <th className="arrow" />
                       </tr>
@@ -403,7 +422,7 @@ export default class Dashboard extends React.Component<RouteComponentProps, Dash
                       {accounts.map(account => (
                         <tr key={account.uri} onClick={() => this.handleAccountClicked(account)} className="account-list-rows">
                           <td className="name">{account.name}</td>
-                          <td className="external-id">{account.externalId}</td>
+                          {isSellerAdmin && <td className="external-id">{account.externalId}</td>}
                           <td className="status">
                             <i className={`icons-status ${account.status.toLowerCase()}`} />
                             {intl.get(account.status)}

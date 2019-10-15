@@ -34,6 +34,7 @@ interface AddSubAccountProps {
     handleClose: () => void,
     handleUpdate: () => void,
     addSubAccountUri: string,
+    addSubAccountSellerAdmin: boolean,
 }
 
 interface AddSubAccountState {
@@ -101,11 +102,12 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
     const { name } = event.target;
     const { value } = event.target;
 
-    this.setState({ name: value });
+    // @ts-ignore
+    this.setState({ [name]: value });
   }
 
   render() {
-    const { isOpen, handleClose } = this.props;
+    const { isOpen, handleClose, addSubAccountSellerAdmin } = this.props;
     const {
       name, legalName, externalId, registrationNumber, isLoading,
     } = this.state;
@@ -130,14 +132,16 @@ export default class AddSubAccount extends React.Component<AddSubAccountProps, A
               </label>
             </div>
             <div className="b2b-form-row">
-              <label htmlFor="external-id" className="b2b-form-col">
-                <p className="b2b-dark-text">{intl.get('external-id')}</p>
-                <input id="external-id" className="b2b-input" value={externalId || ''} onChange={this.changeHandler} name="externalId" type="text" />
-              </label>
               <label htmlFor="registration-number" className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('registration-number')}</p>
                 <input id="registration-number" className="b2b-input" value={registrationNumber || ''} onChange={this.changeHandler} name="registrationNumber" type="text" />
               </label>
+              {addSubAccountSellerAdmin && (
+                <label htmlFor="external-id" className="b2b-form-col">
+                  <p className="b2b-dark-text">{intl.get('external-id')}</p>
+                  <input id="external-id" className="b2b-input" value={externalId || ''} onChange={this.changeHandler} name="externalId" type="text" />
+                </label>)
+              }
             </div>
           </form>
         </div>
