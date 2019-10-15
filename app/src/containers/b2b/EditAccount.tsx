@@ -36,6 +36,7 @@ const COPIED_TIMEOUT_LENGTH = 4000;
 interface EditAccountProps {
   isOpen: boolean,
   editSubAccountUri: string,
+  editMetadataUri: string,
   handleClose: () => void,
   handleUpdate: () => void,
   accountData: {
@@ -95,7 +96,9 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
   }
 
   editAccount(event) {
-    const { handleClose, handleUpdate, editSubAccountUri } = this.props;
+    const {
+      handleClose, handleUpdate, editSubAccountUri, editMetadataUri,
+    } = this.props;
     const {
       name, legalName, externalId, registrationNumber,
     } = this.state;
@@ -111,11 +114,24 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
         },
         body: JSON.stringify({
           name,
-          'external-id': externalId,
           'legal-name': legalName,
           'registration-id': registrationNumber,
         }),
       })
+        .then(() => {
+          if (editMetadataUri) {
+            adminFetch(`${editMetadataUri}`, {
+              method: 'put',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+              },
+              body: JSON.stringify({
+                'external-id': externalId,
+              }),
+            });
+          }
+        })
         .then(() => {
           handleClose();
           handleUpdate();
@@ -147,7 +163,9 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
   }
 
   render() {
-    const { isOpen, handleClose, accountData } = this.props;
+    const {
+      isOpen, handleClose, accountData, editMetadataUri,
+    } = this.props;
     const {
       name, legalName, externalId, registrationNumber, isShowingCopied, isLoading,
     } = this.state;
@@ -172,14 +190,16 @@ export default class EditAccount extends React.Component<EditAccountProps, EditA
               </label>
             </div>
             <div className="b2b-form-row">
-              <label htmlFor="external-id" className="b2b-form-col">
-                <p className="b2b-dark-text">{intl.get('external-id')}</p>
-                <input id="external-id" className="b2b-input" value={externalId || ''} onChange={this.changeHandler} name="externalId" type="text" />
-              </label>
               <label htmlFor="registration-number" className="b2b-form-col">
                 <p className="b2b-dark-text">{intl.get('registration-number')}</p>
                 <input id="registration-number" className="b2b-input" value={registrationNumber || ''} onChange={this.changeHandler} name="registrationNumber" type="text" />
               </label>
+              {editMetadataUri && (
+                <label htmlFor="external-id" className="b2b-form-col">
+                  <p className="b2b-dark-text">{intl.get('external-id')}</p>
+                  <input id="external-id" className="b2b-input" value={externalId || ''} onChange={this.changeHandler} name="externalId" type="text" />
+                </label>)
+              }
             </div>
             {accountData.selfSignUpCode && (
               <div className="b2b-form-row">
