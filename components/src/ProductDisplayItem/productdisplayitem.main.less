@@ -70,6 +70,34 @@
     text-transform: capitalize;
     font-size: 14px;
     width: 100%;
+
+    &:focus {
+      outline: 0 auto transparent;
+    }
+
+    &:after {
+      right: 15px;
+      position: absolute;
+      top: 24px;
+    }
+  }
+  .form-content-submit.show {
+    .btn-itemdetail-addtocart{
+        background-color: @mainBackgroundColor;
+        color: @firstComplimentColor;
+        border: 1px solid @firstComplimentColor;
+    }
+  }
+  .btn-itemdetail-addtocart {
+    .miniLoader {
+      width: 20px;
+      height: 20px !important;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+      border-width: 2px;
+      border-top-width: 2px;
+    }
   }
 
   .itemdetail-details {
@@ -95,6 +123,7 @@
         display: inline-block;
         vertical-align: middle;
         margin-bottom: 0;
+        color: @firstComplimentTextColor;
       }
 
       .price-sale {
@@ -112,20 +141,44 @@
 
     .itemdetail-addtocart {
       vertical-align: top;
-      display: inline-block;
+      margin-top: 20px;
 
       .selector-title{
-        color: #8a8a8a;
+        color: @mainTextColor;
         font-weight: 500;
         text-transform: uppercase;
+      }
+
+      .cart-selection-list {
+        width: 100%;
+        border: 1px solid @firstComplimentColor;
+        border-radius: 0;
+        margin-top: -1px;
+        padding: 0;
+
+        .cart-selection-item {
+          text-align: center;
+          font-size: 14px;
+          padding: 10px;
+
+          &:hover {
+            cursor: pointer;
+            color: @firstComplimentColor;
+            background-color: #F2F6FA;
+          }
+        }
+      }
+
+      .cart-selection-dropdown {
+        margin-bottom: 0;
       }
 
       .form-group {
         margin-bottom: 15px;
 
         .control-label {
-          margin-top: .75rem;
-          color: #8a8a8a;
+          margin: 10px 0;
+          color: @mainTextColor;
           font-weight: 500;
           text-transform: uppercase;
         }
@@ -155,7 +208,7 @@
         }
 
         .input-group-btn {
-          width: 100%;
+          width: 30%;
           height: 40px;
           border: solid 1px @mainBorderColor;
           display: flex;
@@ -164,12 +217,13 @@
 
           .quantity-right-plus,
           .quantity-left-minus {
-            background-color: white;
+            box-shadow: none;
+            background-color: @mainBackgroundColor;
             border-radius: 0 !important;
             overflow: hidden;
             position: relative;
-            text-shadow: 1px 1px 1px #fff;
-            color: #666;
+            text-shadow: 1px 1px 1px @mainBackgroundColor;
+            color: @secondComplimentTextColor;
             text-transform: none;
             font-weight: normal;
             float: right;
@@ -267,7 +321,8 @@
 
   .itemdetail-availability-container {
     padding-top: 10px;
-    padding-bottom: 2px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid @secondBorderColor;
 
     .itemdetail-availability-state {
       label {
@@ -304,7 +359,7 @@
     .nav-link {
       padding: 5px 15px;
       font-size: 14px;
-      color: #666;
+      color: @secondComplimentTextColor;
       &:hover {
         border-color: transparent;
         color: @mainTextColor;
@@ -317,7 +372,7 @@
       }
       &.disabled {
         cursor: default;
-        color: #666;
+        color: @secondComplimentTextColor;
       }
     }
   }
@@ -386,7 +441,7 @@
       }
       &:checked {
         +label {
-          border-color: @mainBackgroundColor;
+          //border-color: @mainBackgroundColor;
         }
       }
     }
@@ -396,7 +451,7 @@
     display: none;
 
     +label {
-      color: gray;
+      color: @mainTextColor;
       padding: 10px 15px;
       box-sizing: border-box;
       position: relative;
@@ -410,9 +465,10 @@
     }
     &:checked {
       +label {
-        color: @mainTextColor;
-        border-color: @mainTextColor;
-        box-shadow: 0 0 0 1px black;
+        color: @firstComplimentColor;
+        border-color: @firstComplimentColor;
+        background-color: #F2F6FA;
+        font-weight: bold;
         z-index: 1;
       }
     }

@@ -24,14 +24,14 @@
 .cart-create-modal {
   min-width: ~'calc(100vw - 4.8rem)';
 
-  @media screen and (min-width: 681px) {
-    min-width: 580px;
+  @media (min-width: @mobileWidth) {
+    min-width: 700px;
   }
 
   .modal-content {
     border: none;
 
-    @media screen and (min-width: 681px) {
+    @media (min-width: @mobileWidth) {
       padding: 0 15px;
     }
   }
@@ -49,34 +49,6 @@
     }
   }
 
-  .btn-container {
-    text-align: right;
-
-    .ep-btn {
-      min-height: 34px;
-    }
-
-    .cancel-btn {
-      width: 120px;
-      border-color: transparent;
-    }
-
-    .save-btn {
-      width: 120px;
-      margin-right: 0;
-
-      .miniLoader {
-        width: 20px;
-        height: 20px !important;
-        display: inline-block;
-        vertical-align: middle;
-        margin: 0;
-        border-width: 2px;
-        border-top-width: 5px;
-      }
-    }
-  }
-
   + button[class*=styles_closeButton] {
     top: 22px;
     right: 22px;
@@ -89,20 +61,20 @@
   }
 
   .edit-mode-form {
-    width: 316px;
-
     label {
+      display: block;
       font-size: 12px;
       font-weight: 600;
       color: #777777;
       margin-bottom: 2px;
+      text-align: left;
     }
 
     .cart-edit-field {
       height: 34px;
       width: 100%;
       padding: 0 30px 0 15px;
-      border: 1px solid #D4D3D3;
+      border: 1px solid @firstBorderColor;
       color: #1F2532;
       border-radius: 4px;
 
@@ -114,62 +86,161 @@
 
       &-wrap {
         position: relative;
+        width: 100%;
+        display: inline-block;
+        margin-bottom: 10px;
+
+        @media screen and (min-width: 481px) {
+          flex-grow: 1;
+          margin-bottom: 0;
+        }
+
+        @media screen and (min-width: 681px) {
+          width: 316px;
+          flex-grow: 0;
+        }
       }
     }
 
     .clear-field-btn {
       background: #DBDBDB;
+      top: auto;
+      bottom: 7px;
 
       &:hover {
         background: #c5c5c5;
       }
+    }
+
+    @media screen and (min-width: 481px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
     }
   }
 }
 
 .create-cart-btn-wrap {
   padding: 5px 0 15px;
-  border-bottom: 1px solid #CCCCCC;
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0 20px;
+  }
+
+  .carts-list-item {
+    display: block;
+    height: auto;
+    padding: 0;
+
+    .edit-mode {
+      position: static;
+      width: 100%;
+      transform: none;
+    }
+  }
 }
 
 .carts-list {
+  display: table;
+  width: 100%;
+  border-top: 1px solid @secondBorderColor;
+
   &-wrap {
-    margin-bottom: 50px;
 
     h3 {
       font-size: 15px;
       font-weight: 600;
-      margin: 10px 0 15px;
+      margin: 10px 0 10px;
     }
   }
 
   &-item {
-    min-height: 98px;
+    display: grid;
     position: relative;
     padding: 15px;
-    border: 1px solid #CCCCCC;
-    margin-bottom: 8px;
+    border-bottom: 1px solid @secondBorderColor;
 
-    .cart-info {
-      h4 {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
+    &.edit-mode-state {
+      height: 160px;
+    }
 
-      p {
-        line-height: 16px;
-      }
+    @media screen and (min-width: 481px) {
+      display: table-row;
+      height: 53px;
+      margin-bottom: 8px;
+      border-bottom: none;
 
-      .cart-price {
-        margin: 0;
+      &.edit-mode-state {
+        height: 115px;
       }
     }
 
-    .action-btn {
+    .cart-info {
+      position: relative;
+
+      @media screen and (min-width: 481px) {
+        display: table-cell;
+        padding: 0 5px;
+        vertical-align: middle;
+        border-bottom: 1px solid @secondBorderColor;
+      }
+
+      @media (min-width: @mobileWidth) {
+        padding: 0 15px;
+      }
+    }
+
+    h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: @thirdComplimentColor;
+    }
+
+    p {
+      line-height: 16px;
+    }
+
+    .edit-mode {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      right: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: @mainBackgroundColor;
+      z-index: 1;
+      width: ~'calc(100vw - 6.8rem)';
+
+      @media screen and (min-width: 481px) {
+        right: 1px;
+      }
+
+      @media (min-width: @mobileWidth) {
+        width: ~'calc(700px - 2rem - 30px)';
+      }
+    }
+
+    .cart-quantity {
+      grid-row: ~"2 / 3";
+      grid-column: ~"1 / 2";
+    }
+
+    .cart-price {
+      margin: 0;
+      grid-row: ~"3 / 4";
+      grid-column: ~"1 / 2";
+    }
+
+    .action-btn {
+      text-align: right;
+      grid-row: ~"2 / 3";
+      grid-column: ~"2 / 3";
+    }
+
+    .cart-editing-btn {
+      position: relative;
 
       .ep-btn {
         height: auto;
@@ -202,19 +273,44 @@
             content: '';
             height: 14px;
             width: 2px;
-            border-left: 2px solid #CCCCCC;
+            border-left: 2px solid @secondBorderColor;
             position: absolute;
             top: 2px;
             left: -11px;
           }
         }
       }
+    }
 
-      .default-label {
-        font-size: 13px;
-        line-height: 20px;
-        font-style: italic;
-        font-weight: 300;
+    .btn-container {
+      text-align: right;
+      @media screen and (min-width: 481px) {
+        white-space: nowrap;
+      }
+
+      .ep-btn {
+        width: 100%;
+        min-height: 34px;
+
+        @media screen and (min-width: 481px) {
+          width: 120px;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+      }
+
+      .cancel-btn {
+        @media screen and (min-width: 481px) {
+          border-color: transparent;
+        }
+      }
+
+      .save-btn {
+        margin-right: 0;
+
+        &:focus {
+          outline: 0 auto transparent;
+        }
       }
     }
 
@@ -231,33 +327,9 @@
     }
 
     &.selected {
-      border-color: #0099DE;
+      border-color: @thirdComplimentColor;
       background-color: #F2F6FA;
     }
   }
 }
 
-
-.product-data {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: row;
-
-  .option-list {
-    margin: 10px 0;
-  }
-  .product-options{
-    padding: 0 5px;
-  }
-  .thumbnail-col {
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-    vertical-align: top;
-    img {
-      max-width: 125px;
-    }
-  }
-}
