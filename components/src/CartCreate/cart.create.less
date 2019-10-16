@@ -74,7 +74,7 @@
       height: 34px;
       width: 100%;
       padding: 0 30px 0 15px;
-      border: 1px solid #D4D3D3;
+      border: 1px solid @firstBorderColor;
       color: #1F2532;
       border-radius: 4px;
 
@@ -146,7 +146,7 @@
 .carts-list {
   display: table;
   width: 100%;
-  border-top: 1px solid #CCCCCC;
+  border-top: 1px solid @secondBorderColor;
 
   &-wrap {
 
@@ -161,7 +161,7 @@
     display: grid;
     position: relative;
     padding: 15px;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid @secondBorderColor;
 
     &.edit-mode-state {
       height: 160px;
@@ -185,7 +185,7 @@
         display: table-cell;
         padding: 0 5px;
         vertical-align: middle;
-        border-bottom: 1px solid #CCCCCC;
+        border-bottom: 1px solid @secondBorderColor;
       }
 
       @media (min-width: @mobileWidth) {
@@ -209,7 +209,7 @@
       right: -15px;
       top: 50%;
       transform: translateY(-50%);
-      background: #ffffff;
+      background: @mainBackgroundColor;
       z-index: 1;
       width: ~'calc(100vw - 6.8rem)';
 
@@ -273,7 +273,7 @@
             content: '';
             height: 14px;
             width: 2px;
-            border-left: 2px solid #CCCCCC;
+            border-left: 2px solid @secondBorderColor;
             position: absolute;
             top: 2px;
             left: -11px;
@@ -327,7 +327,7 @@
     }
 
     &.selected {
-      border-color: #0099DE;
+      border-color: @thirdComplimentColor;
       background-color: #F2F6FA;
     }
   }

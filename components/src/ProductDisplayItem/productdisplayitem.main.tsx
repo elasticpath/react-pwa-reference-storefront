@@ -125,6 +125,7 @@ interface ProductDisplayItemMainState {
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
   addToCartLoading: boolean,
+  isLoggedInUser: boolean,
 }
 
 class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -162,6 +163,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
+      isLoggedInUser: localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED',
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -629,7 +631,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
 
   render() {
     const {
-      productData, addToCartFailedMessage, isLoading, itemQuantity, multiCartData, addToCartLoading,
+      productData, addToCartFailedMessage, isLoading, itemQuantity, multiCartData, addToCartLoading, isLoggedInUser,
     } = this.state;
     const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
@@ -734,7 +736,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               </div>
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData && multiCartData._carts) { event.preventDefault(); } else { this.addToCart(event); } }}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData && multiCartData._carts && isLoggedInUser) { event.preventDefault(); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
                     <div className="form-group">
@@ -757,7 +759,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                       }
                     </div>
                     <div className="form-group-submit">
-                      {multiCartData && multiCartData._carts ? (
+                      {multiCartData && multiCartData._carts && isLoggedInUser ? (
                         <div className="form-content form-content-submit col-sm-offset-4 dropdown">
                           <button
                             className="ep-btn primary wide btn-itemdetail-addtocart dropdown-toggle"
@@ -797,7 +799,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                     <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
                       {addToCartFailedMessage}
                     </div>
-
                   </form>
                   {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform && !(Object.keys(productData._addtocartform[0].configuration).length > 0)) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">

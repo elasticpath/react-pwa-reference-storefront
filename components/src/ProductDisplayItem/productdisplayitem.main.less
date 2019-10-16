@@ -123,6 +123,7 @@
         display: inline-block;
         vertical-align: middle;
         margin-bottom: 0;
+        color: @firstComplimentTextColor;
       }
 
       .price-sale {
@@ -140,10 +141,10 @@
 
     .itemdetail-addtocart {
       vertical-align: top;
-      display: inline-block;
+      margin-top: 20px;
 
       .selector-title{
-        color: #8a8a8a;
+        color: @mainTextColor;
         font-weight: 500;
         text-transform: uppercase;
       }
@@ -176,8 +177,8 @@
         margin-bottom: 15px;
 
         .control-label {
-          margin-top: .75rem;
-          color: #8a8a8a;
+          margin: 10px 0;
+          color: @mainTextColor;
           font-weight: 500;
           text-transform: uppercase;
         }
@@ -207,7 +208,7 @@
         }
 
         .input-group-btn {
-          width: 100%;
+          width: 30%;
           height: 40px;
           border: solid 1px @mainBorderColor;
           display: flex;
@@ -216,12 +217,13 @@
 
           .quantity-right-plus,
           .quantity-left-minus {
-            background-color: white;
+            box-shadow: none;
+            background-color: @mainBackgroundColor;
             border-radius: 0 !important;
             overflow: hidden;
             position: relative;
-            text-shadow: 1px 1px 1px #fff;
-            color: #666;
+            text-shadow: 1px 1px 1px @mainBackgroundColor;
+            color: @secondComplimentTextColor;
             text-transform: none;
             font-weight: normal;
             float: right;
@@ -319,7 +321,8 @@
 
   .itemdetail-availability-container {
     padding-top: 10px;
-    padding-bottom: 2px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid @secondBorderColor;
 
     .itemdetail-availability-state {
       label {
@@ -356,7 +359,7 @@
     .nav-link {
       padding: 5px 15px;
       font-size: 14px;
-      color: #666;
+      color: @secondComplimentTextColor;
       &:hover {
         border-color: transparent;
         color: @mainTextColor;
@@ -369,7 +372,7 @@
       }
       &.disabled {
         cursor: default;
-        color: #666;
+        color: @secondComplimentTextColor;
       }
     }
   }
@@ -466,7 +469,6 @@
         border-color: @firstComplimentColor;
         background-color: #F2F6FA;
         font-weight: bold;
-        //box-shadow: 0 0 0 1px @firstComplimentColor;
         z-index: 1;
       }
     }
