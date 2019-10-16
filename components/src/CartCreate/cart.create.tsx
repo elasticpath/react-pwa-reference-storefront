@@ -21,8 +21,6 @@
 
 import React from 'react';
 import Modal from 'react-responsive-modal';
-import { Link } from 'react-router-dom';
-import imgMissingHorizontal from '@elasticpath/ref-store/src/images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -47,7 +45,6 @@ interface CartCreateProps {
   onReloadPage?: (...args: any[]) => any,
   handleCartsUpdate?: (...args: any[]) => any,
   openModal: boolean,
-  productData?: any,
   itemQuantity?: number,
   itemConfiguration?: any,
 }
@@ -65,7 +62,6 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     addToCartAction: () => {},
     onReloadPage: () => {},
     handleCartsUpdate: () => {},
-    productData: {},
     itemQuantity: 0,
     itemConfiguration: {},
   };
