@@ -28,7 +28,6 @@ import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../app/src/images/img_missing_horizontal@2x.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
-import CartCreate from '../CartCreate/cart.create';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -91,6 +90,13 @@ const zoomArray = [
   'code',
 ];
 
+const multiCartZoomArray = [
+  'carts',
+  'carts:element',
+  'carts:element:additemstocartform',
+  'carts:element:descriptor',
+];
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -111,14 +117,14 @@ interface ProductDisplayItemMainProps {
 
 interface ProductDisplayItemMainState {
   productData: any,
-  multiCartData: boolean,
+  multiCartData: { [key: string]: any },
   itemQuantity: number,
   addToCartFailedMessage: string,
   isLoading: boolean,
   arFileExists: boolean,
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
-  addToCartModalOpened: boolean,
+  addToCartLoading: boolean,
 }
 
 class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -148,27 +154,27 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     ({ intl } = epConfig);
     this.state = {
       productData: undefined,
-      multiCartData: false,
+      multiCartData: undefined,
       itemQuantity: 1,
       addToCartFailedMessage: '',
       isLoading: false,
       arFileExists: false,
       itemConfiguration: {},
       selectionValue: '',
-      addToCartModalOpened: false,
+      addToCartLoading: false,
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.handleConfiguration = this.handleConfiguration.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.handleModalOpen = this.handleModalOpen.bind(this);
-    this.handleModalClose = this.handleModalClose.bind(this);
     this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
+    this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
+    this.addToSelectedCart = this.addToSelectedCart.bind(this);
   }
 
   componentDidMount() {
@@ -192,6 +198,27 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               productData: res,
             });
           }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
+  fetchMultiCartData() {
+    login().then(() => {
+      cortexFetch(`?zoom=${multiCartZoomArray.sort().join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            multiCartData: res,
+          });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -224,28 +251,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
             // eslint-disable-next-line no-console
             console.error(error.message);
           }));
-    });
-  }
-
-  fetchMultiCartData() {
-    login().then(() => {
-      cortexFetch('/', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(res => res.json())
-        .then((root) => {
-          if (root.links.find(link => link.rel === 'carts')) {
-            this.setState({
-              multiCartData: true,
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
     });
   }
 
@@ -345,20 +350,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     });
     event.preventDefault();
   }
-
-  handleModalOpen(event) {
-    event.preventDefault();
-    this.setState({
-      addToCartModalOpened: true,
-    });
-  }
-
-  handleModalClose() {
-    this.setState({
-      addToCartModalOpened: false,
-    });
-  }
-
 
   addToWishList(event) {
     const { productData, itemQuantity, itemConfiguration } = this.state;
@@ -587,11 +578,60 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     );
   }
 
+  addToSelectedCart(cartUrl) {
+    const { itemQuantity, productData } = this.state;
+    const {
+      onReloadPage,
+    } = this.props;
+    this.setState({ addToCartLoading: true });
+    login().then(() => {
+      const body: { [key: string]: any } = {};
+      body.items = { code: productData._code[0].code, quantity: itemQuantity };
+      cortexFetch(cartUrl,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(body),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            this.setState({ addToCartLoading: false });
+            onReloadPage();
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          this.setState({ addToCartLoading: false });
+        });
+    });
+  }
+
+  dropdownCartSelection() {
+    const { multiCartData } = this.state;
+    if (multiCartData && multiCartData._carts) {
+      return (
+        <ul className="cart-selection-dropdown">
+          {multiCartData._carts[0]._element.map(cart => (
+            // eslint-disable-next-line
+            <li className="dropdown-item cart-selection-item" key={cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')} onClick={() => this.addToSelectedCart(cart._additemstocartform[0].self.uri)}>
+              {cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  }
+
   render() {
     const {
-      productData, addToCartFailedMessage, isLoading, itemQuantity, addToCartModalOpened, multiCartData, itemConfiguration,
+      productData, addToCartFailedMessage, isLoading, itemQuantity, multiCartData, addToCartLoading,
     } = this.state;
-    const { featuredProductAttribute, itemDetailLink, onReloadPage } = this.props;
+    const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
 
@@ -694,7 +734,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
               </div>
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData) { this.handleModalOpen(event); } else { this.addToCart(event); } }}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData && multiCartData._carts) { event.preventDefault(); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
                     <div className="form-group">
@@ -717,16 +757,41 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                       }
                     </div>
                     <div className="form-group-submit">
-                      <div className="form-content form-content-submit col-sm-offset-4">
-                        <button
-                          className="ep-btn primary wide btn-itemdetail-addtocart"
-                          disabled={!availability || !productData._addtocartform}
-                          id="product_display_item_add_to_cart_button"
-                          type="submit"
-                        >
-                          {intl.get('add-to-cart')}
-                        </button>
-                      </div>
+                      {multiCartData && multiCartData._carts ? (
+                        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
+                          <button
+                            className="ep-btn primary wide btn-itemdetail-addtocart dropdown-toggle"
+                            data-toggle="dropdown"
+                            disabled={!availability || !productData._addtocartform}
+                            id="product_display_item_add_to_cart_button"
+                            type="submit"
+                          >
+                            {addToCartLoading ? (
+                              <span className="miniLoader" />
+                            ) : (
+                              <span>
+                                {intl.get('add-to-cart')}
+                              </span>
+                            )}
+                          </button>
+                          <div className="dropdown-menu cart-selection-list">
+                            {this.dropdownCartSelection()}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="form-content form-content-submit col-sm-offset-4">
+                          <button
+                            className="ep-btn primary wide btn-itemdetail-addtocart"
+                            disabled={!availability || !productData._addtocartform}
+                            id="product_display_item_add_to_cart_button"
+                            type="submit"
+                          >
+                            <span>
+                              {intl.get('add-to-cart')}
+                            </span>
+                          </button>
+                        </div>
+                      )}
                     </div>
 
                     <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
@@ -825,9 +890,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />
-          {multiCartData && (
-            <CartCreate handleModalClose={this.handleModalClose} openModal={addToCartModalOpened} productData={productData} itemQuantity={itemQuantity} itemConfiguration={itemConfiguration} onReloadPage={onReloadPage} />
-          )}
         </div>
       );
     }

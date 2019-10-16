@@ -70,6 +70,34 @@
     text-transform: capitalize;
     font-size: 14px;
     width: 100%;
+
+    &:focus {
+      outline: 0 auto transparent;
+    }
+
+    &:after {
+      right: 15px;
+      position: absolute;
+      top: 24px;
+    }
+  }
+  .form-content-submit.show {
+    .btn-itemdetail-addtocart{
+        background-color: @mainBackgroundColor;
+        color: @firstComplimentColor;
+        border: 1px solid @firstComplimentColor;
+    }
+  }
+  .btn-itemdetail-addtocart {
+    .miniLoader {
+      width: 20px;
+      height: 20px !important;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+      border-width: 2px;
+      border-top-width: 2px;
+    }
   }
 
   .itemdetail-details {
@@ -118,6 +146,30 @@
         color: #8a8a8a;
         font-weight: 500;
         text-transform: uppercase;
+      }
+
+      .cart-selection-list {
+        width: 100%;
+        border: 1px solid @firstComplimentColor;
+        border-radius: 0;
+        margin-top: -1px;
+        padding: 0;
+
+        .cart-selection-item {
+          text-align: center;
+          font-size: 14px;
+          padding: 10px;
+
+          &:hover {
+            cursor: pointer;
+            color: @firstComplimentColor;
+            background-color: #F2F6FA;
+          }
+        }
+      }
+
+      .cart-selection-dropdown {
+        margin-bottom: 0;
       }
 
       .form-group {
@@ -386,7 +438,7 @@
       }
       &:checked {
         +label {
-          border-color: @mainBackgroundColor;
+          //border-color: @mainBackgroundColor;
         }
       }
     }
@@ -396,7 +448,7 @@
     display: none;
 
     +label {
-      color: gray;
+      color: @mainTextColor;
       padding: 10px 15px;
       box-sizing: border-box;
       position: relative;
@@ -410,9 +462,11 @@
     }
     &:checked {
       +label {
-        color: @mainTextColor;
-        border-color: @mainTextColor;
-        box-shadow: 0 0 0 1px black;
+        color: @firstComplimentColor;
+        border-color: @firstComplimentColor;
+        background-color: #F2F6FA;
+        font-weight: bold;
+        //box-shadow: 0 0 0 1px @firstComplimentColor;
         z-index: 1;
       }
     }
