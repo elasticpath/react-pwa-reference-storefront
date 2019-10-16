@@ -183,12 +183,16 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
                 isLoading: false,
                 cartData: res._defaultcart[0],
               });
-              const quantityKey = 'cart-total-quantity';
-              const count = localStorage.getItem(quantityKey) || '0';
-              if (Number(count) < quantity) {
+              const user = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || 'anonymous';
+              const quantityKey = `${Config.cortexApi.scope}_cartItemsCount`;
+              const stringCartsItemsCount = localStorage.getItem(quantityKey);
+              const cartsItemsCount = stringCartsItemsCount && JSON.parse(stringCartsItemsCount);
+              const userCartCount = cartsItemsCount && cartsItemsCount[user];
+
+              if (cartsItemsCount && userCartCount < quantity) {
                 this.handleMultiCartModalOpen();
               }
-              localStorage.setItem('cart-total-quantity', quantity);
+              localStorage.setItem(quantityKey, JSON.stringify({ ...cartsItemsCount, [user]: quantity }));
             } else {
               this.setState({
                 cartData: res._defaultcart[0],
@@ -338,14 +342,9 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
                   </div>
                 ) : (
                   <div className={`cart-link-container multi-cart-dropdown dropdown ${multiCartModalOpened ? 'show' : ''}`}>
-                    <button className={`cart-link dropdown-toggle ${multiCartModalOpened ? 'modal-arrow' : ''}`} id="header_navbar_loggedIn_button" type="button" data-toggle="dropdown">
-                      {cartData && totalQuantity !== 0 && !isLoading && (
-                        <span className="cart-link-counter">
-                          {totalQuantity}
-                        </span>
-                      )}
+                    <Link className={`cart-link ${multiCartModalOpened ? 'modal-arrow' : ''}`} to={appHeaderLinks.myCart}>
                       {intl.get('shopping-cart-nav')}
-                    </button>
+                    </Link>
                     <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${multiCartModalOpened ? 'show' : ''}`}>
                       <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={totalQuantity} handleMultiCartModalClose={this.handleMultiCartModalClose} />
                     </div>
@@ -417,7 +416,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
                 <div data-toggle="collapse" data-target=".collapsable-container">
                   {intl.get('shopping-cart-nav')}
                   <div className="cart-link-counter-container">
-                    {cartData && totalQuantity !== 0 && !isLoading && (
+                    {cartData && totalQuantity !== 0 && !isLoading && !multiCartData && (
                       <span className="cart-link-counter">
                         {totalQuantity}
                       </span>

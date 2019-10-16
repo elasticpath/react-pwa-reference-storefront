@@ -189,6 +189,7 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
       localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
       localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_cartItemsCount`);
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console

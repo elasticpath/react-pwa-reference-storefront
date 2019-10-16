@@ -60,35 +60,31 @@ const zoomArray = [
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen',
   'defaultcart:lineitems:element:item:definition:options:element:selector:choice:description',
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
-];
-
-const multiCartZoomArray = [
-  'element',
-  'element:total',
-  'element:discount',
-  'element:descriptor',
-  'element:appliedpromotions:element',
-  'element:order:couponinfo:coupon',
-  'element:order:couponinfo:couponform',
-  'element:lineitems:element',
-  'element:lineitems:element:total',
-  'element:lineitems:element:price',
-  'element:lineitems:element:availability',
-  'element:lineitems:element:appliedpromotions',
-  'element:lineitems:element:appliedpromotions:element',
-  'element:lineitems:element:item',
-  'element:lineitems:element:item:code',
-  'element:lineitems:element:item:definition',
-  'element:lineitems:element:item:definition:item',
-  'element:lineitems:element:item:definition:details',
-  'element:lineitems:element:dependentoptions:element:definition',
-  'element:lineitems:element:dependentlineitems:element:item:definition',
-  'element:lineitems:element:item:definition:options:element',
-  'element:lineitems:element:item:definition:options:element:value',
-  'element:lineitems:element:item:definition:options:element:selector:choice',
-  'element:lineitems:element:item:definition:options:element:selector:chosen',
-  'element:lineitems:element:item:definition:options:element:selector:choice:description',
-  'element:lineitems:element:item:definition:options:element:selector:chosen:description',
+  'carts',
+  'carts:element',
+  'carts:element:total',
+  'carts:element:discount',
+  'carts:element:descriptor',
+  'carts:element:appliedpromotions:element',
+  'carts:element:order:couponinfo:coupon',
+  'carts:element:order:couponinfo:couponform',
+  'carts:element:lineitems:element',
+  'carts:element:lineitems:element:total',
+  'carts:element:lineitems:element:price',
+  'carts:element:lineitems:element:availability',
+  'carts:element:lineitems:element:appliedpromotions',
+  'carts:element:lineitems:element:appliedpromotions:element',
+  'carts:element:lineitems:element:item',
+  'carts:element:lineitems:element:item:code',
+  'carts:element:lineitems:element:item:definition',
+  'carts:element:lineitems:element:item:definition:item',
+  'carts:element:lineitems:element:item:definition:details',
+  'carts:element:lineitems:element:dependentoptions:element:definition',
+  'carts:element:lineitems:element:dependentlineitems:element:item:definition',
+  'carts:element:lineitems:element:item:definition:options:element',
+  'carts:element:lineitems:element:item:definition:options:element:value',
+  'carts:element:lineitems:element:item:definition:options:element:selector:choice',
+  'carts:element:lineitems:element:item:definition:options:element:selector:chosen',
 ];
 
 interface CartPageState {
@@ -129,53 +125,32 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   fetchCartData() {
     login().then(() => {
-      cortexFetch('/', {
+      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
-      }).then(res => res.json())
-        .then((root) => {
-          if (root.links.find(link => link.rel === 'carts')) {
-            cortexFetch(`/carts/${Config.cortexApi.scope}?zoom=${multiCartZoomArray.sort().join()}`, {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-              },
-            })
-              .then(res => res.json())
-              .then((res) => {
-                const defaultCart = res._element.find(cart => cart._descriptor[0].default === 'true');
-                this.setState({
-                  cartsData: res,
-                  cartData: defaultCart,
-                  isLoading: false,
-                  multiCartsAvailable: true,
-                });
-              })
-              .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
+      })
+        .then(res => res.json())
+        .then((res) => {
+          if (res._carts) {
+            const defaultCart = res._carts[0]._element.find(cart => cart._descriptor[0].default === 'true');
+            this.setState({
+              cartsData: res._carts[0],
+              cartData: defaultCart,
+              isLoading: false,
+              multiCartsAvailable: true,
+            });
           } else {
-            cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-              },
-            })
-              .then(res => res.json())
-              .then((res) => {
-                this.setState({
-                  cartData: res._defaultcart[0],
-                  isLoading: false,
-                });
-              })
-              .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
+            this.setState({
+              cartData: res._defaultcart[0],
+              isLoading: false,
+            });
           }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
         });
     });
   }
@@ -268,9 +243,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       cartData, cartsData, isLoading, openModal, multiCartsAvailable,
     } = this.state;
     const itemDetailLink = '/itemdetail';
-    // eslint-disable-next-line no-debugger
-    console.warn(cartData, cartData && JSON.parse(cartData._descriptor[0].default));
-    const cartName = cartData && cartData._descriptor[0].default !== 'true' ? cartData._descriptor[0].name : intl.get('default');
+    const cartName = cartData && cartData._descriptor && cartData._descriptor[0].default !== 'true' ? cartData._descriptor[0].name : intl.get('default');
     return (
       <div className="cart-container container">
         <div className="cart-container-inner">
@@ -278,7 +251,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             <div className="cart-title-wrap">
               {cartData && !isLoading && (
                 <h1 className="view-title">
-                  {`${cartName} ${intl.get('cart')}`}
+                  {multiCartsAvailable ? `${cartName} ${intl.get('cart')}` : `${intl.get('shopping-cart')} (${cartData['total-quantity']})`}
                 </h1>
               )}
               {cartsData && !isLoading && multiCartsAvailable && (
