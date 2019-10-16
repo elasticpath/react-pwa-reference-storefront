@@ -117,6 +117,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleCartSelect = this.handleCartSelect.bind(this);
+    this.handleCartElementSelect = this.handleCartElementSelect.bind(this);
   }
 
   componentDidMount() {
@@ -263,13 +264,16 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.setState({ cartData });
   }
 
+  handleCartElementSelect(index) {
+    const { cartsData } = this.state;
+    this.setState({ cartData: cartsData._element[index] });
+  }
+
   render() {
     const {
       cartData, cartsData, isLoading, openModal, multiCartsAvailable,
     } = this.state;
     const itemDetailLink = '/itemdetail';
-    // eslint-disable-next-line no-debugger
-    console.warn(cartData, cartData && JSON.parse(cartData._descriptor[0].default));
     const cartName = cartData && cartData._descriptor[0].default !== 'true' ? cartData._descriptor[0].name : intl.get('default');
     return (
       <div className="cart-container container">
@@ -284,7 +288,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
               {cartsData && !isLoading && multiCartsAvailable && (
                 <div className="cart-create-btn-wrap">
                   <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>{intl.get('change')}</button>
-                  <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} />
+                  <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} handleCartElementSelect={this.handleCartElementSelect} />
                 </div>
               )}
             </div>

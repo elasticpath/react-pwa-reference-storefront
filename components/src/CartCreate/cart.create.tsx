@@ -41,12 +41,9 @@ let intl = { get: str => str };
 
 interface CartCreateProps {
   handleModalClose: (...args: any[]) => any,
-  addToCartAction?: (...args: any[]) => any,
-  onReloadPage?: (...args: any[]) => any,
   handleCartsUpdate?: (...args: any[]) => any,
+  handleCartElementSelect?: (...args: any[]) => any,
   openModal: boolean,
-  itemQuantity?: number,
-  itemConfiguration?: any,
 }
 interface CartCreateState {
   cartElements: any,
@@ -58,12 +55,8 @@ interface CartCreateState {
 
 class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   static defaultProps = {
-    onAcceptDataPolicy: () => {},
-    addToCartAction: () => {},
-    onReloadPage: () => {},
     handleCartsUpdate: () => {},
-    itemQuantity: 0,
-    itemConfiguration: {},
+    handleCartElementSelect: () => {},
   };
 
   constructor(props) {
@@ -184,7 +177,10 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   handleCartSelect(el, index) {
+    const { handleCartElementSelect, handleModalClose } = this.props;
     this.setState({ selectedElement: index });
+    handleCartElementSelect(index);
+    handleModalClose();
   }
 
   renderCartItems() {
