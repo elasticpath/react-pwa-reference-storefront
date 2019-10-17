@@ -335,7 +335,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
                 {!multiCartData ? (
                   <div className="cart-link-container">
                     <Link className="cart-link" to={appHeaderLinks.myCart}>
-                      <CartIcon className="bag-icon" />
+                      <CartIcon className="cart-icon" />
                       {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
                       <span className="cart-link-counter">
                         {cartData['total-quantity']}
@@ -347,7 +347,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
                 ) : (
                   <div className={`cart-link-container multi-cart-dropdown dropdown ${multiCartModalOpened ? 'show' : ''}`}>
                     <Link className={`cart-link ${multiCartModalOpened ? 'modal-arrow' : ''}`} to={appHeaderLinks.myCart}>
-                      <CartIcon className="bag-icon" />
+                      <CartIcon className="cart-icon" />
                       {intl.get('shopping-cart-nav')}
                     </Link>
                     <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${multiCartModalOpened ? 'show' : ''}`}>
