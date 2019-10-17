@@ -42,7 +42,7 @@
 
   .create-cart-btn {
     min-height: 44px;
-    background: #F2F6FA;
+    background: @thirdComplimentBackground;
 
     @media screen and (min-width: 681px) {
       min-width: 315px;
@@ -56,7 +56,7 @@
     [class*=styles_closeIcon] {
       height: 24px;
       width: 24px;
-      fill: #565656;
+      fill: @thirdComplimentTextColor;
     }
   }
 
@@ -65,7 +65,7 @@
       display: block;
       font-size: 12px;
       font-weight: 600;
-      color: #777777;
+      color: @firstComplimentTextColor;
       margin-bottom: 2px;
       text-align: left;
     }
@@ -75,7 +75,7 @@
       width: 100%;
       padding: 0 30px 0 15px;
       border: 1px solid @firstBorderColor;
-      color: #1F2532;
+      color: @fourthComplimentTextColor;
       border-radius: 4px;
 
       &:focus {
@@ -103,12 +103,12 @@
     }
 
     .clear-field-btn {
-      background: #DBDBDB;
+      background: @forthComplimentBackground;
       top: auto;
       bottom: 7px;
 
       &:hover {
-        background: #c5c5c5;
+        background: @fifthComplimentBackground;
       }
     }
 
@@ -334,7 +334,7 @@
 
     &.selected {
       border-color: @thirdComplimentColor;
-      background-color: #F2F6FA;
+      background-color: @thirdComplimentBackground;
     }
   }
 }
