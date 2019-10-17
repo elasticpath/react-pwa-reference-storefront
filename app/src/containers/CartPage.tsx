@@ -186,7 +186,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     }
     return (
       (!cartData || isLoading) && (
-        <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+        <div className="loader-container">
           <div className="loader" />
         </div>
       )

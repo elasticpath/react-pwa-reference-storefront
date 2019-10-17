@@ -30,7 +30,7 @@ import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
 import CartPopUp from '../CartPopUp/cartpopup';
 import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg';
-import { ReactComponent as BagIcon } from '../../../app/src/images/header-icons/bag-icon.svg';
+import { ReactComponent as CartIcon } from '../../../app/src/images/header-icons/cart-icon.svg';
 import { ReactComponent as BulkCart } from '../../../app/src/images/header-icons/bulk-cart.svg';
 
 import { cortexFetch } from '../utils/Cortex';
@@ -334,19 +334,20 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
               <div>
                 {!multiCartData ? (
                   <div className="cart-link-container">
-                    <Link className="cart-link" to={appHeaderLinks.myBag}>
-                      <BagIcon className="bag-icon" />
+                    <Link className="cart-link" to={appHeaderLinks.myCart}>
+                      <CartIcon className="bag-icon" />
                       {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
                       <span className="cart-link-counter">
                         {cartData['total-quantity']}
                       </span>
                       )}
-                      {intl.get('shopping-bag-nav')}
+                      {intl.get('shopping-cart-nav')}
                     </Link>
                   </div>
                 ) : (
                   <div className={`cart-link-container multi-cart-dropdown dropdown ${multiCartModalOpened ? 'show' : ''}`}>
                     <Link className={`cart-link ${multiCartModalOpened ? 'modal-arrow' : ''}`} to={appHeaderLinks.myCart}>
+                      <CartIcon className="bag-icon" />
                       {intl.get('shopping-cart-nav')}
                     </Link>
                     <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${multiCartModalOpened ? 'show' : ''}`}>
