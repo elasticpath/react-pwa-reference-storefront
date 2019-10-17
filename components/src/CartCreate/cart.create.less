@@ -139,6 +139,7 @@
       position: static;
       width: 100%;
       transform: none;
+      padding: 0;
     }
   }
 }
@@ -212,9 +213,9 @@
       background: @mainBackgroundColor;
       z-index: 1;
       width: ~'calc(100vw - 6.8rem)';
-      padding: 30px 0;
 
       @media screen and (min-width: 481px) {
+        padding: 30px 0;
         right: 0;
       }
 
@@ -287,6 +288,10 @@
       text-align: right;
       @media screen and (min-width: 481px) {
         white-space: nowrap;
+      }
+
+      @media (min-width: @mobileWidth) {
+        margin-right: 20px;
       }
 
       .ep-btn {

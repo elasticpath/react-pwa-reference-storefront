@@ -333,7 +333,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
               </h2>
             </div>
             <div className="modal-body">
-              {createCartForm.lenght > 0 && (
+              {createCartForm.length > 0 && (
                 <div className="create-cart-btn-wrap">
                   { showAddNewCartForm ? (
                     this.renderAddNewCartForm()
