@@ -1,7 +1,19 @@
 @import './../../../app/src/theme/common.less';
 
 .top-header {
-  display: none;
+  .top-container, .locale-container, .top-container-menu {
+    display: none;
+  }
+  .top-container-impersonation {
+    height: 100%;
+    background-color: #8b1e24;
+    .impersonation-notification {
+      text-align: center;
+      color: @mainNavigationColor;
+      padding: 2px 0;
+      font-weight: 700;
+    }
+  }
 }
 
 @media screen and (min-width: @tabletWidth) {
@@ -10,13 +22,14 @@
     width: 100%;
     height: 45px;
     border-bottom: fade(@mainColor, 70%) solid 1px;
-    display: block;
 
     .top-container {
+      display: block;
       height: 100%;
       background-color: @mainColor;
     }
     .locale-container {
+      display: block;
       position: absolute;
       margin-top: 12px;
       margin-left: 35px;
@@ -25,7 +38,13 @@
           font-size: 12px;
         }
     }
+    .top-container-impersonation {
+      .impersonation-notification {
+        padding-top: 12px;
+      }
+    }
     .top-container-menu {
+      display: block;
       position: absolute;
       right: 30px;
       top: 12px;
@@ -42,7 +61,7 @@
 
         a {
           opacity:0.7;
-          color: @mainNavigationTextColor;
+          color: @mainNavigationColor;
           text-decoration: none;
         }
         :hover {

@@ -30,6 +30,9 @@ import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
 import CartPopUp from '../CartPopUp/cartpopup';
 import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg';
+import { ReactComponent as BagIcon } from '../../../app/src/images/header-icons/bag-icon.svg';
+import { ReactComponent as BulkCart } from '../../../app/src/images/header-icons/bulk-cart.svg';
+
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 
@@ -331,13 +334,14 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
               <div>
                 {!multiCartData ? (
                   <div className="cart-link-container">
-                    <Link className="cart-link" to={appHeaderLinks.myCart}>
-                      {cartData && totalQuantity !== 0 && !isLoading && (
+                    <Link className="cart-link" to={appHeaderLinks.myBag}>
+                      <BagIcon className="bag-icon" />
+                      {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
                       <span className="cart-link-counter">
-                        {totalQuantity}
+                        {cartData['total-quantity']}
                       </span>
                       )}
-                      {intl.get('shopping-cart-nav')}
+                      {intl.get('shopping-bag-nav')}
                     </Link>
                   </div>
                 ) : (
@@ -354,7 +358,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
             )}
             {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
               <div className="bulk-container">
-                <button type="button" className="bulk-button" onClick={() => { this.openModal(); }} />
+                <BulkCart className="bulk-button" onClick={() => { this.openModal(); }} />
               </div>
             )}
           </div>

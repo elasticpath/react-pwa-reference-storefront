@@ -335,5 +335,6 @@
   "manage-carts": "Manage Carts",
   "create-new-cart": "Create New Cart",
   "cart": "Cart",
-  "change": "Change"
+  "change": "Change",
+  "shopper-impersonation-message": "Shopping on behalf of: "
 }

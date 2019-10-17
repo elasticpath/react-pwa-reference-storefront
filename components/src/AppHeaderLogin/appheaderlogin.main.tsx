@@ -21,11 +21,15 @@
 
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import queryString from 'query-string';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
 import AppModalCartSelectMain from '../AppModalCartSelect/appmodalcartselect.main';
-import { login, logout } from '../utils/AuthService';
+import {
+  login, logout, getAccessToken,
+} from '../utils/AuthService';
 import { cortexFetch, adminFetch } from '../utils/Cortex';
+import { ReactComponent as AccountIcon } from '../../../app/src/images/header-icons/account-icon.svg';
 
 import './appheaderlogin.main.less';
 
@@ -88,7 +92,14 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
     }
 
     componentDidMount() {
-      if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
+      const { locationSearchData } = this.props;
+      const url = locationSearchData;
+      const params = queryString.parse(url);
+      if (params.userId && params.role && params.token) {
+        this.impersonate(params);
+      } else if (params.role && params.token) {
+        this.logoutRegisteredUser();
+      } else if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
         this.handleCartModalOpen();
         this.getAccountData();
       }
@@ -140,6 +151,21 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
       });
     }
 
+    impersonate(params) {
+      const { onLogin } = this.props;
+      logout().then(() => {
+        login().then(() => {
+          getAccessToken(params.token).then((res) => {
+            localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${res['access-token']}`);
+            localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, params.role);
+            localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserId`, params.userId);
+            localStorage.setItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`, params.token);
+            onLogin();
+          });
+        });
+      });
+    }
+
     fetchPasswordResetData() {
       cortexFetch(`/?zoom=${zoomArray.join()}`,
         {
@@ -173,7 +199,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
         keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
-      const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`);
+      const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
 
       if (isLoggedIn) {
         return (
@@ -184,7 +210,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                   ? (
                     intl.get('account-logged-in')
                   ) : (
-                    <span className="icon" />
+                    <AccountIcon className="account-icon" />
                   )}
               </button>
               <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">

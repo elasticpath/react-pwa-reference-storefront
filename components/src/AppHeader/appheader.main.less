@@ -23,7 +23,9 @@
 
 .app-header {
   z-index: 5;
-
+  .bag-icon {
+    fill: @mainNavigationColor;
+  }
   .main-container {
     position: relative;
     min-height: 60px;
@@ -91,10 +93,8 @@
           position: relative;
           display: block;
           width: 23px;
-          padding: 10px;
           height: 21px;
-          background: #ffffff00 url('@{imgComponentUrl}/header-icons/cart-icon.svg') no-repeat 0px;
-          background-position: center top;
+          background: #ffffff00 url('@{imgComponentUrl}/header-icons/cart-icon.svg') no-repeat center top;
           line-height: 0;
           font-size: 0;
           border: none;
@@ -113,10 +113,11 @@
         padding-right: 8px;
 
         .bulk-button {
+          fill: @mainNavigationColor;
           border: none;
           width: 25px;
           height: 21px;
-          background: #ffffff00 url('@{imgComponentUrl}/header-icons/bulk-cart.svg') no-repeat center center;
+          cursor: pointer;
         }
       }
     }

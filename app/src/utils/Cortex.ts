@@ -29,6 +29,12 @@ export function cortexFetch(input, init): any {
 
   if (requestInit && requestInit.headers) {
     requestInit.headers['x-ep-user-traits'] = `LOCALE=${UserPrefs.getSelectedLocaleValue()}, CURRENCY=${UserPrefs.getSelectedCurrencyValue()}`;
+    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`) && localStorage.getItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`)) {
+      requestInit.headers['x-ep-user-id'] = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
+      requestInit.headers['x-ep-impersonation-token'] = localStorage.getItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
+      requestInit.headers['x-ep-user-roles'] = localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`);
+      requestInit.headers['x-ep-user-scopes'] = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
+    }
   }
 
   if (Config.enableOfflineMode) {
@@ -55,7 +61,10 @@ export function cortexFetch(input, init): any {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserId`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
         window.location.pathname = '/';
+        window.location.reload();
       }
       if (res.status >= 500) {
         if (window.location.href.indexOf('/maintenance') === -1) {

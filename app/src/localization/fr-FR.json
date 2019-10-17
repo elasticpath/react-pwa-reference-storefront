@@ -336,5 +336,6 @@
   "manage-carts": "M-a-n-a-g-e- -C-a-r-t-s",
   "create-new-cart": "C-r-e-a-t-e- -N-e-w- -C-a-r-t",
   "cart": "C-a-r-t",
-  "change": "C-h-a-n-g-e"
+  "change": "C-h-a-n-g-e",
+  "shopper-impersonation-message": "S-h-o-p-p-i-n-g- -o-n- -b-e-h-a-l-f- -o-f-:- "
 }
