@@ -531,7 +531,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._dependentoptions && item._dependentoptions[0] && (item._dependentoptions[0]._element || item._dependentlineitems[0]._element)) ? (
+        {((item._dependentoptions && item._dependentoptions[0] && item._dependentoptions[0]._element) || (item._dependentlineitems && item._dependentlineitems[0] && item._dependentlineitems[0]._element)) ? (
           <div className="configure-btn-col">
             <button className="ep-btn primary small btn-cart-configureBundle" type="button" onClick={() => this.handleModalOpen()}>
               <span className="btn-text">

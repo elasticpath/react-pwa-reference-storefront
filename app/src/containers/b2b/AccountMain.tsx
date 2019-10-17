@@ -34,11 +34,13 @@ import * as Config from '../../ep.config.json';
 import './AccountMain.less';
 
 const accountZoomArray = [
+  'accountmetadata',
   'selfsignupinfo',
   'statusinfo',
   'statusinfo:status',
   'subaccounts',
   'subaccounts:element',
+  'subaccounts:element:accountmetadata',
   'subaccounts:element:subaccounts',
   'subaccounts:element:subaccounts:element',
   'subaccounts:element:statusinfo',
@@ -108,12 +110,14 @@ interface AccountMainState {
   isAddAssociateOpen: boolean,
   addAssociateUri: string,
   addSubAccountUri: string,
+  addSubAccountSellerAdmin: boolean,
   editSubAccountUri: string,
+  editMetadataUri: string,
   subAccounts: any,
 }
 
 interface AccountMainRouterProps {
-  url: string;
+  uri: string;
 }
 
 export default class AccountMain extends React.Component<RouteComponentProps<AccountMainRouterProps>, AccountMainState> {
@@ -139,7 +143,9 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
       associateEditEmail: '',
       addAssociateUri: '',
       addSubAccountUri: '',
+      addSubAccountSellerAdmin: false,
       editSubAccountUri: '',
+      editMetadataUri: '',
       subAccounts: {},
     };
 
@@ -161,7 +167,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
 
   getAccountData() {
     const { match } = this.props;
-    const accountUri = match.params.url;
+    const accountUri = match.params.uri;
     this.setState({ isLoading: true });
     login().then(() => {
       const profilePromice = adminFetch('/?zoom=myprofile:primaryemail', {
@@ -186,17 +192,19 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
           this.setState({
             accountName: accounts.name,
             mainAccountName: accounts.name,
-            externalId: accounts['external-id'],
+            externalId: accounts._accountmetadata ? accounts._accountmetadata[0]['external-id'] : null,
             registrationNumber: accounts['registration-id'],
             isLoading: false,
             legalName: accounts['legal-name'],
             associates: accounts._associateroleassignments[0]._element ? accounts._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0] })) : [],
             status: accounts._statusinfo[0]._status[0].status,
             editSubAccountUri: accounts.self.uri,
+            editMetadataUri: accounts._accountmetadata ? accounts._accountmetadata[0].self.uri : null,
             selfSignUpCode: accounts._selfsignupinfo ? accounts._selfsignupinfo[0]['self-signup-code'] : '',
             userEmail: profile._myprofile[0]._primaryemail[0].email,
             addAssociateUri: accounts._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
             addSubAccountUri: accounts._subaccounts[0]._accountform[0].self.uri,
+            addSubAccountSellerAdmin: typeof accounts._subaccounts[0]._accountform[0]['external-id'] !== 'undefined',
             subAccounts: accounts._subaccounts[0],
           });
         })
@@ -212,13 +220,15 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
   subAccountData(data) {
     this.setState({
       accountName: data.name,
-      externalId: data['external-id'],
+      externalId: data._accountmetadata ? data._accountmetadata[0]['external-id'] : null,
       registrationNumber: data['registration-id'],
       legalName: data['legal-name'],
       associates: data._associateroleassignments[0]._element ? data._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0] })) : [],
       addAssociateUri: data._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
       addSubAccountUri: data._subaccounts[0]._accountform[0].self.uri,
+      addSubAccountSellerAdmin: typeof data._subaccounts[0]._accountform[0]['external-id'] !== 'undefined',
       editSubAccountUri: data.self.uri,
+      editMetadataUri: data._accountmetadata ? data._accountmetadata[0].self.uri : null,
     });
   }
 
@@ -270,7 +280,9 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
       userEmail,
       addAssociateUri,
       addSubAccountUri,
+      addSubAccountSellerAdmin,
       editSubAccountUri,
+      editMetadataUri,
       isAddAssociateOpen,
       subAccounts,
       mainAccountName,
@@ -322,6 +334,14 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
               </div>
             </div>
             <div className="account-component">
+              <AccountList
+                getAccountData={this.getAccountData}
+                accountListData={accountListData}
+                getSubAccountData={this.subAccountData}
+                handleAddSubAccountClicked={this.handleAddSubAccountClicked}
+                accountName={accountName}
+                registrationNumber={registrationNumber}
+              />
               <div className="associates-container">
                 <div className="add-associate-container">
                   <button type="button" className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
@@ -378,6 +398,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 isOpen={isSettingsDialogOpen}
                 accountData={editAccountData}
                 editSubAccountUri={editSubAccountUri}
+                editMetadataUri={editMetadataUri}
               />
               <EditAssociate
                 handleClose={this.isEditAssociateClose}
@@ -396,6 +417,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 handleUpdate={this.handleAccountSettingsUpdate}
                 isOpen={isAddSubAccountOpen}
                 addSubAccountUri={addSubAccountUri}
+                addSubAccountSellerAdmin={addSubAccountSellerAdmin}
               />
             </div>
           </div>

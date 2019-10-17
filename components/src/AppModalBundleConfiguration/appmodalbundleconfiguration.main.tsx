@@ -105,9 +105,7 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
 
   componentDidUpdate(prevProps) {
     const { bundleConfigurationItems } = this.props;
-    if (JSON.stringify(bundleConfigurationItems) !== JSON.stringify(prevProps.bundleConfigurationItems)) {
-      this.fetchDependantItemData(bundleConfigurationItems);
-    }
+    this.fetchDependantItemData(bundleConfigurationItems);
   }
 
   fetchDependantItemData(bundleConfigurationItems) {
@@ -216,6 +214,7 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
                         onRemove={this.handleRemove}
                         onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
                         onMoveToCart={this.handleMoveToCart}
+                        itemDetailLink={itemDetailLink}
                       />
                     ))}
                   </div>
