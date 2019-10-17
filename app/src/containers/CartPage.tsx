@@ -94,6 +94,7 @@ interface CartPageState {
   invalidPermission: boolean,
   multiCartsAvailable: boolean,
   openModal: boolean,
+  selectedCartNumber: number,
 }
 
 class CartPage extends React.Component<RouteComponentProps, CartPageState> {
@@ -106,6 +107,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       multiCartsAvailable: false,
       invalidPermission: false,
       openModal: false,
+      selectedCartNumber: -1,
     };
     this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
     this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
@@ -125,6 +127,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
   }
 
   fetchCartData() {
+    const { selectedCartNumber } = this.state;
     login().then(() => {
       cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
         headers: {
@@ -135,7 +138,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
         .then(res => res.json())
         .then((res) => {
           if (res._carts) {
-            const defaultCart = res._carts[0]._element.find(cart => cart._descriptor[0].default === 'true');
+            const defaultCart = selectedCartNumber >= 0 ? res._carts[0]._element[selectedCartNumber] : res._carts[0]._element.find(cart => cart._descriptor[0].default === 'true');
             this.setState({
               cartsData: res._carts[0],
               cartData: defaultCart,
@@ -241,7 +244,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   handleCartElementSelect(index) {
     const { cartsData } = this.state;
-    this.setState({ cartData: cartsData._element[index] });
+    this.setState({ cartData: cartsData._element[index], selectedCartNumber: index });
   }
 
   render() {
