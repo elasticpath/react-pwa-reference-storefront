@@ -28,8 +28,9 @@ import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
 import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
+import CartPopUp from '../CartPopUp/cartpopup';
 import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg';
-import { ReactComponent as BagIcon } from '../../../app/src/images/header-icons/bag-icon.svg';
+import { ReactComponent as CartIcon } from '../../../app/src/images/header-icons/cart-icon.svg';
 import { ReactComponent as BulkCart } from '../../../app/src/images/header-icons/bulk-cart.svg';
 
 import { cortexFetch } from '../utils/Cortex';
@@ -40,6 +41,13 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
+
+const zoomArray = [
+  'defaultcart',
+  'defaultcart:additemstocartform',
+  'carts',
+  'carts:element',
+];
 
 const headerLogoFileName = 'Company-Logo-v2.svg';
 interface AppHeaderMainProps {
@@ -76,14 +84,13 @@ interface AppHeaderMainState {
     isOffline: boolean,
     isSearchFocused: boolean,
     isBulkModalOpened: boolean,
+    multiCartModalOpened: boolean,
+    multiCartData: any,
     isDesktop: boolean,
     isLoggedInUser: boolean,
+    totalQuantity: number,
+    itemsAddedCount: number,
 }
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'defaultcart',
-  'defaultcart:additemstocartform',
-];
 
 class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainState> {
   static defaultProps = {
@@ -110,16 +117,22 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
     Config = epConfig.config;
     ({ intl } = epConfig);
     this.state = {
+      totalQuantity: 0,
       cartData: undefined,
       isLoading: true,
       isOffline: false,
       isSearchFocused: false,
       isBulkModalOpened: false,
+      multiCartModalOpened: false,
+      multiCartData: undefined,
       isDesktop: false,
       isLoggedInUser: localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED',
+      itemsAddedCount: 0,
     };
 
     this.handleBulkModalClose = this.handleBulkModalClose.bind(this);
+    this.handleMultiCartModalOpen = this.handleMultiCartModalOpen.bind(this);
+    this.handleMultiCartModalClose = this.handleMultiCartModalClose.bind(this);
     this.updatePredicate = this.updatePredicate.bind(this);
   }
 
@@ -166,10 +179,34 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
         .then(res => res.json())
         .then((res) => {
           if (res && res._defaultcart) {
-            this.setState({
-              cartData: res._defaultcart[0],
-              isLoading: false,
-            });
+            let quantity;
+            if (res._carts) {
+              quantity = res._carts[0]._element.reduce((accumulator, currentValue) => accumulator + currentValue['total-quantity'], 0);
+              const user = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || 'anonymous';
+              const quantityKey = `${Config.cortexApi.scope}_cartItemsCount`;
+              const stringCartsItemsCount = localStorage.getItem(quantityKey);
+              const cartsItemsCount = stringCartsItemsCount && JSON.parse(stringCartsItemsCount);
+              const userCartCount = cartsItemsCount && cartsItemsCount[user];
+
+              this.setState({
+                totalQuantity: quantity,
+                multiCartData: res._carts[0],
+                isLoading: false,
+                cartData: res._defaultcart[0],
+                itemsAddedCount: quantity - userCartCount,
+              });
+
+              if (cartsItemsCount && userCartCount < quantity) {
+                this.handleMultiCartModalOpen();
+              }
+              localStorage.setItem(quantityKey, JSON.stringify({ ...cartsItemsCount, [user]: quantity }));
+            } else {
+              this.setState({
+                cartData: res._defaultcart[0],
+                totalQuantity: res._defaultcart[0]['total-quantity'],
+                isLoading: false,
+              });
+            }
           } else {
             this.setState({
               isLoading: false,
@@ -188,6 +225,23 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
     onGoBack();
   }
 
+  handleMultiCartModalOpen() {
+    this.setState({
+      multiCartModalOpened: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        multiCartModalOpened: false,
+      });
+    }, 5000);
+  }
+
+  handleMultiCartModalClose() {
+    this.setState({
+      multiCartModalOpened: false,
+    });
+  }
+
   openModal() {
     const { isBulkModalOpened } = this.state;
     this.setState({
@@ -203,7 +257,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
   render() {
     const {
-      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop, isLoggedInUser,
+      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop, isLoggedInUser, multiCartModalOpened, multiCartData, totalQuantity, itemsAddedCount,
     } = this.state;
     const {
       checkedLocation,
@@ -222,6 +276,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
       appModalLoginLinks,
     } = this.props;
     const availability = Boolean(cartData);
+
     return [
       <header key="app-header" className="app-header">
         <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
@@ -280,16 +335,30 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
             </div>
 
             {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
-              <div className="cart-link-container">
-                <Link className="cart-link" to={appHeaderLinks.myBag}>
-                  <BagIcon className="bag-icon" />
-                  {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
-                    <span className="cart-link-counter">
-                      {cartData['total-quantity']}
-                    </span>
-                  )}
-                  {intl.get('shopping-bag-nav')}
-                </Link>
+              <div>
+                {!multiCartData ? (
+                  <div className="cart-link-container">
+                    <Link className="cart-link" to={appHeaderLinks.myCart}>
+                      <CartIcon className="cart-icon" />
+                      {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                      <span className="cart-link-counter">
+                        {cartData['total-quantity']}
+                      </span>
+                      )}
+                      {intl.get('shopping-cart-nav')}
+                    </Link>
+                  </div>
+                ) : (
+                  <div className={`cart-link-container multi-cart-dropdown dropdown ${multiCartModalOpened ? 'show' : ''}`}>
+                    <Link className={`cart-link ${multiCartModalOpened ? 'modal-arrow' : ''}`} to={appHeaderLinks.myCart}>
+                      <CartIcon className="cart-icon" />
+                      {intl.get('shopping-cart-nav')}
+                    </Link>
+                    <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${multiCartModalOpened ? 'show' : ''}`}>
+                      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={this.handleMultiCartModalClose} />
+                    </div>
+                  </div>
+                )}
               </div>
             )}
             {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
@@ -351,14 +420,14 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
             <div className="mobile-cart-link-container">
               <Link
                 className="cart-link"
-                to={appHeaderLinks.myBag}
+                to={appHeaderLinks.myCart}
               >
                 <div data-toggle="collapse" data-target=".collapsable-container">
-                  {intl.get('shopping-bag-nav')}
+                  {intl.get('shopping-cart-nav')}
                   <div className="cart-link-counter-container">
-                    {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                    {cartData && totalQuantity !== 0 && !isLoading && !multiCartData && (
                       <span className="cart-link-counter">
-                        {cartData['total-quantity']}
+                        {totalQuantity}
                       </span>
                     )}
                   </div>

@@ -38,7 +38,7 @@ interface CartLineItemProps {
   handleQuantityChange: (...args: any[]) => any,
   handleErrorMessage?: (...args: any[]) => any,
   hideRemoveButton?: boolean,
-  hideAddToBagButton?: boolean,
+  hideAddToCartButton?: boolean,
   itemQuantity?: number,
   featuredProductAttribute?: boolean,
   onConfiguratorAddToCart?: (...args: any[]) => any,
@@ -58,7 +58,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
     hideRemoveButton: false,
     itemQuantity: 1,
     featuredProductAttribute: false,
-    hideAddToBagButton: false,
+    hideAddToCartButton: false,
     onConfiguratorAddToCart: () => { },
     onMoveToCart: () => { },
     onRemove: () => { },
@@ -292,7 +292,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       return bundleConfigs.map(config => (
         (config._item)
           ? (
-            <li className="bundle-configuration" key={config}>
+            <li className="bundle-configuration" key={config._item[0]._definition[0]['display-name']}>
               <label htmlFor="option-name" className="option-name">
                 {config._item[0]._definition[0]['display-name']}
                 &nbsp;
@@ -379,7 +379,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
       item,
       hideRemoveButton,
       featuredProductAttribute,
-      hideAddToBagButton,
+      hideAddToCartButton,
       itemDetailLink,
       onConfiguratorAddToCart,
       onRemove,
@@ -430,10 +430,19 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
             <img src={Config.skuImagesUrl.replace('%sku%', itemCodeString)} onError={(e) => { const element: any = e.target; element.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
           </Link>
         </div>
-        <div className="title-col" data-el-value="lineItem.displayName">
-          <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
-            {itemDisplayName}
-          </Link>
+        <div className="title-options-col">
+          <div className="title-col" data-el-value="lineItem.displayName">
+            <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
+              {itemDisplayName}
+            </Link>
+          </div>
+          <div className="options-col">
+            <ul className="options-container">
+              {this.renderOptions()}
+              {this.renderConfiguration()}
+              {this.renderBundleConfiguration()}
+            </ul>
+          </div>
         </div>
         {(item._appliedpromotions && item._appliedpromotions[0]._element)
           ? (
@@ -449,13 +458,6 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           )
           : ('')
         }
-        <div className="options-col">
-          <ul className="options-container">
-            {this.renderOptions()}
-            {this.renderConfiguration()}
-            {this.renderBundleConfiguration()}
-          </ul>
-        </div>
         <div className="availability-col" data-region="cartLineitemAvailabilityRegion">
           <ul className="availability-container">
             <li className="availability itemdetail-availability-state" data-i18n="AVAILABLE">
@@ -475,31 +477,33 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
             </li>
           </ul>
         </div>
-        <div className="unit-price-col" data-region="cartLineitemUnitPriceRegion">
-          <div>
-            <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
-              {this.renderUnitPrice()}
+        <div className="unit-total-price-col">
+          <div className="unit-price-col" data-region="cartLineitemUnitPriceRegion">
+            <div>
+              <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
+                {this.renderUnitPrice()}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
-          <div>
-            <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
-              {this.renderTotalPrice()}
+          <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
+            <div>
+              <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
+                {this.renderTotalPrice()}
+              </div>
+              <div data-region="itemTotalRateRegion" />
             </div>
-            <div data-region="itemTotalRateRegion" />
           </div>
         </div>
         <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
           {(quantity !== undefined) ? [
-            <span className="input-group-btn">
-              <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+            <span className="input-group-btn" key="quantity-buttons">
+              <button type="button" key="quantity-button-minus" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
                 <span className="glyphicon glyphicon-minus" />
               </button>
               <div className="quantity-col form-content form-content-quantity">
                 <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
               </div>
-              <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+              <button type="button" key="quantity-button-plus" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
                 <span className="glyphicon glyphicon-plus" />
               </button>
             </span>,
@@ -517,7 +521,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
           </div>
         ) : ('')
         }
-        {(item._addtocartform && !hideAddToBagButton) ? (
+        {(item._addtocartform && !hideAddToCartButton) ? (
           <div className="move-to-cart-btn-col">
             <button className="ep-btn primary small btn-cart-addToCart" type="button" onClick={this.handleConfiguratorAddToCartBtnClicked}>
               <span className="btn-text">

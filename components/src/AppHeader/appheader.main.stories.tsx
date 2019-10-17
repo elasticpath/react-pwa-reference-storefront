@@ -26,7 +26,7 @@ import AppHeaderMain from './appheader.main';
 
 const appHeaderLinks = {
   mainPage: '',
-  myBag: '',
+  myCart: '',
 };
 const appHeaderLoginLinks = {
   profile: '',

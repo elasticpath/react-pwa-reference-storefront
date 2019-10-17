@@ -22,7 +22,12 @@
 import React from 'react';
 import * as intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { CartMain, CheckoutSummaryList, AddPromotionContainer } from '@elasticpath/store-components';
+import {
+  CartMain,
+  CheckoutSummaryList,
+  AddPromotionContainer,
+  CartCreate,
+} from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -55,12 +60,41 @@ const zoomArray = [
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen',
   'defaultcart:lineitems:element:item:definition:options:element:selector:choice:description',
   'defaultcart:lineitems:element:item:definition:options:element:selector:chosen:description',
+  'carts',
+  'carts:element',
+  'carts:element:total',
+  'carts:element:discount',
+  'carts:element:descriptor',
+  'carts:element:appliedpromotions:element',
+  'carts:element:order:couponinfo:coupon',
+  'carts:element:order:couponinfo:couponform',
+  'carts:element:lineitems:element',
+  'carts:element:lineitems:element:total',
+  'carts:element:lineitems:element:price',
+  'carts:element:lineitems:element:availability',
+  'carts:element:lineitems:element:appliedpromotions',
+  'carts:element:lineitems:element:appliedpromotions:element',
+  'carts:element:lineitems:element:item',
+  'carts:element:lineitems:element:item:code',
+  'carts:element:lineitems:element:item:definition',
+  'carts:element:lineitems:element:item:definition:item',
+  'carts:element:lineitems:element:item:definition:details',
+  'carts:element:lineitems:element:dependentoptions:element:definition',
+  'carts:element:lineitems:element:dependentlineitems:element:item:definition',
+  'carts:element:lineitems:element:item:definition:options:element',
+  'carts:element:lineitems:element:item:definition:options:element:value',
+  'carts:element:lineitems:element:item:definition:options:element:selector:choice',
+  'carts:element:lineitems:element:item:definition:options:element:selector:chosen',
 ];
 
 interface CartPageState {
-    cartData: any,
-    isLoading: boolean,
-    invalidPermission: boolean,
+  cartData: any,
+  cartsData: any,
+  isLoading: boolean,
+  invalidPermission: boolean,
+  multiCartsAvailable: boolean,
+  openModal: boolean,
+  selectedCartNumber: number,
 }
 
 class CartPage extends React.Component<RouteComponentProps, CartPageState> {
@@ -68,12 +102,20 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     super(props);
     this.state = {
       cartData: undefined,
+      cartsData: undefined,
       isLoading: false,
+      multiCartsAvailable: false,
       invalidPermission: false,
+      openModal: false,
+      selectedCartNumber: -1,
     };
     this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
     this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
     this.handleItemRemove = this.handleItemRemove.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleCartSelect = this.handleCartSelect.bind(this);
+    this.handleCartElementSelect = this.handleCartElementSelect.bind(this);
   }
 
   componentDidMount() {
@@ -85,6 +127,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
   }
 
   fetchCartData() {
+    const { selectedCartNumber } = this.state;
     login().then(() => {
       cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
         headers: {
@@ -94,9 +137,13 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       })
         .then(res => res.json())
         .then((res) => {
-          if (!res._defaultcart) {
+          if (res._carts) {
+            const defaultCart = selectedCartNumber >= 0 ? res._carts[0]._element[selectedCartNumber] : res._carts[0]._element.find(cart => cart._descriptor[0].default === 'true');
             this.setState({
-              invalidPermission: true,
+              cartsData: res._carts[0],
+              cartData: defaultCart,
+              isLoading: false,
+              multiCartsAvailable: true,
             });
           } else {
             this.setState({
@@ -113,7 +160,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
   }
 
   handleQuantityChange() {
-    const { location, history } = this.props;
+    const { history } = this.props;
     this.setState({ isLoading: true });
     this.fetchCartData();
     history.push(window.location.pathname);
@@ -139,7 +186,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     }
     return (
       (!cartData || isLoading) && (
-        <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+        <div className="loader-container">
           <div className="loader" />
         </div>
       )
@@ -148,12 +195,12 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   handleItemConfiguratorAddToCart() {
     const { history } = this.props;
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   handleItemMoveToCart() {
     const { history } = this.props;
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   handleItemRemove() {
@@ -179,28 +226,48 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     return ('');
   }
 
+  handleModalOpen() {
+    this.setState({
+      openModal: true,
+    });
+  }
+
+  handleModalClose() {
+    this.setState({
+      openModal: false,
+    });
+  }
+
+  handleCartSelect(cartData) {
+    this.setState({ cartData });
+  }
+
+  handleCartElementSelect(index) {
+    const { cartsData } = this.state;
+    this.setState({ cartData: cartsData._element[index], selectedCartNumber: index });
+  }
+
   render() {
-    const { cartData, isLoading } = this.state;
+    const {
+      cartData, cartsData, isLoading, openModal, multiCartsAvailable,
+    } = this.state;
     const itemDetailLink = '/itemdetail';
+    const cartName = cartData && cartData._descriptor && cartData._descriptor[0].default !== 'true' ? cartData._descriptor[0].name : intl.get('default');
     return (
       <div className="cart-container container">
         <div className="cart-container-inner">
           <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
-            <div>
+            <div className="cart-title-wrap">
               {cartData && !isLoading && (
                 <h1 className="view-title">
-                  {intl.get('shopping-cart')}
-                  &nbsp;
-                  (
-                    {cartData['total-quantity']}
-                  )
+                  {multiCartsAvailable ? `${cartName} ${intl.get('cart')}` : `${intl.get('shopping-cart')} (${cartData['total-quantity']})`}
                 </h1>
               )}
-              {(!cartData || isLoading) && (
-                <h1 className="view-title">
-                  {intl.get('shopping-cart')}
-                  &nbsp;
-                </h1>
+              {cartsData && !isLoading && multiCartsAvailable && (
+                <div className="cart-create-btn-wrap">
+                  <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>{intl.get('change')}</button>
+                  <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} handleCartElementSelect={this.handleCartElementSelect} />
+                </div>
               )}
             </div>
           </div>
@@ -221,13 +288,22 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
               <div>
                 <div className="cart-sidebar-inner">
+                  <h2 className="cart-sidebar-title">
+                    {intl.get('order-summary')}
+                  </h2>
                   <div data-region="cartSummaryRegion" className="cart-summary-container" style={{ display: 'inline-block' }}>
-                    <AddPromotionContainer data={cartData} onSubmittedPromotion={() => { this.fetchCartData(); }} />
                     <CheckoutSummaryList data={cartData} onChange={() => { this.fetchCartData(); }} />
+                    <AddPromotionContainer data={cartData} onSubmittedPromotion={() => { this.fetchCartData(); }} />
+                  </div>
+                  <div className="estimated-total">
+                    <h2 className="cart-sidebar-title">{intl.get('estimated-total')}</h2>
+                    <h2 className="cart-sidebar-title">
+                      {cartData._total[0].cost[0].display}
+                    </h2>
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
                     <div>
-                      <button className="ep-btn primary wide btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
+                      <button className="ep-btn primary btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
                         {intl.get('proceed-to-checkout')}
                       </button>
                     </div>

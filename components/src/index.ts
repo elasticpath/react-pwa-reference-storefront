@@ -75,6 +75,8 @@ import SortProductMenuMain from './SortProductMenu/sortproductmenu.main';
 import WishListMain from './WishList/wishlist.main';
 import ChatComponent from './ChatBot/chatbot';
 import BarcodeScanner from './BarcodeScanner/barcodescanner';
+import CartCreate from './CartCreate/cart.create';
+import CartPopUp from './CartPopUp/cartpopup';
 
 export {
   init,
@@ -133,4 +135,6 @@ export {
   WishListMain,
   ChatComponent,
   BarcodeScanner,
+  CartCreate,
+  CartPopUp,
 };

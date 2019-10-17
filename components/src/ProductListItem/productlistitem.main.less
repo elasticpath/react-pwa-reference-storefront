@@ -116,15 +116,20 @@
       .itemdetail-availability-state {
         label {
           background-color: @mainBackgroundColor;
-          border-radius: 10px;
-          border: solid @mainColor;
-          border-width: 1px 1px;
-          color: @mainColor;
-          padding: 3px 10px;
+          border-radius: 12px;
+          border: 1px solid @firstBorderColor;
+          color: @firstComplimentTextColor;
+          padding: 4px 10px;
           font-size: 10px;
           text-transform: uppercase;
 
           .icon {
+            display: inline-block;
+            transform: rotate(45deg);
+            height: 10px;
+            width: 6px;
+            border-bottom: 2px solid @firstAccentColor;
+            border-right: 2px solid @firstAccentColor;
             margin-right: 6px;
           }
         }

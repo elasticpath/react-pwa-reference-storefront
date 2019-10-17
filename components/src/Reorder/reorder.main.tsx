@@ -163,7 +163,7 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
                       key={_code[0].code}
                       item={item._item[0]}
                       itemQuantity={quantity}
-                      hideAddToBagButton
+                      hideAddToCartButton
                       handleQuantityChange={() => { }}
                       hideRemoveButton
                       handleErrorMessage={(error) => { this.handleError(_code[0].code, error.message); }}

@@ -100,7 +100,7 @@ const appFooterLinks = {
 };
 const appHeaderLinks = {
   mainPage: '/',
-  myBag: '/mybag',
+  myCart: '/mycart',
 };
 const appHeaderLoginLinks = {
   profile: '/profile',

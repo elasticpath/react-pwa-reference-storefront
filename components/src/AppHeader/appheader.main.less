@@ -23,7 +23,7 @@
 
 .app-header {
   z-index: 5;
-  .bag-icon {
+  .cart-icon {
     fill: @mainNavigationColor;
   }
   .main-container {
@@ -94,10 +94,9 @@
           display: block;
           width: 23px;
           height: 21px;
-          background-position: center top;
           line-height: 0;
           font-size: 0;
-          background-size: cover;
+          border: none;
 
           .cart-link-counter {
             right: 0;
@@ -169,6 +168,23 @@
     top: 0;
     left: 0;
     font-weight: bold;
+  }
+
+  .multi-cart-dropdown.show {
+    .cart-link {
+      &:before {
+        content: '';
+        position: absolute;
+        top: 26px;
+        right: 7px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid @mainBackgroundColor;
+        z-index: 10;
+      }
+    }
   }
 
   .collapsable-container {
@@ -310,6 +326,7 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        z-index: 1;
       }
 
       .search-container {
@@ -364,6 +381,14 @@
     }
   }
   .collapse:not(.show) {
+    display: none;
+  }
+}
+
+.multi-cart-dropdown .multi-cart-container {
+  z-index: 5;
+  margin-top: 13px;
+  &.hide {
     display: none;
   }
 }

@@ -129,12 +129,12 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
 
   handleItemConfiguratorAddToCart() {
     const { history } = this.props;
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   handleItemMoveToCart() {
     const { history } = this.props;
-    history.push('/mybag');
+    history.push('/mycart');
   }
 
   handleItemRemove() {

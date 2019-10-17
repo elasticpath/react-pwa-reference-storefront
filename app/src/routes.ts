@@ -51,7 +51,7 @@ const router = [{
   exact: true,
   component: HomePage,
 }, {
-  path: '/mybag',
+  path: '/mycart',
   component: CartPage,
 }, {
   path: '/category',

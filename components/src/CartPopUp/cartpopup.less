@@ -19,26 +19,44 @@
  *
  */
 
- @import './../../../app/src/theme/common.less';
+@import './../../../app/src/theme/common.less';
 
-.add-promotion-container {
-  .btn-add-promotion{
-    text-transform: uppercase;
-    margin: 5px 0;
-    text-shadow: none;
-    color: @secondComplimentColor;
-    background-color: @mainBackgroundColor;
-    border: solid 1px @secondComplimentColor;
-    text-align: middle;
-    white-space: nowrap;
-    min-width: 120px;
-    height: 30px;
-    font-size: 12px;
-    font-weight: bold;
+.cart-nav-container {
+  width: 240px;
+  background-color: @mainBackgroundColor;
+  padding: 12px;
+  &.dropdown-menu {
+    padding: 10px;
+  }
+  .multi-cart-menu {
+    color: @mainTextColor;
+    padding: 5px;
+    position: relative;
+  }
+}
 
-    &:hover {
-      background-color: @secondComplimentColor;
-      color: @mainBackgroundColor;
-    }
+.checkout-btn-container {
+  width: 100%;
+  text-align: center;
+}
+
+.checkout-btn {
+  width: 100%;
+
+  .link-to-cart {
+    text-decoration: none;
+    color: @mainNavigationColor;
+  }
+  &.ep-btn {
+    margin-right: 0;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+}
+
+@media (max-width: @mobileWidth - 1px) {
+  .cart-nav-container {
+    right: 50%;
+    transform: translateX(50%);
   }
 }

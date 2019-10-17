@@ -1,0 +1,341 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../app/src/theme/common.less';
+
+.cart-create-modal {
+  min-width: ~'calc(100vw - 4.8rem)';
+
+  @media (min-width: @mobileWidth) {
+    min-width: 700px;
+  }
+
+  .modal-content {
+    border: none;
+
+    @media (min-width: @mobileWidth) {
+      padding: 0 15px;
+    }
+  }
+
+  .ep-btn {
+    text-transform: none;
+  }
+
+  .create-cart-btn {
+    min-height: 44px;
+    background: @thirdComplimentBackground;
+
+    @media screen and (min-width: 681px) {
+      min-width: 315px;
+    }
+  }
+
+  + button[class*=styles_closeButton] {
+    top: 22px;
+    right: 22px;
+    cursor: pointer;
+    [class*=styles_closeIcon] {
+      height: 24px;
+      width: 24px;
+      fill: @thirdComplimentTextColor;
+    }
+  }
+
+  .edit-mode-form {
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: @firstComplimentTextColor;
+      margin-bottom: 2px;
+      text-align: left;
+    }
+
+    .cart-edit-field {
+      height: 34px;
+      width: 100%;
+      padding: 0 30px 0 15px;
+      border: 1px solid @firstBorderColor;
+      color: @fourthComplimentTextColor;
+      border-radius: 4px;
+
+      &:focus {
+        border-color: rgba(0,153,222,0.5);
+        box-shadow: 1px 1px 2px 0 rgba(0,153,222,0.12);
+        outline: 0 auto transparent;
+      }
+
+      &-wrap {
+        position: relative;
+        width: 100%;
+        display: inline-block;
+        margin-bottom: 10px;
+
+        @media screen and (min-width: 481px) {
+          flex-grow: 1;
+          margin-bottom: 0;
+        }
+
+        @media screen and (min-width: 681px) {
+          width: 316px;
+          flex-grow: 0;
+        }
+      }
+    }
+
+    .clear-field-btn {
+      background: @forthComplimentBackground;
+      top: auto;
+      bottom: 7px;
+
+      &:hover {
+        background: @fifthComplimentBackground;
+      }
+    }
+
+    @media screen and (min-width: 481px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+}
+
+.create-cart-btn-wrap {
+  padding: 5px 0 15px;
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0 20px;
+  }
+
+  .carts-list-item {
+    display: block;
+    height: auto;
+    padding: 0;
+
+    .edit-mode {
+      position: static;
+      width: 100%;
+      transform: none;
+      padding: 0;
+    }
+  }
+}
+
+.carts-list {
+  display: table;
+  width: 100%;
+  border-top: 1px solid @secondBorderColor;
+
+  &-wrap {
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 10px 0 10px;
+    }
+  }
+
+  &-item {
+    display: grid;
+    position: relative;
+    padding: 15px;
+    border-bottom: 1px solid @secondBorderColor;
+
+    &.edit-mode-state {
+      height: 160px;
+    }
+
+    @media screen and (min-width: 481px) {
+      display: table-row;
+      height: 53px;
+      margin-bottom: 8px;
+      border-bottom: none;
+
+      &.edit-mode-state {
+        height: 115px;
+      }
+    }
+
+    .cart-info {
+      position: relative;
+
+      @media screen and (min-width: 481px) {
+        display: table-cell;
+        padding: 0 5px;
+        vertical-align: middle;
+        border-bottom: 1px solid @secondBorderColor;
+      }
+
+      @media (min-width: @mobileWidth) {
+        padding: 0 15px;
+      }
+    }
+
+    h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: @thirdComplimentColor;
+    }
+
+    p {
+      line-height: 16px;
+    }
+
+    .edit-mode {
+      position: absolute;
+      right: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: @mainBackgroundColor;
+      z-index: 1;
+      width: ~'calc(100vw - 6.8rem)';
+
+      @media screen and (min-width: 481px) {
+        padding: 30px 0;
+        right: 0;
+      }
+
+      @media (min-width: @mobileWidth) {
+        width: ~'calc(700px - 2rem - 30px)';
+      }
+    }
+
+    .cart-quantity {
+      grid-row: ~"2 / 3";
+      grid-column: ~"1 / 2";
+    }
+
+    .cart-price {
+      margin: 0;
+      grid-row: ~"3 / 4";
+      grid-column: ~"1 / 2";
+    }
+
+    .action-btn {
+      text-align: right;
+      grid-row: ~"2 / 3";
+      grid-column: ~"2 / 3";
+    }
+
+    .cart-editing-btn {
+      position: relative;
+
+      .ep-btn {
+        height: auto;
+        width: auto;
+        font-weight: 600;
+        min-height: 0;
+        line-height: 20px;
+        padding: 0;
+        min-width: 0;
+        border: none;
+        background: transparent;
+
+        &:hover {
+          color: @firstComplimentColor;
+          text-decoration: underline;
+          background-color: transparent;
+        }
+      }
+
+      .delete-btn {
+        display: none;
+        margin: 0 10px 0 0;
+
+        +.edit-btn {
+          position: relative;
+          margin: 0 0 0 10px;
+
+          &:before {
+            display: none;
+            content: '';
+            height: 14px;
+            width: 2px;
+            border-left: 2px solid @secondBorderColor;
+            position: absolute;
+            top: 2px;
+            left: -11px;
+          }
+        }
+      }
+    }
+
+    .btn-container {
+      text-align: right;
+      @media screen and (min-width: 481px) {
+        white-space: nowrap;
+      }
+
+      @media (min-width: @mobileWidth) {
+        margin-right: 20px;
+      }
+
+      .ep-btn {
+        width: 100%;
+        min-height: 34px;
+
+        @media screen and (min-width: 481px) {
+          width: 120px;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+      }
+
+      .cancel-btn {
+        @media screen and (min-width: 481px) {
+          border-color: transparent;
+        }
+      }
+
+      .save-btn {
+        margin-right: 0;
+
+        &:focus {
+          outline: 0 auto transparent;
+        }
+      }
+    }
+
+    .loader-wrapper {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(255,255,255,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &.selected {
+      border-color: @thirdComplimentColor;
+      background-color: @thirdComplimentBackground;
+    }
+  }
+}
+
