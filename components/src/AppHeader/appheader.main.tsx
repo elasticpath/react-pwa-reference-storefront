@@ -89,6 +89,7 @@ interface AppHeaderMainState {
     isDesktop: boolean,
     isLoggedInUser: boolean,
     totalQuantity: number,
+    itemsAddedCount: number,
 }
 
 class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainState> {
@@ -126,6 +127,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
       multiCartData: undefined,
       isDesktop: false,
       isLoggedInUser: localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED',
+      itemsAddedCount: 0,
     };
 
     this.handleBulkModalClose = this.handleBulkModalClose.bind(this);
@@ -180,17 +182,19 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
             let quantity;
             if (res._carts) {
               quantity = res._carts[0]._element.reduce((accumulator, currentValue) => accumulator + currentValue['total-quantity'], 0);
-              this.setState({
-                totalQuantity: quantity,
-                multiCartData: res._carts[0],
-                isLoading: false,
-                cartData: res._defaultcart[0],
-              });
               const user = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || 'anonymous';
               const quantityKey = `${Config.cortexApi.scope}_cartItemsCount`;
               const stringCartsItemsCount = localStorage.getItem(quantityKey);
               const cartsItemsCount = stringCartsItemsCount && JSON.parse(stringCartsItemsCount);
               const userCartCount = cartsItemsCount && cartsItemsCount[user];
+
+              this.setState({
+                totalQuantity: quantity,
+                multiCartData: res._carts[0],
+                isLoading: false,
+                cartData: res._defaultcart[0],
+                itemsAddedCount: quantity - userCartCount,
+              });
 
               if (cartsItemsCount && userCartCount < quantity) {
                 this.handleMultiCartModalOpen();
@@ -253,7 +257,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
 
   render() {
     const {
-      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop, isLoggedInUser, multiCartModalOpened, multiCartData, totalQuantity,
+      isOffline, cartData, isLoading, isSearchFocused, isBulkModalOpened, isDesktop, isLoggedInUser, multiCartModalOpened, multiCartData, totalQuantity, itemsAddedCount,
     } = this.state;
     const {
       checkedLocation,
@@ -351,7 +355,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
                       {intl.get('shopping-cart-nav')}
                     </Link>
                     <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${multiCartModalOpened ? 'show' : ''}`}>
-                      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={totalQuantity} handleMultiCartModalClose={this.handleMultiCartModalClose} />
+                      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={this.handleMultiCartModalClose} />
                     </div>
                   </div>
                 )}
