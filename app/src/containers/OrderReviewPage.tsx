@@ -176,75 +176,84 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
     const { orderData } = this.state;
     const { history } = this.props;
     const purchaseform = orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri;
-    login().then(() => {
-      cortexFetch(`${purchaseform}?followlocation=true&zoom=${purchaseZoomArray.sort().join()}`, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
-          this.giftCertificatesAddToCart();
-          this.trackTransactionAnalytics();
-          history.push('/purchaseReceipt', { data: res });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-  }
-
-  giftCertificatesAddToCart() {
-    const { giftCertificateEntity } = this.state;
-    giftCertificateEntity.forEach((card) => {
-      login()
-        .then(() => {
-          cortexFetch(card.links[0].uri,
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-              },
-            })
+    this.giftCertificatesAddToCart()
+      .then(() => {
+        login().then(() => {
+          cortexFetch(`${purchaseform}?followlocation=true&zoom=${purchaseZoomArray.sort().join()}`, {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+          })
             .then(res => res.json())
             .then((res) => {
-              cortexFetch(`${res.links[0].uri}?followlocation=true`,
-                {
-                  method: 'post',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                  },
-                  body: JSON.stringify({}),
-                })
-                .then(() => {
-                  this.setState({
-                    isLoading: false,
-                  });
-                  localStorage.removeItem('chosenGiftCertificatesArr');
-                  const giftCertificatesCode = JSON.parse(localStorage.getItem('giftCertificatesCodeArr'));
-                  const filteredGiftCertificatesCode = giftCertificatesCode.filter(el => el !== card.code);
-                  if (!(card.balance > 0)) {
-                    localStorage.setItem('giftCertificatesCodeArr', JSON.stringify(filteredGiftCertificatesCode));
-                  }
-                })
-                .catch((error) => {
-                  // eslint-disable-next-line no-console
-                  console.error(error.message);
-                });
+              this.setState({
+                isLoading: false,
+              });
+              this.trackTransactionAnalytics();
+              history.push('/purchaseReceipt', { data: res });
             })
             .catch((error) => {
               // eslint-disable-next-line no-console
               console.error(error.message);
             });
         });
+      });
+  }
+
+  giftCertificatesAddToCart() {
+    const { giftCertificateEntity } = this.state;
+    const cards = [];
+    giftCertificateEntity.forEach((card) => {
+      cards.push(new Promise(((resolve, reject) => {
+        login()
+          .then(() => {
+            cortexFetch(card.links[0].uri,
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                },
+              })
+              .then(res => res.json())
+              .then((res) => {
+                cortexFetch(`${res.links[0].uri}?followlocation=true`,
+                  {
+                    method: 'post',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                    },
+                    body: JSON.stringify({}),
+                  })
+                  .then(() => {
+                    this.setState({
+                      isLoading: false,
+                    });
+                    localStorage.removeItem('chosenGiftCertificatesArr');
+                    const giftCertificatesCode = JSON.parse(localStorage.getItem('giftCertificatesCodeArr'));
+                    const filteredGiftCertificatesCode = giftCertificatesCode.filter(el => el !== card.code);
+                    if (!(card.balance > 0)) {
+                      localStorage.setItem('giftCertificatesCodeArr', JSON.stringify(filteredGiftCertificatesCode));
+                    }
+                    resolve();
+                  })
+                  .catch((error) => {
+                    // eslint-disable-next-line no-console
+                    console.error(error.message);
+                    reject(error);
+                  });
+              })
+              .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
+                reject(error);
+              });
+          });
+      })));
     });
+    return Promise.all(cards);
   }
 
   goToCheckOut() {
