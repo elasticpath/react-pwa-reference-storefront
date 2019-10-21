@@ -67,7 +67,8 @@ class GiftcertificateFormMain extends React.Component<GiftcertificateFormMainPro
   }
 
   componentDidMount() {
-    const savedGiftCertificates = JSON.parse(localStorage.getItem('giftCertificatesCodeArr')) || [];
+    const savedGiftCertificates = (localStorage.getItem('giftCertificatesCodeArr') !== null && localStorage.getItem('giftCertificatesCodeArr') !== '')
+      ? JSON.parse(localStorage.getItem('giftCertificatesCodeArr')) : [];
     localStorage.removeItem('chosenGiftCertificatesArr');
     savedGiftCertificates.forEach((el) => {
       login().then(() => {
