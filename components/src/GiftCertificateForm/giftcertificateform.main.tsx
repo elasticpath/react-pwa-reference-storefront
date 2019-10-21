@@ -85,12 +85,16 @@ class GiftcertificateFormMain extends React.Component<GiftcertificateFormMainPro
           })
           .then(res => res.json())
           .then((res) => {
-            if (res.code) {
+            if (res.code && res.balance > 0) {
               const data = { ...res, isChecked: false };
               this.setState(prevState => ({
                 giftCertificateEntity: [...prevState.giftCertificateEntity, data],
                 giftCertificatesCodeArr: [...prevState.giftCertificatesCodeArr, data.code],
               }));
+            } else {
+              const giftCertificatesCode = JSON.parse(localStorage.getItem('giftCertificatesCodeArr'));
+              const filteredGiftCertificatesCode = giftCertificatesCode.filter(element => element !== res.code);
+              localStorage.setItem('giftCertificatesCodeArr', JSON.stringify(filteredGiftCertificatesCode));
             }
           })
           .catch((error) => {
