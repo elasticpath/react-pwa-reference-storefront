@@ -2,15 +2,21 @@ import { configure } from '@storybook/react';
 import { init } from '@elasticpath/store-components';
 import epConfig from '../../app/src/ep.config';
 import intl from 'react-intl-universal';
-// import { themes } from '@storybook/theming';
+import { addParameters } from '@storybook/react';
+import { themes } from '@storybook/theming';
+import elasticpath from './elasticpath';
 
 // addParameters({
 // 	options: {
-// 		// theme: themes.dark
+// 		theme: themes.dark
 // 	}
 // });
 
-
+addParameters({
+  options: {
+    theme: elasticpath,
+  },
+});
 
 const locales = {};
 epConfig.supportedLocales.forEach((locale) => {

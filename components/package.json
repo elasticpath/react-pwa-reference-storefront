@@ -19,7 +19,7 @@
     "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
-    "@storybook/react": "^5.2.1",
+    "@storybook/react": "^5.2.4",
     "babel-loader": "^8.0.6",
     "declaration-bundler-webpack-plugin": "^1.0.3",
     "quagga": "^0.12.1",
