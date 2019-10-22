@@ -43,12 +43,7 @@ const carouselBaner4FileName = 'baner_4.jpg';
 
 const carouselBanerNameArray = [carouselBaner1FileName, carouselBaner2FileName, carouselBaner3FileName, carouselBaner4FileName];
 
-interface CarouselProps {
-    carouselLink?: string,
-}
-
-const Carousel: React.FunctionComponent<CarouselProps> = (props) => {
-  const { carouselLink } = props;
+const Carousel: React.FunctionComponent = () => {
   const epConfig = getConfig();
   Config = epConfig.config;
   ({ intl } = epConfig);
@@ -81,9 +76,6 @@ const Carousel: React.FunctionComponent<CarouselProps> = (props) => {
           <br />
           {intl.get('home-carousel-txt3')}
         </h2>
-        <Link to={carouselLink} className="ep-btn">
-          {intl.get('home-carousel-btn')}
-        </Link>
       </div>
       <Slider {...settings}>
         <div>
@@ -129,10 +121,6 @@ const Carousel: React.FunctionComponent<CarouselProps> = (props) => {
       </Slider>
     </div>
   );
-};
-
-Carousel.defaultProps = {
-  carouselLink: '',
 };
 
 export default Carousel;
