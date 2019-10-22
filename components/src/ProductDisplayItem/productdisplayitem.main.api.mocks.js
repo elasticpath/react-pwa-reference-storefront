@@ -23,7 +23,7 @@ import itemLookupFormResponse from './MockHttpResponses/GET/itemLookupForm_respo
 import itemLookupPlainResponse from './MockHttpResponses/POST/itemLookupPlain_response.json';
 import itemLookupColorAndSizeResponse from './MockHttpResponses/POST/itemLookupColorAndSize_response.json';
 import itemLookupInputResponse from './MockHttpResponses/POST/itemLookupInput_response.json';
-import itemLookupMultiCartResponse from './MockHttpResponses/GET/itemLookupMultiCart_response.json';
+import itemLookupMultiCartResponse from '../CommonMockHttpResponses/itemLookupMultiCart_response.json';
 import yellowMultiSkuSelectionResponse from './MockHttpResponses/POST/yellowMultiSkuSelection_response.json';
 import blackMultiSkuSelectionResponse from './MockHttpResponses/POST/blackMultiSkuSelection_response.json';
 import largeMultiSkuSelectionResponse from './MockHttpResponses/POST/largeMultiSkuSelection_response.json';

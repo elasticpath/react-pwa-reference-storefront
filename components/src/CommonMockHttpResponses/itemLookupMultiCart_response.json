@@ -92,6 +92,24 @@
           "href": "https://ep.anewman.multicart.epcloudops.com/cortex/carts/mobee/form"
         }
       ],
+      "_createcartform": [
+        {
+          "self": {
+            "type": "carts.create-cart-form",
+            "uri": "/carts/mobee/form",
+            "href": "https://ep.anewman.multicart.epcloudops.com/cortex/carts/mobee/form"
+          },
+          "messages": [ ],
+          "links": [
+            {
+              "rel": "createcartaction",
+              "type": "carts.create-cart-form",
+              "href": "https://ep.anewman.multicart.epcloudops.com/cortex/carts/mobee/form"
+            }
+          ],
+          "name": ""
+        }
+      ],
       "_element": [
         {
           "self": {
@@ -147,6 +165,24 @@
               "messages": [],
               "links": [],
               "name": "My favorite cart"
+            }
+          ],
+          "_total": [
+            {
+              "self": {
+                "type": "totals.cart-total",
+                "uri": "/totals/carts/mobee/gi2gimzsgiygellemyzweljumnswgllcmq2tkllcgbtdayjxmvqtsnbxgq=",
+                "href": "https://ep.anewman.multicart.epcloudops.com/cortex/totals/carts/mobee/gi2gimzsgiygellemyzweljumnswgllcmq2tkllcgbtdayjxmvqtsnbxgq="
+              },
+              "messages": [ ],
+              "links": [ ],
+              "cost": [
+                {
+                  "amount": 1556.08,
+                  "currency": "CAD",
+                  "display": "$1556.08"
+                }
+              ]
             }
           ],
           "_additemstocartform": [
@@ -239,6 +275,24 @@
               "name": "Default"
             }
           ],
+          "_total": [
+            {
+              "self": {
+                "type": "totals.cart-total",
+                "uri": "/totals/carts/mobee/gyydgyrtmfsdiljrgrsdiljummzdcllbg5tgiljvgu3doobshezggztdgq=",
+                "href": "https://ep.anewman.multicart.epcloudops.com/cortex/totals/carts/mobee/gyydgyrtmfsdiljrgrsdiljummzdcllbg5tgiljvgu3doobshezggztdgq="
+              },
+              "messages": [ ],
+              "links": [ ],
+              "cost": [
+                {
+                  "amount": 76,
+                  "currency": "CAD",
+                  "display": "$76.00"
+                }
+              ]
+            }
+          ],
           "_additemstocartform": [
             {
               "self": {
@@ -329,6 +383,24 @@
               "name": "Default Cart"
             }
           ],
+          "_total": [
+            {
+              "self": {
+                "type": "totals.cart-total",
+                "uri": "/totals/carts/mobee/mfswmmtdgaytgljtmntdqljug44weljygyzgcljrgbrtqnzsmvrtezdfmm=",
+                "href": "https://ep.anewman.multicart.epcloudops.com/cortex/totals/carts/mobee/mfswmmtdgaytgljtmntdqljug44weljygyzgcljrgbrtqnzsmvrtezdfmm="
+              },
+              "messages": [ ],
+              "links": [ ],
+              "cost": [
+                {
+                  "amount": 575.99,
+                  "currency": "CAD",
+                  "display": "$575.99"
+                }
+              ]
+            }
+          ],
           "_additemstocartform": [
             {
               "self": {
@@ -417,6 +489,24 @@
               "messages": [],
               "links": [],
               "name": "My personal Cart"
+            }
+          ],
+          "_total": [
+            {
+              "self": {
+                "type": "totals.cart-total",
+                "uri": "/totals/carts/mobee/mu2dmm3dgazdoljvmu2daljumvqwkljymvqwmljrg43tomrygy4tkmtbmy=",
+                "href": "https://ep.anewman.multicart.epcloudops.com/cortex/totals/carts/mobee/mu2dmm3dgazdoljvmu2daljumvqwkljymvqwmljrg43tomrygy4tkmtbmy="
+              },
+              "messages": [ ],
+              "links": [ ],
+              "cost": [
+                {
+                  "amount": 853.99,
+                  "currency": "CAD",
+                  "display": "$853.99"
+                }
+              ]
             }
           ],
           "_additemstocartform": [

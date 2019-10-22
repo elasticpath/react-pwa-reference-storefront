@@ -32,7 +32,6 @@ import {
   mockProductDisplayItemMainInput,
   mockProductDisplayItemMainMultiCart,
 } from './productdisplayitem.main.api.mocks';
-import data from './MockHttpResponses/GET/itemLookupMultiCart_response.json';
 
 // Import custom required scripts
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -70,5 +69,5 @@ storiesOf('ProductDisplayItemMain', module)
   .add('ProductDisplayItemMain Multi-cart', () => {
     mockProductDisplayItemMainMultiCart();
 
-    return <ProductDisplayItemMain productId="83992" onAddToCart={dummyHandleAddToCart} data={data} />;
+    return <ProductDisplayItemMain productId="83992" onAddToCart={dummyHandleAddToCart} />;
   });
