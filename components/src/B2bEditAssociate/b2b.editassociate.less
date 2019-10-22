@@ -1,4 +1,4 @@
-@import './../../theme/common.less';
+@import '../../../app/src/theme/common.less';
 
 .dialog-header {
   flex: 0 0 auto;
@@ -92,7 +92,7 @@
 
 .input-error-icon{
   display: inline-block;
-  background: url('../@{imgUrl}/header-icons/baseline_error_24.png') no-repeat center center;
+  background: url('@{imgComponentUrl}/header-icons/baseline_error_24.png') no-repeat center center;
   pointer-events: visible;
   position: absolute;
   right: 5px;
@@ -149,6 +149,38 @@
     }
   }
 }
+
+.b2b-edit-associate-dialog{
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px;
+  @media (max-width: 575px) {
+    width: 100%;
+    min-height: 100%;
+    padding: 15px 20px;
+
+    .dialog-content {
+      padding: 15px 0;
+    }
+  }
+  .b2b-dialog-close-btn {
+    right: 20px;
+    opacity: 0.5;
+  }
+  .dialog-footer {
+    button {
+      @media (max-width: 575px) {
+        width: 100%;
+
+        &.cancel {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
 .loader-wrapper {
   height: 100%;
   width: 100%;

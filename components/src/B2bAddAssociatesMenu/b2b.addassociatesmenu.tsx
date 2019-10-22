@@ -20,24 +20,27 @@
  */
 
 import React from 'react';
-import intl from 'react-intl-universal';
-import './AddAssociatesMenu.less';
+import './b2b.addassociatesmenu.less';
+import { getConfig } from '../utils/ConfigProvider';
 
-interface AddAssociatesMenuProps {
+let intl = { get: str => str };
+
+interface B2bAddAssociatesMenuProps {
     onSpreeadsheetClicked?: (...args: any[]) => any,
 }
-interface AddAssociatesMenuState {
+interface B2bAddAssociatesMenuState {
     isOpen: boolean,
 }
 
-export default class AddAssociatesMenu extends React.Component<AddAssociatesMenuProps, AddAssociatesMenuState> {
+export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociatesMenuProps, B2bAddAssociatesMenuState> {
     static defaultProps = {
       onSpreeadsheetClicked: null,
     };
 
     constructor(props) {
       super(props);
-
+      const epConfig = getConfig();
+      ({ intl } = epConfig);
       this.state = {
         isOpen: false,
       };

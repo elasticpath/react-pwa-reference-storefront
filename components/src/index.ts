@@ -79,6 +79,8 @@ import CartCreate from './CartCreate/cart.create';
 import CartPopUp from './CartPopUp/cartpopup';
 import B2BAddSubAccount from './B2bAddSubAccount/b2b.addsubaccount';
 import B2BEditAccount from './B2bEditAccount/b2b.editaccount';
+import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
+import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
 
 export {
   init,
@@ -141,4 +143,6 @@ export {
   CartPopUp,
   B2BAddSubAccount,
   B2BEditAccount,
+  B2bAddAssociatesMenu,
+  B2bEditAssociate,
 };

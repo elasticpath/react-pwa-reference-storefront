@@ -22,9 +22,9 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
+import { B2bAddAssociatesMenu } from '@elasticpath/store-components';
 import SideMenu from './SideMenu';
 import RouteWithSubRoutes from '../../RouteWithSubRoutes';
-import AddAssociatesMenu from './AddAssociatesMenu';
 import './B2BMain.less';
 
 interface DashboardProps {
@@ -78,7 +78,7 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
           <div className="b2b-header">
             <div className="page-title">{intl.get('business-account')}</div>
             <div className="quick-menu">
-              {/* <AddAssociatesMenu onSpreeadsheetClicked={() => this.handleSpreeadsheetClicked()} /> */}
+              {/* <B2bAddAssociatesMenu onSpreeadsheetClicked={() => this.handleSpreeadsheetClicked()} /> */}
             </div>
           </div>
           <div className="b2b-central">
