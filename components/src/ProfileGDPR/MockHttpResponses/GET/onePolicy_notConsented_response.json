@@ -1,0 +1,42 @@
+{
+    "_data-policies": [
+      {
+        "_element": [
+          {
+            "self": {
+              "type": "datapolicies.data-policy",
+              "uri": "/datapolicies/vestri/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=",
+              "href": "http://reference.epdemos.com/cortex/datapolicies/vestri/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy="
+            },
+            "messages": [],
+            "links": [],
+            "_datapolicyconsentform": [
+              {
+                "self": {
+                  "type": "datapolicies.data-policy-consent-form",
+                  "uri": "/datapolicies/vestri/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=/form",
+                  "href": "http://reference.epdemos.com/cortex/datapolicies/vestri/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=/form"
+                },
+                "messages": [],
+                "links": [
+                  {
+                    "rel": "consentaction",
+                    "type": "datapolicies.data-policy-consent-form",
+                    "uri": "/datapolicies/vestri/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=/form",
+                    "href": "http://reference.epdemos.com/cortex/datapolicies/vestri/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=/form"
+                  }
+                ],
+                "data-policy-consent": "false",
+                "policy-name": "Marketing Contact Information",
+                "policy-reference-key": "DP12346"
+              }
+            ],
+            "data-policy-consent": "false",
+            "policy-name": "Marketing Contact Information",
+            "policy-reference-key": "DP12346"
+          }
+        ]
+      }
+    ]
+  }
+  
