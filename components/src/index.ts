@@ -77,6 +77,8 @@ import ChatComponent from './ChatBot/chatbot';
 import BarcodeScanner from './BarcodeScanner/barcodescanner';
 import CartCreate from './CartCreate/cart.create';
 import CartPopUp from './CartPopUp/cartpopup';
+import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
+import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
 
 export {
   init,
@@ -137,4 +139,6 @@ export {
   BarcodeScanner,
   CartCreate,
   CartPopUp,
+  B2bAddAssociatesMenu,
+  B2bEditAssociate,
 };
