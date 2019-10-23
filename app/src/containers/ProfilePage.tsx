@@ -243,7 +243,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
               {(Config.GDPR.enable) ? (
                 <div className="profile-info-container">
                   <h3 className="profile-info-container-title">
-                    {intl.get('payment')}
+                    {intl.get('gdpr')}
                   </h3>
                   <div className="profile-info-col">
                     <div className="profile-info-block">

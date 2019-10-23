@@ -126,7 +126,7 @@ class ProfileGDPRMain extends React.Component<ProfileGDPRMainProps, ProfileGDPRM
         <div className="dataPolicyRegions" data-region="dataPolicyRegions">
           <div>
             <h2>
-              Data Policies
+              {intl.get('data-policies')}
             </h2>
             {this.renderDataPolicies()}
           </div>
