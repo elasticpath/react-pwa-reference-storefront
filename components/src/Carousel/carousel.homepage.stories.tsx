@@ -26,10 +26,8 @@ import Carousel from './carousel.homepage';
 
 // Option defaults.
 
-const carouselLink = '';
-
 storiesOf('Carousel', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('Carousel', () => <Carousel carouselLink={carouselLink} />);
+  .add('Carousel', () => <Carousel />);
