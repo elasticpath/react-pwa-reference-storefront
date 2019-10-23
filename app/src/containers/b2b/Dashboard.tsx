@@ -199,46 +199,32 @@ export default class Dashboard extends React.Component<RouteComponentProps, Dash
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
             },
-            body: JSON.stringify({ keywords: searchAccounts, page: '1', 'page-size': '10' }),
           })
-            .then(res => res.json())
-            .then((res) => {
-              adminFetch(`${res.self.uri}?zoom=element,element:statusinfo:status`, {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-                },
-              })
-                .then(searchResult => searchResult.json())
-                .then((searchResult) => {
-                  if (searchResult && searchResult._element) {
-                    const accounts = searchResult._element.map((account) => {
-                      const uri = account.self.uri.split('/').pop();
-                      return {
-                        name: account.name,
-                        externalId: account._accountmetadata[0]['external-id'],
-                        status: account._statusinfo[0]._status[0].status.toLowerCase(),
-                        uri,
-                      };
-                    });
-                    let isSellerAdmin = false;
-                    if (res._accounts[0]._element[0]._accountmetadata) {
-                      isSellerAdmin = true;
-                    }
-                    this.setState({
-                      accounts,
-                      showSearchLoader: false,
-                      noSearchResults: false,
-                      isSellerAdmin,
-                    });
-                  } else {
-                    this.setState({ showSearchLoader: false, noSearchResults: true });
-                  }
-                })
-                .catch((error) => {
-                  // eslint-disable-next-line no-console
-                  console.error(error.message);
+            .then(searchResult => searchResult.json())
+            .then((searchResult) => {
+              if (searchResult && searchResult._element) {
+                const accounts = searchResult._element.map((account) => {
+                  const uri = account.self.uri.split('/').pop();
+                  return {
+                    name: account.name,
+                    externalId: account._accountmetadata ? account._accountmetadata[0]['external-id'] : null,
+                    status: account._statusinfo[0]._status[0].status.toLowerCase(),
+                    uri,
+                  };
                 });
+                let isSellerAdmin = false;
+                if (data._accounts && data._accounts[0]._element[0]._accountmetadata) {
+                  isSellerAdmin = true;
+                }
+                this.setState({
+                  accounts,
+                  showSearchLoader: false,
+                  noSearchResults: false,
+                  isSellerAdmin,
+                });
+              } else {
+                this.setState({ showSearchLoader: false, noSearchResults: true });
+              }
             })
             .catch((error) => {
               // eslint-disable-next-line no-console
