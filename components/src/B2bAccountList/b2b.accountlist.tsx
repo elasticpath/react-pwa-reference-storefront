@@ -22,11 +22,14 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import SubAccountList from './SubAccountList';
 
-import './AccountMain.less';
+import '../../../app/src/containers/b2b/AccountMain.less';
+import { ReactComponent as AddCircleIcon } from '@elasticpath/ref-store/src/images/icons/outline-add_circle_outline-14px.svg';
+import { ReactComponent as EnabledStatusIcon } from '@elasticpath/ref-store/src/images/icons/check-circle.svg';
+import { ReactComponent as DisabledStatusIcon } from '@elasticpath/ref-store/src/images/icons/remove-circle.svg';
+import B2bSubAccountList from '../B2bSubAccountList/b2b.subaccountlist';
 
-interface AccountMainProps {
+interface B2bAccountMainProps {
     getAccountData: () => void,
     getSubAccountData?: (data: any) => void,
     handleAddSubAccountClicked: () => void,
@@ -39,11 +42,11 @@ interface AccountMainProps {
     registrationNumber: string,
 }
 
-interface AccountMainState {
+interface B2bAccountMainState {
   showAccountsMobileMenu: boolean,
 }
 
-export default class AccountList extends React.Component<AccountMainProps, AccountMainState> {
+export default class B2bAccountList extends React.Component<B2bAccountMainProps, B2bAccountMainState> {
     static defaultProps = {
       getSubAccountData: () => {
       },
@@ -86,6 +89,7 @@ export default class AccountList extends React.Component<AccountMainProps, Accou
         accountListData,
         accountName,
         registrationNumber,
+        getSubAccountData,
       } = this.props;
 
       const { showAccountsMobileMenu } = this.state;
@@ -94,7 +98,7 @@ export default class AccountList extends React.Component<AccountMainProps, Accou
         <div key="account-tree-section" className="account-tree-section">
           <div className="add-new-account-container">
             <button type="button" className="ep-btn primary small add-associate-button" onClick={handleAddSubAccountClicked}>
-              <span className="add-associate-icon" />
+              <AddCircleIcon className="add-associate-icon" />
               {intl.get('add-sub-account')}
             </button>
           </div>
@@ -126,13 +130,13 @@ export default class AccountList extends React.Component<AccountMainProps, Accou
                 {accountListData.mainAccountName}
               </div>
               <span className="status">
-                <i className={`icons-status ${accountListData.status.toLowerCase()}`} />
+                {(accountListData.status.toLowerCase() === 'enabled') ? <EnabledStatusIcon className="icons-status" /> : <DisabledStatusIcon className="icons-status" /> }
                 {intl.get(accountListData.status.toLowerCase())}
               </span>
             </div>
             {(accountListData.subAccounts._element && accountListData.subAccounts._element.length > 0) ? (
               <div className="sub-account-list-container">
-                <SubAccountList getAccountData={this.handleAccount} subAccounts={accountListData.subAccounts} accountName={accountName} registrationNumber={registrationNumber} />
+                <B2bSubAccountList getAccountData={this.handleAccount} subAccounts={accountListData.subAccounts} accountName={accountName} registrationNumber={registrationNumber} />
               </div>
             ) : ''}
           </div>
