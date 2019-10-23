@@ -116,7 +116,7 @@
   }
 
   .unit-total-price-col {
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 2;
     .unit-price-col {
       text-align: right;
       .cart-unit-list-price {
@@ -142,6 +142,15 @@
     .ep-btn {
       margin: 0;
     }
+  }
+
+  .remove-btn-col {
+    grid-row: 4;
+  }
+
+  .move-to-cart-btn-col,
+  .configure-btn-col {
+    grid-row: 3;
   }
 
   th:last-child,
@@ -253,6 +262,12 @@
     .move-to-cart-btn-col,
     .configure-btn-col {
       grid-column: 1;
+    }
+
+    .remove-btn-col,
+    .configure-btn-col,
+    .move-to-cart-btn-col {
+      float: right;
     }
   }
 }
