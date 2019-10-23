@@ -26,7 +26,7 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
 import AppModalCartSelectMain from '../AppModalCartSelect/appmodalcartselect.main';
 import {
-  login, logout, getAccessToken,
+  login, logout, logoutAccountManagementUser, getAccessToken,
 } from '../utils/AuthService';
 import { cortexFetch, adminFetch } from '../utils/Cortex';
 import { ReactComponent as AccountIcon } from '../../../app/src/images/header-icons/account-icon.svg';
@@ -194,10 +194,8 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
         openModal, openCartModal, showForgotPasswordLink, accountData,
       } = this.state;
       let keycloakLoginRedirectUrl = '';
-      let keycloakLogoutRedirectUrl = '';
       if (Config.b2b.enable) {
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
-        keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
 
@@ -252,12 +250,10 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                   )}
                   <li className="dropdown-item">
                     {(Config.b2b.enable) ? (
-                      <a href={`${keycloakLogoutRedirectUrl}`} className="login-auth-service-btn">
-                        <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
-                          <span className="icon" />
-                          {intl.get('logout')}
-                        </button>
-                      </a>
+                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => logoutAccountManagementUser()}>
+                        <span className="icon" />
+                        {intl.get('logout')}
+                      </button>
                     ) : (
                       <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                         <span className="icon" />
