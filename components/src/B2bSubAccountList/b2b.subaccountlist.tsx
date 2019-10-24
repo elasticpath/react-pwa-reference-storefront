@@ -22,9 +22,9 @@
 
 import * as React from 'react';
 // eslint-disable-next-line import/no-cycle
-import SubAccountListItem from './SubAccountListItem';
+import B2bSubAccountListItem from '../B2bSubAccountListItem/b2b.subaccountlistitem';
 
-interface SubAccountListProps {
+interface B2bSubAccountListProps {
     subAccounts: any,
     getAccountData?: (data: any) => void,
     accountName: string,
@@ -32,7 +32,7 @@ interface SubAccountListProps {
 }
 
 
-export default class SubAccountList extends React.Component<SubAccountListProps> {
+export default class B2bSubAccountList extends React.Component<B2bSubAccountListProps> {
     static defaultProps = {
       getAccountData: () => {},
     };
@@ -55,7 +55,7 @@ export default class SubAccountList extends React.Component<SubAccountListProps>
         <div className="sub-accounts-container">
           {subAccounts._element.map(element => (
             <div key={element.name}>
-              <SubAccountListItem handleAccount={this.handleAccount} accountData={element} accountName={accountName} registrationNumber={registrationNumber} />
+              <B2bSubAccountListItem handleAccount={this.handleAccount} accountData={element} accountName={accountName} registrationNumber={registrationNumber} />
             </div>
           ))}
         </div>

@@ -201,6 +201,14 @@ export function logout() {
   }));
 }
 
+export function logoutAccountManagementUser() {
+  logout().then(() => {
+    const Config = getConfig().config;
+    const keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
+    window.location.href = keycloakLogoutRedirectUrl;
+  });
+}
+
 export function getRegistrationForm() {
   const Config = getConfig().config;
   return new Promise(((resolve, reject) => {

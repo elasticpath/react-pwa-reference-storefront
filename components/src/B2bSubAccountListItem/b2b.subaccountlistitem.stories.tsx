@@ -22,12 +22,12 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import Carousel from './carousel.homepage';
+import B2bSubAccountListItem from './b2b.subaccountlistitem';
 
-// Option defaults.
+import SubAccountData from '../B2bAccountList/HttpResponse/subAccountData_response.json';
 
-storiesOf('Carousel', module)
+storiesOf('B2bSubAccountListItem', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('Carousel', () => <Carousel />);
+  .add('B2bSubAccountListItem', () => <B2bSubAccountListItem handleAccount={() => {}} accountData={SubAccountData._element[0]} accountName="accountName" registrationNumber="registrationNumber" />);

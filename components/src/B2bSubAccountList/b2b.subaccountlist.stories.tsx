@@ -22,12 +22,27 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import Carousel from './carousel.homepage';
+import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
+import B2bSubAccountList from './b2b.subaccountlist';
+import { mockFetchSubAccount } from './b2b.subaccountlist.api.mocks';
 
-// Option defaults.
+const accountName = 'Accelsmart';
+const registrationNumber = 'cust-00059';
 
-storiesOf('Carousel', module)
+function handleAccount() {}
+
+storiesOf('B2bSubAccountList', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('Carousel', () => <Carousel />);
+  .add('B2bSubAccountList', () => {
+    mockFetchSubAccount();
+    return (
+      <B2bSubAccountList
+        getAccountData={handleAccount}
+        subAccounts={SubAccountData}
+        accountName={accountName}
+        registrationNumber={registrationNumber}
+      />
+    );
+  });

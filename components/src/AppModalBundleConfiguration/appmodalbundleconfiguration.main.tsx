@@ -102,12 +102,6 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
     this.fetchDependantItemData(bundleConfigurationItems);
   }
 
-
-  componentDidUpdate(prevProps) {
-    const { bundleConfigurationItems } = this.props;
-    this.fetchDependantItemData(bundleConfigurationItems);
-  }
-
   fetchDependantItemData(bundleConfigurationItems) {
     login().then(() => {
       cortexFetch(`${bundleConfigurationItems.self.uri}/?zoom=${zoomArray.sort().join()}`, {
@@ -145,17 +139,29 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
   }
 
   handleConfiguratorAddToCart() {
-    const { onItemConfiguratorAddToCart } = this.props;
+    const {
+      onItemConfiguratorAddToCart,
+      bundleConfigurationItems,
+    } = this.props;
+    this.fetchDependantItemData(bundleConfigurationItems);
     onItemConfiguratorAddToCart();
   }
 
   handleMoveToCart() {
-    const { onItemMoveToCart } = this.props;
+    const {
+      onItemMoveToCart,
+      bundleConfigurationItems,
+    } = this.props;
+    this.fetchDependantItemData(bundleConfigurationItems);
     onItemMoveToCart();
   }
 
   handleRemove() {
-    const { onItemRemove } = this.props;
+    const {
+      onItemRemove,
+      bundleConfigurationItems,
+    } = this.props;
+    this.fetchDependantItemData(bundleConfigurationItems);
     onItemRemove();
   }
 

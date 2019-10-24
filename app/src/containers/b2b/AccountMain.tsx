@@ -23,10 +23,11 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { B2bEditAccount, B2bAddSubAccount, B2bEditAssociate } from '@elasticpath/store-components';
+import {
+  B2bEditAccount, B2bAddSubAccount, B2bEditAssociate, B2bAccountList,
+} from '@elasticpath/store-components';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
-import AccountList from './AccountList';
 import * as Config from '../../ep.config.json';
 
 import './AccountMain.less';
@@ -332,7 +333,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
               </div>
             </div>
             <div className="account-component">
-              <AccountList
+              <B2bAccountList
                 getAccountData={this.getAccountData}
                 accountListData={accountListData}
                 getSubAccountData={this.subAccountData}

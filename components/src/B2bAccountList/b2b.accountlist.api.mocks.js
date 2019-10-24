@@ -18,16 +18,26 @@
  *
  *
  */
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { MemoryRouter } from 'react-router';
+import fetchMock from 'fetch-mock/es5/client';
+import subAccountResponse from '../CommonMockHttpResponses/b2bSubAccountData_responce';
+import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
-import Carousel from './carousel.homepage';
+function mockSubAccountResponse(mockObj) {
+  mockObj.get(
+    /\/admin\/accounts\/am(.*)/,
+    subAccountResponse,
+  );
+}
 
-// Option defaults.
+function mockLoginResponse(mockObj) {
+  mockObj.post(
+    '/cortex/oauth2/tokens',
+    loginResponse,
+  );
+}
 
-storiesOf('Carousel', module)
-  .addDecorator(story => (
-    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
-  ))
-  .add('Carousel', () => <Carousel />);
+export function mockFetchSubAccount() {
+  fetchMock.restore();
+  mockLoginResponse(fetchMock);
+  mockSubAccountResponse(fetchMock);
+}
