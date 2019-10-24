@@ -31,7 +31,7 @@ import '../B2bEditAccount/b2b.editaccount.less';
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-interface B2BAddSubAccountProps {
+interface B2bAddSubAccountProps {
     isOpen: boolean,
     handleClose: () => void,
     handleUpdate: () => void,
@@ -39,7 +39,7 @@ interface B2BAddSubAccountProps {
     addSubAccountSellerAdmin: boolean,
 }
 
-interface B2BAddSubAccountState {
+interface B2bAddSubAccountState {
     name: string,
     legalName: string,
     externalId: string,
@@ -47,7 +47,7 @@ interface B2BAddSubAccountState {
     isLoading: boolean,
 }
 
-export default class B2BAddSubAccount extends React.Component<B2BAddSubAccountProps, B2BAddSubAccountState> {
+export default class B2bAddSubAccount extends React.Component<B2bAddSubAccountProps, B2bAddSubAccountState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();

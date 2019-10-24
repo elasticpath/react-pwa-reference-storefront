@@ -23,7 +23,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { B2BEditAccount, B2BAddSubAccount, B2bEditAssociate } from '@elasticpath/store-components';
+import { B2bEditAccount, B2bAddSubAccount, B2bEditAssociate } from '@elasticpath/store-components';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import AccountList from './AccountList';
@@ -390,7 +390,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 </table>
               </div>
 
-              <B2BEditAccount
+              <B2bEditAccount
                 handleClose={this.handleAccountSettingsClose}
                 handleUpdate={this.handleAccountSettingsUpdate}
                 isOpen={isSettingsDialogOpen}
@@ -410,7 +410,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 isAddAssociateOpen={isAddAssociateOpen}
                 addAssociateUri={addAssociateUri}
               />
-              <B2BAddSubAccount
+              <B2bAddSubAccount
                 handleClose={this.handleAddSubAccountClose}
                 handleUpdate={this.handleAccountSettingsUpdate}
                 isOpen={isAddSubAccountOpen}

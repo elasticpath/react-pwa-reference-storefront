@@ -22,8 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { B2bAddAssociatesMenu } from '@elasticpath/store-components';
-import SideMenu from './SideMenu';
+import { B2bAddAssociatesMenu, B2bSideMenu } from '@elasticpath/store-components';
 import RouteWithSubRoutes from '../../RouteWithSubRoutes';
 import './B2BMain.less';
 
@@ -71,6 +70,15 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
   render() {
     const { routes } = this.props;
     const { isImportDialogOpen, fileUploadMessage } = this.state;
+    const sideMenuItems = [
+      { to: '/b2b', children: 'dashboard' },
+      // { to: '/b2b/address-book', children: 'address-book' },
+      // { to: '/b2b/orders', children: 'orders' },
+      { to: '/b2b/approvals', children: 'approvals' },
+      { to: '/b2b/invitations', children: 'invitations' },
+      { to: '/b2b/requisition-lists', children: 'requisition-lists' },
+      // { to: '/b2b/quotes', children: 'quotes' },
+    ];
 
     return (
       <div className="b2b-main-component">
@@ -83,7 +91,7 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
           </div>
           <div className="b2b-central">
             <div className="b2b-side">
-              <SideMenu {...this.props} />
+              <B2bSideMenu {...this.props} sideMenuItems={sideMenuItems} />
             </div>
             <div className="b2b-content">
               {routes.map(route => (

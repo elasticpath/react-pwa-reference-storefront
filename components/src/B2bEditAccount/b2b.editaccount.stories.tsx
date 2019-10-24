@@ -22,7 +22,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import B2BEditAccount from './b2b.editaccount';
+import B2bEditAccount from './b2b.editaccount';
 
 function handleAccountSettingsClose() {}
 function handleAccountSettingsUpdate() {}
@@ -38,12 +38,12 @@ const accountData = {
 const editSubAccountUri = null;
 const editMetadataUri = null;
 
-storiesOf('B2BEditAccount', module)
+storiesOf('B2bEditAccount', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('B2BEditAccount', () => (
-    <B2BEditAccount
+  .add('B2bEditAccount', () => (
+    <B2bEditAccount
       handleClose={handleAccountSettingsClose}
       handleUpdate={handleAccountSettingsUpdate}
       isOpen={isSettingsDialogOpen}

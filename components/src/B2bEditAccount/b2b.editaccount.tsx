@@ -35,7 +35,7 @@ let intl = { get: str => str };
 
 const COPIED_TIMEOUT_LENGTH = 4000;
 
-interface B2BEditAccountProps {
+interface B2bEditAccountProps {
   isOpen: boolean,
   editSubAccountUri: string,
   editMetadataUri: string,
@@ -51,7 +51,7 @@ interface B2BEditAccountProps {
   }
 }
 
-interface B2BEditAccountState {
+interface B2bEditAccountState {
   name: string,
   legalName: string,
   externalId: string,
@@ -61,7 +61,7 @@ interface B2BEditAccountState {
 }
 
 
-export default class B2BEditAccount extends React.Component<B2BEditAccountProps, B2BEditAccountState> {
+export default class B2bEditAccount extends React.Component<B2bEditAccountProps, B2bEditAccountState> {
   copiedTimeout?: number;
 
   constructor(props) {
