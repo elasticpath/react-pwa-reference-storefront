@@ -205,6 +205,13 @@ export function logout() {
   }));
 }
 
+export function logoutAccountManagementUser() {
+  logout().then(() => {
+    const keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
+    window.location.href = keycloakLogoutRedirectUrl;
+  });
+}
+
 export function getRegistrationForm() {
   return new Promise(((resolve, reject) => {
     cortexFetch('/?zoom=newaccountform',
