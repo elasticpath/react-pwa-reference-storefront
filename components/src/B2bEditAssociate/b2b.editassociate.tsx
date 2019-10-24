@@ -116,7 +116,7 @@ export default class B2bEditAssociate extends React.Component<B2bEditAssociatePr
       <div>
         {allAssociateRoles.map(role => (
           <div key={role.roleName} className="role-checkbox">
-            <input id={role.roleName} disabled={isSelf && role.roleName === 'BUYER_ADMIN'} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} className="style-checkbox" />
+            <input id={role.roleName} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} className="style-checkbox" />
             <label htmlFor={role.roleName} />
             <label htmlFor={role.roleName} className="role-title">{intl.get(role.roleName.toLowerCase()) || role.roleName}</label>
           </div>
