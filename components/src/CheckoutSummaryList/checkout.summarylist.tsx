@@ -210,7 +210,7 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
             :&nbsp;
           </label>
           <span data-el-value="checkout.total">
-            {giftCardsAmount > 0 ? `$${Math.max(0, data._order[0]._total[0].cost[0].amount - giftCardsAmount)}` : data._order[0]._total[0].cost[0].display}
+            {giftCardsAmount > 0 ? `$${Math.max(0, data._order[0]._total[0].cost[0].amount - giftCardsAmount).toFixed(2)}` : data._order[0]._total[0].cost[0].display}
           </span>
         </li>
       );
