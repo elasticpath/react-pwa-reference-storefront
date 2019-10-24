@@ -280,10 +280,14 @@
   "enabled": "Enabled",
   "disabled": "Disabled",
   "business-account": "Business Account",
+  "select-your-file": "Select Your File",
   "import-associates-from-csv": "Import Associates by CSV File",
-  "download-sample-csv": "<a href='{link}'>Download</a> sample CSV file",
-  "sample-csv-file": "sample CSV file",
-  "upload-associatess-csv": "Upload associate CSV file from your device",
+  "download": "Download",
+  "a-sample-file": "a sample file",
+  "upload-associatess-csv": "Upload associate file from your device",
+  "capital-or": "OR",
+  "your-upload-was-successful": "Your upload was successful and your changes applied",
+  "general-upload-error": "There were errors while uploading file",
   "upload": "Upload",
   "admins": "Admins",
   "default": "Default",
@@ -336,5 +340,6 @@
   "create-new-cart": "Create New Cart",
   "cart": "Cart",
   "change": "Change",
-  "shopper-impersonation-message": "Shopping on behalf of: "
+  "shopper-impersonation-message": "Shopping on behalf of: ",
+  "backend-message-account.not.found": "No account with the given account name was found."
 }

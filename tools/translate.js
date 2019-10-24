@@ -22,7 +22,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const enStr = fs.readFileSync(path.join(__dirname, './../src/localization/en-CA.json'), 'utf8');
+const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
 const enMessages = JSON.parse(enStr, null, 2);
 const frMessages = Object.keys(enMessages)
   .reduce((collection, messageName) => ({
@@ -31,4 +31,4 @@ const frMessages = Object.keys(enMessages)
   }), {});
 
 const frStr = JSON.stringify(frMessages, null, 2);
-fs.writeFileSync(path.join(__dirname, './../src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
+fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
