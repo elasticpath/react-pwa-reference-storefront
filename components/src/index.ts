@@ -62,6 +62,7 @@ import ProductListItemMain from './ProductListItem/productlistitem.main';
 import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
 import ProductListPaginationMain from './ProductListPagination/productlistpagination.main';
 import ProductRecommendationsMain from './ProductRecommendations/productrecommendations.main';
+import ProfileGDPRMain from './ProfileGDPR/profilegdpr.main';
 import ProfileAddressesMain from './ProfileAddresses/profileaddresses.main';
 import ProfileemailinfoMain from './ProfileEmailInfo/profileemailinfo.main';
 import ProfileInfoMain from './ProfileInfo/profileInfo.main';
@@ -130,6 +131,7 @@ export {
   ProductListLoadmore,
   ProductListPaginationMain,
   ProductRecommendationsMain,
+  ProfileGDPRMain,
   ProfileAddressesMain,
   ProfileemailinfoMain,
   ProfileInfoMain,

@@ -84,60 +84,35 @@ class GdprSupportModal extends React.Component<GdprSupportModalProps, GdprSuppor
     localStorage.setItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`, 'true');
     this.setState({ open: false });
     login().then(() => {
-      cortexFetch(`/datapolicies/${Config.cortexApi.scope}`,
+      cortexFetch(`/datapolicies/${Config.cortexApi.scope}?zoom=element,element:datapolicyconsentform`,
         {
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
+            'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
           },
         })
         .then(res => res.json())
         .then((res) => {
-          if (res && res.links) {
-            const dataPolicyLink = res.links.find(el => el.type === 'datapolicies.data-policy');
-            if (dataPolicyLink) {
-              res.links.forEach((data, index) => {
-                if (res.links[index].type === 'datapolicies.data-policy') {
-                  cortexFetch(res.links[index].uri,
-                    {
-                      headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                        'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
-                      },
-                    })
-                    .then(datapolicies => datapolicies.json())
-                    .then((datapolicies) => {
-                      if (datapolicies['data-policy-consent'] === 'false') {
-                        cortexFetch(`${datapolicies.links[1].uri}?followlocation`,
-                          {
-                            method: 'post',
-                            headers: {
-                              'Content-Type': 'application/json',
-                              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                              'X-Ep-Data-Policy-Segments': 'EU_Data_Policy',
-                            },
-                            body: JSON.stringify({ 'data-policy-consent': true }),
-                          })
-                          .then(() => {
-                            onAcceptDataPolicy();
-                          })
-                          .catch((error) => {
-                            // eslint-disable-next-line no-console
-                            console.error(error.message);
-                          });
-                      }
-                    })
-                    .catch((error) => {
-                      // eslint-disable-next-line no-console
-                      console.error(error.message);
-                    });
-                }
+          if (res._element) {
+            const dataPolicyPromises = res._element.filter(element => element['data-policy-consent'] === 'false')
+              .map(element => cortexFetch(element._datapolicyconsentform[0].links[0].uri, {
+                method: 'post',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+                  'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
+                },
+                body: JSON.stringify({ 'data-policy-consent': true }),
+              }));
+            Promise.all(dataPolicyPromises)
+              .then(() => onAcceptDataPolicy())
+              .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
               });
-            } else {
-              onAcceptDataPolicy();
-            }
+          } else {
+            onAcceptDataPolicy();
           }
         })
         .catch((error) => {

@@ -1,0 +1,108 @@
+{
+    "_data-policies": [
+      {
+        "_element": [
+          {
+            "self": {
+              "type": "datapolicies.data-policy",
+              "uri": "/datapolicies/vestri_b2c/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=",
+              "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy="
+            },
+            "messages": [],
+            "links": [],
+            "_datapolicyconsentform": [
+              {
+                "self": {
+                  "type": "datapolicies.data-policy-consent-form",
+                  "uri": "/datapolicies/vestri_b2c/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=/form",
+                  "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=/form"
+                },
+                "messages": [],
+                "links": [
+                  {
+                    "rel": "consentaction",
+                    "type": "datapolicies.data-policy-consent-form",
+                    "uri": "/datapolicies/vestri_b2c/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=/form",
+                    "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/guzdgmbrircdslkdiy4taljuie2eglkcg4ytaljrim4toqzrim2dcmrviy=/form"
+                  }
+                ],
+                "data-policy-consent": "false",
+                "policy-name": "Marketing Contact Information",
+                "policy-reference-key": "DP12346"
+              }
+            ],
+            "data-policy-consent": "false",
+            "policy-name": "Marketing Contact Information",
+            "policy-reference-key": "DP12346"
+          },
+          {
+            "self": {
+              "type": "datapolicies.data-policy",
+              "uri": "/datapolicies/vestri_b2c/g4ytercdiyyekljuiuzdiljuiy3dilkbhazdeljviy3eeocgivddkmbxge=",
+              "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/g4ytercdiyyekljuiuzdiljuiy3dilkbhazdeljviy3eeocgivddkmbxge="
+            },
+            "messages": [],
+            "links": [],
+            "_datapolicyconsentform": [
+              {
+                "self": {
+                  "type": "datapolicies.data-policy-consent-form",
+                  "uri": "/datapolicies/vestri_b2c/g4ytercdiyyekljuiuzdiljuiy3dilkbhazdeljviy3eeocgivddkmbxge=/form",
+                  "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/g4ytercdiyyekljuiuzdiljuiy3dilkbhazdeljviy3eeocgivddkmbxge=/form"
+                },
+                "messages": [],
+                "links": [
+                  {
+                    "rel": "consentaction",
+                    "type": "datapolicies.data-policy-consent-form",
+                    "uri": "/datapolicies/vestri_b2c/g4ytercdiyyekljuiuzdiljuiy3dilkbhazdeljviy3eeocgivddkmbxge=/form",
+                    "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/g4ytercdiyyekljuiuzdiljuiy3dilkbhazdeljviy3eeocgivddkmbxge=/form"
+                  }
+                ],
+                "data-policy-consent": "false",
+                "policy-name": "Saved Addresses",
+                "policy-reference-key": "DP12347"
+              }
+            ],
+            "data-policy-consent": "false",
+            "policy-name": "Saved Addresses",
+            "policy-reference-key": "DP12347"
+          },
+          {
+            "self": {
+              "type": "datapolicies.data-policy",
+              "uri": "/datapolicies/vestri_b2c/ivbtimbwgi2ugljvircuiljuivcdslkbhfbtoljvirctiojwim2damjsim=",
+              "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/ivbtimbwgi2ugljvircuiljuivcdslkbhfbtoljvirctiojwim2damjsim="
+            },
+            "messages": [],
+            "links": [],
+            "_datapolicyconsentform": [
+              {
+                "self": {
+                  "type": "datapolicies.data-policy-consent-form",
+                  "uri": "/datapolicies/vestri_b2c/ivbtimbwgi2ugljvircuiljuivcdslkbhfbtoljvirctiojwim2damjsim=/form",
+                  "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/ivbtimbwgi2ugljvircuiljuivcdslkbhfbtoljvirctiojwim2damjsim=/form"
+                },
+                "messages": [],
+                "links": [
+                  {
+                    "rel": "consentaction",
+                    "type": "datapolicies.data-policy-consent-form",
+                    "uri": "/datapolicies/vestri_b2c/ivbtimbwgi2ugljvircuiljuivcdslkbhfbtoljvirctiojwim2damjsim=/form",
+                    "href": "http://localhost:9080/cortex/datapolicies/vestri_b2c/ivbtimbwgi2ugljvircuiljuivcdslkbhfbtoljvirctiojwim2damjsim=/form"
+                  }
+                ],
+                "data-policy-consent": "true",
+                "policy-name": "Order Information",
+                "policy-reference-key": "DP12347"
+              }
+            ],
+            "data-policy-consent": "true",
+            "policy-name": "Order Information",
+            "policy-reference-key": "DP12347"
+          }
+        ]
+      }
+    ]
+  }
+  

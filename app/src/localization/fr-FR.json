@@ -341,5 +341,9 @@
   "cart": "C-a-r-t",
   "change": "C-h-a-n-g-e",
   "shopper-impersonation-message": "S-h-o-p-p-i-n-g- -o-n- -b-e-h-a-l-f- -o-f-:- ",
+  "data-policies": "D-a-t-a- -P-o-l-i-c-i-e-s-",
+  "gdpr-revoke-consent": "R-e-v-o-k-e- -C-o-n-s-e-n-t-",
+  "gdpr-consent": "-C-o-n-s-e-n-t-",
+  "data-policy-reference-key": "-P-o-l-i-c-y- -R-e-f-e-r-e-n-c-e- -K-e-y-",
   "backend-message-account.not.found": "N-o- -a-c-c-o-u-n-t- -w-i-t-h- -t-h-e- -g-i-v-e-n- -a-c-c-o-u-n-t- -n-a-m-e- -w-a-s- -f-o-u-n-d-."
 }

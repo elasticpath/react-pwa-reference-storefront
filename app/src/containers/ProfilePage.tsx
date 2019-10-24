@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain, AddressFormMain,
+  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain, AddressFormMain, ProfileGDPRMain,
 } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -50,11 +50,14 @@ const zoomArray = [
   'defaultprofile:paymentmethods',
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
+  'data-policies:element',
+  'data-policies:element:datapolicyconsentform',
   'passwordresetform',
 ];
 
 interface ProfilePageState {
     profileData: any,
+    dataPolicyData: any,
     invalidPermission: boolean,
     showResetPasswordButton: boolean,
     openAddressModal: boolean,
@@ -66,6 +69,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     super(props);
     this.state = {
       profileData: undefined,
+      dataPolicyData: undefined,
       invalidPermission: false,
       showResetPasswordButton: false,
       openAddressModal: false,
@@ -93,6 +97,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
           },
         })
         .then(res => res.json())
@@ -100,6 +105,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
           if (res && res._defaultprofile) {
             this.setState({
               profileData: res._defaultprofile[0],
+              dataPolicyData: res['_data-policies'] ? res['_data-policies'][0] : null,
             });
           } else {
             this.setState({
@@ -178,7 +184,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
   }
 
   render() {
-    const { profileData, showResetPasswordButton } = this.state;
+    const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
     const disableAddPayment = !(profileData && profileData._addresses && profileData._addresses[0]._billingaddresses);
     return (
       <div>
@@ -234,6 +240,20 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                   </div>
                 </div>
               </div>
+              {(Config.GDPR.enable) ? (
+                <div className="profile-info-container">
+                  <h3 className="profile-info-container-title">
+                    {intl.get('gdpr')}
+                  </h3>
+                  <div className="profile-info-col">
+                    <div className="profile-info-block">
+                      {(dataPolicyData && dataPolicyData._element) ? (
+                        <ProfileGDPRMain dataPolicies={dataPolicyData} onChange={this.fetchProfileData} />
+                      ) : ('')}
+                    </div>
+                  </div>
+                </div>
+              ) : ('')}
             </div>
           ) : (
             <div>
