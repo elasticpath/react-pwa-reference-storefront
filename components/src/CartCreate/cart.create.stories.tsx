@@ -18,17 +18,20 @@
  *
  *
  */
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { MemoryRouter } from 'react-router';
 
-const fs = require('fs');
-const path = require('path');
+import CartCreate from './cart.create';
 
-const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
-const enMessages = JSON.parse(enStr, null, 2);
-const frMessages = Object.keys(enMessages)
-  .reduce((collection, messageName) => ({
-    ...collection,
-    [messageName]: enMessages[messageName].split('').join('-'),
-  }), {});
+import { mockFetchMultiCart } from './cart.create.api.mocks';
 
-const frStr = JSON.stringify(frMessages, null, 2);
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
+storiesOf('CartCreate', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('CartCreate', () => {
+    mockFetchMultiCart();
+
+    return <CartCreate handleModalClose={() => {}} openModal />
+  });

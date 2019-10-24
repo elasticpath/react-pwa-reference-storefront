@@ -45,7 +45,6 @@ const gdprSupportAccept = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_S
 const gdprSupportDecline = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Decline`);
 
 const HomePage: React.FunctionComponent = () => {
-  const carouselLink = '/category/VESTRI_ACCESSORIES';
   function handleAcceptDataPolicy() {
     window.location.reload();
   }
@@ -57,7 +56,7 @@ const HomePage: React.FunctionComponent = () => {
   return (
     <ParallaxProvider>
       <div className="home-page-component" data-region="viewPortRegion">
-        <Carousel carouselLink={carouselLink} />
+        <Carousel />
         <IndiRecommendationsDisplayMain render={['carousel', 'brand']} configuration={Config.indi} />
         {/* eslint-disable-next-line no-return-assign */}
         <div className="section section-3 container">

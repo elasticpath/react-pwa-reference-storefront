@@ -29,11 +29,12 @@ import './cart.create.less';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
-  'element',
-  'element:descriptor',
-  'element:total',
-  'element:additemstocartform',
-  'createcartform',
+  'carts',
+  'carts:element',
+  'carts:element:descriptor',
+  'carts:element:total',
+  'carts:element:additemstocartform',
+  'carts:createcartform',
 ];
 
 let Config: IEpConfig | any = {};
@@ -92,7 +93,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
 
   fetchCartData() {
     login().then(() => {
-      cortexFetch(`/carts/${Config.cortexApi.scope}/?zoom=${zoomArray.sort().join()}`, {
+      cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -100,13 +101,13 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       })
         .then(res => res.json())
         .then((res) => {
-          const cartElements = [...res._element];
+          const cartElements = [...res._carts[0]._element];
           const extCartElements = cartElements.map(obj => ({
             ...obj, editMode: false, cartName: obj._descriptor[0].name || '', showLoader: false,
           }));
           this.setState({ cartElements: [...extCartElements] });
-          if (res._createcartform) {
-            this.setState({ createCartForm: res._createcartform });
+          if (res._carts[0]._createcartform) {
+            this.setState({ createCartForm: res._carts[0]._createcartform });
           }
         })
         .catch((error) => {

@@ -23,12 +23,11 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link, RouteComponentProps } from 'react-router-dom';
+import {
+  B2bEditAccount, B2bAddSubAccount, B2bEditAssociate, B2bAccountList,
+} from '@elasticpath/store-components';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
-import EditAccount from './EditAccount';
-import EditAssociate from './EditAssociate';
-import AddSubAccount from './AddSubAccount';
-import AccountList from './AccountList';
 import * as Config from '../../ep.config.json';
 
 import './AccountMain.less';
@@ -334,7 +333,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
               </div>
             </div>
             <div className="account-component">
-              <AccountList
+              <B2bAccountList
                 getAccountData={this.getAccountData}
                 accountListData={accountListData}
                 getSubAccountData={this.subAccountData}
@@ -392,7 +391,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 </table>
               </div>
 
-              <EditAccount
+              <B2bEditAccount
                 handleClose={this.handleAccountSettingsClose}
                 handleUpdate={this.handleAccountSettingsUpdate}
                 isOpen={isSettingsDialogOpen}
@@ -400,7 +399,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 editSubAccountUri={editSubAccountUri}
                 editMetadataUri={editMetadataUri}
               />
-              <EditAssociate
+              <B2bEditAssociate
                 handleClose={this.isEditAssociateClose}
                 handleUpdate={this.handleAccountSettingsUpdate}
                 accountName={mainAccountName}
@@ -412,7 +411,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 isAddAssociateOpen={isAddAssociateOpen}
                 addAssociateUri={addAssociateUri}
               />
-              <AddSubAccount
+              <B2bAddSubAccount
                 handleClose={this.handleAddSubAccountClose}
                 handleUpdate={this.handleAccountSettingsUpdate}
                 isOpen={isAddSubAccountOpen}

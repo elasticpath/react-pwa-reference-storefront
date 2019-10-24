@@ -18,17 +18,16 @@
  *
  *
  */
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { MemoryRouter } from 'react-router';
 
-const fs = require('fs');
-const path = require('path');
+import B2bSubAccountListItem from './b2b.subaccountlistitem';
 
-const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
-const enMessages = JSON.parse(enStr, null, 2);
-const frMessages = Object.keys(enMessages)
-  .reduce((collection, messageName) => ({
-    ...collection,
-    [messageName]: enMessages[messageName].split('').join('-'),
-  }), {});
+import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
 
-const frStr = JSON.stringify(frMessages, null, 2);
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
+storiesOf('B2bSubAccountListItem', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('B2bSubAccountListItem', () => <B2bSubAccountListItem handleAccount={() => {}} accountData={SubAccountData._element[0]} accountName="accountName" registrationNumber="registrationNumber" />);

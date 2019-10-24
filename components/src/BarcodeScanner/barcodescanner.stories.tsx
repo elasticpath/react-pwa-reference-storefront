@@ -18,17 +18,15 @@
  *
  *
  */
+import React from 'react';
+import { storiesOf } from '@storybook/react';
 
-const fs = require('fs');
-const path = require('path');
+import BarcodeScanner from './barcodescanner';
 
-const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
-const enMessages = JSON.parse(enStr, null, 2);
-const frMessages = Object.keys(enMessages)
-  .reduce((collection, messageName) => ({
-    ...collection,
-    [messageName]: enMessages[messageName].split('').join('-'),
-  }), {});
+function handleBarcodeModalClose() {}
+function handleBarcodeScanned() {}
 
-const frStr = JSON.stringify(frMessages, null, 2);
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
+storiesOf('BarcodeScanner', module)
+  .add('BarcodeScanner', () => (
+    <BarcodeScanner isModalOpen handleModalClose={handleBarcodeModalClose} handleCodeFound={handleBarcodeScanned} />
+  ));

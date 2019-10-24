@@ -22,12 +22,33 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import Carousel from './carousel.homepage';
+import B2bEditAccount from './b2b.editaccount';
 
-// Option defaults.
+function handleAccountSettingsClose() {}
+function handleAccountSettingsUpdate() {}
+const isSettingsDialogOpen = true;
+const accountData = {
+  name: 'Cabana',
+  legalName: 'Cabana, LLC',
+  externalId: 'externalId',
+  registrationNumber: 'cust-00062',
+  selfSignUpCode: '123',
+  uri: 'uri',
+};
+const editSubAccountUri = null;
+const editMetadataUri = null;
 
-storiesOf('Carousel', module)
+storiesOf('B2bEditAccount', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('Carousel', () => <Carousel />);
+  .add('B2bEditAccount', () => (
+    <B2bEditAccount
+      handleClose={handleAccountSettingsClose}
+      handleUpdate={handleAccountSettingsUpdate}
+      isOpen={isSettingsDialogOpen}
+      accountData={accountData}
+      editSubAccountUri={editSubAccountUri}
+      editMetadataUri={editMetadataUri}
+    />
+  ));

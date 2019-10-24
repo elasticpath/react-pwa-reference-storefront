@@ -18,17 +18,26 @@
  *
  *
  */
+import fetchMock from 'fetch-mock/es5/client';
+import subAccountResponse from '../CommonMockHttpResponses/b2bSubAccountData_response.json';
+import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
-const fs = require('fs');
-const path = require('path');
+function mockSubAccountResponse(mockObj) {
+  mockObj.get(
+    /\/admin\/accounts\/am(.*)/,
+    subAccountResponse,
+  );
+}
 
-const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
-const enMessages = JSON.parse(enStr, null, 2);
-const frMessages = Object.keys(enMessages)
-  .reduce((collection, messageName) => ({
-    ...collection,
-    [messageName]: enMessages[messageName].split('').join('-'),
-  }), {});
+function mockLoginResponse(mockObj) {
+  mockObj.post(
+    '/cortex/oauth2/tokens',
+    loginResponse,
+  );
+}
 
-const frStr = JSON.stringify(frMessages, null, 2);
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
+export function mockFetchSubAccount() {
+  fetchMock.restore();
+  mockLoginResponse(fetchMock);
+  mockSubAccountResponse(fetchMock);
+}

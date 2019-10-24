@@ -1,0 +1,765 @@
+{
+  "self": {
+    "type": "accounts.account",
+    "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=?zoom=associateroleassignments,associateroleassignments:associateform,associateroleassignments:associateform:addassociateaction,associateroleassignments:element,associateroleassignments:element:associate,associateroleassignments:element:associate:primaryemail,associateroleassignments:element:roleinfo,associateroleassignments:element:roleinfo:roles,associateroleassignments:element:roleinfo:roles:element,associateroleassignments:element:roleinfo:selector,associateroleassignments:element:roleinfo:selector:choice,associateroleassignments:element:roleinfo:selector:choice:description,associateroleassignments:element:roleinfo:selector:choice:selectaction,associateroleassignments:element:roleinfo:selector:choice:selector,associateroleassignments:element:roleinfo:selector:chosen,associateroleassignments:element:roleinfo:selector:chosen:description,associateroleassignments:element:roleinfo:selector:chosen:selectaction,associateroleassignments:element:roleinfo:selector:chosen:selector,subaccounts,subaccounts:accountform,subaccounts:element,subaccounts:element:associateroleassignments,subaccounts:element:associateroleassignments:associateform,subaccounts:element:associateroleassignments:associateform:addassociateaction,subaccounts:element:associateroleassignments:element,subaccounts:element:associateroleassignments:element:associate,subaccounts:element:associateroleassignments:element:associate:primaryemail,subaccounts:element:associateroleassignments:element:roleinfo,subaccounts:element:associateroleassignments:element:roleinfo:roles,subaccounts:element:associateroleassignments:element:roleinfo:roles:element,subaccounts:element:associateroleassignments:element:roleinfo:selector,subaccounts:element:associateroleassignments:element:roleinfo:selector:choice,subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:description,subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selectaction,subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selector,subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen,subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:description,subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selectaction,subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selector,subaccounts:element:statusinfo,subaccounts:element:statusinfo:associateroleassignments,subaccounts:element:statusinfo:status,subaccounts:element:subaccounts,subaccounts:element:subaccounts:accountform,subaccounts:element:subaccounts:element",
+    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=?zoom=associateroleassignments,associateroleassignments:associateform,associateroleassignments:associateform:addassociateaction,associateroleassignments:element,associateroleassignments:element:associate,associateroleassignments:element:associate:primaryemail,associateroleassignments:element:roleinfo,associateroleassignments:element:roleinfo:roles,associateroleassignments:element:roleinfo:roles:element,associateroleassignments:element:roleinfo:selector,associateroleassignments:element:roleinfo:selector:choice,associateroleassignments:element:roleinfo:selector:choice:description,associateroleassignments:element:roleinfo:selector:choice:selectaction,associateroleassignments:element:roleinfo:selector:choice:selector,associateroleassignments:element:roleinfo:selector:chosen,associateroleassignments:element:roleinfo:selector:chosen:description,associateroleassignments:element:roleinfo:selector:chosen:selectaction,associateroleassignments:element:roleinfo:selector:chosen:selector,subaccounts,subaccounts:accountform,subaccounts:element,subaccounts:element:associateroleassignments,subaccounts:element:associateroleassignments:associateform,subaccounts:element:associateroleassignments:associateform:addassociateaction,subaccounts:element:associateroleassignments:element,subaccounts:element:associateroleassignments:element:associate,subaccounts:element:associateroleassignments:element:associate:primaryemail,subaccounts:element:associateroleassignments:element:roleinfo,subaccounts:element:associateroleassignments:element:roleinfo:roles,subaccounts:element:associateroleassignments:element:roleinfo:roles:element,subaccounts:element:associateroleassignments:element:roleinfo:selector,subaccounts:element:associateroleassignments:element:roleinfo:selector:choice,subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:description,subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selectaction,subaccounts:element:associateroleassignments:element:roleinfo:selector:choice:selector,subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen,subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:description,subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selectaction,subaccounts:element:associateroleassignments:element:roleinfo:selector:chosen:selector,subaccounts:element:statusinfo,subaccounts:element:statusinfo:associateroleassignments,subaccounts:element:statusinfo:status,subaccounts:element:subaccounts,subaccounts:element:subaccounts:accountform,subaccounts:element:subaccounts:element"
+  },
+  "messages": [],
+  "links": [
+    {
+      "rel": "statusinfo",
+      "rev": "account",
+      "type": "accounts.account-status-info",
+      "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/statusinfo",
+      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/statusinfo"
+    },
+    {
+      "rel": "list",
+      "type": "accounts.subaccounts",
+      "uri": "/accounts/am/gizdemrsgizdeljqgiydeljqgiydeljqgiydeljqgiydembqgaydamrqgi=/subaccounts",
+      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gizdemrsgizdeljqgiydeljqgiydeljqgiydeljqgiydembqgaydamrqgi=/subaccounts"
+    },
+    {
+      "rel": "subaccounts",
+      "rev": "parentaccount",
+      "type": "accounts.subaccounts",
+      "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts",
+      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts"
+    },
+    {
+      "rel": "associateroleassignments",
+      "type": "associates.associates-for-account",
+      "uri": "/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/associates",
+      "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/associates"
+    }
+  ],
+  "_associateroleassignments": [
+    {
+      "self": {
+        "type": "associates.associates-for-account",
+        "uri": "/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/associates",
+        "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/associates"
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "associateform",
+          "type": "associates.add-associate-to-account-form",
+          "uri": "/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form",
+          "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form"
+        },
+        {
+          "rel": "account",
+          "type": "accounts.account",
+          "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=",
+          "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu="
+        }
+      ],
+      "_associateform": [
+        {
+          "self": {
+            "type": "associates.add-associate-to-account-form",
+            "uri": "/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form",
+            "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "addassociateaction",
+              "type": "associates.add-associate-to-account-form",
+              "uri": "/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form"
+            }
+          ],
+          "_addassociateaction": [
+            {
+              "self": {
+                "type": "associates.add-associate-to-account-form",
+                "uri": "/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form",
+                "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "addassociateaction",
+                  "type": "associates.add-associate-to-account-form",
+                  "uri": "/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/form"
+                }
+              ],
+              "associate-id": "",
+              "roles": [
+                ""
+              ]
+            }
+          ],
+          "associate-id": "",
+          "roles": [
+            ""
+          ]
+        }
+      ]
+    }
+  ],
+  "_subaccounts": [
+    {
+      "self": {
+        "type": "accounts.subaccounts",
+        "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts",
+        "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts"
+      },
+      "messages": [],
+      "links": [
+        {
+          "rel": "element",
+          "rev": "list",
+          "type": "accounts.account",
+          "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=",
+          "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu="
+        },
+        {
+          "rel": "element",
+          "rev": "list",
+          "type": "accounts.account",
+          "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=",
+          "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy="
+        },
+        {
+          "rel": "accountform",
+          "type": "accounts.add-account-form",
+          "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts/form",
+          "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts/form"
+        },
+        {
+          "rel": "parentaccount",
+          "rev": "subaccounts",
+          "type": "accounts.account",
+          "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=",
+          "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu="
+        }
+      ],
+      "_accountform": [
+        {
+          "self": {
+            "type": "accounts.add-account-form",
+            "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts/form",
+            "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts/form"
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "addaccountaction",
+              "type": "accounts.add-account-form",
+              "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts/form",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts/form"
+            }
+          ],
+          "external-id": "",
+          "legal-name": "",
+          "name": "",
+          "registration-id": ""
+        }
+      ],
+      "_element": [
+        {
+          "self": {
+            "type": "accounts.account",
+            "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=",
+            "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "statusinfo",
+              "rev": "account",
+              "type": "accounts.account-status-info",
+              "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/statusinfo",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/statusinfo"
+            },
+            {
+              "rel": "list",
+              "type": "accounts.subaccounts",
+              "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts"
+            },
+            {
+              "rel": "subaccounts",
+              "rev": "parentaccount",
+              "type": "accounts.subaccounts",
+              "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts"
+            },
+            {
+              "rel": "associateroleassignments",
+              "type": "associates.associates-for-account",
+              "uri": "/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/associates",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/associates"
+            }
+          ],
+          "_associateroleassignments": [
+            {
+              "self": {
+                "type": "associates.associates-for-account",
+                "uri": "/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/associates",
+                "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/associates"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "associateform",
+                  "type": "associates.add-associate-to-account-form",
+                  "uri": "/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form"
+                },
+                {
+                  "rel": "account",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu="
+                }
+              ],
+              "_associateform": [
+                {
+                  "self": {
+                    "type": "associates.add-associate-to-account-form",
+                    "uri": "/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form"
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "addassociateaction",
+                      "type": "associates.add-associate-to-account-form",
+                      "uri": "/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form"
+                    }
+                  ],
+                  "_addassociateaction": [
+                    {
+                      "self": {
+                        "type": "associates.add-associate-to-account-form",
+                        "uri": "/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form",
+                        "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form"
+                      },
+                      "messages": [],
+                      "links": [
+                        {
+                          "rel": "addassociateaction",
+                          "type": "associates.add-associate-to-account-form",
+                          "uri": "/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form",
+                          "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/form"
+                        }
+                      ],
+                      "associate-id": "",
+                      "roles": [
+                        ""
+                      ]
+                    }
+                  ],
+                  "associate-id": "",
+                  "roles": [
+                    ""
+                  ]
+                }
+              ]
+            }
+          ],
+          "_statusinfo": [
+            {
+              "self": {
+                "type": "accounts.account-status-info",
+                "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/statusinfo",
+                "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/statusinfo"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "account",
+                  "rev": "statusinfo",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu="
+                },
+                {
+                  "rel": "status",
+                  "rev": "statusinfo",
+                  "type": "accounts.account-status",
+                  "uri": "/accounts/am/status/ivhecqsmivca=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/status/ivhecqsmivca="
+                },
+                {
+                  "rel": "selector",
+                  "rev": "statusinfo",
+                  "type": "accounts.account-status-info-selector",
+                  "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/statusinfo/selector",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/statusinfo/selector"
+                }
+              ],
+              "_status": [
+                {
+                  "self": {
+                    "type": "accounts.account-status",
+                    "uri": "/accounts/am/status/ivhecqsmivca=",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/status/ivhecqsmivca="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "status": "ENABLED"
+                }
+              ],
+              "name": "account-status-info"
+            }
+          ],
+          "_subaccounts": [
+            {
+              "self": {
+                "type": "accounts.subaccounts",
+                "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts",
+                "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "element",
+                  "rev": "list",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy="
+                },
+                {
+                  "rel": "element",
+                  "rev": "list",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu="
+                },
+                {
+                  "rel": "accountform",
+                  "type": "accounts.add-account-form",
+                  "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts/form",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts/form"
+                },
+                {
+                  "rel": "parentaccount",
+                  "rev": "subaccounts",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu="
+                }
+              ],
+              "_accountform": [
+                {
+                  "self": {
+                    "type": "accounts.add-account-form",
+                    "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts/form",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts/form"
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "addaccountaction",
+                      "type": "accounts.add-account-form",
+                      "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts/form",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts/form"
+                    }
+                  ],
+                  "external-id": "",
+                  "legal-name": "",
+                  "name": "",
+                  "registration-id": ""
+                }
+              ],
+              "_element": [
+                {
+                  "self": {
+                    "type": "accounts.account",
+                    "uri": "/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy=",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "statusinfo",
+                      "rev": "account",
+                      "type": "accounts.account-status-info",
+                      "uri": "/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy=/statusinfo",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy=/statusinfo"
+                    },
+                    {
+                      "rel": "list",
+                      "type": "accounts.subaccounts",
+                      "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts"
+                    },
+                    {
+                      "rel": "subaccounts",
+                      "rev": "parentaccount",
+                      "type": "accounts.subaccounts",
+                      "uri": "/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy=/subaccounts",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy=/subaccounts"
+                    },
+                    {
+                      "rel": "associateroleassignments",
+                      "type": "associates.associates-for-account",
+                      "uri": "/associates/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy=/associates",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gy3dmnrwgy3dmljqgiytmljqgiytmljqgiytmljqgiytmmbqgaydamrrgy=/associates"
+                    }
+                  ],
+                  "external-id": "",
+                  "legal-name": "",
+                  "name": "Brown Family",
+                  "registration-id": "cust-00041"
+                },
+                {
+                  "self": {
+                    "type": "accounts.account",
+                    "uri": "/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu=",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "statusinfo",
+                      "rev": "account",
+                      "type": "accounts.account-status-info",
+                      "uri": "/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu=/statusinfo",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu=/statusinfo"
+                    },
+                    {
+                      "rel": "list",
+                      "type": "accounts.subaccounts",
+                      "uri": "/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mvswkzlfmvswkljqgiygkljqgiygkljqgiygkljqgiygkmbqgaydamrqmu=/subaccounts"
+                    },
+                    {
+                      "rel": "subaccounts",
+                      "rev": "parentaccount",
+                      "type": "accounts.subaccounts",
+                      "uri": "/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu=/subaccounts",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu=/subaccounts"
+                    },
+                    {
+                      "rel": "associateroleassignments",
+                      "type": "associates.associates-for-account",
+                      "uri": "/associates/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu=/associates",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gu2tknjvgu2tkljqgiztkljqgiztkljqgiztkljqgiztkmbqgaydamrtgu=/associates"
+                    }
+                  ],
+                  "external-id": "",
+                  "legal-name": "",
+                  "name": "Miller Family",
+                  "registration-id": "cust-00046"
+                }
+              ]
+            }
+          ],
+          "external-id": "LSC-03",
+          "legal-name": "",
+          "name": "Ontario",
+          "registration-id": "cust-00040"
+        },
+        {
+          "self": {
+            "type": "accounts.account",
+            "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=",
+            "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy="
+          },
+          "messages": [],
+          "links": [
+            {
+              "rel": "statusinfo",
+              "rev": "account",
+              "type": "accounts.account-status-info",
+              "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/statusinfo",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/statusinfo"
+            },
+            {
+              "rel": "list",
+              "type": "accounts.subaccounts",
+              "uri": "/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gu2tknjvgu2tkljqgiydkljqgiydkljqgiydkljqgiydkmbqgaydamrqgu=/subaccounts"
+            },
+            {
+              "rel": "subaccounts",
+              "rev": "parentaccount",
+              "type": "accounts.subaccounts",
+              "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts"
+            },
+            {
+              "rel": "associateroleassignments",
+              "type": "associates.associates-for-account",
+              "uri": "/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/associates",
+              "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/associates"
+            }
+          ],
+          "_associateroleassignments": [
+            {
+              "self": {
+                "type": "associates.associates-for-account",
+                "uri": "/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/associates",
+                "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/associates"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "associateform",
+                  "type": "associates.add-associate-to-account-form",
+                  "uri": "/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form"
+                },
+                {
+                  "rel": "account",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy="
+                }
+              ],
+              "_associateform": [
+                {
+                  "self": {
+                    "type": "associates.add-associate-to-account-form",
+                    "uri": "/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form"
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "addassociateaction",
+                      "type": "associates.add-associate-to-account-form",
+                      "uri": "/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form"
+                    }
+                  ],
+                  "_addassociateaction": [
+                    {
+                      "self": {
+                        "type": "associates.add-associate-to-account-form",
+                        "uri": "/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form",
+                        "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form"
+                      },
+                      "messages": [],
+                      "links": [
+                        {
+                          "rel": "addassociateaction",
+                          "type": "associates.add-associate-to-account-form",
+                          "uri": "/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form",
+                          "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/form"
+                        }
+                      ],
+                      "associate-id": "",
+                      "roles": [
+                        ""
+                      ]
+                    }
+                  ],
+                  "associate-id": "",
+                  "roles": [
+                    ""
+                  ]
+                }
+              ]
+            }
+          ],
+          "_statusinfo": [
+            {
+              "self": {
+                "type": "accounts.account-status-info",
+                "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/statusinfo",
+                "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/statusinfo"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "account",
+                  "rev": "statusinfo",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy="
+                },
+                {
+                  "rel": "status",
+                  "rev": "statusinfo",
+                  "type": "accounts.account-status",
+                  "uri": "/accounts/am/status/ivhecqsmivca=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/status/ivhecqsmivca="
+                },
+                {
+                  "rel": "selector",
+                  "rev": "statusinfo",
+                  "type": "accounts.account-status-info-selector",
+                  "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/statusinfo/selector",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/statusinfo/selector"
+                }
+              ],
+              "_status": [
+                {
+                  "self": {
+                    "type": "accounts.account-status",
+                    "uri": "/accounts/am/status/ivhecqsmivca=",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/status/ivhecqsmivca="
+                  },
+                  "messages": [],
+                  "links": [],
+                  "status": "ENABLED"
+                }
+              ],
+              "name": "account-status-info"
+            }
+          ],
+          "_subaccounts": [
+            {
+              "self": {
+                "type": "accounts.subaccounts",
+                "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts",
+                "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts"
+              },
+              "messages": [],
+              "links": [
+                {
+                  "rel": "element",
+                  "rev": "list",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm="
+                },
+                {
+                  "rel": "element",
+                  "rev": "list",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq="
+                },
+                {
+                  "rel": "accountform",
+                  "type": "accounts.add-account-form",
+                  "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts/form",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts/form"
+                },
+                {
+                  "rel": "parentaccount",
+                  "rev": "subaccounts",
+                  "type": "accounts.account",
+                  "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=",
+                  "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy="
+                }
+              ],
+              "_accountform": [
+                {
+                  "self": {
+                    "type": "accounts.add-account-form",
+                    "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts/form",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts/form"
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "addaccountaction",
+                      "type": "accounts.add-account-form",
+                      "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts/form",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts/form"
+                    }
+                  ],
+                  "external-id": "",
+                  "legal-name": "",
+                  "name": "",
+                  "registration-id": ""
+                }
+              ],
+              "_element": [
+                {
+                  "self": {
+                    "type": "accounts.account",
+                    "uri": "/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm=",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "statusinfo",
+                      "rev": "account",
+                      "type": "accounts.account-status-info",
+                      "uri": "/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm=/statusinfo",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm=/statusinfo"
+                    },
+                    {
+                      "rel": "list",
+                      "type": "accounts.subaccounts",
+                      "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts"
+                    },
+                    {
+                      "rel": "subaccounts",
+                      "rev": "parentaccount",
+                      "type": "accounts.subaccounts",
+                      "uri": "/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm=/subaccounts",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm=/subaccounts"
+                    },
+                    {
+                      "rel": "associateroleassignments",
+                      "type": "associates.associates-for-account",
+                      "uri": "/associates/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm=/associates",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/mnrwgy3dmnrwgljqgi2ggljqgi2ggljqgi2ggljqgi2ggmbqgaydamrumm=/associates"
+                    }
+                  ],
+                  "external-id": "",
+                  "legal-name": "",
+                  "name": "Baker Family",
+                  "registration-id": "cust-00049"
+                },
+                {
+                  "self": {
+                    "type": "accounts.account",
+                    "uri": "/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq=",
+                    "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq="
+                  },
+                  "messages": [],
+                  "links": [
+                    {
+                      "rel": "statusinfo",
+                      "rev": "account",
+                      "type": "accounts.account-status-info",
+                      "uri": "/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq=/statusinfo",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq=/statusinfo"
+                    },
+                    {
+                      "rel": "list",
+                      "type": "accounts.subaccounts",
+                      "uri": "/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gy3dmnrwgy3dmljqgi2dmljqgi2dmljqgi2dmljqgi2dmmbqgaydamrugy=/subaccounts"
+                    },
+                    {
+                      "rel": "subaccounts",
+                      "rev": "parentaccount",
+                      "type": "accounts.subaccounts",
+                      "uri": "/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq=/subaccounts",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq=/subaccounts"
+                    },
+                    {
+                      "rel": "associateroleassignments",
+                      "type": "associates.associates-for-account",
+                      "uri": "/associates/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq=/associates",
+                      "href": "https://api.qa.am.reference.elasticpath.com/admin/associates/accounts/am/gq2dinbugq2diljqgi2tiljqgi2tiljqgi2tiljqgi2timbqgaydamrvgq=/associates"
+                    }
+                  ],
+                  "external-id": "",
+                  "legal-name": "",
+                  "name": "Lewis Family",
+                  "registration-id": "cust-00052"
+                }
+              ]
+            }
+          ],
+          "external-id": "LSC-04",
+          "legal-name": "",
+          "name": "California",
+          "registration-id": "cust-00049"
+        }
+      ]
+    }
+  ],
+  "external-id": "LSC-02",
+  "legal-name": "Light Speed Connect NA, LLC",
+  "name": "North America",
+  "registration-id": "cust-00039"
+}

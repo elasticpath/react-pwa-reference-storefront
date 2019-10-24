@@ -18,17 +18,29 @@
  *
  *
  */
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { MemoryRouter } from 'react-router';
 
-const fs = require('fs');
-const path = require('path');
+import B2bAddSubAccountProps from './b2b.addsubaccount';
 
-const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
-const enMessages = JSON.parse(enStr, null, 2);
-const frMessages = Object.keys(enMessages)
-  .reduce((collection, messageName) => ({
-    ...collection,
-    [messageName]: enMessages[messageName].split('').join('-'),
-  }), {});
+const isOpen = true;
+const addSubAccountUri = '';
+const addSubAccountSellerAdmin = true;
 
-const frStr = JSON.stringify(frMessages, null, 2);
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
+function handleClose() {}
+function handleUpdate() {}
+
+storiesOf('B2bAddSubAccountProps', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('B2bAddSubAccountProps', () => (
+    <B2bAddSubAccountProps
+      isOpen={isOpen}
+      handleClose={handleClose}
+      handleUpdate={handleUpdate}
+      addSubAccountUri={addSubAccountUri}
+      addSubAccountSellerAdmin={addSubAccountSellerAdmin}
+    />
+  ));

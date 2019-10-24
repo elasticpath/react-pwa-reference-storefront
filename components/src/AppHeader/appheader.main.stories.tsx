@@ -23,6 +23,7 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
 import AppHeaderMain from './appheader.main';
+import { mockProductDisplayItemMainMultiCart } from './appheader.main.api.mocks.js';
 
 const appHeaderLinks = {
   mainPage: '',
@@ -46,6 +47,12 @@ const appModalLoginLinks = {
 };
 
 storiesOf('AppHeaderMain', module)
-  .add('AppHeaderMain', () => (
-    <MemoryRouter initialEntries={['/']}><AppHeaderMain appHeaderLinks={appHeaderLinks} appHeaderLoginLinks={appHeaderLoginLinks} appHeaderNavigationLinks={appHeaderNavigationLinks} appHeaderTopLinks={appHeaderTopLinks} appModalLoginLinks={appModalLoginLinks} /></MemoryRouter>
-  ));
+  .add('AppHeaderMain', () => {
+    mockProductDisplayItemMainMultiCart();
+
+    return (
+      <MemoryRouter initialEntries={['/']}>
+        <AppHeaderMain appHeaderLinks={appHeaderLinks} appHeaderLoginLinks={appHeaderLoginLinks} appHeaderNavigationLinks={appHeaderNavigationLinks} appHeaderTopLinks={appHeaderTopLinks} appModalLoginLinks={appModalLoginLinks} />
+      </MemoryRouter>
+    );
+  });

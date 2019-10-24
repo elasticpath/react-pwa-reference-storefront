@@ -21,15 +21,17 @@
  */
 
 import * as React from 'react';
-import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { adminFetch } from '../../utils/Cortex';
-import { login } from '../../utils/AuthService';
-import * as Config from '../../ep.config.json';
+import { adminFetch } from '../utils/Cortex';
+import { login } from '../utils/AuthService';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-import './EditAccount.less';
+import '../B2bEditAccount/b2b.editaccount.less';
 
-interface AddSubAccountProps {
+let Config: IEpConfig | any = {};
+let intl = { get: str => str };
+
+interface B2bAddSubAccountProps {
     isOpen: boolean,
     handleClose: () => void,
     handleUpdate: () => void,
@@ -37,7 +39,7 @@ interface AddSubAccountProps {
     addSubAccountSellerAdmin: boolean,
 }
 
-interface AddSubAccountState {
+interface B2bAddSubAccountState {
     name: string,
     legalName: string,
     externalId: string,
@@ -45,9 +47,12 @@ interface AddSubAccountState {
     isLoading: boolean,
 }
 
-export default class AddSubAccount extends React.Component<AddSubAccountProps, AddSubAccountState> {
+export default class B2bAddSubAccount extends React.Component<B2bAddSubAccountProps, B2bAddSubAccountState> {
   constructor(props) {
     super(props);
+    const epConfig = getConfig();
+    Config = epConfig.config;
+    ({ intl } = epConfig);
     this.state = {
       name: '',
       legalName: '',

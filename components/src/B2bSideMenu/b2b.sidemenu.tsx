@@ -22,33 +22,21 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
-import './SideMenu.less';
+import './b2b.sidemenu.less';
 
-interface SideMenuProps {
-    location: {
-        [key: string]: any,
-    },
-}
-interface SideMenuState {
-    isOpen: boolean,
+interface B2bSideMenuProps {
     sideMenuItems: any,
 }
+interface B2bSideMenuState {
+    isOpen: boolean,
+}
 
-export default class SideMenu extends React.Component<SideMenuProps, SideMenuState> {
+export default class B2bSideMenu extends React.Component<B2bSideMenuProps, B2bSideMenuState> {
   constructor(props) {
     super(props);
 
     this.state = {
       isOpen: false,
-      sideMenuItems: [
-        { to: '/b2b', children: 'dashboard' },
-        // { to: '/b2b/address-book', children: 'address-book' },
-        // { to: '/b2b/orders', children: 'orders' },
-        // { to: '/b2b/approvals', children: 'approvals' },
-        // { to: '/b2b/invitations', children: 'invitations' },
-        // { to: '/b2b/requisition-lists', children: 'requisition-lists' },
-        // { to: '/b2b/quotes', children: 'quotes' },
-      ],
     };
 
     this.clickListener = this.clickListener.bind(this);
@@ -68,9 +56,9 @@ export default class SideMenu extends React.Component<SideMenuProps, SideMenuSta
   }
 
   render() {
-    const { location } = this.props;
-    const { isOpen, sideMenuItems } = this.state;
-    const currentSideMenuItems = sideMenuItems.filter(el => el.to === location.pathname);
+    const { sideMenuItems } = this.props;
+    const { isOpen } = this.state;
+    const currentSideMenuItems = sideMenuItems.filter(el => el.to === window.location.pathname);
     return (
       <div className="side-menu-component">
         <button
@@ -87,7 +75,7 @@ export default class SideMenu extends React.Component<SideMenuProps, SideMenuSta
                 path={elem.to}
                 exact
               >
-                <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
+                <Link className={`menu-item ${window.location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
                   {intl.get(elem.children)}
                 </Link>
               </Route>

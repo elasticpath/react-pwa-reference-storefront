@@ -18,17 +18,14 @@
  *
  *
  */
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { MemoryRouter } from 'react-router';
 
-const fs = require('fs');
-const path = require('path');
+import B2bEditAssociate from './b2b.editassociate';
 
-const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
-const enMessages = JSON.parse(enStr, null, 2);
-const frMessages = Object.keys(enMessages)
-  .reduce((collection, messageName) => ({
-    ...collection,
-    [messageName]: enMessages[messageName].split('').join('-'),
-  }), {});
-
-const frStr = JSON.stringify(frMessages, null, 2);
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
+storiesOf('B2bEditAssociate', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('B2bEditAssociate', () => <B2bEditAssociate isOpen handleClose={() => {}} handleUpdate={() => {}} associateEmail="" accountName="Test" subAccountName="Test" addAssociateUri="" rolesSelector="" isSelf={false} isAddAssociateOpen={false} />);
