@@ -24,7 +24,7 @@ import { MemoryRouter } from 'react-router';
 
 import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
 import B2bSubAccountList from './b2b.subaccountlist';
-import { mockFetchSubAccount } from './b2b.subaccountlist.api.mocks';
+import { mockFetchSubAccount } from '../B2bAccountList/b2b.accountlist.api.mocks';
 
 const accountName = 'Accelsmart';
 const registrationNumber = 'cust-00059';

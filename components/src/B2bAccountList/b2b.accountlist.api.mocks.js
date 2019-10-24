@@ -19,7 +19,7 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import subAccountResponse from '../CommonMockHttpResponses/b2bSubAccountData_responce';
+import subAccountResponse from '../CommonMockHttpResponses/b2bSubAccountData_response.json';
 import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
 function mockSubAccountResponse(mockObj) {

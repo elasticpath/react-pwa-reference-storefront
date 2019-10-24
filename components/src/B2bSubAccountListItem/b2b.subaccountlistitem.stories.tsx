@@ -24,7 +24,7 @@ import { MemoryRouter } from 'react-router';
 
 import B2bSubAccountListItem from './b2b.subaccountlistitem';
 
-import SubAccountData from '../B2bAccountList/HttpResponse/subAccountData_response.json';
+import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
 
 storiesOf('B2bSubAccountListItem', module)
   .addDecorator(story => (

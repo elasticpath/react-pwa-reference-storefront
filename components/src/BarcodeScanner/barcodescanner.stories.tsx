@@ -18,26 +18,15 @@
  *
  *
  */
-import fetchMock from 'fetch-mock/es5/client';
-import subAccountResponse from '../CommonMockHttpResponses/b2bSubAccountData_responce';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
+import React from 'react';
+import { storiesOf } from '@storybook/react';
 
-function mockSubAccountResponse(mockObj) {
-  mockObj.get(
-    /\/admin\/accounts\/am(.*)/,
-    subAccountResponse,
-  );
-}
+import BarcodeScanner from './barcodescanner';
 
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
+function handleBarcodeModalClose() {}
+function handleBarcodeScanned() {}
 
-export function mockFetchSubAccount() {
-  fetchMock.restore();
-  mockLoginResponse(fetchMock);
-  mockSubAccountResponse(fetchMock);
-}
+storiesOf('BarcodeScanner', module)
+  .add('BarcodeScanner', () => (
+    <BarcodeScanner isModalOpen handleModalClose={handleBarcodeModalClose} handleCodeFound={handleBarcodeScanned} />
+  ));
