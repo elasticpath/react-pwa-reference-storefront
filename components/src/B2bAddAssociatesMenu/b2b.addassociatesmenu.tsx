@@ -80,7 +80,7 @@ export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociat
           tabIndex={0}
         >
           <div className="selected-title">
-            {intl.get('add-associates')}
+            {intl.get('import-associates')}
           </div>
           <div className={`associate-menu ${isOpen ? '' : 'hidden'}`}>
             <div
@@ -90,9 +90,9 @@ export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociat
               role="button"
               tabIndex={0}
             >
-              {intl.get('upload-spreadsheet')}
+              {intl.get('upload-list')}
             </div>
-            <div className="menu-item">{intl.get('download-list')}</div>
+            <div className="menu-item">{intl.get('download-associate-template')}</div>
           </div>
         </div>
       );
