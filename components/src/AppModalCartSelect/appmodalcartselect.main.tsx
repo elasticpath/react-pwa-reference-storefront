@@ -48,7 +48,7 @@ interface AppModalCartSelectMainState {
 
 class AppModalCartSelectMain extends React.Component<AppModalCartSelectMainProps, AppModalCartSelectMainState> {
   static defaultProps = {
-    onContinueCart: () => {},
+    onContinueCart: () => { },
   };
 
   constructor(props) {
@@ -180,8 +180,8 @@ class AppModalCartSelectMain extends React.Component<AppModalCartSelectMainProps
                 </div>
                 <div className="action-row">
                   <div className="form-input btn-container">
-                    <button onClick={(orgAuthServiceData && !orgAuthServiceData._element) ? handleModalClose : this.continueCart} className="ep-btn primary wide" id="continue_with_cart_button" data-cmd="continue" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
-                      {(orgAuthServiceData && !orgAuthServiceData._element)
+                    <button onClick={(orgAuthServiceData && !orgAuthServiceData._element) || !orgAuthServiceData ? handleModalClose : this.continueCart} className="ep-btn primary wide" id="continue_with_cart_button" data-cmd="continue" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
+                      {((orgAuthServiceData && !orgAuthServiceData._element) || !orgAuthServiceData)
                         ? (intl.get('change-carts-ok'))
                         : (`${intl.get('continue-with')} ${selectedCartName}`)
                       }
