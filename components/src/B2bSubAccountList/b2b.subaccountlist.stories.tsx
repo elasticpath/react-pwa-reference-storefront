@@ -22,41 +22,27 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import B2bAccountList from './b2b.accountlist';
-import SubAccountData from './HttpResponse/accountData_response.json';
-import { mockFetchSubAccount } from './b2b.accountlist.api.mocks';
+import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
+import B2bSubAccountList from './b2b.subaccountlist';
+import { mockFetchSubAccount } from './b2b.subaccountlist.api.mocks';
 
-
-const accountListData = {
-  status: 'ENABLED',
-  subAccounts: SubAccountData,
-  mainAccountName: 'Accelsmart',
-};
 const accountName = 'Accelsmart';
 const registrationNumber = 'cust-00059';
 
-function getAccountData() {}
+function handleAccount() {}
 
-function subAccountData() {}
-
-function handleAddSubAccountClicked() {}
-
-storiesOf('B2bAccountList', module)
+storiesOf('B2bSubAccountList', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('B2bAccountList', () => {
+  .add('B2bSubAccountList', () => {
     mockFetchSubAccount();
     return (
-      <div className="account-component">
-        <B2bAccountList
-          getAccountData={this.getAccountData}
-          accountListData={accountListData}
-          getSubAccountData={this.subAccountData}
-          handleAddSubAccountClicked={this.handleAddSubAccountClicked}
-          accountName={accountName}
-          registrationNumber={registrationNumber}
-        />
-      </div>
+      <B2bSubAccountList
+        getAccountData={handleAccount}
+        subAccounts={SubAccountData}
+        accountName={accountName}
+        registrationNumber={registrationNumber}
+      />
     );
   });
