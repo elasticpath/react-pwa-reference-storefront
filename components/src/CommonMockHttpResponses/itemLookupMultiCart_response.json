@@ -164,7 +164,7 @@
               },
               "messages": [],
               "links": [],
-              "name": "My favorite cart"
+              "name": "Default"
             }
           ],
           "_total": [
@@ -272,7 +272,7 @@
               },
               "messages": [],
               "links": [],
-              "name": "Default"
+              "name": "Kitchen"
             }
           ],
           "_total": [
@@ -380,7 +380,7 @@
               },
               "messages": [],
               "links": [],
-              "name": "Default Cart"
+              "name": "Living Room"
             }
           ],
           "_total": [
@@ -488,7 +488,7 @@
               },
               "messages": [],
               "links": [],
-              "name": "My personal Cart"
+              "name": "Garage"
             }
           ],
           "_total": [
