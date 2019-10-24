@@ -18,22 +18,20 @@
  *
  *
  */
-import * as React from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import CartPopUp from './cartpopup';
+import CartCreate from './cart.create';
 
-const appHeaderLinks = '/';
-const itemsAddedCount = 5;
-function handleMultiCartModalClose() {}
+import { mockFetchMultiCart } from './cart.create.api.mocks';
 
-storiesOf('CartPopUp', module)
+storiesOf('CartCreate', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('CartPopUp', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={handleMultiCartModalClose} />
-    </div>
-  ));
+  .add('CartCreate', () => {
+    mockFetchMultiCart();
+
+    return <CartCreate handleModalClose={() => {}} openModal />
+  });

@@ -18,22 +18,37 @@
  *
  *
  */
-import * as React from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import CartPopUp from './cartpopup';
+import B2bEditAccount from './b2b.editaccount';
 
-const appHeaderLinks = '/';
-const itemsAddedCount = 5;
-function handleMultiCartModalClose() {}
+function handleAccountSettingsClose() {}
+function handleAccountSettingsUpdate() {}
+const isSettingsDialogOpen = true;
+const accountData = {
+  name: 'Cabana',
+  legalName: 'Cabana, LLC',
+  externalId: 'externalId',
+  registrationNumber: 'cust-00062',
+  selfSignUpCode: '123',
+  uri: 'uri',
+};
+const editSubAccountUri = null;
+const editMetadataUri = null;
 
-storiesOf('CartPopUp', module)
+storiesOf('B2bEditAccount', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('CartPopUp', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={handleMultiCartModalClose} />
-    </div>
+  .add('B2bEditAccount', () => (
+    <B2bEditAccount
+      handleClose={handleAccountSettingsClose}
+      handleUpdate={handleAccountSettingsUpdate}
+      isOpen={isSettingsDialogOpen}
+      accountData={accountData}
+      editSubAccountUri={editSubAccountUri}
+      editMetadataUri={editMetadataUri}
+    />
   ));

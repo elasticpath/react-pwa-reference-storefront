@@ -18,22 +18,29 @@
  *
  *
  */
-import * as React from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import CartPopUp from './cartpopup';
+import B2bAddSubAccountProps from './b2b.addsubaccount';
 
-const appHeaderLinks = '/';
-const itemsAddedCount = 5;
-function handleMultiCartModalClose() {}
+const isOpen = true;
+const addSubAccountUri = '';
+const addSubAccountSellerAdmin = true;
 
-storiesOf('CartPopUp', module)
+function handleClose() {}
+function handleUpdate() {}
+
+storiesOf('B2bAddSubAccountProps', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('CartPopUp', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={handleMultiCartModalClose} />
-    </div>
+  .add('B2bAddSubAccountProps', () => (
+    <B2bAddSubAccountProps
+      isOpen={isOpen}
+      handleClose={handleClose}
+      handleUpdate={handleUpdate}
+      addSubAccountUri={addSubAccountUri}
+      addSubAccountSellerAdmin={addSubAccountSellerAdmin}
+    />
   ));

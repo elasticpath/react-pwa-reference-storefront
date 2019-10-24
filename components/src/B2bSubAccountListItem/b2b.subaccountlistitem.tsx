@@ -22,21 +22,23 @@
 
 import * as React from 'react';
 import intl from 'react-intl-universal';
-import * as Config from '../../ep.config.json';
-import './SubAccountList.less';
-import { login } from '../../utils/AuthService';
-import { adminFetch } from '../../utils/Cortex';
+import * as Config from '@elasticpath/ref-store/src/ep.config.json';
+import '../B2bSubAccountList/b2b.subaccountlist.less';
 // eslint-disable-next-line import/no-cycle
-import SubAccountList from './SubAccountList';
+import SubAccountList from '../B2bSubAccountList/b2b.subaccountlist';
+import { login } from '../utils/AuthService';
+import { adminFetch } from '../utils/Cortex';
+import { ReactComponent as EnabledStatusIcon } from '../../../app/src/images/icons/check-circle.svg';
+import { ReactComponent as DisabledStatusIcon } from '../../../app/src/images/icons/remove-circle.svg';
 
-interface SubAccountListProps {
+interface B2bSubAccountListItemProps {
     accountData: any,
     handleAccount: (data: any) => void,
     accountName: string,
     registrationNumber: string,
 }
 
-interface SubAccountListState {
+interface B2bSubAccountListItemState {
     subAccounts: any,
     subAccountData: any,
     isLoading: boolean,
@@ -92,7 +94,7 @@ const zoom = [
   'associateroleassignments:associateform:addassociateaction',
 ];
 
-export default class SubAccountListItem extends React.Component<SubAccountListProps, SubAccountListState> {
+export default class B2bSubAccountListItem extends React.Component<B2bSubAccountListItemProps, B2bSubAccountListItemState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -190,7 +192,7 @@ export default class SubAccountListItem extends React.Component<SubAccountListPr
             ))
           }
           <span className="status">
-            <i className={`icons-status ${accountData._statusinfo[0]._status[0].status.toLowerCase()}`} />
+            {(accountData._statusinfo[0]._status[0].status.toLowerCase() === 'enabled') ? <EnabledStatusIcon className="icons-status" /> : <DisabledStatusIcon className="icons-status" /> }
             {intl.get(accountData._statusinfo[0]._status[0].status.toLowerCase())}
           </span>
         </div>

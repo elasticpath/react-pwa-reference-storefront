@@ -22,7 +22,6 @@
     .add-associate-icon {
       width: 14px;
       height: 14px;
-      background: url('../@{imgUrl}/icons/outline-add_circle_outline-14px.svg') no-repeat;
       margin-right: 10px;
     }
   }
@@ -416,37 +415,6 @@
   }
 }
 
-.b2b-edit-associate-dialog{
-  width: 600px;
-  display: flex;
-  flex-direction: column;
-  padding: 15px 30px;
-  @media (max-width: 575px) {
-    width: 100%;
-    min-height: 100%;
-    padding: 15px 20px;
-
-    .dialog-content {
-      padding: 15px 0;
-    }
-  }
-  .b2b-dialog-close-btn {
-    right: 20px;
-    opacity: 0.5;
-  }
-  .dialog-footer {
-    button {
-      @media (max-width: 575px) {
-        width: 100%;
-
-        &.cancel {
-          margin-bottom: 20px;
-        }
-      }
-    }
-  }
-}
-
 .account-header {
   flex: 0 0 auto;
   padding: 20px 0px 10px;
@@ -575,10 +543,4 @@
   background-size: contain;
   vertical-align: sub;
   margin: 0 6px 1px 0;
-  &.enabled {
-    background-image: url('../@{imgUrl}/icons/check-circle.svg');
-  }
-  &.disabled {
-    background-image: url('../@{imgUrl}/icons/remove-circle.svg');
-  }
 }

@@ -18,22 +18,26 @@
  *
  *
  */
-import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { MemoryRouter } from 'react-router';
+import fetchMock from 'fetch-mock/es5/client';
+import itemLookupMultiCartResponse from '../CommonMockHttpResponses/itemLookupMultiCart_response.json';
+import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
-import CartPopUp from './cartpopup';
+function mockMultiCartResponse(mockObj) {
+  mockObj.get(
+    '/cortex/?zoom=carts,carts:element,defaultcart,defaultcart:additemstocartform',
+    itemLookupMultiCartResponse,
+  );
+}
 
-const appHeaderLinks = '/';
-const itemsAddedCount = 5;
-function handleMultiCartModalClose() {}
+function mockLoginResponse(mockObj) {
+  mockObj.post(
+    '/cortex/oauth2/tokens',
+    loginResponse,
+  );
+}
 
-storiesOf('CartPopUp', module)
-  .addDecorator(story => (
-    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
-  ))
-  .add('CartPopUp', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={handleMultiCartModalClose} />
-    </div>
-  ));
+export function mockProductDisplayItemMainMultiCart() {
+  fetchMock.restore();
+  mockLoginResponse(fetchMock);
+  mockMultiCartResponse(fetchMock);
+}

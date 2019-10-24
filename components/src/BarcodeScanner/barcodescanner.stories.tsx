@@ -18,22 +18,15 @@
  *
  *
  */
-import * as React from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { MemoryRouter } from 'react-router';
 
-import CartPopUp from './cartpopup';
+import BarcodeScanner from './barcodescanner';
 
-const appHeaderLinks = '/';
-const itemsAddedCount = 5;
-function handleMultiCartModalClose() {}
+function handleBarcodeModalClose() {}
+function handleBarcodeScanned() {}
 
-storiesOf('CartPopUp', module)
-  .addDecorator(story => (
-    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
-  ))
-  .add('CartPopUp', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={handleMultiCartModalClose} />
-    </div>
+storiesOf('BarcodeScanner', module)
+  .add('BarcodeScanner', () => (
+    <BarcodeScanner isModalOpen handleModalClose={handleBarcodeModalClose} handleCodeFound={handleBarcodeScanned} />
   ));

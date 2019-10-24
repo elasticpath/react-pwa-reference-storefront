@@ -21,14 +21,16 @@
  */
 
 import * as React from 'react';
-import * as intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { adminFetch } from '../../utils/Cortex';
-import * as Config from '../../ep.config.json';
+import { adminFetch } from '../utils/Cortex';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-import './EditAssociate.less';
+import './b2b.editassociate.less';
 
-interface EditAssociateProps {
+let Config: IEpConfig | any = {};
+let intl = { get: (str, ...args: any[]) => str };
+
+interface B2bEditAssociateProps {
     isOpen: boolean,
     handleClose: () => void,
     handleUpdate: () => void,
@@ -41,7 +43,7 @@ interface EditAssociateProps {
     isAddAssociateOpen: boolean,
 }
 
-interface EditAssociateState {
+interface B2bEditAssociateState {
     changedRoles: any,
     isLoading: boolean,
     newAssociateEmail: string
@@ -49,9 +51,12 @@ interface EditAssociateState {
     validEmail: boolean,
 }
 
-export default class EditAssociate extends React.Component<EditAssociateProps, EditAssociateState> {
+export default class B2bEditAssociate extends React.Component<B2bEditAssociateProps, B2bEditAssociateState> {
   constructor(props: any) {
     super(props);
+    const epConfig = getConfig();
+    Config = epConfig.config;
+    ({ intl } = epConfig);
     this.state = {
       changedRoles: [],
       isLoading: false,
@@ -111,7 +116,7 @@ export default class EditAssociate extends React.Component<EditAssociateProps, E
       <div>
         {allAssociateRoles.map(role => (
           <div key={role.roleName} className="role-checkbox">
-            <input id={role.roleName} disabled={isSelf && role.roleName === 'BUYER_ADMIN'} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} className="style-checkbox" />
+            <input id={role.roleName} type="checkbox" defaultChecked={role.selected} onChange={() => this.handleRoleChange(role)} className="style-checkbox" />
             <label htmlFor={role.roleName} />
             <label htmlFor={role.roleName} className="role-title">{intl.get(role.roleName.toLowerCase()) || role.roleName}</label>
           </div>

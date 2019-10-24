@@ -30,6 +30,7 @@ import {
   mockProductDisplayItemMainPlain,
   mockProductDisplayItemMainColorAndSize,
   mockProductDisplayItemMainInput,
+  mockProductDisplayItemMainMultiCart,
 } from './productdisplayitem.main.api.mocks';
 
 // Import custom required scripts
@@ -64,4 +65,9 @@ storiesOf('ProductDisplayItemMain', module)
   .add('ProductDisplayItemMain Input', () => {
     mockProductDisplayItemMainInput();
     return <ProductDisplayItemMain productId="250HR_PMKIT" onAddToCart={dummyHandleAddToCart} />;
+  })
+  .add('ProductDisplayItemMain Multi-cart', () => {
+    mockProductDisplayItemMainMultiCart();
+
+    return <ProductDisplayItemMain productId="83992" onAddToCart={dummyHandleAddToCart} />;
   });

@@ -22,37 +22,27 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import AppHeaderMain from './appheader.main';
-import { mockProductDisplayItemMainMultiCart } from './appheader.main.api.mocks.js';
+import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
+import B2bSubAccountList from './b2b.subaccountlist';
+import { mockFetchSubAccount } from '../B2bAccountList/b2b.accountlist.api.mocks';
 
-const appHeaderLinks = {
-  mainPage: '',
-  myCart: '',
-};
-const appHeaderLoginLinks = {
-  profile: '',
-  wishlists: '',
-};
-const appHeaderNavigationLinks = {
-  categories: '',
-  subCategories: '',
-};
-const appHeaderTopLinks = {
-  shippingreturns: '',
-  aboutus: '',
-  contactus: '',
-};
-const appModalLoginLinks = {
-  registration: '',
-};
+const accountName = 'Accelsmart';
+const registrationNumber = 'cust-00059';
 
-storiesOf('AppHeaderMain', module)
-  .add('AppHeaderMain', () => {
-    mockProductDisplayItemMainMultiCart();
+function handleAccount() {}
 
+storiesOf('B2bSubAccountList', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('B2bSubAccountList', () => {
+    mockFetchSubAccount();
     return (
-      <MemoryRouter initialEntries={['/']}>
-        <AppHeaderMain appHeaderLinks={appHeaderLinks} appHeaderLoginLinks={appHeaderLoginLinks} appHeaderNavigationLinks={appHeaderNavigationLinks} appHeaderTopLinks={appHeaderTopLinks} appModalLoginLinks={appModalLoginLinks} />
-      </MemoryRouter>
+      <B2bSubAccountList
+        getAccountData={handleAccount}
+        subAccounts={SubAccountData}
+        accountName={accountName}
+        registrationNumber={registrationNumber}
+      />
     );
   });
