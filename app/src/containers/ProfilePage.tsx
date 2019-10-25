@@ -92,14 +92,16 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   fetchProfileData() {
     login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.join()}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
-          },
-        })
+      const options = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      };
+      if (Config.GDPR.enable) {
+        options.headers['X-Ep-Data-Policy-Segments'] = `${Config.GDPR.dataPolicySegments}`;
+      }
+      cortexFetch(`/?zoom=${zoomArray.join()}`, options)
         .then(res => res.json())
         .then((res) => {
           if (res && res._defaultprofile) {
