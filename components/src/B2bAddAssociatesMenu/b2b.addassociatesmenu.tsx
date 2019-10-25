@@ -26,7 +26,8 @@ import { getConfig } from '../utils/ConfigProvider';
 let intl = { get: str => str };
 
 interface B2bAddAssociatesMenuProps {
-    onSpreeadsheetClicked?: (...args: any[]) => any,
+  onSpreeadsheetClicked?: (...args: any[]) => any;
+  onTemplateClicked?: (...args: any[]) => any;
 }
 interface B2bAddAssociatesMenuState {
     isOpen: boolean,
@@ -69,6 +70,14 @@ export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociat
       }
     }
 
+    handleTemplateClicked() {
+      const { onTemplateClicked } = this.props;
+
+      if (onTemplateClicked) {
+        onTemplateClicked();
+      }
+    }
+
     render() {
       const { isOpen } = this.state;
       return (
@@ -92,7 +101,15 @@ export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociat
             >
               {intl.get('upload-list')}
             </div>
-            <div className="menu-item">{intl.get('download-associate-template')}</div>
+            <div
+              className="menu-item"
+              onClick={() => this.handleTemplateClicked()}
+              onKeyDown={() => this.handleTemplateClicked()}
+              role="button"
+              tabIndex={0}
+            >
+              {intl.get('download-associate-template')}
+            </div>
           </div>
         </div>
       );
