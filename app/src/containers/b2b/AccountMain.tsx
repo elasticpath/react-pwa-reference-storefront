@@ -31,6 +31,7 @@ import { login } from '../../utils/AuthService';
 import * as Config from '../../ep.config.json';
 
 import './AccountMain.less';
+import { ReactComponent as AddCircleIcon } from '../../images/icons/outline-add_circle_outline-14px.svg';
 
 const accountZoomArray = [
   'accountmetadata',
@@ -344,7 +345,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
               <div className="associates-container">
                 <div className="add-associate-container">
                   <button type="button" className="ep-btn primary small add-associate-button" onClick={() => this.handleAddAssociateClicked()}>
-                    <span className="add-associate-icon" />
+                    <AddCircleIcon className="add-associate-icon" />
                     {intl.get('add-associate')}
                   </button>
                 </div>
