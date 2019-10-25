@@ -24,7 +24,7 @@ import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
 function mockSubAccountResponse(mockObj) {
   mockObj.get(
-    /\/admin\/accounts\/am(.*)/,
+    /\/accounts\/am(.*)/,
     subAccountResponse,
   );
 }
