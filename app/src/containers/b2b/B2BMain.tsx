@@ -22,6 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
+import fileDownload from 'js-file-download';
 import { B2bAddAssociatesMenu, B2bSideMenu } from '@elasticpath/store-components';
 import RouteWithSubRoutes from '../../RouteWithSubRoutes';
 import { adminFetch } from '../../utils/Cortex';
@@ -103,6 +104,11 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
 
   handleSpreeadsheetClicked() {
     this.setState({ isImportDialogOpen: true });
+  }
+
+  handleTemplateClicked() {
+    const { exampleCsvFile } = this.state;
+    fileDownload(exampleCsvFile, 'example.csv', 'text/csv');
   }
 
   resetDialog() {
@@ -208,7 +214,10 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
             <div className="page-title">{intl.get('business-account')}</div>
             {associatesFormUrl && (
               <div className="quick-menu">
-                <B2bAddAssociatesMenu onSpreeadsheetClicked={() => this.handleSpreeadsheetClicked()} />
+                <B2bAddAssociatesMenu
+                  onSpreeadsheetClicked={() => this.handleSpreeadsheetClicked()}
+                  onTemplateClicked={() => this.handleTemplateClicked()}
+                />
               </div>
             )}
           </div>
