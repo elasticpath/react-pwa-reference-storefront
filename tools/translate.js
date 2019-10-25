@@ -27,7 +27,7 @@ const enMessages = JSON.parse(enStr, null, 2);
 const frMessages = Object.keys(enMessages)
   .reduce((collection, messageName) => ({
     ...collection,
-    [messageName]: enMessages[messageName].split('').join('-'),
+    [messageName]: enMessages[messageName].split(/(?!$)(?=(?:[^\{]*\{[^\{]*\})*[^\}]*$)/).join('-'),
   }), {});
 
 const frStr = JSON.stringify(frMessages, null, 2);
