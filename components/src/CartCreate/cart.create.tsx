@@ -299,7 +299,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
-        body: JSON.stringify({ name: cartName }),
+        body: JSON.stringify({ descriptor: { name: cartName } }),
       })
         .then(res => res.json())
         .then((res) => {
