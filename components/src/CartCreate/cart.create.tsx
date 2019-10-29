@@ -51,6 +51,7 @@ interface CartCreateState {
   cartName: string,
   showAddNewCartForm: boolean,
   showLoader: boolean,
+  removeCartLoading: boolean,
   selectedElement: number,
   createCartForm: any,
 }
@@ -71,6 +72,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       cartName: '',
       showAddNewCartForm: false,
       showLoader: false,
+      removeCartLoading: false,
       selectedElement: 0,
       createCartForm: [],
     };
@@ -80,11 +82,13 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.handleShowCartForm = this.handleShowCartForm.bind(this);
     this.handleHideCartForm = this.handleHideCartForm.bind(this);
     this.handleEditCart = this.handleEditCart.bind(this);
+    this.handleDeleteCart = this.handleDeleteCart.bind(this);
     this.handleCancelEditCart = this.handleCancelEditCart.bind(this);
     this.handleCartFieldChange = this.handleCartFieldChange.bind(this);
     this.clearCartNameFieldItem = this.clearCartNameFieldItem.bind(this);
     this.handleCartRename = this.handleCartRename.bind(this);
     this.handleCartSelect = this.handleCartSelect.bind(this);
+    this.modalConfirmation = this.modalConfirmation.bind(this);
   }
 
   componentDidMount() {
@@ -105,7 +109,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           const extCartElements = cartElements.map(obj => ({
             ...obj, editMode: false, cartName: obj._descriptor[0].name || '', showLoader: false,
           }));
-          this.setState({ cartElements: [...extCartElements] });
+          this.setState({ cartElements: [...extCartElements], removeCartLoading: false });
           if (res._carts[0]._createcartform) {
             this.setState({ createCartForm: res._carts[0]._createcartform });
           }
@@ -189,23 +193,51 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     handleModalClose();
   }
 
+  modalConfirmation(index, element) {
+    const { removeCartLoading } = this.state;
+    return (
+      <div className="edit-mode delete-mode" role="presentation" onClick={(event) => { event.stopPropagation(); }}>
+        <p className="">
+          {intl.get('you-are-about-delete')}
+          {' '}
+          <b>{element._descriptor[0].name}</b>
+          {'.'}
+          <br />
+          {intl.get('the-cart-deleted')}
+        </p>
+        <div className="btn-wrap">
+          <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, 0)}>{intl.get('cancel')}</button>
+          <button type="button" className="ep-btn ok-btn" onClick={event => this.handleDeleteCart(event, element)}>
+            {removeCartLoading ? (
+              <div className="miniLoader" />
+            ) : (
+              <span>
+                {intl.get('ok')}
+              </span>
+            )}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   renderCartItems() {
     const { cartElements, selectedElement } = this.state;
     if (cartElements.length) {
       return cartElements.map((el, index) => (
-        <li className={`carts-list-item ${selectedElement === index ? 'selected' : ''} ${el.editMode ? 'edit-mode-state' : ''}`} key={`cartItem_${el._descriptor[0].name ? el._descriptor[0].name.trim() : 'default'}`} role="presentation" onClick={() => this.handleCartSelect(el, index)}>
+        <li className={`carts-list-item ${selectedElement === index ? 'selected' : ''} ${el.editMode || el.deleteMode ? 'edit-mode-state' : ''}`} key={`cartItem_${el._descriptor[0].name ? el._descriptor[0].name.trim() : 'default'}`} role="presentation" onClick={() => this.handleCartSelect(el, index)}>
           <h4 className="cart-info">{el._descriptor[0].name || intl.get('default')}</h4>
           <p className="cart-info cart-quantity">
             {el['total-quantity']}
             {' '}
-                  items
+            {intl.get('items')}
           </p>
           <p className="cart-info cart-price">{el._total[0].cost[0].display}</p>
           <div className="cart-info action-btn">
             {!el._descriptor[0].default ? (
               <div className="cart-editing-btn">
-                <button className="ep-btn delete-btn" type="button">{intl.get('delete')}</button>
-                <button className="ep-btn edit-btn" type="button" onClick={event => this.handleEditCart(event, index)}>{intl.get('edit')}</button>
+                <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditCart(event, index, 0)}>{intl.get('delete')}</button>
+                <button className="ep-btn edit-btn" type="button" onClick={event => this.handleEditCart(event, index, true)}>{intl.get('rename')}</button>
               </div>
             ) : (
               ''
@@ -224,12 +256,13 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
                   {el.cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={() => this.clearCartNameFieldItem(index)} />)}
                 </div>
                 <div className="btn-container">
-                  <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index)}>{intl.get('cancel')}</button>
+                  <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, true)}>{intl.get('cancel')}</button>
                   <button type="button" className="ep-btn primary save-btn" onClick={() => this.handleCartRename(index)}>{intl.get('save')}</button>
                 </div>
               </div>
             </div>
             )}
+            {el.deleteMode && this.modalConfirmation(index, el)}
           </div>
         </li>));
     }
@@ -271,20 +304,51 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.setState({ showAddNewCartForm: false });
   }
 
-  handleEditCart(event, index) {
+  handleEditCart(event, index, isEdit) {
     event.stopPropagation();
     const { cartElements } = this.state;
     const elements = [...cartElements];
     elements[index] = { ...elements[index] };
-    elements[index].editMode = true;
+    if (isEdit) {
+      elements[index].editMode = true;
+    } else {
+      elements[index].deleteMode = true;
+    }
     this.setState({ cartElements: elements });
   }
 
-  handleCancelEditCart(index) {
+  handleDeleteCart(event, element) {
+    event.stopPropagation();
+    this.setState({ removeCartLoading: true });
+    const { handleCartsUpdate } = this.props;
+    login().then(() => {
+      cortexFetch(`${element.self.uri}?format=standardlinks,zoom.nodatalinks&`, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(() => {
+          this.fetchCartData();
+          handleCartsUpdate();
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
+  handleCancelEditCart(index, isEdit) {
     const { cartElements } = this.state;
     const elements = [...cartElements];
     elements[index] = { ...elements[index] };
-    elements[index].editMode = false;
+    if (isEdit) {
+      elements[index].editMode = false;
+    } else {
+      elements[index].deleteMode = false;
+    }
     this.setState({ cartElements: elements });
   }
 

@@ -131,6 +131,7 @@
   }
 
   .carts-list-item {
+    cursor: pointer;
     display: block;
     height: auto;
     padding: 0;
@@ -214,6 +215,65 @@
       z-index: 1;
       width: ~'calc(100vw - 6.8rem)';
 
+      &.delete-mode {
+        min-height: 115px;
+        padding: 5px 20px;
+        background-color: #fff1f2;
+        display: flex;
+        align-items: center;
+        text-align: left;
+
+        @media screen and (max-width: 480px) {
+          min-height: 158px;
+          top: 22px;
+        }
+
+        p {
+          margin: 0 10px 0 0;
+        }
+
+        .btn-wrap {
+          @media screen and (min-width: 481px) {
+            white-space: nowrap;
+            display: flex;
+            flex-direction: row
+          }
+        }
+
+        .ep-btn {
+          min-height: 34px;
+          margin-top: 0;
+          margin-bottom: 0;
+          color: @mainTextColor;
+          border-color: @mainTextColor;
+
+        }
+
+        .cancel-btn {
+          background-color: transparent;
+          border: none;
+        }
+
+        .ok-btn {
+          margin-right: 0;
+
+          &:hover {
+            background-color: @mainBackgroundColor;
+          }
+
+          .miniLoader {
+            width: 20px;
+            height: 20px !important;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            border-width: 2px;
+            border-top-width: 2px;
+            border-top-color: black;
+          }
+        }
+      }
+
       @media screen and (min-width: 481px) {
         padding: 30px 0;
         right: 0;
@@ -233,6 +293,7 @@
       margin: 0;
       grid-row: ~"3 / 4";
       grid-column: ~"1 / 2";
+      font-weight: 600;
     }
 
     .action-btn {
@@ -263,12 +324,10 @@
       }
 
       .delete-btn {
-        display: none;
-        margin: 0 10px 0 0;
-
+        padding: 0 10px 0 0;
+        border-right: 1px solid @mainBorderColor;
         +.edit-btn {
           position: relative;
-          margin: 0 0 0 10px;
 
           &:before {
             display: none;
