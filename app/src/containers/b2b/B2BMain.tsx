@@ -145,10 +145,10 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
       .then(
         (result) => {
           if (result.status >= 200 && result.status < 300) {
-            return;
+            return Promise.resolve();
           }
 
-          result.json()
+          return result.json()
             .catch(_ => Promise.reject(new Error(intl.get('general-upload-error'))))
             .then((parsedJson) => {
               const errorMsg = parsedJson.messages.map(m => intl.get(`backend-mesage-${m.id}`) || m['debug-message']).join(' ');
