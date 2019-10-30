@@ -45,6 +45,7 @@ interface CartCreateProps {
   handleCartsUpdate?: (...args: any[]) => any,
   handleCartElementSelect?: (...args: any[]) => any,
   openModal: boolean,
+  updateCartModal: boolean,
 }
 interface CartCreateState {
   cartElements: any,
@@ -95,6 +96,11 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.fetchCartData();
   }
 
+  componentWillReceiveProps() {
+    const { updateCartModal } = this.props;
+    if (updateCartModal) this.fetchCartData();
+  }
+
   fetchCartData() {
     login().then(() => {
       cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
@@ -109,7 +115,8 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           const extCartElements = cartElements.map(obj => ({
             ...obj, editMode: false, cartName: obj._descriptor[0].name || '', showLoader: false,
           }));
-          this.setState({ cartElements: [...extCartElements], removeCartLoading: false });
+          const index = res._carts[0]._element.findIndex(el => el._descriptor[0].default === 'true');
+          this.setState({ cartElements: [...extCartElements], removeCartLoading: false, selectedElement: index });
           if (res._carts[0]._createcartform) {
             this.setState({ createCartForm: res._carts[0]._createcartform });
           }

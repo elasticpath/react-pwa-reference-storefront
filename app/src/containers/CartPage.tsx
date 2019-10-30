@@ -27,6 +27,7 @@ import {
   CheckoutSummaryList,
   AddPromotionContainer,
   CartCreate,
+  CartClear,
 } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 import { login } from '../utils/AuthService';
@@ -95,6 +96,7 @@ interface CartPageState {
   multiCartsAvailable: boolean,
   openModal: boolean,
   selectedCartNumber: number,
+  updateCartModal: boolean,
 }
 
 class CartPage extends React.Component<RouteComponentProps, CartPageState> {
@@ -108,6 +110,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       invalidPermission: false,
       openModal: false,
       selectedCartNumber: -1,
+      updateCartModal: false,
     };
     this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
     this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
@@ -116,6 +119,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleCartSelect = this.handleCartSelect.bind(this);
     this.handleCartElementSelect = this.handleCartElementSelect.bind(this);
+    this.handleCartModalUpdate = this.handleCartModalUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -229,6 +233,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
   handleModalOpen() {
     this.setState({
       openModal: true,
+      updateCartModal: false,
     });
   }
 
@@ -247,9 +252,13 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.setState({ cartData: cartsData._element[index], selectedCartNumber: index });
   }
 
+  handleCartModalUpdate() {
+    this.setState({ updateCartModal: true });
+  }
+
   render() {
     const {
-      cartData, cartsData, isLoading, openModal, multiCartsAvailable,
+      cartData, cartsData, isLoading, openModal, multiCartsAvailable, updateCartModal,
     } = this.state;
     const itemDetailLink = '/itemdetail';
     const cartName = cartData && cartData._descriptor && cartData._descriptor[0].default !== 'true' ? cartData._descriptor[0].name : intl.get('default');
@@ -266,7 +275,8 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
               {cartsData && !isLoading && multiCartsAvailable && (
                 <div className="cart-create-btn-wrap">
                   <button className="ep-btn open-modal-btn" type="button" onClick={this.handleModalOpen}>{intl.get('manage-carts')}</button>
-                  <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} handleCartElementSelect={this.handleCartElementSelect} />
+                  <CartCreate handleModalClose={this.handleModalClose} openModal={openModal} handleCartsUpdate={() => { this.fetchCartData(); }} handleCartElementSelect={this.handleCartElementSelect} updateCartModal={updateCartModal} />
+                  {cartData && cartData._lineitems && cartData._lineitems[0]._element.length > 0 && <CartClear cartData={cartData} handleCartsUpdate={() => { this.fetchCartData(); }} handleCartModalUpdate={() => { this.handleCartModalUpdate(); }} />}
                 </div>
               )}
             </div>

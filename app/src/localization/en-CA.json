@@ -349,5 +349,8 @@
   "gdpr-revoke-consent": "Revoke Consent",
   "gdpr-consent": "Consent",
   "data-policy-reference-key": "Policy Reference Key",
-  "backend-message-account.not.found": "No account with the given account name was found."
+  "backend-message-account.not.found": "No account with the given account name was found.",
+  "cart-clear-msg": "You are about to remove all items from",
+  "cart-clear-confirmation": "These items will be permanently removed. Continue?",
+  "remove-all-cart-items": "Remove all cart items"
 }

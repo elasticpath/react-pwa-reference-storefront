@@ -86,6 +86,7 @@ import B2bEditAccount from './B2bEditAccount/b2b.editaccount';
 import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
+import CartClear from './CartClear/cartclear';
 
 export {
   init,
@@ -155,4 +156,5 @@ export {
   B2bAddAssociatesMenu,
   B2bEditAssociate,
   B2bSideMenu,
+  CartClear,
 };
