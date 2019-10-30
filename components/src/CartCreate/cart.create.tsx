@@ -55,6 +55,7 @@ interface CartCreateState {
   removeCartLoading: boolean,
   selectedElement: number,
   createCartForm: any,
+  indexDefaultCart: number,
 }
 
 class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
@@ -76,6 +77,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       removeCartLoading: false,
       selectedElement: 0,
       createCartForm: [],
+      indexDefaultCart: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleAddNewCart = this.handleAddNewCart.bind(this);
@@ -116,7 +118,9 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
             ...obj, editMode: false, cartName: obj._descriptor[0].name || '', showLoader: false,
           }));
           const index = res._carts[0]._element.findIndex(el => el._descriptor[0].default === 'true');
-          this.setState({ cartElements: [...extCartElements], removeCartLoading: false, selectedElement: index });
+          this.setState({
+            cartElements: [...extCartElements], removeCartLoading: false, selectedElement: index, indexDefaultCart: index,
+          });
           if (res._carts[0]._createcartform) {
             this.setState({ createCartForm: res._carts[0]._createcartform });
           }
@@ -214,7 +218,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         </p>
         <div className="btn-wrap">
           <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, 0)}>{intl.get('cancel')}</button>
-          <button type="button" className="ep-btn ok-btn" onClick={event => this.handleDeleteCart(event, element)}>
+          <button type="button" className="ep-btn ok-btn" onClick={event => this.handleDeleteCart(event, element, index)}>
             {removeCartLoading ? (
               <div className="miniLoader" />
             ) : (
@@ -324,10 +328,11 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.setState({ cartElements: elements });
   }
 
-  handleDeleteCart(event, element) {
+  handleDeleteCart(event, element, index) {
     event.stopPropagation();
     this.setState({ removeCartLoading: true });
-    const { handleCartsUpdate } = this.props;
+    const { selectedElement, indexDefaultCart } = this.state;
+    const { handleCartsUpdate, handleCartElementSelect } = this.props;
     login().then(() => {
       cortexFetch(`${element.self.uri}?format=standardlinks,zoom.nodatalinks&`, {
         method: 'delete',
@@ -337,8 +342,12 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         },
       })
         .then(() => {
+          if (index === selectedElement) {
+            handleCartElementSelect(indexDefaultCart);
+          } else {
+            handleCartsUpdate();
+          }
           this.fetchCartData();
-          handleCartsUpdate();
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
