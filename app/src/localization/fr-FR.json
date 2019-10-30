@@ -349,5 +349,8 @@
   "gdpr-revoke-consent": "R-e-v-o-k-e- -C-o-n-s-e-n-t",
   "gdpr-consent": "C-o-n-s-e-n-t",
   "data-policy-reference-key": "P-o-l-i-c-y- -R-e-f-e-r-e-n-c-e- -K-e-y",
-  "backend-message-account.not.found": "N-o- -a-c-c-o-u-n-t- -w-i-t-h- -t-h-e- -g-i-v-e-n- -a-c-c-o-u-n-t- -n-a-m-e- -w-a-s- -f-o-u-n-d-."
+  "backend-message-account.not.found": "N-o- -a-c-c-o-u-n-t- -w-i-t-h- -t-h-e- -g-i-v-e-n- -a-c-c-o-u-n-t- -n-a-m-e- -w-a-s- -f-o-u-n-d-.",
+  "cart-clear-msg": "Y-o-u- -a-r-e- -a-b-o-u-t- -t-o- -r-e-m-o-v-e- -a-l-l- -i-t-e-m-s- -f-r-o-m",
+  "cart-clear-confirmation": "T-h-e-s-e- -i-t-e-m-s- -w-i-l-l- -b-e- -p-e-r-m-a-n-e-n-t-l-y- -r-e-m-o-v-e-d-.- -C-o-n-t-i-n-u-e-?",
+  "remove-all-cart-items": "R-e-m-o-v-e- -a-l-l- -c-a-r-t- -i-t-e-m-s"
 }
