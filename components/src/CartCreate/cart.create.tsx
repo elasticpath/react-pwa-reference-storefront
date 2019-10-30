@@ -62,6 +62,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   static defaultProps = {
     handleCartsUpdate: () => {},
     handleCartElementSelect: () => {},
+    updateCartModal: false,
   };
 
   constructor(props) {
