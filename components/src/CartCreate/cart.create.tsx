@@ -350,9 +350,8 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           if (index === selectedElement) {
             handleCartElementSelect(indexDefaultCart);
             this.setState({ selectedElement: indexDefaultCart });
-          } else {
-            handleCartsUpdate();
           }
+          handleCartsUpdate();
           this.fetchCartData();
         })
         .catch((error) => {
