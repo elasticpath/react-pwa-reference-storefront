@@ -116,11 +116,15 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         .then((res) => {
           const cartElem = [...res._carts[0]._element];
           const extCartElements = cartElem.map((obj, index) => ({
-            ...obj, editMode: cartElements[index] && index !== itemIndex ? cartElements[index].editMode : false, cartName: '', showLoader: false, removeCartLoading: false,
+            ...obj, editMode: cartElements[index] && index !== itemIndex ? cartElements[index].editMode : false, cartName: obj._descriptor[0].name || '', showLoader: false, removeCartLoading: false,
           }));
           const index = res._carts[0]._element.findIndex(el => el._descriptor[0].default === 'true');
           this.setState({
-            cartElements: [...extCartElements], indexDefaultCart: index, showAddNewCartForm: false, showLoader: false,
+            cartElements: [...extCartElements],
+            indexDefaultCart: index,
+            showAddNewCartForm: false,
+            showLoader: false,
+            cartName: '',
           });
           if (selectedElement === -1) {
             this.setState({ selectedElement: index });
@@ -164,9 +168,6 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         .then((res) => {
           this.fetchCartData(-1);
           handleCartsUpdate();
-          this.setState({
-            cartName: '',
-          });
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
