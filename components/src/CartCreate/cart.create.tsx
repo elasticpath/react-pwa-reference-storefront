@@ -76,7 +76,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       showAddNewCartForm: false,
       showLoader: false,
       removeCartLoading: false,
-      selectedElement: 0,
+      selectedElement: -1,
       createCartForm: [],
       indexDefaultCart: 0,
     };
@@ -105,6 +105,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   fetchCartData() {
+    const { selectedElement } = this.state;
     login().then(() => {
       cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
         headers: {
@@ -120,8 +121,11 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           }));
           const index = res._carts[0]._element.findIndex(el => el._descriptor[0].default === 'true');
           this.setState({
-            cartElements: [...extCartElements], removeCartLoading: false, selectedElement: index, indexDefaultCart: index,
+            cartElements: [...extCartElements], removeCartLoading: false, indexDefaultCart: index,
           });
+          if (selectedElement === -1) {
+            this.setState({ selectedElement: index });
+          }
           if (res._carts[0]._createcartform) {
             this.setState({ createCartForm: res._carts[0]._createcartform });
           }
@@ -345,6 +349,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         .then(() => {
           if (index === selectedElement) {
             handleCartElementSelect(indexDefaultCart);
+            this.setState({ selectedElement: indexDefaultCart });
           } else {
             handleCartsUpdate();
           }
