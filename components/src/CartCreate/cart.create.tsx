@@ -52,7 +52,6 @@ interface CartCreateState {
   cartName: string,
   showAddNewCartForm: boolean,
   showLoader: boolean,
-  removeCartLoading: boolean,
   selectedElement: number,
   createCartForm: any,
   indexDefaultCart: number,
@@ -75,7 +74,6 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       cartName: '',
       showAddNewCartForm: false,
       showLoader: false,
-      removeCartLoading: false,
       selectedElement: -1,
       createCartForm: [],
       indexDefaultCart: 0,
@@ -93,19 +91,20 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     this.handleCartRename = this.handleCartRename.bind(this);
     this.handleCartSelect = this.handleCartSelect.bind(this);
     this.modalConfirmation = this.modalConfirmation.bind(this);
+    this.handleHideLoader = this.handleHideLoader.bind(this);
   }
 
   componentDidMount() {
-    this.fetchCartData();
+    this.fetchCartData(-1);
   }
 
   componentWillReceiveProps() {
     const { updateCartModal } = this.props;
-    if (updateCartModal) this.fetchCartData();
+    if (updateCartModal) this.fetchCartData(-1);
   }
 
-  fetchCartData() {
-    const { selectedElement } = this.state;
+  fetchCartData(itemIndex) {
+    const { cartElements, selectedElement } = this.state;
     login().then(() => {
       cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
         headers: {
@@ -115,13 +114,13 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       })
         .then(res => res.json())
         .then((res) => {
-          const cartElements = [...res._carts[0]._element];
-          const extCartElements = cartElements.map(obj => ({
-            ...obj, editMode: false, cartName: obj._descriptor[0].name || '', showLoader: false,
+          const cartElem = [...res._carts[0]._element];
+          const extCartElements = cartElem.map((obj, index) => ({
+            ...obj, editMode: cartElements[index] && index !== itemIndex ? cartElements[index].editMode : false, cartName: '', showLoader: false, removeCartLoading: false,
           }));
           const index = res._carts[0]._element.findIndex(el => el._descriptor[0].default === 'true');
           this.setState({
-            cartElements: [...extCartElements], removeCartLoading: false, indexDefaultCart: index,
+            cartElements: [...extCartElements], indexDefaultCart: index, showAddNewCartForm: false, showLoader: false,
           });
           if (selectedElement === -1) {
             this.setState({ selectedElement: index });
@@ -129,12 +128,23 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           if (res._carts[0]._createcartform) {
             this.setState({ createCartForm: res._carts[0]._createcartform });
           }
+          if (itemIndex >= 0) {
+            this.handleHideLoader(extCartElements, index);
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.error(error.message);
         });
     });
+  }
+
+  handleHideLoader(carts, index) {
+    const elements = [...carts];
+    elements[index] = { ...elements[index] };
+    elements[index].editMode = false;
+    elements[index].showLoader = false;
+    this.setState({ cartElements: elements });
   }
 
   createNewCart() {
@@ -152,12 +162,10 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
       })
         .then(res => res.json())
         .then((res) => {
-          this.fetchCartData();
+          this.fetchCartData(-1);
           handleCartsUpdate();
           this.setState({
             cartName: '',
-            showAddNewCartForm: false,
-            showLoader: false,
           });
         })
         .catch((error) => {
@@ -185,13 +193,8 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           body: JSON.stringify({ name: cartElements[index].cartName }),
         })
           .then(() => {
-            this.fetchCartData();
+            this.fetchCartData(index);
             handleCartsUpdate();
-            const elements = [...cartElements];
-            elements[index] = { ...elements[index] };
-            elements[index].editMode = false;
-            elements[index].showLoader = false;
-            this.setState({ cartElements: elements });
           })
           .catch((error) => {
             // eslint-disable-next-line no-console
@@ -201,9 +204,12 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     }
   }
 
-  handleDeleteCart(event, element, index) {
-    event.stopPropagation();
-    this.setState({ removeCartLoading: true });
+  handleDeleteCart(element, index) {
+    const { cartElements } = this.state;
+    const cartElem = [...cartElements];
+    cartElem[index] = { ...cartElem[index] };
+    cartElem[index].removeCartLoading = true;
+    this.setState({ cartElements: cartElem });
     const { selectedElement, indexDefaultCart } = this.state;
     const { handleCartsUpdate, handleCartElementSelect } = this.props;
     login().then(() => {
@@ -220,7 +226,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
             this.setState({ selectedElement: indexDefaultCart });
           }
           handleCartsUpdate();
-          this.fetchCartData();
+          this.fetchCartData(index);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -287,6 +293,7 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     elements[index] = { ...elements[index] };
     if (isEdit) {
       elements[index].editMode = false;
+      elements[index].cartName = elements[index]._descriptor[0].name;
     } else {
       elements[index].deleteMode = false;
     }
@@ -301,7 +308,6 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
   }
 
   modalConfirmation(index, element) {
-    const { removeCartLoading } = this.state;
     return (
       <div className="edit-mode delete-mode" role="presentation" onClick={(event) => { event.stopPropagation(); }}>
         <p className="">
@@ -314,8 +320,8 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
         </p>
         <div className="btn-wrap">
           <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, 0)}>{intl.get('cancel')}</button>
-          <button type="button" className="ep-btn ok-btn" onClick={event => this.handleDeleteCart(event, element, index)}>
-            {removeCartLoading ? (
+          <button type="button" className="ep-btn ok-btn" onClick={event => this.handleDeleteCart(element, index)}>
+            {element.removeCartLoading ? (
               <div className="miniLoader" />
             ) : (
               <span>
