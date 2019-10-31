@@ -58,12 +58,10 @@ class CartPopUp extends React.Component<CartPopUpProps, CartPopUpState> {
         </div>
         <div className="checkout-btn-container">
 
-          <button className="ep-btn primary checkout-btn" type="button" onClick={handleMultiCartModalClose}>
-            <Link className="link-to-cart" to={appHeaderLinks.myCart}>
-              {intl.get('view-your-carts')}
-            </Link>
+          <Link className="ep-btn primary checkout-btn link-to-cart" to={appHeaderLinks.myCart} onClick={handleMultiCartModalClose}>
+            {intl.get('view-your-carts')}
+          </Link>
 
-          </button>
         </div>
       </div>
     );

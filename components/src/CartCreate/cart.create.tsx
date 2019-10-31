@@ -137,35 +137,34 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     });
   }
 
-  handleChange(event) {
-    this.setState({ cartName: event.target.value });
-  }
-
-  handleAddNewCart() {
+  createNewCart() {
     const { cartName } = this.state;
-    if (cartName.length > 0) {
-      this.createNewCart();
-    }
-  }
-
-  clearCartNameField() {
-    this.setState({ cartName: '' });
-  }
-
-  handleCartFieldChange(event, index) {
-    const { cartElements } = this.state;
-    const elements = [...cartElements];
-    elements[index] = { ...elements[index] };
-    elements[index].cartName = event.target.value;
-    this.setState({ cartElements: elements });
-  }
-
-  clearCartNameFieldItem(index) {
-    const { cartElements } = this.state;
-    const elements = [...cartElements];
-    elements[index] = { ...elements[index] };
-    elements[index].cartName = '';
-    this.setState({ cartElements: elements });
+    const { handleCartsUpdate } = this.props;
+    this.setState({ showLoader: true });
+    login().then(() => {
+      cortexFetch(`/carts/${Config.cortexApi.scope}/form?followlocation&format=standardlinks,zoom.nodatalinks`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({ descriptor: { name: cartName } }),
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.fetchCartData();
+          handleCartsUpdate();
+          this.setState({
+            cartName: '',
+            showAddNewCartForm: false,
+            showLoader: false,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
   }
 
   handleCartRename(index) {
@@ -200,6 +199,98 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
           });
       });
     }
+  }
+
+  handleDeleteCart(event, element, index) {
+    event.stopPropagation();
+    this.setState({ removeCartLoading: true });
+    const { selectedElement, indexDefaultCart } = this.state;
+    const { handleCartsUpdate, handleCartElementSelect } = this.props;
+    login().then(() => {
+      cortexFetch(`${element.self.uri}?format=standardlinks,zoom.nodatalinks&`, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(() => {
+          if (index === selectedElement) {
+            handleCartElementSelect(indexDefaultCart);
+            this.setState({ selectedElement: indexDefaultCart });
+          }
+          handleCartsUpdate();
+          this.fetchCartData();
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
+  handleChange(event) {
+    this.setState({ cartName: event.target.value });
+  }
+
+  handleAddNewCart() {
+    const { cartName } = this.state;
+    if (cartName.length > 0) {
+      this.createNewCart();
+    }
+  }
+
+  clearCartNameField() {
+    this.setState({ cartName: '' });
+  }
+
+  handleCartFieldChange(event, index) {
+    const { cartElements } = this.state;
+    const elements = [...cartElements];
+    elements[index] = { ...elements[index] };
+    elements[index].cartName = event.target.value;
+    this.setState({ cartElements: elements });
+  }
+
+  clearCartNameFieldItem(index) {
+    const { cartElements } = this.state;
+    const elements = [...cartElements];
+    elements[index] = { ...elements[index] };
+    elements[index].cartName = '';
+    this.setState({ cartElements: elements });
+  }
+
+  handleShowCartForm() {
+    this.setState({ showAddNewCartForm: true });
+  }
+
+  handleHideCartForm() {
+    this.setState({ showAddNewCartForm: false });
+  }
+
+  handleEditCart(event, index, isEdit) {
+    event.stopPropagation();
+    const { cartElements } = this.state;
+    const elements = [...cartElements];
+    elements[index] = { ...elements[index] };
+    if (isEdit) {
+      elements[index].editMode = true;
+    } else {
+      elements[index].deleteMode = true;
+    }
+    this.setState({ cartElements: elements });
+  }
+
+  handleCancelEditCart(index, isEdit) {
+    const { cartElements } = this.state;
+    const elements = [...cartElements];
+    elements[index] = { ...elements[index] };
+    if (isEdit) {
+      elements[index].editMode = false;
+    } else {
+      elements[index].deleteMode = false;
+    }
+    this.setState({ cartElements: elements });
   }
 
   handleCartSelect(el, index) {
@@ -237,54 +328,6 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     );
   }
 
-  renderCartItems() {
-    const { cartElements, selectedElement } = this.state;
-    if (cartElements.length) {
-      return cartElements.map((el, index) => (
-        <li className={`carts-list-item ${selectedElement === index ? 'selected' : ''} ${el.editMode || el.deleteMode ? 'edit-mode-state' : ''}`} key={`cartItem_${el._descriptor[0].name ? el._descriptor[0].name.trim() : 'default'}`} role="presentation" onClick={() => this.handleCartSelect(el, index)}>
-          <h4 className="cart-info">{el._descriptor[0].name || intl.get('default')}</h4>
-          <p className="cart-info cart-quantity">
-            {el['total-quantity']}
-            {' '}
-            {intl.get('items')}
-          </p>
-          <p className="cart-info cart-price">{el._total[0].cost[0].display}</p>
-          <div className="cart-info action-btn">
-            {!el._descriptor[0].default ? (
-              <div className="cart-editing-btn">
-                <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditCart(event, index, 0)}>{intl.get('delete')}</button>
-                <button className="ep-btn edit-btn" type="button" onClick={event => this.handleEditCart(event, index, true)}>{intl.get('rename')}</button>
-              </div>
-            ) : (
-              ''
-            )}
-            {el.editMode && (
-            <div className="edit-mode" role="presentation" onClick={(event) => { event.stopPropagation(); }}>
-              {el.showLoader && (
-              <div className="loader-wrapper">
-                <div className="miniLoader" />
-              </div>
-              )}
-              <div className="edit-mode-form">
-                <div className="cart-edit-field-wrap">
-                  <label htmlFor="cart_edit">Name</label>
-                  <input type="text" value={el.cartName} id="cart_edit" className="cart-edit-field" onChange={event => this.handleCartFieldChange(event, index)} />
-                  {el.cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={() => this.clearCartNameFieldItem(index)} />)}
-                </div>
-                <div className="btn-container">
-                  <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, true)}>{intl.get('cancel')}</button>
-                  <button type="button" className="ep-btn primary save-btn" onClick={() => this.handleCartRename(index)}>{intl.get('save')}</button>
-                </div>
-              </div>
-            </div>
-            )}
-            {el.deleteMode && this.modalConfirmation(index, el)}
-          </div>
-        </li>));
-    }
-    return (<div className="miniLoader" />);
-  }
-
   renderAddNewCartForm() {
     const { cartName, showLoader } = this.state;
     return (
@@ -312,95 +355,52 @@ class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
     );
   }
 
-  handleShowCartForm() {
-    this.setState({ showAddNewCartForm: true });
-  }
-
-  handleHideCartForm() {
-    this.setState({ showAddNewCartForm: false });
-  }
-
-  handleEditCart(event, index, isEdit) {
-    event.stopPropagation();
-    const { cartElements } = this.state;
-    const elements = [...cartElements];
-    elements[index] = { ...elements[index] };
-    if (isEdit) {
-      elements[index].editMode = true;
-    } else {
-      elements[index].deleteMode = true;
+  renderCartItems() {
+    const { cartElements, selectedElement } = this.state;
+    if (cartElements.length) {
+      return cartElements.map((el, index) => (
+        <li className={`carts-list-item ${selectedElement === index ? 'selected' : ''} ${el.editMode || el.deleteMode ? 'edit-mode-state' : ''}`} key={`cartItem_${el._descriptor[0].name ? el._descriptor[0].name.trim() : 'default'}`} role="presentation" onClick={() => this.handleCartSelect(el, index)}>
+          <h4 className="cart-info">{el._descriptor[0].name || intl.get('default')}</h4>
+          <p className="cart-info cart-quantity">
+            {el['total-quantity']}
+            {' '}
+            {intl.get('items')}
+          </p>
+          <p className="cart-info cart-price">{el._total[0].cost[0].display}</p>
+          <div className="cart-info action-btn">
+            {!el._descriptor[0].default ? (
+              <div className="cart-editing-btn">
+                <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditCart(event, index, 0)}>{intl.get('delete')}</button>
+                <button className="ep-btn edit-btn" type="button" onClick={event => this.handleEditCart(event, index, true)}>{intl.get('rename')}</button>
+              </div>
+            ) : (
+              ''
+            )}
+            {el.editMode && (
+              <div className="edit-mode" role="presentation" onClick={(event) => { event.stopPropagation(); }}>
+                {el.showLoader && (
+                  <div className="loader-wrapper">
+                    <div className="miniLoader" />
+                  </div>
+                )}
+                <div className="edit-mode-form">
+                  <div className="cart-edit-field-wrap">
+                    <label htmlFor="cart_edit">Name</label>
+                    <input type="text" value={el.cartName} id="cart_edit" className="cart-edit-field" onChange={event => this.handleCartFieldChange(event, index)} />
+                    {el.cartName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={() => this.clearCartNameFieldItem(index)} />)}
+                  </div>
+                  <div className="btn-container">
+                    <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, true)}>{intl.get('cancel')}</button>
+                    <button type="button" className="ep-btn primary save-btn" onClick={() => this.handleCartRename(index)}>{intl.get('save')}</button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {el.deleteMode && this.modalConfirmation(index, el)}
+          </div>
+        </li>));
     }
-    this.setState({ cartElements: elements });
-  }
-
-  handleDeleteCart(event, element, index) {
-    event.stopPropagation();
-    this.setState({ removeCartLoading: true });
-    const { selectedElement, indexDefaultCart } = this.state;
-    const { handleCartsUpdate, handleCartElementSelect } = this.props;
-    login().then(() => {
-      cortexFetch(`${element.self.uri}?format=standardlinks,zoom.nodatalinks&`, {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(() => {
-          if (index === selectedElement) {
-            handleCartElementSelect(indexDefaultCart);
-            this.setState({ selectedElement: indexDefaultCart });
-          }
-          handleCartsUpdate();
-          this.fetchCartData();
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-  }
-
-  handleCancelEditCart(index, isEdit) {
-    const { cartElements } = this.state;
-    const elements = [...cartElements];
-    elements[index] = { ...elements[index] };
-    if (isEdit) {
-      elements[index].editMode = false;
-    } else {
-      elements[index].deleteMode = false;
-    }
-    this.setState({ cartElements: elements });
-  }
-
-  createNewCart() {
-    const { cartName } = this.state;
-    const { handleCartsUpdate } = this.props;
-    this.setState({ showLoader: true });
-    login().then(() => {
-      cortexFetch(`/carts/${Config.cortexApi.scope}/form?followlocation&format=standardlinks,zoom.nodatalinks`, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({ descriptor: { name: cartName } }),
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.fetchCartData();
-          handleCartsUpdate();
-          this.setState({
-            cartName: '',
-            showAddNewCartForm: false,
-            showLoader: false,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    return (<div className="miniLoader" />);
   }
 
   render() {
