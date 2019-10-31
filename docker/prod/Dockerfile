@@ -8,7 +8,7 @@ ADD ./ /project
 
 # Publish components to npm
 RUN npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
-RUN npm publish components/ || echo "Components publish failed"
+RUN ./components-publish.sh
 
 RUN yarn
 
