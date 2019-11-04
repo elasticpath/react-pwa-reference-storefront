@@ -66,10 +66,10 @@ export function cortexFetch(input, init): any {
         let debugMessages = '';
         res.json().then((json) => {
           for (let i = 0; i < json.messages.length; i++) {
-            debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
+            debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']} `);
           }
+          ErrorInlet(debugMessages);
         });
-        ErrorInlet(debugMessages);
       }
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
