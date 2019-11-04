@@ -30,8 +30,10 @@ import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
+import { ErrorContext, ErrorDisplayBoundary } from './containers/count-context';
 
 import './App.less';
+import MessageContainer from './containers/MessageContainer';
 
 declare global {
   interface Window { fbAsyncInit: any; }
@@ -131,6 +133,7 @@ const VersionContainer = (props) => {
 
 const Root = (props) => {
   const { componentsData } = props;
+  const { error } = React.useContext(ErrorContext);
   return [
     <VersionContainer key="version-container" componentsVersion={componentsData.version} appVersion={packageJson.version} />,
     <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
@@ -152,6 +155,7 @@ const Root = (props) => {
       appHeaderTopLinks={appHeaderTopLinks}
       appModalLoginLinks={appModalLoginLinks}
     />,
+    <MessageContainer message={error} />,
     <div key="app-content" className="app-content">
       <Switch>
         {routes.map(route => (
@@ -169,7 +173,9 @@ const AppWithRouter = (props) => {
   const { componentsData } = props;
   return (
     <Router>
-      <App componentsData={componentsData} />
+      <ErrorDisplayBoundary>
+        <App componentsData={componentsData} />
+      </ErrorDisplayBoundary>
     </Router>
   );
 };

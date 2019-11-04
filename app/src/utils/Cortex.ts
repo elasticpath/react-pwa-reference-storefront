@@ -21,6 +21,7 @@
 
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
+import { ErrorInlet } from '../containers/count-context';
 
 import * as Config from '../ep.config.json';
 
@@ -61,6 +62,15 @@ export function cortexFetch(input, init): any {
 
   return timeout((<any>Config).cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path}${input}${queryFormat}`, requestInit)
     .then((res) => {
+      if (res.status >= 400) {
+        let debugMessages = '';
+        res.json().then((json) => {
+          for (let i = 0; i < json.messages.length; i++) {
+            debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
+          }
+        });
+        ErrorInlet(debugMessages);
+      }
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
