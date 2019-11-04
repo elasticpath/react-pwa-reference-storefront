@@ -1,7 +1,10 @@
 @import './../theme/common.less';
 
 .debug-messages-container {
+  position: sticky;
+  top: 0;
   width: 800px;
+  z-index: 4;
 
   p {
     display: block;
@@ -11,7 +14,7 @@
     color: #E02020;
     border-radius: 4px;
     z-index: 50;
-    background: rgba(224,32,32,0.1) url('@{imgUrl}/header-icons/baseline_error_24.png') no-repeat 7px center;
+    background: #FBE8E8 url('@{imgUrl}/header-icons/baseline_error_24.png') no-repeat 7px center;
     background-size: 22px 22px;
 
 

@@ -53,15 +53,15 @@ export function cortexFetch(input, init) {
 
   return timeout(Config.cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path + input}`, requestInit)
     .then((res) => {
-      if (res.status >= 400) {
-        let debugMessages = '';
-        res.json().then((json) => {
-          for (let i = 0; i < json.messages.length; i++) {
-            debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']} `);
-          }
+      let debugMessages = '';
+      res.clone().json().then((json) => {
+        for (let i = 0; i < json.messages.length; i++) {
+          debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']} `);
+        }
+        if (debugMessages) {
           ErrorInlet(debugMessages);
-        });
-      }
+        }
+      });
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
