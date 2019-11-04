@@ -34,7 +34,7 @@ class MessageContainer extends React.Component<MessageContainerProps> {
     const { message } = this.props;
     if (message && message.length) {
       return (
-        <div className="feedback-label checkout-feedback-container">
+        <div className="container debug-messages-container">
           <p>
             {message}
           </p>
