@@ -21,13 +21,13 @@
 
 import React from 'react';
 
-import './MessageContainer.less';
+import './messagecontainer.less';
 
 interface MessageContainerProps {
   message: any
 }
 
-class MessageContainer extends React.Component<MessageContainerProps> {
+class Messagecontainer extends React.Component<MessageContainerProps> {
   componentDidMount() {}
 
   render() {
@@ -53,4 +53,4 @@ class MessageContainer extends React.Component<MessageContainerProps> {
   }
 }
 
-export default MessageContainer;
+export default Messagecontainer;

@@ -22,7 +22,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, MessageContainer,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
 import packageJson from '../package.json';
@@ -154,7 +154,7 @@ const Root = (props) => {
       appHeaderTopLinks={appHeaderTopLinks}
       appModalLoginLinks={appModalLoginLinks}
     />,
-    <MessageContainer message={error} />,
+    <Messagecontainer message={error} />,
     <div key="app-content" className="app-content">
       <Switch>
         {routes.map(route => (
