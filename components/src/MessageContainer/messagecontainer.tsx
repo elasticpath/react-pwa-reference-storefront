@@ -27,7 +27,7 @@ interface MessageContainerProps {
   message: any
 }
 
-class Messagecontainer extends React.Component<MessageContainerProps> {
+class MessageContainer extends React.Component<MessageContainerProps> {
   componentDidMount() {}
 
   render() {
@@ -53,4 +53,4 @@ class Messagecontainer extends React.Component<MessageContainerProps> {
   }
 }
 
-export default Messagecontainer;
+export default MessageContainer;

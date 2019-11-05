@@ -71,6 +71,9 @@ export function cortexFetch(input, init) {
             ErrorInlet(messageData);
           }
         }
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
       });
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
