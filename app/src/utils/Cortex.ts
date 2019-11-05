@@ -62,13 +62,23 @@ export function cortexFetch(input, init): any {
 
   return timeout((<any>Config).cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path}${input}${queryFormat}`, requestInit)
     .then((res) => {
-      let debugMessages = '';
       res.clone().json().then((json) => {
-        for (let i = 0; i < json.messages.length; i++) {
-          debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']} `);
-        }
-        if (debugMessages) {
-          ErrorInlet(debugMessages);
+        if (json.messages) {
+          const messageData = {
+            debugMessages: '',
+            type: '',
+            id: '',
+          };
+          let debugMessages = '';
+          for (let i = 0; i < json.messages.length; i++) {
+            debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']} `);
+          }
+          if (debugMessages) {
+            messageData.debugMessages = debugMessages;
+            messageData.type = json.messages[0].type;
+            messageData.id = json.messages[0].id;
+            ErrorInlet(debugMessages);
+          }
         }
       });
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {

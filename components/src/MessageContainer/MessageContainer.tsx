@@ -24,7 +24,7 @@ import React from 'react';
 import './MessageContainer.less';
 
 interface MessageContainerProps {
-  message: string
+  message: any
 }
 
 class MessageContainer extends React.Component<MessageContainerProps> {
@@ -32,11 +32,19 @@ class MessageContainer extends React.Component<MessageContainerProps> {
 
   render() {
     const { message } = this.props;
-    if (message && message.length) {
+    if (message && message.debugMessages) {
+      let messageType = '';
+      if (message.type === 'error' && message.id.includes('field')) {
+        messageType = 'warning-message';
+      } else if (message.type === 'error') {
+        messageType = 'danger-message';
+      } else if (message.type === 'needinfo') {
+        messageType = 'dark-message';
+      }
       return (
-        <div className="container debug-messages-container">
+        <div className={`container debug-messages-container ${messageType}`}>
           <p>
-            {message}
+            {message.debugMessages}
           </p>
         </div>
       );

@@ -22,7 +22,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, MessageContainer,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
 import packageJson from '../package.json';
@@ -33,7 +33,6 @@ import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary } from './utils/count-context';
 
 import './App.less';
-import MessageContainer from './containers/MessageContainer';
 
 declare global {
   interface Window { fbAsyncInit: any; }

@@ -68,6 +68,7 @@ import ProfileemailinfoMain from './ProfileEmailInfo/profileemailinfo.main';
 import ProfileInfoMain from './ProfileInfo/profileInfo.main';
 import ProfilePaymentMethodsMain from './ProfilePaymentMethods/profilepaymentmethods.main';
 import PurchaseDetailsMain from './PurchaseDetails/purchasedetails.main';
+import MessageContainer from './MessageContainer/MessageContainer';
 import QuickOrderMain from './QuickOrder/quickorder.main';
 import QuickOrderForm from './QuickOrderForm/quickorderform';
 import RegistrationFormMain from './RegistrationForm/registrationform.main';
@@ -138,6 +139,7 @@ export {
   ProfileInfoMain,
   ProfilePaymentMethodsMain,
   PurchaseDetailsMain,
+  MessageContainer,
   QuickOrderMain,
   QuickOrderForm,
   RegistrationFormMain,
