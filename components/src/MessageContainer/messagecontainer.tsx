@@ -24,37 +24,22 @@ import { ReactComponent as CloseIcon } from '../../../app/src/images/icons/close
 import { ReactComponent as ErrorIcon } from '../../../app/src/images/icons/error-icon.svg';
 import { ReactComponent as WarningIcon } from '../../../app/src/images/icons/warning-icon.svg';
 import { ReactComponent as InfoIcon } from '../../../app/src/images/icons/info-icon.svg';
+import { ErrorInlet } from '../../../app/src/utils/count-context';
+
 import './messagecontainer.less';
 
 interface MessageContainerProps {
   message: any
 }
 
-interface MessageContainerState {
-  showMessage: boolean,
-}
-
-class MessageContainer extends React.Component<MessageContainerProps, MessageContainerState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showMessage: true,
-    };
-    this.handleCloseErrorMsg = this.handleCloseErrorMsg.bind(this);
-  }
-
-  componentWillReceiveProps() {
-    this.setState({ showMessage: true });
-  }
-
-  handleCloseErrorMsg() {
-    this.setState({ showMessage: false });
+class MessageContainer extends React.Component<MessageContainerProps> {
+  static handleCloseErrorMsg() {
+    ErrorInlet({});
   }
 
   render() {
-    const { showMessage } = this.state;
     const { message } = this.props;
-    if (message && message.debugMessages && showMessage) {
+    if (message && message.debugMessages) {
       let messageType = '';
       if (message.type === 'error' && message.id.includes('field')) {
         messageType = 'warning-message';
@@ -71,7 +56,7 @@ class MessageContainer extends React.Component<MessageContainerProps, MessageCon
           <p>
             {message.debugMessages}
           </p>
-          <button type="button" className="close-btn" onClick={this.handleCloseErrorMsg}>
+          <button type="button" className="close-btn" onClick={MessageContainer.handleCloseErrorMsg}>
             <CloseIcon />
           </button>
         </div>
