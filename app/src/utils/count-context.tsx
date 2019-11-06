@@ -19,7 +19,7 @@
  *
  */
 import React, {
-  useState, useMemo, useContext,
+  useState, useMemo,
 } from 'react';
 
 const ErrorContext:any = React.createContext('');
