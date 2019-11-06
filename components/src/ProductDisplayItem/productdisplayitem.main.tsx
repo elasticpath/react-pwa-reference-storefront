@@ -119,7 +119,6 @@ interface ProductDisplayItemMainState {
   productData: any,
   multiCartData: { [key: string]: any },
   itemQuantity: number,
-  addToCartFailedMessage: string,
   isLoading: boolean,
   arFileExists: boolean,
   itemConfiguration: { [key: string]: any },
@@ -156,7 +155,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       productData: undefined,
       multiCartData: undefined,
       itemQuantity: 1,
-      addToCartFailedMessage: '',
       isLoading: false,
       arFileExists: false,
       itemConfiguration: {},
@@ -334,13 +332,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             onAddToCart();
-          } else {
-            let debugMessages = '';
-            res.json().then((json) => {
-              for (let i = 0; i < json.messages.length; i++) {
-                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-              }
-            }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
           }
         })
         .catch((error) => {
@@ -373,13 +364,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             onAddToWishList();
-          } else {
-            let debugMessages = '';
-            res.json().then((json) => {
-              for (let i = 0; i < json.messages.length; i++) {
-                debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-              }
-            }).then(() => this.setState({ addToCartFailedMessage: debugMessages }));
           }
         })
         .catch((error) => {
@@ -629,7 +613,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
 
   render() {
     const {
-      productData, addToCartFailedMessage, isLoading, itemQuantity, multiCartData, addToCartLoading,
+      productData, isLoading, itemQuantity, multiCartData, addToCartLoading,
     } = this.state;
     const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
@@ -794,9 +778,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                       )}
                     </div>
 
-                    <div className="auth-feedback-container" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
-                      {addToCartFailedMessage}
-                    </div>
                   </form>
                   {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform && !(Object.keys(productData._addtocartform[0].configuration).length > 0)) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
