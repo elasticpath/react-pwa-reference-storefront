@@ -41,7 +41,6 @@ interface RegistrationFormMainState {
   password: any | string,
   passwordConfirm: any | string,
   failedRegistration: boolean,
-  failedLogin: boolean,
   registrationErrors: string,
   isLoading: boolean,
 }
@@ -61,7 +60,6 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
       lastname: '',
       username: '',
       password: '',
-      failedLogin: false,
       failedRegistration: false,
       registrationErrors: '',
       passwordConfirm: '',
@@ -112,46 +110,24 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
       });
       return;
     }
+    this.setState({
+      registrationErrors: '',
+      failedRegistration: false,
+    });
+
     this.setState({ isLoading: true });
     const { onRegisterSuccess } = this.props;
     login().then(() => {
       registerUser(lastname, firstname, username, password).then((res) => {
         this.setState({ isLoading: false });
         if (res.status === 201) {
-          this.setState({ failedRegistration: false });
           if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
             loginRegistered(username, password).then((resStatus) => {
-              if (resStatus === 401) {
-                this.setState({ failedLogin: true });
-                let debugMessages = '';
-                res.json().then((json) => {
-                  for (let i = 0; i < json.messages.length; i++) {
-                    debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-                  }
-                }).then(() => this.setState({ registrationErrors: debugMessages }));
-              }
-              if (resStatus === 400) {
-                this.setState({ failedLogin: true });
-                let debugMessages = '';
-                res.json().then((json) => {
-                  for (let i = 0; i < json.messages.length; i++) {
-                    debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-                  }
-                }).then(() => this.setState({ registrationErrors: debugMessages }));
-              } else if (resStatus === 200) {
+              if (resStatus === 200) {
                 onRegisterSuccess();
               }
             });
           }
-        } else {
-          this.setState({ failedRegistration: true });
-          let debugMessages = '';
-          res.json().then((json) => {
-            debugMessages = debugMessages.concat(`- ${intl.get('registration-error')} \n `);
-            for (let i = 0; i < json.messages.length; i++) {
-              debugMessages = debugMessages.concat(`- ${json.messages[i]['debug-message']} \n `);
-            }
-          }).then(() => this.setState({ registrationErrors: debugMessages }));
         }
       });
     });
@@ -160,7 +136,6 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
   render() {
     const {
       failedRegistration,
-      failedLogin,
       registrationErrors,
       isLoading,
     } = this.state;
@@ -171,7 +146,7 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
         </h3>
 
         <div className="feedback-label registration-form-feedback-container feedback-display-linebreak" id="registration_form_feedback_container" data-region="registrationFeedbackMsgRegion">
-          {failedRegistration || failedLogin ? (registrationErrors) : ('')}
+          {failedRegistration ? (registrationErrors) : ('')}
         </div>
 
         <div data-region="registrationFormRegion" style={{ display: 'block' }}>
