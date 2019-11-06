@@ -30,14 +30,11 @@ function ErrorDisplayBoundary({ children }) {
   const ctx:any = useMemo(() => ({ error, setError }), [error]);
   return (<ErrorContext.Provider value={ctx}>{children}</ErrorContext.Provider>);
 }
-function useErrorOutlet() {
-  const errorCtx:any = useContext(ErrorContext);
-  return errorCtx.setError;
-}
+
 function ErrorInlet(error) {
   setE(error);
   return null;
 }
 export {
-  ErrorContext, ErrorDisplayBoundary, useErrorOutlet, ErrorInlet,
+  ErrorContext, ErrorDisplayBoundary, ErrorInlet,
 };
