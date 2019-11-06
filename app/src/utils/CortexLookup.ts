@@ -412,7 +412,7 @@ export function cortexFetchPurchaseLookupForm() {
 
 export function navigationLookup(navigationLookupCode) {
   return new Promise(((resolve, reject) => {
-    if (navigationLookupCode.includes('/') && navigationLookupCode.includes(Config.cortexApi.scope)) {
+    if (navigationLookupCode.includes('/') && navigationLookupCode.includes(Config.cortexApi.scope.toLowerCase())) {
       cortexFetch(`/${navigationLookupCode}?zoom=${navigationFormZoomArray.join()}`,
         {
           headers: {
