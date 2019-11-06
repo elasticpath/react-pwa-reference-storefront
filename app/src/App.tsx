@@ -22,10 +22,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
-import { CountProvider } from '@elasticpath/store-components/src/cart-count-context';
 import packageJson from '../package.json';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';

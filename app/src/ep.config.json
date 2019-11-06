@@ -2,7 +2,8 @@
   "cortexApi": {
     "path": "/cortex",
     "scope": "vestri",
-    "pathForProxy": "https://ep.anewman.multicart.epcloudops.com"
+    "pathForProxy": "http://localhost:9080",
+    "reqTimeout": "30000"
   },
   "supportedLocales": [
     {
