@@ -416,7 +416,7 @@ export function cortexFetchPurchaseLookupForm() {
 export function navigationLookup(navigationLookupCode) {
   const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
-    if (navigationLookupCode.includes('/') && navigationLookupCode.includes(Config.cortexApi.scope)) {
+    if (navigationLookupCode.includes('/') && navigationLookupCode.includes(Config.cortexApi.scope.toLowerCase())) {
       cortexFetch(`/${navigationLookupCode}?zoom=${navigationFormZoomArray.join()}`,
         {
           headers: {
@@ -533,7 +533,7 @@ export function purchaseLookup(purchaseLookupCode) {
 export function searchLookup(searchKeyword) {
   const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
-    if (searchKeyword.includes('/') && searchKeyword.includes(Config.cortexApi.scope)) {
+    if (searchKeyword.includes('/') && searchKeyword.includes(Config.cortexApi.scope.toLowerCase())) {
       cortexFetch(`/${searchKeyword}?zoom=${searchFormZoomArray.join()}`,
         {
           headers: {
