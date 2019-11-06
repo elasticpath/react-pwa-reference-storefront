@@ -71,7 +71,7 @@ export function cortexFetch(input, init): any {
           };
           let debugMessages = '';
           for (let i = 0; i < json.messages.length; i++) {
-            debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']}. `);
+            debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']} \n `);
           }
           if (debugMessages) {
             messageData.debugMessages = debugMessages;
