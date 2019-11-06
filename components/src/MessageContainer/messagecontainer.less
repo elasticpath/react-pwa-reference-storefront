@@ -1,10 +1,17 @@
 @import '../../../app/src/theme/common.less';
 
-.debug-messages-container {
+.debug-messages-block {
   position: sticky;
   top: 0;
-  width: 800px;
   z-index: 1001;
+}
+
+.debug-messages-inner {
+  height: 0;
+}
+
+.debug-messages-container {
+  position: relative;
 
   p {
     display: block;

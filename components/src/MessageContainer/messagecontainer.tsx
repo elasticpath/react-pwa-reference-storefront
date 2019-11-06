@@ -49,16 +49,20 @@ class MessageContainer extends React.Component<MessageContainerProps> {
         messageType = 'info-message';
       }
       return (
-        <div className={`container debug-messages-container ${messageType}`}>
-          <ErrorIcon className="debug-msg-icon error" />
-          <WarningIcon className="debug-msg-icon warning" />
-          <InfoIcon className="debug-msg-icon info" />
-          <p>
-            {message.debugMessages}
-          </p>
-          <button type="button" className="close-btn" onClick={MessageContainer.handleCloseErrorMsg}>
-            <CloseIcon />
-          </button>
+        <div className="debug-messages-block">
+          <div className="debug-messages-inner">
+            <div className={`container debug-messages-container ${messageType}`}>
+              <ErrorIcon className="debug-msg-icon error" />
+              <WarningIcon className="debug-msg-icon warning" />
+              <InfoIcon className="debug-msg-icon info" />
+              <p>
+                {message.debugMessages}
+              </p>
+              <button type="button" className="close-btn" onClick={MessageContainer.handleCloseErrorMsg}>
+                <CloseIcon />
+              </button>
+            </div>
+          </div>
         </div>
       );
     }
