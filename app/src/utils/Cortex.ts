@@ -77,7 +77,7 @@ export function cortexFetch(input, init): any {
             messageData.debugMessages = debugMessages;
             messageData.type = json.messages[0].type;
             messageData.id = json.messages[0].id;
-            ErrorInlet(debugMessages);
+            ErrorInlet(messageData);
           }
         }
       }).catch((error) => {

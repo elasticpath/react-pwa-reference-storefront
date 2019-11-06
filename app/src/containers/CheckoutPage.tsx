@@ -29,6 +29,7 @@ import {
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
+import { ErrorInlet } from '../utils/count-context';
 
 import './CheckoutPage.less';
 
@@ -245,6 +246,19 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     const { messages } = orderData._order[0];
     const { history } = this.props;
     if (messages.length > 0) {
+      const messageData = {
+        debugMessages: '',
+        type: '',
+        id: '',
+      };
+      let debugMessages = '';
+      for (let i = 0; i < messages.length; i++) {
+        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
+      }
+      messageData.debugMessages = debugMessages;
+      messageData.type = messages[0].type;
+      messageData.id = messages[0].id;
+      ErrorInlet(messageData);
       this.setState({ showErrorMsg: true });
     } else {
       history.push('/order');
@@ -614,23 +628,12 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
     } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
-      let debugMessages = '';
       const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
-      for (let i = 0; i < messages.length; i++) {
-        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
-      }
       const deliveries = orderData._order[0]._deliveries;
       const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">
-            <div className="feedback-label checkout-feedback-container" id="checkout_feedback_container">
-              {(showErrorMsg && debugMessages !== '') && (
-                <p>
-                  {debugMessages}
-                </p>
-              )}
-            </div>
             <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
               <div>
                 <h1 className="view-title">
