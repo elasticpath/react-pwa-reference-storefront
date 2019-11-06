@@ -25,6 +25,7 @@ import {
   AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
+import { CountProvider } from '@elasticpath/store-components/src/cart-count-context';
 import packageJson from '../package.json';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';
@@ -173,7 +174,9 @@ const AppWithRouter = (props) => {
   return (
     <Router>
       <ErrorDisplayBoundary>
-        <App componentsData={componentsData} />
+        <CountProvider>
+          <App componentsData={componentsData} />
+        </CountProvider>
       </ErrorDisplayBoundary>
     </Router>
   );

@@ -25,8 +25,7 @@ import { MemoryRouter } from 'react-router';
 import CartPopUp from './cartpopup';
 
 const appHeaderLinks = '/';
-const itemsAddedCount = 5;
-function handleMultiCartModalClose() {}
+const cartData = { name: 'Default', count: 5 };
 
 storiesOf('CartPopUp', module)
   .addDecorator(story => (
@@ -34,6 +33,6 @@ storiesOf('CartPopUp', module)
   ))
   .add('CartPopUp', () => (
     <div style={{ backgroundColor: '#040060' }}>
-      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={handleMultiCartModalClose} />
+      <CartPopUp appHeaderLinks={appHeaderLinks} cartData={cartData} />
     </div>
   ));
