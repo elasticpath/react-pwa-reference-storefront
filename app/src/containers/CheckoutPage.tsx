@@ -29,7 +29,7 @@ import {
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
-import { ErrorInlet } from '../utils/count-context';
+import { ErrorInlet } from '../utils/MessageContext';
 
 import './CheckoutPage.less';
 

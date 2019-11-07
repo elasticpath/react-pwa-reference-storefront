@@ -30,7 +30,7 @@ import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
-import { ErrorContext, ErrorDisplayBoundary } from './utils/count-context';
+import { ErrorContext, ErrorDisplayBoundary } from './utils/MessageContext';
 
 import './App.less';
 

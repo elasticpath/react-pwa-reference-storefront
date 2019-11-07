@@ -19,7 +19,7 @@
  *
  */
 
-import { ErrorInlet } from '@elasticpath/ref-store/src/utils/count-context';
+import { ErrorInlet } from '@elasticpath/ref-store/src/utils/MessageContext';
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
 import { getConfig } from './ConfigProvider';

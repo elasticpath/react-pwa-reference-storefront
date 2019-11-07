@@ -28,7 +28,7 @@ import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './bulkorder.main.less';
-import { ErrorInlet } from '../../../app/src/utils/count-context';
+import { ErrorInlet } from '../../../app/src/utils/MessageContext';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
