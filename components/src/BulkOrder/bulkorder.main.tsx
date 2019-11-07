@@ -28,6 +28,7 @@ import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './bulkorder.main.less';
+import { ErrorInlet } from '../../../app/src/utils/count-context';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
@@ -54,7 +55,6 @@ interface BulkOrderState {
   isLoading: boolean,
   csvText: string,
   bulkOrderErrorMessage: string,
-  quickOrderErrorMessage: string,
   bulkOrderDuplicatedErrorMessage: string,
   isBarcodeScannerOpen: boolean
   isBarcodeScannerLoading: boolean
@@ -84,7 +84,6 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
       isLoading: false,
       csvText: '',
       bulkOrderErrorMessage: '',
-      quickOrderErrorMessage: '',
       bulkOrderDuplicatedErrorMessage: '',
       isBarcodeScannerOpen: false,
       isBarcodeScannerLoading: false,
@@ -127,21 +126,28 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
               items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
               csvText: '',
               bulkOrderErrorMessage: '',
-              quickOrderErrorMessage: '',
               bulkOrderDuplicatedErrorMessage: '',
             });
           }
           if (res.status >= 400) {
             let debugMessages = '';
+            const messageData = {
+              debugMessages: '',
+              type: '',
+              id: '',
+            };
             res.json().then((json) => {
               for (let i = 0; i < json.messages.length; i++) {
                 debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
               }
+              messageData.debugMessages = debugMessages;
+              messageData.type = json.messages[0].type;
+              messageData.id = json.messages[0].id;
+              ErrorInlet(messageData);
             }).then(() => {
               if (isQuickOrder) {
                 this.setState({
                   isLoading: false,
-                  quickOrderErrorMessage: `${debugMessages}`,
                 });
               } else {
                 this.setState({
@@ -188,7 +194,6 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
     this.setState({
       items: submittedItems,
       bulkOrderErrorMessage: '',
-      quickOrderErrorMessage: '',
     });
   }
 
@@ -267,7 +272,6 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
       csvText,
       isLoading,
       bulkOrderErrorMessage,
-      quickOrderErrorMessage,
       bulkOrderDuplicatedErrorMessage,
       isBarcodeScannerOpen,
       isBarcodeScannerLoading,
@@ -278,7 +282,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
     const duplicatedFields = Boolean(items.find(item => (item.code !== '' && item.isDuplicated === true)));
     const isDisabledButton = (!Config.b2b.enable || (isValid || !isEmpty || duplicatedFields));
     return (
-      <div className={`bulk-order-component ${(isBulkModalOpened === false) ? 'hideModal' : ''}`}>
+      <div className={`bulk-order-component ${(!isBulkModalOpened) ? 'hideModal' : ''}`}>
         <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
           <p className="bulk-order-hide">{intl.get('hide')}</p>
         </div>
@@ -335,9 +339,6 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
                   (isLoading) ? (<div className="miniLoader" />) : ''
                 }
               </div>
-              {
-                (quickOrderErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{quickOrderErrorMessage}</p></div>) : ''
-              }
               <div className="quickOrderRegion" data-region="quickOrderRegion">
                 {items.map((item, i) => (
                   <QuickOrderForm item={item} key={item.key} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
@@ -359,9 +360,6 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
                   (isLoading) ? (<div className="miniLoader" />) : ''
                 }
               </div>
-              {
-                (bulkOrderErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderErrorMessage}</p></div>) : ''
-              }
               {
                 (bulkOrderDuplicatedErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderDuplicatedErrorMessage}</p></div>) : ''
               }

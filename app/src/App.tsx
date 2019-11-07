@@ -22,7 +22,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
 import packageJson from '../package.json';
@@ -30,6 +30,7 @@ import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
+import { ErrorContext, ErrorDisplayBoundary } from './utils/count-context';
 
 import './App.less';
 
@@ -131,6 +132,7 @@ const VersionContainer = (props) => {
 
 const Root = (props) => {
   const { componentsData } = props;
+  const { error } = React.useContext(ErrorContext);
   return [
     <VersionContainer key="version-container" componentsVersion={componentsData.version} appVersion={packageJson.version} />,
     <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
@@ -152,6 +154,7 @@ const Root = (props) => {
       appHeaderTopLinks={appHeaderTopLinks}
       appModalLoginLinks={appModalLoginLinks}
     />,
+    <Messagecontainer message={error} />,
     <div key="app-content" className="app-content">
       <Switch>
         {routes.map(route => (
@@ -169,7 +172,9 @@ const AppWithRouter = (props) => {
   const { componentsData } = props;
   return (
     <Router>
-      <App componentsData={componentsData} />
+      <ErrorDisplayBoundary>
+        <App componentsData={componentsData} />
+      </ErrorDisplayBoundary>
     </Router>
   );
 };

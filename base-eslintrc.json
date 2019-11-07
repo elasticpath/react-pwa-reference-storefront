@@ -5,7 +5,8 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
-    "header"
+    "header",
+    "react-hooks"
   ],
   "settings": {
     "import/extensions": [
@@ -50,6 +51,8 @@
         ]
       }
     ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off",
     "react/sort-comp": "off",
     "react/default-props-match-prop-types": ["off"],

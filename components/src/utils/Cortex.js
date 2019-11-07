@@ -19,6 +19,7 @@
  *
  */
 
+import { ErrorInlet } from '@elasticpath/ref-store/src/utils/count-context';
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
 import { getConfig } from './ConfigProvider';
@@ -52,7 +53,29 @@ export function cortexFetch(input, init) {
 
   return timeout(Config.cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path + input}`, requestInit)
     .then((res) => {
-      if ((res.status === 401 || res.status === 403) && input != '/oauth2/tokens') {
+      res.clone().json().then((json) => {
+        if (json.messages) {
+          const messageData = {
+            debugMessages: '',
+            type: '',
+            id: '',
+          };
+          let debugMessages = '';
+          for (let i = 0; i < json.messages.length; i++) {
+            debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']} \n `);
+          }
+          if (debugMessages) {
+            messageData.debugMessages = debugMessages;
+            messageData.type = json.messages[0].type;
+            messageData.id = json.messages[0].id;
+            ErrorInlet(messageData);
+          }
+        }
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+      if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);

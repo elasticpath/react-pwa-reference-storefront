@@ -31,6 +31,7 @@ import {
 } from '../utils/Analytics';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
+import { ErrorInlet } from '../utils/count-context';
 
 import './OrderReviewPage.less';
 
@@ -107,6 +108,22 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
           this.setState({
             orderData: res._defaultcart[0],
           });
+          if (res._defaultcart && res._defaultcart[0]._order && res._defaultcart[0]._order[0].messages[0]) {
+            const messageData = {
+              debugMessages: '',
+              type: '',
+              id: '',
+            };
+            let debugMessages = '';
+            const messagesArray = res._defaultcart[0]._order[0].messages;
+            for (let i = 0; i < messagesArray.length; i++) {
+              debugMessages = debugMessages.concat(`${messagesArray[i]['debug-message']} \n `);
+            }
+            messageData.debugMessages = debugMessages;
+            messageData.type = messagesArray[0].type;
+            messageData.id = messagesArray[0].id;
+            ErrorInlet(messageData);
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -339,13 +356,6 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
   render() {
     const { orderData, giftCertificateEntity, isLoading } = this.state;
     const isValid = (orderData && orderData._order[0]._purchaseform[0].links[0] && orderData._order[0]._purchaseform[0].links.find(link => link.rel === 'submitorderaction').uri);
-    let debugMessages = '';
-    if (orderData && orderData._order[0]) {
-      const { messages } = orderData._order[0];
-      for (let i = 0; i < messages.length; i++) {
-        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
-      }
-    }
     const itemDetailLink = '/itemdetail';
 
     return (
@@ -377,9 +387,6 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
                     <div className="checkout-sidebar-inner">
                       <div className="checkout-summary-container" style={{ display: 'inline-block' }}>
                         <CheckoutSummaryList data={orderData} isLoading={false} giftCards={giftCertificateEntity} onChange={() => { this.fetchOrderData(); }} />
-                      </div>
-                      <div className="feedback-label" id="checkout_feedback_container">
-                        {(debugMessages !== '') ? (debugMessages) : ('')}
                       </div>
                       <div className="checkout-submit-container" style={{ display: 'block' }}>
                         <button className="ep-btn primary wide btn-cmd-submit-order" disabled={!isValid} type="button" onClick={() => { this.completeOrder(); }}>
