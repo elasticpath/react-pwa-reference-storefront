@@ -72,6 +72,7 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
       Promise.all([purchaseFormFetch, defaultCartFetch])
         .then((res) => {
           this.setState({
+            // @ts-ignore
             purchaseData: { ...res[0], _defaultcart: res[1]._defaultcart },
           });
         });

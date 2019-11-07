@@ -24,7 +24,7 @@ import { ReactComponent as CloseIcon } from '../../../app/src/images/icons/close
 import { ReactComponent as ErrorIcon } from '../../../app/src/images/icons/error-icon.svg';
 import { ReactComponent as WarningIcon } from '../../../app/src/images/icons/warning-icon.svg';
 import { ReactComponent as InfoIcon } from '../../../app/src/images/icons/info-icon.svg';
-import { ErrorInlet } from '../../../app/src/utils/count-context';
+import { ErrorInlet } from '../../../app/src/utils/MessageContext';
 
 import './messagecontainer.less';
 

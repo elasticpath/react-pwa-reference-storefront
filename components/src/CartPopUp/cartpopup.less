@@ -22,9 +22,9 @@
 @import './../../../app/src/theme/common.less';
 
 .cart-nav-container {
-  width: 240px;
   background-color: @mainBackgroundColor;
   padding: 12px;
+  max-width: 400px;
   &.dropdown-menu {
     padding: 10px;
   }
@@ -32,6 +32,12 @@
     color: @mainTextColor;
     padding: 5px;
     position: relative;
+
+    .multi-cart-message {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 }
 

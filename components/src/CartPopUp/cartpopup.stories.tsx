@@ -21,19 +21,21 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import { CountProvider } from '../index';
 
 import CartPopUp from './cartpopup';
 
 const appHeaderLinks = '/';
-const itemsAddedCount = 5;
-function handleMultiCartModalClose() {}
+const cartData = { name: 'Default', count: 5 };
 
 storiesOf('CartPopUp', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('CartPopUp', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <CartPopUp appHeaderLinks={appHeaderLinks} itemsQuantity={itemsAddedCount} handleMultiCartModalClose={handleMultiCartModalClose} />
-    </div>
+    <CountProvider>
+      <div style={{ backgroundColor: '#040060' }}>
+        <CartPopUp appHeaderLinks={appHeaderLinks} cartData={cartData} />
+      </div>
+    </CountProvider>
   ));

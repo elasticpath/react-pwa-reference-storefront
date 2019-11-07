@@ -31,6 +31,7 @@ import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommend
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import { CountProvider, useCountDispatch } from '../cart-count-context';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
@@ -562,11 +563,9 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
     );
   }
 
-  addToSelectedCart(cartUrl) {
+  addToSelectedCart(cart, onCountChange) {
+    const cartUrl = cart._additemstocartform[0].self.uri;
     const { itemQuantity, productData } = this.state;
-    const {
-      onReloadPage,
-    } = this.props;
     this.setState({ addToCartLoading: true });
     login().then(() => {
       const body: { [key: string]: any } = {};
@@ -583,7 +582,8 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             this.setState({ addToCartLoading: false });
-            onReloadPage();
+            const cartName = cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default');
+            onCountChange(cartName, itemQuantity);
           }
         })
         .catch((error) => {
@@ -595,13 +595,27 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 
   dropdownCartSelection() {
+    const dispatch = useCountDispatch();
+    const onCountChange = (name, count) => {
+      const data = {
+        type: 'COUNT_SHOW',
+        payload: {
+          count,
+          name,
+        },
+      };
+      dispatch(data);
+      setTimeout(() => {
+        dispatch({ type: 'COUNT_HIDE' });
+      }, 4000);
+    };
     const { multiCartData } = this.state;
     if (multiCartData && multiCartData._carts) {
       return (
         <ul className="cart-selection-dropdown">
           {multiCartData._carts[0]._element.map(cart => (
             // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-item" key={cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')} onClick={() => this.addToSelectedCart(cart._additemstocartform[0].self.uri)}>
+            <li className="dropdown-item cart-selection-item" key={cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')} onClick={() => this.addToSelectedCart(cart, onCountChange)}>
               {cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')}
             </li>
           ))}
@@ -628,6 +642,30 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       Config.indi.productReview.title = intl.get('indi-product-review-title');
       Config.indi.productReview.description = intl.get('indi-product-review-description');
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
+
+      const SelectCartButton = () => (
+        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
+          <button
+            className="ep-btn primary wide btn-itemdetail-addtocart dropdown-toggle"
+            data-toggle="dropdown"
+            disabled={!availability || !productData._addtocartform}
+            id="product_display_item_add_to_cart_button"
+            type="submit"
+          >
+            {addToCartLoading ? (
+              <span className="miniLoader" />
+            ) : (
+              <span>
+                {intl.get('add-to-cart')}
+              </span>
+            )}
+          </button>
+          <div className="dropdown-menu cart-selection-list">
+            {this.dropdownCartSelection()}
+          </div>
+        </div>
+
+      );
       return (
         <div className="itemdetail-component container-3">
           <div>
@@ -742,26 +780,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
                     </div>
                     <div className="form-group-submit">
                       {multiCartData && multiCartData._carts ? (
-                        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
-                          <button
-                            className="ep-btn primary wide btn-itemdetail-addtocart dropdown-toggle"
-                            data-toggle="dropdown"
-                            disabled={!availability || !productData._addtocartform}
-                            id="product_display_item_add_to_cart_button"
-                            type="submit"
-                          >
-                            {addToCartLoading ? (
-                              <span className="miniLoader" />
-                            ) : (
-                              <span>
-                                {intl.get('add-to-cart')}
-                              </span>
-                            )}
-                          </button>
-                          <div className="dropdown-menu cart-selection-list">
-                            {this.dropdownCartSelection()}
-                          </div>
-                        </div>
+                        <SelectCartButton />
                       ) : (
                         <div className="form-content form-content-submit col-sm-offset-4">
                           <button

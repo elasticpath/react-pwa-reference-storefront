@@ -21,7 +21,7 @@
 
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
-import { ErrorInlet } from './count-context';
+import { ErrorInlet } from './MessageContext';
 
 import * as Config from '../ep.config.json';
 

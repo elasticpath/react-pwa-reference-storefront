@@ -25,12 +25,14 @@ import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
+let intl = { get: (str, prop?) => str };
 
 interface CartPopUpProps {
   appHeaderLinks: any,
-  itemsQuantity: number,
-  handleMultiCartModalClose: (...args: any[]) => any,
+  cartData: {
+    count: number,
+    name: string,
+  },
 }
 
 interface CartPopUpState {
@@ -50,15 +52,26 @@ class CartPopUp extends React.Component<CartPopUpProps, CartPopUpState> {
   componentDidMount() {}
 
   render() {
-    const { appHeaderLinks, itemsQuantity, handleMultiCartModalClose } = this.props;
+    const { appHeaderLinks, cartData } = this.props;
+    const message = (
+      <div className="multi-cart-message">
+        <b>{cartData.count}</b>
+        {' '}
+        {intl.get('item-was-added-to-your-cart')}
+        {' '}
+        <b>{cartData.name}</b>
+        {' '}
+        {intl.get('cart')}
+      </div>
+    );
     return (
       <div className="cart-nav-container">
         <div className="multi-cart-menu">
-          <span>{`${itemsQuantity} ${intl.get('item-was-added-to-your-cart')}`}</span>
+          {message}
         </div>
         <div className="checkout-btn-container">
 
-          <Link className="ep-btn primary checkout-btn link-to-cart" to={appHeaderLinks.myCart} onClick={handleMultiCartModalClose}>
+          <Link className="ep-btn primary checkout-btn link-to-cart" to={appHeaderLinks.myCart}>
             {intl.get('view-your-carts')}
           </Link>
 

@@ -22,7 +22,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
 import packageJson from '../package.json';
@@ -30,7 +30,7 @@ import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
-import { ErrorContext, ErrorDisplayBoundary } from './utils/count-context';
+import { ErrorContext, ErrorDisplayBoundary } from './utils/MessageContext';
 
 import './App.less';
 
@@ -173,7 +173,9 @@ const AppWithRouter = (props) => {
   return (
     <Router>
       <ErrorDisplayBoundary>
-        <App componentsData={componentsData} />
+        <CountProvider>
+          <App componentsData={componentsData} />
+        </CountProvider>
       </ErrorDisplayBoundary>
     </Router>
   );
