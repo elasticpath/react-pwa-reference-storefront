@@ -20,10 +20,14 @@
  */
 import React from 'react';
 
-// @ts-ignore
-const CountStateContext = React.createContext();
-// @ts-ignore
-const CountDispatchContext = React.createContext();
+interface State { count: number, name: string }
+interface Action {
+  type: string,
+  payload?: State | undefined
+}
+
+const CountStateContext = React.createContext<State | undefined>({ count: 0, name: '' });
+const CountDispatchContext = React.createContext<(action: Action) => void | undefined>(undefined);
 function countReducer(state, action) {
   switch (action.type) {
     case 'COUNT_SHOW': {
@@ -51,14 +55,14 @@ function CountProvider({ children }) {
 function useCountState() {
   const context = React.useContext(CountStateContext);
   if (context === undefined) {
-    throw new Error('useCountState must be used within a CountProvider');
+    return () => {};
   }
   return context;
 }
 function useCountDispatch() {
   const context = React.useContext(CountDispatchContext);
   if (context === undefined) {
-    throw new Error('useCountDispatch must be used within a CountProvider');
+    return () => {};
   }
   return context;
 }

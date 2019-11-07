@@ -21,6 +21,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import { CountProvider } from '../index';
 
 import CartPopUp from './cartpopup';
 
@@ -32,7 +33,9 @@ storiesOf('CartPopUp', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('CartPopUp', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <CartPopUp appHeaderLinks={appHeaderLinks} cartData={cartData} />
-    </div>
+    <CountProvider>
+      <div style={{ backgroundColor: '#040060' }}>
+        <CartPopUp appHeaderLinks={appHeaderLinks} cartData={cartData} />
+      </div>
+    </CountProvider>
   ));

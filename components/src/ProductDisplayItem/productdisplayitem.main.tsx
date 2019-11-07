@@ -595,7 +595,7 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 
   dropdownCartSelection() {
-    const dispatch: any = useCountDispatch();
+    const dispatch = useCountDispatch();
     const onCountChange = (name, count) => {
       const data = {
         type: 'COUNT_SHOW',
