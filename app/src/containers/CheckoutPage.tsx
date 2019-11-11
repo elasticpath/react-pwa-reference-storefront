@@ -82,7 +82,6 @@ interface CheckoutPageState {
     openNewPaymentModal: boolean,
     openAddressModal: boolean,
     addressUrl: any,
-    showErrorMsg: boolean,
 }
 
 class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageState> {
@@ -97,7 +96,6 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
       openNewPaymentModal: false,
       openAddressModal: false,
       addressUrl: undefined,
-      showErrorMsg: false,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.handleCertificate = this.handleCertificate.bind(this);
@@ -175,6 +173,22 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
             orderData: res._defaultcart[0],
             isLoading: false,
           });
+          const { messages } = res._defaultcart[0]._order[0];
+          const messageData = {
+            debugMessages: '',
+            type: '',
+            id: '',
+          };
+          if (messages.length > 0) {
+            let debugMessages = '';
+            for (let i = 0; i < messages.length; i++) {
+              debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
+            }
+            messageData.debugMessages = debugMessages;
+            messageData.type = messages[0].type;
+            messageData.id = messages[0].id;
+          }
+          ErrorInlet(messageData);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -242,27 +256,8 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   }
 
   reviewOrder() {
-    const { orderData } = this.state;
-    const { messages } = orderData._order[0];
     const { history } = this.props;
-    if (messages.length > 0) {
-      const messageData = {
-        debugMessages: '',
-        type: '',
-        id: '',
-      };
-      let debugMessages = '';
-      for (let i = 0; i < messages.length; i++) {
-        debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
-      }
-      messageData.debugMessages = debugMessages;
-      messageData.type = messages[0].type;
-      messageData.id = messages[0].id;
-      ErrorInlet(messageData);
-      this.setState({ showErrorMsg: true });
-    } else {
-      history.push('/order');
-    }
+    history.push('/order');
   }
 
   handleCertificate(certificate) {
@@ -624,7 +619,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   render() {
     const {
-      orderData, isLoading, profileData, showGiftCard, certificates, showErrorMsg,
+      orderData, isLoading, profileData, showGiftCard, certificates,
     } = this.state;
     if (orderData && !isLoading) {
       const { messages } = orderData._order[0];
@@ -713,7 +708,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
                       <CheckoutSummaryList data={orderData} giftCards={certificates} onChange={() => { this.fetchOrderData(); }} />
                     </div>
                     <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
-                      <button className="ep-btn primary btn-cmd-submit-order" type="button" disabled={showErrorMsg && messages[0]} onClick={() => { this.reviewOrder(); }}>
+                      <button className="ep-btn primary btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
                         {intl.get('complete-order')}
                       </button>
                     </div>
