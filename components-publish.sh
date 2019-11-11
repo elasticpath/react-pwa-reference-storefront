@@ -16,8 +16,10 @@ then
     git checkout RS-516-automate-version-increment
     # regex: (?s).*skip_ci.*
     npm version patch  -m "Components %s skip_ci"
-    # git push
+    git push
     # npm publish components/
+    echo "published components"
+
     exit 0
 fi
 echo "components not published"
