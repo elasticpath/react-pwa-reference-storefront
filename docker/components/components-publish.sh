@@ -15,10 +15,10 @@ if [[ ${isChanged} == ${publishDirName} ]]
 then
     git checkout RS-516-automate-version-increment
     # regex: (?s).*skip_ci.*
-    git config user.name ${GIT_USERNAME}
-    git config user.email ${GIT_USEREMAIL}
+    git config --global user.name "${GIT_USERNAME}"
+    git config --global user.email "${GIT_USEREMAIL}"
     npm version patch -m "Components %s skip_ci"
-    git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/elasticpath/react-pwa-reference-storefront.git
+    git push "https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/elasticpath/react-pwa-reference-storefront.git"
     # npm publish components || echo "Components publish failed"
     exit 0
 fi
