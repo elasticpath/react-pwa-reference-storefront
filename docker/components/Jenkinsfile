@@ -1,5 +1,10 @@
-node {
-   stage('Publish') {
-    docker build --build-arg NPM_TOKEN=$NPM_TOKEN -f ./docker/components/Dockerfile .
-   }
+pipeline {
+    agent any
+    stages {
+        stage('Publish') {
+            steps {
+                sh 'docker build --build-arg NPM_TOKEN=$NPM_TOKEN -f ./docker/components/Dockerfile .'
+            }
+        }
+    }
 }
