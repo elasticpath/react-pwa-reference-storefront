@@ -30,7 +30,7 @@ const history = createMemoryHistory();
 history.push = action('history.push');
 
 const sideMenuItems = [
-  { to: '/b2b', children: 'dashboard' },
+  { to: '/b2b', children: 'accounts' },
   { to: '/b2b/address-book', children: 'address-book' },
   { to: '/b2b/orders', children: 'orders' },
   { to: '/b2b/approvals', children: 'approvals' },

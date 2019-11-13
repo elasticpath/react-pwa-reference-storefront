@@ -42,7 +42,7 @@ import WriteReview from './containers/WriteReviewPage';
 import ChangePasswordForm from './containers/ChangePasswordPage';
 import ResetPasswordForm from './containers/ResetPasswordPage';
 import B2BMain from './containers/b2b/B2BMain';
-import Dashboard from './containers/b2b/Dashboard';
+import Accounts from './containers/b2b/Accounts';
 import AccountMain from './containers/b2b/AccountMain';
 import AddPaymentMethod from './containers/AddPaymentMethod';
 
@@ -148,7 +148,7 @@ const router = [{
     {
       path: '/b2b',
       exact: true,
-      component: Dashboard,
+      component: Accounts,
     },
     {
       path: '/b2b/address-book',

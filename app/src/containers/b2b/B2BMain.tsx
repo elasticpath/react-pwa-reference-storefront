@@ -30,7 +30,7 @@ import * as Config from '../../ep.config.json';
 
 import './B2BMain.less';
 
-interface DashboardProps {
+interface B2BMainProps {
   routes: {
     [key: string]: any
   },
@@ -44,7 +44,7 @@ enum MessageType {
   error = 'error'
 }
 
-interface DashboardState {
+interface B2BMainState {
   associatesFormUrl?: string;
   isImportDialogOpen: boolean;
   exampleCsvFile: string;
@@ -53,7 +53,7 @@ interface DashboardState {
   messages: { type: MessageType; text: string; }[];
 }
 
-export default class B2BMain extends React.Component<DashboardProps, DashboardState> {
+export default class B2BMain extends React.Component<B2BMainProps, B2BMainState> {
   fileInputRef: React.RefObject<HTMLInputElement>;
 
   constructor(props) {
@@ -73,7 +73,7 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
   }
 
   async componentDidMount() {
-    const result = await adminFetch('/?zoom=accounts:addassociatesform', {
+    const result = await adminFetch('/?zoom=accounts,accounts:addassociatesform', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
@@ -151,7 +151,7 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
           return result.json()
             .catch(_ => Promise.reject(new Error(intl.get('general-upload-error'))))
             .then((parsedJson) => {
-              const errorMsg = parsedJson.messages.map(m => intl.get(`backend-mesage-${m.id}`) || m['debug-message']).join(' ');
+              const errorMsg = parsedJson.messages.map(m => intl.get(`backend-message-${m.id}`) || m['debug-message']).join(' ');
               return Promise.reject(new Error(errorMsg));
             });
         },
@@ -186,7 +186,7 @@ export default class B2BMain extends React.Component<DashboardProps, DashboardSt
     } = this.state;
 
     const sideMenuItems = [
-      { to: '/b2b', children: 'dashboard' },
+      { to: '/b2b', children: 'accounts' },
       // { to: '/b2b/address-book', children: 'address-book' },
       // { to: '/b2b/orders', children: 'orders' },
       // { to: '/b2b/approvals', children: 'approvals' },
