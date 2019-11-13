@@ -26,8 +26,14 @@ const ErrorContext:any = React.createContext('');
 let setE:any = () => {};
 function ErrorDisplayBoundary({ children }) {
   const [error, setError] = useState(null);
-  setE = setError;
   const ctx:any = useMemo(() => ({ error, setError }), [error]);
+  // eslint-disable-next-line consistent-return
+  setE = (e) => {
+    if (e && error && e.debugMessages === error.debugMessages) {
+      return '';
+    }
+    return setError(e);
+  };
   return (<ErrorContext.Provider value={ctx}>{children}</ErrorContext.Provider>);
 }
 
