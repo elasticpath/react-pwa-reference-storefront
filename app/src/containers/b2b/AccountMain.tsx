@@ -222,10 +222,10 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
       });
   }
 
-  handleDeleteAssociateClicked(assciateUri) {
+  handleDeleteAssociateClicked(associateUri) {
     this.setState({ isLoading: true });
     login().then(() => {
-      adminFetch(assciateUri, {
+      adminFetch(associateUri, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',
