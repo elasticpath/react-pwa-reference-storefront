@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Publish') {
             steps {
-                sh 'docker build --build-arg NPM_TOKEN=$NPM_TOKEN -f ./docker/components/Dockerfile .'
+                sshagent (credentials: ['ep-github-sshkey-buildadmin']) {
+                    sh 'docker build --build-arg NPM_TOKEN=$NPM_TOKEN -f ./docker/components/Dockerfile .'
+                }
             }
         }
     }
