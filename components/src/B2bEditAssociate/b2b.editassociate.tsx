@@ -203,7 +203,6 @@ export default class B2bEditAssociate extends React.Component<B2bEditAssociatePr
       body: JSON.stringify({ 'associate-id': newAssociateEmail, roles }),
 
     })
-      .then(res => res.json())
       .then(() => {
         this.setState({
           isLoading: false, emailErrorMessage: '', newAssociateEmail: '', validEmail: true,

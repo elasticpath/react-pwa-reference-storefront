@@ -25,8 +25,20 @@
     outline: none;
   }
 
+  &.active-modal {
+    border: 1px solid @thirdComplimentColor;
+
+    &:after {
+      border-top-color: @thirdComplimentColor;
+    }
+  }
+
   .selected-title {
     font-weight: bold;
+
+    &.active-modal {
+      color: @thirdComplimentColor;
+    }
   }
 
   .associate-menu {
@@ -43,12 +55,18 @@
       pointer-events: none;
     }
 
+    &.active-modal {
+      border: 1px solid @thirdComplimentColor;
+    }
+
     .menu-item {
       padding: 10px 17px;
       cursor: pointer;
+      font-weight: bold;
 
       &:hover {
-        color: @firstComplimentColor;
+        color: @thirdComplimentColor;
+        background: rgba(0,173,255,.06);
       }
     }
   }

@@ -153,6 +153,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
     this.handleAccountSettingsClicked = this.handleAccountSettingsClicked.bind(this);
     this.handleAccountSettingsUpdate = this.handleAccountSettingsUpdate.bind(this);
     this.handleEditAssociateClicked = this.handleEditAssociateClicked.bind(this);
+    this.handleDeleteAssociateClicked = this.handleDeleteAssociateClicked.bind(this);
     this.handleAddAssociateClicked = this.handleAddAssociateClicked.bind(this);
     this.handleAddSubAccountClicked = this.handleAddSubAccountClicked.bind(this);
     this.handleAddSubAccountClose = this.handleAddSubAccountClose.bind(this);
@@ -196,7 +197,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
             registrationNumber: accounts['registration-id'],
             isLoading: false,
             legalName: accounts['legal-name'],
-            associates: accounts._associateroleassignments[0]._element ? accounts._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0] })) : [],
+            associates: accounts._associateroleassignments[0]._element ? accounts._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0], self: element.self })) : [],
             status: accounts._statusinfo[0]._status[0].status,
             editSubAccountUri: accounts.self.uri,
             editMetadataUri: accounts._accountmetadata ? accounts._accountmetadata[0].self.uri : null,
@@ -208,12 +209,42 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
             subAccounts: accounts._subaccounts[0],
           });
         })
-        .catch(() => {
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
           this.setState({ isLoading: false });
         });
     })
-      .catch(() => {
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
         this.setState({ isLoading: false });
+      });
+  }
+
+  handleDeleteAssociateClicked(associateUri) {
+    this.setState({ isLoading: true });
+    login().then(() => {
+      adminFetch(associateUri, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        },
+      })
+        .then(() => {
+          this.getAccountData();
+        })
+        .catch((error) => {
+          this.setState({ isLoading: false });
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    })
+      .catch((error) => {
+        this.setState({ isLoading: false });
+        // eslint-disable-next-line no-console
+        console.error(error.message);
       });
   }
 
@@ -223,7 +254,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
       externalId: data._accountmetadata ? data._accountmetadata[0]['external-id'] : null,
       registrationNumber: data['registration-id'],
       legalName: data['legal-name'],
-      associates: data._associateroleassignments[0]._element ? data._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0] })) : [],
+      associates: data._associateroleassignments[0]._element ? data._associateroleassignments[0]._element.map(element => ({ associate: element._associate[0], roles: element._roleinfo[0], self: element.self })) : [],
       addAssociateUri: data._associateroleassignments[0]._associateform[0]._addassociateaction[0].self.uri,
       addSubAccountUri: data._subaccounts[0]._accountform[0].self.uri,
       addSubAccountSellerAdmin: typeof data._subaccounts[0]._accountform[0]['external-id'] !== 'undefined',
@@ -383,7 +414,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                           </td>
                           <td className="action">
                             <button type="button" className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)} />
-                            {/* <button className="delete-associate" /> */}
+                            <button type="button" className="delete-associate" onClick={() => this.handleDeleteAssociateClicked(associate.self.uri)} />
                           </td>
                         </tr>
                       );

@@ -28,9 +28,9 @@ import { login } from '../../utils/AuthService';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
 import Config from '../../ep.config.json';
 
-import './Dashboard.less';
+import './Accounts.less';
 
-interface DashboardState {
+interface AccountsState {
   admins: any,
   defaultBillingAddress: any,
   defaultShippingAddress: any,
@@ -64,7 +64,7 @@ const accountsZoomArray = [
   'accounts:element:associateroleassignments:element:associate:primaryemail',
 ];
 
-export default class Dashboard extends React.Component<RouteComponentProps, DashboardState> {
+export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
   constructor(props) {
     super(props);
     this.state = {

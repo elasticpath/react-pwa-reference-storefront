@@ -82,16 +82,16 @@ export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociat
       const { isOpen } = this.state;
       return (
         <div
-          className="add-associates-menu-component"
+          className={`add-associates-menu-component ${isOpen ? 'active-modal' : ''}`}
           onClick={e => this.handleSwitcherClicked(e)}
           onKeyDown={e => this.handleSwitcherClicked(e)}
           role="button"
           tabIndex={0}
         >
-          <div className="selected-title">
+          <div className={`selected-title ${isOpen ? 'active-modal' : ''}`}>
             {intl.get('import-associates')}
           </div>
-          <div className={`associate-menu ${isOpen ? '' : 'hidden'}`}>
+          <div className={`associate-menu ${isOpen ? 'active-modal' : 'hidden'}`}>
             <div
               className="menu-item"
               onClick={() => this.handleUploadSpreadsheetClicked()}

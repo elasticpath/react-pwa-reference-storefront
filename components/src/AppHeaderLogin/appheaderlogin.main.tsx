@@ -85,7 +85,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
         openModal: false,
         openCartModal: false,
         showForgotPasswordLink: false,
-        accountData: [],
+        accountData: {},
       };
       this.handleModalClose = this.handleModalClose.bind(this);
       this.getAccountData = this.getAccountData.bind(this);
@@ -232,7 +232,7 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
                       <Link className="dashboard-link" to="/b2b">
                         <div>
                           <span className="dashboard-nav">
-                            {intl.get('dashboard')}
+                            {intl.get('accounts')}
                           </span>
                         </div>
                       </Link>
