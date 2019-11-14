@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Publish') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'git-pass-credentials-ID', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'ep-github-token-as-pass-buildadmin', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     sh 'echo ${GIT_USERNAME}'
                     sh 'docker build --build-arg NPM_TOKEN=$NPM_TOKEN -f ./docker/components/Dockerfile .'
                 }
