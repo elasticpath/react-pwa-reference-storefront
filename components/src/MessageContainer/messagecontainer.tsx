@@ -32,16 +32,43 @@ interface MessageContainerProps {
   message: any
 }
 
-class MessageContainer extends React.Component<MessageContainerProps> {
+interface MessageContainerState {
+  showMessageContainer: boolean,
+}
+
+class MessageContainer extends React.Component<MessageContainerProps, MessageContainerState> {
   static handleCloseErrorMsg() {
     ErrorInlet({});
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMessageContainer: true,
+    };
+    this.handleCloseMessageContainer = this.handleCloseMessageContainer.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { message } = this.props;
+    const { showMessageContainer } = this.state;
+    if (!showMessageContainer && message && nextProps.message.debugMessages === message.debugMessages) {
+      this.setState({ showMessageContainer: false });
+    } else {
+      this.setState({ showMessageContainer: true });
+    }
+  }
+
+  handleCloseMessageContainer() {
+    this.setState({ showMessageContainer: false });
+  }
+
   render() {
     const { message } = this.props;
-    if (message && message.debugMessages) {
+    const { showMessageContainer } = this.state;
+    if (message && message.debugMessages && showMessageContainer) {
       let messageType = '';
-      if (message.type === 'error' && message.id.includes('field')) {
+      if ((message.type === 'error' && message.id.includes('field')) || message.type === 'warning') {
         messageType = 'warning-message';
       } else if (message.type === 'error') {
         messageType = 'danger-message';
@@ -58,7 +85,7 @@ class MessageContainer extends React.Component<MessageContainerProps> {
               <p>
                 {message.debugMessages}
               </p>
-              <button type="button" className="close-btn" onClick={MessageContainer.handleCloseErrorMsg}>
+              <button type="button" className="close-btn" onClick={this.handleCloseMessageContainer}>
                 <CloseIcon />
               </button>
             </div>

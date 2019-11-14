@@ -23,7 +23,6 @@ import React from 'react';
 import Slider from 'react-slick';
 import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
-import { ErrorInlet } from '../../../app/src/utils/MessageContext';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../app/src/images/img_missing_horizontal@2x.png';
@@ -126,7 +125,6 @@ interface ProductDisplayItemMainState {
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
   addToCartLoading: boolean,
-  debugMessagesContent: string,
 }
 
 class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -163,7 +161,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
-      debugMessagesContent: '',
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -185,47 +182,30 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 
   componentWillReceiveProps(nextProps) {
-    const { debugMessagesContent } = this.state;
-    login().then(() => {
-      itemLookup(nextProps.productId)
-        .then((res) => {
-          const { messages } = res._addtocartform[0];
-          const messageData = {
-            debugMessages: '',
-            type: '',
-            id: '',
-          };
-          if (messages.length > 0) {
-            let debugMessages = '';
-            for (let i = 0; i < messages.length; i++) {
-              debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
-            }
-            messageData.debugMessages = debugMessages;
-            messageData.type = messages[0].type;
-            messageData.id = messages[0].id;
-            if (debugMessagesContent !== debugMessages) {
-              this.setState({ debugMessagesContent: debugMessages });
-              ErrorInlet(messageData);
-            }
-          }
-          if (Config.arKit.enable) {
-            this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+    const { productId } = this.props;
+    if (nextProps.productId !== productId) {
+      login().then(() => {
+        itemLookup(nextProps.productId)
+          .then((res) => {
+            if (Config.arKit.enable) {
+              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+                this.setState({
+                  productData: res,
+                  arFileExists: exists,
+                });
+              });
+            } else {
               this.setState({
                 productData: res,
-                arFileExists: exists,
               });
-            });
-          } else {
-            this.setState({
-              productData: res,
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+            }
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      });
+    }
   }
 
   fetchMultiCartData() {
@@ -256,23 +236,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
       cortexFetchItemLookupForm()
         .then(() => itemLookup(productId, false)
           .then((res) => {
-            const { messages } = res._addtocartform[0];
-            const messageData = {
-              debugMessages: '',
-              type: '',
-              id: '',
-            };
-            if (messages.length > 0) {
-              let debugMessages = '';
-              for (let i = 0; i < messages.length; i++) {
-                debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
-              }
-              messageData.debugMessages = debugMessages;
-              messageData.type = messages[0].type;
-              messageData.id = messages[0].id;
-              this.setState({ debugMessagesContent: debugMessages });
-              ErrorInlet(messageData);
-            }
             if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
               this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
                 this.setState({
