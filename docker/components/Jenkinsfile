@@ -1,18 +1,19 @@
 pipeline {
     agent any
+    environment {
+        USER_GIT_CREDENTIALS = credentials('GIT_CREDENTIALS')
+    }
     stages {
         stage('Publish') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "f7c26c88-0f8a-44e7-8120-bdc4743be5a3", passwordVariable: "GIT_PASSWORD", usernameVariable: "GIT_USERNAME")]) {
-                    sh(
-                        """
-                            docker build \
-                            --build-arg NPM_TOKEN=$NPM_TOKEN \
-                            --build-arg GIT_CREDENTIALS=$GIT_CREDENTIALS  \
-                            -f ./docker/components/Dockerfile .
-                        """
-                    )
-                }
+                sh(
+                    """
+                        docker build \
+                        --build-arg NPM_TOKEN=$NPM_TOKEN \
+                        --build-arg GIT_CREDENTIALS=$USER_GIT_CREDENTIALS  \
+                        -f ./docker/components/Dockerfile .
+                    """
+                )
             }
         }
     }

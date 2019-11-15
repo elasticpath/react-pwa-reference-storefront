@@ -13,6 +13,8 @@ isChanged=$(
 
 if [[ ${isChanged} == ${publishDirName} ]]
 then
+    echo $GIT_CREDENTIALS
+    echo $GIT_CREDENTIALS_USR
     git config --global user.name 'cibuild'
     git config --global user.email 'build@admin.com'
     git checkout RS-516-automate-version-increment
