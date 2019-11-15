@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        USER_GIT_CREDENTIALS = credentials('GIT_CREDENTIALS')
+        USER_GIT_CREDENTIALS = credentials('$GIT_CREDENTIALS')
     }
     stages {
         stage('Publish') {

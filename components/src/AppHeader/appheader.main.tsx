@@ -248,7 +248,6 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
             <CartIcon className="cart-icon" />
             {intl.get('shopping-cart-nav')}
           </Link>
-
           <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${count ? 'show' : ''}`}>
             <CartPopUp appHeaderLinks={appHeaderLinks} cartData={{ count, name }} />
           </div>
