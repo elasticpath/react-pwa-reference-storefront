@@ -20,7 +20,7 @@
  */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
+import { object } from "@storybook/addon-knobs/react";
 import AddressContainer from './address.container';
 
 const dataName = {
@@ -39,4 +39,4 @@ const dataAddress = {
 };
 
 storiesOf('AddressContainer', module)
-  .add('AddressContainer', () => <AddressContainer name={dataName} address={dataAddress} />);
+  .add('AddressContainer', () => <AddressContainer name={object('name', dataName)} address={object('dataAddress',dataAddress)} />);

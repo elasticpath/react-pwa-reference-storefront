@@ -5,12 +5,10 @@ import intl from 'react-intl-universal';
 import { addParameters } from '@storybook/react';
 import { themes } from '@storybook/theming';
 import elasticpath from './elasticpath';
+import { addDecorator } from '@storybook/react';
+import { withKnobs } from '@storybook/addon-knobs';
 
-// addParameters({
-// 	options: {
-// 		theme: themes.dark
-// 	}
-// });
+addDecorator(withKnobs);
 
 addParameters({
   options: {
