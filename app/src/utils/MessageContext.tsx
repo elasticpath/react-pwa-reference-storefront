@@ -24,15 +24,21 @@ import React, {
 
 const ErrorContext:any = React.createContext('');
 let setE:any = () => {};
+let removeE:any = () => {};
 function ErrorDisplayBoundary({ children }) {
-  const [error, setError] = useState(null);
+  const [error, setError]:any = useState([]);
   const ctx:any = useMemo(() => ({ error, setError }), [error]);
   // eslint-disable-next-line consistent-return
   setE = (e) => {
-    if (e && error && e.debugMessages === error.debugMessages) {
-      return '';
+    if (e && error && error.find(el => el.debugMessages === e.debugMessages)) {
+      return [];
     }
-    return setError(e);
+    return setError([...error, e]);
+  };
+  removeE = (index) => {
+    const arrayMsg = [...error];
+    arrayMsg.splice(index, 1);
+    return setError(arrayMsg);
   };
   return (<ErrorContext.Provider value={ctx}>{children}</ErrorContext.Provider>);
 }
@@ -41,6 +47,12 @@ function ErrorInlet(error) {
   setE(error);
   return null;
 }
+
+function ErrorRemove(index) {
+  removeE(index);
+  return null;
+}
+
 export {
-  ErrorContext, ErrorDisplayBoundary, ErrorInlet,
+  ErrorContext, ErrorDisplayBoundary, ErrorInlet, ErrorRemove,
 };

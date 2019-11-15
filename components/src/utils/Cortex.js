@@ -70,7 +70,9 @@ export function cortexFetch(input, init) {
               messageData.debugMessages = debugMessages;
               messageData.type = data.messages[0].type;
               messageData.id = data.messages[0].id;
-              messages.push(messageData);
+              if (messageData.id !== 'cart.is.not.empty') {
+                messages.push(messageData);
+              }
             }
           }
           const dataKeys = Object.keys(data).filter(key => key[0] === '_');
@@ -78,9 +80,7 @@ export function cortexFetch(input, init) {
             if (Array.isArray(data[key])) {
               data[key].forEach((el) => {
                 const res1 = getErrorMessages(el);
-                if (messages[0] && messages[0].id !== 'cart.is.not.empty') {
-                  messages = messages.concat(res1);
-                }
+                messages = messages.concat(res1);
               });
             }
           });
