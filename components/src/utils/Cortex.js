@@ -78,7 +78,9 @@ export function cortexFetch(input, init) {
             if (Array.isArray(data[key])) {
               data[key].forEach((el) => {
                 const res1 = getErrorMessages(el);
-                messages = messages.concat(res1);
+                if (messages[0] && messages[0].id !== 'cart.is.not.empty') {
+                  messages = messages.concat(res1);
+                }
               });
             }
           });
