@@ -101,6 +101,37 @@ const EXPECTED_FIRST_NAME = 'john2';
 const EXPECTED_ADDRESS_NAME= 'Test User';
 
 describe('Profile', () => {
+  test('Navigate Profile', async () => {
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox'],
+      slowMo: 20,
+    });
+    const page = await browser.newPage();
+
+    page.emulate({
+      viewport: desktopViewport,
+      userAgent: '',
+    });
+    await page.goto(APP);
+
+    await page.waitForSelector(LOGGED_IN_BUTTON);
+    await page.click(LOGGED_IN_BUTTON);
+
+    // When I login as following registered shopper
+    await loginUser(page, userData);
+
+    // When I navigate to the profile page
+    await page.waitForSelector(DROPDOWN_LOGGED_IN_BUTTON);
+    await page.click(DROPDOWN_LOGGED_IN_BUTTON);
+    await page.waitForSelector(MY_PROFILE);
+    await page.click(MY_PROFILE);
+
+    // Then I can see my purchase history
+    await page.waitForSelector(PURCHASE_HISTORY);
+
+    await browser.close();
+  }, 50000);
+
   test('Update Personal Info', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
