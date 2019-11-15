@@ -28,7 +28,6 @@ import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './bulkorder.main.less';
-import { ErrorInlet } from '../../../app/src/utils/MessageContext';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
@@ -131,19 +130,10 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
           }
           if (res.status >= 400) {
             let debugMessages = '';
-            const messageData = {
-              debugMessages: '',
-              type: '',
-              id: '',
-            };
             res.json().then((json) => {
               for (let i = 0; i < json.messages.length; i++) {
                 debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
               }
-              messageData.debugMessages = debugMessages;
-              messageData.type = json.messages[0].type;
-              messageData.id = json.messages[0].id;
-              ErrorInlet(messageData);
             }).then(() => {
               if (isQuickOrder) {
                 this.setState({

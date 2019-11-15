@@ -158,7 +158,7 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
               {productsData._lineitems[0]._element.map((item) => {
                 const { quantity, _code } = item._item[0];
                 return (
-                  <div>
+                  <div key={item.name}>
                     <CartLineItem
                       key={_code[0].code}
                       item={item._item[0]}

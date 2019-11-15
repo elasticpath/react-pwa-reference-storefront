@@ -63,22 +63,42 @@ export function cortexFetch(input, init): any {
   return timeout((<any>Config).cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path}${input}${queryFormat}`, requestInit)
     .then((res) => {
       res.clone().json().then((json) => {
-        if (json.messages) {
-          const messageData = {
-            debugMessages: '',
-            type: '',
-            id: '',
-          };
-          let debugMessages = '';
-          for (let i = 0; i < json.messages.length; i++) {
-            debugMessages = debugMessages.concat(`${json.messages[i]['debug-message']} \n `);
+        function getErrorMessages(data) {
+          let messages = [];
+          if (data.messages && data.messages.length) {
+            const messageData = {
+              debugMessages: '',
+              type: '',
+              id: '',
+            };
+            let debugMessages = '';
+            for (let i = 0; i < data.messages.length; i++) {
+              debugMessages = debugMessages.concat(`${data.messages[i]['debug-message']} \n `);
+            }
+            if (debugMessages) {
+              messageData.debugMessages = debugMessages;
+              messageData.type = data.messages[0].type;
+              messageData.id = data.messages[0].id;
+              if (messageData.id !== 'cart.is.not.empty') {
+                messages.push(messageData);
+              }
+            }
           }
-          if (debugMessages) {
-            messageData.debugMessages = debugMessages;
-            messageData.type = json.messages[0].type;
-            messageData.id = json.messages[0].id;
-            ErrorInlet(messageData);
-          }
+          const dataKeys = Object.keys(data).filter(key => key[0] === '_');
+          dataKeys.forEach((key) => {
+            if (Array.isArray(data[key])) {
+              data[key].forEach((el) => {
+                const res1 = getErrorMessages(el);
+                messages = messages.concat(res1);
+              });
+            }
+          });
+          return messages;
+        }
+
+        const errorMessages = getErrorMessages(json);
+        if (errorMessages.length > 0) {
+          ErrorInlet(errorMessages[0]);
         }
       }).catch((error) => {
         // eslint-disable-next-line no-console

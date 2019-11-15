@@ -31,7 +31,6 @@ import {
 } from '../utils/Analytics';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
-import { ErrorInlet } from '../utils/MessageContext';
 
 import './OrderReviewPage.less';
 
@@ -108,22 +107,6 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
           this.setState({
             orderData: res._defaultcart[0],
           });
-          if (res._defaultcart && res._defaultcart[0]._order && res._defaultcart[0]._order[0].messages[0]) {
-            const messageData = {
-              debugMessages: '',
-              type: '',
-              id: '',
-            };
-            let debugMessages = '';
-            const messagesArray = res._defaultcart[0]._order[0].messages;
-            for (let i = 0; i < messagesArray.length; i++) {
-              debugMessages = debugMessages.concat(`${messagesArray[i]['debug-message']} \n `);
-            }
-            messageData.debugMessages = debugMessages;
-            messageData.type = messagesArray[0].type;
-            messageData.id = messagesArray[0].id;
-            ErrorInlet(messageData);
-          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

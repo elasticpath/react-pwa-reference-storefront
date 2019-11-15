@@ -182,27 +182,30 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 
   componentWillReceiveProps(nextProps) {
-    login().then(() => {
-      itemLookup(nextProps.productId)
-        .then((res) => {
-          if (Config.arKit.enable) {
-            this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+    const { productId } = this.props;
+    if (nextProps.productId !== productId) {
+      login().then(() => {
+        itemLookup(nextProps.productId)
+          .then((res) => {
+            if (Config.arKit.enable) {
+              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
+                this.setState({
+                  productData: res,
+                  arFileExists: exists,
+                });
+              });
+            } else {
               this.setState({
                 productData: res,
-                arFileExists: exists,
               });
-            });
-          } else {
-            this.setState({
-              productData: res,
-            });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+            }
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      });
+    }
   }
 
   fetchMultiCartData() {

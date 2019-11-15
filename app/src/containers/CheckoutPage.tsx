@@ -29,7 +29,6 @@ import {
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
-import { ErrorInlet } from '../utils/MessageContext';
 
 import './CheckoutPage.less';
 
@@ -173,22 +172,6 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
             orderData: res._defaultcart[0],
             isLoading: false,
           });
-          const { messages } = res._defaultcart[0]._order[0];
-          const messageData = {
-            debugMessages: '',
-            type: '',
-            id: '',
-          };
-          if (messages.length > 0) {
-            let debugMessages = '';
-            for (let i = 0; i < messages.length; i++) {
-              debugMessages = debugMessages.concat(`${messages[i]['debug-message']} \n `);
-            }
-            messageData.debugMessages = debugMessages;
-            messageData.type = messages[0].type;
-            messageData.id = messages[0].id;
-          }
-          ErrorInlet(messageData);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

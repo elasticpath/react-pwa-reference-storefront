@@ -116,7 +116,7 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
           {intl.get('payment-method')}
         </h3>
         {postedPayments[0]._element.map(postedpayment => (
-          <PaymentMethodContainer displayName={postedpayment} />
+          <PaymentMethodContainer displayName={postedpayment} key={postedpayment['display-name']} />
         ))}
       </div>
     );

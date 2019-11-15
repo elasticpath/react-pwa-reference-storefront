@@ -24,7 +24,7 @@ import { ReactComponent as CloseIcon } from '../../../app/src/images/icons/close
 import { ReactComponent as ErrorIcon } from '../../../app/src/images/icons/error-icon.svg';
 import { ReactComponent as WarningIcon } from '../../../app/src/images/icons/warning-icon.svg';
 import { ReactComponent as InfoIcon } from '../../../app/src/images/icons/info-icon.svg';
-import { ErrorInlet } from '../../../app/src/utils/MessageContext';
+import { ErrorRemove } from '../../../app/src/utils/MessageContext';
 
 import './messagecontainer.less';
 
@@ -32,36 +32,60 @@ interface MessageContainerProps {
   message: any
 }
 
-class MessageContainer extends React.Component<MessageContainerProps> {
-  static handleCloseErrorMsg() {
-    ErrorInlet({});
+interface MessageContainerState {
+  messages: any,
+}
+
+class MessageContainer extends React.Component<MessageContainerProps, MessageContainerState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: [],
+    };
+    this.handleCloseMessageContainer = this.handleCloseMessageContainer.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ messages: nextProps.message });
+  }
+
+  handleCloseMessageContainer(index) {
+    const { messages } = this.state;
+    const arrayMsg = [...messages];
+    arrayMsg.splice(index, 1);
+    this.setState({ messages: arrayMsg });
+    ErrorRemove(index);
   }
 
   render() {
-    const { message } = this.props;
-    if (message && message.debugMessages) {
-      let messageType = '';
-      if (message.type === 'error' && message.id.includes('field')) {
-        messageType = 'warning-message';
-      } else if (message.type === 'error') {
-        messageType = 'danger-message';
-      } else if (message.type === 'needinfo') {
-        messageType = 'info-message';
-      }
+    const { messages } = this.state;
+    if (messages.length > 0) {
       return (
         <div className="debug-messages-block">
           <div className="debug-messages-inner">
-            <div className={`container debug-messages-container ${messageType}`}>
-              <ErrorIcon className="debug-msg-icon error" />
-              <WarningIcon className="debug-msg-icon warning" />
-              <InfoIcon className="debug-msg-icon info" />
-              <p>
-                {message.debugMessages}
-              </p>
-              <button type="button" className="close-btn" onClick={MessageContainer.handleCloseErrorMsg}>
-                <CloseIcon />
-              </button>
-            </div>
+            {messages.map((el, index) => {
+              let messageType = '';
+              if (el.type === 'error' && el.id.includes('field')) {
+                messageType = 'warning-message';
+              } else if (el.type === 'error') {
+                messageType = 'danger-message';
+              } else if (el.type === 'needinfo') {
+                messageType = 'info-message';
+              }
+              return (
+                <div className={`container debug-messages-container ${messageType}`} key={`${el.id}_${Math.random().toString(36).substr(2, 9)}`}>
+                  <ErrorIcon className="debug-msg-icon error" />
+                  <WarningIcon className="debug-msg-icon warning" />
+                  <InfoIcon className="debug-msg-icon info" />
+                  <p>
+                    {el.debugMessages}
+                  </p>
+                  <button type="button" className="close-btn" onClick={() => this.handleCloseMessageContainer(index)}>
+                    <CloseIcon />
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
       );
