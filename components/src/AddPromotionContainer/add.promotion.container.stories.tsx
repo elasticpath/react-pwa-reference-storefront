@@ -21,7 +21,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object, text } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import AddPromotionContainer from './add.promotion.container';
 
 const cartData = {
@@ -51,4 +52,7 @@ storiesOf('AddPromotionContainer', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AddPromotionContainer', () => <AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
+  .add('AddPromotionContainer', () => {
+    let onSubmittedPromotionFuncText = text('onSubmittedPromotion','() => {alert("onSubmitPromotion invoked")}');
+    return <AddPromotionContainer data={object('data', cartData)} onSubmittedPromotion={()=>textToFunc(onSubmittedPromotionFuncText)} />
+  });
