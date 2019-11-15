@@ -127,6 +127,8 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
             } else if (!res._price) {
               this.setState({
                 skuErrorMessage: `${intl.get('product-message-without-price', { SKUCode: productId })}`,
+                product: res,
+                isLoading: false,
               });
               onItemSubmit({
                 code, quantity, product: {}, isValidField: false,
