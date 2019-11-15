@@ -19,7 +19,7 @@ then
     # regex: (?s).*skip_ci.*
     npm version patch -m "Components %s skip_ci"
     # npm publish components
-    git push "${GIT_USERNAME}:${GIT_PASSWORD}@${GIT_URL}"
+    git push "https://${GIT_USERNAME}:${GIT_PASSWORD}@${GIT_URL}"
     exit 0
 fi
 echo "No changes in components folder"
