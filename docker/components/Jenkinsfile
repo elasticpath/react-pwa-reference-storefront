@@ -4,7 +4,16 @@ pipeline {
         stage('Publish') {
             steps {
                 withCredentials([usernamePassword(credentialsId: "f7c26c88-0f8a-44e7-8120-bdc4743be5a3", passwordVariable: "GIT_PASSWORD", usernameVariable: "GIT_USERNAME")]) {
-                    sh("docker build --build-arg NPM_TOKEN=$NPM_TOKEN GIT_PASSWORD=$GIT_PASSWORD GIT_USERNAME=$GIT_USERNAME GIT_URL=$GIT_URL -f ./docker/components/Dockerfile .")
+                    sh(
+                        """
+                            docker build \
+                            --build-arg NPM_TOKEN=$NPM_TOKEN \
+                            --build-arg GIT_PASSWORD=$GIT_PASSWORD  \
+                            --build-arg GIT_USERNAME=$GIT_USERNAME \
+                            --build-arg GIT_URL=$GIT_URL \
+                            -f ./docker/components/Dockerfile .
+                        """
+                    )
                 }
             }
         }
