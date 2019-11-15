@@ -104,7 +104,7 @@ describe('Profile', () => {
   test('Navigate Profile', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 120,
+      slowMo: 20,
     });
     const page = await browser.newPage();
 
@@ -127,7 +127,7 @@ describe('Profile', () => {
     await page.waitForSelector(PURCHASE_HISTORY);
 
     await browser.close();
-  }, 500000);
+  }, 50000);
 
   test('Update Personal Info', async () => {
     const browser = await puppeteer.launch({
