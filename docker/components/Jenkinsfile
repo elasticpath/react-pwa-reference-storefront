@@ -8,7 +8,7 @@ pipeline {
                         """
                             docker build \
                             --build-arg NPM_TOKEN=$NPM_TOKEN \
-                            --build-arg GIT_CREDENTIALS=GIT_CREDENTIALS  \
+                            --build-arg GIT_CREDENTIALS=$GIT_CREDENTIALS  \
                             -f ./docker/components/Dockerfile .
                         """
                     )
