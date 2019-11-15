@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Publish') {
             steps {
-                sshagent (credentials: ['ep-github-sshkey-buildadmin']) {
-                    sh 'docker build --build-arg NPM_TOKEN=$NPM_TOKEN -f ./docker/components/Dockerfile .'
+                withCredentials([usernamePassword(credentialsId: "ep-github-token-as-pass-buildadmin", passwordVariable: "GIT_PASSWORD", usernameVariable: "GIT_USERNAME")]) {
+                    sh("docker build --build-arg NPM_TOKEN=$NPM_TOKEN GIT_PASSWORD=$GIT_PASSWORD GIT_USERNAME=$GIT_USERNAME GIT_URL=$GIT_URL -f ./docker/components/Dockerfile .")
                 }
             }
         }
