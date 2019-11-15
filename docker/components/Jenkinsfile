@@ -11,6 +11,7 @@ pipeline {
                         docker build \
                         --build-arg NPM_TOKEN=$NPM_TOKEN \
                         --build-arg GIT_CREDENTIALS=$USER_GIT_CREDENTIALS  \
+                        --build-arg GIT_URL=$GIT_URL  \
                         -f ./docker/components/Dockerfile .
                     """
                 )
