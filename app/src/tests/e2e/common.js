@@ -187,7 +187,7 @@ module.exports = {
     await page.waitForSelector(LOGGED_IN_BUTTON);
     await page.click(LOGGED_IN_BUTTON);
 
-    await page.waitForSelector(LOGIN_USERNAME_INPUT);
+    // await page.waitForSelector(LOGIN_USERNAME_INPUT);
     await page.type(LOGIN_USERNAME_INPUT, user.email);
 
     await page.waitForSelector(LOGIN_PASSWORD_INPUT);
