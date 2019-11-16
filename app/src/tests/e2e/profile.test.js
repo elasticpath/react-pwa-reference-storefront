@@ -114,8 +114,7 @@ describe('Profile', () => {
     });
     await page.goto(APP);
 
-    await page.waitForSelector(LOGGED_IN_BUTTON);
-    await page.click(LOGGED_IN_BUTTON);
+    await page.hover(LOGGED_IN_BUTTON);
 
     // When I login as following registered shopper
     await loginUser(page, userData);

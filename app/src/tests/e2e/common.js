@@ -76,6 +76,7 @@ module.exports = {
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
     const CART_LIST = 'div[data-region="mainCartRegion"]';
 
+    page.setDefaultNavigationTimeout(0);
     await page.waitForSelector(PARENT_CATEGORY_CSS);
     if (productSubCategory) {
       await page.click(PARENT_CATEGORY_CSS);
@@ -187,7 +188,8 @@ module.exports = {
     await page.waitForSelector(LOGGED_IN_BUTTON);
     await page.click(LOGGED_IN_BUTTON);
 
-    // await page.waitForSelector(LOGIN_USERNAME_INPUT);
+    await page.waitFor(3000);
+    await page.waitForSelector(LOGIN_USERNAME_INPUT);
     await page.type(LOGIN_USERNAME_INPUT, user.email);
 
     await page.waitForSelector(LOGIN_PASSWORD_INPUT);
