@@ -114,7 +114,7 @@ describe('Profile', () => {
     });
     await page.goto(APP);
 
-    await page.hover(LOGGED_IN_BUTTON);
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
 
     // When I login as following registered shopper
     await loginUser(page, userData);
