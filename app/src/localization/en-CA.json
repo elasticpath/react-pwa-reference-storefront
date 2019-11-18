@@ -352,5 +352,9 @@
   "backend-message-account.not.found": "No account with the given account name was found.",
   "cart-clear-msg": "You are about to remove all items from",
   "cart-clear-confirmation": "These items will be permanently removed. Continue?",
-  "remove-all-cart-items": "Remove all cart items"
+  "remove-all-cart-items": "Remove all cart items",
+  "upload-csv": "Upload CSV",
+  "upload-csv-desc": "Upload a CSV for configurable items in the following format (including header row):",
+  "upload-csv-header": "code,quantity,configKey1,configKey2 ...",
+  "upload-csv-row": "Item #1,Qty,configValue1,configValue2 ..."
 }

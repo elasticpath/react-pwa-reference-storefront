@@ -352,5 +352,9 @@
   "backend-message-account.not.found": "N-o- -a-c-c-o-u-n-t- -w-i-t-h- -t-h-e- -g-i-v-e-n- -a-c-c-o-u-n-t- -n-a-m-e- -w-a-s- -f-o-u-n-d-.",
   "cart-clear-msg": "Y-o-u- -a-r-e- -a-b-o-u-t- -t-o- -r-e-m-o-v-e- -a-l-l- -i-t-e-m-s- -f-r-o-m",
   "cart-clear-confirmation": "T-h-e-s-e- -i-t-e-m-s- -w-i-l-l- -b-e- -p-e-r-m-a-n-e-n-t-l-y- -r-e-m-o-v-e-d-.- -C-o-n-t-i-n-u-e-?",
-  "remove-all-cart-items": "R-e-m-o-v-e- -a-l-l- -c-a-r-t- -i-t-e-m-s"
+  "remove-all-cart-items": "R-e-m-o-v-e- -a-l-l- -c-a-r-t- -i-t-e-m-s",
+  "upload-csv": "U-p-l-o-a-d- -C-S-V",
+  "upload-csv-desc": "U-p-l-o-a-d- -a- -C-S-V- -f-o-r- -c-o-n-f-i-g-u-r-a-b-l-e- -i-t-e-m-s- -i-n- -t-h-e- -f-o-l-l-o-w-i-n-g- -f-o-r-m-a-t- -(-i-n-c-l-u-d-i-n-g- -h-e-a-d-e-r- -r-o-w):",
+  "upload-csv-header": "c-o-d-e-,-q-u-a-n-t-i-t-y-,-c-o-n-f-i-g-K-e-y-1-,-c-o-n-f-i-g-K-e-y-2- ...",
+  "upload-csv-row": "I-t-e-m- -#-1-,-Q-t-y-,-c-o-n-f-i-g-V-a-l-u-e-1-,-c-o-n-f-i-g-V-a-l-u-e-2- ..."
 }

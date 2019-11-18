@@ -102,7 +102,7 @@
           color: gray;
         }
 
-        .tab-bulk-order{
+        .tab-bulk-order, .tab-batch-add-to-cart{
           margin-top: 5px;
         }
 
@@ -161,6 +161,27 @@
     font-size: 14px;
     font-weight: 500;
   }
+
+  .batch-add-to-cart-btn {
+    display: inline-block;
+    .btn-batch-csv {
+      padding: 1px 25px;
+      line-height: 2;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: none;
+    }
+   
+    .btn-batch-csv-hidden {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+  }
 }
 
 @media (max-width: @tabletWidth - 1px) {
@@ -188,7 +209,8 @@
       padding-right: 20px;
 
       .bulk-csv {
-        margin-bottom: 105px;
+        min-height: 250px;
+        margin-bottom: 0px;
       }
     }
   }

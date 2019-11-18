@@ -367,7 +367,7 @@ class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainSta
               <span className="icon glyphicon glyphicon-align-justify" />
             </button>
           </div>
-          <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} />
+          <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} onUpdate={() => { this.fetchCartData(); }} />
         </div>
 
         <div className="collapsable-container collapse collapsed">

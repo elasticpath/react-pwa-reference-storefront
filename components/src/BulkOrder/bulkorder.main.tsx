@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import Papa from 'papaparse';
 import BarcodeScanner from '../BarcodeScanner/barcodescanner';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup, searchLookup } from '../utils/CortexLookup';
@@ -37,7 +38,8 @@ interface BulkOrderProps {
     [key: string]: any
   },
   isBulkModalOpened: boolean,
-  handleClose: (...args: any[]) => any
+  handleClose: (...args: any[]) => any,
+  onUpdate: (...args: any[]) => any
 }
 
 interface BulkOrderState {
@@ -95,19 +97,23 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
     this.handleBarcodeScanned = this.handleBarcodeScanned.bind(this);
   }
 
-  addAllToCart(orderItems, isQuickOrder) {
+  addAllToCart(orderItems, isQuickOrder, isBatchAddToCart) {
     if (!orderItems) return; // "\f02a"
-    const { cartData } = this.props;
+    const { cartData, onUpdate } = this.props;
     const { defaultItemsCount, defaultItem } = this.state;
     this.setState({ isLoading: true });
     const arrayItems = orderItems
       .filter(item => item.code !== '')
-      .map(item => ({ code: item.code, quantity: item.quantity }));
+      .map(item => ({ code: item.code, quantity: item.quantity, configuration: item.configuration }));
     login().then(() => {
       const addToCartLink = cartData._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
       const body: { [key: string]: any } = {};
       if (arrayItems) {
-        body.items = arrayItems;
+        if (isBatchAddToCart) {
+          body['configurable-items'] = arrayItems;
+        } else {
+          body.items = arrayItems;
+        }
       }
       cortexFetch(addToCartLink.uri,
         {
@@ -127,6 +133,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
               bulkOrderErrorMessage: '',
               bulkOrderDuplicatedErrorMessage: '',
             });
+            onUpdate();
           }
           if (res.status >= 400) {
             let debugMessages = '';
@@ -254,8 +261,44 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  processCSV(file) {
+    if (file) {
+      Papa.parse(file, {
+        header: true,
+        dynamicTyping: true,
+        encoding: 'utf-8',
+        skipEmptyLines: true,
+        // eslint-disable-next-line func-names
+        complete: ((results) => {
+          // eslint-disable-next-line no-console
+          console.log(results.data);
+          this.createItems(results.data);
+        }),
+      });
+    }
+  }
+
+  createItems(data) {
+    const items = data.map((item) => {
+      const configuration = {};
+      Object.keys(item).filter(key => key !== 'code' && key !== 'quantity').forEach((key) => {
+        configuration[key] = item[key];
+      });
+      return (
+        {
+          code: item.code,
+          quantity: item.quantity,
+          configuration,
+        }
+      );
+    });
+
+    this.addAllToCart(items, false, true);
+  }
+
   render() {
-    const { isBulkModalOpened, handleClose } = this.props;
+    const { isBulkModalOpened, handleClose, cartData } = this.props;
     const {
       items,
       bulkOrderItems,
@@ -271,6 +314,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
     const isEmpty = Boolean(items.find(item => (item.code !== '' && item.isValidField === true)));
     const duplicatedFields = Boolean(items.find(item => (item.code !== '' && item.isDuplicated === true)));
     const isDisabledButton = (!Config.b2b.enable || (isValid || !isEmpty || duplicatedFields));
+    const batchAddToCartAccelerator = cartData && cartData._additemstocartform && cartData._additemstocartform[0]['configurable-items'];
     return (
       <div className={`bulk-order-component ${(!isBulkModalOpened) ? 'hideModal' : ''}`}>
         <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
@@ -289,6 +333,11 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
                 {intl.get('bulk-order-title')}
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" id="batch-add-to-cart-tab" data-toggle="tab" href="#batch-add-to-cart" role="tab" aria-selected="false">
+                {intl.get('batch-add-to-cart-title')}
+              </a>
+            </li>
           </ul>
           <div className="tab-content">
             <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick-order-tab">
@@ -298,7 +347,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
                   id="add_to_cart_quick_order_button"
                   disabled={isDisabledButton}
                   type="submit"
-                  onClick={() => { this.addAllToCart(items, true); }}
+                  onClick={() => { this.addAllToCart(items, true, batchAddToCartAccelerator); }}
                 >
                   {intl.get('add-all-to-cart')}
                 </button>
@@ -342,7 +391,7 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
                   id="add_to_cart_bulk_order_button"
                   type="submit"
                   disabled={!Config.b2b.enable || (!csvText || bulkOrderDuplicatedErrorMessage !== '' || bulkOrderErrorMessage !== '')}
-                  onClick={() => { this.addAllToCart(bulkOrderItems, false); }}
+                  onClick={() => { this.addAllToCart(bulkOrderItems, false, batchAddToCartAccelerator); }}
                 >
                   {intl.get('add-all-to-cart')}
                 </button>
@@ -360,6 +409,22 @@ export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
                 <p className="bulk-text-area-title"><b>{intl.get('enter-product-sku-and-quantity-in-input')}</b></p>
                 <textarea className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
               </div>
+              {
+                (batchAddToCartAccelerator) ? (
+                  <div>
+                    <hr />
+                    <div className="batch-add-to-cart-btn">
+                      <input type="file" className="btn-batch-csv-hidden" onChange={(e) => { this.processCSV(e.target.files[0]); e.target.value = null; }} name="file" id="batch-csv" accept=".csv" />
+                      <label className="ep-btn primary small btn-batch-csv" htmlFor="batch-csv">{intl.get('upload-csv')}</label>
+                    </div>
+                    <div className="tab-batch-add-to-cart">
+                      <p>{intl.get('upload-csv-desc')}</p>
+                      <p>{intl.get('upload-csv-header')}</p>
+                      <p>{intl.get('upload-csv-row')}</p>
+                    </div>
+                  </div>
+                ) : ''
+              }
             </div>
           </div>
         </div>
