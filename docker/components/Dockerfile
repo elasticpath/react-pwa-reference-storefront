@@ -1,7 +1,6 @@
 FROM node:12.10.0 as builder
 
 ARG NPM_TOKEN
-ARG GIT_CREDENTIALS
 ARG GIT_URL
 
 WORKDIR /project
