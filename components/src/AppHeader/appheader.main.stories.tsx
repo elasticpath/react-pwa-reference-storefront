@@ -21,7 +21,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object, text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import AppHeaderMain from './appheader.main';
 import { mockProductDisplayItemMainMultiCart } from './appheader.main.api.mocks.js';
 
@@ -50,9 +51,33 @@ storiesOf('AppHeaderMain', module)
   .add('AppHeaderMain', () => {
     mockProductDisplayItemMainMultiCart();
 
+    // All AppHeaderMain Callbacks inputted from storybook knobs UI.
+    let onSearchPageFuncText = text('onSearchPage','() => {alert("onSearchPage invoked")}');
+    let redirectToMainPageFuncText = text('redirectToMainPage','() => {alert("redirectToMainPage invoked")}');
+    let handleResetPasswordFuncText = text('handleResetPassword','() => {alert("handleResetPassword invoked")}');
+    let onCurrencyChangeFuncText = text('onCurrencyChange','() => {alert("onCurrencyChange invoked")}'); 
+    let onLocaleChangeFuncText = text('onLocaleChange','() => {alert("onLocaleChange invoked")}');
+    let onContinueCartFuncText = text('onContinueCart','() => {alert("onContinueCart invoked")}');
+    let onGoBackFuncText = text('onGoBack','() => {alert("onGoBack invoked")}');
+    
     return (
       <MemoryRouter initialEntries={['/']}>
-        <AppHeaderMain appHeaderLinks={appHeaderLinks} appHeaderLoginLinks={appHeaderLoginLinks} appHeaderNavigationLinks={appHeaderNavigationLinks} appHeaderTopLinks={appHeaderTopLinks} appModalLoginLinks={appModalLoginLinks} />
+        <AppHeaderMain 
+          onSearchPage={()=>textToFunc(onSearchPageFuncText)}
+          redirectToMainPage={()=>textToFunc(redirectToMainPageFuncText)}
+          handleResetPassword={()=>textToFunc(handleResetPasswordFuncText)}
+          onCurrencyChange={()=>textToFunc(onCurrencyChangeFuncText)}
+          onLocaleChange={()=>textToFunc(onLocaleChangeFuncText)}
+          onContinueCart={()=>textToFunc(onContinueCartFuncText)}
+          onGoBack={()=>textToFunc(onGoBackFuncText)}
+          checkedLocation={boolean('checkedLocation', false)}
+          isInStandaloneMode={boolean('isInStandaloneMode', false)}
+          locationSearchData={text('locationSearchData', '')}
+          appHeaderLinks={object('appHeaderLinks',appHeaderLinks)} 
+          appHeaderLoginLinks={object('appHeaderLoonCurrencyChangeFuncTextginLinks', appHeaderLoginLinks)} 
+          appHeaderNavigationLinks={object('appHeaderNavigationLinks', appHeaderNavigationLinks)} 
+          appHeaderTopLinks={object('appHeaderTopLinks', appHeaderTopLinks)} 
+          appModalLoginLinks={object('appModalLoginLinks', appModalLoginLinks)} />
       </MemoryRouter>
     );
   });
