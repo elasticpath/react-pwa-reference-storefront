@@ -6,7 +6,7 @@ pipeline {
         stage('Publish') {
             steps {
                 deleteDir()
-                withCredentials([sshUserPrivateKey(credentialsId: ${GIT_SSH_CREDENTIALS}, keyFileVariable: 'SSH_KEY')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ep-github-sshkey-buildadmin', keyFileVariable: 'SSH_KEY')]) {
                     sh(
                         """
                             docker build \
