@@ -14,12 +14,12 @@ isChanged=$(
 if [[ ${isChanged} == ${publishDirName} ]]
 then
     git config --global user.name 'cibuild'
-    git config --global user.email 'build@admin.com'
+    git config --global user.email ''
     git checkout RS-516-automate-version-increment
     # regex: (?s).*skip_ci.*
     npm version patch -m "Components %s skip_ci"
     # npm publish components
-    git push "https://${GIT_CREDENTIALS}@${GIT_URL}"
+    git push
     exit 0
 fi
 echo "No changes in components folder"

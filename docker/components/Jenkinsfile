@@ -1,20 +1,25 @@
 pipeline {
-    agent any
+    agent {
+        label 'node'
+    }
     environment {
         USER_GIT_CREDENTIALS = credentials('$GIT_CREDENTIALS')
     }
     stages {
         stage('Publish') {
             steps {
-                sh(
-                    """
-                        docker build \
-                        --build-arg NPM_TOKEN=$NPM_TOKEN \
-                        --build-arg GIT_CREDENTIALS=$USER_GIT_CREDENTIALS  \
-                        --build-arg GIT_URL=$GIT_URL  \
-                        -f ./docker/components/Dockerfile .
-                    """
-                )
+                deleteDir()
+                withCredentials([sshUserPrivateKey(credentialsId: 'ep-github-sshkey-buildadmin', keyFileVariable: 'SSH_KEY')]) {
+                    sh(
+                        """
+                            docker build \
+                            --build-arg NPM_TOKEN=$NPM_TOKEN \
+                            --build-arg GIT_CREDENTIALS=$USER_GIT_CREDENTIALS  \
+                            --build-arg GIT_URL=$GIT_URL  \
+                            -f ./docker/components/Dockerfile .
+                        """
+                    )
+                }
             }
         }
     }
