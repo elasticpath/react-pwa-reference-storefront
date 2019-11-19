@@ -20,24 +20,25 @@
  */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { mockAddressFormSubmitSuccess, mockAddressFormSubmitFailure } from './addressform.main.api.mocks';
+import mockAddressFormSubmitSuccess from './addressform.main.api.mocks';
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
+import { object, text } from "@storybook/addon-knobs/react";
 
 import AddressFormMain from './addressform.main';
 
 storiesOf('AddressFormMain', module)
   .add('AddressFormMain edit mode', () => {
     mockAddressFormSubmitSuccess();
+    
     const addressData = {
       address: '/addresses/vestri_b2c',
-      returnPage: '/profile',
     };
-    return <AddressFormMain addressData={addressData} />;
-  })
-  .add('AddressFormMain Submit Success', () => {
-    mockAddressFormSubmitSuccess();
-    return <AddressFormMain />;
-  })
-  .add('AddressFormMain Submit Failure', () => {
-    mockAddressFormSubmitFailure();
-    return <AddressFormMain />;
+    let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
+    let fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
+    
+    return <AddressFormMain 
+      addressData={object('addressData', addressData)} 
+      onCloseModal={()=>textToFunc(onCloseModalFuncText)}
+      fetchData={()=>textToFunc(fetchDataFuncText)}
+    />
   });

@@ -71,11 +71,11 @@ function mockSubmitAddressResponseSuccessResponse(mockObj) {
 function mockSubmitAddressResponseFailureResponse(mockObj) {
   mockObj
     .put(
-      /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
+      /^(?!\/cortex\/addresses\/[a-zA-Z0-9_]).*$/,
       400,
     )
     .post(
-      /(.*)\/cortex\/addresses\/[a-zA-Z0-9_]*/,
+      /^(?!\/cortex\/addresses\/[a-zA-Z0-9_]).*$/,
       400,
     );
 }
@@ -87,14 +87,9 @@ function mockCommonAddressFormResponses(mockObj) {
   mockAddressDataResponse(mockObj);
 }
 
-export function mockAddressFormSubmitSuccess() {
+export default function mockAddressFormSubmit() {
   fetchMock.restore();
   mockCommonAddressFormResponses(fetchMock);
   mockSubmitAddressResponseSuccessResponse(fetchMock);
-}
-
-export function mockAddressFormSubmitFailure() {
-  fetchMock.restore();
-  mockCommonAddressFormResponses(fetchMock);
   mockSubmitAddressResponseFailureResponse(fetchMock);
 }
