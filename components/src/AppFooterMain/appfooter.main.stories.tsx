@@ -21,7 +21,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object } from "@storybook/addon-knobs/react";
 import AppFooterMain from './appfooter.main';
 
 const appFooterLinks = {
@@ -38,4 +38,4 @@ storiesOf('AppFooterMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppFooterMain', () => <AppFooterMain appFooterLinks={appFooterLinks} />);
+  .add('AppFooterMain', () => <AppFooterMain appFooterLinks={object('appFooterLinks', appFooterLinks)} />);
