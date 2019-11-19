@@ -25,8 +25,8 @@ import cartData from '../CommonMockHttpResponses/cart_main_data_response.json';
 
 import CartLineItem from './cart.lineitem';
 
-function handleQuantityChange() {}
-function handleRemove() {}
+function handleQuantityChange() { }
+function handleRemove() { }
 
 storiesOf('CartLineItem', module)
   .addDecorator(story => (

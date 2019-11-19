@@ -20,6 +20,7 @@
  */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import Readme from './README.md';
 
 import AddressContainer from './address.container';
 
@@ -39,4 +40,10 @@ const dataAddress = {
 };
 
 storiesOf('AddressContainer', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('AddressContainer', () => <AddressContainer name={dataName} address={dataAddress} />);

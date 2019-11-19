@@ -21,6 +21,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import Readme from './README.md';
 
 import AddPromotionContainer from './add.promotion.container';
 
@@ -51,4 +52,10 @@ storiesOf('AddPromotionContainer', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('AddPromotionContainer', () => <AddPromotionContainer data={cartData} onSubmittedPromotion={() => {}} />);
