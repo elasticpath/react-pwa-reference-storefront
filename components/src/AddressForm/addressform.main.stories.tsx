@@ -27,12 +27,24 @@ import { object, text } from "@storybook/addon-knobs/react";
 import AddressFormMain from './addressform.main';
 
 storiesOf('AddressFormMain', module)
-  .add('AddressFormMain edit mode', () => {
+  .add('AddressFormMain on save success', () => {
     mockAddressFormSubmitSuccess();
-    // Adjusting the address link to anything other then the below value will result in the address form responding to a failure.
-    // Look into `mockAddressFormSubmitSuccess` for more detail.
     const addressData = {
       address: '/addresses/vestri_b2c',
+    };
+    let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
+    let fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
+    
+    return <AddressFormMain 
+      addressData={object('addressData', addressData)} 
+      onCloseModal={()=>textToFunc(onCloseModalFuncText)}
+      fetchData={()=>textToFunc(fetchDataFuncText)}
+    />
+  })
+  .add('AddressFormMain on save failure', () => {
+    mockAddressFormSubmitSuccess();
+    const addressData = {
+      address: '/an/incorrect/save/address/link',
     };
     let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
     let fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
