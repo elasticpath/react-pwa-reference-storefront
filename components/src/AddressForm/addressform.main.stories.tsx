@@ -29,7 +29,8 @@ import AddressFormMain from './addressform.main';
 storiesOf('AddressFormMain', module)
   .add('AddressFormMain edit mode', () => {
     mockAddressFormSubmitSuccess();
-    
+    // Adjusting the address link to anything other then the below value will result in the address form responding to a failure.
+    // Look into `mockAddressFormSubmitSuccess` for more detail.
     const addressData = {
       address: '/addresses/vestri_b2c',
     };
