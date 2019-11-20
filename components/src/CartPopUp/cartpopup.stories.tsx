@@ -22,7 +22,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { CountProvider } from '../index';
-
+import { text, object } from "@storybook/addon-knobs/react";
 import CartPopUp from './cartpopup';
 
 const appHeaderLinks = '/';
@@ -35,7 +35,10 @@ storiesOf('CartPopUp', module)
   .add('CartPopUp', () => (
     <CountProvider>
       <div style={{ backgroundColor: '#040060' }}>
-        <CartPopUp appHeaderLinks={appHeaderLinks} cartData={cartData} />
+        <CartPopUp 
+          appHeaderLinks={text('appHeaderLinks', appHeaderLinks)} 
+          cartData={object('cartData', cartData)} 
+        />
       </div>
     </CountProvider>
   ));
