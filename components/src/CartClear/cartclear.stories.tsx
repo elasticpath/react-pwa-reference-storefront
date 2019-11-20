@@ -22,15 +22,27 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import multiCartResponse from '../CommonMockHttpResponses/itemLookupMultiCart_response.json';
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
+import { text } from "@storybook/addon-knobs/react";
 
 import CartClear from './cartclear';
+
 
 storiesOf('CartClear', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('CartClear', () => (
-    <div style={{ textAlign: 'center' }}>
-      <CartClear cartData={multiCartResponse._carts[0]._element[0]} handleCartsUpdate={() => {}} handleCartModalUpdate={() => {}} />
-    </div>
-  ));
+  .add('CartClear', () => {
+    let handleCartsUpdateFuncText = text('handleCartsUpdate', '() => {alert("handleCartsUpdate invoked")}');
+    let handleCartModalUpdateFuncText = text('handleCartModalUpdate', '() => {alert("handleCartsUpdate invoked")}');
+    
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <CartClear 
+          cartData={multiCartResponse._carts[0]._element[0]} 
+          handleCartsUpdate={() => {textToFunc(handleCartsUpdateFuncText)}} 
+          handleCartModalUpdate={() => {textToFunc(handleCartModalUpdateFuncText)}} 
+        />
+      </div>
+    );
+  });
