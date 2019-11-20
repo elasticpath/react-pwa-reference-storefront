@@ -21,7 +21,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object, text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import AppModalLoginMain from './appmodallogin.main';
 
 // Option defaults.
@@ -34,4 +35,13 @@ storiesOf('AppModalLoginMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppModalLoginMain', () => <AppModalLoginMain handleModalClose={() => {}} openModal appModalLoginLinks={appModalLoginLinks} disableLogin showForgotPasswordLink={false} />);
+  .add('AppModalLoginMain', () => {
+    let handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
+    return (
+    <AppModalLoginMain 
+      handleModalClose={() => {textToFunc(handleModalCloseFuncText)}} 
+      openModal={boolean('openModal', true)} 
+      appModalLoginLinks={object('appModalLoginLinks', appModalLoginLinks)} 
+      disableLogin={boolean('disableLogin', true)}
+      showForgotPasswordLink={boolean('showForgotPasswordLink', false)} />)
+});
