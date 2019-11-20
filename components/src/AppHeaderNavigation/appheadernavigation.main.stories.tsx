@@ -24,6 +24,7 @@ import { MemoryRouter } from 'react-router';
 
 import AppHeaderNavigationMain from './appheadernavigation.main';
 
+// BUG: Not showing anything in storybook - aChan
 storiesOf('AppHeaderNavigationMain', module)
   .add('AppHeaderNavigationMain', () => (
     <div style={{ backgroundColor: '#040060' }}>
