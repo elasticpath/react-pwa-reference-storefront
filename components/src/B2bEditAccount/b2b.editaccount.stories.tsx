@@ -21,12 +21,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object, text, boolean } from "@storybook/addon-knobs/react";
 import B2bEditAccount from './b2b.editaccount';
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 
-function handleAccountSettingsClose() {}
-function handleAccountSettingsUpdate() {}
-const isSettingsDialogOpen = true;
 const accountData = {
   name: 'Cabana',
   legalName: 'Cabana, LLC',
@@ -42,13 +40,18 @@ storiesOf('B2bEditAccount', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('B2bEditAccount', () => (
-    <B2bEditAccount
-      handleClose={handleAccountSettingsClose}
-      handleUpdate={handleAccountSettingsUpdate}
-      isOpen={isSettingsDialogOpen}
-      accountData={accountData}
-      editSubAccountUri={editSubAccountUri}
-      editMetadataUri={editMetadataUri}
-    />
-  ));
+  .add('B2bEditAccount', () => {
+    let handleCloseFuncText = text('handleClose','() => {alert("handleClose invoked")}');
+    let handleUpdateFuncText = text('handleUpdate', '() => {alert("handleUpdate invoked")}');
+    
+    return (
+      <B2bEditAccount
+        handleClose={()=>{textToFunc(handleCloseFuncText)}}
+        editSubAccountUri={text('editSubAccountUri', editSubAccountUri)}
+        handleUpdate={()=>{textToFunc(handleUpdateFuncText)}}
+        isOpen={boolean('isOpen', true)}
+        accountData={object('accountData', accountData)}
+        editMetadataUri={text('editMetadataUri', editMetadataUri)}
+      />
+    );
+  });
