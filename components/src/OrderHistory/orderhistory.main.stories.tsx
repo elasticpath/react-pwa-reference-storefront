@@ -21,7 +21,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object } from "@storybook/addon-knobs/react";
 import OrderHistoryMain from './orderhistory.main';
 
 // Option defaults.
@@ -103,4 +103,4 @@ storiesOf('OrderHistoryMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('OrderHistoryMain', () => <OrderHistoryMain purchaseHistory={purchaseHistory} />);
+  .add('OrderHistoryMain', () => <OrderHistoryMain purchaseHistory={object('purchaseHistory', purchaseHistory)} />);
