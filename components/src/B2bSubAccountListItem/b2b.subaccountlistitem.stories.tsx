@@ -21,7 +21,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object, text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import B2bSubAccountListItem from './b2b.subaccountlistitem';
 
 import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
@@ -30,4 +31,16 @@ storiesOf('B2bSubAccountListItem', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('B2bSubAccountListItem', () => <B2bSubAccountListItem handleAccount={() => {}} accountData={SubAccountData._element[0]} accountName="accountName" registrationNumber="registrationNumber" />);
+  .add('B2bSubAccountListItem', () => {
+    let handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
+    
+    return (
+      <B2bSubAccountListItem 
+        handleAccount={()=>{textToFunc(handleModalCloseFuncText)}}
+        accountData={object('accountData', SubAccountData._element[0])} 
+        accountName={text('accountName', 'accountName')} 
+        registrationNumber={text('registrationNumber', 'registrationNumber')}
+      />
+    );
+  });
+
