@@ -37,10 +37,16 @@ storiesOf('AppModalLoginMain', module)
   ))
   .add('AppModalLoginMain', () => {
     let handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
+    let onLoginFuncText = text('onLogin', '() => {alert("onLogin invoked")}');
+    let onResetPasswordFuncText = text('onResetPassword', '() => {alert("onResetPassword invoked")}');
+    
     return (
-    <AppModalLoginMain 
+    <AppModalLoginMain
       handleModalClose={() => {textToFunc(handleModalCloseFuncText)}} 
-      openModal={boolean('openModal', true)} 
+      openModal={boolean('openModal', true)}
+      onLogin={() => {textToFunc(onLoginFuncText)}}
+      onResetPassword={() => {textToFunc(onResetPasswordFuncText)}}
+      locationSearchData={text('locationSearchData', '')}
       appModalLoginLinks={object('appModalLoginLinks', appModalLoginLinks)} 
       disableLogin={boolean('disableLogin', true)}
       showForgotPasswordLink={boolean('showForgotPasswordLink', false)} />)
