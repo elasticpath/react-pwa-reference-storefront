@@ -22,11 +22,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import productData from './MockHttpResponses/bundle_constituents_response.json';
-
+import { text, object } from "@storybook/addon-knobs/react";
 import BundleConstituentsDisplayMain from './bundleconstituents.main';
 
 storiesOf('BundleConstituentsDisplayMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('BundleConstituentsDisplayMain', () => <BundleConstituentsDisplayMain productData={productData} itemDetailLink="" />);
+  .add('BundleConstituentsDisplayMain', () => (<BundleConstituentsDisplayMain productData={object('productData', productData)} itemDetailLink={text('itemDetailLink', '')} />));
