@@ -45,32 +45,38 @@ const zoomArrayProfile = [
 
 const zoomArray = [
   // zooms for checkout summary
-  'defaultcart',
-  'defaultcart:total',
-  'defaultcart:discount',
-  'defaultcart:order',
-  'defaultcart:order:tax',
-  'defaultcart:order:total',
-  'defaultcart:appliedpromotions:element',
-  'defaultcart:order:couponinfo:coupon',
-  'defaultcart:order:couponinfo:couponform',
+  'total',
+  'discount',
+  'order',
+  'order:tax',
+  'order:total',
+  'appliedpromotions:element',
+  'order:couponinfo:coupon',
+  'order:couponinfo:couponform',
   // zooms for billing address
-  'defaultcart:order:billingaddressinfo:billingaddress',
-  'defaultcart:order:billingaddressinfo:selector:choice',
-  'defaultcart:order:billingaddressinfo:selector:choice:description',
+  'order:billingaddressinfo:billingaddress',
+  'order:billingaddressinfo:selector:choice',
+  'order:billingaddressinfo:selector:choice:description',
   // zooms for shipping address
-  'defaultcart:order:deliveries:element:destinationinfo:destination',
-  'defaultcart:order:deliveries:element:destinationinfo:selector:choice',
-  'defaultcart:order:deliveries:element:destinationinfo:selector:choice:description',
+  'order:deliveries:element:destinationinfo:destination',
+  'order:deliveries:element:destinationinfo:selector:choice',
+  'order:deliveries:element:destinationinfo:selector:choice:description',
   // zooms for shipping options
-  'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
-  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice',
-  'defaultcart:order:deliveries:element:shippingoptioninfo:selector:choice:description',
+  'order:deliveries:element:shippingoptioninfo:shippingoption',
+  'order:deliveries:element:shippingoptioninfo:selector:choice',
+  'order:deliveries:element:shippingoptioninfo:selector:choice:description',
   // zooms for payment methods
-  'defaultcart:order:paymentmethodinfo:paymentmethod',
-  'defaultcart:order:paymentmethodinfo:selector:choice',
-  'defaultcart:order:paymentmethodinfo:selector:choice:description',
+  'order:paymentmethodinfo:paymentmethod',
+  'order:paymentmethodinfo:selector:choice',
+  'order:paymentmethodinfo:selector:choice:description',
 ];
+
+interface MatchParams {
+  cart: string;
+}
+
+interface CheckoutPageProps extends RouteComponentProps<MatchParams> {
+}
 
 interface CheckoutPageState {
     orderData: any,
@@ -83,7 +89,7 @@ interface CheckoutPageState {
     addressUrl: any,
 }
 
-class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageState> {
+class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -158,8 +164,11 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   }
 
   fetchOrderData() {
+    const { match } = this.props;
+    const cartCode = match.params.cart;
+    const cart = cartCode || 'default';
     login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`,
+      cortexFetch(`/carts/${Config.cortexApi.scope}/${cart}?zoom=${zoomArray.sort().join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -169,7 +178,7 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
         .then(res => res.json())
         .then((res) => {
           this.setState({
-            orderData: res._defaultcart[0],
+            orderData: res,
             isLoading: false,
           });
         })
@@ -239,8 +248,10 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
   }
 
   reviewOrder() {
-    const { history } = this.props;
-    history.push('/order');
+    const { history, match } = this.props;
+    const cartCode = match.params.cart;
+    const url = cartCode ? `/order/${cartCode}` : '/order';
+    history.push(url);
   }
 
   handleCertificate(certificate) {
