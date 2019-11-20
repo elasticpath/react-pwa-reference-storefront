@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
@@ -28,7 +29,13 @@ import ProfilePaymentMethodsMain from './profilepaymentmethods.main';
 function fetchProfileData() {}
 function handleNewPayment() {}
 
-storiesOf('ProfilePaymentMethodsMain', module)
+storiesOf('Components|ProfilePaymentMethodsMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

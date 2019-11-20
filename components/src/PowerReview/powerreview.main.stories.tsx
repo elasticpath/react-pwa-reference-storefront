@@ -19,10 +19,17 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import productData from './MockHttpResponses/product_data_cortex_response.json';
 
 import PowerReview from './powerreview.main';
 
-storiesOf('PowerReview', module)
+storiesOf('Components|PowerReview', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('PowerReview', () => <PowerReview productData={productData} />);

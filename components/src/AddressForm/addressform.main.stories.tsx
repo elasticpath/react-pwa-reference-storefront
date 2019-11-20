@@ -19,12 +19,19 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { mockAddressFormSubmitSuccess, mockAddressFormSubmitFailure } from './addressform.main.api.mocks';
 
 import AddressFormMain from './addressform.main';
 
-storiesOf('AddressFormMain', module)
+storiesOf('Components|AddressFormMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('AddressFormMain edit mode', () => {
     mockAddressFormSubmitSuccess();
     const addressData = {

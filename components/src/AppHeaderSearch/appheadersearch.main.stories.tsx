@@ -19,12 +19,19 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
 import AppHeaderSearchMain from './appheadersearch.main';
 
-storiesOf('AppHeaderSearchMain', module)
+storiesOf('Components|AppHeaderSearchMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('AppHeaderSearchMain', () => (
     <div style={{ backgroundColor: '#040060' }}>
       <MemoryRouter initialEntries={['/']}><AppHeaderSearchMain isMobileView={false} isFocused /></MemoryRouter>

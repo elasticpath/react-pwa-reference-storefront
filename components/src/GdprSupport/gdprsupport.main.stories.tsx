@@ -19,9 +19,16 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
 import GdprSupportModal from './gdprsupport.main';
 
-storiesOf('GdprSupportModal', module)
+storiesOf('Components|GdprSupportModal', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('GdprSupportModal', () => <GdprSupportModal />);

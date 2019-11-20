@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
@@ -38,7 +39,13 @@ const accountData = {
 const editSubAccountUri = null;
 const editMetadataUri = null;
 
-storiesOf('B2bEditAccount', module)
+storiesOf('Components|B2bEditAccount', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

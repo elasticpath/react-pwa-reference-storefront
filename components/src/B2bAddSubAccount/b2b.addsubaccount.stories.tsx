@@ -19,10 +19,11 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import B2bAddSubAccountProps from './b2b.addsubaccount';
+import B2bAddSubAccount from './b2b.addsubaccount';
 
 const isOpen = true;
 const addSubAccountUri = '';
@@ -31,12 +32,18 @@ const addSubAccountSellerAdmin = true;
 function handleClose() {}
 function handleUpdate() {}
 
-storiesOf('B2bAddSubAccountProps', module)
+storiesOf('Components|B2bAddSubAccount', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('B2bAddSubAccountProps', () => (
-    <B2bAddSubAccountProps
+  .add('B2bAddSubAccount', () => (
+    <B2bAddSubAccount
       isOpen={isOpen}
       handleClose={handleClose}
       handleUpdate={handleUpdate}

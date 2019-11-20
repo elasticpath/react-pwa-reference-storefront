@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import wishListData from './MockHttpResponses/wish_list_response.json';
@@ -28,7 +29,13 @@ import WishListMain from './wishlist.main';
 const handler = () => {};
 const itemDetailLink = '/itemdetail';
 
-storiesOf('WishListMain', module)
+storiesOf('Components|WishListMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/wishlists']}>{story()}</MemoryRouter>
   ))

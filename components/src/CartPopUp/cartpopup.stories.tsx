@@ -19,6 +19,7 @@
  *
  */
 import * as React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { CountProvider } from '../index';
@@ -28,7 +29,13 @@ import CartPopUp from './cartpopup';
 const appHeaderLinks = '/';
 const cartData = { name: 'Default', count: 5 };
 
-storiesOf('CartPopUp', module)
+storiesOf('Components|CartPopUp', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

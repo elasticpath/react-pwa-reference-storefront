@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import categoryModel from './MockHttpResponses/sort_category_model_response.json';
@@ -27,7 +28,13 @@ import SortProductMenu from './sortproductmenu.main';
 
 function handleSortSelection() {}
 
-storiesOf('SortProductMenu', module)
+storiesOf('Components|SortProductMenu', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

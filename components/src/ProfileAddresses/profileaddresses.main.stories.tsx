@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
@@ -29,7 +30,13 @@ function fetchProfileData() {}
 function handleNewAddress() {}
 function handleEditAddress() {}
 
-storiesOf('ProfileAddressesMain', module)
+storiesOf('Components|ProfileAddressesMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

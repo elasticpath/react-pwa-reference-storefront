@@ -19,13 +19,20 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import paginationDataProps from './MockHttpResponses/product_list_pagination_response.json';
 
 import ProductListPagination from './productlistpagination.main';
 
-storiesOf('ProductListPagination', module)
+storiesOf('Components|ProductListPagination', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

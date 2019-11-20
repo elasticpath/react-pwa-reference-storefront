@@ -19,11 +19,18 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
 import ChatComponent from './chatbot';
 
-storiesOf('ChatComponent', module)
+storiesOf('Components|ChatComponent', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('ChatComponent', () => (
     <ChatComponent />
   ));

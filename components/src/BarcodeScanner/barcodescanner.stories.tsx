@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
 import BarcodeScanner from './barcodescanner';
@@ -26,7 +27,13 @@ import BarcodeScanner from './barcodescanner';
 function handleBarcodeModalClose() {}
 function handleBarcodeScanned() {}
 
-storiesOf('BarcodeScanner', module)
+storiesOf('Components|BarcodeScanner', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('BarcodeScanner', () => (
     <BarcodeScanner isModalOpen handleModalClose={handleBarcodeModalClose} handleCodeFound={handleBarcodeScanned} />
   ));

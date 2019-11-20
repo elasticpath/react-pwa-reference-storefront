@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
@@ -26,10 +27,16 @@ import AppHeaderLocaleMain from './appheaderlocale.main';
 
 // Option defaults.
 
-storiesOf('AppHeaderLocaleMain', module)
+storiesOf('Components|AppHeaderLocaleMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('AppHeaderLocaleMain', () => (
     <div style={{ backgroundColor: '#040060' }}>
       <AppHeaderLocaleMain />
