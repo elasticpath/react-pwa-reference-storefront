@@ -569,7 +569,10 @@ class CheckoutPage extends React.Component<RouteComponentProps, CheckoutPageStat
 
   renderPaymentSelector() {
     const { profileData, openNewPaymentModal, orderData } = this.state;
-    const disableAddPayment = !(orderData && orderData._order && orderData._order[0] && orderData._order[0]._deliveries);
+    let disableAddPayment = false;
+    if (Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
+      disableAddPayment = !(orderData && orderData._order && orderData._order[0] && orderData._order[0]._deliveries);
+    }
     const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
     return (
       <div>
