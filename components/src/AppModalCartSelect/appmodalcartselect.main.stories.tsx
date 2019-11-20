@@ -21,16 +21,22 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import AppModalCartSelectMain from './appmodalcartselect.main';
-
-function handleModalClose() {
-}
 
 storiesOf('AppModalCartSelectMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppModalCartSelectMain', () => (
-    <AppModalCartSelectMain handleModalClose={handleModalClose} openModal />
-  ));
+  .add('AppModalCartSelectMain', () => {
+    let handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
+    let onContinueCartFuncText = text('onContinueCart','() => {alert("onContinueCart invoked")}');
+    return (
+      <AppModalCartSelectMain 
+        handleModalClose={()=>textToFunc(handleModalCloseFuncText)} 
+        openModal={boolean('openModal', true)}
+        onContinueCart={()=>textToFunc(onContinueCartFuncText)}
+      />
+    );
+  });
