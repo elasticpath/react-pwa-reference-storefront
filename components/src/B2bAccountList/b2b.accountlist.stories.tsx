@@ -21,7 +21,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object, text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import B2bAccountList from './b2b.accountlist';
 import SubAccountData from './HttpResponse/accountData_response.json';
 import { mockFetchSubAccount } from './b2b.accountlist.api.mocks';
@@ -35,27 +36,26 @@ const accountListData = {
 const accountName = 'Accelsmart';
 const registrationNumber = 'cust-00059';
 
-function getAccountData() {}
-
-function subAccountData() {}
-
-function handleAddSubAccountClicked() {}
-
 storiesOf('B2bAccountList', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('B2bAccountList', () => {
     mockFetchSubAccount();
+
+    let getAccountDataFuncText = text('getAccountData','() => {alert("getAccountData invoked")}');
+    let getSubAccountDataFuncText = text('getSubAccountData','() => {alert("getSubAccountData invoked")}');
+    let handleSubAccountClickedFuncText = text('handleSubAccountClicked','() => {alert("handleSubAccountClicked invoked")}');
+
     return (
       <div className="account-component">
         <B2bAccountList
-          getAccountData={this.getAccountData}
-          accountListData={accountListData}
-          getSubAccountData={this.subAccountData}
-          handleAddSubAccountClicked={this.handleAddSubAccountClicked}
-          accountName={accountName}
-          registrationNumber={registrationNumber}
+          getAccountData={()=>{textToFunc(getAccountDataFuncText)}}
+          accountListData={object('accountListData', accountListData)}
+          getSubAccountData={()=>{textToFunc(getSubAccountDataFuncText)}}
+          handleAddSubAccountClicked={()=>{textToFunc(handleSubAccountClickedFuncText)}}
+          accountName={text('accountName', accountName)}
+          registrationNumber={text('registrationNumber', registrationNumber)}
         />
       </div>
     );
