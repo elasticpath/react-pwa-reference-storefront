@@ -19,14 +19,27 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
 import AppHeaderNavigationMain from './appheadernavigation.main';
 
-storiesOf('AppHeaderNavigationMain', module)
+storiesOf('Components|AppHeaderNavigationMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('AppHeaderNavigationMain', () => (
     <div style={{ backgroundColor: '#040060' }}>
-      <MemoryRouter initialEntries={['/']}><AppHeaderNavigationMain isMobileView={false} isOffline={false} isOfflineCheck={() => {}} /></MemoryRouter>
+      <MemoryRouter initialEntries={['/']}><AppHeaderNavigationMain isMobileView={false} isOffline={false} isOfflineCheck={() => { }} /></MemoryRouter>
     </div>
   ));

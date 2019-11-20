@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
@@ -31,7 +32,13 @@ const registrationNumber = 'cust-00059';
 
 function handleAccount() {}
 
-storiesOf('B2bSubAccountList', module)
+storiesOf('Components|B2bSubAccountList', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

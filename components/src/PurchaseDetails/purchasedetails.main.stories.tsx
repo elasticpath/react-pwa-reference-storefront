@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
 import PurchaseDetailsMain from './purchasedetails.main';
@@ -27,5 +28,11 @@ import purchaseDetail from './MockHttpResponses/purchase_detail_response.json';
 function handleReorderAllProducts() {}
 const itemDetailLink = '/';
 
-storiesOf('PurchaseDetailsMain', module)
+storiesOf('Components|PurchaseDetailsMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('PurchaseDetailsMain', () => <PurchaseDetailsMain data={purchaseDetail} onReorderAllProducts={handleReorderAllProducts} itemDetailLink={itemDetailLink} />);

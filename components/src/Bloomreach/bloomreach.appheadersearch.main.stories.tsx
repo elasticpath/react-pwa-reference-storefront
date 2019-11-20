@@ -19,12 +19,19 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
 import BloomreachAppHeaderSearchMain from './bloomreach.appheadersearch.main';
 
-storiesOf('BloomreachAppHeaderSearchMain', module)
+storiesOf('Components|BloomreachAppHeaderSearchMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('BloomreachAppHeaderSearchMain', () => (
     <div style={{ backgroundColor: '#040060' }}>
       <MemoryRouter initialEntries={['/']}><BloomreachAppHeaderSearchMain isMobileView={false} isFocused /></MemoryRouter>
@@ -35,4 +42,3 @@ storiesOf('BloomreachAppHeaderSearchMain', module)
       <MemoryRouter initialEntries={['/']}><BloomreachAppHeaderSearchMain isMobileView={true} isFocused /></MemoryRouter>
     </div>
   ));
-  

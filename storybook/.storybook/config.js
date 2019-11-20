@@ -3,7 +3,9 @@ import { init } from '@elasticpath/store-components';
 import epConfig from '../../app/src/ep.config';
 import intl from 'react-intl-universal';
 import { addParameters } from '@storybook/react';
+import { addDecorator } from '@storybook/react';
 import { themes } from '@storybook/theming';
+import { addReadme } from 'storybook-readme';
 import elasticpath from './elasticpath';
 
 // addParameters({
@@ -11,6 +13,7 @@ import elasticpath from './elasticpath';
 // 		theme: themes.dark
 // 	}
 // });
+addDecorator(addReadme);
 
 addParameters({
   options: {
