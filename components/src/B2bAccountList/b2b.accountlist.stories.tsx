@@ -51,9 +51,9 @@ storiesOf('B2bAccountList', module)
       <div className="account-component">
         <B2bAccountList
           getAccountData={()=>{textToFunc(getAccountDataFuncText)}}
-          accountListData={object('accountListData', accountListData)}
           getSubAccountData={()=>{textToFunc(getSubAccountDataFuncText)}}
           handleAddSubAccountClicked={()=>{textToFunc(handleSubAccountClickedFuncText)}}
+          accountListData={object('accountListData', accountListData)}
           accountName={text('accountName', accountName)}
           registrationNumber={text('registrationNumber', registrationNumber)}
         />
