@@ -24,7 +24,7 @@ import { Router } from 'react-router';
 import { action } from '@storybook/addon-actions';
 import createMemoryHistory from 'history/createMemoryHistory';
 import B2bSideMenu from './b2b.sidemenu';
-
+import { object } from "@storybook/addon-knobs/react";
 const history = createMemoryHistory();
 
 history.push = action('history.push');
@@ -41,6 +41,4 @@ const sideMenuItems = [
 
 storiesOf('B2bSideMenu', module)
   .addDecorator(story => <Router history={history}>{story()}</Router>)
-  .add('B2bSideMenu', () => (
-    <B2bSideMenu sideMenuItems={sideMenuItems} />
-  ));
+  .add('B2bSideMenu', () => <B2bSideMenu sideMenuItems={object('sideMenuItems',sideMenuItems)} />);
