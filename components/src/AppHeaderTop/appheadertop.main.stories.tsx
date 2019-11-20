@@ -21,8 +21,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { boolean, object, text } from "@storybook/addon-knobs/react";
 import AppHeaderTop from './appheadertop.main';
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 
 const appHeaderTopLinks = {
   shippingreturns: '',
@@ -34,6 +35,16 @@ storiesOf('AppHeaderTop', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppHeaderTop', () => (
-    <AppHeaderTop isMobileView={false} appHeaderTopLinks={appHeaderTopLinks} />
-  ));
+  .add('AppHeaderTop', () => {
+    let onCurrencyChangeFuncText = text('onCurrencyChange','() => {alert("onCurrencyChange invoked")}'); 
+    let onLocaleChangeFuncText = text('onLocaleChange','() => {alert("onLocaleChange invoked")}');
+    
+    return (
+    <AppHeaderTop 
+      isMobileView={boolean('isMobileView', false)} 
+      appHeaderTopLinks={object('appHeaderTopLinks', appHeaderTopLinks)}
+      onCurrencyChange={()=>textToFunc(onCurrencyChangeFuncText)}
+      onLocaleChange={()=>textToFunc(onLocaleChangeFuncText)}
+    />
+    );
+  });
