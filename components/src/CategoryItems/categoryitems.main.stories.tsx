@@ -21,8 +21,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { text, boolean, object } from "@storybook/addon-knobs/react";
 import CategoryItemsMain from './categoryitems.main';
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 
 // Option defaults.
 
@@ -49,4 +50,14 @@ storiesOf('CategoryItemsMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('CategoryItemsMain', () => <CategoryItemsMain categoryProps={categoryProps} onProductFacetSelection={() => {}} productLinks={productLinks} />);
+  .add('CategoryItemsMain', () => {
+    let onProductFacetSelectionFuncText = text('onProductFacetSelection', '() => {alert("onProductFacetSelection invoked")}');
+    
+    return (
+      <CategoryItemsMain 
+        categoryProps={object('categoryProps', categoryProps)} 
+        onProductFacetSelection={() => {textToFunc(onProductFacetSelectionFuncText)}}
+        productLinks={object('productLinks', productLinks)} 
+      />
+    );
+  });
