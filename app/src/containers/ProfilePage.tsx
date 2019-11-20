@@ -187,7 +187,10 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   render() {
     const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
-    const disableAddPayment = !(profileData && profileData._addresses && profileData._addresses[0]._billingaddresses);
+    let disableAddPayment = false;
+    if (Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
+      disableAddPayment = !(profileData && profileData._addresses && profileData._addresses[0]._billingaddresses);
+    }
     return (
       <div>
         <div className="container profile-container">
