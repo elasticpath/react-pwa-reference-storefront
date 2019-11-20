@@ -21,7 +21,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object } from "@storybook/addon-knobs/react";
 import OrderLine from './orderline.main';
 
 // Option defaults.
@@ -51,4 +51,4 @@ storiesOf('OrderLine', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('OrderLine', () => <OrderLine orderLine={orderLine} />);
+  .add('OrderLine', () => <OrderLine orderLine={object('orderline', orderLine)} />);
