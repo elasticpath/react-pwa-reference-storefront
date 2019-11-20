@@ -21,11 +21,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
+import { text } from "@storybook/addon-knobs/react";
 import GiftcertificateFormMain from './giftcertificateform.main';
 
 storiesOf('GiftcertificateFormMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('GiftcertificateFormMain', () => <GiftcertificateFormMain updateCertificate={() => {}} />);
+  .add('GiftcertificateFormMain', () => {
+    let updateCertificateFuncText = text('updateCertificate', '() => {alert("updateCertificate invoked")}');
+    return (<GiftcertificateFormMain updateCertificate={() => {textToFunc(updateCertificateFuncText)}} />)
+  });
