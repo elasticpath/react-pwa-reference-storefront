@@ -21,18 +21,38 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 import BloomreachAppHeaderSearchMain from './bloomreach.appheadersearch.main';
 
 storiesOf('BloomreachAppHeaderSearchMain', module)
-  .add('BloomreachAppHeaderSearchMain', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <MemoryRouter initialEntries={['/']}><BloomreachAppHeaderSearchMain isMobileView={false} isFocused /></MemoryRouter>
-    </div>
-  ))
-  .add('BloomreachAppHeaderSearchMain Mobile View', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <MemoryRouter initialEntries={['/']}><BloomreachAppHeaderSearchMain isMobileView={true} isFocused /></MemoryRouter>
-    </div>
-  ));
-  
+  .add('BloomreachAppHeaderSearchMain', () => {
+    let onSearchPageFuncText = text('onSearchPage', '() => {alert("onSearchPage invoked")}');
+
+    return (
+      <div style={{ backgroundColor: '#040060' }}>
+        <MemoryRouter initialEntries={['/']}>
+          <BloomreachAppHeaderSearchMain 
+            isMobileView={boolean('isMobileView', false)} 
+            isFocused={boolean('isFocused', true)} 
+            onSearchPage={()=>{textToFunc(onSearchPageFuncText)}} 
+          />
+        </MemoryRouter>
+      </div>
+    );
+
+  })
+  .add('BloomreachAppHeaderSearchMain Mobile View', () => {
+    let onSearchPageFuncText = text('onSearchPage', '() => {alert("onSearchPage invoked")}');
+
+    return (
+      <div style={{ backgroundColor: '#040060' }}>
+        <MemoryRouter initialEntries={['/']}>
+          <BloomreachAppHeaderSearchMain 
+            isMobileView={boolean('isMobileView', true)} 
+            isFocused={boolean('isFocused', true)} 
+            onSearchPage={()=>{textToFunc(onSearchPageFuncText)}} 
+          />
+        </MemoryRouter>
+      </div>)
+    });
