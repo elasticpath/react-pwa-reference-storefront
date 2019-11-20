@@ -66,7 +66,7 @@ const router = [{
   exact: true,
   component: CategoryPage,
 }, {
-  path: '/checkout',
+  path: '/checkout/:cart?',
   component: CheckoutPage,
 }, {
   path: '/itemdetail',
@@ -76,7 +76,7 @@ const router = [{
   path: '/itemdetail/:url',
   component: ProductDetailPage,
 }, {
-  path: '/order',
+  path: '/order/:cart?',
   component: OrderReviewPage,
 }, {
   path: '/profile',
