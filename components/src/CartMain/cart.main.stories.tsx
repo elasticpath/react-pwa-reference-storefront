@@ -22,7 +22,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import cartData from '../CommonMockHttpResponses/cart_main_data_response.json';
-
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
+import { text, boolean, object } from "@storybook/addon-knobs/react";
 import CartMain from './cart.main';
 
 function handleQuantityChange() {}
@@ -30,10 +31,14 @@ storiesOf('CartMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('CartMain', () => (
-    <CartMain
-      empty={false}
-      cartData={cartData._defaultcart[0]}
-      handleQuantityChange={handleQuantityChange}
-    />
-  ));
+  .add('CartMain', () => {
+    let handleQuantityChangeFuncText = text('handleQuantityChange', '() => {alert("handleQuantityChange invoked")}');
+    
+    return (
+      <CartMain
+        empty={boolean('empty', false)}
+        cartData={object('cartData', cartData._defaultcart[0])}
+        handleQuantityChange={()=>{textToFunc(handleQuantityChangeFuncText)}}
+      />
+    );
+  });
