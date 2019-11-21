@@ -22,27 +22,40 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import wishListData from './MockHttpResponses/wish_list_response.json';
-
+import { text, object, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 import WishListMain from './wishlist.main';
 
-const handler = () => {};
 const itemDetailLink = '/itemdetail';
 
+let handleQuantityChangeFuncText;
+let onItemConfiguratorAddToCartFuncText
+let onItemMoveToCartFuncText;
+let onItemRemove;
+
 storiesOf('WishListMain', module)
-  .addDecorator(story => (
-    <MemoryRouter initialEntries={['/wishlists']}>{story()}</MemoryRouter>
-  ))
+  .addDecorator(story => {
+    handleQuantityChangeFuncText = text('handleQuantityChange', '() => {alert("handleQuantityChange invoked")}');
+    onItemConfiguratorAddToCartFuncText = text('onItemConfiguratorAddToCart', '() => {alert("onItemConfiguratorAddToCart invoked")}');
+    onItemMoveToCartFuncText = text('onItemMoveToCart', '() => {alert("onItemMoveToCart invoked")}');
+    onItemRemove = text('onItemRemove', '() => {alert("onItemRemove invoked")}');
+    return (<MemoryRouter initialEntries={['/wishlists']}>{story()}</MemoryRouter>)
+  })
   .add('WishListMain with data', () => <WishListMain
-    empty={false}
-    wishListData={wishListData}
-    handleQuantityChange={() => { handler(); }}
-    onItemConfiguratorAddToCart={handler}
-    onItemMoveToCart={handler}
-    onItemRemove={handler}
-    itemDetailLink={itemDetailLink}
+    empty={boolean('empty', false)}
+    wishListData={object('wishListData',wishListData)}
+    handleQuantityChange={() => textToFunc(handleQuantityChangeFuncText)}
+    onItemConfiguratorAddToCart={() => textToFunc(onItemConfiguratorAddToCartFuncText)}
+    onItemMoveToCart={() => textToFunc(onItemMoveToCartFuncText)}
+    onItemRemove={() => textToFunc(onItemRemove)}
+    itemDetailLink={text('itemDetailLink', itemDetailLink)}
   />)
   .add('WishListMain empty', () => <WishListMain
-    empty
-    wishListData={wishListData}
-    handleQuantityChange={() => { handler(); }}
+    empty={boolean('empty', true)}
+    wishListData={object('wishListData',wishListData)}
+    handleQuantityChange={() => textToFunc(handleQuantityChangeFuncText)}
+    onItemConfiguratorAddToCart={() => textToFunc(onItemConfiguratorAddToCartFuncText)}
+    onItemMoveToCart={() => textToFunc(onItemMoveToCartFuncText)}
+    onItemRemove={() => textToFunc(onItemRemove)}
+    itemDetailLink={text('itemDetailLink', itemDetailLink)}
   />);
