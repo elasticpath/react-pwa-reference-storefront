@@ -28,8 +28,6 @@ import SearchFacetNavigationMain from './searchfacetnavigation.main';
 import { text, object } from "@storybook/addon-knobs/react";
 import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
-function handleFacetSelection() {}
-
 storiesOf('SearchFacetNavigationMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
