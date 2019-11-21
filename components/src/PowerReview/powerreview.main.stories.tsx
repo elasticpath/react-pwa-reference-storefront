@@ -21,8 +21,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import productData from './MockHttpResponses/product_data_cortex_response.json';
-
+import { object } from "@storybook/addon-knobs/react";
 import PowerReview from './powerreview.main';
 
 storiesOf('PowerReview', module)
-  .add('PowerReview', () => <PowerReview productData={productData} />);
+  .add('PowerReview', () => <PowerReview productData={object('productData', productData)} />);
