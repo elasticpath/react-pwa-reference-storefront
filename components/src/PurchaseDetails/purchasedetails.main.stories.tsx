@@ -23,9 +23,13 @@ import { storiesOf } from '@storybook/react';
 
 import PurchaseDetailsMain from './purchasedetails.main';
 import purchaseDetail from './MockHttpResponses/purchase_detail_response.json';
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 
-function handleReorderAllProducts() {}
 const itemDetailLink = '/';
 
 storiesOf('PurchaseDetailsMain', module)
-  .add('PurchaseDetailsMain', () => <PurchaseDetailsMain data={purchaseDetail} onReorderAllProducts={handleReorderAllProducts} itemDetailLink={itemDetailLink} />);
+  .add('PurchaseDetailsMain', () => {
+    let onReorderAllProductsFuncText = text('onReorderAllProducts', '() => {alert("onReorderAllProducts invoked")}');
+    return(<PurchaseDetailsMain data={object('purchaseDetail', purchaseDetail)} onReorderAllProducts={()=>{textToFunc(onReorderAllProductsFuncText)}} itemDetailLink={object('itemDetailLink', itemDetailLink)} />);
+  });
