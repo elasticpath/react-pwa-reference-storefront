@@ -21,13 +21,16 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import { object, text } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
 import RegistrationFormMain from './registrationform.main';
-
-function handleRegisterSuccess() {}
 
 storiesOf('RegistrationFormMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('RegistrationFormMain', () => <RegistrationFormMain onRegisterSuccess={handleRegisterSuccess} />);
+  .add('RegistrationFormMain', () => {
+    let onRegisterSuccessFuncText = text('onRegisterSuccess', '() => {alert("onRegisterSuccessFuncText invoked")}');
+    return (<RegistrationFormMain onRegisterSuccess={()=>textToFunc(onRegisterSuccessFuncText)} />);
+  });
