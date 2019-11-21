@@ -22,13 +22,15 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import productData from './MockHttpResponses/bundle_constituents_response.json';
-
+import { object, text } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 import QuickOrderForm from './quickorderform';
-
-function onItemSubmit() {}
 
 storiesOf('QuickOrderForm', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('QuickOrderForm', () => <QuickOrderForm item={productData} onItemSubmit={onItemSubmit} />);
+  .add('QuickOrderForm', () => {
+    let onItemSubmitFuncText = text('onLoadMore', '() => {alert("onLoadMore invoked")}');
+    return (<QuickOrderForm item={object('item', productData)} onItemSubmit={()=>{textToFunc(onItemSubmitFuncText)}} />);
+  });
