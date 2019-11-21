@@ -22,7 +22,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import productList from './MockHttpResponses/product_list_response.json';
-
+import { object } from "@storybook/addon-knobs/react";
 import ProductListMain from './productlist.main';
 
 // Option defaults.
@@ -38,4 +38,4 @@ storiesOf('ProductListMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ProductListMain', () => <ProductListMain productData={productList} productListLinks={productLinks} />);
+  .add('ProductListMain', () => <ProductListMain productData={object('productData', productList)} productListLinks={object('productListLinks', productLinks)} />);
