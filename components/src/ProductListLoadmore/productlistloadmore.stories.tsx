@@ -22,15 +22,13 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import productsData from './MockHttpResponses/GET/productData_response.json';
-
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 import ProductListLoadMore from './productlistloadmore';
 import { mockProductListLoadMoreFromSearchResponse } from './productlistloadmore.api.mocks';
-import { searchLookup } from '../utils/CortexLookup';
 
-function handleDataChange(updateItems) {
-  alert('handleDataChange called to update container items.  Check console to see the value that it is given.');
-  console.log(updateItems);
-}
+let handleDataChangeFuncText = text('handleDataChange', '() => {alert("handleDataChange invoked")}');
+let onLoadMoreFuncText = text('onLoadMore', '() => {alert("onLoadMore invoked")}');
 
 storiesOf('ProductListLoadMore', module)
   .addDecorator(story => (
@@ -38,5 +36,11 @@ storiesOf('ProductListLoadMore', module)
   ))
   .add('ProductListLoadMore', () => {
     mockProductListLoadMoreFromSearchResponse();
-    return <ProductListLoadMore dataProps={productsData} handleDataChange={handleDataChange} onLoadMore={searchLookup} />;
+    return (
+      <ProductListLoadMore 
+        dataProps={object('dataProps', productsData)} 
+        handleDataChange={()=>{textToFunc(handleDataChangeFuncText)}} 
+        onLoadMore={()=>{textToFunc(onLoadMoreFuncText)}}
+      />
+    );
   });
