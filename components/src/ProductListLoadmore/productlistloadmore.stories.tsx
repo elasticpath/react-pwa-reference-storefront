@@ -27,8 +27,13 @@ import { textToFunc } from "../../../storybook/utils/storybookUtils";
 import ProductListLoadMore from './productlistloadmore';
 import { mockProductListLoadMoreFromSearchResponse } from './productlistloadmore.api.mocks';
 
-let handleDataChangeFuncText = text('handleDataChange', '() => {alert("handleDataChange invoked")}');
-let onLoadMoreFuncText = text('onLoadMore', '() => {alert("onLoadMore invoked")}');
+let handleDataChangeFuncText;
+let onLoadMoreFuncText;
+
+function processProductListLoadmoreKnobCallbacks() {
+  handleDataChangeFuncText = text('handleDataChange', '() => {alert("handleDataChange invoked")}');
+  onLoadMoreFuncText = text('onLoadMore', '() => {alert("onLoadMore invoked")}');
+}
 
 storiesOf('ProductListLoadMore', module)
   .addDecorator(story => (
@@ -36,6 +41,7 @@ storiesOf('ProductListLoadMore', module)
   ))
   .add('ProductListLoadMore', () => {
     mockProductListLoadMoreFromSearchResponse();
+    processProductListLoadmoreKnobCallbacks();
     return (
       <ProductListLoadMore 
         dataProps={object('dataProps', productsData)} 

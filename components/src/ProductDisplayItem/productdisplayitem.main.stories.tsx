@@ -40,27 +40,35 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import ProductDisplayItemMain from './productdisplayitem.main';
 
-let handleAddToCartFuncText = text('handleAddToCart', '() => {alert("handleQuantityChange invoked")}');
-let onChangeProductFeatureFuncText = text('onChangeProductFeature', '() => {alert("onChangeProductFeature invoked")}');
+let handleAddToCartFuncText;
+let onChangeProductFeatureFuncText;
+
+function processProductDisplayItemKnobCallbacks() {
+  handleAddToCartFuncText = text('handleAddToCart', '() => {alert("handleQuantityChange invoked")}');
+  onChangeProductFeatureFuncText = text('onChangeProductFeature', '() => {alert("onChangeProductFeature invoked")}');
+}
 
 storiesOf('ProductDisplayItemMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/itemdetail']}>{story()}</MemoryRouter>
   ))
   .add('ProductDisplayItemMain Plain', () => {
+    processProductDisplayItemKnobCallbacks();
     mockProductDisplayItemMainPlain();
     return <ProductDisplayItemMain productId={text('productId', '83992')} onAddToCart={()=>{textToFunc(handleAddToCartFuncText)}} />;
   })
   .add('ProductDisplayItemMain Color/size', () => {
+    processProductDisplayItemKnobCallbacks();
     mockProductDisplayItemMainColorAndSize();
     return <ProductDisplayItemMain productId={text('productId', 'VESTRI_WORDMARK_FITTED_HAT_RD')} onChangeProductFeature={()=>{textToFunc(onChangeProductFeatureFuncText)}} onAddToCart={()=>{textToFunc(handleAddToCartFuncText)}} />;
   })
   .add('ProductDisplayItemMain Input', () => {
+    processProductDisplayItemKnobCallbacks();
     mockProductDisplayItemMainInput();
     return <ProductDisplayItemMain productId={text('productId', '250HR_PMKIT')} onAddToCart={()=>{textToFunc(handleAddToCartFuncText)}} />;
   })
   .add('ProductDisplayItemMain Multi-cart', () => {
+    processProductDisplayItemKnobCallbacks();
     mockProductDisplayItemMainMultiCart();
-
     return <ProductDisplayItemMain productId={text('productId', '83992')} onAddToCart={()=>{textToFunc(handleAddToCartFuncText)}} />;
   });
