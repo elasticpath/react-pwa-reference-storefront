@@ -21,7 +21,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object } from "@storybook/addon-knobs/react";
 import ShippingOptionContainer from './shippingoption.container';
 
 const option = {
@@ -48,4 +48,4 @@ storiesOf('ShippingOptionContainer', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ShippingOptionContainer', () => <ShippingOptionContainer option={option} />);
+  .add('ShippingOptionContainer', () => <ShippingOptionContainer option={object('option', option)} />);
