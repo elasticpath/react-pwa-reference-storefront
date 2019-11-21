@@ -25,11 +25,21 @@ import { MemoryRouter } from 'react-router';
 import profileData from '../CommonMockHttpResponses/profile_data_response.json';
 import ProfilePaymentMethodsMain from './profilepaymentmethods.main';
 
-function fetchProfileData() {}
-function handleNewPayment() {}
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
 storiesOf('ProfilePaymentMethodsMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ProfilePaymentMethodsMain', () => <ProfilePaymentMethodsMain paymentMethods={profileData._defaultprofile[0]._paymentmethods[0]} onChange={fetchProfileData} onAddNewPayment={handleNewPayment} />);
+  .add('ProfilePaymentMethodsMain', () => {
+    let onChangeFuncText = text('handleDataChange', '() => {alert("handleDataChange invoked")}');
+    let onAddNewPaymentFuncText = text('onAddNewPayment', '() => {alert("onAddNewPayment invoked")}');
+    
+    return (
+      <ProfilePaymentMethodsMain 
+        paymentMethods={object('paymentMethods', profileData._defaultprofile[0]._paymentmethods[0])} 
+        onChange={()=>{textToFunc(onChangeFuncText)}} 
+        onAddNewPayment={textToFunc(onAddNewPaymentFuncText)} />
+    );
+  });
