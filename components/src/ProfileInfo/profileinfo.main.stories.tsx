@@ -24,11 +24,14 @@ import { MemoryRouter } from 'react-router';
 
 import profileData from '../CommonMockHttpResponses/profile_data_response.json';
 import ProfileInfoMain from './profileInfo.main';
-
-function fetchProfileData() {}
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
 storiesOf('ProfileInfoMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ProfileInfoMain', () => <ProfileInfoMain profileInfo={profileData._defaultprofile[0]} onChange={fetchProfileData} />);
+  .add('ProfileInfoMain', () => {
+    let onChangeFuncText = text('onChange', '() => {alert("onChange invoked")}');
+    return (<ProfileInfoMain profileInfo={object('profileInfo', profileData._defaultprofile[0])} onChange={()=>{textToFunc(onChangeFuncText)}} />);
+  });
