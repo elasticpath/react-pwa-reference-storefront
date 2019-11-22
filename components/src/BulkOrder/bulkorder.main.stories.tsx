@@ -22,11 +22,9 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 import BulkOrder from './bulkorder.main';
-
-function handleBulkModalClose() {
-}
 
 storiesOf('Components|BulkOrder', module)
   .addParameters({
@@ -38,8 +36,16 @@ storiesOf('Components|BulkOrder', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('BulkOrder', () => (
-    <div style={{ position: 'relative' }}>
-      <BulkOrder handleClose={handleBulkModalClose} isBulkModalOpened />
-    </div>
-  ));
+  .add('BulkOrder', () => {
+    let handleCloseFuncText = text('handleClose', '() => {alert("handleClose invoked")}')
+    
+    // TODO: Should add knob for `cartData` - aChan
+    return (
+      <div style={{ position: 'relative' }}>
+        <BulkOrder 
+          handleClose={()=>{textToFunc(handleCloseFuncText)}} 
+          isBulkModalOpened={boolean('isBulkModalOpened', true)} 
+        />
+      </div>
+    );
+  });

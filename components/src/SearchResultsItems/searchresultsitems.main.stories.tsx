@@ -24,10 +24,10 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
 import SearchResultsItemsMain from './searchresultsitems.main';
-
+import { text, object } from "@storybook/addon-knobs/react";
 import { mockSearchResults } from './searchresultsitems.main.mock.api';
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 
-function handleProductFacetSelection() {}
 const props = {
   match: {
     isExact: true,
@@ -50,9 +50,11 @@ storiesOf('Components|SearchResultsItemsMain', module)
   ))
   .add('SearchResultsItemsMain', () => {
     mockSearchResults();
+    let onFacetSelectionFuncText = text('onFacetSelection', '() => {alert("onFacetSelection invoked")}');
+    
     return <SearchResultsItemsMain
-      searchKeywordsProps={props}
-      onProductFacetSelection={handleProductFacetSelection}
-      productLinks={productLinks}
+      searchKeywordsProps={object('searchKeywordProps', props)}
+      onProductFacetSelection={()=>textToFunc(onFacetSelectionFuncText)}
+      productLinks={object('productLinks', productLinks)}
     />;
   });

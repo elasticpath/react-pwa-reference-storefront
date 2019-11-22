@@ -22,7 +22,8 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object, text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import AppModalLoginMain from './appmodallogin.main';
 
 // Option defaults.
@@ -41,4 +42,19 @@ storiesOf('Components|AppModalLoginMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppModalLoginMain', () => <AppModalLoginMain handleModalClose={() => {}} openModal appModalLoginLinks={appModalLoginLinks} disableLogin showForgotPasswordLink={false} />);
+  .add('AppModalLoginMain', () => {
+    let handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
+    let onLoginFuncText = text('onLogin', '() => {alert("onLogin invoked")}');
+    let onResetPasswordFuncText = text('onResetPassword', '() => {alert("onResetPassword invoked")}');
+    
+    return (
+    <AppModalLoginMain
+      handleModalClose={() => {textToFunc(handleModalCloseFuncText)}} 
+      openModal={boolean('openModal', true)}
+      onLogin={() => {textToFunc(onLoginFuncText)}}
+      onResetPassword={() => {textToFunc(onResetPasswordFuncText)}}
+      locationSearchData={text('locationSearchData', '')}
+      appModalLoginLinks={object('appModalLoginLinks', appModalLoginLinks)} 
+      disableLogin={boolean('disableLogin', true)}
+      showForgotPasswordLink={boolean('showForgotPasswordLink', false)} />)
+});

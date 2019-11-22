@@ -22,15 +22,14 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import { text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 
 import B2bAddSubAccount from './b2b.addsubaccount';
 
-const isOpen = true;
 const addSubAccountUri = '';
 const addSubAccountSellerAdmin = true;
 
-function handleClose() {}
-function handleUpdate() {}
 
 storiesOf('Components|B2bAddSubAccount', module)
   .addParameters({
@@ -42,12 +41,16 @@ storiesOf('Components|B2bAddSubAccount', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('B2bAddSubAccount', () => (
-    <B2bAddSubAccount
-      isOpen={isOpen}
-      handleClose={handleClose}
-      handleUpdate={handleUpdate}
-      addSubAccountUri={addSubAccountUri}
-      addSubAccountSellerAdmin={addSubAccountSellerAdmin}
-    />
-  ));
+  .add('B2bAddSubAccountProps', () => {
+    var handleCloseFuncText = text('handleClose', '() => {alert("handleClose invoked")}');
+    var handleUpdateFuncText = text('handleUpdate', '() => {alert("handleUpdate invoked")}');
+    
+    return (
+      <B2bAddSubAccount
+        isOpen={boolean('isOpen',true)}
+        handleClose={()=>{textToFunc(handleCloseFuncText)}}
+        handleUpdate={()=>{textToFunc(handleUpdateFuncText)}}
+        addSubAccountUri={text('addSubAccountUri', addSubAccountUri)}
+        addSubAccountSellerAdmin={boolean('addSubAccountSellerAdmin', addSubAccountSellerAdmin)}
+      />);
+    });

@@ -21,11 +21,10 @@
 import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
-
+import { object, text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import BarcodeScanner from './barcodescanner';
 
-function handleBarcodeModalClose() {}
-function handleBarcodeScanned() {}
 
 storiesOf('Components|BarcodeScanner', module)
   .addParameters({
@@ -34,6 +33,15 @@ storiesOf('Components|BarcodeScanner', module)
       sidebar: Readme,
     },
   })
-  .add('BarcodeScanner', () => (
-    <BarcodeScanner isModalOpen handleModalClose={handleBarcodeModalClose} handleCodeFound={handleBarcodeScanned} />
-  ));
+  .add('BarcodeScanner', () => {
+    let handleModalCloseFuncText = text('handleModalClose', '() => {alert("handleModalClose invoked")}');
+    let handleCodeFoundFuncText = text('handleCodeFound', '() => {alert("handleCodeFound invoked")}');
+
+    return (
+      <BarcodeScanner 
+        isModalOpen={boolean('isModalOpen', true)} 
+        handleModalClose={()=>{textToFunc(handleModalCloseFuncText)}} 
+        handleCodeFound={()=>{textToFunc(handleCodeFoundFuncText)}} 
+      />
+    )
+  });

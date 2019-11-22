@@ -52,7 +52,7 @@ const zoomArray = [
 
 const headerLogoFileName = 'Company-Logo-v2.svg';
 interface AppHeaderMainProps {
-  onSearchPage: (...args: any[]) => any,
+    onSearchPage: (...args: any[]) => any,
     redirectToMainPage: (...args: any[]) => any,
     handleResetPassword: (...args: any[]) => any,
     onCurrencyChange: (...args: any[]) => any,

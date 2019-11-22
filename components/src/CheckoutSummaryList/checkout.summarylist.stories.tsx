@@ -23,7 +23,7 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import cartData from '../CommonMockHttpResponses/cart_data_response.json';
-
+import { object } from "@storybook/addon-knobs/react";
 import CheckoutSummaryList from './checkout.summarylist';
 
 storiesOf('Components|CheckoutSummaryList', module)
@@ -37,5 +37,5 @@ storiesOf('Components|CheckoutSummaryList', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('CheckoutSummaryList', () => (
-    <CheckoutSummaryList data={cartData._defaultcart[0]} />
+    <CheckoutSummaryList data={object('data', cartData._defaultcart[0])} />
   ));

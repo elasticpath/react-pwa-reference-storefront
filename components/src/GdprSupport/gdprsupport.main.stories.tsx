@@ -22,6 +22,9 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
+import { text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
+
 import GdprSupportModal from './gdprsupport.main';
 
 storiesOf('Components|GdprSupportModal', module)
@@ -31,4 +34,7 @@ storiesOf('Components|GdprSupportModal', module)
       sidebar: Readme,
     },
   })
-  .add('GdprSupportModal', () => <GdprSupportModal />);
+.add('GdprSupportModal', () => {
+  let onAcceptDataPolicyFuncText = text('onAcceptDataPolicy','() => {alert("onAcceptDataPolicy invoked")}');
+  return (<GdprSupportModal onAcceptDataPolicy={()=>textToFunc(onAcceptDataPolicyFuncText)}/>);
+});

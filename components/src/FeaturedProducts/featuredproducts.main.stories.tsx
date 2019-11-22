@@ -23,7 +23,7 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import productData from './MockHttpResponses/featured_products_response.json';
-
+import { text, object } from "@storybook/addon-knobs/react";
 import FeaturedProducts from './featuredproducts.main';
 
 storiesOf('Components|FeaturedProducts', module)
@@ -36,4 +36,4 @@ storiesOf('Components|FeaturedProducts', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('FeaturedProducts', () => <FeaturedProducts productData={productData} itemDetailLink="" />);
+  .add('FeaturedProducts', () => <FeaturedProducts productData={object('productData', productData)} itemDetailLink={text('itemDetailLink', '')} />);

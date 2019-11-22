@@ -22,6 +22,7 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
+import { object } from "@storybook/addon-knobs/react";
 import FacebookChat from './facebookchat.main';
 import { getConfig } from '../utils/ConfigProvider';
 
@@ -37,5 +38,5 @@ storiesOf('Components|FacebookChat', module)
     },
   })
   .add('FacebookChat', () => (
-    <FacebookChat config={Config.facebook} />
+    <FacebookChat config={object('config', Config.facebook)} />
   ));

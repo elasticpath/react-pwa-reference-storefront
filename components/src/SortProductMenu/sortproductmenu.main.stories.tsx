@@ -23,7 +23,8 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import categoryModel from './MockHttpResponses/sort_category_model_response.json';
-
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 import SortProductMenu from './sortproductmenu.main';
 
 function handleSortSelection() {}
@@ -38,4 +39,12 @@ storiesOf('Components|SortProductMenu', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('SortProductMenu', () => <SortProductMenu handleSortSelection={handleSortSelection} categoryModel={categoryModel} />);
+  .add('SortProductMenu', () => {
+    let handleSortSelectionFuncText = text('handleSortSelection', '() => {alert("handleSortSelection invoked")}');
+    return (
+      <SortProductMenu 
+        handleSortSelection={()=>textToFunc(handleSortSelectionFuncText)} 
+        categoryModel={object('categoryModel', categoryModel)} 
+      />
+    );
+  });

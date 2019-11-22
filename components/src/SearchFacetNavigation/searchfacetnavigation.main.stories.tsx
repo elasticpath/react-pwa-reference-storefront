@@ -26,7 +26,8 @@ import { MemoryRouter } from 'react-router';
 import purchaseDetail from './MockHttpResponses/cart_data_response.json';
 import SearchFacetNavigationMain from './searchfacetnavigation.main';
 
-function handleFacetSelection() {}
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
 storiesOf('Components|SearchFacetNavigationMain', module)
   .addParameters({
@@ -38,4 +39,7 @@ storiesOf('Components|SearchFacetNavigationMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('SearchFacetNavigationMain', () => <SearchFacetNavigationMain onFacetSelection={handleFacetSelection} productData={purchaseDetail} />);
+  .add('SearchFacetNavigationMain', () => { 
+    let onFacetSelectionFuncText = text('onFacetSelection', '() => {alert("onFacetSelection invoked")}');
+    return (<SearchFacetNavigationMain onFacetSelection={()=>{textToFunc(onFacetSelectionFuncText)}} productData={object('purchaseDetail', purchaseDetail)} />);
+  });

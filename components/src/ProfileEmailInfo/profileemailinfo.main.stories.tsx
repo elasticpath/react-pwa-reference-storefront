@@ -25,6 +25,8 @@ import { MemoryRouter } from 'react-router';
 
 import profileData from '../CommonMockHttpResponses/profile_data_response.json';
 import ProfileemailinfoMain from './profileemailinfo.main';
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
 function fetchProfileData() {}
 
@@ -38,4 +40,7 @@ storiesOf('Components|ProfileemailinfoMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ProfileemailinfoMain', () => <ProfileemailinfoMain profileInfo={profileData._defaultprofile[0]} onChange={fetchProfileData} />);
+  .add('ProfileemailinfoMain', () => {
+    let fetchProfileDataFuncText = text('fetchProfileData', '() => {alert("fetchProfileData invoked")}');
+    return (<ProfileemailinfoMain profileInfo={object('profileInfo', profileData._defaultprofile[0])} onChange={()=>{textToFunc(fetchProfileDataFuncText)}} />)
+  });

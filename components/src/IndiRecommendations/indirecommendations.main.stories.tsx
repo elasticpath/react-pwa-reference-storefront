@@ -25,6 +25,8 @@ import { MemoryRouter } from 'react-router';
 import { getConfig } from '../utils/ConfigProvider';
 import productData from './MockHttpResponses/bundle_constituents_response.json';
 
+import { object } from "@storybook/addon-knobs/react";
+
 import IndiRecommendationsDisplayMain from './indirecommendations.main';
 
 let Config:any = {};
@@ -41,4 +43,12 @@ storiesOf('Components|IndiRecommendationsDisplayMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('IndiRecommendationsDisplayMain', () => <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />);
+  .add('IndiRecommendationsDisplayMain', () => {
+    return (
+      <IndiRecommendationsDisplayMain 
+        render={object('render', ['carousel', 'product'])} 
+        configuration={object('configuration', Config.indi)} 
+        keywords={object('keywords', productData._code[0].code)} 
+      />
+    );
+  });

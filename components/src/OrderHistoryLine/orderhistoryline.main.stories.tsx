@@ -22,7 +22,7 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { text } from "@storybook/addon-knobs/react";
 import OrderHistoryLineMain from './orderhistoryline.main';
 
 storiesOf('Components|OrderHistoryLineMain', module)
@@ -35,4 +35,4 @@ storiesOf('Components|OrderHistoryLineMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('OrderHistoryLineMain', () => <OrderHistoryLineMain orderHistoryLineUrlProps="" />);
+  .add('OrderHistoryLineMain', () => (<OrderHistoryLineMain orderHistoryLineUrlProps={text('orderHistoryLineUrlProps', '')} />));

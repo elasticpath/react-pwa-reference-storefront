@@ -23,6 +23,7 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import paginationDataProps from './MockHttpResponses/product_list_pagination_response.json';
+import { text, object, boolean } from "@storybook/addon-knobs/react";
 
 import ProductListPagination from './productlistpagination.main';
 
@@ -36,4 +37,13 @@ storiesOf('Components|ProductListPagination', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ProductListPagination', () => <ProductListPagination paginationDataProps={paginationDataProps} titleString="" isTop productListPaginationLinks={{}} />);
+  .add('ProductListPagination', () => {
+    return (
+      <ProductListPagination 
+        paginationDataProps={object('paginationDataProps', paginationDataProps)} 
+        titleString={text('titleString', '')} 
+        isTop={boolean('isTop', true)} 
+        productListPaginationLinks={object('productListPaginationLinks', {})}
+      />
+    );
+  });

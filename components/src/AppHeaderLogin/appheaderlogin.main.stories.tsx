@@ -22,7 +22,7 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object, text, boolean } from "@storybook/addon-knobs/react";
 import AppHeaderLoginMain from './appheaderlogin.main';
 
 const appHeaderLoginLinks = {
@@ -46,10 +46,22 @@ storiesOf('Components|AppHeaderLoginMain', module)
   })
   .add('AppHeaderLoginMain', () => (
     <div style={{ backgroundColor: '#040060' }}>
-      <AppHeaderLoginMain permission={false} appModalLoginLinks={appModalLoginLinks} appHeaderLoginLinks={appHeaderLoginLinks} isLoggedIn={false} disableLogin />
+      <AppHeaderLoginMain 
+          permission={boolean('permission', false)} 
+          appModalLoginLinks={object('appModalLoginLinks', appModalLoginLinks)}
+          appHeaderLoginLinks={object('appHeaderLoginLinks', appHeaderLoginLinks)} 
+          isLoggedIn={boolean('isLoggedIn', false)} 
+          disableLogin={boolean('disableLogin', false)} 
+      />
     </div>
   )).add('AppHeaderLoginMain Logged In User', () => (
     <div style={{ backgroundColor: '#040060' }}>
-      <AppHeaderLoginMain permission={false} appModalLoginLinks={appModalLoginLinks} appHeaderLoginLinks={appHeaderLoginLinks} isLoggedIn disableLogin />
+      <AppHeaderLoginMain 
+          permission={boolean('permission', false)} 
+          appModalLoginLinks={object('appModalLoginLinks', appModalLoginLinks)}
+          appHeaderLoginLinks={object('appHeaderLoginLinks', appHeaderLoginLinks)} 
+          isLoggedIn={boolean('isLoggedIn', true)} 
+          disableLogin={boolean('disableLogin', false)} 
+        />
     </div>
   ));

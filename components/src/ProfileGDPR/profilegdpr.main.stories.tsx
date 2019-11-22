@@ -28,9 +28,10 @@ import onePolicy_notConsented_response from './MockHttpResponses/GET/onePolicy_n
 import threePolicies_mixed_response from './MockHttpResponses/GET/threePolicies_mixed_response.json';
 import ProfileGDPRMain from './profilegdpr.main';
 
-function fetchProfileData() {
-    alert('Posted to datapolicyconsentform');
-}
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
+
+let onChangeFuncText;
 
 storiesOf('Components|ProfileGDPRMain', module)
   .addParameters({
@@ -39,10 +40,10 @@ storiesOf('Components|ProfileGDPRMain', module)
       sidebar: Readme,
     },
   })
-  .addDecorator(story => (
-    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
-  ))
-  .add('ProfilGDPRMain One policy consented', () => <ProfileGDPRMain dataPolicies={onePolicy_consented_response['_data-policies'][0]} onChange={fetchProfileData} />)
-  .add('ProfilGDPRMain One policy not consented', () => <ProfileGDPRMain dataPolicies={onePolicy_notConsented_response['_data-policies'][0]} onChange={fetchProfileData} />)
-  .add('ProfilGDPRMain Three policies mixed', () => <ProfileGDPRMain dataPolicies={threePolicies_mixed_response['_data-policies'][0]} onChange={fetchProfileData} />)
-;
+  .addDecorator(story => {
+    onChangeFuncText = text('onChange', '() => {alert("onChange invoked")}');
+    return <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  })
+  .add('ProfilGDPRMain One policy consented', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', onePolicy_consented_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
+  .add('ProfilGDPRMain One policy not consented', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', onePolicy_notConsented_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
+  .add('ProfilGDPRMain Three policies mixed', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', threePolicies_mixed_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />);

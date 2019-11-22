@@ -22,7 +22,8 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
 import purchaseDetail from './MockHttpResponses/cart_data_response.json';
 import ReorderMain from './reorder.main';
 
@@ -39,4 +40,7 @@ storiesOf('Components|ReorderMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ReorderMain', () => <ReorderMain productsData={purchaseDetail} onReorderAll={handleReorderAll} itemDetailLink={itemDetailLink} />);
+  .add('ReorderMain', () => {
+    let onReorderAllFuncText = text('onReorderAll', '() => {alert("onReorderAll invoked")}');
+    return (<ReorderMain productsData={object('productsData', purchaseDetail)} onReorderAll={()=>textToFunc(onReorderAllFuncText)} itemDetailLink={text('itemDetailLink', itemDetailLink)} />);
+  });

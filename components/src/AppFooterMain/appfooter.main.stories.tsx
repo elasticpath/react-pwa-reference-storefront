@@ -22,7 +22,7 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { object } from "@storybook/addon-knobs/react";
 import AppFooterMain from './appfooter.main';
 
 const appFooterLinks = {
@@ -45,10 +45,4 @@ storiesOf('Components|AppFooterMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .addParameters({
-    readme: {
-      // Show readme at the addons panel
-      sidebar: Readme,
-    },
-  })
-  .add('AppFooterMain', () => <AppFooterMain appFooterLinks={appFooterLinks} />);
+  .add('AppFooterMain', () => <AppFooterMain appFooterLinks={object('appFooterLinks', appFooterLinks)} />);

@@ -21,9 +21,12 @@
 import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
-import { mockAddressFormSubmitSuccess, mockAddressFormSubmitFailure } from './addressform.main.api.mocks';
+import mockAddressFormSubmitSuccess from './addressform.main.api.mocks';
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
+import { object, text } from "@storybook/addon-knobs/react";
 
 import AddressFormMain from './addressform.main';
+
 
 storiesOf('Components|AddressFormMain', module)
   .addParameters({
@@ -32,19 +35,31 @@ storiesOf('Components|AddressFormMain', module)
       sidebar: Readme,
     },
   })
-  .add('AddressFormMain edit mode', () => {
+  .add('AddressFormMain edit', () => {
     mockAddressFormSubmitSuccess();
     const addressData = {
       address: '/addresses/vestri_b2c',
-      returnPage: '/profile',
     };
-    return <AddressFormMain addressData={addressData} />;
+    let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
+    let fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
+    
+    return <AddressFormMain 
+      addressData={object('addressData', addressData)} 
+      onCloseModal={()=>textToFunc(onCloseModalFuncText)}
+      fetchData={()=>textToFunc(fetchDataFuncText)}
+    />
   })
-  .add('AddressFormMain Submit Success', () => {
+  .add('AddressFormMain on save failure', () => {
     mockAddressFormSubmitSuccess();
-    return <AddressFormMain />;
-  })
-  .add('AddressFormMain Submit Failure', () => {
-    mockAddressFormSubmitFailure();
-    return <AddressFormMain />;
+    const addressData = {
+      address: '/an/incorrect/save/address/link',
+    };
+    let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
+    let fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
+    
+    return <AddressFormMain 
+      addressData={object('addressData', addressData)} 
+      onCloseModal={()=>textToFunc(onCloseModalFuncText)}
+      fetchData={()=>textToFunc(fetchDataFuncText)}
+    />
   });

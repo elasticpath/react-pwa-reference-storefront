@@ -23,14 +23,12 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import bundleLineItem from './MockHttpResponses/GET/bundleLineItem_response.json';
-
+import { boolean, object, text } from "@storybook/addon-knobs/react";
 import AppModalBundleConfigurationMain from './appmodalbundleconfiguration.main';
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 
 import mockAppModalBundleConfigurationMain from './appModalBundleConfiguration.main.api.mock';
 
-const isOpenModal = true;
-
-function handleModalClose() {}
 
 storiesOf('Components|AppModalBundleConfigurationMain', module)
   .addParameters({
@@ -44,7 +42,13 @@ storiesOf('Components|AppModalBundleConfigurationMain', module)
   ))
   .add('AppModalBundleConfigurationMain', () => {
     mockAppModalBundleConfigurationMain();
+    let handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
+    
     return (
-      <AppModalBundleConfigurationMain handleModalClose={handleModalClose} bundleConfigurationItems={bundleLineItem} openModal={isOpenModal} />
+      <AppModalBundleConfigurationMain 
+        handleModalClose={()=>textToFunc(handleModalCloseFuncText)} 
+        bundleConfigurationItems={object('bundleLineItem',bundleLineItem)} 
+        openModal={boolean('isOpenModal', true)} 
+      />
     );
   });

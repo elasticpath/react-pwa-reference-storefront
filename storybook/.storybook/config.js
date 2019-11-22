@@ -7,12 +7,9 @@ import { addDecorator } from '@storybook/react';
 import { themes } from '@storybook/theming';
 import { addReadme } from 'storybook-readme';
 import elasticpath from './elasticpath';
+import { withKnobs } from '@storybook/addon-knobs';
 
-// addParameters({
-// 	options: {
-// 		theme: themes.dark
-// 	}
-// });
+addDecorator(withKnobs);
 addDecorator(addReadme);
 
 addParameters({

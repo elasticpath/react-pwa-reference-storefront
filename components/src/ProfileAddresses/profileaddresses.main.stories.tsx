@@ -23,12 +23,12 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils";
+
 import profileData from '../CommonMockHttpResponses/profile_data_response.json';
 import ProfileAddressesMain from './profileaddresses.main';
 
-function fetchProfileData() {}
-function handleNewAddress() {}
-function handleEditAddress() {}
 
 storiesOf('Components|ProfileAddressesMain', module)
   .addParameters({
@@ -40,4 +40,18 @@ storiesOf('Components|ProfileAddressesMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ProfileAddressesMain', () => <ProfileAddressesMain addresses={profileData._defaultprofile[0]._addresses[0]} onChange={fetchProfileData} onAddNewAddress={handleNewAddress} onEditAddress={handleEditAddress} />);
+  .add('ProfileAddressesMain', () => {
+    
+    let handleEditAddressFuncText = text('handleEditAddress', '() => {alert("handleEditAddress invoked")}');
+    let handleNewAddressFuncText = text('handleNewAddress', '() => {alert("handleNewAddress invoked")}');
+    let fetchProfileDataFuncText = text('fetchProfileData', '() => {alert("fetchProfileData invoked")}');
+    
+    return (
+      <ProfileAddressesMain 
+        addresses={object('addresses', profileData._defaultprofile[0]._addresses[0])} 
+        onChange={()=>{textToFunc(fetchProfileDataFuncText)}} 
+        onAddNewAddress={()=>{textToFunc(handleNewAddressFuncText)}}
+        onEditAddress={()=>{textToFunc(handleEditAddressFuncText)}}
+      />
+    );
+  });

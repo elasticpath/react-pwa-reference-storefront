@@ -26,11 +26,11 @@ import { MemoryRouter } from 'react-router';
 import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
 import B2bSubAccountList from './b2b.subaccountlist';
 import { mockFetchSubAccount } from '../B2bAccountList/b2b.accountlist.api.mocks';
-
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 const accountName = 'Accelsmart';
 const registrationNumber = 'cust-00059';
 
-function handleAccount() {}
 
 storiesOf('Components|B2bSubAccountList', module)
   .addParameters({
@@ -44,12 +44,14 @@ storiesOf('Components|B2bSubAccountList', module)
   ))
   .add('B2bSubAccountList', () => {
     mockFetchSubAccount();
+    let getAccountDataFuncText = text('getAccountData','() => {alert("getAccountData invoked")}');
+    
     return (
       <B2bSubAccountList
-        getAccountData={handleAccount}
-        subAccounts={SubAccountData}
-        accountName={accountName}
-        registrationNumber={registrationNumber}
+        getAccountData={()=>{textToFunc(getAccountDataFuncText)}}
+        subAccounts={object('subAccountData', SubAccountData)}
+        accountName={text(accountName)}
+        registrationNumber={text(registrationNumber)}
       />
     );
   });

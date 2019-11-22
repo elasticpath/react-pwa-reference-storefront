@@ -22,7 +22,7 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { boolean } from "@storybook/addon-knobs/react";
 import AppHeaderSearchMain from './appheadersearch.main';
 
 storiesOf('Components|AppHeaderSearchMain', module)
@@ -32,8 +32,10 @@ storiesOf('Components|AppHeaderSearchMain', module)
       sidebar: Readme,
     },
   })
-  .add('AppHeaderSearchMain', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <MemoryRouter initialEntries={['/']}><AppHeaderSearchMain isMobileView={false} isFocused /></MemoryRouter>
-    </div>
-  ));
+  .add('AppHeaderSearchMain', () => {
+    return (
+      <div style={{ backgroundColor: '#040060' }}>
+        <MemoryRouter initialEntries={['/']}><AppHeaderSearchMain isMobileView={boolean('isMobileView', false)} isFocused={boolean('isFocused', true)} /></MemoryRouter>
+      </div>
+    )
+  });
