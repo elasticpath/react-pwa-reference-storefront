@@ -52,4 +52,3 @@ export function textToFunc(funcText:string) {
     let selfInvokingFuncStr:string = makeSelfInvokingFuncString(decodedText);
     eval(selfInvokingFuncStr);
 }
- 
