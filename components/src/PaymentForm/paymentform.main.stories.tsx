@@ -24,6 +24,9 @@ import { storiesOf } from '@storybook/react';
 
 import PaymentFormMain from './paymentform.main';
 
+import { boolean, object, text } from '@storybook/addon-knobs';
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
+
 storiesOf('Components|PaymentFormMain', module)
   .addParameters({
     readme: {
@@ -31,4 +34,8 @@ storiesOf('Components|PaymentFormMain', module)
       sidebar: Readme,
     },
   })
-  .add('PaymentFormMain', () => <PaymentFormMain />);
+  .add('PaymentFormMain', () => {
+    let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
+    let onConfigurationAddToCartFuncText = text('onConfigurationAddToCart','() => {alert("onConfigurationAddToCart invoked")}');
+    return(<PaymentFormMain onCloseModal={()=>{textToFunc(onCloseModalFuncText)}} fetchData={()=>{textToFunc(onConfigurationAddToCartFuncText)}} />);
+  });
