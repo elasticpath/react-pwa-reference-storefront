@@ -25,6 +25,8 @@ import { MemoryRouter } from 'react-router';
 
 import CartCreate from './cart.create';
 
+import { text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import { mockFetchMultiCart } from './cart.create.api.mocks';
 
 storiesOf('Components|CartCreate', module)
@@ -39,6 +41,17 @@ storiesOf('Components|CartCreate', module)
   ))
   .add('CartCreate', () => {
     mockFetchMultiCart();
-
-    return <CartCreate handleModalClose={() => {}} openModal />
+    let handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
+    let handleCartsUpdateFuncText = text('handleCartsUpdate','() => {alert("handleCartsUpdate invoked")}');
+    let handleCartElementSelectFuncText = text('handleCartElementSelect','() => {alert("handleCartElementSelect invoked")}');
+    
+    return (
+      <CartCreate 
+        handleModalClose={() => { textToFunc(handleModalCloseFuncText)}}
+        openModal={boolean('openModal', true)}
+        handleCartsUpdate={() => { textToFunc(handleCartsUpdateFuncText)}}
+        handleCartElementSelect={() => { textToFunc(handleCartElementSelectFuncText)}}
+        updateCartModal={boolean('updateCartModal', true)}
+      />
+    );
   });
