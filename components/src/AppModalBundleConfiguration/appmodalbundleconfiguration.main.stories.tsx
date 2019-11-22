@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import bundleLineItem from './MockHttpResponses/GET/bundleLineItem_response.json';
@@ -28,7 +29,14 @@ import { textToFunc } from "../../../storybook/utils/storybookUtils"
 
 import mockAppModalBundleConfigurationMain from './appModalBundleConfiguration.main.api.mock';
 
-storiesOf('AppModalBundleConfigurationMain', module)
+
+storiesOf('Components|AppModalBundleConfigurationMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

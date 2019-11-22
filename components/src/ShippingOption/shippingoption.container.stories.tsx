@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { object } from "@storybook/addon-knobs/react";
@@ -44,7 +45,13 @@ const option = {
   name: 'FedExShipping',
 };
 
-storiesOf('ShippingOptionContainer', module)
+storiesOf('Components|ShippingOptionContainer', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

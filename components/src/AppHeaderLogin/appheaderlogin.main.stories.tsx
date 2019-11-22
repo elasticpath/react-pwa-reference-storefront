@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { object, text, boolean } from "@storybook/addon-knobs/react";
@@ -33,10 +34,16 @@ const appModalLoginLinks = {
   registration: '',
 };
 
-storiesOf('AppHeaderLoginMain', module)
+storiesOf('Components|AppHeaderLoginMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('AppHeaderLoginMain', () => (
     <div style={{ backgroundColor: '#040060' }}>
       <AppHeaderLoginMain 

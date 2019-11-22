@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
 import { object } from "@storybook/addon-knobs/react";
@@ -29,7 +30,13 @@ let Config:any = {};
 const epConfig = getConfig();
 Config = epConfig.config;
 
-storiesOf('FacebookChat', module)
+storiesOf('Components|FacebookChat', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('FacebookChat', () => (
     <FacebookChat config={object('config', Config.facebook)} />
   ));

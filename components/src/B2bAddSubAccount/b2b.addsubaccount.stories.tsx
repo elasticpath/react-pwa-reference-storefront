@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text, boolean } from "@storybook/addon-knobs/react";
@@ -29,7 +30,14 @@ import B2bAddSubAccount from './b2b.addsubaccount';
 const addSubAccountUri = '';
 const addSubAccountSellerAdmin = true;
 
-storiesOf('B2bAddSubAccountProps', module)
+
+storiesOf('Components|B2bAddSubAccount', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

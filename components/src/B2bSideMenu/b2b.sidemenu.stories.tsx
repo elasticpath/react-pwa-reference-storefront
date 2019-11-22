@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { Router } from 'react-router';
 import { action } from '@storybook/addon-actions';
@@ -39,6 +40,12 @@ const sideMenuItems = [
   { to: '/b2b/quotes', children: 'quotes' },
 ];
 
-storiesOf('B2bSideMenu', module)
+storiesOf('Components|B2bSideMenu', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => <Router history={history}>{story()}</Router>)
   .add('B2bSideMenu', () => <B2bSideMenu sideMenuItems={object('sideMenuItems',sideMenuItems)} />);

@@ -3,12 +3,14 @@ import { init } from '@elasticpath/store-components';
 import epConfig from '../../app/src/ep.config';
 import intl from 'react-intl-universal';
 import { addParameters } from '@storybook/react';
-import { themes } from '@storybook/theming';
-import elasticpath from './elasticpath';
 import { addDecorator } from '@storybook/react';
+import { themes } from '@storybook/theming';
+import { addReadme } from 'storybook-readme';
+import elasticpath from './elasticpath';
 import { withKnobs } from '@storybook/addon-knobs';
 
 addDecorator(withKnobs);
+addDecorator(addReadme);
 
 addParameters({
   options: {

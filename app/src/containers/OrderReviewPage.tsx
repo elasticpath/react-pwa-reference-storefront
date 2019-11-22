@@ -36,49 +36,55 @@ import './OrderReviewPage.less';
 
 const zoomArray = [
   // zooms for checkout summary
-  'defaultcart',
-  'defaultcart:total',
-  'defaultcart:discount',
-  'defaultcart:order',
-  'defaultcart:order:tax',
-  'defaultcart:order:total',
-  'defaultcart:appliedpromotions:element',
-  'defaultcart:order:couponinfo:coupon',
-  'defaultcart:order:couponinfo:couponform',
+  'total',
+  'discount',
+  'order',
+  'order:tax',
+  'order:total',
+  'appliedpromotions:element',
+  'order:couponinfo:coupon',
+  'order:couponinfo:couponform',
   // zoom for billing address
-  'defaultcart:order:billingaddressinfo:billingaddress',
+  'order:billingaddressinfo:billingaddress',
   // zoom for shipping address
-  'defaultcart:order:deliveries:element:destinationinfo:destination',
+  'order:deliveries:element:destinationinfo:destination',
   // zoom for shipping option
-  'defaultcart:order:deliveries:element:shippingoptioninfo:shippingoption',
+  'order:deliveries:element:shippingoptioninfo:shippingoption',
   // zoom for payment method
-  'defaultcart:order:paymentmethodinfo:paymentmethod',
-  'defaultcart:order:postedpayments',
+  'order:paymentmethodinfo:paymentmethod',
+  'order:postedpayments',
   // zooms for table items
-  'defaultcart:lineitems:element',
-  'defaultcart:lineitems:element:total',
-  'defaultcart:lineitems:element:item',
-  'defaultcart:lineitems:element:item:code',
-  'defaultcart:lineitems:element:item:price',
-  'defaultcart:lineitems:element:item:definition',
-  'defaultcart:lineitems:element:item:definition:options:element',
-  'defaultcart:lineitems:element:item:definition:options:element:value',
-  'defaultcart:lineitems:element:dependentlineitems',
-  'defaultcart:lineitems:element:dependentlineitems:element',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:addtocartform',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:availability',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:definition',
-  'defaultcart:lineitems:element:dependentlineitems:element:item:code',
+  'lineitems:element',
+  'lineitems:element:total',
+  'lineitems:element:item',
+  'lineitems:element:item:code',
+  'lineitems:element:item:price',
+  'lineitems:element:item:definition',
+  'lineitems:element:item:definition:options:element',
+  'lineitems:element:item:definition:options:element:value',
+  'lineitems:element:dependentlineitems',
+  'lineitems:element:dependentlineitems:element',
+  'lineitems:element:dependentlineitems:element:item:addtocartform',
+  'lineitems:element:dependentlineitems:element:item:availability',
+  'lineitems:element:dependentlineitems:element:item:definition',
+  'lineitems:element:dependentlineitems:element:item:code',
   // zoom for purchaseform
-  'defaultcart:order:purchaseform',
+  'order:purchaseform',
 ];
+
+interface MatchParams {
+  cart: string;
+}
+
+interface OrderReviewPageProps extends RouteComponentProps<MatchParams> {
+}
 
 interface OrderReviewPageState {
     orderData: any,
     giftCertificateEntity: any,
     isLoading: boolean,
 }
-class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPageState> {
+class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewPageState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -94,8 +100,11 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
   }
 
   fetchOrderData() {
+    const { match } = this.props;
+    const cartCode = match.params.cart;
+    const cart = cartCode || 'default';
     login().then(() => {
-      cortexFetch(`/?zoom=${zoomArray.sort().join()}`,
+      cortexFetch(`/carts/${Config.cortexApi.scope}/${cart}?zoom=${zoomArray.sort().join()}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -105,7 +114,7 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
         .then(res => res.json())
         .then((res) => {
           this.setState({
-            orderData: res._defaultcart[0],
+            orderData: res,
           });
         })
         .catch((error) => {
@@ -257,8 +266,10 @@ class OrderReviewPage extends React.Component<RouteComponentProps, OrderReviewPa
   }
 
   goToCheckOut() {
-    const { history } = this.props;
-    history.push('/checkout');
+    const { history, match } = this.props;
+    const cartCode = match.params.cart;
+    const url = cartCode ? `/checkout/${cartCode}` : '/checkout';
+    history.push(url);
   }
 
   trackTransactionAnalytics() {

@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { getConfig } from '../utils/ConfigProvider';
@@ -32,7 +33,13 @@ let Config:any = {};
 const epConfig = getConfig();
 Config = epConfig.config;
 
-storiesOf('IndiRecommendationsDisplayMain', module)
+storiesOf('Components|IndiRecommendationsDisplayMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

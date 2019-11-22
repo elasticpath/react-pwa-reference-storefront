@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 // Import custom required styles
@@ -48,7 +49,13 @@ function processProductDisplayItemKnobCallbacks() {
   onChangeProductFeatureFuncText = text('onChangeProductFeature', '() => {alert("onChangeProductFeature invoked")}');
 }
 
-storiesOf('ProductDisplayItemMain', module)
+storiesOf('Components|ProductDisplayItemMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/itemdetail']}>{story()}</MemoryRouter>
   ))

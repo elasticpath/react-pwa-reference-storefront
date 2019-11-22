@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import product from './MockHttpResponses/product_list_item_response.json';
@@ -26,7 +27,13 @@ import { object, text } from "@storybook/addon-knobs/react";
 import ProductListItemMain from './productlistitem.main';
 
 
-storiesOf('ProductListItemMain', module)
+storiesOf('Components|ProductListItemMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

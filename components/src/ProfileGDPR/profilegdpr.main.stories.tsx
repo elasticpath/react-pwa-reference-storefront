@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
@@ -32,12 +33,17 @@ import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
 let onChangeFuncText;
 
-storiesOf('ProfileGDPRMain', module)
+storiesOf('Components|ProfileGDPRMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => {
     onChangeFuncText = text('onChange', '() => {alert("onChange invoked")}');
     return <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   })
   .add('ProfilGDPRMain One policy consented', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', onePolicy_consented_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
   .add('ProfilGDPRMain One policy not consented', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', onePolicy_notConsented_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
-  .add('ProfilGDPRMain Three policies mixed', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', threePolicies_mixed_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
-;
+  .add('ProfilGDPRMain Three policies mixed', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', threePolicies_mixed_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />);

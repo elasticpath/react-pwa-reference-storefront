@@ -172,8 +172,14 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   checkout() {
     const { history } = this.props;
+    const { multiCartsAvailable, cartData } = this.state;
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
-      history.push('/checkout');
+      if (multiCartsAvailable) {
+        const cartCode = cartData.self.uri.split('/').pop();
+        history.push(`/checkout/${cartCode}`);
+      } else {
+        history.push('/checkout');
+      }
     } else {
       history.push('/signIn');
     }

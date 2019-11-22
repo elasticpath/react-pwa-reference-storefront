@@ -19,13 +19,21 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text, boolean } from "@storybook/addon-knobs/react";
 import { textToFunc } from "../../../storybook/utils/storybookUtils";
 import BloomreachAppHeaderSearchMain from './bloomreach.appheadersearch.main';
 
-storiesOf('BloomreachAppHeaderSearchMain', module)
+
+storiesOf('Components|BloomreachAppHeaderSearchMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('BloomreachAppHeaderSearchMain', () => {
     let onSearchPageFuncText = text('onSearchPage', '() => {alert("onSearchPage invoked")}');
 

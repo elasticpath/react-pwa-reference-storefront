@@ -69,11 +69,11 @@ describe('Wishlist', () => {
 
     // When I add following items to my wishlist
     await page.waitForSelector(PARENT_CATEGORY);
-    await page.click(PARENT_CATEGORY);
+    page.click(PARENT_CATEGORY);
     await page.waitForSelector(PARENT_SUB_CATEGORY);
-    await page.click(PARENT_SUB_CATEGORY);
+    page.click(PARENT_SUB_CATEGORY);
     await page.waitForSelector(PRODUCT_CATEGORY_ITEM);
-    await page.click(PRODUCT_CATEGORY_ITEM);
+    page.click(PRODUCT_CATEGORY_ITEM);
     await page.waitForSelector(ADD_TO_WISHLIST_BUTTON);
     await page.click(ADD_TO_WISHLIST_BUTTON);
 
@@ -108,11 +108,11 @@ describe('Wishlist', () => {
 
     // When I add following items to my wishlist
     await page.waitForSelector(PARENT_CATEGORY);
-    await page.click(PARENT_CATEGORY);
+    page.click(PARENT_CATEGORY);
     await page.waitForSelector(PARENT_SUB_CATEGORY);
-    await page.click(PARENT_SUB_CATEGORY);
+    page.click(PARENT_SUB_CATEGORY);
     await page.waitForSelector(PRODUCT_CATEGORY_ITEM);
-    await page.click(PRODUCT_CATEGORY_ITEM);
+    page.click(PRODUCT_CATEGORY_ITEM);
     await page.waitForSelector(ADD_TO_WISHLIST_BUTTON);
     await page.click(ADD_TO_WISHLIST_BUTTON);
 

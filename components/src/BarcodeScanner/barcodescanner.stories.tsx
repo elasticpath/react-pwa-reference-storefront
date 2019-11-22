@@ -19,12 +19,20 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { object, text, boolean } from "@storybook/addon-knobs/react";
 import { textToFunc } from "../../../storybook/utils/storybookUtils"
 import BarcodeScanner from './barcodescanner';
 
-storiesOf('BarcodeScanner', module)
+
+storiesOf('Components|BarcodeScanner', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('BarcodeScanner', () => {
     let handleModalCloseFuncText = text('handleModalClose', '() => {alert("handleModalClose invoked")}');
     let handleCodeFoundFuncText = text('handleCodeFound', '() => {alert("handleCodeFound invoked")}');

@@ -19,9 +19,16 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
 import PaymentFormMain from './paymentform.main';
 
-storiesOf('PaymentFormMain', module)
+storiesOf('Components|PaymentFormMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('PaymentFormMain', () => <PaymentFormMain />);

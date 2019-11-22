@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import multiCartResponse from '../CommonMockHttpResponses/itemLookupMultiCart_response.json';
@@ -27,8 +28,13 @@ import { text } from "@storybook/addon-knobs/react";
 
 import CartClear from './cartclear';
 
-
-storiesOf('CartClear', module)
+storiesOf('Components|CartClear', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { object, text, boolean } from "@storybook/addon-knobs/react";
@@ -36,7 +37,14 @@ const accountListData = {
 const accountName = 'Accelsmart';
 const registrationNumber = 'cust-00059';
 
-storiesOf('B2bAccountList', module)
+
+storiesOf('Components|B2bAccountList', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))

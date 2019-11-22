@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import mockAddressFormSubmitSuccess from './addressform.main.api.mocks';
 import { textToFunc } from "../../../storybook/utils/storybookUtils"
@@ -26,8 +27,15 @@ import { object, text } from "@storybook/addon-knobs/react";
 
 import AddressFormMain from './addressform.main';
 
-storiesOf('AddressFormMain', module)
-  .add('AddressFormMain on save success', () => {
+
+storiesOf('Components|AddressFormMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
+  .add('AddressFormMain edit', () => {
     mockAddressFormSubmitSuccess();
     const addressData = {
       address: '/addresses/vestri_b2c',

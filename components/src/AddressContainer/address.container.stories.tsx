@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { object } from "@storybook/addon-knobs/react";
 import AddressContainer from './address.container';
@@ -38,5 +39,12 @@ const dataAddress = {
   'street-address': 'street-address',
 };
 
-storiesOf('AddressContainer', module)
+storiesOf('Components|AddressContainer', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
+  storiesOf('AddressContainer', module)
   .add('AddressContainer', () => <AddressContainer name={object('name', dataName)} address={object('dataAddress',dataAddress)} />);

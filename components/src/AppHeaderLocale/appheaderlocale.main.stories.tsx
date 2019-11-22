@@ -19,19 +19,32 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 
 import AppHeaderLocaleMain from './appheaderlocale.main';
+import { boolean } from '@storybook/addon-knobs';
 
 // Option defaults.
 
-storiesOf('AppHeaderLocaleMain', module)
+storiesOf('Components|AppHeaderLocaleMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('AppHeaderLocaleMain', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <AppHeaderLocaleMain />
-    </div>
-  ));
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
+  .add('AppHeaderLocaleMain', () => {
+    let onCurrencyChangeFuncText = text('onCurrencyChange','() => {alert("onCurrencyChange invoked")}'); 
+    let onLocaleChangeFuncText = text('onLocaleChange','() => {alert("onLocaleChange invoked")}');
+    return (
+      <div style={{ backgroundColor: '#040060' }}>
+        <AppHeaderLocaleMain isMobileView={boolean('isMobileView', false)} onCurrencyChange={()=>{textToFunc(onCurrencyChangeFuncText)}} onLocaleChange={()=>{textToFunc(onLocaleChangeFuncText)}} />
+      </div>);
+  });

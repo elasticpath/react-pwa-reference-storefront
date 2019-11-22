@@ -27,6 +27,17 @@ module.exports = ({ config }) => {
     ],
   });
 
+  config.module.rules.push({
+    test: /\.stories\.tsx?$/,
+    loaders: [
+      {
+        loader: require.resolve('@storybook/source-loader'),
+        options: { parser: 'typescript' },
+      },
+    ],
+    enforce: 'pre',
+  });
+
   config.module.rules = config.module.rules.map(rule => {
     if (!rule.test.test(".svg")) {
       return rule;

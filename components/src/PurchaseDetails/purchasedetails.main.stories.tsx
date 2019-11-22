@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 
 import PurchaseDetailsMain from './purchasedetails.main';
@@ -28,7 +29,13 @@ import { textToFunc } from '../../../storybook/utils/storybookUtils';
 
 const itemDetailLink = '/';
 
-storiesOf('PurchaseDetailsMain', module)
+storiesOf('Components|PurchaseDetailsMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('PurchaseDetailsMain', () => {
     let onReorderAllProductsFuncText = text('onReorderAllProducts', '() => {alert("onReorderAllProducts invoked")}');
     return(<PurchaseDetailsMain data={object('purchaseDetail', purchaseDetail)} onReorderAllProducts={()=>{textToFunc(onReorderAllProductsFuncText)}} itemDetailLink={object('itemDetailLink', itemDetailLink)} />);

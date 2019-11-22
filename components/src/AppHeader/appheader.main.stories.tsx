@@ -19,6 +19,7 @@
  *
  */
 import React from 'react';
+import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { object, text, boolean } from "@storybook/addon-knobs/react";
@@ -47,7 +48,13 @@ const appModalLoginLinks = {
   registration: '',
 };
 
-storiesOf('AppHeaderMain', module)
+storiesOf('Components|AppHeaderMain', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
   .add('AppHeaderMain', () => {
     mockProductDisplayItemMainMultiCart();
 
