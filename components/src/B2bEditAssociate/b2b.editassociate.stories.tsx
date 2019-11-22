@@ -25,6 +25,9 @@ import { MemoryRouter } from 'react-router';
 
 import B2bEditAssociate from './b2b.editassociate';
 
+import { text, boolean } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
+
 storiesOf('Components|B2bEditAssociate', module)
   .addParameters({
     readme: {
@@ -35,4 +38,22 @@ storiesOf('Components|B2bEditAssociate', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('B2bEditAssociate', () => <B2bEditAssociate isOpen handleClose={() => {}} handleUpdate={() => {}} associateEmail="" accountName="Test" subAccountName="Test" addAssociateUri="" rolesSelector="" isSelf={false} isAddAssociateOpen={false} />);
+  .add('B2bEditAssociate', () => {
+    let handleCloseFuncText = text('handleClose','() => {alert("handleClose invoked")}');
+    let handleUpdateFuncText = text('handleUpdate','() => {alert("handleUpdate invoked")}');
+    
+    return (
+      <B2bEditAssociate 
+        isOpen={boolean('isOpen', true)}
+        handleClose={() => {textToFunc(handleCloseFuncText)}} 
+        handleUpdate={() => {textToFunc(handleUpdateFuncText)}}
+        associateEmail={text('associateEmail', '')} 
+        accountName={text('associateEmail', '')}  
+        subAccountName={text('associateEmail', '')}  
+        addAssociateUri={text('associateEmail', '')}  
+        rolesSelector={text('associateEmail', '')}  
+        isSelf={boolean('isSelf', false)} 
+        isAddAssociateOpen={boolean('isAddAssociateOpen', true)}
+      />
+    )
+  });
