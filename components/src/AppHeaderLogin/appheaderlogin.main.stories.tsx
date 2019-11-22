@@ -47,7 +47,7 @@ storiesOf('Components|AppHeaderLoginMain', module)
   .add('AppHeaderLoginMain', () => (
     <div style={{ backgroundColor: '#040060' }}>
       <AppHeaderLoginMain 
-          permission={boolean('boolean', false)} 
+          permission={boolean('permission', false)} 
           appModalLoginLinks={object('appModalLoginLinks', appModalLoginLinks)}
           appHeaderLoginLinks={object('appHeaderLoginLinks', appHeaderLoginLinks)} 
           isLoggedIn={boolean('isLoggedIn', false)} 
@@ -57,7 +57,7 @@ storiesOf('Components|AppHeaderLoginMain', module)
   )).add('AppHeaderLoginMain Logged In User', () => (
     <div style={{ backgroundColor: '#040060' }}>
       <AppHeaderLoginMain 
-          permission={boolean('boolean', false)} 
+          permission={boolean('permission', false)} 
           appModalLoginLinks={object('appModalLoginLinks', appModalLoginLinks)}
           appHeaderLoginLinks={object('appHeaderLoginLinks', appHeaderLoginLinks)} 
           isLoggedIn={boolean('isLoggedIn', true)} 
