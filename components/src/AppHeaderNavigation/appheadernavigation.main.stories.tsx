@@ -22,8 +22,11 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import { text, object } from "@storybook/addon-knobs/react";
+import { textToFunc } from "../../../storybook/utils/storybookUtils"
 
 import AppHeaderNavigationMain from './appheadernavigation.main';
+import { boolean } from '@storybook/addon-knobs';
 
 storiesOf('Components|AppHeaderNavigationMain', module)
   .addParameters({
@@ -32,8 +35,23 @@ storiesOf('Components|AppHeaderNavigationMain', module)
       sidebar: Readme,
     },
   })
-  .add('AppHeaderNavigationMain', () => (
-    <div style={{ backgroundColor: '#040060' }}>
-      <MemoryRouter initialEntries={['/']}><AppHeaderNavigationMain isMobileView={false} isOffline={false} isOfflineCheck={() => { }} /></MemoryRouter>
-    </div>
-  ));
+  .add('AppHeaderNavigationMain', () => {
+    
+    let isOfflineCheckFuncText = text('isOfflineCheck','() => {alert("isOfflineCheck invoked")}');
+    let onFetchNavigationErrorFuncText = text('onFetchNavigationError','() => {alert("onFetchNavigationError invoked")}');
+    
+    return (
+      <div style={{ backgroundColor: '#040060' }}>
+        <MemoryRouter initialEntries={['/']}>
+          <AppHeaderNavigationMain 
+            isMobileView={false} 
+            isOffline={false}
+            isOfflineCheck={() => { textToFunc(isOfflineCheckFuncText) }} 
+            checkedLocation={boolean('checkedLocation', false)}
+            onFetchNavigationError={()=>{ textToFunc(onFetchNavigationErrorFuncText) }}
+            appHeaderNavigationLinks={object('appHeaderNavigationLinks', {})}
+          />
+        </MemoryRouter>
+      </div>
+    );
+  });
