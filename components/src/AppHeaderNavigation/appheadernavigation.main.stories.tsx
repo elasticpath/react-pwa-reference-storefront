@@ -24,6 +24,7 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text, object } from "@storybook/addon-knobs/react";
 import { textToFunc } from "../../../storybook/utils/storybookUtils"
+import { mockFetchNavigationData } from './appheadernavigation.main.api.mocks';
 
 import AppHeaderNavigationMain from './appheadernavigation.main';
 import { boolean } from '@storybook/addon-knobs';
@@ -36,6 +37,7 @@ storiesOf('Components|AppHeaderNavigationMain', module)
     },
   })
   .add('AppHeaderNavigationMain', () => {
+    mockFetchNavigationData();
     
     let isOfflineCheckFuncText = text('isOfflineCheck','() => {alert("isOfflineCheck invoked")}');
     let onFetchNavigationErrorFuncText = text('onFetchNavigationError','() => {alert("onFetchNavigationError invoked")}');
