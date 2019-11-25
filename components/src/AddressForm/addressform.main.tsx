@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -60,11 +60,11 @@ const zoomArray = [
   'countries:element:regions:element',
 ];
 
-class AddressFormMain extends React.Component<AddressFormMainProps, AddressFormMainState> {
+class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainState> {
   static defaultProps = {
-    addressData: undefined,
     onCloseModal: () => {},
     fetchData: () => {},
+    addressData: undefined,
   };
 
   constructor(props) {

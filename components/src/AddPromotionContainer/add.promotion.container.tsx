@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -43,7 +43,7 @@ interface AddPromotionContainerState {
   couponFormLink: string,
 }
 
-class AddPromotionContainer extends React.Component<AddPromotionContainerProps, AddPromotionContainerState> {
+class AddPromotionContainer extends Component<AddPromotionContainerProps, AddPromotionContainerState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();

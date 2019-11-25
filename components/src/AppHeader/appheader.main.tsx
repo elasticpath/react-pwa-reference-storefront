@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from '../AppHeaderSearch/appheadersearch.main';
 import BloomreachAppHeaderSearchMain from '../Bloomreach/bloomreach.appheadersearch.main';
@@ -91,7 +91,7 @@ interface AppHeaderMainState {
     totalQuantity: number,
 }
 
-class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainState> {
+class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
   static defaultProps = {
     checkedLocation: false,
     isInStandaloneMode: false,
