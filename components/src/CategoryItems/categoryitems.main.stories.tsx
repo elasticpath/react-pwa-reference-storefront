@@ -25,6 +25,7 @@ import { MemoryRouter } from 'react-router';
 import { text, boolean, object } from "@storybook/addon-knobs/react";
 import CategoryItemsMain from './categoryitems.main';
 import { textToFunc } from '../../../storybook/utils/storybookUtils';
+import mockCommonCategoryItemsMainResponses from './categoryitems.main.api.mocks';
 
 // Option defaults.
 
@@ -32,11 +33,11 @@ const categoryProps = {
   match: {
     isExact: true,
     params: {
-      id: 'VESTRI_ACCESSORIES',
+      id: 'VV_VEHICLES',
     },
     __proto__: Object,
     path: '/category/:id',
-    url: '/category/VESTRI_ACCESSORIES',
+    url: '/category/VV_VEHICLES',
   },
 };
 
@@ -58,8 +59,9 @@ storiesOf('Components|CategoryItemsMain', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('CategoryItemsMain', () => {
+    mockCommonCategoryItemsMainResponses();
     let onProductFacetSelectionFuncText = text('onProductFacetSelection', '() => {alert("onProductFacetSelection invoked")}');
-    
+
     return (
       <CategoryItemsMain 
         categoryProps={object('categoryProps', categoryProps)} 
