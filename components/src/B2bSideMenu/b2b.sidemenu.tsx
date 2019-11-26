@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import './b2b.sidemenu.less';
@@ -31,7 +31,7 @@ interface B2bSideMenuState {
     isOpen: boolean,
 }
 
-export default class B2bSideMenu extends React.Component<B2bSideMenuProps, B2bSideMenuState> {
+export default class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
   constructor(props) {
     super(props);
 

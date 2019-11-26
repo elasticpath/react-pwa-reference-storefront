@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { login } from '../utils/AuthService';
@@ -56,7 +56,7 @@ interface AppHeaderNavigationMainState {
   originalMinimizedNav: any,
 }
 
-class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
+class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
   static defaultProps = {
     isOffline: undefined,
     onFetchNavigationError: () => {},

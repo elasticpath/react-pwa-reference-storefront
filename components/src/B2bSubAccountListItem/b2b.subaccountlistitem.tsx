@@ -20,7 +20,7 @@
  *
  */
 
-import * as React from 'react';
+import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import * as Config from '@elasticpath/ref-store/src/ep.config.json';
 import '../B2bSubAccountList/b2b.subaccountlist.less';
@@ -94,7 +94,7 @@ const zoom = [
   'associateroleassignments:associateform:addassociateaction',
 ];
 
-export default class B2bSubAccountListItem extends React.Component<B2bSubAccountListItemProps, B2bSubAccountListItemState> {
+export default class B2bSubAccountListItem extends Component<B2bSubAccountListItemProps, B2bSubAccountListItemState> {
   constructor(props) {
     super(props);
     this.state = {

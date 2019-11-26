@@ -104,4 +104,4 @@ class AppHeaderTop extends React.Component<AppHeaderTopProps> {
   }
 }
 
-export default withRouter(AppHeaderTop);
+export default AppHeaderTop;

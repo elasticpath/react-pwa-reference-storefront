@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
@@ -48,13 +48,13 @@ interface AppModalLoginMainState {
     failedLogin: boolean,
     isLoading: boolean,
 }
-class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModalLoginMainState> {
+class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginMainState> {
   static defaultProps = {
     onLogin: () => {},
     onResetPassword: () => {},
     locationSearchData: undefined,
     disableLogin: false,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -216,4 +216,4 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
   }
 }
 
-export default withRouter(AppModalLoginMain);
+export default AppModalLoginMain;

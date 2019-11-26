@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 /* eslint-disable-next-line import/no-cycle */
@@ -73,7 +72,7 @@ interface AppModalBundleConfigurationMainState {
     registrationErrors: string,
 }
 
-class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConfigurationMainProps, AppModalBundleConfigurationMainState> {
+class AppModalBundleConfigurationMain extends Component<AppModalBundleConfigurationMainProps, AppModalBundleConfigurationMainState> {
   static defaultProps = {
     onItemConfiguratorAddToCart: () => {},
     onItemMoveToCart: () => {},
@@ -243,4 +242,4 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
   }
 }
 
-export default withRouter(AppModalBundleConfigurationMain);
+export default AppModalBundleConfigurationMain;

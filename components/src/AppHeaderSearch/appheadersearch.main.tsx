@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 
 import './appheadersearch.main.less';
 import { getConfig } from '../utils/ConfigProvider';
@@ -36,7 +36,7 @@ interface AppHeaderSearchMainState{
     keywords: string,
 }
 
-class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppHeaderSearchMainState> {
+class AppHeaderSearchMain extends Component<AppHeaderSearchMainProps, AppHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
 
   static defaultProps = {

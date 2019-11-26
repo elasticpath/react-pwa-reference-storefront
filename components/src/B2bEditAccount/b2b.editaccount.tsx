@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import copy from 'copy-to-clipboard';
 import { login } from '../utils/AuthService';
@@ -61,7 +61,7 @@ interface B2bEditAccountState {
 }
 
 
-export default class B2bEditAccount extends React.Component<B2bEditAccountProps, B2bEditAccountState> {
+export default class B2bEditAccount extends Component<B2bEditAccountProps, B2bEditAccountState> {
   copiedTimeout?: number;
 
   constructor(props) {

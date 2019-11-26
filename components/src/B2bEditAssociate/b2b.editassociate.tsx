@@ -20,7 +20,7 @@
  *
  */
 
-import * as React from 'react';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -51,7 +51,7 @@ interface B2bEditAssociateState {
     validEmail: boolean,
 }
 
-export default class B2bEditAssociate extends React.Component<B2bEditAssociateProps, B2bEditAssociateState> {
+export default class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociateState> {
   constructor(props: any) {
     super(props);
     const epConfig = getConfig();

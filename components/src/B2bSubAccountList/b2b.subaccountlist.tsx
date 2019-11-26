@@ -20,7 +20,7 @@
  *
  */
 
-import * as React from 'react';
+import React, { Component } from 'react';
 // eslint-disable-next-line import/no-cycle
 import B2bSubAccountListItem from '../B2bSubAccountListItem/b2b.subaccountlistitem';
 
@@ -32,7 +32,7 @@ interface B2bSubAccountListProps {
 }
 
 
-export default class B2bSubAccountList extends React.Component<B2bSubAccountListProps> {
+export default class B2bSubAccountList extends Component<B2bSubAccountListProps> {
     static defaultProps = {
       getAccountData: () => {},
     };

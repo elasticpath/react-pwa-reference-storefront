@@ -20,7 +20,7 @@
  *
  */
 
-import * as React from 'react';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
@@ -47,7 +47,7 @@ interface B2bAddSubAccountState {
     isLoading: boolean,
 }
 
-export default class B2bAddSubAccount extends React.Component<B2bAddSubAccountProps, B2bAddSubAccountState> {
+export default class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B2bAddSubAccountState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();

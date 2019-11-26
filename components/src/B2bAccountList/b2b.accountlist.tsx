@@ -20,7 +20,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 
 import '../../../app/src/containers/b2b/AccountMain.less';
@@ -46,7 +46,7 @@ interface B2bAccountMainState {
   showAccountsMobileMenu: boolean,
 }
 
-export default class B2bAccountList extends React.Component<B2bAccountMainProps, B2bAccountMainState> {
+export default class B2bAccountList extends Component<B2bAccountMainProps, B2bAccountMainState> {
     static defaultProps = {
       getSubAccountData: () => {
       },

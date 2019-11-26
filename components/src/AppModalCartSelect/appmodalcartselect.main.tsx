@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import './appmodalcartselect.main.less';
@@ -46,7 +45,7 @@ interface AppModalCartSelectMainState {
   selectedCart: string,
 }
 
-class AppModalCartSelectMain extends React.Component<AppModalCartSelectMainProps, AppModalCartSelectMainState> {
+class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppModalCartSelectMainState> {
   static defaultProps = {
     onContinueCart: () => { },
   };
@@ -197,4 +196,4 @@ class AppModalCartSelectMain extends React.Component<AppModalCartSelectMainProps
   }
 }
 
-export default withRouter(AppModalCartSelectMain);
+export default AppModalCartSelectMain;

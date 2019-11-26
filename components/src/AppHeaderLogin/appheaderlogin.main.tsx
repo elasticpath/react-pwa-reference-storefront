@@ -68,12 +68,12 @@ const zoomArray = [
 class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHeaderLoginMainState> {
     static defaultProps = {
       isMobileView: false,
+      locationSearchData: undefined,
       disableLogin: false,
       onLogout: () => {},
       onLogin: () => {},
       onContinueCart: () => {},
       onResetPassword: () => {},
-      locationSearchData: undefined,
     }
 
     constructor(props) {
@@ -325,4 +325,4 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
     }
 }
 
-export default AppHeaderLoginMain;
+export default withRouter(AppHeaderLoginMain);

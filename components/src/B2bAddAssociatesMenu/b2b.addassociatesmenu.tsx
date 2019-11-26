@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import './b2b.addassociatesmenu.less';
 import { getConfig } from '../utils/ConfigProvider';
 
@@ -33,7 +33,7 @@ interface B2bAddAssociatesMenuState {
     isOpen: boolean,
 }
 
-export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociatesMenuProps, B2bAddAssociatesMenuState> {
+export default class B2bAddAssociatesMenu extends Component<B2bAddAssociatesMenuProps, B2bAddAssociatesMenuState> {
     static defaultProps = {
       onSpreeadsheetClicked: null,
     };
