@@ -20,18 +20,19 @@
  */
 
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { withRouter, Route, Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import './b2b.sidemenu.less';
 
 interface B2bSideMenuProps {
     sideMenuItems: any,
+    location: any,
 }
 interface B2bSideMenuState {
     isOpen: boolean,
 }
 
-export default class B2bSideMenu extends React.Component<B2bSideMenuProps, B2bSideMenuState> {
+class B2bSideMenu extends React.Component<B2bSideMenuProps, B2bSideMenuState> {
   constructor(props) {
     super(props);
 
@@ -56,9 +57,10 @@ export default class B2bSideMenu extends React.Component<B2bSideMenuProps, B2bSi
   }
 
   render() {
-    const { sideMenuItems } = this.props;
+    const { sideMenuItems, location } = this.props;
     const { isOpen } = this.state;
-    const currentSideMenuItems = sideMenuItems.filter(el => el.to === window.location.pathname);
+    const currentSideMenuItems = sideMenuItems.filter(el => el.to === location.pathname);
+
     return (
       <div className="side-menu-component">
         <button
@@ -75,7 +77,7 @@ export default class B2bSideMenu extends React.Component<B2bSideMenuProps, B2bSi
                 path={elem.to}
                 exact
               >
-                <Link className={`menu-item ${window.location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
+                <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
                   {intl.get(elem.children)}
                 </Link>
               </Route>
@@ -86,3 +88,5 @@ export default class B2bSideMenu extends React.Component<B2bSideMenuProps, B2bSi
     );
   }
 }
+
+export default withRouter(B2bSideMenu);

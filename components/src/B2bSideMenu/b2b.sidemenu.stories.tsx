@@ -21,7 +21,7 @@
 import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
-import { Router } from 'react-router';
+import { MemoryRouter } from 'react-router';
 import { action } from '@storybook/addon-actions';
 import createMemoryHistory from 'history/createMemoryHistory';
 import B2bSideMenu from './b2b.sidemenu';
@@ -47,5 +47,11 @@ storiesOf('Components|B2bSideMenu', module)
       sidebar: Readme,
     },
   })
-  .addDecorator(story => <Router history={history}>{story()}</Router>)
-  .add('B2bSideMenu', () => <B2bSideMenu sideMenuItems={object('sideMenuItems',sideMenuItems)} />);
+  .addDecorator(story =>  <MemoryRouter 
+                            initialEntries={[{ pathname: "/b2b" }]}
+                            initialIndex={1}>
+                              {story()}
+                          </MemoryRouter>)
+  .add('B2bSideMenu', () => {
+    return (<B2bSideMenu sideMenuItems={object('sideMenuItems', sideMenuItems)} />);
+  });
