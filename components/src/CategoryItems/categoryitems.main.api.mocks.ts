@@ -38,27 +38,21 @@ function mockLookupForm(mockObj) {
 }
 
 function mockNavigationLookup(mockObj) {
-  // How to match the payload when mocking as well? 
   mockObj.post(
-    function(url, opts) {
-      console.log('Matching mockNavigationLookup');
-      console.log(url);
-      console.log(opts);
-      if (url.match(/\/cortex\/navigations\/vestri_reference\/lookups\/form(.*)/)) {
-        if (opts.body && JSON.parse(opts.body).code=='VV_VEHICLES') {
+    (url, opts) => {
+      let matchNavigationLookupRegex = /\/cortex\/navigations\/vestri_reference\/lookups\/form(.*)/;
+      let categoryToLookupInPayload = 'VV_VEHICLES';
+      
+      if (url.match(matchNavigationLookupRegex)) {
+        if (opts.body && JSON.parse(opts.body).code==categoryToLookupInPayload) {
           return true;
         }
       }
+      
       return false;
     },
     fetchNavigationForm,
   );
-
-  // return mockObj.mock(
-  //   matcher,
-  //   fetchNavigationForm,
-  //   Object.assign({}, options, {method: 'PURGE'})
-  // );
 }
 
 export default function mockCommonCategoryItemsMainResponses() {
