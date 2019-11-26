@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
@@ -32,10 +31,13 @@ let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
 
 interface ReorderMainProps {
+  /** product data */
   productsData?: {
     [key: string]: any
   },
+  /** handle reorder */
   onReorderAll?: (...args: any[]) => any,
+  /** item detail link */
   itemDetailLink?: string
 }
 
@@ -45,7 +47,7 @@ interface ReorderMainState {
   isLoading: boolean
 }
 
-class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
+class ReorderMain extends Component<ReorderMainProps, ReorderMainState> {
   static defaultProps = {
     productsData: {},
     onReorderAll: () => {},
@@ -199,4 +201,4 @@ class ReorderMain extends React.Component<ReorderMainProps, ReorderMainState> {
   }
 }
 
-export default withRouter(ReorderMain);
+export default ReorderMain;

@@ -31,16 +31,21 @@ import './purchasedetails.main.less';
 let intl = { get: str => str };
 
 interface PurchaseDetailsMainProps {
+  /** data */
   data: {
     [key: string]: any
-},
-onReorderAllProducts?: (...args: any[]) => any,
+  },
+  /** handle reorder all products */
+  onReorderAllProducts?: (...args: any[]) => any,
+  /** item detail link */
   itemDetailLink?: string,
+  /** handle move to cart */
   onMoveToCart?: (...args: any[]) => any,
+  /** handle configurator add to cart */
   onConfiguratorAddToCart?: (...args: any[]) => any
 }
 
-const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (props: PurchaseDetailsMainProps) => {
+function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
   const {
     data, itemDetailLink, onMoveToCart, onConfiguratorAddToCart,
   } = props;
@@ -345,7 +350,7 @@ const PurchaseDetailsMain: React.FunctionComponent<PurchaseDetailsMainProps> = (
       </div>
     </div>
   );
-};
+}
 
 PurchaseDetailsMain.defaultProps = {
   onReorderAllProducts: () => {},

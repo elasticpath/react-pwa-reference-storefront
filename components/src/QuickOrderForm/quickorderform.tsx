@@ -20,10 +20,9 @@
  */
 
 
-import React from 'react';
+import React, { Component } from 'react';
 
 import './quickorderform.less';
-import { withRouter } from 'react-router';
 import imgPlaceholder from '../../../app/src/images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
@@ -33,9 +32,11 @@ let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
 
 interface QuickOrderFormProps {
+  /** item */
   item: {
     [key: string]: any
   },
+  /** handle item submit */
   onItemSubmit: (...args: any[]) => any
 }
 
@@ -47,7 +48,7 @@ interface QuickOrderFormState {
   skuErrorMessage: any | string
 }
 
-class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderFormState> {
+class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -312,4 +313,4 @@ class QuickOrderForm extends React.Component<QuickOrderFormProps, QuickOrderForm
   }
 }
 
-export default withRouter(QuickOrderForm);
+export default QuickOrderForm;

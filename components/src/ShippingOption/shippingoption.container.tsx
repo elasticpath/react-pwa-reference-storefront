@@ -22,6 +22,7 @@
 import React from 'react';
 
 interface ShippingOptionContainerProps {
+  /** option */
   option: {
     'display-name'?: string,
     carrier?: string,
@@ -31,7 +32,7 @@ interface ShippingOptionContainerProps {
   }
 }
 
-const ShippingOptionContainer: React.FunctionComponent<ShippingOptionContainerProps> = (props: ShippingOptionContainerProps) => {
+function ShippingOptionContainer(props: ShippingOptionContainerProps) {
   const { option } = props;
   return (
     <ul className="shipping-option-container">
@@ -46,6 +47,6 @@ const ShippingOptionContainer: React.FunctionComponent<ShippingOptionContainerPr
       </li>
     </ul>
   );
-};
+}
 
 export default ShippingOptionContainer;
