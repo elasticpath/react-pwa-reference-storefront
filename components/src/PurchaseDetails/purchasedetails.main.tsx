@@ -31,7 +31,7 @@ import './purchasedetails.main.less';
 let intl = { get: str => str };
 
 interface PurchaseDetailsMainProps {
-  /** data */
+  /** purchase data */
   data: {
     [key: string]: any
   },

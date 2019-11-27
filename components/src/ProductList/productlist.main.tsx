@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
@@ -29,21 +29,24 @@ import { getConfig } from '../utils/ConfigProvider';
 let intl = { get: str => str };
 
 interface ProductListMainProps {
-    productData: {
-        [key: number]: any
-    },
-    showCompareButton?: boolean,
-    productListLinks?: {
-        [key: string]: any
-    },
+  /** product data */
+  productData: {
+    [key: number]: any
+  },
+  /** show compare button */
+  showCompareButton?: boolean,
+  /** product list links */
+  productListLinks?: {
+    [key: string]: any
+  },
 }
 interface ProductListMainState {
-    isCompare: boolean,
-    compareLink: string,
-    categoryModel: any,
-    compareList: any,
+  isCompare: boolean,
+  compareLink: string,
+  categoryModel: any,
+  compareList: any,
 }
-class ProductListMain extends React.Component<ProductListMainProps, ProductListMainState> {
+class ProductListMain extends Component<ProductListMainProps, ProductListMainState> {
   static defaultProps = {
     showCompareButton: true,
     productListLinks: {

@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -30,9 +30,11 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 type ProfileemailinfoMainProps = {
+  /** user email */
   profileInfo: {
     [key: string]: any
   },
+  /** handle email change */
   onChange: (...args: any[]) => any
 };
 type ProfileemailinfoMainState = {
@@ -41,7 +43,7 @@ type ProfileemailinfoMainState = {
   email: string
 };
 
-class ProfileemailinfoMain extends React.Component<ProfileemailinfoMainProps, ProfileemailinfoMainState> {
+class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, ProfileemailinfoMainState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();
