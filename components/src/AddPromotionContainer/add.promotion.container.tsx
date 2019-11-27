@@ -30,9 +30,11 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AddPromotionContainerProps {
+  /** cart data */
   data: {
       [key: string]: any
   },
+  /** handle submit promotion */
   onSubmittedPromotion: (...args: any[]) => any,
 }
 

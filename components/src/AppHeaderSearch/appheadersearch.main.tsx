@@ -28,8 +28,11 @@ import { ReactComponent as SearchIcon } from '../../../app/src/images/header-ico
 let intl = { get: str => str };
 
 interface AppHeaderSearchMainProps {
+  /** isMobileView */
     isMobileView: boolean,
+  /** is focused */
     isFocused?: boolean,
+  /** handle on search page */
     onSearchPage?: (...args: any[]) => any,
 }
 interface AppHeaderSearchMainState{

@@ -30,10 +30,13 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AddressFormMainProps {
+  /** address data */
     addressData?: {
         [key: string]: any
     },
+  /** handle close modal */
     onCloseModal?: (...args: any[]) => any,
+  /** handle fetch data */
     fetchData?: (...args: any[]) => any,
 }
 interface AddressFormMainState {

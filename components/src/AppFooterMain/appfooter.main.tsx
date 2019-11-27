@@ -26,6 +26,7 @@ import './appfooter.main.less';
 import { getConfig } from '../utils/ConfigProvider';
 
 interface AppFooterMainProps {
+  /** footer links */
   appFooterLinks?: {
       [key: string]: any
   }

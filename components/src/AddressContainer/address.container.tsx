@@ -24,10 +24,12 @@ import React from 'react';
 import './address.container.less';
 
 interface AddressContainerProps {
+  /** name data */
     name: {
         'given-name': string,
         'family-name': string,
     },
+  /** address data */
     address: {
         'street-address': string,
         'extended-address': string,

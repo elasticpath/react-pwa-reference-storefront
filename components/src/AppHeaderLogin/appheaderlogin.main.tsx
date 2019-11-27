@@ -19,8 +19,8 @@
  *
  */
 
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
@@ -37,20 +37,31 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AppHeaderLoginMainProps {
+  /** is mobile view */
     isMobileView?: boolean,
+  /** permission */
     permission: boolean,
+  /** handle logout */
     onLogout?: (...args: any[]) => any,
+  /** handle login */
     onLogin?: (...args: any[]) => any,
+  /** handle continue cart */
     onContinueCart?: (...args: any[]) => any,
+  /** handle reset password */
     onResetPassword?: (...args: any[]) => any,
+  /** data search location */
     locationSearchData?: string,
+  /** links in app header login  */
     appHeaderLoginLinks: {
         [key: string]: any
     },
+  /** links in app modal login */
     appModalLoginLinks: {
         [key: string]: any
     },
+  /** is logged in */
     isLoggedIn: boolean,
+  /** disable login */
     disableLogin?: boolean,
 }
 interface AppHeaderLoginMainState {
@@ -65,7 +76,7 @@ const zoomArray = [
   'passwordresetform',
 ];
 
-class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHeaderLoginMainState> {
+class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLoginMainState> {
     static defaultProps = {
       isMobileView: false,
       locationSearchData: undefined,
@@ -325,4 +336,4 @@ class AppHeaderLoginMain extends React.Component<AppHeaderLoginMainProps, AppHea
     }
 }
 
-export default withRouter(AppHeaderLoginMain);
+export default AppHeaderLoginMain;

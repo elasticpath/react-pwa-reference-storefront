@@ -43,11 +43,17 @@ const zoomArray = [
 ];
 
 interface AppHeaderNavigationMainProps {
+  /** is offline check */
   isOfflineCheck: (...args: any[]) => any,
+  /** is offline */
   isOffline?: boolean,
+  /** checked location */
   checkedLocation?: boolean,
+  /** is mobile view */
   isMobileView: boolean,
+  /** on fetch navigation error */
   onFetchNavigationError?: (...args: any[]) => any,
+  /** links in app header navigation */
   appHeaderNavigationLinks?: { [key: string]: any },
 }
 
