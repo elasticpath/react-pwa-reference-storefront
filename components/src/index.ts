@@ -45,7 +45,7 @@ import CategoryItemsMain from './CategoryItems/categoryitems.main';
 import CheckoutSummaryList from './CheckoutSummaryList/checkout.summarylist';
 import FacebookChat from './FacebookChat/facebookchat.main';
 import FeaturedProductsMain from './FeaturedProducts/featuredproducts.main';
-import GdprSupportModal from './GdprSupport/gdprsupport.main';
+import ComplianceSupportModal from './ComplianceSupport/compliancesupport.main';
 import GiftcertificateFormMain from './GiftCertificateForm/giftcertificateform.main';
 import IndiRecommendationsDisplayMain from './IndiRecommendations/indirecommendations.main';
 import OrderHistoryMain from './OrderHistory/orderhistory.main';
@@ -62,7 +62,7 @@ import ProductListItemMain from './ProductListItem/productlistitem.main';
 import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
 import ProductListPaginationMain from './ProductListPagination/productlistpagination.main';
 import ProductRecommendationsMain from './ProductRecommendations/productrecommendations.main';
-import ProfileGDPRMain from './ProfileGDPR/profilegdpr.main';
+import ProfileComplianceMain from './ProfileCompliance/profilecompliance.main';
 import ProfileAddressesMain from './ProfileAddresses/profileaddresses.main';
 import ProfileemailinfoMain from './ProfileEmailInfo/profileemailinfo.main';
 import ProfileInfoMain from './ProfileInfo/profileInfo.main';
@@ -117,7 +117,7 @@ export {
   CheckoutSummaryList,
   FacebookChat,
   FeaturedProductsMain,
-  GdprSupportModal,
+  ComplianceSupportModal,
   GiftcertificateFormMain,
   IndiRecommendationsDisplayMain,
   OrderHistoryMain,
@@ -134,7 +134,7 @@ export {
   ProductListLoadmore,
   ProductListPaginationMain,
   ProductRecommendationsMain,
-  ProfileGDPRMain,
+  ProfileComplianceMain,
   ProfileAddressesMain,
   ProfileemailinfoMain,
   ProfileInfoMain,

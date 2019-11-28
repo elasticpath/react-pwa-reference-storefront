@@ -26,14 +26,14 @@ import { MemoryRouter } from 'react-router';
 import onePolicy_consented_response from './MockHttpResponses/GET/onePolicy_consented_response.json';
 import onePolicy_notConsented_response from './MockHttpResponses/GET/onePolicy_notConsented_response.json';
 import threePolicies_mixed_response from './MockHttpResponses/GET/threePolicies_mixed_response.json';
-import ProfileGDPRMain from './profilegdpr.main';
+import ProfileComplianceMain from './profilecompliance.main';
 
 import { text, object } from "@storybook/addon-knobs/react";
 import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
 let onChangeFuncText;
 
-storiesOf('Components|ProfileGDPRMain', module)
+storiesOf('Components|ProfileComplianceMain', module)
   .addParameters({
     readme: {
       // Show readme at the addons panel
@@ -44,6 +44,6 @@ storiesOf('Components|ProfileGDPRMain', module)
     onChangeFuncText = text('onChange', '() => {alert("onChange invoked")}');
     return <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   })
-  .add('ProfilGDPRMain One policy consented', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', onePolicy_consented_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
-  .add('ProfilGDPRMain One policy not consented', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', onePolicy_notConsented_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
-  .add('ProfilGDPRMain Three policies mixed', () => <ProfileGDPRMain dataPolicies={object('dataPolicies', threePolicies_mixed_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />);
+  .add('ProfilComplianceMain One policy consented', () => <ProfileComplianceMain dataPolicies={object('dataPolicies', onePolicy_consented_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
+  .add('ProfilComplianceMain One policy not consented', () => <ProfileComplianceMain dataPolicies={object('dataPolicies', onePolicy_notConsented_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />)
+  .add('ProfilComplianceMain Three policies mixed', () => <ProfileComplianceMain dataPolicies={object('dataPolicies', threePolicies_mixed_response['_data-policies'][0])} onChange={()=>{textToFunc(onChangeFuncText)}} />);

@@ -25,10 +25,10 @@ import ga from 'react-ga';
 
 import * as Config from '../ep.config.json';
 
-const showGDPR = Config.GDPR.enable;
-const gdprSupportAccept = (showGDPR ? localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`) : true);
+const showCompliance = Config.Compliance.enable;
+const isComplianceAccepted = (showCompliance ? localStorage.getItem(`${Config.cortexApi.scope}_Compliance_Accept`) : true);
 
-if (Config.gaTrackingId !== '' && gdprSupportAccept) {
+if (Config.gaTrackingId !== '' && isComplianceAccepted) {
   ga.initialize(Config.gaTrackingId);
   ga.plugin.require('ec');
 }
@@ -54,7 +54,7 @@ export default Component => class WithAnalytics extends React.Component<any, any
   }
 
   trackPageAnalytics = (page) => {
-    if (Config.gaTrackingId !== '' && gdprSupportAccept) {
+    if (Config.gaTrackingId !== '' && isComplianceAccepted) {
       ga.set({ page });
       ga.pageview(page);
     }
@@ -66,7 +66,7 @@ export default Component => class WithAnalytics extends React.Component<any, any
 };
 
 export function isAnalyticsConfigured() {
-  if (Config.gaTrackingId !== '' && gdprSupportAccept) {
+  if (Config.gaTrackingId !== '' && isComplianceAccepted) {
     return true;
   }
   return false;
