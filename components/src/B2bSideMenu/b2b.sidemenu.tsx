@@ -92,4 +92,3 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
 }
 
 export default B2bSideMenu;
-
