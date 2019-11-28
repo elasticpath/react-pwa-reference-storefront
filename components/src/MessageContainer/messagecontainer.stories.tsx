@@ -53,6 +53,6 @@ storiesOf('Components|MessageContainer', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('MessageContainer Error Message', () => <MessageContainer message={object('errorMessage', [errorMessage])} />)
+  .add('MessageContainer Error Message', () => <MessageContainer message={object('message', [errorMessage])} />)
   .add('ProductDisplayItemMain Warning Message', () => <MessageContainer message={object('message', [warningMessage])} />)
   .add('ProductDisplayItemMain Dark Message', () => <MessageContainer message={object('message', [darkMessage])} />);
