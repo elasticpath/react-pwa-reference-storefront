@@ -1,4 +1,4 @@
-# ProfileGDPRMain
+# ProfileComplianceMain
 
 #### Description
 
@@ -7,13 +7,13 @@ Displays data policies available and consented to by profile. Can revoke and con
 #### Usage
 
 ```js
-import { ProfileGDPRMain } from '@elasticpath/store-components';
+import { ProfileComplianceMain } from '@elasticpath/store-components';
 ```
 
 #### Example
 
 ```js
-<ProfileGDPRMain dataPolicies={dataPolicyData} onChange={this.fetchProfileData} />
+<ProfileComplianceMain dataPolicies={dataPolicyData} onChange={this.fetchProfileData} />
 ```
 
 #### Properties

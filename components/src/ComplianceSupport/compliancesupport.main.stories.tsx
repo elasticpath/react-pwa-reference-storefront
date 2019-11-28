@@ -25,16 +25,16 @@ import { storiesOf } from '@storybook/react';
 import { text, boolean } from "@storybook/addon-knobs/react";
 import { textToFunc } from "../../../storybook/utils/storybookUtils"
 
-import GdprSupportModal from './gdprsupport.main';
+import ComplianceSupportModal from './compliancesupport.main';
 
-storiesOf('Components|GdprSupportModal', module)
+storiesOf('Components|ComplianceSupportModal', module)
   .addParameters({
     readme: {
       // Show readme at the addons panel
       sidebar: Readme,
     },
   })
-.add('GdprSupportModal', () => {
+.add('ComplianceSupportModal', () => {
   let onAcceptDataPolicyFuncText = text('onAcceptDataPolicy','() => {alert("onAcceptDataPolicy invoked")}');
-  return (<GdprSupportModal onAcceptDataPolicy={()=>textToFunc(onAcceptDataPolicyFuncText)}/>);
+  return (<ComplianceSupportModal onAcceptDataPolicy={()=>textToFunc(onAcceptDataPolicyFuncText)}/>);
 });

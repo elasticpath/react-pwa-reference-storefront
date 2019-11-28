@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain, AddressFormMain, ProfileGDPRMain,
+  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
 } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -98,8 +98,8 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       };
-      if (Config.GDPR.enable) {
-        options.headers['X-Ep-Data-Policy-Segments'] = `${Config.GDPR.dataPolicySegments}`;
+      if (Config.Compliance.enable) {
+        options.headers['X-Ep-Data-Policy-Segments'] = `${Config.Compliance.dataPolicySegments}`;
       }
       cortexFetch(`/?zoom=${zoomArray.join()}`, options)
         .then(res => res.json())
@@ -245,15 +245,15 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                   </div>
                 </div>
               </div>
-              {(Config.GDPR.enable) ? (
+              {(Config.Compliance.enable) ? (
                 <div className="profile-info-container">
                   <h3 className="profile-info-container-title">
-                    {intl.get('gdpr')}
+                    {intl.get('compliance')}
                   </h3>
                   <div className="profile-info-col">
                     <div className="profile-info-block">
                       {(dataPolicyData && dataPolicyData._element) ? (
-                        <ProfileGDPRMain dataPolicies={dataPolicyData} onChange={this.fetchProfileData} />
+                        <ProfileComplianceMain dataPolicies={dataPolicyData} onChange={this.fetchProfileData} />
                       ) : ('')}
                     </div>
                   </div>

@@ -25,21 +25,21 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-import './gdprsupport.main.less';
+import './compliancesupport.main.less';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-interface GdprSupportModalProps {
+interface ComplianceSupportModalProps {
   /** handle accept data policy */
   onAcceptDataPolicy?: (...args: any[]) => any,
 }
-interface GdprSupportModalState {
+interface ComplianceSupportModalState {
   open: boolean,
   checked: boolean,
 }
 
-class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModalState> {
+class ComplianceSupportModal extends Component<ComplianceSupportModalProps, ComplianceSupportModalState> {
   static defaultProps = {
     onAcceptDataPolicy: () => {},
   };
@@ -56,8 +56,8 @@ class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModal
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
-    this.handleAcceptGdpr = this.handleAcceptGdpr.bind(this);
-    this.handleDeclineGdpr = this.handleDeclineGdpr.bind(this);
+    this.handleAcceptCompliance = this.handleAcceptCompliance.bind(this);
+    this.handleDeclineCompliance = this.handleDeclineCompliance.bind(this);
   }
 
   handleOpenModal() {
@@ -73,7 +73,7 @@ class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModal
     this.setState({ checked: !checked });
   }
 
-  handleAcceptGdpr() {
+  handleAcceptCompliance() {
     const { checked } = this.state;
     if (checked) {
       this.dataPolicyConsent();
@@ -82,7 +82,7 @@ class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModal
 
   dataPolicyConsent() {
     const { onAcceptDataPolicy } = this.props;
-    localStorage.setItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`, 'true');
+    localStorage.setItem(`${Config.cortexApi.scope}_Compliance_Accept`, 'true');
     this.setState({ open: false });
     login().then(() => {
       cortexFetch(`/datapolicies/${Config.cortexApi.scope}?zoom=element,element:datapolicyconsentform`,
@@ -90,7 +90,7 @@ class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModal
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
+            'X-Ep-Data-Policy-Segments': `${Config.Compliance.dataPolicySegments}`,
           },
         })
         .then(res => res.json())
@@ -102,7 +102,7 @@ class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModal
                 headers: {
                   'Content-Type': 'application/json',
                   Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-                  'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
+                  'X-Ep-Data-Policy-Segments': `${Config.Compliance.dataPolicySegments}`,
                 },
                 body: JSON.stringify({ 'data-policy-consent': true }),
               }));
@@ -123,8 +123,8 @@ class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModal
     });
   }
 
-  handleDeclineGdpr() {
-    localStorage.setItem(`${Config.cortexApi.scope}_GDPR_Support_Decline`, 'true');
+  handleDeclineCompliance() {
+    localStorage.setItem(`${Config.cortexApi.scope}_Compliance_Decline`, 'true');
     this.setState({ open: false });
   }
 
@@ -134,26 +134,26 @@ class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModal
     return (
       <div>
         <Modal open={open} onClose={this.handleCloseModal}>
-          <div className="modal-lg gdpr-support-modal">
+          <div className="modal-lg compliance-support-modal">
             <div className="modal-content">
               <div className="modal-header">
                 <h2 className="modal-title">
-                  {intl.get('gdpr')}
+                  {intl.get('compliance')}
                 </h2>
               </div>
               <div className="modal-body">
-                <div className="gdpr-checkbox-wrap">
-                  <label htmlFor="gdpr_agreement">
-                    <input id="gdpr_agreement" type="checkbox" onChange={this.handleCheck} defaultChecked={checked} />
+                <div className="compliance-checkbox-wrap">
+                  <label htmlFor="compliance_agreement">
+                    <input id="compliance_agreement" type="checkbox" onChange={this.handleCheck} defaultChecked={checked} />
                     <span className="helping-el" />
                     <span className="label-text">
-                      {intl.get('gdpr-label')}
+                      {intl.get('compliance-label')}
                     </span>
                   </label>
                 </div>
                 <div className="action-row">
-                  <button type="button" onClick={this.handleAcceptGdpr} className="ep-btn primary wide" disabled={!checked}>{intl.get('accept')}</button>
-                  <button type="button" onClick={this.handleDeclineGdpr} className="ep-btn primary wide">{intl.get('decline')}</button>
+                  <button type="button" onClick={this.handleAcceptCompliance} className="ep-btn primary wide" disabled={!checked}>{intl.get('accept')}</button>
+                  <button type="button" onClick={this.handleDeclineCompliance} className="ep-btn primary wide">{intl.get('decline')}</button>
                 </div>
               </div>
             </div>
@@ -164,4 +164,4 @@ class GdprSupportModal extends Component<GdprSupportModalProps, GdprSupportModal
   }
 }
 
-export default GdprSupportModal;
+export default ComplianceSupportModal;

@@ -1,4 +1,4 @@
-# GdprSupportModal
+# ComplianceSupportModal
 
 #### Description
 
@@ -7,13 +7,13 @@ Modal to present policy for shopper to accept. Invokes policy acceptance given p
 #### Usage
 
 ```js
-import { GdprSupportModal } from '@elasticpath/store-components';
+import { ComplianceSupportModal } from '@elasticpath/store-components';
 ```
 
 #### Example
 
 ```js
-<GdprSupportModal onAcceptDataPolicy={handleAcceptDataPolicy} />
+<ComplianceSupportModal onAcceptDataPolicy={handleAcceptDataPolicy} />
 ```
 
 #### Properties

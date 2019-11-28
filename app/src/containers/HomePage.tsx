@@ -23,7 +23,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import intl from 'react-intl-universal';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
-import { GdprSupportModal, Carousel, IndiRecommendationsDisplayMain } from '@elasticpath/store-components';
+import { ComplianceSupportModal, Carousel, IndiRecommendationsDisplayMain } from '@elasticpath/store-components';
 import Config from '../ep.config.json';
 
 import homeEspot2 from '../images/site-images/brake-icon.jpg';
@@ -40,9 +40,9 @@ const homeEspot4FileName = 'warranty-graphic.jpg';
 const homeEspotParallax1FileName = 'car-inside.jpg';
 const homeEspotParallax2FileName = 'car-dashboard.jpg';
 
-const showGDPR = Config.GDPR.enable;
-const gdprSupportAccept = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Accept`);
-const gdprSupportDecline = localStorage.getItem(`${Config.cortexApi.scope}_GDPR_Support_Decline`);
+const showCompliance = Config.Compliance.enable;
+const isComplianceAccepted = localStorage.getItem(`${Config.cortexApi.scope}_Compliance_Accept`);
+const isComplianceDeclined = localStorage.getItem(`${Config.cortexApi.scope}_Compliance_Decline`);
 
 const HomePage: React.FunctionComponent = () => {
   function handleAcceptDataPolicy() {
@@ -133,7 +133,7 @@ const HomePage: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
-        {showGDPR && !gdprSupportAccept && !gdprSupportDecline && <GdprSupportModal onAcceptDataPolicy={handleAcceptDataPolicy} />}
+        {showCompliance && !isComplianceAccepted && !isComplianceDeclined && <ComplianceSupportModal onAcceptDataPolicy={handleAcceptDataPolicy} />}
       </div>
     </ParallaxProvider>
   );
