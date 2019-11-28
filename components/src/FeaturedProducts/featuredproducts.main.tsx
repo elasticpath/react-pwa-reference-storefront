@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import Slider from 'react-slick';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 import { getConfig } from '../utils/ConfigProvider';
@@ -29,14 +29,16 @@ import './featuredproducts.main.less';
 let intl = { get: str => str };
 
 interface FeaturedProductsProps {
+  /** product data */
   productData: { [key: string]: any },
+  /** item detail link */
   itemDetailLink?: string,
 }
 interface FeaturedProductsState {
   categoryModel: { [key: string]: any },
 }
 
-class FeaturedProducts extends React.Component<FeaturedProductsProps, FeaturedProductsState> {
+class FeaturedProducts extends Component<FeaturedProductsProps, FeaturedProductsState> {
   static defaultProps = {
     itemDetailLink: '',
   }

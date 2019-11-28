@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -53,13 +53,14 @@ const zoomArray = [
 ];
 
 interface OrderHistoryLineMainProps {
-    orderHistoryLineUrlProps: string,
+  /** order history line url */
+  orderHistoryLineUrlProps: string,
 }
 interface OrderHistoryLineMainState {
-    orderModel: any,
+  orderModel: any,
 }
 
-class OrderHistoryLineMain extends React.Component<OrderHistoryLineMainProps, OrderHistoryLineMainState> {
+class OrderHistoryLineMain extends Component<OrderHistoryLineMainProps, OrderHistoryLineMainState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();

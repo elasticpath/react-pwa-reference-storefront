@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -32,6 +31,7 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface GiftcertificateFormMainProps {
+  /** handle update certificate data */
   updateCertificate: (...args: any[]) => any,
 }
 interface GiftcertificateFormMainState {
@@ -44,7 +44,7 @@ interface GiftcertificateFormMainState {
   showLoader: boolean,
 }
 
-class GiftcertificateFormMain extends React.Component<GiftcertificateFormMainProps, GiftcertificateFormMainState> {
+class GiftcertificateFormMain extends Component<GiftcertificateFormMainProps, GiftcertificateFormMainState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -317,4 +317,4 @@ class GiftcertificateFormMain extends React.Component<GiftcertificateFormMainPro
   }
 }
 
-export default withRouter(GiftcertificateFormMain);
+export default GiftcertificateFormMain;

@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import scriptjs from 'scriptjs';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './powerreview.less';
@@ -31,12 +31,13 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface PowerReviewProps {
-    productData: {
-        [key: string]: any
-    },
+  /** product data */
+  productData: {
+    [key: string]: any
+  },
 }
 
-class PowerReview extends React.Component<PowerReviewProps> {
+class PowerReview extends Component<PowerReviewProps> {
   private POWERREVIEWS: any;
 
   private funcName: any;

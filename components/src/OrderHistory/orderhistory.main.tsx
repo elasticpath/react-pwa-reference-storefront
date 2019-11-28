@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { getConfig } from '../utils/ConfigProvider';
 import OrderLine from '../OrderLine/orderline.main';
 
@@ -28,13 +28,14 @@ import './orderhistory.main.less';
 let intl = { get: str => str };
 
 interface OrderHistoryMainProps {
+  /** purchase history */
   purchaseHistory: { [key: string]: any },
 }
 interface OrderHistoryMainState {
   purchases: { [key: string]: any },
 }
 
-class OrderHistoryMain extends React.Component<OrderHistoryMainProps, OrderHistoryMainState> {
+class OrderHistoryMain extends Component<OrderHistoryMainProps, OrderHistoryMainState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();
