@@ -27,18 +27,25 @@ import './cart.main.less';
 let intl = { get: str => str };
 
 interface CartMainProps {
+  /** is empty */
   empty: boolean,
+  /** cart data */
   cartData: {
     [key: string]: any
   },
+  /** handle quantity change */
   handleQuantityChange: (...args: any[]) => any,
+  /** handle item configurator add to cart */
   onItemConfiguratorAddToCart?: (...args: any[]) => any,
+  /** handle item move to cart */
   onItemMoveToCart?: (...args: any[]) => any,
+  /** handle item remove */
   onItemRemove?: (...args: any[]) => any,
+  /** item detail link */
   itemDetailLink?: string,
 }
 
-const CartMain: React.FunctionComponent<CartMainProps> = (props: CartMainProps) => {
+function CartMain(props: CartMainProps) {
   const { itemDetailLink } = props;
   ({ intl } = getConfig());
   const {
@@ -84,7 +91,7 @@ const CartMain: React.FunctionComponent<CartMainProps> = (props: CartMainProps) 
       ))}
     </div>
   );
-};
+}
 
 CartMain.defaultProps = {
   onItemConfiguratorAddToCart: () => {},

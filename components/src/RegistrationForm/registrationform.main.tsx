@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import {
   login, loginRegistered, registerUser, getRegistrationForm,
@@ -31,6 +30,7 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface RegistrationFormMainProps {
+  /** handle register success */
   onRegisterSuccess?: (...args: any[]) => any
 }
 
@@ -45,7 +45,7 @@ interface RegistrationFormMainState {
   isLoading: boolean,
 }
 
-class RegistrationFormMain extends React.Component<RegistrationFormMainProps, RegistrationFormMainState> {
+class RegistrationFormMain extends Component<RegistrationFormMainProps, RegistrationFormMainState> {
   static defaultProps = {
     onRegisterSuccess: () => {},
   };
@@ -227,4 +227,4 @@ class RegistrationFormMain extends React.Component<RegistrationFormMainProps, Re
   }
 }
 
-export default withRouter(RegistrationFormMain);
+export default RegistrationFormMain;

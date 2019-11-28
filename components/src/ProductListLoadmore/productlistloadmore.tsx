@@ -18,8 +18,7 @@
  *
  *
  */
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { getConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 
@@ -28,17 +27,20 @@ import './productlistloadmore.less';
 let intl = { get: str => str };
 
 interface ProductListLoadMoreProps{
-    dataProps: {
-        [key: string]: any
-    },
-    handleDataChange: (...args: any[]) => any,
-    onLoadMore: (...args: any[]) => any,
+  /** product data */
+  dataProps: {
+    [key: string]: any
+  },
+  /** handle product data change */
+  handleDataChange: (...args: any[]) => any,
+  /** handle load more */
+  onLoadMore: (...args: any[]) => any,
 }
 interface ProductListLoadMoreState {
-    canLoadMore: boolean,
-    isLoading: boolean,
+  canLoadMore: boolean,
+  isLoading: boolean,
 }
-class ProductListLoadMore extends React.Component<ProductListLoadMoreProps, ProductListLoadMoreState> {
+class ProductListLoadMore extends Component<ProductListLoadMoreProps, ProductListLoadMoreState> {
   constructor(props) {
     super(props);
     ({ intl } = getConfig());
@@ -106,4 +108,4 @@ class ProductListLoadMore extends React.Component<ProductListLoadMoreProps, Prod
   }
 }
 
-export default withRouter(ProductListLoadMore);
+export default ProductListLoadMore;

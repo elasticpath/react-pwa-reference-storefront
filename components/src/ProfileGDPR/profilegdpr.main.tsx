@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -30,15 +30,17 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface ProfileGDPRMainProps {
+  /** data policies */
   dataPolicies: {
       [key: string]: any
   },
+  /** handle data policies change */
   onChange: (...args: any[]) => any,
 }
 interface ProfileGDPRMainState {
     openNewPaymentModal: boolean
 }
-class ProfileGDPRMain extends React.Component<ProfileGDPRMainProps, ProfileGDPRMainState> {
+class ProfileGDPRMain extends Component<ProfileGDPRMainProps, ProfileGDPRMainState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();

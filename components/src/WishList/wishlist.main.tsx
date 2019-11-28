@@ -25,18 +25,25 @@ import CartLineItem from '../CartLineItem/cart.lineitem';
 import './wishlist.main.less';
 
 interface WishListMainProps {
+  /** is empty */
   empty: boolean,
+  /** wish list data */
   wishListData: {
     [key: string]: any
   },
+  /** handle quantity change */
   handleQuantityChange: (...args: any[]) => any,
+  /** handle item configurator add to cart */
   onItemConfiguratorAddToCart?: (...args: any[]) => any,
+  /** handle item move to cart */
   onItemMoveToCart?: (...args: any[]) => any,
+  /** handle item remove */
   onItemRemove?: (...args: any[]) => any,
+  /** item detail link */
   itemDetailLink?: string
 }
 
-const WishListMain: React.FunctionComponent<WishListMainProps> = (props: WishListMainProps) => {
+function WishListMain(props: WishListMainProps) {
   const { itemDetailLink } = props;
 
   function handleConfiguratorAddToCart() {
@@ -84,7 +91,7 @@ const WishListMain: React.FunctionComponent<WishListMainProps> = (props: WishLis
       ))}
     </div>
   );
-};
+}
 
 WishListMain.defaultProps = {
   onItemConfiguratorAddToCart: () => {},

@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { login } from '../utils/AuthService';
@@ -43,11 +43,17 @@ const zoomArray = [
 ];
 
 interface AppHeaderNavigationMainProps {
+  /** is offline check */
   isOfflineCheck: (...args: any[]) => any,
+  /** is offline */
   isOffline?: boolean,
+  /** checked location */
   checkedLocation?: boolean,
+  /** is mobile view */
   isMobileView: boolean,
+  /** on fetch navigation error */
   onFetchNavigationError?: (...args: any[]) => any,
+  /** links in app header navigation */
   appHeaderNavigationLinks?: { [key: string]: any },
 }
 
@@ -56,7 +62,7 @@ interface AppHeaderNavigationMainState {
   originalMinimizedNav: any,
 }
 
-class AppHeaderNavigationMain extends React.Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
+class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
   static defaultProps = {
     isOffline: undefined,
     onFetchNavigationError: () => {},

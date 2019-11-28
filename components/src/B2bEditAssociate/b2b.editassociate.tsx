@@ -20,7 +20,7 @@
  *
  */
 
-import * as React from 'react';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -31,15 +31,25 @@ let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
 
 interface B2bEditAssociateProps {
+  /** is open */
     isOpen: boolean,
+  /** handle close */
     handleClose: () => void,
+  /** handle update */
     handleUpdate: () => void,
+  /** associate email */
     associateEmail: string,
+  /** account name */
     accountName: string,
+  /** sub account name */
     subAccountName: string,
+  /** uri for add associate */
     addAssociateUri: string,
+  /** roles selector */
     rolesSelector: any,
+  /** is self */
     isSelf: boolean,
+  /** is add associate open */
     isAddAssociateOpen: boolean,
 }
 
@@ -51,7 +61,7 @@ interface B2bEditAssociateState {
     validEmail: boolean,
 }
 
-export default class B2bEditAssociate extends React.Component<B2bEditAssociateProps, B2bEditAssociateState> {
+class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociateState> {
   constructor(props: any) {
     super(props);
     const epConfig = getConfig();
@@ -297,3 +307,5 @@ export default class B2bEditAssociate extends React.Component<B2bEditAssociatePr
     );
   }
 }
+
+export default B2bEditAssociate;

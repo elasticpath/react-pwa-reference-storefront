@@ -17,7 +17,6 @@ import { CartLineItem } from '@elasticpath/store-components';
   key={product._item[0]._code[0].code}
   item={product}
   handleQuantityChange={() => { this.handleQuantityChange(); }}
-  hideQuantitySelector
   handleErrorMessage={this.handleErrorMessage}
   onRemove={this.handleRemove}
   onConfiguratorAddToCart={this.handleConfiguratorAddToCart}

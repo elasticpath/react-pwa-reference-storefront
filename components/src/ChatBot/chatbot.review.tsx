@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import Amplify, { Interactions } from 'aws-amplify';
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
@@ -33,6 +33,7 @@ Amplify.configure(awsmobile);
 let Config: IEpConfig | any = {};
 
 interface ReviewProps {
+  /** steps */
     steps?: any,
 }
 
@@ -59,7 +60,7 @@ const handleCompleteIntent = (err, confirmation) => {
   return 'Conversation success!';
 };
 
-class Review extends React.Component<ReviewProps, ReviewState> {
+class Review extends Component<ReviewProps, ReviewState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();

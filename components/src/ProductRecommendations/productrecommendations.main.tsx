@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { getConfig } from '../utils/ConfigProvider';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
@@ -29,9 +28,11 @@ import './productrecommendations.main.less';
 let intl = { get: str => str };
 
 interface ProductRecommendationsDisplayMainProps {
+  /** product data */
   productData: {
     [key: string]: any
   },
+  /** item detail link */
   itemDetailLink?: string
 }
 
@@ -39,7 +40,7 @@ interface ProductRecommendationsDisplayMainState {
   maxItemsInView: number
 }
 
-class ProductRecommendationsDisplayMain extends React.Component<ProductRecommendationsDisplayMainProps, ProductRecommendationsDisplayMainState> {
+class ProductRecommendationsDisplayMain extends Component<ProductRecommendationsDisplayMainProps, ProductRecommendationsDisplayMainState> {
   static defaultProps = {
     itemDetailLink: '',
   };
@@ -95,4 +96,4 @@ class ProductRecommendationsDisplayMain extends React.Component<ProductRecommend
   }
 }
 
-export default withRouter(ProductRecommendationsDisplayMain);
+export default ProductRecommendationsDisplayMain;

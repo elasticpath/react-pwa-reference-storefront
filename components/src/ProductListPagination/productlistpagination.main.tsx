@@ -20,7 +20,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getConfig } from '../utils/ConfigProvider';
 
@@ -32,9 +32,13 @@ let searchUrlVar = true;
 let intl = { get: str => str };
 
 interface ProductListPaginationProps {
+  /** pagination data */
   paginationDataProps: { [key: string]: any },
+  /** title */
   titleString: string,
+  /** is top */
   isTop?: boolean,
+  /** product list pagination links */
   productListPaginationLinks?: { [key: string]: any },
 }
 
@@ -45,7 +49,7 @@ interface ProductListPaginationState {
   searchUrl: boolean,
 }
 
-class ProductListPagination extends React.Component<ProductListPaginationProps, ProductListPaginationState> {
+class ProductListPagination extends Component<ProductListPaginationProps, ProductListPaginationState> {
   static defaultProps = {
     isTop: false,
     productListPaginationLinks: {

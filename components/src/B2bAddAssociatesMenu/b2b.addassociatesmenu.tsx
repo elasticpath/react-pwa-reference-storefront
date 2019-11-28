@@ -19,23 +19,25 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import './b2b.addassociatesmenu.less';
 import { getConfig } from '../utils/ConfigProvider';
 
 let intl = { get: str => str };
 
 interface B2bAddAssociatesMenuProps {
+  /** handle spreeadsheet clicked */
   onSpreeadsheetClicked?: (...args: any[]) => any;
+  /** handle template clicked */
   onTemplateClicked?: (...args: any[]) => any;
 }
 interface B2bAddAssociatesMenuState {
     isOpen: boolean,
 }
 
-export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociatesMenuProps, B2bAddAssociatesMenuState> {
+class B2bAddAssociatesMenu extends Component<B2bAddAssociatesMenuProps, B2bAddAssociatesMenuState> {
     static defaultProps = {
-      onSpreeadsheetClicked: null,
+      onSpreeadsheetClicked: () => {},
     };
 
     constructor(props) {
@@ -115,3 +117,5 @@ export default class B2bAddAssociatesMenu extends React.Component<B2bAddAssociat
       );
     }
 }
+
+export default B2bAddAssociatesMenu;

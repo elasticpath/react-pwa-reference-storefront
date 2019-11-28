@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -31,15 +30,19 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface ProfileAddressesMainProps {
+  /** addresses */
   addresses: {
     [key: string]: any
   },
+  /** handle addresses change */
   onChange: () => void,
+  /** handle add new address */
   onAddNewAddress: () => void,
+  /** handle edit address */
   onEditAddress: (address: string) => void
 }
 
-class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}> {
+class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -151,4 +154,4 @@ class ProfileAddressesMain extends React.Component<ProfileAddressesMainProps, {}
   }
 }
 
-export default withRouter(ProfileAddressesMain);
+export default ProfileAddressesMain;

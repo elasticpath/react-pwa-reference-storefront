@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from '../AppHeaderSearch/appheadersearch.main';
 import BloomreachAppHeaderSearchMain from '../Bloomreach/bloomreach.appheadersearch.main';
@@ -52,28 +52,43 @@ const zoomArray = [
 
 const headerLogoFileName = 'Company-Logo-v2.svg';
 interface AppHeaderMainProps {
+  /** handle search page */
     onSearchPage: (...args: any[]) => any,
+  /** handle redirect to main page */
     redirectToMainPage: (...args: any[]) => any,
+  /** handle reset password */
     handleResetPassword: (...args: any[]) => any,
+  /** handle currency change */
     onCurrencyChange: (...args: any[]) => any,
+  /** handle locale change */
     onLocaleChange: (...args: any[]) => any,
+  /** handle continue cart */
     onContinueCart: (...args: any[]) => any,
+  /** handle go back */
     onGoBack: (...args: any[]) => any,
+  /** checked location */
     checkedLocation: boolean,
+  /** is in standalone mode */
     isInStandaloneMode: boolean,
+  /** data location search */
     locationSearchData: string,
+  /** links in app header */
     appHeaderLinks: {
         [key: string]: any
     },
+  /** links in app header login */
     appHeaderLoginLinks: {
         [key: string]: any
     },
+  /** links in app header navigation */
     appHeaderNavigationLinks: {
         [key: string]: any
     },
+  /** links in app header top */
     appHeaderTopLinks: {
         [key: string]: any
     },
+  /** links in app modal login */
     appModalLoginLinks: {
         [key: string]: any
     },
@@ -91,7 +106,7 @@ interface AppHeaderMainState {
     totalQuantity: number,
 }
 
-class AppHeaderMain extends React.Component<AppHeaderMainProps, AppHeaderMainState> {
+class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
   static defaultProps = {
     checkedLocation: false,
     isInStandaloneMode: false,

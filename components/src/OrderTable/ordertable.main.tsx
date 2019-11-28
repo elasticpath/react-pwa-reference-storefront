@@ -24,13 +24,15 @@ import OrderTableLineItem from '../OrderTableLineItem/ordertable.lineitem';
 import './ordertable.main.less';
 
 interface OrderTableMainProps {
-    data: {
-        [key: string]: any
-    },
-    itemDetailLink?: string,
+  /** data */
+  data: {
+    [key: string]: any
+  },
+  /** item detail link */
+  itemDetailLink?: string,
 }
 
-const OrderTableMain: React.FunctionComponent<OrderTableMainProps> = (props: OrderTableMainProps) => {
+function OrderTableMain(props: OrderTableMainProps) {
   const { data, itemDetailLink } = props;
   return (
     <div className="order-main-inner table-responsive">
@@ -43,7 +45,7 @@ const OrderTableMain: React.FunctionComponent<OrderTableMainProps> = (props: Ord
       </table>
     </div>
   );
-};
+}
 
 OrderTableMain.defaultProps = {
   itemDetailLink: '',

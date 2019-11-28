@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import './paymentform.main.less';
@@ -31,8 +31,10 @@ let intl = { get: str => str };
 const today = new Date();
 
 interface PaymentFormMainProps {
-    onCloseModal?: (...args: any[]) => any,
-    fetchData?: (...args: any[]) => any,
+  /** handle close modal */
+  onCloseModal?: (...args: any[]) => any,
+  /** handle fetch data */
+  fetchData?: (...args: any[]) => any,
 }
 
 interface PaymentFormMainState {
@@ -50,7 +52,7 @@ interface PaymentFormMainState {
     cybersourceBodyRequest: any,
 }
 
-class PaymentFormMain extends React.Component<PaymentFormMainProps, PaymentFormMainState> {
+class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainState> {
   static defaultProps = {
     onCloseModal: () => {},
     fetchData: () => {},

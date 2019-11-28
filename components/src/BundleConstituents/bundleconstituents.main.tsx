@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { getConfig } from '../utils/ConfigProvider';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
@@ -29,11 +28,13 @@ import './bundleconstituents.main.less';
 let intl = { get: str => str };
 
 interface BundleConstituentsDisplayMainProps {
+  /** product data */
   productData: { [key: string]: any },
+  /** link for item detail */
   itemDetailLink?: string,
 }
 
-class BundleConstituentsDisplayMain extends React.Component<BundleConstituentsDisplayMainProps> {
+class BundleConstituentsDisplayMain extends Component<BundleConstituentsDisplayMainProps> {
   static defaultProps = {
     itemDetailLink: '',
   }
@@ -85,4 +86,4 @@ class BundleConstituentsDisplayMain extends React.Component<BundleConstituentsDi
   }
 }
 
-export default withRouter(BundleConstituentsDisplayMain);
+export default BundleConstituentsDisplayMain;

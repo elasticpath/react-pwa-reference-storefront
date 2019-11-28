@@ -28,13 +28,15 @@ import './ordertable.lineitem.less';
 let Config: IEpConfig | any = {};
 
 interface OrderTableLineItemProps {
-    item: {
-        [key: string]: any
-    },
-    itemDetailLink?: string,
+  /** item */
+  item: {
+    [key: string]: any
+  },
+  /** item detail link */
+  itemDetailLink?: string,
 }
 
-const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (props: OrderTableLineItemProps) => {
+function OrderTableLineItem(props: OrderTableLineItemProps) {
   const { item, itemDetailLink } = props;
   const { code } = item._item[0]._code[0];
   const displayName = item._item[0]._definition[0]['display-name'];
@@ -140,7 +142,7 @@ const OrderTableLineItem: React.FunctionComponent<OrderTableLineItemProps> = (pr
       </td>
     </tr>
   );
-};
+}
 
 OrderTableLineItem.defaultProps = {
   itemDetailLink: '',

@@ -19,14 +19,14 @@
  *
  */
 import React from 'react';
-import Readme from './README.md';
+import { text, object } from "@storybook/addon-knobs/react";
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import Readme from './README.md';
 
 import profileData from '../CommonMockHttpResponses/profile_data_response.json';
 import ProfilePaymentMethodsMain from './profilepaymentmethods.main';
 
-import { text, object } from "@storybook/addon-knobs/react";
 import { textToFunc } from "../../../storybook/utils/storybookUtils";
 
 storiesOf('Components|ProfilePaymentMethodsMain', module)
@@ -40,13 +40,13 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('ProfilePaymentMethodsMain', () => {
-    let onChangeFuncText = text('handleDataChange', '() => {alert("handleDataChange invoked")}');
-    let onAddNewPaymentFuncText = text('onAddNewPayment', '() => {alert("onAddNewPayment invoked")}');
-    
+    const onChangeFuncText = text('handleDataChange', '() => {alert("handleDataChange invoked")}');
+
     return (
-      <ProfilePaymentMethodsMain 
-        paymentMethods={object('paymentMethods', profileData._defaultprofile[0]._paymentmethods[0])} 
-        onChange={()=>{textToFunc(onChangeFuncText)}} 
-        onAddNewPayment={textToFunc(onAddNewPaymentFuncText)} />
+      <ProfilePaymentMethodsMain
+        paymentMethods={object('paymentMethods', profileData._defaultprofile[0]._paymentmethods[0])}
+        onChange={() => { textToFunc(onChangeFuncText); }}
+        disableAddPayment={false}
+      />
     );
   });

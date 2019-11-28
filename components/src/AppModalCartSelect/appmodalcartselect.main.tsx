@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import './appmodalcartselect.main.less';
@@ -37,8 +36,11 @@ const zoomArray = [
 ];
 
 interface AppModalCartSelectMainProps {
+  /** handle modal close */
   handleModalClose: (...args: any[]) => any,
+  /** open modal */
   openModal: boolean,
+  /** handle continue cart */
   onContinueCart?: (...args: any[]) => any,
 }
 interface AppModalCartSelectMainState {
@@ -46,7 +48,7 @@ interface AppModalCartSelectMainState {
   selectedCart: string,
 }
 
-class AppModalCartSelectMain extends React.Component<AppModalCartSelectMainProps, AppModalCartSelectMainState> {
+class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppModalCartSelectMainState> {
   static defaultProps = {
     onContinueCart: () => { },
   };
@@ -197,4 +199,4 @@ class AppModalCartSelectMain extends React.Component<AppModalCartSelectMainProps
   }
 }
 
-export default withRouter(AppModalCartSelectMain);
+export default AppModalCartSelectMain;

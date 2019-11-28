@@ -23,9 +23,9 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import QuickOrderMain from './quickorder.main';
 import { boolean, object, text } from '@storybook/addon-knobs';
-import { textToFunc } from "../../../storybook/utils/storybookUtils"
+import QuickOrderMain from './quickorder.main';
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 
 storiesOf('Components|QuickOrderMain', module)
   .addParameters({
@@ -38,16 +38,16 @@ storiesOf('Components|QuickOrderMain', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('QuickOrderMain', () => {
-    let onMoveToCartFuncText = text('onMoveToCart','() => {alert("onMoveToCart invoked")}');
-    let onConfigurationAddToCartFuncText = text('onConfigurationAddToCart','() => {alert("onConfigurationAddToCart invoked")}');
-    
-    return(
-      <QuickOrderMain 
+    const onMoveToCartFuncText = text('onMoveToCart', '() => {alert("onMoveToCart invoked")}');
+    const onConfiguratorAddToCartFuncText = text('onConfiguratorAddToCart', '() => {alert("onConfiguratorAddToCart invoked")}');
+
+    return (
+      <QuickOrderMain
         isBuyItAgain={boolean('isBuyItAgain', true)}
         productData={object('productData', {})}
         itemDetailLink={text('itemDetailLink', '')}
-        onMoveToCart={()=>{textToFunc(onMoveToCartFuncText)}}
-        onConfigurationAddToCart={()=>{textToFunc(onConfigurationAddToCartFuncText)}}
+        onMoveToCart={() => { textToFunc(onMoveToCartFuncText); }}
+        onConfiguratorAddToCart={() => { textToFunc(onConfiguratorAddToCartFuncText); }}
       />
     );
   });

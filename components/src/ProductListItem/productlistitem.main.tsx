@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
@@ -32,29 +32,32 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface ProductListItemMainProps {
-    productId?: string,
-    offerData?: {
-        [key: string]: any
-    },
-    productElement?: {
-        [key: string]: any
-    },
-    featuredProductAttribute?: boolean,
-    customClass?: string,
-    itemDetailLink?: string,
+  /** product id */
+  productId?: string,
+  /** offer data */
+  offerData?: {
+    [key: string]: any
+  },
+  /** product elements */
+  productElement?: {
+    [key: string]: any
+  },
+  /** featured product attribute */
+  featuredProductAttribute?: boolean,
+  /** item detail link */
+  itemDetailLink?: string,
 }
 interface ProductListItemMainState {
-    productData: any,
-    imageStatus: string,
+  productData: any,
+  imageStatus: string,
 }
 
-class ProductListItemMain extends React.Component<ProductListItemMainProps, ProductListItemMainState> {
+class ProductListItemMain extends Component<ProductListItemMainProps, ProductListItemMainState> {
   static defaultProps = {
     productId: '',
     offerData: {},
     productElement: {},
     featuredProductAttribute: false,
-    customClass: '',
     itemDetailLink: '',
   };
 
@@ -105,7 +108,7 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
   render() {
     const { productData, imageStatus } = this.state;
     const {
-      offerData, featuredProductAttribute, customClass, itemDetailLink,
+      offerData, featuredProductAttribute, itemDetailLink,
     } = this.props;
     if (productData) {
       let listPrice = 'n/a';
@@ -142,7 +145,7 @@ class ProductListItemMain extends React.Component<ProductListItemMainProps, Prod
         }
       }
       return (
-        <div className={`category-item-inner ${customClass}`}>
+        <div className="category-item-inner">
           <div className={`category-item-thumbnail-container ${imageStatus === 'loaded' ? 'loaded' : ''}`}>
             <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
               <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e: any) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" onLoad={this.handleImageLoaded.bind(this)} title="" />

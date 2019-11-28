@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import * as UserPrefs from '../utils/UserPrefs';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import currencyLogoCad from '../../../app/src/images/header-icons/ca.svg';
@@ -32,8 +32,11 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AppHeaderLocaleMainProps {
+  /** is mobile view  */
     isMobileView?: boolean,
+  /** handle currency change */
     onCurrencyChange?: (...args: any[]) => any,
+  /** handle location change */
     onLocaleChange?: (...args: any[]) => any,
 }
 interface AppHeaderLocaleMainState {
@@ -41,7 +44,7 @@ interface AppHeaderLocaleMainState {
     selectedCurrencyValue: any,
 }
 
-class AppHeaderLocaleMain extends React.Component<AppHeaderLocaleMainProps, AppHeaderLocaleMainState> {
+class AppHeaderLocaleMain extends Component<AppHeaderLocaleMainProps, AppHeaderLocaleMainState> {
   static defaultProps = {
     isMobileView: false,
     onCurrencyChange: () => {},

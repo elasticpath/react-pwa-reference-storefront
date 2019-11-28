@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { searchLookup } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
@@ -88,10 +88,13 @@ const zoomArray = [
 ];
 
 interface SearchResultsItemsMainProps {
+  /** search keywords */
   searchKeywordsProps: {
     [key: string]: any
   },
+  /** handle product facet selection */
   onProductFacetSelection?: (...args: any[]) => any,
+  /** product links */
   productLinks?: {
     [key: string]: string
   }
@@ -106,7 +109,7 @@ interface SearchResultsItemsMainState {
   searchKeywords: any
 }
 
-class SearchResultsItemsMain extends React.Component<SearchResultsItemsMainProps, SearchResultsItemsMainState> {
+class SearchResultsItemsMain extends Component<SearchResultsItemsMainProps, SearchResultsItemsMainState> {
   static defaultProps = {
     onProductFacetSelection: () => {},
     productLinks: {
