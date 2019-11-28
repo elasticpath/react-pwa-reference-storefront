@@ -126,10 +126,6 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.fetchCartData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchCartData();
-  }
-
   fetchCartData() {
     const { selectedCartNumber } = this.state;
     login().then(() => {
