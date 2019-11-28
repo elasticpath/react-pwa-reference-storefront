@@ -62,11 +62,11 @@ interface CartLineItemState {
   openModal: boolean,
 }
 
-class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState> {
+class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
   static defaultProps = {
     handleErrorMessage: () => { },
     hideRemoveButton: false,
-    itemQuantity: 1,
+    itemQuantity: '1',
     featuredProductAttribute: false,
     hideAddToCartButton: false,
     onConfiguratorAddToCart: () => { },

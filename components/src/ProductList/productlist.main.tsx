@@ -46,9 +46,9 @@ interface ProductListMainState {
   categoryModel: any,
   compareList: any,
 }
-class ProductListMain extends React.Component<ProductListMainProps, ProductListMainState> {
+class ProductListMain extends Component<ProductListMainProps, ProductListMainState> {
   static defaultProps = {
-    showCompareButton: true,
+    showCompareButton: false,
     productListLinks: {
       itemDetail: '',
       productsCompare: '',
