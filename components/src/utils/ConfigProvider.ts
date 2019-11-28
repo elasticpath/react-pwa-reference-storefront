@@ -88,7 +88,7 @@ export interface IEpConfig {
     pageId: string,
     applicationId: string
   },
-  GDPR: {
+  Compliance: {
     enable: boolean
   },
   PowerReviews: {
