@@ -19,9 +19,7 @@
  *
  */
 
-import React from 'react';
-
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { getConfig } from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
@@ -32,12 +30,17 @@ import './quickorder.main.less';
 let intl = { get: str => str };
 
 interface QuickOrderMainProps {
+  /** buy it again */
   isBuyItAgain?: boolean,
+  /** product data */
   productData?: {
     [key: string]: any
   },
+  /** item detail link */
   itemDetailLink?: string,
+  /** handle move to cart */
   onMoveToCart?: (...args: any[]) => any,
+  /** handle configurator add to cart */
   onConfiguratorAddToCart?: (...args: any[]) => any
 }
 
@@ -57,14 +60,14 @@ interface QuickOrderMainState {
   addToCartFailedMessage: string
 }
 
-class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMainState> {
+class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState> {
   static defaultProps = {
     isBuyItAgain: false,
     productData: {},
     itemDetailLink: '',
     onMoveToCart: () => {},
     onConfiguratorAddToCart: () => {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -243,4 +246,4 @@ class QuickOrderMain extends React.Component<QuickOrderMainProps, QuickOrderMain
   }
 }
 
-export default withRouter(QuickOrderMain);
+export default QuickOrderMain;

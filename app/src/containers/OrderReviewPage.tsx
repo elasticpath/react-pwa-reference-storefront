@@ -380,7 +380,7 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
                   <div>
                     <div className="checkout-sidebar-inner">
                       <div className="checkout-summary-container" style={{ display: 'inline-block' }}>
-                        <CheckoutSummaryList data={orderData} isLoading={false} giftCards={giftCertificateEntity} onChange={() => { this.fetchOrderData(); }} />
+                        <CheckoutSummaryList data={orderData} giftCards={giftCertificateEntity} onChange={() => { this.fetchOrderData(); }} />
                       </div>
                       <div className="checkout-submit-container" style={{ display: 'block' }}>
                         <button className="ep-btn primary wide btn-cmd-submit-order" disabled={!isValid} type="button" onClick={() => { this.completeOrder(); }}>

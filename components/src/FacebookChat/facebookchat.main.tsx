@@ -19,20 +19,22 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import scriptjs from 'scriptjs';
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
 import * as styles from '!!../utils/less-var-loader!../../../app/src/theme/common.less';
 
 interface FacebookChatProps {
+  /** config */
   config: {
     [key: string]: any
   },
+  /** handle Fb Async Init */
   handleFbAsyncInit?: (...args: any[]) => any
 }
 
-class FacebookChat extends React.Component<FacebookChatProps, {}> {
+class FacebookChat extends Component<FacebookChatProps, {}> {
   static loadSDKAsynchronously() {
     scriptjs('https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js', () => {
       // eslint-disable-next-line (unaccepted unnamed function)

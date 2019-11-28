@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
@@ -34,16 +33,27 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface CartLineItemProps {
+  /** item */
   item: { [key: string]: any },
+  /** handle quantity change */
   handleQuantityChange: (...args: any[]) => any,
+  /** handle error message */
   handleErrorMessage?: (...args: any[]) => any,
+  /** hide remove button */
   hideRemoveButton?: boolean,
+  /** hide add to cart button */
   hideAddToCartButton?: boolean,
+  /** item quantity */
   itemQuantity?: number,
+  /** featured product attribute */
   featuredProductAttribute?: boolean,
+  /** handle configurator add to cart */
   onConfiguratorAddToCart?: (...args: any[]) => any,
+  /** handle move to cart */
   onMoveToCart?: (...args: any[]) => any,
+  /** handle remove */
   onRemove?: (...args: any[]) => any,
+  /** link for item detail */
   itemDetailLink?: string,
 }
 
@@ -52,11 +62,11 @@ interface CartLineItemState {
   openModal: boolean,
 }
 
-class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState> {
+class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
   static defaultProps = {
     handleErrorMessage: () => { },
     hideRemoveButton: false,
-    itemQuantity: 1,
+    itemQuantity: '1',
     featuredProductAttribute: false,
     hideAddToCartButton: false,
     onConfiguratorAddToCart: () => { },
@@ -557,4 +567,4 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
   }
 }
 
-export default withRouter(CartLineItem);
+export default CartLineItem;

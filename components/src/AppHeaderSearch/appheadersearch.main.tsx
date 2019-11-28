@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 
 import './appheadersearch.main.less';
 import { getConfig } from '../utils/ConfigProvider';
@@ -28,15 +28,18 @@ import { ReactComponent as SearchIcon } from '../../../app/src/images/header-ico
 let intl = { get: str => str };
 
 interface AppHeaderSearchMainProps {
+  /** isMobileView */
     isMobileView: boolean,
+  /** is focused */
     isFocused?: boolean,
+  /** handle search page */
     onSearchPage?: (...args: any[]) => any,
 }
 interface AppHeaderSearchMainState{
     keywords: string,
 }
 
-class AppHeaderSearchMain extends React.Component<AppHeaderSearchMainProps, AppHeaderSearchMainState> {
+class AppHeaderSearchMain extends Component<AppHeaderSearchMainProps, AppHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
 
   static defaultProps = {

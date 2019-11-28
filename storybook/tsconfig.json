@@ -11,5 +11,5 @@
   "files": [
     "custom_typings/image-loader.d.ts",
     "custom_typings/typings.d.ts"
-  ],
+  ]
 }

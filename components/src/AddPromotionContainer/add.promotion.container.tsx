@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -30,9 +30,11 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AddPromotionContainerProps {
+  /** cart data */
   data: {
       [key: string]: any
   },
+  /** handle submit promotion */
   onSubmittedPromotion: (...args: any[]) => any,
 }
 
@@ -43,7 +45,7 @@ interface AddPromotionContainerState {
   couponFormLink: string,
 }
 
-class AddPromotionContainer extends React.Component<AddPromotionContainerProps, AddPromotionContainerState> {
+class AddPromotionContainer extends Component<AddPromotionContainerProps, AddPromotionContainerState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();

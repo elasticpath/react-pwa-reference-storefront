@@ -19,8 +19,8 @@
  *
  */
 
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
 import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
@@ -31,15 +31,23 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AppModalLoginMainProps {
+  /** handle modal close */
     handleModalClose: (...args: any[]) => any,
+  /** handle open modal */
     openModal: boolean,
+  /** handle login */
     onLogin?: (...args: any[]) => any,
+  /** handle reset password */
     onResetPassword?: (...args: any[]) => any,
+  /** location search data */
     locationSearchData?: string,
+  /** links for app modal login */
     appModalLoginLinks: {
         [key: string]: any
     },
+  /** show forgot password link */
     showForgotPasswordLink: boolean,
+  /** disable login */
     disableLogin?: boolean,
 }
 interface AppModalLoginMainState {
@@ -48,13 +56,13 @@ interface AppModalLoginMainState {
     failedLogin: boolean,
     isLoading: boolean,
 }
-class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModalLoginMainState> {
+class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginMainState> {
   static defaultProps = {
     onLogin: () => {},
     onResetPassword: () => {},
     locationSearchData: undefined,
     disableLogin: false,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -216,4 +224,4 @@ class AppModalLoginMain extends React.Component<AppModalLoginMainProps, AppModal
   }
 }
 
-export default withRouter(AppModalLoginMain);
+export default AppModalLoginMain;

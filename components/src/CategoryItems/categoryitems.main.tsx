@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
@@ -72,10 +72,13 @@ const zoomArray = [
   'offersearchresult:sortattributes:chosen:selectaction',
 ];
 interface CategoryItemsMainProps {
+  /** category props */
     categoryProps: {
         [key: string]: any
     },
+  /** handle product facet selection */
     onProductFacetSelection?: (...args: any[]) => any,
+  /** product links */
     productLinks?: {
         [key: string]: any
     },
@@ -88,7 +91,7 @@ interface CategoryItemsMainState {
     categoryModelParentDisplayName: any,
     categoryModelId: any,
 }
-class CategoryItemsMain extends React.Component<CategoryItemsMainProps, CategoryItemsMainState> {
+class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsMainState> {
   static defaultProps = {
     onProductFacetSelection: () => {},
     productLinks: {
@@ -172,7 +175,14 @@ class CategoryItemsMain extends React.Component<CategoryItemsMainProps, Category
           .catch((error) => {
             // eslint-disable-next-line no-console
             console.error(error.message);
-          }));
+          }))
+        .catch((err) => {
+          this.setState({
+            isLoading: false,
+          });
+          // eslint-disable-next-line no-console
+          console.error(err.message);
+        });
     });
   }
 

@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -31,9 +30,11 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface SearchFacetNavigationMainProps {
+  /** product data */
   productData: {
     [key: string]: any
   },
+  /** handle facet selection */
   onFacetSelection?: (res: any) => any
 }
 
@@ -42,7 +43,7 @@ interface SearchFacetNavigationMainState {
   showFilterMobileMenu: boolean
 }
 
-class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMainProps, SearchFacetNavigationMainState> {
+class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps, SearchFacetNavigationMainState> {
   static defaultProps = {
     onFacetSelection: () => {},
   }
@@ -197,4 +198,4 @@ class SearchFacetNavigationMain extends React.Component<SearchFacetNavigationMai
   }
 }
 
-export default withRouter(SearchFacetNavigationMain);
+export default SearchFacetNavigationMain;

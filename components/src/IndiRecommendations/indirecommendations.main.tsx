@@ -19,24 +19,26 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import scriptjs from 'scriptjs';
 
 const remoteScriptUrl = 'https://embed.indi.com/widgets/v1/indi-embed.js';
 
 interface IndiRecommendationsDisplayMainProps {
-    render: any[],
-    configuration: {
-        [key: string]: any
-    },
-    keywords?: string,
+  /** render */
+  render: any[],
+  /** configuration */
+  configuration: {
+    [key: string]: any
+  },
+  /** keywords */
+  keywords?: string,
 }
 
 interface IndiRecommendationsDisplayMainState {
 }
 
-class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendationsDisplayMainProps, IndiRecommendationsDisplayMainState> {
+class IndiRecommendationsDisplayMain extends Component<IndiRecommendationsDisplayMainProps, IndiRecommendationsDisplayMainState> {
   static defaultProps = {
     keywords: '',
   }
@@ -96,5 +98,4 @@ class IndiRecommendationsDisplayMain extends React.Component<IndiRecommendations
   }
 }
 
-// export default withRouter(IndiRecommendationsDisplayMain);
 export default IndiRecommendationsDisplayMain;

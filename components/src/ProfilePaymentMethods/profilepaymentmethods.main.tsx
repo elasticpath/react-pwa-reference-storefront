@@ -19,9 +19,8 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
-import { withRouter } from 'react-router';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -33,16 +32,19 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface ProfilePaymentMethodsMainProps {
+  /** payment methods */
   paymentMethods: {
       [key: string]: any
   },
+  /** handle payment method change */
   onChange: (...args: any[]) => any,
+  /** disable add a new payment method */
   disableAddPayment: boolean,
 }
 interface ProfilePaymentMethodsMainState {
     openNewPaymentModal: boolean
 }
-class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMainProps, ProfilePaymentMethodsMainState> {
+class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps, ProfilePaymentMethodsMainState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -151,4 +153,4 @@ class ProfilePaymentMethodsMain extends React.Component<ProfilePaymentMethodsMai
   }
 }
 
-export default withRouter(ProfilePaymentMethodsMain);
+export default ProfilePaymentMethodsMain;

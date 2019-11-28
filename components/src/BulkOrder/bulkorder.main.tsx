@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import BarcodeScanner from '../BarcodeScanner/barcodescanner';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup, searchLookup } from '../utils/CortexLookup';
@@ -33,10 +33,13 @@ let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
 
 interface BulkOrderProps {
+  /** cart data */
   cartData?: {
     [key: string]: any
   },
+  /** is bulk modal opened */
   isBulkModalOpened: boolean,
+  /** handle close */
   handleClose: (...args: any[]) => any
 }
 
@@ -60,7 +63,7 @@ interface BulkOrderState {
   barcodeScannerError: string
 }
 
-export class BulkOrder extends React.Component<BulkOrderProps, BulkOrderState> {
+class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
   static defaultProps = {
     cartData: undefined,
   };

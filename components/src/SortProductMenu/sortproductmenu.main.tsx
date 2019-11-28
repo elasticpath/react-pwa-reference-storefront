@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { getConfig } from '../utils/ConfigProvider';
 
 import './sortproductmenu.main.less';
@@ -27,13 +27,15 @@ import './sortproductmenu.main.less';
 let intl = { get: str => str };
 
 interface SortProductMenuProps {
+  /** handle sort selection */
   handleSortSelection: (event: React.MouseEvent<HTMLElement>) => void,
+  /** category model */
   categoryModel: {
     [key: string]: any
   }
 }
 
-class SortProductMenu extends React.Component<SortProductMenuProps, {}> {
+class SortProductMenu extends Component<SortProductMenuProps, {}> {
   constructor(props) {
     super(props);
     ({ intl } = getConfig());

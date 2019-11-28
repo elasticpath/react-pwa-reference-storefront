@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 /* eslint-disable-next-line import/no-cycle */
@@ -57,14 +56,21 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AppModalBundleConfigurationMainProps {
+  /** bundle configuration items */
     bundleConfigurationItems: {
         [key: string]: any
     },
+  /** handle modal close */
     handleModalClose: (...args: any[]) => any,
-    openModal: boolean
+  /** is open modal */
+    openModal: boolean,
+  /** handle item configurator add to cart */
     onItemConfiguratorAddToCart?: (...args: any[]) => any,
+  /** handle item move to cart */
     onItemMoveToCart?: (...args: any[]) => any,
+  /** handle item remove */
     onItemRemove?: (...args: any[]) => any,
+  /** item detail link */
     itemDetailLink?: string,
 }
 interface AppModalBundleConfigurationMainState {
@@ -73,7 +79,7 @@ interface AppModalBundleConfigurationMainState {
     registrationErrors: string,
 }
 
-class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConfigurationMainProps, AppModalBundleConfigurationMainState> {
+class AppModalBundleConfigurationMain extends Component<AppModalBundleConfigurationMainProps, AppModalBundleConfigurationMainState> {
   static defaultProps = {
     onItemConfiguratorAddToCart: () => {},
     onItemMoveToCart: () => {},
@@ -190,7 +196,6 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
                         key={product._item[0]._code[0].code}
                         item={product}
                         handleQuantityChange={() => { this.handleQuantityChange(); }}
-                        hideQuantitySelector
                         handleErrorMessage={this.handleErrorMessage}
                         onRemove={this.handleRemove}
                         onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
@@ -215,7 +220,6 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
                         item={product}
                         handleQuantityChange={() => { this.handleQuantityChange(); }}
                         hideRemoveButton
-                        hideQuantitySelector
                         handleErrorMessage={this.handleErrorMessage}
                         onRemove={this.handleRemove}
                         onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
@@ -243,4 +247,4 @@ class AppModalBundleConfigurationMain extends React.Component<AppModalBundleConf
   }
 }
 
-export default withRouter(AppModalBundleConfigurationMain);
+export default AppModalBundleConfigurationMain;

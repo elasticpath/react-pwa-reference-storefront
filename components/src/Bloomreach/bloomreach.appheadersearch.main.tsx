@@ -19,15 +19,18 @@
  *
  */
 
-import React, { FormEvent, SyntheticEvent } from 'react';
+import React, { FormEvent, SyntheticEvent, Component } from 'react';
 import { bloomreachSuggestionSearch } from '../utils/BloomreachSearchService';
 import './bloomreach.headersearch.main.less';
 
 const intl = { get: str => str };
 
 interface BloomreachHeaderSearchMainProps {
+  /** is mobile view */
     isMobileView: boolean,
+  /** is focused */
     isFocused: boolean,
+  /** handle search page */
     onSearchPage?: (...args: any[]) => any,
 }
 
@@ -62,7 +65,7 @@ interface BloomreachSearchSuggestionResponse {
   };
 }
 
-class BloomreachHeaderSearchMain extends React.Component<BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState> {
+class BloomreachHeaderSearchMain extends Component<BloomreachHeaderSearchMainProps, BloomreachHeaderSearchMainState> {
   private searchInput: React.RefObject<HTMLInputElement>;
 
   private suggestionListElements: HTMLLIElement[];

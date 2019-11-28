@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { ReactComponent as CloseIcon } from '../../../app/src/images/icons/close-icon.svg';
 import { ReactComponent as ErrorIcon } from '../../../app/src/images/icons/error-icon.svg';
 import { ReactComponent as WarningIcon } from '../../../app/src/images/icons/warning-icon.svg';
@@ -29,6 +29,7 @@ import { ErrorRemove } from '../../../app/src/utils/MessageContext';
 import './messagecontainer.less';
 
 interface MessageContainerProps {
+  /** message */
   message: any
 }
 
@@ -36,7 +37,7 @@ interface MessageContainerState {
   messages: any,
 }
 
-class MessageContainer extends React.Component<MessageContainerProps, MessageContainerState> {
+class MessageContainer extends Component<MessageContainerProps, MessageContainerState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,8 +46,11 @@ class MessageContainer extends React.Component<MessageContainerProps, MessageCon
     this.handleCloseMessageContainer = this.handleCloseMessageContainer.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ messages: nextProps.message });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.message !== prevState.messages) {
+      return { messages: nextProps.message };
+    }
+    return null;
   }
 
   handleCloseMessageContainer(index) {

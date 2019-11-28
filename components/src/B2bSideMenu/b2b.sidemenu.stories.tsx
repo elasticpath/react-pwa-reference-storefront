@@ -19,13 +19,14 @@
  *
  */
 import React from 'react';
-import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { action } from '@storybook/addon-actions';
 import createMemoryHistory from 'history/createMemoryHistory';
+import { object } from '@storybook/addon-knobs/react';
 import B2bSideMenu from './b2b.sidemenu';
-import { object } from "@storybook/addon-knobs/react";
+import Readme from './README.md';
+
 const history = createMemoryHistory();
 
 history.push = action('history.push');
@@ -40,6 +41,8 @@ const sideMenuItems = [
   { to: '/b2b/quotes', children: 'quotes' },
 ];
 
+const pathname = { pathname: '/b2b' };
+
 storiesOf('Components|B2bSideMenu', module)
   .addParameters({
     readme: {
@@ -47,11 +50,10 @@ storiesOf('Components|B2bSideMenu', module)
       sidebar: Readme,
     },
   })
-  .addDecorator(story =>  <MemoryRouter 
-                            initialEntries={[{ pathname: "/b2b" }]}
-                            initialIndex={1}>
-                              {story()}
-                          </MemoryRouter>)
-  .add('B2bSideMenu', () => {
-    return (<B2bSideMenu sideMenuItems={object('sideMenuItems', sideMenuItems)} />);
-  });
+  .addDecorator(story => <MemoryRouter
+    initialEntries={[{ pathname: '/b2b' }]}
+    initialIndex={1}
+  >
+    {story()}
+                         </MemoryRouter>)
+  .add('B2bSideMenu', () => (<B2bSideMenu sideMenuItems={object('sideMenuItems', sideMenuItems)} location={object('location', pathname)} />));

@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -30,10 +30,13 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface ProfileInfoMainProps {
+  /** profile info */
   profileInfo: {
     [key: string]: any
   },
+  /** handle change profile info */
   onChange: (...args: any[]) => any,
+  /** disable editing mode */
   isDisabled?: boolean
 }
 
@@ -44,7 +47,7 @@ interface ProfileInfoMainState {
   lastName: any
 }
 
-class ProfileInfoMain extends React.Component<ProfileInfoMainProps, ProfileInfoMainState> {
+class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainState> {
   static defaultProps = {
     isDisabled: false,
   }

@@ -19,26 +19,28 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-import './profilegdpr.main.less';
+import './profilecompliance.main.less';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-interface ProfileGDPRMainProps {
+interface ProfileComplianceMainProps {
+  /** data policies */
   dataPolicies: {
       [key: string]: any
   },
+  /** handle data policies change */
   onChange: (...args: any[]) => any,
 }
-interface ProfileGDPRMainState {
+interface ProfileComplianceMainState {
     openNewPaymentModal: boolean
 }
-class ProfileGDPRMain extends React.Component<ProfileGDPRMainProps, ProfileGDPRMainState> {
+class ProfileComplianceMain extends Component<ProfileComplianceMainProps, ProfileComplianceMainState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -61,7 +63,7 @@ class ProfileGDPRMain extends React.Component<ProfileGDPRMainProps, ProfileGDPRM
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
+          'X-Ep-Data-Policy-Segments': `${Config.Compliance.dataPolicySegments}`,
         },
         body: JSON.stringify({ 'data-policy-consent': false }),
       }).then(() => {
@@ -81,7 +83,7 @@ class ProfileGDPRMain extends React.Component<ProfileGDPRMainProps, ProfileGDPRM
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          'X-Ep-Data-Policy-Segments': `${Config.GDPR.dataPolicySegments}`,
+          'X-Ep-Data-Policy-Segments': `${Config.Compliance.dataPolicySegments}`,
         },
         body: JSON.stringify({ 'data-policy-consent': true }),
       }).then(() => {
@@ -111,7 +113,7 @@ class ProfileGDPRMain extends React.Component<ProfileGDPRMainProps, ProfileGDPRM
               </span>
             </div>
             <button className="ep-btn small profile-delete-data-policy-btn" type="button" onClick={() => { this.handleOnClick(element._datapolicyconsentform[0].links[0].uri, element['data-policy-consent']); }}>
-              {(element['data-policy-consent'] === 'true') ? intl.get('gdpr-revoke-consent') : intl.get('gdpr-consent')}
+              {(element['data-policy-consent'] === 'true') ? intl.get('compliance-consent-revoke') : intl.get('compliance-consent')}
             </button>
           </li>
         </ul>
@@ -137,4 +139,4 @@ class ProfileGDPRMain extends React.Component<ProfileGDPRMainProps, ProfileGDPRM
   }
 }
 
-export default ProfileGDPRMain;
+export default ProfileComplianceMain;

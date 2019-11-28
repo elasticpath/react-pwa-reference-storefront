@@ -19,9 +19,8 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import Slider from 'react-slick';
-import { withRouter } from 'react-router';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
@@ -102,17 +101,27 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface ProductDisplayItemMainProps {
+  /** product id */
   productId: string,
+  /** image url */
   imageUrl?: string,
+  /** data set */
   dataSet?: { cartBtnOverride?: string },
-  customClass?: string,
+  /** handle add to cart */
   onAddToCart?: (...args: any[]) => any,
+  /** handle add to wishlist */
   onAddToWishList?: (...args: any[]) => any,
+  /** handle change product feature */
   onChangeProductFeature?: (...args: any[]) => any,
+  /** handle reload page */
   onReloadPage?: (...args: any[]) => any,
+  /** product link */
   productLink?: string,
+  /** is in standalone mode */
   isInStandaloneMode?: boolean,
+  /** item detail link */
   itemDetailLink?: string,
+  /** featured product attribute */
   featuredProductAttribute?: boolean,
 }
 
@@ -127,7 +136,7 @@ interface ProductDisplayItemMainState {
   addToCartLoading: boolean,
 }
 
-class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
+class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
   static isLoggedIn(config) {
     return (localStorage.getItem(`${config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
   }
@@ -135,7 +144,6 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   static defaultProps = {
     imageUrl: undefined,
     dataSet: undefined,
-    customClass: '',
     onAddToCart: () => {},
     onAddToWishList: () => {},
     onReloadPage: () => {},
@@ -502,21 +510,21 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
         productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
         return productKindsSelection;
       });
-      return (productKindsSelection.map(Component => (
+      return (productKindsSelection.map(ComponentEl => (
         <fieldset onChange={this.handleSelectionChange} key={Math.random().toString(36).substr(2, 9)}>
           <span className="selector-title">
-            {Component.displayName}
+            {ComponentEl.displayName}
           </span>
-          <div className="guide" id={`${(Component.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
-            {Component.map(Element => (
-              <div key={Element._description[0]['display-name']} className={`select-wrap ${(Component.displayName === 'Color') ? 'color-wrap' : ''}`}>
+          <div className="guide" id={`${(ComponentEl.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
+            {ComponentEl.map(Element => (
+              <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName === 'Color') ? 'color-wrap' : ''}`}>
                 <input
                   key={Element._description[0].name}
                   type="radio"
-                  name={Component.displayName}
+                  name={ComponentEl.displayName}
                   id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`}
                   value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''}
-                  defaultChecked={Element._description[0]['display-name'] === Component.defaultChousen || Element._selectaction[0].self.uri === selectionValue}
+                  defaultChecked={Element._description[0]['display-name'] === ComponentEl.defaultChousen || Element._selectaction[0].self.uri === selectionValue}
                 />
                 <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} style={{ background: Element._description[0]['display-name'] }}>
                   {Element._description[0]['display-name']}
@@ -900,4 +908,4 @@ class ProductDisplayItemMain extends React.Component<ProductDisplayItemMainProps
   }
 }
 
-export default withRouter(ProductDisplayItemMain);
+export default ProductDisplayItemMain;

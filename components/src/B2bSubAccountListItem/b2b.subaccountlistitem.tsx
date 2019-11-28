@@ -20,7 +20,7 @@
  *
  */
 
-import * as React from 'react';
+import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import * as Config from '@elasticpath/ref-store/src/ep.config.json';
 import '../B2bSubAccountList/b2b.subaccountlist.less';
@@ -32,9 +32,13 @@ import { ReactComponent as EnabledStatusIcon } from '../../../app/src/images/ico
 import { ReactComponent as DisabledStatusIcon } from '../../../app/src/images/icons/remove-circle.svg';
 
 interface B2bSubAccountListItemProps {
+  /** account data */
     accountData: any,
+  /** handle account */
     handleAccount: (data: any) => void,
+  /** account name */
     accountName: string,
+  /** registration number */
     registrationNumber: string,
 }
 
@@ -94,7 +98,7 @@ const zoom = [
   'associateroleassignments:associateform:addassociateaction',
 ];
 
-export default class B2bSubAccountListItem extends React.Component<B2bSubAccountListItemProps, B2bSubAccountListItemState> {
+class B2bSubAccountListItem extends Component<B2bSubAccountListItemProps, B2bSubAccountListItemState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -203,3 +207,5 @@ export default class B2bSubAccountListItem extends React.Component<B2bSubAccount
     );
   }
 }
+
+export default B2bSubAccountListItem;

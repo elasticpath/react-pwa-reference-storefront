@@ -19,20 +19,21 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getConfig } from '../utils/ConfigProvider';
 
 let intl = { get: str => str };
 
 interface OrderLineProps {
+  /** order line */
   orderLine: { [key: string]: any },
 }
 interface OrderLineState {
   purchase: { [key: string]: any },
 }
 
-class OrderLine extends React.Component<OrderLineProps, OrderLineState> {
+class OrderLine extends Component<OrderLineProps, OrderLineState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();

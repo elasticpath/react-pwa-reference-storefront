@@ -20,7 +20,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 
 import '../../../app/src/containers/b2b/AccountMain.less';
@@ -30,15 +30,21 @@ import { ReactComponent as DisabledStatusIcon } from '@elasticpath/ref-store/src
 import B2bSubAccountList from '../B2bSubAccountList/b2b.subaccountlist';
 
 interface B2bAccountMainProps {
+  /** handle get account data */
     getAccountData: () => void,
+  /** handle get sub account data */
     getSubAccountData?: (data: any) => void,
+  /** handle add sub account clicked */
     handleAddSubAccountClicked: () => void,
+  /** data for account list */
     accountListData: {
         status: string,
         subAccounts: any,
         mainAccountName: string,
     },
+  /** account name */
     accountName: string,
+  /** registration number */
     registrationNumber: string,
 }
 
@@ -46,7 +52,7 @@ interface B2bAccountMainState {
   showAccountsMobileMenu: boolean,
 }
 
-export default class B2bAccountList extends React.Component<B2bAccountMainProps, B2bAccountMainState> {
+class B2bAccountList extends Component<B2bAccountMainProps, B2bAccountMainState> {
     static defaultProps = {
       getSubAccountData: () => {
       },
@@ -144,3 +150,5 @@ export default class B2bAccountList extends React.Component<B2bAccountMainProps,
       );
     }
 }
+
+export default B2bAccountList;
