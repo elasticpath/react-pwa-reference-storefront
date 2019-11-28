@@ -49,7 +49,6 @@ import ComplianceSupportModal from './ComplianceSupport/compliancesupport.main';
 import GiftcertificateFormMain from './GiftCertificateForm/giftcertificateform.main';
 import IndiRecommendationsDisplayMain from './IndiRecommendations/indirecommendations.main';
 import OrderHistoryMain from './OrderHistory/orderhistory.main';
-import OrderHistoryLine from './OrderHistoryLine/orderhistoryline.main';
 import OrderLineMain from './OrderLine/orderline.main';
 import OrderTableMain from './OrderTable/ordertable.main';
 import OrderTableLineItem from './OrderTableLineItem/ordertable.lineitem';
@@ -121,7 +120,6 @@ export {
   GiftcertificateFormMain,
   IndiRecommendationsDisplayMain,
   OrderHistoryMain,
-  OrderHistoryLine,
   OrderLineMain,
   OrderTableMain,
   OrderTableLineItem,
