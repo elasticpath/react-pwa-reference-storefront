@@ -32,7 +32,7 @@ interface AppHeaderSearchMainProps {
     isMobileView: boolean,
   /** is focused */
     isFocused?: boolean,
-  /** handle on search page */
+  /** handle search page */
     onSearchPage?: (...args: any[]) => any,
 }
 interface AppHeaderSearchMainState{

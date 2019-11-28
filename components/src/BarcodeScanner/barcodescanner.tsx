@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import Quagga from 'quagga/dist/quagga.js';
 import Modal from 'react-responsive-modal';
 import { getConfig } from '../utils/ConfigProvider';
@@ -28,15 +28,18 @@ import './barcodescanner.less';
 let intl = { get: str => str };
 
 interface BarcodeScannerProps {
+  /** handle modal close */
   handleModalClose: (...args: any[]) => any,
+  /** handle code found */
   handleCodeFound: (...args: any[]) => any,
+  /** is modal open */
   isModalOpen: boolean,
 }
 interface BarcodeScannerState {
   barcodes: any[]
 }
 
-export default class BarcodeScanner extends React.Component<BarcodeScannerProps, BarcodeScannerState> {
+class BarcodeScanner extends Component<BarcodeScannerProps, BarcodeScannerState> {
   private scannerContainer: React.RefObject<HTMLInputElement>;
 
   constructor(props) {
@@ -176,3 +179,5 @@ export default class BarcodeScanner extends React.Component<BarcodeScannerProps,
     );
   }
 }
+
+export default BarcodeScanner;

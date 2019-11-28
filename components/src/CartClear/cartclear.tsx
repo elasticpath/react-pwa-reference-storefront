@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import './cartclear.less';
 import { login } from '@elasticpath/ref-store/src/utils/AuthService';
 import { cortexFetch } from '@elasticpath/ref-store/src/utils/Cortex';
@@ -30,8 +30,11 @@ let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
 
 interface CartClearProps {
+  /** cart data */
   cartData: any,
+  /** handle carts update */
   handleCartsUpdate: (...args: any[]) => any,
+  /** handle cart modal update */
   handleCartModalUpdate: (...args: any[]) => any,
 }
 
@@ -40,7 +43,7 @@ interface CartClearState {
   showLoader: boolean,
 }
 
-class CartClear extends React.Component<CartClearProps, CartClearState> {
+class CartClear extends Component<CartClearProps, CartClearState> {
   static defaultProps = {};
 
   constructor(props) {

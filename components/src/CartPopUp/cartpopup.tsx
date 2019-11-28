@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import './cartpopup.less';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -28,7 +28,9 @@ let Config: IEpConfig | any = {};
 let intl = { get: (str, prop?) => str };
 
 interface CartPopUpProps {
+  /** links for app header */
   appHeaderLinks: any,
+  /** cart data */
   cartData: {
     count: number,
     name: string,
@@ -39,7 +41,7 @@ interface CartPopUpState {
   cartData: any,
 }
 
-class CartPopUp extends React.Component<CartPopUpProps, CartPopUpState> {
+class CartPopUp extends Component<CartPopUpProps, CartPopUpState> {
   static defaultProps = {};
 
   constructor(props) {

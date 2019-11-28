@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -41,10 +41,15 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface CartCreateProps {
+  /** handle modal close */
   handleModalClose: (...args: any[]) => any,
+  /** handle carts update */
   handleCartsUpdate?: (...args: any[]) => any,
+  /** handle cart element select */
   handleCartElementSelect?: (...args: any[]) => any,
+  /** is open modal */
   openModal: boolean,
+  /** update cart modal */
   updateCartModal: boolean,
 }
 interface CartCreateState {
@@ -57,7 +62,7 @@ interface CartCreateState {
   indexDefaultCart: number,
 }
 
-class CartCreate extends React.Component<CartCreateProps, CartCreateState> {
+class CartCreate extends Component<CartCreateProps, CartCreateState> {
   static defaultProps = {
     handleCartsUpdate: () => {},
     handleCartElementSelect: () => {},

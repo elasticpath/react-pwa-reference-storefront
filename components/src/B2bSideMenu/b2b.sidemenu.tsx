@@ -25,13 +25,14 @@ import intl from 'react-intl-universal';
 import './b2b.sidemenu.less';
 
 interface B2bSideMenuProps {
+  /** side menu items */
     sideMenuItems: any,
 }
 interface B2bSideMenuState {
     isOpen: boolean,
 }
 
-export default class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
+class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
   constructor(props) {
     super(props);
 
@@ -86,3 +87,5 @@ export default class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenu
     );
   }
 }
+
+export default B2bSideMenu;

@@ -21,7 +21,6 @@
 
 import React from 'react';
 import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import carouselBaner1 from '../../../app/src/images/carousel-images/baner_1.jpg';

@@ -18,8 +18,7 @@
  *
  *
  */
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 
@@ -30,15 +29,19 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AppHeaderTopProps {
+  /** is mobile view */
     isMobileView?: boolean,
+  /** handle currency change */
     onCurrencyChange?: (...args: any[]) => any,
+  /** handle locale change */
     onLocaleChange?: (...args: any[]) => any,
+  /** links in app header top */
     appHeaderTopLinks: {
         [key: string]: any
     }
 }
 
-class AppHeaderTop extends React.Component<AppHeaderTopProps> {
+class AppHeaderTop extends Component<AppHeaderTopProps> {
   static defaultProps = {
     isMobileView: false,
     onLocaleChange: () => {},

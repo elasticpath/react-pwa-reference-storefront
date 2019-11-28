@@ -36,11 +36,17 @@ let intl = { get: str => str };
 const COPIED_TIMEOUT_LENGTH = 4000;
 
 interface B2bEditAccountProps {
+  /** is open */
   isOpen: boolean,
+  /** uri for edit sub account */
   editSubAccountUri: string,
+  /** uri for edit metadata */
   editMetadataUri: string,
+  /** handle close */
   handleClose: () => void,
+  /** handle update */
   handleUpdate: () => void,
+  /** accoun data */
   accountData: {
     name: string,
     legalName: string,
@@ -61,7 +67,7 @@ interface B2bEditAccountState {
 }
 
 
-export default class B2bEditAccount extends Component<B2bEditAccountProps, B2bEditAccountState> {
+class B2bEditAccount extends Component<B2bEditAccountProps, B2bEditAccountState> {
   copiedTimeout?: number;
 
   constructor(props) {
@@ -245,3 +251,5 @@ export default class B2bEditAccount extends Component<B2bEditAccountProps, B2bEd
     );
   }
 }
+
+export default B2bEditAccount;

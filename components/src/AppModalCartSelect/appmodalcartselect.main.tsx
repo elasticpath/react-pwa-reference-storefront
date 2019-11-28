@@ -36,8 +36,11 @@ const zoomArray = [
 ];
 
 interface AppModalCartSelectMainProps {
+  /** handle modal close */
   handleModalClose: (...args: any[]) => any,
+  /** open modal */
   openModal: boolean,
+  /** handle continue cart */
   onContinueCart?: (...args: any[]) => any,
 }
 interface AppModalCartSelectMainState {

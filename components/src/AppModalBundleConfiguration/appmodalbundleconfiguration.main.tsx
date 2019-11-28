@@ -56,14 +56,21 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AppModalBundleConfigurationMainProps {
+  /** bundle configuration items */
     bundleConfigurationItems: {
         [key: string]: any
     },
+  /** handle modal close */
     handleModalClose: (...args: any[]) => any,
-    openModal: boolean
+  /** is open modal */
+    openModal: boolean,
+  /** handle item configurator add to cart */
     onItemConfiguratorAddToCart?: (...args: any[]) => any,
+  /** handle item move to cart */
     onItemMoveToCart?: (...args: any[]) => any,
+  /** handle item remove */
     onItemRemove?: (...args: any[]) => any,
+  /** item detail link */
     itemDetailLink?: string,
 }
 interface AppModalBundleConfigurationMainState {
@@ -189,7 +196,6 @@ class AppModalBundleConfigurationMain extends Component<AppModalBundleConfigurat
                         key={product._item[0]._code[0].code}
                         item={product}
                         handleQuantityChange={() => { this.handleQuantityChange(); }}
-                        hideQuantitySelector
                         handleErrorMessage={this.handleErrorMessage}
                         onRemove={this.handleRemove}
                         onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
@@ -214,7 +220,6 @@ class AppModalBundleConfigurationMain extends Component<AppModalBundleConfigurat
                         item={product}
                         handleQuantityChange={() => { this.handleQuantityChange(); }}
                         hideRemoveButton
-                        hideQuantitySelector
                         handleErrorMessage={this.handleErrorMessage}
                         onRemove={this.handleRemove}
                         onConfiguratorAddToCart={this.handleConfiguratorAddToCart}

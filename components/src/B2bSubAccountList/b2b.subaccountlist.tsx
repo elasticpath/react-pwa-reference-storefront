@@ -25,14 +25,18 @@ import React, { Component } from 'react';
 import B2bSubAccountListItem from '../B2bSubAccountListItem/b2b.subaccountlistitem';
 
 interface B2bSubAccountListProps {
+  /** sub accounts */
     subAccounts: any,
+  /** handle get account data */
     getAccountData?: (data: any) => void,
+  /** account name */
     accountName: string,
+  /** registration number */
     registrationNumber: string,
 }
 
 
-export default class B2bSubAccountList extends Component<B2bSubAccountListProps> {
+class B2bSubAccountList extends Component<B2bSubAccountListProps> {
     static defaultProps = {
       getAccountData: () => {},
     };
@@ -62,3 +66,5 @@ export default class B2bSubAccountList extends Component<B2bSubAccountListProps>
       );
     }
 }
+
+export default B2bSubAccountList;

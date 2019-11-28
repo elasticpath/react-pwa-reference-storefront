@@ -19,8 +19,7 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import React, { Component } from 'react';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -30,13 +29,16 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface CheckoutSummaryListProps {
+  /** cart data */
     data: {
         [key: string]: any
     },
+  /** gift cards */
     giftCards?: any[],
+  /** handle change */
     onChange?: (...args: any[]) => any,
 }
-class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
+class CheckoutSummaryList extends Component<CheckoutSummaryListProps> {
   static defaultProps = {
     giftCards: [],
     onChange: () => {},
@@ -276,4 +278,4 @@ class CheckoutSummaryList extends React.Component<CheckoutSummaryListProps> {
   }
 }
 
-export default withRouter(CheckoutSummaryList);
+export default CheckoutSummaryList;

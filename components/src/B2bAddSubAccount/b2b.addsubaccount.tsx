@@ -32,10 +32,15 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface B2bAddSubAccountProps {
+  /** is open */
     isOpen: boolean,
+  /** handle close */
     handleClose: () => void,
+  /** handle update */
     handleUpdate: () => void,
+  /** uri for adding sub-account */
     addSubAccountUri: string,
+  /** adding sub account seller admin */
     addSubAccountSellerAdmin: boolean,
 }
 
@@ -47,7 +52,7 @@ interface B2bAddSubAccountState {
     isLoading: boolean,
 }
 
-export default class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B2bAddSubAccountState> {
+class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B2bAddSubAccountState> {
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -158,3 +163,5 @@ export default class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B
     );
   }
 }
+
+export default B2bAddSubAccount;
