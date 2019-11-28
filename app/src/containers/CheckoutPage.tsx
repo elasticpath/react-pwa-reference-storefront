@@ -115,10 +115,6 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     this.fetchGiftCardsData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchProfileData();
-  }
-
   fetchProfileData() {
     login().then(() => {
       cortexFetch(`/?zoom=${zoomArrayProfile.join()}`,
