@@ -1,0 +1,71 @@
+{
+	"self": {
+		"type": "elasticpath.collections.links",
+		"uri": "/?zoom=lookups:navigationlookupform",
+		"href": "http://reference.epdemos.com/cortex/?zoom=lookups:navigationlookupform"
+	},
+	"messages": [],
+	"links": [{
+		"rel": "defaultcart",
+		"type": "carts.default-cart",
+		"uri": "/carts/vestri_reference/default",
+		"href": "http://reference.epdemos.com/cortex/carts/vestri_reference/default"
+	}, {
+		"rel": "data-policies",
+		"type": "datapolicies.data-policies",
+		"uri": "/datapolicies/vestri_reference",
+		"href": "http://reference.epdemos.com/cortex/datapolicies/vestri_reference"
+	}, {
+		"rel": "countries",
+		"type": "geographies.countries",
+		"uri": "/geographies/vestri_reference/countries",
+		"href": "http://reference.epdemos.com/cortex/geographies/vestri_reference/countries"
+	}, {
+		"rel": "lookups",
+		"type": "lookups.lookups",
+		"uri": "/lookups/vestri_reference",
+		"href": "http://reference.epdemos.com/cortex/lookups/vestri_reference"
+	}, {
+		"rel": "navigations",
+		"type": "navigations.navigations",
+		"uri": "/navigations/vestri_reference",
+		"href": "http://reference.epdemos.com/cortex/navigations/vestri_reference"
+	}, {
+		"rel": "defaultprofile",
+		"type": "profiles.default-profile",
+		"uri": "/profiles/vestri_reference/default",
+		"href": "http://reference.epdemos.com/cortex/profiles/vestri_reference/default"
+	}, {
+		"rel": "newaccountform",
+		"type": "registrations.new-account-registration-form",
+		"uri": "/registrations/vestri_reference/newaccount/form",
+		"href": "http://reference.epdemos.com/cortex/registrations/vestri_reference/newaccount/form"
+	}, {
+		"rel": "searches",
+		"type": "searches.searches",
+		"uri": "/searches/vestri_reference",
+		"href": "http://reference.epdemos.com/cortex/searches/vestri_reference"
+	}, {
+		"rel": "defaultwishlist",
+		"type": "wishlists.default-wishlist",
+		"uri": "/wishlists/vestri_reference/default",
+		"href": "http://reference.epdemos.com/cortex/wishlists/vestri_reference/default"
+	}],
+	"_lookups": [{
+		"_navigationlookupform": [{
+			"self": {
+				"type": "navigations.navigation-lookup-form",
+				"uri": "/navigations/vestri_reference/lookups/form",
+				"href": "http://reference.epdemos.com/cortex/navigations/vestri_reference/lookups/form"
+			},
+			"messages": [],
+			"links": [{
+				"rel": "navigationlookupaction",
+				"type": "navigations.navigation-lookup-form",
+				"uri": "/navigations/vestri_reference/lookups/form",
+				"href": "http://reference.epdemos.com/cortex/navigations/vestri_reference/lookups/form"
+			}],
+			"code": ""
+		}]
+	}]
+}

@@ -27,6 +27,8 @@ import './b2b.sidemenu.less';
 interface B2bSideMenuProps {
   /** side menu items */
     sideMenuItems: any,
+  /** location */
+  location: any,
 }
 interface B2bSideMenuState {
     isOpen: boolean,
@@ -57,9 +59,10 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
   }
 
   render() {
-    const { sideMenuItems } = this.props;
+    const { sideMenuItems, location } = this.props;
     const { isOpen } = this.state;
-    const currentSideMenuItems = sideMenuItems.filter(el => el.to === window.location.pathname);
+    const currentSideMenuItems = sideMenuItems.filter(el => el.to === location.pathname);
+
     return (
       <div className="side-menu-component">
         <button
@@ -76,7 +79,7 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
                 path={elem.to}
                 exact
               >
-                <Link className={`menu-item ${window.location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
+                <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
                   {intl.get(elem.children)}
                 </Link>
               </Route>

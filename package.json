@@ -1,7 +1,7 @@
 {
   "name": "ep-store-monorepo",
   "private": true,
-  "version": "3.0.11",
+  "version": "3.0.12",
   "main": "index.js",
   "license": "MIT",
   "workspaces": {

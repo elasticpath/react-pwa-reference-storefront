@@ -137,6 +137,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
     }
 
     handleModalClose() {
+      this.getAccountData();
       this.setState({
         openModal: false,
         openCartModal: false,
