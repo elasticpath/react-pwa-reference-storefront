@@ -25,7 +25,7 @@ import { storiesOf } from '@storybook/react';
 
 import { MemoryRouter } from 'react-router';
 import MessageContainer from './messagecontainer';
-import { boolean, object, text } from '@storybook/addon-knobs';
+import { object } from '@storybook/addon-knobs';
 const errorMessage = {
   debugMessages: 'Customer email address must be specified.',
   type: 'error',
@@ -53,6 +53,6 @@ storiesOf('Components|MessageContainer', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('MessageContainer Error Message', () => <MessageContainer message={object('message', errorMessage)} />)
-  .add('ProductDisplayItemMain Warning Message', () => <MessageContainer message={object('message', warningMessage)} />)
-  .add('ProductDisplayItemMain Dark Message', () => <MessageContainer message={object('message', darkMessage)} />);
+  .add('MessageContainer Error Message', () => <MessageContainer message={object('message', [errorMessage])} />)
+  .add('ProductDisplayItemMain Warning Message', () => <MessageContainer message={object('message', [warningMessage])} />)
+  .add('ProductDisplayItemMain Dark Message', () => <MessageContainer message={object('message', [darkMessage])} />);
