@@ -45,8 +45,11 @@ class MessageContainer extends React.Component<MessageContainerProps, MessageCon
     this.handleCloseMessageContainer = this.handleCloseMessageContainer.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ messages: nextProps.message });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.message !== prevState.messages) {
+      return { messages: nextProps.message };
+    }
+    return null;
   }
 
   handleCloseMessageContainer(index) {
