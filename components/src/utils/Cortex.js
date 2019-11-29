@@ -20,6 +20,7 @@
  */
 
 import { ErrorInlet } from '@elasticpath/ref-store/src/utils/MessageContext';
+import intl from 'react-intl-universal';
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
 import { getConfig } from './ConfigProvider';
@@ -63,8 +64,20 @@ export function cortexFetch(input, init) {
               id: '',
             };
             let debugMessages = '';
+            let fieldName;
+            let maxSize;
+            let minSize;
+            let invalidValue;
+            let regExp;
             for (let i = 0; i < data.messages.length; i++) {
-              debugMessages = debugMessages.concat(`${data.messages[i]['debug-message']} \n `);
+              fieldName = data.messages[i].data['field-name'];
+              maxSize = data.messages[i].data.max;
+              minSize = data.messages[i].data.min;
+              invalidValue = data.messages[i].data['invalid-value'];
+              regExp = data.messages[i].data['reg-exp'];
+              debugMessages = debugMessages.concat(`${intl.get(`${data.messages[i].id}`, {
+                fieldName, maxSize, minSize, invalidValue, regExp,
+              })} \n `);
             }
             if (debugMessages) {
               messageData.debugMessages = debugMessages;
