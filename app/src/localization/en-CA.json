@@ -352,5 +352,22 @@
   "backend-message-account.not.found": "No account with the given account name was found.",
   "cart-clear-msg": "You are about to remove all items from",
   "cart-clear-confirmation": "These items will be permanently removed. Continue?",
-  "remove-all-cart-items": "Remove all cart items"
+  "remove-all-cart-items": "Remove all cart items",
+  "bundle.does.not.contain.min.constituents": "Bundle does not contain the minimum number of required bundle constituents.",
+  "cart.empty": "Shopping cart is empty.",
+  "need.billing.address": "Billing address must be specified.",
+  "need.datapolicy.consent": "Need user consent for data policy data-policy.",
+  "need.email": "Customer email address must be specified.",
+  "need.payment.method": "Payment method must be specified.",
+  "need.shipping.address": "Shipping address must be specified.",
+  "need.shipping.option": "Shipping option must be chosen.",
+  "field.required": "{fieldName} value is required.",
+  "field.invalid.size": "{fieldName} value must contain between {minSize} and {maxSize} characters.",
+  "field.invalid.format": "{fieldName} value {invalidValue} must match the following regular expression: {regExp}",
+  "field.invalid.email.format": "{fieldName} value {invalidValue} must be a valid email format.",
+  "field.invalid.boolean.format": "{fieldName} value {invalidValue} must be a valid email format.",
+  "field.invalid.decimal.format": "{fieldName} value {invalidValue} must be a decimal.",
+  "field.invalid.integer.format": "{fieldName} value {invalidValue} must be an integer.",
+  "field.invalid.datetime.format": "{fieldName} value {invalidValue} must be in ISO8601 date time format (YYYY-MM-DDThh:mm:ssTZD).",
+  "field.invalid.date.format": "{fieldName} value {invalidValue} must be in ISO8601 date format (YYYY-MM-DD)."
 }
