@@ -72,10 +72,6 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
     this.fetchwishListData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchwishListData();
-  }
-
   handleQuantityChange() {
     this.setState({ isLoading: true });
     this.fetchwishListData();

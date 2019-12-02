@@ -86,10 +86,6 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     this.fetchProfileData();
   }
 
-  componentWillReceiveProps() {
-    this.fetchProfileData();
-  }
-
   fetchProfileData() {
     login().then(() => {
       const options = {
