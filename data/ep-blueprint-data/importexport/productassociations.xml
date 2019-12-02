@@ -1,0 +1,2122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<productassociations>
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T04:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_LOGO_FITTED_HAT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CORSICANA_TOTE</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_RED_BRAKE_CALIPER_SET</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_INTERIOR_CARBON_FIBER_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_LONG_SLEEVE_HANLEY</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-03-27T21:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CHARGING_BOOKING</sourceproductcode>
+    <targetproductcode>vestri_coffee_latte</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y4_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_EXTERIOR_CARBON_FIBER_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_FOR_KIDS</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_CONTINENTAL_SPORT_CONTACT_5</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_ATHLETIC_SHORT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_HARDTOP</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_CENTER_CONSOLE_TRIM</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_HOOD_PANELS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>77E0862</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_SLIPSTREAM_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y1_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_AIR_DIFUSER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-06-25T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_PIRELLI_WINTER_SOTTOZERO_240</sourceproductcode>
+    <targetproductcode>VESTRI_MODEL_X_RED_BRAKE_CALIPER_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_ATHLETIC_SHORT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>UpSell</type>
+    <enabledate>2018-06-12T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y1_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_Y4_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CHADEMO_ADAPTER</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_NEMA_14-50</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_TOUCH_SCREEN_GLOVES</sourceproductcode>
+    <targetproductcode>VESTRI_WORDMARK_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_BLACK_FORGED_WHEEL_SET</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_PIRELLI_WINTER_SOTTOZERO_240</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CABLE_ORGANIZER</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_CONTINENTAL_SPORT_CONTACT_5</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>396-6500</sourceproductcode>
+    <targetproductcode>VESTRI_Y1_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_GOLF_BAG</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>396-6500</sourceproductcode>
+    <targetproductcode>VESTRI_Y1_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_HELIX_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_SPOILER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_PIRELLI_WINTER_SOTTOZERO_240</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_EXTERIOR_CARBON_FIBER_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_ATHLETIC_SHORT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CHADEMO_ADAPTER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_CENTER_CONSOLE_TRIM</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_RED_BRAKE_CALIPER_SET</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_PIRELLI_WINTER_SOTTOZERO_3</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MOBILE_CONNECTOR_BUNDLE</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ENABLE_SUPERCHARGING</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CABLE_ORGANIZER</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_SLIPSTREAM_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_SLIPSTREAM_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MOBILE_CONNECTOR_BUNDLE</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_SNOW_CHAIN_TRAK_4X4</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_LOGO_FITTED_HAT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_CENTER_CONSOLE_TRIM</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-06-12T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y1_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_Y4_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_CYCLONE_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_BLACK_FORGED_WHEEL_SET</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_SLIPSTREAM_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_SNOW_CHAIN_TRAK_4X4</sourceproductcode>
+    <targetproductcode>VESTRI_WORDMARK_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_NEMA_14-30</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_4_YR_PREPAID_SERVICE</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_DUAL_CHARGER_W_INSTALLATION</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_GOLF_BALLS</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_BLACK_FORGED_WHEEL_SET</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_AIR_DIFUSER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_SPOILER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_HOOD_PANELS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_GRILLE_TSHIRT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>77E0862</sourceproductcode>
+    <targetproductcode>1R-0716</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>AU_POWER_ADAPTER</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_STAINLESS_STEEL_WATER_BOTTLE</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_HARDTOP</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_3_YR_PREPAID_SERVICE</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_WINTER_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_PIRELLI_WINTER_SOTTOZERO_3</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>J930-PK</sourceproductcode>
+    <targetproductcode>VESTRI_Y1_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CORDED_MOBILE_CONNECTOR</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>5P-0960</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_ADJUSTABLE_SUSPENSION_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_FOR_KIDS</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_KIDS_CHECKERED_TEE</sourceproductcode>
+    <targetproductcode>VESTRI_MODEL_X_FOR_KIDS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_LIQUID_METAL_VISOR</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CHADEMO_ADAPTER</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_KIDS_PUFFER_JACKET</sourceproductcode>
+    <targetproductcode>VESTRI_MODEL_X_FOR_KIDS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>5P-0960</sourceproductcode>
+    <targetproductcode>250HR_PMKIT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_HARDTOP</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>vestri_coffee_latte</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>1R-0716</sourceproductcode>
+    <targetproductcode>77E0862</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_GOLF_BAG</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_UPPER_DOOR_SILLS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_ATHLETIC_SHORT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_ATHLETIC_TSHIRT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_SLIPSTREAM_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_HOOD_PANELS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_8_YR_PREPAID_SERVICE</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_UPPER_DOOR_SILLS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_ADJUSTABLE_SUSPENSION_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_PIRELLI_WINTER_SOTTOZERO_240</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y4_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_DOOR_SILLS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>J929-YL</sourceproductcode>
+    <targetproductcode>VESTRI_Y1_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CABLE_ORGANIZER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_HOOD_PANELS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_DUAL_CHARGER_W_INSTALLATION</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_DOOR_SILLS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_KIDS_SS_HANLEY</sourceproductcode>
+    <targetproductcode>VESTRI_MODEL_X_FOR_KIDS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_STAINLESS_STEEL_WATER_BOTTLE</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_LONG_SLEEVE_HANLEY</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_8_YR_PREPAID_SERVICE</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_DUAL_CHARGER_W_INSTALLATION</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_GOLF_BALLS</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_INTERIOR_CARBON_FIBER_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ENABLE_SUPERCHARGING</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_HARDTOP</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="Vestri_Auto">
+    <type>CrossSell</type>
+    <enabledate>2018-03-27T21:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CHARGING_BOOKING</sourceproductcode>
+    <targetproductcode>vestri_coffee_latte</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_PIRELLI_WINTER_SOTTOZERO_240</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_HELIX_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_SNOW_CHAIN_TRAK_4X4</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_DUAL_CHARGER_W_INSTALLATION</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_ATHLETIC_TSHIRT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CORDED_MOBILE_CONNECTOR</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>Y773-GY</sourceproductcode>
+    <targetproductcode>VESTRI_Y1_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y3_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ENABLE_SUPERCHARGING</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-03-13T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CHARGING_BOOKING</sourceproductcode>
+    <targetproductcode>vestri_coffee_latte</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>UpSell</type>
+    <enabledate>2018-06-12T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y1_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_Y3_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MOBILE_CONNECTOR_BUNDLE</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_PIRELLI_WINTER_SOTTOZERO_3</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_UPPER_DOOR_SILLS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_WINTER_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>Y773-GY</sourceproductcode>
+    <targetproductcode>VESTRI_Y1_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_ADJUSTABLE_SUSPENSION_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_HELIX_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_KIDS_PUFFER_JACKET</sourceproductcode>
+    <targetproductcode>VESTRI_MODEL_X_FOR_KIDS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2017-11-19T01:12:54-05:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_SLIPSTREAM_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_SNOW_CHAIN_TRAK_4X4</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ENABLE_SUPERCHARGING</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_SLIPSTREAM_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_GRILLE_TSHIRT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-06-12T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y1_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_Y2_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>77E0862</sourceproductcode>
+    <targetproductcode>1R-0716</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CORDED_MOBILE_CONNECTOR</sourceproductcode>
+    <targetproductcode>VESTRI_WORDMARK_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_NEMA_14-30</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_4_YR_PREPAID_SERVICE</sourceproductcode>
+    <targetproductcode>250HR_PMKIT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>J929-YL</sourceproductcode>
+    <targetproductcode>VESTRI_Y1_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_KIDS_SS_HANLEY</sourceproductcode>
+    <targetproductcode>VESTRI_MODEL_X_FOR_KIDS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_WINTER_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_AIR_DIFUSER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y2_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_SLIPSTREAM_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_AIR_DIFUSER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_CENTER_CONSOLE_TRIM</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_CYCLONE_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_INSTRUMENT_BINNACLE</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_GOLF_BAG</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_PIRELLI_WINTER_SOTTOZERO_3</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-06-12T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y1_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_Y3_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_KIDS_CHECKERED_TEE</sourceproductcode>
+    <targetproductcode>VESTRI_MODEL_X_FOR_KIDS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_TOUCH_SCREEN_GLOVES</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_EXTERIOR_CARBON_FIBER_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_CONTINENTAL_SPORT_CONTACT_5</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>5P-0960</sourceproductcode>
+    <targetproductcode>1R-0716</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_8_YR_PREPAID_SERVICE</sourceproductcode>
+    <targetproductcode>250HR_PMKIT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_SPOILER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_LIQUID_METAL_VISOR</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_BLACK_FORGED_WHEEL_SET</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>1R-0716</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y3_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_INSTRUMENT_BINNACLE</sourceproductcode>
+    <targetproductcode>VESTRI_WORDMARK_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_SLIPSTREAM_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_3_YR_PREPAID_SERVICE</sourceproductcode>
+    <targetproductcode>250HR_PMKIT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_SAE_J1772</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_PIRELLI_WINTER_SOTTOZERO_3</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_WINTER_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_RED_BRAKE_CALIPER_SET</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_MODEL_X_POLO</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_CYCLONE_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_SAE_J1772</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_DOOR_SILLS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MOBILE_CONNECTOR_BUNDLE</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_TOUCH_SCREEN_GLOVES</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_HELIX_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_CYCLONE_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y2_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_INTERIOR_CARBON_FIBER_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_NEMA_14-50</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_20_HELIX_WHEEL_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_INTERIOR_CARBON_FIBER_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY</sourceproductcode>
+    <targetproductcode>VESTRI_WHEEL_LOCK_SET</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_DOOR_SILLS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>UpSell</type>
+    <enabledate>2018-06-12T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_Y1_ANNUAL_INSPECTION</sourceproductcode>
+    <targetproductcode>VESTRI_Y2_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>3</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>250HR_PMKIT</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_GOLF_BAG</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_ADJUSTABLE_SUSPENSION_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_EXTERIOR_CARBON_FIBER_KIT</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_CORSICANA_TOTE</sourceproductcode>
+    <targetproductcode>VESTRI_LIQUID_METAL_VISOR</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MENS_MODEL_X_POLO</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_CONTINENTAL_SPORT_CONTACT_5</sourceproductcode>
+    <targetproductcode>VESTRI_LOGO_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>J930-PK</sourceproductcode>
+    <targetproductcode>VESTRI_Y1_ANNUAL_INSPECTION</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_19_SLIPSTREAM_WINTER_PACKAGE</sourceproductcode>
+    <targetproductcode>VESTRI_WORDMARK_FITTED_HAT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_3_YR_PREPAID_SERVICE</sourceproductcode>
+    <targetproductcode>VESTRI_CHARGING_BOOKING</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_UPPER_DOOR_SILLS</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_ROADSTER_CARBON_FIBER_SPOILER</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BAG</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_VIRTUAL">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_MODEL_X_RED_BRAKE_CALIPER_SET</sourceproductcode>
+    <targetproductcode>VESTRI_GOLF_BALLS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>VESTRI_21_TURBINE_WHEEL_PACKAGE_WINTER_SILVER</sourceproductcode>
+    <targetproductcode>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>2</ordering>
+</productassociation>
+
+<productassociation catalog="VESTRI_MOTORS">
+    <type>CrossSell</type>
+    <enabledate>2018-08-22T07:00:00-04:00</enabledate>
+    <sourceproductcode>1R-0716</sourceproductcode>
+    <targetproductcode>77E0862</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+</productassociations>

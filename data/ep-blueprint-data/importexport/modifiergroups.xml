@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<modifiergroups>
+	<modifiergroup>
+		<code>VESTRI_Equipment_Data</code>
+		<displayname>
+			<value language="en_US">Equipment Data</value>
+		</displayname>
+		<modifierfields>
+			<modifierfield>
+				<code>Hours</code>
+				<type>Integer</type>
+				<required>false</required>
+				<maxSize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+				<ordering>1</ordering>
+				<displayname>
+					<value language="en_US">Hours</value>
+				</displayname>
+				<options/>
+			</modifierfield>
+			<modifierfield>
+				<code>SerialNumber</code>
+				<type>ShortText</type>
+				<required>false</required>
+				<maxSize>255</maxSize>
+				<ordering>2</ordering>
+				<displayname>
+					<value language="en_US">Serial Number</value>
+				</displayname>
+				<options/>
+			</modifierfield>
+			<modifierfield>
+				<code>FaultCode</code>
+				<type>ShortText</type>
+				<required>false</required>
+				<maxSize>255</maxSize>
+				<ordering>3</ordering>
+				<displayname>
+					<value language="en_US">FaultCode</value>
+				</displayname>
+				<options/>
+			</modifierfield>
+		</modifierfields>
+	</modifiergroup>
+<modifiergroup>
+		<code>multicart</code>
+		<displayname>
+			<value language="en">Multi Cart Modifier Group.</value>
+		</displayname>
+		<modifierfields>
+			<modifierfield>
+				<code>name</code>
+				<type>ShortText</type>
+				<required>true</required>
+				<maxSize>255</maxSize>
+				<ordering>1</ordering>
+				<displayname>
+					<value language="en">Name</value>
+				</displayname>
+				<options/>
+			</modifierfield>
+		</modifierfields>
+	</modifiergroup>
+</modifiergroups>

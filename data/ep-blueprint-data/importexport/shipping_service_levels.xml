@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<shipping_service_levels>
+<shipping_service_level guid="5c99cbe6-9437-4759-b98b-1751a0e50351">
+    <shipping_region>USA</shipping_region>
+    <shipping_cost_calculation_method type="fixedPriceMethod">
+        <displayText>FixedPriceMethod_method_text</displayText>
+        <shipping_cost_calculation_params>
+            <shipping_cost_calculation_param>
+                <param_key>CalculationParameter_FixedPrice</param_key>
+                <value>29.99</value>
+                <display_text>29.99</display_text>
+                <currency>USD</currency>
+            </shipping_cost_calculation_param>
+        </shipping_cost_calculation_params>
+    </shipping_cost_calculation_method>
+    <storecode>VESTRI</storecode>
+    <carrier>Fed Ex</carrier>
+    <localized_names>
+        <value language="en_US">FedEx Shipping</value>
+    </localized_names>
+    <code>FedExShipping</code>
+    <active>true</active>
+</shipping_service_level>
+</shipping_service_levels>

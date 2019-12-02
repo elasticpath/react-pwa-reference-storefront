@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<warehouses>
+<warehouse code="VESTRI_MOTORS">
+    <name>Vestri Motors</name>
+    <pick_delay>0</pick_delay>
+    <street1>3414 Laurel Wood Ln</street1>
+    <street2></street2>
+    <city>Palo Alto</city>
+    <sub_country>CA</sub_country>
+    <zip_postal_code>90210</zip_postal_code>
+    <country>US</country>
+</warehouse>
+</warehouses>

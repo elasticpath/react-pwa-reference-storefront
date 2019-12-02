@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<price_list_assignments>
+<price_list_assignment>
+    <guid>27a84e8b-8811-45a6-a131-647dac329f6b</guid>
+    <name>Vestri AAA Pricing</name>
+    <priority>5</priority>
+    <catalog_guid>VESTRI_VIRTUAL</catalog_guid>
+    <price_list_guid>7e414af0-e4de-48ac-83b0-19ed1cffd4ce</price_list_guid>
+    <selling_context>
+        <guid>a1211386-bc29-40bf-9a8a-7f8f0f8ff0a2</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>625dab45-6ee3-4f53-9d0f-2b0c5c435bfe</guid>
+                <name>22142590200438</name>
+                <condition_string> { AND { AND { CUSTOMER_SEGMENT.includes 'AAA' }  }  } </condition_string>
+                <dictionary_guid>PLA_SHOPPER</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>36eb0e2e-9f0d-412d-be73-3a08a919ce32</guid>
+    <name>Vestri Base Pricing CA</name>
+    <priority>9</priority>
+    <catalog_guid>Vestri_Shop_CA</catalog_guid>
+    <price_list_guid>3d5b9c1f-21f4-486b-b890-6e4623404c4b</price_list_guid>
+    <selling_context>
+        <guid>4193f136-b1ef-4450-8541-4d905358bb6d</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>53f7b89c-7a93-4815-a485-9a816483c709</guid>
+                <name>101601732098613</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'VESTRICA' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>480400cb-924c-4dbf-bce4-ac72fcb7d329</guid>
+    <name>Vestri InCar Base Pricing</name>
+    <description></description>
+    <priority>10</priority>
+    <catalog_guid>Vestri_Auto</catalog_guid>
+    <price_list_guid>d6169089-04d0-47bd-9987-50e6fa809489</price_list_guid>
+    <selling_context>
+        <guid>e8db4d23-362d-495d-a6af-35573f9756df</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>87ed9349-919e-46a4-90af-dd429199c2e6</guid>
+    <name>Vestri Owners Pricing</name>
+    <priority>3</priority>
+    <catalog_guid>VESTRI_VIRTUAL</catalog_guid>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+    <selling_context>
+        <guid>7a86bed2-ddd4-40f1-8a8c-c30350750c0b</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>463ead4b-d02a-41e6-8ab2-84184264c29d</guid>
+                <name>10935866928573</name>
+                <condition_string> { AND { AND { CUSTOMER_SEGMENT.includes 'OWNER' }  }  } </condition_string>
+                <dictionary_guid>PLA_SHOPPER</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>919d83aa-8646-42b7-a5bd-78a859ec43c0</guid>
+    <name>Vestri Base Pricing Austalia</name>
+    <description>Vestri Base Pricing Austalia</description>
+    <priority>10</priority>
+    <catalog_guid>VESTRI_AU_VIRTUAL</catalog_guid>
+    <price_list_guid>059fdcf2-b68e-4fea-a31f-bc4a643399f4</price_list_guid>
+    <selling_context>
+        <guid>a23e1a54-f4c8-4e53-ae57-d1fa1d845e42</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>0aeccf36-900e-455e-9294-627894c86b52</guid>
+                <name>510594851823875</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'vestri_au' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>f3908bf1-4a2b-4edd-a5b7-3a06d18e482c</guid>
+    <name>Vestri Base Pricing</name>
+    <priority>10</priority>
+    <catalog_guid>VESTRI_VIRTUAL</catalog_guid>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+    <selling_context>
+        <guid>c81216bc-1282-44e5-83d4-35fe3b6d63e4</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>6b6b8b65-ae40-454c-8258-420b1d128497</guid>
+                <name>1641626488976</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'VESTRI' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+</price_list_assignments>

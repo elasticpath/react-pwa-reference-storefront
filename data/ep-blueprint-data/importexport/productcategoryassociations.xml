@@ -1,0 +1,2162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<productcategoryassociations>
+<product code="AU_POWER_ADAPTER">
+    <catalog code="VESTRI_AU_VIRTUAL">
+        <category code="PowerSystems">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_1-18_SCALE_DIECAST_P85_MODEL">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_19_CYCLONE_WHEEL_WINTER_PACKAGE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_19_PIRELLI_WINTER_SOTTOZERO_240">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_19_SLIPSTREAM_WINTER_PACKAGE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_20_HELIX_WHEEL_WINTER_PACKAGE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_20_SLIPSTREAM_WHEEL_WINTER_PACKAGE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_21_CONTINENTAL_SPORT_CONTACT_5">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_21_PIRELLI_WINTER_SOTTOZERO_3">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_21_TURBINE_WHEEL_PACKAGE_SILVER">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_21_TURBINE_WHEEL_PACKAGE_WINTER_SILVER">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_3_YR_PREPAID_SERVICE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_PREPAID_SERVICE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_SERVICES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_PREPAID_SERVICE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="396-6500">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_REPLACEMENT_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_REPLACEMENT_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="J929-YL">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_REPLACEMENT_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_REPLACEMENT_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="J930-PK">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_REPLACEMENT_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_REPLACEMENT_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="5P-0960">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MAINTENANCE_PRODUCTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MAINTENANCE_PRODUCTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="1R-0716">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MAINTENANCE_PRODUCTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MAINTENANCE_PRODUCTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="77E0862">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MAINTENANCE_PRODUCTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MAINTENANCE_PRODUCTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="250HR_PMKIT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_PLANNED_MAINTENANCE_KITS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_PLANNED_MAINTENANCE_KITS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_4_YR_PREPAID_SERVICE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_PREPAID_SERVICE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_SERVICES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_PREPAID_SERVICE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_8_YR_PREPAID_SERVICE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_PREPAID_SERVICE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_SERVICES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_PREPAID_SERVICE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_AUTO_DRIVE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Vestri_Auto">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_BIB_SHORT_LADIES">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_CABLE_ORGANIZER">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_CHADEMO_ADAPTER">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_CHARGING_BOOKING">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_CHARGING_SESSIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Vestri_Auto">
+        <category code="VESTRI_CHARGING_SESSIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_SESSIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_CORDED_MOBILE_CONNECTOR">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_AU_VIRTUAL">
+        <category code="PowerSystems">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_CORSICANA_TOTE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_DUAL_CHARGER_W_INSTALLATION">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ENABLE_SUPERCHARGING">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_GOLF_BAG">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_GOLF_BALLS">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_KIDS_CHECKERED_TEE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_KIDS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_KIDS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_KIDS_PUFFER_JACKET">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_KIDS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_KIDS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_KIDS_SS_HANLEY">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_KIDS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_KIDS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_LIQUID_METAL_VISOR">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_LOGO_FITTED_HAT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_ATHLETIC_SHORT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_ATHLETIC_TSHIRT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_GRILLE_TSHIRT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_LONG_SLEEVE_HANLEY">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_MODEL_X_POLO">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_SOFT_SHELL_JACKET">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_SS_HANLEY">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_TECH_VEST">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_TOUCH_SCREEN_GLOVES">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_VESTRI_BIB_SHORT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MENS_VESTRI_POLO_LOGO">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MOBILE_CONNECTOR_BUNDLE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MODEL_S_RED_BRAKE_CALIPER">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MODEL_S_SNOWCHAIN_TRAK_SPORT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MODEL_X_FOR_KIDS">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MODEL_X_HAT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MODEL_X_RED_BRAKE_CALIPER_SET">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_MODEL_X_SNOW_CHAIN_TRAK_4X4">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_NEMA_14-30">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_NEMA_14-50">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_RACE_CUT_JERSEY_LADIES">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_RACE_CUT_JERSEY_MENS">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_3.0_BATTERY_UPGRADE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_FUNCTIONAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_PERFORMANCE">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_ADJUSTABLE_SUSPENSION_KIT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_PERFORMANCE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_PERFORMANCE">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_VEHICLE_SUSPENSION">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_BLACK_FORGED_WHEEL_SET">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_PERFORMANCE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_PERFORMANCE">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CARBON_FIBER_AIR_DIFUSER">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_BODY_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CARBON_FIBER_CENTER_CONSOLE_TRIM">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_VEHICLE_INTERIOR">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CAR_COVER">
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_BODY_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CARBON_FIBER_DOOR_SILLS">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_VEHICLE_INTERIOR">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CARBON_FIBER_HARDTOP">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_BODY_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CARBON_FIBER_HOOD_PANELS">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_BODY_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CARBON_FIBER_INSTRUMENT_BINNACLE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_VEHICLE_INTERIOR">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CARBON_FIBER_SPOILER">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_BODY_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CARBON_FIBER_UPPER_DOOR_SILLS">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_VEHICLE_INTERIOR">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_CAST_ALUMINUM_WHEEL_SET">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_PERFORMANCE">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_PERFORMANCE">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_EXTERIOR_CARBON_FIBER_KIT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_BODY_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_HIGH_POWER_WALL_CONNECTOR">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_INTERIOR_CARBON_FIBER_KIT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_VISUAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_VEHICLE_INTERIOR">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_SPARE_CABLE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_UNIVERSAL_ADAPTERS">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_UNIVERSAL_MOBILE_CONNECTOR">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_ROADSTER_XENON_HEADLAMP_RETROFIT">
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_BODY_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ROADSTER_FUNCTIONAL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_SAE_J1772">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_STAINLESS_STEEL_WATER_BOTTLE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ACCESSORIES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_STRUCTURED_HAT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MENS_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_TIRE_REPAIR_KIT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_TRANSPONDER_407">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Vestri_Auto">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WALL_CONNECTOR_24_CABLE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WALL_CONNECTOR_8.5_CABLE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_AU_VIRTUAL">
+        <category code="PowerSystems">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_AND_ADAPTERS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_CHARGING">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WHEEL_LOCK_SET">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MODEL_S_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_S_WHEELS_AND_TIRES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_ALL_PRODUCTS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_MODEL_X_WHEELS">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_WHEELS_AND_TIRES">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WOMENS_ATHLETIC_TANK">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WOMENS_MODEL_X_POLO">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WOMENS_MODEL_X_TEE">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WOMENS_MODENA_LEATHER_JACKET">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WOMENS_VESTRI_LOGO_POLO">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WOMENS_WHIT_CORP_JACKET">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_APPAREL">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_LADIES_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_WORDMARK_FITTED_HAT">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_MENS_APPAREL">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_XM_RADIO_ADDON">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Vestri_Auto">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_InCarAddons">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_Y1_ANNUAL_INSPECTION">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ANNUAL_INSPECTIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_SERVICES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ANNUAL_INSPECTIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_Y2_ANNUAL_INSPECTION">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ANNUAL_INSPECTIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_SERVICES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ANNUAL_INSPECTIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_Y3_ANNUAL_INSPECTION">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ANNUAL_INSPECTIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_SERVICES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ANNUAL_INSPECTIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="VESTRI_Y4_ANNUAL_INSPECTION">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_ANNUAL_INSPECTIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_ALL_SERVICES">
+            <default>false</default>
+            <featuredorder>0</featuredorder>
+        </category>
+        <category code="VESTRI_ANNUAL_INSPECTIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="vestri_coffee_latte">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_CHARGING_SESSIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="Vestri_Auto">
+        <category code="VESTRI_CHARGING_SESSIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_CHARGING_SESSIONS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+
+<product code="Y773-GY">
+    <catalog code="VESTRI_VIRTUAL">
+        <category code="VESTRI_REPLACEMENT_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+    <catalog code="VESTRI_MOTORS">
+        <category code="VESTRI_REPLACEMENT_PARTS">
+            <default>true</default>
+            <featuredorder>0</featuredorder>
+        </category>
+    </catalog>
+</product>
+</productcategoryassociations>
