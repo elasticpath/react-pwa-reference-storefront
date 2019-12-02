@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cmimportjobs>
+<cmimportjob guid="DEFAULT_IMPORT_JOB_FOR_BASE_AMOUNT">
+    <name>DEFAULT_IMPORT_JOB_FOR_BASE_AMOUNT</name>
+    <csv_file_name>template.csv</csv_file_name>
+    <col_delimeter>,</col_delimeter>
+    <text_qualifier>"</text_qualifier>
+    <data_type_name>Base Amount</data_type_name>
+    <dependent_price_list_guid>null</dependent_price_list_guid>
+    <import_type_id>1</import_type_id>
+    <max_allow_errors>0</max_allow_errors>
+    <mappings>
+        <mapping>
+            <col_number>7</col_number>
+            <import_field_name>listPrice</import_field_name>
+        </mapping>
+        <mapping>
+            <col_number>4</col_number>
+            <import_field_name>skuCode</import_field_name>
+        </mapping>
+        <mapping>
+            <col_number>3</col_number>
+            <import_field_name>productCode</import_field_name>
+        </mapping>
+        <mapping>
+            <col_number>8</col_number>
+            <import_field_name>salePrice</import_field_name>
+        </mapping>
+        <mapping>
+            <col_number>1</col_number>
+            <import_field_name>type</import_field_name>
+        </mapping>
+        <mapping>
+            <col_number>6</col_number>
+            <import_field_name>quantity</import_field_name>
+        </mapping>
+    </mappings>
+</cmimportjob>
+
+<cmimportjob guid="IMPORT_JOB_FOR_COUPON_CODE">
+    <name>Coupon Codes Import</name>
+    <csv_file_name>template.csv</csv_file_name>
+    <col_delimeter>,</col_delimeter>
+    <text_qualifier>"</text_qualifier>
+    <data_type_name>Coupon Code</data_type_name>
+    <dependent_price_list_guid>null</dependent_price_list_guid>
+    <import_type_id>1</import_type_id>
+    <max_allow_errors>0</max_allow_errors>
+    <mappings>
+        <mapping>
+            <col_number>1</col_number>
+            <import_field_name>couponCode</import_field_name>
+        </mapping>
+    </mappings>
+</cmimportjob>
+
+<cmimportjob guid="IMPORT_JOB_FOR_COUPON_CODE_EMAIL">
+    <name>Coupon Codes and Addresses Import</name>
+    <csv_file_name>template.csv</csv_file_name>
+    <col_delimeter>,</col_delimeter>
+    <text_qualifier>"</text_qualifier>
+    <data_type_name>Coupon Code And Email</data_type_name>
+    <dependent_price_list_guid>null</dependent_price_list_guid>
+    <import_type_id>1</import_type_id>
+    <max_allow_errors>0</max_allow_errors>
+    <mappings>
+        <mapping>
+            <col_number>1</col_number>
+            <import_field_name>couponCode</import_field_name>
+        </mapping>
+        <mapping>
+            <col_number>2</col_number>
+            <import_field_name>emailAddress</import_field_name>
+        </mapping>
+    </mappings>
+</cmimportjob>
+</cmimportjobs>

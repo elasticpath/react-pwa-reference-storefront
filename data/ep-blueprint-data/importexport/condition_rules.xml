@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<condition_rules>
+<rule>
+    <code>d585b9ae-15ac-4a8e-8d0e-39ebe2b02ed9</code>
+    <conditions/>
+    <actions>
+        <action>
+            <type>ShoppingCartPromotion</type>
+            <code>d585b9ae-15ac-4a8e-8d0e-39ebe2b02ed9</code>
+        </action>
+    </actions>
+</rule>
+</condition_rules>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<store_associations>
+<store_association store_code="VESTRI">
+    <associated_store_codes>
+        <associated_store_code>VESTRICA</associated_store_code>
+        <associated_store_code>vestri_au</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="VESTRICA">
+    <associated_store_codes>
+        <associated_store_code>VESTRI</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="vestri_au">
+    <associated_store_codes>
+        <associated_store_code>VESTRI</associated_store_code>
+    </associated_store_codes>
+</store_association>
+</store_associations>

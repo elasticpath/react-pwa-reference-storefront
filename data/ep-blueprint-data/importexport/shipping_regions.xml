@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<shipping_regions>
+<shipping_region guid="1" name="Canada">
+    <region country_code="CA">
+        <sub_region>AB</sub_region>
+        <sub_region>BC</sub_region>
+        <sub_region>MB</sub_region>
+        <sub_region>NB</sub_region>
+        <sub_region>NL</sub_region>
+        <sub_region>NT</sub_region>
+        <sub_region>NS</sub_region>
+        <sub_region>NU</sub_region>
+        <sub_region>ON</sub_region>
+        <sub_region>PE</sub_region>
+        <sub_region>QC</sub_region>
+        <sub_region>SK</sub_region>
+        <sub_region>YT</sub_region>
+    </region>
+</shipping_region>
+
+<shipping_region guid="3" name="Great Britain (UK)">
+    <region country_code="GB"/>
+</shipping_region>
+
+<shipping_region guid="2" name="USA">
+    <region country_code="US">
+        <sub_region>AL</sub_region>
+        <sub_region>AK</sub_region>
+        <sub_region>AZ</sub_region>
+        <sub_region>AR</sub_region>
+        <sub_region>CA</sub_region>
+        <sub_region>CO</sub_region>
+        <sub_region>CT</sub_region>
+        <sub_region>DC</sub_region>
+        <sub_region>DE</sub_region>
+        <sub_region>FL</sub_region>
+        <sub_region>GA</sub_region>
+        <sub_region>HI</sub_region>
+        <sub_region>ID</sub_region>
+        <sub_region>IL</sub_region>
+        <sub_region>IN</sub_region>
+        <sub_region>IA</sub_region>
+        <sub_region>KS</sub_region>
+        <sub_region>KY</sub_region>
+        <sub_region>LA</sub_region>
+        <sub_region>ME</sub_region>
+        <sub_region>MD</sub_region>
+        <sub_region>MA</sub_region>
+        <sub_region>MI</sub_region>
+        <sub_region>MN</sub_region>
+        <sub_region>MS</sub_region>
+        <sub_region>MO</sub_region>
+        <sub_region>MT</sub_region>
+        <sub_region>NE</sub_region>
+        <sub_region>NV</sub_region>
+        <sub_region>NH</sub_region>
+        <sub_region>NJ</sub_region>
+        <sub_region>NM</sub_region>
+        <sub_region>NY</sub_region>
+        <sub_region>NC</sub_region>
+        <sub_region>ND</sub_region>
+        <sub_region>OH</sub_region>
+        <sub_region>OK</sub_region>
+        <sub_region>OR</sub_region>
+        <sub_region>PA</sub_region>
+        <sub_region>RI</sub_region>
+        <sub_region>SC</sub_region>
+        <sub_region>SD</sub_region>
+        <sub_region>TN</sub_region>
+        <sub_region>TX</sub_region>
+        <sub_region>UT</sub_region>
+        <sub_region>VT</sub_region>
+        <sub_region>VA</sub_region>
+        <sub_region>WA</sub_region>
+        <sub_region>WV</sub_region>
+        <sub_region>WI</sub_region>
+        <sub_region>WY</sub_region>
+    </region>
+</shipping_region>
+</shipping_regions>

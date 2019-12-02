@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<modifiergroupfilters>
+    <modifiergroupfilter>
+        <modifiercode>VESTRI_Equipment_Data</modifiercode>
+        <referenceGuid>VESTRI_MOTORS</referenceGuid>
+        <type>Catalog</type>
+    </modifiergroupfilter>
+</modifiergroupfilters>
