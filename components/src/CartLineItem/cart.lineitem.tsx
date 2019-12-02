@@ -246,6 +246,7 @@ class CartLineItem extends React.Component<CartLineItemProps, CartLineItemState>
             <li className="cart-unit-list-price" data-region="itemListPriceRegion">
               {listPrice}
             </li>
+
             <li className="cart-unit-purchase-price">
               {purchasePrice}
             </li>
