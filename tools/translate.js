@@ -25,10 +25,20 @@ const path = require('path');
 const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
 const enMessages = JSON.parse(enStr, null, 2);
 const frMessages = Object.keys(enMessages)
-  .reduce((collection, messageName) => ({
-    ...collection,
-    [messageName]: enMessages[messageName].split(/(?!$)(?=(?:[^\{]*\{[^\{]*\})*[^\}]*$)/).join('-'),
-  }), {});
+  .reduce((collection, messageName) => {
+    const msg = enMessages[messageName]
+      .split(/(\{[\S]+\})/)
+      .reduce((a,b)=>{
+        if (b[0] !== '{') {
+          b = b.split('').join('-')
+        }
+        return a + b;
+      }, '');
+    return {
+      ...collection,
+      [messageName]: msg,
+    }
+  }, {});
 
 const frStr = JSON.stringify(frMessages, null, 2);
 fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
