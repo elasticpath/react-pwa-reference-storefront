@@ -86,7 +86,6 @@ export function cortexFetch(input, init): any {
               props.maximumNumberOfItems = message['maximum-number-of-items'];
               props.GCCode = message['gift-certificate-code'];
               props.couponCode = message['coupon-code'];
-              props.skuCode = message.SKU_CODE;
               props.fieldValue = message['failed-value'];
               props.userId = message['user-id'];
               props.itemCode = message['item-code'];
@@ -102,7 +101,7 @@ export function cortexFetch(input, init): any {
                 debugMessageKey = message['field-value'] ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
               } else if (data.messages[i].id === 'item.not.in.store.catalog') {
                 debugMessageKey = message['field-value'] ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
-              }
+              } else debugMessageKey = data.messages[i].id;
               debugMessages = debugMessages.concat(`${intl.get(debugMessageKey, props)} \n `);
             }
             if (debugMessages) {
