@@ -130,7 +130,7 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
   async uploadSelectedFile(): Promise<any> {
     const formData = new FormData();
     const fileInput = this.fileInputRef.current;
-    formData.append('associates', fileInput.files[0]);
+    formData.append('associates', new Blob([fileInput.files[0]], { type: 'text/csv' }));
 
     const options = {
       method: 'POST',
