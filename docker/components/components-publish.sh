@@ -13,8 +13,8 @@ isChanged=$(
 
 if [[ ${isChanged} == ${publishDirName} ]]
 then
-    git checkout RS-516-automate-version-increment
     # regex: (?s).*skip_ci.*
+    cd ${publishDirName}
     npm version patch -m "Components %s skip_ci"
     # npm publish components
     git push

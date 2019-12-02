@@ -10,4 +10,5 @@ ADD ./ /project
 RUN npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
 RUN git config --global user.name 'cibuild'
 RUN git config --global user.email 'build@admin'
+RUN git checkout RS-516-automate-version-increment
 RUN ./docker/components/components-publish.sh
