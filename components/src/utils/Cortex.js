@@ -69,14 +69,32 @@ export function cortexFetch(input, init) {
             let minSize;
             let invalidValue;
             let regExp;
+            let maximumNumberOfItems;
+            let GCCode;
+            let couponCode;
+            let skuCode;
+            let fieldValue;
+            let userId;
+            let itemCode;
+            let minimumQuantity;
+            let shippingLevel;
             for (let i = 0; i < data.messages.length; i++) {
               fieldName = data.messages[i].data['field-name'];
               maxSize = data.messages[i].data.max;
               minSize = data.messages[i].data.min;
               invalidValue = data.messages[i].data['invalid-value'];
               regExp = data.messages[i].data['reg-exp'];
+              maximumNumberOfItems = data.messages[i].data['maximum-number-of-items'];
+              GCCode = data.messages[i].data['gift-certificate-code'];
+              couponCode = data.messages[i].data['coupon-code'];
+              skuCode = data.messages[i].data.SKU_CODE;
+              fieldValue = data.messages[i].data['failed-value'];
+              userId = data.messages[i].data['user-id'];
+              itemCode = data.messages[i].data['item-code'];
+              minimumQuantity = data.messages[i].data['minimum-quantity'];
+              shippingLevel = data.messages[i].data['shipping-level'];
               debugMessages = debugMessages.concat(`${intl.get(`${data.messages[i].id}`, {
-                fieldName, maxSize, minSize, invalidValue, regExp,
+                fieldName, maxSize, minSize, invalidValue, regExp, maximumNumberOfItems, GCCode, couponCode, skuCode, fieldValue, userId, itemCode, minimumQuantity, shippingLevel,
               })} \n `);
             }
             if (debugMessages) {
