@@ -72,21 +72,30 @@ export function cortexFetch(input, init): any {
               type: '',
               id: '',
             };
+            const props: { [key: string]: any } = {};
+
             let debugMessages = '';
-            let fieldName;
-            let maxSize;
-            let minSize;
-            let invalidValue;
-            let regExp;
+            let debugMessageKey = '';
             for (let i = 0; i < data.messages.length; i++) {
-              fieldName = data.messages[i].data['field-name'];
-              maxSize = data.messages[i].data.max;
-              minSize = data.messages[i].data.min;
-              invalidValue = data.messages[i].data['invalid-value'];
-              regExp = data.messages[i].data['reg-exp'];
-              debugMessages = debugMessages.concat(`${intl.get(`${data.messages[i].id}`, {
-                fieldName, maxSize, minSize, invalidValue, regExp,
-              })} \n `);
+              const message = data.messages[i].data;
+              props.fieldName = message['field-name'];
+              props.maxSize = message.max;
+              props.minSize = message.min;
+              props.invalidValue = message['invalid-value'];
+              props.regExp = message['reg-exp'];
+              props.maximumNumberOfItems = message['maximum-number-of-items'];
+              props.GCCode = message['gift-certificate-code'];
+              props.couponCode = message['coupon-code'];
+              props.skuCode = message.SKU_CODE;
+              props.fieldValue = message['failed-value'];
+              props.userId = message['user-id'];
+              props.itemCode = message['item-code'];
+              props.minimumQuantity = message['minimum-quantity'];
+              props.shippingLevel = message['shipping-level'];
+              props.inventoryAvailable = message['inventory-available'];
+              props.quantityRequested = message['quantity-requested'];
+              debugMessageKey = (data.messages[i].id === 'item.insufficient.inventory' && message['quantity-requested']) ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
+              debugMessages = debugMessages.concat(`${intl.get(debugMessageKey, props)} \n `);
             }
             if (debugMessages) {
               messageData.debugMessages = debugMessages;
