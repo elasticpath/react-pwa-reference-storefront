@@ -94,7 +94,15 @@ export function cortexFetch(input, init): any {
               props.shippingLevel = message['shipping-level'];
               props.inventoryAvailable = message['inventory-available'];
               props.quantityRequested = message['quantity-requested'];
-              debugMessageKey = (data.messages[i].id === 'item.insufficient.inventory' && message['quantity-requested']) ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
+              if (data.messages[i].id === 'field.invalid.minimum.value') {
+                debugMessageKey = message['invalid-value'] ? data.messages[i].id : `${data.messages[i].id}-msg-2`;
+              } else if (data.messages[i].id === 'item.insufficient.inventory') {
+                debugMessageKey = message['quantity-requested'] ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
+              } else if (data.messages[i].id === 'item.not.available') {
+                debugMessageKey = message['field-value'] ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
+              } else if (data.messages[i].id === 'item.not.in.store.catalog') {
+                debugMessageKey = message['field-value'] ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
+              }
               debugMessages = debugMessages.concat(`${intl.get(debugMessageKey, props)} \n `);
             }
             if (debugMessages) {
