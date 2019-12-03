@@ -72,37 +72,24 @@ export function cortexFetch(input, init): any {
               type: '',
               id: '',
             };
-            const props: { [key: string]: any } = {};
 
             let debugMessages = '';
             let debugMessageKey = '';
             for (let i = 0; i < data.messages.length; i++) {
               const message = data.messages[i].data;
-              props.fieldName = message['field-name'];
-              props.maxSize = message.max;
-              props.minSize = message.min;
-              props.invalidValue = message['invalid-value'];
-              props.regExp = message['reg-exp'];
-              props.maximumNumberOfItems = message['maximum-number-of-items'];
-              props.GCCode = message['gift-certificate-code'];
-              props.couponCode = message['coupon-code'];
-              props.fieldValue = message['failed-value'];
-              props.userId = message['user-id'];
-              props.itemCode = message['item-code'];
-              props.minimumQuantity = message['minimum-quantity'];
-              props.shippingLevel = message['shipping-level'];
-              props.inventoryAvailable = message['inventory-available'];
-              props.quantityRequested = message['quantity-requested'];
-              if (data.messages[i].id === 'field.invalid.minimum.value') {
-                debugMessageKey = message['invalid-value'] ? data.messages[i].id : `${data.messages[i].id}-msg-2`;
-              } else if (data.messages[i].id === 'item.insufficient.inventory') {
-                debugMessageKey = message['quantity-requested'] ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
-              } else if (data.messages[i].id === 'item.not.available') {
-                debugMessageKey = message['field-value'] ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
-              } else if (data.messages[i].id === 'item.not.in.store.catalog') {
-                debugMessageKey = message['field-value'] ? `${data.messages[i].id}-msg-2` : data.messages[i].id;
-              } else debugMessageKey = data.messages[i].id;
-              debugMessages = debugMessages.concat(`${intl.get(debugMessageKey, props)} \n `);
+              const messageId = data.messages[i].id;
+
+              if (messageId === 'field.invalid.minimum.value') {
+                debugMessageKey = message['invalid-value'] ? messageId : `${messageId}-msg-2`;
+              } else if (messageId === 'item.insufficient.inventory') {
+                debugMessageKey = message['quantity-requested'] ? `${messageId}-msg-2` : messageId;
+              } else if (messageId === 'item.not.available') {
+                debugMessageKey = message['field-value'] ? `${messageId}-msg-2` : messageId;
+              } else if (messageId === 'item.not.in.store.catalog') {
+                debugMessageKey = message['field-value'] ? `${messageId}-msg-2` : messageId;
+              } else debugMessageKey = messageId;
+              const msg = intl.get(debugMessageKey, message);
+              debugMessages = debugMessages.concat(`${msg || data.messages[i]['debug-message']} \n `);
             }
             if (debugMessages) {
               messageData.debugMessages = debugMessages;
