@@ -809,7 +809,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     </div>
 
                   </form>
-                  {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform && !(Object.keys(productData._addtocartform[0].configuration).length > 0)) ? (
+                  {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
                         <div className="form-content form-content-submit col-sm-offset-4">
