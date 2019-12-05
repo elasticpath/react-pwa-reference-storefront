@@ -22,6 +22,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import Modal from 'react-responsive-modal';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import {
   B2bEditAccount, B2bAddSubAccount, B2bEditAssociate, B2bAccountList,
@@ -114,6 +115,8 @@ interface AccountMainState {
   editSubAccountUri: string,
   editMetadataUri: string,
   subAccounts: any,
+  isDeleteAssociateOpen: boolean,
+  associateUri: string,
 }
 
 interface AccountMainRouterProps {
@@ -147,6 +150,8 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
       editSubAccountUri: '',
       editMetadataUri: '',
       subAccounts: {},
+      isDeleteAssociateOpen: false,
+      associateUri: '',
     };
 
     this.handleAccountSettingsClose = this.handleAccountSettingsClose.bind(this);
@@ -160,6 +165,8 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
     this.isEditAssociateClose = this.isEditAssociateClose.bind(this);
     this.subAccountData = this.subAccountData.bind(this);
     this.getAccountData = this.getAccountData.bind(this);
+    this.handleDeleteModalOpen = this.handleDeleteModalOpen.bind(this);
+    this.handleDeleteModalClose = this.handleDeleteModalClose.bind(this);
   }
 
   componentDidMount() {
@@ -207,6 +214,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
             addSubAccountUri: accounts._subaccounts[0]._accountform[0].self.uri,
             addSubAccountSellerAdmin: typeof accounts._subaccounts[0]._accountform[0]['external-id'] !== 'undefined',
             subAccounts: accounts._subaccounts[0],
+            isDeleteAssociateOpen: false,
           });
         })
         .catch((error) => {
@@ -297,6 +305,14 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
     });
   }
 
+  handleDeleteModalOpen(associateUri) {
+    this.setState({ isDeleteAssociateOpen: true, associateUri });
+  }
+
+  handleDeleteModalClose() {
+    this.setState({ isDeleteAssociateOpen: false });
+  }
+
   render() {
     const {
       isLoading,
@@ -322,6 +338,8 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
       registrationNumber,
       selfSignUpCode,
       uri,
+      isDeleteAssociateOpen,
+      associateUri,
     } = this.state;
 
     const editAccountData = {
@@ -414,7 +432,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                           </td>
                           <td className="action">
                             <button type="button" className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)} />
-                            <button type="button" className="delete-associate" onClick={() => this.handleDeleteAssociateClicked(associate.self.uri)} />
+                            <button type="button" className="delete-associate" onClick={() => this.handleDeleteModalOpen(associate.self.uri)} />
                           </td>
                         </tr>
                       );
@@ -422,6 +440,30 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                   </tbody>
                 </table>
               </div>
+
+              <Modal
+                open={isDeleteAssociateOpen}
+                onClose={this.handleDeleteModalClose}
+                classNames={{ modal: 'b2b-delete-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
+              >
+                <div className="dialog-header">{intl.get('remove-associate')}</div>
+                <div className="dialog-content">
+                  <p>
+                    {intl.get('confirm-delete-associate')}
+                  </p>
+                </div>
+                <div className="dialog-footer">
+                  <button className="cancel" type="button" onClick={this.handleDeleteModalClose}>{intl.get('no')}</button>
+                  <button className="upload" type="button" onClick={() => this.handleDeleteAssociateClicked(associateUri)}>
+                    {intl.get('yes')}
+                  </button>
+                </div>
+                {isLoading ? (
+                  <div className="loader-wrapper">
+                    <div className="miniLoader" />
+                  </div>
+                ) : ''}
+              </Modal>
 
               <B2bEditAccount
                 handleClose={this.handleAccountSettingsClose}

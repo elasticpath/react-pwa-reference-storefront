@@ -352,5 +352,9 @@
   "backend-message-account.not.found": "No account with the given account name was found.",
   "cart-clear-msg": "You are about to remove all items from",
   "cart-clear-confirmation": "These items will be permanently removed. Continue?",
-  "remove-all-cart-items": "Remove all cart items"
+  "remove-all-cart-items": "Remove all cart items",
+  "remove-associate": "Remove Associate",
+  "confirm-delete-associate": "Are you sure you would like to remove this associate?",
+  "no": "No",
+  "yes": "Yes"
 }
