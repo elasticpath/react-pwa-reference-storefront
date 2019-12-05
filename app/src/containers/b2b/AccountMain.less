@@ -544,3 +544,25 @@
   vertical-align: sub;
   margin: 0 6px 1px 0;
 }
+
+.b2b-delete-associate-dialog {
+  padding: 15px 30px;
+
+  @media (min-width: @mobileWidth) {
+    min-width: 450px;
+  }
+
+  .dialog-content {
+    padding: 25px 0 50px;
+  }
+
+  .cancel {
+    outline: 0 auto transparent;
+  }
+
+  @media screen and (max-width: 480px) {
+    .dialog-footer button {
+      width: 100px;
+    }
+  }
+}
