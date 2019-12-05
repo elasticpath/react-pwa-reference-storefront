@@ -350,7 +350,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     return (
       <div className="address-form-component container" data-region="appMain">
         <div className="feedback-label feedback-container" data-region="componentAddressFeedbackRegion">
-          {failedSubmit ? ('Failed to Save, please check all required fields are filled.') : ('')}
+          {failedSubmit ? intl.get('failed-to-save-message') : ('')}
         </div>
         <form className="form-horizontal" onSubmit={this.submitAddress}>
           <div className="form-group">
