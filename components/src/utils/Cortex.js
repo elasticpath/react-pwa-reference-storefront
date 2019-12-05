@@ -20,6 +20,7 @@
  */
 
 import { ErrorInlet } from '@elasticpath/ref-store/src/utils/MessageContext';
+import intl from 'react-intl-universal';
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
 import { getConfig } from './ConfigProvider';
@@ -62,9 +63,24 @@ export function cortexFetch(input, init) {
               type: '',
               id: '',
             };
+
             let debugMessages = '';
+            let debugMessageKey = '';
             for (let i = 0; i < data.messages.length; i++) {
-              debugMessages = debugMessages.concat(`${data.messages[i]['debug-message']} \n `);
+              const message = data.messages[i].data;
+              const messageId = data.messages[i].id;
+
+              if (messageId === 'field.invalid.minimum.value') {
+                debugMessageKey = message['invalid-value'] ? messageId : `${messageId}-msg-2`;
+              } else if (messageId === 'item.insufficient.inventory') {
+                debugMessageKey = message['quantity-requested'] ? `${messageId}-msg-2` : messageId;
+              } else if (messageId === 'item.not.available') {
+                debugMessageKey = message['field-value'] ? `${messageId}-msg-2` : messageId;
+              } else if (messageId === 'item.not.in.store.catalog') {
+                debugMessageKey = message['field-value'] ? `${messageId}-msg-2` : messageId;
+              } else debugMessageKey = messageId;
+              const msg = intl.get(debugMessageKey, message);
+              debugMessages = debugMessages.concat(`${msg || data.messages[i]['debug-message']} \n `);
             }
             if (debugMessages) {
               messageData.debugMessages = debugMessages;

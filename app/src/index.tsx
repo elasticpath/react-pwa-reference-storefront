@@ -36,7 +36,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 const locales = {};
 epConfig.supportedLocales.forEach((locale) => {
   // eslint-disable-next-line import/no-dynamic-require, global-require
-  locales[locale.value] = require(`./localization/${locale.value}.json`);
+  const localeMessages = require(`./localization/${locale.value}.json`);
+  // eslint-disable-next-line import/no-dynamic-require, global-require
+  const debugMessages = require(`./localization/messages-${locale.value}.json`);
+  locales[locale.value] = { ...localeMessages, ...debugMessages };
 });
 
 // localisation init

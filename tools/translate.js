@@ -22,13 +22,28 @@
 const fs = require('fs');
 const path = require('path');
 
+function translate (enStr) {
+  const enMessages = JSON.parse(enStr, null, 2);
+  const frMessages = Object.keys(enMessages)
+    .reduce((collection, messageName) => {
+      const msg = enMessages[messageName]
+        .split(/(\{[\S]+\})/)
+        .reduce((a,b)=>{
+          if (b[0] !== '{') {
+            b = b.split('').join('-')
+          }
+          return a + b;
+        }, '');
+      return {
+        ...collection,
+        [messageName]: msg,
+      }
+    }, {});
+  
+  return JSON.stringify(frMessages, null, 2);
+}
 const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
-const enMessages = JSON.parse(enStr, null, 2);
-const frMessages = Object.keys(enMessages)
-  .reduce((collection, messageName) => ({
-    ...collection,
-    [messageName]: enMessages[messageName].split(/(?!$)(?=(?:[^\{]*\{[^\{]*\})*[^\}]*$)/).join('-'),
-  }), {});
+const enDebugStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/messages-en-CA.json'), 'utf8');
 
-const frStr = JSON.stringify(frMessages, null, 2);
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${frStr}\n`, 'utf8');
+fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${translate(enStr)}\n`, 'utf8');
+fs.writeFileSync(path.join(__dirname, './../app/src/localization/messages-fr-FR.json'), `${translate(enDebugStr)}\n`, 'utf8');
