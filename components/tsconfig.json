@@ -27,8 +27,7 @@
   },
   "include": [
     "src",
-    "custom_typings/image-loader.d.ts",
-    "custom_typings/typings.d.ts"
+    "custom_typings",
   ],
   "exclude": ["node_modules","**/*.stories.tsx"]
 }
