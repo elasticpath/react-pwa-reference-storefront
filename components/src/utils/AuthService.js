@@ -187,6 +187,8 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
       localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
       localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
       localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
       localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
       localStorage.removeItem(`${Config.cortexApi.scope}_cartItemsCount`);

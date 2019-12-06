@@ -127,6 +127,8 @@ export function cortexFetch(input, init): any {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
         localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserId`);
@@ -173,6 +175,8 @@ export function adminFetch(input, init): any {
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
         localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
         localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
+        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
         localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
         window.location.pathname = '/';

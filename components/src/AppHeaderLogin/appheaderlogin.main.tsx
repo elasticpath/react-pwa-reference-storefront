@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import uuidv4 from 'uuid/v4';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -32,6 +33,8 @@ import { cortexFetch, adminFetch } from '../utils/Cortex';
 import { ReactComponent as AccountIcon } from '../../../app/src/images/header-icons/account-icon.svg';
 
 import './appheaderlogin.main.less';
+
+const oidcDiscoveryEndpoint = '/.well-known/openid-configuration';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -69,6 +72,14 @@ interface AppHeaderLoginMainState {
     openCartModal: boolean,
     showForgotPasswordLink: boolean,
     accountData: any,
+    loginUrlAddress: string,
+}
+
+interface OidcParameters {
+  clientId: string;
+  scopes: string;
+  authorizationEndpoint: string;
+  endSessionEndpoint: string;
 }
 
 // Array of zoom parameters to pass to Cortex
@@ -76,7 +87,7 @@ const zoomArray = [
   'passwordresetform',
 ];
 
-class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLoginMainState> {
+class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLoginMainState, OidcParameters> {
     static defaultProps = {
       isMobileView: false,
       locationSearchData: undefined,
@@ -97,6 +108,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         openCartModal: false,
         showForgotPasswordLink: false,
         accountData: {},
+        loginUrlAddress: '',
       };
       this.handleModalClose = this.handleModalClose.bind(this);
       this.getAccountData = this.getAccountData.bind(this);
@@ -114,6 +126,52 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         this.handleCartModalOpen();
         this.getAccountData();
       }
+      if (Config.b2b.openId.enable) {
+        this.login();
+      }
+    }
+
+    async login() {
+      const oidcSecret = uuidv4();
+      localStorage.setItem('OidcSecret', oidcSecret);
+      const oidcParameters: OidcParameters = await this.discoverOIDCParameters();
+      const oidcStateObject = {
+        secret: oidcSecret,
+        pathname: window.location.pathname,
+      };
+
+      const oidcStateEncoded = btoa(JSON.stringify(oidcStateObject));
+      const redirectUrl = `${Config.b2b.openId.callbackUrl}/loggedin`;
+
+      const query = [
+        `scope=${encodeURIComponent(oidcParameters.scopes)}`,
+        'response_type=code',
+        `client_id=${encodeURIComponent(oidcParameters.clientId)}`,
+        `redirect_uri=${encodeURIComponent(redirectUrl)}`,
+        `state=${oidcStateEncoded}`,
+      ].join('&');
+
+      const loginUrl = `${oidcParameters.authorizationEndpoint}?${query}`;
+      this.setState({
+        loginUrlAddress: loginUrl,
+      });
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    async discoverOIDCParameters() {
+      const data = await adminFetch(oidcDiscoveryEndpoint, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        },
+      });
+      const res = await data.json();
+      return {
+        clientId: res.account_management_client_id,
+        scopes: res.account_management_required_scopes,
+        authorizationEndpoint: res.authorization_endpoint,
+        endSessionEndpoint: res.end_session_endpoint,
+      };
     }
 
     logoutRegisteredUser() {
@@ -203,10 +261,10 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin,
       } = this.props;
       const {
-        openModal, openCartModal, showForgotPasswordLink, accountData,
+        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress,
       } = this.state;
       let keycloakLoginRedirectUrl = '';
-      if (Config.b2b.enable) {
+      if (Config.b2b.enable && !Config.b2b.openId.enable) {
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
@@ -300,7 +358,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       return (
         <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
           {(Config.b2b.enable) ? (
-            <a href={`${keycloakLoginRedirectUrl}`} className="login-auth-service-btn">
+            <a href={`${Config.b2b.openId.enable ? loginUrlAddress : keycloakLoginRedirectUrl}`} className="login-auth-service-btn">
               <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button">
                 {(isMobileView)
                   ? (
