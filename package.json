@@ -27,6 +27,7 @@
   "scripts": {
     "start": " cd app && yarn start",
     "build": " cd app && yarn build",
+    "build-components" : "cd components && yarn build",
     "test": " cd app && yarn test",
     "storybook": " cd storybook && yarn storybook",
     "deploy": "cd app && yarn deploy"

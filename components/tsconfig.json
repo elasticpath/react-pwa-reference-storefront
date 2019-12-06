@@ -26,7 +26,8 @@
     "declarationMap": true
   },
   "include": [
-    "src"
+    "src",
+    "custom_typings",
   ],
   "exclude": ["node_modules","**/*.stories.tsx"]
 }

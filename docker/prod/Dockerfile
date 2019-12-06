@@ -6,10 +6,6 @@ WORKDIR /project
 
 ADD ./ /project
 
-# Publish components to npm
-RUN npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
-RUN npm publish components/ || echo "Components publish failed"
-
 RUN yarn
 
 RUN echo "deb http://deb.debian.org/debian/ jessie main \n\
@@ -33,6 +29,12 @@ RUN jq -e '.cortexApi.scope|="NGINX_REPLACE_CORTEX_API_SCOPE"' ./app/src/ep.conf
 RUN rm ./app/src/ep.config.json.tmp
 
 RUN yarn build
+
+RUN yarn build-components
+
+# Publish components to npm
+RUN npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
+RUN npm publish components/ || echo "Components publish failed"
 
 FROM nginx:1.15.1
 COPY --from=builder /project/app/build/ /usr/share/nginx/www
