@@ -250,6 +250,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 className="quantity-left-minus btn btn-number"
                 data-type="minus"
                 data-field=""
+                tabIndex={-1}
                 onClick={() => {
                   this.handleQuantityDecrement();
                 }}
@@ -257,13 +258,14 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 <span className="glyphicon glyphicon-minus" />
               </button>
               <div className="quantity-col form-content form-content-quantity">
-                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" max="9999" value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
+                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" max="9999" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
               </div>
               <button
                 type="button"
                 className="quantity-right-plus btn btn-number"
                 data-type="plus"
                 data-field=""
+                tabIndex={-1}
                 onClick={() => {
                   this.handleQuantityIncrement();
                 }}
