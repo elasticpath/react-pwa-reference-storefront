@@ -2,7 +2,12 @@
 
 #### Description
 
-Displays accounts for Buyer Admin view given account list data.
+Displays a list of accounts along with the status of the account. If an account has sub-accounts defined, the sub-accounts are also displayed in a hierarchy within the parent account. 
+
+**Note**: This component is intended for account administrators.
+
+- When an administrator selects an account or sub-account, the component retrieves data about the account or sub-account.
+- When an administrator selects the **Add Sub Account** button, the [`B2bAddSubAccount`](../B2bAddSubAccount/README.md) component launches.
 
 #### Usage
 

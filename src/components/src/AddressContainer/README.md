@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays address information returned by a resource.
+Displays the address information returned by a resource.
 
 #### Usage
 

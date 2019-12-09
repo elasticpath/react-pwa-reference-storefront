@@ -2,7 +2,7 @@
 
 #### Description
 
-Modal for cart selection in multi-cart enabled flows.
+Displays a modal window that contains a list of carts that belong to the shopper's account. Use this component when the store has the multiple carts feature enabled.
 
 #### Usage
 

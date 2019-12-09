@@ -2,7 +2,7 @@
 
 #### Description
 
-Address form component.
+Displays a modal window that contains a set of related items, called a bundle. A shopper can purchase all items in the bundle or select individual items from the bundle. The items are added to a cart.
 
 #### Usage
 

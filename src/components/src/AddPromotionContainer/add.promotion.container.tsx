@@ -30,11 +30,11 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AddPromotionContainerProps {
-  /** cart data */
+  /** An array of orders for the shopper, where `string` is the URL to the cart data for an order. */
   data: {
       [key: string]: any
   },
-  /** handle submit promotion */
+  /** Verifies the coupon code and applies a valid coupon to the order. */
   onSubmittedPromotion: (...args: any[]) => any,
 }
 

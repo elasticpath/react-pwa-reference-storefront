@@ -2,7 +2,7 @@
 
 #### Description
 
-Header component comprised of all sub-components that make up the header.
+Displays a header at the top of each page in your store. The `AppHeaderMain` component can contain any of the `AppHeader*` subcomponents.
 
 #### Usage
 
