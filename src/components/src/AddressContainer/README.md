@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays a read-only address.
+Displays the address information returned by a resource.
 
 #### Usage
 
