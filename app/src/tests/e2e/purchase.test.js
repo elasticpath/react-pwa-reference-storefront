@@ -91,7 +91,7 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP, { waitUntil: 'networkidle0' });
+    await page.goto(APP);
 
     await addProductToCart(page, 'M-Class', 'Wheels, Tires, and Tire Covers', 'M Class Red Brake Calipers');
 
@@ -160,7 +160,7 @@ describe('Purchase feature', () => {
     await browser.close();
 
     expect(text).toEqual(SUCCESS_ORDER_STATUS);
-  }, 60000);
+  }, 120000);
 
   test('Purchase physical item as an anonymous shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
