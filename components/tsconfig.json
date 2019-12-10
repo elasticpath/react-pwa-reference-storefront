@@ -21,7 +21,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": false,
-    "outDir": "build",
+    "outDir": "build/types",
     "esModuleInterop":true,
     "declarationMap": true
   },

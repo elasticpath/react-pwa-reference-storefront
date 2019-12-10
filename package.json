@@ -24,9 +24,13 @@
     "react-simple-chatbot": "^0.6.1",
     "styled-components": "^4.3.2"
   },
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  },
   "scripts": {
-    "start": "yarn build-components && cd app && yarn start",
+    "start": "yarn build-component-types && cd app && yarn start",
     "build": "yarn build-components && cd app && yarn build",
+    "build-component-types": "cd components && tsc --EmitDeclarationOnly",
     "build-components" : "cd components && yarn build",
     "test": " cd app && yarn test",
     "storybook": " cd storybook && yarn storybook",
