@@ -91,7 +91,7 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP, { waitUntil: 'networkidle0' });
+    await page.goto(APP);
 
     await addProductToCart(page, 'M-Class', 'Wheels, Tires, and Tire Covers', 'M Class Red Brake Calipers');
 
