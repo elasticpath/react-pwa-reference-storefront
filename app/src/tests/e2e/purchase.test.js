@@ -160,7 +160,7 @@ describe('Purchase feature', () => {
     await browser.close();
 
     expect(text).toEqual(SUCCESS_ORDER_STATUS);
-  }, 60000);
+  }, 120000);
 
   test('Purchase physical item as an anonymous shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
