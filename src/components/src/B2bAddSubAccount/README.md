@@ -4,6 +4,8 @@
 
 Displays an **Add Sub Account** dialog box. An account administrator can add a sub-account to the account. Use sub-accounts to enable groups within an organization to manage and track their orders, such as departments, divisions, or global offices.
 
+Use this component with the Buyer Admin view.
+
 #### Usage
 
 ```js

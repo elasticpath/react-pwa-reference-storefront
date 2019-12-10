@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays bundle constituents given product data and the item link.
+For a specified bundle, displays an image and name for the bundle itself and for each item in the bundle. The name is a link to item details.
 
 #### Usage
 

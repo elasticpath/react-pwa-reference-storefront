@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays sub-account list information below top-level account given account information.
+Displays a list of sub-accounts for the specified account. The list information includes the sub-account name and whether the sub-account is enabled. When an account administrator selects the sub-account, the component retrieves data about the sub-account.
+
+Use this component with the Buyer Admin view.
 
 #### Usage
 

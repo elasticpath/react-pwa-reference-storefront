@@ -2,7 +2,17 @@
 
 #### Description
 
-Displays modal to create cart and displays all available carts for multi-cart capabilities.
+Displays a **Manage Carts** modal window.
+
+Shoppers can initiate the following actions:
+- Create a cart.
+- Review the list of existing carts, including how many items are in the cart.
+- Update a cart name.
+- Delete a cart.
+- Open a cart.
+ 
+
+**Note**: Requires that the multiple carts feature is enabled in your Elastic Path Commerce solution. 
 
 #### Usage
 
