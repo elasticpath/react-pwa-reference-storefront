@@ -24,6 +24,9 @@
     "react-simple-chatbot": "^0.6.1",
     "styled-components": "^4.3.2"
   },
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  },
   "scripts": {
     "start": "yarn build-components && cd app && yarn start",
     "build": "yarn build-components && cd app && yarn build",
