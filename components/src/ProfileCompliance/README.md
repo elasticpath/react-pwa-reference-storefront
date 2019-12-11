@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays data policies available and consented to by profile. Can revoke and consent to new policies.
+Displays data policies available and consented to by profile. Can revoke and consent to new policies. This component may be used to display consented policies for GDPR, CCPA, etc.
 
 #### Usage
 
