@@ -2,7 +2,7 @@
 
 #### Description
 
-Modal to present policy for shopper to accept. Invokes policy acceptance given provided application configuration.
+Modal to present policy for shopper to accept. Invokes policy acceptance given provided application configuration. This component may be used to present policies for GDPR, CCPA, etc.
 
 #### Usage
 
