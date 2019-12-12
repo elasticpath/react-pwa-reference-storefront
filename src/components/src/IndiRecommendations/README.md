@@ -2,7 +2,7 @@
 
 #### Description
 
-Integration component for Indi.
+Integrates Indi.
 
 #### Usage
 

@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays single order line from purchase history.
+Displays the details of a purchase on a single line. The component retrieves the purchase details from the purchase history. 
 
 #### Usage
 

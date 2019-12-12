@@ -2,7 +2,7 @@
 
 #### Description
 
-Cart notification component.
+Displays a confirmation message after a shopper adds items to a cart.
 
 #### Usage
 

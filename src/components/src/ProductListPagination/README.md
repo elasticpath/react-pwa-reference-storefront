@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays pagination data for use in product lists.
+Displays pagination information for product lists that exceed one page.
+
+This component is used with the `ProductList` component.
 
 #### Usage
 

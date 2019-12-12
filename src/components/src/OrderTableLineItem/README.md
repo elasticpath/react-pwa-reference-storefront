@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays previous single order for table given order code and data.
+Displays item details for an item from a previous order. Details include the item name, image, description, and price. The component retrieves the data for a specified item with a specified order code. 
+
+This component is used by the `OrderTableMain` component to display items in the table.
 
 #### Usage
 

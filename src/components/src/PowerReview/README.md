@@ -2,7 +2,7 @@
 
 #### Description
 
-Integration component for PowerReviews.
+Integrates [PowerReviews](https://www.powerreviews.com/) into your storefront.
 
 #### Usage
 
