@@ -90,11 +90,11 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
       if (Config.b2b.openId.enabled) {
         localStorage.setItem(`${Config.cortexApi.scope}_openIdcCode`, params.code);
         localStorage.setItem(`${Config.cortexApi.scope}_openIdcSessionState`, params.session_state);
+        localStorage.removeItem('OidcSecret');
       } else {
         localStorage.setItem(`${Config.cortexApi.scope}_keycloakCode`, params.code);
         localStorage.setItem(`${Config.cortexApi.scope}_keycloakSessionState`, params.session_state);
       }
-      localStorage.removeItem('OidcSecret');
       if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) !== 'REGISTERED') {
         loginRegisteredAuthService(params.code, encodeURIComponent(Config.b2b.keycloak.callbackUrl), encodeURIComponent(Config.b2b.keycloak.client_id)).then((resStatus) => {
           if (resStatus === 401) {
