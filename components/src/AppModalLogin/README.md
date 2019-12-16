@@ -2,10 +2,10 @@
 
 #### Description
 
-Displays a **Login** dialog box where shoppers can either register for an account or log in to an existing account. If you implement a password reset process, you can configure this component to display a Forgot Password link.
+Displays a **Login** dialog box where shoppers can either register for an account or sign in to an existing account. If you implement a password reset process, you can configure this component to display a **Forgot Password** link.
 
 - When a shopper enters their user credentials and clicks **Login**, the component passes the credentials to the authentication process. If the user is authenticated, the main store page opens.
-- When a shopper clicks **Register**, the component opens the [`RegistrationFormMain`](../RegistrationForm/README.md) component.
+- When a shopper clicks **Register**, the component opens the `RegistrationFormMain` component.
 - When a shopper clicks **Forgot Password**, the component calls your password reset process.
 
 #### Usage
