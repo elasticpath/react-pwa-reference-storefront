@@ -80,6 +80,7 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
     this.loginRegisteredUser = this.loginRegisteredUser.bind(this);
     this.registerNewUser = this.registerNewUser.bind(this);
     this.resetPassword = this.resetPassword.bind(this);
+    this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
   }
 
   componentWillMount() {
@@ -156,6 +157,12 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
     }
   }
 
+  handleEnterKeyPress(e) {
+    if (e.keyCode === 13) {
+      this.loginRegisteredUser(e);
+    }
+  }
+
   resetPassword() {
     const { handleModalClose, onResetPassword } = this.props;
     onResetPassword();
@@ -190,14 +197,14 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
                     {intl.get('username')}
                     :
                   </span>
-                  <input className="form-control" id="login_modal_username_input" type="text" onChange={this.setUsername} />
+                  <input className="form-control" id="login_modal_username_input" type="text" onChange={this.setUsername} onKeyDown={this.handleEnterKeyPress} />
                 </div>
                 <div className="form-group">
                   <span>
                     {intl.get('password')}
                     :
                   </span>
-                  <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} />
+                  <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} onKeyDown={this.handleEnterKeyPress} />
                 </div>
                 <div className="form-group action-row">
                   {
