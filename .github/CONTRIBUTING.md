@@ -48,9 +48,9 @@ You can contribute to this project by creating a pull request in the repository.
 1. Fork the repository into your Github account.
 2. Clone the fork locally.
 3. Create a git branch.
-4. Set up the development environment and install the required dependencies. For more information, see [Setting up a Development Environment](README.md#setting-up-a-development-environment).
+4. Set up the development environment and install the required dependencies. For more information, see [Setting up a Development Environment](https://documentation.elasticpath.com/storefront-react/docs/setup.html).
 5. Make the changes and commit the changes to your new branch. Ensure that the code is clear and comprehensible.
-6. Run the local tests by following the instruction in the [Running E2E Tests](README.md#running-e2e-tests) section. If you add new features or components that require additional unit tests, ensure that the code is tested and verified with appropriate tests.
+6. Run the local tests by following the instruction in the [Running E2E Tests](https://documentation.elasticpath.com/storefront-react/docs/testing.html) section. If you add new features or components that require additional unit tests, ensure that the code is tested and verified with appropriate tests.
 7. Create a Pull Request (PR).
 8. Incorporate the review comments provided by the repository owner, if any, and get approval.<br/>
 The repository owner merges all approved PRs to the repository.
