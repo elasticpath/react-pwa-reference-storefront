@@ -8,6 +8,8 @@ This component is displayed within the `CartMain` component.
 
 When a shopper selects an item, the item details open in the `ProductDisplayItemMain` component.
 
+When a shopper selects an item, the item details open in the `ProductDisplayItemMain` component.
+
 #### Usage
 
 ```js
