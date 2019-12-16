@@ -2,7 +2,7 @@
 
 #### Description
 
-Adds a top-level header to the [`AppHeaderMain`](../AppHeader/README.md) component. The `AppHeaderTop` component can contain the `AppHeaderLocale` component and links to static pages.
+Adds a top-level header to the `AppHeaderMain` component. The `AppHeaderTop` component can contain the `AppHeaderLocale` component and links to static pages.
 
 #### Usage
 

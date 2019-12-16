@@ -2,7 +2,7 @@
 
 #### Description
 
-Adds a **Login** link in the header. When selected, the link opens the [`AppModalLoginMain`](../AppModalLogin/README.md) component, which displays a **Login** dialog box.
+Adds a **Login** link in the header. When selected, the link opens the `AppModalLoginMain` component, which displays a **Login** dialog box.
 
 #### Usage
 

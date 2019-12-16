@@ -4,7 +4,7 @@
 
 Displays an **Add Associate** dialog box. Account administrators add associates by specifying their email address and roles.
 
-Use this component with the Buyer Admin view.
+Use this component with the Accounts view.
 
 #### Usage
 

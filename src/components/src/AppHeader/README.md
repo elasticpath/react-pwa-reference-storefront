@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays a header at the top of each page in your store. The `AppHeaderMain` component can contain any of the `AppHeader*` subcomponents.
+Displays a header at the top of each page in the storefront. The `AppHeaderMain` component can contain any of the `AppHeader*` subcomponents.
 
 #### Usage
 

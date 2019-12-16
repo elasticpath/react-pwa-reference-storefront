@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays a modal window that contains a list of carts that belong to the shopper's account. Use this component when the store has the multiple carts feature enabled.
+Displays a modal window that contains a list of accounts that the logged in shopper can buy for.
 
 #### Usage
 

@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays a footer at the bottom of each page in the store.
+Displays a footer at the bottom of each page in the storefront.
 
 #### Usage
 
