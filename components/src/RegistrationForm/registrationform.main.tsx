@@ -71,6 +71,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
     this.setPassword = this.setPassword.bind(this);
     this.registerNewUser = this.registerNewUser.bind(this);
     this.setPasswordConfirmation = this.setPasswordConfirmation.bind(this);
+    this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
   }
 
   componentDidMount() {
@@ -133,6 +134,12 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
     });
   }
 
+  handleEnterKeyPress(e) {
+    if (e.keyCode === 13) {
+      this.registerNewUser();
+    }
+  }
+
   render() {
     const {
       failedRegistration,
@@ -161,7 +168,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                   {intl.get('first-name')}
                 </label>
                 <div className="registration-form-input">
-                  <input id="registration_form_firstName" name="given-name" className="form-control" type="text" onChange={this.setFirstName} />
+                  <input id="registration_form_firstName" name="given-name" className="form-control" type="text" onChange={this.setFirstName} onKeyDown={this.handleEnterKeyPress} />
                 </div>
               </div>
               <div className="form-group">
@@ -173,7 +180,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                   {intl.get('last-name')}
                 </label>
                 <div className="registration-form-input">
-                  <input id="registration_form_lastName" name="family-name" className="form-control" type="text" onChange={this.setLastName} />
+                  <input id="registration_form_lastName" name="family-name" className="form-control" type="text" onChange={this.setLastName} onKeyDown={this.handleEnterKeyPress} />
                 </div>
               </div>
               <div className="form-group">
@@ -185,7 +192,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                   {intl.get('email-slash-username')}
                 </label>
                 <div className="registration-form-input">
-                  <input id="registration_form_emailUsername" name="username" className="form-control" type="email" onChange={this.setUsername} />
+                  <input id="registration_form_emailUsername" name="username" className="form-control" type="email" onChange={this.setUsername} onKeyDown={this.handleEnterKeyPress} />
                 </div>
               </div>
               <div className="form-group">
@@ -197,7 +204,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                   {intl.get('password')}
                 </label>
                 <div className="registration-form-input">
-                  <input id="registration_form_password" name="password" className="form-control" type="password" onChange={this.setPassword} />
+                  <input id="registration_form_password" name="password" className="form-control" type="password" onChange={this.setPassword} onKeyDown={this.handleEnterKeyPress} />
                 </div>
               </div>
               <div className="form-group">
@@ -209,7 +216,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                   {intl.get('password-confirmation')}
                 </label>
                 <div className="registration-form-input">
-                  <input id="registration_form_passwordConfirm" name="passwordConfirm" className="form-control" type="password" onChange={this.setPasswordConfirmation} />
+                  <input id="registration_form_passwordConfirm" name="passwordConfirm" className="form-control" type="password" onChange={this.setPasswordConfirmation} onKeyDown={this.handleEnterKeyPress} />
                 </div>
               </div>
               <div className="form-group register-btn-wrap">
