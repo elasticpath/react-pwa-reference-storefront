@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays quick order capability as used for "buy it again" modal.
+Displays a **Buy it again** button, which adds the last quick order to the cart. Use this button with the `QuickOrderForm` component.
 
 #### Usage
 

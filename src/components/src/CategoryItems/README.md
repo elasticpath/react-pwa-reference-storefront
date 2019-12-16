@@ -2,9 +2,12 @@
 
 #### Description
 
-Displays items associated with a specified category. The items are displayed as tiles with item details such as name, image, and price. This component includes a facet selector to narrow the results within a category.
+Displays items associated with a specified category. The items are displayed as tiles with item details such as name, image, and price. When a shopper selects an item, the item opens in the `ProductDisplayItemMain` component.
 
-This component can include the `FeaturedProducts` component.
+This component can include the following components:
+
+- `SearchFacetNavigationMain` component to narrow the results within a category.
+- `FeaturedProducts` component to display the **Featured** category.
 
 #### Usage
 

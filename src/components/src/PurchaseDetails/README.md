@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays purchase details given purchase data.
+Displays details about a specified purchase, including a purchase summary, addresses, and price.
 
 #### Usage
 

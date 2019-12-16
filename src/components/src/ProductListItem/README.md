@@ -2,9 +2,9 @@
 
 #### Description
 
-Displays an item from a specified product list. The item details include the name, image, price, and availability.
+Retrieves an item from a specified product list. The item details are the item name, image, price, and availability.
 
-This component is used by the `ProductList` component.
+This component is used by the `ProductListMain` component.
 
 #### Usage
 

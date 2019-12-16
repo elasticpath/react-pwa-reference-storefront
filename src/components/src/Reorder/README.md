@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays re-order capability on previous orders given product data.
+Displays a **Reorder** button in the purchase history. Use this button with the `OrderHistoryMain` component. A shopper can select the button to fill the cart with the items from the selected purchase.
+
+<!-- Jen is guessing here. Verify with Shaun. -->
 
 #### Usage
 

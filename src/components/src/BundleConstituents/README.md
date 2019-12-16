@@ -2,7 +2,9 @@
 
 #### Description
 
-For a specified bundle, displays an image and name for the bundle itself and for each item in the bundle. The name is a link to item details.
+For a specified bundle, displays an image and name for the bundle itself and for each item in the bundle. 
+
+When an item is selected, the item details appear in the `ProductDisplayItemMain` component.
 
 #### Usage
 

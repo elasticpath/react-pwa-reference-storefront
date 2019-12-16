@@ -2,9 +2,11 @@
 
 #### Description
 
-Displays an item. The component retrieves the item details, which might include an image, name, description, and availability. The component displays the item details, the quantity selected, and a price for the selected quantity. Shoppers can change the quantity or remove the item from the cart.
+Displays an item. The component displays the item details, the quantity selected, and a price for the selected quantity. Shoppers can change the quantity or remove the item from the cart.
 
 This component is displayed within the [`CartMain`](../CartMain/README.md) component.
+
+When a shopper selects an item, the item details open in the `ProductDisplayItemMain` component.
 
 #### Usage
 

@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays quick order form used for quick order pane given item/sku addition to cart.
+Displays form fields for a product item number and quantity, and displays a price for the specified product and quantity. You can use this component to populate a quick order form.
 
 #### Usage
 
