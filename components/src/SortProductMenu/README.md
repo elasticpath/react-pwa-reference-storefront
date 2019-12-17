@@ -12,10 +12,8 @@ import { SortProductMenu } from '@elasticpath/store-components';
 
 #### Example
 
-<!-- Jen doesn't know how to fix this example - wrong component is being used. -->
-
 ```js
-<AddressFormMain onCloseModal={this.handleCloseAddressModal} fetchData={this.fetchOrderData} addressData={addressUrl} />
+<SortProductMenu handleSortSelection={this.handleSortSelection} categoryModel={categoryModel} />
 ```
 
 #### Properties
