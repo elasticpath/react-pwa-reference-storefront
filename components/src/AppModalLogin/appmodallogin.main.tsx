@@ -87,7 +87,7 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
     const url = locationSearchData;
     const params = queryString.parse(url);
     if (params.code) {
-      if (Config.b2b.openId.enabled) {
+      if (Config.b2b.openId.enable) {
         localStorage.setItem(`${Config.cortexApi.scope}_openIdcCode`, params.code);
         localStorage.setItem(`${Config.cortexApi.scope}_openIdcSessionState`, params.session_state);
         localStorage.removeItem('OidcSecret');
@@ -96,7 +96,7 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
         localStorage.setItem(`${Config.cortexApi.scope}_keycloakSessionState`, params.session_state);
       }
       if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) !== 'REGISTERED') {
-        loginRegisteredAuthService(params.code, encodeURIComponent(Config.b2b.keycloak.callbackUrl), encodeURIComponent(Config.b2b.keycloak.client_id)).then((resStatus) => {
+        loginRegisteredAuthService(params.code, encodeURIComponent((Config.b2b.openId.enable ? `${Config.b2b.openId.callbackUrl}/loggedin` : Config.b2b.keycloak.callbackUrl)), encodeURIComponent(Config.b2b.keycloak.client_id)).then((resStatus) => {
           if (resStatus === 401) {
             this.setState({
               failedLogin: true,
