@@ -18,21 +18,14 @@
  *
  *
  */
-import React from 'react';
-import Readme from './README.md';
+import { doc } from 'storybook-readme';
 import { storiesOf } from '@storybook/react';
-import orderData from '../CommonMockHttpResponses/cart_data_response.json';
-import { object } from "@storybook/addon-knobs/react";
-import PaymentMethodContainer from './paymentmethod.container';
+import Guide1 from './Guide1.md';
+import Guide2 from './Guide2.md';
+import Guide3 from './Guide3.md';
 
-const displayName = orderData._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymentmethod[0];
-
-storiesOf('Components|PaymentMethodContainer', module)
-  .addParameters({
-    readme: {
-      // Show readme at the addons panel
-      sidebar: Readme,
-    },
-  })
-storiesOf('Components|PaymentMethodContainer', module)
-  .add('PaymentMethodContainer', () => <PaymentMethodContainer displayName={object('displayName', displayName)} />);
+storiesOf('Guides|Guide', module)
+  .addParameters({ options: { showAddonPanel: false } })
+  .add('Guide1', doc(Guide1))
+  .add('Guide2', doc(Guide2))
+  .add('Guide3', doc(Guide3));

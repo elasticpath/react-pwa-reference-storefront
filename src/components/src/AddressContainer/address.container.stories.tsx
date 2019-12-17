@@ -46,5 +46,5 @@ storiesOf('Components|AddressContainer', module)
       sidebar: Readme,
     },
   })
-  storiesOf('AddressContainer', module)
-  .add('AddressContainer', () => <AddressContainer name={object('name', dataName)} address={object('dataAddress',dataAddress)} />);
+storiesOf('Components|AddressContainer', module)
+  .add('AddressContainer', () => <AddressContainer name={object('name', dataName)} address={object('dataAddress', dataAddress)} />);
