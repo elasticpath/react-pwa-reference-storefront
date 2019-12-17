@@ -204,8 +204,29 @@ export function logout() {
 }
 
 export function logoutAccountManagementUser() {
-  logout().then(() => {
-    const Config = getConfig().config;
+  const Config = getConfig().config;
+
+  if (Config.b2b.openId.enable) {
+    return new Promise(((resolve, reject) => {
+      adminFetch('/oauth2/tokens', {
+        method: 'delete',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+      })
+        .then((res) => {
+          logout();
+          resolve(res);
+        })
+        .then(() => {
+          window.location.href = '/';
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          reject(error);
+        });
+    }));
+  }
+  return logout().then(() => {
     const keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
     window.location.href = keycloakLogoutRedirectUrl;
   });
