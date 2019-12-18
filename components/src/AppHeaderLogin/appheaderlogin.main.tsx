@@ -128,7 +128,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         this.handleCartModalOpen();
         this.getAccountData();
       }
-      if (Config.b2b.openId.enable) {
+      if (Config.b2b.openId && Config.b2b.openId.enable) {
         this.login();
       }
     }
@@ -270,7 +270,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters,
       } = this.state;
       let keycloakLoginRedirectUrl = '';
-      if (Config.b2b.enable && !Config.b2b.openId.enable) {
+      if (Config.b2b.enable && Config.b2b.openId && !Config.b2b.openId.enable) {
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
@@ -364,7 +364,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       return (
         <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
           {(Config.b2b.enable) ? (
-            <a href={`${Config.b2b.openId.enable ? loginUrlAddress : keycloakLoginRedirectUrl}`} className="login-auth-service-btn">
+            <a href={`${(Config.b2b.openId && Config.b2b.openId.enable) ? loginUrlAddress : keycloakLoginRedirectUrl}`} className="login-auth-service-btn">
               <button className="login-btn" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} type="button">
                 {(isMobileView)
                   ? (

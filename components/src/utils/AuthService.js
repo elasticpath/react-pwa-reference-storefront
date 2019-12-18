@@ -206,7 +206,7 @@ export function logout() {
 export function logoutAccountManagementUser() {
   const Config = getConfig().config;
 
-  if (Config.b2b.openId.enable) {
+  if (Config.b2b.openId && Config.b2b.openId.enable) {
     return new Promise(((resolve, reject) => {
       adminFetch('/oauth2/tokens', {
         method: 'delete',
@@ -227,10 +227,8 @@ export function logoutAccountManagementUser() {
     }));
   }
   return logout().then(() => {
-    if (!Config.b2b.openId.enable) {
-      const keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
-      window.location.href = keycloakLogoutRedirectUrl;
-    }
+    const keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
+    window.location.href = keycloakLogoutRedirectUrl;
   });
 }
 

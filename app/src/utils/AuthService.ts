@@ -208,7 +208,7 @@ export function logout() {
 }
 
 export function logoutAccountManagementUser() {
-  if (Config.b2b.openId.enable) {
+  if (Config.b2b.openId && Config.b2b.openId.enable) {
     return new Promise(((resolve, reject) => {
       adminFetch('/oauth2/tokens', {
         method: 'delete',
