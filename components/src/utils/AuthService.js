@@ -215,10 +215,7 @@ export function logoutAccountManagementUser() {
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
       })
-        .then((res) => {
-          logout();
-          resolve(res);
-        })
+        .then(res => logout().then(() => resolve(res)))
         .then(() => {
           window.location.href = '/';
         })
@@ -230,8 +227,10 @@ export function logoutAccountManagementUser() {
     }));
   }
   return logout().then(() => {
-    const keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
-    window.location.href = keycloakLogoutRedirectUrl;
+    if (!Config.b2b.openId.enable) {
+      const keycloakLogoutRedirectUrl = `${Config.b2b.keycloak.logoutRedirectUrl}?redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
+      window.location.href = keycloakLogoutRedirectUrl;
+    }
   });
 }
 

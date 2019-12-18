@@ -73,6 +73,7 @@ interface AppHeaderLoginMainState {
     showForgotPasswordLink: boolean,
     accountData: any,
     loginUrlAddress: string,
+    oidcParameters: any,
 }
 
 interface OidcParameters {
@@ -108,6 +109,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         openCartModal: false,
         showForgotPasswordLink: false,
         accountData: {},
+        oidcParameters: {},
         loginUrlAddress: '',
       };
       this.handleModalClose = this.handleModalClose.bind(this);
@@ -135,6 +137,10 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       const oidcSecret = uuidv4();
       localStorage.setItem('OidcSecret', oidcSecret);
       const oidcParameters: OidcParameters = await this.discoverOIDCParameters();
+      this.setState({
+        oidcParameters,
+      });
+
       const oidcStateObject = {
         secret: oidcSecret,
         pathname: window.location.pathname,
@@ -261,7 +267,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin,
       } = this.props;
       const {
-        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress,
+        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters,
       } = this.state;
       let keycloakLoginRedirectUrl = '';
       if (Config.b2b.enable && !Config.b2b.openId.enable) {
@@ -380,6 +386,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
           )}
           <AppModalLoginMain
             key="app-modal-login-main"
+            oidcParameters={oidcParameters}
             handleModalClose={this.handleModalClose}
             openModal={openModal}
             onLogin={onLogin}
