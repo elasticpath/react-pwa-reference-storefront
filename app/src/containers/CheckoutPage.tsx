@@ -575,7 +575,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
   }
 
   renderPaymentSelector() {
-    const { profileData, openNewPaymentModal, orderData } = this.state;  
+    const { profileData, openNewPaymentModal } = this.state;
     const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
 
     return (
