@@ -131,9 +131,7 @@
   },
   "creditCardTokenization": {
     "enable": false,
-    "lambdaURI": "/cssign",
-    "overrideCustomReceiptURI": "/postredirector",
-    "overrideCustomCancelURI": ""
+    "lambdaURI": "/cssign"
   },
   "chatbot": {
     "enable": false,
