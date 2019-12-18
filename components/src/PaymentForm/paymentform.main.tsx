@@ -49,7 +49,6 @@ interface PaymentFormMainState {
     failedSubmit: boolean,
     paymentForm: any,
     orderPaymentForm: any,
-    cybersourceBodyRequest: any,
 }
 
 class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainState> {
@@ -77,7 +76,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       failedSubmit: false,
       paymentForm: undefined,
       orderPaymentForm: undefined,
-      cybersourceBodyRequest: {},
     };
     this.setCardType = this.setCardType.bind(this);
     this.setCardHolderName = this.setCardHolderName.bind(this);
@@ -250,11 +248,10 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
 
   render() {
     const {
-      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader, cybersourceBodyRequest,
+      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader,
     } = this.state;
     return (
       <div className="payment-method-container container">
-        {cybersourceBodyRequest.access_key}
         <div className="feedback-label feedback-container" data-region="componentPaymentFeedbackRegion">
           {failedSubmit ? intl.get('failed-to-save-message') : ''}
         </div>
