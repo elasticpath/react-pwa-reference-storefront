@@ -129,10 +129,6 @@
     "noself": false,
     "nodatalinks": true
   },
-  "creditCardTokenization": {
-    "enable": false,
-    "lambdaURI": "/cssign"
-  },
   "chatbot": {
     "enable": false,
     "name": "EPConversationalInterface"
