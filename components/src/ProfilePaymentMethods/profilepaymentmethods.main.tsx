@@ -39,7 +39,7 @@ interface ProfilePaymentMethodsMainProps {
   /** handle payment method change */
   onChange: (...args: any[]) => any,
   /** disable add a new payment method */
-  disableAddPayment: boolean,
+  disableAddPayment?: boolean,
 }
 interface ProfilePaymentMethodsMainState {
     openNewPaymentModal: boolean
