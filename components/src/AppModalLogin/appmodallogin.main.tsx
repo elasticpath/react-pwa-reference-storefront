@@ -49,6 +49,10 @@ interface AppModalLoginMainProps {
     showForgotPasswordLink: boolean,
   /** disable login */
     disableLogin?: boolean,
+  /** Open Id Connect Parameters */
+    oidcParameters?: {
+      [key: string]: any
+    },
 }
 interface AppModalLoginMainState {
     username: string,
@@ -84,14 +88,21 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
   }
 
   componentWillMount() {
-    const { locationSearchData, onLogin } = this.props;
+    const { locationSearchData, onLogin, oidcParameters } = this.props;
     const url = locationSearchData;
+
     const params = queryString.parse(url);
-    if (params.code) {
-      localStorage.setItem(`${Config.cortexApi.scope}_keycloakCode`, params.code);
-      localStorage.setItem(`${Config.cortexApi.scope}_keycloakSessionState`, params.session_state);
+    if (params.code && oidcParameters) {
+      if (Config.b2b.openId && Config.b2b.openId.enable) {
+        localStorage.setItem(`${Config.cortexApi.scope}_openIdcCode`, params.code);
+        localStorage.setItem(`${Config.cortexApi.scope}_openIdcSessionState`, params.session_state);
+        localStorage.removeItem('OidcSecret');
+      } else {
+        localStorage.setItem(`${Config.cortexApi.scope}_keycloakCode`, params.code);
+        localStorage.setItem(`${Config.cortexApi.scope}_keycloakSessionState`, params.session_state);
+      }
       if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) !== 'REGISTERED') {
-        loginRegisteredAuthService(params.code, encodeURIComponent(Config.b2b.keycloak.callbackUrl), encodeURIComponent(Config.b2b.keycloak.client_id)).then((resStatus) => {
+        loginRegisteredAuthService(params.code, encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? `${Config.b2b.openId.callbackUrl}/loggedin` : Config.b2b.keycloak.callbackUrl)), encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? oidcParameters.clientId : Config.b2b.keycloak.client_id))).then((resStatus) => {
           if (resStatus === 401) {
             this.setState({
               failedLogin: true,

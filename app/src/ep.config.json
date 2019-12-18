@@ -38,6 +38,10 @@
       "pathForProxy": "",
       "reqTimeout": "30000"
     },
+    "openId": {
+      "enable": false,
+      "callbackUrl": "http://localhost:8080"
+    },
     "keycloak": {
       "callbackUrl": "http://localhost:8080",
       "loginRedirectUrl": "",
