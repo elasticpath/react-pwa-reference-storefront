@@ -575,12 +575,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
   }
 
   renderPaymentSelector() {
-    const { profileData, openNewPaymentModal, orderData } = this.state;
-    let disableAddPayment = false;
-    if (Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
-      disableAddPayment = !(orderData && orderData._order && orderData._order[0] && orderData._order[0]._deliveries);
-    }
+    const { profileData, openNewPaymentModal, orderData } = this.state;  
     const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
+
     return (
       <div>
         <h2>
@@ -589,7 +586,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
           {this.renderPayments()}
         </div>
-        <button className="ep-btn primary wide checkout-new-payment-btn" disabled={isDisabled || disableAddPayment} type="button" onClick={() => { this.newPayment(); }}>
+        <button className="ep-btn primary wide checkout-new-payment-btn" disabled={isDisabled} type="button" onClick={() => { this.newPayment(); }}>
           {intl.get('add-new-payment-method')}
         </button>
         <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
