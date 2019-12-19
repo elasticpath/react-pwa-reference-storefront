@@ -108,12 +108,11 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         openModal: false,
         openCartModal: false,
         showForgotPasswordLink: false,
-        accountData: {},
+        accountData: undefined,
         oidcParameters: {},
         loginUrlAddress: '',
       };
       this.handleModalClose = this.handleModalClose.bind(this);
-      this.getAccountData = this.getAccountData.bind(this);
     }
 
     componentDidMount() {
@@ -209,22 +208,24 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
     }
 
     getAccountData() {
-      login().then(() => {
-        adminFetch('/?zoom=accounts', {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-          },
-        })
-          .then(res => res.json())
-          .then((res) => {
-            this.setState({ accountData: res });
+      if (Config.b2b.enable) {
+        login().then(() => {
+          adminFetch('/?zoom=accounts', {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+            },
           })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
+            .then(res => res.json())
+            .then((res) => {
+              this.setState({ accountData: res });
+            })
+            .catch((error) => {
+              // eslint-disable-next-line no-console
+              console.error(error.message);
+            });
+        });
+      }
     }
 
     impersonate(params) {
@@ -303,7 +304,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                       </div>
                     </Link>
                   </li>
-                  {(Config.b2b.enable && accountData._accounts) ? (
+                  {(Config.b2b.enable && accountData && accountData._accounts) ? (
                     <li className="dropdown-item">
                       <Link className="dashboard-link" to="/b2b">
                         <div>
