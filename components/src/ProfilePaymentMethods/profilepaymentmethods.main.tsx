@@ -140,7 +140,11 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
                     </h2>
                   </div>
                   <div className="modal-body">
-                    <PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={onChange} />
+                    <PaymentFormMain
+                      paymentInstrumentFormUrl="test"
+                      onCloseModal={this.handleCloseNewPaymentModal}
+                      fetchData={onChange}
+                    />
                   </div>
                 </div>
               </div>

@@ -31,6 +31,8 @@ let intl = { get: str => str };
 const today = new Date();
 
 interface PaymentFormMainProps {
+  /** paymentinstrumentform to post to.  Can either be from the profile or the order resource. */
+  paymentInstrumentFormUrl: string,
   /** handle close modal */
   onCloseModal?: (...args: any[]) => any,
   /** handle fetch data */
@@ -47,8 +49,6 @@ interface PaymentFormMainState {
     securityCode: string,
     saveToProfile: boolean,
     failedSubmit: boolean,
-    paymentForm: any,
-    orderPaymentForm: any,
 }
 
 class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainState> {
@@ -74,9 +74,8 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       securityCode: '',
       saveToProfile: false,
       failedSubmit: false,
-      paymentForm: undefined,
-      orderPaymentForm: undefined,
     };
+
     this.setCardType = this.setCardType.bind(this);
     this.setCardHolderName = this.setCardHolderName.bind(this);
     this.setCardNumber = this.setCardNumber.bind(this);
@@ -87,10 +86,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.submitPayment = this.submitPayment.bind(this);
     this.cancel = this.cancel.bind(this);
     this.formRef = React.createRef<HTMLFormElement>();
-  }
-
-  componentDidMount() {
-    this.fetchPaymentForms();
   }
 
   componentDidUpdate() {
@@ -131,102 +126,42 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.setState({ saveToProfile: event.target.checked });
   }
 
-  submitPayment(event) {
-    event.preventDefault();
+  areCreditCardFieldsValid() {
     const {
-      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm, expiryYear, expiryMonth,
+      cardHolderName, cardNumber, securityCode,
     } = this.state;
-    const { fetchData, onCloseModal } = this.props;
     const holderName = cardHolderName.split(' ');
+    
     if (!cardHolderName || !cardNumber || !securityCode || !(holderName[0] && holderName[1])) {
-      this.setState({ failedSubmit: true });
-      return;
-    }
-    this.setState({
-      showLoader: true,
-      failedSubmit: false,
-    });
-    let link;
-    if (saveToProfile) {
-      link = paymentForm;
-    } else {
-      link = orderPaymentForm;
-    }
-    let card;
-    switch (cardType) {
-      case '001':
-        card = 'Visa';
-        break;
-      case '002':
-        card = 'MasterCard';
-        break;
-      default:
-        card = 'American Express';
+      return true;
     }
 
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: JSON.stringify({
-          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-          token: Math.random()
-            .toString(36)
-            .substr(2, 9),
-          /* token is being randomly generated here to be passed to the demo payment gateway
-          ** in a true implementation this token should be received from the actual payment gateway
-          ** when doing so, make sure you're compliant with PCI DSS
-          */
-        }),
-      })
-        .then((res) => {
-          this.setState({
-            showLoader: false,
-          });
-          if (res.status === 400) {
-            this.setState({ failedSubmit: true });
-          } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-            this.setState({ failedSubmit: false }, () => {
-              fetchData();
-              onCloseModal();
-            });
-          }
-        })
-        .catch((error) => {
-          this.setState({
-            showLoader: false,
-          });
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
+    return false;
   }
 
-  fetchPaymentForms() {
-    login().then(() => {
-      cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          const paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenaction',
-          );
-          const orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenfororderaction',
-          );
-          this.setState({
-            paymentForm: paymentFormLink.uri,
-            orderPaymentForm: orderPaymentFormLink.uri,
-          });
-        });
-    });
+  static generateToken() {
+    /*
+    Function that will tokenize credit card information.  
+    Function returns random string as implementor will replace this function and have their own way of tokenizing.
+    */
+    return Math.random().toString(36).substr(2, 9);
+  }
+
+  // TODO:  We should either mock up the requests before hand or ensure that the component can work within storybook...
+  submitPayment(event) {
+    event.preventDefault();
+
+    if (this.areCreditCardFieldsValid()) {
+      this.setState({ showLoader: true, failedSubmit: false });
+    } else {
+      this.setState({ failedSubmit: true });
+    }
+
+    let token = this.generateToken();
+
+    // Fetch the form and its fields... then fill it out arbitrarily...
+    // Then need to call the callbacks...
+
   }
 
   cancel() {
@@ -250,6 +185,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     const {
       cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader,
     } = this.state;
+    
     return (
       <div className="payment-method-container container">
         <div className="feedback-label feedback-container" data-region="componentPaymentFeedbackRegion">

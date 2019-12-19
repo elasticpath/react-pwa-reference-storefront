@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays modal to add payment informatioon to order. Falls back to generating random string for credit card placeholder if Cybersource accelerator resource is not present.
+Displays a credit card form and posts to specified link provided through properties.  At the moment will tokenize credit card data with arbitrary method and fill out all fields in specified paymentinstruments fields.
 
 #### Usage
 
