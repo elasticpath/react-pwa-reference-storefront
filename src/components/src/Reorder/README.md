@@ -2,9 +2,11 @@
 
 #### Description
 
-Displays a **Reorder** button in the purchase history. Use this button with the `OrderHistoryMain` component. A shopper can select the button to fill the cart with the items from the selected purchase.
+Displays a **Reorder** button in the Purchase Details view. 
 
-<!-- Jen is guessing here. Verify with Shaun. -->
+Use this component with the `PurchaseDetailsMain` component.
+
+When selected, a **Buy It Again** modal window opens with the list of items from the purchase and another **Reorder** button. When a shopper selects this **Reorder** button, all the items in the list are added to the cart.
 
 #### Usage
 

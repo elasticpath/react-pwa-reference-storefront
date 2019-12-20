@@ -6,6 +6,8 @@ Displays the payment methods that are defined for the profile. Credit card numbe
 
 **Note**: For an organization account, the profile owner is the account administrator.
 
+For more information about payments and security, see the `PaymentFormMain` component.
+
 #### Usage
 
 ```js
