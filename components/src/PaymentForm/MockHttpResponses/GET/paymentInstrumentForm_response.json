@@ -1,0 +1,48 @@
+{
+    "self": {
+      "type": "paymentmethods.order-payment-method",
+      "uri": "/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=?zoom=paymentinstrumentform",
+      "href": "http://10.11.12.206:8080/cortex/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=?zoom=paymentinstrumentform"
+    },
+    "messages": [],
+    "links": [
+      {
+        "rel": "requestinstructionsform",
+        "type": "paymentinstructions.order-request-instructions-form",
+        "href": "http://10.11.12.206:8080/cortex/paymentinstructions/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=/instructions/form"
+      },
+      {
+        "rel": "paymentinstrumentform",
+        "type": "paymentinstruments.order-payment-instrument-form",
+        "href": "http://10.11.12.206:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=/paymentinstrument/form"
+      },
+      {
+        "rel": "paymentmethods",
+        "type": "paymentmethods.order-payment-methods",
+        "href": "http://10.11.12.206:8080/cortex/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi="
+      }
+    ],
+    "_paymentinstrumentform": [
+      {
+        "self": {
+          "type": "paymentinstruments.order-payment-instrument-form",
+          "uri": "/paymentinstruments/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=/paymentinstrument/form",
+          "href": "http://10.11.12.206:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=/paymentinstrument/form"
+        },
+        "messages": [],
+        "links": [
+          {
+            "rel": "createpaymentinstrumentaction",
+            "type": "paymentinstruments.order-payment-instrument-form",
+            "href": "http://10.11.12.206:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=/paymentinstrument/form"
+          }
+        ],
+        "limit-amount": 0,
+        "payment-instrument-identification-form": {
+          "display-name": ""
+        }
+      }
+    ],
+    "display-name": "No Capabilities Config",
+    "name": "No Capabilities Config"
+  }

@@ -32,7 +32,7 @@ const today = new Date();
 
 interface PaymentFormMainProps {
   /** paymentinstrumentform to post to.  Can either be from the profile or the order resource. */
-  paymentInstrumentFormUrl: string,
+  paymentInstrumentFormUri: string,
   /** handle close modal */
   onCloseModal?: (...args: any[]) => any,
   /** handle fetch data */
@@ -49,6 +49,8 @@ interface PaymentFormMainState {
     securityCode: string,
     saveToProfile: boolean,
     failedSubmit: boolean,
+    paymentInstrumentFormFieldsToFill: object;
+    submitPaymentFormUri: string;
 }
 
 class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainState> {
@@ -74,6 +76,8 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       securityCode: '',
       saveToProfile: false,
       failedSubmit: false,
+      paymentInstrumentFormFieldsToFill: {},
+      submitPaymentFormUri: '',
     };
 
     this.setCardType = this.setCardType.bind(this);
@@ -84,18 +88,92 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.setSecurityCode = this.setSecurityCode.bind(this);
     this.setSaveToProfile = this.setSaveToProfile.bind(this);
     this.submitPayment = this.submitPayment.bind(this);
+    this.fetchPaymentInstrumentForm = this.fetchPaymentInstrumentForm.bind(this);
+    this.setPaymentInstrumentFormFieldsToFill = this.setPaymentInstrumentFormFieldsToFill.bind(this);
+    this.fillPaymentInstrumentFormFields = this.fillPaymentInstrumentFormFields.bind(this);
+    this.setSubmitPaymentFormUri = this.setSubmitPaymentFormUri.bind(this);
+    this.initializeState = this.initializeState.bind(this);
     this.cancel = this.cancel.bind(this);
     this.formRef = React.createRef<HTMLFormElement>();
   }
 
-  componentDidUpdate() {
-    const formCardNumberExists = document.getElementById('card_number');
-    const formBillEmailExists = document.getElementById('bill_to_email');
-    const formExists = document.getElementById('payment_confirmation');
+  async initializeState() {
+    const paymentInstrumentForm = await this.fetchPaymentInstrumentForm();
+    this.setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm);
+    this.setSubmitPaymentFormUri(paymentInstrumentForm);
+  }
 
-    if (formExists && formCardNumberExists && formBillEmailExists) {
-      this.formRef.current.submit();
+  async componentDidMount() {
+    this.initializeState();
+  }
+
+  setSubmitPaymentFormUri(paymentInstrumentForm) {
+    const submitPaymentFormUri = PaymentFormMain.parsePaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
+    this.setState({ submitPaymentFormUri });
+  }
+
+  setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm) {
+    const paymentFormFieldsToFill = PaymentFormMain.parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm);
+    this.setState({ paymentInstrumentFormFieldsToFill: paymentFormFieldsToFill });
+  }
+
+  static parsePaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
+    return paymentInstrumentForm._paymentinstrumentform[0].self.uri;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { paymentInstrumentFormUri } = this.props;
+
+    if (paymentInstrumentFormUri !== prevProps.paymentInstrumentFormUri) {
+      this.initializeState();
     }
+  }
+
+  async fetchPaymentInstrumentForm() {
+    const { paymentInstrumentFormUri } = this.props;
+    let paymentInstrumentFormUnserialized;
+
+    try {
+      await login();
+
+      const paymentInstrumentForm = await cortexFetch(
+        `${paymentInstrumentFormUri}?zoom=paymentinstrumentform`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        },
+      );
+
+      paymentInstrumentFormUnserialized = await paymentInstrumentForm.json();
+
+      return paymentInstrumentFormUnserialized;
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Unable to fetch PaymentInstrumentForm ', err);
+    }
+
+    return paymentInstrumentFormUnserialized;
+  }
+
+  static parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm) {
+    const zoomResult = paymentInstrumentForm._paymentinstrumentform[0];
+
+    const paymentInstrumentFormKeys = Object.keys(zoomResult).filter((key) => {
+      if (key === 'self' || key === 'links' || key === 'messages') {
+        return false;
+      }
+      return true;
+    });
+
+    return paymentInstrumentFormKeys.reduce((acc, cKey) => {
+
+      return {
+        ...acc,
+        [cKey]: zoomResult[cKey],
+      };
+    }, {});
   }
 
   setCardType(event) {
@@ -131,7 +209,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       cardHolderName, cardNumber, securityCode,
     } = this.state;
     const holderName = cardHolderName.split(' ');
-    
+
     if (!cardHolderName || !cardNumber || !securityCode || !(holderName[0] && holderName[1])) {
       return true;
     }
@@ -148,20 +226,71 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   // TODO:  We should either mock up the requests before hand or ensure that the component can work within storybook...
-  submitPayment(event) {
+  async submitPayment(event) {
+    const {
+      paymentInstrumentFormFieldsToFill,
+      submitPaymentFormUri,
+    } = this.state;
+
+    const {
+      fetchData,
+      onCloseModal,
+    } = this.props;
+
     event.preventDefault();
 
     if (this.areCreditCardFieldsValid()) {
       this.setState({ showLoader: true, failedSubmit: false });
     } else {
       this.setState({ failedSubmit: true });
+    }    
+
+    const formFieldsFilled = this.fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill);
+
+    try {
+      const addPaymentResponse = await cortexFetch(submitPaymentFormUri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(formFieldsFilled),
+        });
+
+      this.setState({
+        showLoader: false,
+      });
+
+      if (addPaymentResponse.status === 400) {
+        this.setState({ failedSubmit: true });
+      } else if (addPaymentResponse.status === 201 || addPaymentResponse.status === 200 || addPaymentResponse.status === 204) {
+        this.setState({ failedSubmit: false }, () => {
+          fetchData();
+          onCloseModal();
+        });
+      }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+    }
+  }
+
+  fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill) {
+    const keys = Object.keys(paymentInstrumentFormFieldsToFill);
+    const formFieldsToFill = paymentInstrumentFormFieldsToFill;
+
+    for (let i = 0; i < keys.length; i++) {
+      const cKey = keys[i];
+
+      if (paymentInstrumentFormFieldsToFill[cKey] === '') {
+        formFieldsToFill[cKey] = PaymentFormMain.generateToken();
+      } else {
+        formFieldsToFill[cKey] = this.fillPaymentInstrumentFormFields(formFieldsToFill[cKey]);
+      }
     }
 
-    let token = this.generateToken();
-
-    // Fetch the form and its fields... then fill it out arbitrarily...
-    // Then need to call the callbacks...
-
+    return paymentInstrumentFormFieldsToFill;
   }
 
   cancel() {

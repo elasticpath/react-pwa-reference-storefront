@@ -23,6 +23,8 @@ import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { textToFunc } from '../../../storybook/utils/storybookUtils';
 import PaymentFormMain from './paymentform.main';
+import mockPaymentForm from './paymentform.main.api.mocks';
+
 import Readme from './README.md';
 
 
@@ -34,14 +36,17 @@ storiesOf('Components|PaymentFormMain', module)
     },
   })
   .add('PaymentFormMain', () => {
-    const onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
-    const onConfigurationAddToCartFuncText = text('onConfigurationAddToCart', '() => {alert("onConfigurationAddToCart invoked")}');
-    const paymentInstrumentFormUrl = text('paymentInstrumentFormUrl', 'http://10.11.12.206:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/hayekmccgu3uglkfivddaljwgq3eiljrga2ukljqgu3eirbzimyuimrviq=/my3tgnjrg43ggllfgbtgiljugqzdiljzgjrdcljwhfsdazrrg5sgcyrymm=/paymentinstrument/form');
+    mockPaymentForm();
+
+    const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
+    const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');
+    const paymentInstrumentFormUri = text('paymentInstrumentFormUri', '/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=');
+
     return (
       <PaymentFormMain
-        paymentInstrumentFormUrl={paymentInstrumentFormUrl}
+        paymentInstrumentFormUri={paymentInstrumentFormUri}
         onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
-        fetchData={() => { textToFunc(onConfigurationAddToCartFuncText); }}
+        fetchData={() => { textToFunc(fetchDataFuncText); }}
       />
     );
   });
