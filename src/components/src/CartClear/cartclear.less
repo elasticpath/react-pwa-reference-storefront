@@ -1,0 +1,153 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.cart-clear-dropdown {
+  display: inline-block;
+
+  .btn-ellipsis {
+    position: relative;
+    padding: 0;
+    border: none;
+    background: transparent;
+    outline: 0 auto transparent;
+    z-index: 1001;
+
+    svg {
+      fill: #4C4C4C;
+    }
+
+    &:hover {
+      svg {
+        fill: #40B1F3;
+      }
+    }
+  }
+
+  &.show {
+    .btn-ellipsis {
+      svg {
+        fill: #40B1F3;
+      }
+    }
+  }
+
+  .remove-cart-btn {
+    display: block;
+    height: 36px;
+    padding: 0 10px;
+    white-space: nowrap;
+    background: transparent;
+    border: none;
+
+    &:hover {
+      color: #0099DE;
+      background-color: #F2F6FA;
+    }
+  }
+
+  .dropdown-menu {
+    top: 0;
+    left: auto !important;
+    transform: none !important;
+    padding: 26px 0 0;
+    margin: 0;
+    border: 1px solid #40B1F3;
+    border-radius: 0;
+
+    &.dropdown-menu-right {
+      right: 0;
+    }
+  }
+}
+
+.cart-clear-confirmation {
+  width: 100%;
+  min-height: 62px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1002;
+  background: @mainBackgroundColor;
+
+  &-content {
+    min-height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  p {
+    margin: 10px 15px 10px 0;
+  }
+
+  .btn-wrap {
+    white-space: nowrap;
+
+    @media (max-width: @mobileWidth - 1px) {
+      white-space: normal;
+      text-align: center;
+    }
+  }
+
+  .ep-btn {
+    min-height: 34px;
+    color: @mainTextColor;
+    border-color: @mainTextColor;
+    text-transform: capitalize;
+    vertical-align: middle;
+
+    &:hover {
+      background-color: @mainBackgroundColor;
+      color: @mainTextColor;
+    }
+  }
+
+  .cancel-btn {
+    border: none;
+
+    @media (max-width: @mobileWidth - 1px) {
+      margin-right: 0;
+    }
+  }
+
+  .ok-btn {
+    position: relative;
+    margin-right: 0;
+
+    .miniLoader {
+      position: absolute;
+      top: 6px;
+      margin: 0 0 0 -10px;
+      display: inline-block;
+      border: 2px solid @firstComplimentBackground;
+      border-top: 2px solid @mainTextColor;
+      width: 20px;
+      height: 20px !important;
+    }
+
+    @media (min-width: 481px) {
+      min-width: 130px;
+    }
+  }
+}
+

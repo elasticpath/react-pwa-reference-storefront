@@ -6,7 +6,8 @@
     "resolveJsonModule": true,
     "jsx": "react",
     "strict": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "files": [
     "custom_typings/image-loader.d.ts",

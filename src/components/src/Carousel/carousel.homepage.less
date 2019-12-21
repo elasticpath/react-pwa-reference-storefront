@@ -1,0 +1,306 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.carousel {
+  position: relative;
+  margin-bottom: 50px;
+  .slick-slider:before {
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(43,43,43,0.35);
+    z-index: 1;
+  }
+  .slick-slide img{
+    display:block;
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    object-fit: cover
+  }
+  .slick-dots li{
+    position:relative;
+    display:inline-block;
+    width:25%;
+    height:100px;
+    padding:0;
+    cursor:pointer
+  }
+  .slick-dots li div:before {
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(4,0,96,0.45);
+    z-index: 1;
+  }
+  .slick-dots li.slick-active div:before {
+    z-index: -1;
+  }
+  .slick-list {
+    max-height: 800px;
+  }
+  .slick-next,.slick-prev {
+    bottom: -150px;
+    width: 60px;
+    height: 25px;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+  .slick-next:before {
+    content: '→';
+  }
+  .slick-prev:before {
+    content: '←';
+  }
+  .slick-prev{
+    right:calc(50% - 520px)
+  }
+  .slick-next{
+    right:calc(50% - 600px)
+  }
+}
+.carousel-txt {
+  width: 100%;
+  padding: 0 10px 0 10px;
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+  text-align: center;
+  z-index: 2;
+  color: @mainBackgroundColor
+}
+.carousel-txt h2 {
+  font-size: 26px;
+  line-height: 36px;
+  margin-bottom: 75px;
+}
+.slick-list,.slick-slider,.slick-track{
+  position:relative;
+  display:block
+}
+.slick-loading .slick-slide,.slick-loading .slick-track{
+  visibility:hidden
+}
+.slick-slider{
+  box-sizing:border-box;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none;
+  -khtml-user-select:none;
+  -ms-touch-action:pan-y;
+  touch-action:pan-y;
+  -webkit-tap-highlight-color:transparent
+}
+.slick-list{
+  overflow:hidden;
+  margin:0;
+  padding:0
+}
+.slick-list:focus{
+  outline:0
+}
+.slick-list.dragging{
+  cursor:pointer;
+  cursor:hand
+}
+.slick-slider .slick-list,.slick-slider .slick-track{
+  -webkit-transform:translate3d(0,0,0);
+  -moz-transform:translate3d(0,0,0);
+  -ms-transform:translate3d(0,0,0);
+  -o-transform:translate3d(0,0,0);
+  transform:translate3d(0,0,0)
+}
+.slick-track{
+  top:0;
+  left:0
+}
+.slick-track:after,.slick-track:before{
+  display:table;
+  content:''
+}
+.slick-track:after{
+  clear:both
+}
+.slick-slide{
+  display:none;
+  float:left;
+  height:100%;
+  min-height:1px
+}
+[dir=rtl] .slick-slide{
+  float:right
+}
+.slick-slide.slick-loading img{
+  display:none
+}
+.slick-slide.dragging img{
+  pointer-events:none
+}
+.slick-initialized .slick-slide{
+  display:block
+}
+.slick-vertical .slick-slide{
+  display:block;
+  height:auto;
+  border:1px solid transparent
+}
+.slick-arrow.slick-hidden{
+  display:none
+}
+
+.slick-dots,.slick-next,.slick-prev{
+  position:absolute;
+  display:block;
+  padding:0
+}
+.slick-dots li button:before,.slick-next:before,.slick-prev:before{
+  font-family:slick;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale
+}
+.slick-next,.slick-prev{
+  font-size:0;
+  line-height:0;
+  cursor:pointer;
+  color:transparent;
+  border:none;
+  outline:0;
+  background:0 0
+}
+.slick-next:focus,.slick-next:hover,.slick-prev:focus,.slick-prev:hover{
+  color:transparent;
+  outline:0;
+  background:0 0
+}
+.slick-next:focus:before,.slick-next:hover:before,.slick-prev:focus:before,.slick-prev:hover:before{
+  opacity:1
+}
+.slick-next.slick-disabled:before,.slick-prev.slick-disabled:before{
+  opacity:.25
+}
+.slick-next:before,.slick-prev:before{
+  font-size:60px;
+  line-height: 20px;
+  opacity:.5;
+  color:@mainBorderColor
+}
+[dir=rtl] .slick-prev{
+  right:0;
+  left:auto
+}
+[dir=rtl] .slick-next{
+  right:auto;
+  left:75px
+}
+.slick-dotted.slick-slider{
+  margin-bottom:30px
+}
+.slick-dots{
+  bottom:0;
+  transform: translateY(50%);
+  -webkit-transform: translateY(50%);
+  width:100%;
+  margin:0;
+  list-style:none;
+  text-align:center;
+  z-index: 2;
+}
+.slick-dots li button{
+  font-size:0;
+  line-height:0;
+  display:block;
+  width:20px;
+  height:20px;
+  padding:5px;
+  cursor:pointer;
+  color:transparent;
+  border:0;
+  outline:0;
+  background:0 0
+}
+.slick-dots li button:focus,.slick-dots li button:hover{
+  outline:0
+}
+.slick-dots li button:focus:before,.slick-dots li button:hover:before {
+  opacity: 1
+}
+.slick-thumb img{
+  height: 100px;
+  width: 100%;
+  object-fit: cover
+}
+
+@media (min-width: 576px) {
+  .carousel-txt h2 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+
+@media (min-width: @mobileWidth) {
+  .carousel {
+    margin-bottom: 75px;
+    .slick-dots li {
+      width:190px;
+      height: 150px;
+    }
+    .slick-thumb img {
+      height: 150px;
+    }
+    .slick-slide img{
+      height: 800px;
+    }
+  }
+  .carousel-txt {
+    bottom: 200px;
+  }
+  .carousel-txt h2 {
+    font-size: 45px;
+    line-height: 60px;
+    margin-bottom: 110px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel {
+    margin-bottom: 100px;
+    .slick-dots li {
+      width: 300px;
+      height: 200px;
+    }
+    .slick-thumb img {
+      height: 200px;
+    }
+  }
+}

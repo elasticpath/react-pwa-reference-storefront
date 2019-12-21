@@ -1,0 +1,23 @@
+{
+  "extends": ["./base-eslintrc.json"],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": {
+          "resolve": {
+            "modules": ["../node_modules"],
+            "extentions": [
+              ".js",
+              ".jsx",
+              ".ts",
+              ".tsx",
+              ".json",
+              ".png",
+              ".jpg"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.sort-product-menu {
+  position: relative;
+  top: 70px;
+  right: 15px;
+
+  .dropdown-sort-field {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .sort-title {
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+
+    .dropdown {
+      color: @mainTextColor;
+      font-weight: 500;
+      text-transform: uppercase;
+
+      .dropdown-toggle {
+        border: 1px solid @mainBorderColor;
+        display: block;
+        font-size: 13px;
+        color: @mainTextColor;
+        background-color: @mainBackgroundColor;
+        width: 180px;
+        text-align: left;
+        border-radius: 0;
+
+        &:focus {
+          box-shadow: none;
+        }
+        &:after {
+          position: absolute;
+          top: 12px;
+          right: 10px;
+          border-width: 5px;
+          border-bottom-width: 0;
+        }
+      }
+
+      .dropdown-menu {
+        border: 1px solid @mainBorderColor;
+        margin: 0;
+        padding: 0;
+        width: 180px;
+        border-radius: 0;
+
+        button:hover{
+          color: @secondComplimentColor;
+        }
+      }
+
+      &.show .dropdown-toggle:after {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+@media (max-width: @mobileWidth) {
+  .sort-product-menu {
+    top: 118px;
+  }
+}

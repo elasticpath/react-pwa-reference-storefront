@@ -1,0 +1,165 @@
+/**
+ * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+ @import './../../../theme/common.less';
+
+  .main-search-container-br {
+    width: 170px;
+    text-align: right;
+
+    .search-form-br {
+      position: relative;
+      display: inline-block;
+
+      &:focus-within {
+        .input-search-br {
+          width: 275px;
+          padding-left: 40px;
+          border-bottom: 1px solid #fff;
+          cursor: auto;
+        }
+        .suggestions {
+          display:list-item;
+        }
+      }
+
+      .input-search-br {
+        z-index:1;
+        background: @mainColor;
+        padding: 2px 0 2px 35px;
+        width: 35px;
+        transition: width 0.5s ease,
+                    border-color 0.5s,
+                    padding 0.5s ease-in;
+
+        cursor: auto;
+        color: #fff;
+        cursor: pointer;
+        outline: 0;
+        border: 0;
+        border-bottom: 1px solid transparent;
+        font-weight: 300;
+
+        &::placeholder {
+          opacity: 0.3;
+          color: #fff;
+        }
+      }
+
+      .suggestions {
+        display: none;
+        margin-top: 0;
+        max-height: 149px;
+        overflow-y: auto;
+        width: 275px;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+        .suggestion-element {
+          margin:10px;
+          padding-left: 30px;
+          text-align: left;
+          color: black;
+          cursor: pointer;
+        }
+      }
+
+      .search-icon-br {
+        background: #ffffff00 url('@{imgComponentUrl}/header-icons/magnifying-glass.svg') no-repeat 9px center;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 35px;
+        height: 20px;
+        pointer-events: none;
+      }
+    }
+
+    &.mobile-view {
+      width: 100%;
+      border-bottom: solid 1px #dedede;
+
+      .search-form-br {
+        display: block;
+
+        &:focus-within {
+          .suggestions {
+            display:list-item;
+          }
+        }
+
+        .input-search-br {
+          color: #333;
+          background-color: #fff;
+          width: 100%;
+          transition: none;
+          font-size: 18px;
+          padding: 10px 45px 10px 20px;
+          border-bottom: 0;
+
+          &::placeholder {
+            opacity: 0.3;
+            color: #000;
+          }
+
+          &:focus {
+            border-bottom: 0;
+          }
+        }
+
+        .suggestions {
+          z-index: 1;
+          display: none;
+          margin-top: 0;
+          overflow-y: auto;
+          width: 100%;
+          position: relative;
+          background-color: #fff;
+          border-top: 1px solid @firstBorderColor;
+          box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+          max-height: 100%;
+          .suggestion-element {
+            margin: 1;
+            padding-left:0;
+            padding-top:15px;
+            padding-bottom:15px;
+            text-align: center;
+            color: @mainTextColor;
+            font-size: 18px;
+            cursor: pointer;
+            &:active {
+              background-color: @firstComplimentBackground
+            }
+          }
+        }
+
+        .search-icon-br {
+          filter: invert(100%);
+          opacity: 0.5;
+          left: auto;
+          right: 10px;
+          top: 12px;
+        }
+      }
+    }
+  }
+
+
+

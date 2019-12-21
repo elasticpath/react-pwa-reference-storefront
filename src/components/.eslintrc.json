@@ -1,0 +1,6 @@
+{
+  "extends": ["../../base-eslintrc.json"],
+  "rules": {
+    "react/jsx-wrap-multilines": ["off"]
+  }
+}
