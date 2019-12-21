@@ -225,7 +225,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     return Math.random().toString(36).substr(2, 9);
   }
 
-  // TODO:  We should either mock up the requests before hand or ensure that the component can work within storybook...
   async submitPayment(event) {
     const {
       paymentInstrumentFormFieldsToFill,
