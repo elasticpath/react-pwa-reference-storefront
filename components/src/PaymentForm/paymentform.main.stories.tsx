@@ -23,7 +23,7 @@ import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { textToFunc } from '../../../storybook/utils/storybookUtils';
 import PaymentFormMain from './paymentform.main';
-import mockPaymentForm from './paymentform.main.api.mocks';
+import { mockPaymentFormSuccess } from './paymentform.main.api.mocks';
 
 import Readme from './README.md';
 
@@ -36,7 +36,7 @@ storiesOf('Components|PaymentFormMain', module)
     },
   })
   .add('PaymentFormMain', () => {
-    mockPaymentForm();
+    mockPaymentFormSuccess();
 
     const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
     const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');

@@ -43,9 +43,14 @@ function mockPaymentInstrumentFormActionSuccess(mockObj) {
   );
 }
 
-export default function mockPaymentForm() {
+export function mockPaymentFormSuccess() {
   fetchMock.restore();
   mockLoginResponse(fetchMock);
   mockPaymentInstrumentForm(fetchMock);
   mockPaymentInstrumentFormActionSuccess(fetchMock);
+}
+
+export function mockPaymentFormFailure() {
+  fetchMock.restore();
+  // TODO: Write function that hangs on post and then eventually fails.
 }

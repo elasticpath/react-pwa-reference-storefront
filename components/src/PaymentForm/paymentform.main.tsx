@@ -121,7 +121,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     return paymentInstrumentForm._paymentinstrumentform[0].self.uri;
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     const { paymentInstrumentFormUri } = this.props;
 
     if (paymentInstrumentFormUri !== prevProps.paymentInstrumentFormUri) {
@@ -168,7 +168,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     });
 
     return paymentInstrumentFormKeys.reduce((acc, cKey) => {
-
       return {
         ...acc,
         [cKey]: zoomResult[cKey],
@@ -275,6 +274,10 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     }
   }
 
+  /**
+   *
+   * @param paymentInstrumentFormFieldsToFill
+   */
   fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill) {
     const keys = Object.keys(paymentInstrumentFormFieldsToFill);
     const formFieldsToFill = paymentInstrumentFormFieldsToFill;
@@ -282,7 +285,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     for (let i = 0; i < keys.length; i++) {
       const cKey = keys[i];
 
-      if (paymentInstrumentFormFieldsToFill[cKey] === '') {
+      if (typeof paymentInstrumentFormFieldsToFill[cKey] === 'string') {
         formFieldsToFill[cKey] = PaymentFormMain.generateToken();
       } else {
         formFieldsToFill[cKey] = this.fillPaymentInstrumentFormFields(formFieldsToFill[cKey]);
