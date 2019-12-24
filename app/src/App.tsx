@@ -20,7 +20,9 @@
  */
 
 import React from 'react';
-import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Switch, withRouter, Route,
+} from 'react-router-dom';
 import {
   AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider,
 } from '@elasticpath/store-components';
@@ -31,6 +33,7 @@ import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary } from './utils/MessageContext';
+import { LoginRedirectPage } from './containers/LoginRedirectPage';
 
 import './App.less';
 
@@ -130,11 +133,10 @@ const VersionContainer = (props) => {
   );
 };
 
-const Root = (props) => {
-  const { componentsData } = props;
+const Root = () => {
   const { error } = React.useContext(ErrorContext);
   return [
-    <VersionContainer key="version-container" componentsVersion={componentsData.version} appVersion={packageJson.version} />,
+    <VersionContainer key="version-container" appVersion={packageJson.version} />,
     <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
     <AppHeaderMain
       key="app-header"
@@ -158,7 +160,7 @@ const Root = (props) => {
     <div key="app-content" className="app-content">
       <Switch>
         {routes.map(route => (
-          <RouteWithSubRoutes key={route.path} {...route} />
+          <RouteWithSubRoutes key={`${route.path}_${Math.random().toString(36).substr(2, 9)}`} {...route} />
         ))}
       </Switch>
     </div>,
@@ -174,7 +176,10 @@ const AppWithRouter = (props) => {
     <Router>
       <ErrorDisplayBoundary>
         <CountProvider>
-          <App componentsData={componentsData} />
+          <Switch>
+            <Route path="/loggedin" exact component={LoginRedirectPage} />
+            <Route path="/" exact={false} component={App} componentsData={componentsData} />
+          </Switch>
         </CountProvider>
       </ErrorDisplayBoundary>
     </Router>
