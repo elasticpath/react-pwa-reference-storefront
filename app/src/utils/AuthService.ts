@@ -278,3 +278,27 @@ export function registerUser(lastname, firstname, username, password) {
     });
   }));
 }
+
+export function getAccessToken(token) {
+  return new Promise(((resolve, reject) => {
+    cortexFetch(`/impersonation/${Config.cortexApi.scope}/form?followlocation`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        'impersonation-token': token,
+      }),
+    })
+      .then(res => res.json())
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        reject(error);
+      });
+  }));
+}
