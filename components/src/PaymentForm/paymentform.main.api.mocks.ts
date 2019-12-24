@@ -37,7 +37,7 @@ function mockPaymentInstrumentForm(mockObj) {
 }
 
 function mockPaymentInstrumentFormActionSuccess(mockObj) {
-  const delay = new Promise((res, rej) => setTimeout(res, 5000));
+  const delay = new Promise((res, rej) => setTimeout(res, 10000));
   mockObj.post(
     /\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
     delay.then(() => paymentInstrumentFormResponse),
@@ -45,7 +45,7 @@ function mockPaymentInstrumentFormActionSuccess(mockObj) {
 }
 
 function mockPaymentInstrumentFormActionFailure(mockObj) {
-  const delay = new Promise((res, rej) => setTimeout(res, 5000));
+  const delay = new Promise((res, rej) => setTimeout(res, 10000));
   mockObj.post(
     /\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
     delay.then(() => 400),
