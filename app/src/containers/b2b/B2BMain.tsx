@@ -191,7 +191,7 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
       // { to: '/b2b/orders', children: 'orders' },
       // { to: '/b2b/approvals', children: 'approvals' },
       // { to: '/b2b/invitations', children: 'invitations' },
-      // { to: '/b2b/requisition-lists', children: 'requisition-lists' },
+      { to: '/b2b/requisition-lists', children: 'requisition-lists' },
       // { to: '/b2b/quotes', children: 'quotes' },
     ];
 
