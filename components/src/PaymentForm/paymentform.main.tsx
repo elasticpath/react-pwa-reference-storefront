@@ -92,7 +92,9 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.setPaymentInstrumentFormFieldsToFill = this.setPaymentInstrumentFormFieldsToFill.bind(this);
     this.fillPaymentInstrumentFormFields = this.fillPaymentInstrumentFormFields.bind(this);
     this.setSubmitPaymentFormUri = this.setSubmitPaymentFormUri.bind(this);
+    this.makeSubmitPaymentRequest = this.makeSubmitPaymentRequest.bind(this);
     this.initializeState = this.initializeState.bind(this);
+    this.areCreditCardFieldsValid = this.areCreditCardFieldsValid.bind(this);
     this.cancel = this.cancel.bind(this);
     this.formRef = React.createRef<HTMLFormElement>();
   }
@@ -210,10 +212,10 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     const holderName = cardHolderName.split(' ');
 
     if (!cardHolderName || !cardNumber || !securityCode || !(holderName[0] && holderName[1])) {
-      return true;
+      return false;
     }
 
-    return false;
+    return true;
   }
 
   static generateToken() {
@@ -224,24 +226,15 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     return Math.random().toString(36).substr(2, 9);
   }
 
-  async submitPayment(event) {
-    const {
-      paymentInstrumentFormFieldsToFill,
-      submitPaymentFormUri,
-    } = this.state;
-
+  async makeSubmitPaymentRequest() {
     const {
       fetchData,
       onCloseModal,
     } = this.props;
-
-    event.preventDefault();
-
-    if (this.areCreditCardFieldsValid()) {
-      this.setState({ showLoader: true, failedSubmit: false });
-    } else {
-      this.setState({ failedSubmit: true });
-    }    
+    const {
+      paymentInstrumentFormFieldsToFill,
+      submitPaymentFormUri,
+    } = this.state;
 
     const formFieldsFilled = this.fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill);
 
@@ -271,6 +264,17 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
+    }
+  }
+
+  submitPayment(event) {
+    event.preventDefault();
+
+    if (this.areCreditCardFieldsValid()) {
+      this.setState({ showLoader: true, failedSubmit: false });
+      this.makeSubmitPaymentRequest();
+    } else {
+      this.setState({ failedSubmit: true });
     }
   }
 

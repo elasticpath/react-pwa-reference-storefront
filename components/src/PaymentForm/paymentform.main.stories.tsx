@@ -23,7 +23,7 @@ import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import { textToFunc } from '../../../storybook/utils/storybookUtils';
 import PaymentFormMain from './paymentform.main';
-import { mockPaymentFormSuccess } from './paymentform.main.api.mocks';
+import { mockPaymentFormSuccess, mockPaymentFormFailure } from './paymentform.main.api.mocks';
 
 import Readme from './README.md';
 
@@ -35,8 +35,23 @@ storiesOf('Components|PaymentFormMain', module)
       sidebar: Readme,
     },
   })
-  .add('PaymentFormMain', () => {
+  .add('PaymentFormMain Success', () => {
     mockPaymentFormSuccess();
+
+    const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
+    const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');
+    const paymentInstrumentFormUri = text('paymentInstrumentFormUri', '/paymentmethods/orders/mobee/mrtgezdgmfrtkljumq4teljumm2diljzgqzgellgheytazlcmnrtezrsmi=/mnstmyrqg5sdsljxhezwmljugazdmllbgiztmllggvrtkzjug43dkyryg4=');
+
+    return (
+      <PaymentFormMain
+        paymentInstrumentFormUri={paymentInstrumentFormUri}
+        onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
+        fetchData={() => { textToFunc(fetchDataFuncText); }}
+      />
+    );
+  })
+  .add('PaymentFormMain Failure', () => {
+    mockPaymentFormFailure();
 
     const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
     const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');

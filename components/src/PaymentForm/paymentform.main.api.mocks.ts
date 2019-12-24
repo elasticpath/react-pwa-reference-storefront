@@ -37,9 +37,18 @@ function mockPaymentInstrumentForm(mockObj) {
 }
 
 function mockPaymentInstrumentFormActionSuccess(mockObj) {
+  const delay = new Promise((res, rej) => setTimeout(res, 5000));
   mockObj.post(
     /\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
-    paymentInstrumentFormResponse,
+    delay.then(() => paymentInstrumentFormResponse),
+  );
+}
+
+function mockPaymentInstrumentFormActionFailure(mockObj) {
+  const delay = new Promise((res, rej) => setTimeout(res, 5000));
+  mockObj.post(
+    /\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
+    delay.then(() => 400),
   );
 }
 
@@ -52,5 +61,7 @@ export function mockPaymentFormSuccess() {
 
 export function mockPaymentFormFailure() {
   fetchMock.restore();
-  // TODO: Write function that hangs on post and then eventually fails.
+  mockLoginResponse(fetchMock);
+  mockPaymentInstrumentForm(fetchMock);
+  mockPaymentInstrumentFormActionFailure(fetchMock);
 }
