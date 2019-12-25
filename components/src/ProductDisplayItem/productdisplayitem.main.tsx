@@ -111,6 +111,8 @@ interface ProductDisplayItemMainProps {
   onAddToCart?: (...args: any[]) => any,
   /** handle add to wishlist */
   onAddToWishList?: (...args: any[]) => any,
+  /** handle add to requisition list */
+  onRequisitionPage?: (...args: any[]) => any,
   /** handle change product feature */
   onChangeProductFeature?: (...args: any[]) => any,
   /** handle reload page */
@@ -127,6 +129,7 @@ interface ProductDisplayItemMainProps {
 
 interface ProductDisplayItemMainState {
   productData: any,
+  requisitionListData: any,
   multiCartData: { [key: string]: any },
   itemQuantity: number,
   isLoading: boolean,
@@ -146,6 +149,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     dataSet: undefined,
     onAddToCart: () => {},
     onAddToWishList: () => {},
+    onRequisitionPage: () => {},
     onReloadPage: () => {},
     productLink: '',
     isInStandaloneMode: false,
@@ -169,6 +173,11 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
+      requisitionListData: {
+        list: [
+          { name: 'Vancouver' }, { name: 'HQ' }, { name: 'Chicago' }, { name: 'New York' }, { name: 'San Francisco' }, { name: 'Toronto' }, { name: 'Lviv' }, { name: 'Denver' }, { name: 'San Diego' },
+        ],
+      },
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -605,6 +614,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     });
   }
 
+  addToRequisitionListData(cart, onCountChange) {
+    const { onRequisitionPage } = this.props;
+    onRequisitionPage();
+    this.setState({ addToCartLoading: true });
+  }
+
   dropdownCartSelection() {
     const dispatch = useCountDispatch();
     const onCountChange = (name, count) => {
@@ -636,9 +651,26 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return null;
   }
 
+  dropdownRequisitionListSelection() {
+    const { requisitionListData } = this.state;
+    if (requisitionListData) {
+      return (
+        <ul className="cart-selection-dropdown">
+          {requisitionListData.list.map(cart => (
+            // eslint-disable-next-line
+            <li className="dropdown-item cart-selection-item" key={cart.name ? cart.name : intl.get('default')} onClick={() => this.addToRequisitionListData(cart, "onCountChange")}>
+              {cart.name ? cart.name : intl.get('default')}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  }
+
   render() {
     const {
-      productData, isLoading, itemQuantity, multiCartData, addToCartLoading,
+      productData, isLoading, itemQuantity, multiCartData, addToCartLoading, requisitionListData,
     } = this.state;
     const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
@@ -653,6 +685,29 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       Config.indi.productReview.title = intl.get('indi-product-review-title');
       Config.indi.productReview.description = intl.get('indi-product-review-description');
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
+
+      const SelectRequisitionListButton = () => (
+        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
+          <button
+            className="ep-btn wide btn-itemdetail-addtowishlist dropdown-toggle"
+            data-toggle="dropdown"
+            disabled={!availability || !productData._addtowishlistform}
+            id="product_display_item_add_to_cart_button"
+            type="submit"
+          >
+            {addToCartLoading ? (
+              <span className="miniLoader" />
+            ) : (
+              <span>
+                {intl.get('add-to-wish-list')}
+              </span>
+            )}
+          </button>
+          <div className="dropdown-menu cart-selection-list">
+            {this.dropdownRequisitionListSelection()}
+          </div>
+        </div>
+      );
 
       const SelectCartButton = () => (
         <div className="form-content form-content-submit col-sm-offset-4 dropdown">
@@ -701,6 +756,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 <div>
                   <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
                     {productData._definition[0]['display-name']}
+                    <span className="add-to-wish-list-link">+ Add to Wishlist</span>
                   </h1>
                   {(Config.b2b.enable) && (
                     <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
@@ -812,17 +868,21 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
-                        <div className="form-content form-content-submit col-sm-offset-4">
-                          <button
-                            onClick={this.addToWishList}
-                            className="ep-btn wide btn-itemdetail-addtowishlist"
-                            disabled={!availability || !productData._addtowishlistform}
-                            id="product_display_item_add_to_wish_list_button"
-                            type="submit"
-                          >
-                            {intl.get('add-to-wish-list')}
-                          </button>
-                        </div>
+                        {requisitionListData ? (
+                          <SelectRequisitionListButton />
+                        ) : (
+                          <div className="form-content form-content-submit col-sm-offset-4">
+                            <button
+                              onClick={this.addToWishList}
+                              className="ep-btn wide btn-itemdetail-addtowishlist"
+                              disabled={!availability || !productData._addtowishlistform}
+                              id="product_display_item_add_to_wish_list_button"
+                              type="submit"
+                            >
+                              {intl.get('add-to-wish-list')}
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </form>
                   ) : ('')

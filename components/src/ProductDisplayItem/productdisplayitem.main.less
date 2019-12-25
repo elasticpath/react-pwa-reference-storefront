@@ -117,6 +117,16 @@
     .itemdetail-price-container {
       font-weight: 600;
       line-height: 1.25;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .add-to-wish-list-link {
+        font-size: small;
+        color: #40b1f3;
+        right: 25px;
+        white-space: nowrap;
+      }
 
       .itemdetail-purchase-price-value{
         font-weight: bold;
@@ -171,6 +181,8 @@
 
       .cart-selection-dropdown {
         margin-bottom: 0;
+        max-height: 235px;
+        overflow: scroll;
       }
 
       .form-group {

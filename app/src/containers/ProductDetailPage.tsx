@@ -42,6 +42,10 @@ function ProductDetailPage(props: RouteComponentProps<ProductDetailRouterProps>)
     history.push('/wishlists');
   }
 
+  function handleAddToRequisitionList() {
+    history.push('/b2b/requisition-list-item');
+  }
+
   function handleChangeProductFeature(path) {
     history.push(`/itemdetail/${path}`);
   }
@@ -53,7 +57,7 @@ function ProductDetailPage(props: RouteComponentProps<ProductDetailRouterProps>)
   return (
     <div>
       {/* eslint-disable-next-line react/destructuring-assignment,react/prop-types */}
-      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onChangeProductFeature={handleChangeProductFeature} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} itemDetailLink="/itemdetail" onReloadPage={onReloadPage} />
+      <ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onChangeProductFeature={handleChangeProductFeature} onAddToCart={handleAddToCart} onRequisitionPage={handleAddToRequisitionList} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} itemDetailLink="/itemdetail" onReloadPage={onReloadPage} />
     </div>
   );
 }

@@ -1,0 +1,105 @@
+@import './../../theme/common.less';
+
+.requisition-component {
+  height: 100%;
+  display: flex;
+  padding-bottom: 50px;
+
+  .requisition-header {
+    flex: 0 0 auto;
+    padding: 20px 0px 10px;
+
+    @media (max-width: @tabletWidth - 1px) {
+      display: flex;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+      padding: 16px 15px;
+    }
+
+    .back-link {
+      font-weight: bold;
+      color: @thirdComplimentColor;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+
+      .back-arrow {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: url('../@{imgUrl}/icons/outline-chevron_left-24px.svg') no-repeat;
+      }
+
+      @media (max-width: @tabletWidth - 1px) {
+        display: none;
+      }
+    }
+
+    .name-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      @media (max-width: @mobileWidth - 1px) {
+        justify-content: space-between;
+      }
+
+      .back-link-mobile {
+        font-weight: bold;
+        flex: 0 1 auto;
+        display: flex;
+        align-items: center;
+        margin-right: 80px;
+        color: @thirdComplimentColor;
+
+        @media (max-width: @mobileWidth - 1px) {
+          margin-right: 20px;
+        }
+
+        .back-arrow {
+          width: 24px;
+          height: 24px;
+          background: url('../@{imgUrl}/icons/outline-chevron_left-24px.svg') no-repeat;
+        }
+
+        @media (min-width: @tabletWidth) {
+          display: none;
+        }
+      }
+
+      .name {
+        margin-left: 25px;
+        font-weight: bold;
+        font-size: 24px;
+        margin-right: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media (max-width: @tabletWidth - 1px) {
+          font-size: 16px;
+          text-align: center;
+        }
+
+        @media (max-width: @mobileWidth - 1px) {
+          margin: 0 20px 0 0;
+        }
+
+        @media (min-width: @mobileWidth) {
+          flex: 1 0 auto;
+        }
+
+        @media (min-width: @tabletWidth) {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1092px) {
+  .requisition-component {
+    width: 960px;
+    margin: 0 auto;
+  }
+}
