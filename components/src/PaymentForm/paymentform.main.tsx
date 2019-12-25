@@ -51,14 +51,15 @@ interface PaymentFormMainState {
     saveToProfile: boolean,
     failedSubmit: boolean,
     paymentInstrumentFormFieldsToFill: object;
-    submitPaymentFormUri: string;
+    submitPaymentFormOrderUri: string;
+    submitPaymentFormProfileUri: string;
 }
 
 class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainState> {
   static defaultProps = {
     onCloseModal: () => {},
     fetchData: () => {},
-    shouldPostToProfile: true,
+    shouldPostToProfile: false,
   }
 
   formRef: React.RefObject<HTMLFormElement>;
@@ -80,7 +81,8 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       saveToProfile: false,
       failedSubmit: false,
       paymentInstrumentFormFieldsToFill: {},
-      submitPaymentFormUri: '',
+      submitPaymentFormOrderUri: '',
+      submitPaymentFormProfileUri: '',
     };
 
     this.setCardType = this.setCardType.bind(this);
@@ -98,7 +100,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.makeSubmitPaymentRequest = this.makeSubmitPaymentRequest.bind(this);
     this.initializeState = this.initializeState.bind(this);
     this.areCreditCardFieldsValid = this.areCreditCardFieldsValid.bind(this);
-    this.parsePaymentInstrumentFormActionFromResponse = this.parsePaymentInstrumentFormActionFromResponse.bind(this);
     this.parsePaymentInstrumentFormFieldsFromResponse = this.parsePaymentInstrumentFormFieldsFromResponse.bind(this);
     this.setShouldShowSaveToProfile = this.setShouldShowSaveToProfile.bind(this);
     this.cancel = this.cancel.bind(this);
@@ -117,8 +118,9 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   setSubmitPaymentFormUri(paymentInstrumentForm) {
-    const submitPaymentFormUri = this.parsePaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
-    this.setState({ submitPaymentFormUri });
+    const submitPaymentFormOrderUri = PaymentFormMain.parseOrderPaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
+    const submitPaymentFormProfileUri = PaymentFormMain.parseProfilePaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
+    this.setState({ submitPaymentFormProfileUri, submitPaymentFormOrderUri });
   }
 
   setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm) {
@@ -127,39 +129,27 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   async setShouldShowSaveToProfile() {
-    const profileAttributesZoom = '/?zoom=defaultprofile:attributes';
-    let isAnonymous;
+    const { shouldPostToProfile } = this.props;
 
-    try {
-      const attributesRes = await cortexFetch(profileAttributesZoom,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        });
-
-      const attributesResUnserialized = await attributesRes.json();
-
-      isAnonymous = attributesResUnserialized._defaultprofile[0]._attributes[0].anonymous;
-
-      if (isAnonymous) {
-        this.setState({ showSaveToProfile: false });
-      } else {
-        this.setState({ showSaveToProfile: true });
-      }
-    } catch (err) {
-      console.log(err);
+    if (shouldPostToProfile || localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
+      this.setState({ showSaveToProfile: false });
     }
   }
 
-  parsePaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
-    const { shouldPostToProfile } = this.props;
-    if (shouldPostToProfile) {
-      return paymentInstrumentForm._defaultprofile[0]._paymentmethods[0]._element[0]._paymentinstrumentform[0].self.uri;
+  static parseOrderPaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
+    try {
+      return paymentInstrumentForm._defaultcart[0]._order[0]._paymentmethodinfo[0]._element[0]._paymentinstrumentform[0].self.uri;
+    } catch (err) {
+      return null;
     }
+  }
 
-    return paymentInstrumentForm._defaultcart[0]._order[0]._paymentmethodinfo[0]._element[0]._paymentinstrumentform[0].self.uri;
+  static parseProfilePaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
+    try {
+      return paymentInstrumentForm._defaultprofile[0]._paymentmethods[0]._element[0]._paymentinstrumentform[0].self.uri;
+    } catch (err) {
+      return null;
+    }
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -174,19 +164,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     const { shouldPostToProfile } = this.props;
     let paymentInstrumentFormUnserialized;
 
-    let zoomQuery;
-
-    // TODO:
-    // Need to check if its an anonymous user first... then we need to be able to choose to show the saveToProfile option...
-
-    // If it is an anonymous user then we can't save to profile...
-    // else we have the option available to them... and save both submission uris..
-
-    if (shouldPostToProfile) {
-      zoomQuery = '/?zoom=defaultprofile:paymentmethods:element:paymentinstrumentform';
-    } else {
-      zoomQuery = '/?zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform';
-    }
+    const zoomQuery = '/?zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform,defaultprofile:paymentmethods:element:paymentinstrumentform';
 
     try {
       await login();
@@ -292,15 +270,26 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     const {
       fetchData,
       onCloseModal,
+      shouldPostToProfile,
     } = this.props;
     const {
       paymentInstrumentFormFieldsToFill,
-      submitPaymentFormUri,
+      submitPaymentFormOrderUri,
+      submitPaymentFormProfileUri,
+      saveToProfile,
     } = this.state;
 
     const formFieldsFilled = this.fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill);
 
     try {
+      let submitPaymentFormUri;
+
+      if (shouldPostToProfile || saveToProfile) {
+        submitPaymentFormUri = submitPaymentFormProfileUri;
+      } else {
+        submitPaymentFormUri = submitPaymentFormOrderUri;
+      }
+
       const addPaymentResponse = await cortexFetch(submitPaymentFormUri,
         {
           method: 'post',
