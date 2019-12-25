@@ -13,7 +13,7 @@ import { PaymentFormMain } from '@elasticpath/store-components';
 #### Example
 
 ```js
-<PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
+<PaymentFormMain shouldPostToProfile onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
 ```
 
 #### Properties

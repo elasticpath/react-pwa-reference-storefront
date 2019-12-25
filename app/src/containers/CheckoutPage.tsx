@@ -598,7 +598,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                 </h2>
               </div>
               <div className="modal-body">
-                <PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
+                <PaymentFormMain shouldPostToProfile={false} onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import paymentInstrumentFormResponse from './MockHttpResponses/GET/paymentInstrumentForm_response.json';
+import paymentInstrumentFormResponse from './MockHttpResponses/GET/paymentInstrumentFormProfile_response.json';
 import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
 function mockLoginResponse(mockObj) {
@@ -31,7 +31,7 @@ function mockLoginResponse(mockObj) {
 
 function mockPaymentInstrumentForm(mockObj) {
   mockObj.get(
-    /\/cortex\/paymentmethods\/(orders|profiles)\/(.*)/,
+    /(.*)(zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform|zoom=defaultprofile:paymentmethods:element:paymentinstrumentform)/,
     paymentInstrumentFormResponse,
   );
 }

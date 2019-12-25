@@ -44,7 +44,7 @@ storiesOf('Components|PaymentFormMain', module)
 
     return (
       <PaymentFormMain
-        paymentInstrumentFormUri={paymentInstrumentFormUri}
+        shouldPostToProfile
         onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
         fetchData={() => { textToFunc(fetchDataFuncText); }}
       />
@@ -59,7 +59,7 @@ storiesOf('Components|PaymentFormMain', module)
 
     return (
       <PaymentFormMain
-        paymentInstrumentFormUri={paymentInstrumentFormUri}
+        shouldPostToProfile
         onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
         fetchData={() => { textToFunc(fetchDataFuncText); }}
       />

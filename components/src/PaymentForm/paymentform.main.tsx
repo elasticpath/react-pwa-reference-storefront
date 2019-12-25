@@ -31,8 +31,8 @@ let intl = { get: str => str };
 const today = new Date();
 
 interface PaymentFormMainProps {
-  /** paymentinstrumentform to post to.  Can either be from the profile or the order resource. */
-  paymentInstrumentFormUri: string,
+  /** decide whether to add payment to the profile resource or checkout resource. */
+  shouldPostToProfile: boolean,
   /** handle close modal */
   onCloseModal?: (...args: any[]) => any,
   /** handle fetch data */
@@ -47,6 +47,7 @@ interface PaymentFormMainState {
     expiryMonth: number,
     expiryYear: number,
     securityCode: string,
+    showSaveToProfile: boolean,
     saveToProfile: boolean,
     failedSubmit: boolean,
     paymentInstrumentFormFieldsToFill: object;
@@ -57,6 +58,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   static defaultProps = {
     onCloseModal: () => {},
     fetchData: () => {},
+    shouldPostToProfile: true,
   }
 
   formRef: React.RefObject<HTMLFormElement>;
@@ -74,6 +76,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       expiryMonth: today.getMonth() + 1,
       expiryYear: today.getFullYear(),
       securityCode: '',
+      showSaveToProfile: true,
       saveToProfile: false,
       failedSubmit: false,
       paymentInstrumentFormFieldsToFill: {},
@@ -95,12 +98,16 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.makeSubmitPaymentRequest = this.makeSubmitPaymentRequest.bind(this);
     this.initializeState = this.initializeState.bind(this);
     this.areCreditCardFieldsValid = this.areCreditCardFieldsValid.bind(this);
+    this.parsePaymentInstrumentFormActionFromResponse = this.parsePaymentInstrumentFormActionFromResponse.bind(this);
+    this.parsePaymentInstrumentFormFieldsFromResponse = this.parsePaymentInstrumentFormFieldsFromResponse.bind(this);
+    this.setShouldShowSaveToProfile = this.setShouldShowSaveToProfile.bind(this);
     this.cancel = this.cancel.bind(this);
     this.formRef = React.createRef<HTMLFormElement>();
   }
 
   async initializeState() {
     const paymentInstrumentForm = await this.fetchPaymentInstrumentForm();
+    this.setShouldShowSaveToProfile();
     this.setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm);
     this.setSubmitPaymentFormUri(paymentInstrumentForm);
   }
@@ -110,36 +117,82 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   setSubmitPaymentFormUri(paymentInstrumentForm) {
-    const submitPaymentFormUri = PaymentFormMain.parsePaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
+    const submitPaymentFormUri = this.parsePaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
     this.setState({ submitPaymentFormUri });
   }
 
   setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm) {
-    const paymentFormFieldsToFill = PaymentFormMain.parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm);
+    const paymentFormFieldsToFill = this.parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm);
     this.setState({ paymentInstrumentFormFieldsToFill: paymentFormFieldsToFill });
   }
 
-  static parsePaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
-    return paymentInstrumentForm._paymentinstrumentform[0].self.uri;
+  async setShouldShowSaveToProfile() {
+    const profileAttributesZoom = '/?zoom=defaultprofile:attributes';
+    let isAnonymous;
+
+    try {
+      const attributesRes = await cortexFetch(profileAttributesZoom,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        });
+
+      const attributesResUnserialized = await attributesRes.json();
+
+      isAnonymous = attributesResUnserialized._defaultprofile[0]._attributes[0].anonymous;
+
+      if (isAnonymous) {
+        this.setState({ showSaveToProfile: false });
+      } else {
+        this.setState({ showSaveToProfile: true });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  parsePaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
+    const { shouldPostToProfile } = this.props;
+    if (shouldPostToProfile) {
+      return paymentInstrumentForm._defaultprofile[0]._paymentmethods[0]._element[0]._paymentinstrumentform[0].self.uri;
+    }
+
+    return paymentInstrumentForm._defaultcart[0]._order[0]._paymentmethodinfo[0]._element[0]._paymentinstrumentform[0].self.uri;
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    const { paymentInstrumentFormUri } = this.props;
+    const { shouldPostToProfile } = this.props;
 
-    if (paymentInstrumentFormUri !== prevProps.paymentInstrumentFormUri) {
+    if (shouldPostToProfile !== prevProps.shouldPostToProfile) {
       this.initializeState();
     }
   }
 
   async fetchPaymentInstrumentForm() {
-    const { paymentInstrumentFormUri } = this.props;
+    const { shouldPostToProfile } = this.props;
     let paymentInstrumentFormUnserialized;
+
+    let zoomQuery;
+
+    // TODO:
+    // Need to check if its an anonymous user first... then we need to be able to choose to show the saveToProfile option...
+
+    // If it is an anonymous user then we can't save to profile...
+    // else we have the option available to them... and save both submission uris..
+
+    if (shouldPostToProfile) {
+      zoomQuery = '/?zoom=defaultprofile:paymentmethods:element:paymentinstrumentform';
+    } else {
+      zoomQuery = '/?zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform';
+    }
 
     try {
       await login();
 
       const paymentInstrumentForm = await cortexFetch(
-        `${paymentInstrumentFormUri}?zoom=paymentinstrumentform`,
+        zoomQuery,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -159,8 +212,17 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     return paymentInstrumentFormUnserialized;
   }
 
-  static parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm) {
-    const zoomResult = paymentInstrumentForm._paymentinstrumentform[0];
+  parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm) {
+    const { shouldPostToProfile } = this.props;
+    let zoomResult;
+
+    if (shouldPostToProfile) {
+      // eslint-disable-next-line prefer-destructuring
+      zoomResult = paymentInstrumentForm._defaultprofile[0]._paymentmethods[0]._element[0]._paymentinstrumentform[0];
+    } else {
+      // eslint-disable-next-line prefer-destructuring
+      zoomResult = paymentInstrumentForm._defaultcart[0]._order[0]._paymentmethodinfo[0]._element[0]._paymentinstrumentform[0];
+    }
 
     const paymentInstrumentFormKeys = Object.keys(zoomResult).filter((key) => {
       if (key === 'self' || key === 'links' || key === 'messages') {
@@ -318,9 +380,9 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
 
   render() {
     const {
-      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader,
+      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader, showSaveToProfile,
     } = this.state;
-    
+
     return (
       <div className="payment-method-container container">
         <div className="feedback-label feedback-container" data-region="componentPaymentFeedbackRegion">
@@ -430,16 +492,22 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
               <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength={4} type="text" pattern="\d*" value={securityCode} onChange={this.setSecurityCode} />
             </div>
           </div>
-          <div className="form-group save-to-profile-group" data-el-label="payment.saveToProfileFormGroup">
-            <div className="form-input">
-              {/* eslint-disable-next-line max-len */}
-              <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" className="style-checkbox" checked={saveToProfile} onChange={this.setSaveToProfile} />
-              <label htmlFor="saveToProfile" />
-            </div>
-            <label htmlFor="saveToProfile" className="control-label form-label">
-              {intl.get('save-payment-to-profile')}
-            </label>
-          </div>
+
+          { showSaveToProfile
+            ? (
+              <div className="form-group save-to-profile-group" data-el-label="payment.saveToProfileFormGroup">
+                <div className="form-input">
+                  {/* eslint-disable-next-line max-len */}
+                  <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" className="style-checkbox" checked={saveToProfile} onChange={this.setSaveToProfile} />
+                  <label htmlFor="saveToProfile" />
+                </div>
+                <label htmlFor="saveToProfile" className="control-label form-label">
+                  {intl.get('save-payment-to-profile')}
+                </label>
+              </div>
+            )
+            : null }
+
           <div className="form-group form-btn-group">
             <div className="control-label" />
             <div className="form-input btn-container">
