@@ -93,6 +93,87 @@
           align-items: center;
         }
       }
+
+      .edit-name {
+        display: inline;
+        font-size: 14px;
+        padding-top: 4px;
+        position: relative;
+      }
+    }
+  }
+
+  .header-container {
+    .add-to-list-button {
+      text-transform: none;
+      display: inline;
+    }
+    .add-to-cart-dropdown {
+      //display: flex;
+      display: inline-block;
+      align-items: center;
+      color: @mainColor;
+      cursor: pointer;
+
+      .dropdown-sort-field {
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .sort-title {
+          display: inline-block;
+          margin-right: 10px;
+          margin-bottom: 0;
+        }
+
+        .dropdown {
+          color: @mainTextColor;
+          font-weight: 500;
+          text-transform: uppercase;
+
+          .dropdown-toggle {
+            border: 1px solid @mainBorderColor;
+            display: block;
+            font-size: 13px;
+            color: @mainTextColor;
+            background-color: @mainBackgroundColor;
+            width: 180px;
+            text-align: left;
+            border-radius: 0;
+
+            &:focus {
+              box-shadow: none;
+            }
+
+            &:after {
+              position: absolute;
+              top: 12px;
+              right: 10px;
+              border-width: 5px;
+              border-bottom-width: 0;
+            }
+          }
+
+          .dropdown-menu {
+            border: 1px solid @mainBorderColor;
+            margin: 0;
+            padding: 0;
+            width: 180px;
+            border-radius: 0;
+            max-height: 200px;
+            overflow: scroll;
+
+            button:hover {
+              color: @secondComplimentColor;
+            }
+          }
+
+          &.show .dropdown-toggle:after {
+            transform: rotate(180deg);
+          }
+        }
+      }
     }
   }
 }
