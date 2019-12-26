@@ -1,36 +1,43 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
 @import './../../theme/common.less';
 
 .requisition-component {
-  height: 100%;
-  display: flex;
-  padding-bottom: 50px;
 
   .requisition-header {
-    flex: 0 0 auto;
     padding: 20px 0px 10px;
 
-    @media (max-width: @tabletWidth - 1px) {
-      display: flex;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-      padding: 16px 15px;
-    }
-
     .back-link {
+      position: relative;
+      display: inline-block;
+      padding-left: 20px;
       font-weight: bold;
       color: @thirdComplimentColor;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
+      margin-bottom: 20px;
 
-      .back-arrow {
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        background: url('../@{imgUrl}/icons/outline-chevron_left-24px.svg') no-repeat;
-      }
-
-      @media (max-width: @tabletWidth - 1px) {
-        display: none;
+      svg {
+        position: absolute;
+        top: -2px;
+        left: -8px;
       }
     }
 
@@ -39,77 +46,38 @@
       align-items: center;
       width: 100%;
 
-      @media (max-width: @mobileWidth - 1px) {
-        justify-content: space-between;
-      }
-
-      .back-link-mobile {
-        font-weight: bold;
-        flex: 0 1 auto;
-        display: flex;
-        align-items: center;
-        margin-right: 80px;
-        color: @thirdComplimentColor;
-
-        @media (max-width: @mobileWidth - 1px) {
-          margin-right: 20px;
-        }
-
-        .back-arrow {
-          width: 24px;
-          height: 24px;
-          background: url('../@{imgUrl}/icons/outline-chevron_left-24px.svg') no-repeat;
-        }
-
-        @media (min-width: @tabletWidth) {
-          display: none;
-        }
-      }
-
       .name {
-        margin-left: 25px;
+        display: inline-block;
         font-weight: bold;
         font-size: 24px;
         margin-right: 10px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        @media (max-width: @tabletWidth - 1px) {
-          font-size: 16px;
-          text-align: center;
-        }
-
-        @media (max-width: @mobileWidth - 1px) {
-          margin: 0 20px 0 0;
-        }
-
-        @media (min-width: @mobileWidth) {
-          flex: 1 0 auto;
-        }
-
-        @media (min-width: @tabletWidth) {
-          display: flex;
-          align-items: center;
-        }
       }
 
       .edit-name {
         display: inline;
         font-size: 14px;
-        padding-top: 4px;
         position: relative;
+        color: @thirdComplimentColor;
+        border: none;
+        background: transparent;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
 
-  .header-container {
+  .add-to-cart-dropdown-wrap {
     .add-to-list-button {
+      min-width: 220px;
+      min-height: 30px;
+      height: 32px;
+      padding: 0 5px;
       text-transform: none;
-      display: inline;
     }
+
     .add-to-cart-dropdown {
-      //display: flex;
       display: inline-block;
       align-items: center;
       color: @mainColor;
@@ -133,13 +101,14 @@
           text-transform: uppercase;
 
           .dropdown-toggle {
-            border: 1px solid @mainBorderColor;
+            height: 32px;
+            width: 220px;
             display: block;
-            font-size: 13px;
-            color: @mainTextColor;
+            font-size: 14px;
+            color: @thirdComplimentColor;
             background-color: @mainBackgroundColor;
-            width: 180px;
-            text-align: left;
+            border: 1px solid @thirdComplimentColor;
+            text-align: center;
             border-radius: 0;
 
             &:focus {
@@ -148,7 +117,7 @@
 
             &:after {
               position: absolute;
-              top: 12px;
+              top: 14px;
               right: 10px;
               border-width: 5px;
               border-bottom-width: 0;
@@ -156,16 +125,25 @@
           }
 
           .dropdown-menu {
-            border: 1px solid @mainBorderColor;
+            max-height: 200px;
+            width: 100%;
+            border: 1px solid @thirdComplimentColor;
+            border-top: none;
             margin: 0;
             padding: 0;
-            width: 180px;
             border-radius: 0;
-            max-height: 200px;
             overflow: scroll;
+            text-align: center;
 
-            button:hover {
-              color: @secondComplimentColor;
+            .dropdown-item {
+              padding: 8px 10px;
+              font-size: 14px;
+              text-transform: none;
+
+              &:hover {
+                background-color: #F2F6FA;
+                color: @thirdComplimentColor;
+              }
             }
           }
 
@@ -174,6 +152,11 @@
           }
         }
       }
+    }
+
+    @media screen and (min-width: 481px) {
+      display: flex;
+      justify-content: space-between;
     }
   }
 }

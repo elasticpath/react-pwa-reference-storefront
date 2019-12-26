@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
 
 import './RequisitionPageMain.less';
+import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 
 interface RequisitionPageMainProps {
 }
@@ -54,38 +55,33 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
           <div>
             <div className="requisition-header">
               <Link className="back-link" to="/b2b">
-                <div className="back-arrow" />
+                <AngleLeftIcon />
                 {intl.get('back-to-lists')}
               </Link>
               <div className="name-container">
-                <Link className="back-link-mobile" to="/b2b">
-                  <div className="back-arrow" />
-                  {intl.get('back-to-lists')}
-                </Link>
-                <div className="name">
+                <h2 className="name">
                   Vancouver
-                </div>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <Link to="#" href="/" className="edit-name">
+                </h2>
+                <button type="button" className="edit-name">
                   {intl.get('edit')}
-                </Link>
+                </button>
               </div>
             </div>
-            <div className="header-container">
-              <button type="button" className="ep-btn primary wide add-to-list-button">Add product to list</button>
+            <div className="add-to-cart-dropdown-wrap">
+              <button type="button" className="ep-btn primary add-to-list-button">Add product to list</button>
               <div className="add-to-cart-dropdown">
                 <div className="dropdown-sort-field">
                   <div className="dropdown">
                     <button className="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {intl.get('add-to-cart-2')}
                     </button>
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       {(products.list[0]) ? products.list.map(sortChoice => (
-                        <button type="button" className="dropdown-item" key={sortChoice.name} id={`product_display_item_sku_option_${sortChoice.name}`} value={sortChoice.name}>
+                        <li className="dropdown-item" key={sortChoice.name} id={`product_display_item_sku_option_${sortChoice.name}`} value={sortChoice.name}>
                           {sortChoice.name}
-                        </button>
+                        </li>
                       )) : ''}
-                    </div>
+                    </ul>
                   </div>
                 </div>
               </div>
