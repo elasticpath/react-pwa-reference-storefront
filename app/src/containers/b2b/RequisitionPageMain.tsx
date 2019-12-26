@@ -68,7 +68,9 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
               </div>
             </div>
             <div className="add-to-cart-dropdown-wrap">
-              <button type="button" className="ep-btn primary add-to-list-button">Add product to list</button>
+              <button type="button" className="ep-btn primary wide add-to-list-button">
+                {intl.get('add-products-to-list')}
+              </button>
               <div className="add-to-cart-dropdown">
                 <div className="dropdown-sort-field">
                   <div className="dropdown">

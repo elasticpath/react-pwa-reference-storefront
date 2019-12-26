@@ -22,6 +22,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
+import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../app/src/images/img_missing_horizontal@2x.png';
@@ -137,6 +138,7 @@ interface ProductDisplayItemMainState {
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
   addToCartLoading: boolean,
+  addToRequisitionListLoading: boolean,
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -173,6 +175,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
+      addToRequisitionListLoading: false,
       requisitionListData: {
         list: [
           { name: 'Vancouver' }, { name: 'HQ' }, { name: 'Chicago' }, { name: 'New York' }, { name: 'San Francisco' }, { name: 'Toronto' }, { name: 'Lviv' }, { name: 'Denver' }, { name: 'San Diego' },
@@ -617,7 +620,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   addToRequisitionListData(cart, onCountChange) {
     const { onRequisitionPage } = this.props;
     onRequisitionPage();
-    this.setState({ addToCartLoading: true });
+    this.setState({ addToRequisitionListLoading: true });
   }
 
   dropdownCartSelection() {
@@ -670,7 +673,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   render() {
     const {
-      productData, isLoading, itemQuantity, multiCartData, addToCartLoading, requisitionListData,
+      productData, isLoading, itemQuantity, multiCartData, addToCartLoading, requisitionListData, addToRequisitionListLoading,
     } = this.state;
     const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
@@ -695,11 +698,11 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             id="product_display_item_add_to_cart_button"
             type="submit"
           >
-            {addToCartLoading ? (
+            {addToRequisitionListLoading ? (
               <span className="miniLoader" />
             ) : (
               <span>
-                {intl.get('add-to-wish-list')}
+                {intl.get('add-to-requisition-list')}
               </span>
             )}
           </button>
@@ -756,7 +759,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 <div>
                   <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
                     {productData._definition[0]['display-name']}
-                    <span className="add-to-wish-list-link">+ Add to Wishlist</span>
+                    <Link to="/b2b/requisition-list-item" className="add-to-wish-list-link">+ Add to Wishlist</Link>
                   </h1>
                   {(Config.b2b.enable) && (
                     <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
