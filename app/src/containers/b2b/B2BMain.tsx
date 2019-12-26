@@ -226,7 +226,6 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
               <B2bSideMenu {...this.props} sideMenuItems={sideMenuItems} />
             </div>
             <div className="b2b-content">
-              <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
               {routes.map(route => (
                 <RouteWithSubRoutes key={route.path} {...route} />
               ))}

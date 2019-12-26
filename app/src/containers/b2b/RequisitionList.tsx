@@ -31,6 +31,9 @@ interface CartCreateProps {
 }
 interface CartCreateState {
   requisitionElements: any,
+  multiCartData: any,
+  openModal: boolean,
+  listName: string,
 }
 
 class RequisitionList extends Component<CartCreateProps, CartCreateState> {
@@ -65,11 +68,34 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
           'product-count': 14,
         },
       ],
+      multiCartData: [
+        {
+          name: 'Default',
+        },
+        {
+          name: 'Office',
+        },
+        {
+          name: 'Showroom',
+        },
+        {
+          name: 'Kitchen',
+        },
+        {
+          name: 'Garage',
+        },
+      ],
+      openModal: false,
+      listName: '',
     };
     this.handleEditRequisition = this.handleEditRequisition.bind(this);
     this.handleDeleteRequisition = this.handleDeleteRequisition.bind(this);
     this.handleCancelEditRequisition = this.handleCancelEditRequisition.bind(this);
     this.modalConfirmation = this.modalConfirmation.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.clearListNameField = this.clearListNameField.bind(this);
   }
 
   componentDidMount() {
@@ -79,6 +105,14 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     const { requisitionElements } = this.state;
     // eslint-disable-next-line no-console
     console.log('Delete', element, index);
+  }
+
+  handleModalOpen() {
+    this.setState({ openModal: true });
+  }
+
+  handleModalClose() {
+    this.setState({ openModal: false });
   }
 
   handleEditRequisition(event, index) {
@@ -96,6 +130,14 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     elements[index] = { ...elements[index] };
     elements[index].deleteMode = false;
     this.setState({ requisitionElements: elements });
+  }
+
+  handleChange(event) {
+    this.setState({ listName: event.target.value });
+  }
+
+  clearListNameField() {
+    this.setState({ listName: '' });
   }
 
   modalConfirmation(index, element) {
@@ -125,6 +167,24 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     );
   }
 
+  dropdownCartSelection() {
+    const { multiCartData } = this.state;
+    return (
+      <div className="cart-selection-menu">
+        <h6 className="dropdown-header">
+          {intl.get('add-to-cart')}
+        </h6>
+        <div className="cart-selection-menu-wrap">
+          {multiCartData.map(cart => (
+            <div className="dropdown-item cart-selection-menu-item" key={cart.name}>
+              {cart.name}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   renderRequisitionItems() {
     const { requisitionElements } = this.state;
     if (requisitionElements.length) {
@@ -136,9 +196,14 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
           </p>
           <div className="requisition-info action-btn">
             <div className="requisition-editing-btn">
-              <button className="ep-btn edit-btn" type="button">
-                <AddToCartIcon className="add-to-cart-icon" />
-              </button>
+              <div className="cart-selection-dropdown">
+                <button className="ep-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                  <AddToCartIcon className="add-to-cart-icon" />
+                </button>
+                <div className="dropdown-menu cart-selection-list">
+                  {this.dropdownCartSelection()}
+                </div>
+              </div>
               <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditRequisition(event, index)}>
                 <RecycleBinIcon className="delete-icon" />
               </button>
@@ -151,14 +216,44 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   }
 
   render() {
+    const { listName, openModal } = this.state;
+
     return (
       <div>
+        <div className="create-requisition-list">
+          <p>{intl.get('requisition-lists-description')}</p>
+          <button type="button" className="ep-btn primary create-list-btn" onClick={this.handleModalOpen}>{intl.get('create-list')}</button>
+          <Modal open={openModal} onClose={this.handleModalClose}>
+            <div className="modal-lg create-list-modal">
+              <div className="dialog-header">
+                <h2 className="modal-title">
+                  {intl.get('create-list')}
+                </h2>
+              </div>
+              <div className="dialog-content">
+                <div className="create-list-form">
+                  <div className="create-list-form-wrap">
+                    <label htmlFor="list_name">{intl.get('name')}</label>
+                    <input type="text" className="list-name" id="list_name" value={listName} onChange={this.handleChange} />
+                    {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
+                  </div>
+                </div>
+              </div>
+              <div className="dialog-footer">
+                <button className="cancel" type="button">{intl.get('cancel')}</button>
+                <button className="upload" type="button">
+                  {intl.get('save')}
+                </button>
+              </div>
+            </div>
+          </Modal>
+        </div>
         <div className="requisition-list-wrap">
           <ul className="requisition-list">
             <li className="requisition-list-item requisition-list-header">
-              <h4 className="requisition-info">Name</h4>
-              <h4 className="requisition-info">Product Count</h4>
-              <h4 className="requisition-info">Actions</h4>
+              <h4 className="requisition-info">{intl.get('name')}</h4>
+              <h4 className="requisition-info">{intl.get('product-count')}</h4>
+              <h4 className="requisition-info">{intl.get('actions')}</h4>
             </li>
             {this.renderRequisitionItems()}
           </ul>

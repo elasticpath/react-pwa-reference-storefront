@@ -356,5 +356,9 @@
   "remove-associate": "R-e-m-o-v-e- -A-s-s-o-c-i-a-t-e",
   "confirm-delete-associate": "A-r-e- -y-o-u- -s-u-r-e- -y-o-u- -w-o-u-l-d- -l-i-k-e- -t-o- -r-e-m-o-v-e- -t-h-i-s- -a-s-s-o-c-i-a-t-e-?",
   "no": "N-o",
-  "yes": "Y-e-s"
+  "yes": "Y-e-s",
+  "create-list": "C-r-e-a-t-e- -L-i-s-t",
+  "product-count": "P-r-o-d-u-c-t- -C-o-u-n-t",
+  "actions": "A-c-t-i-o-n-s",
+  "requisition-lists-description": "R-e-q-u-i-s-i-t-i-o-n- -L-i-s-t-s- -a-r-e- -a- -t-i-m-e---s-a-v-e-r- -w-h-e-n- -p-u-r-c-h-a-s-i-n-g- -f-r-e-q-u-e-n-t-l-y- -o-r-d-e-r-e-d- -p-r-o-d-u-c-t-s-.- -C-r-e-a-t-e- -a- -l-i-s-t-,- -a-d-d- -p-r-o-d-u-c-t-s-,- -s-a-v-e- -i-t- -a-n-d- -t-h-e- -l-i-s-t- -i-s- -a-l-w-a-y-s- -a-v-a-i-l-a-b-l-e- -t-o- -a-d-d---t-o---c-a-r-t"
 }
