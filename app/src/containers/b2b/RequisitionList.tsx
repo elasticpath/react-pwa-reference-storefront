@@ -96,6 +96,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.clearListNameField = this.clearListNameField.bind(this);
+    this.onRequisitionPage = this.onRequisitionPage.bind(this);
   }
 
   componentDidMount() {
@@ -138,6 +139,11 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
 
   clearListNameField() {
     this.setState({ listName: '' });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  onRequisitionPage() {
+    window.location.href = '/b2b/requisition-list-item';
   }
 
   modalConfirmation(index, element) {
@@ -189,7 +195,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     const { requisitionElements } = this.state;
     if (requisitionElements.length) {
       return requisitionElements.map((el, index) => (
-        <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation">
+        <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation" onClick={this.onRequisitionPage}>
           <h4 className="requisition-info">{el.name}</h4>
           <p className="requisition-info product-count">
             {el['product-count']}

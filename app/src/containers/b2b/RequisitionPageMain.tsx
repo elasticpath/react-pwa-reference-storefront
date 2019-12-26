@@ -67,7 +67,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
                 </div>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <Link to="#" href="/" className="edit-name">
-                  Edit
+                  {intl.get('edit')}
                 </Link>
               </div>
             </div>
@@ -77,7 +77,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
                 <div className="dropdown-sort-field">
                   <div className="dropdown">
                     <button className="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      chosenSelect
+                      {intl.get('add-to-cart-2')}
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       {(products.list[0]) ? products.list.map(sortChoice => (
