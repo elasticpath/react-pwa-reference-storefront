@@ -19,7 +19,7 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
+import loginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
 import fetchNavigationFormResponse from './MockHttpResponses/GET/fetch_navigation_lookup_form_response.json';
 import fetchNavigationForm from './MockHttpResponses/POST/fetch_navigation_lookup_response.json';
 

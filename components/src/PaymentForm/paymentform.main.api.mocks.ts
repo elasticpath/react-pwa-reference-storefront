@@ -19,15 +19,9 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import paymentInstrumentFormResponse from './MockHttpResponses/GET/paymentInstrumentFormProfile_response.json';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
-
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
+import paymentInstrumentFormResponse from './MockHttpResponses/GET/paymentInstrumentForm_response.json';
+import registeredResponse from '../CommonMockHttpResponses/registered_login_response.json';
+import anonLoginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
 
 function mockPaymentInstrumentForm(mockObj) {
   mockObj.get(
@@ -39,7 +33,7 @@ function mockPaymentInstrumentForm(mockObj) {
 function mockPaymentInstrumentFormActionSuccess(mockObj) {
   const delay = new Promise((res, rej) => setTimeout(res, 10000));
   mockObj.post(
-    /\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
+    /(.*)\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
     delay.then(() => paymentInstrumentFormResponse),
   );
 }
@@ -47,21 +41,45 @@ function mockPaymentInstrumentFormActionSuccess(mockObj) {
 function mockPaymentInstrumentFormActionFailure(mockObj) {
   const delay = new Promise((res, rej) => setTimeout(res, 10000));
   mockObj.post(
-    /\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
+    /(.*)\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
     delay.then(() => 400),
   );
 }
 
-export function mockPaymentFormSuccess() {
+function mockRegisteredLoginResponse(mockObj) {
+  mockObj.post(
+    /(.*)\/cortex\/oauth2\/tokens/,
+    registeredResponse,
+  );
+}
+
+function mockAnonLoginResponse(mockObj) {
+  mockObj.post(
+    /(.*)\/cortex\/oauth2\/tokens/,
+    anonLoginResponse,
+  );
+}
+
+export function mockPaymentFormSuccessWithAnonUser() {
   fetchMock.restore();
-  mockLoginResponse(fetchMock);
+  localStorage.clear();
+  mockAnonLoginResponse(fetchMock);
   mockPaymentInstrumentForm(fetchMock);
   mockPaymentInstrumentFormActionSuccess(fetchMock);
 }
 
-export function mockPaymentFormFailure() {
+export function mockPaymentFormSuccessWithRegisteredUser() {
   fetchMock.restore();
-  mockLoginResponse(fetchMock);
+  localStorage.clear();
+  mockRegisteredLoginResponse(fetchMock);
+  mockPaymentInstrumentForm(fetchMock);
+  mockPaymentInstrumentFormActionSuccess(fetchMock);
+}
+
+export function mockPaymentFormFailureWithAnonUser() {
+  fetchMock.restore();
+  localStorage.clear();
+  mockAnonLoginResponse(fetchMock);
   mockPaymentInstrumentForm(fetchMock);
   mockPaymentInstrumentFormActionFailure(fetchMock);
 }

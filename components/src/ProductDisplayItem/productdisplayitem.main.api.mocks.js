@@ -29,7 +29,7 @@ import blackMultiSkuSelectionResponse from './MockHttpResponses/POST/blackMultiS
 import largeMultiSkuSelectionResponse from './MockHttpResponses/POST/largeMultiSkuSelection_response.json';
 import mediumMultiSkuSelectionResponse from './MockHttpResponses/POST/mediumMultiSkuSelection_response.json';
 import smallMultiSkuSelectionResponse from './MockHttpResponses/POST/smallMultiSkuSelection_response.json';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
+import loginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
 
 function mockLoginResponse(mockObj) {
   mockObj.post(

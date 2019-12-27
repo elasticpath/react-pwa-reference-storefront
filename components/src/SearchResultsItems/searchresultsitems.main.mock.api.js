@@ -21,7 +21,7 @@
 import fetchMock from 'fetch-mock/es5/client';
 import getSearchFromResponse from './MockHttpResponses/GET/getSearchForm_response.json';
 import offerSearchResponse from './MockHttpResponses/POST/offerSearch_response.json';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
+import loginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
 
 function mockGetSearchForm(fetchMock) {
   fetchMock.get(

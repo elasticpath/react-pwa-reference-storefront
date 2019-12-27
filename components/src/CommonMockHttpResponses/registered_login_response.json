@@ -1,0 +1,8 @@
+{
+	"access_token": "9d97df81-e5cd-4a94-8edf-f2c8d1e15ec7",
+	"token_type": "bearer",
+	"expires_in": 604799,
+	"scope": "mobee",
+	"role": "REGISTERED",
+	"roles": ["REGISTERED"]
+}
