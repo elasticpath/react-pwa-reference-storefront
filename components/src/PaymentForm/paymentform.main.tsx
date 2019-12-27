@@ -207,12 +207,10 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       return true;
     });
 
-    return paymentInstrumentFormKeys.reduce((acc, cKey) => {
-      return {
-        ...acc,
-        [cKey]: zoomResult[cKey],
-      };
-    }, {});
+    return paymentInstrumentFormKeys.reduce((acc, cKey) => ({
+      ...acc,
+      [cKey]: zoomResult[cKey],
+    }), {});
   }
 
   setCardType(event) {
