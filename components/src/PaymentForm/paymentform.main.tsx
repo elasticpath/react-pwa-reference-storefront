@@ -31,7 +31,7 @@ let intl = { get: str => str };
 const today = new Date();
 
 interface PaymentFormMainProps {
-  /** decide whether to add payment to the profile resource or checkout resource. */
+  /** dictates whether to add tokenized payment data to the profile resource or checkout resource. */
   shouldPostToProfile: boolean,
   /** handle close modal */
   onCloseModal?: (...args: any[]) => any,
@@ -93,7 +93,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.setSecurityCode = this.setSecurityCode.bind(this);
     this.setSaveToProfile = this.setSaveToProfile.bind(this);
     this.submitPayment = this.submitPayment.bind(this);
-    this.fetchPaymentInstrumentForm = this.fetchPaymentInstrumentForm.bind(this);
     this.setPaymentInstrumentFormFieldsToFill = this.setPaymentInstrumentFormFieldsToFill.bind(this);
     this.fillPaymentInstrumentFormFields = this.fillPaymentInstrumentFormFields.bind(this);
     this.setSubmitPaymentFormUri = this.setSubmitPaymentFormUri.bind(this);
@@ -107,7 +106,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   async initializeState() {
-    const paymentInstrumentForm = await this.fetchPaymentInstrumentForm();
+    const paymentInstrumentForm = await PaymentFormMain.fetchPaymentInstrumentForm();
     this.setShouldShowSaveToProfile();
     this.setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm);
     this.setSubmitPaymentFormUri(paymentInstrumentForm);
@@ -160,8 +159,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     }
   }
 
-  async fetchPaymentInstrumentForm() {
-    const { shouldPostToProfile } = this.props;
+  static async fetchPaymentInstrumentForm() {
     let paymentInstrumentFormUnserialized;
 
     const zoomQuery = '/?zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform,defaultprofile:paymentmethods:element:paymentinstrumentform';
@@ -334,10 +332,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     }
   }
 
-  /**
-   *
-   * @param paymentInstrumentFormFieldsToFill
-   */
   fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill) {
     const keys = Object.keys(paymentInstrumentFormFieldsToFill);
     const formFieldsToFill = paymentInstrumentFormFieldsToFill;
