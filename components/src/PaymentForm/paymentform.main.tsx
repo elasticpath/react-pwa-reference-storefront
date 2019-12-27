@@ -260,12 +260,17 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
 
   static generateToken() {
     /*
-    Function that will tokenize credit card information.  
+    Function that will tokenize credit card information.
     Function returns random string as implementor will replace this function and have their own way of tokenizing.
     */
     return Math.random().toString(36).substr(2, 9);
   }
 
+  /**
+   *  NOTE:
+   *  This function makes a post request to the paymentinstrumentform resource in either the profile or orders resource depending on logged in status
+   *  and if the checkbox to `save to profile` is checked.  In customer implementation this portion will need to be rewritten to suit specific needs.
+   */
   async makeSubmitPaymentRequest() {
     const {
       fetchData,
