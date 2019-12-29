@@ -37,7 +37,9 @@ interface QuickOrderFormProps {
     [key: string]: any
   },
   /** handle item submit */
-  onItemSubmit: (...args: any[]) => any
+  onItemSubmit: (...args: any[]) => any,
+  /** isAddProducts */
+  isAddProducts?: boolean
 }
 
 interface QuickOrderFormState {
@@ -49,6 +51,10 @@ interface QuickOrderFormState {
 }
 
 class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState> {
+  static defaultProps = {
+    isAddProducts: false,
+  };
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -221,7 +227,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
   }
 
   render() {
-    const { item } = this.props;
+    const { item, isAddProducts } = this.props;
     const {
       code, product, isLoading, skuErrorMessage, quantity,
     } = this.state;
@@ -274,12 +280,14 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
               </button>
             </div>
           </div>
-          <div className="total-price-item">
-            {(product && product._price) ? (
-              <p>{`${product._price[0]['purchase-price'][0].display}`}</p>
-            ) : <p>$0.00</p>
+          {!isAddProducts ? (
+            <div className="total-price-item">
+              {(product && product._price) ? (
+                <p>{`${product._price[0]['purchase-price'][0].display}`}</p>
+              ) : <p>$0.00</p>
               }
-          </div>
+            </div>
+          ) : ''}
         </div>
         {(code && product._definition) ? (
           <div className="show-product">

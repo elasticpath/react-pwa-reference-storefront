@@ -36,6 +36,7 @@ import AppModalLoginMain from './AppModalLogin/appmodallogin.main';
 import BulkOrderMain from './BulkOrder/bulkorder.main';
 import BundleConstituentsMain from './BundleConstituents/bundleconstituents.main';
 import B2bAccountList from './B2bAccountList/b2b.accountlist';
+import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
 import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
 import B2bSubaccountlistitem from './B2bSubAccountListItem/b2b.subaccountlistitem';
 import Carousel from './Carousel/carousel.homepage';
@@ -107,6 +108,7 @@ export {
   BulkOrderMain,
   BundleConstituentsMain,
   B2bAccountList,
+  B2bAddProductsModal,
   B2bSubAccountList,
   B2bSubaccountlistitem,
   Carousel,

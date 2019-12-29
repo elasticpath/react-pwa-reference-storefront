@@ -22,6 +22,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
+import { B2bAddProductsModal } from '@elasticpath/store-components';
 
 import './RequisitionPageMain.less';
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
@@ -30,6 +31,7 @@ interface RequisitionPageMainProps {
 }
 interface RequisitionPageMainState {
   isLoading: boolean,
+  addProductModalOpened: boolean,
 }
 
 class RequisitionPageMain extends Component<RequisitionPageMainProps, RequisitionPageMainState> {
@@ -37,11 +39,27 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     super(props);
     this.state = {
       isLoading: false,
+      addProductModalOpened: false,
     };
+    this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
+    this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
+  }
+
+  handleAddProductsModalClose() {
+    this.setState({
+      addProductModalOpened: false,
+    });
+  }
+
+  handleAddProductsModalOpen() {
+    const { addProductModalOpened } = this.state;
+    this.setState({
+      addProductModalOpened: !addProductModalOpened,
+    });
   }
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, addProductModalOpened } = this.state;
     const products = {
       list: [
         { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
@@ -54,7 +72,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
         ) : (
           <div>
             <div className="requisition-header">
-              <Link className="back-link" to="/b2b">
+              <Link className="back-link" to="/b2b/requisition-lists">
                 <AngleLeftIcon />
                 {intl.get('back-to-lists')}
               </Link>
@@ -68,7 +86,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
               </div>
             </div>
             <div className="add-to-cart-dropdown-wrap">
-              <button type="button" className="ep-btn primary add-to-list-button">
+              <button type="button" className="ep-btn primary add-to-list-button" onClick={this.handleAddProductsModalOpen}>
                 {intl.get('add-products-to-list')}
               </button>
               <div className="add-to-cart-dropdown">
@@ -90,6 +108,12 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
             </div>
           </div>
         )}
+        {addProductModalOpened ? (
+          <B2bAddProductsModal
+            isBulkModalOpened={addProductModalOpened}
+            handleClose={this.handleAddProductsModalClose}
+          />
+        ) : ''}
       </div>
     );
   }

@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import Modal from 'react-responsive-modal';
 import intl from 'react-intl-universal';
 
@@ -28,6 +29,7 @@ import { ReactComponent as AddToCartIcon } from '../../images/icons/ic_add_to_ca
 import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 
 interface CartCreateProps {
+  history: any
 }
 interface CartCreateState {
   requisitionElements: any,
@@ -38,6 +40,7 @@ interface CartCreateState {
 
 class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   static defaultProps = {
+    history: ReactRouterPropTypes.history.isRequired,
     handleCartsUpdate: () => {},
     handleCartElementSelect: () => {},
     updateCartModal: false,
@@ -141,9 +144,9 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     this.setState({ listName: '' });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   onRequisitionPage() {
-    window.location.href = '/b2b/requisition-list-item';
+    const { history } = this.props;
+    history.push('/b2b/requisition-list-item');
   }
 
   modalConfirmation(index, element) {
