@@ -19,20 +19,13 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import loginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 import fetchNavigationFormResponse from './MockHttpResponses/GET/fetch_navigation_lookup_form_response.json';
 import fetchNavigationForm from './MockHttpResponses/POST/fetch_navigation_lookup_response.json';
 
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
-
 function mockLookupForm(mockObj) {
   mockObj.get(
-    '/cortex/?zoom=lookups:navigationlookupform',
+    /(.*)?zoom=lookups:navigationlookupform/,
     fetchNavigationFormResponse,
   );
 }
@@ -40,15 +33,15 @@ function mockLookupForm(mockObj) {
 function mockNavigationLookup(mockObj) {
   mockObj.post(
     (url, opts) => {
-      let matchNavigationLookupRegex = /\/cortex\/navigations\/vestri_reference\/lookups\/form(.*)/;
-      let categoryToLookupInPayload = 'VV_VEHICLES';
-      
+      const matchNavigationLookupRegex = /\/cortex\/navigations\/vestri_reference\/lookups\/form(.*)/;
+      const categoryToLookupInPayload = 'VV_VEHICLES';
+
       if (url.match(matchNavigationLookupRegex)) {
-        if (opts.body && JSON.parse(opts.body).code==categoryToLookupInPayload) {
+        if (opts.body && JSON.parse(opts.body).code === categoryToLookupInPayload) {
           return true;
         }
       }
-      
+
       return false;
     },
     fetchNavigationForm,
@@ -57,7 +50,7 @@ function mockNavigationLookup(mockObj) {
 
 export default function mockCommonCategoryItemsMainResponses() {
   fetchMock.restore();
-  mockLoginResponse(fetchMock);
+  mockAnonLoginResponse(fetchMock);
   mockLookupForm(fetchMock);
   mockNavigationLookup(fetchMock);
 }
