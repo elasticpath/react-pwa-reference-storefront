@@ -24,6 +24,7 @@ import registeredResponse from '../CommonMockHttpResponses/registered_login_resp
 import anonLoginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
 
 export function mockRegisteredLoginResponse(mockObj) {
+  localStorage.clear();
   mockObj.post(
     /(.*)\/cortex\/oauth2\/tokens/,
     registeredResponse,
@@ -31,6 +32,7 @@ export function mockRegisteredLoginResponse(mockObj) {
 }
 
 export function mockAnonLoginResponse(mockObj) {
+  localStorage.clear();
   mockObj.post(
     /(.*)\/cortex\/oauth2\/tokens/,
     anonLoginResponse,

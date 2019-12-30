@@ -31,7 +31,6 @@ function mockMultiCartResponse(mockObj) {
 
 export default function mockFetchMultiCart() {
   fetchMock.restore();
-  localStorage.clear();
   mockAnonLoginResponse(fetchMock);
   mockMultiCartResponse(fetchMock);
 }

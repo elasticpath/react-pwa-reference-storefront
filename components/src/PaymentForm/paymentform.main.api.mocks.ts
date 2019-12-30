@@ -47,7 +47,6 @@ function mockPaymentInstrumentFormActionFailure(mockObj) {
 
 export function mockPaymentFormSuccessWithAnonUser() {
   fetchMock.restore();
-  localStorage.clear();
   mockAnonLoginResponse(fetchMock);
   mockPaymentInstrumentForm(fetchMock);
   mockPaymentInstrumentFormActionSuccess(fetchMock);
@@ -55,7 +54,6 @@ export function mockPaymentFormSuccessWithAnonUser() {
 
 export function mockPaymentFormSuccessWithRegisteredUser() {
   fetchMock.restore();
-  localStorage.clear();
   mockRegisteredLoginResponse(fetchMock);
   mockPaymentInstrumentForm(fetchMock);
   mockPaymentInstrumentFormActionSuccess(fetchMock);
@@ -63,7 +61,6 @@ export function mockPaymentFormSuccessWithRegisteredUser() {
 
 export function mockPaymentFormFailureWithAnonUser() {
   fetchMock.restore();
-  localStorage.clear();
   mockAnonLoginResponse(fetchMock);
   mockPaymentInstrumentForm(fetchMock);
   mockPaymentInstrumentFormActionFailure(fetchMock);
