@@ -23,7 +23,7 @@ import { object, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import { textToFunc } from '../../../storybook/utils/storybookUtils';
 import Readme from './README.md';
-import mockAddressFormSubmitSuccess from './addressform.main.api.mocks';
+import { mockAddressFormSubmitSuccess, mockAddressFormSubmitFailure } from './addressform.main.api.mocks';
 
 import AddressFormMain from './addressform.main';
 
@@ -40,8 +40,8 @@ storiesOf('Components|AddressFormMain', module)
     const addressData = {
       address: '/addresses/vestri_b2c',
     };
-    const onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
-    const fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
+    const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
+    const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');
 
     return <AddressFormMain
       addressData={object('addressData', addressData)}
@@ -50,9 +50,9 @@ storiesOf('Components|AddressFormMain', module)
     />;
   })
   .add('AddressFormMain on save failure', () => {
-    mockAddressFormSubmitSuccess();
+    mockAddressFormSubmitFailure();
     const addressData = {
-      address: '/an/incorrect/save/address/link',
+      address: '/addresses/vestri_b2c',
     };
     const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
     const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');

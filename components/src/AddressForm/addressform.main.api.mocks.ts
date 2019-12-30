@@ -80,9 +80,14 @@ function mockCommonAddressFormResponses(mockObj) {
   mockAddressDataResponse(mockObj);
 }
 
-export default function mockAddressFormSubmit() {
+export function mockAddressFormSubmitSuccess() {
   fetchMock.restore();
   mockCommonAddressFormResponses(fetchMock);
   mockSubmitAddressResponseSuccessResponse(fetchMock);
+}
+
+export function mockAddressFormSubmitFailure() {
+  fetchMock.restore();
+  mockCommonAddressFormResponses(fetchMock);
   mockSubmitAddressResponseFailureResponse(fetchMock);
 }
