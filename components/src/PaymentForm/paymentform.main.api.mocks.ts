@@ -20,8 +20,7 @@
  */
 import fetchMock from 'fetch-mock/es5/client';
 import paymentInstrumentFormResponse from './MockHttpResponses/GET/paymentInstrumentForm_response.json';
-import registeredResponse from '../CommonMockHttpResponses/registered_login_response.json';
-import anonLoginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
+import { mockAnonLoginResponse, mockRegisteredLoginResponse } from '../utils/MockLogins';
 
 function mockPaymentInstrumentForm(mockObj) {
   mockObj.get(
@@ -43,20 +42,6 @@ function mockPaymentInstrumentFormActionFailure(mockObj) {
   mockObj.post(
     /(.*)\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
     delay.then(() => 400),
-  );
-}
-
-function mockRegisteredLoginResponse(mockObj) {
-  mockObj.post(
-    /(.*)\/cortex\/oauth2\/tokens/,
-    registeredResponse,
-  );
-}
-
-function mockAnonLoginResponse(mockObj) {
-  mockObj.post(
-    /(.*)\/cortex\/oauth2\/tokens/,
-    anonLoginResponse,
   );
 }
 
