@@ -21,32 +21,25 @@
 import fetchMock from 'fetch-mock/es5/client';
 import getSearchFromResponse from './MockHttpResponses/GET/getSearchForm_response.json';
 import offerSearchResponse from './MockHttpResponses/POST/offerSearch_response.json';
-import loginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 
-function mockGetSearchForm(fetchMock) {
-  fetchMock.get(
-    '/cortex/?zoom=searches:keywordsearchform,searches:offersearchform',
+function mockGetSearchForm(mockObj) {
+  mockObj.get(
+    /(.*)?zoom=searches:keywordsearchform,searches:offersearchform/,
     getSearchFromResponse,
   );
 }
 
-function mockOfferSearch(fetchMock) {
-  fetchMock.post(
-    /\/cortex\/offersearches\/[a-zA-Z0-9_]*\/offers\/form?(.*)/,
+function mockOfferSearch(mockObj) {
+  mockObj.post(
+    /(.*)\/cortex\/offersearches\/[a-zA-Z0-9_]*\/offers\/form?(.*)/,
     offerSearchResponse,
   );
 }
 
-function mockLoginResponse(fetchMock) {
-  fetchMock.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
-
-export function mockSearchResults() {
+export default function mockSearchResults() {
   fetchMock.restore();
-  mockLoginResponse(fetchMock);
+  mockAnonLoginResponse(fetchMock);
   mockGetSearchForm(fetchMock);
   mockOfferSearch(fetchMock);
 }
