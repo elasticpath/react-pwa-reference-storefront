@@ -22,12 +22,13 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import { text, object } from '@storybook/addon-knobs/react';
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 
 import SubAccountData from '../B2bAccountList/HttpResponse/accountData_response.json';
 import B2bSubAccountList from './b2b.subaccountlist';
-import { mockFetchSubAccount } from '../B2bAccountList/b2b.accountlist.api.mocks';
-import { text, object } from "@storybook/addon-knobs/react";
-import { textToFunc } from "../../../storybook/utils/storybookUtils"
+import mockFetchSubAccount from '../B2bAccountList/b2b.accountlist.api.mocks';
+
 const accountName = 'Accelsmart';
 const registrationNumber = 'cust-00059';
 
@@ -44,11 +45,11 @@ storiesOf('Components|B2bSubAccountList', module)
   ))
   .add('B2bSubAccountList', () => {
     mockFetchSubAccount();
-    let getAccountDataFuncText = text('getAccountData','() => {alert("getAccountData invoked")}');
-    
+    const getAccountDataFuncText = text('getAccountData','() => {alert("getAccountData invoked")}');
+
     return (
       <B2bSubAccountList
-        getAccountData={()=>{textToFunc(getAccountDataFuncText)}}
+        getAccountData={() => { textToFunc(getAccountDataFuncText); }}
         subAccounts={object('subAccountData', SubAccountData)}
         accountName={text(accountName)}
         registrationNumber={text(registrationNumber)}

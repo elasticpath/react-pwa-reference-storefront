@@ -20,7 +20,7 @@
  */
 import fetchMock from 'fetch-mock/es5/client';
 import subAccountResponse from '../CommonMockHttpResponses/b2bSubAccountData_response.json';
-import loginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 
 function mockSubAccountResponse(mockObj) {
   mockObj.get(
@@ -29,15 +29,8 @@ function mockSubAccountResponse(mockObj) {
   );
 }
 
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
-
-export function mockFetchSubAccount() {
+export default function mockFetchSubAccount() {
   fetchMock.restore();
-  mockLoginResponse(fetchMock);
+  mockAnonLoginResponse(fetchMock);
   mockSubAccountResponse(fetchMock);
 }
