@@ -24,7 +24,7 @@ import { mockAnonLoginResponse } from '../utils/MockLogins';
 
 function mockMultiCartResponse(mockObj) {
   mockObj.get(
-    '/cortex/?zoom=carts,carts:createcartform,carts:element,carts:element:additemstocartform,carts:element:descriptor,carts:element:total',
+    /(.*)?zoom=carts,carts:createcartform,carts:element,carts:element:additemstocartform,carts:element:descriptor,carts:element:total/,
     multiCartResponse,
   );
 }

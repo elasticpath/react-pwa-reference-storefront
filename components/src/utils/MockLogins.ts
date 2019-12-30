@@ -19,7 +19,6 @@
  *
  */
 
-import fetchMock from 'fetch-mock/es5/client';
 import registeredResponse from '../CommonMockHttpResponses/registered_login_response.json';
 import anonLoginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
 

@@ -19,11 +19,11 @@
  *
  */
 import React from 'react';
-import Readme from './README.md';
+import { object, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
+import Readme from './README.md';
 import mockAddressFormSubmitSuccess from './addressform.main.api.mocks';
-import { textToFunc } from "../../../storybook/utils/storybookUtils"
-import { object, text } from "@storybook/addon-knobs/react";
 
 import AddressFormMain from './addressform.main';
 
@@ -40,26 +40,26 @@ storiesOf('Components|AddressFormMain', module)
     const addressData = {
       address: '/addresses/vestri_b2c',
     };
-    let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
-    let fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
-    
-    return <AddressFormMain 
-      addressData={object('addressData', addressData)} 
-      onCloseModal={()=>textToFunc(onCloseModalFuncText)}
-      fetchData={()=>textToFunc(fetchDataFuncText)}
-    />
+    const onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
+    const fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
+
+    return <AddressFormMain
+      addressData={object('addressData', addressData)}
+      onCloseModal={() => textToFunc(onCloseModalFuncText)}
+      fetchData={() => textToFunc(fetchDataFuncText)}
+    />;
   })
   .add('AddressFormMain on save failure', () => {
     mockAddressFormSubmitSuccess();
     const addressData = {
       address: '/an/incorrect/save/address/link',
     };
-    let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
-    let fetchDataFuncText = text('fetchData','() => {alert("fetchData invoked")}');
-    
-    return <AddressFormMain 
-      addressData={object('addressData', addressData)} 
-      onCloseModal={()=>textToFunc(onCloseModalFuncText)}
-      fetchData={()=>textToFunc(fetchDataFuncText)}
-    />
+    const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
+    const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');
+
+    return <AddressFormMain
+      addressData={object('addressData', addressData)}
+      onCloseModal={() => textToFunc(onCloseModalFuncText)}
+      fetchData={() => textToFunc(fetchDataFuncText)}
+    />;
   });
