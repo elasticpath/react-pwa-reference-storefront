@@ -36,8 +36,9 @@ function mockLoginResponse(mockObj) {
   );
 }
 
-export function mockFetchMultiCart() {
+export default function mockFetchMultiCart() {
   fetchMock.restore();
+  localStorage.clear();
   mockLoginResponse(fetchMock);
   mockMultiCartResponse(fetchMock);
 }
