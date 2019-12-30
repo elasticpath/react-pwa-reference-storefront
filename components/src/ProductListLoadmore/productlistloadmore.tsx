@@ -32,9 +32,9 @@ interface ProductListLoadMoreProps{
     [key: string]: any
   },
   /** handle product data change */
-  handleDataChange: (...args: any[]) => any,
+  handleDataChange: any,
   /** handle load more */
-  onLoadMore: (...args: any[]) => any,
+  onLoadMore: any,
 }
 interface ProductListLoadMoreState {
   canLoadMore: boolean,

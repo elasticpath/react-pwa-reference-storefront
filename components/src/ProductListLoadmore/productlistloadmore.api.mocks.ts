@@ -20,15 +20,17 @@
  */
 import fetchMock from 'fetch-mock/es5/client';
 import searchLookupResponse from './MockHttpResponses/GET/searchLookup_response.json';
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 
-function mockSearchResponse(fetchMock) {
-  fetchMock.get(
-    /\/cortex\/\/offersearches\/[a-zA-Z0-9_]*\/offers\/(.*)/,
+function mockSearchResponse(mockObj) {
+  mockObj.get(
+    /(.*)\/cortex\/\/offersearches\/[a-zA-Z0-9_]*\/offers\/(.*)/,
     searchLookupResponse,
   );
 }
 
-export function mockProductListLoadMoreFromSearchResponse() {
+export default function mockProductListLoadMoreFromSearchResponse() {
   fetchMock.restore();
+  mockAnonLoginResponse(fetchMock);
   mockSearchResponse(fetchMock);
 }
