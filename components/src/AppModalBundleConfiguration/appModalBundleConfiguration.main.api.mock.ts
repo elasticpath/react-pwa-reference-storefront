@@ -19,15 +19,8 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import loginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
 import mockFetchDependantItemDataResponse from './MockHttpResponses/GET/fetchDependantItemData_response.json';
-
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 
 function mockFetchDependantItemData(mockObj) {
   mockObj.get(
@@ -38,6 +31,6 @@ function mockFetchDependantItemData(mockObj) {
 
 export default function mockAppModalBundleConfigurationMain() {
   fetchMock.restore();
-  mockLoginResponse(fetchMock);
+  mockAnonLoginResponse(fetchMock);
   mockFetchDependantItemData(fetchMock);
 }
