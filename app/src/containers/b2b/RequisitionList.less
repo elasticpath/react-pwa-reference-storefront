@@ -61,7 +61,7 @@
       }
 
       .clear-field-btn {
-        top: 26px;
+        top: 31px;
       }
     }
   }
@@ -99,6 +99,12 @@
       height: 160px;
     }
 
+    &:not(:first-child) {
+      .requisition-info {
+        color: @thirdComplimentColor !important;
+      }
+    }
+
     @media screen and (min-width: 481px) {
       display: table-row;
       height: 53px;
@@ -133,6 +139,7 @@
 
     p {
       line-height: 16px;
+      color: @mainTextColor;
     }
 
     &.requisition-list-header {
@@ -189,10 +196,12 @@
         .cancel-btn {
           background-color: transparent;
           border: none;
+          text-transform: none;
         }
 
         .ok-btn {
           margin-right: 0;
+          text-transform: none;
 
           &:hover {
             background-color: @mainBackgroundColor;

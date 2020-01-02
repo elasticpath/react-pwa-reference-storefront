@@ -240,13 +240,13 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
               {intl.get('quick-order-sku-title')}
             </label>
             <div className="sku-field-wrap">
-              <form className="form-horizontal" onSubmit={this.handleSubmit}>
+              <form className={`form-horizontal ${isAddProducts ? 'add-product-input' : ''}`} onSubmit={this.handleSubmit}>
                 <input className={`sku-input ${skuErrorMessage ? 'input-code-error' : ''}`} type="text" value={code} name="code" onChange={this.handleChange} onBlur={this.handleSubmit} />
                 <span role="presentation" className={`clear-field-btn ${code === '' ? 'hide' : ''} ${(skuErrorMessage !== '') ? 'input-error-icon' : ''}`} onClick={this.handleRemoveSku} />
               </form>
             </div>
           </div>
-          <div className="bulk-item-col product-quantity-wrap">
+          <div className={`bulk-item-col product-quantity-wrap ${isAddProducts ? 'add-product-input' : ''}`}>
             <label htmlFor="product_display_item_quantity_label" className="control-label control-quantity-label">
               {intl.get('quantity-abbr')}
             </label>

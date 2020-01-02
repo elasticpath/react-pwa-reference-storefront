@@ -25,6 +25,7 @@ import intl from 'react-intl-universal';
 import { B2bAddProductsModal, CartLineItem } from '@elasticpath/store-components';
 
 import './RequisitionPageMain.less';
+import Modal from 'react-responsive-modal';
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 import { ReactComponent as ArrowLeft } from '../../images/icons/arrow_left.svg';
 import cartData from './cart_main_data_response.json';
@@ -33,11 +34,13 @@ interface RequisitionPageMainProps {
 }
 interface RequisitionPageMainState {
   isLoading: boolean,
+  listName: string,
   addProductModalOpened: boolean,
   isChecked: boolean,
   selectedElement: number,
   multiSelectMode: boolean,
   productElements: any,
+  editListNameModalOpened: boolean,
 }
 
 class RequisitionPageMain extends Component<RequisitionPageMainProps, RequisitionPageMainState> {
@@ -45,10 +48,12 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     super(props);
     this.state = {
       isLoading: false,
+      listName: 'Vancouver',
       addProductModalOpened: false,
       isChecked: false,
       selectedElement: 0,
       multiSelectMode: false,
+      editListNameModalOpened: false,
       productElements: {
         list: [
           { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
@@ -57,8 +62,12 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
-    this.handleCheck = this.handleCheck.bind(this);
+    this.handleEditListName = this.handleEditListName.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleChangeListName = this.handleChangeListName.bind(this);
+    this.clearListNameField = this.clearListNameField.bind(this);
     this.handleBulkeEdit = this.handleBulkeEdit.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
   }
 
   handleAddProductsModalClose() {
@@ -83,18 +92,55 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     this.setState({ multiSelectMode: true });
   }
 
+  handleEditListName() {
+    this.setState({
+      editListNameModalOpened: true,
+    });
+  }
+
+  handleModalClose() {
+    const { editListNameModalOpened } = this.state;
+    this.setState({
+      editListNameModalOpened: !editListNameModalOpened,
+    });
+  }
+
+  handleChangeListName(event) {
+    this.setState({
+      listName: event.target.value,
+    });
+  }
+
+  clearListNameField(event) {
+    this.setState({
+      listName: '',
+    });
+  }
+
   renderDropdownMenu() {
     const { productElements } = this.state;
     return (
       <div className="add-to-cart-dropdown">
         <div className="dropdown-sort-field">
           <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button
+              className="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
               {intl.get('add-to-cart-2')}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {(productElements.list[0]) ? productElements.list.map(sortChoice => (
-                <li className="dropdown-item" key={sortChoice.name} id={`product_display_item_sku_option_${sortChoice.name}`} value={sortChoice.name}>
+                <li
+                  className="dropdown-item"
+                  key={sortChoice.name}
+                  id={`product_display_item_sku_option_${sortChoice.name}`}
+                  value={sortChoice.name}
+                >
                   {sortChoice.name}
                 </li>
               )) : ''}
@@ -107,8 +153,15 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
 
   render() {
     const {
-      isLoading, addProductModalOpened, isChecked, selectedElement, multiSelectMode,
+      isLoading, addProductModalOpened, editListNameModalOpened, listName, multiSelectMode, selectedElement, isChecked,
     } = this.state;
+    const products = {
+      list: [
+        { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
+      ],
+    };
+    const invalidListName = !listName.length;
+
     return (
       <div className="requisition-component">
         {isLoading ? (
@@ -124,7 +177,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
                 <h2 className="name">
                   Vancouver
                 </h2>
-                <button type="button" className="edit-name">
+                <button type="button" className="edit-name" onClick={this.handleEditListName}>
                   {intl.get('edit')}
                 </button>
               </div>
@@ -203,6 +256,30 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
             handleClose={this.handleAddProductsModalClose}
           />
         ) : ''}
+        <Modal open={editListNameModalOpened} onClose={this.handleModalClose}>
+          <div className="modal-lg create-list-modal">
+            <div className="dialog-header">
+              <h2 className="modal-title">
+                {intl.get('create-list')}
+              </h2>
+            </div>
+            <div className="dialog-content">
+              <div className="create-list-form">
+                <div className="create-list-form-wrap">
+                  <label htmlFor="list_name">{intl.get('name')}</label>
+                  <input type="text" className="list-name" id="list_name" value={listName} onChange={event => this.handleChangeListName(event)} />
+                  {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
+                </div>
+              </div>
+            </div>
+            <div className="dialog-footer">
+              <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
+              <button className="upload" type="submit" disabled={invalidListName} onClick={this.handleModalClose}>
+                {intl.get('save')}
+              </button>
+            </div>
+          </div>
+        </Modal>
       </div>
     );
   }

@@ -246,8 +246,10 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
               }
                 <div className="tab-bulk-order" id="bulkOrderRegion" data-region="bulkOrderRegion">
                   <p>{intl.get('enter-product-sku-and-quantity')}</p>
-                  <p>{intl.get('item-#1-qty')}</p>
-                  <p>{intl.get('item-#2-qty')}</p>
+                  <div className="bulk-items-example">
+                    <p>{intl.get('item-#1-qty')}</p>
+                    <p>{intl.get('item-#2-qty')}</p>
+                  </div>
                   <p className="bulk-text-area-title"><b>{intl.get('enter-product-sku-and-quantity-in-input')}</b></p>
                   <textarea className="bulk-csv" rows={5} value={csvText} onChange={e => this.handleCsvChange(e.target.value)} />
                 </div>
@@ -256,7 +258,7 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
           </div>
           <div className="dialog-footer">
             <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
-            <button className="save" type="submit" disabled={isLoading} form="subAccountsForm">{intl.get('add-products')}</button>
+            <button className="save-btn" type="submit" disabled={isLoading} form="subAccountsForm">{intl.get('add-products')}</button>
           </div>
         </div>
       </Modal>

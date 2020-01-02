@@ -25,6 +25,7 @@ import Modal from 'react-responsive-modal';
 import intl from 'react-intl-universal';
 
 import './RequisitionList.less';
+import { Link } from 'react-router-dom';
 import { ReactComponent as AddToCartIcon } from '../../images/icons/ic_add_to_cart.svg';
 import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 
@@ -99,7 +100,6 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.clearListNameField = this.clearListNameField.bind(this);
-    this.onRequisitionPage = this.onRequisitionPage.bind(this);
   }
 
   componentDidMount() {
@@ -116,7 +116,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   }
 
   handleModalClose() {
-    this.setState({ openModal: false });
+    this.setState({ openModal: false, listName: '' });
   }
 
   handleEditRequisition(event, index) {
@@ -142,11 +142,6 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
 
   clearListNameField() {
     this.setState({ listName: '' });
-  }
-
-  onRequisitionPage() {
-    const { history } = this.props;
-    history.push('/b2b/requisition-list-item');
   }
 
   modalConfirmation(index, element) {
@@ -198,8 +193,8 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     const { requisitionElements } = this.state;
     if (requisitionElements.length) {
       return requisitionElements.map((el, index) => (
-        <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation" onClick={this.onRequisitionPage}>
-          <h4 className="requisition-info">{el.name}</h4>
+        <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation">
+          <Link className="requisition-info" to="/b2b/requisition-list-item">{el.name}</Link>
           <p className="requisition-info product-count">
             {el['product-count']}
           </p>
@@ -249,7 +244,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
                 </div>
               </div>
               <div className="dialog-footer">
-                <button className="cancel" type="button">{intl.get('cancel')}</button>
+                <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
                 <button className="upload" type="button">
                   {intl.get('save')}
                 </button>
