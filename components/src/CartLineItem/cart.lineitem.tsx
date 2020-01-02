@@ -23,11 +23,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
-import imgPlaceholder from '../../../app/src/images/img_missing_horizontal@2x.png';
 import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';
 import './cart.lineitem.less';
+
+import imgPlaceholder from '../../../app/src/images/img_missing_horizontal@2x.png';
+import { ReactComponent as RecycleBinIcon } from '../../../app/src/images/icons/ic_trash.svg';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -55,11 +57,18 @@ interface CartLineItemProps {
   onRemove?: (...args: any[]) => any,
   /** link for item detail */
   itemDetailLink?: string,
+  /** hide availability label */
+  hideAvailabilityLabel?: boolean,
+  /** is table view */
+  isTableView?: boolean,
+  /** is chosen */
+  isChosen?: boolean,
 }
 
 interface CartLineItemState {
   quantity: any,
   openModal: boolean,
+  isChecked: boolean,
 }
 
 class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
@@ -73,6 +82,9 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     onMoveToCart: () => { },
     onRemove: () => { },
     itemDetailLink: '',
+    hideAvailabilityLabel: false,
+    isTableView: false,
+    isChosen: false,
   };
 
   constructor(props) {
@@ -84,6 +96,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     this.state = {
       quantity: item.quantity,
       openModal: false,
+      isChecked: false,
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
@@ -92,6 +105,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     this.handleRemoveBtnClicked = this.handleRemoveBtnClicked.bind(this);
     this.handleConfiguratorAddToCartBtnClicked = this.handleConfiguratorAddToCartBtnClicked.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -100,6 +114,12 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
       this.setState({
         quantity: nextProps.item.quantity,
       });
+    }
+
+    if (nextProps.isChosen) {
+      this.setState({ isChecked: true });
+    } else {
+      this.setState({ isChecked: false });
     }
   }
 
@@ -242,6 +262,14 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     this.setState({
       openModal: false,
     });
+  }
+
+  handleCheck() {
+    const { isChecked } = this.state;
+    const { isChosen } = this.props;
+    if (!isChosen) {
+      this.setState({ isChecked: !isChecked });
+    }
   }
 
   renderUnitPrice() {
@@ -393,8 +421,10 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
       itemDetailLink,
       onConfiguratorAddToCart,
       onRemove,
+      hideAvailabilityLabel,
+      isTableView,
     } = this.props;
-    const { quantity, openModal } = this.state;
+    const { quantity, openModal, isChecked } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
     let availability = (itemAvailability[0].state === 'AVAILABLE');
     let availabilityString = '';
@@ -427,6 +457,14 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     }
     return (
       <div id={`cart_lineitem_${itemCodeString}`} className="cart-lineitem-row">
+        {isTableView && (
+          <div className="checkbox-col">
+            <div className="checkbox-wrap">
+              <input type="checkbox" id={`cart_lineitem_checkbox_${itemCodeString}`} className="style-checkbox" onChange={this.handleCheck} checked={isChecked} />
+              <label htmlFor={`cart_lineitem_checkbox_${itemCodeString}`} />
+            </div>
+          </div>
+        )}
         <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
           {(featuredProductAttribute)
             ? (
@@ -446,13 +484,15 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
               {itemDisplayName}
             </Link>
           </div>
-          <div className="options-col">
-            <ul className="options-container">
-              {this.renderOptions()}
-              {this.renderConfiguration()}
-              {this.renderBundleConfiguration()}
-            </ul>
-          </div>
+          {!isTableView && (
+            <div className="options-col">
+              <ul className="options-container">
+                {this.renderOptions()}
+                {this.renderConfiguration()}
+                {this.renderBundleConfiguration()}
+              </ul>
+            </div>
+          )}
         </div>
         {(item._appliedpromotions && item._appliedpromotions[0]._element)
           ? (
@@ -468,42 +508,51 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           )
           : ('')
         }
-        <div className="availability-col" data-region="cartLineitemAvailabilityRegion">
-          <ul className="availability-container">
-            <li className="availability itemdetail-availability-state" data-i18n="AVAILABLE">
+        {!hideAvailabilityLabel && (
+          <div className="availability-col" data-region="cartLineitemAvailabilityRegion">
+            <ul className="availability-container">
+              <li className="availability itemdetail-availability-state" data-i18n="AVAILABLE">
+                <div>
+                  {availability && <span className="icon" />}
+                  {availabilityString}
+                </div>
+              </li>
+              <li className={`category-item-release-date${itemAvailability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
+                <label htmlFor="release-date-value" className="releasedate-label">
+                  {intl.get('expected-release-date')}
+                  :&nbsp;
+                </label>
+                <span className="release-date-value">
+                  {(itemAvailability[0]['release-date']) ? itemAvailability[0]['release-date']['display-value'] : ''}
+                </span>
+              </li>
+            </ul>
+          </div>
+        )}
+        {isTableView && (
+          <div className="sku-col">
+            <p>{itemCodeString}</p>
+          </div>
+        )}
+        {!isTableView && (
+          <div className="unit-total-price-col">
+            <div className="unit-price-col" data-region="cartLineitemUnitPriceRegion">
               <div>
-                {availability && <span className="icon" />}
-                {availabilityString}
+                <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
+                  {this.renderUnitPrice()}
+                </div>
               </div>
-            </li>
-            <li className={`category-item-release-date${itemAvailability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-              <label htmlFor="release-date-value" className="releasedate-label">
-                {intl.get('expected-release-date')}
-                :&nbsp;
-              </label>
-              <span className="release-date-value">
-                {(itemAvailability[0]['release-date']) ? itemAvailability[0]['release-date']['display-value'] : ''}
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div className="unit-total-price-col">
-          <div className="unit-price-col" data-region="cartLineitemUnitPriceRegion">
-            <div>
-              <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
-                {this.renderUnitPrice()}
+            </div>
+            <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
+              <div>
+                <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
+                  {this.renderTotalPrice()}
+                </div>
+                <div data-region="itemTotalRateRegion" />
               </div>
             </div>
           </div>
-          <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
-            <div>
-              <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
-                {this.renderTotalPrice()}
-              </div>
-              <div data-region="itemTotalRateRegion" />
-            </div>
-          </div>
-        </div>
+        )}
         <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
           {(quantity !== undefined) ? [
             <span className="input-group-btn" key="quantity-buttons">
@@ -521,9 +570,27 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           ] : ('')
           }
         </form>
+        {isTableView && (
+          <div className="options-col">
+            <ul className="options-container">
+              {this.renderOptions()}
+            </ul>
+          </div>
+        )}
+        {isTableView && (
+          <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
+            <div>
+              <div data-region="itemTotalPriceRegion">
+                {this.renderTotalPrice()}
+              </div>
+              <div data-region="itemTotalRateRegion" />
+            </div>
+          </div>
+        )}
         {(!hideRemoveButton) ? (
           <div className="remove-btn-col">
             <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
+              <RecycleBinIcon className="recycle-bin-icon" />
               <span className="btn-text">
                 {intl.get('remove')}
               </span>

@@ -22,16 +22,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
-import { B2bAddProductsModal } from '@elasticpath/store-components';
+import { B2bAddProductsModal, CartLineItem } from '@elasticpath/store-components';
 
 import './RequisitionPageMain.less';
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
+import { ReactComponent as ArrowLeft } from '../../images/icons/arrow_left.svg';
+import cartData from './cart_main_data_response.json';
 
 interface RequisitionPageMainProps {
 }
 interface RequisitionPageMainState {
   isLoading: boolean,
   addProductModalOpened: boolean,
+  isChecked: boolean,
+  selectedElement: number,
+  multiSelectMode: boolean,
+  productElements: any,
 }
 
 class RequisitionPageMain extends Component<RequisitionPageMainProps, RequisitionPageMainState> {
@@ -40,9 +46,19 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     this.state = {
       isLoading: false,
       addProductModalOpened: false,
+      isChecked: false,
+      selectedElement: 0,
+      multiSelectMode: false,
+      productElements: {
+        list: [
+          { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
+        ],
+      },
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
+    this.handleBulkeEdit = this.handleBulkeEdit.bind(this);
   }
 
   handleAddProductsModalClose() {
@@ -58,13 +74,41 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     });
   }
 
+  handleCheck() {
+    const { isChecked } = this.state;
+    this.setState({ isChecked: !isChecked });
+  }
+
+  handleBulkeEdit() {
+    this.setState({ multiSelectMode: true });
+  }
+
+  renderDropdownMenu() {
+    const { productElements } = this.state;
+    return (
+      <div className="add-to-cart-dropdown">
+        <div className="dropdown-sort-field">
+          <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {intl.get('add-to-cart-2')}
+            </button>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {(productElements.list[0]) ? productElements.list.map(sortChoice => (
+                <li className="dropdown-item" key={sortChoice.name} id={`product_display_item_sku_option_${sortChoice.name}`} value={sortChoice.name}>
+                  {sortChoice.name}
+                </li>
+              )) : ''}
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
-    const { isLoading, addProductModalOpened } = this.state;
-    const products = {
-      list: [
-        { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
-      ],
-    };
+    const {
+      isLoading, addProductModalOpened, isChecked, selectedElement, multiSelectMode,
+    } = this.state;
     return (
       <div className="requisition-component">
         {isLoading ? (
@@ -89,22 +133,67 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
               <button type="button" className="ep-btn primary add-to-list-button" onClick={this.handleAddProductsModalOpen}>
                 {intl.get('add-products-to-list')}
               </button>
-              <div className="add-to-cart-dropdown">
-                <div className="dropdown-sort-field">
-                  <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {intl.get('add-to-cart-2')}
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      {(products.list[0]) ? products.list.map(sortChoice => (
-                        <li className="dropdown-item" key={sortChoice.name} id={`product_display_item_sku_option_${sortChoice.name}`} value={sortChoice.name}>
-                          {sortChoice.name}
-                        </li>
-                      )) : ''}
-                    </ul>
+              {!multiSelectMode && this.renderDropdownMenu()}
+            </div>
+            <div className={`pagination-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
+              {!multiSelectMode ? (
+                <button type="button" className="bulk-edit-btn" onClick={this.handleBulkeEdit}>{intl.get('bulk-edit')}</button>
+              ) : (
+                <div className="action-elements">
+                  <div className="checkbox-wrap">
+                    <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={this.handleCheck} defaultChecked={isChecked} />
+                    <label htmlFor="select_all_product" />
+                    <label htmlFor="select_all_product">
+                      {intl.get('select-all')}
+                    </label>
                   </div>
+                  <p className="selected-element">
+                    {selectedElement}
+                    {' '}
+                    {intl.get('item-selected')}
+                  </p>
+                  <button type="button" className="ep-btn small delete-btn">{intl.get('delete')}</button>
+                  {this.renderDropdownMenu()}
+                </div>
+              )}
+              <div className="product-pagination">
+                <button type="button" className="pagination-btn prev-btn" disabled>
+                  <ArrowLeft className="arrow-left-icon" />
+                </button>
+                <span className="pagination-txt">
+                  Page 1 of 3
+                </span>
+                <button type="button" className="pagination-btn next-btn">
+                  <ArrowLeft className="arrow-left-icon" />
+                </button>
+              </div>
+            </div>
+            <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''}`}>
+              <div className="product-table-heading">
+                <div className="product-table-heading-item" />
+                <div className="product-table-heading-item">
+                  <span>{intl.get('product')}</span>
+                </div>
+                <div className="product-table-heading-item" />
+                <div className="product-table-heading-item">
+                  <span>{intl.get('quick-order-sku-title')}</span>
+                </div>
+                <div className="product-table-heading-item">
+                  <span>{intl.get('quantity')}</span>
+                </div>
+                <div className="product-table-heading-item">
+                  <span>{intl.get('product-options')}</span>
+                </div>
+                <div className="product-table-heading-item">
+                  <span>{intl.get('price')}</span>
+                </div>
+                <div className="product-table-heading-item actions">
+                  <span>{intl.get('actions')}</span>
                 </div>
               </div>
+              {cartData._defaultcart[0]._lineitems[0]._element.map(product => (
+                <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView isChosen={isChecked} />
+              ))}
             </div>
           </div>
         )}

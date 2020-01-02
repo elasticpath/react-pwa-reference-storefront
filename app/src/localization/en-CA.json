@@ -367,5 +367,9 @@
   "create-list": "Create List",
   "product-count": "Product Count",
   "actions": "Actions",
-  "requisition-lists-description": "Requisition Lists are a time-saver when purchasing frequently ordered products. Create a list, add products, save it and the list is always available to add-to-cart"
+  "requisition-lists-description": "Requisition Lists are a time-saver when purchasing frequently ordered products. Create a list, add products, save it and the list is always available to add-to-cart",
+  "product-options": "Product Options",
+  "bulk-edit": "Bulk Edit",
+  "select-all": "Select all",
+  "item-selected": "item selected"
 }
