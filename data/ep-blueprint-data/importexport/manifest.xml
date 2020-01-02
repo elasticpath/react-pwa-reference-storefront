@@ -4,7 +4,6 @@
     <resource>tax_codes.xml</resource>
     <resource>tax_jurisdictions.xml</resource>
     <resource>warehouses.xml</resource>
-    <resource>payment_gateways.xml</resource>
     <resource>modifiergroups.xml</resource>
     <resource>catalogs.xml</resource>
     <resource>modifiergroupfilters.xml</resource>
