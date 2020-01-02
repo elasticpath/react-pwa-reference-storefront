@@ -8,7 +8,7 @@
 		<comment>Initial import of ep vestri blueprint data.</comment>
 
 		<customChange class="com.elasticpath.datapopulation.importexport.ImportExportChange">
-			<param name="dataSet" value="ep-blueprint-data" />
+			<param name="dataSet" value="ep-blueprint-data/ep-blueprint-data" />
 		</customChange>
 	</changeSet>
 </databaseChangeLog>

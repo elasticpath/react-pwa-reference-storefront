@@ -22,18 +22,6 @@
             <organization>Brian &amp; co</organization>
         </address>
     </addresses>
-    <payment_methods>
-        <payment_token>
-            <payment_token_display_value>tok</payment_token_display_value>
-            <payment_token_value>tok</payment_token_value>
-        </payment_token>
-    </payment_methods>
-    <default_payment_method>
-        <payment_token>
-            <payment_token_display_value>tok</payment_token_display_value>
-            <payment_token_value>tok</payment_token_value>
-        </payment_token>
-    </default_payment_method>
     <groups>
         <group>400</group>
     </groups>
@@ -69,18 +57,6 @@
             <organization></organization>
         </address>
     </addresses>
-    <payment_methods>
-        <payment_token>
-            <payment_token_display_value>VISA</payment_token_display_value>
-            <payment_token_value>1232</payment_token_value>
-        </payment_token>
-    </payment_methods>
-    <default_payment_method>
-        <payment_token>
-            <payment_token_display_value>VISA</payment_token_display_value>
-            <payment_token_value>1232</payment_token_value>
-        </payment_token>
-    </default_payment_method>
     <groups>
         <group>400</group>
     </groups>
@@ -116,18 +92,6 @@
             <organization></organization>
         </address>
     </addresses>
-    <payment_methods>
-        <payment_token>
-            <payment_token_display_value>VISA</payment_token_display_value>
-            <payment_token_value>12324</payment_token_value>
-        </payment_token>
-    </payment_methods>
-    <default_payment_method>
-        <payment_token>
-            <payment_token_display_value>VISA</payment_token_display_value>
-            <payment_token_value>12324</payment_token_value>
-        </payment_token>
-    </default_payment_method>
     <groups>
         <group>400</group>
     </groups>
@@ -163,18 +127,6 @@
             <organization></organization>
         </address>
     </addresses>
-    <payment_methods>
-        <payment_token>
-            <payment_token_display_value>VISA</payment_token_display_value>
-            <payment_token_value>1224</payment_token_value>
-        </payment_token>
-    </payment_methods>
-    <default_payment_method>
-        <payment_token>
-            <payment_token_display_value>VISA</payment_token_display_value>
-            <payment_token_value>1224</payment_token_value>
-        </payment_token>
-    </default_payment_method>
     <groups>
         <group>400</group>
     </groups>

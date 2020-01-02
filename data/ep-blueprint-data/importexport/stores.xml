@@ -32,9 +32,6 @@
     <tax_jurisdictions>
         <jurisdiction>USTaxJurisdiction</jurisdiction>
     </tax_jurisdictions>
-    <payment_gateways>
-        <gateway>DemoTokenPaymentProcessor</gateway>
-    </payment_gateways>
     <credit_card_types>
         <type>American Express</type>
         <type>MasterCard</type>
@@ -49,6 +46,22 @@
             </modifiergroups>
         </cart_type>
     </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
 </store>
 
 <store code="vestri_au" enabled="true">
@@ -80,9 +93,6 @@
         <guid>502</guid>
     </tax_codes>
     <tax_jurisdictions/>
-    <payment_gateways>
-        <gateway>DemoTokenPaymentProcessor</gateway>
-    </payment_gateways>
     <credit_card_types>
         <type>American Express</type>
         <type>MasterCard</type>
@@ -97,6 +107,22 @@
             </modifiergroups>
         </cart_type>
     </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
 </store>
 
 <store code="VESTRICA" enabled="true">
@@ -126,9 +152,6 @@
     <tax_jurisdictions>
         <jurisdiction>CATaxJurisdiction</jurisdiction>
     </tax_jurisdictions>
-    <payment_gateways>
-        <gateway>DemoTokenPaymentProcessor</gateway>
-    </payment_gateways>
     <credit_card_types>
         <type>American Express</type>
         <type>MasterCard</type>
@@ -143,5 +166,21 @@
             </modifiergroups>
         </cart_type>
     </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
 </store>
 </stores>

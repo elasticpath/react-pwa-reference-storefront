@@ -21,7 +21,6 @@
         </exporter>
         <exporter type="PRICELISTASSIGNMENT"/>
         <exporter type="TAXJURISDICTION"/>
-        <exporter type="PAYMENTGATEWAY"/>
         <exporter type="WAREHOUSE"/>
         <exporter type="CUSTOMER">
             <option key="CARD_NUMBER_FILTER" value="EMPTY"/>
