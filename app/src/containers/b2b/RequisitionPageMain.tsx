@@ -262,7 +262,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
                 </div>
               </div>
               {cartData._defaultcart[0]._lineitems[0]._element.map(product => (
-                <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView isChosen={isChecked} />
+                <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView isChosen={isChecked} itemDetailLink="/itemdetail" />
               ))}
             </div>
           </div>

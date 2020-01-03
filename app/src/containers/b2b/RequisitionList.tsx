@@ -272,7 +272,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
             <li className="requisition-list-item requisition-list-header">
               <h4 className="requisition-info">{intl.get('name')}</h4>
               <h4 className="requisition-info">{intl.get('product-count')}</h4>
-              <h4 className="requisition-info">{intl.get('actions')}</h4>
+              <h4 className="requisition-info action-btn">{intl.get('actions')}</h4>
             </li>
             {this.renderRequisitionItems()}
           </ul>
