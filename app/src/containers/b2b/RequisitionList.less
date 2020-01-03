@@ -58,6 +58,41 @@
         border: 1px solid rgba(0,153,222,0.5);
         border-radius: 4px;
         box-shadow: 1px 1px 2px 0 rgba(0,153,222,0.12);
+
+        .error-message {
+          height: 20px;
+          padding-top: 10px;
+          color: #E02020;
+          font-size: 13px;
+          font-weight: 600;
+        }
+
+        &.input-code-error{
+          border: 1px solid rgba(224,32,32,0.2);
+          background-color: rgba(224,32,32,0.1);
+          &:focus {
+            background-color: #FFFFFF;
+            + .clear-field-btn {
+              background: #EEEEEE;
+              &:before, &:after {
+                display: inline-block;
+                left: 11px;
+                top: 7px;
+              }
+            }
+          }
+        }
+      }
+
+      .input-error-icon{
+        display: inline-block;
+        background: url('../@{imgUrl}/header-icons/baseline_error_24.png') no-repeat center center;
+        pointer-events: visible;
+        position: absolute;
+        right: 5px;
+        bottom: 25px;
+        height: 24px;
+        width: 24px;
       }
 
       .clear-field-btn {
@@ -99,10 +134,9 @@
       height: 160px;
     }
 
-    &:not(:first-child) {
-      .requisition-info {
-        color: @thirdComplimentColor !important;
-      }
+    .requisition-list-name {
+      color: @thirdComplimentColor;
+      font-weight: bold;
     }
 
     @media screen and (min-width: 481px) {
@@ -244,6 +278,7 @@
     .product-count {
       grid-row: ~"2 / 3";
       grid-column: ~"1 / 2";
+      color: @mainTextColor;
     }
 
     .action-btn {

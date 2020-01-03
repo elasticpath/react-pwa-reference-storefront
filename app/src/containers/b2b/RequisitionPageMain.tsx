@@ -24,23 +24,25 @@ import { Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import { B2bAddProductsModal, CartLineItem } from '@elasticpath/store-components';
 
-import './RequisitionPageMain.less';
 import Modal from 'react-responsive-modal';
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 import { ReactComponent as ArrowLeft } from '../../images/icons/arrow_left.svg';
 import cartData from './cart_main_data_response.json';
+import './RequisitionPageMain.less';
 
 interface RequisitionPageMainProps {
 }
 interface RequisitionPageMainState {
   isLoading: boolean,
   listName: string,
+  currentlyListName: string,
   addProductModalOpened: boolean,
   isChecked: boolean,
   selectedElement: number,
   multiSelectMode: boolean,
   productElements: any,
   editListNameModalOpened: boolean,
+  listNameErrorMessages: string,
 }
 
 class RequisitionPageMain extends Component<RequisitionPageMainProps, RequisitionPageMainState> {
@@ -49,11 +51,13 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     this.state = {
       isLoading: false,
       listName: 'Vancouver',
+      currentlyListName: '',
       addProductModalOpened: false,
       isChecked: false,
       selectedElement: 0,
       multiSelectMode: false,
       editListNameModalOpened: false,
+      listNameErrorMessages: '',
       productElements: {
         list: [
           { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
@@ -64,10 +68,18 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
     this.handleEditListName = this.handleEditListName.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
+    this.handleEditListNameModalOpen = this.handleEditListNameModalOpen.bind(this);
     this.handleChangeListName = this.handleChangeListName.bind(this);
     this.clearListNameField = this.clearListNameField.bind(this);
     this.handleBulkeEdit = this.handleBulkeEdit.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
+  }
+
+  componentDidMount() {
+    const { listName, currentlyListName } = this.state;
+    if (currentlyListName.length === 0) {
+      this.setState({ currentlyListName: listName });
+    }
   }
 
   handleAddProductsModalClose() {
@@ -92,16 +104,27 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     this.setState({ multiSelectMode: true });
   }
 
-  handleEditListName() {
+  handleEditListNameModalOpen() {
     this.setState({
       editListNameModalOpened: true,
     });
   }
 
+  handleEditListName() {
+    const { listName } = this.state;
+    if (listName.length === 0) {
+      this.setState({ listNameErrorMessages: intl.get('name-is-required') });
+    } else {
+      this.setState({ listNameErrorMessages: '', currentlyListName: listName, editListNameModalOpened: false });
+    }
+  }
+
   handleModalClose() {
-    const { editListNameModalOpened } = this.state;
+    const { currentlyListName } = this.state;
     this.setState({
-      editListNameModalOpened: !editListNameModalOpened,
+      editListNameModalOpened: false,
+      listNameErrorMessages: '',
+      listName: currentlyListName,
     });
   }
 
@@ -153,14 +176,8 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
 
   render() {
     const {
-      isLoading, addProductModalOpened, editListNameModalOpened, listName, multiSelectMode, selectedElement, isChecked,
+      isLoading, addProductModalOpened, editListNameModalOpened, listName, multiSelectMode, selectedElement, isChecked, listNameErrorMessages, currentlyListName,
     } = this.state;
-    const products = {
-      list: [
-        { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
-      ],
-    };
-    const invalidListName = !listName.length;
 
     return (
       <div className="requisition-component">
@@ -175,9 +192,9 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
               </Link>
               <div className="name-container">
                 <h2 className="name">
-                  Vancouver
+                  {currentlyListName}
                 </h2>
-                <button type="button" className="edit-name" onClick={this.handleEditListName}>
+                <button type="button" className="edit-name" onClick={this.handleEditListNameModalOpen}>
                   {intl.get('edit')}
                 </button>
               </div>
@@ -260,21 +277,23 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
           <div className="modal-lg create-list-modal">
             <div className="dialog-header">
               <h2 className="modal-title">
-                {intl.get('create-list')}
+                {intl.get('edit-list')}
               </h2>
             </div>
             <div className="dialog-content">
               <div className="create-list-form">
                 <div className="create-list-form-wrap">
                   <label htmlFor="list_name">{intl.get('name')}</label>
-                  <input type="text" className="list-name" id="list_name" value={listName} onChange={event => this.handleChangeListName(event)} />
+                  <input defaultChecked={false} type="text" className={`list-name ${(listNameErrorMessages !== '') ? 'input-code-error' : ''}`} id="list_name" value={listName} onChange={event => this.handleChangeListName(event)} />
                   {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
+                  <span className={`${(listNameErrorMessages !== '') ? 'input-error-icon' : ''}`} />
+                  <p className="error-message">{listNameErrorMessages}</p>
                 </div>
               </div>
             </div>
             <div className="dialog-footer">
               <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
-              <button className="upload" type="submit" disabled={invalidListName} onClick={this.handleModalClose}>
+              <button className="upload" type="button" onClick={this.handleEditListName}>
                 {intl.get('save')}
               </button>
             </div>

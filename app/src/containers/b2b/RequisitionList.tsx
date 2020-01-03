@@ -37,6 +37,7 @@ interface CartCreateState {
   multiCartData: any,
   openModal: boolean,
   listName: string,
+  listNameErrorMessages: string,
 }
 
 class RequisitionList extends Component<CartCreateProps, CartCreateState> {
@@ -52,7 +53,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     this.state = {
       requisitionElements: [
         {
-          name: 'HQ',
+          name: 'Vancouver',
           'product-count': 16,
         },
         {
@@ -91,6 +92,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
       ],
       openModal: false,
       listName: '',
+      listNameErrorMessages: '',
     };
     this.handleEditRequisition = this.handleEditRequisition.bind(this);
     this.handleDeleteRequisition = this.handleDeleteRequisition.bind(this);
@@ -100,6 +102,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.clearListNameField = this.clearListNameField.bind(this);
+    this.handleSaveList = this.handleSaveList.bind(this);
   }
 
   componentDidMount() {
@@ -116,7 +119,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   }
 
   handleModalClose() {
-    this.setState({ openModal: false, listName: '' });
+    this.setState({ openModal: false, listName: '', listNameErrorMessages: '' });
   }
 
   handleEditRequisition(event, index) {
@@ -142,6 +145,16 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
 
   clearListNameField() {
     this.setState({ listName: '' });
+  }
+
+  handleSaveList() {
+    const { listName } = this.state;
+    if (listName.length === 0) {
+      this.setState({ listNameErrorMessages: intl.get('name-is-required') });
+    } else {
+      this.setState({ listNameErrorMessages: '' });
+      this.handleModalClose();
+    }
   }
 
   modalConfirmation(index, element) {
@@ -194,7 +207,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     if (requisitionElements.length) {
       return requisitionElements.map((el, index) => (
         <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation">
-          <Link className="requisition-info" to="/b2b/requisition-list-item">{el.name}</Link>
+          <Link className="requisition-info requisition-list-name" to="/b2b/requisition-list-item">{el.name}</Link>
           <p className="requisition-info product-count">
             {el['product-count']}
           </p>
@@ -220,7 +233,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   }
 
   render() {
-    const { listName, openModal } = this.state;
+    const { listName, openModal, listNameErrorMessages } = this.state;
 
     return (
       <div>
@@ -238,14 +251,16 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
                 <div className="create-list-form">
                   <div className="create-list-form-wrap">
                     <label htmlFor="list_name">{intl.get('name')}</label>
-                    <input type="text" className="list-name" id="list_name" value={listName} onChange={this.handleChange} />
+                    <input type="text" className={`list-name ${(listNameErrorMessages !== '') ? 'input-code-error' : ''}`} id="list_name" value={listName} onChange={this.handleChange} />
                     {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
+                    <span className={`${(listNameErrorMessages !== '') ? 'input-error-icon' : ''}`} />
+                    <p className="error-message">{listNameErrorMessages}</p>
                   </div>
                 </div>
               </div>
               <div className="dialog-footer">
                 <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
-                <button className="upload" type="button">
+                <button className="upload" type="button" onClick={this.handleSaveList}>
                   {intl.get('save')}
                 </button>
               </div>
