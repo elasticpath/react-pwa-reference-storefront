@@ -69,10 +69,6 @@ class AppHeaderTop extends Component<AppHeaderTopProps> {
     return [
       <div key="AppHeaderTop" className={`top-header ${isMobileView ? 'mobile-view' : ''}`}>
         <div className={impersonating ? 'top-container-impersonation' : 'top-container'}>
-          <div className="locale-container">
-            <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
-          </div>
-
           {
             impersonating ? (
               <div className="impersonation-notification">
@@ -81,26 +77,10 @@ class AppHeaderTop extends Component<AppHeaderTopProps> {
               </div>
             ) : ''
           }
-
-          <div className="top-container-menu">
-            <ul>
-              <li>
-                <Link to={appHeaderTopLinks.shippingreturns}>
-                  {intl.get('shipping-returns')}
-                </Link>
-              </li>
-              <li>
-                <Link to={appHeaderTopLinks.aboutus}>
-                  {intl.get('help')}
-                </Link>
-              </li>
-              <li>
-                <Link to={appHeaderTopLinks.contactus}>
-                  {intl.get('contact')}
-                </Link>
-              </li>
-            </ul>
+          <div className="locale-container">
+            <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
           </div>
+
         </div>
       </div>,
     ];

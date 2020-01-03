@@ -22,7 +22,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, withRouter } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider, RequisitionListCountProvider,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
 import packageJson from '../package.json';
@@ -102,6 +102,7 @@ const appFooterLinks = {
 const appHeaderLinks = {
   mainPage: '/',
   myCart: '/mycart',
+  requisitionLists: '/b2b/requisition-lists',
 };
 const appHeaderLoginLinks = {
   profile: '/profile',
@@ -174,7 +175,9 @@ const AppWithRouter = (props) => {
     <Router>
       <ErrorDisplayBoundary>
         <CountProvider>
-          <App componentsData={componentsData} />
+          <RequisitionListCountProvider>
+            <App componentsData={componentsData} />
+          </RequisitionListCountProvider>
         </CountProvider>
       </ErrorDisplayBoundary>
     </Router>

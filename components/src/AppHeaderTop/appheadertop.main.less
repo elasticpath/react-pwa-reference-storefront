@@ -19,18 +19,19 @@
 @media screen and (min-width: @tabletWidth) {
   .top-header {
     position: relative;
-    width: 100%;
     height: 45px;
     border-bottom: fade(@mainColor, 70%) solid 1px;
+    margin-right: 25px;
+    margin-left: auto;
 
     .top-container {
-      display: block;
       height: 100%;
       background-color: @mainColor;
+      display: flex;
+      align-items: baseline;
     }
     .locale-container {
       display: block;
-      position: absolute;
       margin-top: 12px;
       margin-left: 35px;
         button{
@@ -44,10 +45,6 @@
       }
     }
     .top-container-menu {
-      display: block;
-      position: absolute;
-      right: 30px;
-      top: 12px;
 
       ul {
         overflow: hidden;

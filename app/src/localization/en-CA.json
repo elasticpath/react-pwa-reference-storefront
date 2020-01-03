@@ -51,7 +51,7 @@
   "payment-method": "Payment Method",
   "add-new-payment-method": "Add a New Payment Method",
   "checkout-summary": "Checkout Summary",
-  "view-your-carts": "View your carts",
+  "view-your": "View your",
   "complete-order": "Complete Order",
   "contact-us": "Contact Us",
   "contact-us-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -203,7 +203,7 @@
   "sub-total": "Sub-total",
   "tax": "Tax",
   "item-total": "Item Total",
-  "item-was-added-to-your-cart": "Item was added to your",
+  "item-was-added-to-your": "Item was added to your",
   "summary": "Summary",
   "order-number": "Order Number:",
   "order-tax-total": "Order Tax Total",
@@ -371,5 +371,7 @@
   "product-options": "Product Options",
   "bulk-edit": "Bulk Edit",
   "select-all": "Select all",
-  "item-selected": "item selected"
+  "item-selected": "item selected",
+  "order-history": "Order History",
+  "list": "list"
 }

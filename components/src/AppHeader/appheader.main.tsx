@@ -28,11 +28,12 @@ import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
 import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
-import CartPopUp from '../CartPopUp/cartpopup';
+import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
 import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg';
 import { ReactComponent as CartIcon } from '../../../app/src/images/header-icons/cart-icon.svg';
 import { ReactComponent as BulkCart } from '../../../app/src/images/header-icons/bulk-cart.svg';
 import { useCountState } from '../cart-count-context';
+import { useRequisitionListCountState } from '../requisition-list-count-context';
 
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
@@ -257,6 +258,12 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
     const Cart = () => {
       const { count, name }: any = useCountState();
+      const countData = {
+        count,
+        name,
+        link: appHeaderLinks.myCart,
+        entity: intl.get('cart'),
+      };
       return (
         <div className={`cart-link-container multi-cart-dropdown dropdown ${count ? 'show' : ''}`}>
           <Link className={`cart-link ${count ? 'modal-arrow' : ''}`} to={appHeaderLinks.myCart}>
@@ -264,17 +271,34 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             {intl.get('shopping-cart-nav')}
           </Link>
           <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${count ? 'show' : ''}`}>
-            <CartPopUp appHeaderLinks={appHeaderLinks} cartData={{ count, name }} />
+            <CountInfoPopUp countData={countData} />
+          </div>
+        </div>);
+    };
+
+    const RequisitionListsLink = () => {
+      const { count, name }: any = useRequisitionListCountState();
+      const countData = {
+        count,
+        name,
+        link: appHeaderLinks.requisitionLists,
+        entity: intl.get('list'),
+      };
+
+      return (
+        <div className={`requisition-list-container ${count ? 'show' : ''}`}>
+          <Link to={appHeaderLinks.requisitionLists} className="link-item">
+            {intl.get('requisition-lists')}
+          </Link>
+          <div className={`dropdown-menu ${count ? 'show' : ''}`}>
+            <CountInfoPopUp countData={countData} />
           </div>
         </div>);
     };
 
     return [
       <header key="app-header" className="app-header">
-        <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
-
-        <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
-
+        <div className="top-header-container">
           <div className="logo-container">
             <Link to={appHeaderLinks.mainPage} className="logo">
               <img
@@ -289,6 +313,18 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             </Link>
           </div>
 
+          <div className="links-container">
+            <RequisitionListsLink />
+            <Link to={appHeaderLinks.mainPage} className="link-item">
+              {intl.get('order-history')}
+            </Link>
+          </div>
+
+          <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
+        </div>
+
+
+        <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
           <div className="central-container">
             <div className="horizontal-menu">
               {isDesktop && (!isOffline && !isLoading) ? (

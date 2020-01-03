@@ -23,9 +23,66 @@
 
 .app-header {
   z-index: 5;
+
+  .triangle {
+      content: '';
+      position: absolute;
+      top: 26px;
+      right: 7px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 10px solid @mainBackgroundColor;
+      z-index: 10;
+  }
+
   .cart-icon {
     fill: @mainNavigationColor;
   }
+
+  .top-header-container {
+    background-color: @mainColor;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .logo-container {
+      padding-left: 25px;
+      padding-top: 4px;
+
+      .logo {
+        padding: 15px;
+        display: flex;
+
+        .logo-image {
+          height: 25px;
+        }
+      }
+    }
+
+    .links-container {
+      display: flex;
+      align-items: center;
+      .link-item {
+        text-transform: capitalize;
+        padding: 0 10px;
+        color: @mainBackgroundColor;
+      }
+
+      .requisition-list-container {
+        position: relative;
+        padding: 7px 0;
+
+        &.show:before {
+          .triangle();
+          right: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+
   .main-container {
     position: relative;
     min-height: 60px;
@@ -48,20 +105,6 @@
       }
     }
 
-    .logo-container {
-      padding-left: 25px;
-      padding-top: 4px;
-
-      .logo {
-        padding: 15px;
-        display: flex;
-
-        .logo-image {
-          height: 25px;
-        }
-      }
-    }
-
     .central-container {
       flex: 1;
       text-align: center;
@@ -69,7 +112,7 @@
       margin: 0 auto;
 
       .horizontal-menu{
-        padding-left:120px;
+        padding-left: 40px;
       }
     }
 
@@ -171,19 +214,8 @@
   }
 
   .multi-cart-dropdown.show {
-    .cart-link {
-      &:before {
-        content: '';
-        position: absolute;
-        top: 26px;
-        right: 7px;
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 10px solid @mainBackgroundColor;
-        z-index: 10;
-      }
+    .cart-link:before {
+      .triangle();
     }
   }
 
@@ -196,19 +228,15 @@
   }
 
   @media (max-width: @tabletWidth - 1px) {
+    .top-header-container {
+      .logo-container {
+        padding-left: 4px;
+      }
+    }
+
     .main-container {
       position: relative;
       justify-content: flex-end;
-
-      .logo-container {
-        padding-left: 0;
-        padding-top: 0;
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-      }
 
       .icons-header-container {
         .bulk-link-container, .cart-link-container {

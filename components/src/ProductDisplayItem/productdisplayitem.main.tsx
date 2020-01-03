@@ -31,7 +31,8 @@ import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommend
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { CountProvider, useCountDispatch } from '../cart-count-context';
+import { useCountDispatch } from '../cart-count-context';
+import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
@@ -617,9 +618,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     });
   }
 
-  addToRequisitionListData(cart, onCountChange) {
-    const { onRequisitionPage } = this.props;
-    onRequisitionPage();
+  addToRequisitionListData(list, onCountChange) {
+    const { itemQuantity } = this.state;
+    const { name } = list;
+    onCountChange(name, itemQuantity);
     this.setState({ addToRequisitionListLoading: true });
   }
 
@@ -636,7 +638,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       dispatch(data);
       setTimeout(() => {
         dispatch({ type: 'COUNT_HIDE' });
-      }, 4000);
+      }, 3200);
     };
     const { multiCartData } = this.state;
     if (multiCartData && multiCartData._carts) {
@@ -655,14 +657,28 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   dropdownRequisitionListSelection() {
+    const dispatch = useRequisitionListCountDispatch();
+    const onCountChange = (name, count) => {
+      const data = {
+        type: 'COUNT_SHOW',
+        payload: {
+          count,
+          name,
+        },
+      };
+      dispatch(data);
+      setTimeout(() => {
+        dispatch({ type: 'COUNT_HIDE' });
+      }, 3200);
+    };
     const { requisitionListData } = this.state;
     if (requisitionListData) {
       return (
         <ul className="cart-selection-dropdown">
-          {requisitionListData.list.map(cart => (
+          {requisitionListData.list.map(list => (
             // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-item" key={cart.name ? cart.name : intl.get('default')} onClick={() => this.addToRequisitionListData(cart, "onCountChange")}>
-              {cart.name ? cart.name : intl.get('default')}
+            <li className="dropdown-item cart-selection-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
+              {list.name ? list.name : intl.get('default')}
             </li>
           ))}
         </ul>
