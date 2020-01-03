@@ -216,12 +216,12 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
                     <label htmlFor="select_all_product">
                       {intl.get('select-all')}
                     </label>
+                    <p className="selected-element">
+                      {selectedElement}
+                      {' '}
+                      {intl.get('item-selected')}
+                    </p>
                   </div>
-                  <p className="selected-element">
-                    {selectedElement}
-                    {' '}
-                    {intl.get('item-selected')}
-                  </p>
                   <button type="button" className="ep-btn small delete-btn">{intl.get('delete')}</button>
                   {this.renderDropdownMenu()}
                 </div>
