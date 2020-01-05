@@ -30,6 +30,12 @@ import './purchase.order.widget.less';
 let Config: IEpConfig | any = {};
 let isTypingTimer = null;
 
+const POInputStates = {
+  LOADING: 'LOADING',
+  VERIFIED: 'VERIFIED',
+  ERROR: 'ERROR',
+};
+
 const dummyValidPONumbers = new Set(['1234', '2345', '3456']);
 
 interface PurchaseOrderWidgetState {
@@ -58,11 +64,9 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     this.updateInputState = this.updateInputState.bind(this);
   }
 
-  // TODO: resets the typing timer.
   clearIsTypingTimer(event) {
     if (isTypingTimer != null) {
-      // eslint-disable-next-line react/no-unused-state
-      this.setState({ inputStatus: 'loading' });
+      this.setState({ inputStatus: POInputStates.LOADING });
       clearTimeout(isTypingTimer);
       isTypingTimer = null;
     }
@@ -74,28 +78,25 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
 
   verifyPONumber() {
     const { inputTextValue } = this.state;
-    console.log('timeout ended so we can validate the po number');
-    // TODO: write dummy PO number validation...
+
     setTimeout(() => {
       if (dummyValidPONumbers.has(inputTextValue)) {
-        // We need to a couple states for the input bar...
-        this.setState({ inputStatus: 'verified' });
+        this.setState({ inputStatus: POInputStates.VERIFIED });
       } else {
-        this.setState({ inputStatus: 'error' });
+        this.setState({ inputStatus: POInputStates.ERROR });
       }
     }, 1000);
 
     isTypingTimer = null;
   }
 
-  // TODO: This function will verify and return everytime there is a change...
   startValidationTimer(event) {
     const { timeoutBeforeVerify } = this.props;
     if (isTypingTimer == null) {
       const timeID = setTimeout(() => {
         this.verifyPONumber();
       }, timeoutBeforeVerify);
-      this.setState({ inputStatus: 'loading' });
+      this.setState({ inputStatus: POInputStates.LOADING });
       isTypingTimer = timeID;
     }
   }
@@ -104,12 +105,12 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     const { inputStatus } = this.state;
 
     switch (inputStatus) {
-      case 'loading':
+      case POInputStates.LOADING:
         return (
           <div className="inputLoader-container">
             <div className="inputLoader" />
           </div>);
-      case 'verified':
+      case POInputStates.VERIFIED:
         return (
           <div className="inputLoader-container">
             <div className="checkmark chosen" />
@@ -134,7 +135,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
           {this.renderInputStatus()}
         </div>
         {
-          inputStatus === 'error' && (
+          inputStatus === POInputStates.ERROR && (
             <div>
               <Messagecontainer message={[warningMessage]} />
             </div>
