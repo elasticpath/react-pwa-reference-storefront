@@ -21,6 +21,7 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
+import { Messagecontainer } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -112,11 +113,6 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
           <div className="miniLoader-container">
             <div className="checkmark chosen" />
           </div>);
-      case 'error':
-        return (
-          <div className="miniLoader-container">
-            <div className="miniLoader" />
-          </div>);
       default:
         return null;
     }
@@ -124,11 +120,25 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
 
   // eslint-disable-next-line class-methods-use-this
   renderPurchaseOrderTextBox() {
-    const { inputTextValue } = this.state;
+    const { inputTextValue, inputStatus } = this.state;
+    const warningMessage = {
+      debugMessages: 'Invalid PO number',
+      type: 'error',
+      id: 'field.invalid.email.format',
+    };
     return (
-      <div className="purchase-order-widget-input-container">
-        <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} onKeyUp={this.startValidationTimer} onKeyDown={this.clearIsTypingTimer} />
-        {this.renderInputStatus()}
+      <div>
+        <div className="purchase-order-widget-input-container">
+          <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} onKeyUp={this.startValidationTimer} onKeyDown={this.clearIsTypingTimer} />
+          {this.renderInputStatus()}
+        </div>
+        {
+          inputStatus === 'error' && (
+            <div>
+              <Messagecontainer message={[warningMessage]} />
+            </div>
+          )
+        }
       </div>
     );
   }

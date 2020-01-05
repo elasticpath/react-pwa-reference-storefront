@@ -183,7 +183,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   render() {
     const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
-    
+
     return (
       <div>
         <div className="container profile-container">
