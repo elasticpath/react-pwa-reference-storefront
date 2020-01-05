@@ -36,6 +36,7 @@ const POInputStates = {
   ERROR: 'ERROR',
 };
 
+// NOTE: Remove this when using this component in a real implementation! only here to simulate PO number validation.
 const dummyValidPONumbers = new Set(['1234', '2345', '3456']);
 
 interface PurchaseOrderWidgetState {
@@ -79,6 +80,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
   verifyPONumber() {
     const { inputTextValue } = this.state;
 
+    // NOTE: This should be replaced with a network request to validate the PO number entered.  A timeout is placed here as a placeholder.
     setTimeout(() => {
       if (dummyValidPONumbers.has(inputTextValue)) {
         this.setState({ inputStatus: POInputStates.VERIFIED });
@@ -120,7 +122,6 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   renderPurchaseOrderTextBox() {
     const { inputTextValue, inputStatus } = this.state;
     const warningMessage = {

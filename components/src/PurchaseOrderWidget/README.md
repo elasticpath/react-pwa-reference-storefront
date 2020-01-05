@@ -4,6 +4,8 @@
 
 A purchase order widget that allows entry, validation, and a link to view the purchase order in more detail.
 
+At the moment the component does not check validity of the PO number against cortex or any third party service.  It has been programmed to simluate validating numbers `1234`, `2345`, `3456`.  When placed into a real implementation parts of this code should be taken out.  Comments in the code will guide how to do that.
+
 #### Usage
 
 ```js
