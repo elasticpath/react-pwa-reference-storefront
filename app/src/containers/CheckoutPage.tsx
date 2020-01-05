@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain, AddressFormMain,
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain, AddressFormMain, PurchaseOrderWidget,
 } from '@elasticpath/store-components';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -583,6 +583,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         <h2>
           {intl.get('payment-method')}
         </h2>
+        <PurchaseOrderWidget timeoutBeforeVerify={3000} />
         <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
           {this.renderPayments()}
         </div>
