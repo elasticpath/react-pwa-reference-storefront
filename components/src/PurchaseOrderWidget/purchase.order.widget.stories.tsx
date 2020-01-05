@@ -37,5 +37,5 @@ storiesOf('Components|PurchaseOrderWidget', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('Purchase Order Widget', () => {
-    return <PurchaseOrderWidget />;
+    return <PurchaseOrderWidget timeoutBeforeVerify={1000} />;
   });

@@ -27,11 +27,15 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './purchase.order.widget.less';
 
 let Config: IEpConfig | any = {};
+let isTypingTimer = null;
 
 interface PurchaseOrderWidgetState {
+  isLoading: boolean,
+  PONumber: string;
 }
 
 interface PurchaseOrderWidgetProps {
+  timeoutBeforeVerify: number;
 }
 
 class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, PurchaseOrderWidgetState> {
@@ -39,13 +43,52 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     super(props);
     const epConfig = getConfig();
     Config = epConfig.config;
+    this.state = {
+      isLoading: true,
+      PONumber: null,
+    };
     this.renderPurchaseOrderTextBox = this.renderPurchaseOrderTextBox.bind(this);
+    this.startValidationTimer = this.startValidationTimer.bind(this);
+    this.clearIsTypingTimer = this.clearIsTypingTimer.bind(this);
+  }
+
+  // TODO: resets the typing timer.
+  clearIsTypingTimer() {
+    if (isTypingTimer != null) {
+      // eslint-disable-next-line react/no-unused-state
+      this.setState({ isLoading: false });
+      clearTimeout(isTypingTimer);
+      isTypingTimer = null;
+    }
+  }
+
+  // TODO: This function will verify and return everytime there is a change...
+  startValidationTimer() {
+    const { timeoutBeforeVerify } = this.props;
+    const verifyPONumberHelper = () => {
+      console.log('timeout ended so we can validate the po number');
+      this.setState({ isLoading: true });
+      isTypingTimer = null;
+    };
+
+    // if the typing timer has not been set or one does not currently exist.
+    if (isTypingTimer == null) {
+      const timeID = setTimeout(verifyPONumberHelper, timeoutBeforeVerify);
+      isTypingTimer = timeID;
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
   renderPurchaseOrderTextBox() {
     // TODO:
-    return (<input id="CardHolderName" name="CardHolderName" className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" />);
+    return (
+      <div className="purchase-order-widget-input-container">
+        <input className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onKeyUp={this.startValidationTimer} onKeyDown={this.clearIsTypingTimer} />
+        <div className="miniLoader-container">
+          <div className="miniLoader" />
+        </div>
+      </div>
+    );
   }
 
   render() {
