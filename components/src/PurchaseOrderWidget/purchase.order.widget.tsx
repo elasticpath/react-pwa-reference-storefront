@@ -95,6 +95,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
       const timeID = setTimeout(() => {
         this.verifyPONumber();
       }, timeoutBeforeVerify);
+      this.setState({ inputStatus: 'loading' });
       isTypingTimer = timeID;
     }
   }
@@ -105,12 +106,12 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     switch (inputStatus) {
       case 'loading':
         return (
-          <div className="miniLoader-container">
-            <div className="miniLoader" />
+          <div className="inputLoader-container">
+            <div className="inputLoader" />
           </div>);
       case 'verified':
         return (
-          <div className="miniLoader-container">
+          <div className="inputLoader-container">
             <div className="checkmark chosen" />
           </div>);
       default:

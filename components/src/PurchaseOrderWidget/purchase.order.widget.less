@@ -60,7 +60,7 @@
     justify-content: space-between;
   }
 
-  .miniLoader-container {
+  .inputLoader-container {
     position: absolute;
     margin-top:2px;
     right: 30px;
@@ -78,7 +78,6 @@
         content: "";
         position: absolute;
         top: 10px;
-        left: -1px;
         width: 12px;
         height: 7px;
         border: solid 2px #6dd401;
@@ -87,5 +86,20 @@
         transform: translate(2px, 1px) rotate(-45deg);
       }
     }
+  }
+
+  .inputLoader {
+    border: 3px solid @firstComplimentBackground;
+    border-top: 3px solid @secondComplimentColor;
+    width: 20px;
+    height: 20px !important;
+    border-radius: 80%;
+    animation: spin 0.5s linear infinite;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+
+  .close-btn {
+    display: none
   }
 }
