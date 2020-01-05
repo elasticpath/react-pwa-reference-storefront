@@ -65,4 +65,27 @@
     margin-top:2px;
     right: 30px;
   }
+
+  .checkmark {
+    position: relative;
+    margin-top: 10px;
+    width: 18px;
+    height: 18px;
+
+    &.chosen {
+      background-color: #FFFFFF;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: -1px;
+        width: 12px;
+        height: 7px;
+        border: solid 2px #6dd401;
+        border-right: none;
+        border-top: none;
+        transform: translate(2px, 1px) rotate(-45deg);
+      }
+    }
+  }
 }

@@ -29,9 +29,11 @@ import './purchase.order.widget.less';
 let Config: IEpConfig | any = {};
 let isTypingTimer = null;
 
+const dummyValidPONumbers = new Set(['1234', '2345', '3456']);
+
 interface PurchaseOrderWidgetState {
-  isLoading: boolean,
-  PONumber: string;
+  inputStatus: string,
+  inputTextValue: string,
 }
 
 interface PurchaseOrderWidgetProps {
@@ -44,49 +46,89 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     const epConfig = getConfig();
     Config = epConfig.config;
     this.state = {
-      isLoading: true,
-      PONumber: null,
+      inputStatus: '',
+      inputTextValue: '',
     };
     this.renderPurchaseOrderTextBox = this.renderPurchaseOrderTextBox.bind(this);
     this.startValidationTimer = this.startValidationTimer.bind(this);
     this.clearIsTypingTimer = this.clearIsTypingTimer.bind(this);
+    this.verifyPONumber = this.verifyPONumber.bind(this);
+    this.renderInputStatus = this.renderInputStatus.bind(this);
+    this.updateInputState = this.updateInputState.bind(this);
   }
 
   // TODO: resets the typing timer.
-  clearIsTypingTimer() {
+  clearIsTypingTimer(event) {
     if (isTypingTimer != null) {
       // eslint-disable-next-line react/no-unused-state
-      this.setState({ isLoading: false });
+      this.setState({ inputStatus: 'loading' });
       clearTimeout(isTypingTimer);
       isTypingTimer = null;
     }
   }
 
-  // TODO: This function will verify and return everytime there is a change...
-  startValidationTimer() {
-    const { timeoutBeforeVerify } = this.props;
-    const verifyPONumberHelper = () => {
-      console.log('timeout ended so we can validate the po number');
-      this.setState({ isLoading: true });
-      isTypingTimer = null;
-    };
+  updateInputState(event) {
+    this.setState({ inputTextValue: event.target.value });
+  }
 
-    // if the typing timer has not been set or one does not currently exist.
+  verifyPONumber() {
+    const { inputTextValue } = this.state;
+    console.log('timeout ended so we can validate the po number');
+    // TODO: write dummy PO number validation...
+    setTimeout(() => {
+      if (dummyValidPONumbers.has(inputTextValue)) {
+        // We need to a couple states for the input bar...
+        this.setState({ inputStatus: 'verified' });
+      } else {
+        this.setState({ inputStatus: 'error' });
+      }
+    }, 1000);
+
+    isTypingTimer = null;
+  }
+
+  // TODO: This function will verify and return everytime there is a change...
+  startValidationTimer(event) {
+    const { timeoutBeforeVerify } = this.props;
     if (isTypingTimer == null) {
-      const timeID = setTimeout(verifyPONumberHelper, timeoutBeforeVerify);
+      const timeID = setTimeout(() => {
+        this.verifyPONumber();
+      }, timeoutBeforeVerify);
       isTypingTimer = timeID;
+    }
+  }
+
+  renderInputStatus() {
+    const { inputStatus } = this.state;
+
+    switch (inputStatus) {
+      case 'loading':
+        return (
+          <div className="miniLoader-container">
+            <div className="miniLoader" />
+          </div>);
+      case 'verified':
+        return (
+          <div className="miniLoader-container">
+            <div className="checkmark chosen" />
+          </div>);
+      case 'error':
+        return (
+          <div className="miniLoader-container">
+            <div className="miniLoader" />
+          </div>);
+      default:
+        return null;
     }
   }
 
   // eslint-disable-next-line class-methods-use-this
   renderPurchaseOrderTextBox() {
-    // TODO:
+    const { inputTextValue } = this.state;
     return (
       <div className="purchase-order-widget-input-container">
-        <input className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onKeyUp={this.startValidationTimer} onKeyDown={this.clearIsTypingTimer} />
-        <div className="miniLoader-container">
-          <div className="miniLoader" />
-        </div>
+        <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} onKeyUp={this.startValidationTimer} onKeyDown={this.clearIsTypingTimer} />
+        {this.renderInputStatus()}
       </div>
     );
   }
