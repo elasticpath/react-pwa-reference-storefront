@@ -153,7 +153,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
           <h2>
             {'Purchase Order'}
           </h2>
-          <button className="view-button-inactive" disabled type="button" onClick={() => { console.log('clicked'); }}>
+          <button className="view-button-inactive" disabled type="button" onClick={() => { }}>
             {'View'}
           </button>
         </div>
