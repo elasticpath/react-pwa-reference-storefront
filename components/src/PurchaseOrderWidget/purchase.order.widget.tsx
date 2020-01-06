@@ -128,7 +128,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
   renderPurchaseOrderTextBox() {
     const { inputTextValue, inputStatus } = this.state;
     const warningMessage = {
-      debugMessages: 'Invalid PO number',
+      debugMessages: intl.get('invalid-po-number'),
       type: 'error',
       id: 'field.invalid.email.format',
     };
@@ -167,16 +167,16 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
       <div className="purchase-order-widget-container">
         <div className="purchase-order-widget-top">
           <h2>
-            {'Purchase Order'}
+            { intl.get('purchase-order') }
           </h2>
           {
             inputStatus === POInputStates.VERIFIED ? (
               <button className="view-button active" type="button" onClick={this.showMorePODetails}>
-                {'View'}
+                { intl.get('view') }
               </button>
             ) : (
               <button className="view-button inactive" disabled type="button" onClick={this.showMorePODetails}>
-                {'View'}
+                { intl.get('view') }
               </button>
             )
           }
@@ -185,7 +185,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
           {this.renderPurchaseOrderTextBox()}
         </div>
         <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={onPayWithPO}>
-          {'Pay with PO'}
+          { intl.get('pay-with-po') }
         </button>
       </div>);
   }

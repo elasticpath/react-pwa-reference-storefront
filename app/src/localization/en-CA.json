@@ -356,5 +356,9 @@
   "remove-associate": "Remove Associate",
   "confirm-delete-associate": "Are you sure you would like to remove this associate?",
   "no": "No",
-  "yes": "Yes"
+  "yes": "Yes",
+  "view": "View",
+  "pay-with-po": "Pay With PO",
+  "purchase-order": "Purchase Order",
+  "invalid-po-number": "Invalid PO number"
 }
