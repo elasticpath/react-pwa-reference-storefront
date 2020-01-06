@@ -25,9 +25,20 @@
   border: 1px solid @mainBorderColor;
   padding: 20px;
   
-  .view-button-inactive{
+  .view-button {
     border: none;
+  }
+
+  .inactive {
     color: @firstComplimentTextColor;
+  }
+
+  .active {
+    color: @buttonActiveColor;
+
+    &:hover {
+      color: @buttonFocusColor;
+    }
   }
   
   .purchase-order-widget-top {
@@ -102,4 +113,6 @@
   .close-btn {
     display: none
   }
+
+  
 }

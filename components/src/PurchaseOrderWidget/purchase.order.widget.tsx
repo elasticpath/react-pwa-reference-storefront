@@ -147,15 +147,25 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
   }
 
   render() {
+    const { inputStatus } = this.state;
+
     return (
       <div className="purchase-order-widget-container">
         <div className="purchase-order-widget-top">
           <h2>
             {'Purchase Order'}
           </h2>
-          <button className="view-button-inactive" disabled type="button" onClick={() => { }}>
-            {'View'}
-          </button>
+          {
+            inputStatus === POInputStates.VERIFIED ? (
+              <button className="view-button active" type="button" onClick={() => { }}>
+                {'View'}
+              </button>
+            ) : (
+              <button className="view-button inactive" disabled type="button" onClick={() => { }}>
+                {'View'}
+              </button>
+            )
+          }
         </div>
         <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
           {this.renderPurchaseOrderTextBox()}
