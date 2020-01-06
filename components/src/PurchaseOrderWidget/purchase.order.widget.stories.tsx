@@ -37,5 +37,11 @@ storiesOf('Components|PurchaseOrderWidget', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('Purchase Order Widget', () => {
-    return <PurchaseOrderWidget timeoutBeforeVerify={1000} />;
+    const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
+    const onViewClickedFuncText = text('onViewClicked', '() => {alert("onViewClicked invoked")}');
+    return <PurchaseOrderWidget
+      timeoutBeforeVerify={1000}
+      onPayWithPO={() => { textToFunc(onPayWithPOFuncText); }}
+      onViewClicked={() => { textToFunc(onViewClickedFuncText); }}
+    />;
   });

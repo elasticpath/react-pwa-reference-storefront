@@ -8,6 +8,10 @@ The parameter `timeoutBeforeVerify` controls how long after the user stops typin
 
 At the moment the component does not check validity of the PO number against cortex or any third party service.  It has been programmed to simluate validating numbers `1234`, `2345`, `3456`.  When placed into a real implementation parts of this code should be taken out.  Comments in the code will guide how to do that.
 
+onPayWithPO is a callback invoked once the `Pay With PO` button is pressed.
+
+onViewClicked is a callback invoked once the `View` button in the top right is clicked after PO number validation.
+
 
 #### Usage
 
@@ -18,7 +22,7 @@ import { PurchaseOrderWidget } from '@elasticpath/store-components';
 #### Example
 
 ```js
-<PurchaseOrderWidget />
+<PurchaseOrderWidget timeoutBeforeVerify={1000} onPayWithPO={() => {}} onViewClicked={() => {}} />
 ```
 
 #### Properties

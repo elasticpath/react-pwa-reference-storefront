@@ -45,7 +45,9 @@ interface PurchaseOrderWidgetState {
 }
 
 interface PurchaseOrderWidgetProps {
-  timeoutBeforeVerify: number;
+  timeoutBeforeVerify: number,
+  onPayWithPO: (...args: any[]) => any,
+  onViewClicked?: (...args: any[]) => any,
 }
 
 class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, PurchaseOrderWidgetState> {
@@ -63,6 +65,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     this.verifyPONumber = this.verifyPONumber.bind(this);
     this.renderInputStatus = this.renderInputStatus.bind(this);
     this.updateInputState = this.updateInputState.bind(this);
+    this.showMorePODetails = this.showMorePODetails.bind(this);
   }
 
   clearIsTypingTimer(event) {
@@ -146,8 +149,19 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     );
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  showMorePODetails() {
+    // TODO: Need to implement function that shows the PO details modal.
+    const { onViewClicked } = this.props;
+
+    if (onViewClicked) {
+      onViewClicked();
+    }
+  }
+
   render() {
     const { inputStatus } = this.state;
+    const { onPayWithPO } = this.props;
 
     return (
       <div className="purchase-order-widget-container">
@@ -157,11 +171,11 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
           </h2>
           {
             inputStatus === POInputStates.VERIFIED ? (
-              <button className="view-button active" type="button" onClick={() => { }}>
+              <button className="view-button active" type="button" onClick={this.showMorePODetails}>
                 {'View'}
               </button>
             ) : (
-              <button className="view-button inactive" disabled type="button" onClick={() => { }}>
+              <button className="view-button inactive" disabled type="button" onClick={this.showMorePODetails}>
                 {'View'}
               </button>
             )
@@ -170,7 +184,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
         <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
           {this.renderPurchaseOrderTextBox()}
         </div>
-        <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={() => {}}>
+        <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={onPayWithPO}>
           {'Pay with PO'}
         </button>
       </div>);
