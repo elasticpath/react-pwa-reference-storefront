@@ -5,7 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.7.7",
-    "@elasticpath/store-components": "^1.1.48",
     "@react-workspaces/react-scripts": "^3.0.1-alpha-07",
     "@svgr/webpack": "4.3.0",
     "@types/react": "^16.8.23",
@@ -99,7 +98,8 @@
     "test": "node scripts/test.js src/test",
     "lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe",
     "deploy": "aws s3 sync build/ s3://ref-store-new",
-    "storybook": "cd storybook && yarn storybook"
+    "storybook": "export NODE_OPTIONS=--max_old_space_size=2048 && cd storybook && start-storybook -p 9009",
+    "build-storybook": "cd storybook && build-storybook"
   },
   "browserslist": {
     "production": [
