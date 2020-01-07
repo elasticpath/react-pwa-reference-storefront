@@ -47,6 +47,12 @@ const zoomArray = [
   'defaultprofile:emails:profile',
   'defaultprofile:addresses:element',
   'defaultprofile:addresses:billingaddresses:default',
+
+  // zoom for payments ep version > 7.6
+  'defaultprofile:paymentinstruments:element',
+  'defaultprofile:paymentinstruments:default',
+
+  'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods',
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
@@ -80,6 +86,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     this.handleNewAddress = this.handleNewAddress.bind(this);
     this.handleEditAddress = this.handleEditAddress.bind(this);
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
+    this.renderPayments = this.renderPayments.bind(this);
   }
 
   componentDidMount() {
@@ -181,6 +188,19 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     );
   }
 
+  renderPayments() {
+    const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
+
+    if (profileData._paymentmethods) {
+      if (profileData._paymentinstruments) {
+        return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} paymentInstruments={profileData._paymentinstruments[0]} onChange={this.fetchProfileData} />;
+      }
+      return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />;
+    }
+
+    return null;
+  }
+
   render() {
     const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
 
@@ -232,9 +252,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 </h3>
                 <div className="profile-info-col">
                   <div className="profile-info-block">
-                    {(profileData._paymentmethods) ? (
-                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />
-                    ) : ('')}
+                    {this.renderPayments()}
                   </div>
                 </div>
               </div>
