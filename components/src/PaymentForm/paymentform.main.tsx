@@ -331,6 +331,22 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill) {
+    const {
+      cardType, cardHolderName, cardNumber,
+    } = this.state;
+
+    let card;
+    switch (cardType) {
+      case '001':
+        card = 'Visa';
+        break;
+      case '002':
+        card = 'MasterCard';
+        break;
+      default:
+        card = 'American Express';
+    }
+
     const keys = Object.keys(paymentInstrumentFormFieldsToFill);
     const formFieldsToFill = paymentInstrumentFormFieldsToFill;
 
@@ -338,7 +354,11 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       const cKey = keys[i];
 
       if (typeof paymentInstrumentFormFieldsToFill[cKey] === 'string') {
-        formFieldsToFill[cKey] = PaymentFormMain.generateToken();
+        if (cKey === 'display-name') {
+          formFieldsToFill[cKey] = `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`;
+        } else {
+          formFieldsToFill[cKey] = PaymentFormMain.generateToken();
+        }
       } else {
         formFieldsToFill[cKey] = this.fillPaymentInstrumentFormFields(formFieldsToFill[cKey]);
       }
