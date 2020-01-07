@@ -69,6 +69,8 @@ const zoomArray = [
   'order:paymentmethodinfo:paymentmethod',
   'order:paymentmethodinfo:selector:choice',
   'order:paymentmethodinfo:selector:choice:description',
+  // zooms for payment plugin update
+  'order:paymentinstrumentselector:chosen:description',
 ];
 
 interface MatchParams {
@@ -565,6 +567,11 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         })
       );
     }
+
+    if (orderData._order[0]._paymentinstrumentselector) {
+      return orderData._order[0]._paymentinstrumentselector[0]._chosen[0]._description[0].name;
+    }
+
     return (
       <div>
         <p>
