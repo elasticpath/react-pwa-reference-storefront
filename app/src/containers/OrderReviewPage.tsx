@@ -160,6 +160,7 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
     });
     const purchaseZoomArray = [
       'paymentmeans:element',
+      'paymentinstruments:element',
       'postedpayments:element',
       'shipments:element:destination',
       'shipments:element:shippingoption',

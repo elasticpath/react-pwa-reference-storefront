@@ -31,7 +31,7 @@ function PaymentMethodContainer(props: PaymentMethodContainerProps) {
   const displayAppliedAmount = (displayName['applied-amount-display']) ? (` - ${displayName['applied-amount-display'] || ''}`) : '';
   const displayTransactionType = (displayName['transaction-type']) ? (` - ${displayName['transaction-type'] || ''}`) : '';
 
-  let displayNameVar = displayName['display-value'] || displayName['display-name'];
+  let displayNameVar = displayName['display-value'] || displayName['display-name'] || displayName.name;
   if (!displayNameVar) {
     displayNameVar = `${displayName.provider.toLowerCase().replace(/_/g, ' ')}`;
   }
