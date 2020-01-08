@@ -110,7 +110,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   doesPaymentInstrumentFormExist(paymentInstrumentForm) {
-    console.log(paymentInstrumentForm);
     if (paymentInstrumentForm._defaultprofile || paymentInstrumentForm._defaultcart) {
       this.setState({ doesPaymentInstrumentResourceExist: true });
       return true;
