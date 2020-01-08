@@ -31,7 +31,7 @@ let intl = { get: str => str };
 const today = new Date();
 
 interface PaymentFormMainProps {
-  /** dictates whether to add tokenized payment data to the profile resource or checkout resource. */
+  /** dictates whether to add tokenized payment data to the profile resource or order resource. */
   shouldPostToProfile: boolean,
   /** handle close modal */
   onCloseModal?: (...args: any[]) => any,
@@ -50,9 +50,10 @@ interface PaymentFormMainState {
     showSaveToProfile: boolean,
     saveToProfile: boolean,
     failedSubmit: boolean,
-    paymentInstrumentFormFieldsToFill: object;
-    submitPaymentFormOrderUri: string;
-    submitPaymentFormProfileUri: string;
+    paymentInstrumentFormFieldsToFill: object,
+    submitPaymentFormOrderUri: string,
+    submitPaymentFormProfileUri: string,
+    doesPaymentInstrumentResourceExist: boolean,
 }
 
 class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainState> {
@@ -83,6 +84,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       paymentInstrumentFormFieldsToFill: {},
       submitPaymentFormOrderUri: '',
       submitPaymentFormProfileUri: '',
+      doesPaymentInstrumentResourceExist: true,
     };
 
     this.setCardType = this.setCardType.bind(this);
@@ -95,7 +97,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.submitPayment = this.submitPayment.bind(this);
     this.setPaymentInstrumentFormFieldsToFill = this.setPaymentInstrumentFormFieldsToFill.bind(this);
     this.fillPaymentInstrumentFormFields = this.fillPaymentInstrumentFormFields.bind(this);
-    this.setSubmitPaymentFormUri = this.setSubmitPaymentFormUri.bind(this);
+    this.setSubmitPaymentForm = this.setSubmitPaymentForm.bind(this);
     this.makeSubmitPaymentRequest = this.makeSubmitPaymentRequest.bind(this);
     this.initializeState = this.initializeState.bind(this);
     this.areCreditCardFieldsValid = this.areCreditCardFieldsValid.bind(this);
@@ -103,23 +105,40 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.setShouldShowSaveToProfile = this.setShouldShowSaveToProfile.bind(this);
     this.cancel = this.cancel.bind(this);
     this.formRef = React.createRef<HTMLFormElement>();
+    this.makeSubmitPaymentMethodRequest = this.makeSubmitPaymentMethodRequest.bind(this);
+    this.doesPaymentInstrumentFormExist = this.doesPaymentInstrumentFormExist.bind(this);
+  }
+
+  doesPaymentInstrumentFormExist(paymentInstrumentForm) {
+    console.log(paymentInstrumentForm);
+    if (paymentInstrumentForm._defaultprofile || paymentInstrumentForm._defaultcart) {
+      this.setState({ doesPaymentInstrumentResourceExist: true });
+      return true;
+    }
+    this.setState({ doesPaymentInstrumentResourceExist: false });
+    return false;
   }
 
   async initializeState() {
     const paymentInstrumentForm = await PaymentFormMain.fetchPaymentInstrumentForm();
     this.setShouldShowSaveToProfile();
-    this.setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm);
-    this.setSubmitPaymentFormUri(paymentInstrumentForm);
+    this.setSubmitPaymentForm(paymentInstrumentForm);
   }
 
   async componentDidMount() {
     this.initializeState();
   }
 
-  setSubmitPaymentFormUri(paymentInstrumentForm) {
-    const submitPaymentFormOrderUri = PaymentFormMain.parseOrderPaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
-    const submitPaymentFormProfileUri = PaymentFormMain.parseProfilePaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
-    this.setState({ submitPaymentFormProfileUri, submitPaymentFormOrderUri });
+  setSubmitPaymentForm(paymentInstrumentForm) {
+    if (this.doesPaymentInstrumentFormExist(paymentInstrumentForm)) {
+      const submitPaymentFormOrderUri = PaymentFormMain.parseOrderPaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
+      const submitPaymentFormProfileUri = PaymentFormMain.parseProfilePaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
+      this.setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm);
+      this.setState({ submitPaymentFormProfileUri, submitPaymentFormOrderUri });
+    } else {
+      // Using Pre Cortex 7.6 legacy paymentmethodform endpoints.
+      this.fetchPaymentMethodsForm();
+    }
   }
 
   setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm) {
@@ -262,6 +281,61 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     return Math.random().toString(36).substr(2, 9);
   }
 
+  makeSubmitPaymentMethodRequest(link) {
+    const {
+      fetchData,
+      onCloseModal,
+    } = this.props;
+
+    const {
+      cardHolderName,
+      cardNumber,
+      cardType,
+    } = this.state;
+
+    const card = PaymentFormMain.findCardTypeFromCode(cardType);
+
+    login().then(() => {
+      cortexFetch(link, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({
+          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
+          token: Math.random()
+            .toString(36)
+            .substr(2, 9),
+          /* token is being randomly generated here to be passed to the demo payment gateway
+          ** in a true implementation this token should be received from the actual payment gateway
+          ** when doing so, make sure you're compliant with PCI DSS
+          */
+        }),
+      })
+        .then((res) => {
+          this.setState({
+            showLoader: false,
+          });
+          if (res.status === 400) {
+            this.setState({ failedSubmit: true });
+          } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+            this.setState({ failedSubmit: false }, () => {
+              fetchData();
+              onCloseModal();
+            });
+          }
+        })
+        .catch((error) => {
+          this.setState({
+            showLoader: false,
+          });
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
   /**
    *  NOTE:
    *  This function makes a post request to the paymentinstrumentform resource in either the profile or orders resource depending on logged in status
@@ -278,44 +352,49 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       submitPaymentFormOrderUri,
       submitPaymentFormProfileUri,
       saveToProfile,
+      doesPaymentInstrumentResourceExist,
     } = this.state;
 
-    const formFieldsFilled = this.fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill);
+    let submitPaymentFormUri;
 
-    try {
-      let submitPaymentFormUri;
+    if (shouldPostToProfile || saveToProfile) {
+      submitPaymentFormUri = submitPaymentFormProfileUri;
+    } else {
+      submitPaymentFormUri = submitPaymentFormOrderUri;
+    }
 
-      if (shouldPostToProfile || saveToProfile) {
-        submitPaymentFormUri = submitPaymentFormProfileUri;
-      } else {
-        submitPaymentFormUri = submitPaymentFormOrderUri;
-      }
+    if (doesPaymentInstrumentResourceExist) {
+      const formFieldsFilled = this.fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill);
 
-      const addPaymentResponse = await cortexFetch(submitPaymentFormUri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(formFieldsFilled),
+      try {
+        const addPaymentResponse = await cortexFetch(submitPaymentFormUri,
+          {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+            body: JSON.stringify(formFieldsFilled),
+          });
+
+        this.setState({
+          showLoader: false,
         });
 
-      this.setState({
-        showLoader: false,
-      });
-
-      if (addPaymentResponse.status === 400) {
-        this.setState({ failedSubmit: true });
-      } else if (addPaymentResponse.status === 201 || addPaymentResponse.status === 200 || addPaymentResponse.status === 204) {
-        this.setState({ failedSubmit: false }, () => {
-          fetchData();
-          onCloseModal();
-        });
+        if (addPaymentResponse.status === 400) {
+          this.setState({ failedSubmit: true });
+        } else if (addPaymentResponse.status === 201 || addPaymentResponse.status === 200 || addPaymentResponse.status === 204) {
+          this.setState({ failedSubmit: false }, () => {
+            fetchData();
+            onCloseModal();
+          });
+        }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
       }
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(err);
+    } else {
+      this.makeSubmitPaymentMethodRequest(submitPaymentFormUri);
     }
   }
 
@@ -330,13 +409,9 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     }
   }
 
-  fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill) {
-    const {
-      cardType, cardHolderName, cardNumber,
-    } = this.state;
-
+  static findCardTypeFromCode(code) {
     let card;
-    switch (cardType) {
+    switch (code) {
       case '001':
         card = 'Visa';
         break;
@@ -346,6 +421,16 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       default:
         card = 'American Express';
     }
+
+    return card;
+  }
+
+  fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill) {
+    const {
+      cardType, cardHolderName, cardNumber,
+    } = this.state;
+
+    const card = PaymentFormMain.findCardTypeFromCode(cardType);
 
     const keys = Object.keys(paymentInstrumentFormFieldsToFill);
     const formFieldsToFill = paymentInstrumentFormFieldsToFill;
@@ -382,6 +467,31 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       );
     }
     return options;
+  }
+
+  /** Note that this fetches the legacy form.. pre 7.6. */
+  fetchPaymentMethodsForm() {
+    login().then(() => {
+      cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          const paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
+            link => link.rel === 'createpaymenttokenaction',
+          );
+          const orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
+            link => link.rel === 'createpaymenttokenfororderaction',
+          );
+          this.setState({
+            submitPaymentFormProfileUri: paymentFormLink.uri,
+            submitPaymentFormOrderUri: orderPaymentFormLink.uri,
+          });
+        });
+    });
   }
 
   render() {
