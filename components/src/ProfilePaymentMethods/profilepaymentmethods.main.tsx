@@ -89,7 +89,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
   renderDefaultPaymentInstrument() {
     const { paymentInstruments } = this.props;
 
-    if (paymentInstruments._default) {
+    if (paymentInstruments && paymentInstruments._default) {
       return (
         <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
           <li className="profile-payment-method-container">
@@ -112,7 +112,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
   renderPaymentMethods() {
     const { paymentMethods, paymentInstruments } = this.props;
 
-    if (paymentInstruments._element) {
+    if (paymentInstruments && paymentInstruments._element) {
       return (
         paymentInstruments._element.map((paymentElement) => {
           const displayName = paymentElement.name;
