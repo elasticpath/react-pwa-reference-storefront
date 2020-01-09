@@ -127,7 +127,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         this.handleCartModalOpen();
         this.getAccountData();
       }
-      if (Config.b2b.enabled && Config.b2b.openId && Config.b2b.openId.enable) {
+      if (Config.b2b.enable && Config.b2b.openId && Config.b2b.openId.enable) {
         this.login();
       }
     }
