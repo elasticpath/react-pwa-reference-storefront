@@ -127,7 +127,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         this.handleCartModalOpen();
         this.getAccountData();
       }
-      if (Config.b2b.openId && Config.b2b.openId.enable) {
+      if (Config.b2b.enabled && Config.b2b.openId && Config.b2b.openId.enable) {
         this.login();
       }
     }
@@ -163,19 +163,30 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
     }
 
     static async discoverOIDCParameters() {
-      const data = await adminFetch(oidcDiscoveryEndpoint, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-        },
-      });
-      const res = await data.json();
-      return {
-        clientId: res.account_management_client_id,
-        scopes: res.account_management_required_scopes,
-        authorizationEndpoint: res.authorization_endpoint,
-        endSessionEndpoint: res.end_session_endpoint,
-      };
+      try {
+        const data = await adminFetch(oidcDiscoveryEndpoint, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          },
+        });
+        const res = await data.json();
+        return {
+          clientId: res.account_management_client_id,
+          scopes: res.account_management_required_scopes,
+          authorizationEndpoint: res.authorization_endpoint,
+          endSessionEndpoint: res.end_session_endpoint,
+        };
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        return {
+          clientId: '',
+          scopes: '',
+          authorizationEndpoint: '',
+          endSessionEndpoint: '',
+        };
+      }
     }
 
     logoutRegisteredUser() {
