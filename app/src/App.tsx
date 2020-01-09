@@ -133,11 +133,10 @@ const VersionContainer = (props) => {
   );
 };
 
-const Root = (props) => {
-  const { componentsData } = props;
+const Root = () => {
   const { error } = React.useContext(ErrorContext);
   return [
-    <VersionContainer key="version-container" componentsVersion={componentsData.version} appVersion={packageJson.version} />,
+    <VersionContainer key="version-container" appVersion={packageJson.version} />,
     <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
     <AppHeaderMain
       key="app-header"
