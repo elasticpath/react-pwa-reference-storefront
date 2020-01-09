@@ -123,6 +123,14 @@
   display: table;
   width: 100%;
 
+  &-wrap {
+    margin-bottom: 50px;
+
+    @media (min-width: @mobileWidth) {
+      margin-bottom: 100px;
+    }
+  }
+
   &-item {
     display: grid;
     position: relative;

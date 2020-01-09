@@ -313,12 +313,14 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             </Link>
           </div>
 
-          <div className="links-container">
-            <RequisitionListsLink />
-            <Link to={appHeaderLinks.mainPage} className="link-item">
-              {intl.get('order-history')}
-            </Link>
-          </div>
+          {isLoggedInUser && Config.b2b.req_list && (
+            <div className="links-container">
+              <RequisitionListsLink />
+              <Link to={appHeaderLinks.mainPage} className="link-item">
+                {intl.get('order-history')}
+              </Link>
+            </div>
+          )}
 
           <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
         </div>

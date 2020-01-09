@@ -775,7 +775,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 <div>
                   <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
                     {productData._definition[0]['display-name']}
-                    <Link to="/b2b/requisition-list-item" className="add-to-wish-list-link">+ Add to Wishlist</Link>
+                    {Config.b2b.req_list && ProductDisplayItemMain.isLoggedIn(Config) && (
+                      <button type="button" className="add-to-wish-list-link" onClick={this.addToWishList} disabled={!availability || !productData._addtowishlistform}>
+                        +
+                        {' '}
+                        {intl.get('add-to-wish-list')}
+                      </button>
+                    )}
                   </h1>
                   {(Config.b2b.enable) && (
                     <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
@@ -887,7 +893,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
-                        {requisitionListData ? (
+                        {requisitionListData && Config.b2b.req_list ? (
                           <SelectRequisitionListButton />
                         ) : (
                           <div className="form-content form-content-submit col-sm-offset-4">

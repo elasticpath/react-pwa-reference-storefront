@@ -2,7 +2,7 @@
   "cortexApi": {
     "path": "/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://10.11.12.22:9080",
+    "pathForProxy": "http://localhost:9080",
     "reqTimeout": "30000"
   },
   "supportedLocales": [
@@ -31,11 +31,12 @@
   "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "enableOfflineMode": false,
   "b2b": {
-    "enable": true,
-    "accounts": true,
+    "enable": false,
+    "accounts": false,
+    "req_list": false,
     "authServiceAPI": {
-      "path": "/admin",
-      "pathForProxy": "https://api.qa.am.reference.elasticpath.com",
+      "path": "",
+      "pathForProxy": "",
       "reqTimeout": "30000"
     },
     "openId": {
@@ -44,9 +45,9 @@
     },
     "keycloak": {
       "callbackUrl": "http://localhost:8080",
-      "loginRedirectUrl": "https://login.qa.am.reference.elasticpath.com/auth/realms/Commerce/protocol/openid-connect/auth",
-      "logoutRedirectUrl": "https://login.qa.am.reference.elasticpath.com/auth/realms/Commerce/protocol/openid-connect/logout",
-      "client_id": "account-management"
+      "loginRedirectUrl": "",
+      "logoutRedirectUrl": "",
+      "client_id": ""
     }
   },
   "gaTrackingId": "",
