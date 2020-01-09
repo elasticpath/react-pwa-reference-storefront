@@ -32,14 +32,13 @@
   "enableOfflineMode": false,
   "b2b": {
     "enable": false,
-    "accounts": false,
     "authServiceAPI": {
       "path": "",
       "pathForProxy": "",
       "reqTimeout": "30000"
     },
     "openId": {
-      "enable": false,
+      "enable": true,
       "callbackUrl": "http://localhost:8080"
     },
     "keycloak": {
