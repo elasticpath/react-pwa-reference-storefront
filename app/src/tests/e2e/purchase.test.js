@@ -186,6 +186,7 @@ describe('Purchase feature', () => {
     ]);
 
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
+    await page.waitFor(2000);
     await page.click(ADD_NEW_ADDRESS_CSS);
 
     const address = {

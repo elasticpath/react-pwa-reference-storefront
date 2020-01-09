@@ -135,7 +135,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
     async login() {
       const oidcSecret = uuidv4();
       localStorage.setItem('OidcSecret', oidcSecret);
-      const oidcParameters: OidcParameters = await this.discoverOIDCParameters();
+      const oidcParameters: OidcParameters = await AppHeaderLoginMain.discoverOIDCParameters();
       this.setState({
         oidcParameters,
       });
@@ -162,8 +162,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       });
     }
 
-    // eslint-disable-next-line class-methods-use-this
-    async discoverOIDCParameters() {
+    static async discoverOIDCParameters() {
       const data = await adminFetch(oidcDiscoveryEndpoint, {
         headers: {
           'Content-Type': 'application/json',
