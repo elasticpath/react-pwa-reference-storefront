@@ -86,29 +86,6 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
     this.setState({ openNewPaymentModal: true });
   }
 
-  renderDefaultPaymentInstrument() {
-    const { paymentInstruments } = this.props;
-
-    if (paymentInstruments && paymentInstruments._default) {
-      return (
-        <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
-          <li className="profile-payment-method-container">
-            <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
-              <span data-el-value="payment.token" className="payment-method-container">
-                {paymentInstruments._default[0].name}
-              </span>
-            </div>
-            <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentInstruments._default[0].self.uri); }}>
-              {intl.get('delete')}
-            </button>
-          </li>
-        </ul>
-      );
-    }
-
-    return null;
-  }
-
   renderPaymentMethods() {
     const { paymentMethods, paymentInstruments } = this.props;
 
@@ -168,7 +145,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
     const {
       paymentMethods, onChange, disableAddPayment,
     } = this.props;
-    const isDisabled = !paymentMethods._paymenttokenform;
+
     if (paymentMethods) {
       return (
         <div className="paymentMethodsRegions" data-region="paymentMethodsRegion" style={{ display: 'block' }}>
@@ -176,9 +153,8 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
             <h2>
               {intl.get('payment-methods')}
             </h2>
-            {this.renderDefaultPaymentInstrument()}
             {this.renderPaymentMethods()}
-            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={isDisabled || disableAddPayment} onClick={() => { this.newPayment(); }}>
+            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={disableAddPayment} onClick={() => { this.newPayment(); }}>
               {intl.get('add-new-payment-method')}
             </button>
             <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
@@ -191,7 +167,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
                   </div>
                   <div className="modal-body">
                     <PaymentFormMain
-                      shouldPostToProfile
+                      defaultPostSelection
                       onCloseModal={this.handleCloseNewPaymentModal}
                       fetchData={onChange}
                     />

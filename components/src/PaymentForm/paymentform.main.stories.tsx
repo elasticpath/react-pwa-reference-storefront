@@ -42,7 +42,7 @@ storiesOf('Components|PaymentFormMain', module)
 
     return (
       <PaymentFormMain
-        shouldPostToProfile
+        defaultPostSelection
         onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
         fetchData={() => { textToFunc(fetchDataFuncText); }}
       />
@@ -69,7 +69,7 @@ storiesOf('Components|PaymentFormMain', module)
 
     return (
       <PaymentFormMain
-        shouldPostToProfile
+        defaultPostSelection
         onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
         fetchData={() => { textToFunc(fetchDataFuncText); }}
       />

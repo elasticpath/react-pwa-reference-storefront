@@ -191,11 +191,13 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
   renderPayments() {
     const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
 
+    const disableAddPayment = false;
+
     if (profileData._paymentmethods) {
       if (profileData._paymentinstruments) {
-        return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} paymentInstruments={profileData._paymentinstruments[0]} onChange={this.fetchProfileData} />;
+        return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} paymentInstruments={profileData._paymentinstruments[0]} onChange={this.fetchProfileData} disableAddPayment={disableAddPayment} />;
       }
-      return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} />;
+      return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} disableAddPayment={disableAddPayment} />;
     }
 
     return null;

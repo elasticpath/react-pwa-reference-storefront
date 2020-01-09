@@ -32,11 +32,15 @@ const today = new Date();
 
 interface PaymentFormMainProps {
   /** dictates whether to add tokenized payment data to the profile resource or order resource. */
-  shouldPostToProfile: boolean,
+  defaultPostSelection: boolean,
   /** handle close modal */
   onCloseModal?: (...args: any[]) => any,
   /** handle fetch data */
   fetchData?: (...args: any[]) => any,
+  /** Toggles whether or not to show a checkbox that allows user to save payment to profile.
+   *  Only shown if defaultPostSelection is set to false.
+   */
+  showSaveToProfileOption: boolean,
 }
 
 interface PaymentFormMainState {
@@ -47,7 +51,6 @@ interface PaymentFormMainState {
     expiryMonth: number,
     expiryYear: number,
     securityCode: string,
-    showSaveToProfile: boolean,
     saveToProfile: boolean,
     failedSubmit: boolean,
     paymentInstrumentFormFieldsToFill: object,
@@ -60,7 +63,8 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   static defaultProps = {
     onCloseModal: () => {},
     fetchData: () => {},
-    shouldPostToProfile: false,
+    defaultPostSelection: false,
+    showSaveToProfileOption: false,
   }
 
   formRef: React.RefObject<HTMLFormElement>;
@@ -78,7 +82,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       expiryMonth: today.getMonth() + 1,
       expiryYear: today.getFullYear(),
       securityCode: '',
-      showSaveToProfile: true,
       saveToProfile: false,
       failedSubmit: false,
       paymentInstrumentFormFieldsToFill: {},
@@ -102,7 +105,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.initializeState = this.initializeState.bind(this);
     this.areCreditCardFieldsValid = this.areCreditCardFieldsValid.bind(this);
     this.parsePaymentInstrumentFormFieldsFromResponse = this.parsePaymentInstrumentFormFieldsFromResponse.bind(this);
-    this.setShouldShowSaveToProfile = this.setShouldShowSaveToProfile.bind(this);
+    this.shouldShowSaveToProfile = this.shouldShowSaveToProfile.bind(this);
     this.cancel = this.cancel.bind(this);
     this.formRef = React.createRef<HTMLFormElement>();
     this.makeSubmitPaymentMethodRequest = this.makeSubmitPaymentMethodRequest.bind(this);
@@ -120,7 +123,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
 
   async initializeState() {
     const paymentInstrumentForm = await PaymentFormMain.fetchPaymentInstrumentForm();
-    this.setShouldShowSaveToProfile();
     this.setSubmitPaymentForm(paymentInstrumentForm);
   }
 
@@ -145,12 +147,14 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.setState({ paymentInstrumentFormFieldsToFill: paymentFormFieldsToFill });
   }
 
-  async setShouldShowSaveToProfile() {
-    const { shouldPostToProfile } = this.props;
+  shouldShowSaveToProfile() {
+    const { defaultPostSelection, showSaveToProfileOption } = this.props;
 
-    if (shouldPostToProfile || localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
-      this.setState({ showSaveToProfile: false });
+    if (!defaultPostSelection && showSaveToProfileOption) {
+      return true;
     }
+
+    return false;
   }
 
   static parseOrderPaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
@@ -170,9 +174,9 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    const { shouldPostToProfile } = this.props;
+    const { defaultPostSelection } = this.props;
 
-    if (shouldPostToProfile !== prevProps.shouldPostToProfile) {
+    if (defaultPostSelection !== prevProps.defaultPostSelection) {
       this.initializeState();
     }
   }
@@ -207,10 +211,10 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
   }
 
   parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm) {
-    const { shouldPostToProfile } = this.props;
+    const { defaultPostSelection } = this.props;
     let zoomResult;
 
-    if (shouldPostToProfile) {
+    if (defaultPostSelection) {
       // eslint-disable-next-line prefer-destructuring
       zoomResult = paymentInstrumentForm._defaultprofile[0]._paymentmethods[0]._element[0]._paymentinstrumentform[0];
     } else {
@@ -344,7 +348,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     const {
       fetchData,
       onCloseModal,
-      shouldPostToProfile,
+      defaultPostSelection,
     } = this.props;
     const {
       paymentInstrumentFormFieldsToFill,
@@ -356,7 +360,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
 
     let submitPaymentFormUri;
 
-    if (shouldPostToProfile || saveToProfile) {
+    if (defaultPostSelection || saveToProfile) {
       submitPaymentFormUri = submitPaymentFormProfileUri;
     } else {
       submitPaymentFormUri = submitPaymentFormOrderUri;
@@ -495,7 +499,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
 
   render() {
     const {
-      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader, showSaveToProfile,
+      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader,
     } = this.state;
 
     return (
@@ -608,7 +612,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
             </div>
           </div>
 
-          { showSaveToProfile
+          { this.shouldShowSaveToProfile()
             ? (
               <div className="form-group save-to-profile-group" data-el-label="payment.saveToProfileFormGroup">
                 <div className="form-input">

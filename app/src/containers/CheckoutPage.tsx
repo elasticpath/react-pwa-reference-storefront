@@ -605,7 +605,12 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                 </h2>
               </div>
               <div className="modal-body">
-                <PaymentFormMain shouldPostToProfile={false} onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
+                {
+                  localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC' ? (
+                    <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption={false} onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />)
+                    : (
+                      <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />)
+                }
               </div>
             </div>
           </div>
