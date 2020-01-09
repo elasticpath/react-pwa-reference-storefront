@@ -189,7 +189,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
   }
 
   renderPayments() {
-    const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
+    const { profileData } = this.state;
 
     const disableAddPayment = false;
 

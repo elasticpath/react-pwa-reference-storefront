@@ -70,6 +70,8 @@ const zoomArray = [
   'order:paymentmethodinfo:selector:choice',
   'order:paymentmethodinfo:selector:choice:description',
   // zooms for payment plugin update
+  'order:paymentinstrumentselector:choice',
+  'order:paymentinstrumentselector:choice:description',
   'order:paymentinstrumentselector:chosen:description',
 ];
 
@@ -109,6 +111,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
     this.fetchOrderData = this.fetchOrderData.bind(this);
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
+    this.renderPaymentInstrumentSelector = this.renderPaymentInstrumentSelector.bind(this);
   }
 
   componentDidMount() {
@@ -541,35 +544,12 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         });
       }
       return (
-        paymentMethods.map((payment) => {
-          const {
-            checked, deletable, selectaction,
-          } = payment;
-          return (
-            <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
-              <div className="payment-ctrl-cell" data-region="paymentSelector">
-                <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
-                <label htmlFor="paymentMethod">
-                  <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
-                    <PaymentMethodContainer displayName={payment} />
-                  </div>
-                </label>
-              </div>
-              {deletable && (
-                <div className="payment-btn-cell">
-                  <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
-                    Delete
-                  </button>
-                </div>
-              )}
-            </div>
-          );
-        })
+        paymentMethods.map(payment => this.renderPaymentChoice(payment))
       );
     }
 
     if (orderData._order[0]._paymentinstrumentselector) {
-      return orderData._order[0]._paymentinstrumentselector[0]._chosen[0]._description[0].name;
+      return this.renderPaymentInstrumentSelector(orderData._order[0]._paymentinstrumentselector[0]);
     }
 
     return (
@@ -578,6 +558,57 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
           {intl.get('no-saved-payment-method-message')}
         </p>
       </div>
+    );
+  }
+
+  renderPaymentChoice(payment) {
+    const {
+      checked, deletable, selectaction,
+    } = payment;
+
+    return (
+      <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
+        <div className="payment-ctrl-cell" data-region="paymentSelector">
+          <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+          <label htmlFor="paymentMethod">
+            <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
+              <PaymentMethodContainer displayName={payment} />
+            </div>
+          </label>
+        </div>
+        {deletable && (
+          <div className="payment-btn-cell">
+            <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
+              Delete
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  renderPaymentInstrumentSelector(paymentInstrumentSelector) {
+    const paymentMethods = [];
+    if (paymentInstrumentSelector._chosen) {
+      const [description] = paymentInstrumentSelector._chosen;
+      description.checked = true;
+      description.deletable = false;
+      paymentMethods.push(description);
+    }
+    if (paymentInstrumentSelector._choice) {
+      const choices = paymentInstrumentSelector._choice;
+      choices.map((choice) => {
+        const [description] = choice._description;
+        description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
+        description.checked = false;
+        description.deletable = true;
+        paymentMethods.push(description);
+        return description;
+      });
+    }
+
+    return (
+      paymentMethods.map(payment => this.renderPaymentChoice(payment))
     );
   }
 
