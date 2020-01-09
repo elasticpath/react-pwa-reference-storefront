@@ -133,10 +133,11 @@ const VersionContainer = (props) => {
   );
 };
 
-const Root = () => {
+const Root = (props) => {
+  const { componentsData } = props;
   const { error } = React.useContext(ErrorContext);
   return [
-    <VersionContainer key="version-container" appVersion={packageJson.version} />,
+    <VersionContainer key="version-container" componentsVersion={componentsData.version} appVersion={packageJson.version} />,
     <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
     <AppHeaderMain
       key="app-header"
@@ -178,7 +179,7 @@ const AppWithRouter = (props) => {
         <CountProvider>
           <Switch>
             <Route path="/loggedin" exact component={LoginRedirectPage} />
-            <Route path="/" exact={false} component={App} componentsData={componentsData} />
+            <Route path="/" exact={false} render={passedProps => <App {...passedProps} componentsData={componentsData} />} />
           </Switch>
         </CountProvider>
       </ErrorDisplayBoundary>
