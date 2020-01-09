@@ -239,7 +239,7 @@ class SearchResultsItemsMain extends Component<SearchResultsItemsMainProps, Sear
     const products = searchResultsModel._items ? searchResultsModel._items[0] : searchResultsModel;
     const noProducts = !products._element;
     const searchKeywordString = searchKeywords;
-    const propCompareButton = false;
+    const propCompareButton = true;
     return (
       <div className="category-items-container container-3">
         <div data-region="categoryTitleRegion">

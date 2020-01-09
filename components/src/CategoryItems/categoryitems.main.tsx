@@ -261,6 +261,7 @@ class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsM
     }
     const categoryModelIdString = categoryModelId;
     noProducts = !products || !products._element || !products.pagination;
+    const propCompareButton = true;
 
     return (
       <div className="category-items-container container-3">
@@ -299,7 +300,7 @@ class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsM
                   <ProductListPagination paginationDataProps={products} titleString={categoryModelIdString} isTop productListPaginationLinks={productLinks} />
                   <div className={`${loadSortedProduct ? 'loading-product' : ''}`}>
                     <div className={`${loadSortedProduct ? 'sort-product-loader' : ''}`} />
-                    <ProductListMain productData={productList} productListLinks={productLinks} />
+                    <ProductListMain productData={productList} productListLinks={productLinks} showCompareButton={propCompareButton} />
                   </div>
                   <ProductListLoadMore dataProps={products} handleDataChange={this.handleProductsChange} onLoadMore={navigationLookup} />
                 </div>
