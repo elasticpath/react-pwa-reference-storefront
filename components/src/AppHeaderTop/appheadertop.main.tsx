@@ -30,22 +30,22 @@ let intl = { get: str => str };
 
 interface AppHeaderTopProps {
   /** is mobile view */
-    isMobileView?: boolean,
+  isMobileView?: boolean,
   /** handle currency change */
-    onCurrencyChange?: (...args: any[]) => any,
+  onCurrencyChange?: (...args: any[]) => any,
   /** handle locale change */
-    onLocaleChange?: (...args: any[]) => any,
+  onLocaleChange?: (...args: any[]) => any,
   /** links in app header top */
-    appHeaderTopLinks: {
-        [key: string]: any
-    }
+  appHeaderTopLinks: {
+    [key: string]: any
+  }
 }
 
 class AppHeaderTop extends Component<AppHeaderTopProps> {
   static defaultProps = {
     isMobileView: false,
-    onLocaleChange: () => {},
-    onCurrencyChange: () => {},
+    onLocaleChange: () => { },
+    onCurrencyChange: () => { },
   };
 
   constructor(props) {
@@ -69,6 +69,10 @@ class AppHeaderTop extends Component<AppHeaderTopProps> {
     return [
       <div key="AppHeaderTop" className={`top-header ${isMobileView ? 'mobile-view' : ''}`}>
         <div className={impersonating ? 'top-container-impersonation' : 'top-container'}>
+          <div className="locale-container">
+            <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
+          </div>
+
           {
             impersonating ? (
               <div className="impersonation-notification">
@@ -77,8 +81,25 @@ class AppHeaderTop extends Component<AppHeaderTopProps> {
               </div>
             ) : ''
           }
-          <div className="locale-container">
-            <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
+
+          <div className="top-container-menu">
+            <ul>
+              <li>
+                <Link to={appHeaderTopLinks.shippingreturns}>
+                  {intl.get('shipping-returns')}
+                </Link>
+              </li>
+              <li>
+                <Link to={appHeaderTopLinks.aboutus}>
+                  {intl.get('help')}
+                </Link>
+              </li>
+              <li>
+                <Link to={appHeaderTopLinks.contactus}>
+                  {intl.get('contact')}
+                </Link>
+              </li>
+            </ul>
           </div>
 
         </div>

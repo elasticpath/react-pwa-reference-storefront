@@ -33,7 +33,6 @@ import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg'
 import { ReactComponent as CartIcon } from '../../../app/src/images/header-icons/cart-icon.svg';
 import { ReactComponent as BulkCart } from '../../../app/src/images/header-icons/bulk-cart.svg';
 import { useCountState } from '../cart-count-context';
-import { useRequisitionListCountState } from '../requisition-list-count-context';
 
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
@@ -54,57 +53,57 @@ const zoomArray = [
 const headerLogoFileName = 'Company-Logo-v2.svg';
 interface AppHeaderMainProps {
   /** handle search page */
-    onSearchPage: (...args: any[]) => any,
+  onSearchPage: (...args: any[]) => any,
   /** handle redirect to main page */
-    redirectToMainPage: (...args: any[]) => any,
+  redirectToMainPage: (...args: any[]) => any,
   /** handle reset password */
-    handleResetPassword: (...args: any[]) => any,
+  handleResetPassword: (...args: any[]) => any,
   /** handle currency change */
-    onCurrencyChange: (...args: any[]) => any,
+  onCurrencyChange: (...args: any[]) => any,
   /** handle locale change */
-    onLocaleChange: (...args: any[]) => any,
+  onLocaleChange: (...args: any[]) => any,
   /** handle continue cart */
-    onContinueCart: (...args: any[]) => any,
+  onContinueCart: (...args: any[]) => any,
   /** handle go back */
-    onGoBack: (...args: any[]) => any,
+  onGoBack: (...args: any[]) => any,
   /** checked location */
-    checkedLocation: boolean,
+  checkedLocation: boolean,
   /** is in standalone mode */
-    isInStandaloneMode: boolean,
+  isInStandaloneMode: boolean,
   /** data location search */
-    locationSearchData: string,
+  locationSearchData: string,
   /** links in app header */
-    appHeaderLinks: {
-        [key: string]: any
-    },
+  appHeaderLinks: {
+    [key: string]: any
+  },
   /** links in app header login */
-    appHeaderLoginLinks: {
-        [key: string]: any
-    },
+  appHeaderLoginLinks: {
+    [key: string]: any
+  },
   /** links in app header navigation */
-    appHeaderNavigationLinks: {
-        [key: string]: any
-    },
+  appHeaderNavigationLinks: {
+    [key: string]: any
+  },
   /** links in app header top */
-    appHeaderTopLinks: {
-        [key: string]: any
-    },
+  appHeaderTopLinks: {
+    [key: string]: any
+  },
   /** links in app modal login */
-    appModalLoginLinks: {
-        [key: string]: any
-    },
+  appModalLoginLinks: {
+    [key: string]: any
+  },
 }
 
 interface AppHeaderMainState {
-    cartData: any,
-    isLoading: boolean,
-    isOffline: boolean,
-    isSearchFocused: boolean,
-    isBulkModalOpened: boolean,
-    multiCartData: any,
-    isDesktop: boolean,
-    isLoggedInUser: boolean,
-    totalQuantity: number,
+  cartData: any,
+  isLoading: boolean,
+  isOffline: boolean,
+  isSearchFocused: boolean,
+  isBulkModalOpened: boolean,
+  multiCartData: any,
+  isDesktop: boolean,
+  isLoggedInUser: boolean,
+  totalQuantity: number,
 }
 
 class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
@@ -112,13 +111,13 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
     checkedLocation: false,
     isInStandaloneMode: false,
     locationSearchData: undefined,
-    onSearchPage: () => {},
-    redirectToMainPage: () => {},
-    handleResetPassword: () => {},
-    onLocaleChange: () => {},
-    onCurrencyChange: () => {},
-    onContinueCart: () => {},
-    onGoBack: () => {},
+    onSearchPage: () => { },
+    redirectToMainPage: () => { },
+    handleResetPassword: () => { },
+    onLocaleChange: () => { },
+    onCurrencyChange: () => { },
+    onContinueCart: () => { },
+    onGoBack: () => { },
     appHeaderLinks: {},
     appHeaderLoginLinks: {},
     appHeaderNavigationLinks: {},
@@ -276,29 +275,12 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
         </div>);
     };
 
-    const RequisitionListsLink = () => {
-      const { count, name }: any = useRequisitionListCountState();
-      const countData = {
-        count,
-        name,
-        link: appHeaderLinks.requisitionLists,
-        entity: intl.get('list'),
-      };
-
-      return (
-        <div className={`requisition-list-container ${count ? 'show' : ''}`}>
-          <Link to={appHeaderLinks.requisitionLists} className="link-item">
-            {intl.get('requisition-lists')}
-          </Link>
-          <div className={`dropdown-menu ${count ? 'show' : ''}`}>
-            <CountInfoPopUp countData={countData} />
-          </div>
-        </div>);
-    };
-
     return [
       <header key="app-header" className="app-header">
-        <div className="top-header-container">
+        <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
+
+        <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
+
           <div className="logo-container">
             <Link to={appHeaderLinks.mainPage} className="logo">
               <img
@@ -313,20 +295,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             </Link>
           </div>
 
-          {isLoggedInUser && Config.b2b.req_list && (
-            <div className="links-container">
-              <RequisitionListsLink />
-              <Link to={appHeaderLinks.mainPage} className="link-item">
-                {intl.get('order-history')}
-              </Link>
-            </div>
-          )}
 
-          <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
-        </div>
-
-
-        <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
           <div className="central-container">
             <div className="horizontal-menu">
               {isDesktop && (!isOffline && !isLoading) ? (
