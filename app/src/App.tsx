@@ -24,7 +24,7 @@ import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider, RequisitionListCountProvider,
 } from '@elasticpath/store-components';
 import intl from 'react-intl-universal';
 import packageJson from '../package.json';
@@ -105,6 +105,7 @@ const appFooterLinks = {
 const appHeaderLinks = {
   mainPage: '/',
   myCart: '/mycart',
+  requisitionLists: '/b2b/requisition-lists',
 };
 const appHeaderLoginLinks = {
   profile: '/profile',
@@ -177,10 +178,12 @@ const AppWithRouter = (props) => {
     <Router>
       <ErrorDisplayBoundary>
         <CountProvider>
-          <Switch>
-            <Route path="/loggedin" exact component={LoginRedirectPage} />
-            <Route path="/" exact={false} render={passedProps => <App {...passedProps} componentsData={componentsData} />} />
-          </Switch>
+          <RequisitionListCountProvider>
+            <Switch>
+              <Route path="/loggedin" exact component={LoginRedirectPage} />
+              <Route path="/" exact={false} render={passedProps => <App {...passedProps} componentsData={componentsData} />} />
+            </Switch>
+          </RequisitionListCountProvider>
         </CountProvider>
       </ErrorDisplayBoundary>
     </Router>

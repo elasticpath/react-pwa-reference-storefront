@@ -22,6 +22,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
+import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../app/src/images/img_missing_horizontal@2x.png';
@@ -30,7 +31,8 @@ import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommend
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { CountProvider, useCountDispatch } from '../cart-count-context';
+import { useCountDispatch } from '../cart-count-context';
+import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
@@ -111,6 +113,8 @@ interface ProductDisplayItemMainProps {
   onAddToCart?: (...args: any[]) => any,
   /** handle add to wishlist */
   onAddToWishList?: (...args: any[]) => any,
+  /** handle add to requisition list */
+  onRequisitionPage?: (...args: any[]) => any,
   /** handle change product feature */
   onChangeProductFeature?: (...args: any[]) => any,
   /** handle reload page */
@@ -127,6 +131,7 @@ interface ProductDisplayItemMainProps {
 
 interface ProductDisplayItemMainState {
   productData: any,
+  requisitionListData: any,
   multiCartData: { [key: string]: any },
   itemQuantity: number,
   isLoading: boolean,
@@ -134,6 +139,7 @@ interface ProductDisplayItemMainState {
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
   addToCartLoading: boolean,
+  addToRequisitionListLoading: boolean,
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -146,6 +152,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     dataSet: undefined,
     onAddToCart: () => {},
     onAddToWishList: () => {},
+    onRequisitionPage: () => {},
     onReloadPage: () => {},
     productLink: '',
     isInStandaloneMode: false,
@@ -169,6 +176,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
+      addToRequisitionListLoading: false,
+      requisitionListData: {
+        list: [
+          { name: 'Vancouver' }, { name: 'HQ' }, { name: 'Chicago' }, { name: 'New York' }, { name: 'San Francisco' }, { name: 'Toronto' }, { name: 'Lviv' }, { name: 'Denver' }, { name: 'San Diego' },
+        ],
+      },
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -605,6 +618,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     });
   }
 
+  addToRequisitionListData(list, onCountChange) {
+    const { itemQuantity } = this.state;
+    const { name } = list;
+    onCountChange(name, itemQuantity);
+    this.setState({ addToRequisitionListLoading: true });
+  }
+
   dropdownCartSelection() {
     const dispatch = useCountDispatch();
     const onCountChange = (name, count) => {
@@ -618,7 +638,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       dispatch(data);
       setTimeout(() => {
         dispatch({ type: 'COUNT_HIDE' });
-      }, 4000);
+      }, 3200);
     };
     const { multiCartData } = this.state;
     if (multiCartData && multiCartData._carts) {
@@ -636,9 +656,40 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return null;
   }
 
+  dropdownRequisitionListSelection() {
+    const dispatch = useRequisitionListCountDispatch();
+    const onCountChange = (name, count) => {
+      const data = {
+        type: 'COUNT_SHOW',
+        payload: {
+          count,
+          name,
+        },
+      };
+      dispatch(data);
+      setTimeout(() => {
+        dispatch({ type: 'COUNT_HIDE' });
+      }, 3200);
+    };
+    const { requisitionListData } = this.state;
+    if (requisitionListData) {
+      return (
+        <ul className="cart-selection-dropdown">
+          {requisitionListData.list.map(list => (
+            // eslint-disable-next-line
+            <li className="dropdown-item cart-selection-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
+              {list.name ? list.name : intl.get('default')}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  }
+
   render() {
     const {
-      productData, isLoading, itemQuantity, multiCartData, addToCartLoading,
+      productData, isLoading, itemQuantity, multiCartData, addToCartLoading, requisitionListData, addToRequisitionListLoading,
     } = this.state;
     const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
@@ -653,6 +704,29 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       Config.indi.productReview.title = intl.get('indi-product-review-title');
       Config.indi.productReview.description = intl.get('indi-product-review-description');
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
+
+      const SelectRequisitionListButton = () => (
+        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
+          <button
+            className="ep-btn wide btn-itemdetail-addtowishlist dropdown-toggle"
+            data-toggle="dropdown"
+            disabled={!availability || !productData._addtowishlistform}
+            id="product_display_item_add_to_cart_button"
+            type="submit"
+          >
+            {addToRequisitionListLoading ? (
+              <span className="miniLoader" />
+            ) : (
+              <span>
+                {intl.get('add-to-requisition-list')}
+              </span>
+            )}
+          </button>
+          <div className="dropdown-menu cart-selection-list">
+            {this.dropdownRequisitionListSelection()}
+          </div>
+        </div>
+      );
 
       const SelectCartButton = () => (
         <div className="form-content form-content-submit col-sm-offset-4 dropdown">
@@ -701,6 +775,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 <div>
                   <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
                     {productData._definition[0]['display-name']}
+                    {Config.b2b.req_list && ProductDisplayItemMain.isLoggedIn(Config) && (
+                      <button type="button" className="add-to-wish-list-link" onClick={this.addToWishList} disabled={!availability || !productData._addtowishlistform}>
+                        +
+                        {' '}
+                        {intl.get('add-to-wish-list')}
+                      </button>
+                    )}
                   </h1>
                   {(Config.b2b.enable) && (
                     <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
@@ -812,17 +893,21 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
-                        <div className="form-content form-content-submit col-sm-offset-4">
-                          <button
-                            onClick={this.addToWishList}
-                            className="ep-btn wide btn-itemdetail-addtowishlist"
-                            disabled={!availability || !productData._addtowishlistform}
-                            id="product_display_item_add_to_wish_list_button"
-                            type="submit"
-                          >
-                            {intl.get('add-to-wish-list')}
-                          </button>
-                        </div>
+                        {requisitionListData && Config.b2b.req_list ? (
+                          <SelectRequisitionListButton />
+                        ) : (
+                          <div className="form-content form-content-submit col-sm-offset-4">
+                            <button
+                              onClick={this.addToWishList}
+                              className="ep-btn wide btn-itemdetail-addtowishlist"
+                              disabled={!availability || !productData._addtowishlistform}
+                              id="product_display_item_add_to_wish_list_button"
+                              type="submit"
+                            >
+                              {intl.get('add-to-wish-list')}
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </form>
                   ) : ('')

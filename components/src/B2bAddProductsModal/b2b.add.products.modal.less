@@ -1,0 +1,187 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../app/src/theme/common.less';
+
+.add-product-to-list-modal {
+  min-width: 600px;
+}
+
+.add-products-component {
+  width: 100%;
+  border-bottom: 0;
+  background-color: @mainBackgroundColor;
+
+  .add-product-modal {
+    position: relative;
+    background-color: @mainBackgroundColor;
+    margin: 20px 30px 30px 20px;
+    min-width: 295px;
+
+    p {
+      color: black;
+      padding: 0;
+      margin-top:0;
+      border:none;
+    }
+
+    .tab-content{
+
+      .tab-pane{
+
+        .miniLoader {
+          border: 2px solid @firstComplimentBackground;
+          border-top: 2px solid @secondComplimentColor;
+          width: 20px;
+          height: 20px !important;
+          margin-left: 65px;
+        }
+
+        .barcode-scanner {
+          .miniLoader {
+            margin: 0;
+            display: inline-block;
+            width: 15px;
+            height: 15px !important;
+            vertical-align: sub;
+          }
+        }
+
+        p {
+          font-size: small;
+        }
+
+        .bulk-text-area-title {
+          padding-top: 10px;
+          color: gray;
+        }
+
+        .tab-bulk-order {
+          margin-top: 5px;
+
+          .bulk-items-example {
+             margin: 10px 0;
+           }
+
+          p {
+            margin: 0;
+            max-width: 410px;
+          }
+        }
+
+        .bulk-csv {
+          width: 100%;
+          height: 230px;
+          border: 1px solid @mainBorderColor;
+          border-radius: 6px;
+          margin-bottom: 10px;
+        }
+
+        .scan-barcode-title {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .itemdetail-tabs {
+      &-wrap {
+        margin-top: 30px;
+      }
+
+      .nav-item {
+        margin-bottom: 0;
+      }
+
+      .nav-item {
+        .nav-link {
+          padding: 5px 20px;
+          font-size: 16px;
+          color: #333;
+
+          &:hover {
+            border-color: transparent;
+            color: @mainTextColor;
+          }
+
+          &.active {
+            color: @mainTextColor;
+            font-weight: bold;
+            border-bottom: 3px solid @firstComplimentColor;
+          }
+
+          &.disabled {
+            cursor: default;
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+
+  .btn-itemdetail-addtocart {
+    padding: 2px 25px;
+    text-transform: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .dialog-footer {
+    margin: 20px;
+
+    .save-btn {
+      background-color: @firstComplimentColor;
+      color: @mainBackgroundColor;
+      width: 180px;
+      &:hover {
+        background-color: lighten(@firstComplimentColor, 3%);
+      }
+      &:active {
+        background-color: lighten(@firstComplimentColor, -5%);
+      }
+      &:disabled {
+        background-color: darken(@firstComplimentColor, 40%);
+        opacity: .4;
+        cursor: unset;
+      }
+    }
+  }
+}
+
+@media (max-width: @mobileWidth - 1px) {
+  .add-product-to-list-modal {
+    width: 100%;
+    min-width: 0;
+
+    .bulk-item {
+      display: flex;
+    }
+
+    .product-quantity-wrap.add-product-input {
+      max-width: none;
+      width: auto;
+      margin-right: 0;
+    }
+  }
+  .add-products-component .add-product-modal .tab-content .tab-pane .bulk-csv {
+    height: 294px;
+  }
+
+}

@@ -20,28 +20,28 @@
  */
 
 import React, { Component } from 'react';
-import './cartpopup.less';
+import './countinfopopup.less';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, prop?) => str };
 
-interface CartPopUpProps {
-  /** links for app header */
-  appHeaderLinks: any,
-  /** cart data */
-  cartData: {
+interface CountInfoPopUpProps {
+  /** count data */
+  countData: {
     count: number,
     name: string,
+    link: string,
+    entity: string,
   },
 }
 
-interface CartPopUpState {
+interface CountInfoPopUpState {
   cartData: any,
 }
 
-class CartPopUp extends Component<CartPopUpProps, CartPopUpState> {
+class CountInfoPopUp extends Component<CountInfoPopUpProps, CountInfoPopUpState> {
   static defaultProps = {};
 
   constructor(props) {
@@ -54,16 +54,20 @@ class CartPopUp extends Component<CartPopUpProps, CartPopUpState> {
   componentDidMount() {}
 
   render() {
-    const { appHeaderLinks, cartData } = this.props;
+    const { countData } = this.props;
+    const {
+      count, name, link, entity,
+    } = countData;
+
     const message = (
       <div className="multi-cart-message">
-        <b>{cartData.count}</b>
+        <b>{count}</b>
         {' '}
-        {intl.get('item-was-added-to-your-cart')}
+        {intl.get('item-was-added-to-your')}
         {' '}
-        <b>{cartData.name}</b>
+        <b>{name}</b>
         {' '}
-        {intl.get('cart')}
+        {entity}
       </div>
     );
     return (
@@ -73,8 +77,8 @@ class CartPopUp extends Component<CartPopUpProps, CartPopUpState> {
         </div>
         <div className="checkout-btn-container">
 
-          <Link className="ep-btn primary checkout-btn link-to-cart" to={appHeaderLinks.myCart}>
-            {intl.get('view-your-carts')}
+          <Link className="ep-btn primary checkout-btn link-to-cart" to={link}>
+            {`${intl.get('view-your')} ${entity}`}
           </Link>
 
         </div>
@@ -83,4 +87,4 @@ class CartPopUp extends Component<CartPopUpProps, CartPopUpState> {
   }
 }
 
-export default CartPopUp;
+export default CountInfoPopUp;

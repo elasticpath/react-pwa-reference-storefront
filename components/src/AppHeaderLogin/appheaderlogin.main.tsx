@@ -25,7 +25,9 @@ import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
+import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
 import AppModalCartSelectMain from '../AppModalCartSelect/appmodalcartselect.main';
+import { useRequisitionListCountState } from '../requisition-list-count-context';
 import {
   login, logout, logoutAccountManagementUser, getAccessToken,
 } from '../utils/AuthService';
@@ -54,6 +56,10 @@ interface AppHeaderLoginMainProps {
     onResetPassword?: (...args: any[]) => any,
   /** data search location */
     locationSearchData?: string,
+    /** links in app header */
+    appHeaderLinks: {
+      [key: string]: any
+  },
   /** links in app header login  */
     appHeaderLoginLinks: {
         [key: string]: any
@@ -97,6 +103,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       onLogin: () => {},
       onContinueCart: () => {},
       onResetPassword: () => {},
+      appHeaderLinks: {},
     }
 
     constructor(props) {
@@ -275,7 +282,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
 
     render() {
       const {
-        isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin,
+        isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin, appHeaderLinks,
       } = this.props;
       const {
         openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters,
@@ -285,6 +292,30 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
+
+      const RequisitionListsLink = () => {
+        const { count, name }: any = useRequisitionListCountState();
+        const countData = {
+          count,
+          name,
+          link: '/b2b/requisition-lists',
+          entity: intl.get('list'),
+        };
+
+        return (
+          <div className={`requisition-list-container ${count ? 'show' : ''}`}>
+            <Link to="/b2b/requisition-lists" className="dashboard-link link-item">
+              <div>
+                <span className="dashboard-nav">
+                  {intl.get('requisition-lists')}
+                </span>
+              </div>
+            </Link>
+            <div className={`dropdown-menu ${count ? 'show' : ''}`}>
+              <CountInfoPopUp countData={countData} />
+            </div>
+          </div>);
+      };
 
       if (isLoggedIn) {
         return (
@@ -323,6 +354,10 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                           </span>
                         </div>
                       </Link>
+                    </li>) : ('')}
+                  {(Config.b2b.req_list) ? (
+                    <li className="dropdown-item">
+                      <RequisitionListsLink />
                     </li>) : ('')}
                   {permission && (
                   <li className="dropdown-item">

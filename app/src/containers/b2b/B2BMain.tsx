@@ -195,6 +195,10 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
       // { to: '/b2b/quotes', children: 'quotes' },
     ];
 
+    if (Config.b2b.req_list) {
+      sideMenuItems.push({ to: '/b2b/requisition-lists', children: 'requisition-lists' });
+    }
+
     return (
       <div className="b2b-main-component">
         <div className="message-boxes">
@@ -226,7 +230,6 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
               <B2bSideMenu {...this.props} sideMenuItems={sideMenuItems} />
             </div>
             <div className="b2b-content">
-              <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
               {routes.map(route => (
                 <RouteWithSubRoutes key={route.path} {...route} />
               ))}

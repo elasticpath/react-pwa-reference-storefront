@@ -75,14 +75,9 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
         <div className={`side-menu-component-dropdown ${isOpen ? '' : 'hidden'}`}>
           {sideMenuItems.map(elem => (
             <div key={elem.children}>
-              <Route
-                path={elem.to}
-                exact
-              >
-                <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
-                  {intl.get(elem.children)}
-                </Link>
-              </Route>
+              <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
+                {intl.get(elem.children)}
+              </Link>
             </div>
           ))}
         </div>

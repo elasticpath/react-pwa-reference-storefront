@@ -30,22 +30,22 @@ let intl = { get: str => str };
 
 interface AppHeaderTopProps {
   /** is mobile view */
-    isMobileView?: boolean,
+  isMobileView?: boolean,
   /** handle currency change */
-    onCurrencyChange?: (...args: any[]) => any,
+  onCurrencyChange?: (...args: any[]) => any,
   /** handle locale change */
-    onLocaleChange?: (...args: any[]) => any,
+  onLocaleChange?: (...args: any[]) => any,
   /** links in app header top */
-    appHeaderTopLinks: {
-        [key: string]: any
-    }
+  appHeaderTopLinks: {
+    [key: string]: any
+  }
 }
 
 class AppHeaderTop extends Component<AppHeaderTopProps> {
   static defaultProps = {
     isMobileView: false,
-    onLocaleChange: () => {},
-    onCurrencyChange: () => {},
+    onLocaleChange: () => { },
+    onCurrencyChange: () => { },
   };
 
   constructor(props) {
@@ -101,6 +101,7 @@ class AppHeaderTop extends Component<AppHeaderTopProps> {
               </li>
             </ul>
           </div>
+
         </div>
       </div>,
     ];

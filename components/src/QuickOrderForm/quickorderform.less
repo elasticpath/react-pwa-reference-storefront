@@ -50,15 +50,15 @@
 .control-label {
   height: 15px;
   width: 100%;
-  margin: 10px 0 0;
+  margin: 22px 0 0;
   color: #777777;
   font-size: 12px;
-  font-weight: 500;
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 .input-group-btn {
-  width: 100px;
+  width: 102px;
   height: 34px;
   border: solid 1px @mainBorderColor;
   display: inline-flex;
@@ -194,17 +194,22 @@
 }
 
 .sku-field-wrap {
-  width: 200px;
+  width: 100%;
 
   .form-horizontal {
     position: relative;
+    max-width: 200px;
+
+    &.add-product-input {
+      max-width: 288px !important;
+    }
 
     input[type=text] {
       padding-right:30px;
       color: @mainTextColor;
       font-size: 14px;
       height: 34px;
-      width: 200px;
+      width: 100%;
       padding-left: 10px;
       border: solid 1px @firstBorderColor;
       border-radius: 4px;
@@ -274,6 +279,10 @@
 .product-quantity-wrap {
   max-width: 160px;
   padding: 0 30px;
+
+  &.add-product-input {
+    margin-right: 40px;
+  }
 }
 
 @media (max-width: @mobileWidth - 1px) {
@@ -296,6 +305,11 @@
   .product-quantity-wrap {
     width: 100%;
     padding: 0;
+
+    &.add-product-input {
+      padding: 0 40px;
+      margin: 0;
+    }
   }
 
   .quick-order-sku-wrap {

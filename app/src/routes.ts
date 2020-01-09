@@ -44,6 +44,8 @@ import ResetPasswordForm from './containers/ResetPasswordPage';
 import B2BMain from './containers/b2b/B2BMain';
 import Accounts from './containers/b2b/Accounts';
 import AccountMain from './containers/b2b/AccountMain';
+import RequisitionList from './containers/b2b/RequisitionList';
+import RequisitionPageMain from './containers/b2b/RequisitionPageMain';
 import AddPaymentMethod from './containers/AddPaymentMethod';
 
 const router = [{
@@ -142,6 +144,10 @@ const router = [{
   path: '/b2b/account/:uri',
   component: AccountMain,
 }, {
+  path: '/b2b/requisition-list-item',
+  exact: true,
+  component: RequisitionPageMain,
+}, {
   path: '/b2b',
   component: B2BMain,
   routes: [
@@ -168,7 +174,8 @@ const router = [{
     },
     {
       path: '/b2b/requisition-lists',
-      render: () => 'Requisition Lists',
+      exact: true,
+      component: RequisitionList,
     },
     {
       path: '/b2b/quotes',

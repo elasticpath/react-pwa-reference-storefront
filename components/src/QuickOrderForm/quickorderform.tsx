@@ -37,7 +37,9 @@ interface QuickOrderFormProps {
     [key: string]: any
   },
   /** handle item submit */
-  onItemSubmit: (...args: any[]) => any
+  onItemSubmit: (...args: any[]) => any,
+  /** isAddProducts */
+  isAddProducts?: boolean
 }
 
 interface QuickOrderFormState {
@@ -49,6 +51,10 @@ interface QuickOrderFormState {
 }
 
 class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState> {
+  static defaultProps = {
+    isAddProducts: false,
+  };
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -221,7 +227,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
   }
 
   render() {
-    const { item } = this.props;
+    const { item, isAddProducts } = this.props;
     const {
       code, product, isLoading, skuErrorMessage, quantity,
     } = this.state;
@@ -234,13 +240,13 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
               {intl.get('quick-order-sku-title')}
             </label>
             <div className="sku-field-wrap">
-              <form className="form-horizontal" onSubmit={this.handleSubmit}>
+              <form className={`form-horizontal ${isAddProducts ? 'add-product-input' : ''}`} onSubmit={this.handleSubmit}>
                 <input className={`sku-input ${skuErrorMessage ? 'input-code-error' : ''}`} type="text" value={code} name="code" onChange={this.handleChange} onBlur={this.handleSubmit} />
                 <span role="presentation" className={`clear-field-btn ${code === '' ? 'hide' : ''} ${(skuErrorMessage !== '') ? 'input-error-icon' : ''}`} onClick={this.handleRemoveSku} />
               </form>
             </div>
           </div>
-          <div className="bulk-item-col product-quantity-wrap">
+          <div className={`bulk-item-col product-quantity-wrap ${isAddProducts ? 'add-product-input' : ''}`}>
             <label htmlFor="product_display_item_quantity_label" className="control-label control-quantity-label">
               {intl.get('quantity-abbr')}
             </label>
@@ -274,12 +280,14 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
               </button>
             </div>
           </div>
-          <div className="total-price-item">
-            {(product && product._price) ? (
-              <p>{`${product._price[0]['purchase-price'][0].display}`}</p>
-            ) : <p>$0.00</p>
+          {!isAddProducts ? (
+            <div className="total-price-item">
+              {(product && product._price) ? (
+                <p>{`${product._price[0]['purchase-price'][0].display}`}</p>
+              ) : <p>$0.00</p>
               }
-          </div>
+            </div>
+          ) : ''}
         </div>
         {(code && product._definition) ? (
           <div className="show-product">

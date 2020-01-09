@@ -23,11 +23,15 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { CountProvider } from '../index';
-import { text, object } from "@storybook/addon-knobs/react";
-import CartPopUp from './cartpopup';
+import { object } from "@storybook/addon-knobs/react";
+import CountInfoPopUpProps from './countinfopopup';
 
-const appHeaderLinks = '/';
-const cartData = { name: 'Default', count: 5 };
+const countData = {
+  name: 'Default',
+  count: 5,
+  link: '/',
+  entity: 'cart',
+};
 
 storiesOf('Components|CartPopUp', module)
   .addParameters({
@@ -39,12 +43,11 @@ storiesOf('Components|CartPopUp', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('CartPopUp', () => (
+  .add('CountInfoPopUpProps', () => (
     <CountProvider>
       <div style={{ backgroundColor: '#040060' }}>
-        <CartPopUp 
-          appHeaderLinks={text('appHeaderLinks', appHeaderLinks)} 
-          cartData={object('cartData', cartData)} 
+        <CountInfoPopUpProps
+          countData={object('countData', countData)}
         />
       </div>
     </CountProvider>

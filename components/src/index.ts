@@ -36,6 +36,7 @@ import AppModalLoginMain from './AppModalLogin/appmodallogin.main';
 import BulkOrderMain from './BulkOrder/bulkorder.main';
 import BundleConstituentsMain from './BundleConstituents/bundleconstituents.main';
 import B2bAccountList from './B2bAccountList/b2b.accountlist';
+import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
 import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
 import B2bSubaccountlistitem from './B2bSubAccountListItem/b2b.subaccountlistitem';
 import Carousel from './Carousel/carousel.homepage';
@@ -80,7 +81,7 @@ import WishListMain from './WishList/wishlist.main';
 import ChatComponent from './ChatBot/chatbot';
 import BarcodeScanner from './BarcodeScanner/barcodescanner';
 import CartCreate from './CartCreate/cart.create';
-import CartPopUp from './CartPopUp/cartpopup';
+import CountInfoPopUp from './CountInfoPopUp/countinfopopup';
 import B2bAddSubAccount from './B2bAddSubAccount/b2b.addsubaccount';
 import B2bEditAccount from './B2bEditAccount/b2b.editaccount';
 import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
@@ -88,6 +89,7 @@ import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
 import CartClear from './CartClear/cartclear';
 import { CountProvider } from './cart-count-context';
+import { RequisitionListCountProvider } from './requisition-list-count-context';
 
 export {
   init,
@@ -107,6 +109,7 @@ export {
   BulkOrderMain,
   BundleConstituentsMain,
   B2bAccountList,
+  B2bAddProductsModal,
   B2bSubAccountList,
   B2bSubaccountlistitem,
   Carousel,
@@ -151,7 +154,7 @@ export {
   ChatComponent,
   BarcodeScanner,
   CartCreate,
-  CartPopUp,
+  CountInfoPopUp,
   B2bAddSubAccount,
   B2bEditAccount,
   B2bAddAssociatesMenu,
@@ -159,4 +162,5 @@ export {
   B2bSideMenu,
   CartClear,
   CountProvider,
+  RequisitionListCountProvider,
 };

@@ -28,7 +28,7 @@ import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
 import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
-import CartPopUp from '../CartPopUp/cartpopup';
+import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
 import headerLogo from '../../../app/src/images/site-images/Company-Logo-v2.svg';
 import { ReactComponent as CartIcon } from '../../../app/src/images/header-icons/cart-icon.svg';
 import { ReactComponent as BulkCart } from '../../../app/src/images/header-icons/bulk-cart.svg';
@@ -53,57 +53,57 @@ const zoomArray = [
 const headerLogoFileName = 'Company-Logo-v2.svg';
 interface AppHeaderMainProps {
   /** handle search page */
-    onSearchPage: (...args: any[]) => any,
+  onSearchPage: (...args: any[]) => any,
   /** handle redirect to main page */
-    redirectToMainPage: (...args: any[]) => any,
+  redirectToMainPage: (...args: any[]) => any,
   /** handle reset password */
-    handleResetPassword: (...args: any[]) => any,
+  handleResetPassword: (...args: any[]) => any,
   /** handle currency change */
-    onCurrencyChange: (...args: any[]) => any,
+  onCurrencyChange: (...args: any[]) => any,
   /** handle locale change */
-    onLocaleChange: (...args: any[]) => any,
+  onLocaleChange: (...args: any[]) => any,
   /** handle continue cart */
-    onContinueCart: (...args: any[]) => any,
+  onContinueCart: (...args: any[]) => any,
   /** handle go back */
-    onGoBack: (...args: any[]) => any,
+  onGoBack: (...args: any[]) => any,
   /** checked location */
-    checkedLocation: boolean,
+  checkedLocation: boolean,
   /** is in standalone mode */
-    isInStandaloneMode: boolean,
+  isInStandaloneMode: boolean,
   /** data location search */
-    locationSearchData: string,
+  locationSearchData: string,
   /** links in app header */
-    appHeaderLinks: {
-        [key: string]: any
-    },
+  appHeaderLinks: {
+    [key: string]: any
+  },
   /** links in app header login */
-    appHeaderLoginLinks: {
-        [key: string]: any
-    },
+  appHeaderLoginLinks: {
+    [key: string]: any
+  },
   /** links in app header navigation */
-    appHeaderNavigationLinks: {
-        [key: string]: any
-    },
+  appHeaderNavigationLinks: {
+    [key: string]: any
+  },
   /** links in app header top */
-    appHeaderTopLinks: {
-        [key: string]: any
-    },
+  appHeaderTopLinks: {
+    [key: string]: any
+  },
   /** links in app modal login */
-    appModalLoginLinks: {
-        [key: string]: any
-    },
+  appModalLoginLinks: {
+    [key: string]: any
+  },
 }
 
 interface AppHeaderMainState {
-    cartData: any,
-    isLoading: boolean,
-    isOffline: boolean,
-    isSearchFocused: boolean,
-    isBulkModalOpened: boolean,
-    multiCartData: any,
-    isDesktop: boolean,
-    isLoggedInUser: boolean,
-    totalQuantity: number,
+  cartData: any,
+  isLoading: boolean,
+  isOffline: boolean,
+  isSearchFocused: boolean,
+  isBulkModalOpened: boolean,
+  multiCartData: any,
+  isDesktop: boolean,
+  isLoggedInUser: boolean,
+  totalQuantity: number,
 }
 
 class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
@@ -111,13 +111,13 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
     checkedLocation: false,
     isInStandaloneMode: false,
     locationSearchData: undefined,
-    onSearchPage: () => {},
-    redirectToMainPage: () => {},
-    handleResetPassword: () => {},
-    onLocaleChange: () => {},
-    onCurrencyChange: () => {},
-    onContinueCart: () => {},
-    onGoBack: () => {},
+    onSearchPage: () => { },
+    redirectToMainPage: () => { },
+    handleResetPassword: () => { },
+    onLocaleChange: () => { },
+    onCurrencyChange: () => { },
+    onContinueCart: () => { },
+    onGoBack: () => { },
     appHeaderLinks: {},
     appHeaderLoginLinks: {},
     appHeaderNavigationLinks: {},
@@ -257,6 +257,12 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
     const Cart = () => {
       const { count, name }: any = useCountState();
+      const countData = {
+        count,
+        name,
+        link: appHeaderLinks.myCart,
+        entity: intl.get('cart'),
+      };
       return (
         <div className={`cart-link-container multi-cart-dropdown dropdown ${count ? 'show' : ''}`}>
           <Link className={`cart-link ${count ? 'modal-arrow' : ''}`} to={appHeaderLinks.myCart}>
@@ -264,7 +270,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             {intl.get('shopping-cart-nav')}
           </Link>
           <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${count ? 'show' : ''}`}>
-            <CartPopUp appHeaderLinks={appHeaderLinks} cartData={{ count, name }} />
+            <CountInfoPopUp countData={countData} />
           </div>
         </div>);
     };
@@ -288,6 +294,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
               />
             </Link>
           </div>
+
 
           <div className="central-container">
             <div className="horizontal-menu">
