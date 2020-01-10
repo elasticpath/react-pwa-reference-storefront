@@ -2,58 +2,58 @@
 	"self": {
 		"type": "elasticpath.collections.links",
 		"uri": "/?zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform,defaultprofile:paymentmethods:element:paymentinstrumentform",
-		"href": "http://10.11.12.117:8080/cortex/?zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform,defaultprofile:paymentmethods:element:paymentinstrumentform"
+		"href": "https://reference.epdemos.com/cortex/?zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform,defaultprofile:paymentmethods:element:paymentinstrumentform"
 	},
 	"messages": [],
 	"links": [{
 			"rel": "carts",
 			"type": "carts.carts",
-			"href": "http://10.11.12.117:8080/cortex/carts/mobee"
+			"href": "https://reference.epdemos.com/cortex/carts/mobee"
 		},
 		{
 			"rel": "defaultcart",
 			"type": "carts.default-cart",
-			"href": "http://10.11.12.117:8080/cortex/carts/mobee/default"
+			"href": "https://reference.epdemos.com/cortex/carts/mobee/default"
 		},
 		{
 			"rel": "data-policies",
 			"type": "datapolicies.data-policies",
-			"href": "http://10.11.12.117:8080/cortex/datapolicies/mobee"
+			"href": "https://reference.epdemos.com/cortex/datapolicies/mobee"
 		},
 		{
 			"rel": "countries",
 			"type": "geographies.countries",
-			"href": "http://10.11.12.117:8080/cortex/geographies/mobee/countries"
+			"href": "https://reference.epdemos.com/cortex/geographies/mobee/countries"
 		},
 		{
 			"rel": "lookups",
 			"type": "lookups.lookups",
-			"href": "http://10.11.12.117:8080/cortex/lookups/mobee"
+			"href": "https://reference.epdemos.com/cortex/lookups/mobee"
 		},
 		{
 			"rel": "navigations",
 			"type": "navigations.navigations",
-			"href": "http://10.11.12.117:8080/cortex/navigations/mobee"
+			"href": "https://reference.epdemos.com/cortex/navigations/mobee"
 		},
 		{
 			"rel": "defaultprofile",
 			"type": "profiles.default-profile",
-			"href": "http://10.11.12.117:8080/cortex/profiles/mobee/default"
+			"href": "https://reference.epdemos.com/cortex/profiles/mobee/default"
 		},
 		{
 			"rel": "newaccountform",
 			"type": "registrations.new-account-registration-form",
-			"href": "http://10.11.12.117:8080/cortex/registrations/mobee/newaccount/form"
+			"href": "https://reference.epdemos.com/cortex/registrations/mobee/newaccount/form"
 		},
 		{
 			"rel": "searches",
 			"type": "searches.searches",
-			"href": "http://10.11.12.117:8080/cortex/searches/mobee"
+			"href": "https://reference.epdemos.com/cortex/searches/mobee"
 		},
 		{
 			"rel": "defaultwishlist",
 			"type": "wishlists.default-wishlist",
-			"href": "http://10.11.12.117:8080/cortex/wishlists/mobee/default"
+			"href": "https://reference.epdemos.com/cortex/wishlists/mobee/default"
 		}
 	],
 	"_defaultcart": [{
@@ -64,13 +64,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -85,13 +85,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -106,13 +106,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gy3temtgheydsljtgrtgkljumuzgkllbmrtdqllcgbsdmobxmeytezbqgi=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gy3temtgheydsljtgrtgkljumuzgkllbmrtdqllcgbsdmobxmeytezbqgi=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gy3temtgheydsljtgrtgkljumuzgkllbmrtdqllcgbsdmobxmeytezbqgi=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gy3temtgheydsljtgrtgkljumuzgkllbmrtdqllcgbsdmobxmeytezbqgi=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gy3temtgheydsljtgrtgkljumuzgkllbmrtdqllcgbsdmobxmeytezbqgi=/paymentinstrument/form"
 							}],
 							"limit-amount": 0,
 							"payment-instrument-identification-form": {
@@ -125,13 +125,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -148,13 +148,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form"
 							}],
 							"billing-address": {
 								"address": {
@@ -195,13 +195,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form"
 							}],
 							"billing-address": {
 								"address": {
@@ -234,13 +234,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -255,13 +255,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -276,13 +276,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -297,13 +297,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -318,13 +318,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -339,13 +339,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -360,13 +360,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -381,13 +381,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -402,13 +402,13 @@
 							"self": {
 								"type": "paymentinstruments.order-payment-instrument-form",
 								"uri": "/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form"
 							},
 							"messages": [],
 							"links": [{
 								"rel": "createpaymentinstrumentaction",
 								"type": "paymentinstruments.order-payment-instrument-form",
-								"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form"
+								"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/orders/mobee/gfrdkzrrge2wiljrgbrwiljugmzgeljymuydqljtg5swgnrxmuytsztggu=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form"
 							}],
 							"default-on-profile": false,
 							"limit-amount": 0,
@@ -431,13 +431,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gezwimbwgbrtolleg43tgljumm2tellcmm2gmljtmu2wkyzrmyywgoldgy=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -450,13 +450,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gyygmmjymu4tmljqmezdqljumezdsljymrsdoljwmmydgnrygzrtinrwmu=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -469,13 +469,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gbstenbzgu4delleg5stoljume4wmljygu4tkljtgzqtayzzgfrwkzdbhe=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -490,13 +490,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mfqwmyzyga3teljtgjrggljugvswmllbg42dkllemiywmy3eg5tdgzjyha=/paymentinstrument/form"
 						}],
 						"billing-address": {
 							"address": {
@@ -535,13 +535,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mnswiyrvheydmljvge4giljuhazteljzmmydkllbmq4tgmbzmjqtazjsme=/paymentinstrument/form"
 						}],
 						"billing-address": {
 							"address": {
@@ -572,13 +572,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/hfrgkmzqmu3wcljwmvrtsljugfsdsllbmftgiljvmq4wezlbmvswkyzrmm=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -591,13 +591,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ha2dmzdehbtdmllfmnstgljuga3tillcgi3geljzmiytazbvgfswkolghe=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -610,13 +610,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gfsdon3dgm2tmljvhfqwcljug43dmljymntgmljthfsgkmtgmmydiodcgi=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -629,13 +629,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/gzrtmyrvg4ydqllfhaztaljumzrtmljymrtgcljrgjswkytdgu3wgytemq=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -648,13 +648,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrsdknzygi2dklldgeztcljumm3tallbgfrdqljqmrsdcmzxgnrtcnjvha=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -667,13 +667,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mrtdezjqgjrtmllbgu4deljuhe2tqljzgzrdcljqgnstmobvmnqwcmtcga=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -686,13 +686,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/giygcztdmmydsljtgy4doljugiztoljzgfswcljwmqztizjugrtdenbuga=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -705,13 +705,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/ge3tanjymyytiljvhe2dkljumm4willbmnstcljzhbsdknjxgnstgmzxme=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {
@@ -724,13 +724,13 @@
 						"self": {
 							"type": "paymentinstruments.profile-payment-instrument-form",
 							"uri": "/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form"
 						},
 						"messages": [],
 						"links": [{
 							"rel": "createpaymentinstrumentaction",
 							"type": "paymentinstruments.profile-payment-instrument-form",
-							"href": "http://10.11.12.117:8080/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form"
+							"href": "https://reference.epdemos.com/cortex/paymentinstruments/paymentmethods/profiles/mobee/gm4tkntcmjtgillemi4geljuga4tsllcmqydmljxgezdoyjugeydoylcha=/mi4wgylbgjrwillehfqtaljumvsgellcheywcllbmnrdantegbrtmm3fmm=/paymentinstrument/form"
 						}],
 						"default-on-profile": false,
 						"payment-instrument-identification-form": {

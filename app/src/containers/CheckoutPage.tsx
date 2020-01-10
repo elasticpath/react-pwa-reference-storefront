@@ -579,7 +579,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         {deletable && (
           <div className="payment-btn-cell">
             <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
-              Delete
+              {intl.get('delete')}
             </button>
           </div>
         )}
@@ -638,9 +638,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
               <div className="modal-body">
                 {
                   localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC' ? (
-                    <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption={false} onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />)
-                    : (
-                      <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />)
+                    <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption={false} onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
+                  ) : (
+                    <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />)
                 }
               </div>
             </div>
