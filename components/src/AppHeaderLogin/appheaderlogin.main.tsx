@@ -304,13 +304,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
 
         return (
           <div className={`requisition-list-container ${count ? 'show' : ''}`}>
-            <Link to="/b2b/requisition-lists" className="dashboard-link link-item">
-              <div>
-                <span className="dashboard-nav">
-                  {intl.get('requisition-lists')}
-                </span>
-              </div>
-            </Link>
             <div className={`dropdown-menu ${count ? 'show' : ''}`}>
               <CountInfoPopUp countData={countData} />
             </div>
@@ -320,6 +313,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       if (isLoggedIn) {
         return (
           <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
+            {(Config.b2b.req_list) ? (<RequisitionListsLink />) : ('')}
             <div className="auth-container dropdown">
               <button className="dropdown-toggle btn-auth-menu" type="button" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {(isMobileView)
@@ -357,7 +351,13 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     </li>) : ('')}
                   {(Config.b2b.req_list) ? (
                     <li className="dropdown-item">
-                      <RequisitionListsLink />
+                      <Link to="/b2b/requisition-lists" className="dashboard-link link-item">
+                        <div>
+                          <span className="dashboard-nav">
+                            {intl.get('requisition-lists')}
+                          </span>
+                        </div>
+                      </Link>
                     </li>) : ('')}
                   {permission && (
                   <li className="dropdown-item">

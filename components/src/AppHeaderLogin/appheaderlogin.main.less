@@ -22,6 +22,8 @@
 @import './../../../app/src/theme/common.less';
 
 .app-login-component {
+  position: relative;
+
   .auth-profile-menu-list {
     margin-bottom: 0;
   }
@@ -51,7 +53,7 @@
       &:focus {
         background-color: transparent;
       }
-      
+
       .account-icon {
         fill: @mainNavigationColor;
         display: inline-block;
@@ -238,6 +240,28 @@
           }
         }
       }
+    }
+  }
+
+  .requisition-list-container {
+
+    &.show:before {
+      content: '';
+      position: absolute;
+      top: 26px;
+      right: 14px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 10px solid @mainBackgroundColor;
+      z-index: 10;
+    }
+
+    .dropdown-menu {
+      right: 0;
+      left: auto;
+      margin-top: 9px;
     }
   }
 }
