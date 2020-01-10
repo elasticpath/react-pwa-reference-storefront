@@ -58,6 +58,7 @@ storiesOf('Components|PaymentFormMain', module)
       <PaymentFormMain
         onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
         fetchData={() => { textToFunc(fetchDataFuncText); }}
+        showSaveToProfileOption
       />
     );
   })
@@ -72,6 +73,7 @@ storiesOf('Components|PaymentFormMain', module)
         defaultPostSelection
         onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
         fetchData={() => { textToFunc(fetchDataFuncText); }}
+        showSaveToProfileOption
       />
     );
   });
