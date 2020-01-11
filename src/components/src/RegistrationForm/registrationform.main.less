@@ -1,0 +1,113 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.registration-container {
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .form-horizontal {
+    label {
+      display: inline-block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .control-label {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 7px;
+      color: #6f6f6f;
+    }
+
+    .required-label {
+      color: red;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .form-control {
+      display: block;
+      height: 34px;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: #555555;
+      background-color: @mainBackgroundColor;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .btn {
+      width: 100px;
+      margin-right: 10px;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: normal;
+      text-shadow: none;
+      color: @secondComplimentColor;
+      background-color: @mainBackgroundColor;
+      border: solid 1px @secondComplimentColor;
+      border-radius: 0;
+      text-align: middle;
+      box-shadow: none;
+      white-space: nowrap;
+      height: auto;
+      display: inline-block;
+
+      &.btn-primary {
+        padding: 8px 14px;
+        background-color: @firstComplimentColor;
+        font-size: 12px;
+        font-weight: bold;
+        color: @mainBackgroundColor;
+        border: 0;
+        border-radius: 0;
+        text-transform: uppercase;
+        max-width: 280px;
+      }
+    }
+  }
+
+  .feedback-label {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px;
+    white-space: pre-line;
+  }
+
+  .register-btn-wrap {
+    position: relative;
+    padding-top: 30px;
+
+    .miniLoader {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin: 0 0 0 -15px;
+    }
+  }
+}

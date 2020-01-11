@@ -1,0 +1,192 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.gift-card-modal {
+  .modal-content {
+    padding: 0 15px;
+    border: none;
+  }
+  .modal-header {
+    padding: 10px 0;
+  }
+  .modal-title {
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: capitalize;
+  }
+  .modal-body {
+    padding: 0;
+  }
+  &.modal-lg {
+    @media (min-width: 992px) {
+      max-width: 400px;
+      min-width: 380px;
+    }
+  }
+  .control-label {
+    font-size: 13px;
+    color: @mainTextColor;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+  }
+  .form-group {
+    position: relative;
+    .error-msg {
+      position: absolute;
+      top: 100%;
+      margin-top: 5px;
+      color: red;
+    }
+  }
+  .form-control {
+    height: 34px;
+    font-size: 13px;
+    color: @mainTextColor;
+    border: 1px solid @firstBorderColor;
+    border-radius: 4px;
+  }
+  .btn-container {
+    text-align: right;
+    margin-top: 25px;
+  }
+  .ep-btn {
+    min-height: 34px;
+    font-weight: 500;
+    text-transform: none;
+  }
+  .cancel-btn {
+    border-color: transparent;
+  }
+  .save-btn {
+    min-width: 130px;
+    margin-right: 0;
+  }
+  + button[class*=styles_closeButton] {
+    top: 22px;
+    right: 22px;
+    cursor: pointer;
+    [class*=styles_closeIcon] {
+      height: 24px;
+      width: 24px;
+      fill: @thirdComplimentTextColor;
+    }
+  }
+  .loader-wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.profile-gift {
+  &-cards-listing {
+    .gift-card-container {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 35px;
+      margin-bottom: 10px;
+    }
+    .gift-card-number {
+      position: relative;
+      padding-left: 35px;
+      &:before {
+        content: "";
+        height: 15px;
+        width: 24px;
+        border-radius: 3px;
+        background-color: #777777;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &:after {
+        content: "";
+        height: 3px;
+        width: 24px;
+        background-color: #FFFFFF;
+        position: absolute;
+        top: 3px;
+        left: 0;
+      }
+    }
+    .checkbox-wrap {
+      margin-bottom: 5px;
+      input[type="checkbox"] {
+        display: none;
+        +span {
+          position: relative;
+          padding-left: 25px;
+          font-size: 13px;
+          line-height: 18px;
+          color: #777777;
+          &:before {
+            content: "";
+            width: 18px;
+            height: 18px;
+            border: 2px solid #777777;
+            border-radius: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+        &:checked {
+          +span {
+            &:before {
+              border-color: #6dd401;
+              background-color: #6dd401;
+            }
+            &:after {
+              content: "";
+              position: absolute;
+              top: 3px;
+              left: 1px;
+              width: 12px;
+              height: 7px;
+              border: solid 2px #FFFFFF;
+              border-right: none;
+              border-top: none;
+              transform: translate(2px, 1px) rotate(-45deg);
+            }
+          }
+        }
+      }
+    }
+  }
+  &-card-container {
+    padding: 10px 0 5px;
+    border-bottom: 2px solid #cccccc;
+  }
+}
+
+.giftCertificateRegions {
+  h2 {
+    margin-bottom: 0;
+  }
+}

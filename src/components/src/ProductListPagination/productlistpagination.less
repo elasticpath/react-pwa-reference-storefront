@@ -1,0 +1,100 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.product-list-pagination-component {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: normal;
+  color: #000000;
+
+  .pagination-navigation-container {
+    text-align: center;
+    padding-top: 40px;
+  }
+
+  .total-results {
+    font-size: small;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #888;
+  }
+
+  .btn-pagination {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    user-select: none;
+    color: @secondComplimentTextColor;
+    padding: 5px 10px;
+    text-decoration: none;
+    position: relative;
+    text-align: center;
+
+    .icon {
+      position: relative;
+      top: 1px;
+      display: inline-block;
+      font-family: 'Glyphicons Halflings';
+    }
+
+    &.prev {
+      float: left;
+      margin-right: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: @firstComplimentColor;
+
+      .icon {
+        &:before {
+          margin-right: 5px;
+          content: "\e079";
+        }
+      }
+    }
+
+    &.next {
+      float: right;
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: @firstComplimentColor;
+
+      .icon {
+        &:before {
+          margin-left: 5px;
+          content: "\e080";
+        }
+      }
+    }
+
+    &:hover, &:focus {
+      color: #333;
+    }
+
+    &.hide {
+      width: 113px;
+      visibility: hidden;
+    }
+  }
+
+}

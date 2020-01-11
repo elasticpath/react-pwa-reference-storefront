@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+src/components/node_modules/
+src/components/build/
+storybook/storybook-static/
+
+docker/dev/Dockerfile
+docker/prod/Dockerfile

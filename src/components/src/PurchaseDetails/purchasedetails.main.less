@@ -1,0 +1,57 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+ @import './../../../theme/common.less';
+
+.purchase-information-container {
+  h3 {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .purchase-summary-title {
+    display: inline-block;
+  }
+
+  .purchase-reorder {
+    padding-top: 4px;
+    display: inline-block;
+    float: right;
+  }
+
+  .purchase-items-list {
+    td {
+      display: inline-block;
+      width: 50%;
+    }
+
+    li:nth-child(even) {
+      background: #fafafe;
+    }
+
+    .buy-it-again-btn {
+      &-wrap {
+        text-align: right;
+      }
+    }
+  }
+}

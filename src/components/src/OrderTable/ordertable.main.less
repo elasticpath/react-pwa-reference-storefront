@@ -1,0 +1,104 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+ @import './../../../theme/common.less';
+
+ .order-main-inner {
+  .order-table {
+    margin-bottom: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    @media screen and (max-width: @mobileWidth - 1px) {
+      display: block;
+      width: 100%;
+
+      thead {
+        display: block;
+        width: 100%;
+
+        tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+      }
+
+      tbody {
+        display: block;
+        width: 100%;
+
+        tr {
+          display: block;
+          width: 100%;
+          margin-bottom: 30px;
+
+          td {
+            display: inline-block;
+            width: 100%;
+            border: 0;
+            position: relative;
+            text-align: center;
+            word-wrap: break-word;
+            padding: 6px;
+          }
+
+          .thumbnail-col {
+            width: 15%;
+            text-align: left;
+          }
+
+          .title-col {
+            width: 50%;
+            text-align: left;
+          }
+
+          .options-col {
+            width: 50%;
+            text-align: left;
+          }
+
+          .quantity-col {
+            width: 50%;
+            text-align: left;
+          }
+
+          .total-price-col {
+            width: 50%;
+            text-align: right;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid @mainBorderColor;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+      .thumbnail-col {
+        width: 1%;
+      }
+    }
+  }
+}

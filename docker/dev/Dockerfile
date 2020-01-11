@@ -31,7 +31,6 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 COPY yarn.lock ./
-ADD components ./components
 
 RUN echo "deb http://deb.debian.org/debian/ jessie main \n\
 deb-src http://deb.debian.org/debian/ jessie main \n\

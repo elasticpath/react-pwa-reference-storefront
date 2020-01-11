@@ -1,0 +1,66 @@
+@import './../../../theme/common.less';
+
+.side-menu-component {
+  position: relative;
+  .menu-item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    font-size: 13px;
+    border-left: 3px solid transparent;
+    color: @mainTextColor !important;
+    text-decoration: none;
+    &.selected {
+      font-weight: bold;
+      color: @firstComplimentColor !important;
+      border-left: 3px solid @firstComplimentColor;
+    }
+  }
+  &-title {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-height: 50px;
+    padding: 0 25px;
+    background: transparent;
+    border: 1px solid @mainBorderColor;
+    border-left: 3px solid @firstComplimentColor;
+    color: @firstComplimentColor;
+    font-weight: bold;
+    text-align: left;
+    &:focus {
+      outline: 0 auto transparent;
+    }
+    &:before {
+      content: "";
+      border-bottom: 2px solid @firstComplimentColor;
+      border-right: 2px solid @firstComplimentColor;
+      height: 8px;
+      width: 8px;
+      position: absolute;
+      transform: rotate(45deg) translate(0, -50%);
+      top: 45%;
+      right: 20px;
+    }
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+  &-dropdown {
+    @media screen and (max-width: 991px) {
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: @mainBackgroundColor;
+      border: 1px solid @mainBorderColor;
+      &.hidden {
+        display: none;
+      }
+      .menu-item.selected {
+        display: none;
+      }
+    }
+  }
+}

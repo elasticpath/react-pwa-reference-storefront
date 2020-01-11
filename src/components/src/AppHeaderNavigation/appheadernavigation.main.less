@@ -1,0 +1,280 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.app-header-navigation-component {
+  @media only screen and (min-width: @tabletWidth) {
+
+    .show .dropdown-toggle:after {
+      transform: rotate(-180deg);
+    }
+
+    .hover-menu .dropdown-menu.show {
+      width: 100%;
+      display: block;
+      border: none;
+      border-radius: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: @mainBackgroundColor;
+      .dropdown-item {
+        font-weight: bold;
+        +.dropdown-menu .dropdown-item {
+          font-weight: normal;
+        }
+      }
+      ul {
+        position: static;
+        display: block;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .hover-menu ul li:hover > div {
+      cursor: pointer;
+    }
+
+    /** Right Dropdown Styling **/
+    .hover-menu .right-drop-down {
+      position: relative
+    }
+
+    .hover-menu .right-drop-down:hover > ul {
+      display: block
+    }
+
+    /** Left Dropdown **/
+    .hover-menu .left-drop-down {
+      position: relative
+    }
+
+    .hover-menu .left-drop-down:hover > ul {
+      display: block
+    }
+
+    .hover-menu .right-drop-down > .dropdown-menu {
+      position: absolute;
+      top: 10%;
+      left: -100%;
+      display: none;
+      z-index: 1
+    }
+
+    .hover-menu .left-drop-down > .dropdown-menu {
+      position: absolute;
+      top: 10%;
+      left: 100%;
+      display: none
+    }
+  }
+
+  @media only screen and (max-width: @tabletWidth - 1){
+    .dropdown-menu.show {
+      position: relative!important;
+    }
+    .dropdown-menu {
+      text-align: center;
+      .dropdown-item {
+        &:hover {
+          background-color: #e2e2e2!important;
+        }
+      }
+    }
+
+    /** Colors of each level of mobile/tablet dropdown **/
+    .nestedCategory0 {
+      background-color: #eeeeee!important
+    }
+
+    .nestedCategory1 {
+      background-color: #e5e5e5!important
+    }
+
+    .nestedCategory2 {
+      background-color: #dcdcdc!important
+    }
+
+    .nestedCategory3 {
+      background-color: #d3d3d3!important
+    }
+
+    .nestedCategory4 {
+      background-color: #cacaca!important
+    }
+
+    .nestedCategory5 {
+      background-color: #c1c1c1!important
+    }
+
+    .nestedCategory6 {
+      background-color: #b8b8b8!important
+    }
+
+    .nestedCategory7 {
+      background-color: #afafaf!important
+    }
+
+    .nestedCategory8 {
+      background-color: #a6a6a6!important
+    }
+
+    .nestedCategory9 {
+      background-color: #9d9d9d!important
+    }
+
+    .nav-item .dropdown-toggle::after {
+      transform: rotate(0deg);
+    }
+
+    .nav-item.show .dropdown-toggle::after {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .hover-menu {
+    position: static;
+    padding: 0;
+  }
+
+  .rotateCaret::after {
+    transform: rotate(-90deg);
+  }
+
+  .navbar-collapse {
+    justify-content: center;
+  }
+
+  .navbar-nav {
+    display: block;
+    text-align: center;
+    position: relative;
+
+    .nav-item {
+      display: inline-block;
+      white-space: nowrap;
+      padding-right: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      transition: border-color 0.2s;
+
+      .nav-link {
+        color: @mainNavigationColor;
+        padding: 7px;
+      }
+
+      .dropdown-menu {
+        box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+
+        .dropdown-item {
+          font-size: 1.3rem;
+          color: @mainTextColor;
+          padding: 10px 20px;
+          transition: border-color 0.2s;
+
+          &:after {
+            display: none;
+          }
+
+          &:hover {
+            background-color: fade(@mainColor, 0%);
+          }
+
+          &:active {
+            background-color: transparent;
+          }
+        }
+        div.dropdown-item {
+          cursor: default;
+          &:hover {
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  &.mobile-view {
+    .navbar-nav {
+      margin-left: auto;
+      margin-right:auto;
+      width:100%;
+
+      .nav-item {
+        text-align: center;
+        display: block;
+        padding: 0;
+
+        .nav-link {
+          color: @mainColor;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          font-size: 19px;
+          text-transform: uppercase;
+
+          &:active {
+            background-color: #ccc;
+          }
+        }
+
+        &.show {
+          .nav-link {
+            font-weight: bold;
+            background-color: #eee;
+          }
+        }
+
+        .sub-category-dropdown-menu {
+          position: static !important;
+          margin: 0;
+          border: 0;
+          background-color: transparent;
+          transform: none !important;
+          box-shadow: none;
+          background-color: #eee;
+
+          .dropdown-item {
+            padding-top: 15px;
+            padding-top: 15px;
+            text-align: center;
+            font-size: 15px;
+            color: @mainColor;
+
+            &:active {
+              background-color: #ccc;
+            }
+
+            &:focus {
+              background-color: #ccc;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

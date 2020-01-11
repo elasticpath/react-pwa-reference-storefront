@@ -1,0 +1,279 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.cart-lineitem-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 15px;
+  border-bottom: 1px solid @mainBorderColor;
+  padding: 25px 0;
+  overflow: auto;
+
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .thumbnail-col {
+    grid-row: 1 / last-line;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    img {
+      border: 1px solid @firstBorderColor;
+      width: 100%;
+    }
+  }
+
+  .featured {
+    font-size: 11px;
+  }
+
+  .title-options-col {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+
+    .title-col {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: bold;
+      vertical-align: top;
+      margin-bottom: 5px;
+    }
+
+    .options-col {
+      display: inline-block;
+
+      .bundle-configuration {
+        .option-name {
+          font-weight: bold;
+          color: @firstComplimentColor;
+        }
+      }
+    }
+  }
+
+  .promotions-col {
+    display: block;
+    text-align: left;
+  }
+
+  .availability-col {
+    grid-column: 2;
+    grid-row: 4;
+    align-self: end;
+    display: inline-block;
+    text-align: right;
+
+    .availability-container {
+      .itemdetail-availability-state {
+        padding: 0;
+
+        div {
+          float: left;
+          background-color: @mainBackgroundColor;
+          border-radius: 12px;
+          border: 1px solid @firstBorderColor;
+          color: @firstComplimentTextColor;
+          padding: 4px 10px;
+          font-size: 10px;
+          text-transform: uppercase;
+        }
+
+        .icon {
+          display: inline-block;
+          transform: rotate(45deg);
+          height: 10px;
+          width: 6px;
+          border-bottom: 2px solid @firstAccentColor;
+          border-right: 2px solid @firstAccentColor;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+
+  .unit-total-price-col {
+    grid-row: 1 / span 2;
+    .unit-price-col {
+      text-align: right;
+      .cart-unit-list-price {
+        text-decoration: line-through;
+      }
+    }
+
+    .total-price-col {
+      .cart-total-purchase-price {
+        font-weight: bold;
+        text-align: right;
+      }
+    }
+  }
+
+  .remove-btn-col,
+  .move-to-cart-btn-col,
+  .configure-btn-col {
+    grid-row: 4;
+    grid-column: 4;
+    justify-self: right;
+
+    .ep-btn {
+      margin: 0;
+    }
+  }
+
+  .remove-btn-col {
+    grid-row: 4;
+  }
+
+  .btn-cart-removelineitem {
+    .recycle-bin-icon {
+      display: none;
+    }
+  }
+
+  .move-to-cart-btn-col,
+  .configure-btn-col {
+    grid-row: 3;
+  }
+
+  th:last-child,
+  td:last-child {
+    text-align: center;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 30px;
+  }
+
+  .quantity-col {
+    grid-column: 3;
+    grid-row: 1 / last-line;
+    justify-self: center;
+    display: inline-block;
+    width: 105px;
+    height: 30px;
+
+    .form-control {
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: normal;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+    }
+
+    .input-group-btn {
+      float: left;
+      border: solid 1px @mainBorderColor;
+      justify-content: space-between;
+      align-items: center;
+
+      .quantity-right-plus,
+      .quantity-left-minus {
+        background-color: white;
+        border-radius: 0 !important;
+        overflow: hidden;
+        position: relative;
+        text-shadow: 1px 1px 1px @mainBackgroundColor;
+        color: @secondComplimentTextColor;
+        text-transform: none;
+        font-weight: normal;
+        float: right;
+        height: 24px;
+      }
+
+      .quantity-left-minus {
+        border-right: 0 !important;
+        float: left;
+      }
+
+      .quantity-right-plus {
+        border-left: 0 !important;
+      }
+
+      .form-content-quantity {
+        width: 50px;
+
+        .form-control-quantity {
+          width: 50px;
+          font-size: 14px;
+          text-align: center;
+        }
+
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance:textfield;
+        }
+      }
+    }
+
+    .product-display-item-quantity-update-button {
+      background: none !important;
+      border: none;
+      padding: 0 !important;
+      font-size: 12px;
+      cursor: pointer;
+
+      &:hover {
+        color: @firstComplimentColor;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .quantity-select {
+    min-width: 70px;
+  }
+
+  @media (max-width: @mobileWidth - 1px) {
+    display: block;
+
+    .quantity-col,
+    .thumbnail-col,
+    .title-options-col,
+    .availability-col,
+    .unit-total-price-col,
+    .remove-btn-col,
+    .move-to-cart-btn-col,
+    .configure-btn-col {
+      grid-column: 1;
+    }
+
+    .remove-btn-col,
+    .configure-btn-col,
+    .move-to-cart-btn-col {
+      float: right;
+    }
+  }
+}
