@@ -91,7 +91,6 @@ const CARD_NUMBER = "#CardNumber";
 const EXPIRY_MONTH = "#ExpiryMonth";
 const EXPIRY_YEAR = "#ExpiryYear";
 const SECURITY_CODE = "#SecurityCode";
-const SAVE_TO_PROFILE = 'label[for="saveToProfile"]';
 const CONTINUE_BUTTON = "button.payment-save-btn";
 const ADDRESS_NAME = ".address-name";
 const CREATED_PAYMENT_METHOD = "ul.profile-payment-methods-listing:nth-child(2)";
@@ -243,7 +242,6 @@ describe('Profile', () => {
     await page.type(EXPIRY_MONTH, paymentMethod.expiryMonth);
     await page.type(EXPIRY_YEAR, paymentMethod.expiryYear);
     await page.type(SECURITY_CODE, paymentMethod.securityCode);
-    await page.click(SAVE_TO_PROFILE);
     await page.click(CONTINUE_BUTTON);
 
     // When I navigate to the profile page
