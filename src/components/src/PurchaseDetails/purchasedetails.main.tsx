@@ -114,14 +114,14 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
   };
 
   const renderPaymentMethod = () => {
-    const postedPayments = data._postedpayments || data._paymentmeans;
+    const postedPayments = data._postedpayments || data._paymentmeans || data._paymentinstruments;
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
         <h3>
           {intl.get('payment-method')}
         </h3>
         {postedPayments[0]._element.map(postedpayment => (
-          <PaymentMethodContainer displayName={postedpayment} key={postedpayment['display-name']} />
+          <PaymentMethodContainer displayName={postedpayment} key={postedpayment['display-name'] || postedpayment.name} />
         ))}
       </div>
     );

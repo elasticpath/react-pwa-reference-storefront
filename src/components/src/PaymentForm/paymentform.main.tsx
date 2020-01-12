@@ -31,10 +31,16 @@ let intl = { get: str => str };
 const today = new Date();
 
 interface PaymentFormMainProps {
+  /** dictates whether to add tokenized payment data to the profile resource or order resource. */
+  defaultPostSelection: boolean,
   /** handle close modal */
   onCloseModal?: (...args: any[]) => any,
   /** handle fetch data */
   fetchData?: (...args: any[]) => any,
+  /** Toggles whether or not to show a checkbox that allows user to save payment to profile.
+   *  Only shown if defaultPostSelection is set to false.
+   */
+  showSaveToProfileOption: boolean,
 }
 
 interface PaymentFormMainState {
@@ -47,15 +53,18 @@ interface PaymentFormMainState {
     securityCode: string,
     saveToProfile: boolean,
     failedSubmit: boolean,
-    paymentForm: any,
-    orderPaymentForm: any,
-    cybersourceBodyRequest: any,
+    paymentInstrumentFormFieldsToFill: object,
+    submitPaymentFormOrderUri: string,
+    submitPaymentFormProfileUri: string,
+    doesPaymentInstrumentResourceExist: boolean,
 }
 
 class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainState> {
   static defaultProps = {
     onCloseModal: () => {},
     fetchData: () => {},
+    defaultPostSelection: false,
+    showSaveToProfileOption: false,
   }
 
   formRef: React.RefObject<HTMLFormElement>;
@@ -75,10 +84,12 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       securityCode: '',
       saveToProfile: false,
       failedSubmit: false,
-      paymentForm: undefined,
-      orderPaymentForm: undefined,
-      cybersourceBodyRequest: {},
+      paymentInstrumentFormFieldsToFill: {},
+      submitPaymentFormOrderUri: '',
+      submitPaymentFormProfileUri: '',
+      doesPaymentInstrumentResourceExist: true,
     };
+
     this.setCardType = this.setCardType.bind(this);
     this.setCardHolderName = this.setCardHolderName.bind(this);
     this.setCardNumber = this.setCardNumber.bind(this);
@@ -87,23 +98,141 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.setSecurityCode = this.setSecurityCode.bind(this);
     this.setSaveToProfile = this.setSaveToProfile.bind(this);
     this.submitPayment = this.submitPayment.bind(this);
+    this.setPaymentInstrumentFormFieldsToFill = this.setPaymentInstrumentFormFieldsToFill.bind(this);
+    this.fillPaymentInstrumentFormFields = this.fillPaymentInstrumentFormFields.bind(this);
+    this.setSubmitPaymentForm = this.setSubmitPaymentForm.bind(this);
+    this.makeSubmitPaymentRequest = this.makeSubmitPaymentRequest.bind(this);
+    this.initializeState = this.initializeState.bind(this);
+    this.areCreditCardFieldsValid = this.areCreditCardFieldsValid.bind(this);
+    this.parsePaymentInstrumentFormFieldsFromResponse = this.parsePaymentInstrumentFormFieldsFromResponse.bind(this);
+    this.shouldShowSaveToProfile = this.shouldShowSaveToProfile.bind(this);
     this.cancel = this.cancel.bind(this);
-    this.fetchCybersourceForm = this.fetchCybersourceForm.bind(this);
     this.formRef = React.createRef<HTMLFormElement>();
+    this.makeSubmitPaymentMethodRequest = this.makeSubmitPaymentMethodRequest.bind(this);
+    this.doesPaymentInstrumentFormExist = this.doesPaymentInstrumentFormExist.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchPaymentForms();
-  }
-
-  componentDidUpdate() {
-    const formCardNumberExists = document.getElementById('card_number');
-    const formBillEmailExists = document.getElementById('bill_to_email');
-    const formExists = document.getElementById('payment_confirmation');
-
-    if (formExists && formCardNumberExists && formBillEmailExists) {
-      this.formRef.current.submit();
+  doesPaymentInstrumentFormExist(paymentInstrumentForm) {
+    if (paymentInstrumentForm._defaultprofile || paymentInstrumentForm._defaultcart) {
+      this.setState({ doesPaymentInstrumentResourceExist: true });
+      return true;
     }
+    this.setState({ doesPaymentInstrumentResourceExist: false });
+    return false;
+  }
+
+  async initializeState() {
+    const paymentInstrumentForm = await PaymentFormMain.fetchPaymentInstrumentForm();
+    this.setSubmitPaymentForm(paymentInstrumentForm);
+  }
+
+  async componentDidMount() {
+    this.initializeState();
+  }
+
+  setSubmitPaymentForm(paymentInstrumentForm) {
+    if (this.doesPaymentInstrumentFormExist(paymentInstrumentForm)) {
+      const submitPaymentFormOrderUri = PaymentFormMain.parseOrderPaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
+      const submitPaymentFormProfileUri = PaymentFormMain.parseProfilePaymentInstrumentFormActionFromResponse(paymentInstrumentForm);
+      this.setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm);
+      this.setState({ submitPaymentFormProfileUri, submitPaymentFormOrderUri });
+    } else {
+      // Using Pre Cortex 7.6 legacy paymentmethodform endpoints.
+      this.fetchPaymentMethodsForm();
+    }
+  }
+
+  setPaymentInstrumentFormFieldsToFill(paymentInstrumentForm) {
+    const paymentFormFieldsToFill = this.parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm);
+    this.setState({ paymentInstrumentFormFieldsToFill: paymentFormFieldsToFill });
+  }
+
+  shouldShowSaveToProfile() {
+    const { defaultPostSelection, showSaveToProfileOption } = this.props;
+
+    if (!defaultPostSelection && showSaveToProfileOption) {
+      return true;
+    }
+
+    return false;
+  }
+
+  static parseOrderPaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
+    try {
+      return paymentInstrumentForm._defaultcart[0]._order[0]._paymentmethodinfo[0]._element[0]._paymentinstrumentform[0].self.uri;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  static parseProfilePaymentInstrumentFormActionFromResponse(paymentInstrumentForm) {
+    try {
+      return paymentInstrumentForm._defaultprofile[0]._paymentmethods[0]._element[0]._paymentinstrumentform[0].self.uri;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    const { defaultPostSelection } = this.props;
+
+    if (defaultPostSelection !== prevProps.defaultPostSelection) {
+      this.initializeState();
+    }
+  }
+
+  static async fetchPaymentInstrumentForm() {
+    let paymentInstrumentFormUnserialized;
+
+    const zoomQuery = '/?zoom=defaultcart:order:paymentmethodinfo:element:paymentinstrumentform,defaultprofile:paymentmethods:element:paymentinstrumentform';
+
+    try {
+      await login();
+
+      const paymentInstrumentForm = await cortexFetch(
+        zoomQuery,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        },
+      );
+
+      paymentInstrumentFormUnserialized = await paymentInstrumentForm.json();
+
+      return paymentInstrumentFormUnserialized;
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Unable to fetch PaymentInstrumentForm ', err);
+    }
+
+    return paymentInstrumentFormUnserialized;
+  }
+
+  parsePaymentInstrumentFormFieldsFromResponse(paymentInstrumentForm) {
+    const { defaultPostSelection } = this.props;
+    let zoomResult;
+
+    if (defaultPostSelection) {
+      // eslint-disable-next-line prefer-destructuring
+      zoomResult = paymentInstrumentForm._defaultprofile[0]._paymentmethods[0]._element[0]._paymentinstrumentform[0];
+    } else {
+      // eslint-disable-next-line prefer-destructuring
+      zoomResult = paymentInstrumentForm._defaultcart[0]._order[0]._paymentmethodinfo[0]._element[0]._paymentinstrumentform[0];
+    }
+
+    const paymentInstrumentFormKeys = Object.keys(zoomResult).filter((key) => {
+      if (key === 'self' || key === 'links' || key === 'messages') {
+        return false;
+      }
+      return true;
+    });
+
+    return paymentInstrumentFormKeys.reduce((acc, cKey) => ({
+      ...acc,
+      [cKey]: zoomResult[cKey],
+    }), {});
   }
 
   setCardType(event) {
@@ -134,29 +263,158 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     this.setState({ saveToProfile: event.target.checked });
   }
 
+  areCreditCardFieldsValid() {
+    const {
+      cardHolderName, cardNumber, securityCode,
+    } = this.state;
+    const holderName = cardHolderName.split(' ');
+
+    if (!cardHolderName || !cardNumber || !securityCode || !(holderName[0] && holderName[1])) {
+      return false;
+    }
+
+    return true;
+  }
+
+  static generateToken() {
+    /*
+    Function that will tokenize credit card information.
+    Function returns random string as implementor will replace this function and have their own way of tokenizing.
+    */
+    return Math.random().toString(36).substr(2, 9);
+  }
+
+  makeSubmitPaymentMethodRequest(link) {
+    const {
+      fetchData,
+      onCloseModal,
+    } = this.props;
+
+    const {
+      cardHolderName,
+      cardNumber,
+      cardType,
+    } = this.state;
+
+    const card = PaymentFormMain.findCardTypeFromCode(cardType);
+
+    login().then(() => {
+      cortexFetch(link, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({
+          'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
+          token: Math.random()
+            .toString(36)
+            .substr(2, 9),
+          /* token is being randomly generated here to be passed to the demo payment gateway
+          ** in a true implementation this token should be received from the actual payment gateway
+          ** when doing so, make sure you're compliant with PCI DSS
+          */
+        }),
+      })
+        .then((res) => {
+          this.setState({
+            showLoader: false,
+          });
+          if (res.status === 400) {
+            this.setState({ failedSubmit: true });
+          } else if (res.status === 201 || res.status === 200 || res.status === 204) {
+            this.setState({ failedSubmit: false }, () => {
+              fetchData();
+              onCloseModal();
+            });
+          }
+        })
+        .catch((error) => {
+          this.setState({
+            showLoader: false,
+          });
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
+  /**
+   *  NOTE:
+   *  This function makes a post request to the paymentinstrumentform resource in either the profile or orders resource depending on logged in status
+   *  and if the checkbox to `save to profile` is checked.  In customer implementation this portion will need to be rewritten to suit specific needs.
+   */
+  async makeSubmitPaymentRequest() {
+    const {
+      fetchData,
+      onCloseModal,
+      defaultPostSelection,
+    } = this.props;
+    const {
+      paymentInstrumentFormFieldsToFill,
+      submitPaymentFormOrderUri,
+      submitPaymentFormProfileUri,
+      saveToProfile,
+      doesPaymentInstrumentResourceExist,
+    } = this.state;
+
+    let submitPaymentFormUri;
+
+    if (defaultPostSelection || saveToProfile) {
+      submitPaymentFormUri = submitPaymentFormProfileUri;
+    } else {
+      submitPaymentFormUri = submitPaymentFormOrderUri;
+    }
+
+    if (doesPaymentInstrumentResourceExist) {
+      const formFieldsFilled = this.fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill);
+
+      try {
+        const addPaymentResponse = await cortexFetch(submitPaymentFormUri,
+          {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+            body: JSON.stringify(formFieldsFilled),
+          });
+
+        this.setState({
+          showLoader: false,
+        });
+
+        if (addPaymentResponse.status === 400) {
+          this.setState({ failedSubmit: true });
+        } else if (addPaymentResponse.status === 201 || addPaymentResponse.status === 200 || addPaymentResponse.status === 204) {
+          this.setState({ failedSubmit: false }, () => {
+            fetchData();
+            onCloseModal();
+          });
+        }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      }
+    } else {
+      this.makeSubmitPaymentMethodRequest(submitPaymentFormUri);
+    }
+  }
+
   submitPayment(event) {
     event.preventDefault();
-    const {
-      cardHolderName, cardType, cardNumber, securityCode, saveToProfile, paymentForm, orderPaymentForm, expiryYear, expiryMonth,
-    } = this.state;
-    const { fetchData, onCloseModal } = this.props;
-    const holderName = cardHolderName.split(' ');
-    if (!cardHolderName || !cardNumber || !securityCode || !(holderName[0] && holderName[1])) {
-      this.setState({ failedSubmit: true });
-      return;
-    }
-    this.setState({
-      showLoader: true,
-      failedSubmit: false,
-    });
-    let link;
-    if (saveToProfile) {
-      link = paymentForm;
+
+    if (this.areCreditCardFieldsValid()) {
+      this.setState({ showLoader: true, failedSubmit: false });
+      this.makeSubmitPaymentRequest();
     } else {
-      link = orderPaymentForm;
+      this.setState({ failedSubmit: true });
     }
+  }
+
+  static findCardTypeFromCode(code) {
     let card;
-    switch (cardType) {
+    switch (code) {
       case '001':
         card = 'Visa';
         break;
@@ -167,186 +425,34 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
         card = 'American Express';
     }
 
-    if (Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
-      const name = cardHolderName.split(' ');
-      const formatedExpiryMonth = ((expiryMonth) < 10 ? '0' : '') + (expiryMonth);
-      let bodyLambdaRequest = {
-        reference_number: Math.floor(Math.random() * 1000000001).toString(),
-        currency: Config.defaultCurrencyValue,
-        payment_method: 'card',
-        bill_to_email: '',
-        locale: Config.defaultLocaleValue,
-        bill_to_address_line1: '',
-        bill_to_address_city: '',
-        bill_to_address_state: '',
-        bill_to_address_country: '',
-        bill_to_address_postal_code: '',
-        override_custom_receipt_page: Config.creditCardTokenization.overrideCustomReceiptURI,
-        override_custom_cancel_page: Config.creditCardTokenization.overrideCustomCancelURI,
-      };
-      const zoomArrayProfile = [
-        'defaultcart',
-        'defaultcart:total',
-        'defaultprofile',
-        'defaultprofile:addresses',
-        'defaultprofile:addresses:element',
-        'defaultprofile:emails',
-        'defaultprofile:emails:element',
-      ];
-      login().then(() => {
-        cortexFetch(`/?zoom=${zoomArrayProfile.join()}`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-          })
-          .then(profileData => profileData.json())
-          .then((profileData) => {
-            bodyLambdaRequest = {
-              ...bodyLambdaRequest,
-              currency: profileData._defaultcart[0]._total[0].cost[0].currency,
-              bill_to_email: profileData._defaultprofile[0]._emails[0]._element[0].email,
-              bill_to_address_city: profileData._defaultprofile[0]._addresses[0]._element[0].address.locality,
-              bill_to_address_state: profileData._defaultprofile[0]._addresses[0]._element[0].address.region,
-              bill_to_address_country: profileData._defaultprofile[0]._addresses[0]._element[0].address['country-name'],
-              bill_to_address_postal_code: profileData._defaultprofile[0]._addresses[0]._element[0].address['postal-code'],
-              bill_to_address_line1: profileData._defaultprofile[0]._addresses[0]._element[0].address['street-address'],
-            };
-            fetch(Config.creditCardTokenization.lambdaURI, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(bodyLambdaRequest),
-            })
-              .then(lambdaResponse => lambdaResponse.json())
-              .then((lambdaResponse) => {
-                const cardData = {
-                  bill_to_forename: name[0],
-                  bill_to_surname: name[1],
-                  card_type: cardType.toString(),
-                  card_number: cardNumber.toString(),
-                  cardExpiryDate: `${formatedExpiryMonth}-${expiryYear}`,
-                  card_cvn: securityCode.toString(),
-                };
-                const cybersourceBodyRequest = { ...cardData, ...lambdaResponse };
-                this.setState({ cybersourceBodyRequest });
-              });
-          });
-      })
-        .catch((error) => {
-          this.setState({
-            showLoader: false,
-          });
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    } else {
-      login().then(() => {
-        cortexFetch(link, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            'display-name': `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`,
-            token: Math.random()
-              .toString(36)
-              .substr(2, 9),
-            /* token is being randomly generated here to be passed to the demo payment gateway
-            ** in a true implementation this token should be received from the actual payment gateway
-            ** when doing so, make sure you're compliant with PCI DSS
-            */
-          }),
-        })
-          .then((res) => {
-            this.setState({
-              showLoader: false,
-            });
-            if (res.status === 400) {
-              this.setState({ failedSubmit: true });
-            } else if (res.status === 201 || res.status === 200 || res.status === 204) {
-              this.setState({ failedSubmit: false }, () => {
-                fetchData();
-                onCloseModal();
-              });
-            }
-          })
-          .catch((error) => {
-            this.setState({
-              showLoader: false,
-            });
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
+    return card;
+  }
+
+  fillPaymentInstrumentFormFields(paymentInstrumentFormFieldsToFill) {
+    const {
+      cardType, cardHolderName, cardNumber,
+    } = this.state;
+
+    const card = PaymentFormMain.findCardTypeFromCode(cardType);
+
+    const keys = Object.keys(paymentInstrumentFormFieldsToFill);
+    const formFieldsToFill = paymentInstrumentFormFieldsToFill;
+
+    for (let i = 0; i < keys.length; i++) {
+      const cKey = keys[i];
+
+      if (typeof paymentInstrumentFormFieldsToFill[cKey] === 'string') {
+        if (cKey === 'display-name') {
+          formFieldsToFill[cKey] = `${cardHolderName}'s ${card} ending in: ****${cardNumber.substring(cardNumber.length - 4)}`;
+        } else {
+          formFieldsToFill[cKey] = PaymentFormMain.generateToken();
+        }
+      } else {
+        formFieldsToFill[cKey] = this.fillPaymentInstrumentFormFields(formFieldsToFill[cKey]);
+      }
     }
-  }
 
-  // eslint-disable-next-line class-methods-use-this
-  fetchCybersourceForm(cybersourceBodyRequest) {
-    return (
-      <form ref={this.formRef} id="payment_confirmation" className="payment_confirmation col-md-12" action={cybersourceBodyRequest.cs_endpoint_url} method="post">
-        <input type="text" id="transaction_type" name="transaction_type" value={cybersourceBodyRequest.transaction_type} />
-        <input type="text" id="amount" name="amount" value={cybersourceBodyRequest.amount} />
-        <input type="text" id="transaction_uuid" name="transaction_uuid" value={cybersourceBodyRequest.transaction_uuid} />
-        <input type="text" id="signed_date_time" name="signed_date_time" value={cybersourceBodyRequest.signed_date_time} />
-        <input type="text" id="unsigned_field_names" name="unsigned_field_names" value={cybersourceBodyRequest.unsigned_field_names} />
-        <input type="text" id="bill_to_address_postal_code" name="bill_to_address_postal_code" value={cybersourceBodyRequest.bill_to_address_postal_code} />
-        <input type="text" id="bill_to_address_state" name="bill_to_address_state" value={cybersourceBodyRequest.bill_to_address_state} />
-        <input type="text" id="signed_field_names" name="signed_field_names" value={cybersourceBodyRequest.signed_field_names} />
-        <input type="text" id="locale" name="locale" value={cybersourceBodyRequest.locale} />
-        <input type="text" id="bill_to_email" name="bill_to_email" value={cybersourceBodyRequest.bill_to_email} />
-        <input type="text" id="reference_number" name="reference_number" value={cybersourceBodyRequest.reference_number} />
-        <input type="text" id="bill_to_address_country" name="bill_to_address_country" value={cybersourceBodyRequest.bill_to_address_country} />
-        <input type="text" id="bill_to_surname" name="bill_to_surname" value={cybersourceBodyRequest.bill_to_surname} />
-        <input type="text" id="bill_to_address_line1" name="bill_to_address_line1" value={cybersourceBodyRequest.bill_to_address_line1} />
-        <input type="text" id="profile_id" name="profile_id" value={cybersourceBodyRequest.profile_id} />
-        <input type="text" id="access_key" name="access_key" value={cybersourceBodyRequest.access_key} />
-        <input type="text" id="bill_to_phone" name="bill_to_phone" value={cybersourceBodyRequest.bill_to_phone} />
-        <input type="text" id="bill_to_address_city" name="bill_to_address_city" value={cybersourceBodyRequest.bill_to_address_city} />
-        <input type="text" id="currency" name="currency" value={cybersourceBodyRequest.currency} />
-        <input type="text" id="bill_to_forename" name="bill_to_forename" value={cybersourceBodyRequest.bill_to_forename} />
-        <input type="text" id="payment_method" name="payment_method" value={cybersourceBodyRequest.payment_method} />
-        <input type="text" id="signature" name="signature" value={cybersourceBodyRequest.signature} />
-        <input type="text" id="override_custom_receipt_page" name="override_custom_receipt_page" value={cybersourceBodyRequest.override_custom_receipt_page} />
-        <input type="text" id="override_custom_cancel_page" name="override_custom_cancel_page" value={cybersourceBodyRequest.override_custom_cancel_page} />
-        <fieldset>
-          <div id="UnsignedDataSection" className="">
-            <input type="text" id="card_cvn" name="card_cvn" value={cybersourceBodyRequest.card_cvn} />
-            <input type="text" id="card_type" name="card_type" value={cybersourceBodyRequest.card_type} />
-            <input type="text" id="card_number" name="card_number" value={cybersourceBodyRequest.card_number} />
-            <input type="text" id="card_expiry_date" name="card_expiry_date" value={cybersourceBodyRequest.cardExpiryDate} />
-          </div>
-        </fieldset>
-      </form>
-    );
-  }
-
-  fetchPaymentForms() {
-    login().then(() => {
-      cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          const paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenaction',
-          );
-          const orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
-            link => link.rel === 'createpaymenttokenfororderaction',
-          );
-          this.setState({
-            paymentForm: paymentFormLink.uri,
-            orderPaymentForm: orderPaymentFormLink.uri,
-          });
-        });
-    });
+    return paymentInstrumentFormFieldsToFill;
   }
 
   cancel() {
@@ -366,13 +472,38 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     return options;
   }
 
+  /** Note that this fetches the legacy form.. pre 7.6. */
+  fetchPaymentMethodsForm() {
+    login().then(() => {
+      cortexFetch('/?zoom=defaultcart:order:paymentmethodinfo:paymenttokenform,defaultprofile:paymentmethods:paymenttokenform', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          const paymentFormLink = res._defaultprofile[0]._paymentmethods[0]._paymenttokenform[0].links.find(
+            link => link.rel === 'createpaymenttokenaction',
+          );
+          const orderPaymentFormLink = res._defaultcart[0]._order[0]._paymentmethodinfo[0]._paymenttokenform[0].links.find(
+            link => link.rel === 'createpaymenttokenfororderaction',
+          );
+          this.setState({
+            submitPaymentFormProfileUri: paymentFormLink.uri,
+            submitPaymentFormOrderUri: orderPaymentFormLink.uri,
+          });
+        });
+    });
+  }
+
   render() {
     const {
-      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader, cybersourceBodyRequest,
+      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader,
     } = this.state;
+
     return (
       <div className="payment-method-container container">
-        {cybersourceBodyRequest.access_key && this.fetchCybersourceForm(cybersourceBodyRequest)}
         <div className="feedback-label feedback-container" data-region="componentPaymentFeedbackRegion">
           {failedSubmit ? intl.get('failed-to-save-message') : ''}
         </div>
@@ -480,16 +611,22 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
               <input id="SecurityCode" name="SecurityCode" className="form-control" maxLength={4} type="text" pattern="\d*" value={securityCode} onChange={this.setSecurityCode} />
             </div>
           </div>
-          <div className="form-group save-to-profile-group" data-el-label="payment.saveToProfileFormGroup">
-            <div className="form-input">
-              {/* eslint-disable-next-line max-len */}
-              <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" className="style-checkbox" checked={saveToProfile} onChange={this.setSaveToProfile} />
-              <label htmlFor="saveToProfile" />
-            </div>
-            <label htmlFor="saveToProfile" className="control-label form-label">
-              {intl.get('save-payment-to-profile')}
-            </label>
-          </div>
+
+          { this.shouldShowSaveToProfile()
+            ? (
+              <div className="form-group save-to-profile-group" data-el-label="payment.saveToProfileFormGroup">
+                <div className="form-input">
+                  {/* eslint-disable-next-line max-len */}
+                  <input type="checkbox" id="saveToProfile" data-el-label="payment.saveToProfile" className="style-checkbox" checked={saveToProfile} onChange={this.setSaveToProfile} />
+                  <label htmlFor="saveToProfile" />
+                </div>
+                <label htmlFor="saveToProfile" className="control-label form-label">
+                  {intl.get('save-payment-to-profile')}
+                </label>
+              </div>
+            )
+            : null }
+
           <div className="form-group form-btn-group">
             <div className="control-label" />
             <div className="form-input btn-container">

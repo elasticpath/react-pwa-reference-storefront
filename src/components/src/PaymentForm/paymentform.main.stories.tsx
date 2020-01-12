@@ -19,13 +19,14 @@
  *
  */
 import React from 'react';
-import Readme from './README.md';
+import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-
+import { textToFunc } from '../../../storybook/utils/storybookUtils';
 import PaymentFormMain from './paymentform.main';
+import { mockPaymentFormSuccessWithAnonUser, mockPaymentFormFailureWithAnonUser, mockPaymentFormSuccessWithRegisteredUser } from '../../../src/components/src/PaymentForm/paymentform.main.api.mocks';
 
-import { boolean, object, text } from '@storybook/addon-knobs';
-import { textToFunc } from "../../../../storybook/utils/storybookUtils"
+import Readme from './README.md';
+
 
 storiesOf('Components|PaymentFormMain', module)
   .addParameters({
@@ -34,8 +35,45 @@ storiesOf('Components|PaymentFormMain', module)
       sidebar: Readme,
     },
   })
-  .add('PaymentFormMain', () => {
-    let onCloseModalFuncText = text('onCloseModal','() => {alert("onCloseModal invoked")}');
-    let onConfigurationAddToCartFuncText = text('onConfigurationAddToCart','() => {alert("onConfigurationAddToCart invoked")}');
-    return(<PaymentFormMain onCloseModal={()=>{textToFunc(onCloseModalFuncText)}} fetchData={()=>{textToFunc(onConfigurationAddToCartFuncText)}} />);
+  .add('PaymentFormMain with Successful Submission Response', () => {
+    mockPaymentFormSuccessWithAnonUser();
+    const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
+    const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');
+
+    return (
+      <PaymentFormMain
+        defaultPostSelection
+        onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
+        fetchData={() => { textToFunc(fetchDataFuncText); }}
+      />
+    );
+  })
+  .add('PaymentFormMain with SaveToProfile Checkbox and Successful Submission Response', () => {
+    mockPaymentFormSuccessWithRegisteredUser();
+
+    const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
+    const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');
+
+    return (
+      <PaymentFormMain
+        onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
+        fetchData={() => { textToFunc(fetchDataFuncText); }}
+        showSaveToProfileOption
+      />
+    );
+  })
+  .add('PaymentFormMain with Failure Submission Response', () => {
+    mockPaymentFormFailureWithAnonUser();
+
+    const onCloseModalFuncText = text('onCloseModal', '() => {alert("onCloseModal invoked")}');
+    const fetchDataFuncText = text('fetchData', '() => {alert("fetchData invoked")}');
+
+    return (
+      <PaymentFormMain
+        defaultPostSelection
+        onCloseModal={() => { textToFunc(onCloseModalFuncText); }}
+        fetchData={() => { textToFunc(fetchDataFuncText); }}
+        showSaveToProfileOption
+      />
+    );
   });

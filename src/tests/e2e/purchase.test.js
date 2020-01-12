@@ -24,7 +24,7 @@
 const {
   registerUser,
   addAddress,
-  addPaymentMethod,
+  addPaymentMethodToOrder,
   loginUserRegister,
   loginUser,
   addProductToCart
@@ -142,7 +142,7 @@ describe('Purchase feature', () => {
       securityCode: '123',
     };
 
-    await addPaymentMethod(page, paymentMethod);
+    await addPaymentMethodToOrder(page, paymentMethod);
 
     await page.waitForSelector(CREATED_PAYMENT_METHOD);
     await page.waitFor(3000);
@@ -211,7 +211,7 @@ describe('Purchase feature', () => {
       securityCode: '123',
     };
 
-    await addPaymentMethod(page, paymentMethod);
+    await addPaymentMethodToOrder(page, paymentMethod);
     await page.waitForSelector(CREATED_PAYMENT_METHOD);
     await page.waitFor(3000);
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
@@ -292,7 +292,7 @@ describe('Purchase feature', () => {
         securityCode: '123',
       };
 
-      await addPaymentMethod(page, paymentMethod);
+      await addPaymentMethodToOrder(page, paymentMethod);
       await page.waitForSelector(CREATED_PAYMENT_METHOD);
       await page.waitFor(3000);
     }
@@ -383,7 +383,7 @@ describe('Purchase feature', () => {
         securityCode: '123',
       };
 
-      await addPaymentMethod(page, paymentMethod);
+      await addPaymentMethodToOrder(page, paymentMethod);
       await page.waitForSelector(CREATED_PAYMENT_METHOD);
       await page.waitFor(3000);
     }
@@ -475,7 +475,7 @@ describe('Purchase feature', () => {
         securityCode: '123',
       };
 
-      await addPaymentMethod(page, paymentMethod);
+      await addPaymentMethodToOrder(page, paymentMethod);
       await page.waitForSelector(CREATED_PAYMENT_METHOD);
       await page.waitFor(3000);
     }
@@ -656,7 +656,7 @@ describe('Purchase feature', () => {
       securityCode: '123',
     };
 
-    await addPaymentMethod(page, paymentMethod);
+    await addPaymentMethodToOrder(page, paymentMethod);
     await page.waitForSelector(CREATED_PAYMENT_METHOD);
     await page.waitFor(3000);
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);

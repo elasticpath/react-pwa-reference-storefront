@@ -22,17 +22,10 @@ import fetchMock from 'fetch-mock/es5/client';
 import fetchGeoDataResponse from './MockHttpResponses/GET/fetchGeoData_response.json';
 import fetchAddressFormResponse from './MockHttpResponses/GET/fetchAddressForm_response.json';
 import fetchAddressDataResponse from './MockHttpResponses/GET/fetchAddressData_response.json';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
 import submitAddressResponse from './MockHttpResponses/POST/submitAddress_response.json';
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 
 fetchMock.config.fallbackToNetwork = true;
-
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
 
 function mockCountriesResponse(mockObj) {
   mockObj.get(
@@ -81,15 +74,20 @@ function mockSubmitAddressResponseFailureResponse(mockObj) {
 }
 
 function mockCommonAddressFormResponses(mockObj) {
-  mockLoginResponse(mockObj);
+  mockAnonLoginResponse(mockObj);
   mockCountriesResponse(mockObj);
   mockAddressFormResponse(mockObj);
   mockAddressDataResponse(mockObj);
 }
 
-export default function mockAddressFormSubmit() {
+export function mockAddressFormSubmitSuccess() {
   fetchMock.restore();
   mockCommonAddressFormResponses(fetchMock);
   mockSubmitAddressResponseSuccessResponse(fetchMock);
+}
+
+export function mockAddressFormSubmitFailure() {
+  fetchMock.restore();
+  mockCommonAddressFormResponses(fetchMock);
   mockSubmitAddressResponseFailureResponse(fetchMock);
 }

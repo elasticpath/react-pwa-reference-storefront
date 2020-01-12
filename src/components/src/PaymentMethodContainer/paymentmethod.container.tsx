@@ -30,8 +30,12 @@ function PaymentMethodContainer(props: PaymentMethodContainerProps) {
   const { displayName } = props;
   const displayAppliedAmount = (displayName['applied-amount-display']) ? (` - ${displayName['applied-amount-display'] || ''}`) : '';
   const displayTransactionType = (displayName['transaction-type']) ? (` - ${displayName['transaction-type'] || ''}`) : '';
+  let displayNameVar = displayName['display-value'] || displayName['display-name'] || displayName.name;
 
-  let displayNameVar = displayName['display-value'] || displayName['display-name'];
+  if (displayName._description) {
+    displayNameVar = displayName._description[0].name;
+  }
+
   if (!displayNameVar) {
     displayNameVar = `${displayName.provider.toLowerCase().replace(/_/g, ' ')}`;
   }
