@@ -123,7 +123,7 @@
 
       .add-to-wish-list-link {
         font-size: small;
-        color: #40b1f3;
+        color: @firstComplimentColor;
         right: 25px;
         white-space: nowrap;
         border: none;
@@ -142,7 +142,7 @@
       }
 
       .price-sale {
-        color: #E00645;
+        color: @firstComplimentTextColor;
       }
 
       .itemdetail-list-price-value{
@@ -179,7 +179,7 @@
           &:hover {
             cursor: pointer;
             color: @firstComplimentColor;
-            background-color: #F2F6FA;
+            background-color: @thirdComplimentBackground;
           }
         }
       }
@@ -280,24 +280,6 @@
           }
         }
       }
-    }
-
-    .itemdetail-attribute:nth-of-type(1) {
-      border-bottom: solid 1px @mainBorderColor;
-      padding-bottom: 25px;
-    }
-
-    .itemdetail-attribute-label-col {
-      font-size: 14px;
-      font-weight: 600;
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
-
-    .itemdetail-attribute-value-col {
-      line-height: 1.5;
-      color: #8a8a8a;
-      font-weight: 600;
     }
   }
 
@@ -451,14 +433,16 @@
   .color-wrap{
     input[type="radio"] {
       + label {
-        background: gray;
-        width: 40px;
+        border-radius: 50%;
+        width: 9px;
+        padding: 0 9px;
         text-indent: -9999px;
-        border: 1px solid @mainBackgroundColor;
+        border: 1px solid @mainBorderColor;
       }
       &:checked {
         +label {
-          //border-color: @mainBackgroundColor;
+          border: 2px solid @mainBackgroundColor;
+          box-shadow: 0 0 0 2px @firstComplimentColor;
         }
       }
     }
@@ -474,7 +458,7 @@
       position: relative;
       display: inline-block;
       border: solid 1px @mainBorderColor;
-      background-color: #FFF;
+      background-color: @mainBackgroundColor;
       font-size: 14px;
       font-weight: 500;
       text-align: center;
@@ -484,12 +468,77 @@
       +label {
         color: @firstComplimentColor;
         border-color: @firstComplimentColor;
-        background-color: #F2F6FA;
+        background-color: @mainBackgroundColor;
         font-weight: bold;
         z-index: 1;
       }
     }
   }
+}
+
+.detail-list-item {
+  border-bottom: solid 1px @mainBorderColor;
+  text-align: right;
+  padding: 0 20px;
+}
+
+.item-detail-attribute-label-col {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 0;
+  min-height: 46px;
+  text-align: left;
+  color: @firstComplimentColor;
+  text-transform: uppercase;
+  position: relative;
+
+  .item-arrow-btn {
+    right: 20px;
+    transform: translateY(-50%);
+    display: inline-block;
+    float: right;
+    position: absolute;
+    margin-top: 12px;
+    height: 20px;
+    width: 16px;
+    border: none;
+    background: transparent;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:before {
+      content: "";
+      border-top: 3px solid @firstComplimentColor;
+      border-right: 3px solid @firstComplimentColor;
+      height: 12px;
+      width: 12px;
+      position: absolute;
+      transform: translate(2px, 1px) rotate(135deg);
+      top: 2px;
+      right: 3px;
+    }
+
+    &.up {
+      transform: translate(2px, -7px) rotate(-180deg);
+    }
+  }
+}
+
+.item-detail-attribute-value-col {
+  line-height: 1.5;
+  color: @mainTextColor;
+  text-align: left;
+  padding-bottom: 10px;
+
+  &.hide {
+    display: none;
+  }
+}
+
+.item-detail-attributes {
+  border-top: 1px solid @mainBorderColor;
 }
 
 @media (max-width: @mobileWidth) {
