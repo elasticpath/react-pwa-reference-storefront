@@ -21,9 +21,9 @@
 import React from 'react';
 import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { textToFunc } from '../../../storybook/utils/storybookUtils';
+import { textToFunc } from '../../../../storybook/utils/storybookUtils';
 import PaymentFormMain from './paymentform.main';
-import { mockPaymentFormSuccessWithAnonUser, mockPaymentFormFailureWithAnonUser, mockPaymentFormSuccessWithRegisteredUser } from '../../../src/components/src/PaymentForm/paymentform.main.api.mocks';
+import { mockPaymentFormSuccessWithAnonUser, mockPaymentFormFailureWithAnonUser, mockPaymentFormSuccessWithRegisteredUser } from './paymentform.main.api.mocks';
 
 import Readme from './README.md';
 
