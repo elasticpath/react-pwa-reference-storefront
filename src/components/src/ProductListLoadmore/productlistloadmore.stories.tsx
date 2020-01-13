@@ -22,11 +22,12 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
+import { text, object } from '@storybook/addon-knobs/react';
+import { textToFunc } from '../../../../storybook/utils/storybookUtils';
+
 import productsData from './MockHttpResponses/GET/productData_response.json';
-import { text, object } from "@storybook/addon-knobs/react";
-import { textToFunc } from "../../../../storybook/utils/storybookUtils";
 import ProductListLoadMore from './productlistloadmore';
-import { mockProductListLoadMoreFromSearchResponse } from './productlistloadmore.api.mocks';
+import mockProductListLoadMoreFromSearchResponse from './productlistloadmore.api.mocks';
 
 let handleDataChangeFuncText;
 let onLoadMoreFuncText;
@@ -50,10 +51,10 @@ storiesOf('Components|ProductListLoadMore', module)
     mockProductListLoadMoreFromSearchResponse();
     processProductListLoadmoreKnobCallbacks();
     return (
-      <ProductListLoadMore 
-        dataProps={object('dataProps', productsData)} 
-        handleDataChange={()=>{textToFunc(handleDataChangeFuncText)}} 
-        onLoadMore={()=>{textToFunc(onLoadMoreFuncText)}}
+      <ProductListLoadMore
+        dataProps={object('dataProps', productsData)}
+        handleDataChange={() => { textToFunc(handleDataChangeFuncText); }}
+        onLoadMore={() => { textToFunc(onLoadMoreFuncText); }}
       />
     );
   });

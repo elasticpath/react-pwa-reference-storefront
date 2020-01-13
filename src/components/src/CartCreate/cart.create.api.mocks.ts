@@ -20,24 +20,17 @@
  */
 import fetchMock from 'fetch-mock/es5/client';
 import multiCartResponse from '../CommonMockHttpResponses/itemLookupMultiCart_response.json';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 
 function mockMultiCartResponse(mockObj) {
   mockObj.get(
-    '/cortex/?zoom=carts,carts:createcartform,carts:element,carts:element:additemstocartform,carts:element:descriptor,carts:element:total',
+    /(.*)?zoom=carts,carts:createcartform,carts:element,carts:element:additemstocartform,carts:element:descriptor,carts:element:total/,
     multiCartResponse,
   );
 }
 
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
-
-export function mockFetchMultiCart() {
+export default function mockFetchMultiCart() {
   fetchMock.restore();
-  mockLoginResponse(fetchMock);
+  mockAnonLoginResponse(fetchMock);
   mockMultiCartResponse(fetchMock);
 }

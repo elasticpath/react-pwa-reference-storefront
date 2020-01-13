@@ -29,92 +29,84 @@ import blackMultiSkuSelectionResponse from './MockHttpResponses/POST/blackMultiS
 import largeMultiSkuSelectionResponse from './MockHttpResponses/POST/largeMultiSkuSelection_response.json';
 import mediumMultiSkuSelectionResponse from './MockHttpResponses/POST/mediumMultiSkuSelection_response.json';
 import smallMultiSkuSelectionResponse from './MockHttpResponses/POST/smallMultiSkuSelection_response.json';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
-
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 
 function mockLookupForm(mockObj) {
   mockObj.get(
-    '/cortex/?zoom=lookups:itemlookupform',
+    /(.*)?zoom=lookups:itemlookupform/,
     itemLookupFormResponse,
   );
 }
 
 function mockItemLookupPlain(mockObj) {
   mockObj.post(
-    /\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
+    /(.*)\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
     itemLookupPlainResponse,
   );
 }
 
 function mockItemLookupColorAndSize(mockObj) {
   mockObj.post(
-    /\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
+    /(.*)\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
     itemLookupColorAndSizeResponse,
   );
 }
 
 function mockItemLookupInputResponse(mockObj) {
   mockObj.post(
-    /\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
+    /(.*)\/cortex\/items\/vestri_b2c\/lookups\/form?(.*)/,
     itemLookupInputResponse,
   );
 }
 
 function mockMultiCartResponse(mockObj) {
   mockObj.get(
-    '/cortex?zoom=carts,carts:element,carts:element:additemstocartform,carts:element:descriptor',
+    /(.*)?zoom=carts,carts:element,carts:element:additemstocartform,carts:element:descriptor/,
     itemLookupMultiCartResponse,
   );
 }
 
-function mockAllSizeOptions(fetchMock) {
-  fetchMock.post( // large
-    /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjsgqydioa=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpuyqksi5cq(.*)/,
+function mockAllSizeOptions(mockObj) {
+  mockObj.post( // large
+    /(.*)\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjsgqydioa=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpuyqksi5cq(.*)/,
     largeMultiSkuSelectionResponse,
   )
     .post( // medium
-      /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpu2rkejfku2(.*)/,
+      /(.*)\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpu2rkejfku2(.*)/,
       mediumMultiSkuSelectionResponse,
     )
     .post( // small
-      /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpvgtkbjrga(.*)/,
+      /(.*)\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7knevuri=\/selector\/kzcvgvcsjfpvgsk2ivpvgtkbjrga(.*)/,
       smallMultiSkuSelectionResponse,
     );
 }
 
-function mockAllColorOptions(fetchMock) {
-  fetchMock
+function mockAllColorOptions(mockObj) {
+  mockObj
     .post( // Yellow
-      /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6wkfjrge6vy=(.*)/,
+      /(.*)\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjygm4tkmi=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6wkfjrge6vy=(.*)/,
       yellowMultiSkuSelectionResponse,
     )
     .post( // Black
-      /\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjrg44tgmy=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6qsmifbuw(.*)/,
+      /(.*)\/cortex\/itemselections\/[a-zA-Z0-9_]*\/qgqvhjjrg44tgmy=\/options\/kzcvgvcsjfpucucqifjektc7inhuyt2s=\/selector\/kzcvgvcsjfpugt2mj5jf6qsmifbuw(.*)/,
       blackMultiSkuSelectionResponse,
     );
 }
 
-function mockAddToCart(fetchMock) {
-  `/cortex/carts/items/vestri_b2c/qgqvhjjygm4tkmi=/form`;
-  fetchMock.post(
-    /\/cortex\/carts\/items\/[a-zA-Z0-9_]*\/[a-zA-Z0-9_=]*\/form/,
+function mockAddToCart(mockObj) {
+  mockObj.post(
+    /(.*)\/cortex\/carts\/items\/[a-zA-Z0-9_]*\/[a-zA-Z0-9_=]*\/form/,
     201,
   );
 }
 
-function mockItemSelections(fetchMock) {
+function mockItemSelections(mockObj) {
   mockAllSizeOptions(fetchMock);
   mockAllColorOptions(fetchMock);
 }
 
-function mockCommonProductDisplayResponses(fetchMock) {
-  mockLoginResponse(fetchMock);
+function mockCommonProductDisplayResponses(mockObj) {
+  mockAnonLoginResponse(fetchMock);
   mockLookupForm(fetchMock);
   mockAddToCart(fetchMock);
 }

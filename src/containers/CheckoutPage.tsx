@@ -69,6 +69,10 @@ const zoomArray = [
   'order:paymentmethodinfo:paymentmethod',
   'order:paymentmethodinfo:selector:choice',
   'order:paymentmethodinfo:selector:choice:description',
+  // zooms for payment plugin update
+  'order:paymentinstrumentselector:choice',
+  'order:paymentinstrumentselector:choice:description',
+  'order:paymentinstrumentselector:chosen:description',
 ];
 
 interface MatchParams {
@@ -107,6 +111,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
     this.fetchOrderData = this.fetchOrderData.bind(this);
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
+    this.renderPaymentInstrumentSelector = this.renderPaymentInstrumentSelector.bind(this);
   }
 
   componentDidMount() {
@@ -539,32 +544,14 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         });
       }
       return (
-        paymentMethods.map((payment) => {
-          const {
-            checked, deletable, selectaction,
-          } = payment;
-          return (
-            <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
-              <div className="payment-ctrl-cell" data-region="paymentSelector">
-                <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
-                <label htmlFor="paymentMethod">
-                  <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
-                    <PaymentMethodContainer displayName={payment} />
-                  </div>
-                </label>
-              </div>
-              {deletable && (
-                <div className="payment-btn-cell">
-                  <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
-                    Delete
-                  </button>
-                </div>
-              )}
-            </div>
-          );
-        })
+        paymentMethods.map(payment => this.renderPaymentChoice(payment))
       );
     }
+
+    if (orderData._order[0]._paymentinstrumentselector) {
+      return this.renderPaymentInstrumentSelector(orderData._order[0]._paymentinstrumentselector[0]);
+    }
+
     return (
       <div>
         <p>
@@ -574,13 +561,61 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     );
   }
 
-  renderPaymentSelector() {
-    const { profileData, openNewPaymentModal, orderData } = this.state;
-    let disableAddPayment = false;
-    if (Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
-      disableAddPayment = !(orderData && orderData._order && orderData._order[0] && orderData._order[0]._deliveries);
+  renderPaymentChoice(payment) {
+    const {
+      checked, deletable, selectaction,
+    } = payment;
+
+    return (
+      <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
+        <div className="payment-ctrl-cell" data-region="paymentSelector">
+          <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+          <label htmlFor="paymentMethod">
+            <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
+              <PaymentMethodContainer displayName={payment} />
+            </div>
+          </label>
+        </div>
+        {deletable && (
+          <div className="payment-btn-cell">
+            <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
+              {intl.get('delete')}
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  renderPaymentInstrumentSelector(paymentInstrumentSelector) {
+    const paymentMethods = [];
+    if (paymentInstrumentSelector._chosen) {
+      const [description] = paymentInstrumentSelector._chosen;
+      description.checked = true;
+      description.deletable = false;
+      paymentMethods.push(description);
     }
+    if (paymentInstrumentSelector._choice) {
+      const choices = paymentInstrumentSelector._choice;
+      choices.map((choice) => {
+        const [description] = choice._description;
+        description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
+        description.checked = false;
+        description.deletable = true;
+        paymentMethods.push(description);
+        return description;
+      });
+    }
+
+    return (
+      paymentMethods.map(payment => this.renderPaymentChoice(payment))
+    );
+  }
+
+  renderPaymentSelector() {
+    const { profileData, openNewPaymentModal } = this.state;
     const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
+
     return (
       <div>
         <h2>
@@ -589,7 +624,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
           {this.renderPayments()}
         </div>
-        <button className="ep-btn primary wide checkout-new-payment-btn" disabled={isDisabled || disableAddPayment} type="button" onClick={() => { this.newPayment(); }}>
+        <button className="ep-btn primary wide checkout-new-payment-btn" disabled={isDisabled} type="button" onClick={() => { this.newPayment(); }}>
           {intl.get('add-new-payment-method')}
         </button>
         <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
@@ -601,7 +636,12 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                 </h2>
               </div>
               <div className="modal-body">
-                <PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
+                {
+                  localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC' ? (
+                    <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption={false} onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
+                  ) : (
+                    <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />)
+                }
               </div>
             </div>
           </div>

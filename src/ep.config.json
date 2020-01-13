@@ -134,12 +134,6 @@
     "noself": false,
     "nodatalinks": true
   },
-  "creditCardTokenization": {
-    "enable": false,
-    "lambdaURI": "/cssign",
-    "overrideCustomReceiptURI": "/postredirector",
-    "overrideCustomCancelURI": ""
-  },
   "chatbot": {
     "enable": false,
     "name": "EPConversationalInterface"

@@ -18,26 +18,22 @@
  *
  *
  */
-import fetchMock from 'fetch-mock/es5/client';
-import subAccountResponse from '../CommonMockHttpResponses/b2bSubAccountData_response.json';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
 
-function mockSubAccountResponse(mockObj) {
-  mockObj.get(
-    /\/accounts\/am(.*)/,
-    subAccountResponse,
-  );
-}
+import registeredResponse from '../CommonMockHttpResponses/registered_login_response.json';
+import anonLoginResponse from '../CommonMockHttpResponses/anonymous_login_response.json';
 
-function mockLoginResponse(mockObj) {
+export function mockRegisteredLoginResponse(mockObj) {
+  localStorage.clear();
   mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
+    /(.*)\/cortex\/oauth2\/tokens/,
+    registeredResponse,
   );
 }
 
-export function mockFetchSubAccount() {
-  fetchMock.restore();
-  mockLoginResponse(fetchMock);
-  mockSubAccountResponse(fetchMock);
+export function mockAnonLoginResponse(mockObj) {
+  localStorage.clear();
+  mockObj.post(
+    /(.*)\/cortex\/oauth2\/tokens/,
+    anonLoginResponse,
+  );
 }

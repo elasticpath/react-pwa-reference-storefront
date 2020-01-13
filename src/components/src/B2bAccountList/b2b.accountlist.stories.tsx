@@ -22,12 +22,11 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import { object, text, boolean } from "@storybook/addon-knobs/react";
-import { textToFunc } from "../../../../storybook/utils/storybookUtils"
+import { object, text } from '@storybook/addon-knobs/react';
+import { textToFunc } from '../../../../storybook/utils/storybookUtils';
+import mockFetchSubAccount from './b2b.accountlist.api.mocks';
 import B2bAccountList from './b2b.accountlist';
 import SubAccountData from './HttpResponse/accountData_response.json';
-import { mockFetchSubAccount } from './b2b.accountlist.api.mocks';
-
 
 const accountListData = {
   status: 'ENABLED',
@@ -51,16 +50,16 @@ storiesOf('Components|B2bAccountList', module)
   .add('B2bAccountList', () => {
     mockFetchSubAccount();
 
-    let getAccountDataFuncText = text('getAccountData','() => {alert("getAccountData invoked")}');
-    let getSubAccountDataFuncText = text('getSubAccountData','() => {alert("getSubAccountData invoked")}');
-    let handleSubAccountClickedFuncText = text('handleSubAccountClicked','() => {alert("handleSubAccountClicked invoked")}');
+    const getAccountDataFuncText = text('getAccountData','() => {alert("getAccountData invoked")}');
+    const getSubAccountDataFuncText = text('getSubAccountData','() => {alert("getSubAccountData invoked")}');
+    const handleSubAccountClickedFuncText = text('handleSubAccountClicked','() => {alert("handleSubAccountClicked invoked")}');
 
     return (
       <div className="account-component">
         <B2bAccountList
-          getAccountData={()=>{textToFunc(getAccountDataFuncText)}}
-          getSubAccountData={()=>{textToFunc(getSubAccountDataFuncText)}}
-          handleAddSubAccountClicked={()=>{textToFunc(handleSubAccountClickedFuncText)}}
+          getAccountData={() => { textToFunc(getAccountDataFuncText); }}
+          getSubAccountData={() => { textToFunc(getSubAccountDataFuncText); }}
+          handleAddSubAccountClicked={() => { textToFunc(handleSubAccountClickedFuncText); }}
           accountListData={object('accountListData', accountListData)}
           accountName={text('accountName', accountName)}
           registrationNumber={text('registrationNumber', registrationNumber)}

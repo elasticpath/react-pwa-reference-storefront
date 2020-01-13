@@ -23,9 +23,9 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
+import { text, object } from '@storybook/addon-knobs/react';
 import SearchResultsItemsMain from './searchresultsitems.main';
-import { text, object } from "@storybook/addon-knobs/react";
-import { mockSearchResults } from './searchresultsitems.main.mock.api';
+import mockSearchResults from './searchresultsitems.main.mock.api';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
 
 const props = {

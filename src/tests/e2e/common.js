@@ -138,14 +138,13 @@ module.exports = {
     await page.click(FORM_SUBMIT_BUTTON);
   },
 
-  async addPaymentMethod(page, paymentMethod) {
+  async addPaymentMethodToOrder(page, paymentMethod) {
     const CARD_TYPE = '#CardType';
     const CARD_HOLDER_NAME = '#CardHolderName';
     const CARD_NUMBER = '#CardNumber';
     const EXPIRY_MONTH = '#ExpiryMonth';
     const EXPIRY_YEAR = '#ExpiryYear';
     const SECURITY_CODE = '#SecurityCode';
-    const SAVE_TO_PROFILE = 'label[for="saveToProfile"]';
     const CONTINUE_BUTTON = 'button.payment-save-btn';
 
     await page.waitForSelector(CARD_TYPE);
@@ -155,7 +154,25 @@ module.exports = {
     await page.type(EXPIRY_MONTH, paymentMethod.expiryMonth);
     await page.type(EXPIRY_YEAR, paymentMethod.expiryYear);
     await page.type(SECURITY_CODE, paymentMethod.securityCode);
-    await page.click(SAVE_TO_PROFILE);
+    await page.click(CONTINUE_BUTTON);
+  },
+
+  async addPaymentMethodToProfile(page, paymentMethod) {
+    const CARD_TYPE = '#CardType';
+    const CARD_HOLDER_NAME = '#CardHolderName';
+    const CARD_NUMBER = '#CardNumber';
+    const EXPIRY_MONTH = '#ExpiryMonth';
+    const EXPIRY_YEAR = '#ExpiryYear';
+    const SECURITY_CODE = '#SecurityCode';
+    const CONTINUE_BUTTON = 'button.payment-save-btn';
+
+    await page.waitForSelector(CARD_TYPE);
+    await page.type(CARD_TYPE, paymentMethod.cardType);
+    await page.type(CARD_HOLDER_NAME, paymentMethod.cardHolderName);
+    await page.type(CARD_NUMBER, paymentMethod.cardNumber);
+    await page.type(EXPIRY_MONTH, paymentMethod.expiryMonth);
+    await page.type(EXPIRY_YEAR, paymentMethod.expiryYear);
+    await page.type(SECURITY_CODE, paymentMethod.securityCode);
     await page.click(CONTINUE_BUTTON);
   },
 

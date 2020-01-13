@@ -19,25 +19,18 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import loginResponse from '../CommonMockHttpResponses/login_response.json';
-import mockFetchDependantItemDataResponse from './MockHttpResponses/GET/fetchDependantItemData_response.json';
+import itemLookupMultiCartResponse from '../CommonMockHttpResponses/itemLookupMultiCart_response.json';
+import { mockAnonLoginResponse } from '../utils/MockLogins';
 
-function mockLoginResponse(mockObj) {
-  mockObj.post(
-    '/cortex/oauth2/tokens',
-    loginResponse,
-  );
-}
-
-function mockFetchDependantItemData(mockObj) {
+function mockMultiCartResponse(mockObj) {
   mockObj.get(
-    /(.*)\/cortex\/carts\/[a-zA-Z0-9_]*\/(.*)/,
-    mockFetchDependantItemDataResponse,
+    /(.*)\/?zoom=carts,carts:element,defaultcart,defaultcart:additemstocartform/,
+    itemLookupMultiCartResponse,
   );
 }
 
-export default function mockAppModalBundleConfigurationMain() {
+export default function mockProductDisplayItemMainMultiCart() {
   fetchMock.restore();
-  mockLoginResponse(fetchMock);
-  mockFetchDependantItemData(fetchMock);
+  mockAnonLoginResponse(fetchMock);
+  mockMultiCartResponse(fetchMock);
 }

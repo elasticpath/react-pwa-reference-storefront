@@ -19,15 +19,14 @@
  *
  */
 import React from 'react';
-import Readme from './README.md';
+
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-
+import { text, boolean } from '@storybook/addon-knobs/react';
+import { textToFunc } from '../../../../storybook/utils/storybookUtils';
+import mockFetchMultiCart from './cart.create.api.mocks';
 import CartCreate from './cart.create';
-
-import { text, boolean } from "@storybook/addon-knobs/react";
-import { textToFunc } from "../../../../storybook/utils/storybookUtils"
-import { mockFetchMultiCart } from './cart.create.api.mocks';
+import Readme from './README.md';
 
 storiesOf('Components|CartCreate', module)
   .addParameters({
@@ -41,12 +40,12 @@ storiesOf('Components|CartCreate', module)
   ))
   .add('CartCreate', () => {
     mockFetchMultiCart();
-    let handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
-    let handleCartsUpdateFuncText = text('handleCartsUpdate','() => {alert("handleCartsUpdate invoked")}');
-    let handleCartElementSelectFuncText = text('handleCartElementSelect','() => {alert("handleCartElementSelect invoked")}');
-    
+    const handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
+    const handleCartsUpdateFuncText = text('handleCartsUpdate','() => {alert("handleCartsUpdate invoked")}');
+    const handleCartElementSelectFuncText = text('handleCartElementSelect','() => {alert("handleCartElementSelect invoked")}');
+
     return (
-      <CartCreate 
+      <CartCreate
         handleModalClose={() => { textToFunc(handleModalCloseFuncText)}}
         openModal={boolean('openModal', true)}
         handleCartsUpdate={() => { textToFunc(handleCartsUpdateFuncText)}}

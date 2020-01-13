@@ -47,6 +47,12 @@ const zoomArray = [
   'defaultprofile:emails:profile',
   'defaultprofile:addresses:element',
   'defaultprofile:addresses:billingaddresses:default',
+
+  // zoom for payments ep version > 7.6
+  'defaultprofile:paymentinstruments:element',
+  'defaultprofile:paymentinstruments:default',
+
+  'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods',
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
@@ -80,6 +86,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     this.handleNewAddress = this.handleNewAddress.bind(this);
     this.handleEditAddress = this.handleEditAddress.bind(this);
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
+    this.renderPayments = this.renderPayments.bind(this);
   }
 
   componentDidMount() {
@@ -181,12 +188,24 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     );
   }
 
+  renderPayments() {
+    const { profileData } = this.state;
+
+    const disableAddPayment = false;
+
+    if (profileData._paymentmethods) {
+      if (profileData._paymentinstruments) {
+        return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} paymentInstruments={profileData._paymentinstruments[0]} onChange={this.fetchProfileData} disableAddPayment={disableAddPayment} />;
+      }
+      return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} disableAddPayment={disableAddPayment} />;
+    }
+
+    return null;
+  }
+
   render() {
     const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
-    let disableAddPayment = false;
-    if (Config.creditCardTokenization && Config.creditCardTokenization.enable && Config.creditCardTokenization.lambdaURI !== '') {
-      disableAddPayment = !(profileData && profileData._addresses && profileData._addresses[0]._billingaddresses);
-    }
+
     return (
       <div>
         <div className="container profile-container">
@@ -235,9 +254,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 </h3>
                 <div className="profile-info-col">
                   <div className="profile-info-block">
-                    {(profileData._paymentmethods) ? (
-                      <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} disableAddPayment={disableAddPayment} />
-                    ) : ('')}
+                    {this.renderPayments()}
                   </div>
                 </div>
               </div>

@@ -39,7 +39,11 @@ interface ProfilePaymentMethodsMainProps {
   /** handle payment method change */
   onChange: (...args: any[]) => any,
   /** disable add a new payment method */
-  disableAddPayment: boolean,
+  disableAddPayment?: boolean,
+
+  paymentInstruments?: {
+    [key: string]: any,
+  }
 }
 interface ProfilePaymentMethodsMainState {
     openNewPaymentModal: boolean
@@ -83,7 +87,29 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
   }
 
   renderPaymentMethods() {
-    const { paymentMethods } = this.props;
+    const { paymentMethods, paymentInstruments } = this.props;
+
+    if (paymentInstruments && paymentInstruments._element) {
+      return (
+        paymentInstruments._element.map((paymentElement) => {
+          const displayName = paymentElement.name;
+          return (
+            <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
+              <li className="profile-payment-method-container">
+                <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
+                  <span data-el-value="payment.token" className="payment-method-container">
+                    {displayName}
+                  </span>
+                </div>
+                <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
+                  {intl.get('delete')}
+                </button>
+              </li>
+            </ul>
+          );
+        })
+      );
+    }
     if (paymentMethods._element) {
       return (
         paymentMethods._element.map((paymentElement) => {
@@ -119,7 +145,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
     const {
       paymentMethods, onChange, disableAddPayment,
     } = this.props;
-    const isDisabled = !paymentMethods._paymenttokenform;
+
     if (paymentMethods) {
       return (
         <div className="paymentMethodsRegions" data-region="paymentMethodsRegion" style={{ display: 'block' }}>
@@ -128,7 +154,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
               {intl.get('payment-methods')}
             </h2>
             {this.renderPaymentMethods()}
-            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={isDisabled || disableAddPayment} onClick={() => { this.newPayment(); }}>
+            <button className="ep-btn primary wide new-payment-btn" type="button" disabled={disableAddPayment} onClick={() => { this.newPayment(); }}>
               {intl.get('add-new-payment-method')}
             </button>
             <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
@@ -140,7 +166,11 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
                     </h2>
                   </div>
                   <div className="modal-body">
-                    <PaymentFormMain onCloseModal={this.handleCloseNewPaymentModal} fetchData={onChange} />
+                    <PaymentFormMain
+                      defaultPostSelection
+                      onCloseModal={this.handleCloseNewPaymentModal}
+                      fetchData={onChange}
+                    />
                   </div>
                 </div>
               </div>
