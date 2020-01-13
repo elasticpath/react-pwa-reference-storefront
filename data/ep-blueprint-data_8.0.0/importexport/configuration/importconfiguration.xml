@@ -3,31 +3,6 @@
   <!--TODO: Change validation back to true when we figure out how to make customers schema pass -->
   <xmlvalidation>false</xmlvalidation>
   <importstrategy>
-   <importer type="PAYMENTGATEWAY">
-      <importstrategy>INSERT_OR_UPDATE</importstrategy>
-      <dependentelements>
-        <dependentelement type="PAYMENT_GATEWAY_PROPERTIES">CLEAR_COLLECTION</dependentelement>
-      </dependentelements>
-    </importer>
-    <importer type="DYNAMICCONTENT">
-      <importstrategy>INSERT_OR_UPDATE</importstrategy>
-    </importer>
-    <importer type="DYNAMICCONTENTDELIVERY">
-      <importstrategy>INSERT_OR_UPDATE</importstrategy>
-    </importer>
-     <importer type="CONTENTSPACE">
-      <importstrategy>INSERT_OR_UPDATE</importstrategy>
-    </importer>
-    <importer type="DYNAMICCONTENT">
-      <importstrategy>INSERT_OR_UPDATE</importstrategy>
-    </importer>
-    <importer type="DYNAMICCONTENTDELIVERY">
-      <importstrategy>INSERT_OR_UPDATE</importstrategy>
-    </importer>
-	<importer type="CATALOG">
-      <importstrategy>INSERT_OR_UPDATE</importstrategy>
-    </importer>
-
     <importer type="PRICELISTASSIGNMENT">
       <importstrategy>INSERT_OR_UPDATE</importstrategy>
     </importer>
@@ -143,7 +118,7 @@
   <packager type="NONE"/>
   <retrieval>
     <method>FILE</method>
-    <source>${data.population.data.directory}/ep-blueprint-data/importexport</source>
+    <source>${data.population.data.directory}/ep-blueprint-data/ep-blueprint-data/importexport/</source>
   </retrieval>
   <transformerschain/>
 </importconfiguration>

@@ -12,7 +12,6 @@
     <query for="DynamicContentDelivery">FIND DynamicContentDelivery</query>
     <query for="TaxJurisdiction">FIND TaxJurisdiction</query>
     <query for="TaxCode">FIND TaxCode</query>
-    <query for="PaymentGateway">FIND PaymentGateway</query>
     <query for="Warehouse">FIND Warehouse</query>
     <query for="Store">FIND Store</query>
     <query for="Customer">FIND Customer</query>
