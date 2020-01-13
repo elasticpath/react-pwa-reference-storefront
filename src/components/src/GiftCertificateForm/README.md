@@ -2,9 +2,9 @@
 
 #### Description
 
-Displays the saved gift cards that can be applied to a purchase. 
+Displays the saved gift certificates (also known as gift cards) that can be applied to a purchase.
 
-Shoppers can add a new gift card by selecting a button and entering the gift card number. If the gift card number is valid, the card is saved. The component retrieves and displays the updated list of saved gift cards.
+Shoppers can add a new gift certificate by selecting a button and entering the gift certificate number. If the gift certificate number is valid, the card is saved. If not, an error message appears. The component retrieves and displays the updated list of saved gift certificates.
 
 #### Usage
 
