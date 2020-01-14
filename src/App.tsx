@@ -32,7 +32,7 @@ import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
-import { ErrorContext, ErrorDisplayBoundary } from './utils/MessageContext';
+import { ErrorContext, ErrorDisplayBoundary } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
 
 import './App.less';

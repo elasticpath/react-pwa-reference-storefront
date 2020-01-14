@@ -20,7 +20,7 @@
  */
 
 import intl from 'react-intl-universal';
-import { ErrorInlet } from '../../../utils/MessageContext';
+import { ErrorInlet } from './MessageContext';
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
 import { getConfig } from './ConfigProvider';
