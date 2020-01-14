@@ -162,7 +162,7 @@ const Root = (props) => {
     <div key="app-content" className="app-content">
       <Switch>
         {routes.map(route => (
-          <RouteWithSubRoutes key={`${route.path}_${Math.random().toString(36).substr(2, 9)}`} {...route} />
+          <RouteWithSubRoutes key={route.path} {...route} />
         ))}
       </Switch>
     </div>,
