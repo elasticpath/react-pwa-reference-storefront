@@ -38,16 +38,23 @@
   }
 
   .cart-icon {
-    fill: @mainNavigationColor;
+    fill: @mainTextColor;
   }
 
   .main-container {
     position: relative;
     min-height: 60px;
     display: flex;
+    justify-content: space-between;
     width: 100%;
-    padding-right: 10px;
-    background-color: @mainColor;
+    padding: 5px 0;
+    -webkit-box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.3);
+
+    .main-container-col {
+      display: flex;
+    }
 
     .toggle-btn-container {
       .back-btn {
@@ -88,15 +95,15 @@
        }
      }
 
+    .search-container {
+      padding-top: 15px;
+      padding-left: 5px;
+      padding-right: 9px;
+    }
+
      .icons-header-container {
        display: flex;
        flex-direction: row;
-
-       .search-container {
-         padding-top: 20px;
-         padding-left: 5px;
-         padding-right: 9px;
-       }
 
        .cart-link-container {
          padding-top: 20px;
@@ -127,7 +134,6 @@
          padding-right: 8px;
 
          .bulk-button {
-           fill: @mainNavigationColor;
            border: none;
            width: 25px;
            height: 21px;
@@ -141,15 +147,14 @@
      }
 
      .login-container {
-       padding-top: 20px;
+       padding-top: 18px;
        padding-left: 5px;
        padding-right: 9px;
      }
 
      .locale-container {
-       width: 120px;
        text-align: right;
-       padding-top: 27px;
+       padding-top: 20px;
        padding-right: 20px;
      }
 
@@ -163,12 +168,16 @@
          cursor: pointer;
 
          .icon {
-           color: @mainBackgroundColor;
            font-size: 22px;
          }
        }
      }
    }
+
+  .central-container {
+    position: relative;
+    background-color: @mainColor;
+  }
 
    .cart-link-counter {
      text-align: center;
@@ -211,14 +220,12 @@
        justify-content: flex-end;
 
        .logo-container {
-          padding-left: 0;
-          padding-top: 0;
-          display: block;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%,-50%);
-        }
+         padding-left: 0;
+         padding-top: 0;
+         display: block;
+         position: absolute;
+         left: 50px;
+       }
 
        .icons-header-container {
          .bulk-link-container, .cart-link-container {
@@ -324,13 +331,6 @@
 
    @media (max-width: @mobileWidth - 1px) {
      .main-container {
-       .logo-container {
-        padding-left: 0;
-        padding-top: 0;
-        display: block;
-        position: absolute;
-        left: 70px;
-       }
 
        .icons-header-container {
          position: absolute;

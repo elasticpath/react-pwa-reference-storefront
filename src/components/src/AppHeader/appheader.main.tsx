@@ -277,41 +277,24 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
     return [
       <header key="app-header" className="app-header">
-        <AppHeaderTop onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} appHeaderTopLinks={appHeaderTopLinks} />
 
         <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
 
-          <div className="logo-container">
-            <Link to={appHeaderLinks.mainPage} className="logo">
-              <img
-                className="logo-image"
-                alt="Header logo"
-                src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)}
-                onError={(e) => {
-                  const element: any = e.target;
-                  element.src = headerLogo;
-                }}
-              />
-            </Link>
-          </div>
-
-
-          <div className="central-container">
-            <div className="horizontal-menu">
-              {isDesktop && (!isOffline && !isLoading) ? (
-                <AppHeaderNavigationMain
-                  isOfflineCheck={this.handleIsOffline}
-                  isOffline={isOffline}
-                  isMobileView={false}
-                  onFetchNavigationError={redirectToMainPage}
-                  checkedLocation={checkedLocation}
-                  appHeaderNavigationLinks={appHeaderNavigationLinks}
+          <div className="main-container-col">
+            <div className="logo-container">
+              <Link to={appHeaderLinks.mainPage} className="logo">
+                <img
+                  className="logo-image"
+                  alt="Header logo"
+                  src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)}
+                  onError={(e) => {
+                    const element: any = e.target;
+                    element.src = headerLogo;
+                  }}
                 />
-              ) : ('')}
+              </Link>
             </div>
-          </div>
 
-          <div className="icons-header-container">
             <div className="search-container">
               {Config.bloomreachSearch.enable ? (
                 <BloomreachAppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
@@ -319,77 +302,102 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
                 <AppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
               )}
             </div>
-            <div className="search-toggle-btn-container">
+
+          </div>
+
+          <div className="main-container-col">
+
+            <div className="icons-header-container">
+              <div className="search-toggle-btn-container">
+                <button
+                  className="search-toggle-btn"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target=".collapsable-container"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                  onClick={this.handleInputFocus}
+                >
+                  <div className="search-icon" />
+                </button>
+              </div>
+              <div>
+                {!multiCartData ? (
+                  <div className="cart-link-container">
+                    <Link className="cart-link" to={appHeaderLinks.myCart}>
+                      <CartIcon className="cart-icon" />
+                      {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                        <span className="cart-link-counter">
+                          {cartData['total-quantity']}
+                        </span>
+                      )}
+                      {intl.get('shopping-cart-nav')}
+                    </Link>
+                  </div>
+                ) : (
+                  <Cart />
+                )}
+              </div>
+              {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
+                <div className="bulk-container">
+                  <BulkCart className="bulk-button" onClick={() => { this.openModal(); }} />
+                </div>
+              )}
+            </div>
+
+            <div className="login-container">
+              <AppHeaderLoginMain
+                isMobileView={false}
+                permission={availability}
+                onLogout={redirectToMainPage}
+                onLogin={redirectToMainPage}
+                onResetPassword={handleResetPassword}
+                onContinueCart={onContinueCart}
+                locationSearchData={locationSearchData}
+                appHeaderLoginLinks={appHeaderLoginLinks}
+                appModalLoginLinks={appModalLoginLinks}
+                isLoggedIn={isLoggedInUser}
+              />
+            </div>
+
+            <div className="toggle-btn-container">
+              {(isInStandaloneMode) ? (
+                <button className="back-btn" aria-label="back button" type="button" onClick={this.goBack}>
+                  <span className="icon glyphicon glyphicon-chevron-left" />
+                </button>
+              ) : ('')
+              }
               <button
-                className="search-toggle-btn"
+                className="toggle-btn"
                 type="button"
                 data-toggle="collapse"
                 data-target=".collapsable-container"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
-                onClick={this.handleInputFocus}
               >
-                <div className="search-icon" />
+                <span className="icon glyphicon glyphicon-align-justify" />
               </button>
             </div>
-            <div>
-              {!multiCartData ? (
-                <div className="cart-link-container">
-                  <Link className="cart-link" to={appHeaderLinks.myCart}>
-                    <CartIcon className="cart-icon" />
-                    {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
-                      <span className="cart-link-counter">
-                        {cartData['total-quantity']}
-                      </span>
-                    )}
-                    {intl.get('shopping-cart-nav')}
-                  </Link>
-                </div>
-              ) : (
-                <Cart />
-              )}
+            <div className="locale-container">
+              <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
             </div>
-            {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
-              <div className="bulk-container">
-                <BulkCart className="bulk-button" onClick={() => { this.openModal(); }} />
-              </div>
-            )}
+            <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} />
           </div>
+        </div>
 
-          <div className="login-container">
-            <AppHeaderLoginMain
-              isMobileView={false}
-              permission={availability}
-              onLogout={redirectToMainPage}
-              onLogin={redirectToMainPage}
-              onResetPassword={handleResetPassword}
-              onContinueCart={onContinueCart}
-              locationSearchData={locationSearchData}
-              appHeaderLoginLinks={appHeaderLoginLinks}
-              appModalLoginLinks={appModalLoginLinks}
-              isLoggedIn={isLoggedInUser}
-            />
+        <div className="central-container">
+          <div className="horizontal-menu">
+            {isDesktop && (!isOffline && !isLoading) ? (
+              <AppHeaderNavigationMain
+                isOfflineCheck={this.handleIsOffline}
+                isOffline={isOffline}
+                isMobileView={false}
+                onFetchNavigationError={redirectToMainPage}
+                checkedLocation={checkedLocation}
+                appHeaderNavigationLinks={appHeaderNavigationLinks}
+              />
+            ) : ('')}
           </div>
-
-          <div className="toggle-btn-container">
-            {(isInStandaloneMode) ? (
-              <button className="back-btn" aria-label="back button" type="button" onClick={this.goBack}>
-                <span className="icon glyphicon glyphicon-chevron-left" />
-              </button>
-            ) : ('')
-            }
-            <button
-              className="toggle-btn"
-              type="button"
-              data-toggle="collapse"
-              data-target=".collapsable-container"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="icon glyphicon glyphicon-align-justify" />
-            </button>
-          </div>
-          <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} />
         </div>
 
         <div className="collapsable-container collapse collapsed">
