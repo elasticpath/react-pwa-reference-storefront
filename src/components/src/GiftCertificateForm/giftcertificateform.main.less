@@ -55,7 +55,7 @@
       position: absolute;
       top: 100%;
       margin-top: 5px;
-      color: red;
+      color: @mainErrorColor;
     }
   }
   .form-control {
@@ -120,7 +120,7 @@
         height: 15px;
         width: 24px;
         border-radius: 3px;
-        background-color: #777777;
+        background-color: @firstComplimentTextColor;
         position: absolute;
         top: 0;
         left: 0;
@@ -129,7 +129,7 @@
         content: "";
         height: 3px;
         width: 24px;
-        background-color: #FFFFFF;
+        background-color: @mainBackgroundColor;
         position: absolute;
         top: 3px;
         left: 0;
@@ -144,12 +144,12 @@
           padding-left: 25px;
           font-size: 13px;
           line-height: 18px;
-          color: #777777;
+          color: @firstComplimentTextColor;
           &:before {
             content: "";
             width: 18px;
             height: 18px;
-            border: 2px solid #777777;
+            border: 2px solid @firstComplimentTextColor;
             border-radius: 2px;
             position: absolute;
             top: 0;
@@ -169,7 +169,7 @@
               left: 1px;
               width: 12px;
               height: 7px;
-              border: solid 2px #FFFFFF;
+              border: solid 2px @mainBackgroundColor;
               border-right: none;
               border-top: none;
               transform: translate(2px, 1px) rotate(-45deg);

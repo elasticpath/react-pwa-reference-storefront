@@ -222,8 +222,8 @@
             line-height: normal;
             appearance: none;
             -webkit-appearance: none;
-            border-radius: 0px;
-            -webkit-border-radius: 0px;
+            border-radius: 0;
+            -webkit-border-radius: 0;
             width: 180px;
             height: 30px;
             background: url('@{imgComponentUrl}/header-icons/down-arrow.png') no-repeat 96% 0;
@@ -404,10 +404,10 @@
       content: '';
       width: 15px;
       height: 15px;
-      border-color: #000;
+      border-color: @mainColor;
       position: absolute;
       top: 7px;
-      color: #000;
+      color: @mainColor;
     }
   }
   .slick-prev {
@@ -454,7 +454,7 @@
       &:checked {
         +label {
           border: 2px solid @mainBackgroundColor;
-          box-shadow: 0 0 0 2px @firstComplimentColor;
+          box-shadow: 0 0 0 1px @buttonActiveColor;
         }
       }
     }

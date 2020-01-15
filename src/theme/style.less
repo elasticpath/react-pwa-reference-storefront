@@ -234,7 +234,7 @@
 
      &:disabled {
        cursor: default;
-       background-color: lighten(@firstComplimentColor, 25%);
+       background-color: lighten(@firstComplimentColor, 40%);
        outline: 0;
      }
    }
@@ -261,7 +261,7 @@
      padding-left: 25px;
      font-size: 13px;
      line-height: 18px;
-     color: #777777;
+     color: @firstComplimentTextColor;
      display: inline-block;
      vertical-align: top;
      margin-bottom: 0;
@@ -269,7 +269,7 @@
        content: "";
        width: 18px;
        height: 18px;
-       border: 2px solid #777777;
+       border: 2px solid @firstComplimentTextColor;
        border-radius: 2px;
        position: absolute;
        top: 0;
@@ -297,7 +297,7 @@
          left: 1px;
          width: 12px;
          height: 7px;
-         border: solid 2px #FFFFFF;
+         border: solid 2px @mainBackgroundColor;
          border-right: none;
          border-top: none;
          transform: translate(2px, 1px) rotate(-45deg);

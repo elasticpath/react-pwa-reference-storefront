@@ -64,9 +64,9 @@
           border: 1px solid rgba(224,32,32,0.2);
           background-color: rgba(224,32,32,0.1);
           &:focus {
-            background-color: #FFFFFF;
+            background-color: @mainBackgroundColor;
             + .clear-field-btn {
-              background: #EEEEEE;
+              background: @fifthComplimentTextColor;
               &:before, &:after {
                 display: inline-block;
               }
@@ -104,7 +104,7 @@
 .error-message {
   height: 20px;
   padding-top: 10px;
-  color: #E02020;
+  color: @mainErrorColor;
   font-size: 13px;
   font-weight: 600;
 }

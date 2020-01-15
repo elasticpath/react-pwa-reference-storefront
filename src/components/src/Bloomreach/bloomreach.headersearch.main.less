@@ -32,7 +32,7 @@
         .input-search-br {
           width: 275px;
           padding-left: 40px;
-          border-bottom: 1px solid #fff;
+          border-bottom: 1px solid @mainNavigationColor;
           cursor: auto;
         }
         .suggestions {
@@ -49,8 +49,7 @@
                     border-color 0.5s,
                     padding 0.5s ease-in;
 
-        cursor: auto;
-        color: #fff;
+        color: @mainNavigationColor;
         cursor: pointer;
         outline: 0;
         border: 0;
@@ -59,7 +58,7 @@
 
         &::placeholder {
           opacity: 0.3;
-          color: #fff;
+          color: @mainNavigationColor;
         }
       }
 
@@ -70,13 +69,13 @@
         overflow-y: auto;
         width: 275px;
         position: absolute;
-        background-color: #fff;
-        box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+        background-color: @mainNavigationColor;
+        box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
         .suggestion-element {
           margin:10px;
           padding-left: 30px;
           text-align: left;
-          color: black;
+          color: @mainColor;
           cursor: pointer;
         }
       }
@@ -84,8 +83,8 @@
       .search-icon-br {
         background: #ffffff00 url('@{imgComponentUrl}/header-icons/magnifying-glass.svg') no-repeat 9px center;
         position: absolute;
-        left: 0px;
-        top: 0px;
+        left: 0;
+        top: 0;
         width: 35px;
         height: 20px;
         pointer-events: none;
@@ -106,8 +105,8 @@
         }
 
         .input-search-br {
-          color: #333;
-          background-color: #fff;
+          color: @mainTextColor;
+          background-color: @mainNavigationColor;
           width: 100%;
           transition: none;
           font-size: 18px;
@@ -116,7 +115,7 @@
 
           &::placeholder {
             opacity: 0.3;
-            color: #000;
+            color: @mainColor;
           }
 
           &:focus {
@@ -131,12 +130,11 @@
           overflow-y: auto;
           width: 100%;
           position: relative;
-          background-color: #fff;
+          background-color: @mainNavigationColor;
           border-top: 1px solid @firstBorderColor;
-          box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
           max-height: 100%;
           .suggestion-element {
-            margin: 1;
             padding-left:0;
             padding-top:15px;
             padding-bottom:15px;
