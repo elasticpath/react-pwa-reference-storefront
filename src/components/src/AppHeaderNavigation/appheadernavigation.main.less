@@ -237,14 +237,14 @@
           text-transform: uppercase;
 
           &:active {
-            background-color: #ccc;
+            background-color: @secondBorderColor;
           }
         }
 
         &.show {
           .nav-link {
             font-weight: bold;
-            background-color: #eee;
+            background-color: @fifthComplimentTextColor;
           }
         }
 
@@ -252,24 +252,22 @@
           position: static !important;
           margin: 0;
           border: 0;
-          background-color: transparent;
           transform: none !important;
           box-shadow: none;
-          background-color: #eee;
+          background-color: @fifthComplimentTextColor;
 
           .dropdown-item {
-            padding-top: 15px;
             padding-top: 15px;
             text-align: center;
             font-size: 15px;
             color: @mainColor;
 
             &:active {
-              background-color: #ccc;
+              background-color: @secondBorderColor;
             }
 
             &:focus {
-              background-color: #ccc;
+              background-color: @secondBorderColor;
             }
 
           }
