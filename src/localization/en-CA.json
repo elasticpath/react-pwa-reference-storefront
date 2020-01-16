@@ -375,5 +375,8 @@
   "select-all": "Select all",
   "item-selected": "item selected",
   "order-history": "Order History",
-  "list": "list"
+  "list": "list",
+  "learn-more": "Learn more",
+  "products": "Products",
+  "services": "Services"
 }

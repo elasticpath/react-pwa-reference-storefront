@@ -192,7 +192,7 @@
   "of": "o-f",
   "ok": "O-k",
   "next": "N-e-x-t- -P-a-g-e",
-  "products": "p-r-o-d-u-c-t-s",
+  "products": "P-r-o-d-u-c-t-s",
   "product-recommendations": "R-e-l-a-t-e-d- -P-r-o-d-u-c-t-s",
   "product-bundle-constituents": "A-v-a-i-l-a-b-l-e- -P-r-o-d-u-c-t-s",
   "no-saved-address-message": "Y-o-u- -h-a-v-e- -n-o- -s-a-v-e-d- -a-d-d-r-e-s-s-e-s",
@@ -375,5 +375,7 @@
   "select-all": "S-e-l-e-c-t- -a-l-l",
   "item-selected": "i-t-e-m- -s-e-l-e-c-t-e-d",
   "order-history": "O-r-d-e-r- -H-i-s-t-o-r-y",
-  "list": "l-i-s-t"
+  "list": "l-i-s-t",
+  "learn-more": "L-e-a-r-n- -m-o-r-e",
+  "services": "S-e-r-v-i-c-e-s"
 }

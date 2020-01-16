@@ -39,11 +39,11 @@ function translate (enStr) {
         [messageName]: msg,
       }
     }, {});
-  
+
   return JSON.stringify(frMessages, null, 2);
 }
-const enStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/en-CA.json'), 'utf8');
-const enDebugStr = fs.readFileSync(path.join(__dirname, './../app/src/localization/messages-en-CA.json'), 'utf8');
+const enStr = fs.readFileSync(path.join(__dirname, './../src/localization/en-CA.json'), 'utf8');
+const enDebugStr = fs.readFileSync(path.join(__dirname, './../src/localization/messages-en-CA.json'), 'utf8');
 
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/fr-FR.json'), `${translate(enStr)}\n`, 'utf8');
-fs.writeFileSync(path.join(__dirname, './../app/src/localization/messages-fr-FR.json'), `${translate(enDebugStr)}\n`, 'utf8');
+fs.writeFileSync(path.join(__dirname, './../src/localization/fr-FR.json'), `${translate(enStr)}\n`, 'utf8');
+fs.writeFileSync(path.join(__dirname, './../src/localization/messages-fr-FR.json'), `${translate(enDebugStr)}\n`, 'utf8');

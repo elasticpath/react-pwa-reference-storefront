@@ -29,7 +29,7 @@ import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.
 import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
 import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
-import headerLogo from '../../../images/site-images/Company-Logo-v2.svg';
+import headerLogo from '../../../images/site-images/Company-Logo-v3.svg';
 import { ReactComponent as CartIcon } from '../../../images/header-icons/cart-icon.svg';
 import { ReactComponent as BulkCart } from '../../../images/header-icons/bulk-cart.svg';
 import { useCountState } from '../cart-count-context';
@@ -50,7 +50,7 @@ const zoomArray = [
   'carts:element',
 ];
 
-const headerLogoFileName = 'Company-Logo-v2.svg';
+const headerLogoFileName = 'Company-Logo-v3.svg';
 interface AppHeaderMainProps {
   /** handle search page */
   onSearchPage: (...args: any[]) => any,

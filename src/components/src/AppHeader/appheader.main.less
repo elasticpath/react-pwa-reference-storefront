@@ -75,7 +75,7 @@
       padding-top: 4px;
 
       .logo {
-        padding: 15px;
+        padding: 14px;
         display: flex;
 
         .logo-image {
@@ -218,6 +218,7 @@
      .main-container {
        position: relative;
        justify-content: flex-end;
+       padding: 0;
 
        .logo-container {
          padding-left: 0;
@@ -225,6 +226,10 @@
          display: block;
          position: absolute;
          left: 50px;
+
+         .logo {
+           padding: 18px 10px;
+         }
        }
 
        .icons-header-container {
@@ -372,6 +377,20 @@
        }
      }
    }
+
+    @media (max-width: 480px) {
+      .main-container {
+        .logo-container {
+          .logo {
+            max-width: 90px;
+
+            .logo-image {
+              max-width: 100%;
+            }
+          }
+        }
+      }
+    }
 
    .network-offline {
      &.alert {
