@@ -220,7 +220,7 @@
    }
 
    &.primary {
-     border: 0;
+     border: 1px solid;
      color: @mainBackgroundColor;
      background-color: @firstComplimentColor;
 
@@ -234,7 +234,9 @@
 
      &:disabled {
        cursor: default;
-       background-color: lighten(@firstComplimentColor, 40%);
+       color: @firstComplimentTextColor;
+       background-color: @secondBorderColor;
+       border-color: @firstComplimentColor;
        outline: 0;
      }
    }
