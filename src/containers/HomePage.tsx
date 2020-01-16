@@ -145,10 +145,10 @@ const HomePage: React.FunctionComponent = () => {
       <section className="main-banner">
         <div className="main-banner-title-wrap">
           <div className="container">
-            <h2 className="goods-heading">Start your day with a great cup of coffee</h2>
+            <h2 className="goods-heading">{intl.get('main-banner-heading')}</h2>
             <div className="main-banner-txt">
               <p className="goods-description">
-                kick start your day, a cup of coffee will boost your energy and get you going for a long day ahead, whether at work or at home with the kids. To have the best cup of coffee you need to use the best coffee maker.
+                {intl.get('main-banner-txt')}
               </p>
               <div className="btn-wrap">
                 <button type="button" className="ep-btn primary learn-more-btn">{intl.get('learn-more')}</button>
@@ -163,41 +163,35 @@ const HomePage: React.FunctionComponent = () => {
           <ul className="main-goods__grid">
             <li className="main-goods__cell">
               <h5 className="goods-title-small">{intl.get('products')}</h5>
-              <h3 className="goods-title">Coffee without compromise</h3>
-              <p className="goods-description">When it comes to replicating third wave specialty coffee at home, there’s no cutting corners. That’s why we’ve created a range of innovative espresso machines that set out to honour tradition and the techniques that define the very fundamentals required for third wave specialty coffee.</p>
+              <h3 className="goods-title">{intl.get('product1-heading')}</h3>
+              <p className="goods-description">{intl.get('product1-description')}</p>
             </li>
             <li className="main-goods__cell">
               <h5 className="goods-title-small">{intl.get('products')}</h5>
-              <h3 className="goods-title">Say hello to a Smart Oven</h3>
-              <p className="goods-description">There’s heat, and there’s smart heat. Element iQ transfers heat intelligently across 5 quartz elements for precise and stable heat just where and when you want it for perfect results, every time. Super fast 2400W preheat gets your meals on the table more quickly.</p>
+              <h3 className="goods-title">{intl.get('product2-heading')}</h3>
+              <p className="goods-description">{intl.get('product2-description')}</p>
             </li>
             <li className="main-goods__cell">
               <h5 className="goods-title-small">{intl.get('products')}</h5>
-              <h3 className="goods-title">Juicers</h3>
+              <h3 className="goods-title">{intl.get('product3-heading')}</h3>
               <p className="goods-description">
-                To make healthy eating as easy as possible, and help you enjoy every drop of your recommended daily servings, we’ve developed a range of innovative juicers, blenders and bluicers that will mix, squeeze, spin and deliver all the goodness your body needs to feel its best.
-                The flavoursome combinations you can create using simple, fresh ingredients are only limited by your imagination.
+                {intl.get('product3-description')}
               </p>
             </li>
           </ul>
 
           <div className="main-goods__cell main-goods__block">
             <h5 className="goods-title-small">{intl.get('services')}</h5>
-            <h3 className="goods-title">White glove service</h3>
+            <h3 className="goods-title">{intl.get('service-heading')}</h3>
             <p className="goods-description">
-              You will receive a call from our delivery partner within 72 hours◊◊ after your purchase to schedule a delivery date for products in stock.
-              In cases where the order includes one or more special-order items, you will receive a courtesy call from Customer Service – Cooks Appliances Central within 72 hours to confirm your order. When the goods are received, our delivery partner will contact you to schedule a delivery date.
-              Please provide the following info upon confirmation of your delivery:
-              The number of used appliances to pick-up
-              If you purchased an espresso machine please specify whether you will need help with altering the doorway, or any other special request. You will receive an automated call on the day before the scheduled delivery date to confirm the timeframe you have been given.
+              {intl.get('service-description')}
             </p>
           </div>
 
           <div className="main-goods__cell main-goods__block bottom-block">
-            <h2 className="goods-heading">About Cooks</h2>
+            <h2 className="goods-heading">{intl.get('about-brand-heading')}</h2>
             <p className="goods-description">
-              Award winning kitchen appliances designed to inspire people to produce perfect food and beverage results in their own homes with ease. From espresso machines to food processors, the innovation in each appliance delights.
-              The scents, sights and sounds of cooking awaken memories and create new ones. Shared with the people in your life who matter most.  This is why we do what we do. Listen. Obsess. Innovate. Test. Refine. Design.
+              {intl.get('about-brand-description')}
             </p>
           </div>
         </div>
