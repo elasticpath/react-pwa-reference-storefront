@@ -90,6 +90,8 @@ import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
 import CartClear from './CartClear/cartclear';
 import { CountProvider } from './cart-count-context';
 import { RequisitionListCountProvider } from './requisition-list-count-context';
+import B2BHomePage from './B2bHomePage/b2b.home.page';
+import B2CHomePage from './B2cHomePage/b2c.home.page';
 
 export {
   init,
@@ -163,4 +165,6 @@ export {
   CartClear,
   CountProvider,
   RequisitionListCountProvider,
+  B2BHomePage,
+  B2CHomePage,
 };

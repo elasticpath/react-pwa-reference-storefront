@@ -25,7 +25,7 @@ import {
 } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider, RequisitionListCountProvider,
+  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider, RequisitionListCountProvider, ComplianceSupportModal,
 } from './components/src/index';
 import packageJson from '../package.json';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
@@ -90,6 +90,10 @@ function handleFbAsyncInit() {
   };
 }
 
+function handleAcceptDataPolicy() {
+  window.location.reload();
+}
+
 const locationData = window.location.search;
 // @ts-ignore: Property 'standalone' does not exist on type 'Navigator'.
 const isInStandaloneMode = window.navigator.standalone;
@@ -123,6 +127,12 @@ const appHeaderTopLinks = {
 const appModalLoginLinks = {
   registration: '/registration',
 };
+
+const showCompliance = Config.Compliance.enable;
+const isComplianceAccepted = localStorage.getItem(`${Config.cortexApi.scope}_Compliance_Accept`);
+const isComplianceDeclined = localStorage.getItem(`${Config.cortexApi.scope}_Compliance_Decline`);
+
+const complianceSupportModal = showCompliance && !isComplianceAccepted && !isComplianceDeclined ? <ComplianceSupportModal onAcceptDataPolicy={handleAcceptDataPolicy} /> : '';
 
 const VersionContainer = (props) => {
   const { appVersion, componentsVersion } = props;
@@ -168,6 +178,7 @@ const Root = (props) => {
     </div>,
     <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,
     <ChatComponent key="chat-component" />,
+    complianceSupportModal,
   ];
 };
 

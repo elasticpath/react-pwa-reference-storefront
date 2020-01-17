@@ -18,6 +18,23 @@
  *
  *
  */
+import React from 'react';
+import Readme from './README.md';
+import { storiesOf } from '@storybook/react';
+import { MemoryRouter } from 'react-router';
 
-@import './../theme/common.less';
+import B2CHomePage from './b2c.home.page';
 
+// Option defaults.
+
+storiesOf('Components|B2CHomePage', module)
+  .addParameters({
+    readme: {
+      // Show readme at the addons panel
+      sidebar: Readme,
+    },
+  })
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('B2CHomePage', () => <B2CHomePage />);
