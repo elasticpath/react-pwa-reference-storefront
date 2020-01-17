@@ -215,6 +215,35 @@
           }
         }
       }
+
+      .product-btn {
+        display: inline-block;
+        background-color: transparent;
+        border: none;
+        font-weight: bold;
+        outline: 0 auto transparent;
+
+        &.rotateCaret {
+          &:after {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+
+      .b2b-dropdown-menu {
+        @media only screen and (min-width: @tabletWidth) {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background-color: @mainColor;
+          white-space: normal;
+        }
+
+        &.hidden {
+          display: none;
+        }
+      }
     }
   }
 
