@@ -32,7 +32,7 @@
   .container-error-message{
     .content-error-message{
       padding-top: 10px;
-      color: #E02020;
+      color: @mainErrorColor;
       font-size: 13px;
       font-weight: 600;
     }
@@ -51,7 +51,7 @@
   height: 15px;
   width: 100%;
   margin: 22px 0 0;
-  color: #777777;
+  color: @firstComplimentTextColor;
   font-size: 12px;
   text-transform: uppercase;
   font-weight: bold;
@@ -72,7 +72,7 @@
     border-radius: 0 !important;
     overflow: hidden;
     position: relative;
-    text-shadow: 1px 1px 1px #fff;
+    text-shadow: 1px 1px 1px @mainBackgroundColor;
     color: @secondComplimentTextColor;
     text-transform: none;
     font-weight: normal;
@@ -140,7 +140,7 @@
     overflow: hidden;
 
     p{
-      color: #777777;
+      color: @firstComplimentTextColor;
       font-size: 14px;
     }
   }
@@ -157,7 +157,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: #EEEEEE;
+  background: @fifthComplimentTextColor;
   border-radius: 50%;
   cursor: pointer;
 
@@ -230,9 +230,9 @@
       border: 1px solid rgba(224,32,32,0.2);
       background-color: rgba(224,32,32,0.1);
       &:focus {
-        background-color: #FFFFFF;
+        background-color: @mainNavigationColor;
         + .clear-field-btn {
-          background: #EEEEEE;
+          background: @fifthComplimentTextColor;
           &:before, &:after {
             display: inline-block;
             left: 11px;

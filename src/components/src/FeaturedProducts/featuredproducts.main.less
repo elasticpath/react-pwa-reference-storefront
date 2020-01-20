@@ -37,7 +37,7 @@
 
 .product-featured:before {
   content: "";
-  border-top: 1px solid #CCCCCC;
+  border-top: 1px solid @secondBorderColor;
   height: 1px;
   width: 100%;
   position: absolute;
@@ -61,7 +61,7 @@
 
   .product-image-carousel {
     padding: 0 0 40px;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid @secondBorderColor;
   }
   .slick-list {
     margin:0 auto;
@@ -71,11 +71,11 @@
       height: 25px;
       width: 25px;
       border-radius: 50%;
-      background: #FFFFFF;
+      background: @mainBackgroundColor;
       top: auto;
       bottom: -20px;
       transform: none;
-      border: 1px solid #979797;
+      border: 1px solid @buttonFocusColor;
       z-index: 3;
       &:before {
         width: 10px;
@@ -102,10 +102,10 @@
       }
     }
     .slick-disabled {
-      border-color: #CCCCCC;
+      border-color: @secondBorderColor;
       cursor: default;
       &:before {
-        color: #CCCCCC;
+        color: @secondBorderColor;
       }
       &:hover {
         box-shadow: none;

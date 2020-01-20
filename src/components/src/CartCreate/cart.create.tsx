@@ -60,6 +60,7 @@ interface CartCreateState {
   selectedElement: number,
   createCartForm: any,
   indexDefaultCart: number,
+  cartsData: any,
 }
 
 class CartCreate extends Component<CartCreateProps, CartCreateState> {
@@ -82,6 +83,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
       selectedElement: -1,
       createCartForm: [],
       indexDefaultCart: 0,
+      cartsData: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleAddNewCart = this.handleAddNewCart.bind(this);
@@ -97,6 +99,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
     this.handleCartSelect = this.handleCartSelect.bind(this);
     this.modalConfirmation = this.modalConfirmation.bind(this);
     this.handleHideLoader = this.handleHideLoader.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   componentDidMount() {
@@ -121,10 +124,11 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
         .then((res) => {
           const cartElem = [...res._carts[0]._element];
           const extCartElements = cartElem.map((obj, index) => ({
-            ...obj, editMode: cartElements[index] && index !== itemIndex ? cartElements[index].editMode : false, cartName: obj._descriptor[0].name || '', showLoader: false, removeCartLoading: false,
+            ...obj, editMode: cartElements[index] && index !== itemIndex ? cartElements[index].editMode : false, cartName: obj._descriptor[0].name || '', showLoader: false, removeCartLoading: false, disabledField: true,
           }));
           const index = res._carts[0]._element.findIndex(el => el._descriptor[0].default === 'true');
           this.setState({
+            cartsData: [...extCartElements],
             cartElements: [...extCartElements],
             indexDefaultCart: index,
             showAddNewCartForm: false,
@@ -257,10 +261,14 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
   }
 
   handleCartFieldChange(event, index) {
-    const { cartElements } = this.state;
+    const { cartElements, cartsData } = this.state;
     const elements = [...cartElements];
     elements[index] = { ...elements[index] };
+    elements[index].disabledField = false;
     elements[index].cartName = event.target.value;
+    if (cartsData[index].cartName === event.target.value || event.target.value.length === 0) {
+      elements[index].disabledField = true;
+    }
     this.setState({ cartElements: elements });
   }
 
@@ -269,6 +277,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
     const elements = [...cartElements];
     elements[index] = { ...elements[index] };
     elements[index].cartName = '';
+    elements[index].disabledField = true;
     this.setState({ cartElements: elements });
   }
 
@@ -287,6 +296,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
     elements[index] = { ...elements[index] };
     if (isEdit) {
       elements[index].editMode = true;
+      elements[index].disabledField = true;
     } else {
       elements[index].deleteMode = true;
     }
@@ -310,6 +320,18 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
     const { handleCartElementSelect, handleModalClose } = this.props;
     this.setState({ selectedElement: index });
     handleCartElementSelect(index);
+    handleModalClose();
+  }
+
+  handleCloseModal() {
+    const { cartElements } = this.state;
+    const { handleModalClose } = this.props;
+    this.handleHideCartForm();
+    const elements = [...cartElements];
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].editMode = false;
+      elements[i].deleteMode = false;
+    }
     handleModalClose();
   }
 
@@ -403,7 +425,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
                   </div>
                   <div className="btn-container">
                     <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, true)}>{intl.get('cancel')}</button>
-                    <button type="button" className="ep-btn primary save-btn" onClick={() => this.handleCartRename(index)}>{intl.get('save')}</button>
+                    <button type="button" className="ep-btn primary save-btn" disabled={cartElements[index].disabledField} onClick={() => this.handleCartRename(index)}>{intl.get('save')}</button>
                   </div>
                 </div>
               </div>
@@ -417,12 +439,10 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
 
   render() {
     const { cartElements, showAddNewCartForm, createCartForm } = this.state;
-    const {
-      handleModalClose, openModal,
-    } = this.props;
+    const { openModal } = this.props;
 
     return (
-      <Modal open={openModal} onClose={handleModalClose}>
+      <Modal open={openModal} onClose={this.handleCloseModal}>
         <div className="modal-lg cart-create-modal">
           <div className="modal-content">
             <div className="modal-header">

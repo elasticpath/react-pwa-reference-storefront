@@ -140,6 +140,7 @@ interface ProductDisplayItemMainState {
   selectionValue: string,
   addToCartLoading: boolean,
   addToRequisitionListLoading: boolean,
+  detailsProductData: any,
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -177,6 +178,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       selectionValue: '',
       addToCartLoading: false,
       addToRequisitionListLoading: false,
+      detailsProductData: [],
       requisitionListData: {
         list: [
           { name: 'Vancouver' }, { name: 'HQ' }, { name: 'Chicago' }, { name: 'New York' }, { name: 'San Francisco' }, { name: 'Toronto' }, { name: 'Lviv' }, { name: 'Denver' }, { name: 'San Diego' },
@@ -195,6 +197,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
+    this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
   }
 
   componentDidMount() {
@@ -212,12 +215,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
                 this.setState({
                   productData: res,
+                  detailsProductData: res._definition[0].details,
                   arFileExists: exists,
                 });
               });
             } else {
               this.setState({
                 productData: res,
+                detailsProductData: res._definition[0].details,
               });
             }
           })
@@ -261,12 +266,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
                 this.setState({
                   productData: res,
+                  detailsProductData: res._definition[0].details,
                   arFileExists: exists,
                 });
               });
             } else {
               this.setState({
                 productData: res,
+                detailsProductData: res._definition[0].details,
               });
             }
           })
@@ -459,18 +466,25 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return { availability, availabilityString, productLink };
   }
 
+  handleDetailAttribute(index) {
+    const { detailsProductData } = this.state;
+    detailsProductData[index].isOpened = !detailsProductData[index].isOpened;
+    this.setState({ detailsProductData });
+  }
+
   renderAttributes() {
-    const { productData } = this.state;
-    if (productData._definition[0].details) {
-      return productData._definition[0].details.map(attribute => (
-        <ul className="itemdetail-attribute" key={attribute.name}>
-          <li className="itemdetail-attribute-label-col">
+    const { detailsProductData } = this.state;
+    if (detailsProductData) {
+      return detailsProductData.map((attribute, index) => (
+        <li key={attribute.name} className="detail-list-item">
+          <div className="item-detail-attribute-label-col">
             {attribute['display-name']}
-          </li>
-          <li className="itemdetail-attribute-value-col">
+            <span className={`item-arrow-btn ${attribute.isOpened ? 'up' : ''}`} role="presentation" onClick={() => this.handleDetailAttribute(index)} />
+          </div>
+          <div className={`item-detail-attribute-value-col ${attribute.isOpened ? '' : 'hide'}`}>
             {attribute['display-value']}
-          </li>
-        </ul>
+          </div>
+        </li>
       ));
     }
     return null;
@@ -527,6 +541,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         <fieldset onChange={this.handleSelectionChange} key={Math.random().toString(36).substr(2, 9)}>
           <span className="selector-title">
             {ComponentEl.displayName}
+            :&nbsp;
+            {(ComponentEl.displayName === 'Color') ? (
+              <span>{ComponentEl.defaultChousen}</span>
+            ) : ''}
           </span>
           <div className="guide" id={`${(ComponentEl.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
             {ComponentEl.map(Element => (
@@ -945,40 +963,40 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 </div>
               </div>
               <PowerReview productData={productData} />
-              <div className="itemdetail-tabs-wrap">
-                {(Config.PowerReviews.enable) ? (
-                  <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
-                    <li className="nav-item">
-                      <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
-                        {intl.get('summary')}
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
-                        {intl.get('reviews')}
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
-                        {intl.get('questions')}
-                      </a>
-                    </li>
-                  </ul>
-                ) : ('')
-                }
-                <div className="tab-content">
-                  <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-                    <div className="itemDetailAttributeRegion" data-region="itemDetailAttributeRegion">
-                      {this.renderAttributes()}
-                    </div>
-                  </div>
-                  <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                    <div id="pr-reviewdisplay" />
-                  </div>
-                  <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
-                    <div id="pr-questiondisplay" />
-                  </div>
-                </div>
+            </div>
+          </div>
+          <div className="itemdetail-tabs-wrap">
+            {(Config.PowerReviews.enable) ? (
+              <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
+                <li className="nav-item">
+                  <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
+                    {intl.get('summary')}
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
+                    {intl.get('reviews')}
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
+                    {intl.get('questions')}
+                  </a>
+                </li>
+              </ul>
+            ) : ('')
+            }
+            <div className="tab-content">
+              <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                <ul className="item-detail-attributes" data-region="itemDetailAttributeRegion">
+                  {this.renderAttributes()}
+                </ul>
+              </div>
+              <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                <div id="pr-reviewdisplay" />
+              </div>
+              <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
+                <div id="pr-questiondisplay" />
               </div>
             </div>
           </div>

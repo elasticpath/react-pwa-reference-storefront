@@ -22,7 +22,7 @@
 import intl from 'react-intl-universal';
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
-import { ErrorInlet } from './MessageContext';
+import { ErrorInlet } from '../components/src/utils/MessageContext';
 
 import * as Config from '../ep.config.json';
 

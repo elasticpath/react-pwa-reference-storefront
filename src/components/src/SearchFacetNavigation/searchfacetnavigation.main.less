@@ -44,8 +44,11 @@
             display: inline-block;
             height: 12px;
             width: 16px;
-            background: url('@{imgComponentUrl}/header-icons/baseline-filter_list-24px.svg') no-repeat center center;
             margin-right:10px;
+
+            svg {
+              fill: @firstComplimentColor;
+            }
           }
 
           &:hover {
@@ -60,7 +63,7 @@
         padding-left: 12.5px;
 
         button {
-          color: #777777;
+          color: @firstComplimentTextColor;
           display: inline-block;
           vertical-align: middle;
           position: relative;
@@ -76,7 +79,7 @@
             width: 18px;
             height: 18px;
             margin-right: 10px;
-            border: #cccccc 2px solid;
+            border: @secondBorderColor 2px solid;
             border-radius: 2px;
 
             &.chosen {
@@ -89,7 +92,7 @@
                 left: -1px;
                 width: 12px;
                 height: 7px;
-                border: solid 2px #FFFFFF;
+                border: solid 2px @mainNavigationColor;
                 border-right: none;
                 border-top: none;
                 transform: translate(2px, 1px) rotate(-45deg);
@@ -162,8 +165,8 @@
     font-size: 14px;
     font-weight: 500;
     color: @firstComplimentColor;
-    border: 1px solid #EEEEEE;
-    background-color: #F7F7F7;
+    border: 1px solid @fifthComplimentTextColor;
+    background-color: @secondComplimentBackground;
     &:focus {
       outline: 2px solid @buttonFocusColor;
     }
@@ -212,7 +215,7 @@
       content: ' ';
       height: 15px;
       width: 1px;
-      background-color: #333;
+      background-color: @mainTextColor;
     }
 
     &:before {

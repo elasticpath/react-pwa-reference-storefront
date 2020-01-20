@@ -23,6 +23,7 @@ import React, { Component } from 'react';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
+import { ReactComponent as FilterIcon } from '../../../images/header-icons/baseline-filter_list-24px.svg';
 
 import './searchfacetnavigation.main.less';
 
@@ -138,7 +139,9 @@ class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps
             <div className="card-header">
               <h4 className="card-title">
                 <a className="facet" data-toggle="collapse" href={`#${facetDisplayNameId}_facet_values`}>
-                  <span className="glyphicon" />
+                  <span className="glyphicon">
+                    <FilterIcon />
+                  </span>
                   {facet['display-name']}
                 </a>
               </h4>

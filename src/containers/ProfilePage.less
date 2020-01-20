@@ -56,7 +56,6 @@
     background-color: @mainBackgroundColor;
     border: solid 1px @secondComplimentColor;
     border-radius: 0;
-    text-align: middle;
     box-shadow: none;
     white-space: nowrap;
     height: auto;
@@ -64,21 +63,6 @@
     width: 90px;
     height: 30px;
     margin-right: 10px;
-  }
-
-  .btn-primary {
-    padding: 8px 14px;
-    width: 100%;
-    height: 40px;
-    background-color: @firstComplimentColor;
-    font-size: 12px;
-    font-weight: bold;
-    color: @mainBackgroundColor;
-    border: 0;
-    border-radius: 0;
-    text-transform: uppercase;
-    margin-top: 10px;
-    max-width: 280px;
   }
 
   .profile-payment-method-label-container {
@@ -97,7 +81,7 @@
   }
 
   .feedback-label {
-    color: red;
+    color: @mainErrorColor;
     font-size: 16px;
     font-weight: bold;
   }
@@ -115,7 +99,7 @@
           content: '';
           height: 14px;
           width: 2px;
-          border-left: 2px solid #CCCCCC;
+          border-left: 2px solid @secondBorderColor;
           position: absolute;
           top: 2px;
           left: -10px;
@@ -220,7 +204,7 @@
   }
   &-block {
     padding: 0 15px 15px 15px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid @secondBorderColor;
     @media (min-width: @mobileWidth) {
       padding: 0 10px 15px 20px;
     }

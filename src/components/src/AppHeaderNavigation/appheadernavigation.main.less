@@ -108,7 +108,7 @@
 
     /** Colors of each level of mobile/tablet dropdown **/
     .nestedCategory0 {
-      background-color: #eeeeee!important
+      background-color: @fifthComplimentTextColor !important
     }
 
     .nestedCategory1 {
@@ -177,14 +177,14 @@
     .nav-item {
       display: inline-block;
       white-space: nowrap;
-      padding-right: 30px;
+      padding: 0 15px;
       font-size: 13px;
       font-weight: bold;
       transition: border-color 0.2s;
 
       .nav-link {
         color: @mainNavigationColor;
-        padding: 7px;
+        padding: 15px 7px;
       }
 
       .dropdown-menu {
@@ -215,6 +215,35 @@
           }
         }
       }
+
+      .product-btn {
+        display: inline-block;
+        background-color: transparent;
+        border: none;
+        font-weight: bold;
+        outline: 0 auto transparent;
+
+        &.rotateCaret {
+          &:after {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+
+      .b2b-dropdown-menu {
+        @media only screen and (min-width: @tabletWidth) {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background-color: @mainColor;
+          white-space: normal;
+        }
+
+        &.hidden {
+          display: none;
+        }
+      }
     }
   }
 
@@ -237,14 +266,14 @@
           text-transform: uppercase;
 
           &:active {
-            background-color: #ccc;
+            background-color: @secondBorderColor;
           }
         }
 
         &.show {
           .nav-link {
             font-weight: bold;
-            background-color: #eee;
+            background-color: @fifthComplimentTextColor;
           }
         }
 
@@ -252,24 +281,22 @@
           position: static !important;
           margin: 0;
           border: 0;
-          background-color: transparent;
           transform: none !important;
           box-shadow: none;
-          background-color: #eee;
+          background-color: @fifthComplimentTextColor;
 
           .dropdown-item {
-            padding-top: 15px;
             padding-top: 15px;
             text-align: center;
             font-size: 15px;
             color: @mainColor;
 
             &:active {
-              background-color: #ccc;
+              background-color: @secondBorderColor;
             }
 
             &:focus {
-              background-color: #ccc;
+              background-color: @secondBorderColor;
             }
 
           }

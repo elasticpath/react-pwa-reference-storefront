@@ -25,7 +25,7 @@
   font-size: 14px;
   font-weight: 300;
   line-height: normal;
-  color: #000000;
+  color: @mainColor;
 
   .pagination-navigation-container {
     text-align: center;
@@ -41,7 +41,6 @@
 
   .btn-pagination {
     display: inline-block;
-    padding: 6px 12px;
     cursor: pointer;
     user-select: none;
     color: @secondComplimentTextColor;
@@ -88,7 +87,7 @@
     }
 
     &:hover, &:focus {
-      color: #333;
+      color: @mainTextColor;
     }
 
     &.hide {

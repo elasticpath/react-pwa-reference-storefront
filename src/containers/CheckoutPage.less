@@ -57,7 +57,7 @@
   .checkout-container-inner {
     position: relative;
     .view-title {
-      color: #000000;
+      color: @mainColor;
       text-transform: capitalize;
     }
 
@@ -65,7 +65,6 @@
       h1 {
         float: left;
         position: relative;
-        width: 70%;
         min-height: 1px;
         padding-left: 15px;
         padding-right: 5px;
@@ -100,11 +99,9 @@
       }
 
       .checkout-sidebar-inner {
-        display: block;
         position: relative;
         display: inline-block;
         border-radius: 0;
-        background-color: rgba(255, 255, 255, 0.6);
         text-align: center;
         bottom: 0;
         background: @mainBackgroundColor;
@@ -112,7 +109,7 @@
         width: 100%;
 
         .feedback-label {
-          color: red;
+          color: @mainErrorColor;
           font-size: 16px;
           font-weight: bold;
         }
@@ -159,7 +156,7 @@
     .profile-email-info {
 
       .feedback-label {
-       color: red;
+       color: @mainErrorColor;
        font-size: 16px;
        font-weight: bold;
       }
@@ -192,8 +189,6 @@
       margin-bottom: 48px;
       position: relative;
       min-height: 1px;
-      padding-left: 15px;
-      padding-right: 15px;
       padding-left: 0;
       padding-right: 0;
 
@@ -223,7 +218,7 @@
             content: '';
             height: 14px;
             width: 2px;
-            border-left: 2px solid #CCCCCC;
+            border-left: 2px solid @secondBorderColor;
             position: absolute;
             top: 2px;
             left: -10px;
@@ -368,7 +363,7 @@
       max-width: 260px;
       padding: 0 20px 10px;
       float: none;
-      border: 1px solid #CCCCCC;
+      border: 1px solid @secondBorderColor;
       margin-left: 20px;
       @media (max-width: 991px) {
         max-width: 100%;
@@ -403,7 +398,7 @@
         &.checkout-total {
           font-size: 15px;
           padding-top: 5px;
-          border-top: 1px solid #979797;
+          border-top: 1px solid @buttonFocusColor;
           span {
             font-weight: bold;
           }
@@ -426,7 +421,7 @@
           text-transform: capitalize;
         }
         span {
-          color: red;
+          color: @mainErrorColor;
         }
       }
       [data-region="checkoutShippingTotalRegion"] {

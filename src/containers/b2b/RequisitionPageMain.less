@@ -38,6 +38,7 @@
         position: absolute;
         top: -2px;
         left: -8px;
+        fill: @firstComplimentColor
       }
     }
 
@@ -157,7 +158,7 @@
             text-transform: none;
 
             &:hover {
-              background-color: #F2F6FA;
+              background-color: @thirdComplimentBackground;
               color: @firstComplimentColor;
             }
           }
@@ -241,7 +242,7 @@
         display: block;
         min-height: 30px;
         border: none;
-        border-bottom: 1px solid @mainNavigationColor;
+        border-bottom: 1px solid @fifthComplimentTextColor;
         position: relative;
         padding: 5px 5px 5px 50%;
 
@@ -464,7 +465,7 @@
     .error-message {
       height: 20px;
       padding-top: 10px;
-      color: #E02020;
+      color: @mainErrorColor;
       font-size: 13px;
       font-weight: 600;
     }
@@ -473,7 +474,7 @@
       border: 1px solid rgba(224,32,32,0.2);
       background-color: rgba(224,32,32,0.1);
       &:focus {
-        background-color: #FFFFFF;
+        background-color: @mainBackgroundColor;
         + .clear-field-btn {
           background: #EEEEEE;
           &:before, &:after {
@@ -507,7 +508,7 @@
     width: 36px;
     position: relative;
     border-radius: 50%;
-    border: 1px solid @mainNavigationColor;
+    border: 1px solid @fifthComplimentTextColor;
     background: @mainBackgroundColor;
     vertical-align: middle;
 

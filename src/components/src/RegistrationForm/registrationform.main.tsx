@@ -223,7 +223,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                 {
                   (isLoading) ? <div className="miniLoader" /> : ('')
                 }
-                <input className="btn btn-primary registration-save-btn" id="registration_form_register_button" data-cmd="register" type="button" onClick={this.registerNewUser} value="Submit" />
+                <input className="ep-btn primary registration-save-btn" id="registration_form_register_button" data-cmd="register" type="button" onClick={this.registerNewUser} value="Submit" />
               </div>
             </form>
           </div>

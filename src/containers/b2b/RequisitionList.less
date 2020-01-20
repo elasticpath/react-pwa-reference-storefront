@@ -55,14 +55,14 @@
         height: 34px;
         width: 100%;
         padding: 0 5px 0 7px;
-        border: 1px solid rgba(0,153,222,0.5);
+        border: 1px solid @firstComplimentColor;
         border-radius: 4px;
         box-shadow: 1px 1px 2px 0 rgba(0,153,222,0.12);
 
         .error-message {
           height: 20px;
           padding-top: 10px;
-          color: #E02020;
+          color: @mainErrorColor;
           font-size: 13px;
           font-weight: 600;
         }
@@ -71,7 +71,7 @@
           border: 1px solid rgba(224,32,32,0.2);
           background-color: rgba(224,32,32,0.1);
           &:focus {
-            background-color: #FFFFFF;
+            background-color: @mainBackgroundColor;
             + .clear-field-btn {
               background: #EEEEEE;
               &:before, &:after {
@@ -261,7 +261,7 @@
             margin: 0;
             border-width: 2px;
             border-top-width: 2px;
-            border-top-color: black;
+            border-top-color: @mainColor;
           }
         }
       }
@@ -399,7 +399,7 @@
 
         &:hover {
           color: @thirdComplimentColor;
-          background-color: #F2F6FA;
+          background-color: @thirdComplimentBackground;
         }
       }
     }

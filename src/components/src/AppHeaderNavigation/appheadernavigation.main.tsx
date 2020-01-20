@@ -29,6 +29,7 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './appheadernavigation.main.less';
 
 let Config: IEpConfig | any = {};
+let intl = { get: str => str };
 
 const zoomArray = [
   'navigations:element',
@@ -60,6 +61,8 @@ interface AppHeaderNavigationMainProps {
 interface AppHeaderNavigationMainState {
   navigations: any,
   originalMinimizedNav: any,
+  topMenuData: any,
+  showProducts: boolean,
 }
 
 class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
@@ -74,10 +77,13 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
     super(props);
     const epConfig = getConfig();
     Config = epConfig.config;
+    ({ intl } = epConfig);
     this.state = {
       navigations: {},
       /* eslint-disable react/no-unused-state */
       originalMinimizedNav: {},
+      topMenuData: [{ name: 'home', uri: '/' }, { name: 'company', uri: '/company' }, { name: 'products' }, { name: 'industries', uri: '/industries' }, { name: 'services', uri: '/services' }, { name: 'support', uri: '/support' }],
+      showProducts: false,
     };
   }
 
@@ -289,6 +295,42 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
     });
   }
 
+  toggleShowProducts() {
+    const { showProducts } = this.state;
+    this.setState({
+      showProducts: !showProducts,
+    });
+  }
+
+  renderB2BMenuItem(item) {
+    const { showProducts } = this.state;
+    return (
+      <li className="nav-item" key={`${item.name}`} data-name={item.name} data-el-container="category-nav-item-container">
+        {(item.name === 'products') ? (
+          <div className="nav-item">
+            <button type="button" className={`nav-link product-btn dropdown-toggle ${showProducts ? 'rotateCaret' : ''}`} onClick={() => this.toggleShowProducts()}>
+              {intl.get(item.name)}
+            </button>
+            <ul className={`b2b-dropdown-menu ${!showProducts ? 'hidden' : ''}`}>
+              {this.renderCategories()}
+            </ul>
+          </div>
+        ) : (
+          <div className="nav-item" data-name={item.name} data-el-container="category-nav-item-container">
+            <Link className="nav-link" to={item.uri}>
+              <div>{intl.get(item.name)}</div>
+            </Link>
+          </div>
+        )}
+      </li>
+    );
+  }
+
+  renderB2BMenu() {
+    const { topMenuData } = this.state;
+    return topMenuData.map(item => this.renderB2BMenuItem(item));
+  }
+
   render() {
     const { isMobileView } = this.props;
 
@@ -296,9 +338,15 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
         <nav className="navbar navbar-expand hover-menu">
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              {this.renderCategories()}
-            </ul>
+            {Config.b2b.enable ? (
+              <ul className="navbar-nav">
+                {this.renderB2BMenu()}
+              </ul>
+            ) : (
+              <ul className="navbar-nav">
+                {this.renderCategories()}
+              </ul>
+            )}
           </div>
         </nav>
       </div>

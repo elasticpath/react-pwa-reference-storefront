@@ -36,7 +36,7 @@
   box-shadow: 1px 20px 30px rgba(0, 0, 0, 0.5);
 
   .bulk-order-close-button{
-    background: @mainBackgroundColor url('@{imgComponentUrl}/header-icons/baseline_close_black_22dp.png') no-repeat 0px;
+    background: @mainBackgroundColor url('@{imgComponentUrl}/header-icons/baseline_close_black_22dp.png') no-repeat 0;
     width: 70px;
     height: 25px;
     position: absolute;
@@ -61,7 +61,7 @@
     min-width: 295px;
 
     p {
-      color: black;
+      color: @mainColor;
       padding: 0;
       margin-top:0;
       border:none;
@@ -133,7 +133,7 @@
         .nav-link {
           padding: 5px 20px;
           font-size: 16px;
-          color: #333;
+          color: @mainTextColor;
 
           &:hover {
             border-color: transparent;
@@ -148,7 +148,7 @@
 
           &.disabled {
             cursor: default;
-            color: #333;
+            color: @mainTextColor;
           }
         }
       }
@@ -177,6 +177,7 @@
 
 @media (max-width: @mobileWidth - 1px) {
   .bulk-order-component {
+    z-index: 2;
     position: fixed;
     width: 100vw;
     top: 0;
