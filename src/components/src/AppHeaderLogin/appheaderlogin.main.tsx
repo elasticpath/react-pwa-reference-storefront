@@ -132,6 +132,8 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         this.logoutRegisteredUser();
       } else if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null && localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null) {
         this.handleCartModalOpen();
+      }
+      if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null) {
         this.getAccountData();
       }
       if (Config.b2b.enable && Config.b2b.openId && Config.b2b.openId.enable) {
@@ -216,32 +218,31 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       });
     }
 
-    handleModalClose() {
-      this.getAccountData();
+    async handleModalClose() {
       this.setState({
         openModal: false,
         openCartModal: false,
       });
+      const data = await this.getAccountData();
+      return data;
     }
 
-    getAccountData() {
+    async getAccountData() {
       if (Config.b2b.enable) {
-        login().then(() => {
-          adminFetch('/?zoom=accounts', {
+        try {
+          await login();
+          const account = await adminFetch('/?zoom=accounts', {
             headers: {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
             },
-          })
-            .then(res => res.json())
-            .then((res) => {
-              this.setState({ accountData: res });
-            })
-            .catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-            });
-        });
+          });
+          const accountJson = await account.json();
+          this.setState({ accountData: accountJson });
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        }
       }
     }
 

@@ -46,6 +46,7 @@ interface AppModalCartSelectMainProps {
 interface AppModalCartSelectMainState {
   orgAuthServiceData: any,
   selectedCart: string,
+  selectedCartName: string,
 }
 
 class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppModalCartSelectMainState> {
@@ -61,10 +62,12 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
     this.state = {
       orgAuthServiceData: undefined,
       selectedCart: '0',
+      selectedCartName: '',
     };
     this.continueCart = this.continueCart.bind(this);
     this.fetchOrganizationData = this.fetchOrganizationData.bind(this);
     this.handleCartChange = this.handleCartChange.bind(this);
+    this.onModalClose = this.onModalClose.bind(this);
   }
 
   componentDidMount() {
@@ -92,7 +95,7 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
       });
   }
 
-  continueCart() {
+  async continueCart() {
     const {
       selectedCart,
       orgAuthServiceData,
@@ -111,9 +114,9 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
         body: JSON.stringify({}),
       })
         .then(res => res.json())
-        .then((data) => {
+        .then(async (data) => {
           localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
-          handleModalClose();
+          await handleModalClose;
           onContinueCart();
         })
         .catch((error) => {
@@ -123,22 +126,32 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
     }
   }
 
-  handleCartChange(event) {
+  handleCartChange(event, cartName) {
     this.setState({
       selectedCart: event.target.value,
+      selectedCartName: cartName,
     });
   }
 
-  renderCartOption() {
-    const { selectedCart, orgAuthServiceData } = this.state;
+  onModalClose() {
+    const { handleModalClose } = this.props;
+    this.setState({
+      selectedCartName: '',
+    });
+    handleModalClose();
+  }
 
+  renderCartOption() {
+    const { selectedCart, orgAuthServiceData, selectedCartName } = this.state;
+    const checkedCartName = localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`);
+    const isCheckedCartName = localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`) === null;
     if (orgAuthServiceData && orgAuthServiceData._element) {
       return orgAuthServiceData._element.map((division, index) => {
         if (division) {
           return (
             <div className="radio" key={division.name}>
               <label htmlFor={`cart-selection-option${index}`} className="custom-radio-button">
-                <input id={`cart-selection-option${index}`} type="radio" value={index} checked={selectedCart === `${index}`} onChange={this.handleCartChange} />
+                <input id={`cart-selection-option${index}`} type="radio" value={index} checked={(selectedCartName.length === 0 && !isCheckedCartName) ? checkedCartName === division.name : selectedCart === `${index}`} onChange={event => this.handleCartChange(event, division.name)} />
                 <span className="helping-el" />
                 <span className="label-text">{division.name}</span>
               </label>
@@ -163,7 +176,7 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
     const selectedCartName = orgAuthServiceData && orgAuthServiceData._element ? orgAuthServiceData._element[selectedCart].name : '';
 
     return (
-      <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'cart-selection-modal-content' }}>
+      <Modal open={openModal} onClose={this.onModalClose} classNames={{ modal: 'cart-selection-modal-content' }}>
         <div className="modal-lg">
           <div className="modal-content" id="simplemodal-container">
             <div className="modal-header">
