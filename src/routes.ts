@@ -47,6 +47,10 @@ import AccountMain from './containers/b2b/AccountMain';
 import RequisitionList from './containers/b2b/RequisitionList';
 import RequisitionPageMain from './containers/b2b/RequisitionPageMain';
 import AddPaymentMethod from './containers/AddPaymentMethod';
+import CompanyPage from './containers/CompanyPage';
+import IndustriesPage from './containers/IndustriesPage';
+import ServicesPage from './containers/ServicesPage';
+import SupportPage from './containers/SupportPage';
 
 const router = [{
   path: '/',
@@ -119,6 +123,18 @@ const router = [{
 }, {
   path: '/termsandconditions',
   component: TermsAndConditionsPage,
+}, {
+  path: '/company',
+  component: CompanyPage,
+}, {
+  path: '/industries',
+  component: IndustriesPage,
+}, {
+  path: '/services',
+  component: ServicesPage,
+}, {
+  path: '/support',
+  component: SupportPage,
 }, {
   path: '/wishlists',
   component: WishListsPage,

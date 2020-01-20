@@ -82,7 +82,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       navigations: {},
       /* eslint-disable react/no-unused-state */
       originalMinimizedNav: {},
-      topMenuData: [{ name: 'home', uri: '/' }, { name: 'company', uri: '/aboutus' }, { name: 'products' }, { name: 'industries', uri: '/contactus' }, { name: 'services', uri: '/shippingreturns' }, { name: 'support', uri: '/termsandconditions' }],
+      topMenuData: [{ name: 'home', uri: '/' }, { name: 'company', uri: '/company' }, { name: 'products' }, { name: 'industries', uri: '/industries' }, { name: 'services', uri: '/services' }, { name: 'support', uri: '/support' }],
       showProducts: false,
     };
   }
