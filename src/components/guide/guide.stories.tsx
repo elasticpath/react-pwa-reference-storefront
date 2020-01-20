@@ -21,11 +21,7 @@
 import { doc } from 'storybook-readme';
 import { storiesOf } from '@storybook/react';
 import Guide1 from './Guide1.md';
-import Guide2 from './Guide2.md';
-import Guide3 from './Guide3.md';
 
 storiesOf('Guides|Guide', module)
   .addParameters({ options: { showAddonPanel: false } })
-  .add('Guide1', doc(Guide1))
-  .add('Guide2', doc(Guide2))
-  .add('Guide3', doc(Guide3));
+  .add('Introduction', doc(Guide1));
