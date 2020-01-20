@@ -2,7 +2,9 @@
 
 #### Description
 
-Modal to edit associate for Buyer Admin view. Used to select roles, set name, etc.
+Displays an **Add Associate** dialog box. Account administrators add associates by specifying their email address and roles.
+
+Use this component with the Accounts view.
 
 #### Usage
 

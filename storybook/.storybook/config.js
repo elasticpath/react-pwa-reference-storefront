@@ -24,6 +24,7 @@ epConfig.supportedLocales.forEach((locale) => {
   locales[locale.value] = require(`../../src/localization/${locale.value}.json`);
 });
 
+const guides = require.context('../../src/components/guide', true, /.stories.(j|t)sx$/);
 const comps = require.context('../../src/components/src', true, /.stories.(j|t)sx$/);
 
 intl.init({
@@ -35,6 +36,7 @@ intl.init({
     intl
   }).then(() => {
     configure(() => {
+      guides.keys().forEach(filename => guides(filename));
       comps.keys().forEach(filename => comps(filename));
     }, module);
   });

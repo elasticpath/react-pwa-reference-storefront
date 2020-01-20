@@ -2,7 +2,11 @@
 
 #### Description
 
-Displays payment methods added to profile.
+Displays the payment methods that are defined for the profile. Credit card numbers are masked except for the last four digits. The profile owner can add and delete payment methods.
+
+**Note**: For an organization account, the profile owner is the account administrator.
+
+For more information about payments and security, see the `PaymentFormMain` component.
 
 #### Usage
 

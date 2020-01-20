@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays facet navigation given product data.
+Displays facets to narrow the search results further. The facets are retrieved from the specified product data.
 
 #### Usage
 

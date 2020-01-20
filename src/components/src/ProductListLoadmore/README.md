@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays button to load more products on product list.
+Displays a button that loads more products from a product list.
 
 #### Usage
 

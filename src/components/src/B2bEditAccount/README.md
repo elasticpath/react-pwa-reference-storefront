@@ -2,7 +2,9 @@
 
 #### Description
 
-Modal to edit account within account for Buyer Admin view.
+Displays an **Edit Account** dialog box where account administrators can edit the details of an account or sub-account.
+
+Use this component with the Accounts view.
 
 #### Usage
 

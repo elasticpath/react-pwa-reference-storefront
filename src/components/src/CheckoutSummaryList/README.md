@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays summary of checkout information given order data.
+Displays the total cost for a purchase and breaks down how the cost was calculated. The summary includes number of items, subtotal, discount, shipping, and taxes.
 
 #### Usage
 

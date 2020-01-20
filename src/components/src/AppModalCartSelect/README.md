@@ -2,7 +2,7 @@
 
 #### Description
 
-Modal for cart selection in multi-cart enabled flows.
+Displays a modal window that contains a list of accounts that the logged in shopper can buy for.
 
 #### Usage
 

@@ -1,19 +1,19 @@
-# AddressFormMain
+# SortProductMenu
 
 #### Description
 
-Address form component.
+Displays a **Sort By** drop-down menu. A shopper can rearrange a product list based on things like price or rating.
 
 #### Usage
 
 ```js
-import { AddressFormMain } from '@elasticpath/store-components';
+import { SortProductMenu } from '@elasticpath/store-components';
 ```
 
 #### Example
 
 ```js
-<AddressFormMain onCloseModal={this.handleCloseAddressModal} fetchData={this.fetchOrderData} addressData={addressUrl} />
+<SortProductMenu handleSortSelection={this.handleSortSelection} categoryModel={categoryModel} />
 ```
 
 #### Properties

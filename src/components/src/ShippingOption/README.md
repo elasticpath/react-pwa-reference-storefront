@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays available shipping options.
+Displays the shipping options that are available to the shopper.
 
 #### Usage
 

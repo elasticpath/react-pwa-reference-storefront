@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays single sub-account list item for displaying sub-accounts.
+Displays a sub-account for the specified account. The list information includes the sub-account name and whether the sub-account is enabled. When an account administrator selects the sub-account, the component retrieves data about the sub-account.
+
+Use this component with the Accounts view.
 
 #### Usage
 

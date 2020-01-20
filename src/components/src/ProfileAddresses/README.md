@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays addresses for profile given profile data.
+Displays the addresses for a specified profile. The profile owner can add, edit, and delete addresses.
+
+**Note**: For an organization account, the profile owner is the account administrator.
 
 #### Usage
 

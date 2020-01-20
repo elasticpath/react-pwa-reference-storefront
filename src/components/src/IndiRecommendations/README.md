@@ -2,7 +2,11 @@
 
 #### Description
 
-Integration component for Indi.
+Integrates [Indi](https://indi.com/) into your storefront.
+
+For an example of how to configure this component, see the [React PWA Storefront documentation](https://documentation.elasticpath.com/storefront-react/docs/examples/indi.html).
+
+**Note**: You need an Indi subscription to use this component.
 
 #### Usage
 

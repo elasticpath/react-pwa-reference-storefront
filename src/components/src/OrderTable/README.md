@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays previous orders in table given order data.
+Displays a previous order in a table format. The component retrieves the data from the shopper's order data.
+
+This component uses the `OrderTableLineItem` component to display item details.
 
 #### Usage
 

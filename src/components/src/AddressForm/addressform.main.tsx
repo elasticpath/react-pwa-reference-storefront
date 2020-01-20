@@ -30,13 +30,13 @@ let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
 interface AddressFormMainProps {
-  /** address data */
+  /** An array of addresses for the shopper, where `string` is a URL to the address data. */
     addressData?: {
         [key: string]: any
     },
-  /** handle close modal */
+  /** Closes the address form. */
     onCloseModal?: (...args: any[]) => any,
-  /** handle fetch data */
+  /** Retrieves the saved address. */
     fetchData?: (...args: any[]) => any,
 }
 interface AddressFormMainState {

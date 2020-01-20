@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays messages returned by Cortex as toasts for various flows (advisors, errors, need info, etc).
+Displays the messages returned by Cortex. The message icon and color are based on the message type, such as errors, warnings, and informational.
 
 #### Usage
 

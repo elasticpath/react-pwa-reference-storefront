@@ -2,7 +2,9 @@
 
 #### Description
 
-Chatbot component for Facebook chatbot integration support.
+Integrates a chatbot with your store. This component supports an integration with a Facebook Messenger chatbot.
+
+**Note**: For more information about developing a chatbot, see the [Reference Chatbot Quick Start Guide](https://documentation.elasticpath.com/chatbot/docs/index.html).
 
 #### Usage
 

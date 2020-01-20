@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays profile information.
+Displays the name for a specified profile. The profile owner can edit the name.
+
+**Note**: For an organization account, the profile owner is the account administrator.
 
 #### Usage
 

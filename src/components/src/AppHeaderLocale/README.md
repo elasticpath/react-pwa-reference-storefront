@@ -2,7 +2,7 @@
 
 #### Description
 
-Component that controls the locale. Available locales will be read from the application configuration and presented.
+Adds the selected currency and language to the header. A shopper can click the header and select a different language or currency from a popup menu. The component retrieves the list of locales from the application configuration.
 
 #### Usage
 

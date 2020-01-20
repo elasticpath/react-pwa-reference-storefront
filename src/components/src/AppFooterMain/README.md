@@ -2,7 +2,7 @@
 
 #### Description
 
-Footer component.
+Displays a footer at the bottom of each page in the storefront.
 
 #### Usage
 

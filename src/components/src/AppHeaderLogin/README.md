@@ -2,7 +2,7 @@
 
 #### Description
 
-Login component for B2C and B2B components. Displays authentication actions and redirects when appropriate for login/logout flows.
+Adds a **Login** link in the header. When selected, the link opens the `AppModalLoginMain` component, which displays a **Login** dialog box.
 
 #### Usage
 

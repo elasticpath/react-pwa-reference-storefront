@@ -25,13 +25,13 @@ import scriptjs from 'scriptjs';
 const remoteScriptUrl = 'https://embed.indi.com/widgets/v1/indi-embed.js';
 
 interface IndiRecommendationsDisplayMainProps {
-  /** render */
+  /** List of elements to display from Indi. Note: Provide the configurations to render the elements correctly. */
   render: any[],
-  /** configuration */
+  /** The structured object that contains the configurations required for the Indi component. */
   configuration: {
     [key: string]: any
   },
-  /** keywords */
+  /** A string of the keywords for the product in which the Indi component is displayed. */
   keywords?: string,
 }
 

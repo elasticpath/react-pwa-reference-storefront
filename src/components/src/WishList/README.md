@@ -2,7 +2,11 @@
 
 #### Description
 
-Displays wish list given with list data. Makes use of other components.
+Displays the items in the wish list. The component displays the item details, the quantity selected, and a price for the selected quantity. Shoppers can change the quantity or remove the item from the cart.
+
+When a shopper selects an item, the item opens in the `ProductDisplayItemMain` component.
+
+When the wish list is empty, a message is displayed.
 
 #### Usage
 

@@ -2,7 +2,7 @@
 
 #### Description
 
-Top most header component comprised of links to static pages, and locale/currency selection components.
+Adds a top-level header to the `AppHeaderMain` component. The `AppHeaderTop` component can contain the `AppHeaderLocale` component and links to static pages.
 
 #### Usage
 

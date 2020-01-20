@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays bundle constituents given product data and the item link.
+For a specified bundle, displays an image and name for the bundle and an image and name for each item in the bundle.
+
+When an item is selected, the item details appear in the `ProductDisplayItemMain` component.
 
 #### Usage
 

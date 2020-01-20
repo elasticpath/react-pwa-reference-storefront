@@ -2,7 +2,9 @@
 
 #### Description
 
-Displays side bar for Buyer Admin view given list of items.
+Displays a sidebar menu with a list of menu items. You define which types of items to use with this component.
+
+Use this component with the Accounts view.
 
 #### Usage
 

@@ -2,7 +2,9 @@
 
 #### Description
 
-Allows for adding gift certificates to order making use of accelerator.
+Displays the saved gift certificates (also known as gift cards) that can be applied to a purchase.
+
+Shoppers can add a new gift certificate by selecting a button and entering the gift certificate number. If the gift certificate number is valid, the card is saved. If not, an error message appears. The component retrieves and displays the updated list of saved gift certificates.
 
 #### Usage
 
