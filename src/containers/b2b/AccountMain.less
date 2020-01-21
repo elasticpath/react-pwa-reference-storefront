@@ -436,7 +436,10 @@
       display: inline-block;
       width: 24px;
       height: 24px;
-      background: url('../@{imgUrl}/icons/outline-chevron_left-24px.svg') no-repeat;
+
+      svg {
+        fill: @firstComplimentColor;
+      }
     }
 
     @media (max-width: @tabletWidth - 1px) {
@@ -468,7 +471,10 @@
       .back-arrow {
         width: 24px;
         height: 24px;
-        background: url('../@{imgUrl}/icons/outline-chevron_left-24px.svg') no-repeat;
+
+        svg {
+          fill: @firstComplimentColor;
+        }
       }
 
       @media (min-width: @tabletWidth) {

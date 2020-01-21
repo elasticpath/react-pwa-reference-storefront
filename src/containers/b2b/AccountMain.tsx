@@ -33,6 +33,7 @@ import * as Config from '../../ep.config.json';
 
 import './AccountMain.less';
 import { ReactComponent as AddCircleIcon } from '../../images/icons/outline-add_circle_outline-14px.svg';
+import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 
 const accountZoomArray = [
   'accountmetadata',
@@ -364,12 +365,16 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
           <div>
             <div key="account-header" className="account-header">
               <Link className="back-link" to="/b2b">
-                <div className="back-arrow" />
+                <div className="back-arrow">
+                  <AngleLeftIcon />
+                </div>
                 {intl.get('back')}
               </Link>
               <div className="name-container">
                 <Link className="back-link-mobile" to="/b2b">
-                  <div className="back-arrow" />
+                  <div className="back-arrow">
+                    <AngleLeftIcon />
+                  </div>
                   {intl.get('back')}
                 </Link>
                 <div className="name">
