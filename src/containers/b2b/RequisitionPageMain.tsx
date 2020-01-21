@@ -187,10 +187,12 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
         ) : (
           <div>
             <div className="requisition-header">
-              <Link className="back-link" to="/b2b/requisition-lists">
-                <AngleLeftIcon />
-                {intl.get('back-to-lists')}
-              </Link>
+              <div className="back-link-wrap">
+                <Link className="back-link" to="/b2b/requisition-lists">
+                  <AngleLeftIcon />
+                  {intl.get('back-to-lists')}
+                </Link>
+              </div>
               <div className="name-container">
                 <h2 className="name">
                   {currentlyListName}

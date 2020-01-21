@@ -30,9 +30,13 @@ import {
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import * as Config from '../../ep.config.json';
+import { ReactComponent as TrashIcon } from '../../images/icons/baseline-delete-24px.svg';
+import { ReactComponent as EditIcon } from '../../images/icons/baseline-edit-24px.svg';
+import { ReactComponent as GearIcon } from '../../images/icons/round-settings-20px.svg';
 
 import './AccountMain.less';
 import { ReactComponent as AddCircleIcon } from '../../images/icons/outline-add_circle_outline-14px.svg';
+import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 
 const accountZoomArray = [
   'accountmetadata',
@@ -364,12 +368,16 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
           <div>
             <div key="account-header" className="account-header">
               <Link className="back-link" to="/b2b">
-                <div className="back-arrow" />
+                <div className="back-arrow">
+                  <AngleLeftIcon />
+                </div>
                 {intl.get('back')}
               </Link>
               <div className="name-container">
                 <Link className="back-link-mobile" to="/b2b">
-                  <div className="back-arrow" />
+                  <div className="back-arrow">
+                    <AngleLeftIcon />
+                  </div>
                   {intl.get('back')}
                 </Link>
                 <div className="name">
@@ -377,7 +385,9 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 </div>
                 {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
                 <div className="settings" onClick={this.handleAccountSettingsClicked}>
-                  <div className="setting-icons" />
+                  <div className="setting-icons">
+                    <GearIcon />
+                  </div>
                   <span className="settings-title">{intl.get('account-settings')}</span>
                 </div>
               </div>
@@ -401,7 +411,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                 <h3 className="title-associate-table">{intl.get('associates')}</h3>
                 <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
                   <thead>
-                    <tr>
+                    <tr className="associates-header">
                       <th className="name-email">{intl.get('name-and-email')}</th>
                       <th className="name">{intl.get('name')}</th>
                       <th className="email">{intl.get('email')}</th>
@@ -431,8 +441,12 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                             {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
                           </td>
                           <td className="action">
-                            <button type="button" className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)} />
-                            <button type="button" className="delete-associate" onClick={() => this.handleDeleteModalOpen(associate.self.uri)} />
+                            <button type="button" className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)}>
+                              <EditIcon />
+                            </button>
+                            <button type="button" className="delete-associate" onClick={() => this.handleDeleteModalOpen(associate.self.uri)}>
+                              <TrashIcon />
+                            </button>
                           </td>
                         </tr>
                       );

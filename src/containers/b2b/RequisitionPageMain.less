@@ -24,7 +24,7 @@
 .requisition-component {
 
   .requisition-header {
-    padding: 20px 0px 10px;
+    padding-bottom: 10px;
 
     .back-link {
       position: relative;
@@ -32,7 +32,16 @@
       padding-left: 20px;
       font-weight: bold;
       color: @thirdComplimentColor;
-      margin-bottom: 20px;
+
+      &-wrap {
+        padding: 20px 0;
+        margin-bottom: 10px;
+
+        @media (max-width: @tabletWidth - 1px) {
+          padding: 20px 15px;
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+      }
 
       svg {
         position: absolute;
@@ -46,6 +55,10 @@
       display: flex;
       align-items: center;
       width: 100%;
+
+      @media (max-width: @tabletWidth - 1px) {
+        padding: 0 15px;
+      }
 
       .name {
         display: inline-block;
@@ -70,12 +83,18 @@
   }
 
   .add-to-cart-dropdown-wrap {
+
+    @media (max-width: @tabletWidth - 1px) {
+      padding: 0 15px;
+    }
+
     .add-to-list-button {
       min-width: 220px;
       min-height: 30px;
       height: 32px;
       padding: 0 5px;
       text-transform: none;
+      margin-top: 6px;
     }
 
     @media screen and (min-width: 481px) {
@@ -192,6 +211,10 @@
     width: 100%;
     margin-bottom: 30px;
 
+    @media (max-width: @tabletWidth - 1px) {
+      padding: 0 15px;
+    }
+
     @media (max-width: @mobileWidth - 1px) {
       display: block;
     }
@@ -215,14 +238,13 @@
     }
 
     .product-table-heading-item {
-      height: 50px;
+      height: 60px;
       padding: 5px;
       display: table-cell;
       vertical-align: middle;
       background: @secondComplimentBackground;
       color: @firstComplimentTextColor;
       font-weight: bold;
-      border-bottom: 1px solid @secondBorderColor;
     }
 
     .checkbox-col,
@@ -236,7 +258,7 @@
       display: table-cell;
       vertical-align: top;
       padding: 15px 5px;
-      border-bottom: 1px solid @secondBorderColor;
+      border-bottom: 1px solid @fifthComplimentTextColor;
 
       @media (max-width: @mobileWidth - 1px) {
         display: block;
@@ -437,6 +459,10 @@
     align-items: center;
     margin-bottom: 4px;
 
+    @media (max-width: @tabletWidth - 1px) {
+      padding-left: 15px;
+    }
+
     @media screen and (min-width: 481px) {
       padding-right: 20px;
     }
@@ -547,7 +573,7 @@
   }
 }
 
-@media (min-width: 1092px) {
+@media (min-width: @tabletWidth) {
   .requisition-component {
     width: 960px;
     margin: 0 auto;

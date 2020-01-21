@@ -2,6 +2,12 @@
 
 .side-menu-component {
   position: relative;
+  background-color: @secondComplimentBackground;
+
+  @media screen and (min-width: 992px) {
+    padding-bottom: 150px;
+  }
+
   .menu-item {
     height: 40px;
     display: flex;
@@ -9,14 +15,21 @@
     padding-left: 25px;
     font-size: 13px;
     border-left: 3px solid transparent;
-    color: @mainTextColor !important;
+    color: @firstComplimentColor;
     text-decoration: none;
+    letter-spacing: 0.2px;
+
     &.selected {
-      font-weight: bold;
-      color: @firstComplimentColor !important;
-      border-left: 3px solid @firstComplimentColor;
+      background-color: @buttonActiveColor;
+      color: @mainBackgroundColor;
+      border: 1px solid @buttonFocusColor;
+    }
+
+    @media screen and (min-width: 992px) {
+      padding-left: 15px;
     }
   }
+
   &-title {
     position: relative;
     display: inline-block;
@@ -29,9 +42,11 @@
     color: @firstComplimentColor;
     font-weight: bold;
     text-align: left;
+
     &:focus {
       outline: 0 auto transparent;
     }
+
     &:before {
       content: "";
       border-bottom: 2px solid @firstComplimentColor;
@@ -43,10 +58,12 @@
       top: 45%;
       right: 20px;
     }
+
     @media screen and (min-width: 992px) {
       display: none;
     }
   }
+
   &-dropdown {
     @media screen and (max-width: 991px) {
       width: 100%;
@@ -55,9 +72,11 @@
       left: 0;
       background: @mainBackgroundColor;
       border: 1px solid @mainBorderColor;
+
       &.hidden {
         display: none;
       }
+
       .menu-item.selected {
         display: none;
       }

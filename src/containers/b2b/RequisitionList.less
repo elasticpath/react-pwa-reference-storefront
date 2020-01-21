@@ -138,6 +138,12 @@
     border-bottom: 1px solid @secondBorderColor;
     cursor: pointer;
 
+    &:first-child {
+      .requisition-info {
+        border-bottom: none;
+      }
+    }
+
     &.edit-mode-state {
       height: 160px;
     }
@@ -165,7 +171,7 @@
         display: table-cell;
         padding: 0 5px;
         vertical-align: middle;
-        border-bottom: 1px solid @secondBorderColor;
+        border-bottom: 1px solid @fifthComplimentTextColor;
       }
 
       @media (min-width: @mobileWidth) {
