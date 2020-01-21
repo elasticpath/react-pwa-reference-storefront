@@ -12,7 +12,7 @@
     height: 40px;
     display: flex;
     align-items: center;
-    padding-left: 15px;
+    padding-left: 25px;
     font-size: 13px;
     border-left: 3px solid transparent;
     color: @firstComplimentColor;
@@ -23,6 +23,10 @@
       background-color: @buttonActiveColor;
       color: @mainBackgroundColor;
       border: 1px solid @buttonFocusColor;
+    }
+
+    @media screen and (min-width: 992px) {
+      padding-left: 15px;
     }
   }
 
@@ -72,7 +76,7 @@
       &.hidden {
         display: none;
       }
-      
+
       .menu-item.selected {
         display: none;
       }
