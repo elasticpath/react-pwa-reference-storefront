@@ -5,5 +5,5 @@ export default create({
 
   brandTitle: 'Elasticpath Storybook',
   brandUrl: 'https://www.elasticpath.com/',
-  brandImage: 'https://documentation.elasticpath.com/_lib/assets/ep-logo-linear.svg',
+  brandImage: 'https://www.elasticpath.com/themes/custom/bootstrap_sass/logo.svg',
 });
