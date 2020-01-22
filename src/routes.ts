@@ -51,6 +51,7 @@ import CompanyPage from './containers/CompanyPage';
 import IndustriesPage from './containers/IndustriesPage';
 import ServicesPage from './containers/ServicesPage';
 import SupportPage from './containers/SupportPage';
+import PrivacyPoliciesPage from './containers/PrivacyPoliciesPage';
 
 const router = [{
   path: '/',
@@ -123,6 +124,9 @@ const router = [{
 }, {
   path: '/termsandconditions',
   component: TermsAndConditionsPage,
+}, {
+  path: '/privacypolicies',
+  component: PrivacyPoliciesPage,
 }, {
   path: '/company',
   component: CompanyPage,

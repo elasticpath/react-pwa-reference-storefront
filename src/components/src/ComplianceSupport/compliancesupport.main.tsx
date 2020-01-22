@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -28,7 +29,7 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './compliancesupport.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
+let intl = { get: (str, ...args: any[]) => str };
 
 interface ComplianceSupportModalProps {
   /** handle accept data policy */
@@ -130,30 +131,48 @@ class ComplianceSupportModal extends Component<ComplianceSupportModalProps, Comp
 
   render() {
     const { open, checked } = this.state;
-
+    const privacyAndPolicy = (
+      <Link to="/privacypolicies" onClick={this.handleCloseModal}>
+        {intl.get('privacy-policy')}
+      </Link>);
+    const termsConditions = (
+      <Link to="/termsandconditions" onClick={this.handleCloseModal}>
+        {intl.get('terms-conditions')}
+      </Link>);
+    const msg = intl.get('compliance-label').split(/[{}]/g);
+    const obj = { privacyAndPolicy, termsConditions };
     return (
       <div>
         <Modal open={open} onClose={this.handleCloseModal}>
-          <div className="modal-lg compliance-support-modal">
+          <div className="compliance-support-modal">
             <div className="modal-content">
               <div className="modal-header">
                 <h2 className="modal-title">
-                  {intl.get('compliance')}
+                  {intl.get('your-compliance-notice')}
                 </h2>
               </div>
               <div className="modal-body">
                 <div className="compliance-checkbox-wrap">
                   <label htmlFor="compliance_agreement">
-                    <input id="compliance_agreement" type="checkbox" onChange={this.handleCheck} defaultChecked={checked} />
-                    <span className="helping-el" />
-                    <span className="label-text">
-                      {intl.get('compliance-label')}
-                    </span>
+                    <div className="first-label">
+                      {intl.get('compliance-first-label')}
+                    </div>
+                    <div className="checkbox-label">
+                      <input id="compliance_agreement" type="checkbox" onChange={this.handleCheck} defaultChecked={checked} />
+                      <span className="helping-el" />
+                      {intl.get('compliance-check-box-label')}
+                    </div>
+                    <div className="label-text">
+                      {msg.map((str) => {
+                        const i = Object.keys(obj).indexOf(str);
+                        return i === -1 ? str : obj[str];
+                      })}
+                    </div>
                   </label>
                 </div>
                 <div className="action-row">
-                  <button type="button" onClick={this.handleAcceptCompliance} className="ep-btn primary wide" disabled={!checked}>{intl.get('accept')}</button>
-                  <button type="button" onClick={this.handleDeclineCompliance} className="ep-btn primary wide">{intl.get('decline')}</button>
+                  <button type="button" onClick={this.handleDeclineCompliance} className="ep-btn">{intl.get('decline')}</button>
+                  <button type="button" onClick={this.handleAcceptCompliance} className="ep-btn primary" disabled={!checked}>{intl.get('accept')}</button>
                 </div>
               </div>
             </div>

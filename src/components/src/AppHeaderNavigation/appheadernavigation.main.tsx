@@ -85,6 +85,8 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       topMenuData: [{ name: 'home', uri: '/' }, { name: 'company', uri: '/company' }, { name: 'products' }, { name: 'industries', uri: '/industries' }, { name: 'services', uri: '/services' }, { name: 'support', uri: '/support' }],
       showProducts: false,
     };
+
+    this.clickListener = this.clickListener.bind(this);
   }
 
   componentWillMount() {
@@ -295,11 +297,20 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
     });
   }
 
-  toggleShowProducts() {
-    const { showProducts } = this.state;
+  toggleShowProducts(e) {
     this.setState({
-      showProducts: !showProducts,
+      showProducts: true,
     });
+
+    document.addEventListener('click', this.clickListener);
+
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  clickListener() {
+    this.setState({ showProducts: false });
+    document.removeEventListener('click', this.clickListener);
   }
 
   renderB2BMenuItem(item) {
@@ -308,7 +319,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       <li className="nav-item" key={`${item.name}`} data-name={item.name} data-el-container="category-nav-item-container">
         {(item.name === 'products') ? (
           <div className="nav-item">
-            <button type="button" className={`nav-link product-btn dropdown-toggle ${showProducts ? 'rotateCaret' : ''}`} onClick={() => this.toggleShowProducts()}>
+            <button type="button" className={`nav-link product-btn dropdown-toggle ${showProducts ? 'rotateCaret' : ''}`} onClick={e => this.toggleShowProducts(e)}>
               {intl.get(item.name)}
             </button>
             <ul className={`b2b-dropdown-menu ${!showProducts ? 'hidden' : ''}`}>
