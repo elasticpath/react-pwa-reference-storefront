@@ -29,7 +29,7 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './compliancesupport.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
+let intl = { get: (str, ...args: any[]) => str };
 
 interface ComplianceSupportModalProps {
   /** handle accept data policy */
@@ -131,7 +131,16 @@ class ComplianceSupportModal extends Component<ComplianceSupportModalProps, Comp
 
   render() {
     const { open, checked } = this.state;
-
+    const privacyAndPolicy = (
+      <Link to="/privacypolicies" onClick={this.handleCloseModal}>
+        {intl.get('privacy-policy')}
+      </Link>);
+    const termsConditions = (
+      <Link to="/termsandconditions" onClick={this.handleCloseModal}>
+        {intl.get('terms-conditions')}
+      </Link>);
+    const msg = intl.get('compliance-label').split(/[{}]/g);
+    const obj = { privacyAndPolicy, termsConditions };
     return (
       <div>
         <Modal open={open} onClose={this.handleCloseModal}>
@@ -154,19 +163,10 @@ class ComplianceSupportModal extends Component<ComplianceSupportModalProps, Comp
                       {intl.get('compliance-check-box-label')}
                     </div>
                     <div className="label-text">
-                      {intl.get('compliance-second-label')}
-                      &nbsp;
-                      <Link to="/privacypolicies" onClick={this.handleCloseModal}>
-                        {intl.get('privacy-policy')}
-                        &nbsp;
-                      </Link>
-                      {intl.get('compliance-third-label')}
-                      &nbsp;
-                      <Link to="/termsandconditions" onClick={this.handleCloseModal}>
-                        {intl.get('terms-conditions')}
-                        &nbsp;
-                      </Link>
-                      {intl.get('compliance-fourth-label')}
+                      {msg.map((str) => {
+                        const i = Object.keys(obj).indexOf(str);
+                        return i === -1 ? str : obj[str];
+                      })}
                     </div>
                   </label>
                 </div>
