@@ -127,7 +127,7 @@ class ResetPasswordForm extends React.Component<RouteComponentProps, ResetPasswo
           {intl.get('reset-password')}
         </div>
         <div className="feedback-label feedback-container">
-          {failedSubmit ? intl.get('incorect-email') : ''}
+          {failedSubmit ? intl.get('incorrect-email') : ''}
         </div>
         <form className="form-horizontal" onSubmit={this.submitResetEmail}>
           <div className="form-group">

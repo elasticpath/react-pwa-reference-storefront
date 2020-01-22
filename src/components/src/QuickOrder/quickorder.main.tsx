@@ -235,7 +235,7 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
           </form>
           {productItemInfo && orderModal(productItemInfo)}
           <div className="auth-feedback-container failed-message" id="product_display_item_add_to_cart_feedback_container" data-i18n="">
-            {showFailedMessage && intl.get('incorect-sku')}
+            {showFailedMessage && intl.get('incorrect-sku')}
           </div>
           {
             (isLoading) ? (<div className="miniLoader" />) : ''

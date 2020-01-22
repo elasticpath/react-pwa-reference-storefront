@@ -22,8 +22,21 @@
 @import './../../../theme/common.less';
 
 .compliance-support-modal {
+  max-width: 600px;
+
   .modal-content {
     border: none;
+    font-size: 13px;
+    color: @mainTextColor;
+
+    .first-label {
+      line-height: 20px;
+      padding: 10px 0;
+    }
+
+    .checkbox-label {
+      padding: 10px 0 20px;
+    }
   }
   input[type="checkbox"] {
     display: none;
@@ -62,9 +75,16 @@
     }
   }
   .action-row {
-    margin-top: 20px;
+    float: right;
+    margin-top: 30px;
     padding-top: 10px;
-    border-top: 1px solid #e9ecef;
     text-align: center;
+
+    .ep-btn {
+      border: none;
+      text-transform: capitalize;
+      width: 133px;
+      height: 44px;
+    }
   }
 }
