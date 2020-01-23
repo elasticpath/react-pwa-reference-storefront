@@ -155,6 +155,7 @@
   "in-progress": "In Progress",
   "new-payment-method": "New Payment Method",
   "failed-to-save-message": "Ensure all required fields have valid values and try again.",
+  "invalid-name-format": "Invalid name format. Update name to save credit card",
   "failed-to-save-email": "Enter a valid email and try again.",
   "name-is-required": "Name is required",
   "card-type": "Credit Card Type",

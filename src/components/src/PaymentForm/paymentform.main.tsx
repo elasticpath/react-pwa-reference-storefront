@@ -57,6 +57,7 @@ interface PaymentFormMainState {
     submitPaymentFormOrderUri: string,
     submitPaymentFormProfileUri: string,
     doesPaymentInstrumentResourceExist: boolean,
+    showValidationMsg: boolean,
 }
 
 class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainState> {
@@ -88,6 +89,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
       submitPaymentFormOrderUri: '',
       submitPaymentFormProfileUri: '',
       doesPaymentInstrumentResourceExist: true,
+      showValidationMsg: false,
     };
 
     this.setCardType = this.setCardType.bind(this);
@@ -270,6 +272,11 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
     const holderName = cardHolderName.split(' ');
 
     if (!cardHolderName || !cardNumber || !securityCode || !(holderName[0] && holderName[1])) {
+      if (holderName[0].length > 0 && !(holderName[0] && holderName[1])) {
+        this.setState({ showValidationMsg: true });
+      } else {
+        this.setState({ showValidationMsg: false });
+      }
       return false;
     }
 
@@ -499,7 +506,7 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
 
   render() {
     const {
-      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader,
+      cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, securityCode, saveToProfile, failedSubmit, showLoader, showValidationMsg,
     } = this.state;
 
     return (
@@ -526,6 +533,11 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
               {/* eslint-disable-next-line max-len */}
               <input id="CardHolderName" name="CardHolderName" className="form-control" type="text" value={cardHolderName} onChange={this.setCardHolderName} />
             </div>
+            {showValidationMsg && (
+              <div className="error-msg">
+                {intl.get('invalid-name-format')}
+              </div>
+            )}
           </div>
           <div className="form-group card-type-group">
             <label htmlFor="CardType" data-el-label="payment.cardType" className="control-label form-label">
