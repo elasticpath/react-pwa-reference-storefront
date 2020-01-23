@@ -155,6 +155,7 @@
   "in-progress": "I-n- -P-r-o-g-r-e-s-s",
   "new-payment-method": "N-e-w- -P-a-y-m-e-n-t- -M-e-t-h-o-d",
   "failed-to-save-message": "E-n-s-u-r-e- -a-l-l- -r-e-q-u-i-r-e-d- -f-i-e-l-d-s- -h-a-v-e- -v-a-l-i-d- -v-a-l-u-e-s- -a-n-d- -t-r-y- -a-g-a-i-n-.",
+  "invalid-name-format": "I-n-v-a-l-i-d- -n-a-m-e- -f-o-r-m-a-t-.- -U-p-d-a-t-e- -n-a-m-e- -t-o- -s-a-v-e- -c-r-e-d-i-t- -c-a-r-d",
   "failed-to-save-email": "E-n-t-e-r- -a- -v-a-l-i-d- -e-m-a-i-l- -a-n-d- -t-r-y- -a-g-a-i-n-.",
   "name-is-required": "N-a-m-e- -i-s- -r-e-q-u-i-r-e-d",
   "card-type": "C-r-e-d-i-t- -C-a-r-d- -T-y-p-e",

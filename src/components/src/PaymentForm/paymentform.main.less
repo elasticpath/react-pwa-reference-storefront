@@ -46,6 +46,8 @@
     position: relative;
     padding-top: 10px;
     .form-group {
+      position: relative;
+
       @media screen and (min-width: 681px) {
         width: 300px;
         display: inline-block;
@@ -54,6 +56,27 @@
         content: " ";
         display: block;
         clear: both;
+      }
+    }
+
+    .error-msg {
+      position: absolute;
+      top: 100%;
+      font-size: 13px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      color: @mainErrorColor;
+
+      @media screen and (min-width: 681px) {
+        height: 46px;
+        width: 240px;
+        padding-top: 10px;
+        margin-left: 10px;
+        line-height: 18px;
+        top: auto;
+        bottom: 0;
+        left: 100%;
       }
     }
 
@@ -190,7 +213,8 @@
 }
 
 .new-payment-modal {
-  width: 100%;
+  width: ~'calc(100vw - 4.8rem)';
+
   @media screen and (min-width: 681px) {
     width: 580px;
   }
