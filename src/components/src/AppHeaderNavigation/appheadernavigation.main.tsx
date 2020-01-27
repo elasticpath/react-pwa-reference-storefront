@@ -66,6 +66,8 @@ interface AppHeaderNavigationMainState {
 }
 
 class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, AppHeaderNavigationMainState> {
+  private dropdownB2b: React.RefObject<HTMLUListElement>;
+
   static defaultProps = {
     isOffline: undefined,
     onFetchNavigationError: () => {},
@@ -85,8 +87,9 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       topMenuData: [{ name: 'home', uri: '/' }, { name: 'company', uri: '/company' }, { name: 'products' }, { name: 'industries', uri: '/industries' }, { name: 'services', uri: '/services' }, { name: 'support', uri: '/support' }],
       showProducts: false,
     };
-
+    this.dropdownB2b = React.createRef();
     this.clickListener = this.clickListener.bind(this);
+    this.handleCloseB2bMenu = this.handleCloseB2bMenu.bind(this);
   }
 
   componentWillMount() {
@@ -226,7 +229,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
     if (subcategoryChildKeyName !== 'show' && subcategoryChildKeyName !== 'name') {
       return (
         <li key={`${path}`}>
-          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} id={`header_navbar_sub_category_button_${nestedChildObj.name}`} title={subcategoryChildKeyName} to={appHeaderNavigationLinks.categories + nestedChildObj.name}>
+          <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} id={`header_navbar_sub_category_button_${nestedChildObj.name}`} title={subcategoryChildKeyName} to={appHeaderNavigationLinks.categories + nestedChildObj.name} onClick={this.handleCloseB2bMenu}>
             <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{subcategoryChildKeyName}</div>
           </Link>
         </li>
@@ -259,7 +262,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
 
     return (
       <li className="nav-item" key={`${path}`} data-name={categoryKey} data-el-container="category-nav-item-container">
-        <Link className="nav-link" to={appHeaderNavigationLinks.categories + navigations[categoryKey].name} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false" data-target="#">
+        <Link className="nav-link" to={appHeaderNavigationLinks.categories + navigations[categoryKey].name} id="navbarMenuLink" aria-haspopup="true" aria-expanded="false" data-target="#" onClick={this.handleCloseB2bMenu}>
           <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{categoryKey}</div>
         </Link>
       </li>
@@ -308,9 +311,20 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
     e.stopPropagation();
   }
 
-  clickListener() {
-    this.setState({ showProducts: false });
-    document.removeEventListener('click', this.clickListener);
+  clickListener(e) {
+    if (!this.dropdownB2b.current.contains(e.target)) {
+      this.setState({ showProducts: false });
+      document.removeEventListener('click', this.clickListener);
+    }
+  }
+
+  handleCloseB2bMenu() {
+    const { showProducts } = this.state;
+
+    if (showProducts) {
+      this.setState({ showProducts: false });
+      document.removeEventListener('click', this.clickListener);
+    }
   }
 
   renderB2BMenuItem(item) {
@@ -322,14 +336,14 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
             <button type="button" className={`nav-link product-btn dropdown-toggle ${showProducts ? 'rotateCaret' : ''}`} onClick={e => this.toggleShowProducts(e)}>
               {intl.get(item.name)}
             </button>
-            <ul className={`b2b-dropdown-menu ${!showProducts ? 'hidden' : ''}`}>
+            <ul className={`b2b-dropdown-menu ${!showProducts ? 'hidden' : ''}`} ref={this.dropdownB2b}>
               {this.renderCategories()}
             </ul>
           </div>
         ) : (
           <div className="nav-item" data-name={item.name} data-el-container="category-nav-item-container">
             <Link className="nav-link" to={item.uri}>
-              <div>{intl.get(item.name)}</div>
+              <div data-toggle="collapse" data-target=".collapsable-container">{intl.get(item.name)}</div>
             </Link>
           </div>
         )}
