@@ -108,7 +108,6 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     this.handleBarcodeScanned = this.handleBarcodeScanned.bind(this);
     this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
     this.addAllToSelectedCart = this.addAllToSelectedCart.bind(this);
-    this.addAllToCartButton = this.addAllToCartButton.bind(this);
   }
 
   componentDidMount() {
@@ -151,7 +150,6 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
               bulkOrderErrorMessage: '',
               bulkOrderDuplicatedErrorMessage: '',
             });
-            // onCountChange('Default', totalQuantity);
           }
           if (res.status >= 400) {
             let debugMessages = '';
@@ -399,60 +397,6 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     return null;
   }
 
-  addAllToCartButton(quickOrderDisabledButton, bulkOrderDisabledButton, isQuickOrder) {
-    const {
-      items,
-      multiCartData,
-    } = this.state;
-    // const dispatch = useCountDispatch();
-    // const onCountChange = (name, count) => {
-    //   const data = {
-    //     type: 'COUNT_SHOW',
-    //     payload: {
-    //       count,
-    //       name,
-    //     },
-    //   };
-    //   dispatch(data);
-    //   setTimeout(() => {
-    //     dispatch({ type: 'COUNT_HIDE' });
-    //   }, 3200);
-    // };
-    const SelectCartButton = () => (
-      <span className="form-content form-content-submit col-sm-offset-4 dropdown">
-        <button
-          className="ep-btn primary small btn-itemdetail-addtocart dropdown-toggle"
-          data-toggle="dropdown"
-          disabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton}
-          id="product_display_item_add_to_cart_button"
-          type="submit"
-        >
-          {intl.get('add-all-to-cart')}
-        </button>
-        <div className="dropdown-menu cart-selection-list">
-          {this.dropdownCartSelection(isQuickOrder)}
-        </div>
-      </span>
-    );
-    if (multiCartData && multiCartData._carts) {
-      return (<SelectCartButton />
-      );
-    }
-    return (
-      <span className="form-content-submit">
-        <button
-          className="ep-btn primary small btn-itemdetail-addtocart"
-          id="add_to_cart_quick_order_button"
-          disabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton}
-          type="submit"
-          onClick={() => { this.addAllToCart(items, isQuickOrder); }}
-        >
-          {intl.get('add-all-to-cart')}
-        </button>
-      </span>
-    );
-  }
-
   render() {
     const { isBulkModalOpened, handleClose } = this.props;
     const {
@@ -511,7 +455,21 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
           <div className="tab-content">
             <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick-order-tab">
               <div className="form-content form-content-submit col-sm-offset-4">
-                {this.addAllToCartButton(quickOrderDisabledButton, bulkOrderDisabledButton, true)}
+                {multiCartData && multiCartData._carts ? (
+                  <SelectCartButton isQuickOrder />
+                ) : (
+                  <span className="form-content-submit">
+                    <button
+                      className="ep-btn primary small btn-itemdetail-addtocart"
+                      id="add_to_cart_quick_order_button"
+                      disabled={quickOrderDisabledButton}
+                      type="submit"
+                      onClick={() => { this.addAllToCart(items, true); }}
+                    >
+                      {intl.get('add-all-to-cart')}
+                    </button>
+                  </span>
+                )}
                 {
                   BarcodeScanner.checkAvailability()
                   && (
@@ -547,7 +505,19 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
             </div>
             <div className="tab-pane fade" id="bulk-order" role="tabpanel" aria-labelledby="bulk-order-tab">
               <div className="form-content form-content-submit col-sm-offset-4">
-                {this.addAllToCartButton(quickOrderDisabledButton, bulkOrderDisabledButton, false)}
+                {multiCartData && multiCartData._carts ? (
+                  <SelectCartButton isQuickOrder={false} />
+                ) : (
+                  <button
+                    className="ep-btn primary small btn-itemdetail-addtocart"
+                    id="add_to_cart_bulk_order_button"
+                    type="submit"
+                    disabled={bulkOrderDisabledButton}
+                    onClick={() => { this.addAllToCart(bulkOrderItems, false); }}
+                  >
+                    {intl.get('add-all-to-cart')}
+                  </button>
+                )}
                 {
                   (isLoading) ? (<div className="miniLoader" />) : ''
                 }
