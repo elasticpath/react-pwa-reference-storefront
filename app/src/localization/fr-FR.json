@@ -356,5 +356,9 @@
   "remove-associate": "R-e-m-o-v-e- -A-s-s-o-c-i-a-t-e",
   "confirm-delete-associate": "A-r-e- -y-o-u- -s-u-r-e- -y-o-u- -w-o-u-l-d- -l-i-k-e- -t-o- -r-e-m-o-v-e- -t-h-i-s- -a-s-s-o-c-i-a-t-e-?",
   "no": "N-o",
-  "yes": "Y-e-s"
+  "yes": "Y-e-s",
+  "view": "V-i-e-w",
+  "pay-with-po": "P-a-y W-i-t-h P-O",
+  "purchase-order": "P-u-r-c-h-a-s-e O-r-d-e-r",
+  "invalid-po-number": "I-n-v-a-l-i-d P-O n-u-m-b-e-r"
 }
