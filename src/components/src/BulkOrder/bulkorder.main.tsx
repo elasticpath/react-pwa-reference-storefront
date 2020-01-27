@@ -28,9 +28,17 @@ import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './bulkorder.main.less';
+import { useCountDispatch } from '../cart-count-context';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
+
+const multiCartZoomArray = [
+  'carts',
+  'carts:element',
+  'carts:element:additemstocartform',
+  'carts:element:descriptor',
+];
 
 interface BulkOrderProps {
   /** cart data */
@@ -58,9 +66,10 @@ interface BulkOrderState {
   csvText: string,
   bulkOrderErrorMessage: string,
   bulkOrderDuplicatedErrorMessage: string,
-  isBarcodeScannerOpen: boolean
-  isBarcodeScannerLoading: boolean
-  barcodeScannerError: string
+  isBarcodeScannerOpen: boolean,
+  isBarcodeScannerLoading: boolean,
+  barcodeScannerError: string,
+  multiCartData: { [key: string]: any },
 }
 
 class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
@@ -90,12 +99,19 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
       isBarcodeScannerOpen: false,
       isBarcodeScannerLoading: false,
       barcodeScannerError: '',
+      multiCartData: undefined,
     };
     this.addAllToCart = this.addAllToCart.bind(this);
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
     this.handleBarcodeClick = this.handleBarcodeClick.bind(this);
     this.handleBarcodeModalClose = this.handleBarcodeModalClose.bind(this);
     this.handleBarcodeScanned = this.handleBarcodeScanned.bind(this);
+    this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
+    this.addAllToSelectedCart = this.addAllToSelectedCart.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchMultiCartData();
   }
 
   addAllToCart(orderItems, isQuickOrder) {
@@ -106,6 +122,10 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     const arrayItems = orderItems
       .filter(item => item.code !== '')
       .map(item => ({ code: item.code, quantity: item.quantity }));
+    let totalQuantity = 0;
+    arrayItems.forEach((item) => {
+      totalQuantity += item.quantity;
+    });
     login().then(() => {
       const addToCartLink = cartData._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
       const body: { [key: string]: any } = {};
@@ -155,6 +175,27 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
           this.setState({ isLoading: false });
           // eslint-disable-next-line no-console
           console.error('error.message:', error.message);
+        });
+    });
+  }
+
+  fetchMultiCartData() {
+    login().then(() => {
+      cortexFetch(`?zoom=${multiCartZoomArray.sort().join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            multiCartData: res,
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
         });
     });
   }
@@ -257,6 +298,105 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     });
   }
 
+  addAllToSelectedCart(cart, isQuickOrder, onCountChange) {
+    this.setState({ isLoading: true });
+    const cartUrl = cart._additemstocartform[0].self.uri;
+    const {
+      bulkOrderItems, items, defaultItemsCount, defaultItem,
+    } = this.state;
+    const cartName = cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default');
+    const body: { [key: string]: any } = {};
+    body.items = {};
+    const arrayItems = (isQuickOrder ? items : bulkOrderItems)
+      .filter(item => item.code !== '')
+      .map(item => ({ code: item.code, quantity: item.quantity }));
+    body.items = arrayItems;
+    let totalQuantity = 0;
+    arrayItems.forEach((item) => {
+      totalQuantity += item.quantity;
+    });
+
+    login().then(() => {
+      cortexFetch(cartUrl,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(body),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            this.setState({
+              isLoading: false,
+              items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({
+                ...item,
+                key: `quick-order-sku-${index}`,
+              })),
+              csvText: '',
+              bulkOrderErrorMessage: '',
+              bulkOrderDuplicatedErrorMessage: '',
+            });
+            onCountChange(cartName, totalQuantity);
+          }
+          if (res.status >= 400) {
+            let debugMessages = '';
+            res.json().then((json) => {
+              for (let i = 0; i < json.messages.length; i++) {
+                debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
+              }
+            }).then(() => {
+              this.setState({
+                isLoading: false,
+              });
+              if (!isQuickOrder) {
+                this.setState({
+                  bulkOrderErrorMessage: `${debugMessages}`,
+                });
+              }
+            });
+          }
+        })
+        .catch((error) => {
+          this.setState({ isLoading: false });
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
+  dropdownCartSelection(isQuickOrder) {
+    const dispatch = useCountDispatch();
+    const onCountChange = (name, count) => {
+      const data = {
+        type: 'COUNT_SHOW',
+        payload: {
+          count,
+          name,
+        },
+      };
+      dispatch(data);
+      setTimeout(() => {
+        dispatch({ type: 'COUNT_HIDE' });
+      }, 3200);
+    };
+    const { multiCartData } = this.state;
+    if (multiCartData && multiCartData._carts) {
+      return (
+        <ul className="cart-selection-dropdown">
+          {multiCartData._carts[0]._element.map(cart => (
+            // eslint-disable-next-line
+            <li className="dropdown-item cart-selection-item" key={cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')} onClick={() => this.addAllToSelectedCart(cart, isQuickOrder, onCountChange)}>
+              {cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  }
+
   render() {
     const { isBulkModalOpened, handleClose } = this.props;
     const {
@@ -269,11 +409,30 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
       isBarcodeScannerOpen,
       isBarcodeScannerLoading,
       barcodeScannerError,
+      multiCartData,
     } = this.state;
+
     const isValid = Boolean(items.find(item => (item.code !== '' && item.isValidField === false)));
     const isEmpty = Boolean(items.find(item => (item.code !== '' && item.isValidField === true)));
     const duplicatedFields = Boolean(items.find(item => (item.code !== '' && item.isDuplicated === true)));
-    const isDisabledButton = (!Config.b2b.enable || (isValid || !isEmpty || duplicatedFields));
+    const quickOrderDisabledButton = (!Config.b2b.enable || (isValid || !isEmpty || duplicatedFields));
+    const bulkOrderDisabledButton = !Config.b2b.enable || (!csvText || bulkOrderDuplicatedErrorMessage !== '' || bulkOrderErrorMessage !== '');
+    const SelectCartButton = ({ isQuickOrder }) => (
+      <span className="form-content form-content-submit col-sm-offset-4 dropdown">
+        <button
+          className="ep-btn primary small btn-itemdetail-addtocart dropdown-toggle"
+          data-toggle="dropdown"
+          disabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton}
+          id="product_display_item_add_to_cart_button"
+          type="submit"
+        >
+          {intl.get('add-all-to-cart')}
+        </button>
+        <div className="dropdown-menu cart-selection-list">
+          {this.dropdownCartSelection(isQuickOrder)}
+        </div>
+      </span>
+    );
     return (
       <div className={`bulk-order-component ${(!isBulkModalOpened) ? 'hideModal' : ''}`}>
         <div role="presentation" className="bulk-order-close-button" onClick={() => { handleClose(); }}>
@@ -296,15 +455,21 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
           <div className="tab-content">
             <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick-order-tab">
               <div className="form-content form-content-submit col-sm-offset-4">
-                <button
-                  className="ep-btn primary small btn-itemdetail-addtocart"
-                  id="add_to_cart_quick_order_button"
-                  disabled={isDisabledButton}
-                  type="submit"
-                  onClick={() => { this.addAllToCart(items, true); }}
-                >
-                  {intl.get('add-all-to-cart')}
-                </button>
+                {multiCartData && multiCartData._carts ? (
+                  <SelectCartButton isQuickOrder />
+                ) : (
+                  <span className="form-content-submit">
+                    <button
+                      className="ep-btn primary small btn-itemdetail-addtocart"
+                      id="add_to_cart_quick_order_button"
+                      disabled={quickOrderDisabledButton}
+                      type="submit"
+                      onClick={() => { this.addAllToCart(items, true); }}
+                    >
+                      {intl.get('add-all-to-cart')}
+                    </button>
+                  </span>
+                )}
                 {
                   BarcodeScanner.checkAvailability()
                   && (
@@ -340,15 +505,19 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
             </div>
             <div className="tab-pane fade" id="bulk-order" role="tabpanel" aria-labelledby="bulk-order-tab">
               <div className="form-content form-content-submit col-sm-offset-4">
-                <button
-                  className="ep-btn primary small btn-itemdetail-addtocart"
-                  id="add_to_cart_bulk_order_button"
-                  type="submit"
-                  disabled={!Config.b2b.enable || (!csvText || bulkOrderDuplicatedErrorMessage !== '' || bulkOrderErrorMessage !== '')}
-                  onClick={() => { this.addAllToCart(bulkOrderItems, false); }}
-                >
-                  {intl.get('add-all-to-cart')}
-                </button>
+                {multiCartData && multiCartData._carts ? (
+                  <SelectCartButton isQuickOrder={false} />
+                ) : (
+                  <button
+                    className="ep-btn primary small btn-itemdetail-addtocart"
+                    id="add_to_cart_bulk_order_button"
+                    type="submit"
+                    disabled={bulkOrderDisabledButton}
+                    onClick={() => { this.addAllToCart(bulkOrderItems, false); }}
+                  >
+                    {intl.get('add-all-to-cart')}
+                  </button>
+                )}
                 {
                   (isLoading) ? (<div className="miniLoader" />) : ''
                 }
