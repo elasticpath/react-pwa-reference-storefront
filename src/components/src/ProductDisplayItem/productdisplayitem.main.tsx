@@ -92,11 +92,15 @@ const zoomArray = [
   'code',
 ];
 
-const multiCartZoomArray = [
+const productDetailsZoomArray = [
   'carts',
   'carts:element',
   'carts:element:additemstocartform',
   'carts:element:descriptor',
+  'itemlistinfo',
+  'itemlistinfo:allitemlists',
+  'itemlistinfo:allitemlists:element',
+  'itemlistinfo:allitemlists:element:additemstoitemlistform',
 ];
 
 let Config: IEpConfig | any = {};
@@ -179,11 +183,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       addToCartLoading: false,
       addToRequisitionListLoading: false,
       detailsProductData: [],
-      requisitionListData: {
-        list: [
-          { name: 'Vancouver' }, { name: 'HQ' }, { name: 'Chicago' }, { name: 'New York' }, { name: 'San Francisco' }, { name: 'Toronto' }, { name: 'Lviv' }, { name: 'Denver' }, { name: 'San Diego' },
-        ],
-      },
+      requisitionListData: [],
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -201,7 +201,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   componentDidMount() {
-    this.fetchMultiCartData();
+    this.fetchProductDetailsData();
     this.fetchProductData();
   }
 
@@ -234,9 +234,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     }
   }
 
-  fetchMultiCartData() {
+  fetchProductDetailsData() {
     login().then(() => {
-      cortexFetch(`?zoom=${multiCartZoomArray.sort().join()}`, {
+      cortexFetch(`?zoom=${productDetailsZoomArray.sort().join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
@@ -247,6 +247,11 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           this.setState({
             multiCartData: res,
           });
+          if (res._itemlistinfo) {
+            this.setState({
+              requisitionListData: res._itemlistinfo[0]._allitemlists[0]._element,
+            });
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -637,10 +642,35 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   addToRequisitionListData(list, onCountChange) {
-    const { itemQuantity } = this.state;
+    const listUrl = list._additemstoitemlistform[0].self.uri;
+    const { itemQuantity, productData } = this.state;
     const { name } = list;
-    onCountChange(name, itemQuantity);
     this.setState({ addToRequisitionListLoading: true });
+
+    login().then(() => {
+      const body: { [key: string]: any } = {};
+      body.items = { code: productData._code[0].code, quantity: itemQuantity };
+      cortexFetch(listUrl,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(body),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            this.setState({ addToRequisitionListLoading: false });
+            onCountChange(name, itemQuantity);
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          this.setState({ addToRequisitionListLoading: false });
+        });
+    });
   }
 
   dropdownCartSelection() {
@@ -693,7 +723,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     if (requisitionListData) {
       return (
         <ul className="cart-selection-dropdown">
-          {requisitionListData.list.map(list => (
+          {requisitionListData.map(list => (
             // eslint-disable-next-line
             <li className="dropdown-item cart-selection-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
               {list.name ? list.name : intl.get('default')}
