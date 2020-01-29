@@ -72,7 +72,6 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   constructor(props) {
     super(props);
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
       createRequisitionForm: '',
       requisitionElements: [],
       openModal: false,
@@ -108,11 +107,15 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         })
           .then(res => res.json())
           .then((res) => {
-            this.setState({
-              isLoading: false,
-              requisitionElements: res._itemlistinfo[0]._allitemlists[0]._element,
-              createRequisitionForm: res._itemlistinfo[0]._allitemlists[0]._createitemlistform[0],
-            });
+            if (res._itemlistinfo[0] && res._itemlistinfo[0]._allitemlists[0]) {
+              this.setState({
+                isLoading: false,
+                requisitionElements: res._itemlistinfo[0]._allitemlists[0]._element || [],
+                createRequisitionForm: res._itemlistinfo[0]._allitemlists[0]._createitemlistform[0],
+              });
+            } else {
+              this.setState({ isLoading: false });
+            }
           });
       })
       .catch((error) => {
@@ -122,6 +125,14 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   }
 
   handleDeleteRequisition(element) {
+    const { requisitionElements } = this.state;
+    const elements = requisitionElements.map((el) => {
+      if (el.self.uri === element.self.uri) {
+        return { ...el, removeCartLoading: true };
+      }
+      return el;
+    });
+    this.setState({ requisitionElements: elements });
     cortexFetch(element.self.uri, {
       method: 'delete',
       headers: {
@@ -129,12 +140,12 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
       },
     })
-      .then(() => {
-        this.loadRequisitionListData();
-      })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
+      })
+      .finally(() => {
+        this.loadRequisitionListData();
       });
   }
 
@@ -213,7 +224,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         </p>
         <div className="btn-wrap">
           <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditRequisition(index)}>{intl.get('cancel')}</button>
-          <button type="button" className="ep-btn ok-btn" onClick={() => this.handleDeleteRequisition(element)}>
+          <button type="button" className="ep-btn ok-btn" disabled={element.removeCartLoading} onClick={() => this.handleDeleteRequisition(element)}>
             {element.removeCartLoading ? (
               <div className="miniLoader" />
             ) : (
@@ -294,7 +305,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         </li>
       ));
     }
-    return (<div className="miniLoader" />);
+    return (<div>{intl.get('no-requisition-lists-message')}</div>);
   }
 
   render() {
