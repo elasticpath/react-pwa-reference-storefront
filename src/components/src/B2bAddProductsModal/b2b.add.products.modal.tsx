@@ -40,7 +40,9 @@ interface AddProductsModalProps {
   /** is bulk modal opened */
   isBulkModalOpened: boolean,
   /** handle close */
-  handleClose: (...args: any[]) => any
+  handleClose: (...args: any[]) => any,
+  /** Uri for Adding Items To Item List */
+  addItemsToItemListUri: string,
 }
 
 interface AddProductsModalState {
@@ -57,7 +59,8 @@ interface AddProductsModalState {
   isLoading: boolean,
   csvText: string,
   bulkOrderErrorMessage: string,
-  bulkOrderDuplicatedErrorMessage: string
+  bulkOrderDuplicatedErrorMessage: string,
+  isFormTab: boolean,
 }
 
 class AddProductsModal extends Component<AddProductsModalProps, AddProductsModalState> {
@@ -84,26 +87,34 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
       csvText: '',
       bulkOrderErrorMessage: '',
       bulkOrderDuplicatedErrorMessage: '',
+      isFormTab: true,
     };
-    this.addAllToCart = this.addAllToCart.bind(this);
+    this.addAllToList = this.addAllToList.bind(this);
+    this.handleBulkTab = this.handleBulkTab.bind(this);
+    this.handleFormTab = this.handleFormTab.bind(this);
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
   }
 
-  addAllToCart(orderItems, isQuickOrder) {
-    if (!orderItems) return; // "\f02a"
-    const { cartData } = this.props;
-    const { defaultItemsCount, defaultItem } = this.state;
+  addAllToList() {
+    const { addItemsToItemListUri } = this.props;
+    const {
+      items, bulkOrderItems, isFormTab, defaultItem, defaultItemsCount,
+    } = this.state;
+    const dataItems = isFormTab ? items : bulkOrderItems;
     this.setState({ isLoading: true });
-    const arrayItems = orderItems
+    const arrayItems = dataItems
       .filter(item => item.code !== '')
       .map(item => ({ code: item.code, quantity: item.quantity }));
+    let totalQuantity = 0;
+    arrayItems.forEach((item) => {
+      totalQuantity += item.quantity;
+    });
     login().then(() => {
-      const addToCartLink = cartData._additemstocartform[0].links.find(link => link.rel === 'additemstocartaction');
       const body: { [key: string]: any } = {};
       if (arrayItems) {
         body.items = arrayItems;
       }
-      cortexFetch(addToCartLink.uri,
+      cortexFetch(addItemsToItemListUri,
         {
           method: 'post',
           headers: {
@@ -129,7 +140,7 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
                 debugMessages = debugMessages.concat(`\n${json.messages[i]['debug-message']} \n `);
               }
             }).then(() => {
-              if (isQuickOrder) {
+              if (isFormTab) {
                 this.setState({
                   isLoading: false,
                 });
@@ -147,6 +158,18 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
           // eslint-disable-next-line no-console
           console.error('error.message:', error.message);
         });
+    });
+  }
+
+  handleBulkTab() {
+    this.setState({
+      isFormTab: false,
+    });
+  }
+
+  handleFormTab() {
+    this.setState({
+      isFormTab: true,
     });
   }
 
@@ -204,31 +227,33 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
     const { isBulkModalOpened, handleClose } = this.props;
     const {
       items,
-      bulkOrderItems,
       csvText,
       isLoading,
       bulkOrderErrorMessage,
       bulkOrderDuplicatedErrorMessage,
+      isFormTab,
     } = this.state;
 
     const isAddProducts = true;
     const isValid = Boolean(items.find(item => (item.code !== '' && item.isValidField === false)));
     const isEmpty = Boolean(items.find(item => (item.code !== '' && item.isValidField === true)));
     const duplicatedFields = Boolean(items.find(item => (item.code !== '' && item.isDuplicated === true)));
+    const quickOrderDisabledButton = (!Config.b2b.enable || (isValid || !isEmpty || duplicatedFields));
+    const bulkOrderDisabledButton = !Config.b2b.enable || (!csvText || bulkOrderDuplicatedErrorMessage !== '' || bulkOrderErrorMessage !== '');
     return (
       <Modal open={isBulkModalOpened || false} onClose={handleClose} classNames={{ modal: 'add-product-to-list-modal' }}>
         <div className="add-products-component">
           <div className="add-product-modal">
-            <p className="view-title">{intl.get('add-products')}</p>
+            <p className="view-title">{intl.get('add-products-to-list')}</p>
             <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
               <li className="nav-item">
-                <a className="nav-link active" id="item-form-tab" data-toggle="tab" href="#item-form" role="tab" aria-selected="true">
-                  {intl.get('item-form')}
+                <a className="nav-link active" id="item-form-tab" data-toggle="tab" href="#item-form" role="tab" onClick={this.handleFormTab} aria-selected={isFormTab}>
+                  {intl.get('add-by-form')}
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" id="copy-paste-tab" data-toggle="tab" href="#copy-paste" role="tab" aria-selected="false">
-                  {intl.get('copy-paste')}
+                <a className="nav-link" id="copy-paste-tab" data-toggle="tab" href="#copy-paste" role="tab" onClick={this.handleBulkTab} aria-selected={!isFormTab}>
+                  {intl.get('add-by-copy-paste')}
                 </a>
               </li>
             </ul>
@@ -242,8 +267,8 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
               </div>
               <div className="tab-pane fade" id="copy-paste" role="tabpanel" aria-labelledby="copy-paste-tab">
                 {
-                (bulkOrderDuplicatedErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderDuplicatedErrorMessage}</p></div>) : ''
-              }
+                (bulkOrderDuplicatedErrorMessage !== '') ? (<div className="bulk-order-error-message">{bulkOrderDuplicatedErrorMessage}</div>) : ''
+                }
                 <div className="tab-bulk-order" id="bulkOrderRegion" data-region="bulkOrderRegion">
                   <p>{intl.get('enter-product-sku-and-quantity')}</p>
                   <div className="bulk-items-example">
@@ -258,7 +283,15 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
           </div>
           <div className="dialog-footer">
             <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
-            <button className="save-btn" type="submit" disabled={isLoading} form="subAccountsForm">{intl.get('add-products')}</button>
+            <button className="save-btn" type="submit" disabled={isFormTab ? quickOrderDisabledButton : bulkOrderDisabledButton} onClick={this.addAllToList}>
+              {isLoading ? (
+                <div className="miniLoader" />
+              ) : (
+                <span>
+                  {intl.get('add-products-to-list')}
+                </span>
+              )}
+            </button>
           </div>
         </div>
       </Modal>

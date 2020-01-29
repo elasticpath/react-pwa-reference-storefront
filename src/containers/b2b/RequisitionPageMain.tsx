@@ -40,6 +40,7 @@ const listsZoomArray = [
   'additemlisttocartforms:element:target',
   'additemlisttocartforms:element:target:descriptor',
   'additemlisttocartforms:element:additemlisttocartaction',
+  'additemstoitemlistform',
   'itemlists',
   'lineitems',
   'lineitems:element',
@@ -98,6 +99,7 @@ interface RequisitionPageMainState {
   listNameErrorMessages: string,
   productsData: any,
   multiCartData: any,
+  addItemsToItemListUri: string,
 }
 
 class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageMainProps>, RequisitionPageMainState> {
@@ -116,6 +118,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       listNameErrorMessages: '',
       multiCartData: [],
       productsData: undefined,
+      addItemsToItemListUri: '',
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
@@ -154,6 +157,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             if (res && res._additemlisttocartforms) {
               this.setState({
                 listName: res.name,
+                addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
                 multiCartData: res._additemlisttocartforms[0]._element,
                 currentlyListName: res.name,
                 productsData: res._lineitems[0],
@@ -297,6 +301,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       currentlyListName,
       productsData,
       isPageLoading,
+      addItemsToItemListUri,
     } = this.state;
 
     const products = productsData && productsData._element ? productsData._element : [];
@@ -404,6 +409,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
           <B2bAddProductsModal
             isBulkModalOpened={addProductModalOpened}
             handleClose={this.handleAddProductsModalClose}
+            addItemsToItemListUri={addItemsToItemListUri}
           />
         ) : ''}
         <Modal open={editListNameModalOpened} onClose={this.handleModalClose}>
