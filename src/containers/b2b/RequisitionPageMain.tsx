@@ -40,6 +40,7 @@ const listsZoomArray = [
   'additemlisttocartforms:element:target',
   'additemlisttocartforms:element:target:descriptor',
   'additemlisttocartforms:element:additemlisttocartaction',
+  'additemstoitemlistform',
   'itemlists',
   'lineitems',
   'lineitems:element',
@@ -98,6 +99,8 @@ interface RequisitionPageMainState {
   productsData: any,
   multiCartData: any,
   selectedProducts: any,
+  addItemsToItemListUri: string,
+  showCreateListLoader: boolean,
 }
 
 class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageMainProps>, RequisitionPageMainState> {
@@ -116,6 +119,8 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       multiCartData: [],
       productsData: undefined,
       selectedProducts: [],
+      addItemsToItemListUri: '',
+      showCreateListLoader: false,
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
@@ -157,6 +162,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             if (res && res._additemlisttocartforms) {
               this.setState({
                 listName: res.name,
+                addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
                 multiCartData: res._additemlisttocartforms[0]._element,
                 currentlyListName: res.name,
                 productsData: res._lineitems[0],
@@ -262,10 +268,33 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
 
   handleEditListName() {
     const { listName } = this.state;
+    const { match } = this.props;
+    const listUri = match.params.uri;
+    const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
+
     if (listName.length === 0) {
       this.setState({ listNameErrorMessages: intl.get('name-is-required') });
     } else {
-      this.setState({ listNameErrorMessages: '', currentlyListName: listName, editListNameModalOpened: false });
+      this.setState({ showCreateListLoader: true });
+      login().then(() => {
+        cortexFetch(`/itemlists/${scope}/${listUri}`, {
+          method: 'put',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({ name: listName }),
+        })
+          .then(() => {
+            this.setState({
+              listNameErrorMessages: '', currentlyListName: listName, editListNameModalOpened: false, showCreateListLoader: false,
+            });
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      });
     }
   }
 
@@ -360,6 +389,8 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       productsData,
       isPageLoading,
       selectedProducts,
+      addItemsToItemListUri,
+      showCreateListLoader,
     } = this.state;
 
     const products = productsData && productsData._element ? productsData._element : [];
@@ -468,10 +499,16 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
           <B2bAddProductsModal
             isBulkModalOpened={addProductModalOpened}
             handleClose={this.handleAddProductsModalClose}
+            addItemsToItemListUri={addItemsToItemListUri}
           />
         ) : ''}
         <Modal open={editListNameModalOpened} onClose={this.handleModalClose}>
           <div className="modal-lg create-list-modal">
+            {showCreateListLoader && (
+              <div className="loader-wrapper">
+                <div className="miniLoader" />
+              </div>
+            )}
             <div className="dialog-header">
               <h2 className="modal-title">
                 {intl.get('edit-list')}
