@@ -119,6 +119,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
+        this.setState({ isLoading: false });
       });
   }
 

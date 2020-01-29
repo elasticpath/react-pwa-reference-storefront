@@ -57,6 +57,28 @@ const listsZoomArray = [
   'lineitems:element:item:recommendations',
   'lineitems:element:item:addtowishlistform',
   'lineitems:element:item:wishlistmemberships',
+  'lineitems:next',
+  'lineitems:previous',
+];
+
+const elementZoomArray = [
+  'element',
+  'element:item',
+  'element:item:availability',
+  'element:item:addtocartforms',
+  'element:item:addtocartform',
+  'element:item:cartmemberships',
+  'element:item:definition',
+  'element:item:addtoitemlistforms',
+  'element:item:code',
+  'element:item:offer',
+  'element:item:price',
+  'element:item:appliedpromotions',
+  'element:item:recommendations',
+  'element:item:addtowishlistform',
+  'element:item:wishlistmemberships',
+  'next',
+  'previous',
 ];
 
 interface RequisitionPageMainProps {
@@ -65,6 +87,7 @@ interface RequisitionPageMainProps {
 
 interface RequisitionPageMainState {
   isLoading: boolean,
+  isPageLoading: boolean,
   listName: string,
   currentlyListName: string,
   addProductModalOpened: boolean,
@@ -73,7 +96,7 @@ interface RequisitionPageMainState {
   multiSelectMode: boolean,
   editListNameModalOpened: boolean,
   listNameErrorMessages: string,
-  products: any,
+  productsData: any,
   multiCartData: any,
 }
 
@@ -82,6 +105,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     super(props);
     this.state = {
       isLoading: false,
+      isPageLoading: false,
       listName: '',
       currentlyListName: '',
       addProductModalOpened: false,
@@ -91,7 +115,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       editListNameModalOpened: false,
       listNameErrorMessages: '',
       multiCartData: [],
-      products: [],
+      productsData: undefined,
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
@@ -127,12 +151,12 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
         })
           .then(res => res.json())
           .then((res) => {
-            if (res) {
+            if (res && res._additemlisttocartforms) {
               this.setState({
                 listName: res.name,
                 multiCartData: res._additemlisttocartforms[0]._element,
                 currentlyListName: res.name,
-                products: res._lineitems[0]._element,
+                productsData: res._lineitems[0],
               });
             }
             this.setState({ isLoading: false });
@@ -141,6 +165,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
+        this.setState({ isLoading: false });
       });
   }
 
@@ -236,10 +261,46 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     );
   }
 
+  handlePagination(page) {
+    const listUri = page[0].self.uri;
+    this.setState({ isPageLoading: true });
+    cortexFetch(`${listUri}?zoom=${elementZoomArray.sort().join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    })
+      .then(res => res.json())
+      .then((res) => {
+        if (res && res._element) {
+          this.setState({ productsData: res });
+        }
+        this.setState({ isPageLoading: false });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        this.setState({ isPageLoading: false });
+      });
+  }
+
   render() {
     const {
-      isLoading, addProductModalOpened, editListNameModalOpened, listName, multiSelectMode, selectedElement, isChecked, listNameErrorMessages, currentlyListName, products,
+      isLoading,
+      addProductModalOpened,
+      editListNameModalOpened,
+      listName,
+      multiSelectMode,
+      selectedElement,
+      isChecked,
+      listNameErrorMessages,
+      currentlyListName,
+      productsData,
+      isPageLoading,
     } = this.state;
+
+    const products = productsData && productsData._element ? productsData._element : [];
+    const pagination = productsData ? productsData.pagination : { pages: 0, current: 0 };
 
     return (
       <div className="requisition-component">
@@ -291,44 +352,52 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 </div>
               )}
               <div className="product-pagination">
-                <button type="button" className="pagination-btn prev-btn" disabled>
+                {() => {
+                  if (isPageLoading) return (<div className="miniLoader" />);
+                  return '';
+                }}
+                <button type="button" className="pagination-btn prev-btn" onClick={() => { this.handlePagination(productsData._previous); }} disabled={!(productsData && productsData._previous)}>
                   <ArrowLeft className="arrow-left-icon" />
                 </button>
                 <span className="pagination-txt">
-                  Page 1 of 3
+                  {intl.get('pagination-message', { current: pagination.current, pages: pagination.pages })}
                 </span>
-                <button type="button" className="pagination-btn next-btn">
+                <button type="button" className="pagination-btn next-btn" onClick={() => { this.handlePagination(productsData._next); }} disabled={!(productsData && productsData._next)}>
                   <ArrowLeft className="arrow-left-icon" />
                 </button>
               </div>
             </div>
-            <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''}`}>
-              <div className="product-table-heading">
-                <div className="product-table-heading-item" />
-                <div className="product-table-heading-item">
-                  <span>{intl.get('product')}</span>
+            {isPageLoading ? (
+              <div className="loader" />
+            ) : (
+              <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''}`}>
+                <div className="product-table-heading">
+                  <div className="product-table-heading-item" />
+                  <div className="product-table-heading-item">
+                    <span>{intl.get('product')}</span>
+                  </div>
+                  <div className="product-table-heading-item" />
+                  <div className="product-table-heading-item">
+                    <span>{intl.get('quick-order-sku-title')}</span>
+                  </div>
+                  <div className="product-table-heading-item">
+                    <span>{intl.get('quantity')}</span>
+                  </div>
+                  <div className="product-table-heading-item">
+                    <span>{intl.get('product-options')}</span>
+                  </div>
+                  <div className="product-table-heading-item">
+                    <span>{intl.get('price')}</span>
+                  </div>
+                  <div className="product-table-heading-item actions">
+                    <span>{intl.get('actions')}</span>
+                  </div>
                 </div>
-                <div className="product-table-heading-item" />
-                <div className="product-table-heading-item">
-                  <span>{intl.get('quick-order-sku-title')}</span>
-                </div>
-                <div className="product-table-heading-item">
-                  <span>{intl.get('quantity')}</span>
-                </div>
-                <div className="product-table-heading-item">
-                  <span>{intl.get('product-options')}</span>
-                </div>
-                <div className="product-table-heading-item">
-                  <span>{intl.get('price')}</span>
-                </div>
-                <div className="product-table-heading-item actions">
-                  <span>{intl.get('actions')}</span>
-                </div>
+                {products.map(product => (
+                  <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView isChosen={isChecked} itemDetailLink="/itemdetail" />
+                ))}
               </div>
-              {products.map(product => (
-                <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView isChosen={isChecked} itemDetailLink="/itemdetail" />
-              ))}
-            </div>
+            )}
           </div>
         )}
         {addProductModalOpened ? (
