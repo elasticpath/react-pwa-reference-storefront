@@ -138,12 +138,10 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
       },
-    })
+    }).then(() => this.loadRequisitionListData())
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
-      })
-      .finally(() => {
         this.loadRequisitionListData();
       });
   }

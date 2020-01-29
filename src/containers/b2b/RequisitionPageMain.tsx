@@ -92,12 +92,12 @@ interface RequisitionPageMainState {
   currentlyListName: string,
   addProductModalOpened: boolean,
   isChecked: boolean,
-  selectedElement: number,
   multiSelectMode: boolean,
   editListNameModalOpened: boolean,
   listNameErrorMessages: string,
   productsData: any,
   multiCartData: any,
+  selectedProducts: any,
 }
 
 class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageMainProps>, RequisitionPageMainState> {
@@ -110,12 +110,12 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       currentlyListName: '',
       addProductModalOpened: false,
       isChecked: false,
-      selectedElement: 0,
       multiSelectMode: false,
       editListNameModalOpened: false,
       listNameErrorMessages: '',
       multiCartData: [],
       productsData: undefined,
+      selectedProducts: [],
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
@@ -124,8 +124,11 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handleEditListNameModalOpen = this.handleEditListNameModalOpen.bind(this);
     this.handleChangeListName = this.handleChangeListName.bind(this);
     this.clearListNameField = this.clearListNameField.bind(this);
-    this.handleBulkeEdit = this.handleBulkeEdit.bind(this);
+    this.handleBulkEdit = this.handleBulkEdit.bind(this);
+    this.handleBulkDelete = this.handleBulkDelete.bind(this);
+    this.handleCheckAll = this.handleCheckAll.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -182,13 +185,73 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     });
   }
 
-  handleCheck() {
-    const { isChecked } = this.state;
-    this.setState({ isChecked: !isChecked });
+  handleCheckAll() {
+    const { isChecked, productsData } = this.state;
+    const products = isChecked ? [] : productsData._element;
+    this.setState({ isChecked: !isChecked, selectedProducts: products });
   }
 
-  handleBulkeEdit() {
+  handleCheck(product) {
+    const { selectedProducts } = this.state;
+    const foundProduct = selectedProducts.find(item => item.self.uri === product.self.uri);
+    if (foundProduct) {
+      const filteredProduct = selectedProducts.filter(item => item.self.uri !== product.self.uri);
+      this.setState({ selectedProducts: filteredProduct });
+    } else {
+      this.setState({ selectedProducts: [...selectedProducts, product] });
+    }
+  }
+
+  handleBulkEdit() {
     this.setState({ multiSelectMode: true });
+  }
+
+  handleBulkDelete() {
+    const { selectedProducts } = this.state;
+    this.setState({ isLoading: true });
+    const promises = selectedProducts.map(product => cortexFetch(product.self.uri, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }));
+    Promise.all(promises)
+      .then(() => {
+        this.setState({
+          multiSelectMode: false,
+          isChecked: false,
+          selectedProducts: [],
+          isLoading: false,
+        });
+        this.loadRequisitionListData();
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        this.setState({ isLoading: false });
+        this.loadRequisitionListData();
+      });
+  }
+
+  handleDelete(product) {
+    this.setState({ isLoading: true });
+    cortexFetch(product.self.uri, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }).then(() => {
+      this.setState({ isLoading: false });
+      this.loadRequisitionListData();
+    })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        this.setState({ isLoading: false });
+        this.loadRequisitionListData();
+      });
   }
 
   handleEditListNameModalOpen() {
@@ -291,16 +354,17 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       editListNameModalOpened,
       listName,
       multiSelectMode,
-      selectedElement,
       isChecked,
       listNameErrorMessages,
       currentlyListName,
       productsData,
       isPageLoading,
+      selectedProducts,
     } = this.state;
 
     const products = productsData && productsData._element ? productsData._element : [];
     const pagination = productsData ? productsData.pagination : { pages: 0, current: 0 };
+    const isProductChecked = product => selectedProducts.find(item => item.self.uri === product.self.uri);
 
     return (
       <div className="requisition-component">
@@ -332,22 +396,22 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             </div>
             <div className={`pagination-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
               {!multiSelectMode ? (
-                <button type="button" className="bulk-edit-btn" onClick={this.handleBulkeEdit}>{intl.get('bulk-edit')}</button>
+                <button type="button" className="bulk-edit-btn" onClick={this.handleBulkEdit}>{intl.get('bulk-edit')}</button>
               ) : (
                 <div className="action-elements">
                   <div className="checkbox-wrap">
-                    <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={this.handleCheck} defaultChecked={isChecked} />
+                    <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={this.handleCheckAll} defaultChecked={isChecked} />
                     <label htmlFor="select_all_product" />
                     <label htmlFor="select_all_product">
                       {intl.get('select-all')}
                     </label>
                     <p className="selected-element">
-                      {selectedElement}
+                      {selectedProducts.length}
                       {' '}
                       {intl.get('item-selected')}
                     </p>
                   </div>
-                  <button type="button" className="ep-btn small delete-btn">{intl.get('delete')}</button>
+                  <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button>
                   {this.renderDropdownMenu()}
                 </div>
               )}
@@ -394,7 +458,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                   </div>
                 </div>
                 {products.map(product => (
-                  <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView isChosen={isChecked} itemDetailLink="/itemdetail" />
+                  <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
                 ))}
               </div>
             )}

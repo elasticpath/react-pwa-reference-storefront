@@ -55,6 +55,8 @@ interface CartLineItemProps {
   onMoveToCart?: (...args: any[]) => any,
   /** handle remove */
   onRemove?: (...args: any[]) => any,
+  /** handle check */
+  onCheck?: (...args: any[]) => any,
   /** link for item detail */
   itemDetailLink?: string,
   /** hide availability label */
@@ -68,7 +70,6 @@ interface CartLineItemProps {
 interface CartLineItemState {
   quantity: any,
   openModal: boolean,
-  isChecked: boolean,
 }
 
 class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
@@ -81,6 +82,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     onConfiguratorAddToCart: () => { },
     onMoveToCart: () => { },
     onRemove: () => { },
+    onCheck: () => { },
     itemDetailLink: '',
     hideAvailabilityLabel: false,
     isTableView: false,
@@ -96,7 +98,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     this.state = {
       quantity: item.quantity,
       openModal: false,
-      isChecked: false,
     };
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
@@ -114,12 +115,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
       this.setState({
         quantity: nextProps.item.quantity,
       });
-    }
-
-    if (nextProps.isChosen) {
-      this.setState({ isChecked: true });
-    } else {
-      this.setState({ isChecked: false });
     }
   }
 
@@ -265,11 +260,8 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
   }
 
   handleCheck() {
-    const { isChecked } = this.state;
-    const { isChosen } = this.props;
-    if (!isChosen) {
-      this.setState({ isChecked: !isChecked });
-    }
+    const { onCheck } = this.props;
+    onCheck();
   }
 
   renderUnitPrice() {
@@ -423,8 +415,9 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
       onRemove,
       hideAvailabilityLabel,
       isTableView,
+      isChosen,
     } = this.props;
-    const { quantity, openModal, isChecked } = this.state;
+    const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
     let availability = (itemAvailability[0].state === 'AVAILABLE');
     let availabilityString = '';
@@ -460,7 +453,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
         {isTableView && (
           <div className="checkbox-col">
             <div className="checkbox-wrap">
-              <input type="checkbox" id={`cart_lineitem_checkbox_${itemCodeString}`} className="style-checkbox" onChange={this.handleCheck} checked={isChecked} />
+              <input type="checkbox" id={`cart_lineitem_checkbox_${itemCodeString}`} className="style-checkbox" onChange={this.handleCheck} checked={isChosen} />
               <label htmlFor={`cart_lineitem_checkbox_${itemCodeString}`} />
             </div>
           </div>
