@@ -109,13 +109,11 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
           .then((res) => {
             if (res._itemlistinfo[0] && res._itemlistinfo[0]._allitemlists[0]) {
               this.setState({
-                isLoading: false,
                 requisitionElements: res._itemlistinfo[0]._allitemlists[0]._element || [],
                 createRequisitionForm: res._itemlistinfo[0]._allitemlists[0]._createitemlistform[0],
               });
-            } else {
-              this.setState({ isLoading: false });
             }
+            this.setState({ isLoading: false });
           });
       })
       .catch((error) => {
@@ -282,7 +280,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     if (requisitionElements.length) {
       return requisitionElements.map((el, index) => (
         <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation">
-          <Link className="requisition-info requisition-list-name" to="/b2b/requisition-list-item">{el.name}</Link>
+          <Link className="requisition-info requisition-list-name" to={`/b2b/requisition-list-item/${el.self.uri.split('/').pop()}`}>{el.name}</Link>
           <p className="requisition-info product-count">
             {el['item-count']}
           </p>

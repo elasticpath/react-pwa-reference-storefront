@@ -20,7 +20,7 @@
  */
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
@@ -28,11 +28,41 @@ import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
 
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 import { ReactComponent as ArrowLeft } from '../../images/icons/arrow_left.svg';
-import cartData from './cart_main_data_response.json';
+import { login } from '../../utils/AuthService';
+import { cortexFetch } from '../../utils/Cortex';
+import * as Config from '../../ep.config.json';
+
 import './RequisitionPageMain.less';
 
+const listsZoomArray = [
+  'additemlisttocartforms',
+  'additemlisttocartforms:element',
+  'additemlisttocartforms:element:target',
+  'additemlisttocartforms:element:target:descriptor',
+  'additemlisttocartforms:element:additemlisttocartaction',
+  'itemlists',
+  'lineitems',
+  'lineitems:element',
+  'lineitems:element:item',
+  'lineitems:element:item:availability',
+  'lineitems:element:item:addtocartforms',
+  'lineitems:element:item:addtocartform',
+  'lineitems:element:item:cartmemberships',
+  'lineitems:element:item:definition',
+  'lineitems:element:item:addtoitemlistforms',
+  'lineitems:element:item:code',
+  'lineitems:element:item:offer',
+  'lineitems:element:item:price',
+  'lineitems:element:item:appliedpromotions',
+  'lineitems:element:item:recommendations',
+  'lineitems:element:item:addtowishlistform',
+  'lineitems:element:item:wishlistmemberships',
+];
+
 interface RequisitionPageMainProps {
+  uri: string;
 }
+
 interface RequisitionPageMainState {
   isLoading: boolean,
   listName: string,
@@ -41,17 +71,18 @@ interface RequisitionPageMainState {
   isChecked: boolean,
   selectedElement: number,
   multiSelectMode: boolean,
-  productElements: any,
   editListNameModalOpened: boolean,
   listNameErrorMessages: string,
+  products: any,
+  multiCartData: any,
 }
 
-class RequisitionPageMain extends Component<RequisitionPageMainProps, RequisitionPageMainState> {
+class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageMainProps>, RequisitionPageMainState> {
   constructor(props: any) {
     super(props);
     this.state = {
       isLoading: false,
-      listName: 'Vancouver',
+      listName: '',
       currentlyListName: '',
       addProductModalOpened: false,
       isChecked: false,
@@ -59,11 +90,8 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
       multiSelectMode: false,
       editListNameModalOpened: false,
       listNameErrorMessages: '',
-      productElements: {
-        list: [
-          { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
-        ],
-      },
+      multiCartData: [],
+      products: [],
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
@@ -78,9 +106,42 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
 
   componentDidMount() {
     const { listName, currentlyListName } = this.state;
+    this.loadRequisitionListData();
     if (currentlyListName.length === 0) {
       this.setState({ currentlyListName: listName });
     }
+  }
+
+  loadRequisitionListData() {
+    this.setState({ isLoading: true });
+    const { match } = this.props;
+    const listUri = match.params.uri;
+    const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
+    login()
+      .then(() => {
+        cortexFetch(`/itemlists/${scope}/${listUri}?zoom=${listsZoomArray.sort().join()}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+          .then(res => res.json())
+          .then((res) => {
+            if (res) {
+              this.setState({
+                listName: res.name,
+                multiCartData: res._additemlisttocartforms[0]._element,
+                currentlyListName: res.name,
+                products: res._lineitems[0]._element,
+              });
+            }
+            this.setState({ isLoading: false });
+          });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
   }
 
   handleAddProductsModalClose() {
@@ -142,7 +203,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
   }
 
   renderDropdownMenu() {
-    const { productElements } = this.state;
+    const { multiCartData } = this.state;
     return (
       <div className="add-to-cart-dropdown">
         <div className="dropdown-sort-field">
@@ -158,14 +219,14 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
               {intl.get('add-to-cart-2')}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {(productElements.list[0]) ? productElements.list.map(sortChoice => (
+              {(multiCartData.length) ? multiCartData.map(cart => (
                 <li
                   className="dropdown-item"
-                  key={sortChoice.name}
-                  id={`product_display_item_sku_option_${sortChoice.name}`}
-                  value={sortChoice.name}
+                  key={cart._target[0]._descriptor[0].name}
+                  id={`product_display_item_sku_option_${cart._target[0]._descriptor[0].name}`}
+                  value={cart._target[0]._descriptor[0].name}
                 >
-                  {sortChoice.name}
+                  {cart._target[0]._descriptor[0].name}
                 </li>
               )) : ''}
             </ul>
@@ -177,7 +238,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
 
   render() {
     const {
-      isLoading, addProductModalOpened, editListNameModalOpened, listName, multiSelectMode, selectedElement, isChecked, listNameErrorMessages, currentlyListName,
+      isLoading, addProductModalOpened, editListNameModalOpened, listName, multiSelectMode, selectedElement, isChecked, listNameErrorMessages, currentlyListName, products,
     } = this.state;
 
     return (
@@ -264,7 +325,7 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
                   <span>{intl.get('actions')}</span>
                 </div>
               </div>
-              {cartData._defaultcart[0]._lineitems[0]._element.map(product => (
+              {products.map(product => (
                 <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView isChosen={isChecked} itemDetailLink="/itemdetail" />
               ))}
             </div>

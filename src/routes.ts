@@ -164,7 +164,7 @@ const router = [{
   path: '/b2b/account/:uri',
   component: AccountMain,
 }, {
-  path: '/b2b/requisition-list-item',
+  path: '/b2b/requisition-list-item/:uri',
   exact: true,
   component: RequisitionPageMain,
 }, {
