@@ -33,6 +33,7 @@ interface PurchaseOrderWidgetState {
   isSelectedPaymentInstrument: boolean,
   PONumber: string,
   orderPaymentData: any,
+  poModalOpen: boolean,
 }
 
 interface PurchaseOrderWidgetProps {
@@ -148,20 +149,29 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     return purchaseOrder;
   }
 
+  renderModal() {
+    // This should be split out into its own component.
+    this.setState({ poModalOpen: true });
+  }
+
   render() {
-    const { onPayWithPO } = this.props;
     if (this.doesPayWithPOMethodExist() !== undefined) {
       return (
-        <div className="purchase-order-widget-container">
-          <div className="purchase-order-widget-top">
-            <h2>
-              { intl.get('purchase-order') }
-            </h2>
-            {this.renderPONumber()}
+        <div>
+          <div className="purchase-order-widget-container">
+            <div className="purchase-order-widget-top">
+              <h2>
+                { intl.get('purchase-order') }
+              </h2>
+              {this.renderPONumber()}
+            </div>
+            <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={this.renderModal}>
+              { intl.get('pay-with-po') }
+            </button>
           </div>
-          <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={onPayWithPO}>
-            { intl.get('pay-with-po') }
-          </button>
+          <div>
+            {/* TODO: Need to place the modal here... */}
+          </div>
         </div>);
     }
 
