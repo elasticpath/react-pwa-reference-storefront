@@ -19,22 +19,23 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import numberPaymentInstrumentFromOrder from './MockHttpResponses/GET/number_payment_instrument_from_order.json';
+import fetchPaymentOrderDataResponse from './MockHttpResponses/GET/fetch_payment_order_data_response.json';
+import fetchPaymentOrderDataNoPOResponse from './MockHttpResponses/GET/fetch_payment_order_data_no_po_response.json';
 import { mockAnonLoginResponse, mockRegisteredLoginResponse } from '../utils/MockLogins';
 
 function mockfetchPONumberPaymentInstrumentFromOrder(mockObj) {
   mockObj.get(
     /(.*)(zoom=defaultcart:order:paymentinstrumentselector:choice:description,defaultcart:order:paymentinstrumentselector:chosen:description,defaultcart:order:paymentinstrumentselector:default:description,defaultcart:order:paymentmethodinfo:element:paymentinstrumentform)/,
-    numberPaymentInstrumentFromOrder,
+    fetchPaymentOrderDataResponse,
   );
 }
 
-function mockPaymentInstrumentFormActionSuccess(mockObj) {
+function mockFetchPONumberPaymentMethodNotAvailable(mockObj) {
   const delay = new Promise((res, rej) => setTimeout(res, 10000));
-//   mockObj.post(
-//     /(.*)\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
-//     delay.then(() => paymentInstrumentFormResponse),
-//   );
+  mockObj.get(
+    /(.*)(zoom=defaultcart:order:paymentinstrumentselector:choice:description,defaultcart:order:paymentinstrumentselector:chosen:description,defaultcart:order:paymentinstrumentselector:default:description,defaultcart:order:paymentmethodinfo:element:paymentinstrumentform)/,
+    fetchPaymentOrderDataNoPOResponse,
+  );
 }
 
 function mockPaymentInstrumentFormActionFailure(mockObj) {
@@ -45,17 +46,16 @@ function mockPaymentInstrumentFormActionFailure(mockObj) {
 //   );
 }
 
-export function mockPurchaseOrderWidgetPaymentInstrumentDataWithAnonUser() {
+export function mockPOPaymentInstrumentAvailableWithAnonUser() {
   fetchMock.restore();
   mockAnonLoginResponse(fetchMock);
   mockfetchPONumberPaymentInstrumentFromOrder(fetchMock);
 }
 
-export function mockPaymentFormSuccessWithRegisteredUser() {
+export function mockPOPaymentMethodNotAvailableWithAnonUser() {
   fetchMock.restore();
-  mockRegisteredLoginResponse(fetchMock);
-  // mockPaymentInstrumentForm(fetchMock);
-  mockPaymentInstrumentFormActionSuccess(fetchMock);
+  mockAnonLoginResponse(fetchMock);
+  mockFetchPONumberPaymentMethodNotAvailable(fetchMock);
 }
 
 export function mockPaymentFormFailureWithAnonUser() {
