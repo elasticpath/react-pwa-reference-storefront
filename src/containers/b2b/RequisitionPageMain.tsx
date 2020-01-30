@@ -39,6 +39,7 @@ const listsZoomArray = [
   'additemlisttocartforms:element',
   'additemlisttocartforms:element:target',
   'additemlisttocartforms:element:target:descriptor',
+  'additemlisttocartforms:element:target:additemstocartform',
   'additemlisttocartforms:element:additemlisttocartaction',
   'additemstoitemlistform',
   'itemlists',
@@ -134,6 +135,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handleCheckAll = this.handleCheckAll.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleAddToSelectedCart = this.handleAddToSelectedCart.bind(this);
   }
 
   componentDidMount() {
@@ -337,14 +339,16 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {(multiCartData.length) ? multiCartData.map(cart => (
-                <li
+                <button
+                  type="button"
                   className="dropdown-item"
                   key={cart._target[0]._descriptor[0].name}
                   id={`product_display_item_sku_option_${cart._target[0]._descriptor[0].name}`}
                   value={cart._target[0]._descriptor[0].name}
+                  onClick={() => { this.handleAddToSelectedCart(cart); }}
                 >
                   {cart._target[0]._descriptor[0].name}
-                </li>
+                </button>
               )) : ''}
             </ul>
           </div>
@@ -373,6 +377,43 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
         // eslint-disable-next-line no-console
         console.error(error.message);
         this.setState({ isPageLoading: false });
+      });
+  }
+
+  handleAddToSelectedCart(cart) {
+    const { selectedProducts } = this.state;
+    let cartUrl = cart._additemlisttocartaction[0].self.uri;
+    const body: { items?: any[] } = {};
+    if (selectedProducts) {
+      cartUrl = cart._target[0]._additemstocartform[0].self.uri;
+      body.items = [];
+    }
+    const arrayItems = selectedProducts
+      .filter(item => item.code !== '')
+      .map(item => ({ code: item._item[0]._code[0].code, quantity: item.quantity }));
+    body.items = arrayItems;
+    let totalQuantity = 0;
+    arrayItems.forEach((item) => {
+      totalQuantity += item.quantity;
+    });
+    cortexFetch(cartUrl,
+      {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: body.items ? JSON.stringify(body) : undefined,
+      })
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          this.setState({ selectedProducts: [], multiSelectMode: false });
+        }
+      })
+      .catch((error) => {
+        this.setState({ isLoading: false });
+        // eslint-disable-next-line no-console
+        console.error(error.message);
       });
   }
 
