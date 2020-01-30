@@ -43,6 +43,8 @@ interface AddProductsModalProps {
   handleClose: (...args: any[]) => any,
   /** Uri for Adding Items To Item List */
   addItemsToItemListUri: string,
+  /** Updating products list on adding items */
+  onAddItem: any,
 }
 
 interface AddProductsModalState {
@@ -93,10 +95,11 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
     this.handleBulkTab = this.handleBulkTab.bind(this);
     this.handleFormTab = this.handleFormTab.bind(this);
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
+    this.addMoreLine = this.addMoreLine.bind(this);
   }
 
   addAllToList() {
-    const { addItemsToItemListUri } = this.props;
+    const { addItemsToItemListUri, onAddItem } = this.props;
     const {
       items, bulkOrderItems, isFormTab, defaultItem, defaultItemsCount,
     } = this.state;
@@ -125,6 +128,7 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
         })
         .then((res) => {
           if (res.status === 201) {
+            onAddItem(true);
             this.setState({
               isLoading: false,
               items: Array(defaultItemsCount).fill(defaultItem).map((item, index) => ({ ...item, key: `quick-order-sku-${index}` })),
@@ -204,6 +208,14 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
     });
   }
 
+  addMoreLine() {
+    const { items, defaultItem } = this.state;
+    const incrementItems = [...items, defaultItem];
+    this.setState({
+      items: incrementItems,
+    });
+  }
+
   checkDuplication() {
     const { bulkOrderItems } = this.state;
     let isDuplicated = false;
@@ -263,6 +275,11 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
                   {items.map((item, i) => (
                     <QuickOrderForm item={item} isAddProducts={isAddProducts} key={item.key} onItemSubmit={updatedItem => this.quickFormSubmit(updatedItem, i)} />
                   ))}
+                </div>
+                <div className="add-more-lines-button-wrap">
+                  <button type="button" className="add-more-lines-button" onClick={this.addMoreLine}>
+                    {intl.get('add-more-lines')}
+                  </button>
                 </div>
               </div>
               <div className="tab-pane fade" id="copy-paste" role="tabpanel" aria-labelledby="copy-paste-tab">

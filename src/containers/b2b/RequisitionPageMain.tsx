@@ -134,18 +134,21 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handleCheckAll = this.handleCheckAll.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.loadRequisitionListData = this.loadRequisitionListData.bind(this);
   }
 
   componentDidMount() {
     const { listName, currentlyListName } = this.state;
-    this.loadRequisitionListData();
+    this.loadRequisitionListData(false);
     if (currentlyListName.length === 0) {
       this.setState({ currentlyListName: listName });
     }
   }
 
-  loadRequisitionListData() {
-    this.setState({ isLoading: true });
+  loadRequisitionListData(UpdateList) {
+    if (!UpdateList) {
+      this.setState({ isLoading: true });
+    }
     const { match } = this.props;
     const listUri = match.params.uri;
     const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
@@ -230,13 +233,13 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
           selectedProducts: [],
           isLoading: false,
         });
-        this.loadRequisitionListData();
+        this.loadRequisitionListData(false);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
         this.setState({ isLoading: false });
-        this.loadRequisitionListData();
+        this.loadRequisitionListData(false);
       });
   }
 
@@ -250,13 +253,13 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       },
     }).then(() => {
       this.setState({ isLoading: false });
-      this.loadRequisitionListData();
+      this.loadRequisitionListData(false);
     })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
         this.setState({ isLoading: false });
-        this.loadRequisitionListData();
+        this.loadRequisitionListData(false);
       });
   }
 
@@ -500,6 +503,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             isBulkModalOpened={addProductModalOpened}
             handleClose={this.handleAddProductsModalClose}
             addItemsToItemListUri={addItemsToItemListUri}
+            onAddItem={this.loadRequisitionListData}
           />
         ) : ''}
         <Modal open={editListNameModalOpened} onClose={this.handleModalClose}>

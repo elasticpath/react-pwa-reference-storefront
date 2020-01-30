@@ -44,6 +44,7 @@
   "no-shipping-address-message": "You have no saved shipping addresses.",
   "shipping-address": "Shipping Address",
   "add-new-address": "Add a New Address",
+  "add-more-lines": "add more lines",
   "no-shipping-options-message": "There are no shipping options available for your chosen shipping address.",
   "no-billing-address-message": "You have no saved billing addresses.",
   "billing-address": "Billing Address",
