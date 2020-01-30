@@ -87,7 +87,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
   }
 
   renderPaymentMethods() {
-    const { paymentMethods, paymentInstruments } = this.props;
+    const { paymentInstruments } = this.props;
 
     if (paymentInstruments && paymentInstruments._element) {
       return (
@@ -96,7 +96,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
           return (
             <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
               <li className="profile-payment-method-container">
-                <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
+                <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
                   <span data-el-value="payment.token" className="payment-method-container">
                     {displayName}
                   </span>
@@ -110,31 +110,11 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
         })
       );
     }
-    if (paymentMethods._element) {
-      return (
-        paymentMethods._element.map((paymentElement) => {
-          const displayName = paymentElement['display-name'];
-          return (
-            <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
-              <li className="profile-payment-method-container">
-                <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
-                  <span data-el-value="payment.token" className="payment-method-container">
-                    {displayName}
-                  </span>
-                </div>
-                <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
-                  {intl.get('delete')}
-                </button>
-              </li>
-            </ul>
-          );
-        })
-      );
-    }
+
     return (
       <div>
         <p>
-          {intl.get('no-payment-methods-message')}
+          {intl.get('no-saved-payment-method-message')}
         </p>
       </div>
     );
