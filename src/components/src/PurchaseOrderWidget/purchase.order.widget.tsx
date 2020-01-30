@@ -28,26 +28,16 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './purchase.order.widget.less';
 
 let Config: IEpConfig | any = {};
-let isTypingTimer = null;
-
-const POInputStates = {
-  LOADING: 'LOADING',
-  VERIFIED: 'VERIFIED',
-  ERROR: 'ERROR',
-};
-
-// NOTE: Remove this when using this component in a real implementation! only here to simulate PO number validation.
-const dummyValidPONumbers = new Set(['1234', '2345', '3456']);
 
 interface PurchaseOrderWidgetState {
-  inputStatus: string,
-  inputTextValue: string,
+  isSelectedPaymentInstrument: boolean,
+  PONumber: string,
+  orderPaymentData: any,
 }
 
 interface PurchaseOrderWidgetProps {
   timeoutBeforeVerify: number,
   onPayWithPO: (...args: any[]) => any,
-  onViewClicked?: (...args: any[]) => any,
 }
 
 class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, PurchaseOrderWidgetState> {
@@ -56,138 +46,126 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     const epConfig = getConfig();
     Config = epConfig.config;
     this.state = {
-      inputStatus: '',
-      inputTextValue: '',
+      isSelectedPaymentInstrument: false,
+      PONumber: '',
+      orderPaymentData: {},
     };
-    this.renderPurchaseOrderTextBox = this.renderPurchaseOrderTextBox.bind(this);
-    this.startValidationTimer = this.startValidationTimer.bind(this);
-    this.clearIsTypingTimer = this.clearIsTypingTimer.bind(this);
-    this.verifyPONumber = this.verifyPONumber.bind(this);
-    this.renderInputStatus = this.renderInputStatus.bind(this);
-    this.updateInputState = this.updateInputState.bind(this);
-    this.showMorePODetails = this.showMorePODetails.bind(this);
+    this.getChosenFromOrderData = this.getChosenFromOrderData.bind(this);
+    this.renderPONumber = this.renderPONumber.bind(this);
+    this.fetchPaymentOrderData = this.fetchPaymentOrderData.bind(this);
+    this.doesPayWithPOMethodExist = this.doesPayWithPOMethodExist.bind(this);
   }
 
-  clearIsTypingTimer(event) {
-    if (isTypingTimer != null) {
-      this.setState({ inputStatus: POInputStates.LOADING });
-      clearTimeout(isTypingTimer);
-      isTypingTimer = null;
-    }
-  }
-
-  updateInputState(event) {
-    this.setState({ inputTextValue: event.target.value });
-  }
-
-  verifyPONumber() {
-    const { inputTextValue } = this.state;
-    console.log('verify number is running');
-    // NOTE: This should be replaced with a network request to validate the PO number entered.  A timeout is placed here as a placeholder.
-    setTimeout(() => {
-      if (dummyValidPONumbers.has(inputTextValue)) {
-        this.setState({ inputStatus: POInputStates.VERIFIED });
-      } else {
-        this.setState({ inputStatus: POInputStates.ERROR });
-      }
-    }, 1000);
-
-    isTypingTimer = null;
-  }
-
-  startValidationTimer(event) {
-    const { timeoutBeforeVerify } = this.props;
-    if (isTypingTimer == null) {
-      const timeID = setTimeout(() => {
-        this.verifyPONumber();
-      }, timeoutBeforeVerify);
-      this.setState({ inputStatus: POInputStates.LOADING });
-      isTypingTimer = timeID;
-    }
-  }
-
-  renderInputStatus() {
-    const { inputStatus } = this.state;
-
-    switch (inputStatus) {
-      case POInputStates.LOADING:
-        return (
-          <div className="inputLoader-container">
-            <div className="inputLoader" />
-          </div>);
-      case POInputStates.VERIFIED:
-        return (
-          <div className="inputLoader-container">
-            <div className="checkmark chosen" />
-          </div>);
-      default:
-        return null;
-    }
-  }
-
-  renderPurchaseOrderTextBox() {
-    const { inputTextValue, inputStatus } = this.state;
-    const warningMessage = {
-      debugMessages: intl.get('invalid-po-number'),
-      type: 'error',
-      id: 'field.invalid.email.format',
-    };
-    return (
-      <div>
-        <div className="purchase-order-widget-input-container">
-          <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} onKeyUp={this.startValidationTimer} onKeyDown={this.clearIsTypingTimer} />
-          {this.renderInputStatus()}
-        </div>
-        {
-          inputStatus === POInputStates.ERROR && (
-            <div>
-              <Messagecontainer message={[warningMessage]} />
-            </div>
-          )
-        }
-      </div>
-    );
+  async componentDidMount() {
+    console.log('componentdidupdate is running');
+    const a = await this.fetchPaymentOrderData();
   }
 
   // eslint-disable-next-line class-methods-use-this
-  showMorePODetails() {
-    // TODO: Need to implement function that shows the PO details modal.
-    const { onViewClicked } = this.props;
-
-    if (onViewClicked) {
-      onViewClicked();
+  doesPayWithPOMethodExist() {
+    const { orderPaymentData } = this.state;
+    let paymentMethodInfoElems;
+    console.log(orderPaymentData);
+    if (orderPaymentData != null) {
+      try {
+        paymentMethodInfoElems = orderPaymentData._defaultcart[0]._order[0]._paymentmethodinfo[0]._element;
+      // eslint-disable-next-line no-empty
+      } catch (err) {
+      }
     }
+
+    if (paymentMethodInfoElems) {
+      return paymentMethodInfoElems.find((e) => {
+        const purchaseOrder = e._paymentinstrumentform[0]['payment-instrument-identification-form']['purchase-order'];
+        if (purchaseOrder === '') {
+          return true;
+        }
+        return false;
+      });
+    }
+
+    return undefined;
+  }
+
+  // Will fetch all the information and will make an internal front end representation...
+  // eslint-disable-next-line class-methods-use-this
+  async fetchPaymentOrderData() {
+    console.log('fetchOrderPayment is running');
+    // We are going to fetch PO number info...
+    // We are going to see whether we have a payment method available and see if it has been selected...
+    const orderZoomArray = [
+      'defaultcart:order:paymentinstrumentselector:choice:description',
+      'defaultcart:order:paymentinstrumentselector:chosen:description',
+      'defaultcart:order:paymentinstrumentselector:default:description',
+      'defaultcart:order:paymentmethodinfo:element:paymentinstrumentform',
+    ];
+
+    const fetchedDataProm = await cortexFetch(`/?zoom=${orderZoomArray.sort().join()}`);
+    const orderPaymentData = await fetchedDataProm.json();
+
+    this.setState({ orderPaymentData });
+  }
+
+  // // onLoad we need to check if PONumber has been selected for payment...
+  // hasPONumberBeenSelected() {
+  //   // TODO: We use the zoomArray
+  //   // Find whether it has been selected or not...
+  // }
+  getChosenFromOrderData() {
+    const { orderPaymentData } = this.state;
+    let chosenPaymentMethod;
+
+    try {
+      chosenPaymentMethod = orderPaymentData._defaultcart[0]._order[0]._paymentinstrumentselector[0]._chosen;
+    } catch (err) {
+      console.warn('unable to find chosen payment method');
+    }
+
+    return chosenPaymentMethod;
+  }
+
+  renderPONumber() {
+    const { orderPaymentData } = this.state;
+    // this will find the po number from the paywithPO
+    // We need to look for the chosen value here...
+
+    const chosen = this.getChosenFromOrderData();
+
+    let purchaseOrder;
+
+    try {
+      purchaseOrder = chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'];
+    // eslint-disable-next-line no-empty
+    } catch(err) {
+    }
+
+    if (purchaseOrder) {
+      return (
+        <h2>{purchaseOrder}</h2>
+      );
+    }
+
+    return purchaseOrder;
   }
 
   render() {
-    const { inputStatus } = this.state;
     const { onPayWithPO } = this.props;
+    if (this.doesPayWithPOMethodExist() !== undefined) {
+      return (
+        <div className="purchase-order-widget-container">
+          <div className="purchase-order-widget-top">
+            <h2>
+              { intl.get('purchase-order') }
+            </h2>
+            {this.renderPONumber()}
+          </div>
+          <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={onPayWithPO}>
+            { intl.get('pay-with-po') }
+          </button>
+        </div>);
+    }
 
-    return (
-      <div className="purchase-order-widget-container">
-        <div className="purchase-order-widget-top">
-          <h2>
-            { intl.get('purchase-order') }
-          </h2>
-          {
-            inputStatus === POInputStates.VERIFIED ? (
-              <button className="view-button active" type="button" onClick={this.showMorePODetails}>
-                { intl.get('view') }
-              </button>
-            ) : (
-              <button className="view-button inactive" disabled type="button" onClick={this.showMorePODetails}>
-                { intl.get('view') }
-              </button>
-            )
-          }
-        </div>
-        <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
-          {this.renderPurchaseOrderTextBox()}
-        </div>
-        <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={onPayWithPO}>
-          { intl.get('pay-with-po') }
-        </button>
-      </div>);
+    return null;
   }
 }
 

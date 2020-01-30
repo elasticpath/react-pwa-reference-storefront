@@ -24,6 +24,7 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text } from '@storybook/addon-knobs/react';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
+import { mockPurchaseOrderWidgetPaymentInstrumentDataWithAnonUser } from './purchase.order.widget.api.mocks';
 import PurchaseOrderWidget from './purchase.order.widget';
 
 storiesOf('Components|PurchaseOrderWidget', module)
@@ -37,11 +38,12 @@ storiesOf('Components|PurchaseOrderWidget', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('Purchase Order Widget', () => {
+    // Mock Anonymous user login
+    mockPurchaseOrderWidgetPaymentInstrumentDataWithAnonUser();
+
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
-    const onViewClickedFuncText = text('onViewClicked', '() => {alert("onViewClicked invoked")}');
     return <PurchaseOrderWidget
       timeoutBeforeVerify={1000}
       onPayWithPO={() => { textToFunc(onPayWithPOFuncText); }}
-      onViewClicked={() => { textToFunc(onViewClickedFuncText); }}
     />;
   });
