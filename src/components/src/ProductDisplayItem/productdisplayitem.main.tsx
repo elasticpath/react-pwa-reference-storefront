@@ -759,7 +759,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             className="ep-btn wide btn-itemdetail-addtowishlist dropdown-toggle"
             data-toggle="dropdown"
             disabled={!availability || !productData._addtowishlistform}
-            id="product_display_item_add_to_cart_button"
+            id="add_to_requisition_list_button"
             type="submit"
           >
             {addToRequisitionListLoading ? (

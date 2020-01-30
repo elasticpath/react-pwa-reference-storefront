@@ -574,7 +574,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           <div className="total-price-col" data-region="cartLineitemTotalPriceRegion" data-heading={intl.get('price')}>
             <div>
               <div data-region="itemTotalPriceRegion">
-                {item._item[0]._price[0]['purchase-price'][0].display}
+                {item._item[0]._price && item._item[0]._price[0]['purchase-price'][0].display}
               </div>
               <div data-region="itemTotalRateRegion" />
             </div>
