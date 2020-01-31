@@ -1,0 +1,25 @@
+{
+	"self": {
+		"type": "paymentinstruments.order-payment-instrument",
+		"uri": "/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/orderpaymentinstrument/mqywcnrqmfqwiljyge4tqljuguztiljymy2tqljxgm2wcm3egvtdimzvgq=",
+		"href": "http://localhost:9080/cortex/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/orderpaymentinstrument/mqywcnrqmfqwiljyge4tqljuguztiljymy2tqljxgm2wcm3egvtdimzvgq="
+	},
+	"messages": [],
+	"links": [{
+		"rel": "paymentmethod",
+		"type": "paymentmethods.order-payment-method",
+		"uri": "/paymentmethods/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/mvrtgmbrhbsdkljxgyygeljumi3tkljygjqtallggy3dinjrmm4dsztgmy=",
+		"href": "http://localhost:9080/cortex/paymentmethods/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/mvrtgmbrhbsdkljxgyygeljumi3tkljygjqtallggy3dinjrmm4dsztgmy="
+	}],
+	"default-on-profile": false,
+	"limit-amount": {
+		"amount": 0.00,
+		"currency": "CAD",
+		"display": "$0.00"
+	},
+	"name": "aDisplayName",
+	"payment-instrument-identification-attributes": {
+		"purchase-order": "1234"
+	},
+	"saved-on-profile": false
+}
