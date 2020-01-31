@@ -21,6 +21,7 @@
 import fetchMock from 'fetch-mock/es5/client';
 import fetchPaymentOrderDataResponse from './MockHttpResponses/GET/fetch_payment_order_data_response.json';
 import fetchPaymentOrderDataNoPOResponse from './MockHttpResponses/GET/fetch_payment_order_data_no_po_response.json';
+import fetchPaymentOrderDataResponseNoInstrument from './MockHttpResponses/GET/fetch_payment_order_data_response_no_instrument.json';
 import { mockAnonLoginResponse, mockRegisteredLoginResponse } from '../utils/MockLogins';
 
 function mockfetchPONumberPaymentInstrumentFromOrder(mockObj) {
@@ -38,12 +39,12 @@ function mockFetchPONumberPaymentMethodNotAvailable(mockObj) {
   );
 }
 
-function mockPaymentInstrumentFormActionFailure(mockObj) {
-//   const delay = new Promise((res, rej) => setTimeout(res, 10000));
-//   mockObj.post(
-//     /(.*)\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
-//     delay.then(() => 400),
-//   );
+function mockFetchPONumberNoPaymentInstrument(mockObj) {
+  const delay = new Promise((res, rej) => setTimeout(res, 10000));
+  mockObj.get(
+    /(.*)(zoom=defaultcart:order:paymentinstrumentselector:choice:description,defaultcart:order:paymentinstrumentselector:chosen:description,defaultcart:order:paymentinstrumentselector:default:description,defaultcart:order:paymentmethodinfo:element:paymentinstrumentform)/,
+    fetchPaymentOrderDataResponseNoInstrument,
+  );
 }
 
 export function mockPOPaymentInstrumentAvailableWithAnonUser() {
@@ -58,9 +59,8 @@ export function mockPOPaymentMethodNotAvailableWithAnonUser() {
   mockFetchPONumberPaymentMethodNotAvailable(fetchMock);
 }
 
-export function mockPaymentFormFailureWithAnonUser() {
+export function mockPOPaymentFormNoPaymentInstrument() {
   fetchMock.restore();
   mockAnonLoginResponse(fetchMock);
-  // mockPaymentInstrumentForm(fetchMock);
-  mockPaymentInstrumentFormActionFailure(fetchMock);
+  mockFetchPONumberNoPaymentInstrument(fetchMock);
 }

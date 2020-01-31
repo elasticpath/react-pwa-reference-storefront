@@ -69,11 +69,17 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
   }
 
   initializeIsChosen(orderPaymentData) {
-    if (this.getChosenFromOrderData(orderPaymentData) !== undefined) {
-      this.setState({ isChosen: true });
-    } else {
-      this.setState({ isChosen: false });
+    const chosen = this.getChosenFromOrderData(orderPaymentData);
+
+    if (chosen !== undefined) {
+      const purchaseOrder = chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'];
+      if (purchaseOrder !== undefined) {
+        this.setState({ isChosen: true });
+        return;
+      }
     }
+
+    this.setState({ isChosen: false });
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -141,7 +147,8 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     // eslint-disable-next-line no-empty
     } catch (err) {
     }
-
+    console.log('chosenPaymentMethod');
+    console.log(chosenPaymentMethod);
     return chosenPaymentMethod;
   }
 
@@ -179,7 +186,9 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
               <h2>
                 { intl.get('purchase-order') }
               </h2>
-              {this.renderPONumber()}
+              <h2>
+                {this.renderPONumber()}
+              </h2>
             </div>
             <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={this.renderModal}>
               { intl.get('pay-with-po') }
