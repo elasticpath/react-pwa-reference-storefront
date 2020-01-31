@@ -1,0 +1,171 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+import React from 'react';
+import intl from 'react-intl-universal';
+import _ from 'lodash';
+import Messagecontainer from '../MessageContainer/messagecontainer';
+import { login } from '../utils/AuthService';
+import { cortexFetch } from '../utils/Cortex';
+import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import './purchase.order.widget.modal.less';
+import Modal from 'react-responsive-modal';
+import MessageContainer from '../MessageContainer/messagecontainer';
+import mockProductListLoadMoreFromSearchResponse from '../ProductListLoadmore/productlistloadmore.api.mocks';
+
+let Config: IEpConfig | any = {};
+
+interface PurchaseOrderWidgetModalState {
+  isLoading: boolean,
+  inputTextValue: string,
+  errorMessage: object,
+}
+
+interface PurchaseOrderWidgetModalProps {
+  openModal: boolean,
+  createPaymentInstrumentActionUri: string,
+  handleCloseModal: (...args: any[]) => any,
+}
+
+class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalProps, PurchaseOrderWidgetModalState> {
+  constructor(props) {
+    super(props);
+    const epConfig = getConfig();
+    this.state = {
+      // eslint-disable-next-line react/no-unused-state
+      isLoading: false,
+      inputTextValue: '',
+      errorMessage: {},
+    };
+    Config = epConfig.config;
+    this.createPOPaymentInstrument = this.createPOPaymentInstrument.bind(this);
+    this.updateInputState = this.updateInputState.bind(this);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  generatePOPaymentPostBody() {
+    const { inputTextValue } = this.state;
+
+    return {
+      'limit-amount': '0',
+      'payment-instrument-identification-form': {
+        'display-name': 'aDisplayName', // TODO: Need to create a displayName for the PO number here...
+        'purchase-order': inputTextValue,
+      },
+    };
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  createErrorMessageBody(postResultJson) {
+    if (postResultJson) {
+      const body = {
+        type: postResultJson.type,
+        debugMessages: postResultJson['debug-message'],
+        id: postResultJson.id,
+      };
+      return body;
+    }
+
+    return {};
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async createPOPaymentInstrument() {
+    const { createPaymentInstrumentActionUri, handleCloseModal } = this.props;
+    const { inputTextValue } = this.state;
+
+    const postResult = await cortexFetch(
+      '/paymentinstruments/paymentmethods/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/mvrtgmbrhbsdkljxgyygeljumi3tkljygjqtallggy3dinjrmm4dsztgmy=/paymentinstrument/form?followlocation',
+      {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'bearer 6abff108-c16a-4a1a-9139-470796744d3a',
+        },
+        body: JSON.stringify(this.generatePOPaymentPostBody()),
+      },
+    );
+
+    const postResultJson = await postResult.json();
+
+    if (postResult.status === 200 || postResult.status === 201) {
+      handleCloseModal();
+      this.setState({
+        isLoading: false,
+        errorMessage: postResultJson.messages ? this.createErrorMessageBody(postResultJson.messages[0]) : {},
+      });
+    } else {
+      this.setState({
+        isLoading: false,
+        errorMessage: postResultJson.messages ? this.createErrorMessageBody(postResultJson.messages[0]) : {},
+      });
+    }
+  }
+
+  updateInputState(event) {
+    const { errorMessage } = this.state;
+    if (errorMessage) {
+      this.setState({ inputTextValue: event.target.value, errorMessage: {} });
+    }
+    this.setState({ inputTextValue: event.target.value });
+  }
+
+  render() {
+    const { openModal, handleCloseModal } = this.props;
+    const { isLoading, errorMessage } = this.state;
+    const { inputTextValue } = this.state;
+
+    return (
+      <Modal open={openModal} onClose={handleCloseModal} classNames={{ modal: 'login-modal-content' }}>
+        <div className="modal-content" id="simplemodal-container">
+
+          <div className="modal-header">
+            <h2 className="modal-title">
+              Add Purchase Order
+            </h2>
+          </div>
+          <div className="modal-body">
+            <form id="login_modal_form">
+              <div className="purchase-order-widget-input-container">
+                <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} />
+              </div>
+              {!_.isEmpty(errorMessage)
+              && <MessageContainer message={[errorMessage]} />
+              }
+              <div className="form-group action-row">
+                {
+                  (isLoading) ? <div className="miniLoader" /> : ('')
+                }
+                <div className="form-input btn-container">
+                  <button className="ep-btn btn-auth-register" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={this.createPOPaymentInstrument}>
+                    {intl.get('save')}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </Modal>
+    );
+  }
+}
+
+export default PurchaseOrderWidgetModal;

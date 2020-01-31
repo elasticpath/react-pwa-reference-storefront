@@ -50,6 +50,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
       isSelectedPaymentInstrument: false,
       PONumber: '',
       orderPaymentData: {},
+      poModalOpen: false,
     };
     this.getChosenFromOrderData = this.getChosenFromOrderData.bind(this);
     this.renderPONumber = this.renderPONumber.bind(this);
