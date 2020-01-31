@@ -22,8 +22,15 @@
  @import './../../../theme/common.less';
 
 .purchase-order-widget-container {
-  border: 1px solid @mainBorderColor;
   padding: 20px;
+
+  &.unselected {
+    border: 1px solid @mainBorderColor;
+  }
+
+  &.selected {
+    border: 1px solid @firstComplimentColor;
+  }
   
   .view-button {
     border: none;
