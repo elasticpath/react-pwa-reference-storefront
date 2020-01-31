@@ -24,7 +24,7 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text } from '@storybook/addon-knobs/react';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
-import { mockPOPaymentInstrumentAvailableWithAnonUser, mockPOPaymentMethodNotAvailableWithAnonUser } from './purchase.order.widget.api.mocks';
+import { mockPOPaymentInstrumentAvailableWithAnonUser, mockPOPaymentMethodNotAvailableWithAnonUser, mockPOPaymentFormNoPaymentInstrument } from './purchase.order.widget.api.mocks';
 import PurchaseOrderWidget from './purchase.order.widget';
 
 storiesOf('Components|PurchaseOrderWidget', module)
@@ -37,9 +37,19 @@ storiesOf('Components|PurchaseOrderWidget', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('PO Payment Instrument Available', () => {
+  .add('PO Payment Instrument Selected', () => {
     // Should show the PO number available
     mockPOPaymentInstrumentAvailableWithAnonUser();
+
+    const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
+    return <PurchaseOrderWidget
+      timeoutBeforeVerify={1000}
+      onPayWithPO={() => { textToFunc(onPayWithPOFuncText); }}
+    />;
+  })
+  .add('PO Payment Method Available', () => {
+    // Should show the PO number available
+    mockPOPaymentFormNoPaymentInstrument();
 
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
     return <PurchaseOrderWidget
