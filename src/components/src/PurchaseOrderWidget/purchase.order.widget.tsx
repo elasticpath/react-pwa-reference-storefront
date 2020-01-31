@@ -26,6 +26,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './purchase.order.widget.less';
+import PurchaseOrderWidgetModal from '../PurchaseOrderWidgetModal/purchase.order.widget.modal';
 
 let Config: IEpConfig | any = {};
 
@@ -56,6 +57,9 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     this.renderPONumber = this.renderPONumber.bind(this);
     this.fetchPaymentOrderData = this.fetchPaymentOrderData.bind(this);
     this.doesPayWithPOMethodExist = this.doesPayWithPOMethodExist.bind(this);
+    this.getPOPaymentMethodUri = this.getPOPaymentMethodUri.bind(this);
+    this.getPOMethodInfoFromOrderData = this.getPOMethodInfoFromOrderData.bind(this);
+    this.renderModal = this.renderModal.bind(this);
   }
 
   async componentDidMount() {
@@ -65,9 +69,15 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
 
   // eslint-disable-next-line class-methods-use-this
   doesPayWithPOMethodExist() {
+    if (this.getPOMethodInfoFromOrderData) {
+      return true;
+    }
+    return false;
+  }
+
+  getPOMethodInfoFromOrderData() {
     const { orderPaymentData } = this.state;
     let paymentMethodInfoElems;
-    console.log(orderPaymentData);
     if (orderPaymentData != null) {
       try {
         paymentMethodInfoElems = orderPaymentData._defaultcart[0]._order[0]._paymentmethodinfo[0]._element;
@@ -89,6 +99,15 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     return undefined;
   }
 
+  // eslint-disable-next-line consistent-return
+  getPOPaymentMethodUri() {
+    const POMethodInfo = this.getPOMethodInfoFromOrderData();
+    if (POMethodInfo) {
+      console.log(POMethodInfo._paymentinstrumentform[0].links[0].uri);
+      return POMethodInfo._paymentinstrumentform[0].links[0].uri;
+    }
+  }
+
   // Will fetch all the information and will make an internal front end representation...
   // eslint-disable-next-line class-methods-use-this
   async fetchPaymentOrderData() {
@@ -108,11 +127,6 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     this.setState({ orderPaymentData });
   }
 
-  // // onLoad we need to check if PONumber has been selected for payment...
-  // hasPONumberBeenSelected() {
-  //   // TODO: We use the zoomArray
-  //   // Find whether it has been selected or not...
-  // }
   getChosenFromOrderData() {
     const { orderPaymentData } = this.state;
     let chosenPaymentMethod;
@@ -150,12 +164,16 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     return purchaseOrder;
   }
 
+  handleCloseModal() {
+    this.setState({ poModalOpen: false });
+  }
+
   renderModal() {
-    // This should be split out into its own component.
     this.setState({ poModalOpen: true });
   }
 
   render() {
+    const { poModalOpen } = this.state;
     if (this.doesPayWithPOMethodExist() !== undefined) {
       return (
         <div>
@@ -171,7 +189,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
             </button>
           </div>
           <div>
-            {/* TODO: Need to place the modal here... */}
+            <PurchaseOrderWidgetModal openModal={poModalOpen} createPaymentInstrumentActionUri={this.getPOPaymentMethodUri()} handleCloseModal={this.handleCloseModal} />
           </div>
         </div>);
     }
