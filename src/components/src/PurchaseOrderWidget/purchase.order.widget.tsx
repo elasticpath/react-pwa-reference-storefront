@@ -92,7 +92,6 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
 
   getPOMethodInfoFromOrderData() {
     const { orderPaymentData } = this.state;
-    // console.log(orderPaymentData);
     let paymentMethodInfoElems;
     if (orderPaymentData != null) {
       try {
@@ -147,8 +146,6 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     // eslint-disable-next-line no-empty
     } catch (err) {
     }
-    console.log('chosenPaymentMethod');
-    console.log(chosenPaymentMethod);
     return chosenPaymentMethod;
   }
 

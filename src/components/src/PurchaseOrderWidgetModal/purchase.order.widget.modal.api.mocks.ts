@@ -19,8 +19,6 @@
  *
  */
 import fetchMock from 'fetch-mock/es5/client';
-import fetchPaymentOrderDataResponse from './MockHttpResponses/GET/fetch_payment_order_data_response.json';
-import fetchPaymentOrderDataNoPOResponse from './MockHttpResponses/GET/fetch_payment_order_data_no_po_response.json';
 import poPaymentCreationSuccess from './MockHttpResponses/POST/po_payment_creation_success.json';
 import nameMustNotBeBlankError from './MockHttpResponses/POST/name_must_not_be_blank_error.json';
 import poMustNotBeBlankError from './MockHttpResponses/POST/po_must_not_be_blank_error.json';
@@ -30,9 +28,12 @@ import { mockAnonLoginResponse, mockRegisteredLoginResponse } from '../utils/Moc
 function mockFetchPostToCreatePoPaymentInstrumentSuccess(mockObj) {
   mockObj.post(
     /(.*)\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
-    poPaymentCreationSuccess,
     {
-      status: 200,
+      body: poPaymentCreationSuccess,
+      status: 201,
+    },
+    {
+      status: 201,
       delay: 1000, // fake a slow network
     },
   );
@@ -41,7 +42,10 @@ function mockFetchPostToCreatePoPaymentInstrumentSuccess(mockObj) {
 function mockPaymentInstrumentFormActionFailure(mockObj) {
   mockObj.post(
     /(.*)\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
-    nameMustNotBeBlankError,
+    {
+      body: nameMustNotBeBlankError,
+      status: 404,
+    },
     {
       delay: 1000, // fake a slow network
     },
@@ -51,8 +55,12 @@ function mockPaymentInstrumentFormActionFailure(mockObj) {
 function mockPaymentInstrumentFormActionPOFailure(mockObj) {
   mockObj.post(
     /(.*)\/cortex\/paymentinstruments\/paymentmethods\/(orders|profiles)\/(.*)\/form/,
-    poMustNotBeBlankError,
     {
+      body: poMustNotBeBlankError,
+      status: 404,
+    },
+    {
+      status: 404,
       delay: 1000, // fake a slow network
     },
   );

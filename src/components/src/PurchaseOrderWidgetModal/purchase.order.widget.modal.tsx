@@ -108,10 +108,6 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
 
     if (postResult.status === 200 || postResult.status === 201) {
       handleCloseModal();
-      this.setState({
-        isLoading: false,
-        errorMessage: postResultJson.messages ? this.createErrorMessageBody(postResultJson.messages[0]) : {},
-      });
     } else {
       this.setState({
         isLoading: false,
