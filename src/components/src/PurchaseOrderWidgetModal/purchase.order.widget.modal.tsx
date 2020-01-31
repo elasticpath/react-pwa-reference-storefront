@@ -93,12 +93,12 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     const { inputTextValue } = this.state;
 
     const postResult = await cortexFetch(
-      '/paymentinstruments/paymentmethods/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/mvrtgmbrhbsdkljxgyygeljumi3tkljygjqtallggy3dinjrmm4dsztgmy=/paymentinstrument/form?followlocation',
+      createPaymentInstrumentActionUri,  // Might need to append followlocation to this uri...
       {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'bearer 6abff108-c16a-4a1a-9139-470796744d3a',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
         body: JSON.stringify(this.generatePOPaymentPostBody()),
       },
