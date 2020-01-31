@@ -31,10 +31,9 @@ import PurchaseOrderWidgetModal from '../PurchaseOrderWidgetModal/purchase.order
 let Config: IEpConfig | any = {};
 
 interface PurchaseOrderWidgetState {
-  isSelectedPaymentInstrument: boolean,
-  PONumber: string,
   orderPaymentData: any,
   poModalOpen: boolean,
+  isChosen: boolean,
 }
 
 interface PurchaseOrderWidgetProps {
@@ -43,13 +42,13 @@ interface PurchaseOrderWidgetProps {
 }
 
 class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, PurchaseOrderWidgetState> {
+
   constructor(props) {
     super(props);
     const epConfig = getConfig();
     Config = epConfig.config;
     this.state = {
-      isSelectedPaymentInstrument: false,
-      PONumber: '',
+      isChosen: false,
       orderPaymentData: {},
       poModalOpen: false,
     };
@@ -60,16 +59,26 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     this.getPOPaymentMethodUri = this.getPOPaymentMethodUri.bind(this);
     this.getPOMethodInfoFromOrderData = this.getPOMethodInfoFromOrderData.bind(this);
     this.renderModal = this.renderModal.bind(this);
+    this.initializeIsChosen = this.initializeIsChosen.bind(this);
   }
 
   async componentDidMount() {
-    console.log('componentdidupdate is running');
-    const a = await this.fetchPaymentOrderData();
+    const orderPaymentData = await this.fetchPaymentOrderData();
+    this.initializeIsChosen(orderPaymentData);
+    this.setState({ orderPaymentData });
+  }
+
+  initializeIsChosen(orderPaymentData) {
+    if (this.getChosenFromOrderData(orderPaymentData) !== undefined) {
+      this.setState({ isChosen: true });
+    } else {
+      this.setState({ isChosen: false });
+    }
   }
 
   // eslint-disable-next-line class-methods-use-this
   doesPayWithPOMethodExist() {
-    if (this.getPOMethodInfoFromOrderData) {
+    if (this.getPOMethodInfoFromOrderData() !== undefined) {
       return true;
     }
     return false;
@@ -77,6 +86,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
 
   getPOMethodInfoFromOrderData() {
     const { orderPaymentData } = this.state;
+    // console.log(orderPaymentData);
     let paymentMethodInfoElems;
     if (orderPaymentData != null) {
       try {
@@ -89,7 +99,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     if (paymentMethodInfoElems) {
       return paymentMethodInfoElems.find((e) => {
         const purchaseOrder = e._paymentinstrumentform[0]['payment-instrument-identification-form']['purchase-order'];
-        if (purchaseOrder === '') {
+        if (typeof purchaseOrder === 'string') {
           return true;
         }
         return false;
@@ -103,17 +113,12 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
   getPOPaymentMethodUri() {
     const POMethodInfo = this.getPOMethodInfoFromOrderData();
     if (POMethodInfo) {
-      console.log(POMethodInfo._paymentinstrumentform[0].links[0].uri);
       return POMethodInfo._paymentinstrumentform[0].links[0].uri;
     }
   }
 
-  // Will fetch all the information and will make an internal front end representation...
   // eslint-disable-next-line class-methods-use-this
   async fetchPaymentOrderData() {
-    console.log('fetchOrderPayment is running');
-    // We are going to fetch PO number info...
-    // We are going to see whether we have a payment method available and see if it has been selected...
     const orderZoomArray = [
       'defaultcart:order:paymentinstrumentselector:choice:description',
       'defaultcart:order:paymentinstrumentselector:chosen:description',
@@ -124,17 +129,17 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     const fetchedDataProm = await cortexFetch(`/?zoom=${orderZoomArray.sort().join()}`);
     const orderPaymentData = await fetchedDataProm.json();
 
-    this.setState({ orderPaymentData });
+    return orderPaymentData;
   }
 
-  getChosenFromOrderData() {
-    const { orderPaymentData } = this.state;
+  // eslint-disable-next-line class-methods-use-this
+  getChosenFromOrderData(orderPaymentData) {
     let chosenPaymentMethod;
 
     try {
       chosenPaymentMethod = orderPaymentData._defaultcart[0]._order[0]._paymentinstrumentselector[0]._chosen;
+    // eslint-disable-next-line no-empty
     } catch (err) {
-      console.warn('unable to find chosen payment method');
     }
 
     return chosenPaymentMethod;
@@ -142,23 +147,15 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
 
   renderPONumber() {
     const { orderPaymentData } = this.state;
-    // this will find the po number from the paywithPO
-    // We need to look for the chosen value here...
-
-    const chosen = this.getChosenFromOrderData();
+    const chosen = this.getChosenFromOrderData(orderPaymentData);
 
     let purchaseOrder;
 
     try {
       purchaseOrder = chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'];
     // eslint-disable-next-line no-empty
-    } catch(err) {
-    }
+    } catch (err) {
 
-    if (purchaseOrder) {
-      return (
-        <h2>{purchaseOrder}</h2>
-      );
     }
 
     return purchaseOrder;
@@ -173,11 +170,11 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
   }
 
   render() {
-    const { poModalOpen } = this.state;
-    if (this.doesPayWithPOMethodExist() !== undefined) {
+    const { poModalOpen, isChosen } = this.state;
+    if (this.doesPayWithPOMethodExist()) {
       return (
         <div>
-          <div className="purchase-order-widget-container">
+          <div className={`purchase-order-widget-container ${isChosen ? 'selected' : 'unselected'}`}>
             <div className="purchase-order-widget-top">
               <h2>
                 { intl.get('purchase-order') }
