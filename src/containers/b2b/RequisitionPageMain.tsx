@@ -348,12 +348,12 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 <button
                   type="button"
                   className="dropdown-item"
-                  key={cart._target[0]._descriptor[0].name}
-                  id={`product_display_item_sku_option_${cart._target[0]._descriptor[0].name}`}
-                  value={cart._target[0]._descriptor[0].name}
+                  key={cart._target && cart._target[0]._descriptor[0].name}
+                  id={`product_display_item_sku_option_${cart._target && cart._target[0]._descriptor[0].name}`}
+                  value={cart._target && cart._target[0]._descriptor[0].name}
                   onClick={() => { this.handleAddToSelectedCart(cart); }}
                 >
-                  {cart._target[0]._descriptor[0].name}
+                  {cart._target && cart._target[0]._descriptor[0].name}
                 </button>
               )) : ''}
             </ul>
@@ -387,14 +387,16 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   handleAddToSelectedCart(cart) {
-    const { selectedProducts } = this.state;
+    const { selectedProducts, productsData } = this.state;
+    const products = productsData && productsData._element ? productsData._element : [];
+
     let cartUrl = cart._additemlisttocartaction[0].self.uri;
     const body: { items?: any[] } = {};
     if (selectedProducts) {
       cartUrl = cart._target[0]._additemstocartform[0].self.uri;
       body.items = [];
     }
-    const arrayItems = selectedProducts
+    const arrayItems = (selectedProducts.length > 0 ? selectedProducts : products)
       .filter(item => item.code !== '')
       .map(item => ({ code: item._item[0]._code[0].code, quantity: item.quantity }));
     body.items = arrayItems;
@@ -536,7 +538,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                   </div>
                 </div>
                 {products.map(product => (
-                  <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                  <CartLineItem handleQuantityChange={() => this.loadRequisitionListData(true)} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
                 ))}
               </div>
             )}

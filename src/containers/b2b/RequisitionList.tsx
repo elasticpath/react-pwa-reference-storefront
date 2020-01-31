@@ -262,7 +262,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         </h6>
         <div className="cart-selection-menu-wrap">
           {multiCartData.map((cart) => {
-            const name = cart._target[0]._descriptor[0].name || intl.get('default');
+            const name = (cart._target && cart._target[0]._descriptor[0].name) || intl.get('default');
             return (
               <button type="button" className="dropdown-item cart-selection-menu-item" key={name} onClick={() => this.addToSelectedCart(cart)}>
                 {name}
