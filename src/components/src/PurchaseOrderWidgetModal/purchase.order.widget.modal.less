@@ -21,98 +21,80 @@
 
  @import './../../../theme/common.less';
 
-.purchase-order-widget-container {
-  border: 1px solid @mainBorderColor;
-  padding: 20px;
-  
-  .view-button {
+.purchase-order-widget-modal-input-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.po-modal-content {
+  min-width: 500px;
+
+  #po_modal_form {
+    span {
+      display: inline-block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-control {
+      display: inline-block;
+      height: 34px;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: #555555;
+      border: 1px solid @secondBorderColor;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      background: @secondComplimentBackground none repeat scroll 0 0;
+    }
+
+    .form-control:focus {
+      background: @mainBackgroundColor none repeat scroll 0 0;
+    }
+  }
+
+  .modal-content {
+    background-color: @mainBackgroundColor;
     border: none;
   }
 
-  .inactive {
-    color: @firstComplimentTextColor;
+  .form-input.btn-container {
+    padding-top: 15px;
   }
 
-  .active {
-    color: @buttonActiveColor;
-
-    &:hover {
-      color: @buttonFocusColor;
-    }
-  }
-  
-  .purchase-order-widget-top {
-    display: column;
-  }
-  
-  .pay-with-po-btn {
-    margin-top: 45px;
+  .form-container {
+    margin: auto 30px;
+    text-align: center;
   }
 
-  .form-control {
-    display: block;
-    height: 34px;
-    padding: 6px 12px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #555555;
-    background-color: @mainBackgroundColor;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  .panel {
+    margin-bottom: 10%
   }
+}
 
-  .purchase-order-widget-input-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .inputLoader-container {
-    position: absolute;
-    margin-top:2px;
-    right: 30px;
-  }
-
-  .checkmark {
+.po-modal-content {
+  .form-group {
     position: relative;
-    margin-top: 10px;
-    width: 18px;
-    height: 18px;
-    background-color: #FFFFFF;
-
-    &.chosen {
-      &:before {
-        content: "";
-        position: absolute;
-        top: 10px;
-        width: 12px;
-        height: 7px;
-        border: solid 2px #6dd401;
-        border-right: none;
-        border-top: none;
-        transform: translate(2px, 1px) rotate(-45deg);
-      }
+  }
+  .label-link {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    &:hover {
+      color: #0056b3;
+      text-decoration: underline;
     }
   }
+}
 
-  .inputLoader {
-    border: 3px solid @firstComplimentBackground;
-    border-top: 3px solid @secondComplimentColor;
-    width: 20px;
-    height: 20px !important;
-    border-radius: 80%;
-    animation: spin 0.5s linear infinite;
-    margin: 0 auto;
-    margin-top: 15px;
+@media (max-width: @mobileWidth - 1) {
+  .po-modal-content {
+    height: 100%;
+    min-width: 100%;
   }
-
-  .close-btn {
-    display: none
-  }
-
-  
 }

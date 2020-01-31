@@ -22,14 +22,11 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import _ from 'lodash';
-import Messagecontainer from '../MessageContainer/messagecontainer';
-import { login } from '../utils/AuthService';
+import Modal from 'react-responsive-modal';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './purchase.order.widget.modal.less';
-import Modal from 'react-responsive-modal';
 import MessageContainer from '../MessageContainer/messagecontainer';
-import mockProductListLoadMoreFromSearchResponse from '../ProductListLoadmore/productlistloadmore.api.mocks';
 
 let Config: IEpConfig | any = {};
 
@@ -130,7 +127,7 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     const { inputTextValue } = this.state;
 
     return (
-      <Modal open={openModal} onClose={handleCloseModal} classNames={{ modal: 'login-modal-content' }}>
+      <Modal open={openModal} onClose={handleCloseModal} classNames={{ modal: 'po-modal-content' }}>
         <div className="modal-content" id="simplemodal-container">
 
           <div className="modal-header">
@@ -139,13 +136,13 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
             </h2>
           </div>
           <div className="modal-body">
-            <form id="login_modal_form">
-              <div className="purchase-order-widget-input-container">
+            <form id="po_modal_form">
+              <div className="purchase-order-widget-modal-input-container">
                 <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} />
+                {!_.isEmpty(errorMessage)
+                && <MessageContainer message={[errorMessage]} />
+                }
               </div>
-              {!_.isEmpty(errorMessage)
-              && <MessageContainer message={[errorMessage]} />
-              }
               <div className="form-group action-row">
                 {
                   (isLoading) ? <div className="miniLoader" /> : ('')
