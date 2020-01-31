@@ -105,6 +105,7 @@ interface RequisitionPageMainState {
   selectedProducts: any,
   addItemsToItemListUri: string,
   showCreateListLoader: boolean,
+  addToCartLoader: boolean,
 }
 
 class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageMainProps>, RequisitionPageMainState> {
@@ -125,6 +126,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       selectedProducts: [],
       addItemsToItemListUri: '',
       showCreateListLoader: false,
+      addToCartLoader: false,
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
@@ -140,6 +142,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddToSelectedCart = this.handleAddToSelectedCart.bind(this);
     this.loadRequisitionListData = this.loadRequisitionListData.bind(this);
+    this.handleUpdateSelectedItem = this.handleUpdateSelectedItem.bind(this);
   }
 
   componentDidMount() {
@@ -175,6 +178,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 currentlyListName: res.name,
                 productsData: res._lineitems[0],
               });
+              this.handleUpdateSelectedItem();
             }
             this.setState({ isLoading: false });
           });
@@ -214,6 +218,12 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     } else {
       this.setState({ selectedProducts: [...selectedProducts, product] });
     }
+  }
+
+  handleUpdateSelectedItem() {
+    const { selectedProducts, productsData } = this.state;
+    const updatedItems = selectedProducts.map(element => productsData._element.find(item => item.self.uri === element.self.uri));
+    this.setState({ selectedProducts: updatedItems });
   }
 
   handleBulkEdit() {
@@ -328,7 +338,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   renderDropdownMenu() {
-    const { multiCartData } = this.state;
+    const { multiCartData, addToCartLoader } = this.state;
     return (
       <div className="add-to-cart-dropdown">
         <div className="dropdown-sort-field">
@@ -341,7 +351,10 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
               aria-haspopup="true"
               aria-expanded="false"
             >
-              {intl.get('add-to-cart-2')}
+              {addToCartLoader ? (
+                <div className="miniLoader" />
+              ) : intl.get('add-to-cart-2')
+              }
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {(multiCartData.length) ? multiCartData.map(cart => (
@@ -387,6 +400,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   handleAddToSelectedCart(cart) {
+    this.setState({ addToCartLoader: true });
     const { selectedProducts, productsData } = this.state;
     const products = productsData && productsData._element ? productsData._element : [];
 
@@ -415,11 +429,11 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       })
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          this.setState({ selectedProducts: [], multiSelectMode: false });
+          this.setState({ selectedProducts: [], multiSelectMode: false, addToCartLoader: false });
         }
       })
       .catch((error) => {
-        this.setState({ isLoading: false });
+        this.setState({ isLoading: false, addToCartLoader: false });
         // eslint-disable-next-line no-console
         console.error(error.message);
       });
@@ -538,7 +552,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                   </div>
                 </div>
                 {products.map(product => (
-                  <CartLineItem handleQuantityChange={() => this.loadRequisitionListData(true)} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                  <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
                 ))}
               </div>
             )}
