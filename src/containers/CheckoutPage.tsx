@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, AddressFormMain, PaymentSelectorMain,
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, AddressFormMain, PaymentSelectorMain, PurchaseOrderWidget,
 } from '../components/src/index';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -686,6 +686,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                         {this.renderPaymentSelector()}
                       </div>
                     </div>
+                  </div>
+                  <div className="profile-info-col">
+                    <PurchaseOrderWidget timeoutBeforeVerify={1000} />
                   </div>
                 </div>
               </div>
