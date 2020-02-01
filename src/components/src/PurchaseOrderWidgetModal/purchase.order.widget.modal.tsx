@@ -55,6 +55,7 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     Config = epConfig.config;
     this.createPOPaymentInstrument = this.createPOPaymentInstrument.bind(this);
     this.updateInputState = this.updateInputState.bind(this);
+    this.handleCloseMessageContainer = this.handleCloseMessageContainer.bind(this);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -64,7 +65,7 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     return {
       'limit-amount': '0',
       'payment-instrument-identification-form': {
-        'display-name': 'aDisplayName', // TODO: Need to create a displayName for the PO number here...
+        'display-name': 'aDisplayName',
         'purchase-order': inputTextValue,
       },
     };
@@ -90,7 +91,7 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     const { inputTextValue } = this.state;
 
     const postResult = await cortexFetch(
-      createPaymentInstrumentActionUri,  // Might need to append followlocation to this uri...
+      createPaymentInstrumentActionUri,
       {
         method: 'post',
         headers: {
@@ -121,6 +122,10 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     this.setState({ inputTextValue: event.target.value });
   }
 
+  handleCloseMessageContainer() {
+    this.setState({ errorMessage: {} });
+  }
+
   render() {
     const { openModal, handleCloseModal } = this.props;
     const { isLoading, errorMessage } = this.state;
@@ -140,7 +145,7 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
               <div className="purchase-order-widget-modal-input-container">
                 <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} />
                 {!_.isEmpty(errorMessage)
-                && <MessageContainer message={[errorMessage]} />
+                && <MessageContainer message={[errorMessage]} handleCloseMessageContainer={this.handleCloseMessageContainer} />
                 }
               </div>
               <div className="form-group action-row">
