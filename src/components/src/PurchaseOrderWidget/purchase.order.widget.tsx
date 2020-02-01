@@ -38,7 +38,6 @@ interface PurchaseOrderWidgetState {
 
 interface PurchaseOrderWidgetProps {
   timeoutBeforeVerify: number,
-  onPayWithPO: (...args: any[]) => any,
 }
 
 class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, PurchaseOrderWidgetState> {
@@ -59,27 +58,35 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     this.getPOPaymentMethodUri = this.getPOPaymentMethodUri.bind(this);
     this.getPOMethodInfoFromOrderData = this.getPOMethodInfoFromOrderData.bind(this);
     this.renderModal = this.renderModal.bind(this);
-    this.initializeIsChosen = this.initializeIsChosen.bind(this);
+    this.initializeStateFromOrderPayment = this.initializeStateFromOrderPayment.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   async componentDidMount() {
     const orderPaymentData = await this.fetchPaymentOrderData();
-    this.initializeIsChosen(orderPaymentData);
-    this.setState({ orderPaymentData });
+    this.initializeStateFromOrderPayment(orderPaymentData);
   }
 
-  initializeIsChosen(orderPaymentData) {
+  async componentDidUpdate(prevState) {
+    const { poModalOpen } = this.state;
+    if (prevState.poModalOpen !== poModalOpen) {
+      const orderPaymentData = await this.fetchPaymentOrderData();
+      this.initializeStateFromOrderPayment(orderPaymentData);
+    }
+  }
+
+  initializeStateFromOrderPayment(orderPaymentData) {
     const chosen = this.getChosenFromOrderData(orderPaymentData);
 
     if (chosen !== undefined) {
       const purchaseOrder = chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'];
       if (purchaseOrder !== undefined) {
-        this.setState({ isChosen: true });
+        this.setState({ isChosen: true, orderPaymentData });
         return;
       }
     }
 
-    this.setState({ isChosen: false });
+    this.setState({ isChosen: false, orderPaymentData });
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -131,10 +138,24 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
       'defaultcart:order:paymentmethodinfo:element:paymentinstrumentform',
     ];
 
-    const fetchedDataProm = await cortexFetch(`/?zoom=${orderZoomArray.sort().join()}`);
-    const orderPaymentData = await fetchedDataProm.json();
+    try {
+      const fetchedDataProm = await cortexFetch(
+        `/?zoom=${orderZoomArray.sort().join()}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        },
+      );
+      const orderPaymentData = await fetchedDataProm.json();
 
-    return orderPaymentData;
+      return orderPaymentData;
+    } catch (err) {
+      console.log(err);
+    }
+
+    return null;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -188,7 +209,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
               </h2>
             </div>
             <button className="ep-btn primary wide pay-with-po-btn" disabled={false} type="button" onClick={this.renderModal}>
-              { intl.get('pay-with-po') }
+              { intl.get('add-po') }
             </button>
           </div>
           <div>

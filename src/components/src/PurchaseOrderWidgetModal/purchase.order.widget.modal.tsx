@@ -91,7 +91,7 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     const { inputTextValue } = this.state;
 
     const postResult = await cortexFetch(
-      createPaymentInstrumentActionUri,
+      `${createPaymentInstrumentActionUri}/?followlocation=true`,
       {
         method: 'post',
         headers: {
