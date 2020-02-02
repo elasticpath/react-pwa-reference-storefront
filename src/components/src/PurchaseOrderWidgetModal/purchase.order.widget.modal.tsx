@@ -132,33 +132,34 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
     const { inputTextValue } = this.state;
 
     return (
-      <Modal open={openModal} onClose={handleCloseModal} classNames={{ modal: 'po-modal-content' }}>
-        <div className="modal-content" id="simplemodal-container">
-
-          <div className="modal-header">
-            <h2 className="modal-title">
-              Add Purchase Order
-            </h2>
-          </div>
-          <div className="modal-body">
-            <form id="po_modal_form">
-              <div className="purchase-order-widget-modal-input-container">
-                <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} />
-                {!_.isEmpty(errorMessage)
-                && <MessageContainer message={[errorMessage]} handleCloseMessageContainer={this.handleCloseMessageContainer} />
-                }
-              </div>
-              <div className="form-group action-row">
-                {
-                  (isLoading) ? <div className="miniLoader" /> : ('')
-                }
-                <div className="form-input btn-container">
-                  <button className="ep-btn btn-auth-register" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={this.createPOPaymentInstrument}>
-                    {intl.get('save')}
-                  </button>
+      <Modal open={openModal} onClose={handleCloseModal}>
+        <div className="modal-lg po-modal-container">
+          <div className="po-modal-content">
+            <div className="modal-header">
+              <h2 className="modal-title">
+                Add Purchase Order
+              </h2>
+            </div>
+            <div className="modal-body">
+              <form id="po_modal_form">
+                <div className="purchase-order-widget-modal-input-container">
+                  <input value={inputTextValue} className="form-control" type="text" placeholder="Enter Purchase Order Number (PO)" onChange={this.updateInputState} />
+                  {!_.isEmpty(errorMessage)
+                  && <MessageContainer message={[errorMessage]} handleCloseMessageContainer={this.handleCloseMessageContainer} />
+                  }
                 </div>
-              </div>
-            </form>
+                <div className="form-group action-row">
+                  {
+                    (isLoading) ? <div className="miniLoader" /> : ('')
+                  }
+                  <div className="form-input btn-container">
+                    <button className="ep-btn btn-auth-register" id="login_modal_register_button" data-toggle="collapse" data-target=".navbar-collapse" type="button" onClick={this.createPOPaymentInstrument}>
+                      {intl.get('save')}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </Modal>

@@ -22,14 +22,48 @@
  @import './../../../theme/common.less';
 
 .purchase-order-widget-modal-input-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid @secondBorderColor;
+  border-top: 1px solid @secondBorderColor;
+}
+
+.po-modal-container {
+  width: ~'calc(100vw - 4.8rem)';
+
+  @media screen and (min-width: 681px) {
+    width: 580px;
+  }
+  .modal-header {
+    padding: 10px 20px;
+    border-bottom: none;
+  }
+  .modal-body {
+    padding: 0 10px;
+  }
+  .modal-content {
+    border: none;
+  }
+  +button {
+    top: 25px;
+    right: 27px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 .po-modal-content {
   min-width: 500px;
 
+  .modal-header {
+    padding: 10px 20px;
+    border-bottom: none;
+  }
+  
   #po_modal_form {
+    
     span {
       display: inline-block;
       margin-bottom: 5px;
