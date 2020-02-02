@@ -44,7 +44,6 @@ storiesOf('Components|PurchaseOrderWidget', module)
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
     return <PurchaseOrderWidget
       timeoutBeforeVerify={1000}
-      onPayWithPO={() => { textToFunc(onPayWithPOFuncText); }}
     />;
   })
   .add('PO Payment Method Available', () => {
@@ -54,7 +53,6 @@ storiesOf('Components|PurchaseOrderWidget', module)
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
     return <PurchaseOrderWidget
       timeoutBeforeVerify={1000}
-      onPayWithPO={() => { textToFunc(onPayWithPOFuncText); }}
     />;
   })
   .add('PO Payment Method N/A', () => {
@@ -64,6 +62,5 @@ storiesOf('Components|PurchaseOrderWidget', module)
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
     return <PurchaseOrderWidget
       timeoutBeforeVerify={1000}
-      onPayWithPO={() => { textToFunc(onPayWithPOFuncText); }}
     />;
   });
