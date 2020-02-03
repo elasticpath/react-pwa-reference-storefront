@@ -301,7 +301,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-          body: JSON.stringify({ name: listName }),
+          body: JSON.stringify({ itemListName: listName }),
         })
           .then(() => {
             this.setState({
@@ -510,10 +510,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 </div>
               )}
               <div className="product-pagination">
-                {() => {
-                  if (isPageLoading) return (<div className="miniLoader" />);
-                  return '';
-                }}
+                {isPageLoading ? (<div className="miniLoader" />) : ''}
                 <button type="button" className="pagination-btn prev-btn" onClick={() => { this.handlePagination(productsData._previous); }} disabled={!(productsData && productsData._previous)}>
                   <ArrowLeft className="arrow-left-icon" />
                 </button>

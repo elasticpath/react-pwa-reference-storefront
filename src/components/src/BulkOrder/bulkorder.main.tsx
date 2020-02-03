@@ -382,7 +382,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
       }, 3200);
     };
     const { multiCartData } = this.state;
-    if (multiCartData && multiCartData._carts) {
+    if (multiCartData && multiCartData._carts && multiCartData._carts[0]._element) {
       return (
         <ul className="cart-selection-dropdown">
           {multiCartData._carts[0]._element.map(cart => (
