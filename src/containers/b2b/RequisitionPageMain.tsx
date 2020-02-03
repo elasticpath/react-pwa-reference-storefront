@@ -341,7 +341,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     const { multiCartData, addToCartLoader } = this.state;
     return (
       <div className="add-to-cart-dropdown">
-        <div className="dropdown-sort-field">
+        <div className="dropdown-add-to-cart-field">
           <div className="dropdown">
             <button
               className="btn btn-secondary dropdown-toggle"
@@ -400,43 +400,41 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   handleAddToSelectedCart(cart) {
-    this.setState({ addToCartLoader: true });
     const { selectedProducts, productsData } = this.state;
-    const products = productsData && productsData._element ? productsData._element : [];
+    if (productsData && productsData._element) {
+      this.setState({ addToCartLoader: true });
+      const products = productsData && productsData._element ? productsData._element : [];
 
-    let cartUrl = cart._additemlisttocartaction[0].self.uri;
-    const body: { items?: any[] } = {};
-    if (selectedProducts) {
-      cartUrl = cart._target[0]._additemstocartform[0].self.uri;
-      body.items = [];
+      let cartUrl = cart._additemlisttocartaction[0].self.uri;
+      const body: { items?: any[] } = {};
+      if (selectedProducts && selectedProducts.length) {
+        cartUrl = cart._target[0]._additemstocartform[0].self.uri;
+        body.items = [];
+        const arrayItems = (selectedProducts.length > 0 ? selectedProducts : products)
+          .filter(item => item.code !== '')
+          .map(item => ({ code: item._item[0]._code[0].code, quantity: item.quantity }));
+        body.items = arrayItems;
+      }
+      cortexFetch(cartUrl,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: body.items ? JSON.stringify(body) : '{}',
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            this.setState({ selectedProducts: [], multiSelectMode: false, addToCartLoader: false });
+          }
+        })
+        .catch((error) => {
+          this.setState({ isLoading: false, addToCartLoader: false });
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     }
-    const arrayItems = (selectedProducts.length > 0 ? selectedProducts : products)
-      .filter(item => item.code !== '')
-      .map(item => ({ code: item._item[0]._code[0].code, quantity: item.quantity }));
-    body.items = arrayItems;
-    let totalQuantity = 0;
-    arrayItems.forEach((item) => {
-      totalQuantity += item.quantity;
-    });
-    cortexFetch(cartUrl,
-      {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-        body: body.items ? JSON.stringify(body) : undefined,
-      })
-      .then((res) => {
-        if (res.status === 200 || res.status === 201) {
-          this.setState({ selectedProducts: [], multiSelectMode: false, addToCartLoader: false });
-        }
-      })
-      .catch((error) => {
-        this.setState({ isLoading: false, addToCartLoader: false });
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
   }
 
   render() {
@@ -549,7 +547,9 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                   </div>
                 </div>
                 {products.map(product => (
-                  <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                  product._item
+                    ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                    : ''
                 ))}
               </div>
             )}

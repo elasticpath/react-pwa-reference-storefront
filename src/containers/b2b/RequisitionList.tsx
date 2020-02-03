@@ -107,7 +107,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         })
           .then(res => res.json())
           .then((res) => {
-            if (res._itemlistinfo[0] && res._itemlistinfo[0]._allitemlists[0]) {
+            if (res._itemlistinfo[0] && res._itemlistinfo[0] && res._itemlistinfo[0]._allitemlists[0]) {
               this.setState({
                 requisitionElements: res._itemlistinfo[0]._allitemlists[0]._element || [],
                 createRequisitionForm: res._itemlistinfo[0]._allitemlists[0]._createitemlistform[0],
