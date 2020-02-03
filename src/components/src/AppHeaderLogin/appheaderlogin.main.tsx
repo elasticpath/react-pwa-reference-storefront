@@ -293,7 +293,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       })
         .then(r => r.json())
         .then((res) => {
-          this.setState({ showRequisitionListsLink: Boolean() });
           if (res && res._itemlistinfo) {
             this.setState({ showRequisitionListsLink: true });
           }
