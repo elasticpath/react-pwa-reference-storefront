@@ -569,9 +569,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
   renderPaymentSelector() {
     const { profileData } = this.state;
 
-    return profileData._paymentmethods ? (
+    return (
       <ProfilePaymentMethodsMain
-        paymentMethods={profileData._paymentmethods[0]}
+        paymentMethods={profileData._paymentmethods ? profileData._paymentmethods[0] : undefined}
         paymentInstruments={profileData._paymentinstruments ? profileData._paymentinstruments[0] : undefined}
         onChange={() => {
           this.fetchProfileData();
@@ -579,7 +579,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         }}
         disableAddPayment={false}
       />
-    ) : null;
+    );
   }
 
   render() {

@@ -47,17 +47,47 @@ interface ProfilePaymentMethodsMainProps {
 }
 interface ProfilePaymentMethodsMainState {
     openNewPaymentModal: boolean
+  paymentInstrumentsAvailable?: boolean;
 }
 class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps, ProfilePaymentMethodsMainState> {
   constructor(props) {
     super(props);
     this.state = {
       openNewPaymentModal: false,
+      paymentInstrumentsAvailable: undefined,
     };
     const epConfig = getConfig();
     Config = epConfig.config;
     ({ intl } = epConfig);
     this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
+  }
+
+  componentDidMount() {
+    login().then(() => {
+      cortexFetch('/?zoom=defaultcart:order:paymentinstrumentselector', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(r => r.json())
+        .then((res) => {
+          this.setState({
+            paymentInstrumentsAvailable: !!(
+              res._defaultcart
+              && res._defaultcart[0]
+              && res._defaultcart[0]._order
+              && res._defaultcart[0]._order[0]
+              && res._defaultcart[0]._order[0]._paymentinstrumentselector
+              && res._defaultcart[0]._order[0]._paymentinstrumentselector[0]
+            ),
+          });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
   }
 
   handleDelete(link) {
@@ -87,46 +117,44 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
   }
 
   renderPaymentMethods() {
-    const { paymentInstruments } = this.props;
+    const { paymentInstrumentsAvailable } = this.state;
+    const { paymentMethods, paymentInstruments } = this.props;
+    const paymentMethodElems = (paymentMethods && paymentMethods._element) ? paymentMethods._element : [];
+    const paymentInstrumentsElems = (paymentInstruments && paymentInstruments._element) ? paymentInstruments._element : [];
 
-    if (paymentInstruments && paymentInstruments._element) {
-      return (
-        paymentInstruments._element.map((paymentElement) => {
-          const displayName = paymentElement.name;
-          return (
-            <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
-              <li className="profile-payment-method-container">
-                <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
-                  <span data-el-value="payment.token" className="payment-method-container">
-                    {displayName}
-                  </span>
-                </div>
-                <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
-                  {intl.get('delete')}
-                </button>
-              </li>
-            </ul>
-          );
-        })
+    const paymentListElems = paymentInstrumentsAvailable ? paymentInstrumentsElems : paymentMethodElems;
+
+    return paymentListElems.length > 0
+      ? (
+        paymentListElems.map(paymentElement => (
+          <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
+            <li className="profile-payment-method-container">
+              <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
+                <span data-el-value="payment.token" className="payment-method-container">
+                  {paymentInstrumentsAvailable ? paymentElement.name : paymentElement['display-name']}
+                </span>
+              </div>
+              <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
+                {intl.get('delete')}
+              </button>
+            </li>
+          </ul>
+        ))
+      )
+      : (
+        <div>
+          <p>
+            {intl.get('no-saved-payment-method-message')}
+          </p>
+        </div>
       );
-    }
-
-    return (
-      <div>
-        <p>
-          {intl.get('no-saved-payment-method-message')}
-        </p>
-      </div>
-    );
   }
 
   render() {
-    const { openNewPaymentModal } = this.state;
-    const {
-      paymentMethods, onChange, disableAddPayment,
-    } = this.props;
+    const { paymentInstrumentsAvailable, openNewPaymentModal } = this.state;
+    const { paymentMethods, onChange, disableAddPayment } = this.props;
 
-    if (paymentMethods) {
+    if (paymentInstrumentsAvailable !== undefined && paymentMethods) {
       return (
         <div className="paymentMethodsRegions" data-region="paymentMethodsRegion" style={{ display: 'block' }}>
           <div>
@@ -159,6 +187,7 @@ class ProfilePaymentMethodsMain extends Component<ProfilePaymentMethodsMainProps
         </div>
       );
     }
+
     return (<div className="loader" />);
   }
 }

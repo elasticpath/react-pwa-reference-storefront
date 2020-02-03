@@ -194,8 +194,8 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     if (profileData._paymentmethods) {
       return (
         <ProfilePaymentMethodsMain
-          paymentMethods={profileData._paymentmethods[0]}
-          paymentInstruments={profileData._paymentinstruments ? profileData._paymentinstruments[0] : undefined}
+          paymentMethods={profileData ? profileData._paymentmethods[0] : undefined}
+          paymentInstruments={(profileData && profileData._paymentinstruments) ? profileData._paymentinstruments[0] : undefined}
           onChange={this.fetchProfileData}
           disableAddPayment={false}
         />
