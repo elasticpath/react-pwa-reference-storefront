@@ -235,22 +235,24 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     );
   }
 
-  addToSelectedCart(cart) {
-    cortexFetch(cart.self.uri, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-      body: JSON.stringify({}),
-    })
-      .then(() => {
-        this.loadRequisitionListData();
+  addToSelectedCart(cart, list) {
+    if (list['item-count'] > 0) {
+      cortexFetch(cart.self.uri, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({}),
       })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+        .then(() => {
+          this.loadRequisitionListData();
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    }
   }
 
   dropdownCartSelection(list) {
@@ -264,7 +266,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
           {multiCartData.map((cart) => {
             const name = (cart._target && cart._target[0]._descriptor[0].name) || intl.get('default');
             return (
-              <button type="button" className="dropdown-item cart-selection-menu-item" key={name} onClick={() => this.addToSelectedCart(cart)}>
+              <button type="button" className="dropdown-item cart-selection-menu-item" key={name} onClick={() => this.addToSelectedCart(cart, list)}>
                 {name}
               </button>
             );
