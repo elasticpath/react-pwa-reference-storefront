@@ -25,8 +25,11 @@ import { MemoryRouter } from 'react-router';
 import Readme from './README.md';
 
 import profileData from '../CommonMockHttpResponses/profile_data_response.json';
-import ProfilePaymentMethodsMain from './profilepaymentmethods.main';
+// eslint-disable-next-line camelcase
+import profileData_76 from './MockHttpResponses/profile_data_response_7.6.json';
 
+import ProfilePaymentMethodsMain from './profilepaymentmethods.main';
+import { mockPaymentFormSuccessWithRegisteredUser } from '../PaymentForm/paymentform.main.api.mocks';
 import { textToFunc } from "../../../../storybook/utils/storybookUtils";
 
 storiesOf('Components|ProfilePaymentMethodsMain', module)
@@ -45,6 +48,20 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
     return (
       <ProfilePaymentMethodsMain
         paymentMethods={object('paymentMethods', profileData._defaultprofile[0]._paymentmethods[0])}
+        onChange={() => { textToFunc(onChangeFuncText); }}
+        disableAddPayment={false}
+      />
+    );
+  })
+  .add('^Cortex@7.6 | 3 Payment Instruments Available', () => {
+    const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
+
+    mockPaymentFormSuccessWithRegisteredUser();
+
+    return (
+      <ProfilePaymentMethodsMain
+        paymentMethods={profileData_76._paymentmethods[0]}
+        paymentInstruments={profileData_76._paymentinstruments ? profileData_76._paymentinstruments[0] : undefined}
         onChange={() => { textToFunc(onChangeFuncText); }}
         disableAddPayment={false}
       />
