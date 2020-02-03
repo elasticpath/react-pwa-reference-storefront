@@ -508,7 +508,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 </div>
               )}
               <div className="product-pagination">
-                {isPageLoading ? (<div className="miniLoader" />) : ''}
                 <button type="button" className="pagination-btn prev-btn" onClick={() => { this.handlePagination(productsData._previous); }} disabled={!(productsData && productsData._previous)}>
                   <ArrowLeft className="arrow-left-icon" />
                 </button>

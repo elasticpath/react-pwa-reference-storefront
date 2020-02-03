@@ -74,12 +74,13 @@ interface AppHeaderLoginMainProps {
     disableLogin?: boolean,
 }
 interface AppHeaderLoginMainState {
-    openModal: boolean,
-    openCartModal: boolean,
-    showForgotPasswordLink: boolean,
-    accountData: any,
-    loginUrlAddress: string,
-    oidcParameters: any,
+  openModal: boolean,
+  openCartModal: boolean,
+  showForgotPasswordLink: boolean,
+  accountData: any,
+  loginUrlAddress: string,
+  oidcParameters: any,
+  showRequisitionListsLink: boolean,
 }
 
 interface OidcParameters {
@@ -118,6 +119,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         accountData: undefined,
         oidcParameters: {},
         loginUrlAddress: '',
+        showRequisitionListsLink: false,
       };
       this.handleModalClose = this.handleModalClose.bind(this);
     }
@@ -135,6 +137,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       }
       if (Config.b2b.enable && localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) !== null) {
         this.getAccountData();
+        this.fetchRequisitionListsData();
       }
       if (Config.b2b.enable && Config.b2b.openId && Config.b2b.openId.enable) {
         this.login();
@@ -281,12 +284,32 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         });
     }
 
+    fetchRequisitionListsData() {
+      cortexFetch('?zoom=itemlistinfo', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(r => r.json())
+        .then((res) => {
+          this.setState({ showRequisitionListsLink: Boolean() });
+          if (res && res._itemlistinfo) {
+            this.setState({ showRequisitionListsLink: true });
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    }
+
     render() {
       const {
         isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin, appHeaderLinks,
       } = this.props;
       const {
-        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters,
+        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters, showRequisitionListsLink,
       } = this.state;
       let keycloakLoginRedirectUrl = '';
       if (Config.b2b.enable && Config.b2b.openId && !Config.b2b.openId.enable) {
@@ -350,7 +373,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                         </div>
                       </Link>
                     </li>) : ('')}
-                  {(Config.b2b.req_list) ? (
+                  {(showRequisitionListsLink) ? (
                     <li className="dropdown-item">
                       <Link to="/b2b/requisition-lists" className="dashboard-link link-item">
                         <div>
