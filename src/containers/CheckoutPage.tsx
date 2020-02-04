@@ -569,8 +569,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
 
   renderPaymentSelector() {
     const { profileData, orderData } = this.state;
-    console.log('orderData');
-    console.log(JSON.stringify(orderData._order[0]._paymentinstrumentselector[0]));
+
     if (
       orderData
       && orderData._order
