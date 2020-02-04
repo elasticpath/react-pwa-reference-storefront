@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
+  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, PaymentSelectorMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
 } from '../components/src/index';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -59,6 +59,12 @@ const zoomArray = [
   'data-policies:element',
   'data-policies:element:datapolicyconsentform',
   'passwordresetform',
+
+  // default profile
+  'defaultprofile:paymentinstruments:defaultinstrumentselector:chosen',
+  'defaultprofile:paymentinstruments:defaultinstrumentselector:chosen:description',
+  'defaultprofile:paymentinstruments:defaultinstrumentselector:choice',
+  'defaultprofile:paymentinstruments:defaultinstrumentselector:choice:description',
 ];
 
 interface ProfilePageState {
@@ -191,11 +197,16 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
   renderPayments() {
     const { profileData } = this.state;
 
-    if (profileData._paymentmethods) {
+    if (
+      profileData
+      && profileData._paymentinstruments
+      && profileData._paymentinstruments[0]
+      && profileData._paymentinstruments[0]._defaultinstrumentselector
+      && profileData._paymentinstruments[0]._defaultinstrumentselector[0]
+    ) {
       return (
-        <ProfilePaymentMethodsMain
-          paymentMethods={profileData._paymentmethods[0]}
-          paymentInstruments={profileData._paymentinstruments ? profileData._paymentinstruments[0] : undefined}
+        <PaymentSelectorMain
+          paymentInstrumentSelector={profileData._paymentinstruments[0]._defaultinstrumentselector[0]}
           onChange={this.fetchProfileData}
           disableAddPayment={false}
         />
