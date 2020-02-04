@@ -175,7 +175,6 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
           <h2>
             {intl.get('payment-methods')}
           </h2>
-          {/* Overlay the loading on top of it.. */}
           { isLoading && <div className="miniLoader" /> }
           {this.renderPaymentMethods()}
           <button className="ep-btn primary wide new-payment-btn" type="button" disabled={disableAddPayment} onClick={() => { this.newPayment(); }}>
