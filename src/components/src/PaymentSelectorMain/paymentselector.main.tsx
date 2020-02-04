@@ -103,12 +103,12 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     this.setState({ isLoading: true });
 
     try {
-      const res = await cortexFetch(`${selectAction}?followlocation=true`, 
+      const res = await cortexFetch(`${selectAction}?followlocation=true`,
         {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer 1d553c32-79d7-48c7-af7a-a95d00c1ecfa',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
         });
 

@@ -42,17 +42,6 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('ProfilePaymentMethodsMain', () => {
-    const onChangeFuncText = text('handleDataChange', '() => {alert("handleDataChange invoked")}');
-
-    return (
-      <PaymentSelectorMain
-        paymentInstrumentSelector={{}}
-        onChange={() => { textToFunc(onChangeFuncText); }}
-        disableAddPayment={false}
-      />
-    );
-  })
   .add('^Cortex@7.6 | 3 Payment Instruments Available', () => {
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
