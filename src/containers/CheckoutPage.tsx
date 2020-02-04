@@ -115,7 +115,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     this.handleCertificate = this.handleCertificate.bind(this);
     this.fetchOrderData = this.fetchOrderData.bind(this);
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
-    this.renderPaymentInstrumentSelector = this.renderPaymentInstrumentSelector.bind(this);
+    this.renderPaymentSelector = this.renderPaymentSelector.bind(this);
   }
 
   componentDidMount() {
@@ -542,33 +542,8 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     );
   }
 
-  renderPaymentInstrumentSelector(paymentInstrumentSelector) {
-    const paymentMethods = [];
-    if (paymentInstrumentSelector._chosen) {
-      const [description] = paymentInstrumentSelector._chosen;
-      description.checked = true;
-      description.deletable = false;
-      paymentMethods.push(description);
-    }
-    if (paymentInstrumentSelector._choice) {
-      const choices = paymentInstrumentSelector._choice;
-      choices.map((choice) => {
-        const [description] = choice._description;
-        description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
-        description.checked = false;
-        description.deletable = true;
-        paymentMethods.push(description);
-        return description;
-      });
-    }
-
-    return (
-      paymentMethods.map(payment => this.renderPaymentChoice(payment))
-    );
-  }
-
   renderPaymentSelector() {
-    const { profileData, orderData } = this.state;
+    const { orderData } = this.state;
 
     if (
       orderData
@@ -589,7 +564,16 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
       );
     }
 
-    return null;
+    return (
+      <PaymentSelectorMain
+        paymentInstrumentSelector={{}}
+        onChange={() => {
+          this.fetchProfileData();
+          this.fetchOrderData();
+        }}
+        disableAddPayment={false}
+      />
+    );
   }
 
   render() {

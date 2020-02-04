@@ -88,7 +88,16 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
 
   // eslint-disable-next-line class-methods-use-this
   getSortedChosenAndChoicePaymentInstrumentsAlphabetically(paymentInstrumentSelector) {
-    const allPaymentInstruments = [...paymentInstrumentSelector._choice, { ...paymentInstrumentSelector._chosen[0], chosen: true }];
+    let allPaymentInstruments;
+
+    if (paymentInstrumentSelector._choice) {
+      allPaymentInstruments = [...paymentInstrumentSelector._choice, { ...paymentInstrumentSelector._chosen[0], chosen: true }];
+    } else if (paymentInstrumentSelector._chosen) {
+      allPaymentInstruments = [{ ...paymentInstrumentSelector._chosen[0], chosen: true }];
+    } else {
+      return null;
+    }
+
     return allPaymentInstruments.sort((paymentInstrumentA, paymentInstrumentB) => {
       const paymentInstrumentNameA = paymentInstrumentA._description[0].name;
       const paymentInstrumentNameB = paymentInstrumentB._description[0].name;
@@ -135,32 +144,34 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     if (paymentInstrumentSelector) {
       const sortedPaymentInstrumentSelectors = this.getSortedChosenAndChoicePaymentInstrumentsAlphabetically(paymentInstrumentSelector);
 
-      return (
-        sortedPaymentInstrumentSelectors.map((paymentInstrument) => {
-          const displayName = paymentInstrument._description[0].name;
-          const checked = paymentInstrument.chosen !== undefined;
-          const selectAction = paymentInstrument.links[0].uri;
-          const descriptionUri = paymentInstrument._description[0].self.uri;
-          return (
-            <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
-              <li className="profile-payment-method-container">
-                <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
-                  <input type="radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectAction, event)} />
-                  <span data-el-value="payment.token" className="payment-instrument-name-container">
-                    {displayName}
-                  </span>
-                </div>
-                <button className="payment-delete-btn" type="button" onClick={() => { this.handleDelete(descriptionUri); }}>
-                  {intl.get('delete')}
-                </button>
-              </li>
-            </ul>
-          );
-        })
-      );
+      if (sortedPaymentInstrumentSelectors) {
+        return (
+          sortedPaymentInstrumentSelectors.map((paymentInstrument) => {
+            const displayName = paymentInstrument._description[0].name;
+            const checked = paymentInstrument.chosen !== undefined;
+            const selectAction = paymentInstrument.links[0].uri;
+            const descriptionUri = paymentInstrument._description[0].self.uri;
+            return (
+              <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
+                <li className="profile-payment-method-container">
+                  <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
+                    <input type="radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectAction, event)} />
+                    <span data-el-value="payment.token" className="payment-instrument-name-container">
+                      {displayName}
+                    </span>
+                  </div>
+                  <button className="payment-delete-btn" type="button" onClick={() => { this.handleDelete(descriptionUri); }}>
+                    {intl.get('delete')}
+                  </button>
+                </li>
+              </ul>
+            );
+          })
+        );
+      }
     }
 
-    return null;
+    return (<div className="no-saved-payment-container">{intl.get('no-saved-payment-method-message')}</div>);
   }
 
   render() {

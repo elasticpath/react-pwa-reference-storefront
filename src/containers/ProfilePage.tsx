@@ -213,7 +213,13 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
       );
     }
 
-    return null;
+    return (
+      <PaymentSelectorMain
+        paymentInstrumentSelector={{}}
+        onChange={this.fetchProfileData}
+        disableAddPayment={false}
+      />
+    );
   }
 
   render() {
