@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, AddressFormMain, ProfilePaymentMethodsMain,
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, AddressFormMain, PaymentSelectorMain,
 } from '../components/src/index';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -78,6 +78,7 @@ const zoomArray = [
   // zooms for payment plugin update
   'order:paymentinstrumentselector:choice',
   'order:paymentinstrumentselector:choice:description',
+  'order:paymentinstrumentselector:chosen',
   'order:paymentinstrumentselector:chosen:description',
 ];
 
@@ -567,19 +568,29 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
   }
 
   renderPaymentSelector() {
-    const { profileData } = this.state;
+    const { profileData, orderData } = this.state;
+    console.log('orderData');
+    console.log(JSON.stringify(orderData._order[0]._paymentinstrumentselector[0]));
+    if (
+      orderData
+      && orderData._order
+      && orderData._order[0]
+      && orderData._order[0]._paymentinstrumentselector
+      && orderData._order[0]._paymentinstrumentselector[0]
+    ) {
+      return profileData._paymentmethods ? (
+        <PaymentSelectorMain
+          paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
+          onChange={() => {
+            this.fetchProfileData();
+            this.fetchOrderData();
+          }}
+          disableAddPayment={false}
+        />
+      ) : null;
+    }
 
-    return profileData._paymentmethods ? (
-      <ProfilePaymentMethodsMain
-        paymentMethods={profileData._paymentmethods[0]}
-        paymentInstruments={profileData._paymentinstruments ? profileData._paymentinstruments[0] : undefined}
-        onChange={() => {
-          this.fetchProfileData();
-          this.fetchOrderData();
-        }}
-        disableAddPayment={false}
-      />
-    ) : null;
+    return null;
   }
 
   render() {
