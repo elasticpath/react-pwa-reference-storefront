@@ -578,7 +578,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
       && orderData._order[0]._paymentinstrumentselector
       && orderData._order[0]._paymentinstrumentselector[0]
     ) {
-      return profileData._paymentmethods ? (
+      return (
         <PaymentSelectorMain
           paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
           onChange={() => {
@@ -587,7 +587,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
           }}
           disableAddPayment={false}
         />
-      ) : null;
+      );
     }
 
     return null;

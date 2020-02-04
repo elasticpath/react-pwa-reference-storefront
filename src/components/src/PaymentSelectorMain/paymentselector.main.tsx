@@ -145,12 +145,12 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
             <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
               <li className="profile-payment-method-container">
                 <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
-                  <input type="radio" name="billing" id="billingOption" className="checkout-address-radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectAction, event)} />
+                  <input type="radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectAction, event)} />
                   <span data-el-value="payment.token" className="payment-instrument-name-container">
                     {displayName}
                   </span>
                 </div>
-                <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(descriptionUri); }}>
+                <button className="payment-delete-btn" type="button" onClick={() => { this.handleDelete(descriptionUri); }}>
                   {intl.get('delete')}
                 </button>
               </li>
