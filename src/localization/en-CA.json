@@ -413,5 +413,6 @@
   "about-brand-heading": "About Cooks",
   "about-brand-description": "Award winning kitchen appliances designed to inspire people to produce perfect food and beverage results in their own homes with ease. From espresso machines to food processors, the innovation in each appliance delights. The scents, sights and sounds of cooking awaken memories and create new ones. Shared with the people in your life who matter most.  This is why we do what we do. Listen. Obsess. Innovate. Test. Refine. Design.",
   "no-requisition-lists-message": "You have no requisition lists",
-  "pagination-message": "Page {current} of {pages}"
+  "pagination-message": "Page {current} of {pages}",
+  "requisition-list-empty-message": "Requisition Lists are a time-saver when purchasing frequently ordered products. Create a list, add products, save it and the list is always available to add-to-cart."
 }

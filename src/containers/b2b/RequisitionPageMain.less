@@ -82,6 +82,12 @@
     }
   }
 
+  .requisition-empty {
+    @media (max-width: @tabletWidth - 1px) {
+      padding: 0 15px;
+    }
+  }
+
   .add-to-cart-dropdown-wrap {
 
     @media (max-width: @tabletWidth - 1px) {
@@ -154,6 +160,12 @@
             right: 10px;
             border-width: 5px;
             border-bottom-width: 0;
+          }
+
+          &:disabled {
+            background-color: @fifthComplimentTextColor;
+            color: @firstComplimentTextColor;
+            border: none;
           }
 
           @media (min-width: @mobileWidth) {

@@ -412,5 +412,6 @@
   "about-brand-heading": "A-b-o-u-t- -C-o-o-k-s",
   "about-brand-description": "A-w-a-r-d- -w-i-n-n-i-n-g- -k-i-t-c-h-e-n- -a-p-p-l-i-a-n-c-e-s- -d-e-s-i-g-n-e-d- -t-o- -i-n-s-p-i-r-e- -p-e-o-p-l-e- -t-o- -p-r-o-d-u-c-e- -p-e-r-f-e-c-t- -f-o-o-d- -a-n-d- -b-e-v-e-r-a-g-e- -r-e-s-u-l-t-s- -i-n- -t-h-e-i-r- -o-w-n- -h-o-m-e-s- -w-i-t-h- -e-a-s-e-.- -F-r-o-m- -e-s-p-r-e-s-s-o- -m-a-c-h-i-n-e-s- -t-o- -f-o-o-d- -p-r-o-c-e-s-s-o-r-s-,- -t-h-e- -i-n-n-o-v-a-t-i-o-n- -i-n- -e-a-c-h- -a-p-p-l-i-a-n-c-e- -d-e-l-i-g-h-t-s-.- -T-h-e- -s-c-e-n-t-s-,- -s-i-g-h-t-s- -a-n-d- -s-o-u-n-d-s- -o-f- -c-o-o-k-i-n-g- -a-w-a-k-e-n- -m-e-m-o-r-i-e-s- -a-n-d- -c-r-e-a-t-e- -n-e-w- -o-n-e-s-.- -S-h-a-r-e-d- -w-i-t-h- -t-h-e- -p-e-o-p-l-e- -i-n- -y-o-u-r- -l-i-f-e- -w-h-o- -m-a-t-t-e-r- -m-o-s-t-.- - -T-h-i-s- -i-s- -w-h-y- -w-e- -d-o- -w-h-a-t- -w-e- -d-o-.- -L-i-s-t-e-n-.- -O-b-s-e-s-s-.- -I-n-n-o-v-a-t-e-.- -T-e-s-t-.- -R-e-f-i-n-e-.- -D-e-s-i-g-n-.",
   "no-requisition-lists-message": "Y-o-u- -h-a-v-e- -n-o- -r-e-q-u-i-s-i-t-i-o-n- -l-i-s-t-s",
-  "pagination-message": "P-a-g-e- {current} -o-f- {pages}"
+  "pagination-message": "P-a-g-e- {current} -o-f- {pages}",
+  "requisition-list-empty-message": "R-e-q-u-i-s-i-t-i-o-n- -L-i-s-t-s- -a-r-e- -a- -t-i-m-e---s-a-v-e-r- -w-h-e-n- -p-u-r-c-h-a-s-i-n-g- -f-r-e-q-u-e-n-t-l-y- -o-r-d-e-r-e-d- -p-r-o-d-u-c-t-s-.- -C-r-e-a-t-e- -a- -l-i-s-t-,- -a-d-d- -p-r-o-d-u-c-t-s-,- -s-a-v-e- -i-t- -a-n-d- -t-h-e- -l-i-s-t- -i-s- -a-l-w-a-y-s- -a-v-a-i-l-a-b-l-e- -t-o- -a-d-d---t-o---c-a-r-t-."
 }

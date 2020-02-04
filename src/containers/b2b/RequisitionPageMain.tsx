@@ -337,7 +337,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     });
   }
 
-  renderDropdownMenu() {
+  renderDropdownMenu(isDisabled = false) {
     const { multiCartData, addToCartLoader } = this.state;
     return (
       <div className="add-to-cart-dropdown">
@@ -350,6 +350,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
+              disabled={isDisabled}
             >
               {addToCartLoader ? (
                 <div className="miniLoader" />
@@ -484,74 +485,81 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
               <button type="button" className="ep-btn primary add-to-list-button" onClick={this.handleAddProductsModalOpen}>
                 {intl.get('add-products-to-list')}
               </button>
-              {!multiSelectMode && this.renderDropdownMenu()}
+              {!multiSelectMode && this.renderDropdownMenu(!(productsData && productsData._element && productsData._element.length))}
             </div>
-            <div className={`pagination-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
-              {!multiSelectMode ? (
-                <button type="button" className="bulk-edit-btn" onClick={this.handleBulkEdit}>{intl.get('bulk-edit')}</button>
-              ) : (
-                <div className="action-elements">
-                  <div className="checkbox-wrap">
-                    <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={this.handleCheckAll} defaultChecked={isChecked} />
-                    <label htmlFor="select_all_product" />
-                    <label htmlFor="select_all_product">
-                      {intl.get('select-all')}
-                    </label>
-                    <p className="selected-element">
-                      {selectedProducts.length}
-                      {' '}
-                      {intl.get('item-selected')}
-                    </p>
+            { products.length
+              ? (
+                <div>
+                  <div className={`pagination-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
+                    {!multiSelectMode ? (
+                      <button type="button" className="bulk-edit-btn" onClick={this.handleBulkEdit}>{intl.get('bulk-edit')}</button>
+                    ) : (
+                      <div className="action-elements">
+                        <div className="checkbox-wrap">
+                          <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={this.handleCheckAll} defaultChecked={isChecked} />
+                          <label htmlFor="select_all_product" />
+                          <label htmlFor="select_all_product">
+                            {intl.get('select-all')}
+                          </label>
+                          <p className="selected-element">
+                            {selectedProducts.length}
+                            {' '}
+                            {intl.get('item-selected')}
+                          </p>
+                        </div>
+                        {/* <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button> */}
+                        {this.renderDropdownMenu(!(selectedProducts && selectedProducts.length))}
+                      </div>
+                    )}
+                    <div className="product-pagination">
+                      <button type="button" className="pagination-btn prev-btn" onClick={() => { this.handlePagination(productsData._previous); }} disabled={!(productsData && productsData._previous)}>
+                        <ArrowLeft className="arrow-left-icon" />
+                      </button>
+                      <span className="pagination-txt">
+                        {intl.get('pagination-message', { current: pagination.current, pages: pagination.pages })}
+                      </span>
+                      <button type="button" className="pagination-btn next-btn" onClick={() => { this.handlePagination(productsData._next); }} disabled={!(productsData && productsData._next)}>
+                        <ArrowLeft className="arrow-left-icon" />
+                      </button>
+                    </div>
                   </div>
-                  <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button>
-                  {this.renderDropdownMenu()}
+                  {isPageLoading ? (
+                    <div className="loader" />
+                  ) : (
+                    <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''}`}>
+                      <div className="product-table-heading">
+                        <div className="product-table-heading-item" />
+                        <div className="product-table-heading-item">
+                          <span>{intl.get('product')}</span>
+                        </div>
+                        <div className="product-table-heading-item" />
+                        <div className="product-table-heading-item">
+                          <span>{intl.get('quick-order-sku-title')}</span>
+                        </div>
+                        <div className="product-table-heading-item">
+                          <span>{intl.get('quantity')}</span>
+                        </div>
+                        <div className="product-table-heading-item">
+                          <span>{intl.get('product-options')}</span>
+                        </div>
+                        <div className="product-table-heading-item">
+                          <span>{intl.get('price')}</span>
+                        </div>
+                        <div className="product-table-heading-item actions">
+                          <span>{intl.get('actions')}</span>
+                        </div>
+                      </div>
+                      {products.map(product => (
+                        product._item
+                          ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                          : ''
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
-              <div className="product-pagination">
-                <button type="button" className="pagination-btn prev-btn" onClick={() => { this.handlePagination(productsData._previous); }} disabled={!(productsData && productsData._previous)}>
-                  <ArrowLeft className="arrow-left-icon" />
-                </button>
-                <span className="pagination-txt">
-                  {intl.get('pagination-message', { current: pagination.current, pages: pagination.pages })}
-                </span>
-                <button type="button" className="pagination-btn next-btn" onClick={() => { this.handlePagination(productsData._next); }} disabled={!(productsData && productsData._next)}>
-                  <ArrowLeft className="arrow-left-icon" />
-                </button>
-              </div>
-            </div>
-            {isPageLoading ? (
-              <div className="loader" />
-            ) : (
-              <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''}`}>
-                <div className="product-table-heading">
-                  <div className="product-table-heading-item" />
-                  <div className="product-table-heading-item">
-                    <span>{intl.get('product')}</span>
-                  </div>
-                  <div className="product-table-heading-item" />
-                  <div className="product-table-heading-item">
-                    <span>{intl.get('quick-order-sku-title')}</span>
-                  </div>
-                  <div className="product-table-heading-item">
-                    <span>{intl.get('quantity')}</span>
-                  </div>
-                  <div className="product-table-heading-item">
-                    <span>{intl.get('product-options')}</span>
-                  </div>
-                  <div className="product-table-heading-item">
-                    <span>{intl.get('price')}</span>
-                  </div>
-                  <div className="product-table-heading-item actions">
-                    <span>{intl.get('actions')}</span>
-                  </div>
-                </div>
-                {products.map(product => (
-                  product._item
-                    ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
-                    : ''
-                ))}
-              </div>
-            )}
+              )
+              : (<div className="requisition-empty">{intl.get('requisition-list-empty-message')}</div>)
+            }
           </div>
         )}
         {addProductModalOpened ? (
