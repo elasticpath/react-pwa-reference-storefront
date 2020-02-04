@@ -554,6 +554,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     ) {
       return (
         <PaymentSelectorMain
+          shouldPostToProfile={false}
           paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
           onChange={() => {
             this.fetchProfileData();
@@ -566,6 +567,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
 
     return (
       <PaymentSelectorMain
+        shouldPostToProfile={false}
         paymentInstrumentSelector={{}}
         onChange={() => {
           this.fetchProfileData();

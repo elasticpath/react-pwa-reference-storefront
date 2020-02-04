@@ -40,6 +40,8 @@ interface PaymentSelectorMainProps {
   paymentInstrumentSelector: any,
   /** on Selection or Deletion error */
   onError?: any,
+  /** Sets the nested payment form to either post to profile or order */
+  shouldPostToProfile?: boolean,
 }
 interface PaymentSelectorMainState {
     openNewPaymentModal: boolean,
@@ -177,7 +179,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
   render() {
     const { openNewPaymentModal, isLoading } = this.state;
     const {
-      onChange, disableAddPayment,
+      onChange, disableAddPayment, shouldPostToProfile,
     } = this.props;
 
     return (
@@ -202,7 +204,8 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
                 </div>
                 <div className="modal-body">
                   <PaymentFormMain
-                    defaultPostSelection
+                    defaultPostSelection={shouldPostToProfile}
+                    showSaveToProfileOption
                     onCloseModal={this.handleCloseNewPaymentModal}
                     fetchData={onChange}
                   />

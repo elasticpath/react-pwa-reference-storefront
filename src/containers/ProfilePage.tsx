@@ -209,6 +209,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
           paymentInstrumentSelector={profileData._paymentinstruments[0]._defaultinstrumentselector[0]}
           onChange={this.fetchProfileData}
           disableAddPayment={false}
+          shouldPostToProfile
         />
       );
     }
@@ -218,6 +219,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
         paymentInstrumentSelector={{}}
         onChange={this.fetchProfileData}
         disableAddPayment={false}
+        shouldPostToProfile
       />
     );
   }
