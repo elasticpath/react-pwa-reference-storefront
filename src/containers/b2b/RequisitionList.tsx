@@ -30,6 +30,7 @@ import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.sv
 import * as Config from '../../ep.config.json';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
+import { useCountDispatch } from '../../components/src/cart-count-context';
 
 import './RequisitionList.less';
 
@@ -235,7 +236,8 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     );
   }
 
-  addToSelectedCart(cart, list) {
+  // eslint-disable-next-line class-methods-use-this
+  addToSelectedCart(cart, list, onCountChange) {
     if (list['item-count'] > 0) {
       cortexFetch(cart.self.uri, {
         method: 'post',
@@ -246,7 +248,8 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         body: JSON.stringify({}),
       })
         .then(() => {
-          this.loadRequisitionListData();
+          const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+          onCountChange(cartName, list['item-count']);
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -257,6 +260,20 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
 
   dropdownCartSelection(list) {
     const multiCartData = list._additemlisttocartforms[0]._element;
+    const dispatch = useCountDispatch();
+    const onCountChange = (name, count) => {
+      const data = {
+        type: 'COUNT_SHOW',
+        payload: {
+          count,
+          name,
+        },
+      };
+      dispatch(data);
+      setTimeout(() => {
+        dispatch({ type: 'COUNT_HIDE' });
+      }, 3200);
+    };
     return (
       <div className="cart-selection-menu">
         <h6 className="dropdown-header">
@@ -266,7 +283,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
           {multiCartData.map((cart) => {
             const name = (cart._target && cart._target[0]._descriptor[0].name) || intl.get('default');
             return (
-              <button type="button" className="dropdown-item cart-selection-menu-item" key={name} onClick={() => this.addToSelectedCart(cart, list)}>
+              <button type="button" className="dropdown-item cart-selection-menu-item" key={name} onClick={() => this.addToSelectedCart(cart, list, onCountChange)}>
                 {name}
               </button>
             );
@@ -277,6 +294,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   }
 
   renderRequisitionItems() {
+    const DropdownCartSelection = (props: any) => (<div>{this.dropdownCartSelection(props.el)}</div>);
     const { requisitionElements } = this.state;
     if (requisitionElements.length) {
       return requisitionElements.map((el, index) => (
@@ -292,7 +310,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
                   <AddToCartIcon className="add-to-cart-icon" />
                 </button>
                 <div className="dropdown-menu cart-selection-list">
-                  {this.dropdownCartSelection(el)}
+                  <DropdownCartSelection el={el} />
                 </div>
               </div>
               <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditRequisition(event, index)}>

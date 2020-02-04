@@ -31,6 +31,7 @@ import { ReactComponent as ArrowLeft } from '../../images/icons/arrow_left.svg';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
 import * as Config from '../../ep.config.json';
+import { useCountDispatch } from '../../components/src/cart-count-context';
 
 import './RequisitionPageMain.less';
 
@@ -106,6 +107,7 @@ interface RequisitionPageMainState {
   addItemsToItemListUri: string,
   showCreateListLoader: boolean,
   addToCartLoader: boolean,
+  listItemCount: number,
 }
 
 class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageMainProps>, RequisitionPageMainState> {
@@ -127,6 +129,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       addItemsToItemListUri: '',
       showCreateListLoader: false,
       addToCartLoader: false,
+      listItemCount: 0,
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
@@ -173,6 +176,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             if (res && res._additemlisttocartforms) {
               this.setState({
                 listName: res.name,
+                listItemCount: res['item-count'],
                 addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
                 multiCartData: res._additemlisttocartforms[0]._element,
                 currentlyListName: res.name,
@@ -339,6 +343,20 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
 
   renderDropdownMenu(isDisabled = false) {
     const { multiCartData, addToCartLoader } = this.state;
+    const dispatch = useCountDispatch();
+    const onCountChange = (name, count) => {
+      const data = {
+        type: 'COUNT_SHOW',
+        payload: {
+          count,
+          name,
+        },
+      };
+      dispatch(data);
+      setTimeout(() => {
+        dispatch({ type: 'COUNT_HIDE' });
+      }, 3200);
+    };
     return (
       <div className="add-to-cart-dropdown">
         <div className="dropdown-add-to-cart-field">
@@ -365,7 +383,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                   key={cart._target && cart._target[0]._descriptor[0].name}
                   id={`product_display_item_sku_option_${cart._target && cart._target[0]._descriptor[0].name}`}
                   value={cart._target && cart._target[0]._descriptor[0].name}
-                  onClick={() => { this.handleAddToSelectedCart(cart); }}
+                  onClick={() => { this.handleAddToSelectedCart(cart, onCountChange); }}
                 >
                   {cart._target && cart._target[0]._descriptor[0].name}
                 </button>
@@ -400,14 +418,18 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       });
   }
 
-  handleAddToSelectedCart(cart) {
-    const { selectedProducts, productsData } = this.state;
+  handleAddToSelectedCart(cart, onCountChange: any = () => {}) {
+    const { selectedProducts, productsData, listItemCount } = this.state;
     if (productsData && productsData._element) {
       this.setState({ addToCartLoader: true });
       const products = productsData && productsData._element ? productsData._element : [];
 
       let cartUrl = cart._additemlisttocartaction[0].self.uri;
       const body: { items?: any[] } = {};
+
+      let itemQuantity = listItemCount;
+      const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+
       if (selectedProducts && selectedProducts.length) {
         cartUrl = cart._target[0]._additemstocartform[0].self.uri;
         body.items = [];
@@ -415,7 +437,9 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
           .filter(item => item.code !== '')
           .map(item => ({ code: item._item[0]._code[0].code, quantity: item.quantity }));
         body.items = arrayItems;
+        itemQuantity = arrayItems.reduce((value, item) => value + item.quantity, 0);
       }
+
       cortexFetch(cartUrl,
         {
           method: 'post',
@@ -428,6 +452,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             this.setState({ selectedProducts: [], multiSelectMode: false, addToCartLoader: false });
+            onCountChange(cartName, itemQuantity);
           }
         })
         .catch((error) => {
@@ -458,6 +483,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     const products = productsData && productsData._element ? productsData._element : [];
     const pagination = productsData ? productsData.pagination : { pages: 0, current: 0 };
     const isProductChecked = product => selectedProducts.find(item => item.self.uri === product.self.uri);
+    const CartDropdown = (props: any) => (<div>{this.renderDropdownMenu(props.isDisabled)}</div>);
 
     return (
       <div className="requisition-component">
@@ -485,7 +511,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
               <button type="button" className="ep-btn primary add-to-list-button" onClick={this.handleAddProductsModalOpen}>
                 {intl.get('add-products-to-list')}
               </button>
-              {!multiSelectMode && this.renderDropdownMenu(!(productsData && productsData._element && productsData._element.length))}
+              {!multiSelectMode && (<CartDropdown isDisabled={!(productsData && productsData._element && productsData._element.length)} />)}
             </div>
             { products.length
               ? (
@@ -508,7 +534,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                           </p>
                         </div>
                         {/* <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button> */}
-                        {this.renderDropdownMenu(!(selectedProducts && selectedProducts.length))}
+                        <CartDropdown isDisabled={!(selectedProducts && selectedProducts.length)} />
                       </div>
                     )}
                     <div className="product-pagination">
