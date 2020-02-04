@@ -108,6 +108,8 @@ interface RequisitionPageMainState {
   showCreateListLoader: boolean,
   addToCartLoader: boolean,
   listItemCount: number,
+  showSelectAllPopup: boolean,
+  selectAllLoader: boolean,
 }
 
 class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageMainProps>, RequisitionPageMainState> {
@@ -130,6 +132,8 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       showCreateListLoader: false,
       addToCartLoader: false,
       listItemCount: 0,
+      showSelectAllPopup: false,
+      selectAllLoader: false,
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
@@ -146,6 +150,8 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handleAddToSelectedCart = this.handleAddToSelectedCart.bind(this);
     this.loadRequisitionListData = this.loadRequisitionListData.bind(this);
     this.handleUpdateSelectedItem = this.handleUpdateSelectedItem.bind(this);
+    this.handleSelectAllItems = this.handleSelectAllItems.bind(this);
+    this.handleCloseSelectAllPopup = this.handleCloseSelectAllPopup.bind(this);
   }
 
   componentDidMount() {
@@ -211,14 +217,23 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     const { isChecked, productsData } = this.state;
     const products = isChecked ? [] : productsData._element;
     this.setState({ isChecked: !isChecked, selectedProducts: products });
+
+    if (!isChecked && (productsData._next || productsData._previous)) {
+      this.setState({ showSelectAllPopup: true });
+    } else {
+      this.setState({ showSelectAllPopup: false });
+    }
   }
 
   handleCheck(product) {
-    const { selectedProducts } = this.state;
+    const { selectedProducts, productsData } = this.state;
     const foundProduct = selectedProducts.find(item => item.self.uri === product.self.uri);
     if (foundProduct) {
       const filteredProduct = selectedProducts.filter(item => item.self.uri !== product.self.uri);
       this.setState({ selectedProducts: filteredProduct });
+      if (productsData._element.length > filteredProduct.length) {
+        this.setState({ isChecked: false, showSelectAllPopup: false });
+      }
     } else {
       this.setState({ selectedProducts: [...selectedProducts, product] });
     }
@@ -463,6 +478,38 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     }
   }
 
+  handleSelectAllItems() {
+    const { productsData } = this.state;
+
+    const { match } = this.props;
+    const listUri = match.params.uri;
+    const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
+
+    const { pages } = productsData.pagination;
+    const pagesArr = Array.from(new Array(pages), (val, index) => index + 1);
+
+    this.setState({ selectAllLoader: true });
+    const promises = pagesArr.map(pageIndex => cortexFetch(`/itemlists/${scope}/${listUri}/lineitems/pages/${pageIndex}?zoom=${elementZoomArray.sort().join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }).then(res => res.json()));
+    Promise.all(promises)
+      .then((res:any) => {
+        const products = res.filter(el => el._element).map(el => el._element).flat();
+        this.setState({ selectedProducts: products, selectAllLoader: false, showSelectAllPopup: false });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+  }
+
+  handleCloseSelectAllPopup() {
+    this.setState({ showSelectAllPopup: false });
+  }
+
   render() {
     const {
       isLoading,
@@ -478,15 +525,45 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       selectedProducts,
       addItemsToItemListUri,
       showCreateListLoader,
+      showSelectAllPopup,
+      selectAllLoader,
     } = this.state;
 
     const products = productsData && productsData._element ? productsData._element : [];
     const pagination = productsData ? productsData.pagination : { pages: 0, current: 0 };
     const isProductChecked = product => selectedProducts.find(item => item.self.uri === product.self.uri);
     const CartDropdown = (props: any) => (<div>{this.renderDropdownMenu(props.isDisabled)}</div>);
+    const paginationResults = pagination.results;
+
+    const selectAllItemsBtn = (
+      <button type="button" className="select-all-btn" onClick={this.handleSelectAllItems}>
+        {intl.get('select-all-items', { paginationResults })}
+      </button>
+    );
+
+    const selectedItem = selectedProducts.length;
+
+    const msg = intl.get('select-all-items-txt').split(/[{}]/g);
+    const obj = { selectAllItemsBtn, selectedItem };
 
     return (
       <div className="requisition-component">
+        {showSelectAllPopup && (
+          <div className="select-all-items-block">
+            <div className={`select-all-items ${selectAllLoader ? 'loading' : ''}`}>
+              {selectAllLoader ? (<span className="miniLoader" />) : ''}
+              <p>
+                {msg.map((str) => {
+                  const i = Object.keys(obj).indexOf(str);
+                  return i === -1 ? str : obj[str];
+                })}
+              </p>
+              <button type="button" className="ep-btn small close-btn" onClick={this.handleCloseSelectAllPopup}>
+                {intl.get('close')}
+              </button>
+            </div>
+          </div>
+        )}
         {isLoading ? (
           <div className="loader" />
         ) : (
