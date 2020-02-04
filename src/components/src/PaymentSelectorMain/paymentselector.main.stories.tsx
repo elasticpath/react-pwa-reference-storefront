@@ -26,9 +26,9 @@ import Readme from './README.md';
 
 import profileData from '../CommonMockHttpResponses/profile_data_response.json';
 // eslint-disable-next-line camelcase
-import profileData_76 from './MockHttpResponses/profile_data_response_7.6.json';
+import orderPaymentSelector from './MockHttpResponses/profile_default_payment_selector.json';
 
-import ProfilePaymentMethodsMain from './profilepaymentmethods.main';
+import PaymentSelectorMain from './paymentselector.main';
 import { mockPaymentFormSuccessWithRegisteredUser } from '../PaymentForm/paymentform.main.api.mocks';
 import { textToFunc } from "../../../../storybook/utils/storybookUtils";
 
@@ -46,8 +46,8 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
     const onChangeFuncText = text('handleDataChange', '() => {alert("handleDataChange invoked")}');
 
     return (
-      <ProfilePaymentMethodsMain
-        paymentMethods={object('paymentMethods', profileData._defaultprofile[0]._paymentmethods[0])}
+      <PaymentSelectorMain
+        paymentInstrumentSelector={{}}
         onChange={() => { textToFunc(onChangeFuncText); }}
         disableAddPayment={false}
       />
@@ -59,9 +59,19 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
     mockPaymentFormSuccessWithRegisteredUser();
 
     return (
-      <ProfilePaymentMethodsMain
-        paymentMethods={profileData_76._paymentmethods[0]}
-        paymentInstruments={profileData_76._paymentinstruments ? profileData_76._paymentinstruments[0] : undefined}
+      <PaymentSelectorMain
+        paymentInstrumentSelector={orderPaymentSelector}
+        onChange={() => { textToFunc(onChangeFuncText); }}
+        disableAddPayment={false}
+      />
+    );
+  })
+  .add('Development No Mocks', () => {
+    const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
+
+    return (
+      <PaymentSelectorMain
+        paymentInstrumentSelector={orderPaymentSelector}
         onChange={() => { textToFunc(onChangeFuncText); }}
         disableAddPayment={false}
       />

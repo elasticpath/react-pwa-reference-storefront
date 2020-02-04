@@ -66,7 +66,7 @@ import ProfileComplianceMain from './ProfileCompliance/profilecompliance.main';
 import ProfileAddressesMain from './ProfileAddresses/profileaddresses.main';
 import ProfileemailinfoMain from './ProfileEmailInfo/profileemailinfo.main';
 import ProfileInfoMain from './ProfileInfo/profileInfo.main';
-import ProfilePaymentMethodsMain from './ProfilePaymentMethods/profilepaymentmethods.main';
+import PaymentSelectorMain from './PaymentSelectorMain/paymentselector.main';
 import PurchaseDetailsMain from './PurchaseDetails/purchasedetails.main';
 import Messagecontainer from './MessageContainer/messagecontainer';
 import QuickOrderMain from './QuickOrder/quickorder.main';
@@ -141,7 +141,7 @@ export {
   ProfileAddressesMain,
   ProfileemailinfoMain,
   ProfileInfoMain,
-  ProfilePaymentMethodsMain,
+  PaymentSelectorMain,
   PurchaseDetailsMain,
   Messagecontainer,
   QuickOrderMain,

@@ -1,0 +1,109 @@
+{
+	"_choice": [{
+		"self": {
+			"type": "paymentinstruments.order-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsizbqmm4tkylbmmwwgmtggewtimrtguwwcyzsgywtczlbgrrteojwga4tiznknfxhg5dsovwwk3tu3esdgmzrg42gkm3ffvtdayzsfu2dcnbsfvrdcmrqfuyggzjsgvrtanbqgzrgi=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsizbqmm4tkylbmmwwgmtggewtimrtguwwcyzsgywtczlbgrrteojwga4tiznknfxhg5dsovwwk3tu3esdgmzrg42gkm3ffvtdayzsfu2dcnbsfvrdcmrqfuyggzjsgvrtanbqgzrgi="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "selectaction",
+			"rev": "choice",
+			"type": "paymentinstruments.order-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsizbqmm4tkylbmmwwgmtggewtimrtguwwcyzsgywtczlbgrrteojwga4tiznknfxhg5dsovwwk3tu3esdgmzrg42gkm3ffvtdayzsfu2dcnbsfvrdcmrqfuyggzjsgvrtanbqgzrgi=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsizbqmm4tkylbmmwwgmtggewtimrtguwwcyzsgywtczlbgrrteojwga4tiznknfxhg5dsovwwk3tu3esdgmzrg42gkm3ffvtdayzsfu2dcnbsfvrdcmrqfuyggzjsgvrtanbqgzrgi="
+		}],
+		"_description": [{
+			"self": {
+				"type": "paymentinstruments.payment-instrument",
+				"uri": "/paymentinstruments/mobee/mqyggojvmfqwglldgjtdcljugiztkllbmmzdmljrmvqtiyzshe3daojumu=",
+				"href": "http://localhost:9080/cortex/paymentinstruments/mobee/mqyggojvmfqwglldgjtdcljugiztkllbmmzdmljrmvqtiyzshe3daojumu="
+			},
+			"messages": [],
+			"links": [],
+			"default-on-profile": false,
+			"name": "Alvin Chan's American Express ending in: ****1234",
+			"payment-instrument-identification-attributes": {
+				"details": "ef4533b5-21a1-4a38-bdd8-3f05d4a8e89c"
+			}
+		}]
+	}, {
+		"self": {
+			"type": "paymentinstruments.order-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsimbxg42tgntbhewtqodcgywtizjzmqwtsntemywtandehaygizrygy3tqnfknfxhg5dsovwwk3tu3esdmmlehftdeyzsfuydcytgfu2gmodffu4ggmrwfvrdiyztgi3wiojxg5stg=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsimbxg42tgntbhewtqodcgywtizjzmqwtsntemywtandehaygizrygy3tqnfknfxhg5dsovwwk3tu3esdmmlehftdeyzsfuydcytgfu2gmodffu4ggmrwfvrdiyztgi3wiojxg5stg="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "selectaction",
+			"rev": "choice",
+			"type": "paymentinstruments.order-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsimbxg42tgntbhewtqodcgywtizjzmqwtsntemywtandehaygizrygy3tqnfknfxhg5dsovwwk3tu3esdmmlehftdeyzsfuydcytgfu2gmodffu4ggmrwfvrdiyztgi3wiojxg5stg=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsimbxg42tgntbhewtqodcgywtizjzmqwtsntemywtandehaygizrygy3tqnfknfxhg5dsovwwk3tu3esdmmlehftdeyzsfuydcytgfu2gmodffu4ggmrwfvrdiyztgi3wiojxg5stg="
+		}],
+		"_description": [{
+			"self": {
+				"type": "paymentinstruments.payment-instrument",
+				"uri": "/paymentinstruments/mobee/ga3tonjtgzqtsljyhbrdmljumu4wiljzgzsgmljqgrsdqmdemy4dmnzygq=",
+				"href": "http://localhost:9080/cortex/paymentinstruments/mobee/ga3tonjtgzqtsljyhbrdmljumu4wiljzgzsgmljqgrsdqmdemy4dmnzygq="
+			},
+			"messages": [],
+			"links": [],
+			"default-on-profile": true,
+			"name": "Alvin Chan's American Express ending in: ****4124",
+			"payment-instrument-identification-attributes": {
+				"details": "210a558a-05c6-49f9-b4a4-1ba4757aba19"
+			}
+		}]
+	}, {
+		"self": {
+			"type": "paymentinstruments.order-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsinzwmiztmmdfhawweobvg4wtinrsgawwemtehewtcnzrgjsdcodfgfswcm5knfxhg5dsovwwk3tu3esgimrtmiydiobtfuywmobsfu2gmzrqfu4wcyzxfu2gizbugizdoyzrguyde=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsinzwmiztmmdfhawweobvg4wtinrsgawwemtehewtcnzrgjsdcodfgfswcm5knfxhg5dsovwwk3tu3esgimrtmiydiobtfuywmobsfu2gmzrqfu4wcyzxfu2gizbugizdoyzrguyde="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "selectaction",
+			"rev": "choice",
+			"type": "paymentinstruments.order-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsinzwmiztmmdfhawweobvg4wtinrsgawwemtehewtcnzrgjsdcodfgfswcm5knfxhg5dsovwwk3tu3esgimrtmiydiobtfuywmobsfu2gmzrqfu4wcyzxfu2gizbugizdoyzrguyde=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/paymentinstrumentselector/qkzwg5ltorxw2zlsfvuw443uoj2w2zlootmsinzwmiztmmdfhawweobvg4wtinrsgawwemtehewtcnzrgjsdcodfgfswcm5knfxhg5dsovwwk3tu3esgimrtmiydiobtfuywmobsfu2gmzrqfu4wcyzxfu2gizbugizdoyzrguyde="
+		}],
+		"_description": [{
+			"self": {
+				"type": "paymentinstruments.payment-instrument",
+				"uri": "/paymentinstruments/mobee/g43gemzwgbstqllcha2toljugyzdallcgjsdsljrg4ytezbrhbstczlbgm=",
+				"href": "http://localhost:9080/cortex/paymentinstruments/mobee/g43gemzwgbstqllcha2toljugyzdallcgjsdsljrg4ytezbrhbstczlbgm="
+			},
+			"messages": [],
+			"links": [],
+			"default-on-profile": false,
+			"name": "Harry Potter's American Express ending in: ****1234",
+			"payment-instrument-identification-attributes": {
+				"details": "b9c4fb0e-7552-4711-ac47-f7703af2408b"
+			}
+		}]
+	}],
+	"_chosen": [{
+		"_description": [{
+			"self": {
+				"type": "paymentinstruments.order-payment-instrument",
+				"uri": "/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/orderpaymentinstrument/gnqtcy3dgq4deljrgjtdmljug42toljyg42wcljzha2tkmrrmjrdemdggu=",
+				"href": "http://localhost:9080/cortex/paymentinstruments/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/orderpaymentinstrument/gnqtcy3dgq4deljrgjtdmljug42toljyg42wcljzha2tkmrrmjrdemdggu="
+			},
+			"messages": [],
+			"links": [],
+			"default-on-profile": false,
+			"limit-amount": {
+				"amount": 0,
+				"currency": "CAD",
+				"display": "$0.00"
+			},
+			"name": "aDisplayName",
+			"payment-instrument-identification-attributes": {
+				"purchase-order": "12342345"
+			},
+			"saved-on-profile": false
+		}]
+	}]
+}
