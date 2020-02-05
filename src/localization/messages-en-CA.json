@@ -8,7 +8,7 @@
   "need.shipping.address": "Shipping address must be specified.",
   "need.shipping.option": "Shipping option must be chosen.",
   "field.required": "'{field-name}' value is required.",
-  "field.invalid.size": "'{field-name}' value must contain between '{min}' and '{max}' characters.",
+  "field.invalid.size": "'{field-name}' value must contain between 0 and 255 characters.",
   "field.invalid.format": "'{field-name}' value '{invalid-value}' must match the following regular expression: '{reg-exp}'",
   "field.invalid.email.format": "'{field-name}' value '{invalid-value}' must be a valid email format.",
   "field.invalid.boolean.format": "'{field-name}' value '{invalid-value}' must be a valid email format.",

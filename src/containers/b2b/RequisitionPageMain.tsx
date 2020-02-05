@@ -320,7 +320,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-          body: JSON.stringify({ itemListName: listName }),
+          body: JSON.stringify({ name: listName }),
         })
           .then(() => {
             this.setState({
