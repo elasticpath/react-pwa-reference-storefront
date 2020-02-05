@@ -224,8 +224,6 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
       checked, deletable, selectaction,
     } = payment;
 
-    console.log('the payment choice');
-
     return (
       <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
         <div className="payment-ctrl-cell" data-region="paymentSelector">
@@ -245,28 +243,6 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
         )}
       </div>
     );
-  }
-
-  handleChange(link) {
-    const { onChange } = this.props;
-
-    this.setState({
-      isLoading: true,
-    });
-    login().then(() => {
-      cortexFetch(link, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      }).then(() => {
-        onChange();
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
-    });
   }
 
   renderOrderPaymentMethodInfo() {
