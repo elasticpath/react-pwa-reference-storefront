@@ -394,6 +394,11 @@
         opacity: .5;
       }
     }
+
+    .pagination {
+      width: fit-content;
+      margin-left: auto;
+    }
   }
 
   .bulk-edit-btn {
@@ -469,6 +474,14 @@
       padding-right: 20px;
     }
 
+    @media screen and (max-width: 481px) {
+      display: block;
+      .pagination {
+        width: fit-content;
+        margin-left: auto;
+      }
+    }
+
     &.multi-select-mode {
       background: @thirdComplimentBackground;
     }
@@ -479,6 +492,10 @@
 
     .dropdown-add-to-cart-field {
       margin-top: 0;
+    }
+
+    &.right {
+      justify-content: flex-end;
     }
   }
 

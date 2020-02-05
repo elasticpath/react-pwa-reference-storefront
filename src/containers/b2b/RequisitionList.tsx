@@ -404,10 +404,10 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
                 </div>
               </Modal>
             </div>
-            <div className="pagination-wrap">
-              { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
-            </div>
             <div className={`requisition-list-wrap ${isTableLoading ? 'loading' : ''}`}>
+              <div className="pagination-wrap">
+                { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+              </div>
               <ul className="requisition-list">
                 <li className="requisition-list-item requisition-list-header">
                   <h4 className="requisition-info">{intl.get('name')}</h4>
@@ -417,6 +417,9 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
                 {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
                 {this.renderRequisitionItems()}
               </ul>
+              <div className="pagination-wrap">
+                { allItemLists && allItemLists.pagination.pages > 1 && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+              </div>
             </div>
           </div>
         )}

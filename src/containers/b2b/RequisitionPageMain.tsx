@@ -609,7 +609,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                         <CartDropdown isDisabled={!(selectedProducts && selectedProducts.length)} />
                       </div>
                     )}
-                    <Pagination pagination={pagination} onPageChange={this.handlePagination} next={productsData._next} previous={productsData._previous} showItemsCount={!multiSelectMode} zoom={elementZoomArray} />
+                    {productsData && (<Pagination pagination={pagination} onPageChange={this.handlePagination} next={productsData._next} previous={productsData._previous} showItemsCount={!multiSelectMode} zoom={elementZoomArray} />)}
                   </div>
                   <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''} ${isTableLoading ? 'loading' : ''}`}>
                     <div className="product-table-heading">
@@ -640,6 +640,9 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                         ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
                         : ''
                     ))}
+                  </div>
+                  <div className="pagination-wrap right">
+                    {productsData && pagination.pages > 1 && (<Pagination pagination={pagination} onPageChange={this.handlePagination} next={productsData._next} previous={productsData._previous} zoom={elementZoomArray} />)}
                   </div>
                 </div>
               )
