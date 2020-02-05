@@ -124,6 +124,8 @@ const navigationFormZoomArray = [
 const itemFormZoomArray = [
   'availability',
   'addtocartform',
+  'addtocartforms:element:addtocartaction',
+  'addtocartforms:element:target:descriptor',
   'addtowishlistform',
   'price',
   'rate',
