@@ -610,8 +610,9 @@
     .cart-lineitem-row {
       display: grid;
       grid-template-columns: 18px 50px auto 100px;
-      padding: 0;
       grid-column-gap: 5px;
+      grid-template-rows: auto;
+      overflow: hidden;
 
       .title-options-col{
         text-align: left;
@@ -619,18 +620,21 @@
     }
 
     form.quantity-col {
+      height: 0;
+      padding-top: 50px;
       grid-column: 4;
+      grid-row: 2 / span 2;
       text-align: center;
-      margin-top: 10px;
+      margin-bottom: 40px;
 
       .product-display-item-quantity-update-button {
-        display: none;
+        grid-column: 4;
+        grid-row: 3;
       }
 
       .input-group-btn {
         display: block;
         transform: rotate(180deg);
-        padding-bottom: 110px;
         .quantity-col {
           font-size: 15px;
           transform: rotate(180deg);
@@ -679,8 +683,7 @@
     .thumbnail-col {
       text-align: center;
       grid-column: 2;
-      grid-row: 1;
-      padding: 0;
+      grid-row: 1 ;
     }
 
     .title-options-col {
@@ -695,9 +698,9 @@
     }
 
     .remove-btn-col {
-      margin: 0 auto;
+      margin: auto auto;
       grid-column: 2;
-      grid-row: 3;
+      grid-row: 2;
     }
 
     .sku-col {
@@ -728,9 +731,8 @@
 
     .checkbox-col,
     .thumbnail-col,
-    .total-price-col,
-    form.quantity-col,
-    .remove-btn-col {
+    .cart-lineitem-row,
+    .total-price-col {
       padding: 0;
     }
 
