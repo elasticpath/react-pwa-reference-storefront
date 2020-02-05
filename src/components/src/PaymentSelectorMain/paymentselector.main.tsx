@@ -117,36 +117,36 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async handlePaymentInstrumentSelection(selectAction, event) {
     const { onChange, onError } = this.props;
+    if (selectAction) {
+      this.setState({ isLoading: true });
 
-    this.setState({ isLoading: true });
+      try {
+        const res = await cortexFetch(`${selectAction}?followlocation=true`,
+          {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+          });
 
-    try {
-      const res = await cortexFetch(`${selectAction}?followlocation=true`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-        });
+        if (res.status === 201 || res.status === 200) {
+          onChange();
+          this.setState({ isLoading: false });
+        } else {
+          this.setState({ isLoading: false });
+          event.preventDefault();
 
-      if (res.status === 201 || res.status === 200) {
-        onChange();
-        this.setState({ isLoading: false });
-      } else {
-        this.setState({ isLoading: false });
-        event.preventDefault();
-
-        if (onError) {
-          onError(res.statusText);
+          if (onError) {
+            onError(res.statusText);
+          }
         }
+      } catch (err) {
+        onError(err);
+        event.preventDefault();
       }
-    } catch (err) {
-      onError(err);
-      event.preventDefault();
     }
   }
 
