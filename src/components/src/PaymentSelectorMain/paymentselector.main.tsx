@@ -190,7 +190,6 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     return (<div className="no-saved-payment-container">{intl.get('no-saved-payment-method-message')}</div>);
   }
 
-  // Able to render the payment methods for the profile... Need to have one for the checkout...
   renderProfilePaymentMethods() {
     const { paymentMethods } = this.props;
     const paymentMethodElems = (paymentMethods && paymentMethods._element) ? paymentMethods._element : [];
