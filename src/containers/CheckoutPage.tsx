@@ -545,6 +545,13 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
   renderPaymentSelector() {
     const { orderData } = this.state;
 
+    let showSaveToProfileOption;
+    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
+      showSaveToProfileOption = false;
+    } else {
+      showSaveToProfileOption = true;
+    }
+
     if (
       orderData
       && orderData._order
@@ -557,6 +564,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         return (
           <PaymentSelectorMain
             shouldPostToProfile={false}
+            showSaveToProfileOption={showSaveToProfileOption}
             paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
             onChange={() => {
               this.fetchProfileData();
@@ -573,6 +581,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         return (
           <PaymentSelectorMain
             shouldPostToProfile={false}
+            showSaveToProfileOption={showSaveToProfileOption}
             paymentMethodInfo={orderData._order[0]._paymentmethodinfo[0]}
             onChange={() => {
               this.fetchProfileData();

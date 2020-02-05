@@ -196,6 +196,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   renderPayments() {
     const { profileData } = this.state;
+
     if (profileData) {
       if (
         profileData._paymentinstruments

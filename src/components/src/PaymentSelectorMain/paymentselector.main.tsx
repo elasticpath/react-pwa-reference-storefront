@@ -47,6 +47,8 @@ interface PaymentSelectorMainProps {
   paymentMethods?: any,
   /** paymentMethodInfo from orders resource to be rendered */
   paymentMethodInfo?: any,
+  /** shows the save to profile option in the payment form */
+  showSaveToProfileOption?: boolean
 }
 
 interface PaymentSelectorMainState {
@@ -317,7 +319,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
   render() {
     const { openNewPaymentModal, isLoading } = this.state;
     const {
-      onChange, disableAddPayment, shouldPostToProfile,
+      onChange, disableAddPayment, shouldPostToProfile, showSaveToProfileOption,
     } = this.props;
 
     return (
@@ -343,7 +345,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
                 <div className="modal-body">
                   <PaymentFormMain
                     defaultPostSelection={shouldPostToProfile}
-                    showSaveToProfileOption
+                    showSaveToProfileOption={showSaveToProfileOption}
                     onCloseModal={this.handleCloseNewPaymentModal}
                     fetchData={onChange}
                   />
