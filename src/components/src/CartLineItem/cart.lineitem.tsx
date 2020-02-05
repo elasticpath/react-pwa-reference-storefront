@@ -458,7 +458,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
             </div>
           </div>
         )}
-        <div className="thumbnail-col" data-el-value="lineItem.thumbnail" data-heading={intl.get('product')}>
+        <div className="thumbnail-col" data-el-value="lineItem.thumbnail">
           {(featuredProductAttribute)
             ? (
               <div className="featured">
@@ -523,7 +523,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           </div>
         )}
         {isTableView && (
-          <div className="sku-col" data-heading={intl.get('quick-order-sku-title')}>
+          <div className="sku-col">
             <p>{itemCodeString}</p>
           </div>
         )}
@@ -546,7 +546,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
             </div>
           </div>
         )}
-        <form className="quantity-col form-content" onSubmit={this.handleQuantityChange} data-heading={intl.get('quantity')}>
+        <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
           {(quantity !== undefined) ? [
             <span className="input-group-btn" key="quantity-buttons">
               <button type="button" key="quantity-button-minus" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
@@ -564,14 +564,14 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           }
         </form>
         {isTableView && (
-          <div className="options-col" data-heading={intl.get('product-options')}>
+          <div className="options-col">
             <ul className="options-container">
               {this.renderOptions()}
             </ul>
           </div>
         )}
         {isTableView && (
-          <div className="total-price-col" data-region="cartLineitemTotalPriceRegion" data-heading={intl.get('price')}>
+          <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
             <div>
               <div data-region="itemTotalPriceRegion">
                 {item._item[0]._price && item._item[0]._price[0]['purchase-price'][0].display}
@@ -581,7 +581,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           </div>
         )}
         {(!hideRemoveButton) ? (
-          <div className="remove-btn-col" data-heading={intl.get('actions')}>
+          <div className="remove-btn-col">
             <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
               <RecycleBinIcon className="recycle-bin-icon" />
               <span className="btn-text">

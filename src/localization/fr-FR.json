@@ -414,5 +414,8 @@
   "no-requisition-lists-message": "Y-o-u- -h-a-v-e- -n-o- -r-e-q-u-i-s-i-t-i-o-n- -l-i-s-t-s",
   "pagination-message": "P-a-g-e- {current} -o-f- {pages}",
   "pagination-item-count": "{range} -o-f- {allItems} -r-e-s-u-l-t-s",
-  "loading": "L-o-a-d-i-n-g"
+  "loading": "L-o-a-d-i-n-g",
+  "close": "C-l-o-s-e",
+  "select-all-items": "s-e-l-e-c-t- -a-l-l- {paginationResults} -i-t-e-m-s",
+  "select-all-items-txt": "{selectedItem} -i-t-e-m-s- -a-r-e- -s-e-l-e-c-t-e-d- -o-n- -t-h-i-s- -p-a-g-e-,- -w-o-u-l-d- -y-o-u- -l-i-k-e- -t-o- {selectAllItemsBtn} -i-n- -l-i-s-t"
 }

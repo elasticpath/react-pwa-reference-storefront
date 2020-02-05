@@ -415,5 +415,8 @@
   "no-requisition-lists-message": "You have no requisition lists",
   "pagination-message": "Page {current} of {pages}",
   "pagination-item-count": "{range} of {allItems} results",
-  "loading": "Loading"
+  "loading": "Loading",
+  "close": "Close",
+  "select-all-items": "select all {paginationResults} items",
+  "select-all-items-txt": "{selectedItem} items are selected on this page, would you like to {selectAllItemsBtn} in list"
 }

@@ -8,7 +8,7 @@
   "need.shipping.address": "S-h-i-p-p-i-n-g- -a-d-d-r-e-s-s- -m-u-s-t- -b-e- -s-p-e-c-i-f-i-e-d-.",
   "need.shipping.option": "S-h-i-p-p-i-n-g- -o-p-t-i-o-n- -m-u-s-t- -b-e- -c-h-o-s-e-n-.",
   "field.required": "'{field-name}'- -v-a-l-u-e- -i-s- -r-e-q-u-i-r-e-d-.",
-  "field.invalid.size": "'{field-name}'- -v-a-l-u-e- -m-u-s-t- -c-o-n-t-a-i-n- -b-e-t-w-e-e-n- -'{min}'- -a-n-d- -'{max}'- -c-h-a-r-a-c-t-e-r-s-.",
+  "field.invalid.size": "'{field-name}'- -v-a-l-u-e- -m-u-s-t- -c-o-n-t-a-i-n- -b-e-t-w-e-e-n- -0- -a-n-d- -2-5-5- -c-h-a-r-a-c-t-e-r-s-.",
   "field.invalid.format": "'{field-name}'- -v-a-l-u-e- -'{invalid-value}'- -m-u-s-t- -m-a-t-c-h- -t-h-e- -f-o-l-l-o-w-i-n-g- -r-e-g-u-l-a-r- -e-x-p-r-e-s-s-i-o-n-:- -'{reg-exp}'",
   "field.invalid.email.format": "'{field-name}'- -v-a-l-u-e- -'{invalid-value}'- -m-u-s-t- -b-e- -a- -v-a-l-i-d- -e-m-a-i-l- -f-o-r-m-a-t-.",
   "field.invalid.boolean.format": "'{field-name}'- -v-a-l-u-e- -'{invalid-value}'- -m-u-s-t- -b-e- -a- -v-a-l-i-d- -e-m-a-i-l- -f-o-r-m-a-t-.",

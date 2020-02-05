@@ -660,8 +660,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           body: JSON.stringify(body),
         })
         .then((res) => {
+          this.setState({ addToRequisitionListLoading: false });
           if (res.status === 200 || res.status === 201) {
-            this.setState({ addToRequisitionListLoading: false });
             onCountChange(name, itemQuantity);
           }
         })
