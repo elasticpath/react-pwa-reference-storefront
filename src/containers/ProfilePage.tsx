@@ -61,6 +61,7 @@ const zoomArray = [
   'passwordresetform',
 
   // default profile
+  'defaultprofile:paymentinstruments:defaultinstrumentselector',
   'defaultprofile:paymentinstruments:defaultinstrumentselector:chosen',
   'defaultprofile:paymentinstruments:defaultinstrumentselector:chosen:description',
   'defaultprofile:paymentinstruments:defaultinstrumentselector:choice',
@@ -196,13 +197,11 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   renderPayments() {
     const { profileData } = this.state;
-
     if (profileData) {
       if (
         profileData._paymentinstruments
           && profileData._paymentinstruments[0]
           && profileData._paymentinstruments[0]._defaultinstrumentselector
-          && profileData._paymentinstruments[0]._defaultinstrumentselector[0]
       ) {
         return (
           <PaymentSelectorMain

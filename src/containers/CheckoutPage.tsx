@@ -76,6 +76,7 @@ const zoomArray = [
   'order:paymentmethodinfo:selector:choice',
   'order:paymentmethodinfo:selector:choice:description',
   // zooms for payment plugin update
+  'order:paymentinstrumentselector',
   'order:paymentinstrumentselector:choice',
   'order:paymentinstrumentselector:choice:description',
   'order:paymentinstrumentselector:chosen',
