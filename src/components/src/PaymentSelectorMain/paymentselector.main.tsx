@@ -104,10 +104,12 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
   getSortedChosenAndChoicePaymentInstrumentsAlphabetically(paymentInstrumentSelector) {
     let allPaymentInstruments;
 
-    if (paymentInstrumentSelector._choice) {
+    if (paymentInstrumentSelector._choice && paymentInstrumentSelector._chosen) {
       allPaymentInstruments = [...paymentInstrumentSelector._choice, { ...paymentInstrumentSelector._chosen[0], chosen: true }];
     } else if (paymentInstrumentSelector._chosen) {
       allPaymentInstruments = [{ ...paymentInstrumentSelector._chosen[0], chosen: true }];
+    } else if (paymentInstrumentSelector._choice) {
+      allPaymentInstruments = [...paymentInstrumentSelector._choice];
     } else {
       return null;
     }
