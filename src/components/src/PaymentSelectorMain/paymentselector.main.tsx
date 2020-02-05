@@ -303,7 +303,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
       <div className={`paymentMethodsRegions ${isLoading ? 'loading' : ''}`} data-region="paymentMethodsRegion" style={{ display: 'block' }}>
         <div>
           <h2>
-            {intl.get('payment-methods')}
+            {intl.get('credit-cards')}
           </h2>
           { isLoading && <div className="miniLoader" /> }
           {this.renderPayments()}
