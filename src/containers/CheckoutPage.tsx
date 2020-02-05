@@ -549,22 +549,42 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
       orderData
       && orderData._order
       && orderData._order[0]
-      && orderData._order[0]._paymentinstrumentselector
-      && orderData._order[0]._paymentinstrumentselector[0]
     ) {
-      return (
-        <PaymentSelectorMain
-          shouldPostToProfile={false}
-          paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
-          onChange={() => {
-            this.fetchProfileData();
-            this.fetchOrderData();
-          }}
-          disableAddPayment={false}
-        />
-      );
+      if (
+        orderData._order[0]._paymentinstrumentselector
+        && orderData._order[0]._paymentinstrumentselector[0]
+      ) {
+        return (
+          <PaymentSelectorMain
+            shouldPostToProfile={false}
+            paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
+            onChange={() => {
+              this.fetchProfileData();
+              this.fetchOrderData();
+            }}
+            disableAddPayment={false}
+          />
+        );
+      }
+      if (
+        orderData._order[0]._paymentmethodinfo
+        && orderData._order[0]._paymentmethodinfo[0]
+      ) {
+        return (
+          <PaymentSelectorMain
+            shouldPostToProfile={false}
+            paymentMethodInfo={orderData._order[0]._paymentmethodinfo[0]}
+            onChange={() => {
+              this.fetchProfileData();
+              this.fetchOrderData();
+            }}
+            disableAddPayment={false}
+          />
+        );
+      }
     }
 
+    // There is no paymentMethod and paymentInstrument.
     return (
       <PaymentSelectorMain
         shouldPostToProfile={false}

@@ -196,24 +196,37 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   renderPayments() {
     const { profileData } = this.state;
+    if (profileData) {
+      if (
+        profileData._paymentinstruments
+          && profileData._paymentinstruments[0]
+          && profileData._paymentinstruments[0]._defaultinstrumentselector
+          && profileData._paymentinstruments[0]._defaultinstrumentselector[0]
+      ) {
+        return (
+          <PaymentSelectorMain
+            paymentInstrumentSelector={profileData._paymentinstruments[0]._defaultinstrumentselector[0]}
+            onChange={this.fetchProfileData}
+            disableAddPayment={false}
+            shouldPostToProfile
+          />
+        );
+      }
 
-    if (
-      profileData
-      && profileData._paymentinstruments
-      && profileData._paymentinstruments[0]
-      && profileData._paymentinstruments[0]._defaultinstrumentselector
-      && profileData._paymentinstruments[0]._defaultinstrumentselector[0]
-    ) {
-      return (
-        <PaymentSelectorMain
-          paymentInstrumentSelector={profileData._paymentinstruments[0]._defaultinstrumentselector[0]}
-          onChange={this.fetchProfileData}
-          disableAddPayment={false}
-          shouldPostToProfile
-        />
-      );
+      if (
+        profileData._paymentmethods
+        && profileData._paymentmethods[0]
+      ) {
+        return (
+          <PaymentSelectorMain
+            paymentMethods={profileData._paymentmethods[0]}
+            onChange={this.fetchProfileData}
+            disableAddPayment={false}
+            shouldPostToProfile
+          />
+        );
+      }
     }
-
     return (
       <PaymentSelectorMain
         paymentInstrumentSelector={{}}

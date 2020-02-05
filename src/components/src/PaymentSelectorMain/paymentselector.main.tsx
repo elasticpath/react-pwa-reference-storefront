@@ -25,6 +25,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import PaymentFormMain from '../PaymentForm/paymentform.main';
+import PaymentMethodContainer from '../PaymentMethodContainer/paymentmethod.container';
 
 import './paymentselector.main.less';
 
@@ -37,16 +38,22 @@ interface PaymentSelectorMainProps {
   /** disable add a new payment method */
   disableAddPayment?: boolean,
   /** Payment Instrument Selector json object */
-  paymentInstrumentSelector: any,
+  paymentInstrumentSelector?: any,
   /** on Selection or Deletion error */
   onError?: any,
   /** Sets the nested payment form to either post to profile or order */
   shouldPostToProfile?: boolean,
+  /** paymentmethod from profile resource to be rendered */
+  paymentMethods?: any,
+  /** paymentMethodInfo from orders resource to be rendered */
+  paymentMethodInfo?: any,
 }
+
 interface PaymentSelectorMainState {
     openNewPaymentModal: boolean,
     isLoading: boolean,
 }
+
 class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSelectorMainState> {
   constructor(props) {
     super(props);
@@ -59,7 +66,10 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     ({ intl } = epConfig);
     this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
     this.handlePaymentInstrumentSelection = this.handlePaymentInstrumentSelection.bind(this);
-    this.renderPaymentMethods = this.renderPaymentMethods.bind(this);
+    this.renderProfilePaymentMethods = this.renderProfilePaymentMethods.bind(this);
+    this.renderPayments = this.renderPayments.bind(this);
+    this.renderPaymentInstrumentSelector = this.renderPaymentInstrumentSelector.bind(this);
+    this.renderOrderPaymentMethodInfo = this.renderOrderPaymentMethodInfo.bind(this);
   }
 
   handleDelete(link) {
@@ -123,7 +133,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
           },
         });
 
-      if (res.status === 201) {
+      if (res.status === 201 || res.status === 200) {
         onChange();
         this.setState({ isLoading: false });
       } else {
@@ -140,7 +150,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     }
   }
 
-  renderPaymentMethods() {
+  renderPaymentInstrumentSelector() {
     const { paymentInstrumentSelector } = this.props;
 
     if (paymentInstrumentSelector) {
@@ -176,6 +186,134 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     return (<div className="no-saved-payment-container">{intl.get('no-saved-payment-method-message')}</div>);
   }
 
+  // Able to render the payment methods for the profile... Need to have one for the checkout...
+  renderProfilePaymentMethods() {
+    const { paymentMethods } = this.props;
+    const paymentMethodElems = (paymentMethods && paymentMethods._element) ? paymentMethods._element : [];
+
+    return paymentMethodElems.length > 0 ? (
+      paymentMethodElems.map(paymentElement => (
+        <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
+          <li className="profile-payment-method-container">
+            <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
+              <span data-el-value="payment.token" className="payment-method-container">
+                {paymentElement['display-name']}
+              </span>
+            </div>
+            <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
+              {intl.get('delete')}
+            </button>
+          </li>
+        </ul>
+      ))
+    ) : (
+      <div>
+        <p>
+          {intl.get('no-saved-payment-method-message')}
+        </p>
+      </div>
+    );
+  }
+
+  renderPaymentChoice(payment) {
+    const {
+      checked, deletable, selectaction,
+    } = payment;
+
+    console.log('the payment choice');
+
+    return (
+      <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
+        <div className="payment-ctrl-cell" data-region="paymentSelector">
+          <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectaction, event)} />
+          <label htmlFor="paymentMethod">
+            <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
+              <PaymentMethodContainer displayName={payment} />
+            </div>
+          </label>
+        </div>
+        {deletable && (
+          <div className="payment-btn-cell">
+            <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
+              {intl.get('delete')}
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  handleChange(link) {
+    const { onChange } = this.props;
+
+    this.setState({
+      isLoading: true,
+    });
+    login().then(() => {
+      cortexFetch(link, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      }).then(() => {
+        onChange();
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+    });
+  }
+
+  renderOrderPaymentMethodInfo() {
+    const { paymentMethodInfo } = this.props;
+    const paymentMethods = [];
+    const paymentMethod = paymentMethodInfo._paymentmethod;
+
+    if (paymentMethod) {
+      const [description] = paymentMethod;
+      description.checked = true;
+      description.deletable = false;
+      paymentMethods.push(description);
+    }
+
+    const selector = paymentMethodInfo._selector;
+
+    if (selector) {
+      const choices = selector[0]._choice;
+      choices.map((choice) => {
+        const [description] = choice._description;
+        description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
+        description.checked = false;
+        description.deletable = true;
+        paymentMethods.push(description);
+        return description;
+      });
+    }
+
+    return (
+      paymentMethods.map(payment => this.renderPaymentChoice(payment))
+    );
+  }
+
+  renderPayments() {
+    const { paymentMethods, paymentInstrumentSelector, paymentMethodInfo } = this.props;
+
+    if (paymentInstrumentSelector) {
+      return this.renderPaymentInstrumentSelector();
+    }
+
+    if (paymentMethods) {
+      return this.renderProfilePaymentMethods();
+    }
+
+    if (paymentMethodInfo) {
+      return this.renderOrderPaymentMethodInfo();
+    }
+
+    return null;
+  }
+
   render() {
     const { openNewPaymentModal, isLoading } = this.state;
     const {
@@ -189,7 +327,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
             {intl.get('payment-methods')}
           </h2>
           { isLoading && <div className="miniLoader" /> }
-          {this.renderPaymentMethods()}
+          {this.renderPayments()}
           <button className="ep-btn primary wide new-payment-btn" type="button" disabled={disableAddPayment} onClick={() => { this.newPayment(); }}>
             {intl.get('add-new-payment-method')}
           </button>
