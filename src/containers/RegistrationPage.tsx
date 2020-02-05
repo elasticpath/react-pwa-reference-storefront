@@ -23,7 +23,7 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { RegistrationFormMain } from '../components/src/index';
 
-function RegistrationPage(props: RouteComponentProps) {
+function RegistrationPage(props: RouteComponentProps<{}, {}, {returnPage: string}>) {
   function handleRegisterSuccess() {
     const { location, history } = props;
     if (location.state && location.state.returnPage) {

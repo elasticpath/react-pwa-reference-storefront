@@ -31,6 +31,7 @@ import * as Config from '../../ep.config.json';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
 import { useCountDispatch } from '../../components/src/cart-count-context';
+import Pagination from '../../components/src/Pagination/pagination';
 
 import './RequisitionList.less';
 
@@ -48,6 +49,23 @@ const listsZoomArray = [
   'itemlistinfo:allitemlists:element:itemlists',
   'itemlistinfo:allitemlists:element:lineitems',
   'itemlistinfo:allitemlists:element:itemlisttype',
+  'itemlistinfo:allitemlists:next',
+  'itemlistinfo:allitemlists:previous',
+];
+
+const listsElementsZoomArray = [
+  'createitemlistform',
+  'element',
+  'element:additemlisttocartforms',
+  'element:additemlisttocartforms:element',
+  'element:additemlisttocartforms:element:target',
+  'element:additemlisttocartforms:element:target:descriptor',
+  'element:additemlisttocartforms:element:additemlisttocartaction',
+  'element:itemlists',
+  'element:lineitems',
+  'element:itemlisttype',
+  'next',
+  'previous',
 ];
 
 interface CartCreateProps {
@@ -60,6 +78,8 @@ interface CartCreateState {
   listName: string,
   listNameErrorMessages: string,
   isLoading: boolean,
+  allItemLists: any,
+  isTableLoading: boolean,
 }
 
 class RequisitionList extends Component<CartCreateProps, CartCreateState> {
@@ -79,6 +99,8 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
       listName: '',
       listNameErrorMessages: '',
       isLoading: false,
+      allItemLists: undefined,
+      isTableLoading: false,
     };
     this.handleEditRequisition = this.handleEditRequisition.bind(this);
     this.handleDeleteRequisition = this.handleDeleteRequisition.bind(this);
@@ -90,6 +112,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     this.clearListNameField = this.clearListNameField.bind(this);
     this.handleSaveList = this.handleSaveList.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
   componentDidMount() {
@@ -108,10 +131,11 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         })
           .then(res => res.json())
           .then((res) => {
-            if (res._itemlistinfo[0] && res._itemlistinfo[0] && res._itemlistinfo[0]._allitemlists[0]) {
+            if (res._itemlistinfo && res._itemlistinfo[0] && res._itemlistinfo[0]._allitemlists[0]) {
               this.setState({
                 requisitionElements: res._itemlistinfo[0]._allitemlists[0]._element || [],
                 createRequisitionForm: res._itemlistinfo[0]._allitemlists[0]._createitemlistform[0],
+                allItemLists: res._itemlistinfo[0]._allitemlists[0],
               });
             }
             this.setState({ isLoading: false });
@@ -325,11 +349,25 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     return (<div>{intl.get('no-requisition-lists-message')}</div>);
   }
 
+  handlePageChange(request) {
+    this.setState({ isTableLoading: true });
+    request
+      .then(res => res.json())
+      .then((res) => {
+        if (res) {
+          this.setState({
+            requisitionElements: res._element || [],
+            allItemLists: res,
+          });
+          this.setState({ isTableLoading: false });
+        }
+      });
+  }
+
   render() {
     const {
-      listName, openModal, listNameErrorMessages, isLoading,
+      listName, openModal, listNameErrorMessages, isLoading, allItemLists, isTableLoading,
     } = this.state;
-
     return (
       <div>
         {isLoading ? (
@@ -366,13 +404,17 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
                 </div>
               </Modal>
             </div>
-            <div className="requisition-list-wrap">
+            <div className="pagination-wrap">
+              { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+            </div>
+            <div className={`requisition-list-wrap ${isTableLoading ? 'loading' : ''}`}>
               <ul className="requisition-list">
                 <li className="requisition-list-item requisition-list-header">
                   <h4 className="requisition-info">{intl.get('name')}</h4>
                   <h4 className="requisition-info">{intl.get('product-count')}</h4>
                   <h4 className="requisition-info action-btn">{intl.get('actions')}</h4>
                 </li>
+                {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
                 {this.renderRequisitionItems()}
               </ul>
             </div>

@@ -27,13 +27,13 @@ import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
 
 
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
-import { ReactComponent as ArrowLeft } from '../../images/icons/arrow_left.svg';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
 import * as Config from '../../ep.config.json';
 import { useCountDispatch } from '../../components/src/cart-count-context';
 
 import './RequisitionPageMain.less';
+import Pagination from '../../components/src/Pagination/pagination';
 
 const listsZoomArray = [
   'additemlisttocartforms',
@@ -93,7 +93,7 @@ interface RequisitionPageMainProps {
 
 interface RequisitionPageMainState {
   isLoading: boolean,
-  isPageLoading: boolean,
+  isTableLoading: boolean,
   listName: string,
   currentlyListName: string,
   addProductModalOpened: boolean,
@@ -115,7 +115,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     super(props);
     this.state = {
       isLoading: false,
-      isPageLoading: false,
+      isTableLoading: false,
       listName: '',
       currentlyListName: '',
       addProductModalOpened: false,
@@ -146,6 +146,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handleAddToSelectedCart = this.handleAddToSelectedCart.bind(this);
     this.loadRequisitionListData = this.loadRequisitionListData.bind(this);
     this.handleUpdateSelectedItem = this.handleUpdateSelectedItem.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
   }
 
   componentDidMount() {
@@ -395,26 +396,20 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     );
   }
 
-  handlePagination(page) {
-    const listUri = page[0].self.uri;
-    this.setState({ isPageLoading: true });
-    cortexFetch(`${listUri}?zoom=${elementZoomArray.sort().join()}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    })
+  handlePagination(request) {
+    this.setState({ isTableLoading: true });
+    request
       .then(res => res.json())
       .then((res) => {
         if (res && res._element) {
           this.setState({ productsData: res });
         }
-        this.setState({ isPageLoading: false });
+        this.setState({ isTableLoading: false });
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
-        this.setState({ isPageLoading: false });
+        this.setState({ isTableLoading: false });
       });
   }
 
@@ -474,7 +469,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       listNameErrorMessages,
       currentlyListName,
       productsData,
-      isPageLoading,
+      isTableLoading,
       selectedProducts,
       addItemsToItemListUri,
       showCreateListLoader,
@@ -483,7 +478,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     const products = productsData && productsData._element ? productsData._element : [];
     const pagination = productsData ? productsData.pagination : { pages: 0, current: 0 };
     const isProductChecked = product => selectedProducts.find(item => item.self.uri === product.self.uri);
-    const CartDropdown = (props: any) => (<div>{this.renderDropdownMenu(props.isDisabled)}</div>);
+    const CartDropdown = (props: any) => (<span>{this.renderDropdownMenu(props.isDisabled)}</span>);
 
     return (
       <div className="requisition-component">
@@ -537,54 +532,41 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                         <CartDropdown isDisabled={!(selectedProducts && selectedProducts.length)} />
                       </div>
                     )}
-                    <div className="product-pagination">
-                      <button type="button" className="pagination-btn prev-btn" onClick={() => { this.handlePagination(productsData._previous); }} disabled={!(productsData && productsData._previous)}>
-                        <ArrowLeft className="arrow-left-icon" />
-                      </button>
-                      <span className="pagination-txt">
-                        {intl.get('pagination-message', { current: pagination.current, pages: pagination.pages })}
-                      </span>
-                      <button type="button" className="pagination-btn next-btn" onClick={() => { this.handlePagination(productsData._next); }} disabled={!(productsData && productsData._next)}>
-                        <ArrowLeft className="arrow-left-icon" />
-                      </button>
-                    </div>
+                    <Pagination pagination={pagination} onPageChange={this.handlePagination} next={productsData._next} previous={productsData._previous} showItemsCount={!multiSelectMode} zoom={elementZoomArray} />
                   </div>
-                  {isPageLoading ? (
-                    <div className="loader" />
-                  ) : (
-                    <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''}`}>
-                      <div className="product-table-heading">
-                        <div className="product-table-heading-item" />
-                        <div className="product-table-heading-item">
-                          <span>{intl.get('product')}</span>
-                        </div>
-                        <div className="product-table-heading-item" />
-                        <div className="product-table-heading-item">
-                          <span>{intl.get('quick-order-sku-title')}</span>
-                        </div>
-                        <div className="product-table-heading-item">
-                          <span>{intl.get('quantity')}</span>
-                        </div>
-                        <div className="product-table-heading-item">
-                          <span>{intl.get('product-options')}</span>
-                        </div>
-                        <div className="product-table-heading-item">
-                          <span>{intl.get('price')}</span>
-                        </div>
-                        <div className="product-table-heading-item actions">
-                          <span>{intl.get('actions')}</span>
-                        </div>
+                  <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''} ${isTableLoading ? 'loading' : ''}`}>
+                    <div className="product-table-heading">
+                      <div className="product-table-heading-item" />
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('product')}</span>
                       </div>
-                      {products.map(product => (
-                        product._item
-                          ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
-                          : ''
-                      ))}
+                      <div className="product-table-heading-item" />
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('quick-order-sku-title')}</span>
+                      </div>
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('quantity')}</span>
+                      </div>
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('product-options')}</span>
+                      </div>
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('price')}</span>
+                      </div>
+                      <div className="product-table-heading-item actions">
+                        <span>{intl.get('actions')}</span>
+                      </div>
                     </div>
-                  )}
+                    {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
+                    {products.map(product => (
+                      product._item
+                        ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                        : ''
+                    ))}
+                  </div>
                 </div>
               )
-              : (<div className="requisition-empty">{intl.get('requisition-list-empty-message')}</div>)
+              : (<div className="requisition-empty">{intl.get('requisition-lists-description')}</div>)
             }
           </div>
         )}

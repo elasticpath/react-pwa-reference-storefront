@@ -226,6 +226,7 @@
     display: table;
     width: 100%;
     margin-bottom: 30px;
+    position: relative;
 
     @media (max-width: @tabletWidth - 1px) {
       padding: 0 15px;
@@ -408,6 +409,12 @@
         visibility: hidden;
       }
     }
+
+    &.loading {
+      .cart-lineitem-row {
+        opacity: .5;
+      }
+    }
   }
 
   .bulk-edit-btn {
@@ -540,53 +547,6 @@
     width: 24px;
   }
 
-}
-
-.product-pagination {
-  white-space: nowrap;
-
-  .pagination-btn {
-    height: 36px;
-    width: 36px;
-    position: relative;
-    border-radius: 50%;
-    border: 1px solid @fifthComplimentTextColor;
-    background: @mainBackgroundColor;
-    vertical-align: middle;
-
-    .arrow-left-icon {
-      fill: @thirdComplimentColor;
-      position: absolute;
-      top: 5px;
-      left: 5px;
-    }
-
-    &:hover {
-      border-color: @secondComplimentColor;
-      background: @secondComplimentColor;
-
-      .arrow-left-icon {
-        fill: @mainBackgroundColor;
-      }
-    }
-
-    &:disabled {
-      border-color: @secondComplimentBackground;
-      background: @secondComplimentBackground;
-
-      .arrow-left-icon {
-        fill: @secondBorderColor;
-      }
-    }
-  }
-
-  .next-btn {
-    transform: rotate(180deg);
-  }
-
-  .pagination-txt {
-    margin: 0 15px;
-  }
 }
 
 @media (min-width: @tabletWidth) {

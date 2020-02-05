@@ -45,6 +45,10 @@ const zoomArray = [
   'passwordresetform',
 ];
 
+interface ChangePasswordFormLocationState {
+  returnPage: string;
+}
+
 interface ChangePasswordFormState {
     oldPassword: string,
     newPassword: string,
@@ -54,7 +58,7 @@ interface ChangePasswordFormState {
     passwordResetUri: string,
 }
 
-class ChangePasswordForm extends React.Component<RouteComponentProps, ChangePasswordFormState> {
+class ChangePasswordForm extends React.Component<RouteComponentProps<{}, {}, ChangePasswordFormLocationState>, ChangePasswordFormState> {
   constructor(props) {
     super(props);
     this.state = {

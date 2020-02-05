@@ -122,12 +122,19 @@
 .requisition-list {
   display: table;
   width: 100%;
+  position: relative;
 
   &-wrap {
     margin-bottom: 50px;
 
     @media (min-width: @mobileWidth) {
       margin-bottom: 100px;
+    }
+
+    &.loading {
+      .requisition-list-item:not(:first-child) {
+        opacity: .5;
+      }
     }
   }
 
@@ -426,3 +433,8 @@
   }
 }
 
+.pagination-wrap {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 14px;
+}
