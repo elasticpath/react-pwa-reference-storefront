@@ -1,0 +1,45 @@
+{
+	"self": {
+		"type": "elasticpath.collections.links",
+		"uri": "/paymentmethods/vestri",
+		"href": "https://reference.epdemos.com/cortex/paymentmethods/vestri"
+	},
+	"messages": [],
+	"links": [],
+	"_element": [{
+		"self": {
+			"type": "elasticpath.paymenttokens.payment-token",
+			"uri": "/paymentmethods/vestri/gqytambugm=",
+			"href": "https://reference.epdemos.com/cortex/paymentmethods/vestri/gqytambugm="
+		},
+		"messages": [],
+		"links": [],
+		"display-name": "John Doe's MasterCard ending in: ****3412",
+		"token": "zq7fxjvnt"
+	}, {
+		"self": {
+			"type": "elasticpath.paymenttokens.payment-token",
+			"uri": "/paymentmethods/vestri/gqytambwha=",
+			"href": "https://reference.epdemos.com/cortex/paymentmethods/vestri/gqytambwha="
+		},
+		"messages": [],
+		"links": [],
+		"display-name": "John Doe's MasterCard ending in: ****3123",
+		"token": "82xkxgwct"
+	}],
+	"_paymenttokenform": [{
+		"self": {
+			"type": "elasticpath.paymenttokens.payment-token",
+			"uri": "/paymenttokens/vestri/form",
+			"href": "https://reference.epdemos.com/cortex/paymenttokens/vestri/form"
+		},
+		"messages": [],
+		"links": [{
+			"rel": "createpaymenttokenaction",
+			"uri": "/paymenttokens/vestri",
+			"href": "https://reference.epdemos.com/cortex/paymenttokens/vestri"
+		}],
+		"display-name": "",
+		"token": ""
+	}]
+}

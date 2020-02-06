@@ -203,7 +203,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
                 {paymentElement['display-name']}
               </span>
             </div>
-            <button className="ep-btn small profile-delete-payment-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
+            <button className="payment-delete-btn" type="button" onClick={() => { this.handleDelete(paymentElement.self.uri); }}>
               {intl.get('delete')}
             </button>
           </li>
@@ -235,7 +235,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
         </div>
         {deletable && (
           <div className="payment-btn-cell">
-            <button className="ep-btn small checkout-delete-payment-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
+            <button className="payment-delete-btn" type="button" onClick={() => { this.handleDelete(payment.self.uri); }}>
               {intl.get('delete')}
             </button>
           </div>

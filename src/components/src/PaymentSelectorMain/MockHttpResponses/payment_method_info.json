@@ -1,0 +1,39 @@
+{
+	"_paymentmethod": [{
+		"self": {
+			"type": "elasticpath.paymenttokens.payment-token",
+			"uri": "/paymentmethods/orders/vestri/ha2weobumntgillggy3dgljuhfqtsllchbsdkllchfrtoyjvmmywmnzvme=",
+			"href": "https://reference.epdemos.com/cortex/paymentmethods/orders/vestri/ha2weobumntgillggy3dgljuhfqtsllchbsdkllchfrtoyjvmmywmnzvme="
+		},
+		"messages": [],
+		"links": [],
+		"display-name": "John Doe's MasterCard ending in: ****3412",
+		"token": "zq7fxjvnt"
+	}],
+	"_selector": [{
+		"_choice": [{
+			"self": {
+				"type": "elasticpath.collections.links",
+				"uri": "/paymentmethods/vestri/gqytambwha=/selector/orders/vestri/ha2weobumntgillggy3dgljuhfqtsllchbsdkllchfrtoyjvmmywmnzvme=",
+				"href": "https://reference.epdemos.com/cortex/paymentmethods/vestri/gqytambwha=/selector/orders/vestri/ha2weobumntgillggy3dgljuhfqtsllchbsdkllchfrtoyjvmmywmnzvme="
+			},
+			"messages": [],
+			"links": [{
+				"rel": "selectaction",
+				"uri": "/paymentmethods/vestri/gqytambwha=/selector/orders/vestri/ha2weobumntgillggy3dgljuhfqtsllchbsdkllchfrtoyjvmmywmnzvme=",
+				"href": "https://reference.epdemos.com/cortex/paymentmethods/vestri/gqytambwha=/selector/orders/vestri/ha2weobumntgillggy3dgljuhfqtsllchbsdkllchfrtoyjvmmywmnzvme="
+			}],
+			"_description": [{
+				"self": {
+					"type": "elasticpath.paymenttokens.payment-token",
+					"uri": "/paymentmethods/vestri/gqytambwha=",
+					"href": "https://reference.epdemos.com/cortex/paymentmethods/vestri/gqytambwha="
+				},
+				"messages": [],
+				"links": [],
+				"display-name": "John Doe's MasterCard ending in: ****3123",
+				"token": "82xkxgwct"
+			}]
+		}]
+	}]
+}

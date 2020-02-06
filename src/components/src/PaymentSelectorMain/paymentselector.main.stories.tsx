@@ -24,9 +24,9 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import Readme from './README.md';
 
-import profileData from '../CommonMockHttpResponses/profile_data_response.json';
-// eslint-disable-next-line camelcase
-import orderPaymentSelector from './MockHttpResponses/profile_default_payment_selector.json';
+import paymentSelector from './MockHttpResponses/payment_selector.json';
+import paymentMethodInfo from './MockHttpResponses/payment_method_info.json';
+import paymentMethod from './MockHttpResponses/payment_methods.json';
 
 import PaymentSelectorMain from './paymentselector.main';
 import { mockPaymentFormSuccessWithRegisteredUser } from '../PaymentForm/paymentform.main.api.mocks';
@@ -43,14 +43,40 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('^Cortex@7.6 | 3 Payment Instruments Available', () => {
+  .add('^Cortex@7.6 | 2 Payment Instruments Available', () => {
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
     mockPaymentFormSuccessWithRegisteredUser();
 
     return (
       <PaymentSelectorMain
-        paymentInstrumentSelector={orderPaymentSelector}
+        paymentInstrumentSelector={paymentSelector}
+        onChange={() => { textToFunc(onChangeFuncText); }}
+        disableAddPayment={false}
+      />
+    );
+  })
+  .add('<Cortex@7.6 | 2 Payment Method Infos Available', () => {
+    const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
+
+    mockPaymentFormSuccessWithRegisteredUser();
+
+    return (
+      <PaymentSelectorMain
+        paymentMethodInfo={paymentMethodInfo}
+        onChange={() => { textToFunc(onChangeFuncText); }}
+        disableAddPayment={false}
+      />
+    );
+  })
+  .add('<Cortex@7.6 | 2 Payment Methods Available', () => {
+    const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
+
+    mockPaymentFormSuccessWithRegisteredUser();
+
+    return (
+      <PaymentSelectorMain
+        paymentMethods={paymentMethod}
         onChange={() => { textToFunc(onChangeFuncText); }}
         disableAddPayment={false}
       />
