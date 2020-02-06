@@ -52,7 +52,16 @@ export function cortexFetch(input, init) {
     return mockFetch(input, requestInit);
   }
 
-  return timeout(Config.cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path + input}`, requestInit)
+  let queryFormat = '';
+  if (input && (Config.formatQueryParameter.standardlinks || Config.formatQueryParameter.noself || Config.formatQueryParameter.nodatalinks)) {
+    const queryCharacter = input.includes('?') ? '&' : '?';
+    const standardlinks = Config.formatQueryParameter.standardlinks ? 'standardlinks,' : '';
+    const noself = Config.formatQueryParameter.noself ? 'zoom.noself,' : '';
+    const nodatalinks = Config.formatQueryParameter.nodatalinks ? 'zoom.nodatalinks' : '';
+    queryFormat = `${queryCharacter}format=${standardlinks}${noself}${nodatalinks}`;
+  }
+
+  return timeout(Config.cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path + input}${queryFormat}`, requestInit)
     .then((res) => {
       res.clone().json().then((json) => {
         function getErrorMessages(data) {
