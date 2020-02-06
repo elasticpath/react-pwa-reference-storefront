@@ -93,7 +93,7 @@ const EXPIRY_YEAR = "#ExpiryYear";
 const SECURITY_CODE = "#SecurityCode";
 const CONTINUE_BUTTON = "button.payment-save-btn";
 const ADDRESS_NAME = ".address-name";
-const CREATED_PAYMENT_METHOD = "ul.profile-payment-methods-listing:nth-child(2)";
+const CREATED_PAYMENT_METHOD = "ul.profile-payment-methods-listing:nth-child(1)";
 const CREATED_ADDRESS_METHOD = "ul.profile-addresses-listing:nth-child(2)";
 
 const EXPECTED_FIRST_NAME = 'john2';
