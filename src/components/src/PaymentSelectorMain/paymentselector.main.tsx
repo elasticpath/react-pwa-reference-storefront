@@ -306,7 +306,9 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
             {intl.get('credit-cards')}
           </h2>
           { isLoading && <div className="miniLoader" /> }
-          {this.renderPayments()}
+          <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
+            {this.renderPayments()}
+          </div>
           <button className="ep-btn primary wide new-payment-btn" type="button" disabled={disableAddPayment} onClick={() => { this.newPayment(); }}>
             {intl.get('add-new-payment-method')}
           </button>
