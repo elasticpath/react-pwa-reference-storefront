@@ -48,19 +48,17 @@ const zoomArray = [
   'defaultprofile:addresses:element',
   'defaultprofile:addresses:billingaddresses:default',
 
-  // zoom for payments ep version > 7.6
-  'defaultprofile:paymentinstruments:element',
-  'defaultprofile:paymentinstruments:default',
-
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods',
-  'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
+
   'data-policies:element',
   'data-policies:element:datapolicyconsentform',
   'passwordresetform',
 
-  // default profile
+  // zoom for payments ep version > 7.6
+  'defaultprofile:paymentinstruments:element',
+  'defaultprofile:paymentinstruments:default',
   'defaultprofile:paymentinstruments:defaultinstrumentselector',
   'defaultprofile:paymentinstruments:defaultinstrumentselector:chosen',
   'defaultprofile:paymentinstruments:defaultinstrumentselector:chosen:description',

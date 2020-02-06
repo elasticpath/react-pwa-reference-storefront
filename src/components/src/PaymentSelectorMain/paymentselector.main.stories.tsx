@@ -19,7 +19,7 @@
  *
  */
 import React from 'react';
-import { text, object } from "@storybook/addon-knobs/react";
+import { text } from "@storybook/addon-knobs/react";
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import Readme from './README.md';
@@ -29,8 +29,8 @@ import paymentMethodInfo from './MockHttpResponses/payment_method_info.json';
 import paymentMethod from './MockHttpResponses/payment_methods.json';
 
 import PaymentSelectorMain from './paymentselector.main';
-import { mockPaymentFormSuccessWithRegisteredUser } from '../PaymentForm/paymentform.main.api.mocks';
 import { textToFunc } from "../../../../storybook/utils/storybookUtils";
+import { mockPaymentInstrumentSelectionWithAnonUser, mockPaymentMethodSelectionWithAnonUser } from './paymentselector.main.api.mocks';
 
 // TODO: Should add more stories here! - aChan
 storiesOf('Components|ProfilePaymentMethodsMain', module)
@@ -46,7 +46,7 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
   .add('^Cortex@7.6 | 2 Payment Instruments Available', () => {
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
-    mockPaymentFormSuccessWithRegisteredUser();
+    mockPaymentInstrumentSelectionWithAnonUser();
 
     return (
       <PaymentSelectorMain
@@ -59,7 +59,7 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
   .add('<Cortex@7.6 | 2 Payment Method Infos Available', () => {
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
-    mockPaymentFormSuccessWithRegisteredUser();
+    mockPaymentMethodSelectionWithAnonUser();
 
     return (
       <PaymentSelectorMain
@@ -71,8 +71,6 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
   })
   .add('<Cortex@7.6 | 2 Payment Methods Available', () => {
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
-
-    mockPaymentFormSuccessWithRegisteredUser();
 
     return (
       <PaymentSelectorMain

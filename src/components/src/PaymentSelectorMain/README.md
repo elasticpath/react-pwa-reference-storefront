@@ -44,19 +44,19 @@ import { PaymentSelectorMain } from '@elasticpath/store-components';
 ```js
 
 <PaymentSelectorMain
-            shouldPostToProfile={false}
-            showSaveToProfileOption={showSaveToProfileOption}
-            paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
-            onChange={() => {
-              this.fetchProfileData();
-              this.fetchOrderData();
-            }}
-            disableAddPayment={false}
-          />
+    shouldPostToProfile={false}
+    showSaveToProfileOption={showSaveToProfileOption}
+    paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
+    onChange={() => {
+        this.fetchProfileData();
+        this.fetchOrderData();
+    }}
+    disableAddPayment={false}
+/>
 ```
 
 
-##### How to use component with Pre Cortex 7.6 Payments
+#### How to use component with Pre Cortex 7.6 Payments
 The key property to send into this component when using a Cortex instance less than version 7.6 is `paymentMethods` and `paymentMethodInfo`.  It is from these two properties that the entire component is rendered.  `paymentMethods` pertains to the resource under the profiles resource and `paymentMethodInfo` pertains to the resource under the orders resource.
 
 You should find this data through using these zooms:
@@ -87,25 +87,25 @@ import { PaymentSelectorMain } from '@elasticpath/store-components';
 #### Example
 
 ```js
-    <PaymentSelectorMain
+<PaymentSelectorMain
     paymentMethods={profileData._paymentmethods[0]}
     onChange={this.fetchProfileData}
     disableAddPayment={false}
     shouldPostToProfile
-    />
+/>
 ```
 
 ```js
-    <PaymentSelectorMain
-        shouldPostToProfile={false}
-        showSaveToProfileOption={showSaveToProfileOption}
-        paymentMethodInfo={orderData._order[0]._paymentmethodinfo[0]}
-        onChange={() => {
-            this.fetchProfileData();
-            this.fetchOrderData();
-        }}
-        disableAddPayment={false}
-    />
+<PaymentSelectorMain
+    shouldPostToProfile={false}
+    showSaveToProfileOption={showSaveToProfileOption}
+    paymentMethodInfo={orderData._order[0]._paymentmethodinfo[0]}
+    onChange={() => {
+        this.fetchProfileData();
+        this.fetchOrderData();
+    }}
+    disableAddPayment={false}
+/>
 ```
 
 
