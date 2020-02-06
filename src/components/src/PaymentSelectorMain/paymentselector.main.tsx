@@ -37,12 +37,12 @@ interface PaymentSelectorMainProps {
   onChange: (...args: any[]) => any,
   /** disable add a new payment method */
   disableAddPayment?: boolean,
-  /** Payment Instrument Selector json object */
-  paymentInstrumentSelector?: any,
   /** on Selection or Deletion error */
   onError?: any,
   /** Sets the nested payment form to either post to profile or order */
   shouldPostToProfile?: boolean,
+  /** Payment Instrument Selector json object to be rendered */
+  paymentInstrumentSelector?: any,
   /** paymentmethod from profile resource to be rendered */
   paymentMethods?: any,
   /** paymentMethodInfo from orders resource to be rendered */
