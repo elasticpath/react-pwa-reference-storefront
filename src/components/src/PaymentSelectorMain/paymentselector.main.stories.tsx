@@ -32,6 +32,7 @@ import PaymentSelectorMain from './paymentselector.main';
 import { mockPaymentFormSuccessWithRegisteredUser } from '../PaymentForm/paymentform.main.api.mocks';
 import { textToFunc } from "../../../../storybook/utils/storybookUtils";
 
+// TODO: Should add more stories here! - aChan
 storiesOf('Components|ProfilePaymentMethodsMain', module)
   .addParameters({
     readme: {
@@ -46,17 +47,6 @@ storiesOf('Components|ProfilePaymentMethodsMain', module)
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
     mockPaymentFormSuccessWithRegisteredUser();
-
-    return (
-      <PaymentSelectorMain
-        paymentInstrumentSelector={orderPaymentSelector}
-        onChange={() => { textToFunc(onChangeFuncText); }}
-        disableAddPayment={false}
-      />
-    );
-  })
-  .add('Development No Mocks', () => {
-    const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
     return (
       <PaymentSelectorMain
