@@ -140,6 +140,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
+    this.handleAddProductsModalUpdate = this.handleAddProductsModalUpdate.bind(this);
     this.handleEditListName = this.handleEditListName.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleEditListNameModalOpen = this.handleEditListNameModalOpen.bind(this);
@@ -216,6 +217,11 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.setState({
       addProductModalOpened: !addProductModalOpened,
     });
+  }
+
+  handleAddProductsModalUpdate() {
+    this.loadRequisitionListData(true);
+    this.setState({ addProductModalOpened: false });
   }
 
   handleCheckAll() {
@@ -668,7 +674,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             isBulkModalOpened={addProductModalOpened}
             handleClose={this.handleAddProductsModalClose}
             addItemsToItemListUri={addItemsToItemListUri}
-            onAddItem={this.loadRequisitionListData}
+            onAddItem={this.handleAddProductsModalUpdate}
           />
         ) : ''}
         <Modal open={editListNameModalOpened} onClose={this.handleModalClose}>
