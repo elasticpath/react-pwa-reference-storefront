@@ -29,6 +29,8 @@ import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appm
 import './cart.lineitem.less';
 
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
+import { ReactComponent as UpdateQuantityIcon } from '../../../images/icons/ic_update.svg';
+import { ReactComponent as UpdateQuantityActiveIcon } from '../../../images/icons/ic_update_active.svg';
 import { ReactComponent as RecycleBinIcon } from '../../../images/icons/ic_trash.svg';
 
 let Config: IEpConfig | any = {};
@@ -421,6 +423,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
     let availability = (itemAvailability[0].state === 'AVAILABLE');
     let availabilityString = '';
+    const isActiveQuantityUpdate = item.quantity !== quantity;
     if (itemAvailability.length >= 0) {
       if (itemAvailability[0].state === 'AVAILABLE') {
         availability = true;
@@ -559,6 +562,9 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
                 <span className="glyphicon glyphicon-plus" />
               </button>
             </span>,
+            <button type="submit" className={`item-quantity-update-icon ${isActiveQuantityUpdate ? 'active-icon' : ''}`}>
+              <UpdateQuantityIcon />
+            </button>,
             <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value="Update Quantity" />,
           ] : ('')
           }

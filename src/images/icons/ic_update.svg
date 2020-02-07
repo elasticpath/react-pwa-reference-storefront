@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12px" height="17px" viewBox="0 0 12 17" version="1.1">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>ic_sync</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="B2B/Mobile/List/Product" transform="translate(-332.000000, -90.000000)">
+            <g transform="translate(39.000000, 18.000000)" id="ic_sync">
+                <g transform="translate(293.000000, 72.000000)">
+                    <g>
+                        <g>
+                            <path d="M6,2.25 L6,0 L3,3 L6,6 L6,3.75 C8.4825,3.75 10.5,5.7675 10.5,8.25 C10.5,9.0075 10.3125,9.7275 9.975,10.35 L11.07,11.445 C11.655,10.5225 12,9.4275 12,8.25 C12,4.935 9.315,2.25 6,2.25 L6,2.25 Z M6,12.75 C3.5175,12.75 1.5,10.7325 1.5,8.25 C1.5,7.4925 1.6875,6.7725 2.025,6.15 L0.93,5.055 C0.345,5.9775 0,7.0725 0,8.25 C0,11.565 2.685,14.25 6,14.25 L6,16.5 L9,13.5 L6,10.5 L6,12.75 L6,12.75 Z"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

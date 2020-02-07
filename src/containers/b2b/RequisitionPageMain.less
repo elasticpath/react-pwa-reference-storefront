@@ -643,10 +643,35 @@
       grid-row: 2 / span 2;
       text-align: center;
       margin-bottom: 40px;
+      position: relative;
 
       .product-display-item-quantity-update-button {
-        grid-column: 4;
-        grid-row: 3;
+        display: none;
+      }
+      .product-display-item-quantity-select {
+        padding: 0;
+      }
+
+      .item-quantity-update-icon {
+        display: block;
+        padding: 0;
+        position: absolute;
+        top: 24px;
+        right: -28px;
+        border: none;
+        outline: 0 auto transparent;
+
+        svg {
+          fill: @mainBorderColor;
+          width: 12px;
+          height: 17px;
+        }
+
+        &.active-icon {
+          svg {
+            fill: @firstComplimentColor;
+          }
+        }
       }
 
       .input-group-btn {
@@ -655,7 +680,7 @@
         .quantity-col {
           font-size: 15px;
           transform: rotate(180deg);
-          padding-left: 14px;
+          padding-left: 15px;
         }
       }
 
