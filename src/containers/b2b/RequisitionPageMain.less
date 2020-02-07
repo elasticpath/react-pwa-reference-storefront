@@ -548,6 +548,10 @@
     align-items: center;
     margin-bottom: 4px;
 
+    &.multi-select-mode {
+      background: @thirdComplimentBackground;
+    }
+
     @media (max-width: @tabletWidth - 1px) {
       padding-left: 15px;
     }
@@ -556,6 +560,10 @@
       margin-bottom: 15px;
 
       &.multi-select-mode {
+        padding-top: 16px;
+        background-color: @firstComplimentColor;
+        color: @mainBackgroundColor;
+
         .add-to-cart-dropdown {
           position: absolute;
           top: 0;
@@ -582,10 +590,6 @@
 
     @media screen and (min-width: 481px) {
       padding-right: 20px;
-    }
-
-    &.multi-select-mode {
-      background: @thirdComplimentBackground;
     }
 
     .add-to-cart-dropdown {
@@ -923,19 +927,21 @@
         }
       }
 
-      .pagination-wrap {
-        padding-top: 16px;
-        background-color: @firstComplimentColor;
-        color: @mainBackgroundColor;
-      }
-
       .selected-element {
         color: @mainBackgroundColor;
       }
 
       .dropdown-add-to-cart-field .dropdown-toggle {
         .cart-icon {
-          fill: #BAD7DE;
+          fill: @mainBackgroundColor;
+        }
+
+        &:disabled {
+          background-color: transparent;
+
+          .cart-icon {
+            fill: #BAD7DE;
+          }
         }
       }
     }
