@@ -27,6 +27,9 @@ import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
 
 
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
+import { ReactComponent as CartIcon } from '../../images/icons/ic_add_to_cart.svg';
+import { ReactComponent as AddToListIcon } from '../../images/icons/ic_add_list.svg';
+import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
 import * as Config from '../../ep.config.json';
@@ -153,6 +156,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handlePagination = this.handlePagination.bind(this);
     this.handleSelectAllItems = this.handleSelectAllItems.bind(this);
     this.handleCloseSelectAllPopup = this.handleCloseSelectAllPopup.bind(this);
+    this.handleCloseMultiSelectMode = this.handleCloseMultiSelectMode.bind(this);
   }
 
   componentDidMount() {
@@ -388,8 +392,9 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             >
               {addToCartLoader ? (
                 <div className="miniLoader" />
-              ) : intl.get('add-to-cart-2')
+              ) : (<span className="btn-txt">{intl.get('add-to-cart-2')}</span>)
               }
+              <CartIcon className="cart-icon" />
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {(multiCartData.length) ? multiCartData.map(cart => (
@@ -505,6 +510,10 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.setState({ showSelectAllPopup: false });
   }
 
+  handleCloseMultiSelectMode() {
+    this.setState({ multiSelectMode: false });
+  }
+
   render() {
     const {
       isLoading,
@@ -562,7 +571,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
         {isLoading ? (
           <div className="loader" />
         ) : (
-          <div>
+          <div className={`requisition-component-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
             <div className="requisition-header">
               <div className="back-link-wrap">
                 <Link className="back-link" to="/b2b/requisition-lists">
@@ -577,11 +586,15 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 <button type="button" className="edit-name" onClick={this.handleEditListNameModalOpen}>
                   {intl.get('edit')}
                 </button>
+                <button type="button" className="close-btn" onClick={this.handleCloseMultiSelectMode}>
+                  <CloseIcon />
+                </button>
               </div>
             </div>
             <div className="add-to-cart-dropdown-wrap">
               <button type="button" className="ep-btn primary add-to-list-button" onClick={this.handleAddProductsModalOpen}>
-                {intl.get('add-products-to-list')}
+                <span className="btn-txt">{intl.get('add-products-to-list')}</span>
+                <AddToListIcon className="list-icon" />
               </button>
               {!multiSelectMode && (<CartDropdown isDisabled={!(productsData && productsData._element && productsData._element.length)} />)}
             </div>

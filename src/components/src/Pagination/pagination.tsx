@@ -77,15 +77,17 @@ function Pagination(props: PaginationProps) {
   return (
     <div className="pagination">
       {showItemsCount && (<span className="pagination-txt">{intl.get('pagination-item-count', { range: `${pageStart || 1} - ${pageStart + pagination['results-on-page']}`, allItems: pagination.results })}</span>)}
-      <button type="button" className="pagination-btn prev-btn" onClick={() => { handlePagination(previous); }} disabled={!previous}>
-        <ArrowLeft className="arrow-left-icon" />
-      </button>
-      <span className="pagination-txt">
-        {intl.get('pagination-message', { current: pagination.current, pages: pagination.pages })}
-      </span>
-      <button type="button" className="pagination-btn next-btn" onClick={() => { handlePagination(next); }} disabled={!next}>
-        <ArrowLeft className="arrow-left-icon" />
-      </button>
+      <div className="pagination-btn-wrap">
+        <button type="button" className="pagination-btn prev-btn" onClick={() => { handlePagination(previous); }} disabled={!previous}>
+          <ArrowLeft className="arrow-left-icon" />
+        </button>
+        <span className="pagination-txt">
+          {intl.get('pagination-message', { current: pagination.current, pages: pagination.pages })}
+        </span>
+        <button type="button" className="pagination-btn next-btn" onClick={() => { handlePagination(next); }} disabled={!next}>
+          <ArrowLeft className="arrow-left-icon" />
+        </button>
+      </div>
     </div>);
 }
 
