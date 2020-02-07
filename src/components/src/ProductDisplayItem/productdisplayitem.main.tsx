@@ -595,9 +595,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         }))
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
-          this.setState({ addToCartLoading: false });
           onCountChange(cartName, itemQuantity);
         }
+        this.setState({ addToCartLoading: false });
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
