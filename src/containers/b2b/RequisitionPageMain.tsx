@@ -558,22 +558,22 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
 
     return (
       <div className="requisition-component">
-        {showSelectAllPopup && (
-          <div className="select-all-items-block">
-            <div className={`select-all-items ${selectAllLoader ? 'loading' : ''}`}>
-              {selectAllLoader ? (<span className="miniLoader" />) : ''}
-              <p>
-                {msg.map((str) => {
-                  const i = Object.keys(obj).indexOf(str);
-                  return i === -1 ? str : obj[str];
-                })}
-              </p>
-              <button type="button" className="ep-btn small close-btn" onClick={this.handleCloseSelectAllPopup}>
-                {intl.get('close')}
-              </button>
+        {/* {showSelectAllPopup && (
+         <div className="select-all-items-block">
+         <div className={`select-all-items ${selectAllLoader ? 'loading' : ''}`}>
+            {selectAllLoader ? (<span className="miniLoader" />) : ''}
+             <p>
+              {msg.map((str) => {
+                 const i = Object.keys(obj).indexOf(str);
+                return i === -1 ? str : obj[str];
+               })}
+             </p>
+             <button type="button" className="ep-btn small close-btn" onClick={this.handleCloseSelectAllPopup}>
+               {intl.get('close')}
+             </button>
             </div>
           </div>
-        )}
+         )} */}
         {isLoading ? (
           <div className="loader" />
         ) : (
