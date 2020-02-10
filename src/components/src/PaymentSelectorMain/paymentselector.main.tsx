@@ -49,6 +49,8 @@ interface PaymentSelectorMainProps {
   paymentMethodInfo?: any,
   /** shows the save to profile option in the payment form */
   showSaveToProfileOption?: boolean
+  /** boolean that allows for highlight around container when a payment is selected.  defaults to true */
+  allowSelectionContainerHighlight?: boolean
 }
 
 interface PaymentSelectorMainState {
@@ -300,15 +302,19 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
   }
 
   isSelected() {
-    const { paymentInstrumentSelector } = this.props;
+    const { paymentInstrumentSelector, allowSelectionContainerHighlight } = this.props;
     console.log(paymentInstrumentSelector);
-    try {
-      if (paymentInstrumentSelector._chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'] === undefined) {
-        return true;
+
+    if (allowSelectionContainerHighlight) {
+      try {
+        if (paymentInstrumentSelector._chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'] === undefined) {
+          return true;
+        }
+      // eslint-disable-next-line no-empty
+      } catch (err) {
       }
-    // eslint-disable-next-line no-empty
-    } catch (err) {
     }
+
     return false;
   }
 
