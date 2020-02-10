@@ -45,7 +45,7 @@ storiesOf('Components|PurchaseOrderWidget', module)
 
     return <PurchaseOrderWidget
       orderPaymentData={poPaymentSelected}
-      onChange={textToFunc(onChangeFuncText)}
+      onChange={() => (textToFunc(onChangeFuncText))}
     />;
   })
   .add('PO Payment Method Available', () => {
@@ -54,7 +54,7 @@ storiesOf('Components|PurchaseOrderWidget', module)
 
     return <PurchaseOrderWidget
       orderPaymentData={availablePONotSelected}
-      onChange={textToFunc(onChangeFuncText)}
+      onChange={() => (textToFunc(onChangeFuncText))}
     />;
   })
   .add('PO Payment Method N/A', () => {
@@ -63,6 +63,6 @@ storiesOf('Components|PurchaseOrderWidget', module)
 
     return <PurchaseOrderWidget
       orderPaymentData={poPaymentNotAvaialble}
-      onChange={textToFunc(onChangeFuncText)}
+      onChange={() => (textToFunc(onChangeFuncText))}
     />;
   });
