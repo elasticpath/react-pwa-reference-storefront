@@ -24,7 +24,9 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text } from '@storybook/addon-knobs/react';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
-import { mockPOPaymentInstrumentAvailableWithAnonUser, mockPOPaymentMethodNotAvailableWithAnonUser, mockPOPaymentFormNoPaymentInstrument } from './purchase.order.widget.api.mocks';
+import poPaymentNotAvaialble from './MockHttpResponses/GET/po_payment_not_available.json';
+import availablePONotSelected from './MockHttpResponses/GET/available_po_not_selected.json';
+import poPaymentSelected from './MockHttpResponses/GET/po_payment_selected.json';
 import PurchaseOrderWidget from './purchase.order.widget';
 
 storiesOf('Components|PurchaseOrderWidget', module)
@@ -39,22 +41,39 @@ storiesOf('Components|PurchaseOrderWidget', module)
   ))
   .add('PO Payment Instrument Selected', () => {
     // Should show the PO number available
-    mockPOPaymentInstrumentAvailableWithAnonUser();
 
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
-    return null;
+
+    return <PurchaseOrderWidget
+      orderPaymentData={poPaymentSelected}
+      onChange={() => {
+        this.fetchProfileData();
+        this.fetchOrderData();
+      }}
+    />;
   })
   .add('PO Payment Method Available', () => {
     // Should show the PO number available
-    mockPOPaymentFormNoPaymentInstrument();
 
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
-    return null;
+
+    return <PurchaseOrderWidget
+      orderPaymentData={availablePONotSelected}
+      onChange={() => {
+        this.fetchProfileData();
+        this.fetchOrderData();
+      }}
+    />;
   })
   .add('PO Payment Method N/A', () => {
     // Nothing should show here because PO Method is not available.
-    mockPOPaymentMethodNotAvailableWithAnonUser();
-
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
-    return null;
+
+    return <PurchaseOrderWidget
+      orderPaymentData={poPaymentNotAvaialble}
+      onChange={() => {
+        this.fetchProfileData();
+        this.fetchOrderData();
+      }}
+    />;
   });
