@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, PaymentFormMain, AddressFormMain,
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, AddressFormMain, PaymentSelectorMain,
 } from '../components/src/index';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -41,6 +41,12 @@ const zoomArrayProfile = [
   'defaultprofile:emails:element:profile',
   'defaultprofile:emails:emailform',
   'defaultprofile:emails:profile',
+  'defaultprofile:paymentinstruments:element',
+  'defaultprofile:paymentinstruments:default',
+  'defaultprofile:paymentmethods:paymenttokenform',
+  'defaultprofile:paymentmethods',
+  'defaultprofile:paymentmethods:paymenttokenform',
+  'defaultprofile:paymentmethods:element',
 ];
 
 const zoomArray = [
@@ -70,8 +76,10 @@ const zoomArray = [
   'order:paymentmethodinfo:selector:choice',
   'order:paymentmethodinfo:selector:choice:description',
   // zooms for payment plugin update
+  'order:paymentinstrumentselector',
   'order:paymentinstrumentselector:choice',
   'order:paymentinstrumentselector:choice:description',
+  'order:paymentinstrumentselector:chosen',
   'order:paymentinstrumentselector:chosen:description',
 ];
 
@@ -88,7 +96,6 @@ interface CheckoutPageState {
     profileData: any,
     showGiftCard: boolean,
     certificates: any,
-    openNewPaymentModal: boolean,
     openAddressModal: boolean,
     addressUrl: any,
 }
@@ -102,16 +109,14 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
       profileData: undefined,
       showGiftCard: false,
       certificates: [],
-      openNewPaymentModal: false,
       openAddressModal: false,
       addressUrl: undefined,
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.handleCertificate = this.handleCertificate.bind(this);
-    this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
     this.fetchOrderData = this.fetchOrderData.bind(this);
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
-    this.renderPaymentInstrumentSelector = this.renderPaymentInstrumentSelector.bind(this);
+    this.renderPaymentSelector = this.renderPaymentSelector.bind(this);
   }
 
   componentDidMount() {
@@ -244,10 +249,6 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     });
   }
 
-  newPayment() {
-    this.setState({ openNewPaymentModal: true });
-  }
-
   reviewOrder() {
     const { history, match } = this.props;
     const cartCode = match.params.cart;
@@ -263,10 +264,6 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
 
   handleCloseAddressModal() {
     this.setState({ openAddressModal: false });
-  }
-
-  handleCloseNewPaymentModal() {
-    this.setState({ openNewPaymentModal: false });
   }
 
   renderShippingAddress() {
@@ -520,47 +517,6 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     );
   }
 
-  renderPayments() {
-    const { orderData } = this.state;
-    if (orderData._order[0]._paymentmethodinfo) {
-      const paymentMethods = [];
-      const paymentMethod = orderData._order[0]._paymentmethodinfo[0]._paymentmethod;
-      if (paymentMethod) {
-        const [description] = paymentMethod;
-        description.checked = true;
-        description.deletable = false;
-        paymentMethods.push(description);
-      }
-      const selector = orderData._order[0]._paymentmethodinfo[0]._selector;
-      if (selector) {
-        const choices = selector[0]._choice;
-        choices.map((choice) => {
-          const [description] = choice._description;
-          description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
-          description.checked = false;
-          description.deletable = true;
-          paymentMethods.push(description);
-          return description;
-        });
-      }
-      return (
-        paymentMethods.map(payment => this.renderPaymentChoice(payment))
-      );
-    }
-
-    if (orderData._order[0]._paymentinstrumentselector) {
-      return this.renderPaymentInstrumentSelector(orderData._order[0]._paymentinstrumentselector[0]);
-    }
-
-    return (
-      <div>
-        <p>
-          {intl.get('no-saved-payment-method-message')}
-        </p>
-      </div>
-    );
-  }
-
   renderPaymentChoice(payment) {
     const {
       checked, deletable, selectaction,
@@ -587,66 +543,68 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     );
   }
 
-  renderPaymentInstrumentSelector(paymentInstrumentSelector) {
-    const paymentMethods = [];
-    if (paymentInstrumentSelector._chosen) {
-      const [description] = paymentInstrumentSelector._chosen;
-      description.checked = true;
-      description.deletable = false;
-      paymentMethods.push(description);
-    }
-    if (paymentInstrumentSelector._choice) {
-      const choices = paymentInstrumentSelector._choice;
-      choices.map((choice) => {
-        const [description] = choice._description;
-        description.selectaction = choice.links.find(link => link.rel === 'selectaction').uri;
-        description.checked = false;
-        description.deletable = true;
-        paymentMethods.push(description);
-        return description;
-      });
-    }
-
-    return (
-      paymentMethods.map(payment => this.renderPaymentChoice(payment))
-    );
-  }
-
   renderPaymentSelector() {
-    const { profileData, openNewPaymentModal } = this.state;
-    const isDisabled = !(!profileData || (profileData && profileData._emails[0]._element));
+    const { orderData } = this.state;
 
+    let showSaveToProfileOption;
+    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {
+      showSaveToProfileOption = false;
+    } else {
+      showSaveToProfileOption = true;
+    }
+
+    if (
+      orderData
+      && orderData._order
+      && orderData._order[0]
+    ) {
+      if (
+        orderData._order[0]._paymentinstrumentselector
+        && orderData._order[0]._paymentinstrumentselector[0]
+      ) {
+        return (
+          <PaymentSelectorMain
+            shouldPostToProfile={false}
+            showSaveToProfileOption={showSaveToProfileOption}
+            paymentInstrumentSelector={orderData._order[0]._paymentinstrumentselector[0]}
+            onChange={() => {
+              this.fetchProfileData();
+              this.fetchOrderData();
+            }}
+            disableAddPayment={false}
+          />
+        );
+      }
+      if (
+        orderData._order[0]._paymentmethodinfo
+        && orderData._order[0]._paymentmethodinfo[0]
+      ) {
+        return (
+          <PaymentSelectorMain
+            shouldPostToProfile={false}
+            showSaveToProfileOption={showSaveToProfileOption}
+            paymentMethodInfo={orderData._order[0]._paymentmethodinfo[0]}
+            onChange={() => {
+              this.fetchProfileData();
+              this.fetchOrderData();
+            }}
+            disableAddPayment={false}
+          />
+        );
+      }
+    }
+
+    // There is no paymentMethod and paymentInstrument.
     return (
-      <div>
-        <h2>
-          {intl.get('payment-method')}
-        </h2>
-        <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
-          {this.renderPayments()}
-        </div>
-        <button className="ep-btn primary wide checkout-new-payment-btn" disabled={isDisabled} type="button" onClick={() => { this.newPayment(); }}>
-          {intl.get('add-new-payment-method')}
-        </button>
-        <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
-          <div className="modal-lg new-payment-modal">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h2 className="modal-title">
-                  {intl.get('new-payment-method')}
-                </h2>
-              </div>
-              <div className="modal-body">
-                {
-                  localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC' ? (
-                    <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption={false} onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />
-                  ) : (
-                    <PaymentFormMain defaultPostSelection={false} showSaveToProfileOption onCloseModal={this.handleCloseNewPaymentModal} fetchData={this.fetchOrderData} />)
-                }
-              </div>
-            </div>
-          </div>
-        </Modal>
-      </div>
+      <PaymentSelectorMain
+        shouldPostToProfile={false}
+        paymentInstrumentSelector={{}}
+        onChange={() => {
+          this.fetchProfileData();
+          this.fetchOrderData();
+        }}
+        disableAddPayment={false}
+      />
     );
   }
 

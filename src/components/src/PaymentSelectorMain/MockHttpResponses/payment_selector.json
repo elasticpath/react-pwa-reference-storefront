@@ -1,0 +1,60 @@
+{
+	"_choice": [{
+		"self": {
+			"type": "paymentinstruments.profile-default-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/mobee/defaultinstrumentselector/paymentinstruments/mobee/ga4donrsha4tallbgjqtkljugu2tcljygrrdsljxgq4dsndghfswcn3fgq=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/mobee/defaultinstrumentselector/paymentinstruments/mobee/ga4donrsha4tallbgjqtkljugu2tcljygrrdsljxgq4dsndghfswcn3fgq="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "selectaction",
+			"rev": "choice",
+			"type": "paymentinstruments.profile-default-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/mobee/defaultinstrumentselector/paymentinstruments/mobee/ga4donrsha4tallbgjqtkljugu2tcljygrrdsljxgq4dsndghfswcn3fgq=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/mobee/defaultinstrumentselector/paymentinstruments/mobee/ga4donrsha4tallbgjqtkljugu2tcljygrrdsljxgq4dsndghfswcn3fgq="
+		}],
+		"_description": [{
+			"self": {
+				"type": "paymentinstruments.payment-instrument",
+				"uri": "/paymentinstruments/mobee/ga4donrsha4tallbgjqtkljugu2tcljygrrdsljxgq4dsndghfswcn3fgq=",
+				"href": "http://localhost:9080/cortex/paymentinstruments/mobee/ga4donrsha4tallbgjqtkljugu2tcljygrrdsljxgq4dsndghfswcn3fgq="
+			},
+			"messages": [],
+			"links": [],
+			"default-on-profile": false,
+			"name": "harry potter's American Express ending in: ****3412",
+			"payment-instrument-identification-attributes": {
+				"details": "bac90786-cb7c-4ad8-80a8-82a163358f3f"
+			}
+		}]
+	}],
+	"_chosen": [{
+		"self": {
+			"type": "paymentinstruments.profile-default-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/mobee/defaultinstrumentselector/paymentinstruments/mobee/ga3tonjtgzqtsljyhbrdmljumu4wiljzgzsgmljqgrsdqmdemy4dmnzygq=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/mobee/defaultinstrumentselector/paymentinstruments/mobee/ga3tonjtgzqtsljyhbrdmljumu4wiljzgzsgmljqgrsdqmdemy4dmnzygq="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "selectaction",
+			"rev": "choice",
+			"type": "paymentinstruments.profile-default-payment-instrument-selector-choice",
+			"uri": "/paymentinstruments/mobee/defaultinstrumentselector/paymentinstruments/mobee/ga3tonjtgzqtsljyhbrdmljumu4wiljzgzsgmljqgrsdqmdemy4dmnzygq=",
+			"href": "http://localhost:9080/cortex/paymentinstruments/mobee/defaultinstrumentselector/paymentinstruments/mobee/ga3tonjtgzqtsljyhbrdmljumu4wiljzgzsgmljqgrsdqmdemy4dmnzygq="
+		}],
+		"_description": [{
+			"self": {
+				"type": "paymentinstruments.payment-instrument",
+				"uri": "/paymentinstruments/mobee/ga3tonjtgzqtsljyhbrdmljumu4wiljzgzsgmljqgrsdqmdemy4dmnzygq=",
+				"href": "http://localhost:9080/cortex/paymentinstruments/mobee/ga3tonjtgzqtsljyhbrdmljumu4wiljzgzsgmljqgrsdqmdemy4dmnzygq="
+			},
+			"messages": [],
+			"links": [],
+			"default-on-profile": true,
+			"name": "Alvin Chan's American Express ending in: ****4124",
+			"payment-instrument-identification-attributes": {
+				"details": "210a558a-05c6-49f9-b4a4-1ba4757aba19"
+			}
+		}]
+	}]
+}

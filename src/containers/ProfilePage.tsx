@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, ProfilePaymentMethodsMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
+  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, PaymentSelectorMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
 } from '../components/src/index';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -48,17 +48,22 @@ const zoomArray = [
   'defaultprofile:addresses:element',
   'defaultprofile:addresses:billingaddresses:default',
 
-  // zoom for payments ep version > 7.6
-  'defaultprofile:paymentinstruments:element',
-  'defaultprofile:paymentinstruments:default',
-
   'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods',
-  'defaultprofile:paymentmethods:paymenttokenform',
   'defaultprofile:paymentmethods:element',
+
   'data-policies:element',
   'data-policies:element:datapolicyconsentform',
   'passwordresetform',
+
+  // zoom for payments ep version > 7.6
+  'defaultprofile:paymentinstruments:element',
+  'defaultprofile:paymentinstruments:default',
+  'defaultprofile:paymentinstruments:defaultinstrumentselector',
+  'defaultprofile:paymentinstruments:defaultinstrumentselector:chosen',
+  'defaultprofile:paymentinstruments:defaultinstrumentselector:chosen:description',
+  'defaultprofile:paymentinstruments:defaultinstrumentselector:choice',
+  'defaultprofile:paymentinstruments:defaultinstrumentselector:choice:description',
 ];
 
 interface ProfilePageState {
@@ -190,17 +195,44 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   renderPayments() {
     const { profileData } = this.state;
-
-    const disableAddPayment = false;
-
-    if (profileData._paymentmethods) {
-      if (profileData._paymentinstruments) {
-        return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} paymentInstruments={profileData._paymentinstruments[0]} onChange={this.fetchProfileData} disableAddPayment={disableAddPayment} />;
+    if (profileData) {
+      if (
+        profileData._paymentinstruments
+          && profileData._paymentinstruments[0]
+          && profileData._paymentinstruments[0]._defaultinstrumentselector
+      ) {
+        return (
+          <PaymentSelectorMain
+            paymentInstrumentSelector={profileData._paymentinstruments[0]._defaultinstrumentselector[0]}
+            onChange={this.fetchProfileData}
+            disableAddPayment={false}
+            shouldPostToProfile
+          />
+        );
       }
-      return <ProfilePaymentMethodsMain paymentMethods={profileData._paymentmethods[0]} onChange={this.fetchProfileData} disableAddPayment={disableAddPayment} />;
-    }
 
-    return null;
+      if (
+        profileData._paymentmethods
+        && profileData._paymentmethods[0]
+      ) {
+        return (
+          <PaymentSelectorMain
+            paymentMethods={profileData._paymentmethods[0]}
+            onChange={this.fetchProfileData}
+            disableAddPayment={false}
+            shouldPostToProfile
+          />
+        );
+      }
+    }
+    return (
+      <PaymentSelectorMain
+        paymentInstrumentSelector={{}}
+        onChange={this.fetchProfileData}
+        disableAddPayment={false}
+        shouldPostToProfile
+      />
+    );
   }
 
   render() {

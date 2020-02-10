@@ -59,7 +59,7 @@ const HOME_PAGE_CSS = 'div.home-page-component';
 const REGISTER_BUTTON_CSS = "div[data-region='checkoutAutRegisterOptionRegion'] button.checkout-auth-option-register-btn";
 const CHECKOUT_BUTTON_CSS = "button[class='ep-btn primary btn-cmd-checkout']";
 const ADD_NEW_ADDRESS_CSS = 'button[class="ep-btn primary wide checkout-new-address-btn"]';
-const ADD_NEW_PAYMENT_CSS = 'button[class="ep-btn primary wide checkout-new-payment-btn"]';
+const ADD_NEW_PAYMENT_CSS = 'button[class="ep-btn primary wide new-payment-btn"]';
 const ANONYMOUS_EMAIL_INPUT_CSS = 'div[data-region="anonymousCheckoutFeedbackRegion"] ~div input[id="Email"]';
 const CHECKOUT_AUTH_BUTTON_CSS = 'button[class="ep-btn primary wide checkout-auth-option-anonymous-checkout-btn"]';
 const COMPLETE_ORDER_BUTTON_CSS = 'button.btn-cmd-submit-order';
