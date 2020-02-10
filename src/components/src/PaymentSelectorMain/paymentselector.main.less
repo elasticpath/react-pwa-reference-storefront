@@ -22,7 +22,9 @@
 @import './../../../theme/common.less';
 
 .payments-container {
-  padding: 20px;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-right: 20px;
   
   &.unselected {
     border: 1px solid @mainBorderColor;
@@ -32,7 +34,16 @@
     border: 1px solid @firstComplimentColor;
   }
 
+  .credit-card-header {
+    padding-bottom: 10px;
+  }
+
+  .paymentMethodComponentRegion {
+    padding-left: 20px;
+  }
+
   .paymentMethodsRegions {
+    margin-bottom: 20px;
     position: relative;
   
     &.loading {

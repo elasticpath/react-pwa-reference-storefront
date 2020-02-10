@@ -301,11 +301,14 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
 
   isSelected() {
     const { paymentInstrumentSelector } = this.props;
-
-    if (paymentInstrumentSelector._chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'] === undefined) {
-      return true;
+    console.log(paymentInstrumentSelector);
+    try {
+      if (paymentInstrumentSelector._chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'] === undefined) {
+        return true;
+      }
+    // eslint-disable-next-line no-empty
+    } catch (err) {
     }
-
     return false;
   }
 
@@ -326,7 +329,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
         <div className={`payments-container ${this.isSelected() ? 'selected' : 'unselected'}`}>
           <div className={`paymentMethodsRegions ${isLoading ? 'loading' : ''}`} data-region="paymentMethodsRegion" style={{ display: 'block' }}>
             <div>
-              <h2>
+              <h2 className="credit-card-header">
                 {intl.get('credit-cards')}
               </h2>
               { isLoading && <div className="miniLoader" /> }
