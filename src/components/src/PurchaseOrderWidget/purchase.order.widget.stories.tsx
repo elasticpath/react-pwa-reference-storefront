@@ -42,25 +42,19 @@ storiesOf('Components|PurchaseOrderWidget', module)
     mockPOPaymentInstrumentAvailableWithAnonUser();
 
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
-    return <PurchaseOrderWidget
-      timeoutBeforeVerify={1000}
-    />;
+    return null;
   })
   .add('PO Payment Method Available', () => {
     // Should show the PO number available
     mockPOPaymentFormNoPaymentInstrument();
 
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
-    return <PurchaseOrderWidget
-      timeoutBeforeVerify={1000}
-    />;
+    return null;
   })
   .add('PO Payment Method N/A', () => {
     // Nothing should show here because PO Method is not available.
     mockPOPaymentMethodNotAvailableWithAnonUser();
 
     const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
-    return <PurchaseOrderWidget
-      timeoutBeforeVerify={1000}
-    />;
+    return null;
   });

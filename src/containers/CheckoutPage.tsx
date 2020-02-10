@@ -81,6 +81,8 @@ const zoomArray = [
   'order:paymentinstrumentselector:choice:description',
   'order:paymentinstrumentselector:chosen',
   'order:paymentinstrumentselector:chosen:description',
+  // Zoom used for PO method payment post
+  'order:paymentmethodinfo:element:paymentinstrumentform',
 ];
 
 interface MatchParams {
@@ -685,6 +687,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                   </div>
                   <div className="profile-info-col">
                     <PurchaseOrderWidget
+                      orderPaymentData={orderData}
                       onChange={() => {
                         this.fetchProfileData();
                         this.fetchOrderData();
