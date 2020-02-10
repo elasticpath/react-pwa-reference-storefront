@@ -38,17 +38,17 @@ const userData = {
 const LOGGED_IN_BUTTON = '#header_navbar_loggedIn_button';
 const PARENT_CATEGORY = '.app-header-navigation-component li[data-name="M-Class"]';
 const PARENT_SUB_CATEGORY = 'li[data-name="M-Class"] #header_navbar_sub_category_button_VESTRI_MODEL_S_WHEELS_AND_TIRES';
-const PRODUCT_CATEGORY_ITEM = '#category_item_title_link_VESTRI_MODEL_S_RED_BRAKE_CALIPER';
-const CART_ITEM = '.cart-container #cart_lineitem_VESTRI_MODEL_S_RED_BRAKE_CALIPER';
-const PRODUCT_CART_ITEM = '.wish-list-container #cart_lineitem_VESTRI_MODEL_S_RED_BRAKE_CALIPER';
-const PRODUCT_CART_TITLE = '.cart-container #cart_lineitem_VESTRI_MODEL_S_RED_BRAKE_CALIPER .title-col a';
+const PRODUCT_CATEGORY_ITEM = '#category_item_title_link_VESTRI_MODEL_S_SNOWCHAIN_TRAK_SPORT';
+const CART_ITEM = '.cart-container #cart_lineitem_VESTRI_MODEL_S_SNOWCHAIN_TRAK_SPORT';
+const PRODUCT_CART_ITEM = '.wish-list-container #cart_lineitem_VESTRI_MODEL_S_SNOWCHAIN_TRAK_SPORT';
+const PRODUCT_CART_TITLE = '.cart-container #cart_lineitem_VESTRI_MODEL_S_SNOWCHAIN_TRAK_SPORT .title-col a';
 const ADD_TO_WISHLIST_BUTTON = '#product_display_item_add_to_wish_list_button';
-const ADD_TO_CART_BUTTON = '.wish-list-container #cart_lineitem_VESTRI_MODEL_S_RED_BRAKE_CALIPER .btn-cart-moveToCart';
-const REMOVE_FROM_WISHLIST_BUTTON = '.wish-list-container #cart_lineitem_VESTRI_MODEL_S_RED_BRAKE_CALIPER .btn-cart-removelineitem';
+const ADD_TO_CART_BUTTON = '.wish-list-container #cart_lineitem_VESTRI_MODEL_S_SNOWCHAIN_TRAK_SPORT .btn-cart-moveToCart';
+const REMOVE_FROM_WISHLIST_BUTTON = '.wish-list-container #cart_lineitem_VESTRI_MODEL_S_SNOWCHAIN_TRAK_SPORT .btn-cart-removelineitem';
 const WISHLIST_CONTAINER = '.wish-list-container';
 const WISHLIST_LINK = '.wishlist-link';
 
-const EXPECTED_ITEM_TITLE = 'M Class Red Brake Calipers';
+const EXPECTED_ITEM_TITLE = 'M Class Snowchain Trak Sport';
 
 describe('Wishlist', () => {
   test('Move wishlist item to cart', async () => {
