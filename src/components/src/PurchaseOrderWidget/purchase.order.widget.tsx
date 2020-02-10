@@ -21,9 +21,6 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import Messagecontainer from '../MessageContainer/messagecontainer';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './purchase.order.widget.less';
 import PurchaseOrderWidgetModal from '../PurchaseOrderWidgetModal/purchase.order.widget.modal';
