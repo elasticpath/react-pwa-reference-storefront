@@ -34,6 +34,8 @@ defaultprofile:paymentinstruments:defaultinstrumentselector:choice:description,
 
 `disableAddPayment` simply disables the add new payment button.
 
+`allowSelectionContainerHighlight` is intended to be set to true when connected to Cortex 7.6 payments update as it highlights the payments container when a credit card is selected.  In a real implementation the logic that determines the highlighting will need to revisited.
+
 #### Usage
 
 ```js
@@ -52,6 +54,7 @@ import { PaymentSelectorMain } from '@elasticpath/store-components';
         this.fetchOrderData();
     }}
     disableAddPayment={false}
+    allowSelectionContainerHighlight
 />
 ```
 
