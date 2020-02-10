@@ -713,7 +713,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             className="ep-btn wide btn-itemdetail-addtowishlist dropdown-toggle"
             data-toggle="dropdown"
             disabled={!availability || !productData._addtowishlistform}
-            id="product_display_item_add_to_cart_button"
             type="submit"
           >
             {addToRequisitionListLoading ? (
@@ -736,7 +735,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             className="ep-btn primary wide btn-itemdetail-addtocart dropdown-toggle"
             data-toggle="dropdown"
             disabled={!availability || !productData._addtocartform}
-            id="product_display_item_add_to_cart_button"
+            id="product_display_item_add_to_cart_button-dropdown"
             type="submit"
           >
             {addToCartLoading ? (

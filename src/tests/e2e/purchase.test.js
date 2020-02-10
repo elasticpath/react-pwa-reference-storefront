@@ -87,13 +87,13 @@ describe('Purchase feature', () => {
 
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-web-security'],
+      headless: false,
       slowMo: 10,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP);
-
-    await addProductToCart(page, 'M-Class', 'Wheels, Tires, and Tire Covers', 'M Class Red Brake Calipers');
+    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
 
     await page.waitForSelector(CART_LINK_CSS);
     await page.click(CART_LINK_CSS);
@@ -172,8 +172,7 @@ describe('Purchase feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP);
-
-    await addProductToCart(page, 'M-Class', 'Wheels, Tires, and Tire Covers', 'M Class Red Brake Calipers');
+    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
@@ -436,8 +435,8 @@ describe('Purchase feature', () => {
     };
 
     await loginUser(page, userInfo);
-
-    await addProductToCart(page, 'M-Class', 'Wheels, Tires, and Tire Covers', 'M Class Red Brake Calipers');
+  
+    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
     await addProductToCart(page, 'Mens', '', 'Men\'s Soft Shell Jacket');
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
@@ -522,9 +521,9 @@ describe('Purchase feature', () => {
 
     const products = [
       {
-        productCategory: 'M-Class',
-        productSubCategory: 'Wheels, Tires, and Tire Covers',
-        productName: 'M Class Red Brake Calipers'
+        productCategory: 'Mens',
+        productSubCategory: '',
+        productName: 'Wordmark Fitted Hat'
       },
       {
         productCategory: 'Womens',
