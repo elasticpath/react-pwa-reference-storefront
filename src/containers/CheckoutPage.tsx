@@ -81,7 +81,6 @@ const zoomArray = [
   'order:paymentinstrumentselector:choice:description',
   'order:paymentinstrumentselector:chosen',
   'order:paymentinstrumentselector:chosen:description',
-  // Zoom used for PO method payment post
   'order:paymentmethodinfo:element:paymentinstrumentform',
 ];
 
@@ -574,6 +573,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
               this.fetchOrderData();
             }}
             disableAddPayment={false}
+            allowSelectionContainerHighlight
           />
         );
       }
@@ -619,6 +619,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
       const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
       const deliveries = orderData._order[0]._deliveries;
       const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
+
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">

@@ -49,7 +49,7 @@ interface PaymentSelectorMainProps {
   paymentMethodInfo?: any,
   /** shows the save to profile option in the payment form */
   showSaveToProfileOption?: boolean
-  /** boolean that allows for highlight around container when a payment is selected.  defaults to true */
+  /** boolean that allows for highlight around container when a payment is selected. defaults to false */
   allowSelectionContainerHighlight?: boolean
 }
 
