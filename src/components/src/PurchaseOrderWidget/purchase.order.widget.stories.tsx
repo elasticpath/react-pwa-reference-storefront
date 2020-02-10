@@ -41,39 +41,28 @@ storiesOf('Components|PurchaseOrderWidget', module)
   ))
   .add('PO Payment Instrument Selected', () => {
     // Should show the PO number available
-
-    const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
+    const onChangeFuncText = text('onChange', '() => {alert("onChange invoked")}');
 
     return <PurchaseOrderWidget
       orderPaymentData={poPaymentSelected}
-      onChange={() => {
-        this.fetchProfileData();
-        this.fetchOrderData();
-      }}
+      onChange={textToFunc(onChangeFuncText)}
     />;
   })
   .add('PO Payment Method Available', () => {
     // Should show the PO number available
-
-    const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
+    const onChangeFuncText = text('onChange', '() => {alert("onChange invoked")}');
 
     return <PurchaseOrderWidget
       orderPaymentData={availablePONotSelected}
-      onChange={() => {
-        this.fetchProfileData();
-        this.fetchOrderData();
-      }}
+      onChange={textToFunc(onChangeFuncText)}
     />;
   })
   .add('PO Payment Method N/A', () => {
     // Nothing should show here because PO Method is not available.
-    const onPayWithPOFuncText = text('onPayWithPO', '() => {alert("onPayWithPO invoked")}');
+    const onChangeFuncText = text('onChange', '() => {alert("onChange invoked")}');
 
     return <PurchaseOrderWidget
       orderPaymentData={poPaymentNotAvaialble}
-      onChange={() => {
-        this.fetchProfileData();
-        this.fetchOrderData();
-      }}
+      onChange={textToFunc(onChangeFuncText)}
     />;
   });
