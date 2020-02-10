@@ -41,6 +41,8 @@ import PowerReview from '../PowerReview/powerreview.main';
 const zoomArray = [
   'availability',
   'addtocartform',
+  'addtocartforms:element:addtocartaction',
+  'addtocartforms:element:target:descriptor',
   'addtowishlistform',
   'price',
   'rate',
@@ -92,13 +94,6 @@ const zoomArray = [
   'code',
 ];
 
-const multiCartZoomArray = [
-  'carts',
-  'carts:element',
-  'carts:element:additemstocartform',
-  'carts:element:descriptor',
-];
-
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -132,7 +127,6 @@ interface ProductDisplayItemMainProps {
 interface ProductDisplayItemMainState {
   productData: any,
   requisitionListData: any,
-  multiCartData: { [key: string]: any },
   itemQuantity: number,
   isLoading: boolean,
   arFileExists: boolean,
@@ -170,7 +164,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     ({ intl } = epConfig);
     this.state = {
       productData: undefined,
-      multiCartData: undefined,
       itemQuantity: 1,
       isLoading: false,
       arFileExists: false,
@@ -201,7 +194,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   componentDidMount() {
-    this.fetchMultiCartData();
     this.fetchProductData();
   }
 
@@ -232,27 +224,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           });
       });
     }
-  }
-
-  fetchMultiCartData() {
-    login().then(() => {
-      cortexFetch(`?zoom=${multiCartZoomArray.sort().join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            multiCartData: res,
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
   }
 
   fetchProductData() {
@@ -605,35 +576,34 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     );
   }
 
-  addToSelectedCart(cart, onCountChange) {
-    const cartUrl = cart._additemstocartform[0].self.uri;
-    const { itemQuantity, productData } = this.state;
+  addToSelectedCart(cartName, cartUrl, onCountChange) {
+    const { itemQuantity, itemConfiguration } = this.state;
     this.setState({ addToCartLoading: true });
-    login().then(() => {
-      const body: { [key: string]: any } = {};
-      body.items = { code: productData._code[0].code, quantity: itemQuantity };
-      cortexFetch(cartUrl,
+
+    login()
+      .then(() => cortexFetch(cartUrl,
         {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            this.setState({ addToCartLoading: false });
-            const cartName = cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default');
-            onCountChange(cartName, itemQuantity);
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+          body: JSON.stringify({
+            quantity: itemQuantity,
+            configuration: itemConfiguration,
+          }),
+        }))
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
           this.setState({ addToCartLoading: false });
-        });
-    });
+          onCountChange(cartName, itemQuantity);
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        this.setState({ addToCartLoading: false });
+      });
   }
 
   addToRequisitionListData(list, onCountChange) {
@@ -658,16 +628,29 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         dispatch({ type: 'COUNT_HIDE' });
       }, 3200);
     };
-    const { multiCartData } = this.state;
-    if (multiCartData && multiCartData._carts) {
+
+    const { productData } = this.state;
+    const addToCartForms = (productData._addtocartforms || []).flatMap(addtocartforms => addtocartforms._element);
+
+    if (addToCartForms.length > 0) {
       return (
         <ul className="cart-selection-dropdown">
-          {multiCartData._carts[0]._element.map(cart => (
-            // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-item" key={cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')} onClick={() => this.addToSelectedCart(cart, onCountChange)}>
-              {cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')}
-            </li>
-          ))}
+          {addToCartForms
+            .map(addToCartForm => ({
+              cartName: addToCartForm._target[0]._descriptor[0].name || intl.get('default'),
+              addToCartActionUri: addToCartForm._addtocartaction && addToCartForm._addtocartaction[0].self.uri,
+            }))
+            .map(form => (
+              // eslint-disable-next-line
+              <li
+                className="dropdown-item cart-selection-item"
+                key={form.cartName}
+                onClick={() => form.addToCartActionUri && this.addToSelectedCart(form.cartName, form.addToCartActionUri, onCountChange)}
+              >
+                {form.cartName}
+              </li>
+            ))
+          }
         </ul>
       );
     }
@@ -707,13 +690,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   render() {
     const {
-      productData, isLoading, itemQuantity, multiCartData, addToCartLoading, requisitionListData, addToRequisitionListLoading,
+      productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading,
     } = this.state;
     const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
 
       const { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
+      const isMultiCartEnabled = (productData._addtocartforms || []).flatMap(forms => forms._element).length > 0;
 
       const {
         productImage, productDescriptionValue, productTitle,
@@ -767,8 +751,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             {this.dropdownCartSelection()}
           </div>
         </div>
-
       );
+
       return (
         <div className="itemdetail-component container-3">
           <div>
@@ -866,7 +850,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               </div>
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (multiCartData && multiCartData._carts) { event.preventDefault(); } else { this.addToCart(event); } }}>
+                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
                     <div className="form-group">
@@ -889,7 +873,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                       }
                     </div>
                     <div className="form-group-submit">
-                      {multiCartData && multiCartData._carts ? (
+                      {isMultiCartEnabled ? (
                         <SelectCartButton />
                       ) : (
                         <div className="form-content form-content-submit col-sm-offset-4">

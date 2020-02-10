@@ -1,0 +1,1 @@
+![](https://projects.invisionapp.com/static-signed/live-embed/318846793/399633359/6/latest/2G1GzXcbfe4kCr9El5GDDb1eaQeijBKCTfa9T34gkmz23sGR7DDYYfanV8GdumNXgGGlEfueIz5lkn0zNs18x7QlE/Styleguide-B2B-UI_Kit-2x.png)

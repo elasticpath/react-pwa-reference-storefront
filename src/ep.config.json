@@ -132,7 +132,7 @@
   "formatQueryParameter": {
     "standardlinks": false,
     "noself": false,
-    "nodatalinks": true
+    "nodatalinks": false
   },
   "chatbot": {
     "enable": false,
