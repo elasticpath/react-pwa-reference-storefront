@@ -63,11 +63,14 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     const { orderPaymentData } = props;
 
     const chosen = PurchaseOrderWidget.getChosenFromOrderData(orderPaymentData);
-    const newPONumber = chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'];
+    try {
+      const newPONumber = chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'];
 
-    if (newPONumber !== undefined) {
-      return { isChosen: true };
-    }
+      if (newPONumber !== undefined) {
+        return { isChosen: true };
+      }
+    // eslint-disable-next-line no-empty
+    } catch (err) {}
 
     return { isChosen: false };
   }
