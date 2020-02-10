@@ -2,14 +2,19 @@
 
 #### Description
 
-A purchase order widget that allows entry, validation, and a link to view the purchase order in more detail once verification succeeds.
+A purchase order widget that allows entry and selection for payment.  Intended usage in a checkoutpage.
 
-At the moment the component does not check validity of the PO number against cortex or any third party service.  It has been programmed to simluate validating numbers `1234`, `2345`, `3456`.  When placed into a real implementation parts of this code should be taken out.  Comments in the code will guide how to do that.
+Pass orderPaymentData to the component so that it can save the respective PO Post url, or display an existing PO number selection in the order.  Note that the component will not appear entirely if the OOTB PO payment method is not available.
 
-onPayWithPO is a callback invoked once the `Pay With PO` button is pressed.
+The component expects data from a GET request made to the `defaultcart` resource with the following zoom:
 
-onViewClicked is a callback invoked once the `View` button in the top right is clicked after PO number validation.
+```
+order:paymentinstrumentselector:chosen,
+order:paymentinstrumentselector:chosen:description,
+order:paymentmethodinfo:element:paymentinstrumentform,
+```
 
+Take a look at stories, its mock data, and component integration in `CheckoutPage.tsx` for more details.
 
 #### Usage
 
@@ -20,7 +25,13 @@ import { PurchaseOrderWidget } from '@elasticpath/store-components';
 #### Example
 
 ```js
-<PurchaseOrderWidget />
+<PurchaseOrderWidget
+    orderPaymentData={orderData}
+    onChange={() => {
+    this.fetchProfileData();
+    this.fetchOrderData();
+    }}
+/>
 ```
 
 #### Properties
