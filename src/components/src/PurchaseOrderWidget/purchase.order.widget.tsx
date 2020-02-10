@@ -41,7 +41,6 @@ interface PurchaseOrderWidgetProps {
 }
 
 class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, PurchaseOrderWidgetState> {
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();

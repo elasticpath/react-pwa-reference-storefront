@@ -681,11 +681,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                   </div>
                   )}
                   <div className="profile-info-col">
-                    <div className="profile-info-block">
-                      <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
-                        {this.renderPaymentSelector()}
-                      </div>
-                    </div>
+                    {this.renderPaymentSelector()}
                   </div>
                   <div className="profile-info-col">
                     <PurchaseOrderWidget timeoutBeforeVerify={1000} />

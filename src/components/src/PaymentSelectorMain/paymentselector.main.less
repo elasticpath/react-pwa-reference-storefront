@@ -21,53 +21,66 @@
 
 @import './../../../theme/common.less';
 
-.paymentMethodsRegions {
-  margin-bottom: 32px;
-  position: relative;
-
-  &.loading {
-    opacity: 0.5
+.payments-container {
+  padding: 20px;
+  
+  &.unselected {
+    border: 1px solid @mainBorderColor;
   }
 
-  .miniLoader {
-    position: absolute;
-    top: 30%;
-    right: 50%;
-    border: 10px solid @firstComplimentBackground;
-    border-top: 10px solid @secondComplimentColor;
-    width: 30px;
-    height: 30px !important;
-    border-radius: 50%;
-    animation: spin 0.5s linear infinite;
-    margin: 0 auto;
-    margin-top: 10px;
+  &.selected {
+    border: 1px solid @firstComplimentColor;
   }
 
-  .payment-instrument-name-container {
-    margin: 10px;
-  }
-
-  .payment-delete-btn {
-    height: auto;
-    width: auto;
-    margin: 5px;
-    font-weight: 600;
-    min-height: 0;
-    line-height: 20px;
-    padding: 0;
-    min-width: 0;
-    border: none;
-    color: @secondComplimentColor;
-
-    &:hover {
-      color: @firstComplimentColor;
-      text-decoration: underline;
-      background-color: transparent;
+  .paymentMethodsRegions {
+    margin-bottom: 32px;
+    position: relative;
+  
+    &.loading {
+      opacity: 0.5
     }
-  }
-
-  .no-saved-payment-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+  
+    .miniLoader {
+      position: absolute;
+      top: 30%;
+      right: 50%;
+      border: 10px solid @firstComplimentBackground;
+      border-top: 10px solid @secondComplimentColor;
+      width: 30px;
+      height: 30px !important;
+      border-radius: 50%;
+      animation: spin 0.5s linear infinite;
+      margin: 0 auto;
+      margin-top: 10px;
+    }
+  
+    .payment-instrument-name-container {
+      margin: 10px;
+    }
+  
+    .payment-delete-btn {
+      height: auto;
+      width: auto;
+      margin: 5px;
+      font-weight: 600;
+      min-height: 0;
+      line-height: 20px;
+      padding: 0;
+      min-width: 0;
+      border: none;
+      color: @secondComplimentColor;
+  
+      &:hover {
+        color: @firstComplimentColor;
+        text-decoration: underline;
+        background-color: transparent;
+      }
+    }
+  
+    .no-saved-payment-container {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }  
+  
 }
