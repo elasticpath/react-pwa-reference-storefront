@@ -36,7 +36,7 @@ interface PurchaseOrderWidgetState {
 }
 
 interface PurchaseOrderWidgetProps {
-  /** Called when there is any sort of change. */
+  /** Called when the purchase order widget is closed -- meant as a callback to refresh the PO widget modal. */
   onChange?: any,
   /** Order data to be passed to PO widget */
   orderPaymentData: any,
