@@ -303,7 +303,6 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
 
   isSelected() {
     const { paymentInstrumentSelector, allowSelectionContainerHighlight } = this.props;
-    console.log(paymentInstrumentSelector);
 
     if (allowSelectionContainerHighlight) {
       try {
@@ -323,12 +322,6 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     const {
       onChange, disableAddPayment, shouldPostToProfile, showSaveToProfileOption, paymentInstrumentSelector,
     } = this.props;
-
-    console.log('see what the payment selectors look like');
-
-    console.log(paymentInstrumentSelector);
-
-    console.log(this.isSelected());
 
     return (
       <div>
