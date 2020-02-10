@@ -37,7 +37,8 @@ interface PurchaseOrderWidgetState {
 }
 
 interface PurchaseOrderWidgetProps {
-  timeoutBeforeVerify: number,
+  /** Called when there is any sort of change. */
+  onChange?: any,
 }
 
 class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, PurchaseOrderWidgetState> {
@@ -186,7 +187,8 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
   }
 
   handleCloseModal() {
-    this.setState({ poModalOpen: false });
+    const { onChange } = this.props;
+    this.setState({ poModalOpen: false }, onChange());
   }
 
   renderModal() {

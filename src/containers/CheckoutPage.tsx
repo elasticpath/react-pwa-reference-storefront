@@ -684,7 +684,12 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                     {this.renderPaymentSelector()}
                   </div>
                   <div className="profile-info-col">
-                    <PurchaseOrderWidget timeoutBeforeVerify={1000} />
+                    <PurchaseOrderWidget
+                      onChange={() => {
+                        this.fetchProfileData();
+                        this.fetchOrderData();
+                      }}
+                    />
                   </div>
                 </div>
               </div>
