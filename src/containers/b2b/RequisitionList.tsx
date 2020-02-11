@@ -320,33 +320,31 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
   renderRequisitionItems() {
     const DropdownCartSelection = (props: any) => (<div>{this.dropdownCartSelection(props.el)}</div>);
     const { requisitionElements } = this.state;
-    if (requisitionElements.length) {
-      return requisitionElements.map((el, index) => (
-        <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation">
-          <Link className="requisition-info requisition-list-name" to={`/b2b/requisition-list-item/${el.self.uri.split('/').pop()}`}>{el.name}</Link>
-          <p className="requisition-info product-count">
-            {el['item-count']}
-          </p>
-          <div className="requisition-info action-btn">
-            <div className="requisition-editing-btn">
-              <div className="cart-selection-dropdown">
-                <button className="ep-btn dropdown-toggle" type="button" data-toggle="dropdown">
-                  <AddToCartIcon className="add-to-cart-icon" />
-                </button>
-                <div className="dropdown-menu cart-selection-list">
-                  <DropdownCartSelection el={el} />
-                </div>
-              </div>
-              <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditRequisition(event, index)}>
-                <RecycleBinIcon className="delete-icon" />
+
+    return requisitionElements.map((el, index) => (
+      <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation">
+        <Link className="requisition-info requisition-list-name" to={`/b2b/requisition-list-item/${el.self.uri.split('/').pop()}`}>{el.name}</Link>
+        <p className="requisition-info product-count">
+          {el['item-count']}
+        </p>
+        <div className="requisition-info action-btn">
+          <div className="requisition-editing-btn">
+            <div className="cart-selection-dropdown">
+              <button className="ep-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                <AddToCartIcon className="add-to-cart-icon" />
               </button>
+              <div className="dropdown-menu cart-selection-list">
+                <DropdownCartSelection el={el} />
+              </div>
             </div>
-            {el.deleteMode && this.modalConfirmation(index, el)}
+            <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditRequisition(event, index)}>
+              <RecycleBinIcon className="delete-icon" />
+            </button>
           </div>
-        </li>
-      ));
-    }
-    return (<div>{intl.get('no-requisition-lists-message')}</div>);
+          {el.deleteMode && this.modalConfirmation(index, el)}
+        </div>
+      </li>
+    ));
   }
 
   handlePageChange(request) {
@@ -366,7 +364,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
 
   render() {
     const {
-      listName, openModal, listNameErrorMessages, isLoading, allItemLists, isTableLoading,
+      listName, openModal, listNameErrorMessages, isLoading, allItemLists, isTableLoading, requisitionElements,
     } = this.state;
     return (
       <div>
@@ -404,23 +402,25 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
                 </div>
               </Modal>
             </div>
-            <div className={`requisition-list-wrap ${isTableLoading ? 'loading' : ''}`}>
-              <div className="pagination-wrap">
-                { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+            {(requisitionElements && requisitionElements.length) ? (
+              <div className={`requisition-list-wrap ${isTableLoading ? 'loading' : ''}`}>
+                <div className="pagination-wrap">
+                  { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+                </div>
+                <ul className="requisition-list">
+                  <li className="requisition-list-item requisition-list-header">
+                    <h4 className="requisition-info">{intl.get('name')}</h4>
+                    <h4 className="requisition-info">{intl.get('product-count')}</h4>
+                    <h4 className="requisition-info action-btn">{intl.get('actions')}</h4>
+                  </li>
+                  {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
+                  {this.renderRequisitionItems()}
+                </ul>
+                <div className="pagination-wrap">
+                  { allItemLists && allItemLists.pagination.pages > 1 && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+                </div>
               </div>
-              <ul className="requisition-list">
-                <li className="requisition-list-item requisition-list-header">
-                  <h4 className="requisition-info">{intl.get('name')}</h4>
-                  <h4 className="requisition-info">{intl.get('product-count')}</h4>
-                  <h4 className="requisition-info action-btn">{intl.get('actions')}</h4>
-                </li>
-                {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
-                {this.renderRequisitionItems()}
-              </ul>
-              <div className="pagination-wrap">
-                { allItemLists && allItemLists.pagination.pages > 1 && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
-              </div>
-            </div>
+            ) : ''}
           </div>
         )}
       </div>

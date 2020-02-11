@@ -100,7 +100,6 @@ interface RequisitionPageMainState {
   listName: string,
   currentlyListName: string,
   addProductModalOpened: boolean,
-  isChecked: boolean,
   multiSelectMode: boolean,
   editListNameModalOpened: boolean,
   listNameErrorMessages: string,
@@ -124,7 +123,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       listName: '',
       currentlyListName: '',
       addProductModalOpened: false,
-      isChecked: false,
       multiSelectMode: false,
       editListNameModalOpened: false,
       listNameErrorMessages: '',
@@ -168,13 +166,20 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     }
   }
 
-  loadRequisitionListData(UpdateList) {
-    if (!UpdateList) {
-      this.setState({ isLoading: true });
-    }
+  loadRequisitionListData(withoutLoader) {
     const { match } = this.props;
+    const { productsData } = this.state;
     const listUri = match.params.uri;
     const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
+
+    if (productsData && !productsData._element) {
+      this.setState({ isLoading: true });
+    } else if (!withoutLoader) {
+      this.setState({ isLoading: true });
+    } else {
+      this.setState({ isTableLoading: true });
+    }
+
     login()
       .then(() => {
         cortexFetch(`/itemlists/${scope}/${listUri}?zoom=${listsZoomArray.sort().join()}`, {
@@ -196,13 +201,13 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
               });
               this.handleUpdateSelectedItem();
             }
-            this.setState({ isLoading: false });
+            this.setState({ isLoading: false, isTableLoading: false });
           });
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
-        this.setState({ isLoading: false });
+        this.setState({ isLoading: false, isTableLoading: false });
       });
   }
 
@@ -224,10 +229,18 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.setState({ addProductModalOpened: false });
   }
 
-  handleCheckAll() {
-    const { isChecked, productsData } = this.state;
-    const products = isChecked ? [] : productsData._element;
-    this.setState({ isChecked: !isChecked, selectedProducts: products });
+  handleCheckAll(isChecked) {
+    const { productsData, selectedProducts } = this.state;
+    let products = selectedProducts;
+    if (isChecked) {
+      products = selectedProducts.filter(product => !(productsData._element.find(element => element.self.uri === product.self.uri)));
+    } else {
+      productsData._element.forEach((product) => {
+        const found = selectedProducts.find(element => element.self.uri === product.self.uri);
+        if (!found) products.push(product);
+      });
+    }
+    this.setState({ selectedProducts: products });
 
     if (!isChecked && (productsData._next || productsData._previous)) {
       this.setState({ showSelectAllPopup: true });
@@ -243,7 +256,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       const filteredProduct = selectedProducts.filter(item => item.self.uri !== product.self.uri);
       this.setState({ selectedProducts: filteredProduct });
       if (productsData._element.length > filteredProduct.length) {
-        this.setState({ isChecked: false, showSelectAllPopup: false });
+        this.setState({ showSelectAllPopup: false });
       }
     } else {
       this.setState({ selectedProducts: [...selectedProducts, product] });
@@ -274,7 +287,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       .then(() => {
         this.setState({
           multiSelectMode: false,
-          isChecked: false,
           selectedProducts: [],
           isLoading: false,
         });
@@ -527,7 +539,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       editListNameModalOpened,
       listName,
       multiSelectMode,
-      isChecked,
       listNameErrorMessages,
       currentlyListName,
       productsData,
@@ -544,6 +555,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     const isProductChecked = product => selectedProducts.find(item => item.self.uri === product.self.uri);
     const CartDropdown = (props: any) => (<span>{this.renderDropdownMenu(props.isDisabled)}</span>);
     const paginationResults = pagination.results;
+    const isChecked = selectedProducts.filter(product => products.find(element => element.self.uri === product.self.uri)).length === products.length;
 
     const selectAllItemsBtn = (
       <button type="button" className="select-all-btn" onClick={this.handleSelectAllItems}>
@@ -613,7 +625,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                     ) : (
                       <div className="action-elements">
                         <div className="checkbox-wrap">
-                          <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={this.handleCheckAll} defaultChecked={isChecked} />
+                          <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={() => { this.handleCheckAll(isChecked); }} checked={isChecked} />
                           <label htmlFor="select_all_product" />
                           <label htmlFor="select_all_product">
                             {intl.get('select-all')}
