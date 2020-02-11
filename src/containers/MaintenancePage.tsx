@@ -25,9 +25,9 @@ import { Link } from 'react-router-dom';
 import './MaintenancePage.less';
 import Config from '../ep.config.json';
 
-import doge from '../images/site-images/HikingDog.png';
+import doge from '../images/site-images/maintenance-banner.png';
 
-const dogeFileName = 'HikingDog.png';
+const dogeFileName = 'maintenance-banner.png';
 
 function MaintenancePage() {
   return (

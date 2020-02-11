@@ -28,18 +28,20 @@ import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommend
 
 import './b2c.home.page.less';
 
-import homeEspot3 from '../../../images/site-images/charging-icon.jpg';
-import homeEspot4 from '../../../images/site-images/warranty-graphic.jpg';
-import homeEspotParallax2 from '../../../images/site-images/car-dashboard.jpg';
+import homeEspot2 from '../../../images/site-images/home-block-image-3.jpg';
+import homeEspot3 from '../../../images/site-images/home-block-image-2.jpg';
+import homeEspot4 from '../../../images/site-images/home-block-image-1.jpg';
+import homeEspotParallax2 from '../../../images/site-images/parallax-banner-2.jpg';
+import homeEspotParallax1 from '../../../images/site-images/parallax-banner-1.jpg';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
-const homeEspot2FileName = 'brake-icon.jpg';
-const homeEspot3FileName = 'charging-icon.jpg';
-const homeEspot4FileName = 'warranty-graphic.jpg';
-const homeEspotParallax1FileName = 'car-inside.jpg';
-const homeEspotParallax2FileName = 'car-dashboard.jpg';
+const homeEspot2FileName = 'home-block-image-3.jpg';
+const homeEspot3FileName = 'home-block-image-2.jpg';
+const homeEspot4FileName = 'home-block-image-1.jpg';
+const homeEspotParallax1FileName = 'parallax-banner-1.jpg';
+const homeEspotParallax2FileName = 'parallax-banner-2.jpg';
 
 const B2CHomePage: React.FunctionComponent = () => {
   const epConfig = getConfig();
@@ -59,7 +61,7 @@ const B2CHomePage: React.FunctionComponent = () => {
         {/* eslint-disable-next-line no-return-assign */}
         <div className="section section-3 container">
           <div className="sub-section">
-            <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e: any) => { e.target.src = homeEspot3; }} />
+            <img className="small-image" alt="home-espot-2" src={Config.siteImagesUrl.replace('%fileName%', homeEspot2FileName)} onError={(e: any) => { e.target.src = homeEspot2; }} />
             <div className="text-block">
               <span className="line line-1">
                 {intl.get('home-sub-espot-container2-first-line')}
@@ -73,7 +75,7 @@ const B2CHomePage: React.FunctionComponent = () => {
         <div className="section-parallax section-parallax-1 container" data-region="homeMainContentRegion">
           <Parallax y={[-50, 10]} tagOuter="figure">
             <div className="parallax-image-container">
-              <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax1FileName)} onError={(e: any) => { e.target.src = homeEspot3; }} />
+              <img className="parallax-image" alt="home-espot-1" src={Config.siteImagesUrl.replace('%fileName%', homeEspotParallax1FileName)} onError={(e: any) => { e.target.src = homeEspotParallax1; }} />
             </div>
           </Parallax>
           <div className="sub-section">
