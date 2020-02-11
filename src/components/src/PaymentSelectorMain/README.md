@@ -30,9 +30,11 @@ defaultprofile:paymentinstruments:defaultinstrumentselector:choice:description,
 
 `shouldPostToProfile` as well as `showSaveToProfileOption` are props surfaced up from the `paymentform.main.tsx` component.  Refer to that `PaymentForm/README.md` for more information.
 
-`onChange` is a calledback that is called when either a delete button, a radio button or `paymentform.main.tsx` component is submitted.  It is designed for the parent to make another request to Cortex and update its state and the state of its child, `PaymentSelectorMain`.
+`onChange` is a calledback that is called when either the a delete button, a radio button or `paymentform.main.tsx` component is submitted.  It is designed for the parent to make another request to Cortex and update its state and the state of its child, `PaymentSelectorMain`.
 
 `disableAddPayment` simply disables the add new payment button.
+
+`allowSelectionContainerHighlight` is intended to be set to true when connected to Cortex 7.6 payments update as it highlights the payments container when a credit card is selected.  In a real implementation the logic that determines the highlighting will need to revisited.
 
 #### Usage
 
@@ -52,6 +54,7 @@ import { PaymentSelectorMain } from '@elasticpath/store-components';
         this.fetchOrderData();
     }}
     disableAddPayment={false}
+    allowSelectionContainerHighlight
 />
 ```
 

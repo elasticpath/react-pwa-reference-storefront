@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, AddressFormMain, PaymentSelectorMain,
+  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, AddressFormMain, PaymentSelectorMain, PurchaseOrderWidget,
 } from '../components/src/index';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -81,6 +81,7 @@ const zoomArray = [
   'order:paymentinstrumentselector:choice:description',
   'order:paymentinstrumentselector:chosen',
   'order:paymentinstrumentselector:chosen:description',
+  'order:paymentmethodinfo:element:paymentinstrumentform',
 ];
 
 interface MatchParams {
@@ -572,6 +573,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
               this.fetchOrderData();
             }}
             disableAddPayment={false}
+            allowSelectionContainerHighlight
           />
         );
       }
@@ -617,6 +619,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
       const email = profileData && profileData._emails[0]._element ? profileData._emails[0]._element[0].email : '';
       const deliveries = orderData._order[0]._deliveries;
       const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
+
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">
@@ -681,11 +684,16 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                   </div>
                   )}
                   <div className="profile-info-col">
-                    <div className="profile-info-block">
-                      <div data-region="paymentMethodsRegion" style={{ display: 'block' }}>
-                        {this.renderPaymentSelector()}
-                      </div>
-                    </div>
+                    {this.renderPaymentSelector()}
+                  </div>
+                  <div className="profile-info-col">
+                    <PurchaseOrderWidget
+                      orderPaymentData={orderData}
+                      onChange={() => {
+                        this.fetchProfileData();
+                        this.fetchOrderData();
+                      }}
+                    />
                   </div>
                 </div>
               </div>

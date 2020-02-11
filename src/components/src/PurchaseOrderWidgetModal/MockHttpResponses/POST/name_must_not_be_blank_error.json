@@ -1,0 +1,11 @@
+{
+	"messages": [{
+		"type": "error",
+		"id": "payment.instrument.name.required",
+		"debug-message": "Name must not be blank.",
+		"data": {
+			"field-name": "display-name"
+		}
+	}],
+	"links": []
+}

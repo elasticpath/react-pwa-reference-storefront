@@ -33,7 +33,7 @@ import { textToFunc } from "../../../../storybook/utils/storybookUtils";
 import { mockPaymentInstrumentSelectionWithAnonUser, mockPaymentMethodSelectionWithAnonUser } from './paymentselector.main.api.mocks';
 
 // TODO: Should add more stories here! - aChan
-storiesOf('Components|ProfilePaymentMethodsMain', module)
+storiesOf('Components|PaymentSelectorMain', module)
   .addParameters({
     readme: {
       // Show readme at the addons panel

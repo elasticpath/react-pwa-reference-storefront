@@ -55,5 +55,6 @@
   "purchase.item.not.available": "Item '{item-code}' is not available for purchase.",
   "purchase.missing.shipping.address": "A shipping address is required.",
   "purchase.shipping.service.level.invalid": "Invalid or missing shipping service level '{shipping-level}'.",
-  "purchase.user.account.not.active": "User account '{user-id}' is not active."
+  "purchase.user.account.not.active": "User account '{user-id}' is not active.",
+  "payment.instrument.creation.failed": "Purchase order is required."
 }

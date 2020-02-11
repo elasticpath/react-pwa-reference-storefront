@@ -49,6 +49,8 @@ interface PaymentSelectorMainProps {
   paymentMethodInfo?: any,
   /** shows the save to profile option in the payment form */
   showSaveToProfileOption?: boolean
+  /** boolean that allows for highlight around container when a payment is selected. defaults to false */
+  allowSelectionContainerHighlight?: boolean
 }
 
 interface PaymentSelectorMainState {
@@ -72,6 +74,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     this.renderPayments = this.renderPayments.bind(this);
     this.renderPaymentInstrumentSelector = this.renderPaymentInstrumentSelector.bind(this);
     this.renderOrderPaymentMethodInfo = this.renderOrderPaymentMethodInfo.bind(this);
+    this.isSelected = this.isSelected.bind(this);
   }
 
   handleDelete(link) {
@@ -154,6 +157,17 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     }
   }
 
+  static findSelectActionFromLinks(links) {
+    const selectActionLink = links.find((link) => {
+      if (link.rel === 'selectaction') {
+        return true;
+      }
+      return false;
+    });
+
+    return selectActionLink.uri;
+  }
+
   renderPaymentInstrumentSelector() {
     const { paymentInstrumentSelector } = this.props;
 
@@ -165,23 +179,28 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
           sortedPaymentInstrumentSelectors.map((paymentInstrument) => {
             const displayName = paymentInstrument._description[0].name;
             const checked = paymentInstrument.chosen !== undefined;
-            const selectAction = paymentInstrument.links[0].uri;
+            const selectAction = PaymentSelectorMain.findSelectActionFromLinks(paymentInstrument.links);
             const descriptionUri = paymentInstrument._description[0].self.uri;
-            return (
-              <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
-                <li className="profile-payment-method-container">
-                  <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
-                    <input type="radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectAction, event)} />
-                    <span data-el-value="payment.token" className="payment-instrument-name-container">
-                      {displayName}
-                    </span>
-                  </div>
-                  <button className="payment-delete-btn" type="button" onClick={() => { this.handleDelete(descriptionUri); }}>
-                    {intl.get('delete')}
-                  </button>
-                </li>
-              </ul>
-            );
+
+            if (paymentInstrument._description[0]['payment-instrument-identification-attributes']['purchase-order'] === undefined) {
+              return (
+                <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
+                  <li className="profile-payment-method-container">
+                    <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
+                      <input type="radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectAction, event)} />
+                      <span data-el-value="payment.token" className="payment-instrument-name-container">
+                        {displayName}
+                      </span>
+                    </div>
+                    <button className="payment-delete-btn" type="button" onClick={() => { this.handleDelete(descriptionUri); }}>
+                      {intl.get('delete')}
+                    </button>
+                  </li>
+                </ul>
+              );
+            }
+
+            return null;
           })
         );
       }
@@ -293,45 +312,65 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     return null;
   }
 
+  isSelected() {
+    const { paymentInstrumentSelector, allowSelectionContainerHighlight } = this.props;
+
+    if (allowSelectionContainerHighlight) {
+      try {
+        if (paymentInstrumentSelector._chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'] === undefined) {
+          return true;
+        }
+      // eslint-disable-next-line no-empty
+      } catch (err) {
+      }
+    }
+
+    return false;
+  }
+
   render() {
     const { openNewPaymentModal, isLoading } = this.state;
     const {
-      onChange, disableAddPayment, shouldPostToProfile, showSaveToProfileOption,
+      onChange, disableAddPayment, shouldPostToProfile, showSaveToProfileOption, paymentInstrumentSelector,
     } = this.props;
 
     return (
-      <div className={`paymentMethodsRegions ${isLoading ? 'loading' : ''}`} data-region="paymentMethodsRegion" style={{ display: 'block' }}>
-        <div>
-          <h2>
-            {intl.get('credit-cards')}
-          </h2>
-          { isLoading && <div className="miniLoader" /> }
-          <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
-            {this.renderPayments()}
-          </div>
-          <button className="ep-btn primary wide new-payment-btn" type="button" disabled={disableAddPayment} onClick={() => { this.newPayment(); }}>
-            {intl.get('add-new-payment-method')}
-          </button>
-          <div className={`${isLoading} ? 'miniLoader' : ''`} />
-          <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
-            <div className="modal-lg new-payment-modal">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h2 className="modal-title">
-                    {intl.get('new-payment-method')}
-                  </h2>
-                </div>
-                <div className="modal-body">
-                  <PaymentFormMain
-                    defaultPostSelection={shouldPostToProfile}
-                    showSaveToProfileOption={showSaveToProfileOption}
-                    onCloseModal={this.handleCloseNewPaymentModal}
-                    fetchData={onChange}
-                  />
-                </div>
+      <div>
+        <div className={`payments-container ${this.isSelected() ? 'selected' : 'unselected'}`}>
+          <div className={`paymentMethodsRegions ${isLoading ? 'loading' : ''}`} data-region="paymentMethodsRegion" style={{ display: 'block' }}>
+            <div>
+              <h2 className="credit-card-header">
+                {intl.get('credit-cards')}
+              </h2>
+              { isLoading && <div className="miniLoader" /> }
+              <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
+                {this.renderPayments()}
               </div>
+              <button className="ep-btn primary wide new-payment-btn" type="button" disabled={disableAddPayment} onClick={() => { this.newPayment(); }}>
+                {intl.get('add-new-payment-method')}
+              </button>
+              <div className={`${isLoading} ? 'miniLoader' : ''`} />
+              <Modal open={openNewPaymentModal} onClose={this.handleCloseNewPaymentModal}>
+                <div className="modal-lg new-payment-modal">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h2 className="modal-title">
+                        {intl.get('new-payment-method')}
+                      </h2>
+                    </div>
+                    <div className="modal-body">
+                      <PaymentFormMain
+                        defaultPostSelection={shouldPostToProfile}
+                        showSaveToProfileOption={showSaveToProfileOption}
+                        onCloseModal={this.handleCloseNewPaymentModal}
+                        fetchData={onChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </Modal>
             </div>
-          </Modal>
+          </div>
         </div>
       </div>
     );

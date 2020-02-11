@@ -1,0 +1,126 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+ @import './../../../theme/common.less';
+
+.purchase-order-widget-container {
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+
+  &.unselected {
+    border: 1px solid @mainBorderColor;
+  }
+
+  &.selected {
+    border: 1px solid @firstComplimentColor;
+  }
+  
+  .view-button {
+    border: none;
+  }
+
+  .inactive {
+    color: @firstComplimentTextColor;
+  }
+
+  .active {
+    color: @buttonActiveColor;
+
+    &:hover {
+      color: @buttonFocusColor;
+    }
+  }
+  
+  .purchase-order-widget-top {
+    display: column;
+  }
+  
+  .pay-with-po-btn {
+    margin-top: 45px;
+  }
+
+  .form-control {
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555555;
+    background-color: @mainBackgroundColor;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  }
+
+  .purchase-order-widget-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .inputLoader-container {
+    position: absolute;
+    margin-top:2px;
+    right: 30px;
+  }
+
+  .checkmark {
+    position: relative;
+    margin-top: 10px;
+    width: 18px;
+    height: 18px;
+    background-color: #FFFFFF;
+
+    &.chosen {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        width: 12px;
+        height: 7px;
+        border: solid 2px #6dd401;
+        border-right: none;
+        border-top: none;
+        transform: translate(2px, 1px) rotate(-45deg);
+      }
+    }
+  }
+
+  .inputLoader {
+    border: 3px solid @firstComplimentBackground;
+    border-top: 3px solid @secondComplimentColor;
+    width: 20px;
+    height: 20px !important;
+    border-radius: 80%;
+    animation: spin 0.5s linear infinite;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+
+  .close-btn {
+    display: none
+  }
+
+  
+}

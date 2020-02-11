@@ -207,6 +207,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
             onChange={this.fetchProfileData}
             disableAddPayment={false}
             shouldPostToProfile
+            allowSelectionContainerHighlight={false}
           />
         );
       }
@@ -221,6 +222,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
             onChange={this.fetchProfileData}
             disableAddPayment={false}
             shouldPostToProfile
+            allowSelectionContainerHighlight={false}
           />
         );
       }
@@ -231,6 +233,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
         onChange={this.fetchProfileData}
         disableAddPayment={false}
         shouldPostToProfile
+        allowSelectionContainerHighlight={false}
       />
     );
   }
@@ -285,9 +288,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                   {intl.get('payment')}
                 </h3>
                 <div className="profile-info-col">
-                  <div className="profile-info-block">
-                    {this.renderPayments()}
-                  </div>
+                  {this.renderPayments()}
                 </div>
               </div>
               {(Config.Compliance.enable) ? (
