@@ -1,0 +1,78 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.less';
+
+.pagination {
+  white-space: nowrap;
+
+  .pagination-btn {
+    height: 36px;
+    width: 36px;
+    position: relative;
+    border-radius: 50%;
+    border: 1px solid @fifthComplimentTextColor;
+    background: @mainBackgroundColor;
+    vertical-align: middle;
+
+    &-wrap {
+      display: inline-block;
+    }
+
+    .arrow-left-icon {
+      fill: @thirdComplimentColor;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
+
+    &:hover {
+      border-color: @secondComplimentColor;
+      background: @secondComplimentColor;
+
+      .arrow-left-icon {
+        fill: @mainBackgroundColor;
+      }
+    }
+
+    &:disabled {
+      border-color: @secondComplimentBackground;
+      background: @secondComplimentBackground;
+
+      .arrow-left-icon {
+        fill: @secondBorderColor;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .next-btn {
+    transform: rotate(180deg);
+  }
+
+  .pagination-txt {
+    margin: 0 15px;
+    line-height: 36px;
+  }
+}

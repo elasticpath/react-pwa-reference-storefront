@@ -26,7 +26,7 @@ import { PurchaseDetailsMain } from '../components/src/index';
 
 import './PurchaseReceiptPage.less';
 
-const PurchaseReceiptPage = (props: RouteComponentProps) => {
+const PurchaseReceiptPage = (props: RouteComponentProps<{}, {}, any>) => {
   const { location, history } = props;
 
   const handleReorderAllProducts = () => {

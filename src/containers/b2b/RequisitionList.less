@@ -122,12 +122,19 @@
 .requisition-list {
   display: table;
   width: 100%;
+  position: relative;
 
   &-wrap {
     margin-bottom: 50px;
 
     @media (min-width: @mobileWidth) {
       margin-bottom: 100px;
+    }
+
+    &.loading {
+      .requisition-list-item:not(:first-child) {
+        opacity: .5;
+      }
     }
   }
 
@@ -151,6 +158,7 @@
     .requisition-list-name {
       color: @thirdComplimentColor;
       font-weight: bold;
+      word-break: break-all;
     }
 
     @media screen and (min-width: 481px) {
@@ -280,12 +288,8 @@
         width: 690px;
       }
 
-      @media screen and (min-width: 992px) {
-        width: 740px;
-      }
-
       @media screen and (min-width: 1200px) {
-        width: 920px;
+        width: 870px;
       }
     }
 
@@ -430,3 +434,8 @@
   }
 }
 
+.pagination-wrap {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 14px;
+}

@@ -20,67 +20,195 @@
  */
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
 
 
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
-import { ReactComponent as ArrowLeft } from '../../images/icons/arrow_left.svg';
-import cartData from './cart_main_data_response.json';
+import { ReactComponent as CartIcon } from '../../images/icons/ic_add_to_cart.svg';
+import { ReactComponent as AddToListIcon } from '../../images/icons/ic_add_list.svg';
+import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
+import { login } from '../../utils/AuthService';
+import { cortexFetch } from '../../utils/Cortex';
+import * as Config from '../../ep.config.json';
+import { useCountDispatch } from '../../components/src/cart-count-context';
+
 import './RequisitionPageMain.less';
+import Pagination from '../../components/src/Pagination/pagination';
+
+const listsZoomArray = [
+  'additemlisttocartforms',
+  'additemlisttocartforms:element',
+  'additemlisttocartforms:element:target',
+  'additemlisttocartforms:element:target:descriptor',
+  'additemlisttocartforms:element:target:additemstocartform',
+  'additemlisttocartforms:element:additemlisttocartaction',
+  'additemstoitemlistform',
+  'itemlists',
+  'lineitems',
+  'lineitems:element',
+  'lineitems:element:item',
+  'lineitems:element:item:availability',
+  'lineitems:element:item:addtocartforms',
+  'lineitems:element:item:addtocartform',
+  'lineitems:element:item:cartmemberships',
+  'lineitems:element:item:definition',
+  'lineitems:element:item:definition:options',
+  'lineitems:element:item:definition:options:element',
+  'lineitems:element:item:definition:options:element:value',
+  'lineitems:element:item:addtoitemlistforms',
+  'lineitems:element:item:code',
+  'lineitems:element:item:offer',
+  'lineitems:element:item:price',
+  'lineitems:element:item:appliedpromotions',
+  'lineitems:element:item:recommendations',
+  'lineitems:element:item:addtowishlistform',
+  'lineitems:element:item:wishlistmemberships',
+  'lineitems:next',
+  'lineitems:previous',
+];
+
+const elementZoomArray = [
+  'element',
+  'element:item',
+  'element:item:availability',
+  'element:item:addtocartforms',
+  'element:item:addtocartform',
+  'element:item:cartmemberships',
+  'element:item:definition',
+  'element:item:addtoitemlistforms',
+  'element:item:code',
+  'element:item:offer',
+  'element:item:price',
+  'element:item:appliedpromotions',
+  'element:item:recommendations',
+  'element:item:addtowishlistform',
+  'element:item:wishlistmemberships',
+  'next',
+  'previous',
+];
 
 interface RequisitionPageMainProps {
+  uri: string;
 }
+
 interface RequisitionPageMainState {
   isLoading: boolean,
+  isTableLoading: boolean,
   listName: string,
   currentlyListName: string,
   addProductModalOpened: boolean,
-  isChecked: boolean,
-  selectedElement: number,
   multiSelectMode: boolean,
-  productElements: any,
   editListNameModalOpened: boolean,
   listNameErrorMessages: string,
+  productsData: any,
+  multiCartData: any,
+  selectedProducts: any,
+  addItemsToItemListUri: string,
+  showCreateListLoader: boolean,
+  addToCartLoader: boolean,
+  listItemCount: number,
+  showSelectAllPopup: boolean,
+  selectAllLoader: boolean,
 }
 
-class RequisitionPageMain extends Component<RequisitionPageMainProps, RequisitionPageMainState> {
+class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageMainProps>, RequisitionPageMainState> {
   constructor(props: any) {
     super(props);
     this.state = {
       isLoading: false,
-      listName: 'Vancouver',
+      isTableLoading: false,
+      listName: '',
       currentlyListName: '',
       addProductModalOpened: false,
-      isChecked: false,
-      selectedElement: 0,
       multiSelectMode: false,
       editListNameModalOpened: false,
       listNameErrorMessages: '',
-      productElements: {
-        list: [
-          { name: 'January 2020' }, { name: 'February 2020' }, { name: 'March 2020' }, { name: 'April 2020' }, { name: 'May 2020' }, { name: 'June 2020' }, { name: 'July 2020' }, { name: 'August 2020' }, { name: 'September 2020' }, { name: 'October 2020' }, { name: 'November 2020' }, { name: 'December 2020' },
-        ],
-      },
+      multiCartData: [],
+      productsData: undefined,
+      selectedProducts: [],
+      addItemsToItemListUri: '',
+      showCreateListLoader: false,
+      addToCartLoader: false,
+      listItemCount: 0,
+      showSelectAllPopup: false,
+      selectAllLoader: false,
     };
     this.handleAddProductsModalClose = this.handleAddProductsModalClose.bind(this);
     this.handleAddProductsModalOpen = this.handleAddProductsModalOpen.bind(this);
+    this.handleAddProductsModalUpdate = this.handleAddProductsModalUpdate.bind(this);
     this.handleEditListName = this.handleEditListName.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleEditListNameModalOpen = this.handleEditListNameModalOpen.bind(this);
     this.handleChangeListName = this.handleChangeListName.bind(this);
     this.clearListNameField = this.clearListNameField.bind(this);
-    this.handleBulkeEdit = this.handleBulkeEdit.bind(this);
+    this.handleBulkEdit = this.handleBulkEdit.bind(this);
+    this.handleBulkDelete = this.handleBulkDelete.bind(this);
+    this.handleCheckAll = this.handleCheckAll.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleAddToSelectedCart = this.handleAddToSelectedCart.bind(this);
+    this.loadRequisitionListData = this.loadRequisitionListData.bind(this);
+    this.handleUpdateSelectedItem = this.handleUpdateSelectedItem.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
+    this.handleSelectAllItems = this.handleSelectAllItems.bind(this);
+    this.handleCloseSelectAllPopup = this.handleCloseSelectAllPopup.bind(this);
+    this.handleCloseMultiSelectMode = this.handleCloseMultiSelectMode.bind(this);
   }
 
   componentDidMount() {
     const { listName, currentlyListName } = this.state;
+    this.loadRequisitionListData(false);
     if (currentlyListName.length === 0) {
       this.setState({ currentlyListName: listName });
     }
+  }
+
+  loadRequisitionListData(withoutLoader) {
+    const { match } = this.props;
+    const { productsData } = this.state;
+    const listUri = match.params.uri;
+    const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
+
+    if (productsData && !productsData._element) {
+      this.setState({ isLoading: true });
+    } else if (!withoutLoader) {
+      this.setState({ isLoading: true });
+    } else {
+      this.setState({ isTableLoading: true });
+    }
+
+    login()
+      .then(() => {
+        cortexFetch(`/itemlists/${scope}/${listUri}?zoom=${listsZoomArray.sort().join()}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+          .then(res => res.json())
+          .then((res) => {
+            if (res && res._additemlisttocartforms) {
+              this.setState({
+                listName: res.name,
+                listItemCount: res['item-count'],
+                addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
+                multiCartData: res._additemlisttocartforms[0]._element,
+                currentlyListName: res.name,
+                productsData: res._lineitems[0],
+              });
+              this.handleUpdateSelectedItem();
+            }
+            this.setState({ isLoading: false, isTableLoading: false });
+          });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        this.setState({ isLoading: false, isTableLoading: false });
+      });
   }
 
   handleAddProductsModalClose() {
@@ -96,13 +224,100 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     });
   }
 
-  handleCheck() {
-    const { isChecked } = this.state;
-    this.setState({ isChecked: !isChecked });
+  handleAddProductsModalUpdate() {
+    this.loadRequisitionListData(true);
+    this.setState({ addProductModalOpened: false });
   }
 
-  handleBulkeEdit() {
+  handleCheckAll(isChecked) {
+    const { productsData, selectedProducts } = this.state;
+    let products = selectedProducts;
+    if (isChecked) {
+      products = selectedProducts.filter(product => !(productsData._element.find(element => element.self.uri === product.self.uri)));
+    } else {
+      productsData._element.forEach((product) => {
+        const found = selectedProducts.find(element => element.self.uri === product.self.uri);
+        if (!found) products.push(product);
+      });
+    }
+    this.setState({ selectedProducts: products });
+
+    if (!isChecked && (productsData._next || productsData._previous)) {
+      this.setState({ showSelectAllPopup: true });
+    } else {
+      this.setState({ showSelectAllPopup: false });
+    }
+  }
+
+  handleCheck(product) {
+    const { selectedProducts, productsData } = this.state;
+    const foundProduct = selectedProducts.find(item => item.self.uri === product.self.uri);
+    if (foundProduct) {
+      const filteredProduct = selectedProducts.filter(item => item.self.uri !== product.self.uri);
+      this.setState({ selectedProducts: filteredProduct });
+      if (productsData._element.length > filteredProduct.length) {
+        this.setState({ showSelectAllPopup: false });
+      }
+    } else {
+      this.setState({ selectedProducts: [...selectedProducts, product] });
+    }
+  }
+
+  handleUpdateSelectedItem() {
+    const { selectedProducts, productsData } = this.state;
+    const updatedItems = selectedProducts.map(element => productsData._element.find(item => item.self.uri === element.self.uri));
+    this.setState({ selectedProducts: updatedItems });
+  }
+
+  handleBulkEdit() {
     this.setState({ multiSelectMode: true });
+  }
+
+  handleBulkDelete() {
+    const { selectedProducts } = this.state;
+    this.setState({ isLoading: true });
+    const promises = selectedProducts.map(product => cortexFetch(product.self.uri, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }));
+    Promise.all(promises)
+      .then(() => {
+        this.setState({
+          multiSelectMode: false,
+          selectedProducts: [],
+          isLoading: false,
+        });
+        this.loadRequisitionListData(false);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        this.setState({ isLoading: false });
+        this.loadRequisitionListData(false);
+      });
+  }
+
+  handleDelete(product) {
+    this.setState({ isLoading: true });
+    cortexFetch(product.self.uri, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }).then(() => {
+      this.setState({ isLoading: false });
+      this.loadRequisitionListData(false);
+    })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        this.setState({ isLoading: false });
+        this.loadRequisitionListData(false);
+      });
   }
 
   handleEditListNameModalOpen() {
@@ -113,10 +328,33 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
 
   handleEditListName() {
     const { listName } = this.state;
+    const { match } = this.props;
+    const listUri = match.params.uri;
+    const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
+
     if (listName.length === 0) {
       this.setState({ listNameErrorMessages: intl.get('name-is-required') });
     } else {
-      this.setState({ listNameErrorMessages: '', currentlyListName: listName, editListNameModalOpened: false });
+      this.setState({ showCreateListLoader: true });
+      login().then(() => {
+        cortexFetch(`/itemlists/${scope}/${listUri}`, {
+          method: 'put',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({ name: listName }),
+        })
+          .then(() => {
+            this.setState({
+              listNameErrorMessages: '', currentlyListName: listName, editListNameModalOpened: false, showCreateListLoader: false,
+            });
+          })
+          .catch((error) => {
+            // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      });
     }
   }
 
@@ -141,11 +379,25 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     });
   }
 
-  renderDropdownMenu() {
-    const { productElements } = this.state;
+  renderDropdownMenu(isDisabled = false) {
+    const { multiCartData, addToCartLoader } = this.state;
+    const dispatch = useCountDispatch();
+    const onCountChange = (name, count) => {
+      const data = {
+        type: 'COUNT_SHOW',
+        payload: {
+          count,
+          name,
+        },
+      };
+      dispatch(data);
+      setTimeout(() => {
+        dispatch({ type: 'COUNT_HIDE' });
+      }, 3200);
+    };
     return (
       <div className="add-to-cart-dropdown">
-        <div className="dropdown-sort-field">
+        <div className="dropdown-add-to-cart-field">
           <div className="dropdown">
             <button
               className="btn btn-secondary dropdown-toggle"
@@ -154,19 +406,26 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
+              disabled={isDisabled}
             >
-              {intl.get('add-to-cart-2')}
+              {addToCartLoader ? (
+                <div className="miniLoader" />
+              ) : (<span className="btn-txt">{intl.get('add-to-cart-2')}</span>)
+              }
+              <CartIcon className="cart-icon" />
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {(productElements.list[0]) ? productElements.list.map(sortChoice => (
-                <li
+              {(multiCartData.length) ? multiCartData.map(cart => (
+                <button
+                  type="button"
                   className="dropdown-item"
-                  key={sortChoice.name}
-                  id={`product_display_item_sku_option_${sortChoice.name}`}
-                  value={sortChoice.name}
+                  key={cart._target && cart._target[0]._descriptor[0].name}
+                  id={`product_display_item_sku_option_${cart._target && cart._target[0]._descriptor[0].name}`}
+                  value={cart._target && cart._target[0]._descriptor[0].name}
+                  onClick={() => { this.handleAddToSelectedCart(cart, onCountChange); }}
                 >
-                  {sortChoice.name}
-                </li>
+                  {cart._target && cart._target[0]._descriptor[0].name}
+                </button>
               )) : ''}
             </ul>
           </div>
@@ -175,17 +434,162 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
     );
   }
 
+  handlePagination(request) {
+    this.setState({ isTableLoading: true });
+    request
+      .then(res => res.json())
+      .then((res) => {
+        if (res && res._element) {
+          this.setState({ productsData: res });
+        }
+        this.setState({ isTableLoading: false });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+        this.setState({ isTableLoading: false });
+      });
+  }
+
+  handleAddToSelectedCart(cart, onCountChange: any = () => {}) {
+    const { selectedProducts, productsData, listItemCount } = this.state;
+    if (productsData && productsData._element) {
+      this.setState({ addToCartLoader: true });
+      const products = productsData && productsData._element ? productsData._element : [];
+
+      let cartUrl = cart._additemlisttocartaction[0].self.uri;
+      const body: { items?: any[] } = {};
+
+      let itemQuantity = listItemCount;
+      const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+
+      if (selectedProducts && selectedProducts.length) {
+        cartUrl = cart._target[0]._additemstocartform[0].self.uri;
+        body.items = [];
+        const arrayItems = (selectedProducts.length > 0 ? selectedProducts : products)
+          .filter(item => item.code !== '')
+          .map(item => ({ code: item._item[0]._code[0].code, quantity: item.quantity }));
+        body.items = arrayItems;
+        itemQuantity = arrayItems.reduce((value, item) => value + item.quantity, 0);
+      }
+
+      cortexFetch(cartUrl,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: body.items ? JSON.stringify(body) : '{}',
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            this.setState({ selectedProducts: [], multiSelectMode: false, addToCartLoader: false });
+            onCountChange(cartName, itemQuantity);
+          }
+        })
+        .catch((error) => {
+          this.setState({ isLoading: false, addToCartLoader: false });
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    }
+  }
+
+  handleSelectAllItems() {
+    const { productsData } = this.state;
+
+    const { match } = this.props;
+    const listUri = match.params.uri;
+    const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
+
+    const { pages } = productsData.pagination;
+    const pagesArr = Array.from(new Array(pages), (val, index) => index + 1);
+
+    this.setState({ selectAllLoader: true });
+    const promises = pagesArr.map(pageIndex => cortexFetch(`/itemlists/${scope}/${listUri}/lineitems/pages/${pageIndex}?zoom=${elementZoomArray.sort().join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    }).then(res => res.json()));
+    Promise.all(promises)
+      .then((res:any) => {
+        const products = res.filter(el => el._element).map(el => el._element).flat();
+        this.setState({ selectedProducts: products, selectAllLoader: false, showSelectAllPopup: false });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+  }
+
+  handleCloseSelectAllPopup() {
+    this.setState({ showSelectAllPopup: false });
+  }
+
+  handleCloseMultiSelectMode() {
+    this.setState({ multiSelectMode: false });
+  }
+
   render() {
     const {
-      isLoading, addProductModalOpened, editListNameModalOpened, listName, multiSelectMode, selectedElement, isChecked, listNameErrorMessages, currentlyListName,
+      isLoading,
+      addProductModalOpened,
+      editListNameModalOpened,
+      listName,
+      multiSelectMode,
+      listNameErrorMessages,
+      currentlyListName,
+      productsData,
+      isTableLoading,
+      selectedProducts,
+      addItemsToItemListUri,
+      showCreateListLoader,
+      showSelectAllPopup,
+      selectAllLoader,
     } = this.state;
+
+    const products = productsData && productsData._element ? productsData._element : [];
+    const pagination = productsData ? productsData.pagination : { pages: 0, current: 0 };
+    const isProductChecked = product => selectedProducts.find(item => item.self.uri === product.self.uri);
+    const CartDropdown = (props: any) => (<span>{this.renderDropdownMenu(props.isDisabled)}</span>);
+    const paginationResults = pagination.results;
+    const isChecked = selectedProducts.filter(product => products.find(element => element.self.uri === product.self.uri)).length === products.length;
+
+    const selectAllItemsBtn = (
+      <button type="button" className="select-all-btn" onClick={this.handleSelectAllItems}>
+        {intl.get('select-all-items', { paginationResults })}
+      </button>
+    );
+
+    const selectedItem = selectedProducts.length;
+
+    const msg = intl.get('select-all-items-txt').split(/[{}]/g);
+    const obj = { selectAllItemsBtn, selectedItem };
 
     return (
       <div className="requisition-component">
+        {/* {showSelectAllPopup && (
+         <div className="select-all-items-block">
+         <div className={`select-all-items ${selectAllLoader ? 'loading' : ''}`}>
+            {selectAllLoader ? (<span className="miniLoader" />) : ''}
+             <p>
+              {msg.map((str) => {
+                 const i = Object.keys(obj).indexOf(str);
+                return i === -1 ? str : obj[str];
+               })}
+             </p>
+             <button type="button" className="ep-btn small close-btn" onClick={this.handleCloseSelectAllPopup}>
+               {intl.get('close')}
+             </button>
+            </div>
+          </div>
+         )} */}
         {isLoading ? (
           <div className="loader" />
         ) : (
-          <div>
+          <div className={`requisition-component-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
             <div className="requisition-header">
               <div className="back-link-wrap">
                 <Link className="back-link" to="/b2b/requisition-lists">
@@ -200,84 +604,98 @@ class RequisitionPageMain extends Component<RequisitionPageMainProps, Requisitio
                 <button type="button" className="edit-name" onClick={this.handleEditListNameModalOpen}>
                   {intl.get('edit')}
                 </button>
+                <button type="button" className="close-btn" onClick={this.handleCloseMultiSelectMode}>
+                  <CloseIcon />
+                </button>
               </div>
             </div>
             <div className="add-to-cart-dropdown-wrap">
               <button type="button" className="ep-btn primary add-to-list-button" onClick={this.handleAddProductsModalOpen}>
-                {intl.get('add-products-to-list')}
+                <span className="btn-txt">{intl.get('add-products-to-list')}</span>
+                <AddToListIcon className="list-icon" />
               </button>
-              {!multiSelectMode && this.renderDropdownMenu()}
+              {!multiSelectMode && (<CartDropdown isDisabled={!(productsData && productsData._element && productsData._element.length)} />)}
             </div>
-            <div className={`pagination-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
-              {!multiSelectMode ? (
-                <button type="button" className="bulk-edit-btn" onClick={this.handleBulkeEdit}>{intl.get('bulk-edit')}</button>
-              ) : (
-                <div className="action-elements">
-                  <div className="checkbox-wrap">
-                    <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={this.handleCheck} defaultChecked={isChecked} />
-                    <label htmlFor="select_all_product" />
-                    <label htmlFor="select_all_product">
-                      {intl.get('select-all')}
-                    </label>
-                    <p className="selected-element">
-                      {selectedElement}
-                      {' '}
-                      {intl.get('item-selected')}
-                    </p>
+            { products.length
+              ? (
+                <div>
+                  <div className={`pagination-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
+                    {!multiSelectMode ? (
+                      <button type="button" className="bulk-edit-btn" onClick={this.handleBulkEdit}>{intl.get('bulk-edit')}</button>
+                    ) : (
+                      <div className="action-elements">
+                        <div className="checkbox-wrap">
+                          <input type="checkbox" id="select_all_product" className="style-checkbox" onChange={() => { this.handleCheckAll(isChecked); }} checked={isChecked} />
+                          <label htmlFor="select_all_product" />
+                          <label htmlFor="select_all_product">
+                            {intl.get('select-all')}
+                          </label>
+                          <p className="selected-element">
+                            {selectedProducts.length}
+                            {' '}
+                            {intl.get('item-selected')}
+                          </p>
+                        </div>
+                        {/* <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button> */}
+                        <CartDropdown isDisabled={!(selectedProducts && selectedProducts.length)} />
+                      </div>
+                    )}
+                    {productsData && (<Pagination pagination={pagination} onPageChange={this.handlePagination} next={productsData._next} previous={productsData._previous} showItemsCount={!multiSelectMode} zoom={elementZoomArray} />)}
                   </div>
-                  <button type="button" className="ep-btn small delete-btn">{intl.get('delete')}</button>
-                  {this.renderDropdownMenu()}
+                  <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''} ${isTableLoading ? 'loading' : ''}`}>
+                    <div className="product-table-heading">
+                      <div className="product-table-heading-item" />
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('product')}</span>
+                      </div>
+                      <div className="product-table-heading-item" />
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('quick-order-sku-title')}</span>
+                      </div>
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('quantity')}</span>
+                      </div>
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('product-options')}</span>
+                      </div>
+                      <div className="product-table-heading-item">
+                        <span>{intl.get('price')}</span>
+                      </div>
+                      <div className="product-table-heading-item actions">
+                        <span>{intl.get('actions')}</span>
+                      </div>
+                    </div>
+                    {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
+                    {products.map(product => (
+                      product._item
+                        ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                        : ''
+                    ))}
+                  </div>
+                  <div className="pagination-wrap right">
+                    {productsData && pagination.pages > 1 && (<Pagination pagination={pagination} onPageChange={this.handlePagination} next={productsData._next} previous={productsData._previous} zoom={elementZoomArray} />)}
+                  </div>
                 </div>
-              )}
-              <div className="product-pagination">
-                <button type="button" className="pagination-btn prev-btn" disabled>
-                  <ArrowLeft className="arrow-left-icon" />
-                </button>
-                <span className="pagination-txt">
-                  Page 1 of 3
-                </span>
-                <button type="button" className="pagination-btn next-btn">
-                  <ArrowLeft className="arrow-left-icon" />
-                </button>
-              </div>
-            </div>
-            <div className={`product-table ${multiSelectMode ? 'multi-select-mode' : ''}`}>
-              <div className="product-table-heading">
-                <div className="product-table-heading-item" />
-                <div className="product-table-heading-item">
-                  <span>{intl.get('product')}</span>
-                </div>
-                <div className="product-table-heading-item" />
-                <div className="product-table-heading-item">
-                  <span>{intl.get('quick-order-sku-title')}</span>
-                </div>
-                <div className="product-table-heading-item">
-                  <span>{intl.get('quantity')}</span>
-                </div>
-                <div className="product-table-heading-item">
-                  <span>{intl.get('product-options')}</span>
-                </div>
-                <div className="product-table-heading-item">
-                  <span>{intl.get('price')}</span>
-                </div>
-                <div className="product-table-heading-item actions">
-                  <span>{intl.get('actions')}</span>
-                </div>
-              </div>
-              {cartData._defaultcart[0]._lineitems[0]._element.map(product => (
-                <CartLineItem handleQuantityChange={() => {}} item={product} key={product._item[0]._code[0].code} hideAvailabilityLabel isTableView isChosen={isChecked} itemDetailLink="/itemdetail" />
-              ))}
-            </div>
+              )
+              : (<div className="requisition-empty">{intl.get('requisition-lists-description')}</div>)
+            }
           </div>
         )}
         {addProductModalOpened ? (
           <B2bAddProductsModal
             isBulkModalOpened={addProductModalOpened}
             handleClose={this.handleAddProductsModalClose}
+            addItemsToItemListUri={addItemsToItemListUri}
+            onAddItem={this.handleAddProductsModalUpdate}
           />
         ) : ''}
         <Modal open={editListNameModalOpened} onClose={this.handleModalClose}>
           <div className="modal-lg create-list-modal">
+            {showCreateListLoader && (
+              <div className="loader-wrapper">
+                <div className="miniLoader" />
+              </div>
+            )}
             <div className="dialog-header">
               <h2 className="modal-title">
                 {intl.get('edit-list')}

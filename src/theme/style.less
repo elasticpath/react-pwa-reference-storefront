@@ -117,6 +117,27 @@
    margin-top: 10px;
  }
 
+  .textLoader {
+    width: fit-content;
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    z-index: 1;
+    transform: translateX(-50%);
+    &:before {
+      content: '';
+      display: block;
+      border: 2px solid transparent;
+      border-top: 2px solid @secondComplimentColor;
+      border-left: 2px solid @secondComplimentColor;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      animation: spin 0.5s linear infinite;
+      margin: 0 auto 12px;
+    }
+  }
+
  .featured {
    position: absolute;
    display: inline-block;

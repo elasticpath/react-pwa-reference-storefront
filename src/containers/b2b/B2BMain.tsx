@@ -25,7 +25,7 @@ import Modal from 'react-responsive-modal';
 import fileDownload from 'js-file-download';
 import { B2bAddAssociatesMenu, B2bSideMenu } from '../../components/src/index';
 import RouteWithSubRoutes from '../../RouteWithSubRoutes';
-import { adminFetch } from '../../utils/Cortex';
+import { adminFetch, cortexFetch } from '../../utils/Cortex';
 import * as Config from '../../ep.config.json';
 
 import './B2BMain.less';
@@ -51,6 +51,7 @@ interface B2BMainState {
   selectedFile?: HTMLInputElement;
   isUploading: boolean;
   messages: { type: MessageType; text: string; }[];
+  showRequisitionListsLink: boolean;
 }
 
 export default class B2BMain extends React.Component<B2BMainProps, B2BMainState> {
@@ -66,6 +67,7 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
       selectedFile: undefined,
       isUploading: false,
       messages: [],
+      showRequisitionListsLink: false,
     };
 
     this.handleFileChange = this.handleFileChange.bind(this);
@@ -73,6 +75,7 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
   }
 
   async componentDidMount() {
+    await this.fetchRequisitionListsData();
     const result = await adminFetch('/?zoom=accounts,accounts:addassociatesform', {
       headers: {
         'Content-Type': 'application/json',
@@ -174,6 +177,25 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
     this.resetDialog();
   }
 
+  fetchRequisitionListsData() {
+    return cortexFetch('?zoom=itemlistinfo', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+    })
+      .then(r => r.json())
+      .then((res) => {
+        if (res && res._itemlistinfo) {
+          this.setState({ showRequisitionListsLink: true });
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+  }
+
   render() {
     const { routes } = this.props;
     const {
@@ -183,6 +205,7 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
       selectedFile,
       isUploading,
       exampleCsvFile,
+      showRequisitionListsLink,
     } = this.state;
 
     const sideMenuItems = [
@@ -195,7 +218,7 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
       // { to: '/b2b/quotes', children: 'quotes' },
     ];
 
-    if (Config.b2b.req_list) {
+    if (showRequisitionListsLink) {
       sideMenuItems.push({ to: '/b2b/requisition-lists', children: 'requisition-lists' });
     }
 

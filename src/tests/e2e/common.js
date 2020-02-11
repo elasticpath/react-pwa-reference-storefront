@@ -74,8 +74,8 @@ module.exports = {
     const SUB_CATEGORY_CSS = `${PARENT_CATEGORY_CSS} > .dropdown-menu > li > a[title="${productSubCategory}"]`;
     const PRODUCT_CSS = '.product-list-container .category-items-listing .category-item-container';
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
-    const CART_SELECTION_DROPDOWN_CSS = '.cart-selection-dropdown';
-    const CART_SELECTION_DROPDOWN_ITEM_CSS = '.cart-selection-dropdown > li.dropdown-item.cart-selection-item';
+    const CART_SELECTION_DROPDOWN_CSS = 'button[id="product_display_item_add_to_cart_button-dropdown"]';
+    const CART_SELECTION_DROPDOWN_ITEM_CSS = 'form.itemdetail-addtocart-form.form-horizontal > div.form-group-submit > div > div > ul > li:nth-child(1)';
     const CART_LIST_CSS = 'div[data-region="mainCartRegion"]';
     const CART_LINK_CSS = '.cart-link';
 
@@ -106,16 +106,19 @@ module.exports = {
     } else {
       throw new Error('Product not found');
     }
-
+    await page.waitFor(2000);
     await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
-    await page.click(ADD_TO_CART_BUTTON_CSS);
     if (await page.$(CART_SELECTION_DROPDOWN_CSS) !== null) {
       await Promise.all([
+        await page.click(CART_SELECTION_DROPDOWN_CSS),
         await page.waitForSelector(CART_SELECTION_DROPDOWN_ITEM_CSS),
         await page.click(CART_SELECTION_DROPDOWN_ITEM_CSS),
         await page.waitForSelector(CART_LINK_CSS),
         await page.click(CART_LINK_CSS),
       ]);
+    } else {
+      await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
+      await page.click(ADD_TO_CART_BUTTON_CSS);
     }
     await page.waitForSelector(CART_LIST_CSS);
   },
