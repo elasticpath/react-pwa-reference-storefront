@@ -157,6 +157,17 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     }
   }
 
+  static findSelectActionFromLinks(links) {
+    const selectActionLink = links.find((link) => {
+      if (link.rel === 'selectaction') {
+        return true;
+      }
+      return false;
+    });
+
+    return selectActionLink.uri;
+  }
+
   renderPaymentInstrumentSelector() {
     const { paymentInstrumentSelector } = this.props;
 
@@ -168,7 +179,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
           sortedPaymentInstrumentSelectors.map((paymentInstrument) => {
             const displayName = paymentInstrument._description[0].name;
             const checked = paymentInstrument.chosen !== undefined;
-            const selectAction = paymentInstrument.links[0].uri;
+            const selectAction = PaymentSelectorMain.findSelectActionFromLinks(paymentInstrument.links);
             const descriptionUri = paymentInstrument._description[0].self.uri;
 
             if (paymentInstrument._description[0]['payment-instrument-identification-attributes']['purchase-order'] === undefined) {
