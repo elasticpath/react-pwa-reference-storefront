@@ -66,20 +66,8 @@ function mockPaymentInstrumentFormActionPOFailure(mockObj) {
   );
 }
 
-export function mockPostToCreatePOPaymentInstrumentWithAnonUser() {
+export default function mockPostToCreatePOPaymentInstrumentWithAnonUser() {
   fetchMock.restore();
   mockAnonLoginResponse(fetchMock);
   mockFetchPostToCreatePoPaymentInstrumentSuccess(fetchMock);
-}
-
-export function mockPaymentFormBlankPOFailureWithAnonUser() {
-  fetchMock.restore();
-  mockAnonLoginResponse(fetchMock);
-  mockPaymentInstrumentFormActionPOFailure(fetchMock);
-}
-
-export function mockPaymentFormBlankDisplayFailureWithAnonUser() {
-  fetchMock.restore();
-  mockAnonLoginResponse(fetchMock);
-  mockPaymentInstrumentFormActionFailure(fetchMock);
 }

@@ -24,11 +24,7 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text } from '@storybook/addon-knobs/react';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
-import {
-  mockPostToCreatePOPaymentInstrumentWithAnonUser,
-  mockPaymentFormBlankDisplayFailureWithAnonUser,
-  mockPaymentFormBlankPOFailureWithAnonUser,
-} from './purchase.order.widget.modal.api.mocks';
+import mockPostToCreatePOPaymentInstrumentWithAnonUser from './purchase.order.widget.modal.api.mocks';
 import PurchaseOrderWidgetModal from './purchase.order.widget.modal';
 
 storiesOf('Components|PurchaseOrderWidgetModal', module)
@@ -45,24 +41,6 @@ storiesOf('Components|PurchaseOrderWidgetModal', module)
     mockPostToCreatePOPaymentInstrumentWithAnonUser();
     const handleCloseModalFuncText = text('handleCloseModal', '() => {alert("handleCloseModal invoked")}');
 
-    return <PurchaseOrderWidgetModal
-      openModal
-      createPaymentInstrumentActionUri="/paymentinstruments/paymentmethods/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/mvrtgmbrhbsdkljxgyygeljumi3tkljygjqtallggy3dinjrmm4dsztgmy=/paymentinstrument/form"
-      handleCloseModal={() => { textToFunc(handleCloseModalFuncText); }}
-    />;
-  })
-  .add('PO Payment Request Failure with empty display name field.', () => {
-    mockPaymentFormBlankDisplayFailureWithAnonUser();
-    const handleCloseModalFuncText = text('handleCloseModal', '() => {alert("handleCloseModal invoked")}');
-    return <PurchaseOrderWidgetModal
-      openModal
-      createPaymentInstrumentActionUri="/paymentinstruments/paymentmethods/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/mvrtgmbrhbsdkljxgyygeljumi3tkljygjqtallggy3dinjrmm4dsztgmy=/paymentinstrument/form"
-      handleCloseModal={() => { textToFunc(handleCloseModalFuncText); }}
-    />;
-  })
-  .add('PO Payment Request Failure with empty PO number field.', () => {
-    mockPaymentFormBlankPOFailureWithAnonUser();
-    const handleCloseModalFuncText = text('handleCloseModal', '() => {alert("handleCloseModal invoked")}');
     return <PurchaseOrderWidgetModal
       openModal
       createPaymentInstrumentActionUri="/paymentinstruments/paymentmethods/orders/mobee/hazdcylbmy4weljugm2deljumyydellcgaydqljqmmzdsm3gmvqtkylfme=/mvrtgmbrhbsdkljxgyygeljumi3tkljygjqtallggy3dinjrmm4dsztgmy=/paymentinstrument/form"
