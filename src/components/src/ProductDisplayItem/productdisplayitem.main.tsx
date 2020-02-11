@@ -94,6 +94,13 @@ const zoomArray = [
   'code',
 ];
 
+const requisitionListsZoomArray = [
+  'itemlistinfo',
+  'itemlistinfo:allitemlists',
+  'itemlistinfo:allitemlists:element',
+  'itemlistinfo:allitemlists:element:additemstoitemlistform',
+];
+
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
 
@@ -172,11 +179,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       addToCartLoading: false,
       addToRequisitionListLoading: false,
       detailsProductData: [],
-      requisitionListData: {
-        list: [
-          { name: 'Vancouver' }, { name: 'HQ' }, { name: 'Chicago' }, { name: 'New York' }, { name: 'San Francisco' }, { name: 'Toronto' }, { name: 'Lviv' }, { name: 'Denver' }, { name: 'San Diego' },
-        ],
-      },
+      requisitionListData: undefined,
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -195,6 +198,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   componentDidMount() {
     this.fetchProductData();
+    this.fetchRequisitionListsData();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -254,6 +258,30 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           }));
     });
   }
+
+  fetchRequisitionListsData() {
+    login().then(() => {
+      cortexFetch(`?zoom=${requisitionListsZoomArray.sort().join()}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+      })
+        .then(res => res.json())
+        .then((res) => {
+          if (res._itemlistinfo) {
+            this.setState({
+              requisitionListData: res._itemlistinfo[0]._allitemlists[0]._element,
+            });
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+  }
+
 
   handleQuantityChange(event) {
     if (event.target.value === '') {
@@ -607,10 +635,35 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   addToRequisitionListData(list, onCountChange) {
-    const { itemQuantity } = this.state;
+    const listUrl = list._additemstoitemlistform[0].self.uri;
+    const { itemQuantity, productData } = this.state;
     const { name } = list;
-    onCountChange(name, itemQuantity);
+
     this.setState({ addToRequisitionListLoading: true });
+    login().then(() => {
+      const body: { [key: string]: any } = {};
+      body.items = { code: productData._code[0].code, quantity: itemQuantity };
+      cortexFetch(listUrl,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(body),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            this.setState({ addToRequisitionListLoading: false });
+            onCountChange(name, itemQuantity);
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+          this.setState({ addToRequisitionListLoading: false });
+        });
+    });
   }
 
   dropdownCartSelection() {
@@ -631,13 +684,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
     const { productData } = this.state;
     const addToCartForms = (productData._addtocartforms || []).flatMap(addtocartforms => addtocartforms._element);
-
     if (addToCartForms.length > 0) {
       return (
         <ul className="cart-selection-dropdown">
           {addToCartForms
             .map(addToCartForm => ({
-              cartName: addToCartForm._target[0]._descriptor[0].name || intl.get('default'),
+              cartName: (addToCartForm._target && addToCartForm._target[0]._descriptor[0].name) || intl.get('default'),
               addToCartActionUri: addToCartForm._addtocartaction && addToCartForm._addtocartaction[0].self.uri,
             }))
             .map(form => (
@@ -676,7 +728,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     if (requisitionListData) {
       return (
         <ul className="cart-selection-dropdown">
-          {requisitionListData.list.map(list => (
+          {requisitionListData.map(list => (
             // eslint-disable-next-line
             <li className="dropdown-item cart-selection-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
               {list.name ? list.name : intl.get('default')}
@@ -776,7 +828,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 <div>
                   <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
                     {productData._definition[0]['display-name']}
-                    {Config.b2b.req_list && ProductDisplayItemMain.isLoggedIn(Config) && (
+                    {requisitionListData && ProductDisplayItemMain.isLoggedIn(Config) && (
                       <button type="button" className="add-to-wish-list-link" onClick={this.addToWishList} disabled={!availability || !productData._addtowishlistform}>
                         +
                         {' '}
@@ -894,7 +946,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform) ? (
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
-                        {requisitionListData && Config.b2b.req_list ? (
+                        {requisitionListData ? (
                           <SelectRequisitionListButton />
                         ) : (
                           <div className="form-content form-content-submit col-sm-offset-4">

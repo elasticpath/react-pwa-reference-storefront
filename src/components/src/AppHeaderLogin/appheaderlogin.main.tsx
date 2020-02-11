@@ -336,7 +336,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       if (isLoggedIn) {
         return (
           <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
-            {(Config.b2b.req_list) ? (<RequisitionListsLink />) : ('')}
+            {showRequisitionListsLink ? (<RequisitionListsLink />) : ('')}
             <div className="auth-container dropdown">
               <button className="dropdown-toggle btn-auth-menu" type="button" id={`${isMobileView ? 'mobile_' : ''}header_navbar_loggedIn_button`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {(isMobileView)
