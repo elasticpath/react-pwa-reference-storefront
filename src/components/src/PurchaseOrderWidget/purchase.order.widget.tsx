@@ -56,6 +56,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
+  // eslint-disable-next-line consistent-return
   static getDerivedStateFromProps(props, state) {
     const { orderPaymentData } = props;
 
@@ -66,10 +67,9 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
       if (newPONumber !== undefined) {
         return { isChosen: true };
       }
-    // eslint-disable-next-line no-empty
-    } catch (err) {}
-
-    return { isChosen: false };
+    } catch {
+      return { isChosen: false };
+    }
   }
 
   doesPayWithPOMethodExist() {
@@ -87,8 +87,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
       try {
         paymentMethodInfoElems = orderPaymentData._order[0]._paymentmethodinfo[0]._element;
       // eslint-disable-next-line no-empty
-      } catch (err) {
-      }
+      } catch {}
     }
 
     if (paymentMethodInfoElems) {
@@ -118,19 +117,27 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     try {
       chosenPaymentMethod = orderPaymentData._order[0]._paymentinstrumentselector[0]._chosen;
     // eslint-disable-next-line no-empty
-    } catch (err) {
+    } catch {
+      return chosenPaymentMethod;
     }
+
     return chosenPaymentMethod;
   }
 
+  // eslint-disable-next-line consistent-return
   renderPONumber() {
     const { orderPaymentData } = this.props;
-    const { isChosen } = this.state;
+
     const chosen = PurchaseOrderWidget.getChosenFromOrderData(orderPaymentData);
+    let purchaseOrder = '';
 
-    const purchaseOrder = chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'];
+    try {
+      purchaseOrder = chosen[0]._description[0]['payment-instrument-identification-attributes']['purchase-order'];
 
-    return purchaseOrder;
+      return purchaseOrder;
+    } catch {
+      return purchaseOrder;
+    }
   }
 
   handleCloseModal() {
