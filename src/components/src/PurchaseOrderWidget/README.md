@@ -6,7 +6,7 @@ A purchase order widget that allows entry and selection for payment.  Intended u
 
 Pass orderPaymentData to the component so that it can save the respective PO Post url, or display an existing PO number selection in the order.  Note that the component will not appear entirely if the OOTB PO payment method is not available.
 
-The component expects data from a GET request made to the `defaultcart` resource with the following zoom:
+The component expects data from a GET request made to the `defaultcart` or `carts` resource with the following zoom:
 
 ```
 order:paymentinstrumentselector:chosen,
