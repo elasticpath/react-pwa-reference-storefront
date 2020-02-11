@@ -10,5 +10,3 @@ mv src/ep.config.json.temp src/ep.config.json
 
 yarn build
 
-cp src/ep.config.json build/ep.config.json
-
