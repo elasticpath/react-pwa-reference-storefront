@@ -823,7 +823,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   {this.renderProductImage()}
                   {
                     <div className="vr-icon-container">
-                      <VRIcon className="vr-icon" height="50px" width="50px" />
+                      <VRIcon height="30px" width="30px" />
                     </div>
                   }
                 </div>
