@@ -46,10 +46,10 @@ class VRProductDisplayItem extends Component<{}, IVRComponentState> {
 
     return (
       <Scene>
-        {/* <a-assets>
+        <a-assets>
           <img alt="" id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg" />
           <img alt="" id="skyTexture" src="https://cdn.aframe.io/a-painter/images/sky.jpg" />
-        </a-assets> */}
+        </a-assets>
 
         <Entity primitive="a-plane" src="#groundTexture" rotation="-90 0 0" height="100" width="100" />
         <Entity primitive="a-light" type="ambient" color="#445451" />

@@ -23,7 +23,7 @@ import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text, object } from "@storybook/addon-knobs/react";
-import { textToFunc } from '../../../storybook/utils/storybookUtils';
+import { textToFunc } from '../../../../storybook/utils/storybookUtils';
 import VRProductDisplayItem from './VRProductDisplayItem';
 
 function handleSortSelection() {}

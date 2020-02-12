@@ -9,8 +9,14 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
+  "include": [
+    "src",
+    "custom_typings"
+  ],
   "files": [
     "custom_typings/image-loader.d.ts",
-    "custom_typings/typings.d.ts"
+    "custom_typings/typings.d.ts",
+    "custom_typings/aframe.d.ts",
+    "custom_typings/index.d.ts",
   ]
 }
