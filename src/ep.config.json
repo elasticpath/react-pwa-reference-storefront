@@ -1,8 +1,8 @@
 {
   "cortexApi": {
-    "path": "/cortex",
+    "path": "https://reference.epdemos.com/cortex",
     "scope": "vestri",
-    "pathForProxy": "http://localhost:9080",
+    "pathForProxy": "https://reference.epdemos.com",
     "reqTimeout": "30000"
   },
   "supportedLocales": [
@@ -110,7 +110,7 @@
       "authKey": "",
       "domainKey": "",
       "requestId": "",
-      "brUID2":"",
+      "brUID2": "",
       "url": "",
       "refurl": "",
       "suggestionConfig": {

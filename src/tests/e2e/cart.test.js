@@ -109,7 +109,7 @@ describe('Cart feature', () => {
     const product = {
       category: 'M-Class',
       subCategory: 'Wheels, Tires, and Tire Covers',
-      name: 'M Class Red Brake Calipers'
+      name: 'Turbine Wheel and Tire Package'
     };
 
     const PARENT_CATEGORY_CSS = `.app-header-navigation-component li[data-name="${product.category}"]`;

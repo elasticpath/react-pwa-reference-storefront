@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cat src/ep.config.json | jq \
   --arg SCOPE "$CORTEX_SCOPE" \
   --arg PATH "$CORTEX_PATH" \
@@ -8,5 +10,10 @@ cat src/ep.config.json | jq \
 
 mv src/ep.config.json.temp src/ep.config.json
 
-yarn build
+http-server build/ -p 8080 &>/dev/null &
 
+yarn test
+
+kill $(jobs -p)
+
+yarn build
