@@ -3,6 +3,8 @@
 set -x
 set -e
 
+export CI=true
+
 cat src/ep.config.json | jq \
   --arg SCOPE "$CORTEX_SCOPE" \
   --arg PATH "$CORTEX_PATH" \
