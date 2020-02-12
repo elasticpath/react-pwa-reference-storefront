@@ -26,6 +26,7 @@ import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../images/img_missing_horizontal@2x.png';
+import { ReactComponent as VRIcon } from '../../../images/icons/virtual-reality.svg';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
@@ -593,6 +594,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         </a>
       );
     }
+
     return (
       <div className="product-image-carousel">
         <Slider {...settings}>
@@ -819,6 +821,11 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     : ('')
                   }
                   {this.renderProductImage()}
+                  {
+                    <div className="vr-icon-container">
+                      <VRIcon height="50px" width="50px"/>
+                    </div>
+                  }
                 </div>
               </div>
             </div>

@@ -41,6 +41,6 @@ storiesOf('Components|VRProductDisplayItem', module)
   .add('VRComponent', () => {
     console.log('VRComponent');
     return (
-      <VRProductDisplayItem />
+      <VRProductDisplayItem backgroundUri="https://s3.amazonaws.com/referenceexp/vr/18087.jpg" />
     );
   });

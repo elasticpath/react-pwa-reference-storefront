@@ -89,6 +89,7 @@ import B2bEditAccount from './B2bEditAccount/b2b.editaccount';
 import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
+import VRProductDisplayItem from './VRProductDisplayItem/VRProductDisplayItem';
 import CartClear from './CartClear/cartclear';
 import { CountProvider } from './cart-count-context';
 import { RequisitionListCountProvider } from './requisition-list-count-context';
@@ -171,4 +172,5 @@ export {
   RequisitionListCountProvider,
   B2BHomePage,
   B2CHomePage,
+  VRProductDisplayItem,
 };
