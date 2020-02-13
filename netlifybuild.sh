@@ -15,6 +15,8 @@ mv src/ep.config.json.temp src/ep.config.json
 
 yarn build
 
+cp ./_redirects build/
+
 ./node_modules/.bin/http-server build/ -p 8080 &>/dev/null &
 
 yarn test
