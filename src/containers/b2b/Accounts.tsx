@@ -23,28 +23,43 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link, RouteComponentProps } from 'react-router-dom';
+import fileDownload from 'js-file-download';
+import Modal from 'react-responsive-modal';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
+import { B2bAddAssociatesMenu } from '../../components/src';
 import Config from '../../ep.config.json';
 
 import './Accounts.less';
 
+enum MessageType {
+  success = 'success',
+  error = 'error'
+}
+
 interface AccountsState {
-  admins: any,
-  defaultBillingAddress: any,
-  defaultShippingAddress: any,
-  recentOrders: any,
-  accounts: any,
-  searchAccounts: string,
-  isLoading: boolean,
-  showSearchLoader: boolean,
-  noSearchResults: boolean,
-  isSellerAdmin: boolean,
+  admins: any;
+  defaultBillingAddress: any;
+  defaultShippingAddress: any;
+  recentOrders: any;
+  accounts: any;
+  searchAccounts: string;
+  isLoading: boolean;
+  showSearchLoader: boolean;
+  noSearchResults: boolean;
+  isSellerAdmin: boolean;
+  associatesFormUrl?: string;
+  isImportDialogOpen: boolean;
+  exampleCsvFile: string;
+  selectedFile?: HTMLInputElement;
+  isUploading: boolean;
+  messages: { type: MessageType; text: string; }[];
 }
 
 const accountsZoomArray = [
   'accounts',
+  'accounts:addassociatesform',
   'accounts:element',
   'accounts:element:accountmetadata',
   'accounts:element:selfsignupinfo',
@@ -65,6 +80,8 @@ const accountsZoomArray = [
 ];
 
 export default class Accounts extends React.Component<RouteComponentProps, AccountsState> {
+  fileInputRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -121,63 +138,79 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       admins: [],
       searchAccounts: '',
       isSellerAdmin: false,
+      isImportDialogOpen: false,
+      exampleCsvFile: '',
+      selectedFile: undefined,
+      isUploading: false,
+      associatesFormUrl: undefined,
+      messages: [],
     };
     this.getAdminData();
     this.setSearchAccounts = this.setSearchAccounts.bind(this);
     this.getSearchAccounts = this.getSearchAccounts.bind(this);
     this.handleEnterKeyPress = this.handleEnterKeyPress.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
+    this.fileInputRef = React.createRef<HTMLInputElement>();
   }
 
   setSearchAccounts(event) {
     this.setState({ searchAccounts: event.target.value });
   }
 
-  getAdminData() {
-    login().then(() => {
-      adminFetch(`/?zoom=${accountsZoomArray.join()}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          if (res && res._accounts) {
-            const accounts = res._accounts[0]._element.map((account) => {
-              const uri = account.self.uri.split('/').pop();
-              return {
-                name: account.name,
-                externalId: account._accountmetadata ? account._accountmetadata[0]['external-id'] : null,
-                status: account._statusinfo[0]._status[0].status.toLowerCase(),
-                uri,
-              };
-            });
-            let isSellerAdmin = false;
-            if (res._accounts[0]._element[0]._accountmetadata) {
-              isSellerAdmin = true;
-            }
-            const map = new Map();
-            res._accounts[0]._element.reduce((accum, account) => {
-              const associates = account._associateroleassignments[0]._element;
-              if (!associates) return accum;
+  async getAdminData() {
+    await login();
+    const res = await adminFetch(`/?zoom=${accountsZoomArray.join()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+      },
+    })
+      .then(result => result.json());
+    if (res && res._accounts) {
+      const accounts = res._accounts[0]._element.map((account) => {
+        const uri = account.self.uri.split('/').pop();
+        return {
+          name: account.name,
+          externalId: account._accountmetadata ? account._accountmetadata[0]['external-id'] : null,
+          status: account._statusinfo[0]._status[0].status.toLowerCase(),
+          uri,
+        };
+      });
+      let isSellerAdmin = false;
+      if (res._accounts[0]._element[0]._accountmetadata) {
+        isSellerAdmin = true;
+      }
+      const map = new Map();
+      res._accounts[0]._element.reduce((accum, account) => {
+        const associates = account._associateroleassignments[0]._element;
+        if (!associates) return accum;
 
-              associates.forEach((associate) => {
-                if (associate._roleinfo[0]._roles[0]._element && associate._roleinfo[0]._roles[0]._element[0].name === 'BUYER_ADMIN') {
-                  const { name } = associate._associate[0];
-                  const { email } = associate._associate[0]._primaryemail[0];
-                  map.set(email, { name, email });
-                }
-              });
-              return accum;
-            }, []);
-            const admins = Array.from(map.values());
-
-            this.setState({
-              accounts, admins, isLoading: false, noSearchResults: false, isSellerAdmin,
-            });
+        associates.forEach((associate) => {
+          if (associate._roleinfo[0]._roles[0]._element && associate._roleinfo[0]._roles[0]._element[0].name === 'BUYER_ADMIN') {
+            const { name } = associate._associate[0];
+            const { email } = associate._associate[0]._primaryemail[0];
+            map.set(email, { name, email });
           }
         });
-    });
+        return accum;
+      }, []);
+      const admins = Array.from(map.values());
+
+      const associatesFormUrl = `${Config.b2b.authServiceAPI.path}${res._accounts[0]._addassociatesform[0].self.uri}`;
+      const exampleCsvFile = await fetch(associatesFormUrl, {
+        headers: {
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          Accept: 'text/csv',
+        },
+      })
+        .then(r => r.text());
+
+      this.setState({ associatesFormUrl, exampleCsvFile });
+
+      this.setState({
+        accounts, admins, isLoading: false, noSearchResults: false, isSellerAdmin,
+      });
+    }
   }
 
   getSearchAccounts() {
@@ -249,6 +282,78 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     history.push(`/b2b/account/${account.uri}`);
   }
 
+  handleSpreeadsheetClicked() {
+    this.setState({ isImportDialogOpen: true });
+  }
+
+  handleTemplateClicked() {
+    const { exampleCsvFile } = this.state;
+    fileDownload(exampleCsvFile, 'example.csv', 'text/csv');
+  }
+
+  resetDialog() {
+    this.setState({
+      isImportDialogOpen: false,
+      selectedFile: undefined,
+      isUploading: false,
+    });
+  }
+
+  handleImportDialogClose() {
+    this.resetDialog();
+  }
+
+  handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({ selectedFile: event.target });
+  }
+
+  async uploadSelectedFile(): Promise<any> {
+    const formData = new FormData();
+    const fileInput = this.fileInputRef.current;
+    formData.append('associates', new Blob([fileInput.files[0]], { type: 'text/csv' }));
+
+    const options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+      },
+    };
+
+    const { associatesFormUrl } = this.state;
+    return fetch(associatesFormUrl, options)
+      .then(
+        (result) => {
+          if (result.status >= 200 && result.status < 300) {
+            return Promise.resolve();
+          }
+
+          return result.json()
+            .catch(_ => Promise.reject(new Error(intl.get('general-upload-error'))))
+            .then((parsedJson) => {
+              const errorMsg = parsedJson.messages.map(m => intl.get(`backend-message-${m.id}`) || m['debug-message']).join(' ');
+              return Promise.reject(new Error(errorMsg));
+            });
+        },
+        _ => Promise.reject(new Error(intl.get('general-upload-error'))),
+      );
+  }
+
+  async handleSubmit() {
+    const { messages } = this.state;
+    this.setState({ isUploading: true });
+
+    try {
+      await this.uploadSelectedFile();
+
+      this.setState({ messages: [...messages, { type: MessageType.success, text: intl.get('your-upload-was-successful') }] });
+    } catch (err) {
+      this.setState({ messages: [...messages, { type: MessageType.error, text: err.message }] });
+    }
+
+    this.resetDialog();
+  }
+
   render() {
     const {
       admins,
@@ -261,10 +366,39 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
       showSearchLoader,
       noSearchResults,
       isSellerAdmin,
+      selectedFile,
+      isUploading,
+      exampleCsvFile,
+      isImportDialogOpen,
+      messages,
+      associatesFormUrl,
     } = this.state;
 
     return (
       <div className="dashboard-component">
+        <div className="message-boxes">
+          {messages.map((message, index) => (
+            /* eslint-disable-next-line react/no-array-index-key */
+            <div key={index} className={`message-box ${message.type.toString()}`}>
+              <div className="container">
+                <div className="message">
+                  {message.text}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="b2b-header">
+          <div className="page-title">{intl.get('business-account')}</div>
+          {associatesFormUrl && (
+            <div className="quick-menu">
+              <B2bAddAssociatesMenu
+                onSpreeadsheetClicked={() => this.handleSpreeadsheetClicked()}
+                onTemplateClicked={() => this.handleTemplateClicked()}
+              />
+            </div>
+          )}
+        </div>
         <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
         {!isLoading ? (
           <div>
@@ -424,6 +558,31 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                 ) : <p className="no-results">{intl.get('no-results-found')}</p>}
               </div>
             </div>
+            <Modal
+              open={isImportDialogOpen}
+              onClose={() => this.handleImportDialogClose()}
+              classNames={{ modal: 'b2b-import-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
+            >
+              <div className="dialog-header">{intl.get('select-your-file')}</div>
+              <div className="dialog-content">
+                <div className="upload-title">{intl.get('upload-associatess-csv')}</div>
+                <div className="chose-btn-container">
+                  <input id="file-upload" className="chose-btn" type="file" name="associates" ref={this.fileInputRef} onChange={this.handleFileChange} />
+                  <label className="chose-btn-label" htmlFor="file-upload">Choose file</label>
+                  <span>{selectedFile ? selectedFile.value.split('\\').pop() : intl.get('no-file-selected')}</span>
+                </div>
+                <div className="capital-or">{intl.get('capital-or')}</div>
+                <div className="download-sample">
+                  <a href={`data:text/csv;base64,${btoa(exampleCsvFile)}`} download="example.csv">{intl.get('download')}</a>
+                  {' '}
+                  {intl.get('a-sample-file')}
+                </div>
+              </div>
+              <div className="dialog-footer">
+                <button className="cancel" type="button" onClick={() => this.handleImportDialogClose()}>{intl.get('cancel')}</button>
+                <button className="upload" type="submit" disabled={!selectedFile || isUploading} onClick={() => this.handleSubmit()}>{intl.get('upload')}</button>
+              </div>
+            </Modal>
           </div>
         ) : (
           <div className="loader" />

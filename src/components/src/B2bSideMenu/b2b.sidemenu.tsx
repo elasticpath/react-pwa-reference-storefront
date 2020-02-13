@@ -29,6 +29,8 @@ interface B2bSideMenuProps {
     sideMenuItems: any,
   /** location */
   location: any,
+  /** is loading */
+  isLoading?: boolean
 }
 interface B2bSideMenuState {
     isOpen: boolean,
@@ -59,7 +61,7 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
   }
 
   render() {
-    const { sideMenuItems, location } = this.props;
+    const { sideMenuItems, location, isLoading } = this.props;
     const { isOpen } = this.state;
     const currentSideMenuItems = sideMenuItems.filter(el => el.to === location.pathname);
 
@@ -68,19 +70,24 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
         <button
           className="side-menu-component-title"
           onClick={e => this.handleSwitcherClicked(e)}
+          defaultChecked={isLoading}
           type="button"
         >
           {currentSideMenuItems.length > 0 && intl.get(currentSideMenuItems[0].children)}
         </button>
-        <div className={`side-menu-component-dropdown ${isOpen ? '' : 'hidden'}`}>
-          {sideMenuItems.map(elem => (
-            <div key={elem.children}>
-              <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
-                {intl.get(elem.children)}
-              </Link>
-            </div>
-          ))}
-        </div>
+        {!isLoading
+          ? (
+            <div className={`side-menu-component-dropdown ${isOpen ? '' : 'hidden'}`}>
+              {sideMenuItems.map(elem => (
+                <div key={elem.children}>
+                  <Link className={`menu-item ${location.pathname === elem.to ? 'selected' : ''}`} to={elem.to}>
+                    {intl.get(elem.children)}
+                  </Link>
+                </div>
+              ))}
+            </div>)
+          : (<div className="textLoader">{intl.get('loading')}</div>)
+        }
       </div>
     );
   }

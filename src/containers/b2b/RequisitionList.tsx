@@ -368,61 +368,65 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     } = this.state;
     return (
       <div>
-        {isLoading ? (
-          <div className="loader" />
-        ) : (
-          <div>
-            <div className="create-requisition-list">
-              <p>{intl.get('requisition-lists-description')}</p>
-              <button type="button" className="ep-btn primary create-list-btn" onClick={this.handleModalOpen}>{intl.get('create-list')}</button>
-              <Modal open={openModal} onClose={this.handleModalClose}>
-                <div className="modal-lg create-list-modal">
-                  <div className="dialog-header">
-                    <h2 className="modal-title">
-                      {intl.get('create-list')}
-                    </h2>
+        <div className="b2b-header">
+          <div className="page-title">{intl.get('requisition-lists')}</div>
+        </div>
+        <div className="create-requisition-list">
+          <p>{intl.get('requisition-lists-description')}</p>
+          <button type="button" className="ep-btn primary create-list-btn" disabled={isLoading} onClick={this.handleModalOpen}>{intl.get('create-list')}</button>
+          <Modal open={openModal} onClose={this.handleModalClose}>
+            <div className="modal-lg create-list-modal">
+              <div className="dialog-header">
+                <h2 className="modal-title">
+                  {intl.get('create-list')}
+                </h2>
+              </div>
+              <div className="dialog-content">
+                <div className="create-list-form">
+                  <div className="create-list-form-wrap">
+                    <label htmlFor="list_name">{intl.get('name')}</label>
+                    <input type="text" className={`list-name ${(listNameErrorMessages !== '') ? 'input-code-error' : ''}`} id="list_name" value={listName} onChange={this.handleChange} />
+                    {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
+                    <span className={`${(listNameErrorMessages !== '') ? 'input-error-icon' : ''}`} />
+                    <p className="error-message">{listNameErrorMessages}</p>
                   </div>
-                  <div className="dialog-content">
-                    <div className="create-list-form">
-                      <div className="create-list-form-wrap">
-                        <label htmlFor="list_name">{intl.get('name')}</label>
-                        <input type="text" className={`list-name ${(listNameErrorMessages !== '') ? 'input-code-error' : ''}`} id="list_name" value={listName} onChange={this.handleChange} />
-                        {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
-                        <span className={`${(listNameErrorMessages !== '') ? 'input-error-icon' : ''}`} />
-                        <p className="error-message">{listNameErrorMessages}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="dialog-footer">
-                    <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
-                    <button className="upload" type="button" onClick={this.handleSaveList}>
-                      {intl.get('save')}
-                    </button>
-                  </div>
-                </div>
-              </Modal>
-            </div>
-            {(requisitionElements && requisitionElements.length) ? (
-              <div className={`requisition-list-wrap ${isTableLoading ? 'loading' : ''}`}>
-                <div className="pagination-wrap">
-                  { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
-                </div>
-                <ul className="requisition-list">
-                  <li className="requisition-list-item requisition-list-header">
-                    <h4 className="requisition-info">{intl.get('name')}</h4>
-                    <h4 className="requisition-info">{intl.get('product-count')}</h4>
-                    <h4 className="requisition-info action-btn">{intl.get('actions')}</h4>
-                  </li>
-                  {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
-                  {this.renderRequisitionItems()}
-                </ul>
-                <div className="pagination-wrap">
-                  { allItemLists && allItemLists.pagination.pages > 1 && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
                 </div>
               </div>
-            ) : ''}
-          </div>
-        )}
+              <div className="dialog-footer">
+                <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
+                <button className="upload" type="button" onClick={this.handleSaveList}>
+                  {intl.get('save')}
+                </button>
+              </div>
+            </div>
+          </Modal>
+        </div>
+        {isLoading
+          ? (<div className="loader" />)
+          : (
+            <div>
+              {(requisitionElements && requisitionElements.length) ? (
+                <div className={`requisition-list-wrap ${isTableLoading ? 'loading' : ''}`}>
+                  <div className="pagination-wrap">
+                    { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+                  </div>
+                  <ul className="requisition-list">
+                    <li className="requisition-list-item requisition-list-header">
+                      <h4 className="requisition-info">{intl.get('name')}</h4>
+                      <h4 className="requisition-info">{intl.get('product-count')}</h4>
+                      <h4 className="requisition-info action-btn">{intl.get('actions')}</h4>
+                    </li>
+                    {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
+                    {this.renderRequisitionItems()}
+                  </ul>
+                  <div className="pagination-wrap">
+                    { allItemLists && allItemLists.pagination.pages > 1 && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+                  </div>
+                </div>
+              ) : ''}
+            </div>
+          )
+        }
       </div>
     );
   }
