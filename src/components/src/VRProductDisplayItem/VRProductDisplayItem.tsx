@@ -25,6 +25,7 @@ import { Entity, Scene } from 'aframe-react';
 import React, { Component } from 'react';
 import './VRProductDisplayItem.less';
 import { ReactComponent as CloseIcon } from '../../../images/icons/close-icon.svg';
+import { ReactComponent as Fullscreen } from '../../../images/icons/fullscreen.svg';
 
 interface IVRComponentState {
 }
@@ -45,7 +46,12 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
           <CloseIcon />
         </button>
 
-        <Scene className="vr-container" embedded>
+        <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a id="myEnterVRButton" href="#">
+            <Fullscreen />
+          </a>
+
           <a-assets>
             <img alt="" id="luxuryCar" src={backgroundUri} />
           </a-assets>
