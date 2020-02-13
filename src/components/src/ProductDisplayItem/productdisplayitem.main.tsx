@@ -604,12 +604,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       <div className="product-image-carousel">
         <Slider {...settings}>
           <div>
+            <div className="vr-icon-container">
+              <VRIcon height="30px" width="30px" onClick={this.initVR} />
+            </div>
             <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
           </div>
         </Slider>
-        <div className="vr-icon-container">
-          <VRIcon height="30px" width="30px" onClick={this.initVR} />
-        </div>
       </div>
     );
   }
