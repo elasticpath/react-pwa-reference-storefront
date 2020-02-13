@@ -453,6 +453,7 @@
 
     .remove-btn-col {
       float: none;
+      white-space: nowrap;
     }
 
     &.multi-select-mode {
@@ -661,6 +662,84 @@
     width: 24px;
   }
 
+  .cart-selection-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+
+    .dropdown-toggle {
+      min-width: 40px;
+      position: relative;
+      padding: 7px 8px;
+      margin-right: 0;
+      border: 2px solid transparent;
+      background: @mainBackgroundColor;
+      transition: none;
+
+      &:before {
+        content: "";
+        height: 8px;
+        width: 100%;
+        background: @mainBackgroundColor;
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        z-index: 1001;
+      }
+
+      &:after {
+        display: none;
+      }
+
+      svg {
+        fill: @thirdComplimentColor;
+      }
+    }
+
+    .dropdown-header {
+      color: @firstComplimentTextColor;
+      text-transform: uppercase;
+    }
+
+    .dropdown-menu {
+      min-width: 200px;
+      top: 100% !important;
+      right: 0;
+      left: auto !important;
+      transform: none !important;
+      border-radius: 0;
+      border-width: 2px;
+      margin-top: -2px;
+    }
+
+    &.show {
+      .dropdown-menu {
+        border-color: @thirdComplimentColor;
+      }
+
+      .dropdown-toggle {
+        border-color: @thirdComplimentColor;
+        outline: 1px solid transparent;
+        z-index: 1001;
+      }
+    }
+  }
+
+  .cart-selection-menu {
+    &-wrap {
+      max-height: 90px;
+      overflow-y: auto;
+    }
+
+    &-item {
+      font-size: 14px;
+
+      &:hover {
+        color: @thirdComplimentColor;
+        background-color: @thirdComplimentBackground;
+      }
+    }
+  }
 }
 
 .select-all-items {
@@ -748,7 +827,7 @@
       grid-template-columns: 18px 50px auto 100px;
       grid-column-gap: 5px;
       grid-template-rows: auto;
-      overflow: hidden;
+      overflow: visible;
 
       .title-options-col{
         text-align: left;
@@ -907,6 +986,10 @@
     .input-group-btn,
     .checkbox-col {
       border: none;
+    }
+
+    .cart-selection-dropdown .dropdown-menu {
+      right: auto;
     }
   }
 
