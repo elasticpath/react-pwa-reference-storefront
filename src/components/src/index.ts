@@ -94,6 +94,7 @@ import { CountProvider } from './cart-count-context';
 import { RequisitionListCountProvider } from './requisition-list-count-context';
 import B2BHomePage from './B2bHomePage/b2b.home.page';
 import B2CHomePage from './B2cHomePage/b2c.home.page';
+import ImageContainer from './ImageContainer/image.container';
 
 export {
   init,
@@ -171,4 +172,5 @@ export {
   RequisitionListCountProvider,
   B2BHomePage,
   B2CHomePage,
+  ImageContainer,
 };
