@@ -1,3 +1,5 @@
+@import '../../../theme/common.less';
+
 .vr-container {
     width: 100%;
     height: 250px;
@@ -5,11 +7,23 @@
     padding-left: 10px;
 }
 
-.exit-button {
+.exit-btn {
+    background: transparent;
+    border: none;
     position: absolute;
     z-index: 12;
     top: 0;
-    left: 5px;
-    width: 3%;
-    height: 3%;
+    right: 3px;
+    cursor: pointer;
+    
+    svg {
+        height: 15px;
+        width: 15px;
+        fill: @mainNavigationColor;
+        // Render outline of X in SVG.
+        stroke: @mainColor;
+        stroke-width: 10;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
 }

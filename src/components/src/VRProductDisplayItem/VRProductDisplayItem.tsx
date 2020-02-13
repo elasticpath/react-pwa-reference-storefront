@@ -27,41 +27,29 @@ import './VRProductDisplayItem.less';
 import { ReactComponent as CloseIcon } from '../../../images/icons/close-icon.svg';
 
 interface IVRComponentState {
-  color: any;
 }
 
 interface IVRComponentProps {
   backgroundUri?: any,
+  handleCloseVR: any,
 }
 
+// eslint-disable-next-line react/prefer-stateless-function
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
-  constructor(props) {
-    super(props);
-    this.state = { color: 'red' };
-  }
-
-  public changeColor() {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue'];
-    this.setState({
-      color: colors[Math.floor(Math.random() * colors.length)],
-    });
-  }
-
   public render() {
-    const { backgroundUri } = this.props;
-    const { color } = this.state;
+    const { backgroundUri, handleCloseVR } = this.props;
 
     return (
       <div>
-        <div className="exit-button">
+        <button type="button" className="exit-btn" onClick={() => handleCloseVR()}>
           <CloseIcon />
-        </div>
+        </button>
 
         <Scene className="vr-container" embedded>
           <a-assets>
             <img alt="" id="luxuryCar" src={backgroundUri} />
           </a-assets>
-          {/* <Entity primitive="a-sky" height="960" radius="30" src="#luxuryCar" width="1920" /> */}
+
           <Entity primitive="a-sky" radius="30" src="#luxuryCar" />
         </Scene>
       </div>

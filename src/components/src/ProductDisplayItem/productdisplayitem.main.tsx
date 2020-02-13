@@ -198,7 +198,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
     this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
-    this.initVr = this.initVr.bind(this);
+    this.initVR = this.initVR.bind(this);
+    this.closeVR = this.closeVR.bind(this);
   }
 
   componentDidMount() {
@@ -607,7 +608,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           </div>
         </Slider>
         <div className="vr-icon-container">
-          <VRIcon height="30px" width="30px" onClick={this.initVr} />
+          <VRIcon height="30px" width="30px" onClick={this.initVR} />
         </div>
       </div>
     );
@@ -749,9 +750,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return null;
   }
 
-  initVr() {
+  initVR() {
     // TODO:  This needs to place the entire browser in VR mode...
     this.setState({ vrMode: true });
+  }
+
+  closeVR() {
+    this.setState({ vrMode: false });
   }
 
   render() {
@@ -834,7 +839,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     : ('')
                   }
 
-                  {vrMode ? (<VRProductDisplayItem backgroundUri="https://s3.amazonaws.com/referenceexp/vr/18087.jpg" />) : this.renderProductImage()}
+                  {vrMode ? (<VRProductDisplayItem handleCloseVR={() => { this.closeVR(); }} backgroundUri="https://s3.amazonaws.com/referenceexp/vr/18087.jpg" />) : this.renderProductImage()}
 
                 </div>
               </div>
