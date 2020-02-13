@@ -386,9 +386,9 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     if (multiCartData && multiCartData._carts && multiCartData._carts[0]._element) {
       return (
         <ul className="cart-selection-dropdown">
-          {multiCartData._carts[0]._element.map(cart => (
+          {multiCartData._carts[0]._element.map((cart, i) => (
             // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-item" key={cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')} onClick={() => this.addAllToSelectedCart(cart, isQuickOrder, onCountChange)}>
+            <li className="dropdown-item cart-selection-item" key={cart._descriptor[0].name ? `${cart._descriptor[0].name}-${i}` : intl.get('default')} onClick={() => this.addAllToSelectedCart(cart, isQuickOrder, onCountChange)}>
               {cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')}
             </li>
           ))}
