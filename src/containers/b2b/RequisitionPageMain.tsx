@@ -159,7 +159,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
 
   componentDidMount() {
     const { listName, currentlyListName } = this.state;
-    this.loadRequisitionListData(false);
+    this.loadRequisitionListData();
     if (currentlyListName.length === 0) {
       this.setState({ currentlyListName: listName });
     }
