@@ -148,7 +148,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handleBulkDelete = this.handleBulkDelete.bind(this);
     this.handleCheckAll = this.handleCheckAll.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     this.handleAddToSelectedCart = this.handleAddToSelectedCart.bind(this);
     this.loadRequisitionListData = this.loadRequisitionListData.bind(this);
     this.handleUpdateSelectedItem = this.handleUpdateSelectedItem.bind(this);
@@ -166,7 +165,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     }
   }
 
-  loadRequisitionListData(withoutLoader) {
+  loadRequisitionListData(withoutLoader = false) {
     const { match } = this.props;
     const { productsData } = this.state;
     const listUri = match.params.uri;
@@ -225,7 +224,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   handleAddProductsModalUpdate() {
-    this.loadRequisitionListData(true);
+    this.loadRequisitionListData();
     this.setState({ addProductModalOpened: false });
   }
 
@@ -290,33 +289,13 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
           selectedProducts: [],
           isLoading: false,
         });
-        this.loadRequisitionListData(false);
+        this.loadRequisitionListData();
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
         this.setState({ isLoading: false });
-        this.loadRequisitionListData(false);
-      });
-  }
-
-  handleDelete(product) {
-    this.setState({ isLoading: true });
-    cortexFetch(product.self.uri, {
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    }).then(() => {
-      this.setState({ isLoading: false });
-      this.loadRequisitionListData(false);
-    })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        this.setState({ isLoading: false });
-        this.loadRequisitionListData(false);
+        this.loadRequisitionListData();
       });
   }
 
@@ -668,7 +647,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                     {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
                     {products.map(product => (
                       product._item
-                        ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                        ? <CartLineItem handleQuantityChange={() => this.loadRequisitionListData(true)} item={product} hideAvailabilityLabel isTableView onRemove={() => this.loadRequisitionListData(true)} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
                         : ''
                     ))}
                   </div>
