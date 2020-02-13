@@ -23,6 +23,7 @@ import 'aframe';
 // import 'aframe-particle-system-component';
 import { Entity, Scene } from 'aframe-react';
 import React, { Component } from 'react';
+import './VRProductDisplayItem.less';
 
 interface IVRComponentState {
   color: any;
@@ -50,11 +51,12 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     const { color } = this.state;
 
     return (
-      <Scene>
+      <Scene className="vr-container" embedded>
         <a-assets>
           <img alt="" id="luxuryCar" src={backgroundUri} />
         </a-assets>
-        <Entity primitive="a-sky" height="960" radius="30" src="#luxuryCar" width="1920" />
+        {/* <Entity primitive="a-sky" height="960" radius="30" src="#luxuryCar" width="1920" /> */}
+        <Entity primitive="a-sky" radius="30" src="#luxuryCar" />
       </Scene>
     );
   }

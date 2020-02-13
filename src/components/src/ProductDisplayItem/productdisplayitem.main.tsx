@@ -34,6 +34,7 @@ import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { useCountDispatch } from '../cart-count-context';
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
+import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
@@ -143,6 +144,7 @@ interface ProductDisplayItemMainState {
   addToCartLoading: boolean,
   addToRequisitionListLoading: boolean,
   detailsProductData: any,
+  vrMode: boolean;
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -181,6 +183,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       addToRequisitionListLoading: false,
       detailsProductData: [],
       requisitionListData: undefined,
+      vrMode: false,
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -195,6 +198,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
     this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
+    this.initVr = this.initVr.bind(this);
   }
 
   componentDidMount() {
@@ -742,11 +746,17 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return null;
   }
 
+  initVr() {
+    // TODO:  This needs to place the entire browser in VR mode...
+    this.setState({ vrMode: true });
+  }
+
   render() {
     const {
-      productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading,
+      productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading, vrMode,
     } = this.state;
     const { featuredProductAttribute, itemDetailLink } = this.props;
+
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
 
@@ -820,10 +830,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     )
                     : ('')
                   }
-                  {this.renderProductImage()}
+
+                  {vrMode ? (<VRProductDisplayItem backgroundUri="https://s3.amazonaws.com/referenceexp/vr/18087.jpg" />) : this.renderProductImage()}
+
                   {
                     <div className="vr-icon-container">
-                      <VRIcon height="30px" width="30px" />
+                      <VRIcon height="30px" width="30px" onClick={this.initVr} />
                     </div>
                   }
                 </div>
