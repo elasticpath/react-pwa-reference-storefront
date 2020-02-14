@@ -67,7 +67,6 @@
 
 .info-container {
     position: absolute;
-    z-index: 20;
     width: 100%;
     height: 380px;
     display: flex;
@@ -75,6 +74,7 @@
     justify-content: center;
     
     .info-contents {
+        z-index: 20;
         background-color: rgba(0,0,0,0.5);
         width: 70%;
         height: 300px;
@@ -83,10 +83,33 @@
         justify-content: center;
         
         .info-text {
+            z-index: 20;
             color:white;
             font-weight: bold;
-            opacity:100%!important;
-            padding: 10px;
+            padding: 0px;
+            width: 70%;
+            max-height: 280px;
+            text-align: center;
+            vertical-align: middle;
+            // text-overflow: ellipsis;
+            // white-space: nowrap;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .info-text::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+          }
+        .info-text::-webkit-scrollbar-thumb {
+            background: #888; 
+        }
+        .info-text::-webkit-scrollbar {
+            width: 10px;
+            display:none;
         }
     }
+}
+
+.body {
+    scrollbar-width: thin;
+    scrollbar-color: red yellow;
 }

@@ -48,11 +48,14 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     this.closeInfoPlane = this.showInfoPlane.bind(this);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   showInfoPlane() {
+    console.log('show info plane running');
     this.setState({ showInfo: true });
   }
 
   closeInfoPlane() {
+    console.log('close info plane running');
     this.setState({ showInfo: false });
   }
 
@@ -61,6 +64,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     const { showInfo } = this.state;
 
     return (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div>
         <button type="button" className="exit-btn" onClick={() => handleCloseVR()}>
           <CloseIcon />
