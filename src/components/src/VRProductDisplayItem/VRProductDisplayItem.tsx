@@ -68,15 +68,18 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
           <InfoIcon />
         </button>
 
+        {(showInfo) && (
+        <div className="info-container">
+          <div className="info-contents">
+            <p>something</p>
+          </div>
+        </div>)}
+
         <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a id="myEnterVRButton" href="#">
             <Fullscreen />
           </a>
-
-          {
-            showInfo && <Entity primitive="a-plane" position="0 1.5 -3" rotation="0 0 0" width="5" height="4.5" color="#7BC8A4" shadow />
-          }
 
           <a-assets>
             <img alt="" id="luxuryCar" src={backgroundUri} />
