@@ -39,6 +39,8 @@ interface IVRComponentProps {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
+  INFO_TEXT = 'This is a 360 view! You can use your mouse/touch screen to pan.  Click the bottom right corner icon to enable fullscreen VR mode.  Click the top right X to return to normal product images.';
+
   constructor(props) {
     super(props);
     this.state = { showInfo: false };
@@ -71,7 +73,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         {(showInfo) && (
         <div className="info-container">
           <div className="info-contents">
-            <p>something</p>
+            <p className="info-text">{this.INFO_TEXT}</p>
           </div>
         </div>)}
 
