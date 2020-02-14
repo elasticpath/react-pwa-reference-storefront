@@ -43,3 +43,24 @@
         stroke-linejoin: round;
       }
 }
+
+.info-btn {
+    background: transparent;
+    border: none;
+    position: absolute;
+    z-index: 12;
+    bottom: 0;
+    left: 3px;
+    cursor: pointer;
+    
+    svg {
+        height: 20px;
+        width: 20px;
+        fill: @mainNavigationColor;
+        // Render outline of X in SVG.
+        stroke: @mainColor;
+        stroke-width: 10;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+}

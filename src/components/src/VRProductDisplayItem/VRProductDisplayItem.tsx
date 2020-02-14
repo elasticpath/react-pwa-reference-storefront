@@ -26,6 +26,7 @@ import React, { Component } from 'react';
 import './VRProductDisplayItem.less';
 import { ReactComponent as CloseIcon } from '../../../images/icons/close-icon.svg';
 import { ReactComponent as Fullscreen } from '../../../images/icons/fullscreen.svg';
+import { ReactComponent as InfoIcon } from '../../../images/icons/info.svg';
 
 interface IVRComponentState {
 }
@@ -44,6 +45,10 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
       <div>
         <button type="button" className="exit-btn" onClick={() => handleCloseVR()}>
           <CloseIcon />
+        </button>
+
+        <button type="button" className="info-btn" onClick={() => handleCloseVR()}>
+          <InfoIcon />
         </button>
 
         <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
