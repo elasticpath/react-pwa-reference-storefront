@@ -92,6 +92,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     hideAvailabilityLabel: false,
     isTableView: false,
     isChosen: false,
+    multiCartData: [],
   };
 
   constructor(props) {
@@ -306,7 +307,8 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
   }
 
   dropdownCartSelection() {
-    const { item, multiCartData } = this.props;
+    const { multiCartData } = this.props;
+    console.log('multiCartData', multiCartData);
     const dispatch = useCountDispatch();
     const onCountChange = (name, count) => {
       const data = {
