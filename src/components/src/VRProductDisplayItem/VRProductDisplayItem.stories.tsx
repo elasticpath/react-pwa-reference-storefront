@@ -40,7 +40,8 @@ storiesOf('Components|VRProductDisplayItem', module)
   ))
   .add('VRComponent', () => {
     console.log('VRComponent');
-    return (
-      <VRProductDisplayItem backgroundUri="https://s3.amazonaws.com/referenceexp/vr/18087.jpg" />
-    );
+    return null;
+    // return (
+    //   // <VRProductDisplayItem backgroundUri="https://s3.amazonaws.com/referenceexp/vr/18087.jpg" />
+    // );
   });
