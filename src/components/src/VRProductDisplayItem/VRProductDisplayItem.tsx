@@ -29,6 +29,7 @@ import { ReactComponent as Fullscreen } from '../../../images/icons/fullscreen.s
 import { ReactComponent as InfoIcon } from '../../../images/icons/info.svg';
 
 interface IVRComponentState {
+  showInfo: boolean,
 }
 
 interface IVRComponentProps {
@@ -38,8 +39,24 @@ interface IVRComponentProps {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
+  constructor(props) {
+    super(props);
+    this.state = { showInfo: false };
+    this.showInfoPlane = this.showInfoPlane.bind(this);
+    this.closeInfoPlane = this.showInfoPlane.bind(this);
+  }
+
+  showInfoPlane() {
+    this.setState({ showInfo: true });
+  }
+
+  closeInfoPlane() {
+    this.setState({ showInfo: false });
+  }
+
   public render() {
     const { backgroundUri, handleCloseVR } = this.props;
+    const { showInfo } = this.state;
 
     return (
       <div>
@@ -47,7 +64,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
           <CloseIcon />
         </button>
 
-        <button type="button" className="info-btn" onClick={() => handleCloseVR()}>
+        <button type="button" className="info-btn" onClick={() => this.showInfoPlane()}>
           <InfoIcon />
         </button>
 
@@ -56,6 +73,10 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
           <a id="myEnterVRButton" href="#">
             <Fullscreen />
           </a>
+
+          {
+            showInfo && <Entity primitive="a-plane" position="0 1.5 -3" rotation="0 0 0" width="5" height="4.5" color="#7BC8A4" shadow />
+          }
 
           <a-assets>
             <img alt="" id="luxuryCar" src={backgroundUri} />
