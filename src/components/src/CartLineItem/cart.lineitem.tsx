@@ -308,7 +308,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
 
   dropdownCartSelection() {
     const { multiCartData } = this.props;
-    console.log('multiCartData', multiCartData);
     const dispatch = useCountDispatch();
     const onCountChange = (name, count) => {
       const data = {
