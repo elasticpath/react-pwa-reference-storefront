@@ -26,13 +26,13 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';
+import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import './cart.lineitem.less';
 
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 import { ReactComponent as UpdateQuantityIcon } from '../../../images/icons/ic_update.svg';
 import { ReactComponent as AddToCartIcon } from '../../../images/icons/ic_add_to_cart.svg';
 import { ReactComponent as RecycleBinIcon } from '../../../images/icons/ic_trash.svg';
-import { useCountDispatch } from '../cart-count-context';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -271,7 +271,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     onCheck();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   addToSelectedCart(cart, onCountChange) {
     const { item } = this.props;
     const { quantity } = this.state;
@@ -304,41 +303,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
         // eslint-disable-next-line no-console
         console.error(error.message);
       });
-  }
-
-  dropdownCartSelection() {
-    const { multiCartData } = this.props;
-    const dispatch = useCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-    return (
-      <div className="cart-selection-menu">
-        <h6 className="dropdown-header">
-          {intl.get('add-to-cart')}
-        </h6>
-        <div className="cart-selection-menu-wrap">
-          {multiCartData.map((cart, i) => {
-            const name = (cart._target && cart._target[0]._descriptor[0].name) || intl.get('default');
-            return (
-              <button type="button" className="dropdown-item cart-selection-menu-item" key={cart.self.uri} onClick={() => this.addToSelectedCart(cart, onCountChange)}>
-                {name}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    );
   }
 
   renderUnitPrice() {
@@ -493,6 +457,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
       hideAvailabilityLabel,
       isTableView,
       isChosen,
+      multiCartData,
     } = this.props;
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
@@ -526,7 +491,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     if (item._definition) {
       itemDisplayName = item._definition[0]['display-name'];
     }
-    const DropdownCartSelection = () => (<div>{this.dropdownCartSelection()}</div>);
     return (
       <div id={`cart_lineitem_${itemCodeString}`} className="cart-lineitem-row">
         {isTableView && (
@@ -670,7 +634,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
                   <AddToCartIcon className="add-to-cart-icon" />
                 </button>
                 <div className="dropdown-menu cart-selection-list">
-                  <DropdownCartSelection />
+                  <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} showDropdownHeader />
                 </div>
               </div>
             )}

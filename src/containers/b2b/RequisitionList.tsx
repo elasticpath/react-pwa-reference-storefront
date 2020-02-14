@@ -30,7 +30,7 @@ import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.sv
 import * as Config from '../../ep.config.json';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
-import { useCountDispatch } from '../../components/src/cart-count-context';
+import { DropdownCartSelection } from '../../components/src';
 import Pagination from '../../components/src/Pagination/pagination';
 
 import './RequisitionList.less';
@@ -282,43 +282,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     }
   }
 
-  dropdownCartSelection(list) {
-    const multiCartData = list._additemlisttocartforms[0]._element;
-    const dispatch = useCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-    return (
-      <div className="cart-selection-menu">
-        <h6 className="dropdown-header">
-          {intl.get('add-to-cart')}
-        </h6>
-        <div className="cart-selection-menu-wrap">
-          {multiCartData.map((cart) => {
-            const name = (cart._target && cart._target[0]._descriptor[0].name) || intl.get('default');
-            return (
-              <button type="button" className="dropdown-item cart-selection-menu-item" key={name} onClick={() => this.addToSelectedCart(cart, list, onCountChange)}>
-                {name}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-
   renderRequisitionItems() {
-    const DropdownCartSelection = (props: any) => (<div>{this.dropdownCartSelection(props.el)}</div>);
     const { requisitionElements } = this.state;
 
     return requisitionElements.map((el, index) => (
@@ -334,7 +298,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
                 <AddToCartIcon className="add-to-cart-icon" />
               </button>
               <div className="dropdown-menu cart-selection-list">
-                <DropdownCartSelection el={el} />
+                <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addToSelectedCart(cart, el, onchange)} multiCartData={el._additemlisttocartforms[0]._element} showDropdownHeader />
               </div>
             </div>
             <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditRequisition(event, index)}>

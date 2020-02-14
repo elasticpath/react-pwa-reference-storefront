@@ -37,6 +37,7 @@ import { useCountDispatch } from '../../components/src/cart-count-context';
 
 import './RequisitionPageMain.less';
 import Pagination from '../../components/src/Pagination/pagination';
+import DropdownCartSelection from '../../components/src/DropdownCartSelection/dropdown.cart.selection.main';
 
 const listsZoomArray = [
   'additemlisttocartforms',
@@ -360,20 +361,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
 
   renderDropdownMenu(isDisabled = false) {
     const { multiCartData, addToCartLoader } = this.state;
-    const dispatch = useCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
     return (
       <div className="add-to-cart-dropdown">
         <div className="dropdown-add-to-cart-field">
@@ -393,20 +380,9 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
               }
               <CartIcon className="cart-icon" />
             </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {(multiCartData.length) ? multiCartData.map(cart => (
-                <button
-                  type="button"
-                  className="dropdown-item"
-                  key={cart._target && cart._target[0]._descriptor[0].name}
-                  id={`product_display_item_sku_option_${cart._target && cart._target[0]._descriptor[0].name}`}
-                  value={cart._target && cart._target[0]._descriptor[0].name}
-                  onClick={() => { this.handleAddToSelectedCart(cart, onCountChange); }}
-                >
-                  {cart._target && cart._target[0]._descriptor[0].name}
-                </button>
-              )) : ''}
-            </ul>
+            <div className="dropdown-menu cart-selection-list">
+              <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.handleAddToSelectedCart} />
+            </div>
           </div>
         </div>
       </div>
