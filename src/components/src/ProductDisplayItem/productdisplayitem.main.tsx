@@ -668,49 +668,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     });
   }
 
-  // dropdownCartSelection() {
-  //   const dispatch = useCountDispatch();
-  //   const onCountChange = (name, count) => {
-  //     const data = {
-  //       type: 'COUNT_SHOW',
-  //       payload: {
-  //         count,
-  //         name,
-  //       },
-  //     };
-  //     dispatch(data);
-  //     setTimeout(() => {
-  //       dispatch({ type: 'COUNT_HIDE' });
-  //     }, 3200);
-  //   };
-  //
-  //   const { productData } = this.state;
-  //   const addToCartForms = (productData._addtocartforms || []).flatMap(addtocartforms => addtocartforms._element);
-  //   if (addToCartForms.length > 0) {
-  //     return (
-  //       <ul className="cart-selection-dropdown">
-  //         {addToCartForms
-  //           .map(addToCartForm => ({
-  //             cartName: (addToCartForm._target && addToCartForm._target[0]._descriptor[0].name) || intl.get('default'),
-  //             addToCartActionUri: addToCartForm._addtocartaction && addToCartForm._addtocartaction[0].self.uri,
-  //           }))
-  //           .map(form => (
-  //             // eslint-disable-next-line
-  //             <li
-  //               className="dropdown-item cart-selection-item"
-  //               key={form.cartName}
-  //               onClick={() => form.addToCartActionUri && this.addToSelectedCart(form.cartName, form.addToCartActionUri, onCountChange)}
-  //             >
-  //               {form.cartName}
-  //             </li>
-  //           ))
-  //         }
-  //       </ul>
-  //     );
-  //   }
-  //   return null;
-  // }
-
   dropdownRequisitionListSelection() {
     const dispatch = useRequisitionListCountDispatch();
     const onCountChange = (name, count) => {
