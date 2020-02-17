@@ -30,6 +30,10 @@
   "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%sku%.png",
   "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "enableOfflineMode": false,
+  "imageFileTypes": {
+    "enable": true,
+    "types": [".png" ,".jpg", ".svg"]
+  },
   "b2b": {
     "enable": false,
     "authServiceAPI": {

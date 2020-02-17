@@ -21,9 +21,9 @@
 
 import React from 'react';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 
 let Config: IEpConfig | any = {};
-
 
 interface ImageContainerProps {
   /** name of file */
@@ -32,32 +32,53 @@ interface ImageContainerProps {
   imgUrl: string;
   /** class name */
   className?: string;
+  /** is a sku image */
+  isSkuImage?: boolean;
 }
 
 function ImageContainer(props: ImageContainerProps) {
-  const { fileName, imgUrl, className } = props;
-
   const epConfig = getConfig();
   Config = epConfig.config;
+  const {
+    fileName, imgUrl, className, isSkuImage,
+  } = props;
+
+  const fallbackTypes = Config.imageFileTypes.types;
+  const initType = imgUrl.replace(/.*(?=\.)/g, '');
+  const types = (fallbackTypes && fallbackTypes.length > 0) ? [
+    initType,
+    ...fallbackTypes.filter(fileType => fileType !== initType),
+  ] : [];
+  const imageSource = isSkuImage ? Config.skuImagesUrl.replace('%sku%', fileName) : Config.siteImagesUrl.replace('%fileName%', fileName);
 
   const handleError = (e, defaultImgUrl) => {
     const { src } = e.target;
-    const types = ['.png', '.svg', '.jpg', '.tif'];
-    const currentType = src.replace(/.*(?=\.)/g, '');
-    const i = types.indexOf(currentType);
-    if (types[i + 1]) {
-      e.target.src = src.replace(currentType, types[i + 1]);
+    if (Config.imageFileTypes.enable) {
+      const currentType = src.replace(/.*(?=\.)/g, '');
+      const i = types.indexOf(currentType);
+      if (types[i + 1]) {
+        e.target.src = src.replace(currentType, types[i + 1]);
+      } else {
+        e.target.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
+      }
     } else {
-      e.target.src = defaultImgUrl;
+      e.target.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
     }
   };
+
   return (
-    <img className={className} alt="img" src={Config.siteImagesUrl.replace('%fileName%', fileName)} onError={e => handleError(e, imgUrl)} />
+    <img
+      className={className}
+      alt="img"
+      src={imageSource}
+      onError={e => handleError(e, imgUrl)}
+    />
   );
 }
 
 ImageContainer.defaultProps = {
   className: '',
+  isSkuImage: false,
 };
 
 export default ImageContainer;
