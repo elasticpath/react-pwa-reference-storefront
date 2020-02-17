@@ -419,20 +419,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
       );
     };
     const SelectCartButton = ({ isQuickOrder }) => (
-      <span className="form-content form-content-submit col-sm-offset-4 dropdown">
-        <button
-          className="ep-btn primary small btn-itemdetail-addtocart dropdown-toggle"
-          data-toggle="dropdown"
-          disabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton}
-          id="product_display_item_add_to_cart_button"
-          type="submit"
-        >
-          {intl.get('add-all-to-cart')}
-        </button>
-        <div className="dropdown-menu cart-selection-list">
-          <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addAllToSelectedCart(cart, isQuickOrder, onchange)} multiCartData={multiCartData._carts[0]._element} />
-        </div>
-      </span>
+      <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addAllToSelectedCart(cart, isQuickOrder, onchange)} multiCartData={multiCartData._carts[0]._element} isDisabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton} btnTxt={intl.get('add-all-to-cart')} />
     );
     return (
       <div className={`bulk-order-component ${(!isBulkModalOpened) ? 'hideModal' : ''}`}>

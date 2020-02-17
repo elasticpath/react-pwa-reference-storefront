@@ -686,10 +686,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     const { requisitionListData } = this.state;
     if (requisitionListData) {
       return (
-        <ul className="cart-selection-dropdown">
+        <ul className="cart-selection-list">
           {requisitionListData.map(list => (
             // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
+            <li className="dropdown-item cart-selection-menu-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
               {list.name ? list.name : intl.get('default')}
             </li>
           ))}
@@ -720,9 +720,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
 
       const SelectRequisitionListButton = () => (
-        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
+        <div className="form-content form-content-submit dropdown cart-selection-dropdown">
           <button
-            className="ep-btn wide btn-itemdetail-addtowishlist dropdown-toggle"
+            className="ep-btn btn-itemdetail-addtowishlist dropdown-toggle"
             data-toggle="dropdown"
             disabled={!availability || !productData._addtowishlistform}
             type="submit"
@@ -735,33 +735,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               </span>
             )}
           </button>
-          <div className="dropdown-menu cart-selection-list">
+          <div className="dropdown-menu cart-selection-menu cart-selection-list">
             {this.dropdownRequisitionListSelection()}
           </div>
         </div>
       );
 
       const SelectCartButton = () => (
-        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
-          <button
-            className="ep-btn primary wide btn-itemdetail-addtocart dropdown-toggle"
-            data-toggle="dropdown"
-            disabled={!availability || !productData._addtocartform}
-            id="product_display_item_add_to_cart_button-dropdown"
-            type="submit"
-          >
-            {addToCartLoading ? (
-              <span className="miniLoader" />
-            ) : (
-              <span>
-                {intl.get('add-to-cart')}
-              </span>
-            )}
-          </button>
-          <div className="dropdown-menu cart-selection-list">
-            <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} />
-          </div>
-        </div>
+        <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
       );
 
       return (
@@ -912,7 +893,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                           <div className="form-content form-content-submit col-sm-offset-4">
                             <button
                               onClick={this.addToWishList}
-                              className="ep-btn wide btn-itemdetail-addtowishlist"
+                              className="ep-btn btn-itemdetail-addtowishlist"
                               disabled={!availability || !productData._addtowishlistform}
                               id="product_display_item_add_to_wish_list_button"
                               type="submit"

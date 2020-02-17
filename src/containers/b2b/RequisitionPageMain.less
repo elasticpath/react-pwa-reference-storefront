@@ -180,25 +180,14 @@
       }
 
       .dropdown-toggle {
-        height: 32px;
+        min-height: 32px;
         display: block;
-        font-size: 14px;
         color: @firstComplimentColor;
         background-color: @mainBackgroundColor;
-        border: none;
-        text-align: center;
-        border-radius: 0;
+        text-transform: none;
+        margin: 0;
 
-        .miniLoader {
-          width: 20px;
-          height: 20px !important;
-          display: inline-block;
-          vertical-align: middle;
-          margin: 0;
-          border-width: 2px;
-        }
-
-        .cart-icon {
+        .add-to-cart-icon {
           fill: @firstComplimentColor;
 
           @media (min-width: @mobileWidth) {
@@ -212,12 +201,17 @@
           }
         }
 
+        &:before {
+          display: none;
+        }
+
         &:after {
           display: none;
         }
 
         &:focus {
           box-shadow: none;
+          outline: 0 auto transparent;
         }
 
         &:disabled {
@@ -249,27 +243,16 @@
       }
 
       .dropdown-menu {
-        max-height: 200px;
-        width: 100%;
-        border: 1px solid @firstComplimentColor;
+        border-width: 1px;
         border-top: none;
         margin: 0;
         padding: 0;
-        border-radius: 0;
         top: 100% !important;
         transform: none !important;
         overflow-y: auto;
-        text-align: center;
 
         .dropdown-item {
           padding: 8px 10px;
-          font-size: 14px;
-          text-transform: none;
-
-          &:hover {
-            background-color: @thirdComplimentBackground;
-            color: @firstComplimentColor;
-          }
         }
 
         @media (max-width: @mobileWidth - 1px) {
@@ -1018,14 +1001,14 @@
       }
 
       .dropdown-add-to-cart-field .dropdown-toggle {
-        .cart-icon {
+        .add-to-cart-icon {
           fill: @mainBackgroundColor;
         }
 
         &:disabled {
           background-color: transparent;
 
-          .cart-icon {
+          .add-to-cart-icon {
             fill: #BAD7DE;
           }
         }

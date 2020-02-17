@@ -20,9 +20,12 @@
  */
 
 import React from 'react';
-// import './cartclear.less';
 import { getConfig } from '../utils/ConfigProvider';
 import { useCountDispatch } from '../cart-count-context';
+
+import './dropdown.cart.selection.main.less';
+
+import { ReactComponent as AddToCartIcon } from '../../../images/icons/ic_add_to_cart.svg';
 
 interface DropdownCartSelectionProps {
   /** multi cart data */
@@ -31,6 +34,14 @@ interface DropdownCartSelectionProps {
   addToSelectedCart: (...args: any[]) => any,
   /** show dropdown header */
   showDropdownHeader?: boolean,
+  /** is disabled */
+  isDisabled?: boolean,
+  /** show loader */
+  showLoader?: boolean,
+  /** button text */
+  btnTxt?: string,
+  /** show cart icon */
+  showCartIcon?: boolean,
 }
 
 let intl = { get: str => str };
@@ -38,7 +49,9 @@ let intl = { get: str => str };
 function DropdownCartSelection(props:DropdownCartSelectionProps) {
   ({ intl } = getConfig());
 
-  const { multiCartData, addToSelectedCart, showDropdownHeader } = props;
+  const {
+    multiCartData, addToSelectedCart, showDropdownHeader, isDisabled, showLoader, btnTxt, showCartIcon,
+  } = props;
   const dispatch = useCountDispatch();
   const onCountChange = (name, count) => {
     const data = {
@@ -55,21 +68,39 @@ function DropdownCartSelection(props:DropdownCartSelectionProps) {
   };
 
   return (
-    <div className="cart-selection-menu">
-      {showDropdownHeader && (
-        <h6 className="dropdown-header">
-          {intl.get('add-to-cart')}
-        </h6>
-      )}
-      <div className="cart-selection-menu-wrap">
-        {multiCartData.map((cart) => {
-          const name = (cart._target && cart._target[0]._descriptor[0].name) || cart._descriptor[0].name || intl.get('default');
-          return (
-            <button type="button" className="dropdown-item cart-selection-menu-item" key={cart.self ? cart.self.uri : cart._target[0]._descriptor[0].name || 'default'} onClick={() => addToSelectedCart(cart, onCountChange)}>
-              {name}
-            </button>
-          );
-        })}
+    <div className="dropdown cart-selection-dropdown">
+      <button
+        className="ep-btn primary btn-itemdetail-addtocart dropdown-toggle"
+        data-toggle="dropdown"
+        disabled={isDisabled}
+        id="product_display_item_add_to_cart_button-dropdown"
+        type="button"
+      >
+        {showLoader ? (
+          <span className="miniLoader" />
+        ) : (
+          <span className="btn-txt">
+            {btnTxt}
+          </span>
+        )}
+        {showCartIcon && <AddToCartIcon className="add-to-cart-icon" />}
+      </button>
+      <div className="dropdown-menu cart-selection-menu">
+        {showDropdownHeader && (
+          <h6 className="dropdown-header">
+            {intl.get('add-to-cart')}
+          </h6>
+        )}
+        <div className="cart-selection-menu-wrap">
+          {multiCartData.map((cart) => {
+            const name = (cart._target && cart._target[0]._descriptor[0].name) || (cart._descriptor ? cart._descriptor[0].name : intl.get('default'));
+            return (
+              <button type="button" className="dropdown-item cart-selection-menu-item" key={cart.self ? cart.self.uri : cart._target[0]._descriptor[0].name || 'default'} onClick={() => addToSelectedCart(cart, onCountChange)}>
+                {name}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -79,6 +110,10 @@ DropdownCartSelection.defaultProps = {
   multiCartData: [],
   addToSelectedCart: () => { },
   showDropdownHeader: false,
+  isDisabled: false,
+  showLoader: false,
+  btnTxt: '',
+  showCartIcon: false,
 };
 
 export default DropdownCartSelection;

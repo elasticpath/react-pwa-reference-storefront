@@ -197,7 +197,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
                 multiCartData: res._additemlisttocartforms[0]._element,
                 currentlyListName: res.name,
-                productsData: res._lineitems[0],
+                productsData: res._itemlists[0],
               });
               this.handleUpdateSelectedItem();
             }
@@ -362,29 +362,8 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   renderDropdownMenu(isDisabled = false) {
     const { multiCartData, addToCartLoader } = this.state;
     return (
-      <div className="add-to-cart-dropdown">
-        <div className="dropdown-add-to-cart-field">
-          <div className="dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              disabled={isDisabled}
-            >
-              {addToCartLoader ? (
-                <div className="miniLoader" />
-              ) : (<span className="btn-txt">{intl.get('add-to-cart-2')}</span>)
-              }
-              <CartIcon className="cart-icon" />
-            </button>
-            <div className="dropdown-menu cart-selection-list">
-              <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.handleAddToSelectedCart} />
-            </div>
-          </div>
-        </div>
+      <div className="dropdown-add-to-cart-field">
+        <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.handleAddToSelectedCart} isDisabled={isDisabled} showLoader={addToCartLoader} btnTxt={intl.get('add-to-cart-2')} showCartIcon />
       </div>
     );
   }
@@ -509,7 +488,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     const products = productsData && productsData._element ? productsData._element : [];
     const pagination = productsData ? productsData.pagination : { pages: 0, current: 0 };
     const isProductChecked = product => selectedProducts.find(item => item.self.uri === product.self.uri);
-    const CartDropdown = (props: any) => (<span>{this.renderDropdownMenu(props.isDisabled)}</span>);
+    const CartDropdown = (props: any) => (<div className="add-to-cart-dropdown">{this.renderDropdownMenu(props.isDisabled)}</div>);
     const paginationResults = pagination.results;
     const isChecked = selectedProducts.filter(product => products.find(element => element.self.uri === product.self.uri)).length === products.length;
 

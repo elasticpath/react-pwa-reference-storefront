@@ -65,8 +65,8 @@
     }
   }
 
-  .btn-itemdetail-addtocart.wide,
-  .btn-itemdetail-addtowishlist.wide {
+  .btn-itemdetail-addtocart.primary,
+  .btn-itemdetail-addtowishlist {
     text-transform: capitalize;
     font-size: 14px;
     width: 100%;
@@ -97,18 +97,6 @@
         background-color: @mainBackgroundColor;
         color: @firstComplimentColor;
         border: 1px solid @firstComplimentColor;
-    }
-  }
-
-  .btn-itemdetail-addtowishlist {
-    .miniLoader {
-      width: 20px;
-      height: 20px !important;
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0;
-      border-width: 2px;
-      border-top-width: 2px;
     }
   }
 
@@ -182,27 +170,10 @@
       }
 
       .cart-selection-list {
-        width: 100%;
-        border: 1px solid @firstComplimentColor;
-        border-radius: 0;
-        margin-top: -1px;
-        padding: 0;
-
-        .cart-selection-menu-item {
-          text-align: center;
-          font-size: 14px;
-          padding: 10px;
-
-          &:hover {
-            cursor: pointer;
-            color: @firstComplimentColor;
-            background-color: @thirdComplimentBackground;
-          }
-        }
+        margin-bottom: 0;
       }
 
       .cart-selection-menu {
-        margin-bottom: 0;
         max-height: 235px;
         overflow: scroll;
       }

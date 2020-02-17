@@ -293,14 +293,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         </p>
         <div className="requisition-info action-btn">
           <div className="requisition-editing-btn">
-            <div className="cart-selection-dropdown">
-              <button className="ep-btn dropdown-toggle" type="button" data-toggle="dropdown">
-                <AddToCartIcon className="add-to-cart-icon" />
-              </button>
-              <div className="dropdown-menu cart-selection-list">
-                <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addToSelectedCart(cart, el, onchange)} multiCartData={el._additemlisttocartforms[0]._element} showDropdownHeader />
-              </div>
-            </div>
+            <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addToSelectedCart(cart, el, onchange)} multiCartData={el._additemlisttocartforms[0]._element} showDropdownHeader showCartIcon />
             <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditRequisition(event, index)}>
               <RecycleBinIcon className="delete-icon" />
             </button>

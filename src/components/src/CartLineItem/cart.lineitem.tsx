@@ -31,7 +31,6 @@ import './cart.lineitem.less';
 
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 import { ReactComponent as UpdateQuantityIcon } from '../../../images/icons/ic_update.svg';
-import { ReactComponent as AddToCartIcon } from '../../../images/icons/ic_add_to_cart.svg';
 import { ReactComponent as RecycleBinIcon } from '../../../images/icons/ic_trash.svg';
 
 let Config: IEpConfig | any = {};
@@ -629,14 +628,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
         {(!hideRemoveButton) ? (
           <div className="remove-btn-col">
             {isTableView && (
-              <div className="cart-selection-dropdown">
-                <button className="ep-btn dropdown-toggle" type="button" data-toggle="dropdown">
-                  <AddToCartIcon className="add-to-cart-icon" />
-                </button>
-                <div className="dropdown-menu cart-selection-list">
-                  <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} showDropdownHeader />
-                </div>
-              </div>
+              <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} showDropdownHeader showCartIcon />
             )}
             <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
               <RecycleBinIcon className="recycle-bin-icon" />
