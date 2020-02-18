@@ -49,6 +49,15 @@
   }
 
   .dropdown-toggle {
+    margin-right: 0;
+    text-transform: none;
+
+    &.primary {
+      &:focus {
+        outline: 0 auto transparent;
+      }
+    }
+
     .miniLoader {
       width: 20px;
       height: 20px !important;

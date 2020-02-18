@@ -26,12 +26,21 @@ import DropdownCartSelection from './dropdown.cart.selection.main';
 import Readme from './README.md';
 
 const multiCartData = [
-  { _descriptor: [{ name: 'Default' }] },
-  { _descriptor: [{ name: 'Office' }] },
-  { _descriptor: [{ name: 'Showroom' }] },
+  {
+    self: { uri: '/carts/default' },
+    _descriptor: [{ name: 'Default' }],
+  },
+  {
+    self: { uri: '/carts/office' },
+    _descriptor: [{ name: 'Office' }],
+  },
+  {
+    self: { uri: '/carts/showroom' },
+    _descriptor: [{ name: 'Showroom' }],
+  },
 ];
 
-storiesOf('Components|CartCreate', module)
+storiesOf('Components|DropdownCartSelection', module)
   .addParameters({
     readme: {
       // Show readme at the addons panel
@@ -42,5 +51,7 @@ storiesOf('Components|CartCreate', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('DropdownCartSelection', () => (
-    <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={() => {}} btnTxt="Add to Cart" />
+    <div style={{ display: 'inline-block' }}>
+      <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={() => {}} btnTxt="Add to Cart" />
+    </div>
   ));
