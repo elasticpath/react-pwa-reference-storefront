@@ -117,7 +117,7 @@ class ReorderMain extends Component<ReorderMainProps, ReorderMainState> {
     const { productsData } = this.props;
     productsData._lineitems[0]._element.forEach((product) => {
       const SKUCode = product._item[0]._code[0].code;
-      const isConfigurable = product._item[0]._definition[0].links.find(link => link.rel === 'options');
+      const isConfigurable = product._item[0]._addtocartform[0].configuration && Object.entries(product._item[0]._addtocartform[0].configuration).length > 0;
 
       if (isConfigurable) {
         this.handleError(SKUCode, intl.get('configurable-product-message', { SKUCode }));
