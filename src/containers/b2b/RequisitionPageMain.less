@@ -436,6 +436,10 @@
     .remove-btn-col {
       float: none;
       white-space: nowrap;
+
+      .cart-selection-menu-item {
+        text-align: left;
+      }
     }
 
     &.multi-select-mode {
@@ -659,17 +663,6 @@
       background: @mainBackgroundColor;
       transition: none;
 
-      &:before {
-        content: "";
-        height: 8px;
-        width: 100%;
-        background: @mainBackgroundColor;
-        position: absolute;
-        left: 0;
-        bottom: -3px;
-        z-index: 1001;
-      }
-
       &:after {
         display: none;
       }
@@ -680,6 +673,7 @@
     }
 
     .dropdown-header {
+      padding: 10px 10px 5px;
       color: @firstComplimentTextColor;
       text-transform: uppercase;
     }
@@ -704,6 +698,19 @@
         border-color: @thirdComplimentColor;
         outline: 1px solid transparent;
         z-index: 1001;
+      }
+
+      .dropdown-toggle {
+        &:before {
+          content: "";
+          height: 8px;
+          width: 100%;
+          background: @mainBackgroundColor;
+          position: absolute;
+          left: 0;
+          bottom: -3px;
+          z-index: 1001;
+        }
       }
     }
   }
