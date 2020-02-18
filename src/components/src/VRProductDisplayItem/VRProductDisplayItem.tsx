@@ -91,7 +91,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
           <div className="info-container">
             <div id="pointer" />
             <div className="info-contents">
-              <p className="info-text">{this.INFO_TEXT}</p>
+              <div className="info-text">{this.INFO_TEXT}</div>
             </div>
           </div>)}
         </div>
