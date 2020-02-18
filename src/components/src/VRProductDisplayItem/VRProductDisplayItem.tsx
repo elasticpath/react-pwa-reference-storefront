@@ -74,14 +74,9 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         {/* Info Container */}
         <div>
           <div className="info-top-container">
-            <button type="button" className="info-btn" onClick={() => this.handleInfoPanel()}>
-              <p className="info-btn-text">
-                {intl.get('info-btn-txt')}
-              </p>
-            </button>
-            <div className="info-description">
+            <button type="button" className="info-description" onClick={() => this.handleInfoPanel()}>
               {intl.get('info-btn-description')}
-            </div>
+            </button>
           </div>
 
           {(showInfo) && (

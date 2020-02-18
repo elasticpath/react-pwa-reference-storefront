@@ -65,10 +65,17 @@
     }
 
     .vr-icon-container {
+      height: 30px;
+      width: 45px;
+      border: none;
+      background: url('@{imgComponentUrl}/icons/360_info.svg') no-repeat 0px center;
+      border: none;
       position: absolute;
-      top: 2%;
-      left: 4%;
-      cursor: pointer;
+      left: 15px;
+      top: 10px;
+      &:hover {
+        background: url('@{imgComponentUrl}/icons/360_info_hover.svg') no-repeat 0px center;
+      }
     }
   }
 

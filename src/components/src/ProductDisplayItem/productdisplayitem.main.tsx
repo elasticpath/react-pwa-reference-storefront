@@ -624,12 +624,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       <div className="product-image-carousel">
         <Slider {...settings}>
           <div>
-
             {
               !vrMode && vrFileExists && (
-                <div className="vr-icon-container">
-                  <VRIcon height="30px" width="30px" onClick={this.initVR} />
-                </div>
+                <button type="button" className="vr-icon-container" onClick={() => this.initVR()} />
               )
             }
 
