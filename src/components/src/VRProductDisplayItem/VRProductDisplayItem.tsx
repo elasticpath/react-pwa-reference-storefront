@@ -84,7 +84,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             <button type="button" className="info-btn" onClick={() => this.showInfoPlane()}>
               <p className="info-btn-text"> ROTATE AND VIEW PRODUCT </p>
             </button>
-            <p className="info-description">Whats 360 degree view or VR?</p>
+            <div className="info-description">Whats 360 degree view or VR?</div>
           </div>
 
           {(showInfo) && (
