@@ -134,11 +134,13 @@ interface ProductDisplayItemMainProps {
 }
 
 interface ProductDisplayItemMainState {
+  productId: any,
   productData: any,
   requisitionListData: any,
   itemQuantity: number,
   isLoading: boolean,
   arFileExists: boolean,
+  vrFileExists: boolean,
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
   addToCartLoading: boolean,
@@ -150,6 +152,18 @@ interface ProductDisplayItemMainState {
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
   static isLoggedIn(config) {
     return (localStorage.getItem(`${config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
+  }
+
+  static async urlExists(url) {
+    const res = await fetch(url, {
+      method: 'HEAD',
+    });
+
+    if (res.status === 200) {
+      return true;
+    }
+
+    return false;
   }
 
   static defaultProps = {
@@ -173,10 +187,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     Config = epConfig.config;
     ({ intl } = epConfig);
     this.state = {
+      productId: '',
       productData: undefined,
       itemQuantity: 1,
       isLoading: false,
       arFileExists: false,
+      vrFileExists: false,
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
@@ -200,6 +216,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
     this.initVR = this.initVR.bind(this);
     this.closeVR = this.closeVR.bind(this);
+    this.getVRBackgroundImg = this.getVRBackgroundImg.bind(this);
   }
 
   componentDidMount() {
@@ -207,62 +224,69 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.fetchRequisitionListsData();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { productId } = this.props;
-    if (nextProps.productId !== productId) {
-      login().then(() => {
-        itemLookup(nextProps.productId)
-          .then((res) => {
-            if (Config.arKit.enable) {
-              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-                this.setState({
-                  productData: res,
-                  detailsProductData: res._definition[0].details,
-                  arFileExists: exists,
-                });
-              });
-            } else {
-              this.setState({
-                productData: res,
-                detailsProductData: res._definition[0].details,
-              });
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
+  static async getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.productId !== prevState.productId) {
+      try {
+        await login();
+
+        const itemLookupRes = await itemLookup(nextProps.productId);
+
+        let arFileExists = false;
+        let vrFileExists = false;
+
+        if (Config.vr.enable) {
+          vrFileExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+        }
+
+        if (Config.arKit.enable) {
+          arFileExists = await ProductDisplayItemMain.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+        }
+
+        return {
+          productId: nextProps.productId,
+          productData: itemLookupRes,
+          detailsProductData: itemLookupRes._definition[0].details,
+          arFileExists,
+          vrFileExists,
+        };
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      }
     }
+
+    return null;
   }
 
-  fetchProductData() {
+  async fetchProductData() {
     const { productId } = this.props;
+    try {
+      await login();
 
-    login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId, false)
-          .then((res) => {
-            if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
-              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-                this.setState({
-                  productData: res,
-                  detailsProductData: res._definition[0].details,
-                  arFileExists: exists,
-                });
-              });
-            } else {
-              this.setState({
-                productData: res,
-                detailsProductData: res._definition[0].details,
-              });
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+      await cortexFetchItemLookupForm();
+
+      const itemLookupRes = await itemLookup(productId, false);
+      let arFileExists = false;
+      let vrFileExists = false;
+
+      if (Config.vr.enable) {
+        vrFileExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+      }
+
+      if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
+        arFileExists = await ProductDisplayItemMain.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+      }
+
+      this.setState({
+        productData: itemLookupRes,
+        detailsProductData: itemLookupRes._definition[0].details,
+        arFileExists,
+        vrFileExists,
+      });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+    }
   }
 
   fetchRequisitionListsData() {
@@ -409,15 +433,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         });
     });
     event.preventDefault();
-  }
-
-  urlExists(url, callback) {
-    this.funcName = 'UrlExists';
-    fetch(url, {
-      method: 'HEAD',
-    }).then((res) => {
-      callback(res.ok);
-    });
   }
 
   handleSelectionChange(event) {
@@ -576,7 +591,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   renderProductImage() {
-    const { productData, arFileExists } = this.state;
+    const {
+      productData,
+      arFileExists,
+      vrMode,
+      vrFileExists,
+    } = this.state;
     const settings = {
       dots: false,
       infinite: true,
@@ -604,10 +624,21 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       <div className="product-image-carousel">
         <Slider {...settings}>
           <div>
-            <div className="vr-icon-container">
-              <VRIcon height="30px" width="30px" onClick={this.initVR} />
-            </div>
-            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+
+            {
+              !vrMode && vrFileExists && (
+                <div className="vr-icon-container">
+                  <VRIcon height="30px" width="30px" onClick={this.initVR} />
+                </div>
+              )
+            }
+
+            <img
+              src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)}
+              onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }}
+              alt={intl.get('none-available')}
+              className="itemdetail-main-img"
+            />
           </div>
         </Slider>
       </div>
@@ -751,12 +782,16 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   initVR() {
-    // TODO:  This needs to place the entire browser in VR mode...
     this.setState({ vrMode: true });
   }
 
   closeVR() {
     this.setState({ vrMode: false });
+  }
+
+  getVRBackgroundImg() {
+    const { productData } = this.state;
+    return Config.vr.skuVrImagesUrl.replace('%sku%', `${productData._code[0].code}`);
   }
 
   render() {
@@ -839,7 +874,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     : ('')
                   }
 
-                  {vrMode ? (<VRProductDisplayItem handleCloseVR={() => { this.closeVR(); }} backgroundUri="https://s3.amazonaws.com/referenceexp/vr/18087.jpg" />) : this.renderProductImage()}
+                  {vrMode ? (<VRProductDisplayItem handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />) : this.renderProductImage()}
 
                 </div>
               </div>
