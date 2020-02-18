@@ -421,5 +421,8 @@
   "loading": "Loading",
   "close": "Close",
   "select-all-items": "select all {paginationResults} items",
-  "select-all-items-txt": "{selectedItem} items are selected on this page, would you like to {selectAllItemsBtn} in list"
+  "select-all-items-txt": "{selectedItem} items are selected on this page, would you like to {selectAllItemsBtn} in list",
+  "vr-info-txt": "This is a 360 view! You can use your mouse/touch screen to pan.  Click the bottom right corner icon to enable fullscreen VR mode.  Click the top right X to return to normal product images.",
+  "info-btn-txt": "ROTATE AND VIEW PRODUCT",
+  "info-btn-description": "Whats 360 degree view or VR?"
 }

@@ -22,6 +22,7 @@ import 'aframe';
 import { Entity, Scene } from 'aframe-react';
 import React, { Component } from 'react';
 import './VRProductDisplayItem.less';
+import intl from 'react-intl-universal';
 
 interface IVRComponentState {
   showInfo: boolean,
@@ -34,8 +35,6 @@ interface IVRComponentProps {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
-  INFO_TEXT = 'This is a 360 view! You can use your mouse/touch screen to pan.  Click the bottom right corner icon to enable fullscreen VR mode.  Click the top right X to return to normal product images.';
-
   constructor(props) {
     super(props);
     this.state = { showInfo: false };
@@ -76,16 +75,22 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         <div>
           <div className="info-top-container">
             <button type="button" className="info-btn" onClick={() => this.handleInfoPanel()}>
-              <p className="info-btn-text"> ROTATE AND VIEW PRODUCT </p>
+              <p className="info-btn-text"> 
+                {intl.get('info-btn-txt')}
+              </p>
             </button>
-            <div className="info-description">Whats 360 degree view or VR?</div>
+            <div className="info-description">
+              {intl.get('info-btn-description')}
+            </div>
           </div>
 
           {(showInfo) && (
           <div className="info-container">
             <div id="pointer" />
             <div className="info-contents">
-              <div className="info-text">{this.INFO_TEXT}</div>
+              <div className="info-text">
+                {intl.get('vr-info-txt')}
+              </div>
             </div>
           </div>)}
         </div>
