@@ -42,17 +42,22 @@
 .info-btn {
     height: 30px;
     border: none;
-    width: 340px;
+    width: 320px;
     background: url('@{imgComponentUrl}/icons/360_info.svg') no-repeat 0px center;
     border: none;
     margin-top: 10px;
     margin-bottom: 5px;
+    font-size: 14px;
     
     &:hover {
         background: url('@{imgComponentUrl}/icons/360_info_hover.svg') no-repeat 0px center;
         .info-btn-text {
             color: #197C93;
         }
+    }
+
+    .info-btn-text {
+        font-style: bold;
     }
 }
 
@@ -101,6 +106,8 @@
 }
 
 .info-description {
-    width: 45%;
+    width: 40%;
     color: #197C93;
+    font-size: 13px;
+    font-style: bold;
 }
