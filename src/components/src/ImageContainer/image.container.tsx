@@ -34,13 +34,15 @@ interface ImageContainerProps {
   className?: string;
   /** is a sku image */
   isSkuImage?: boolean;
+  /** loading data */
+  onLoadData?: (...args: any[]) => any;
 }
 
 function ImageContainer(props: ImageContainerProps) {
   const epConfig = getConfig();
   Config = epConfig.config;
   const {
-    fileName, imgUrl, className, isSkuImage,
+    fileName, imgUrl, className, isSkuImage, onLoadData,
   } = props;
 
   const fallbackTypes = Config.imageFileTypes.types;
@@ -72,6 +74,7 @@ function ImageContainer(props: ImageContainerProps) {
       alt="img"
       src={imageSource}
       onError={e => handleError(e, imgUrl)}
+      onLoad={onLoadData}
     />
   );
 }
@@ -79,6 +82,7 @@ function ImageContainer(props: ImageContainerProps) {
 ImageContainer.defaultProps = {
   className: '',
   isSkuImage: false,
+  onLoadData: () => {},
 };
 
 export default ImageContainer;

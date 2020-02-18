@@ -24,9 +24,9 @@ import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 
 import './productlistitem.main.less';
+import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -70,6 +70,7 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
       productData: undefined,
       imageStatus: 'loading',
     };
+    this.handleImageLoaded = this.handleImageLoaded.bind(this);
   }
 
   componentDidMount() {
@@ -148,7 +149,7 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
         <div className="category-item-inner">
           <div className={`category-item-thumbnail-container ${imageStatus === 'loaded' ? 'loaded' : ''}`}>
             <Link to={`${itemDetailLink}/${encodeURIComponent(productData._code[0].code)}`}>
-              <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e: any) => { e.target.src = imgPlaceholder; }} alt="default" className="category-item-thumbnail img-responsive" onLoad={this.handleImageLoaded.bind(this)} title="" />
+              <ImageContainer className="category-item-thumbnail img-responsive" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onLoadData={() => { this.handleImageLoaded(); }} />
             </Link>
           </div>
           <div className="category-item-title-container">
