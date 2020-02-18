@@ -511,7 +511,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         <div data-region="billingAddressSelectorsRegion" className="checkout-region-inner-container">
           {this.renderBillingAddress()}
         </div>
-        <button className="ep-btn primary wide checkout-new-address-btn" disabled={isDisabled} type="button" onClick={() => { this.newAddress(); }}>
+        <button className="ep-btn primary wide checkout-new-address-btn" data-region="billingAddressButtonRegion" disabled={isDisabled} type="button" onClick={() => { this.newAddress(); }}>
           {intl.get('add-new-address')}
         </button>
       </div>
