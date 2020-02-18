@@ -39,19 +39,13 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
   constructor(props) {
     super(props);
     this.state = { showInfo: false };
-    this.showInfoPlane = this.showInfoPlane.bind(this);
-    this.closeInfoPlane = this.showInfoPlane.bind(this);
+    this.handleInfoPanel = this.handleInfoPanel.bind(this);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  showInfoPlane() {
-    console.log('show info plane running');
-    this.setState({ showInfo: true });
-  }
+  handleInfoPanel() {
+    const { showInfo } = this.state;
 
-  closeInfoPlane() {
-    console.log('close info plane running');
-    this.setState({ showInfo: false });
+    this.setState({ showInfo: !showInfo });
   }
 
   public render() {
@@ -81,7 +75,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         {/* Info Container */}
         <div>
           <div className="info-top-container">
-            <button type="button" className="info-btn" onClick={() => this.showInfoPlane()}>
+            <button type="button" className="info-btn" onClick={() => this.handleInfoPanel()}>
               <p className="info-btn-text"> ROTATE AND VIEW PRODUCT </p>
             </button>
             <div className="info-description">Whats 360 degree view or VR?</div>
