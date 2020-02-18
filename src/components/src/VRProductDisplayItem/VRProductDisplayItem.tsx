@@ -64,13 +64,6 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         <div>
           <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
 
-          {(showInfo) && (
-          <div className="info-container">
-            <div className="info-contents">
-              <p className="info-text">{this.INFO_TEXT}</p>
-            </div>
-          </div>)}
-
           <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a id="myEnterVRButton" href="#">
@@ -92,6 +85,14 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               <p className="info-btn-text"> ROTATE AND VIEW PRODUCT </p>
             </button>
           </div>
+
+          {(showInfo) && (
+          <div className="info-container">
+            <div id="pointer" />
+            <div className="info-contents">
+              <p className="info-text">{this.INFO_TEXT}</p>
+            </div>
+          </div>)}
         </div>
 
       </div>
