@@ -26,11 +26,11 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';
+import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import './cart.lineitem.less';
 
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 import { ReactComponent as UpdateQuantityIcon } from '../../../images/icons/ic_update.svg';
-import { ReactComponent as UpdateQuantityActiveIcon } from '../../../images/icons/ic_update_active.svg';
 import { ReactComponent as RecycleBinIcon } from '../../../images/icons/ic_trash.svg';
 
 let Config: IEpConfig | any = {};
@@ -67,6 +67,8 @@ interface CartLineItemProps {
   isTableView?: boolean,
   /** is chosen */
   isChosen?: boolean,
+  /** multi cart data */
+  multiCartData?:any,
 }
 
 interface CartLineItemState {
@@ -89,6 +91,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     hideAvailabilityLabel: false,
     isTableView: false,
     isChosen: false,
+    multiCartData: [],
   };
 
   constructor(props) {
@@ -109,6 +112,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     this.handleConfiguratorAddToCartBtnClicked = this.handleConfiguratorAddToCartBtnClicked.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
+    this.addToSelectedCart = this.addToSelectedCart.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -266,6 +270,40 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     onCheck();
   }
 
+  addToSelectedCart(cart, onCountChange) {
+    const { item } = this.props;
+    const { quantity } = this.state;
+    const cartUrl = cart._target[0]._additemstocartform[0].self.uri;
+    let itemCodeString = '';
+    if (item._item) {
+      itemCodeString = item._item[0]._code[0].code;
+    }
+    if (item._code) {
+      itemCodeString = item._code[0].code;
+    }
+    cortexFetch(cartUrl, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+      },
+      body: JSON.stringify({
+        items: [{
+          code: itemCodeString,
+          quantity,
+        }],
+      }),
+    })
+      .then(() => {
+        const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+        onCountChange(cartName, quantity);
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
+  }
+
   renderUnitPrice() {
     const { item } = this.props;
     if (item._item && (item._price || item._item[0]._price)) {
@@ -418,6 +456,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
       hideAvailabilityLabel,
       isTableView,
       isChosen,
+      multiCartData,
     } = this.props;
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
@@ -588,6 +627,9 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
         )}
         {(!hideRemoveButton) ? (
           <div className="remove-btn-col">
+            {isTableView && (
+              <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} showDropdownHeader showCartIcon />
+            )}
             <button className="ep-btn small btn-cart-removelineitem" type="button" onClick={this.handleRemoveBtnClicked}>
               <RecycleBinIcon className="recycle-bin-icon" />
               <span className="btn-text">

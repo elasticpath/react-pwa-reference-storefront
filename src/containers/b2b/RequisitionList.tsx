@@ -30,7 +30,7 @@ import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.sv
 import * as Config from '../../ep.config.json';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
-import { useCountDispatch } from '../../components/src/cart-count-context';
+import { DropdownCartSelection } from '../../components/src';
 import Pagination from '../../components/src/Pagination/pagination';
 
 import './RequisitionList.less';
@@ -282,43 +282,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     }
   }
 
-  dropdownCartSelection(list) {
-    const multiCartData = list._additemlisttocartforms[0]._element;
-    const dispatch = useCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-    return (
-      <div className="cart-selection-menu">
-        <h6 className="dropdown-header">
-          {intl.get('add-to-cart')}
-        </h6>
-        <div className="cart-selection-menu-wrap">
-          {multiCartData.map((cart) => {
-            const name = (cart._target && cart._target[0]._descriptor[0].name) || intl.get('default');
-            return (
-              <button type="button" className="dropdown-item cart-selection-menu-item" key={name} onClick={() => this.addToSelectedCart(cart, list, onCountChange)}>
-                {name}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-
   renderRequisitionItems() {
-    const DropdownCartSelection = (props: any) => (<div>{this.dropdownCartSelection(props.el)}</div>);
     const { requisitionElements } = this.state;
 
     return requisitionElements.map((el, index) => (
@@ -329,14 +293,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         </p>
         <div className="requisition-info action-btn">
           <div className="requisition-editing-btn">
-            <div className="cart-selection-dropdown">
-              <button className="ep-btn dropdown-toggle" type="button" data-toggle="dropdown">
-                <AddToCartIcon className="add-to-cart-icon" />
-              </button>
-              <div className="dropdown-menu cart-selection-list">
-                <DropdownCartSelection el={el} />
-              </div>
-            </div>
+            <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addToSelectedCart(cart, el, onchange)} multiCartData={el._additemlisttocartforms[0]._element} showDropdownHeader showCartIcon />
             <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditRequisition(event, index)}>
               <RecycleBinIcon className="delete-icon" />
             </button>
@@ -368,61 +325,65 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
     } = this.state;
     return (
       <div>
-        {isLoading ? (
-          <div className="loader" />
-        ) : (
-          <div>
-            <div className="create-requisition-list">
-              <p>{intl.get('requisition-lists-description')}</p>
-              <button type="button" className="ep-btn primary create-list-btn" onClick={this.handleModalOpen}>{intl.get('create-list')}</button>
-              <Modal open={openModal} onClose={this.handleModalClose}>
-                <div className="modal-lg create-list-modal">
-                  <div className="dialog-header">
-                    <h2 className="modal-title">
-                      {intl.get('create-list')}
-                    </h2>
+        <div className="b2b-header">
+          <div className="page-title">{intl.get('requisition-lists')}</div>
+        </div>
+        <div className="create-requisition-list">
+          <p>{intl.get('requisition-lists-description')}</p>
+          <button type="button" className="ep-btn primary create-list-btn" disabled={isLoading} onClick={this.handleModalOpen}>{intl.get('create-list')}</button>
+          <Modal open={openModal} onClose={this.handleModalClose}>
+            <div className="modal-lg create-list-modal">
+              <div className="dialog-header">
+                <h2 className="modal-title">
+                  {intl.get('create-list')}
+                </h2>
+              </div>
+              <div className="dialog-content">
+                <div className="create-list-form">
+                  <div className="create-list-form-wrap">
+                    <label htmlFor="list_name">{intl.get('name')}</label>
+                    <input type="text" className={`list-name ${(listNameErrorMessages !== '') ? 'input-code-error' : ''}`} id="list_name" value={listName} onChange={this.handleChange} />
+                    {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
+                    <span className={`${(listNameErrorMessages !== '') ? 'input-error-icon' : ''}`} />
+                    <p className="error-message">{listNameErrorMessages}</p>
                   </div>
-                  <div className="dialog-content">
-                    <div className="create-list-form">
-                      <div className="create-list-form-wrap">
-                        <label htmlFor="list_name">{intl.get('name')}</label>
-                        <input type="text" className={`list-name ${(listNameErrorMessages !== '') ? 'input-code-error' : ''}`} id="list_name" value={listName} onChange={this.handleChange} />
-                        {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
-                        <span className={`${(listNameErrorMessages !== '') ? 'input-error-icon' : ''}`} />
-                        <p className="error-message">{listNameErrorMessages}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="dialog-footer">
-                    <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
-                    <button className="upload" type="button" onClick={this.handleSaveList}>
-                      {intl.get('save')}
-                    </button>
-                  </div>
-                </div>
-              </Modal>
-            </div>
-            {(requisitionElements && requisitionElements.length) ? (
-              <div className={`requisition-list-wrap ${isTableLoading ? 'loading' : ''}`}>
-                <div className="pagination-wrap">
-                  { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
-                </div>
-                <ul className="requisition-list">
-                  <li className="requisition-list-item requisition-list-header">
-                    <h4 className="requisition-info">{intl.get('name')}</h4>
-                    <h4 className="requisition-info">{intl.get('product-count')}</h4>
-                    <h4 className="requisition-info action-btn">{intl.get('actions')}</h4>
-                  </li>
-                  {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
-                  {this.renderRequisitionItems()}
-                </ul>
-                <div className="pagination-wrap">
-                  { allItemLists && allItemLists.pagination.pages > 1 && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
                 </div>
               </div>
-            ) : ''}
-          </div>
-        )}
+              <div className="dialog-footer">
+                <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
+                <button className="upload" type="button" onClick={this.handleSaveList}>
+                  {intl.get('save')}
+                </button>
+              </div>
+            </div>
+          </Modal>
+        </div>
+        {isLoading
+          ? (<div className="loader" />)
+          : (
+            <div>
+              {(requisitionElements && requisitionElements.length) ? (
+                <div className={`requisition-list-wrap ${isTableLoading ? 'loading' : ''}`}>
+                  <div className="pagination-wrap">
+                    { allItemLists && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+                  </div>
+                  <ul className="requisition-list">
+                    <li className="requisition-list-item requisition-list-header">
+                      <h4 className="requisition-info">{intl.get('name')}</h4>
+                      <h4 className="requisition-info">{intl.get('product-count')}</h4>
+                      <h4 className="requisition-info action-btn">{intl.get('actions')}</h4>
+                    </li>
+                    {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
+                    {this.renderRequisitionItems()}
+                  </ul>
+                  <div className="pagination-wrap">
+                    { allItemLists && allItemLists.pagination.pages > 1 && <Pagination onPageChange={this.handlePageChange} pagination={allItemLists.pagination} next={allItemLists._next} previous={allItemLists._previous} zoom={listsElementsZoomArray} /> }
+                  </div>
+                </div>
+              ) : ''}
+            </div>
+          )
+        }
       </div>
     );
   }

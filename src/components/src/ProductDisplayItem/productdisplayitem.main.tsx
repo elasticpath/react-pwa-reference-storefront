@@ -22,13 +22,13 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
-import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../images/img_missing_horizontal@2x.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
+import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { useCountDispatch } from '../cart-count-context';
@@ -191,7 +191,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
-    this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
     this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
   }
@@ -604,9 +603,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     );
   }
 
-  addToSelectedCart(cartName, cartUrl, onCountChange) {
+  addToSelectedCart(cart, onCountChange) {
     const { itemQuantity, itemConfiguration } = this.state;
     this.setState({ addToCartLoading: true });
+
+    const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+    const cartUrl = cart._addtocartaction[0].self.uri;
 
     login()
       .then(() => cortexFetch(cartUrl,
@@ -666,49 +668,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     });
   }
 
-  dropdownCartSelection() {
-    const dispatch = useCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-
-    const { productData } = this.state;
-    const addToCartForms = (productData._addtocartforms || []).flatMap(addtocartforms => addtocartforms._element);
-    if (addToCartForms.length > 0) {
-      return (
-        <ul className="cart-selection-dropdown">
-          {addToCartForms
-            .map(addToCartForm => ({
-              cartName: (addToCartForm._target && addToCartForm._target[0]._descriptor[0].name) || intl.get('default'),
-              addToCartActionUri: addToCartForm._addtocartaction && addToCartForm._addtocartaction[0].self.uri,
-            }))
-            .map(form => (
-              // eslint-disable-next-line
-              <li
-                className="dropdown-item cart-selection-item"
-                key={form.cartName}
-                onClick={() => form.addToCartActionUri && this.addToSelectedCart(form.cartName, form.addToCartActionUri, onCountChange)}
-              >
-                {form.cartName}
-              </li>
-            ))
-          }
-        </ul>
-      );
-    }
-    return null;
-  }
-
   dropdownRequisitionListSelection() {
     const dispatch = useRequisitionListCountDispatch();
     const onCountChange = (name, count) => {
@@ -727,10 +686,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     const { requisitionListData } = this.state;
     if (requisitionListData) {
       return (
-        <ul className="cart-selection-dropdown">
+        <ul className="cart-selection-list">
           {requisitionListData.map(list => (
             // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
+            <li className="dropdown-item cart-selection-menu-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
               {list.name ? list.name : intl.get('default')}
             </li>
           ))}
@@ -744,6 +703,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     const {
       productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading,
     } = this.state;
+    const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
     const { featuredProductAttribute, itemDetailLink } = this.props;
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
@@ -760,9 +720,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
 
       const SelectRequisitionListButton = () => (
-        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
+        <div className="form-content form-content-submit dropdown cart-selection-dropdown">
           <button
-            className="ep-btn wide btn-itemdetail-addtowishlist dropdown-toggle"
+            className="ep-btn btn-itemdetail-addtowishlist dropdown-toggle"
             data-toggle="dropdown"
             disabled={!availability || !productData._addtowishlistform}
             type="submit"
@@ -775,33 +735,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               </span>
             )}
           </button>
-          <div className="dropdown-menu cart-selection-list">
+          <div className="dropdown-menu cart-selection-menu cart-selection-list">
             {this.dropdownRequisitionListSelection()}
           </div>
         </div>
       );
 
       const SelectCartButton = () => (
-        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
-          <button
-            className="ep-btn primary wide btn-itemdetail-addtocart dropdown-toggle"
-            data-toggle="dropdown"
-            disabled={!availability || !productData._addtocartform}
-            id="product_display_item_add_to_cart_button-dropdown"
-            type="submit"
-          >
-            {addToCartLoading ? (
-              <span className="miniLoader" />
-            ) : (
-              <span>
-                {intl.get('add-to-cart')}
-              </span>
-            )}
-          </button>
-          <div className="dropdown-menu cart-selection-list">
-            {this.dropdownCartSelection()}
-          </div>
-        </div>
+        <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
       );
 
       return (
@@ -952,7 +893,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                           <div className="form-content form-content-submit col-sm-offset-4">
                             <button
                               onClick={this.addToWishList}
-                              className="ep-btn wide btn-itemdetail-addtowishlist"
+                              className="ep-btn btn-itemdetail-addtowishlist"
                               disabled={!availability || !productData._addtowishlistform}
                               id="product_display_item_add_to_wish_list_button"
                               type="submit"
