@@ -40,16 +40,16 @@
 }
 
 .info-btn {
-    height: 24px;
+    height: 30px;
     border: none;
-    width: 365px;
-    background: url('@{imgComponentUrl}/icons/360_info.svg') no-repeat 9px center;
+    width: 340px;
+    background: url('@{imgComponentUrl}/icons/360_info.svg') no-repeat 0px center;
     border: none;
-    cursor: pointer;
-    float: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
     
     &:hover {
-        background: url('@{imgComponentUrl}/icons/360_info_hover.svg') no-repeat 9px center;
+        background: url('@{imgComponentUrl}/icons/360_info_hover.svg') no-repeat 0px center;
         .info-btn-text {
             color: #197C93;
         }
@@ -82,11 +82,25 @@
             overflow-y: auto;
         }
     }
-    #pointer{
+    
+    #pointer {
         border: solid 10px transparent;
         border-bottom-color:#000;
-        margin: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 20px;
+        margin-right: auto;
         opacity: 0.5;
         display: flex;
     }
+}
+
+.info-top-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-description {
+    width: 45%;
+    color: #197C93;
 }
