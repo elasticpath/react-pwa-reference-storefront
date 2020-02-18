@@ -19,13 +19,10 @@
  *
  */
 import 'aframe';
-// import 'aframe-animation-component';
-// import 'aframe-particle-system-component';
 import { Entity, Scene } from 'aframe-react';
 import React, { Component } from 'react';
 import './VRProductDisplayItem.less';
-import { ReactComponent as CloseIcon } from '../../../images/icons/close-icon.svg';
-import { ReactComponent as Fullscreen } from '../../../images/icons/fullscreen.svg';
+import { ReactComponent as CloseIcon } from '../../../images/icons/exit-vr.svg';
 import { ReactComponent as InfoIcon } from '../../../images/icons/info.svg';
 
 interface IVRComponentState {
@@ -66,9 +63,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     return (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div>
-        <button type="button" className="exit-btn" onClick={() => handleCloseVR()}>
-          <CloseIcon />
-        </button>
+        <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
 
         <button type="button" className="info-btn" onClick={() => this.showInfoPlane()}>
           <InfoIcon />
@@ -84,7 +79,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a id="myEnterVRButton" href="#">
-            <Fullscreen />
+            <div className="vr-fullscreen" />
           </a>
 
           <a-assets>
