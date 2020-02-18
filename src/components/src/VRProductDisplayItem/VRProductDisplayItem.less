@@ -40,24 +40,20 @@
 }
 
 .info-btn {
-    background: transparent;
+    height: 24px;
     border: none;
-    position: absolute;
-    z-index: 12;
-    bottom: 0;
-    left: 3px;
+    width: 365px;
+    background: url('@{imgComponentUrl}/icons/360_info.svg') no-repeat 9px center;
+    border: none;
     cursor: pointer;
+    float: left;
     
-    svg {
-        height: 20px;
-        width: 20px;
-        fill: @mainNavigationColor;
-        // Render outline of X in SVG.
-        stroke: @mainColor;
-        stroke-width: 10;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
+    &:hover {
+        background: url('@{imgComponentUrl}/icons/360_info_hover.svg') no-repeat 9px center;
+        .info-btn-text {
+            color: #197C93;
+        }
+    }
 }
 
 .info-container {

@@ -22,8 +22,6 @@ import 'aframe';
 import { Entity, Scene } from 'aframe-react';
 import React, { Component } from 'react';
 import './VRProductDisplayItem.less';
-import { ReactComponent as CloseIcon } from '../../../images/icons/exit-vr.svg';
-import { ReactComponent as InfoIcon } from '../../../images/icons/info.svg';
 
 interface IVRComponentState {
   showInfo: boolean,
@@ -61,33 +59,41 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     const { showInfo } = this.state;
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div>
-        <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
+        {/* VR Window */}
+        <div>
+          <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
 
-        <button type="button" className="info-btn" onClick={() => this.showInfoPlane()}>
-          <InfoIcon />
-        </button>
+          {(showInfo) && (
+          <div className="info-container">
+            <div className="info-contents">
+              <p className="info-text">{this.INFO_TEXT}</p>
+            </div>
+          </div>)}
 
-        {(showInfo) && (
-        <div className="info-container">
-          <div className="info-contents">
-            <p className="info-text">{this.INFO_TEXT}</p>
+          <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a id="myEnterVRButton" href="#">
+              <div className="vr-fullscreen" />
+            </a>
+
+            <a-assets>
+              <img alt="" id="luxuryCar" src={backgroundUri} />
+            </a-assets>
+
+            <Entity primitive="a-sky" radius="30" src="#luxuryCar" />
+          </Scene>
+        </div>
+
+        {/* Info Container */}
+        <div>
+          <div>
+            <button type="button" className="info-btn" onClick={() => this.showInfoPlane()}>
+              <p className="info-btn-text"> ROTATE AND VIEW PRODUCT </p>
+            </button>
           </div>
-        </div>)}
+        </div>
 
-        <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a id="myEnterVRButton" href="#">
-            <div className="vr-fullscreen" />
-          </a>
-
-          <a-assets>
-            <img alt="" id="luxuryCar" src={backgroundUri} />
-          </a-assets>
-
-          <Entity primitive="a-sky" radius="30" src="#luxuryCar" />
-        </Scene>
       </div>
     );
   }
