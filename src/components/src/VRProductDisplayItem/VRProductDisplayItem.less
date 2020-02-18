@@ -20,6 +20,9 @@
         &:hover {
             background: url('@{imgComponentUrl}/icons/fullscreen_hover.svg') no-repeat 9px center;
         }
+        &:focus {
+            outline: 0;
+        }
     }
 }
 
@@ -36,6 +39,9 @@
     
     &:hover {
         background: url('@{imgComponentUrl}/icons/exit_vr_hover.svg') no-repeat 9px center;
+    }
+    &:focus {
+        outline: 0;
     }
 }
 
@@ -54,6 +60,9 @@
         .info-btn-text {
             color: #197C93;
         }
+    }
+    &:focus {
+        outline: 0;
     }
 
     .info-btn-text {
@@ -104,9 +113,13 @@
 }
 
 .info-description {
+    margin-top: 15px;
     width: 225px;
     color: #197C93;
     font-size: 13px;
     font-style: bold;
     border: none;
+    &:focus {
+        outline: 0;
+    }
 }
