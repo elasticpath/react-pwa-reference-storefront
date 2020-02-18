@@ -13,7 +13,7 @@ export CI=true
 
 # mv src/ep.config.json.temp src/ep.config.json
 
-yarn build
+ yarn build
 
 # cp ./_redirects build/
 
