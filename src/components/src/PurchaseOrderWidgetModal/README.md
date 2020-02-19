@@ -2,8 +2,6 @@
 
 #### Description
 
-// TODO: for the modal here...
-
 A purchase order widget that allows entry, validation, and a link to view the purchase order in more detail once verification succeeds.
 
 The parameter `timeoutBeforeVerify` controls how long after the user stops typing to invoke the PO number validation request.
@@ -24,7 +22,7 @@ import { PurchaseOrderWidgetModal } from '@elasticpath/store-components';
 #### Example
 
 ```js
-<PurchaseOrderWidgetModal timeoutBeforeVerify={1000} onPayWithPO={() => {}} onViewClicked={() => {}} />
+<PurchaseOrderWidgetModal openModal={poModalOpen} createPaymentInstrumentActionUri={"/dummy/payment/action/uri"} handleCloseModal={()=>{})} />
 ```
 
 #### Properties
