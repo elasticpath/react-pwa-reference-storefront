@@ -22,7 +22,7 @@ import { PurchaseOrderWidgetModal } from '@elasticpath/store-components';
 #### Example
 
 ```js
-<PurchaseOrderWidgetModal openModal={poModalOpen} createPaymentInstrumentActionUri={"/dummy/payment/action/uri"} handleCloseModal={()=>{})} />
+<PurchaseOrderWidgetModal openModal={true} createPaymentInstrumentActionUri={"/dummy/payment/action/uri"} handleCloseModal={()=>{})} />
 ```
 
 #### Properties
