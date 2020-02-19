@@ -9,8 +9,8 @@ yarn build
 
 cp ./_redirects build/
 
-./node_modules/.bin/http-server build/ -p 8080 &>/dev/null &
+# ./node_modules/.bin/http-server build/ -p 8080 &>/dev/null &
 
-yarn test
+# yarn test
 
-kill $(jobs -p)
+# kill $(jobs -p)
