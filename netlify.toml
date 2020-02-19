@@ -1,6 +1,0 @@
-[[redirects]]
-  from = "/cortex/*"
-  to = "http://138.197.202.64/cortex/:splat"
-  status = 200
-  force = true # COMMENT: ensure that we always redirect
-  headers = {X-From = "Netlify"}
