@@ -55,5 +55,6 @@
   "purchase.item.not.available": "I-t-e-m- -'{item-code}'- -i-s- -n-o-t- -a-v-a-i-l-a-b-l-e- -f-o-r- -p-u-r-c-h-a-s-e-.",
   "purchase.missing.shipping.address": "A- -s-h-i-p-p-i-n-g- -a-d-d-r-e-s-s- -i-s- -r-e-q-u-i-r-e-d-.",
   "purchase.shipping.service.level.invalid": "I-n-v-a-l-i-d- -o-r- -m-i-s-s-i-n-g- -s-h-i-p-p-i-n-g- -s-e-r-v-i-c-e- -l-e-v-e-l- -'{shipping-level}'-.",
-  "purchase.user.account.not.active": "U-s-e-r- -a-c-c-o-u-n-t- -'{user-id}'- -i-s- -n-o-t- -a-c-t-i-v-e-."
+  "purchase.user.account.not.active": "U-s-e-r- -a-c-c-o-u-n-t- -'{user-id}'- -i-s- -n-o-t- -a-c-t-i-v-e-.",
+  "payment.instrument.creation.failed": "P-u-r-c-h-a-s-e- -o-r-d-e-r- -i-s- -r-e-q-u-i-r-e-d-."
 }

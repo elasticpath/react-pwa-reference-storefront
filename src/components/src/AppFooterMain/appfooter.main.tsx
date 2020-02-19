@@ -43,7 +43,7 @@ function AppFooterMain(props: AppFooterMainProps) {
       <div className="first-row">
         <div className="footer-column">
           <div className="title">
-            {intl.get('vestri')}
+            {intl.get('bellevie')}
           </div>
           <div className="content">
             {intl.get('store-description-message')}
