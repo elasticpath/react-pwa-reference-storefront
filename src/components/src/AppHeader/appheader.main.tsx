@@ -39,6 +39,7 @@ import { login } from '../utils/AuthService';
 
 import './appheader.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -283,15 +284,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
           <div className="main-container-col">
             <div className="logo-container">
               <Link to={appHeaderLinks.mainPage} className="logo">
-                <img
-                  className="logo-image"
-                  alt="Header logo"
-                  src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)}
-                  onError={(e) => {
-                    const element: any = e.target;
-                    element.src = headerLogo;
-                  }}
-                />
+                <ImageContainer className="logo-image" fileName={headerLogoFileName} imgUrl={headerLogo} />
               </Link>
             </div>
 

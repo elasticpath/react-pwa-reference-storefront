@@ -24,7 +24,6 @@ import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import imgMissingHorizontal from '../../../images/img_missing_horizontal@2x.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
@@ -36,6 +35,7 @@ import { useRequisitionListCountDispatch } from '../requisition-list-count-conte
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
+import ImageContainer from '../ImageContainer/image.container';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
@@ -580,15 +580,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     if (arFileExists) {
       return (
         <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
-          <img
-            src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)}
-            onError={(e) => {
-              const element: any = e.target;
-              element.src = imgMissingHorizontal;
-            }}
-            alt={intl.get('none-available')}
-            className="itemdetail-main-img"
-          />
+          <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
         </a>
       );
     }
@@ -596,7 +588,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       <div className="product-image-carousel">
         <Slider {...settings}>
           <div>
-            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+            <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
           </div>
         </Slider>
       </div>
