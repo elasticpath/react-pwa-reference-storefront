@@ -54,11 +54,11 @@ async function getChartItems(page) {
   return chartItems;
 }
 
-const CART_LINK_CSS = '.cart-link';
+const CART_LINK_CSS = '.cart-link-container .cart-link';
 const HOME_PAGE_CSS = 'div.home-page-component';
 const REGISTER_BUTTON_CSS = "div[data-region='checkoutAutRegisterOptionRegion'] button.checkout-auth-option-register-btn";
 const CHECKOUT_BUTTON_CSS = "button[class='ep-btn primary btn-cmd-checkout']";
-const ADD_NEW_ADDRESS_CSS = 'button[class="ep-btn primary wide checkout-new-address-btn"]';
+const ADD_NEW_ADDRESS_CSS = 'button[data-region="billingAddressButtonRegion"]';
 const ADD_NEW_PAYMENT_CSS = 'button[class="ep-btn primary wide new-payment-btn"]';
 const ANONYMOUS_EMAIL_INPUT_CSS = 'div[data-region="anonymousCheckoutFeedbackRegion"] ~div input[id="Email"]';
 const CHECKOUT_AUTH_BUTTON_CSS = 'button[class="ep-btn primary wide checkout-auth-option-anonymous-checkout-btn"]';
@@ -113,6 +113,7 @@ describe('Purchase feature', () => {
     await page.waitFor(2000);
 
     await page.waitForSelector(CART_LINK_CSS);
+    await page.waitFor(2000);
     await page.click(CART_LINK_CSS);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
@@ -434,7 +435,7 @@ describe('Purchase feature', () => {
     };
 
     await loginUser(page, userInfo);
-  
+
     await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
     await addProductToCart(page, 'Mens', '', 'Men\'s Soft Shell Jacket');
 

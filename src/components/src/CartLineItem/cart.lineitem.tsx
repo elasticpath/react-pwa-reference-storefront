@@ -29,9 +29,9 @@ import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appm
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import './cart.lineitem.less';
 
-import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 import { ReactComponent as UpdateQuantityIcon } from '../../../images/icons/ic_update.svg';
 import { ReactComponent as RecycleBinIcon } from '../../../images/icons/ic_trash.svg';
+import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -510,7 +510,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
             : ('')
           }
           <Link to={`${itemDetailLink}/${encodeURIComponent(itemCodeString)}`}>
-            <img src={Config.skuImagesUrl.replace('%sku%', itemCodeString)} onError={(e) => { const element: any = e.target; element.src = imgPlaceholder; }} alt="Not Available" className="cart-lineitem-thumbnail" />
+            <ImageContainer className="cart-lineitem-thumbnail" isSkuImage fileName={itemCodeString} imgUrl={Config.skuImagesUrl.replace('%sku%', itemCodeString)} />
           </Link>
         </div>
         <div className="title-options-col">
