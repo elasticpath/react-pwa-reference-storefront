@@ -31,7 +31,6 @@ import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstitue
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { useCountDispatch } from '../cart-count-context';
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 
 import './productdisplayitem.main.less';
@@ -142,6 +141,7 @@ interface ProductDisplayItemMainState {
   addToCartLoading: boolean,
   addToRequisitionListLoading: boolean,
   detailsProductData: any,
+  multiImages: any,
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -180,6 +180,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       addToRequisitionListLoading: false,
       detailsProductData: [],
       requisitionListData: undefined,
+      multiImages: [],
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -245,6 +246,19 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 });
               });
             } else {
+              const imgIndexArr = Array.from(new Array(5), (val, index) => index);
+
+              const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${res._code[0].code}_${i}`),
+                { method: 'GET' }));
+              Promise.all(promises)
+                .then((result) => {
+                  const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
+                  this.setState({ multiImages: validImg });
+                })
+                .catch((error) => {
+                  // eslint-disable-next-line no-console
+                  console.error(error.message);
+                });
               this.setState({
                 productData: res,
                 detailsProductData: res._definition[0].details,
@@ -569,7 +583,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   renderProductImage() {
-    const { productData, arFileExists } = this.state;
+    const { productData, arFileExists, multiImages } = this.state;
     const settings = {
       dots: false,
       infinite: true,
@@ -595,9 +609,17 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return (
       <div className="product-image-carousel">
         <Slider {...settings}>
-          <div>
-            <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
-          </div>
+          {multiImages.length > 0 ? (
+            multiImages.map(el => (
+              <div key={el}>
+                <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
+              </div>
+            ))
+          ) : (
+            <div>
+              <img src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }} alt={intl.get('none-available')} className="itemdetail-main-img" />
+            </div>
+          )}
         </Slider>
       </div>
     );
