@@ -70,6 +70,7 @@ class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, Purc
     } catch {
       return { isChosen: false };
     }
+    return { isChosen: false };
   }
 
   doesPayWithPOMethodExist() {

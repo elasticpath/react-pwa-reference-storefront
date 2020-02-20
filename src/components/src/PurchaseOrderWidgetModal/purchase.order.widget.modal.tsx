@@ -36,8 +36,11 @@ interface PurchaseOrderWidgetModalState {
 }
 
 interface PurchaseOrderWidgetModalProps {
+  /** Determines whether or not to show the modal. */
   openModal: boolean,
+  /** The respective PO widget uri to POST to and create a PO widget payment instrument. */
   createPaymentInstrumentActionUri: string,
+  /** Callback that is invoked when modal is closed. */
   handleCloseModal: (...args: any[]) => any,
 }
 

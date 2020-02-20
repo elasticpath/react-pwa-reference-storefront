@@ -43,7 +43,7 @@ storiesOf('Components|PaymentSelectorMain', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('^Cortex@7.6 | 2 Payment Instruments Available', () => {
+  .add('Post Cortex@7.6 | 2 Payment Instruments Available', () => {
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
     mockPaymentInstrumentSelectionWithAnonUser();
@@ -56,7 +56,7 @@ storiesOf('Components|PaymentSelectorMain', module)
       />
     );
   })
-  .add('<Cortex@7.6 | 2 Payment Method Infos Available', () => {
+  .add('Pre Cortex@7.6 | 2 Payment Method Infos Available', () => {
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
     mockPaymentMethodSelectionWithAnonUser();
@@ -69,7 +69,7 @@ storiesOf('Components|PaymentSelectorMain', module)
       />
     );
   })
-  .add('<Cortex@7.6 | 2 Payment Methods Available', () => {
+  .add('Pre Cortex@7.6 | 2 Payment Methods Available', () => {
     const onChangeFuncText = text('onChange', '() => {alert("onChangeFuncText invoked")}');
 
     return (
