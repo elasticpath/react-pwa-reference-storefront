@@ -45,26 +45,28 @@ function ImageContainer(props: ImageContainerProps) {
     fileName, imgUrl, className, isSkuImage, onLoadData,
   } = props;
 
-  const fallbackTypes = Config.imageFileTypes.types;
-  const initType = imgUrl.replace(/.*(?=\.)/g, '');
-  const types = (fallbackTypes && fallbackTypes.length > 0) ? [
-    initType,
-    ...fallbackTypes.filter(fileType => fileType !== initType),
-  ] : [];
   const imageSource = isSkuImage ? Config.skuImagesUrl.replace('%sku%', fileName) : Config.siteImagesUrl.replace('%fileName%', fileName);
 
   const handleError = (e, defaultImgUrl) => {
     const { src } = e.target;
-    if (Config.imageFileTypes.enable) {
+    if (Config.imageFileTypes && Config.imageFileTypes.enable && e.target['data-source'] !== 'default') {
+      const fallbackTypes = Config.imageFileTypes.types;
+      const initType = imgUrl.replace(/.*(?=\.)/g, '');
+      const types = (fallbackTypes && fallbackTypes.length > 0) ? [
+        initType,
+        ...fallbackTypes.filter(fileType => fileType !== initType),
+      ] : [];
       const currentType = src.replace(/.*(?=\.)/g, '');
       const i = types.indexOf(currentType);
       if (types[i + 1]) {
         e.target.src = src.replace(currentType, types[i + 1]);
       } else {
         e.target.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
+        e.target['data-source'] = 'default';
       }
-    } else {
+    } else if (e.target['data-source'] !== 'default') {
       e.target.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
+      e.target['data-source'] = 'default';
     }
   };
 
