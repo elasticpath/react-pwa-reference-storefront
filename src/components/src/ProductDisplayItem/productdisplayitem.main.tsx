@@ -585,8 +585,16 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   renderProductImage() {
     const { productData, arFileExists, multiImages } = this.state;
     const settings = {
-      dots: false,
-      infinite: true,
+      customPaging(i) {
+        return (
+          <div className="slick-thumb-item">
+            <img src={multiImages[i]} alt="img" />
+          </div>
+        );
+      },
+      dots: true,
+      infinite: false,
+      dotsClass: 'slick-dots slick-thumb',
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -599,20 +607,22 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       );
     }
     return (
-      <div className="product-image-carousel">
-        <Slider {...settings}>
-          {multiImages.length > 0 ? (
-            multiImages.map(el => (
-              <div key={el}>
-                <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
+      <div className="product-image-carousel-wrap">
+        <div className="product-image-carousel">
+          <Slider {...settings}>
+            {multiImages.length > 0 ? (
+              multiImages.map(el => (
+                <div key={el}>
+                  <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
+                </div>
+              ))
+            ) : (
+              <div>
+                <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
               </div>
-            ))
-          ) : (
-            <div>
-              <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
-            </div>
-          )}
-        </Slider>
+            )}
+          </Slider>
+        </div>
       </div>
     );
   }
@@ -761,7 +771,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
       return (
         <div className="itemdetail-component container-3">
-          <div>
+          <div className="product-item-container">
             <div className="itemdetail-assets">
               <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
                 <div className="itemdetail-asset-container">
