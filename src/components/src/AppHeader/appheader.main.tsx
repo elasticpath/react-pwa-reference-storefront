@@ -255,6 +255,8 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
       appModalLoginLinks,
     } = this.props;
     const availability = Boolean(cartData);
+    const impersonating = localStorage.getItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
+    const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
 
     const Cart = () => {
       const { count, name }: any = useCountState();
@@ -278,7 +280,14 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
     return [
       <header key="app-header" className="app-header">
-
+        {
+          impersonating ? (
+            <div className="impersonation-notification">
+              {intl.get('shopper-impersonation-message')}
+              {userName}
+            </div>
+          ) : ''
+        }
         <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
 
           <div className="main-container-col">
