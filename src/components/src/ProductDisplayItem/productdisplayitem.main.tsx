@@ -26,7 +26,7 @@ import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../images/img_missing_horizontal@2x.png';
-import { ReactComponent as VRIcon } from '../../../images/icons/virtual-reality.svg';
+import transparentImg from '../../../images/icons/transparent.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
@@ -604,21 +604,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-    if (arFileExists) {
-      return (
-        <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
-          <img
-            src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)}
-            onError={(e) => {
-              const element: any = e.target;
-              element.src = imgMissingHorizontal;
-            }}
-            alt={intl.get('none-available')}
-            className="itemdetail-main-img"
-          />
-        </a>
-      );
-    }
 
     return (
       <div className="product-image-carousel">
@@ -627,6 +612,18 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             {
               !vrMode && vrFileExists && (
                 <button type="button" className="vr-icon-container" onClick={() => this.initVR()} />
+              )
+            }
+
+            {
+              arFileExists && (
+                <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar" className="anchor-ar-container">
+                  <img
+                    src={transparentImg}
+                    alt=""
+                    className="ar-img"
+                  />
+                </a>
               )
             }
 
