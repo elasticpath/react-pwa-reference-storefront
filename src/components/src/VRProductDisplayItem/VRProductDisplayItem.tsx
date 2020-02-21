@@ -26,6 +26,7 @@ import intl from 'react-intl-universal';
 
 interface IVRComponentState {
   showInfo: boolean,
+  overlayScene: boolean,
 }
 
 interface IVRComponentProps {
@@ -37,8 +38,12 @@ interface IVRComponentProps {
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
   constructor(props) {
     super(props);
-    this.state = { showInfo: false };
+    this.state = {
+      showInfo: false,
+      overlayScene: false,
+    };
     this.handleInfoPanel = this.handleInfoPanel.bind(this);
+    this.setOverlay = this.setOverlay.bind(this);
   }
 
   handleInfoPanel() {
@@ -47,20 +52,25 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     this.setState({ showInfo: !showInfo });
   }
 
+  setOverlay() {
+    this.setState({ overlayScene: true });
+  }
+
   public render() {
     const { backgroundUri, handleCloseVR } = this.props;
-    const { showInfo } = this.state;
+    const { showInfo, overlayScene } = this.state;
 
     return (
       <div>
         {/* VR Window */}
-        <div>
+        <div className="vr-window-container">
           <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
 
-          <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
+          <Scene className={`vr-container ${overlayScene ? 'overlay' : 'underlay'}`} embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a id="myEnterVRButton" href="#">
-              <div className="vr-fullscreen" />
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+              <div role="button" tabIndex={0} className="vr-fullscreen" onClick={() => { this.setOverlay(); }} />
             </a>
 
             <a-assets>
