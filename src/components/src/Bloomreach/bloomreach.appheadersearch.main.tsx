@@ -22,6 +22,7 @@
 import React, { FormEvent, SyntheticEvent, Component } from 'react';
 import { bloomreachSuggestionSearch } from '../utils/BloomreachSearchService';
 import './bloomreach.headersearch.main.less';
+import { ReactComponent as SearchIcon } from '../../../images/header-icons/magnifying-glass.svg';
 
 const intl = { get: str => str };
 
@@ -225,7 +226,7 @@ class BloomreachHeaderSearchMain extends Component<BloomreachHeaderSearchMainPro
             ref={this.searchInput}
             onKeyUp={this.inputHandleKeyDown}
           />
-          <div className="search-icon-br" />
+          <SearchIcon className="search-icon-br" />
           {this.suggestionsListComponent()}
         </form>
       </div>
