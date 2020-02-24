@@ -232,24 +232,24 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   fetchProductData() {
     const { productId } = this.props;
+    const imgIndexArr = Array.from(new Array(5), (val, index) => index);
+
+    const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${productId}_${i}`),
+      { method: 'GET' }));
+    Promise.all(promises)
+      .then((result) => {
+        const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
+        this.setState({ multiImages: validImg });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      });
 
     login().then(() => {
       cortexFetchItemLookupForm()
         .then(() => itemLookup(productId, false)
           .then((res) => {
-            const imgIndexArr = Array.from(new Array(5), (val, index) => index);
-
-            const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${res._code[0].code}_${i}`),
-              { method: 'GET' }));
-            Promise.all(promises)
-              .then((result) => {
-                const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
-                this.setState({ multiImages: validImg });
-              })
-              .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error.message);
-              });
             if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
               this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
                 this.setState({
