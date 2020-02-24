@@ -601,8 +601,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     };
     if (arFileExists) {
       return (
-        <div className="product-image-carousel-wrap">
-          <div className={`product-image-carousel ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
+        <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
+          <div className="product-image-carousel">
             <Slider {...settings}>
               {multiImages.length > 0 ? (
                 multiImages.map(el => (
@@ -621,8 +621,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       );
     }
     return (
-      <div className="product-image-carousel-wrap">
-        <div className={`product-image-carousel ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
+      <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
+        <div className="product-image-carousel">
           <Slider {...settings}>
             {multiImages.length > 0 ? (
               multiImages.map(el => (
@@ -633,9 +633,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             ) : (
               <div>
                 <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
-                <div className="slick-thumb-item">
-                  <ImageContainer className="itemdetail-thumb-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
-                </div>
               </div>
             )}
           </Slider>

@@ -501,26 +501,14 @@
   }
 
   &-wrap {
-    @media (min-width: @tabletWidth) {
-      padding-left: 130px;
+    &:not(.single-image-slider) {
+      @media (min-width: @tabletWidth) {
+        padding-left: 130px;
 
-      .itemdetail-main-img {
-        min-height: 450px;
+        .itemdetail-main-img {
+          min-height: 450px;
+        }
       }
-    }
-  }
-
-  &.single-image-slider {
-    .slick-thumb-item {
-      width: 130px;
-      position: absolute;
-      top: 0;
-      left: -175px;
-      border: 1px solid @thirdComplimentTextColor;
-    }
-
-    .slick-list {
-      overflow: visible;
     }
   }
 }
