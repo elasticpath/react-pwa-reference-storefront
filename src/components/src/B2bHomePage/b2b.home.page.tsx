@@ -21,9 +21,15 @@
 import React from 'react';
 import { getConfig } from '../utils/ConfigProvider';
 
+import ImageContainer from '../ImageContainer/image.container';
+
 import './b2b.home.page.less';
 
+import heroBanner from '../../../images/site-images/hero-banner-0.jpg';
+
 let intl = { get: str => str };
+
+const heroBannerFileName = 'hero-banner-0.jpg';
 
 
 const B2BHomePage: React.FunctionComponent = () => {
@@ -33,6 +39,7 @@ const B2BHomePage: React.FunctionComponent = () => {
   return (
     <div className="home-page-b2b">
       <section className="main-banner">
+        <ImageContainer className="main-banner-image" fileName={heroBannerFileName} imgUrl={heroBanner} />
         <div className="main-banner-title-wrap">
           <div className="container">
             <h2 className="goods-heading">{intl.get('main-banner-heading')}</h2>
