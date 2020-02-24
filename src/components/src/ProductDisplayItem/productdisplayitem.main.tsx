@@ -237,6 +237,19 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       cortexFetchItemLookupForm()
         .then(() => itemLookup(productId, false)
           .then((res) => {
+            const imgIndexArr = Array.from(new Array(5), (val, index) => index);
+
+            const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${res._code[0].code}_${i}`),
+              { method: 'GET' }));
+            Promise.all(promises)
+              .then((result) => {
+                const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
+                this.setState({ multiImages: validImg });
+              })
+              .catch((error) => {
+                // eslint-disable-next-line no-console
+                console.error(error.message);
+              });
             if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
               this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
                 this.setState({
@@ -246,19 +259,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 });
               });
             } else {
-              const imgIndexArr = Array.from(new Array(5), (val, index) => index);
-
-              const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${res._code[0].code}_${i}`),
-                { method: 'GET' }));
-              Promise.all(promises)
-                .then((result) => {
-                  const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
-                  this.setState({ multiImages: validImg });
-                })
-                .catch((error) => {
-                  // eslint-disable-next-line no-console
-                  console.error(error.message);
-                });
               this.setState({
                 productData: res,
                 detailsProductData: res._definition[0].details,
@@ -601,14 +601,28 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     };
     if (arFileExists) {
       return (
-        <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
-          <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
-        </a>
+        <div className="product-image-carousel-wrap">
+          <div className={`product-image-carousel ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
+            <Slider {...settings}>
+              {multiImages.length > 0 ? (
+                multiImages.map(el => (
+                  <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar" key={el}>
+                    <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
+                  </a>
+                ))
+              ) : (
+                <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
+                  <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
+                </a>
+              )}
+            </Slider>
+          </div>
+        </div>
       );
     }
     return (
       <div className="product-image-carousel-wrap">
-        <div className="product-image-carousel">
+        <div className={`product-image-carousel ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
           <Slider {...settings}>
             {multiImages.length > 0 ? (
               multiImages.map(el => (
@@ -619,6 +633,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             ) : (
               <div>
                 <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
+                <div className="slick-thumb-item">
+                  <ImageContainer className="itemdetail-thumb-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
+                </div>
               </div>
             )}
           </Slider>
