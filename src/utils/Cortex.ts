@@ -26,6 +26,77 @@ import { ErrorInlet } from '../components/src/utils/MessageContext';
 
 import * as Config from '../ep.config.json';
 
+function getErrorMessages(data) {
+  let messages = [];
+  if (data.messages && data.messages.length) {
+    const messageData = {
+      debugMessages: '',
+      type: '',
+      id: '',
+    };
+
+    let debugMessages = '';
+    let debugMessageKey = '';
+    for (let i = 0; i < data.messages.length; i++) {
+      const message = data.messages[i].data;
+      const messageId = data.messages[i].id;
+
+      if (messageId === 'field.invalid.minimum.value') {
+        debugMessageKey = message['invalid-value'] ? messageId : `${messageId}-msg-2`;
+      } else if (messageId === 'item.insufficient.inventory') {
+        debugMessageKey = message['quantity-requested'] ? `${messageId}-msg-2` : messageId;
+      } else if (messageId === 'item.not.available') {
+        debugMessageKey = message['field-value'] ? `${messageId}-msg-2` : messageId;
+      } else if (messageId === 'item.not.in.store.catalog') {
+        debugMessageKey = message['field-value'] ? `${messageId}-msg-2` : messageId;
+      } else debugMessageKey = messageId;
+      const msg = intl.get(debugMessageKey, message);
+      debugMessages = debugMessages.concat(`${msg || data.messages[i]['debug-message']} \n `);
+    }
+    if (debugMessages) {
+      messageData.debugMessages = debugMessages;
+      messageData.type = data.messages[0].type;
+      messageData.id = data.messages[0].id;
+      if (messageData.id !== 'cart.is.not.empty') {
+        messages.push(messageData);
+      }
+    }
+  }
+  const dataKeys = Object.keys(data).filter(key => key[0] === '_');
+  dataKeys.forEach((key) => {
+    if (Array.isArray(data[key])) {
+      data[key].forEach((el) => {
+        const res1 = getErrorMessages(el);
+        messages = messages.concat(res1);
+      });
+    }
+  });
+  return messages;
+}
+
+function logout(reload = true) {
+  localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserId`);
+  localStorage.removeItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
+  window.location.pathname = '/';
+  if (reload) window.location.reload();
+}
+
+function maintenance() {
+  if (window.location.href.indexOf('/maintenance') === -1) {
+    window.location.pathname = '/maintenance';
+  }
+}
+
 export function timeout(ms, promise) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -64,54 +135,6 @@ export function cortexFetch(input, init): any {
   return timeout((<any>Config).cortexApi.reqTimeout || 30000, fetch(`${Config.cortexApi.path}${input}${queryFormat}`, requestInit)
     .then((res) => {
       res.clone().json().then((json) => {
-        function getErrorMessages(data) {
-          let messages = [];
-          if (data.messages && data.messages.length) {
-            const messageData = {
-              debugMessages: '',
-              type: '',
-              id: '',
-            };
-
-            let debugMessages = '';
-            let debugMessageKey = '';
-            for (let i = 0; i < data.messages.length; i++) {
-              const message = data.messages[i].data;
-              const messageId = data.messages[i].id;
-
-              if (messageId === 'field.invalid.minimum.value') {
-                debugMessageKey = message['invalid-value'] ? messageId : `${messageId}-msg-2`;
-              } else if (messageId === 'item.insufficient.inventory') {
-                debugMessageKey = message['quantity-requested'] ? `${messageId}-msg-2` : messageId;
-              } else if (messageId === 'item.not.available') {
-                debugMessageKey = message['field-value'] ? `${messageId}-msg-2` : messageId;
-              } else if (messageId === 'item.not.in.store.catalog') {
-                debugMessageKey = message['field-value'] ? `${messageId}-msg-2` : messageId;
-              } else debugMessageKey = messageId;
-              const msg = intl.get(debugMessageKey, message);
-              debugMessages = debugMessages.concat(`${msg || data.messages[i]['debug-message']} \n `);
-            }
-            if (debugMessages) {
-              messageData.debugMessages = debugMessages;
-              messageData.type = data.messages[0].type;
-              messageData.id = data.messages[0].id;
-              if (messageData.id !== 'cart.is.not.empty') {
-                messages.push(messageData);
-              }
-            }
-          }
-          const dataKeys = Object.keys(data).filter(key => key[0] === '_');
-          dataKeys.forEach((key) => {
-            if (Array.isArray(data[key])) {
-              data[key].forEach((el) => {
-                const res1 = getErrorMessages(el);
-                messages = messages.concat(res1);
-              });
-            }
-          });
-          return messages;
-        }
-
         const errorMessages = getErrorMessages(json);
         if (errorMessages.length > 0) {
           ErrorInlet(errorMessages[0]);
@@ -121,25 +144,10 @@ export function cortexFetch(input, init): any {
         console.error(error.message);
       });
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserId`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
-        window.location.pathname = '/';
-        window.location.reload();
+        logout();
       }
       if (res.status >= 500) {
-        if (window.location.href.indexOf('/maintenance') === -1) {
-          window.location.pathname = '/maintenance';
-        }
+        maintenance();
       }
       return res;
     })
@@ -148,9 +156,7 @@ export function cortexFetch(input, init): any {
       console.error(error.message);
     }))
     .catch(() => {
-      if (window.location.href.indexOf('/maintenance') === -1) {
-        window.location.pathname = '/maintenance';
-      }
+      maintenance();
       return new Response(new Blob(), {});
     });
 }
@@ -169,22 +175,10 @@ export function adminFetch(input, init): any {
   return timeout((<any>Config).b2b.authServiceAPI.reqTimeout || 30000, fetch(`${Config.b2b.authServiceAPI.path + input}`, requestInit)
     .then((res) => {
       if ((res.status === 401 || res.status === 403) && input !== '/oauth2/tokens') {
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthRole`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthScope`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthToken`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserName`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_b2bCart`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
-        localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
-        window.location.pathname = '/';
+        logout(false);
       }
       if (res.status >= 500) {
-        if (window.location.href.indexOf('/maintenance') === -1) {
-          window.location.pathname = '/maintenance';
-        }
+        maintenance();
       }
       return res;
     })
@@ -193,9 +187,7 @@ export function adminFetch(input, init): any {
       console.error(error.message);
     }))
     .catch(() => {
-      if (window.location.href.indexOf('/maintenance') === -1) {
-        window.location.pathname = '/maintenance';
-      }
+      maintenance();
       return new Response(new Blob(), {});
     });
 }

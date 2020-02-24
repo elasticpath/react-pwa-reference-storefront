@@ -527,77 +527,54 @@ export function purchaseLookup(purchaseLookupCode) {
 }
 
 export function searchLookup(searchKeyword) {
-  return new Promise(((resolve, reject) => {
-    if (searchKeyword.includes('/') && searchKeyword.includes(Config.cortexApi.scope.toLowerCase())) {
-      cortexFetch(`/${searchKeyword}?zoom=${searchFormZoomArray.join()}`,
-        {
+  return new Promise((async (resolve, reject) => {
+    try {
+      if (searchKeyword.includes('/') && searchKeyword.includes(Config.cortexApi.scope.toLowerCase())) {
+        const searchResult = cortexFetch(`/${searchKeyword}?zoom=${searchFormZoomArray.join()}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+          });
+        if (searchResult.status >= 500) {
+          reject(searchResult);
+        }
+        const searchResultJson = await searchResult.json();
+        resolve(searchResultJson);
+      } else {
+        const searchesForms = await cortexFetch('/?zoom=searches:keywordsearchform,searches:offersearchform', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
           },
-        })
-        .then((res) => {
-          if (res.status >= 500) {
-            reject(res);
-          }
-          return res;
-        })
-        .then(res => res.json())
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-          reject(error);
-        });
-    } else {
-      cortexFetch('/?zoom=searches:keywordsearchform,searches:offersearchform', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
-      })
-        .then(res => res.json())
-        .then((res) => {
-          let searchForm = '';
-          if (res._searches[0]._offersearchform) {
-            searchForm = res._searches[0]._offersearchform[0].links.find(link => link.rel === 'offersearchaction').uri;
-          } else {
-            searchForm = res._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
-          }
-          cortexFetch(`${searchForm}?zoom=${searchFormZoomArray.join()}&followlocation=true`,
-            {
-              method: 'post',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-              },
-              body: JSON.stringify({
-                keywords: searchKeyword,
-              }),
-            })
-            .then((resData) => {
-              if (res.status >= 500) {
-                reject(resData);
-              }
-              return resData;
-            })
-            .then(resData => resData.json())
-            .then((resData) => {
-              resolve(resData);
-            })
-            .catch((error) => {
-              // eslint-disable-next-line no-console
-              console.error(error.message);
-              reject(error);
-            });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-          reject(error);
-        });
+        }).then(result => result.json());
+        let searchForm = '';
+        if (searchesForms._searches[0]._offersearchform) {
+          searchForm = searchesForms._searches[0]._offersearchform[0].links.find(link => link.rel === 'offersearchaction').uri;
+        } else {
+          searchForm = searchesForms._searches[0]._keywordsearchform[0].links.find(link => link.rel === 'itemkeywordsearchaction').uri;
+        }
+        const searchResult = await cortexFetch(`${searchForm}?zoom=${searchFormZoomArray.join()}&followlocation=true`,
+          {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+            },
+            body: JSON.stringify({ keywords: searchKeyword }),
+          });
+        if (searchesForms.status >= 500) {
+          reject(searchResult);
+        }
+
+        const searchResultJson = await searchResult.json();
+        resolve(searchResultJson);
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+      reject(error);
     }
   }));
 }

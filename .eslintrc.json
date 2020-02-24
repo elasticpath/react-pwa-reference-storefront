@@ -19,5 +19,16 @@
         }
       }
     }
-  }
+  },
+  "rules": {
+    "max-lines-per-function": ["error"]
+  },
+  "overrides": [
+    {
+      "files": ["src/components/**", "src/containers/**"],
+      "rules": {
+        "max-lines-per-function": ["error", 120]
+      }
+    }
+  ]
 }

@@ -354,22 +354,173 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
     this.resetDialog();
   }
 
-  render() {
+  renderAdminAddressBook() {
     const {
       admins,
       defaultBillingAddress,
       defaultShippingAddress,
-      recentOrders,
+    } = this.state;
+    return (
+      <div className="admin-address-book">
+        <div className="b2b-section section-1 admin-section">
+          <div className="section-header">
+            <div className="section-title">{intl.get('admins')}</div>
+          </div>
+          <div className="section-content">
+            {admins.slice(0, 2).map(admin => (
+              <div key={admin.email} className="user-info">
+                <AccountIcon className="user-icon" />
+                <div className="user-details">
+                  <div className="user-email">{admin.email}</div>
+                  <div className="user-name">{admin.name}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }}>
+          <div className="section-header">
+            <div className="section-title">{intl.get('addresses')}</div>
+            <div className="section-header-right">
+              {/* <Link to="/">{intl.get('edit')}</Link> */}
+            </div>
+          </div>
+          <div className="section-content">
+            <div className="address default-billing">
+              <div className="address-title">{intl.get('default-billing')}</div>
+              <div className="address-content">
+                <div className="name-line">{defaultBillingAddress.name}</div>
+                <div className="address-line">{defaultBillingAddress.address}</div>
+                <div className="state-line">
+                  {defaultBillingAddress.city}
+                  ,&nbsp;
+                  {defaultBillingAddress.state}
+                  ,&nbsp;
+                  {defaultBillingAddress.zip}
+                </div>
+                <div className="country-line">{defaultBillingAddress.country}</div>
+              </div>
+            </div>
+            <div className="address default-shipping">
+              <div className="address-title">{intl.get('default-shipping')}</div>
+              <div className="address-content">
+                <div className="name-line">{defaultShippingAddress.name}</div>
+                <div className="address-line">{defaultShippingAddress.address}</div>
+                <div className="state-line">
+                  {defaultShippingAddress.city}
+                  ,&nbsp;
+                  {defaultShippingAddress.state}
+                  ,&nbsp;
+                  {defaultShippingAddress.zip}
+                </div>
+                <div className="country-line">{defaultShippingAddress.country}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderRecentOrders() {
+    const { recentOrders } = this.state;
+    return (
+      <div className="b2b-section recent-orders">
+        <div className="section-header">
+          <div className="section-title">{intl.get('recent-orders')}</div>
+          <div className="section-header-right">
+            {/* <Link to="/">{intl.get('view-all')}</Link> */}
+          </div>
+        </div>
+        <div className="section-content">
+          <table className="b2b-table recent-orders-table">
+            <thead>
+              <tr>
+                <th className="order-id">
+                  {intl.get('order')}
+                  <span className="mobile-table-title">
+                    {' '}
+                  &
+                    {' '}
+                    {intl.get('date')}
+                  </span>
+                </th>
+                <th className="date">{intl.get('date')}</th>
+                <th className="ship-to">
+                  {intl.get('ship-to')}
+                  <span className="mobile-table-title">
+                    {' '}
+                  &
+                    {' '}
+                    {intl.get('order-total')}
+                  </span>
+                </th>
+                <th className="order-total">{intl.get('order-total')}</th>
+                <th className="status">{intl.get('status')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recentOrders.map(order => (
+                <tr key={order.orderId}>
+                  <td className="order-id">{order.orderId}</td>
+                  <td className="date">{order.date}</td>
+                  <td className="ship-to">{order.shipTo}</td>
+                  <td className="order-total">{order.orderTotal}</td>
+                  <td className="status">{order.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
+
+  renderImportAssociateDialog() {
+    const {
+      selectedFile,
+      isUploading,
+      exampleCsvFile,
+      isImportDialogOpen,
+    } = this.state;
+
+    return (
+      <Modal
+        open={isImportDialogOpen}
+        onClose={() => this.handleImportDialogClose()}
+        classNames={{ modal: 'b2b-import-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
+      >
+        <div className="dialog-header">{intl.get('select-your-file')}</div>
+        <div className="dialog-content">
+          <div className="upload-title">{intl.get('upload-associatess-csv')}</div>
+          <div className="chose-btn-container">
+            <input id="file-upload" className="chose-btn" type="file" name="associates" ref={this.fileInputRef} onChange={this.handleFileChange} />
+            <label className="chose-btn-label" htmlFor="file-upload">Choose file</label>
+            <span>{selectedFile ? selectedFile.value.split('\\').pop() : intl.get('no-file-selected')}</span>
+          </div>
+          <div className="capital-or">{intl.get('capital-or')}</div>
+          <div className="download-sample">
+            <a href={`data:text/csv;base64,${btoa(exampleCsvFile)}`} download="example.csv">{intl.get('download')}</a>
+            {' '}
+            {intl.get('a-sample-file')}
+          </div>
+        </div>
+        <div className="dialog-footer">
+          <button className="cancel" type="button" onClick={() => this.handleImportDialogClose()}>{intl.get('cancel')}</button>
+          <button className="upload" type="submit" disabled={!selectedFile || isUploading} onClick={() => this.handleSubmit()}>{intl.get('upload')}</button>
+        </div>
+      </Modal>
+    );
+  }
+
+  render() {
+    const {
       accounts,
       isLoading,
       searchAccounts,
       showSearchLoader,
       noSearchResults,
       isSellerAdmin,
-      selectedFile,
-      isUploading,
-      exampleCsvFile,
-      isImportDialogOpen,
       messages,
       associatesFormUrl,
     } = this.state;
@@ -402,112 +553,8 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
         <div className="account-description">{intl.get('buyer-admin-has-the-capability')}</div>
         {!isLoading ? (
           <div>
-            <div className="admin-address-book">
-              <div className="b2b-section section-1 admin-section">
-                <div className="section-header">
-                  <div className="section-title">{intl.get('admins')}</div>
-                </div>
-                <div className="section-content">
-                  {admins.slice(0, 2).map(admin => (
-                    <div key={admin.email} className="user-info">
-                      <AccountIcon className="user-icon" />
-                      <div className="user-details">
-                        <div className="user-email">{admin.email}</div>
-                        <div className="user-name">{admin.name}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="b2b-section section-2 address-book-section" style={{ border: 'none' }}>
-                {/* <div className="section-header"> */}
-                {/* <div className="section-title">{intl.get('addresses')}</div> */}
-                {/* <div className="section-header-right"> */}
-                {/* /!*<Link to="/">{intl.get('edit')}</Link>*!/ */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* <div className="section-content"> */}
-                {/* <div className="address default-billing"> */}
-                {/* <div className="address-title">{intl.get('default-billing')}</div> */}
-                {/* <div className="address-content"> */}
-                {/* <div className="name-line">{defaultBillingAddress.name}</div> */}
-                {/* <div className="address-line">{defaultBillingAddress.address}</div> */}
-                {/* <div className="state-line"> */}
-                {/* {defaultBillingAddress.city} */}
-                {/* ,&nbsp; */}
-                {/* {defaultBillingAddress.state} */}
-                {/* ,&nbsp; */}
-                {/* {defaultBillingAddress.zip} */}
-                {/* </div> */}
-                {/* <div className="country-line">{defaultBillingAddress.country}</div> */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* <div className="address default-shipping"> */}
-                {/* <div className="address-title">{intl.get('default-shipping')}</div> */}
-                {/* <div className="address-content"> */}
-                {/* <div className="name-line">{defaultShippingAddress.name}</div> */}
-                {/* <div className="address-line">{defaultShippingAddress.address}</div> */}
-                {/* <div className="state-line"> */}
-                {/* {defaultShippingAddress.city} */}
-                {/* ,&nbsp; */}
-                {/* {defaultShippingAddress.state} */}
-                {/* ,&nbsp; */}
-                {/* {defaultShippingAddress.zip} */}
-                {/* </div> */}
-                {/* <div className="country-line">{defaultShippingAddress.country}</div> */}
-                {/* </div> */}
-                {/* </div> */}
-                {/* </div> */}
-              </div>
-            </div>
-            {/* <div className="b2b-section recent-orders"> */}
-            {/* <div className="section-header"> */}
-            {/* <div className="section-title">{intl.get('recent-orders')}</div> */}
-            {/* <div className="section-header-right"> */}
-            {/* /!*<Link to="/">{intl.get('view-all')}</Link>*!/ */}
-            {/* </div> */}
-            {/* </div> */}
-            {/* <div className="section-content"> */}
-            {/* <table className="b2b-table recent-orders-table"> */}
-            {/* <thead> */}
-            {/* <tr> */}
-            {/* <th className="order-id"> */}
-            {/* {intl.get('order')} */}
-            {/* <span className="mobile-table-title"> */}
-            {/* {' '} */}
-            {/* & */}
-            {/* {' '} */}
-            {/* {intl.get('date')} */}
-            {/* </span> */}
-            {/* </th> */}
-            {/* <th className="date">{intl.get('date')}</th> */}
-            {/* <th className="ship-to"> */}
-            {/* {intl.get('ship-to')} */}
-            {/* <span className="mobile-table-title"> */}
-            {/* {' '} */}
-            {/* & */}
-            {/* {' '} */}
-            {/* {intl.get('order-total')} */}
-            {/* </span> */}
-            {/* </th> */}
-            {/* <th className="order-total">{intl.get('order-total')}</th> */}
-            {/* <th className="status">{intl.get('status')}</th> */}
-            {/* </tr> */}
-            {/* </thead> */}
-            {/* <tbody> */}
-            {/* {recentOrders.map(order => ( */}
-            {/* <tr key={order.orderId}> */}
-            {/* <td className="order-id">{order.orderId}</td> */}
-            {/* <td className="date">{order.date}</td> */}
-            {/* <td className="ship-to">{order.shipTo}</td> */}
-            {/* <td className="order-total">{order.orderTotal}</td> */}
-            {/* <td className="status">{order.status}</td> */}
-            {/* </tr> */}
-            {/* ))} */}
-            {/* </tbody> */}
-            {/* </table> */}
-            {/* </div> */}
-            {/* </div> */}
+            {false && this.renderAdminAddressBook()}
+            {false && this.renderRecentOrders()}
             <div className="b2b-section accounts">
               <div className="section-header">
                 <div className="section-title">{intl.get('accounts')}</div>
@@ -558,31 +605,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                 ) : <p className="no-results">{intl.get('no-results-found')}</p>}
               </div>
             </div>
-            <Modal
-              open={isImportDialogOpen}
-              onClose={() => this.handleImportDialogClose()}
-              classNames={{ modal: 'b2b-import-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
-            >
-              <div className="dialog-header">{intl.get('select-your-file')}</div>
-              <div className="dialog-content">
-                <div className="upload-title">{intl.get('upload-associatess-csv')}</div>
-                <div className="chose-btn-container">
-                  <input id="file-upload" className="chose-btn" type="file" name="associates" ref={this.fileInputRef} onChange={this.handleFileChange} />
-                  <label className="chose-btn-label" htmlFor="file-upload">Choose file</label>
-                  <span>{selectedFile ? selectedFile.value.split('\\').pop() : intl.get('no-file-selected')}</span>
-                </div>
-                <div className="capital-or">{intl.get('capital-or')}</div>
-                <div className="download-sample">
-                  <a href={`data:text/csv;base64,${btoa(exampleCsvFile)}`} download="example.csv">{intl.get('download')}</a>
-                  {' '}
-                  {intl.get('a-sample-file')}
-                </div>
-              </div>
-              <div className="dialog-footer">
-                <button className="cancel" type="button" onClick={() => this.handleImportDialogClose()}>{intl.get('cancel')}</button>
-                <button className="upload" type="submit" disabled={!selectedFile || isUploading} onClick={() => this.handleSubmit()}>{intl.get('upload')}</button>
-              </div>
-            </Modal>
+            {this.renderImportAssociateDialog()}
           </div>
         ) : (
           <div className="loader" />
