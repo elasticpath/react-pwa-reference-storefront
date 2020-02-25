@@ -56,8 +56,10 @@ interface AppHeaderLoginMainProps {
     onResetPassword?: (...args: any[]) => any,
   /** data search location */
     locationSearchData?: string,
-    /** links in app header */
-    appHeaderLinks: {
+  /** location path name */
+  locationPathName?: string,
+  /** links in app header */
+  appHeaderLinks: {
       [key: string]: any
   },
   /** links in app header login  */
@@ -98,7 +100,8 @@ const zoomArray = [
 class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLoginMainState, OidcParameters> {
     static defaultProps = {
       isMobileView: false,
-      locationSearchData: undefined,
+      locationSearchData: '',
+      locationPathName: '',
       disableLogin: false,
       onLogout: () => {},
       onLogin: () => {},
@@ -145,6 +148,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
     }
 
     async login() {
+      const { locationPathName } = this.props;
       const oidcSecret = uuidv4();
       localStorage.setItem('OidcSecret', oidcSecret);
       const oidcParameters: OidcParameters = await AppHeaderLoginMain.discoverOIDCParameters();
@@ -158,7 +162,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       };
 
       const oidcStateEncoded = btoa(JSON.stringify(oidcStateObject));
-      const redirectUrl = `${Config.b2b.openId.callbackUrl}/loggedin`;
+      const redirectUrl = `${locationPathName}/loggedin`;
 
       const query = [
         `scope=${encodeURIComponent(oidcParameters.scopes)}`,
@@ -305,7 +309,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
 
     render() {
       const {
-        isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin, appHeaderLinks,
+        isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin, appHeaderLinks, locationPathName,
       } = this.props;
       const {
         openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters, showRequisitionListsLink,
@@ -461,6 +465,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
             onLogin={onLogin}
             onResetPassword={onResetPassword}
             locationSearchData={locationSearchData}
+            locationPathName={locationPathName}
             appModalLoginLinks={appModalLoginLinks}
             showForgotPasswordLink={showForgotPasswordLink}
             disableLogin={disableLogin}

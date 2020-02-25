@@ -41,6 +41,8 @@ interface AppModalLoginMainProps {
     onResetPassword?: (...args: any[]) => any,
   /** location search data */
     locationSearchData?: string,
+  /** location path name */
+    locationPathName?: string,
   /** links for app modal login */
     appModalLoginLinks: {
         [key: string]: any
@@ -64,7 +66,8 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
   static defaultProps = {
     onLogin: () => {},
     onResetPassword: () => {},
-    locationSearchData: undefined,
+    locationSearchData: '',
+    locationPathName: '',
     disableLogin: false,
   };
 
@@ -88,7 +91,9 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
   }
 
   componentWillMount() {
-    const { locationSearchData, onLogin, oidcParameters } = this.props;
+    const {
+      locationSearchData, onLogin, oidcParameters, locationPathName,
+    } = this.props;
     const url = locationSearchData;
 
     const params = queryString.parse(url);
@@ -102,7 +107,7 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
         localStorage.setItem(`${Config.cortexApi.scope}_keycloakSessionState`, params.session_state);
       }
       if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) !== 'REGISTERED') {
-        loginRegisteredAuthService(params.code, encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? `${Config.b2b.openId.callbackUrl}/loggedin` : Config.b2b.keycloak.callbackUrl)), encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? oidcParameters.clientId : Config.b2b.keycloak.client_id))).then((resStatus) => {
+        loginRegisteredAuthService(params.code, encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? `${locationPathName}/loggedin` : Config.b2b.keycloak.callbackUrl)), encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? oidcParameters.clientId : Config.b2b.keycloak.client_id))).then((resStatus) => {
           if (resStatus === 401) {
             this.setState({
               failedLogin: true,

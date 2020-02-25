@@ -147,6 +147,7 @@ const VersionContainer = (props) => {
 const Root = (props) => {
   const { componentsData } = props;
   const { error } = React.useContext(ErrorContext);
+  const locationPathName = window.location.origin;
   return [
     <VersionContainer key="version-container" componentsVersion={componentsData.version} appVersion={packageJson.version} />,
     <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
@@ -161,6 +162,7 @@ const Root = (props) => {
       onContinueCart={handleContinueCart}
       onGoBack={handleGoBack}
       locationSearchData={locationData}
+      locationPathName={locationPathName}
       isInStandaloneMode={isInStandaloneMode}
       appHeaderLinks={appHeaderLinks}
       appHeaderLoginLinks={appHeaderLoginLinks}
