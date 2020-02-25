@@ -74,10 +74,10 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a>
 
             <a-assets>
-              <img alt="" id="luxuryCar" src={backgroundUri} />
+              <img alt="" id="background" src={backgroundUri} />
             </a-assets>
 
-            <Entity primitive="a-sky" radius="30" src="#luxuryCar" />
+            <Entity primitive="a-sky" radius="30" src="#background" />
           </Scene>
         </div>
 
