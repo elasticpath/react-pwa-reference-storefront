@@ -61,7 +61,7 @@
     <usage>CustomerProfile</usage>
     <type>ShortText</type>
     <multilanguage>false</multilanguage>
-    <required>true</required>
+    <required>false</required>
     <multivalue>false</multivalue>
     <global>false</global>
 </attribute>
