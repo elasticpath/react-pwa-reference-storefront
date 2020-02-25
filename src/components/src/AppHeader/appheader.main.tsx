@@ -72,7 +72,9 @@ interface AppHeaderMainProps {
   /** is in standalone mode */
   isInStandaloneMode: boolean,
   /** data location search */
-  locationSearchData: string,
+  locationSearchData?: string,
+  /** location path name */
+  locationPathName?: string,
   /** links in app header */
   appHeaderLinks: {
     [key: string]: any
@@ -111,7 +113,8 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
   static defaultProps = {
     checkedLocation: false,
     isInStandaloneMode: false,
-    locationSearchData: undefined,
+    locationSearchData: '',
+    locationPathName: '',
     onSearchPage: () => { },
     redirectToMainPage: () => { },
     handleResetPassword: () => { },
@@ -245,6 +248,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
       onLocaleChange,
       onContinueCart,
       locationSearchData,
+      locationPathName,
       isInStandaloneMode,
       onSearchPage,
       redirectToMainPage,
@@ -356,6 +360,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
                 onResetPassword={handleResetPassword}
                 onContinueCart={onContinueCart}
                 locationSearchData={locationSearchData}
+                locationPathName={locationPathName}
                 appHeaderLoginLinks={appHeaderLoginLinks}
                 appModalLoginLinks={appModalLoginLinks}
                 isLoggedIn={isLoggedInUser}

@@ -54,7 +54,7 @@ export class LoginRedirectPage extends React.Component<LoginRedirectPageProps, L
     }
 
     const oidcParameters: OidcParameters = await LoginRedirectPage.discoverOIDCParameters();
-    const redirectUri = encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? `${Config.b2b.openId.callbackUrl}/loggedin` : Config.b2b.keycloak.callbackUrl));
+    const redirectUri = encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? `${window.location.origin}/loggedin` : Config.b2b.keycloak.callbackUrl));
     const clientId = encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? oidcParameters.clientId : Config.b2b.keycloak.client_id));
 
     loginRegisteredAuthService(params.code, redirectUri, clientId).then(() => {
