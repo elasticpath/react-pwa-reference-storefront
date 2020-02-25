@@ -554,13 +554,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           <span className="selector-title">
             {ComponentEl.displayName}
             :&nbsp;
-            {(ComponentEl.displayName === 'Color') ? (
+            {(ComponentEl.displayName.includes('Color')) ? (
               <span>{ComponentEl.defaultChousen}</span>
             ) : ''}
           </span>
-          <div className="guide" id={`${(ComponentEl.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
+          <div className="guide" id={`${(ComponentEl.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
             {ComponentEl.map(Element => (
-              <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName === 'Color') ? 'color-wrap' : ''}`}>
+              <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName.includes('Color')) ? 'color-wrap' : ''}`}>
                 <input
                   key={Element._description[0].name}
                   type="radio"
