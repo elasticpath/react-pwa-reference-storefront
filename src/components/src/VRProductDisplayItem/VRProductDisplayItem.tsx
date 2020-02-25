@@ -36,6 +36,11 @@ interface IVRComponentProps {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
+  static isSafari() {
+    const { userAgent } = navigator;
+    return (/Safari/i).test(userAgent) && !(/Chrome/i).test(userAgent);
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -74,7 +79,13 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a>
 
             <a-assets>
-              <img alt="" id="background" src={backgroundUri} />
+              {
+                VRProductDisplayItem.isSafari() ? (
+                  <img alt="" id="background" src={backgroundUri} />
+                ) : (
+                  <img alt="" id="background" src={backgroundUri} crossOrigin="anonymous" />
+                )
+              }
             </a-assets>
 
             <Entity primitive="a-sky" radius="30" src="#background" />
