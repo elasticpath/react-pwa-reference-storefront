@@ -26,8 +26,6 @@ import { text, object } from "@storybook/addon-knobs/react";
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
 import VRProductDisplayItem from './VRProductDisplayItem';
 
-function handleSortSelection() {}
-
 storiesOf('Components|VRProductDisplayItem', module)
   .addParameters({
     readme: {
@@ -39,9 +37,8 @@ storiesOf('Components|VRProductDisplayItem', module)
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
   .add('VRComponent', () => {
-    console.log('VRComponent');
-    return null;
-    // return (
-    //   // <VRProductDisplayItem backgroundUri="https://s3.amazonaws.com/referenceexp/vr/18087.jpg" />
-    // );
+    const handleCloseVRFuncText = text('handleCloseVR', '() => {alert("onFacetSelection invoked")}');
+    return (
+      <VRProductDisplayItem handleCloseVR={() => { textToFunc(handleCloseVRFuncText); }} backgroundUri={text('backgroundUri', 'https://s3.amazonaws.com/referenceexp/vr/10484.jpg')} />
+    );
   });
