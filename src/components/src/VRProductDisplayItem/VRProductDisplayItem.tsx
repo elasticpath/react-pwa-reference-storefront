@@ -64,7 +64,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         <div className="vr-window-container">
           <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
 
-          <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;">
+          <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;" loading-screen="backgroundColor: #000000; dotsColor: white">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a id="myEnterVRButton" href="#">
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
