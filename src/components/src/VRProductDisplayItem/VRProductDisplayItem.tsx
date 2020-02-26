@@ -29,9 +29,9 @@ interface IVRComponentState {
 }
 
 interface IVRComponentProps {
-  /** the url to place a background image in the scene */
+  /** the url to place a background image in the scene. */
   backgroundUri?: any,
-  /** Called when Vr window is closed */
+  /** Called when Vr window is closed. */
   handleCloseVR: any,
 }
 
