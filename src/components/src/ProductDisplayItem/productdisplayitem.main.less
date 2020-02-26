@@ -65,6 +65,7 @@
     }
 
     .vr-icon-container {
+      z-index: 20;
       height: 30px;
       width: 55px;
       border: none;
@@ -379,12 +380,13 @@
 
 .anchor-ar-container {
   position: absolute;
-  left: 9px;
-  bottom: 15px;
+  right: 15px;
+  top: 15px;
   border: none;
   width: 50px;
   height: 30px;
   outline: 0;
+  z-index: 20;
 }
 
 .ar-img {
@@ -413,14 +415,13 @@
 .product-image-carousel {
   max-width: 450px;
   margin: 0 auto;
+  position: relative;
 
   @media (max-width: @tabletWidth - 1px) {
     max-width: 100%;
-    padding: 0 20px;
   }
 
   @media (max-width: @mobileWidth - 100px) {
-    padding: 0 30px;
   }
 
   .slick-arrow {

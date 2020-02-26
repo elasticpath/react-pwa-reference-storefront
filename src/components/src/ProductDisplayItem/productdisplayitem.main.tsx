@@ -631,56 +631,31 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return (
       <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
         <div className="product-image-carousel">
+          {
+            !vrMode && vrFileExists && (
+              <button type="button" className="vr-icon-container" onClick={() => this.initVR()} />
+            )
+          }
+          {
+            arFileExists && (
+              <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar" className="anchor-ar-container">
+                <img
+                  src={transparentImg}
+                  alt=""
+                  className="ar-img"
+                />
+              </a>
+            )
+          }
           <Slider {...settings}>
             {multiImages.length > 0 ? (
-              multiImages.map((el, index) => {
-                if (index >= multiImages.length - 1) {
-                  return (
-                    <div key={el}>
-                      {
-                        !vrMode && vrFileExists && (
-                          <button type="button" className="vr-icon-container" onClick={() => this.initVR()} />
-                        )
-                      }
-                      {
-                        arFileExists && (
-                          <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar" className="anchor-ar-container">
-                            <img
-                              src={transparentImg}
-                              alt=""
-                              className="ar-img"
-                            />
-                          </a>
-                        )
-                      }
-                      <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
-                    </div>
-                  );
-                }
-                return (
-                  <div key={el}>
-                    <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
-                  </div>
-                );
-              })
+              multiImages.map(el => (
+                <div key={el}>
+                  <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
+                </div>
+              ))
             ) : (
               <div>
-                {
-                  !vrMode && vrFileExists && (
-                    <button type="button" className="vr-icon-container" onClick={() => this.initVR()} />
-                  )
-                }
-                {
-                  arFileExists && (
-                    <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar" className="anchor-ar-container">
-                      <img
-                        src={transparentImg}
-                        alt=""
-                        className="ar-img"
-                      />
-                    </a>
-                  )
-                }
                 <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
               </div>
             )}
