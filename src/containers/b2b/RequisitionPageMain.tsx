@@ -603,7 +603,21 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                     {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
                     {products.map(product => (
                       product._item
-                        ? <CartLineItem handleQuantityChange={() => this.loadRequisitionListData(true)} item={product} hideAvailabilityLabel isTableView onRemove={() => this.loadRequisitionListData(true)} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" multiCartData={multiCartData} />
+                        ? (
+                          <CartLineItem
+                            itemQuantity={product.quantity}
+                            handleQuantityChange={() => this.loadRequisitionListData(true)}
+                            item={product}
+                            hideAvailabilityLabel
+                            isTableView
+                            onRemove={() => this.loadRequisitionListData(true)}
+                            key={product._item[0]._code[0].code}
+                            onCheck={() => { this.handleCheck(product); }}
+                            isChosen={isProductChecked(product)}
+                            itemDetailLink="/itemdetail"
+                            multiCartData={multiCartData}
+                          />
+                        )
                         : ''
                     ))}
                   </div>
