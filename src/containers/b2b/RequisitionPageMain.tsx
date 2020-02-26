@@ -539,9 +539,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 <button type="button" className="edit-name" onClick={this.handleEditListNameModalOpen}>
                   {intl.get('edit')}
                 </button>
-                <button type="button" className="close-btn" onClick={this.handleCloseMultiSelectMode}>
-                  <CloseIcon />
-                </button>
               </div>
             </div>
             <div className="add-to-cart-dropdown-wrap">
@@ -573,6 +570,9 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                         </div>
                         {/* <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button> */}
                         <CartDropdown isDisabled={!(selectedProducts && selectedProducts.length)} />
+                        <button type="button" className="close-btn" onClick={this.handleCloseMultiSelectMode}>
+                          <CloseIcon />
+                        </button>
                       </div>
                     )}
                     {productsData && (<Pagination pagination={pagination} onPageChange={this.handlePagination} next={productsData._next} previous={productsData._previous} showItemsCount={!multiSelectMode} zoom={elementZoomArray} />)}
@@ -603,7 +603,21 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                     {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
                     {products.map(product => (
                       product._item
-                        ? <CartLineItem handleQuantityChange={() => this.loadRequisitionListData(true)} item={product} hideAvailabilityLabel isTableView onRemove={() => this.loadRequisitionListData(true)} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" multiCartData={multiCartData} />
+                        ? (
+                          <CartLineItem
+                            itemQuantity={product.quantity}
+                            handleQuantityChange={() => this.loadRequisitionListData(true)}
+                            item={product}
+                            hideAvailabilityLabel
+                            isTableView
+                            onRemove={() => this.loadRequisitionListData(true)}
+                            key={product._item[0]._code[0].code}
+                            onCheck={() => { this.handleCheck(product); }}
+                            isChosen={isProductChecked(product)}
+                            itemDetailLink="/itemdetail"
+                            multiCartData={multiCartData}
+                          />
+                        )
                         : ''
                     ))}
                   </div>

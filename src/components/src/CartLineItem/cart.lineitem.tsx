@@ -271,8 +271,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
   }
 
   addToSelectedCart(cart, onCountChange) {
-    const { item } = this.props;
-    const { quantity } = this.state;
+    const { item, itemQuantity } = this.props;
     const cartUrl = cart._target[0]._additemstocartform[0].self.uri;
     let itemCodeString = '';
     if (item._item) {
@@ -290,13 +289,13 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
       body: JSON.stringify({
         items: [{
           code: itemCodeString,
-          quantity,
+          quantity: itemQuantity,
         }],
       }),
     })
       .then(() => {
         const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
-        onCountChange(cartName, quantity);
+        onCountChange(cartName, itemQuantity);
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -595,7 +594,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
                 <span className="glyphicon glyphicon-minus" />
               </button>
               <div className="quantity-col form-content form-content-quantity">
-                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
+                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
               </div>
               <button type="button" key="quantity-button-plus" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
                 <span className="glyphicon glyphicon-plus" />

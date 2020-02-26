@@ -39,7 +39,8 @@ const listsZoomArray = [
   'itemlistinfo',
   'itemlistinfo:allitemlists',
   'itemlistinfo:itemlisttypes',
-  'itemlistinfo:allitemlists:createitemlistform',
+  'itemlistinfo:itemlisttypes:element',
+  'itemlistinfo:itemlisttypes:element:createitemlistform',
   'itemlistinfo:allitemlists:element',
   'itemlistinfo:allitemlists:element:additemlisttocartforms',
   'itemlistinfo:allitemlists:element:additemlisttocartforms:element',
@@ -134,7 +135,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
             if (res._itemlistinfo && res._itemlistinfo[0] && res._itemlistinfo[0]._allitemlists[0]) {
               this.setState({
                 requisitionElements: res._itemlistinfo[0]._allitemlists[0]._element || [],
-                createRequisitionForm: res._itemlistinfo[0]._allitemlists[0]._createitemlistform[0],
+                createRequisitionForm: res._itemlistinfo[0]._itemlisttypes[0]._element[0]._createitemlistform[0],
                 allItemLists: res._itemlistinfo[0]._allitemlists[0],
               });
             }

@@ -264,7 +264,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 <span className="glyphicon glyphicon-minus" />
               </button>
               <div className="quantity-col form-content form-content-quantity">
-                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" max="9999" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
+                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
               </div>
               <button
                 type="button"
