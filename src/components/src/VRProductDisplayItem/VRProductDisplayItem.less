@@ -26,6 +26,12 @@
     }
 }
 
+.a-canvas {
+    // on IOS, aframe injects inline canvas styles and distorts sizing.  Must use !important.
+    width: 100%!important;
+    height: 100%!important;
+}
+
 .a-fullscreen .exit-btn {
     display: none;
 }
