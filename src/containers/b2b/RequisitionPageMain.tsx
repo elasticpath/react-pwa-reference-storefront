@@ -37,6 +37,7 @@ import { useCountDispatch } from '../../components/src/cart-count-context';
 
 import './RequisitionPageMain.less';
 import Pagination from '../../components/src/Pagination/pagination';
+import DropdownCartSelection from '../../components/src/DropdownCartSelection/dropdown.cart.selection.main';
 
 const listsZoomArray = [
   'additemlisttocartforms',
@@ -47,27 +48,27 @@ const listsZoomArray = [
   'additemlisttocartforms:element:additemlisttocartaction',
   'additemstoitemlistform',
   'itemlists',
-  'lineitems',
-  'lineitems:element',
-  'lineitems:element:item',
-  'lineitems:element:item:availability',
-  'lineitems:element:item:addtocartforms',
-  'lineitems:element:item:addtocartform',
-  'lineitems:element:item:cartmemberships',
-  'lineitems:element:item:definition',
-  'lineitems:element:item:definition:options',
-  'lineitems:element:item:definition:options:element',
-  'lineitems:element:item:definition:options:element:value',
-  'lineitems:element:item:addtoitemlistforms',
-  'lineitems:element:item:code',
-  'lineitems:element:item:offer',
-  'lineitems:element:item:price',
-  'lineitems:element:item:appliedpromotions',
-  'lineitems:element:item:recommendations',
-  'lineitems:element:item:addtowishlistform',
-  'lineitems:element:item:wishlistmemberships',
-  'lineitems:next',
-  'lineitems:previous',
+  'paginatedlineitems',
+  'paginatedlineitems:element',
+  'paginatedlineitems:element:item',
+  'paginatedlineitems:element:item:availability',
+  'paginatedlineitems:element:item:addtocartforms',
+  'paginatedlineitems:element:item:addtocartform',
+  'paginatedlineitems:element:item:cartmemberships',
+  'paginatedlineitems:element:item:definition',
+  'paginatedlineitems:element:item:definition:options',
+  'paginatedlineitems:element:item:definition:options:element',
+  'paginatedlineitems:element:item:definition:options:element:value',
+  'paginatedlineitems:element:item:addtoitemlistforms',
+  'paginatedlineitems:element:item:code',
+  'paginatedlineitems:element:item:offer',
+  'paginatedlineitems:element:item:price',
+  'paginatedlineitems:element:item:appliedpromotions',
+  'paginatedlineitems:element:item:recommendations',
+  'paginatedlineitems:element:item:addtowishlistform',
+  'paginatedlineitems:element:item:wishlistmemberships',
+  'paginatedlineitems:next',
+  'paginatedlineitems:previous',
 ];
 
 const elementZoomArray = [
@@ -148,7 +149,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.handleBulkDelete = this.handleBulkDelete.bind(this);
     this.handleCheckAll = this.handleCheckAll.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     this.handleAddToSelectedCart = this.handleAddToSelectedCart.bind(this);
     this.loadRequisitionListData = this.loadRequisitionListData.bind(this);
     this.handleUpdateSelectedItem = this.handleUpdateSelectedItem.bind(this);
@@ -160,13 +160,13 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
 
   componentDidMount() {
     const { listName, currentlyListName } = this.state;
-    this.loadRequisitionListData(false);
+    this.loadRequisitionListData();
     if (currentlyListName.length === 0) {
       this.setState({ currentlyListName: listName });
     }
   }
 
-  loadRequisitionListData(withoutLoader) {
+  loadRequisitionListData(withoutLoader = false) {
     const { match } = this.props;
     const { productsData } = this.state;
     const listUri = match.params.uri;
@@ -197,7 +197,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
                 multiCartData: res._additemlisttocartforms[0]._element,
                 currentlyListName: res.name,
-                productsData: res._lineitems[0],
+                productsData: res._paginatedlineitems[0],
               });
               this.handleUpdateSelectedItem();
             }
@@ -225,7 +225,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   handleAddProductsModalUpdate() {
-    this.loadRequisitionListData(true);
+    this.loadRequisitionListData();
     this.setState({ addProductModalOpened: false });
   }
 
@@ -290,33 +290,13 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
           selectedProducts: [],
           isLoading: false,
         });
-        this.loadRequisitionListData(false);
+        this.loadRequisitionListData();
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
         this.setState({ isLoading: false });
-        this.loadRequisitionListData(false);
-      });
-  }
-
-  handleDelete(product) {
-    this.setState({ isLoading: true });
-    cortexFetch(product.self.uri, {
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    }).then(() => {
-      this.setState({ isLoading: false });
-      this.loadRequisitionListData(false);
-    })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        this.setState({ isLoading: false });
-        this.loadRequisitionListData(false);
+        this.loadRequisitionListData();
       });
   }
 
@@ -381,55 +361,9 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
 
   renderDropdownMenu(isDisabled = false) {
     const { multiCartData, addToCartLoader } = this.state;
-    const dispatch = useCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
     return (
-      <div className="add-to-cart-dropdown">
-        <div className="dropdown-add-to-cart-field">
-          <div className="dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              disabled={isDisabled}
-            >
-              {addToCartLoader ? (
-                <div className="miniLoader" />
-              ) : (<span className="btn-txt">{intl.get('add-to-cart-2')}</span>)
-              }
-              <CartIcon className="cart-icon" />
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {(multiCartData.length) ? multiCartData.map(cart => (
-                <button
-                  type="button"
-                  className="dropdown-item"
-                  key={cart._target && cart._target[0]._descriptor[0].name}
-                  id={`product_display_item_sku_option_${cart._target && cart._target[0]._descriptor[0].name}`}
-                  value={cart._target && cart._target[0]._descriptor[0].name}
-                  onClick={() => { this.handleAddToSelectedCart(cart, onCountChange); }}
-                >
-                  {cart._target && cart._target[0]._descriptor[0].name}
-                </button>
-              )) : ''}
-            </ul>
-          </div>
-        </div>
+      <div className="dropdown-add-to-cart-field">
+        <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.handleAddToSelectedCart} isDisabled={isDisabled} showLoader={addToCartLoader} btnTxt={intl.get('add-to-cart-2')} showCartIcon />
       </div>
     );
   }
@@ -542,6 +476,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       listNameErrorMessages,
       currentlyListName,
       productsData,
+      multiCartData,
       isTableLoading,
       selectedProducts,
       addItemsToItemListUri,
@@ -553,7 +488,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     const products = productsData && productsData._element ? productsData._element : [];
     const pagination = productsData ? productsData.pagination : { pages: 0, current: 0 };
     const isProductChecked = product => selectedProducts.find(item => item.self.uri === product.self.uri);
-    const CartDropdown = (props: any) => (<span>{this.renderDropdownMenu(props.isDisabled)}</span>);
+    const CartDropdown = (props: any) => (<div className="add-to-cart-dropdown">{this.renderDropdownMenu(props.isDisabled)}</div>);
     const paginationResults = pagination.results;
     const isChecked = selectedProducts.filter(product => products.find(element => element.self.uri === product.self.uri)).length === products.length;
 
@@ -604,9 +539,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 <button type="button" className="edit-name" onClick={this.handleEditListNameModalOpen}>
                   {intl.get('edit')}
                 </button>
-                <button type="button" className="close-btn" onClick={this.handleCloseMultiSelectMode}>
-                  <CloseIcon />
-                </button>
               </div>
             </div>
             <div className="add-to-cart-dropdown-wrap">
@@ -638,6 +570,9 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                         </div>
                         {/* <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button> */}
                         <CartDropdown isDisabled={!(selectedProducts && selectedProducts.length)} />
+                        <button type="button" className="close-btn" onClick={this.handleCloseMultiSelectMode}>
+                          <CloseIcon />
+                        </button>
                       </div>
                     )}
                     {productsData && (<Pagination pagination={pagination} onPageChange={this.handlePagination} next={productsData._next} previous={productsData._previous} showItemsCount={!multiSelectMode} zoom={elementZoomArray} />)}
@@ -668,7 +603,21 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                     {isTableLoading && <div className="textLoader">{intl.get('loading')}</div>}
                     {products.map(product => (
                       product._item
-                        ? <CartLineItem handleQuantityChange={() => { this.loadRequisitionListData(true); }} item={product} hideAvailabilityLabel isTableView onRemove={() => { this.handleDelete(product); }} key={product._item[0]._code[0].code} onCheck={() => { this.handleCheck(product); }} isChosen={isProductChecked(product)} itemDetailLink="/itemdetail" />
+                        ? (
+                          <CartLineItem
+                            itemQuantity={product.quantity}
+                            handleQuantityChange={() => this.loadRequisitionListData(true)}
+                            item={product}
+                            hideAvailabilityLabel
+                            isTableView
+                            onRemove={() => this.loadRequisitionListData(true)}
+                            key={product._item[0]._code[0].code}
+                            onCheck={() => { this.handleCheck(product); }}
+                            isChosen={isProductChecked(product)}
+                            itemDetailLink="/itemdetail"
+                            multiCartData={multiCartData}
+                          />
+                        )
                         : ''
                     ))}
                   </div>

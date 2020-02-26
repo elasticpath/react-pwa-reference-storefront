@@ -23,10 +23,10 @@
 import React, { Component } from 'react';
 
 import './quickorderform.less';
-import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
@@ -264,7 +264,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 <span className="glyphicon glyphicon-minus" />
               </button>
               <div className="quantity-col form-content form-content-quantity">
-                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" max="9999" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
+                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
               </div>
               <button
                 type="button"
@@ -292,15 +292,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
         {(code && product._definition) ? (
           <div className="show-product">
             <div className="product-image">
-              <img
-                src={Config.skuImagesUrl.replace('%sku%', product._code[0].code)}
-                onError={(e) => {
-                  const element: any = e.target;
-                  element.src = imgPlaceholder;
-                }}
-                alt="Not Available"
-                className="cart-lineitem-thumbnail"
-              />
+              <ImageContainer className="cart-lineitem-thumbnail" isSkuImage fileName={product._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', product._code[0].code)} />
             </div>
             <div className="title-col" data-el-value="lineItem.displayName">
               <p>

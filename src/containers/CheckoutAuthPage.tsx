@@ -183,7 +183,7 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
                       </label>
                       <input className="form-control" id="registration_form_password" name="OAuthPassword" type="password" onChange={this.setPassword} />
                     </div>
-                    <input id="OAuthScope" name="OAuthScope" list="oAuthScopeList" type="hidden" value="vestri" />
+                    <input id="OAuthScope" name="OAuthScope" list="oAuthScopeList" type="hidden" value="BelleVie" />
                     <input id="OAuthRole" name="OAuthRole" list="oAuthRoleList" type="hidden" value="REGISTERED" />
                     <button className="ep-btn primary wide checkout-auth-option-login-btn" data-el-label="checkoutAuthOption.login" type="submit">
                       {intl.get('login-and-continue')}

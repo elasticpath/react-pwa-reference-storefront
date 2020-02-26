@@ -39,6 +39,7 @@ import { login } from '../utils/AuthService';
 
 import './appheader.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -71,7 +72,9 @@ interface AppHeaderMainProps {
   /** is in standalone mode */
   isInStandaloneMode: boolean,
   /** data location search */
-  locationSearchData: string,
+  locationSearchData?: string,
+  /** location path name */
+  locationPathName?: string,
   /** links in app header */
   appHeaderLinks: {
     [key: string]: any
@@ -110,7 +113,8 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
   static defaultProps = {
     checkedLocation: false,
     isInStandaloneMode: false,
-    locationSearchData: undefined,
+    locationSearchData: '',
+    locationPathName: '',
     onSearchPage: () => { },
     redirectToMainPage: () => { },
     handleResetPassword: () => { },
@@ -244,6 +248,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
       onLocaleChange,
       onContinueCart,
       locationSearchData,
+      locationPathName,
       isInStandaloneMode,
       onSearchPage,
       redirectToMainPage,
@@ -254,6 +259,8 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
       appModalLoginLinks,
     } = this.props;
     const availability = Boolean(cartData);
+    const impersonating = localStorage.getItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
+    const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
 
     const Cart = () => {
       const { count, name }: any = useCountState();
@@ -277,21 +284,20 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
     return [
       <header key="app-header" className="app-header">
-
+        {
+          impersonating ? (
+            <div className="impersonation-notification">
+              {intl.get('shopper-impersonation-message')}
+              {userName}
+            </div>
+          ) : ''
+        }
         <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
 
           <div className="main-container-col">
             <div className="logo-container">
               <Link to={appHeaderLinks.mainPage} className="logo">
-                <img
-                  className="logo-image"
-                  alt="Header logo"
-                  src={Config.siteImagesUrl.replace('%fileName%', headerLogoFileName)}
-                  onError={(e) => {
-                    const element: any = e.target;
-                    element.src = headerLogo;
-                  }}
-                />
+                <ImageContainer className="logo-image" fileName={headerLogoFileName} imgUrl={headerLogo} />
               </Link>
             </div>
 
@@ -354,6 +360,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
                 onResetPassword={handleResetPassword}
                 onContinueCart={onContinueCart}
                 locationSearchData={locationSearchData}
+                locationPathName={locationPathName}
                 appHeaderLoginLinks={appHeaderLoginLinks}
                 appModalLoginLinks={appModalLoginLinks}
                 isLoggedIn={isLoggedInUser}

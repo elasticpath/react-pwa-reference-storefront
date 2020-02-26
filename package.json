@@ -1,6 +1,6 @@
 {
   "name": "@elasticpath/ref-store",
-  "version": "3.2.0",
+  "version": "3.3.1",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -97,6 +97,7 @@
   "scripts": {
     "start": "BROWSER=none node scripts/start.js",
     "build": "node scripts/build.js",
+    "netlifybuild": "./netlifybuild.sh",
     "build-components": "cd src/components && yarn build",
     "test": "node scripts/test.js src/test",
     "lint": "eslint ./src/**/*.js --max-warnings=0 --format=codeframe",
@@ -137,6 +138,7 @@
     "eslint-config-airbnb": "^17.1.1",
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-plugin-header": "^3.0.0",
+    "http-server": "^0.12.1",
     "less": "^3.9.0",
     "puppeteer": "^2.0.0",
     "quagga": "^0.12.1",

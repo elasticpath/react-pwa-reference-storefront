@@ -157,6 +157,7 @@ module.exports = {
     await page.type(EXPIRY_MONTH, paymentMethod.expiryMonth);
     await page.type(EXPIRY_YEAR, paymentMethod.expiryYear);
     await page.type(SECURITY_CODE, paymentMethod.securityCode);
+    await page.waitFor(3000);
     await page.click(CONTINUE_BUTTON);
   },
 

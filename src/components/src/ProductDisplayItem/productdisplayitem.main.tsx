@@ -22,7 +22,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
-import { Link } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import imgMissingHorizontal from '../../../images/img_missing_horizontal@2x.png';
@@ -30,14 +29,15 @@ import transparentImg from '../../../images/icons/transparent.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
+import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { useCountDispatch } from '../cart-count-context';
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
+import ImageContainer from '../ImageContainer/image.container';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
@@ -147,6 +147,7 @@ interface ProductDisplayItemMainState {
   addToRequisitionListLoading: boolean,
   detailsProductData: any,
   vrMode: boolean;
+  multiImages: any,
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
@@ -200,6 +201,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       detailsProductData: [],
       requisitionListData: undefined,
       vrMode: false,
+      multiImages: [],
     };
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
@@ -211,7 +213,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
-    this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
     this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
     this.initVR = this.initVR.bind(this);
@@ -260,9 +261,20 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   async fetchProductData() {
     const { productId } = this.props;
+
     try {
       await login();
 
+      // --->
+      const imgIndexArr = Array.from(new Array(5), (val, index) => index);
+
+      const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${productId}_${i}`),
+        { method: 'GET' }));
+      const result = await Promise.all(promises);
+      const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
+      
+      console.log(validImg);
+      //---->
       await cortexFetchItemLookupForm();
 
       const itemLookupRes = await itemLookup(productId, false);
@@ -280,6 +292,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       this.setState({
         productData: itemLookupRes,
         detailsProductData: itemLookupRes._definition[0].details,
+        multiImages: validImg,
         arFileExists,
         vrFileExists,
       });
@@ -562,13 +575,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           <span className="selector-title">
             {ComponentEl.displayName}
             :&nbsp;
-            {(ComponentEl.displayName === 'Color') ? (
+            {(ComponentEl.displayName.includes('Color')) ? (
               <span>{ComponentEl.defaultChousen}</span>
             ) : ''}
           </span>
-          <div className="guide" id={`${(ComponentEl.displayName === 'Color') ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
+          <div className="guide" id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
             {ComponentEl.map(Element => (
-              <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName === 'Color') ? 'color-wrap' : ''}`}>
+              <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName.includes('Color')) ? 'color-wrap' : ''}`}>
                 <input
                   key={Element._description[0].name}
                   type="radio"
@@ -596,20 +609,30 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       arFileExists,
       vrMode,
       vrFileExists,
+      multiImages
     } = this.state;
+
     const settings = {
-      dots: false,
-      infinite: true,
+      customPaging(i) {
+        return (
+          <div className="slick-thumb-item">
+            <img src={multiImages[i]} alt="img" />
+          </div>
+        );
+      },
+      dots: true,
+      infinite: false,
+      dotsClass: 'slick-dots slick-thumb',
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
     };
 
     return (
-      <div className="product-image-carousel">
-        <Slider {...settings}>
-          <div>
-            {
+      <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
+        <div className="product-image-carousel">
+          <Slider {...settings}>
+            {/* {
               !vrMode && vrFileExists && (
                 <button type="button" className="vr-icon-container" onClick={() => this.initVR()} />
               )
@@ -625,23 +648,31 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   />
                 </a>
               )
-            }
+            } */}
 
-            <img
-              src={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)}
-              onError={(e) => { const element: any = e.target; element.src = imgMissingHorizontal; }}
-              alt={intl.get('none-available')}
-              className="itemdetail-main-img"
-            />
-          </div>
-        </Slider>
+            {multiImages.length > 0 ? (
+              multiImages.map(el => (
+                <div key={el}>
+                  <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
+                </div>
+              ))
+            ) : (
+              <div>
+                <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
+              </div>
+            )}
+          </Slider>
+        </div>
       </div>
     );
   }
 
-  addToSelectedCart(cartName, cartUrl, onCountChange) {
+  addToSelectedCart(cart, onCountChange) {
     const { itemQuantity, itemConfiguration } = this.state;
     this.setState({ addToCartLoading: true });
+
+    const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+    const cartUrl = cart._addtocartaction[0].self.uri;
 
     login()
       .then(() => cortexFetch(cartUrl,
@@ -701,49 +732,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     });
   }
 
-  dropdownCartSelection() {
-    const dispatch = useCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-
-    const { productData } = this.state;
-    const addToCartForms = (productData._addtocartforms || []).flatMap(addtocartforms => addtocartforms._element);
-    if (addToCartForms.length > 0) {
-      return (
-        <ul className="cart-selection-dropdown">
-          {addToCartForms
-            .map(addToCartForm => ({
-              cartName: (addToCartForm._target && addToCartForm._target[0]._descriptor[0].name) || intl.get('default'),
-              addToCartActionUri: addToCartForm._addtocartaction && addToCartForm._addtocartaction[0].self.uri,
-            }))
-            .map(form => (
-              // eslint-disable-next-line
-              <li
-                className="dropdown-item cart-selection-item"
-                key={form.cartName}
-                onClick={() => form.addToCartActionUri && this.addToSelectedCart(form.cartName, form.addToCartActionUri, onCountChange)}
-              >
-                {form.cartName}
-              </li>
-            ))
-          }
-        </ul>
-      );
-    }
-    return null;
-  }
-
   dropdownRequisitionListSelection() {
     const dispatch = useRequisitionListCountDispatch();
     const onCountChange = (name, count) => {
@@ -762,10 +750,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     const { requisitionListData } = this.state;
     if (requisitionListData) {
       return (
-        <ul className="cart-selection-dropdown">
+        <ul className="cart-selection-list">
           {requisitionListData.map(list => (
             // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
+            <li className="dropdown-item cart-selection-menu-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
               {list.name ? list.name : intl.get('default')}
             </li>
           ))}
@@ -792,6 +780,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     const {
       productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading, vrMode,
     } = this.state;
+    const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
     const { featuredProductAttribute, itemDetailLink } = this.props;
 
     if (productData) {
@@ -809,9 +798,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
 
       const SelectRequisitionListButton = () => (
-        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
+        <div className="form-content form-content-submit dropdown cart-selection-dropdown">
           <button
-            className="ep-btn wide btn-itemdetail-addtowishlist dropdown-toggle"
+            className="ep-btn btn-itemdetail-addtowishlist dropdown-toggle"
             data-toggle="dropdown"
             disabled={!availability || !productData._addtowishlistform}
             type="submit"
@@ -824,38 +813,19 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               </span>
             )}
           </button>
-          <div className="dropdown-menu cart-selection-list">
+          <div className="dropdown-menu cart-selection-menu cart-selection-list">
             {this.dropdownRequisitionListSelection()}
           </div>
         </div>
       );
 
       const SelectCartButton = () => (
-        <div className="form-content form-content-submit col-sm-offset-4 dropdown">
-          <button
-            className="ep-btn primary wide btn-itemdetail-addtocart dropdown-toggle"
-            data-toggle="dropdown"
-            disabled={!availability || !productData._addtocartform}
-            id="product_display_item_add_to_cart_button-dropdown"
-            type="submit"
-          >
-            {addToCartLoading ? (
-              <span className="miniLoader" />
-            ) : (
-              <span>
-                {intl.get('add-to-cart')}
-              </span>
-            )}
-          </button>
-          <div className="dropdown-menu cart-selection-list">
-            {this.dropdownCartSelection()}
-          </div>
-        </div>
+        <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
       );
 
       return (
         <div className="itemdetail-component container-3">
-          <div>
+          <div className="product-item-container">
             <div className="itemdetail-assets">
               <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
                 <div className="itemdetail-asset-container">
@@ -1003,7 +973,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                           <div className="form-content form-content-submit col-sm-offset-4">
                             <button
                               onClick={this.addToWishList}
-                              className="ep-btn wide btn-itemdetail-addtowishlist"
+                              className="ep-btn btn-itemdetail-addtowishlist"
                               disabled={!availability || !productData._addtowishlistform}
                               id="product_display_item_add_to_wish_list_button"
                               type="submit"

@@ -29,6 +29,7 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 import './bulkorder.main.less';
 import { useCountDispatch } from '../cart-count-context';
+import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 
 let Config: IEpConfig | any = {};
 let intl = { get: (str, ...args: any[]) => str };
@@ -106,7 +107,6 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     this.handleBarcodeClick = this.handleBarcodeClick.bind(this);
     this.handleBarcodeModalClose = this.handleBarcodeModalClose.bind(this);
     this.handleBarcodeScanned = this.handleBarcodeScanned.bind(this);
-    this.dropdownCartSelection = this.dropdownCartSelection.bind(this);
     this.addAllToSelectedCart = this.addAllToSelectedCart.bind(this);
   }
 
@@ -367,37 +367,6 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     });
   }
 
-  dropdownCartSelection(isQuickOrder) {
-    const dispatch = useCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-    const { multiCartData } = this.state;
-    if (multiCartData && multiCartData._carts && multiCartData._carts[0]._element) {
-      return (
-        <ul className="cart-selection-dropdown">
-          {multiCartData._carts[0]._element.map(cart => (
-            // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-item" key={cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')} onClick={() => this.addAllToSelectedCart(cart, isQuickOrder, onCountChange)}>
-              {cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default')}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    return null;
-  }
-
   render() {
     const { isBulkModalOpened, handleClose } = this.props;
     const {
@@ -450,20 +419,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
       );
     };
     const SelectCartButton = ({ isQuickOrder }) => (
-      <span className="form-content form-content-submit col-sm-offset-4 dropdown">
-        <button
-          className="ep-btn primary small btn-itemdetail-addtocart dropdown-toggle"
-          data-toggle="dropdown"
-          disabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton}
-          id="product_display_item_add_to_cart_button"
-          type="submit"
-        >
-          {intl.get('add-all-to-cart')}
-        </button>
-        <div className="dropdown-menu cart-selection-list">
-          {this.dropdownCartSelection(isQuickOrder)}
-        </div>
-      </span>
+      <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addAllToSelectedCart(cart, isQuickOrder, onchange)} multiCartData={multiCartData._carts[0]._element} isDisabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton} btnTxt={intl.get('add-all-to-cart')} />
     );
     return (
       <div className={`bulk-order-component ${(!isBulkModalOpened) ? 'hideModal' : ''}`}>

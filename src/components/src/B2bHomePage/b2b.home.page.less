@@ -23,18 +23,33 @@
 
 .home-page-b2b {
   .main-banner {
+    overflow: hidden;
     min-height: 480px;
-    display: flex;
-    align-items: flex-end;
     margin-bottom: 45px;
-    background: url('../../@{imgUrl}/site-images/hero-banner-0.jpg') no-repeat center center;
-    background-size: cover;
+    position: relative;
+
+    .main-banner-image {
+      width: 100%;
+      min-height: 480px;
+      max-width: 100%;
+      margin-left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate( -50%, -50%);
+      object-fit: cover;
+    }
 
     &-title-wrap {
       width: 100%;
       padding: 15px 0 30px;
       background-color: rgba(0,0,0,0.5);
       color: @mainBackgroundColor;
+      position: absolute;
+      bottom: 0px;
+
+      .goods-heading {
+        color: inherit;
+      }
     }
 
     .goods-heading {
@@ -89,6 +104,7 @@
   }
 
   .goods-heading {
+    color: @mainColor;
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 15px;

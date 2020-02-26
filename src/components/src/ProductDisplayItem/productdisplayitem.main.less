@@ -82,8 +82,8 @@
     }
   }
 
-  .btn-itemdetail-addtocart.wide,
-  .btn-itemdetail-addtowishlist.wide {
+  .btn-itemdetail-addtocart.primary,
+  .btn-itemdetail-addtowishlist {
     text-transform: capitalize;
     font-size: 14px;
     width: 100%;
@@ -114,18 +114,6 @@
         background-color: @mainBackgroundColor;
         color: @firstComplimentColor;
         border: 1px solid @firstComplimentColor;
-    }
-  }
-
-  .btn-itemdetail-addtowishlist {
-    .miniLoader {
-      width: 20px;
-      height: 20px !important;
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0;
-      border-width: 2px;
-      border-top-width: 2px;
     }
   }
 
@@ -199,27 +187,10 @@
       }
 
       .cart-selection-list {
-        width: 100%;
-        border: 1px solid @firstComplimentColor;
-        border-radius: 0;
-        margin-top: -1px;
-        padding: 0;
-
-        .cart-selection-item {
-          text-align: center;
-          font-size: 14px;
-          padding: 10px;
-
-          &:hover {
-            cursor: pointer;
-            color: @firstComplimentColor;
-            background-color: @thirdComplimentBackground;
-          }
-        }
+        margin-bottom: 0;
       }
 
-      .cart-selection-dropdown {
-        margin-bottom: 0;
+      .cart-selection-menu {
         max-height: 235px;
         overflow: scroll;
       }
@@ -259,7 +230,6 @@
         }
 
         .input-group-btn {
-          width: 30%;
           height: 40px;
           border: solid 1px @mainBorderColor;
           display: flex;
@@ -425,10 +395,37 @@
   border: 0px;
 }
 
+.product-item-container {
+  @media (min-width: @tabletWidth) {
+    display: flex;
+
+    .itemdetail-assets {
+      width: 700px;
+    }
+
+    .itemdetail-details {
+      width: auto;
+      flex-grow: 1;
+    }
+  }
+}
+
 .product-image-carousel {
+  max-width: 450px;
+  margin: 0 auto;
+
+  @media (max-width: @tabletWidth - 1px) {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  @media (max-width: @mobileWidth - 100px) {
+    padding: 0 30px;
+  }
+
   .slick-arrow {
-    height: 30px;
-    width: 24px;
+    height: 40px;
+    width: 40px;
     text-indent: -9999px;
     position: absolute;
     top: 50%;
@@ -436,34 +433,113 @@
     -ms-transform: translate(0, -50%);
     transform: translate(0, -50%);
     z-index: 1;
+    border-radius: 50%;
+    border: 1px solid @fifthComplimentTextColor;
+
     &:before {
       content: '';
-      width: 15px;
-      height: 15px;
-      border-color: @mainColor;
+      width: 10px;
+      height: 10px;
+      border-color: @firstComplimentColor;
       position: absolute;
-      top: 7px;
-      color: @mainColor;
+      top: 13px;
+      color: @firstComplimentColor;
+      opacity: 1;
+    }
+
+    &.slick-disabled {
+      background-color: @secondComplimentBackground;
+      border-color: @secondComplimentBackground;
+
+      &:before {
+        border-color: @secondBorderColor;
+      }
     }
   }
   .slick-prev {
-    left: 10px;
+    left: -43px;
     &:before {
-      left: 8px;
-      border-bottom: 3px solid;
-      border-left: 3px solid;
+      left: 15px;
+      border-bottom: 2px solid;
+      border-left: 2px solid;
       -webkit-transform: rotate(45deg);
       transform: rotate(45deg);
     }
   }
   .slick-next {
-    right: 10px;
+    right: -43px;
     &:before {
-      right: 8px;
-      border-bottom: 3px solid;
-      border-left: 3px solid;
+      right: 15px;
+      border-bottom: 2px solid;
+      border-left: 2px solid;
       -webkit-transform: rotate(-135deg);
       transform: rotate(-135deg);
+    }
+  }
+
+  .slick-dots {
+    @media (min-width: @tabletWidth) {
+      width: 130px;
+    }
+  }
+
+  .slick-thumb {
+    position: absolute;
+    transform: none;
+
+    @media (min-width: @tabletWidth) {
+      top: 0;
+      left: -175px;
+    }
+
+    li {
+      width: 130px;
+      height: 86px;
+      margin-bottom: 5px;
+      border: 1px solid transparent;
+
+      &.slick-active {
+        border-color: @thirdComplimentTextColor;
+      }
+    }
+
+    &-item {
+      padding: 4px;
+
+      img {
+        height: 76px;
+        border: 1px solid @secondBorderColor;
+      }
+    }
+
+    @media (max-width: @tabletWidth - 1px) {
+      display: none !important;
+
+      li {
+        width: 76px;
+        height: 62px;
+        display: inline-block;
+      }
+
+      .slick-thumb-item {
+        padding: 2px;
+
+        img {
+          height: 56px;
+        }
+      }
+    }
+  }
+
+  &-wrap {
+    &:not(.single-image-slider) {
+      @media (min-width: @tabletWidth) {
+        padding-left: 130px;
+
+        .itemdetail-main-img {
+          min-height: 450px;
+        }
+      }
     }
   }
 }

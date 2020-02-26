@@ -21,7 +21,7 @@
  @import './../../../theme/common.less';
 
   .main-search-container-br {
-    width: 170px;
+    width: 400px;
     text-align: right;
 
     .search-form-br {
@@ -29,40 +29,34 @@
       display: inline-block;
 
       &:focus-within {
-        .input-search-br {
-          width: 275px;
-          padding-left: 40px;
-          border-bottom: 1px solid @mainNavigationColor;
-          cursor: auto;
-        }
         .suggestions {
           display:list-item;
         }
       }
 
       .input-search-br {
-        z-index:1;
-        background: @mainColor;
-        padding: 2px 0 2px 35px;
-        width: 35px;
+        height: 30px;
+        background: transparent;
+        padding: 2px 5px 2px 35px;
+        width: 275px;
         transition: width 0.5s ease,
                     border-color 0.5s,
                     padding 0.5s ease-in;
-
-        color: @mainNavigationColor;
+        color: @mainTextColor;
         cursor: pointer;
         outline: 0;
-        border: 0;
-        border-bottom: 1px solid transparent;
+        border-radius: 4px;
+        border: 1px solid @firstBorderColor;
         font-weight: 300;
 
         &::placeholder {
           opacity: 0.3;
-          color: @mainNavigationColor;
+          color: @firstComplimentTextColor;
         }
       }
 
       .suggestions {
+        z-index:1;
         display: none;
         margin-top: 0;
         max-height: 149px;
@@ -81,12 +75,12 @@
       }
 
       .search-icon-br {
-        background: #ffffff00 url('@{imgComponentUrl}/header-icons/magnifying-glass.svg') no-repeat 9px center;
+        fill: @firstComplimentTextColor;
         position: absolute;
-        left: 0;
-        top: 0;
+        left: 0px;
+        top: 3px;
         width: 35px;
-        height: 20px;
+        height: 24px;
         pointer-events: none;
       }
     }
@@ -153,7 +147,6 @@
           opacity: 0.5;
           left: auto;
           right: 10px;
-          top: 12px;
         }
       }
     }

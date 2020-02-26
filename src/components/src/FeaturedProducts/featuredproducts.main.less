@@ -59,7 +59,7 @@
 .featured-products-container {
   margin-bottom: 30px;
 
-  .product-image-carousel {
+  .featured-product-carousel {
     padding: 0 0 40px;
     border-bottom: 1px solid @secondBorderColor;
   }
@@ -78,13 +78,15 @@
       border: 1px solid @buttonFocusColor;
       z-index: 3;
       &:before {
+        content: "";
         width: 10px;
         height: 10px;
-        border-bottom-width: 2px;
-        border-left-width: 2px;
+        border-bottom: 2px solid @firstComplimentColor;
+        border-left: 2px solid @firstComplimentColor;
         top: 6px;
         color: @firstComplimentColor;
         opacity: 1;
+        position: absolute;
       }
       &:hover {
         -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
@@ -92,13 +94,17 @@
       }
     }
     .slick-prev {
+      transform: rotate(45deg);
       &:before {
+        top: 5px;
         left: 8px;
       }
     }
     .slick-next {
+      margin-left: 35px;
       &:before {
         right: 8px;
+        transform: rotate(225deg);
       }
     }
     .slick-disabled {

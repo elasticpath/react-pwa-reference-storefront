@@ -23,9 +23,9 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import './MaintenancePage.less';
-import Config from '../ep.config.json';
 
 import doge from '../images/site-images/maintenance-banner.png';
+import ImageContainer from '../components/src/ImageContainer/image.container';
 
 const dogeFileName = 'maintenance-banner.png';
 
@@ -56,7 +56,7 @@ function MaintenancePage() {
                 </div>
                 <div className="static-container dog-container" style={{ display: 'block' }}>
                   <div className="container" style={{ display: 'block' }}>
-                    <img alt="dog-espot-1" className="dog-espot-1" src={Config.siteImagesUrl.replace('%fileName%', dogeFileName)} onError={(e: any) => { e.target.src = doge; }} />
+                    <ImageContainer fileName={dogeFileName} imgUrl={doge} />
                   </div>
                   <h2 className="static-dog-name">
                     {intl.get('name-moki')}

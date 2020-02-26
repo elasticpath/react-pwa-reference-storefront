@@ -22,8 +22,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 import './ordertable.lineitem.less';
+import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
 
@@ -106,15 +106,7 @@ function OrderTableLineItem(props: OrderTableLineItemProps) {
   return (
     <tr className="order-lineitem-row">
       <td className="thumbnail-col">
-        <img
-          className="thumbnail"
-          src={Config.skuImagesUrl.replace('%sku%', code)}
-          alt="Not Available"
-          onError={(e) => {
-            const element:any = e.target;
-            element.src = imgPlaceholder;
-          }}
-        />
+        <ImageContainer className="thumbnail" isSkuImage fileName={code} imgUrl={Config.skuImagesUrl.replace('%sku%', code)} />
       </td>
       <td className="title-col">
         <Link to={`${itemDetailLink}/${encodeURIComponent(code)}`}>

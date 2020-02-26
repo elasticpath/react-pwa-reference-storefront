@@ -359,6 +359,7 @@
       }
 
       .dropdown-header {
+        padding: 10px 10px 5px;
         color: @firstComplimentTextColor;
         text-transform: uppercase;
       }
@@ -398,18 +399,15 @@
       }
     }
 
-    .cart-selection-menu {
-      &-wrap {
-        max-height: 90px;
-        overflow-y: auto;
-      }
+    .cart-selection-dropdown {
+      .cart-selection-menu {
+        &-wrap {
+          max-height: 90px;
+          overflow-y: auto;
+        }
 
-      &-item {
-        font-size: 14px;
-
-        &:hover {
-          color: @thirdComplimentColor;
-          background-color: @thirdComplimentBackground;
+        &-item {
+          text-align: left;
         }
       }
     }

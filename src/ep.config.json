@@ -1,9 +1,7 @@
 {
   "cortexApi": {
-    "path": "/cortex",
-    "scope": "vestri",
-    "pathForProxy": "http://localhost:9080",
-    "reqTimeout": "30000"
+    "path": "https://reference.epdemos.com/cortex",
+    "scope": "vestri_reference"
   },
   "supportedLocales": [
     {
@@ -27,8 +25,8 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%sku%.png",
-  "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
+  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V2/%sku%.png",
+  "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V2/%fileName%",
   "enableOfflineMode": false,
   "b2b": {
     "enable": false,

@@ -114,7 +114,7 @@ class FeaturedProducts extends Component<FeaturedProductsProps, FeaturedProducts
             </span>
           </div>
           <div className="featured-products-container" data-region="categoryBrowseRegion">
-            <div className="product-image-carousel">
+            <div className="featured-product-carousel">
               <Slider {...settings}>
                 {this.renderFeaturedProducts()}
               </Slider>

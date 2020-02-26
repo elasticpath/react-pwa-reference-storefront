@@ -3,9 +3,16 @@
 .side-menu-component {
   position: relative;
   background-color: @secondComplimentBackground;
+  .textLoader {
+    display: none;
+    top: 50px;
+  }
 
   @media screen and (min-width: 992px) {
     padding-bottom: 150px;
+    .textLoader {
+      display: block;
+    }
   }
 
   .menu-item {

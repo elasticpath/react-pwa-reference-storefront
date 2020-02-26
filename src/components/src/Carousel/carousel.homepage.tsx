@@ -22,6 +22,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import ImageContainer from '../ImageContainer/image.container';
 
 import carouselBaner1 from '../../../images/carousel-images/baner_1.jpg';
 import carouselBaner2 from '../../../images/carousel-images/baner_2.jpg';
@@ -51,7 +52,7 @@ const Carousel: React.FunctionComponent = () => {
     customPaging(i) {
       return (
         <div className="">
-          <img alt="img" src={Config.siteImagesUrl.replace('%fileName%', carouselBanerNameArray[i])} onError={(e) => { const element: any = e.target; element.src = carouselBanerArray[i]; }} />
+          <ImageContainer fileName={carouselBanerNameArray[i]} imgUrl={carouselBanerArray[i]} />
         </div>
       );
     },
@@ -78,44 +79,16 @@ const Carousel: React.FunctionComponent = () => {
       </div>
       <Slider {...settings}>
         <div>
-          <img
-            alt="img"
-            src={Config.siteImagesUrl.replace('%fileName%', carouselBaner1FileName)}
-            onError={(e) => {
-              const element: any = e.target;
-              element.src = carouselBaner1;
-            }}
-          />
+          <ImageContainer fileName={carouselBaner1FileName} imgUrl={carouselBaner1} />
         </div>
         <div>
-          <img
-            alt="img"
-            src={Config.siteImagesUrl.replace('%fileName%', carouselBaner2FileName)}
-            onError={(e) => {
-              const element: any = e.target;
-              element.src = carouselBaner2;
-            }}
-          />
+          <ImageContainer fileName={carouselBaner2FileName} imgUrl={carouselBaner2} />
         </div>
         <div>
-          <img
-            alt="img"
-            src={Config.siteImagesUrl.replace('%fileName%', carouselBaner3FileName)}
-            onError={(e) => {
-              const element: any = e.target;
-              element.src = carouselBaner3;
-            }}
-          />
+          <ImageContainer fileName={carouselBaner3FileName} imgUrl={carouselBaner3} />
         </div>
         <div>
-          <img
-            alt="img"
-            src={Config.siteImagesUrl.replace('%fileName%', carouselBaner4FileName)}
-            onError={(e) => {
-              const element: any = e.target;
-              element.src = carouselBaner4;
-            }}
-          />
+          <ImageContainer fileName={carouselBaner4FileName} imgUrl={carouselBaner4} />
         </div>
       </Slider>
     </div>
