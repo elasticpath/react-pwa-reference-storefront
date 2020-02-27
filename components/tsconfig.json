@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "jsx": "react",
+    "suppressImplicitAnyIndexErrors": true,
+    "noStrictGenericChecks": true,
+    "strictNullChecks": false,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2015",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": false,
+    "outDir": "build",
+    "esModuleInterop":true,
+    "declarationMap": true
+  },
+  "include": [
+    "src",
+    "custom_typings"
+  ],
+  "exclude": ["node_modules","**/*.stories.tsx"]
+}

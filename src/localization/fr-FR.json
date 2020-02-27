@@ -421,5 +421,8 @@
   "loading": "L-o-a-d-i-n-g",
   "close": "C-l-o-s-e",
   "select-all-items": "s-e-l-e-c-t- -a-l-l- {paginationResults} -i-t-e-m-s",
-  "select-all-items-txt": "{selectedItem} -i-t-e-m-s- -a-r-e- -s-e-l-e-c-t-e-d- -o-n- -t-h-i-s- -p-a-g-e-,- -w-o-u-l-d- -y-o-u- -l-i-k-e- -t-o- {selectAllItemsBtn} -i-n- -l-i-s-t"
+  "select-all-items-txt": "{selectedItem} -i-t-e-m-s- -a-r-e- -s-e-l-e-c-t-e-d- -o-n- -t-h-i-s- -p-a-g-e-,- -w-o-u-l-d- -y-o-u- -l-i-k-e- -t-o- {selectAllItemsBtn} -i-n- -l-i-s-t",
+  "vr-info-txt": "T-h-i-s i-s a 3-6-0 v-i-e-w! Y-o-u c-a-n u-s-e y-o-u-r m-o-u-s-e-/-t-o-u-c-h s-c-r-e-e-n t-o p-a-n.  C-l-i-c-k t-h-e b-o-t-t-o-m r-i-g-h-t c-o-r-n-e-r i-c-o-n t-o e-n-a-b-l-e f-u-l-l-s-c-r-e-e-n- V-R m-o-d-e-.  C-l-i-c-k t-h-e t-o-p- r-i-g-h-t X t-o r-e-t-u-r-n t-o n-o-r-m-a-l p-r-o-d-u-c-t i-m-a-g-e-s.",
+  "info-btn-txt": "R-O-T-A-T-E A-N-D V-I-E-W P-R-O-D-U-C-T",
+  "info-btn-description": "W-h-a-t-s 3-6-0 d-e-g-r-e-e v-i-e-w- o-r V-R?"
 }
