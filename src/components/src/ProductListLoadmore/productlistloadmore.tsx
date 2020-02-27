@@ -80,6 +80,7 @@ class ProductListLoadMore extends Component<ProductListLoadMoreProps, ProductLis
               _element: _element.concat(res._element),
               _sortattributes: res._sortattributes,
               _facets: res._facets,
+              _next: res._next,
             };
             handleDataChange(updatedItems);
             this.setState({ isLoading: false });

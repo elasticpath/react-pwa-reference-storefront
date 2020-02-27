@@ -207,6 +207,7 @@ const purchaseFormZoomArray = [
 
 // Array of zoom parameters to pass to Cortex for searchDetails
 const searchFormZoomArray = [
+  'next',
   'element',
   'element:availability',
   'element:definition',
