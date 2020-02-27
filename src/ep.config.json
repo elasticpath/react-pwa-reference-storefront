@@ -1,7 +1,9 @@
 {
   "cortexApi": {
-    "path": "https://reference.epdemos.com/cortex",
-    "scope": "vestri_reference"
+    "path": "/cortex",
+    "scope": "vestri",
+    "pathForProxy": "http://localhost:9080",
+    "reqTimeout": "30000"
   },
   "supportedLocales": [
     {
@@ -25,9 +27,13 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V2/%sku%.png",
-  "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V2/%fileName%",
+  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%sku%.png",
+  "siteImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%fileName%",
   "enableOfflineMode": false,
+  "imageFileTypes": {
+    "enable": true,
+    "types": [".png" ,".jpg", ".svg"]
+  },
   "b2b": {
     "enable": false,
     "authServiceAPI": {
@@ -36,8 +42,7 @@
       "reqTimeout": "30000"
     },
     "openId": {
-      "enable": true,
-      "callbackUrl": "http://localhost:8080"
+      "enable": true
     },
     "keycloak": {
       "callbackUrl": "http://localhost:8080",
