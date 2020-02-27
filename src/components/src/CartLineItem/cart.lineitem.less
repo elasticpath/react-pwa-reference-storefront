@@ -176,54 +176,34 @@
     grid-row: 1 / last-line;
     justify-self: center;
     display: inline-block;
-    width: 105px;
-    height: 30px;
+    width: 138px;
+    margin: 0 10px;
+    text-align: center;
 
     .form-control {
-      border: none;
       font-size: 12px;
       font-weight: 600;
       line-height: normal;
       appearance: none;
       -webkit-appearance: none;
-      border-radius: 0px;
-      -webkit-border-radius: 0px;
     }
 
     .input-group-btn {
       float: left;
-      border: solid 1px @mainBorderColor;
       justify-content: space-between;
       align-items: center;
 
       .quantity-right-plus,
       .quantity-left-minus {
-        background-color: white;
-        border-radius: 0 !important;
-        overflow: hidden;
         position: relative;
-        text-shadow: 1px 1px 1px @mainBackgroundColor;
         color: @secondComplimentTextColor;
         text-transform: none;
         font-weight: normal;
         float: right;
-        height: 24px;
-      }
-
-      .quantity-left-minus {
-        border-right: 0 !important;
-        float: left;
-      }
-
-      .quantity-right-plus {
-        border-left: 0 !important;
       }
 
       .form-content-quantity {
-        width: 50px;
-
         .form-control-quantity {
-          width: 50px;
           font-size: 14px;
           text-align: center;
         }
@@ -248,8 +228,9 @@
       background: none !important;
       border: none;
       padding: 0 !important;
-      font-size: 12px;
+      font-size: 11px;
       cursor: pointer;
+      margin: 7px 0;
 
       &:hover {
         color: @firstComplimentColor;

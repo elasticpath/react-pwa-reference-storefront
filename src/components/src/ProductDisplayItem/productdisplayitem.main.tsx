@@ -888,15 +888,11 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                         {intl.get('quantity')}
                       </label>
                       <div className="input-group-btn">
-                        <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                          <span className="glyphicon glyphicon-minus" />
-                        </button>
+                        <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement} />
                         <div className="quantity-col form-content form-content-quantity">
                           <input id="product_display_quantity_field" className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
                         </div>
-                        <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                          <span className="glyphicon glyphicon-plus" />
-                        </button>
+                        <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement} />
                       </div>
                       {
                         (isLoading) ? (<div className="miniLoader" />) : ''

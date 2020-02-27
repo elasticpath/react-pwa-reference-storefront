@@ -857,7 +857,7 @@
         display: block;
         padding: 0;
         position: absolute;
-        top: 24px;
+        top: 40px;
         right: -28px;
         border: none;
         background: none;
@@ -883,11 +883,18 @@
           font-size: 15px;
           transform: rotate(180deg);
           padding-left: 15px;
+          margin: 0;
         }
       }
 
+      .form-control-quantity {
+        width: 50px;
+        border: none;
+        box-shadow: none;
+      }
+
       .input-group-btn {
-        width: 20px;
+        width: 34px;
         margin: 0 auto;
         display: block;
 
@@ -1028,6 +1035,18 @@
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .add-products-component {
+    .add-product-modal {
+      margin: 10px 5px 15px 5px;
+    }
+
+    .product-quantity-wrap {
+      padding-left: 15px;
     }
   }
 }

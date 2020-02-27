@@ -58,9 +58,8 @@
 }
 
 .input-group-btn {
-  width: 102px;
+  width: 138px;
   height: 34px;
-  border: solid 1px @mainBorderColor;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -68,42 +67,69 @@
 
   .quantity-right-plus,
   .quantity-left-minus {
+    height: 18px;
+    min-width: 18px;
+    width: 18px;
+    padding: 0;
+    border: 1px solid @firstBorderColor;
+    border-radius: 50%;
     background-color: white;
-    border-radius: 0 !important;
-    overflow: hidden;
     position: relative;
-    text-shadow: 1px 1px 1px @mainBackgroundColor;
-    color: @secondComplimentTextColor;
-    text-transform: none;
-    font-weight: normal;
-    float: right;
-    margin: 5px 0;
     font-size: 12px;
-  }
 
-  .quantity-left-minus {
-    border-right: 0 !important;
+    &:hover {
+      border-color: @firstComplimentColor;
+      background-color: @firstComplimentColor;
+
+      &:before {
+        color: @mainBackgroundColor;
+      }
+    }
   }
 
   .quantity-right-plus {
-    border-left: 0 !important;
+    &:before {
+      content: "+";
+      font-size: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10px;
+      width: 16px;
+      color: @firstComplimentColor;
+    }
+  }
+
+  .quantity-left-minus {
+    &:before {
+      content: "–";
+      font-size: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 4px;
+      width: 16px;
+      margin-top: -3px;
+      color: @firstComplimentColor;
+    }
   }
 
   .form-content-quantity {
-    width: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .form-control-quantity {
-      border: none;
-      display: block;
-      width: 40px;
       height: 32px;
-      font-size: 16px;
+      width: 82px;
+      font-size: 14px;
+      padding: 0 5px;
+      border: 1px solid @fifthComplimentTextColor;
+      border-radius: 4px;
+      background-color: @mainBackgroundColor;
+      color: @firstComplimentTextColor;
       text-align: center;
-      margin: 0 auto;
-      padding: 0;
+      box-shadow: inset 0 1px 0 1px rgba(255,255,255,0.06), 0 1px 0 0 rgba(22,29,37,0.1);
     }
 
     input[type=number]::-webkit-outer-spin-button,
