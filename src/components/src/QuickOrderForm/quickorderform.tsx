@@ -94,7 +94,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
 
   setItemData(item, quantity, code) {
     const { onItemSubmit } = this.props;
-    if (item._availability[0].state !== 'AVAILABLE') {
+    if (item._availability[0].state !== 'AVAILABLE' && item._availability[0].state !== 'AVAILABLE_FOR_PRE_ORDER') {
       this.setState({
         code,
         product: item,
@@ -122,7 +122,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
       cortexFetchItemLookupForm()
         .then(() => itemLookup(productId, false)
           .then((res) => {
-            if (res._availability[0].state !== 'AVAILABLE') {
+            if (res._availability[0].state !== 'AVAILABLE' && res._availability[0].state !== 'AVAILABLE_FOR_PRE_ORDER') {
               this.setState({
                 product: res,
                 isLoading: false,
