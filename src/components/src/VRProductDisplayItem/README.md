@@ -21,7 +21,7 @@ import { VRProductDisplayItem } from '@elasticpath/store-components';
 #### Example
 
 ```js
-<VRProductDisplayItem handleCloseVR={() => { console.log('handlecloseVR) }} backgroundUri="https://s3.amazonaws.com/refexp/vr/1234.jpg" />
+<VRProductDisplayItem handleCloseVR={() => { console.log('handlecloseVR) }} backgroundUri="https://s3.amazonaws.com/referenceexp/vr/10484.jpg" />
 ```
 
 #### Properties
