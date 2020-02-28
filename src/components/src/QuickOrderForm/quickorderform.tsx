@@ -260,7 +260,9 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 onClick={() => {
                   this.handleQuantityDecrement();
                 }}
-              />
+              >
+                <span>–</span>
+              </button>
               <div className="quantity-col form-content form-content-quantity">
                 <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="0" tabIndex={-1} value={(item.code !== '') ? quantity : 0} onChange={this.handleQtyChange} />
               </div>
@@ -273,7 +275,9 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
                 onClick={() => {
                   this.handleQuantityIncrement();
                 }}
-              />
+              >
+                <span>+</span>
+              </button>
             </div>
           </div>
           {!isAddProducts ? (

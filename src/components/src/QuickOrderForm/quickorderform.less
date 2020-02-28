@@ -67,19 +67,27 @@
 
   .quantity-right-plus,
   .quantity-left-minus {
-    height: 18px;
-    min-width: 18px;
-    width: 18px;
     padding: 0;
-    border: 1px solid @firstBorderColor;
     border-radius: 50%;
     background-color: white;
     position: relative;
-    font-size: 12px;
+    color: @firstComplimentColor;
+    border: 1px solid @firstBorderColor;
+
+    span {
+      display: block;
+      height: 16px;
+      width: 16px;
+      font-size: 22px;
+      line-height: 18px;
+      border-radius: 50%;
+      text-align: center;
+    }
 
     &:hover {
       border-color: @firstComplimentColor;
       background-color: @firstComplimentColor;
+      color: @mainBackgroundColor;
 
       &:before {
         color: @mainBackgroundColor;
@@ -87,30 +95,10 @@
     }
   }
 
-  .quantity-right-plus {
-    &:before {
-      content: "+";
-      font-size: 22px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 10px;
-      width: 16px;
-      color: @firstComplimentColor;
-    }
-  }
-
   .quantity-left-minus {
-    &:before {
-      content: "–";
-      font-size: 22px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 4px;
-      width: 16px;
-      margin-top: -3px;
-      color: @firstComplimentColor;
+    span {
+      position: relative;
+      top: -2px;
     }
   }
 
