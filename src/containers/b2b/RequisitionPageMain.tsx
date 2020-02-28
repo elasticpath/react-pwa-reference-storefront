@@ -418,9 +418,10 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
-            this.setState({ selectedProducts: [], multiSelectMode: false, addToCartLoader: false });
+            this.setState({ selectedProducts: [], multiSelectMode: false });
             onCountChange(cartName, itemQuantity);
           }
+          this.setState({ addToCartLoader: false });
         })
         .catch((error) => {
           this.setState({ isLoading: false, addToCartLoader: false });

@@ -293,9 +293,11 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
         }],
       }),
     })
-      .then(() => {
-        const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
-        onCountChange(cartName, itemQuantity);
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+          onCountChange(cartName, itemQuantity);
+        }
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
