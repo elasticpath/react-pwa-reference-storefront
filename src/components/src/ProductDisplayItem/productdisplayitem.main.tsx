@@ -265,14 +265,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     try {
       await login();
 
+      await cortexFetchItemLookupForm();
+
       const imgIndexArr = Array.from(new Array(5), (val, index) => index);
 
       const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${productId}_${i}`),
         { method: 'GET' }));
       const result = await Promise.all(promises);
       const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
-
-      await cortexFetchItemLookupForm();
 
       const itemLookupRes = await itemLookup(productId, false);
       let arFileExists = false;
