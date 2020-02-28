@@ -120,6 +120,7 @@ const navigationFormZoomArray = [
   'sortattributes:chosen:selectaction',
   'sortattributes:chosen:selector',
   'sortattributes:offersearchresult',
+  'next',
 ];
 
 // Array of zoom parameters to pass to Cortex for itemDetails
