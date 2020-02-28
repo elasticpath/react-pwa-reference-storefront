@@ -105,24 +105,22 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'REGISTERED') {
       const selectedCartData = orgAuthServiceData._element[selectedCart];
       localStorage.setItem(`${Config.cortexApi.scope}_b2bCart`, selectedCartData.name);
-      adminFetch(`${selectedCartData._accesstokenform[0].self.uri}/?followlocation=true`, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-        },
-        body: JSON.stringify({}),
-      })
-        .then(res => res.json())
-        .then(async (data) => {
-          localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
-          await handleModalClose;
-          onContinueCart();
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
+      try {
+        const data = await adminFetch(`${selectedCartData._accesstokenform[0].self.uri}/?followlocation=true`, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          },
+          body: JSON.stringify({}),
+        }).then(res => res.json());
+        localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${data.token}`);
+        await handleModalClose;
+        onContinueCart();
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error.message);
+      }
     }
   }
 
