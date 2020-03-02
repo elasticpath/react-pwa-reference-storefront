@@ -148,6 +148,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
     this.handleBulkModalClose = this.handleBulkModalClose.bind(this);
     this.updatePredicate = this.updatePredicate.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   componentDidMount() {
