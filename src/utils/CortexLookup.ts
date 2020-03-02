@@ -181,6 +181,7 @@ const itemFormZoomArray = [
 const purchaseFormZoomArray = [
   'paymentmeans:element',
   'postedpayments:element',
+  'paymentinstruments:element',
   'shipments:element:destination',
   'shipments:element:shippingoption',
   'billingaddress',

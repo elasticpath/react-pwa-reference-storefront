@@ -24,6 +24,8 @@ import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
+import imgMissingHorizontal from '../../../images/img_missing_horizontal@2x.png';
+import transparentImg from '../../../images/icons/transparent.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
@@ -31,6 +33,7 @@ import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.select
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
+import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
 
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
@@ -131,22 +134,37 @@ interface ProductDisplayItemMainProps {
 }
 
 interface ProductDisplayItemMainState {
+  productId: any,
   productData: any,
   requisitionListData: any,
   itemQuantity: number,
   isLoading: boolean,
   arFileExists: boolean,
+  vrFileExists: boolean,
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
   addToCartLoading: boolean,
   addToRequisitionListLoading: boolean,
   detailsProductData: any,
+  vrMode: boolean;
   multiImages: any,
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
   static isLoggedIn(config) {
     return (localStorage.getItem(`${config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
+  }
+
+  static async urlExists(url) {
+    const res = await fetch(url, {
+      method: 'HEAD',
+    });
+
+    if (res.status === 200) {
+      return true;
+    }
+
+    return false;
   }
 
   static defaultProps = {
@@ -170,16 +188,19 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     Config = epConfig.config;
     ({ intl } = epConfig);
     this.state = {
+      productId: '',
       productData: undefined,
       itemQuantity: 1,
       isLoading: false,
       arFileExists: false,
+      vrFileExists: false,
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
       addToRequisitionListLoading: false,
       detailsProductData: [],
       requisitionListData: undefined,
+      vrMode: false,
       multiImages: [],
     };
 
@@ -194,6 +215,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
     this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
+    this.initVR = this.initVR.bind(this);
+    this.closeVR = this.closeVR.bind(this);
+    this.getVRBackgroundImg = this.getVRBackgroundImg.bind(this);
   }
 
   componentDidMount() {
@@ -201,75 +225,78 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.fetchRequisitionListsData();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { productId } = this.props;
-    if (nextProps.productId !== productId) {
-      login().then(() => {
-        itemLookup(nextProps.productId)
-          .then((res) => {
-            if (Config.arKit.enable) {
-              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-                this.setState({
-                  productData: res,
-                  detailsProductData: res._definition[0].details,
-                  arFileExists: exists,
-                });
-              });
-            } else {
-              this.setState({
-                productData: res,
-                detailsProductData: res._definition[0].details,
-              });
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
+  static async getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.productId !== prevState.productId) {
+      try {
+        await login();
+
+        const itemLookupRes = await itemLookup(nextProps.productId);
+
+        let arFileExists = false;
+        let vrFileExists = false;
+
+        if (Config.vr.enable) {
+          vrFileExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+        }
+
+        if (Config.arKit.enable) {
+          arFileExists = await ProductDisplayItemMain.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+        }
+
+        return {
+          productId: nextProps.productId,
+          productData: itemLookupRes,
+          detailsProductData: itemLookupRes._definition[0].details,
+          arFileExists,
+          vrFileExists,
+        };
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      }
     }
+
+    return null;
   }
 
-  fetchProductData() {
+  async fetchProductData() {
     const { productId } = this.props;
-    const imgIndexArr = Array.from(new Array(5), (val, index) => index);
 
-    const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${productId}_${i}`),
-      { method: 'GET' }));
-    Promise.all(promises)
-      .then((result) => {
-        const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
-        this.setState({ multiImages: validImg });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
+    try {
+      await login();
+
+      await cortexFetchItemLookupForm();
+
+      const imgIndexArr = Array.from(new Array(5), (val, index) => index);
+
+      const promises = imgIndexArr.map(i => fetch(Config.skuImagesUrl.replace('%sku%', `${productId}_${i}`),
+        { method: 'GET' }));
+      const result = await Promise.all(promises);
+      const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
+
+      const itemLookupRes = await itemLookup(productId, false);
+      let arFileExists = false;
+      let vrFileExists = false;
+
+      if (Config.vr.enable) {
+        vrFileExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+      }
+
+      if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
+        arFileExists = await ProductDisplayItemMain.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+      }
+
+      this.setState({
+        productData: itemLookupRes,
+        detailsProductData: itemLookupRes._definition[0].details,
+        multiImages: validImg,
+        arFileExists,
+        vrFileExists,
       });
-
-    login().then(() => {
-      cortexFetchItemLookupForm()
-        .then(() => itemLookup(productId, false)
-          .then((res) => {
-            if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
-              this.urlExists(Config.arKit.skuArImagesUrl.replace('%sku%', res._code[0].code), (exists) => {
-                this.setState({
-                  productData: res,
-                  detailsProductData: res._definition[0].details,
-                  arFileExists: exists,
-                });
-              });
-            } else {
-              this.setState({
-                productData: res,
-                detailsProductData: res._definition[0].details,
-              });
-            }
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          }));
-    });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+    }
   }
 
   fetchRequisitionListsData() {
@@ -416,15 +443,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         });
     });
     event.preventDefault();
-  }
-
-  urlExists(url, callback) {
-    this.funcName = 'UrlExists';
-    fetch(url, {
-      method: 'HEAD',
-    }).then((res) => {
-      callback(res.ok);
-    });
   }
 
   handleSelectionChange(event) {
@@ -583,7 +601,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   renderProductImage() {
-    const { productData, arFileExists, multiImages } = this.state;
+    const {
+      productData,
+      arFileExists,
+      vrMode,
+      vrFileExists,
+      multiImages,
+    } = this.state;
+
     const settings = {
       customPaging(i) {
         return (
@@ -599,30 +624,26 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       slidesToShow: 1,
       slidesToScroll: 1,
     };
-    if (arFileExists) {
-      return (
-        <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
-          <div className="product-image-carousel">
-            <Slider {...settings}>
-              {multiImages.length > 0 ? (
-                multiImages.map(el => (
-                  <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar" key={el}>
-                    <img src={el} alt={intl.get('none-available')} className="itemdetail-main-img" />
-                  </a>
-                ))
-              ) : (
-                <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar">
-                  <ImageContainer className="itemdetail-main-img" isSkuImage fileName={productData._code[0].code} imgUrl={Config.skuImagesUrl.replace('%sku%', productData._code[0].code)} />
-                </a>
-              )}
-            </Slider>
-          </div>
-        </div>
-      );
-    }
+
     return (
       <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
         <div className="product-image-carousel">
+          {
+            !vrMode && vrFileExists && (
+              <button type="button" className="vr-icon-container" onClick={() => this.initVR()} />
+            )
+          }
+          {
+            arFileExists && (
+              <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar" className="anchor-ar-container">
+                <img
+                  src={transparentImg}
+                  alt=""
+                  className="ar-img"
+                />
+              </a>
+            )
+          }
           <Slider {...settings}>
             {multiImages.length > 0 ? (
               multiImages.map(el => (
@@ -737,12 +758,26 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return null;
   }
 
+  initVR() {
+    this.setState({ vrMode: true });
+  }
+
+  closeVR() {
+    this.setState({ vrMode: false });
+  }
+
+  getVRBackgroundImg() {
+    const { productData } = this.state;
+    return Config.vr.skuVrImagesUrl.replace('%sku%', `${productData._code[0].code}`);
+  }
+
   render() {
     const {
-      productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading,
+      productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading, vrMode,
     } = this.state;
     const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
     const { featuredProductAttribute, itemDetailLink } = this.props;
+
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
 
@@ -797,7 +832,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     )
                     : ('')
                   }
-                  {this.renderProductImage()}
+
+                  {vrMode ? (<VRProductDisplayItem handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />) : this.renderProductImage()}
+
                 </div>
               </div>
             </div>

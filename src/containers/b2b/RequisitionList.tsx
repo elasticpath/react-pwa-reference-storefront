@@ -272,9 +272,11 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         },
         body: JSON.stringify({}),
       })
-        .then(() => {
-          const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
-          onCountChange(cartName, list['item-count']);
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
+            onCountChange(cartName, list['item-count']);
+          }
         })
         .catch((error) => {
           // eslint-disable-next-line no-console

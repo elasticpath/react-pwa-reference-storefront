@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="43px" height="41px" viewBox="0 0 43 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>ic_AR</title>
+    <desc>Created with Sketch.</desc>
+    <g id="V2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_AR" transform="translate(1.000000, 1.000000)" stroke="#197C93">
+            <g>
+                <g transform="translate(7.000000, 6.000000)">
+                    <polygon id="Path-7-Copy" points="-1.77635684e-15 6.37548828 12.9111328 0 25.6474609 6.37548828 26.3168945 20.2021484 13.1584473 26.1479492 -1.77635684e-15 20.2021484"></polygon>
+                    <polygon id="Path-8-Copy" points="6.35935749e-13 6.37548828 13.1584473 12.097168 26.3168945 6.04858398 13.1584473 -3.96853327e-13"></polygon>
+                    <polygon id="Path-9-Copy" fill-opacity="0.5" fill="#197C93" points="13.1584473 26.6560059 13.1584473 12.097168 0 6.04858398 0 19.4804688"></polygon>
+                    <polygon id="Path-9-Copy-2" fill="#197C93" opacity="0.1" transform="translate(19.579224, 16.352295) scale(-1, 1) translate(-19.579224, -16.352295) " points="26.1584473 26.6560059 26.1584473 12.097168 13 6.04858398 13 19.4804688"></polygon>
+                </g>
+                <g id="Group-25">
+                    <polyline id="Path-10" points="30 0 39.9428711 0 39.9428711 9.50683594"></polyline>
+                    <polyline id="Path-10-Copy" transform="translate(4.971436, 4.753418) scale(-1, 1) translate(-4.971436, -4.753418) " points="0 0 9.94287109 0 9.94287109 9.50683594"></polyline>
+                    <polyline id="Path-10" transform="translate(35.971436, 33.753418) scale(1, -1) translate(-35.971436, -33.753418) " points="31 29 40.9428711 29 40.9428711 38.5068359"></polyline>
+                    <polyline id="Path-10-Copy" transform="translate(5.971436, 33.753418) scale(-1, -1) translate(-5.971436, -33.753418) " points="1 29 10.9428711 29 10.9428711 38.5068359"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

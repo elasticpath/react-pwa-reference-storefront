@@ -56,6 +56,10 @@
     "enable": true,
     "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"
   },
+  "vr": {
+    "enable": true,
+    "skuVrImagesUrl": "https://s3.amazonaws.com/referenceexp/vr/%sku%.jpg"
+  },
   "indi": {
     "enable": false,
     "carousel": {
