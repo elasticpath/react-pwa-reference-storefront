@@ -853,8 +853,8 @@
         display: block;
         padding: 0;
         position: absolute;
-        top: 40px;
-        right: -28px;
+        top: 34px;
+        right: -18px;
         border: none;
         background: none;
         outline: 0 auto transparent;
@@ -879,7 +879,7 @@
           font-size: 15px;
           transform: rotate(180deg);
           padding-left: 15px;
-          margin: 0;
+          margin-left: -8px;
         }
       }
 
@@ -887,6 +887,7 @@
         width: 50px;
         border: none;
         box-shadow: none;
+        color: @mainColor;
       }
 
       .input-group-btn {
@@ -895,34 +896,48 @@
         display: block;
 
       }
+
+      .btn-number {
+        border: none;
+        box-shadow: none;
+
+        &:hover {
+          background-color: transparent;
+        }
+
+        span {
+          height: 20px;
+          width: 20px;
+          opacity: 0;
+        }
+      }
+
       .quantity-left-minus {
-        .glyphicon-minus {
-          &:before {
-            content: "";
-            border-top: 2px solid @mainColor;
-            border-right: 2px solid @mainColor;
-            height: 9px;
-            width: 9px;
-            position: absolute;
-            transform: translate(2px, 1px) rotate(315deg);
-            top: -10px;
-            right: -3px;
-          }
+        &:before {
+          content: "";
+          border-top: 2px solid @mainColor;
+          border-right: 2px solid @mainColor;
+          height: 9px;
+          width: 9px;
+          position: absolute;
+          transform: translate(2px, 1px) rotate(315deg);
+          top: 6px;
+          left: 3px;
         }
       }
       .quantity-right-plus {
-        .glyphicon-plus {
-          &:before {
-            content: "";
-            border-top: 2px solid @mainColor;
-            border-right: 2px solid @mainColor;
-            height: 9px;
-            width: 9px;
-            position: absolute;
-            transform: translate(2px, 1px) rotate(135deg);
-            top: -14px;
-            right: -1px;
-          }
+        margin-top: -10px;
+
+        &:before {
+          content: "";
+          border-top: 2px solid @mainColor;
+          border-right: 2px solid @mainColor;
+          height: 9px;
+          width: 9px;
+          position: absolute;
+          transform: translate(2px, 1px) rotate(135deg);
+          top: 3px;
+          left: 3px;
         }
       }
     }

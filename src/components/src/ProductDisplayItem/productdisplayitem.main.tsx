@@ -920,7 +920,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
-                    <div className="form-group">
+                    <div className="form-group quantity-picker-group">
                       <label htmlFor="product_display_item_quantity_label" className="control-label">
                         {intl.get('quantity')}
                       </label>

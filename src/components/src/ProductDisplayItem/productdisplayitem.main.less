@@ -238,26 +238,25 @@
           justify-content: space-between;
           align-items: center;
 
-          .form-content-quantity {
-            .form-control-quantity {
-              display: block;
-              width: 82px;
-              height: 32px;
-              border: 1px solid @fifthComplimentTextColor;
-              border-radius: 4px;
-              text-align: center;
-              margin: 0 auto;
-            }
+          .form-control-quantity {
+            display: block;
+            width: 82px;
+            height: 32px;
+            font-size: 14px;
+            border: 1px solid @fifthComplimentTextColor;
+            border-radius: 4px;
+            text-align: center;
+            margin: 0 auto;
+          }
 
-            input[type=number]::-webkit-outer-spin-button,
-            input[type=number]::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
+          input[type=number]::-webkit-outer-spin-button,
+          input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
 
-            input[type=number] {
-                -moz-appearance:textfield;
-            }
+          input[type=number] {
+            -moz-appearance:textfield;
           }
         }
       }
@@ -292,6 +291,98 @@
       margin: 0;
       padding-left: 0;
       padding-right: 0;
+    }
+
+    .itemdetail-addtocart-form {
+      position: relative;
+
+      fieldset,
+      >.form-group:not(.quantity-picker-group) {
+        padding-right: 80px;
+      }
+    }
+
+    .quantity-picker-group {
+      position: absolute;
+      right: 0;
+      bottom: 70px;
+      padding-right: 0;
+
+      .control-label {
+        display: none;
+      }
+    }
+
+    .input-group-btn {
+      display: block;
+      transform: rotate(180deg);
+      .quantity-col {
+        font-size: 15px;
+        transform: rotate(180deg);
+      }
+    }
+
+    .input-group-btn {
+      position: relative;
+      width: 82px;
+      margin: 0 auto;
+      display: block;
+
+      .form-control-quantity {
+        border: none !important;
+        box-shadow: none;
+        color: @mainColor;
+      }
+    }
+
+    .btn-number {
+      border: none;
+      box-shadow: none;
+      position: absolute;
+      left: 50%;
+      margin-left: -10px;
+      background-color: transparent;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      span {
+        height: 20px;
+        width: 20px;
+        opacity: 0;
+      }
+    }
+
+    .quantity-left-minus {
+      bottom: 40px;
+
+      &:before {
+        content: "";
+        border-top: 2px solid @mainColor;
+        border-right: 2px solid @mainColor;
+        height: 9px;
+        width: 9px;
+        position: absolute;
+        transform: translate(2px, 1px) rotate(315deg);
+        top: 6px;
+        left: 3px;
+      }
+    }
+    .quantity-right-plus {
+      top: 40px;
+
+      &:before {
+        content: "";
+        border-top: 2px solid @mainColor;
+        border-right: 2px solid @mainColor;
+        height: 9px;
+        width: 9px;
+        position: absolute;
+        transform: translate(2px, 1px) rotate(135deg);
+        top: 3px;
+        left: 3px;
+      }
     }
   }
 
@@ -397,9 +488,6 @@
     max-width: 100%;
   }
 
-  @media (max-width: @mobileWidth - 100px) {
-  }
-
   .slick-arrow {
     height: 40px;
     width: 40px;
@@ -431,6 +519,10 @@
       &:before {
         border-color: @secondBorderColor;
       }
+    }
+
+    @media (max-width: @tabletWidth - 1px) {
+      display: none !important;
     }
   }
   .slick-prev {
@@ -490,19 +582,34 @@
     }
 
     @media (max-width: @tabletWidth - 1px) {
-      display: none !important;
+      padding: 0 7px;
+      text-align: left;
 
       li {
-        width: 76px;
-        height: 62px;
+        height: auto;
+        width: auto;
         display: inline-block;
+        margin: 0 4px;
+
+        &.slick-active {
+          border-color: transparent;
+
+          .slick-thumb-item {
+            background-color: @buttonActiveColor;
+            border-color: @buttonFocusColor;
+          }
+        }
       }
 
       .slick-thumb-item {
-        padding: 2px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        border: 1px solid @buttonFocusColor;
+        background-color: @buttonFocusColor;
 
         img {
-          height: 56px;
+          display: none;
         }
       }
     }
