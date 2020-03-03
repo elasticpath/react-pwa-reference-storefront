@@ -217,7 +217,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
         },
         body: JSON.stringify({
-          itemListName: listName,
+          name: listName,
         }),
       })
         .then((res) => {
