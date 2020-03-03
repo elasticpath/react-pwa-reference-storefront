@@ -32,7 +32,7 @@ import RouteWithSubRoutes from './RouteWithSubRoutes';
 import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
-import { ErrorContext, ErrorDisplayBoundary } from './components/src/utils/MessageContext';
+import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
 
 import './App.less';
@@ -184,7 +184,22 @@ const Root = (props) => {
   ];
 };
 
-const App = withRouter(withAnalytics(Root));
+const withTracker = (WrappedComponent) => {
+  const trackPage = () => {
+    ErrorRemoveAll();
+  };
+
+  const HOC = (props) => {
+    trackPage();
+    return (
+      <WrappedComponent {...props} />
+    );
+  };
+
+  return HOC;
+};
+
+const App = withRouter(withAnalytics(withTracker(Root)));
 const AppWithRouter = (props) => {
   const { componentsData } = props;
   return (

@@ -31,7 +31,6 @@ import './messagecontainer.less';
 interface MessageContainerProps {
   /** message */
   message: any,
-  handleCloseMessageContainer?: any,
 }
 
 interface MessageContainerState {
@@ -55,17 +54,11 @@ class MessageContainer extends Component<MessageContainerProps, MessageContainer
   }
 
   handleCloseMessageContainer(index) {
-    const { handleCloseMessageContainer } = this.props;
-
-    if (handleCloseMessageContainer) {
-      handleCloseMessageContainer();
-    } else {
-      const { messages } = this.state;
-      const arrayMsg = [...messages];
-      arrayMsg.splice(index, 1);
-      this.setState({ messages: arrayMsg });
-      ErrorRemove(index);
-    }
+    const { messages } = this.state;
+    const arrayMsg = [...messages];
+    arrayMsg.splice(index, 1);
+    this.setState({ messages: arrayMsg });
+    ErrorRemove(index);
   }
 
   render() {
