@@ -25,13 +25,23 @@ import React, {
 const ErrorContext:any = React.createContext('');
 let setE:any = () => {};
 let removeE:any = () => {};
+let removeAllE:any = () => {};
 function ErrorDisplayBoundary({ children }) {
   const [error, setError]:any = useState([]);
   const ctx:any = useMemo(() => ({ error, setError }), [error]);
-  // eslint-disable-next-line consistent-return
+
   setE = (e) => {
+    const arrayExistMessage = error.reduce((acum, el) => acum.concat(el.debugMessages.split(' \n ')), []);
+    const arrayNewMessage = e.debugMessages && e.debugMessages.split(' \n ');
     if (e && error && error.find(el => el.debugMessages === e.debugMessages)) {
       return [];
+    }
+    if (arrayExistMessage && arrayNewMessage) {
+      const a = arrayNewMessage.filter(el => arrayExistMessage.indexOf(el) === -1);
+      if (!a.length) {
+        return [];
+      }
+      return setError([...error, { ...e, debugMessages: a.join(' \n ') }]);
     }
     return setError([...error, e]);
   };
@@ -39,6 +49,12 @@ function ErrorDisplayBoundary({ children }) {
     const arrayMsg = [...error];
     arrayMsg.splice(index, 1);
     return setError(arrayMsg);
+  };
+  removeAllE = () => {
+    const arrayMsg = [...error];
+    if (arrayMsg.length) {
+      setError([]);
+    }
   };
   return (<ErrorContext.Provider value={ctx}>{children}</ErrorContext.Provider>);
 }
@@ -53,6 +69,11 @@ function ErrorRemove(index) {
   return null;
 }
 
+function ErrorRemoveAll() {
+  removeAllE();
+  return null;
+}
+
 export {
-  ErrorContext, ErrorDisplayBoundary, ErrorInlet, ErrorRemove,
+  ErrorContext, ErrorDisplayBoundary, ErrorInlet, ErrorRemove, ErrorRemoveAll,
 };
