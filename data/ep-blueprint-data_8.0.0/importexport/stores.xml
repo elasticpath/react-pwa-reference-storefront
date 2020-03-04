@@ -126,7 +126,7 @@
 </store>
 
 <store code="VESTRICA" enabled="true">
-    <globalization timeZone="Europe/London" country="CA" sub_country="BC" content_encoding="UTF-8" default_locale="en" default_currency="CAD"/>
+    <globalization timeZone="Europe/London" country="CA" sub_country="BC" content_encoding="UTF-8" default_locale="en_US" default_currency="CAD"/>
     <url>http://vestrica.epdemos.com</url>
     <name>Vestri Canada Web Store</name>
     <state>200</state>
@@ -140,7 +140,7 @@
     <credit_card_cvv2_enabled>false</credit_card_cvv2_enabled>
     <store_full_credit_cards>false</store_full_credit_cards>
     <locales>
-        <locale>en</locale>
+        <locale>en_US</locale>
     </locales>
     <currencies>
         <currency>CAD</currency>

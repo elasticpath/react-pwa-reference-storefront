@@ -20,7 +20,10 @@
     <attributes>
         <attribute>
             <key>FaultCode</key>
-            <name>Fault Code</name>
+			<name>
+				<value language="en_US">Fault Code</value>
+				<value language="es_ES">Código de fallo</value>
+			</name>
             <usage>Product</usage>
             <type>ShortText</type>
             <multilanguage>false</multilanguage>
@@ -30,7 +33,10 @@
         </attribute>
         <attribute>
             <key>features</key>
-            <name>Features</name>
+			<name>
+				<value language="en_US">Features</value>
+				<value language="es_ES">Caracteristicas</value>
+			</name>
             <usage>Product</usage>
             <type>LongText</type>
             <multilanguage>false</multilanguage>
@@ -40,7 +46,10 @@
         </attribute>
         <attribute>
             <key>localized_summary</key>
-            <name>LSummary</name>
+			<name>
+				<value language="en_US">LSummary</value>
+				<value language="es_ES">resumen localizado</value>
+			</name>
             <usage>Product</usage>
             <type>LongText</type>
             <multilanguage>true</multilanguage>
@@ -50,7 +59,10 @@
         </attribute>
         <attribute>
             <key>summary</key>
-            <name>Description</name>
+			<name>
+				<value language="en_US">Description</value>
+				<value language="es_ES">Descripción</value>
+			</name>
             <usage>Product</usage>
             <type>LongText</type>
             <multilanguage>false</multilanguage>
@@ -60,7 +72,10 @@
         </attribute>
         <attribute>
             <key>tag</key>
-            <name>Tag</name>
+			<name>
+				<value language="en_US">Tag</value>
+				<value language="es_ES">Etiqueta</value>
+			</name>
             <usage>Product</usage>
             <type>ShortText</type>
             <multilanguage>false</multilanguage>
@@ -70,7 +85,10 @@
         </attribute>
         <attribute>
             <key>VESTRI_INSTALLATION</key>
-            <name>Vestri_Requires Installation</name>
+			<name>
+				<value language="en_US">Requires Installation</value>
+				<value language="es_ES">Fault Code</value>
+			</name>
             <usage>Product</usage>
             <type>Boolean</type>
             <multilanguage>false</multilanguage>
