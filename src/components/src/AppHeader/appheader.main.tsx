@@ -329,21 +329,25 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
                 </button>
               </div>
               <div>
-                {!multiCartData ? (
-                  <div className="cart-link-container">
-                    <Link className="cart-link" to={appHeaderLinks.myCart}>
-                      <CartIcon className="cart-icon" />
-                      {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
-                        <span className="cart-link-counter">
-                          {cartData['total-quantity']}
-                        </span>
-                      )}
-                      {intl.get('shopping-cart-nav')}
-                    </Link>
+                {(multiCartData || cartData) ? (
+                  <div>
+                    {!multiCartData ? (
+                      <div className="cart-link-container">
+                        <Link className="cart-link" to={appHeaderLinks.myCart}>
+                          <CartIcon className="cart-icon" />
+                          {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                          <span className="cart-link-counter">
+                            {cartData['total-quantity']}
+                          </span>
+                          )}
+                          {intl.get('shopping-cart-nav')}
+                        </Link>
+                      </div>
+                    ) : (
+                      <Cart />
+                    )}
                   </div>
-                ) : (
-                  <Cart />
-                )}
+                ) : ''}
               </div>
               {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
                 <div className="bulk-container">

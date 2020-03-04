@@ -195,6 +195,8 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
 
   renderPayments() {
     const { profileData } = this.state;
+    const isDisabledPayment = !(profileData && profileData._paymentinstruments);
+
     if (profileData) {
       if (
         profileData._paymentinstruments
@@ -231,7 +233,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
       <PaymentSelectorMain
         paymentInstrumentSelector={{}}
         onChange={this.fetchProfileData}
-        disableAddPayment={false}
+        disableAddPayment={isDisabledPayment}
         shouldPostToProfile
         allowSelectionContainerHighlight={false}
       />
