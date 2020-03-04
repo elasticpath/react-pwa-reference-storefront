@@ -920,19 +920,19 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
-                    <div className="form-group">
+                    <div className="form-group quantity-picker-group">
                       <label htmlFor="product_display_item_quantity_label" className="control-label">
                         {intl.get('quantity')}
                       </label>
                       <div className="input-group-btn">
                         <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                          <span className="glyphicon glyphicon-minus" />
+                          <span>–</span>
                         </button>
                         <div className="quantity-col form-content form-content-quantity">
                           <input id="product_display_quantity_field" className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
                         </div>
                         <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                          <span className="glyphicon glyphicon-plus" />
+                          <span>+</span>
                         </button>
                       </div>
                       {

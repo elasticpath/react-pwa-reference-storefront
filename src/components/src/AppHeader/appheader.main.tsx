@@ -393,7 +393,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             <div className="locale-container">
               <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
             </div>
-            <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} />
+            {Config.b2b.enable && <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} />}
           </div>
         </div>
 

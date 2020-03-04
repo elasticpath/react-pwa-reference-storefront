@@ -593,19 +593,19 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           {(quantity !== undefined) ? [
             <span className="input-group-btn" key="quantity-buttons">
               <button type="button" key="quantity-button-minus" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                <span className="glyphicon glyphicon-minus" />
+                <span>–</span>
               </button>
               <div className="quantity-col form-content form-content-quantity">
                 <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
               </div>
               <button type="button" key="quantity-button-plus" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                <span className="glyphicon glyphicon-plus" />
+                <span>+</span>
               </button>
             </span>,
             <button type="submit" className={`item-quantity-update-icon ${isActiveQuantityUpdate ? 'active-icon' : ''}`}>
               <UpdateQuantityIcon />
             </button>,
-            <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value="Update Quantity" />,
+            <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value={intl.get('update-quantity')} />,
           ] : ('')
           }
         </form>

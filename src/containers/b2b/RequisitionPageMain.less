@@ -322,6 +322,10 @@
       border-bottom: 1px solid @fifthComplimentTextColor;
     }
 
+    .input-group-btn {
+      display: flex;
+    }
+
     .checkbox-col {
       @media (min-width: @mobileWidth) {
         width: 20px;
@@ -366,10 +370,6 @@
     .quantity-col {
       height: auto;
       width: auto;
-
-      .input-group-btn {
-        float: none;
-      }
 
       @media (min-width: @mobileWidth) {
         width: 130px;
@@ -857,8 +857,8 @@
         display: block;
         padding: 0;
         position: absolute;
-        top: 24px;
-        right: -28px;
+        top: 34px;
+        right: -18px;
         border: none;
         background: none;
         outline: 0 auto transparent;
@@ -883,43 +883,65 @@
           font-size: 15px;
           transform: rotate(180deg);
           padding-left: 15px;
+          margin-left: -8px;
         }
       }
 
+      .form-control-quantity {
+        width: 50px;
+        border: none;
+        box-shadow: none;
+        color: @mainColor;
+      }
+
       .input-group-btn {
-        width: 20px;
+        width: 34px;
         margin: 0 auto;
         display: block;
 
       }
+
+      .btn-number {
+        border: none;
+        box-shadow: none;
+
+        &:hover {
+          background-color: transparent;
+        }
+
+        span {
+          height: 20px;
+          width: 20px;
+          opacity: 0;
+        }
+      }
+
       .quantity-left-minus {
-        .glyphicon-minus {
-          &:before {
-            content: "";
-            border-top: 2px solid @mainColor;
-            border-right: 2px solid @mainColor;
-            height: 9px;
-            width: 9px;
-            position: absolute;
-            transform: translate(2px, 1px) rotate(315deg);
-            top: -10px;
-            right: -3px;
-          }
+        &:before {
+          content: "";
+          border-top: 2px solid @mainColor;
+          border-right: 2px solid @mainColor;
+          height: 9px;
+          width: 9px;
+          position: absolute;
+          transform: translate(2px, 1px) rotate(315deg);
+          top: 6px;
+          left: 3px;
         }
       }
       .quantity-right-plus {
-        .glyphicon-plus {
-          &:before {
-            content: "";
-            border-top: 2px solid @mainColor;
-            border-right: 2px solid @mainColor;
-            height: 9px;
-            width: 9px;
-            position: absolute;
-            transform: translate(2px, 1px) rotate(135deg);
-            top: -14px;
-            right: -1px;
-          }
+        margin-top: -10px;
+
+        &:before {
+          content: "";
+          border-top: 2px solid @mainColor;
+          border-right: 2px solid @mainColor;
+          height: 9px;
+          width: 9px;
+          position: absolute;
+          transform: translate(2px, 1px) rotate(135deg);
+          top: 3px;
+          left: 3px;
         }
       }
     }
@@ -1028,6 +1050,18 @@
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .add-products-component {
+    .add-product-modal {
+      margin: 10px 5px 15px 5px;
+    }
+
+    .product-quantity-wrap {
+      padding-left: 15px;
     }
   }
 }
