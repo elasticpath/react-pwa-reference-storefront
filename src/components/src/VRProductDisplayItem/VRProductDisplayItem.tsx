@@ -91,6 +91,23 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             <Entity gltf-model="#cityModel" modify-materials scale="1 1 1" position="-3 0 -5"></Entity>
 
             <Entity primitive="a-sky" radius="30" src="#background" />
+
+
+            {/* Deal with camera sounds... */}
+
+            <Entity camera look-controls>
+              {/* eslint-disable-next-line react/self-closing-comp */}
+              <Entity
+                cursor="fuse: true; fuseTimeout: 500"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: red; shader: flat"
+              >
+              </Entity>
+            </Entity>
+
+            <Entity id="box" cursor-listener geometry="primitive: box" material="color: blue" />
+
           </Scene>
         </div>
 
