@@ -95,16 +95,16 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
 
             {/* Deal with camera sounds... */}
 
-            <Entity camera look-controls>
+            <a-camera>
               {/* eslint-disable-next-line react/self-closing-comp */}
-              <Entity
-                cursor="fuse: true; fuseTimeout: 500"
+              <a-cursor
+                cursor="fuse: true; fuseTimeout: 2000"
                 position="0 0 -1"
-                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
                 material="color: red; shader: flat"
               >
-              </Entity>
-            </Entity>
+              </a-cursor>
+            </a-camera>
 
             <Entity id="box" cursor-listener geometry="primitive: box" material="color: blue" />
 
