@@ -27,7 +27,7 @@ import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
 
 
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
-import { ReactComponent as CartIcon } from '../../images/icons/ic_add_to_cart.svg';
+import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 import { ReactComponent as AddToListIcon } from '../../images/icons/ic_add_list.svg';
 import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
 import { login } from '../../utils/AuthService';
@@ -47,6 +47,7 @@ const listsZoomArray = [
   'additemlisttocartforms:element:target:additemstocartform',
   'additemlisttocartforms:element:additemlisttocartaction',
   'additemstoitemlistform',
+  'removelineitemsform',
   'itemlists',
   'paginatedlineitems',
   'paginatedlineitems:element',
@@ -108,6 +109,7 @@ interface RequisitionPageMainState {
   multiCartData: any,
   selectedProducts: any,
   addItemsToItemListUri: string,
+  removeLineItemsUri: string,
   showCreateListLoader: boolean,
   addToCartLoader: boolean,
   listItemCount: number,
@@ -131,6 +133,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       productsData: undefined,
       selectedProducts: [],
       addItemsToItemListUri: '',
+      removeLineItemsUri: '',
       showCreateListLoader: false,
       addToCartLoader: false,
       listItemCount: 0,
@@ -195,6 +198,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 listName: res.name,
                 listItemCount: res['item-count'],
                 addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
+                removeLineItemsUri: res._removelineitemsform[0].self.uri,
                 multiCartData: res._additemlisttocartforms[0]._element,
                 currentlyListName: res.name,
                 productsData: res._paginatedlineitems[0],
@@ -274,30 +278,34 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   handleBulkDelete() {
-    const { selectedProducts } = this.state;
-    this.setState({ isLoading: true });
-    const promises = selectedProducts.map(product => cortexFetch(product.self.uri, {
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    }));
-    Promise.all(promises)
-      .then(() => {
-        this.setState({
-          multiSelectMode: false,
-          selectedProducts: [],
-          isLoading: false,
+    const { selectedProducts, removeLineItemsUri } = this.state;
+    const lineitems = selectedProducts.map(el => ({ guid: el.guid }));
+    this.setState({ isTableLoading: true });
+
+    login().then(() => {
+      cortexFetch(`${removeLineItemsUri}?followlocation&format=standardlinks,zoom.nodatalinks`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({ lineitems }),
+        })
+        .then((res) => {
+          this.setState({
+            multiSelectMode: false,
+            selectedProducts: [],
+            isTableLoading: false,
+          });
+          this.loadRequisitionListData(true);
+        })
+        .catch((error) => {
+          this.setState({ isTableLoading: false });
+          // eslint-disable-next-line no-console
+          console.error('error.message:', error.message);
         });
-        this.loadRequisitionListData();
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        this.setState({ isLoading: false });
-        this.loadRequisitionListData();
-      });
+    });
   }
 
   handleEditListNameModalOpen() {
@@ -565,12 +573,19 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                             {intl.get('select-all')}
                           </label>
                           <p className="selected-element">
-                            {selectedProducts.length}
+                            <span className="selected-element-counter">
+                              {selectedProducts.length}
+                            </span>
                             {' '}
                             {intl.get('item-selected')}
                           </p>
                         </div>
-                        {/* <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button> */}
+                        <button type="button" className="ep-btn small delete-btn" disabled={!(selectedProducts && selectedProducts.length)} onClick={this.handleBulkDelete}>
+                          <RecycleBinIcon className="recycle-bin-icon" />
+                          <span className="btn-txt">
+                            {intl.get('delete')}
+                          </span>
+                        </button>
                         <CartDropdown isDisabled={!(selectedProducts && selectedProducts.length)} />
                         <button type="button" className="close-btn" onClick={this.handleCloseMultiSelectMode}>
                           <CloseIcon />
