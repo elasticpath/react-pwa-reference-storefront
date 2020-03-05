@@ -83,6 +83,13 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               }
             </a-assets>
 
+            <a-assets>
+              {/* eslint-disable-next-line react/self-closing-comp */}
+              <a-asset-item id="cityModel" src="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.gltf" response-type="arraybuffer"></a-asset-item>
+            </a-assets>
+            {/* eslint-disable-next-line react/self-closing-comp */}
+            <Entity gltf-model="#cityModel" modify-materials scale="1 1 1" position="-3 0 -5"></Entity>
+
             <Entity primitive="a-sky" radius="30" src="#background" />
           </Scene>
         </div>
