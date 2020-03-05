@@ -202,7 +202,7 @@
         &:disabled {
           background-color: @fifthComplimentTextColor;
           color: @firstComplimentTextColor;
-          border: none;
+          border-color: transparent;
           cursor: initial;
         }
 
@@ -492,9 +492,15 @@
       }
     }
 
+    .selected-element-counter {
+      display: inline-block;
+      min-width: 20px;
+      text-align: right;
+    }
+
     .delete-btn {
       min-height: 32px;
-      min-width: 125px;
+      min-width: 20px;
       font-size: 14px;
       margin-top: 0;
       margin-right: 0;
@@ -502,14 +508,49 @@
       font-weight: normal;
       vertical-align: middle;
 
-      @media screen and (min-width: 481px) {
-        min-width: 100px;
+      &:disabled {
+        background-color: @fifthComplimentTextColor;
+        color: @firstComplimentTextColor;
+        border-color: @fifthComplimentTextColor;
+      }
+
+      @media (min-width: @mobileWidth) {
+        min-width: 125px;
         margin-top: 5px;
         margin-right: 10px;
+
+        .recycle-bin-icon {
+          display: none;
+        }
       }
 
       @media (min-width: @tabletWidth) {
         margin-left: 30px;
+      }
+
+      @media (max-width: @mobileWidth - 1px) {
+        position: absolute;
+        top: 0;
+        right: 75px;
+        background-color: transparent;
+        margin-bottom: 0;
+
+        &:disabled {
+          background-color: transparent;
+          border-color: transparent;
+
+          .recycle-bin-icon {
+            fill: #BAD7DE;
+          }
+        }
+
+        .recycle-bin-icon {
+          fill: @mainBackgroundColor;
+        }
+
+        .btn-txt {
+          display: none;
+        }
       }
     }
   }
