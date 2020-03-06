@@ -26,6 +26,7 @@ import intl from 'react-intl-universal';
 
 interface IVRComponentState {
   showInfo: boolean,
+  isMobile: boolean,
 }
 
 interface IVRComponentProps {
@@ -42,10 +43,22 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     return (/Safari/i).test(userAgent) && !(/Chrome/i).test(userAgent);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      return {
+        isMobile: true,
+      };
+    }
+    return {
+      isMobile: false,
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       showInfo: false,
+      isMobile: false,
     };
     this.handleInfoPanel = this.handleInfoPanel.bind(this);
   }
@@ -58,7 +71,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
 
   public render() {
     const { backgroundUri, handleCloseVR } = this.props;
-    const { showInfo } = this.state;
+    const { showInfo, isMobile } = this.state;
 
     return (
       <div>
@@ -84,29 +97,24 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a-assets>
 
             <a-assets>
-              {/* eslint-disable-next-line react/self-closing-comp */}
-              <a-asset-item id="cityModel" src="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.gltf" response-type="arraybuffer"></a-asset-item>
+              <a-asset-item id="cityModel" src="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.gltf" response-type="arraybuffer" />
             </a-assets>
-            {/* eslint-disable-next-line react/self-closing-comp */}
-            <Entity gltf-model="#cityModel" modify-materials scale="1 1 1" position="-3 0 -5"></Entity>
+            <Entity gltf-model="#cityModel" modify-materials scale="1 1 1" position="-3 0 -5" />
 
             <Entity primitive="a-sky" radius="30" src="#background" />
 
-
-            {/* Deal with camera sounds... */}
-
-            <a-camera>
-              {/* eslint-disable-next-line react/self-closing-comp */}
-              <a-cursor
-                cursor="fuse: true; fuseTimeout: 2000"
-                position="0 0 -1"
-                geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
-                material="color: red; shader: flat"
-              >
-              </a-cursor>
-            </a-camera>
-
-            <Entity id="box" cursor-listener geometry="primitive: box" material="color: blue" />
+            {isMobile && (
+              <a-camera>
+                {/* eslint-disable-next-line react/self-closing-comp */}
+                <a-cursor
+                  cursor="fuse: true; fuseTimeout: 2000"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
+                  material="color: grey; shader: flat"
+                />
+              </a-camera>
+            )
+            }
 
           </Scene>
         </div>
