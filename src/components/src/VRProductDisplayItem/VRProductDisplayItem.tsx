@@ -99,10 +99,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a-assets>
             <Entity primitive="a-sky" radius="30" src="#background" />
 
-            <a-assets>
-              <a-asset-item id="mesh" src="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.gltf" response-type="arraybuffer" />
-            </a-assets>
-            <Entity gltf-model="#mesh" modify-materials scale="1 1 1" position="-3 0 -5" />
+            <Entity gltf-model="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb" modify-materials scale="1 1 1" position="-3 0 -5" />
 
             {isMobile && (
               <a-camera>
