@@ -34,6 +34,8 @@ interface IVRComponentProps {
   backgroundUri?: any,
   /** Called when Vr window is closed. */
   handleCloseVR: any,
+  /** The 3D Mesh uri */
+  meshUri: any
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -70,7 +72,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
   }
 
   public render() {
-    const { backgroundUri, handleCloseVR } = this.props;
+    const { backgroundUri, handleCloseVR, meshUri } = this.props;
     const { showInfo, isMobile } = this.state;
 
     return (
@@ -95,13 +97,12 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
                 )
               }
             </a-assets>
+            <Entity primitive="a-sky" radius="30" src="#background" />
 
             <a-assets>
-              <a-asset-item id="cityModel" src="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.gltf" response-type="arraybuffer" />
+              <a-asset-item id="mesh" src="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.gltf" response-type="arraybuffer" />
             </a-assets>
-            <Entity gltf-model="#cityModel" modify-materials scale="1 1 1" position="-3 0 -5" />
-
-            <Entity primitive="a-sky" radius="30" src="#background" />
+            <Entity gltf-model="#mesh" modify-materials scale="1 1 1" position="-3 0 -5" />
 
             {isMobile && (
               <a-camera>
