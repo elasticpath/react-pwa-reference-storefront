@@ -122,7 +122,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               }}
             />
 
-            {isMobile && (
+            {isMobile ? (
               <Entity primitive="a-camera">
                 <Entity
                   primitive="a-cursor"
@@ -131,9 +131,10 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
                   }}
                 />
               </Entity>
+            ) : (
+              <Entity primitive="a-camera" cursor="rayOrigin: mouse" />
             )
             }
-
           </Scene>
         </div>
 
