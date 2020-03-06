@@ -63,12 +63,24 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
       isMobile: false,
     };
     this.handleInfoPanel = this.handleInfoPanel.bind(this);
+    this.handleCollide = this.handleCollide.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleInfoPanel() {
     const { showInfo } = this.state;
 
     this.setState({ showInfo: !showInfo });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  handleCollide() {
+    console.log('we collided with staring');
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  handleClick() {
+    console.log('able to handle a click');
   }
 
   public render() {
@@ -99,18 +111,26 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a-assets>
             <Entity primitive="a-sky" radius="30" src="#background" />
 
-            <Entity gltf-model="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb" modify-materials scale="1 1 1" position="-3 0 -5" />
+            <Entity
+              gltf-model="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb"
+              modify-materials
+              scale="1 1 1"
+              position="-3 0 -5"
+              cursor-listener
+              events={{
+                click: this.handleClick, collided: [this.handleCollide], mouseenter: this.handleClick,
+              }}
+            />
 
             {isMobile && (
-              <a-camera>
-                {/* eslint-disable-next-line react/self-closing-comp */}
-                <a-cursor
-                  cursor="fuse: true; fuseTimeout: 2000"
-                  position="0 0 -1"
-                  geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
-                  material="color: grey; shader: flat"
+              <Entity primitive="a-camera">
+                <Entity
+                  primitive="a-cursor"
+                  animation__click={{
+                    property: 'scale', startEvents: 'click', from: '0.1 0.1 0.1', to: '1 1 1', dur: 150,
+                  }}
                 />
-              </a-camera>
+              </Entity>
             )
             }
 
