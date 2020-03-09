@@ -75,11 +75,13 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
 
   // eslint-disable-next-line class-methods-use-this
   handleCollide() {
+    // eslint-disable-next-line no-console
     console.log('we collided with staring');
   }
 
   // eslint-disable-next-line class-methods-use-this
   handleClick() {
+    // eslint-disable-next-line no-console
     console.log('able to handle a click');
   }
 
