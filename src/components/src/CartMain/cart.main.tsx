@@ -51,11 +51,14 @@ interface CartMainProps {
 
 interface CartMainState {
   openModal: boolean,
-  showReqListForm: boolean,
   requisitionListData: any,
   itemData: {code: string, quantity: number},
   listUrl: string,
   addToRequisitionListLoading: boolean,
+  listName: string,
+  showReqListForm: boolean,
+  showReqListLoader: boolean,
+  createRequisitionForm: any,
 }
 
 const requisitionListsZoomArray = [
@@ -65,6 +68,9 @@ const requisitionListsZoomArray = [
   'itemlistinfo:allitemlists:element:lineitems',
   'itemlistinfo:allitemlists:element:paginatedlineitems',
   'itemlistinfo:allitemlists:element:additemstoitemlistform',
+  'itemlistinfo:itemlisttypes',
+  'itemlistinfo:itemlisttypes:element',
+  'itemlistinfo:itemlisttypes:element:createitemlistform',
 ];
 
 class CartMain extends Component<CartMainProps, CartMainState> {
@@ -85,13 +91,16 @@ class CartMain extends Component<CartMainProps, CartMainState> {
     ({ intl } = getConfig());
     this.state = {
       openModal: false,
-      showReqListForm: false,
       requisitionListData: undefined,
       itemData: {
         code: '', quantity: 0,
       },
       listUrl: '',
       addToRequisitionListLoading: false,
+      listName: '',
+      showReqListForm: false,
+      showReqListLoader: false,
+      createRequisitionForm: '',
     };
 
     this.handleConfiguratorAddToCart = this.handleConfiguratorAddToCart.bind(this);
@@ -99,10 +108,14 @@ class CartMain extends Component<CartMainProps, CartMainState> {
     this.handleRemove = this.handleRemove.bind(this);
     this.openReqListModal = this.openReqListModal.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
-    this.handleShowReqListForm = this.handleShowReqListForm.bind(this);
     this.fetchRequisitionListsData = this.fetchRequisitionListsData.bind(this);
     this.handleSelectList = this.handleSelectList.bind(this);
     this.handleAddToList = this.handleAddToList.bind(this);
+    this.handleShowListForm = this.handleShowListForm.bind(this);
+    this.handleHideListForm = this.handleHideListForm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.clearListNameField = this.clearListNameField.bind(this);
+    this.handleSaveList = this.handleSaveList.bind(this);
   }
 
   componentDidMount() {
@@ -122,6 +135,8 @@ class CartMain extends Component<CartMainProps, CartMainState> {
           if (res._itemlistinfo) {
             this.setState({
               requisitionListData: res._itemlistinfo[0]._allitemlists[0]._element,
+              createRequisitionForm: res._itemlistinfo[0]._itemlisttypes[0]._element[0]._createitemlistform[0],
+              showReqListLoader: false,
             });
           }
         })
@@ -152,7 +167,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
 
   handleModalClose() {
     this.setState({
-      addToRequisitionListLoading: false, openModal: false, itemData: { code: '', quantity: 0 }, listUrl: '',
+      addToRequisitionListLoading: false, openModal: false, itemData: { code: '', quantity: 0 }, listUrl: '', showReqListForm: false,
     });
   }
 
@@ -203,15 +218,79 @@ class CartMain extends Component<CartMainProps, CartMainState> {
     });
   }
 
-  handleShowReqListForm() {
-    this.setState({
-      showReqListForm: true,
-    });
-  }
-
   handleRemove() {
     const { onItemRemove } = this.props;
     onItemRemove();
+  }
+
+  handleSaveList() {
+    const { listName, createRequisitionForm } = this.state;
+    if (listName.length !== 0) {
+      this.setState({ showReqListLoader: true });
+      cortexFetch(createRequisitionForm.self.uri, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify({
+          name: listName,
+        }),
+      })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            this.fetchRequisitionListsData();
+            this.setState({ listName: '' });
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    }
+  }
+
+  handleShowListForm() {
+    this.setState({ showReqListForm: true });
+  }
+
+  handleHideListForm() {
+    this.setState({ showReqListForm: false });
+  }
+
+  handleChange(event) {
+    this.setState({ listName: event.target.value });
+  }
+
+  clearListNameField() {
+    this.setState({ listName: '' });
+  }
+
+  renderAddNewListForm() {
+    const { listName, showReqListLoader } = this.state;
+    return (
+      <div className="create-list-form">
+        {showReqListLoader && (
+          <div className="loader-wrapper">
+            <div className="miniLoader" />
+          </div>
+        )}
+        <div className="edit-mode">
+          <h3>{intl.get('create-new-list')}</h3>
+          <div className="edit-mode-form">
+            <div className="list-edit-field-wrap">
+              <label htmlFor="list_edit">Name</label>
+              <input type="text" value={listName} id="list_edit" className="list-edit-field" onChange={this.handleChange} />
+              {listName.length > 0 && (<span role="presentation" className="clear-field-btn" onClick={this.clearListNameField} />)}
+            </div>
+            <div className="btn-container">
+              <button type="button" className="ep-btn cancel-btn" onClick={this.handleHideListForm}>{intl.get('cancel')}</button>
+              <button type="button" className="ep-btn primary save-btn" onClick={this.handleSaveList}>{intl.get('save')}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -219,7 +298,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       empty, cartData, handleQuantityChange, itemDetailLink,
     } = this.props;
     const {
-      openModal, listUrl, showReqListForm, requisitionListData, addToRequisitionListLoading,
+      openModal, listUrl, requisitionListData, addToRequisitionListLoading, showReqListForm,
     } = this.state;
 
     if (empty) {
@@ -255,13 +334,17 @@ class CartMain extends Component<CartMainProps, CartMainState> {
               </h2>
             </div>
             <div className="dialog-content">
-              <button type="button" className="ep-btn create-req-list-btn" onClick={this.handleShowReqListForm}>{intl.get('create-new-requisition-list')}</button>
+              { showReqListForm ? (
+                this.renderAddNewListForm()
+              ) : (
+                <button type="button" className="ep-btn create-req-list-btn" onClick={this.handleShowListForm}>{intl.get('create-new-requisition-list')}</button>
+              )}
               <form className="create-list-form-wrap">
                 <span className="your-list-title">{intl.get('your-lists')}</span>
                 {(requisitionListData && requisitionListData.length > 0) && (
                   requisitionListData.map(list => (
                     <div key={list.name} className="list-item">
-                      <input id={list.name} name={list.name} type="radio" checked={listUrl === list._additemstoitemlistform[0].self.uri} className="style-checkbox" onClick={() => this.handleSelectList(list)} />
+                      <input id={list.name} name={list.name} type="radio" checked={listUrl === list._additemstoitemlistform[0].self.uri} className="style-checkbox" onChange={() => this.handleSelectList(list)} />
                       <label htmlFor={list.name}>
                         {list.name}
                       </label>

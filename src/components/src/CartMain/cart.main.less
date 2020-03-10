@@ -214,18 +214,77 @@
     height: 20px !important;
     margin: 0 auto;
   }
+
+  .create-list-form {
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 10px 0 20px;
+    }
+
+    .edit-mode-form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .list-edit-field-wrap {
+      position: relative;
+      width: 250px;
+      flex-grow: 0;
+
+      label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: @firstComplimentTextColor;
+        margin-bottom: 2px;
+        text-align: left;
+      }
+    }
+
+    .clear-field-btn {
+      top: auto;
+      bottom: 7px;
+    }
+
+    .list-edit-field {
+      height: 34px;
+      width: 100%;
+      padding: 0 30px 0 15px;
+      border: 1px solid @firstBorderColor;
+      color: @fourthComplimentTextColor;
+      border-radius: 4px;
+    }
+
+    .ep-btn {
+      min-height: 34px;
+      width: 100px;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-transform: none;
+    }
+
+    .cancel-btn {
+      border: none;
+    }
+
+    .save-btn {
+      margin-right: 0;
+    }
+  }
 }
 
 
 
 .dialog-content {
   .create-req-list-btn {
-    min-height: 44px;
     background: @mainBackgroundColor;
     text-transform: none;
 
     @media screen and (min-width: 681px) {
-      min-width: 315px;
+      min-width: 270px;
     }
   }
 
