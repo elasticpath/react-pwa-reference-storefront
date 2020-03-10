@@ -165,7 +165,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
     const { handleCartsUpdate } = this.props;
     this.setState({ showLoader: true });
     login().then(() => {
-      cortexFetch(`/carts/${Config.cortexApi.scope}/form?followlocation&format=standardlinks,zoom.nodatalinks`, {
+      cortexFetch(`/carts/${Config.cortexApi.scope}/form?followlocation`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -223,7 +223,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
     const { selectedElement, indexDefaultCart } = this.state;
     const { handleCartsUpdate, handleCartElementSelect } = this.props;
     login().then(() => {
-      cortexFetch(`${element.self.uri}?format=standardlinks,zoom.nodatalinks&`, {
+      cortexFetch(`${element.self.uri}`, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',

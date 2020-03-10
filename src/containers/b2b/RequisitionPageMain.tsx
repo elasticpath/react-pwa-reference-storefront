@@ -286,7 +286,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.setState({ isTableLoading: true });
 
     login().then(() => {
-      cortexFetch(`${removeLineItemsUri}?followlocation&format=standardlinks,zoom.nodatalinks`,
+      cortexFetch(`${removeLineItemsUri}?followlocation`,
         {
           method: 'post',
           headers: {
@@ -300,6 +300,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             multiSelectMode: false,
             selectedProducts: [],
             isTableLoading: false,
+            showSelectAllPopup: false,
           });
           this.loadRequisitionListData(true);
         })
@@ -429,7 +430,12 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
-            this.setState({ selectedProducts: [], multiSelectMode: false, addToCartLoader: false });
+            this.setState({
+              selectedProducts: [],
+              multiSelectMode: false,
+              addToCartLoader: false,
+              showSelectAllPopup: false,
+            });
             onCountChange(cartName, itemQuantity);
           } else {
             this.setState({ addToCartLoader: false });
