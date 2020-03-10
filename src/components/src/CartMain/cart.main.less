@@ -193,18 +193,14 @@
 
 .add-to-list-modal {
   padding: 10px 20px;
-  min-width: 270px;
+  width: ~'calc(100vw - 4.8rem)';
 
   .dialog-content {
     padding: 25px 0 30px;
   }
 
-  @media (min-width: 576px) {
-    min-width: 480px;
-  }
-
-  @media screen and (min-width: @mobileWidth) {
-    min-width: 570px;
+  @media screen and (min-width: 681px) {
+    width: 570px;
   }
 
   .miniLoader {
@@ -223,16 +219,17 @@
     }
 
     .edit-mode-form {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
+      @media screen and (min-width: 481px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
     }
 
     .list-edit-field-wrap {
       position: relative;
-      width: 250px;
-      flex-grow: 0;
+      flex-grow: 1;
 
       label {
         display: block;
@@ -241,6 +238,11 @@
         color: @firstComplimentTextColor;
         margin-bottom: 2px;
         text-align: left;
+      }
+
+      @media screen and (min-width: 681px) {
+        width: 250px;
+        flex-grow: 0;
       }
     }
 
@@ -260,10 +262,15 @@
 
     .ep-btn {
       min-height: 34px;
-      width: 100px;
-      margin-top: 0;
+      width: 100%;
+      margin-top: 10px;
       margin-bottom: 0;
       text-transform: none;
+
+      @media screen and (min-width: 481px) {
+        width: 100px;
+        margin-top: 0;
+      }
     }
 
     .cancel-btn {
@@ -272,6 +279,12 @@
 
     .save-btn {
       margin-right: 0;
+    }
+
+    .btn-container {
+      @media screen and (min-width: 481px) {
+        white-space: nowrap;
+      }
     }
   }
 }
