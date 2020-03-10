@@ -303,6 +303,7 @@ describe('Purchase feature', () => {
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
     await page.click(COMPLETE_ORDER_BUTTON_CSS);
 
+    await page.waitFor(5000);
     await page.waitForSelector(PURCHASE_NUMBER_ORDER_CSS);
     const element = await page.$(PURCHASE_NUMBER_ORDER_CSS);
     const purchaseNumber = await page.evaluate(el => el.textContent, element);

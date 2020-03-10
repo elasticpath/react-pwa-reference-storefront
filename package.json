@@ -140,7 +140,7 @@
     "eslint-plugin-header": "^3.0.0",
     "http-server": "^0.12.1",
     "less": "^3.9.0",
-    "puppeteer": "^2.0.0",
+    "puppeteer": "^2.1.1",
     "quagga": "^0.12.1",
     "react-responsive-modal": "^4.0.1",
     "storybook-readme": "^5.0.8",

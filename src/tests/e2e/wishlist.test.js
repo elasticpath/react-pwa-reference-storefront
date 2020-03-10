@@ -79,7 +79,7 @@ describe('Wishlist', () => {
 
     // When I move the wishlist item to cart
     await page.waitForSelector(ADD_TO_CART_BUTTON);
-    await page.click(ADD_TO_CART_BUTTON);
+    page.click(ADD_TO_CART_BUTTON);
 
     // Then cart should contain following items
     await page.waitForSelector(CART_ITEM);

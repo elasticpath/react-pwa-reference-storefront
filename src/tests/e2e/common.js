@@ -98,6 +98,7 @@ module.exports = {
       ]);
     }
 
+    await page.waitFor(2000);
     await page.waitForSelector(PRODUCT_CSS);
     const productLink = await page.$x(`//a[contains(text(), "${productName}")]`);
 
@@ -106,7 +107,7 @@ module.exports = {
     } else {
       throw new Error('Product not found');
     }
-    await page.waitFor(2000);
+    await page.waitFor(5000);
     await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
     if (await page.$(CART_SELECTION_DROPDOWN_CSS) !== null) {
       await Promise.all([
@@ -120,6 +121,7 @@ module.exports = {
       await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
       await page.click(ADD_TO_CART_BUTTON_CSS);
     }
+    await page.waitFor(5000);
     await page.waitForSelector(CART_LIST_CSS);
   },
 
