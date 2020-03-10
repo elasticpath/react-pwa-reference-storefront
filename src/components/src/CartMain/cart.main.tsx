@@ -141,6 +141,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
   }
 
   openReqListModal(code) {
+    this.fetchRequisitionListsData();
     this.setState({
       openModal: true, itemCode: code,
     });
@@ -148,11 +149,11 @@ class CartMain extends Component<CartMainProps, CartMainState> {
 
   handleModalClose() {
     this.setState({
-      openModal: false, itemCode: '',
+      addToRequisitionListLoading: false, openModal: false, itemCode: '', listUrl: '',
     });
   }
 
-  handleAddToList(list) {
+  handleAddToList() {
     const { itemCode, listUrl } = this.state;
     this.setState({ addToRequisitionListLoading: true });
     if (listUrl.length) {
@@ -170,16 +171,14 @@ class CartMain extends Component<CartMainProps, CartMainState> {
           })
           .then((res) => {
             if (res.status === 200 || res.status === 201) {
-              // this.setState({ addToRequisitionListLoading: false });
-              // onCountChange(name, itemQuantity);
               this.setState({
                 openModal: false,
                 addToRequisitionListLoading: false,
               });
+              this.handleModalClose();
+              this.fetchRequisitionListsData();
             } else {
-              this.setState({
-                openModal: false, addToRequisitionListLoading: false,
-              });
+              this.handleModalClose();
             }
           })
           .catch((error) => {
