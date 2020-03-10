@@ -415,7 +415,7 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 50000);
+  }, 120000);
 
   test('Purchase physical and digital items as existing shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
