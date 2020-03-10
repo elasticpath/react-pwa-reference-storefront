@@ -114,6 +114,7 @@
   "back-order": "B-a-c-k---o-r-d-e-r",
   "back": "B-a-c-k",
   "back-to-lists": "B-a-c-k- -t-o- -l-i-s-t-s",
+  "your-lists": "Y-o-u-r- -l-i-s-t-s",
   "order-form": "O-r-d-e-r- -F-o-r-m",
   "out-of-stock": "O-u-t- -o-f- -S-t-o-c-k",
   "expected-release-date": "E-x-p-e-c-t-e-d- -R-e-l-e-a-s-e- -D-a-t-e",
@@ -177,6 +178,7 @@
   "add-to-cart-2": "A-d-d- -t-o- -c-a-r-t",
   "add-to-wish-list": "A-d-d- -t-o- -W-i-s-h- -L-i-s-t",
   "add-to-requisition-list": "A-d-d- -t-o- -R-e-q-u-i-s-i-t-i-o-n- -L-i-s-t",
+  "add-to-list": "A-d-d- -t-o- -l-i-s-t",
   "add-products": "A-d-d- -p-r-o-d-u-c-t-s",
   "add-products-to-list": "A-d-d- -p-r-o-d-u-c-t-s- -t-o- -l-i-s-t",
   "add-all-to-cart": "A-d-d- -A-l-l- -t-o- -C-a-r-t",
@@ -362,6 +364,7 @@
   "shopping-carts": "Y-o-u-r- -C-a-r-t-s",
   "manage-carts": "M-a-n-a-g-e- -C-a-r-t-s",
   "create-new-cart": "C-r-e-a-t-e- -N-e-w- -C-a-r-t",
+  "create-new-requisition-list": "C-r-e-a-t-e- -n-e-w- -r-e-q-u-i-s-i-t-i-o-n- -l-i-s-t",
   "cart": "C-a-r-t",
   "change": "C-h-a-n-g-e",
   "shopper-impersonation-message": "S-h-o-p-p-i-n-g- -o-n- -b-e-h-a-l-f- -o-f-:- ",
@@ -422,7 +425,7 @@
   "close": "C-l-o-s-e",
   "select-all-items": "s-e-l-e-c-t- -a-l-l- {paginationResults} -i-t-e-m-s",
   "select-all-items-txt": "{selectedItem} -i-t-e-m-s- -a-r-e- -s-e-l-e-c-t-e-d- -o-n- -t-h-i-s- -p-a-g-e-,- -w-o-u-l-d- -y-o-u- -l-i-k-e- -t-o- {selectAllItemsBtn} -i-n- -l-i-s-t",
-  "vr-info-txt": "T-h-i-s i-s a 3-6-0 v-i-e-w! Y-o-u c-a-n u-s-e y-o-u-r m-o-u-s-e-/-t-o-u-c-h s-c-r-e-e-n t-o p-a-n.  C-l-i-c-k t-h-e b-o-t-t-o-m r-i-g-h-t c-o-r-n-e-r i-c-o-n t-o e-n-a-b-l-e f-u-l-l-s-c-r-e-e-n- V-R m-o-d-e-.  C-l-i-c-k t-h-e t-o-p- r-i-g-h-t X t-o r-e-t-u-r-n t-o n-o-r-m-a-l p-r-o-d-u-c-t i-m-a-g-e-s.",
-  "info-btn-txt": "R-O-T-A-T-E A-N-D V-I-E-W P-R-O-D-U-C-T",
-  "info-btn-description": "W-h-a-t-s 3-6-0 d-e-g-r-e-e v-i-e-w- o-r V-R?"
+  "vr-info-txt": "T-h-i-s- -i-s- -a- -3-6-0- -v-i-e-w-!- -Y-o-u- -c-a-n- -u-s-e- -y-o-u-r- -m-o-u-s-e-/-t-o-u-c-h- -s-c-r-e-e-n- -t-o- -p-a-n-.- - -C-l-i-c-k- -t-h-e- -b-o-t-t-o-m- -r-i-g-h-t- -c-o-r-n-e-r- -i-c-o-n- -t-o- -e-n-a-b-l-e- -f-u-l-l-s-c-r-e-e-n- -V-R- -m-o-d-e-.- - -C-l-i-c-k- -t-h-e- -t-o-p- -r-i-g-h-t- -X- -t-o- -r-e-t-u-r-n- -t-o- -n-o-r-m-a-l- -p-r-o-d-u-c-t- -i-m-a-g-e-s-.",
+  "info-btn-txt": "R-O-T-A-T-E- -A-N-D- -V-I-E-W- -P-R-O-D-U-C-T",
+  "info-btn-description": "W-h-a-t-'-s- -3-6-0- -d-e-g-r-e-e- -v-i-e-w- -o-r- -V-R-?"
 }

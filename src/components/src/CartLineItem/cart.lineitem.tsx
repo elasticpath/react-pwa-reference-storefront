@@ -27,6 +27,8 @@ import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
+import { ReactComponent as AddToListIcon } from '../../../images/icons/ic_add_list.svg';
+
 import './cart.lineitem.less';
 
 import { ReactComponent as UpdateQuantityIcon } from '../../../images/icons/ic_update.svg';
@@ -69,6 +71,8 @@ interface CartLineItemProps {
   isChosen?: boolean,
   /** multi cart data */
   multiCartData?:any,
+  /** open requisition list modal */
+  openReqListModal?: (...args: any[]) => any,
 }
 
 interface CartLineItemState {
@@ -92,6 +96,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     isTableView: false,
     isChosen: false,
     multiCartData: [],
+    openReqListModal: () => { },
   };
 
   constructor(props) {
@@ -113,6 +118,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
+    this.handleReqListModal = this.handleReqListModal.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -257,6 +263,11 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     this.setState({
       openModal: true,
     });
+  }
+
+  handleReqListModal(itemCodeString) {
+    const { openReqListModal } = this.props;
+    openReqListModal(itemCodeString);
   }
 
   handleModalClose() {
@@ -406,7 +417,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     if (!options && item._definition) {
       options = item._definition[0]._options;
     }
-    if (options) {
+    if (options && options[0]._element) {
       return (
         options[0]._element.map(option => (
           <li className="option" key={option['display-name']}>
@@ -609,6 +620,9 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           ] : ('')
           }
         </form>
+        <div className="icon-container">
+          <AddToListIcon className="list-icon" onClick={() => { this.handleReqListModal(itemCodeString); }} />
+        </div>
         {isTableView && (
           <div className="options-col">
             <ul className="options-container">
