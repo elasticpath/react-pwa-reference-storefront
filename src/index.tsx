@@ -19,6 +19,8 @@
  *
  */
 
+// trivial change
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import intl from 'react-intl-universal';
