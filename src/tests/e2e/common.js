@@ -98,7 +98,7 @@ module.exports = {
       ]);
     }
 
-    await page.waitFor(2000);
+    await page.waitFor(5000);
     await page.waitForSelector(PRODUCT_CSS);
     const productLink = await page.$x(`//a[contains(text(), "${productName}")]`);
 
