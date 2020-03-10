@@ -21,6 +21,8 @@
 import 'aframe';
 import { Entity, Scene } from 'aframe-react';
 import React, { Component } from 'react';
+import 'aframe-look-at-component';
+import 'aframe-html-shader';
 import './VRProductDisplayItem.less';
 import intl from 'react-intl-universal';
 
@@ -94,7 +96,12 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         {/* VR Window */}
         <div className="vr-window-container">
           <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
-
+          {/* eslint-disable-next-line react/style-prop-object */}
+          <div className="outer-html-texture">
+            <div id="boxHTML" className="inner-html-texture">
+              <p className="html-text-texture">CHEESECAKE FOR YOU</p>
+            </div>
+          </div>
           <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;" loading-screen="backgroundColor: #000000; dotsColor: white">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a id="myEnterVRButton" href="#">
@@ -113,19 +120,24 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a-assets>
             <Entity primitive="a-sky" radius="30" src="#background" />
 
+            <Entity geometry="primitive: plane" material="shader: html; target: #boxHTML" position="0 0 -5" rotation="" scale="" visible="" look-at="#camera" />
+
             <Entity
               gltf-model="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb"
               modify-materials
               scale="1 1 1"
-              position="-3 0 -5"
+              position="0 1 -2"
               cursor-listener
               events={{
                 click: this.handleClick, collided: [this.handleCollide], mouseenter: this.handleClick,
               }}
+              animation__rotate={{
+                property: 'rotation', dur: 2000, loop: true, to: '360 360 360',
+              }}
             />
 
             {isMobile ? (
-              <Entity primitive="a-camera">
+              <Entity id="camera" primitive="a-camera">
                 <Entity
                   primitive="a-cursor"
                   animation__click={{
@@ -134,7 +146,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
                 />
               </Entity>
             ) : (
-              <Entity primitive="a-camera" cursor="rayOrigin: mouse" />
+              <Entity id="camera" primitive="a-camera" cursor="rayOrigin: mouse" />
             )
             }
           </Scene>
