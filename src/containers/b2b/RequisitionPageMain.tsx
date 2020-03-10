@@ -449,7 +449,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     this.setState({ selectAllLoader: true });
 
     login().then(() => {
-      cortexFetch(`${paginatorUri}?zoom=${elementZoomArray.sort().join()}&followlocation&format=standardlinks,zoom.nodatalinks`,
+      cortexFetch(`${paginatorUri}?zoom=${elementZoomArray.sort().join()}&followlocation`,
         {
           method: 'post',
           headers: {
@@ -465,7 +465,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             selectedProducts: res._element,
             selectAllLoader: false,
           });
-          // this.loadRequisitionListData(true);
         })
         .catch((error) => {
           this.setState({ selectAllLoader: false });
