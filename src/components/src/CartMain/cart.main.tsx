@@ -53,7 +53,7 @@ interface CartMainState {
   openModal: boolean,
   showReqListForm: boolean,
   requisitionListData: any,
-  itemCode: string,
+  itemData: {code: string, quantity: number},
   listUrl: string,
   addToRequisitionListLoading: boolean,
 }
@@ -87,7 +87,9 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       openModal: false,
       showReqListForm: false,
       requisitionListData: undefined,
-      itemCode: '',
+      itemData: {
+        code: '', quantity: 0,
+      },
       listUrl: '',
       addToRequisitionListLoading: false,
     };
@@ -140,26 +142,27 @@ class CartMain extends Component<CartMainProps, CartMainState> {
     onItemMoveToCart();
   }
 
-  openReqListModal(code) {
+  openReqListModal(code, quantity) {
     this.fetchRequisitionListsData();
+    const data = { code, quantity };
     this.setState({
-      openModal: true, itemCode: code,
+      openModal: true, itemData: data,
     });
   }
 
   handleModalClose() {
     this.setState({
-      addToRequisitionListLoading: false, openModal: false, itemCode: '', listUrl: '',
+      addToRequisitionListLoading: false, openModal: false, itemData: { code: '', quantity: 0 }, listUrl: '',
     });
   }
 
   handleAddToList() {
-    const { itemCode, listUrl } = this.state;
+    const { itemData, listUrl } = this.state;
     this.setState({ addToRequisitionListLoading: true });
     if (listUrl.length) {
       login().then(() => {
         const body: { [key: string]: any } = {};
-        body.items = { code: itemCode, quantity: 1 };
+        body.items = itemData;
         cortexFetch(listUrl,
           {
             method: 'post',
@@ -241,7 +244,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
             onConfiguratorAddToCart={this.handleConfiguratorAddToCart}
             onMoveToCart={this.handleMoveToCart}
             itemDetailLink={itemDetailLink}
-            openReqListModal={(c) => { this.openReqListModal(c); }}
+            openReqListModal={(code, quantity) => { this.openReqListModal(code, quantity); }}
           />
         ))}
         <Modal open={openModal} onClose={this.handleModalClose}>

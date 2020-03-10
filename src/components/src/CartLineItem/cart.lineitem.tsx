@@ -265,9 +265,9 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     });
   }
 
-  handleReqListModal(itemCodeString) {
+  handleReqListModal(itemCodeString, quantity) {
     const { openReqListModal } = this.props;
-    openReqListModal(itemCodeString);
+    openReqListModal(itemCodeString, quantity);
   }
 
   handleModalClose() {
@@ -621,7 +621,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           }
         </form>
         <div className="icon-container">
-          <AddToListIcon className="list-icon" onClick={() => { this.handleReqListModal(itemCodeString); }} />
+          <AddToListIcon className="list-icon" onClick={() => { this.handleReqListModal(itemCodeString, quantity); }} />
         </div>
         {isTableView && (
           <div className="options-col">
