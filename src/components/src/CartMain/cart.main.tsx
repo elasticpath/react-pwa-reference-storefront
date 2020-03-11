@@ -45,6 +45,8 @@ interface CartMainProps {
   onItemMoveToCart?: (...args: any[]) => any,
   /** handle item remove */
   onItemRemove?: (...args: any[]) => any,
+  /** show alert */
+  onShowAlert?: (...args: any[]) => any,
   /** item detail link */
   itemDetailLink?: string,
 }
@@ -80,6 +82,8 @@ class CartMain extends Component<CartMainProps, CartMainState> {
     onItemMoveToCart: () => {
     },
     onItemRemove: () => {
+    },
+    onShowAlert: () => {
     },
     itemDetailLink: '',
   };
@@ -173,6 +177,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
 
   handleAddToList() {
     const { itemData, listUrl } = this.state;
+    const { onShowAlert } = this.props;
     this.setState({ addToRequisitionListLoading: true });
     if (listUrl.length) {
       login().then(() => {
@@ -195,11 +200,15 @@ class CartMain extends Component<CartMainProps, CartMainState> {
               });
               this.handleModalClose();
               this.fetchRequisitionListsData();
+              const isSuccess = true;
+              onShowAlert(intl.get('items-were-added-to-list-message'), isSuccess);
             } else {
               this.handleModalClose();
+              onShowAlert(intl.get('could-not-add-item-to-list-message'));
             }
           })
           .catch((error) => {
+            onShowAlert(intl.get('could-not-add-item-to-list-message'));
             // eslint-disable-next-line no-console
             console.error(error.message);
           });

@@ -393,6 +393,8 @@
   "bulk-edit": "Bulk Edit",
   "select-all": "Select all",
   "item-selected": "item selected",
+  "items-were-added-to-list-message": "The items were added to the selected Requisition List. For any duplicate items, the item qty in the list has been adjusted accordingly.",
+  "could-not-add-item-to-list-message": "We couldn't add the item to the selected Requisition List. Please try again.",
   "order-history": "Order History",
   "list": "list",
   "learn-more": "Learn more",

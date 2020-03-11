@@ -393,6 +393,8 @@
   "bulk-edit": "B-u-l-k- -E-d-i-t",
   "select-all": "S-e-l-e-c-t- -a-l-l",
   "item-selected": "i-t-e-m- -s-e-l-e-c-t-e-d",
+  "items-were-added-to-list-message": "T-h-e- -i-t-e-m-s- -w-e-r-e- -a-d-d-e-d- -t-o- -t-h-e- -s-e-l-e-c-t-e-d- -R-e-q-u-i-s-i-t-i-o-n- -L-i-s-t-.- -F-o-r- -a-n-y- -d-u-p-l-i-c-a-t-e- -i-t-e-m-s-,- -t-h-e- -i-t-e-m- -q-t-y- -i-n- -t-h-e- -l-i-s-t- -h-a-s- -b-e-e-n- -a-d-j-u-s-t-e-d- -a-c-c-o-r-d-i-n-g-l-y-.",
+  "could-not-add-item-to-list-message": "W-e- -c-o-u-l-d-n-'-t- -a-d-d- -t-h-e- -i-t-e-m- -t-o- -t-h-e- -s-e-l-e-c-t-e-d- -R-e-q-u-i-s-i-t-i-o-n- -L-i-s-t-.- -P-l-e-a-s-e- -t-r-y- -a-g-a-i-n-.",
   "order-history": "O-r-d-e-r- -H-i-s-t-o-r-y",
   "list": "l-i-s-t",
   "learn-more": "L-e-a-r-n- -m-o-r-e",
