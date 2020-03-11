@@ -138,7 +138,6 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       })
         .then(res => res.json())
         .then((res) => {
-          console.log('here', res);
           if (res._itemlistinfo) {
             this.setState({
               requisitionListData: res._itemlistinfo[0]._allitemlists[0]._element,
