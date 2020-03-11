@@ -103,7 +103,7 @@ describe('Cart feature', () => {
     await browser.close();
 
     expect(price).toEqual(productPrice * PRODUCT_QUANTITY);
-  }, 50000);
+  }, 120000);
 
   test('Remove cart line item', async () => {
     const product = {

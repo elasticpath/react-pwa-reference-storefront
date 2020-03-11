@@ -72,7 +72,7 @@ module.exports = {
   async addProductToCart(page, productCategory, productSubCategory, productName) {
     const PARENT_CATEGORY_CSS = `.app-header-navigation-component li[data-name="${productCategory}"]`;
     const SUB_CATEGORY_CSS = `${PARENT_CATEGORY_CSS} > .dropdown-menu > li > a[title="${productSubCategory}"]`;
-    const PRODUCT_CSS = '.product-list-container .category-items-listing .category-item-container';
+    const PRODUCT_CSS = '.product-list-container .category-items-listing';
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
     const CART_SELECTION_DROPDOWN_CSS = 'button[id="product_display_item_add_to_cart_button-dropdown"]';
     const CART_SELECTION_DROPDOWN_ITEM_CSS = 'form.itemdetail-addtocart-form.form-horizontal > div.form-group-submit > div > div > ul > li:nth-child(1)';
