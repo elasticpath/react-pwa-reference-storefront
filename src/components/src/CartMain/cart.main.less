@@ -287,6 +287,38 @@
       }
     }
   }
+
+  .no-req-lists-msg {
+    padding: 20px 0 10px;
+  }
+
+  .dialog-footer {
+    .ep-btn {
+      width: auto;
+      text-transform: none;
+      vertical-align: middle;
+    }
+
+    .cancel {
+      min-width: 100px;
+
+      &:hover {
+        color: @mainBackgroundColor;
+      }
+
+      @media screen and (min-width: 481px) {
+        min-width: 120px;
+      }
+    }
+
+    .primary {
+      min-width: 100px;
+
+      @media screen and (min-width: 481px) {
+        min-width: 200px;
+      }
+    }
+  }
 }
 
 
@@ -310,11 +342,12 @@
   }
 
   .create-list-form-wrap {
-    margin: 30px 0;
-    display: inline;
+    max-width: 100%;
   }
   .list-item {
     position: relative;
+    display: flex;
+    align-items: center;
     padding: 16px 0;
     border-bottom: 1px solid @secondBorderColor;
     label {
@@ -323,7 +356,6 @@
 
     .style-checkbox {
       +label {
-        width: 100%;
         &:before {
           width: 14px;
           height: 14px;
@@ -344,17 +376,27 @@
         }
       }
     }
+
+    .list-name-label {
+      margin-bottom: 0;
+
+      @media screen and (min-width: 481px) {
+        min-width: 180px;
+      }
+    }
   }
 
   .count-items {
-    position: absolute;
-    left: 200px;
-    margin-right: 10px;
+    flex-grow: 1;
     text-transform: lowercase;
     color: @mainTextColor;
 
     .item-text {
       margin-left: 5px;
+    }
+
+    @media screen and (max-width: 480px) {
+      text-align: right;
     }
   }
 

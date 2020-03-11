@@ -141,6 +141,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
               requisitionListData: res._itemlistinfo[0]._allitemlists[0]._element,
               createRequisitionForm: res._itemlistinfo[0]._itemlisttypes[0]._element[0]._createitemlistform[0],
               showReqListLoader: false,
+              showReqListForm: false,
             });
           }
         })
@@ -171,7 +172,12 @@ class CartMain extends Component<CartMainProps, CartMainState> {
 
   handleModalClose() {
     this.setState({
-      addToRequisitionListLoading: false, openModal: false, itemData: { code: '', quantity: 0 }, listUrl: '', showReqListForm: false,
+      addToRequisitionListLoading: false,
+      openModal: false,
+      itemData: { code: '', quantity: 0 },
+      listUrl: '',
+      showReqListForm: false,
+      listName: '',
     });
   }
 
@@ -349,27 +355,33 @@ class CartMain extends Component<CartMainProps, CartMainState> {
                 <button type="button" className="ep-btn create-req-list-btn" onClick={this.handleShowListForm}>{intl.get('create-new-requisition-list')}</button>
               )}
               <form className="create-list-form-wrap">
-                <span className="your-list-title">{intl.get('your-lists')}</span>
-                {(requisitionListData && requisitionListData.length > 0) && (
-                  requisitionListData.map(list => (
-                    <div key={list.name} className="list-item">
-                      <input id={list.name} name={list.name} type="radio" checked={listUrl === list._additemstoitemlistform[0].self.uri} className="style-checkbox" onChange={() => this.handleSelectList(list)} />
-                      <label htmlFor={list.name}>
-                        {list.name}
-                      </label>
-                      <span className="count-items">
-                        {list._paginatedlineitems[0].pagination.results}
-                        <span className="item-text">
-                          {intl.get('items')}
+                {(requisitionListData && requisitionListData.length > 0) ? (
+                  <div>
+                    <span className="your-list-title">{intl.get('your-lists')}</span>
+                    {requisitionListData.map(list => (
+                      <div key={list.name} className="list-item">
+                        <input id={list.name} name={list.name} type="radio" checked={listUrl === list._additemstoitemlistform[0].self.uri} className="style-checkbox" onChange={() => this.handleSelectList(list)} />
+                        <label htmlFor={list.name} />
+                        <label htmlFor={list.name} className="list-name-label">
+                          {list.name}
+                        </label>
+                        <span className="count-items">
+                          {list._paginatedlineitems[0].pagination.results}
+                          <span className="item-text">
+                            {intl.get('items')}
+                          </span>
                         </span>
-                      </span>
-                    </div>
-                  )))}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="no-req-lists-msg">{intl.get('no-requisition-lists-message')}</p>
+                )}
               </form>
             </div>
             <div className="dialog-footer">
-              <button className="cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
-              <button className="upload" type="button" onClick={this.handleAddToList}>
+              <button className="ep-btn cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
+              <button className="ep-btn primary" type="button" onClick={this.handleAddToList} disabled={!requisitionListData}>
                 {addToRequisitionListLoading ? (
                   <div className="miniLoader" />
                 ) : (
