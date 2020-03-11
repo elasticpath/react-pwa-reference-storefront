@@ -91,7 +91,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
     await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
 
     await page.waitForSelector(CART_LINK_CSS);
@@ -171,7 +174,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
     await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
@@ -238,7 +244,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     await addProductToCart(page, 'Mens', '', 'Men\'s Soft Shell Jacket');
 
@@ -335,7 +344,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     const userInfo = {
       firstName: 'John',
@@ -426,7 +438,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     const userInfo = {
       firstName: 'John',
@@ -518,7 +533,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     const products = [
       {
@@ -609,7 +627,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     await addProductToCart(page, 'Mens', '', 'Men\'s Soft Shell Jacket');
 

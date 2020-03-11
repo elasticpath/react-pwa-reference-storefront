@@ -111,7 +111,10 @@ describe('Profile', () => {
       viewport: desktopViewport,
       userAgent: '',
     });
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
 
@@ -141,7 +144,10 @@ describe('Profile', () => {
       viewport: desktopViewport,
       userAgent: '',
     });
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     // When I login as following registered shopper
     await loginUser(page, userData);
@@ -185,7 +191,10 @@ describe('Profile', () => {
       viewport: desktopViewport,
       userAgent: '',
     });
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     // When I register a new user
     await page.waitForSelector(LOGGED_IN_BUTTON);

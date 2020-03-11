@@ -62,7 +62,10 @@ describe('Wishlist', () => {
       viewport: desktopViewport,
       userAgent: '',
     });
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     //When I login as following registered shopper
     await loginUser(page, userData);
@@ -101,7 +104,10 @@ describe('Wishlist', () => {
       viewport: desktopViewport,
       userAgent: '',
     });
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     //When I login as following registered shopper
     await loginUser(page, userData);

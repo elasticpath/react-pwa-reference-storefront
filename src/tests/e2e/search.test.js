@@ -46,7 +46,10 @@ describe('Search feature', () => {
       viewport: desktopViewport,
       userAgent: '',
     });
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 15000,
+      waitUntil: 'domcontentloaded'
+    });
 
     const SEARCH_INPUT_CSS = 'input.input-search';
     const PRODUCT_LIST_CSS = 'div[data-region="categoryPaginationRegion"]';
