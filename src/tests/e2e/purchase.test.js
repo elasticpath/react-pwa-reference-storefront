@@ -92,7 +92,7 @@ describe('Purchase feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
     await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
@@ -175,7 +175,7 @@ describe('Purchase feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
     await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
@@ -245,7 +245,7 @@ describe('Purchase feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
 
@@ -345,7 +345,7 @@ describe('Purchase feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
 
@@ -439,7 +439,7 @@ describe('Purchase feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
 
@@ -534,7 +534,7 @@ describe('Purchase feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
 
@@ -628,7 +628,7 @@ describe('Purchase feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
 

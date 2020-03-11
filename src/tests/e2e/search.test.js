@@ -47,7 +47,7 @@ describe('Search feature', () => {
       userAgent: '',
     });
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
 

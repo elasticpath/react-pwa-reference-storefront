@@ -50,7 +50,7 @@ describe('Cart feature', () => {
     await page.setViewport(desktopViewport);
 
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
 
@@ -129,7 +129,7 @@ describe('Cart feature', () => {
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
     await page.goto(APP, {
-      timeout: 15000,
+      timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
 
@@ -160,5 +160,5 @@ describe('Cart feature', () => {
     await browser.close();
 
     expect(element).not.toEqual(null)
-  }, 25000);
+  }, 120000);
 });
