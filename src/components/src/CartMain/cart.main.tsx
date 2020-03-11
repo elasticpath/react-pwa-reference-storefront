@@ -60,6 +60,7 @@ interface CartMainState {
   listName: string,
   showReqListForm: boolean,
   showReqListLoader: boolean,
+  isAvailableReqList: boolean,
   createRequisitionForm: any,
 }
 
@@ -104,6 +105,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       listName: '',
       showReqListForm: false,
       showReqListLoader: false,
+      isAvailableReqList: false,
       createRequisitionForm: '',
     };
 
@@ -136,12 +138,14 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       })
         .then(res => res.json())
         .then((res) => {
+          console.log('here', res);
           if (res._itemlistinfo) {
             this.setState({
               requisitionListData: res._itemlistinfo[0]._allitemlists[0]._element,
               createRequisitionForm: res._itemlistinfo[0]._itemlisttypes[0]._element[0]._createitemlistform[0],
               showReqListLoader: false,
               showReqListForm: false,
+              isAvailableReqList: true,
             });
           }
         })
@@ -163,7 +167,6 @@ class CartMain extends Component<CartMainProps, CartMainState> {
   }
 
   openReqListModal(code, quantity) {
-    this.fetchRequisitionListsData();
     const data = { code, quantity };
     this.setState({
       openModal: true, itemData: data,
@@ -270,7 +273,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
   }
 
   handleHideListForm() {
-    this.setState({ showReqListForm: false });
+    this.setState({ showReqListForm: false, listName: '' });
   }
 
   handleChange(event) {
@@ -313,7 +316,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       empty, cartData, handleQuantityChange, itemDetailLink,
     } = this.props;
     const {
-      openModal, listUrl, requisitionListData, addToRequisitionListLoading, showReqListForm,
+      openModal, listUrl, requisitionListData, addToRequisitionListLoading, showReqListForm, isAvailableReqList,
     } = this.state;
 
     if (empty) {
@@ -339,6 +342,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
             onMoveToCart={this.handleMoveToCart}
             itemDetailLink={itemDetailLink}
             openReqListModal={(code, quantity) => { this.openReqListModal(code, quantity); }}
+            isAvailableReqList={isAvailableReqList}
           />
         ))}
         <Modal open={openModal} onClose={this.handleModalClose}>

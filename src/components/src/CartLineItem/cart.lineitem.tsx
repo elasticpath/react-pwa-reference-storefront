@@ -73,6 +73,8 @@ interface CartLineItemProps {
   multiCartData?:any,
   /** open requisition list modal */
   openReqListModal?: (...args: any[]) => any,
+  /** is available requisition list */
+  isAvailableReqList?: boolean,
 }
 
 interface CartLineItemState {
@@ -97,6 +99,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     isChosen: false,
     multiCartData: [],
     openReqListModal: () => { },
+    isAvailableReqList: false,
   };
 
   constructor(props) {
@@ -469,6 +472,7 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
       isTableView,
       isChosen,
       multiCartData,
+      isAvailableReqList,
     } = this.props;
     const { quantity, openModal } = this.state;
     const itemAvailability = ((item._availability) ? (item._availability) : (item._item[0]._availability));
@@ -620,9 +624,11 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           ] : ('')
           }
         </form>
-        <div className="icon-container">
-          <AddToListIcon className="list-icon" onClick={() => { this.handleReqListModal(itemCodeString, quantity); }} />
-        </div>
+        {(Config.b2b.enable && isAvailableReqList) ? (
+          <div className="icon-container">
+            <AddToListIcon className="list-icon" onClick={() => { this.handleReqListModal(itemCodeString, quantity); }} />
+          </div>
+        ) : ''}
         {isTableView && (
           <div className="options-col">
             <ul className="options-container">
