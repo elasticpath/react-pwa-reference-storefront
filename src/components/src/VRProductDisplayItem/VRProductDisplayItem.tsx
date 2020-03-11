@@ -96,12 +96,15 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
         {/* VR Window */}
         <div className="vr-window-container">
           <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
+
+          <div className="cover-html-texture" />
           {/* eslint-disable-next-line react/style-prop-object */}
           <div className="outer-html-texture">
             <div id="boxHTML" className="inner-html-texture">
               <p className="html-text-texture">CHEESECAKE FOR YOU</p>
             </div>
           </div>
+
           <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;" loading-screen="backgroundColor: #000000; dotsColor: white">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a id="myEnterVRButton" href="#">
@@ -126,7 +129,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               gltf-model="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb"
               modify-materials
               scale="1 1 1"
-              position="0 1 -2"
+              position="0 3 -3"
               cursor-listener
               events={{
                 click: this.handleClick, collided: [this.handleCollide], mouseenter: this.handleClick,
