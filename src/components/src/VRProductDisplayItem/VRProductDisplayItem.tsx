@@ -41,7 +41,6 @@ interface IVRComponentProps {
   meshUri: any
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
   static isSafari() {
     const { userAgent } = navigator;
@@ -67,8 +66,6 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
       showVrProductInfo: false,
     };
     this.handleInfoPanel = this.handleInfoPanel.bind(this);
-    this.handleCollide = this.handleCollide.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.handleMoreInfoClicked = this.handleMoreInfoClicked.bind(this);
   }
 
@@ -77,23 +74,8 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     this.setState({ showInfo: !showInfo });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  handleCollide() {
-    // eslint-disable-next-line no-console
-    console.log('we collided with staring');
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  handleClick() {
-    // eslint-disable-next-line no-console
-    console.log('able to handle a click');
-  }
-
-  // eslint-disable-next-line class-methods-use-this
   handleMoreInfoClicked() {
     const { showVrProductInfo } = this.state;
-    // eslint-disable-next-line no-console
-    console.log('Handle more info clicked.');
     this.setState({
       showVrProductInfo: !showVrProductInfo,
     });
@@ -175,9 +157,6 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               scale="1 1 1"
               position="0 1 -3"
               cursor-listener
-              events={{
-                click: this.handleClick, collided: [this.handleCollide],
-              }}
               animation__rotate={{
                 property: 'rotation', dur: 20000, loop: true, to: '0 720',
               }}
