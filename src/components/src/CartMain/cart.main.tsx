@@ -190,7 +190,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
     if (listArray.length) {
       const body: { [key: string]: any } = {};
       body.items = itemData;
-      const promices = listArray.map(listUrl => cortexFetch(listUrl, {
+      const promises = listArray.map(listUrl => cortexFetch(listUrl, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
         },
         body: JSON.stringify(body),
       }));
-      Promise.all(promices)
+      Promise.all(promises)
         .then((res:any) => {
           if (res[0].status === 201 || res[0].status === 200) {
             this.handleModalClose();
