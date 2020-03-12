@@ -259,6 +259,8 @@ class CartMain extends Component<CartMainProps, CartMainState> {
           if (res.status === 200 || res.status === 201) {
             this.fetchRequisitionListsData();
             this.setState({ listName: '' });
+          } else {
+            this.handleModalClose();
           }
         })
         .catch((error) => {
