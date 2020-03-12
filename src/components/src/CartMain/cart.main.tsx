@@ -55,13 +55,13 @@ interface CartMainState {
   openModal: boolean,
   requisitionListData: any,
   itemData: {code: string, quantity: number},
-  listUrl: string,
   addToRequisitionListLoading: boolean,
   listName: string,
   showReqListForm: boolean,
   showReqListLoader: boolean,
   isAvailableReqList: boolean,
   createRequisitionForm: any,
+  listArray: any,
 }
 
 const requisitionListsZoomArray = [
@@ -100,13 +100,13 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       itemData: {
         code: '', quantity: 0,
       },
-      listUrl: '',
       addToRequisitionListLoading: false,
       listName: '',
       showReqListForm: false,
       showReqListLoader: false,
       isAvailableReqList: false,
       createRequisitionForm: '',
+      listArray: [],
     };
 
     this.handleConfiguratorAddToCart = this.handleConfiguratorAddToCart.bind(this);
@@ -177,50 +177,44 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       addToRequisitionListLoading: false,
       openModal: false,
       itemData: { code: '', quantity: 0 },
-      listUrl: '',
+      listArray: [],
       showReqListForm: false,
       listName: '',
     });
   }
 
   handleAddToList() {
-    const { itemData, listUrl } = this.state;
+    const { itemData, listArray } = this.state;
     const { onShowAlert } = this.props;
     this.setState({ addToRequisitionListLoading: true });
-    if (listUrl.length) {
-      login().then(() => {
-        const body: { [key: string]: any } = {};
-        body.items = itemData;
-        cortexFetch(listUrl,
-          {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-            },
-            body: JSON.stringify(body),
-          })
-          .then((res) => {
-            if (res.status === 200 || res.status === 201) {
-              this.setState({
-                openModal: false,
-                addToRequisitionListLoading: false,
-              });
-              this.handleModalClose();
-              this.fetchRequisitionListsData();
-              const isSuccess = true;
-              onShowAlert(intl.get('items-were-added-to-list-message'), isSuccess);
-            } else {
-              this.handleModalClose();
-              onShowAlert(intl.get('could-not-add-item-to-list-message'));
-            }
-          })
-          .catch((error) => {
+    if (listArray.length) {
+      const body: { [key: string]: any } = {};
+      body.items = itemData;
+      const promices = listArray.map(listUrl => cortexFetch(listUrl, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
+        body: JSON.stringify(body),
+      }));
+      Promise.all(promices)
+        .then((res:any) => {
+          if (res[0].status === 201 || res[0].status === 200) {
+            this.handleModalClose();
+            this.fetchRequisitionListsData();
+            const isSuccess = true;
+            onShowAlert(intl.get('items-were-added-to-list-message'), isSuccess);
+          } else {
+            this.handleModalClose();
             onShowAlert(intl.get('could-not-add-item-to-list-message'));
-            // eslint-disable-next-line no-console
-            console.error(error.message);
-          });
-      });
+          }
+        })
+        .catch((error) => {
+          onShowAlert(intl.get('could-not-add-item-to-list-message'));
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     } else {
       this.setState({
         openModal: false, addToRequisitionListLoading: false,
@@ -229,9 +223,16 @@ class CartMain extends Component<CartMainProps, CartMainState> {
   }
 
   handleSelectList(list) {
-    const listUrl = list._additemstoitemlistform ? list._additemstoitemlistform[0].self.uri : '';
+    const { listArray } = this.state;
+    const updatedListArray = listArray;
+    const index = listArray.indexOf(list.self.uri);
+    if (index !== -1) {
+      updatedListArray.splice(index, 1);
+    } else {
+      updatedListArray.push(list.self.uri);
+    }
     this.setState({
-      listUrl,
+      listArray: updatedListArray,
     });
   }
 
@@ -315,7 +316,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       empty, cartData, handleQuantityChange, itemDetailLink,
     } = this.props;
     const {
-      openModal, listUrl, requisitionListData, addToRequisitionListLoading, showReqListForm, isAvailableReqList,
+      openModal, requisitionListData, addToRequisitionListLoading, showReqListForm, isAvailableReqList,
     } = this.state;
 
     if (empty) {
@@ -363,7 +364,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
                     <span className="your-list-title">{intl.get('your-lists')}</span>
                     {requisitionListData.map(list => (
                       <div key={list.name} className="list-item">
-                        <input id={list.name} name={list.name} type="radio" checked={listUrl === list._additemstoitemlistform[0].self.uri} className="style-checkbox" onChange={() => this.handleSelectList(list)} />
+                        <input id={list.name} name={list.name} type="checkbox" className="style-checkbox" onChange={() => this.handleSelectList(list._additemstoitemlistform[0])} />
                         <label htmlFor={list.name} />
                         <label htmlFor={list.name} className="list-name-label">
                           {list.name}
