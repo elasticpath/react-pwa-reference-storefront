@@ -123,19 +123,19 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a-assets>
             <Entity primitive="a-sky" radius="30" src="#background" />
 
-            <Entity geometry="primitive: plane" material="shader: html; target: #boxHTML" position="0 0 -5" rotation="" scale="" visible="" look-at="#camera" />
+            <Entity geometry="primitive: plane" material="shader: html; target: #boxHTML" position="3 2 -3" rotation="" scale="2 2 2" visible="" look-at="#camera" />
 
             <Entity
               gltf-model="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb"
               modify-materials
               scale="1 1 1"
-              position="0 3 -3"
+              position="0 1 -3"
               cursor-listener
               events={{
                 click: this.handleClick, collided: [this.handleCollide], mouseenter: this.handleClick,
               }}
               animation__rotate={{
-                property: 'rotation', dur: 2000, loop: true, to: '360 360 360',
+                property: 'rotation', dur: 20000, loop: true, to: '0 720',
               }}
             />
 
