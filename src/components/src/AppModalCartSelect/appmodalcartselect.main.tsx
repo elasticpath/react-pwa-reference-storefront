@@ -180,8 +180,8 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
             <div className="modal-header">
               <h2 className="modal-title">
                 {(orgAuthServiceData && !orgAuthServiceData._element)
-                  ? (intl.get('change-carts-permission-denied'))
-                  : (intl.get('change-carts'))
+                  ? (intl.get('shop-for-permission-denied'))
+                  : (intl.get('shop-for'))
                 }
               </h2>
             </div>
@@ -195,7 +195,7 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
                   <div className="form-input btn-container">
                     <button onClick={(orgAuthServiceData && !orgAuthServiceData._element) || !orgAuthServiceData ? handleModalClose : this.continueCart} className="ep-btn primary wide" id="continue_with_cart_button" data-cmd="continue" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
                       {((orgAuthServiceData && !orgAuthServiceData._element) || !orgAuthServiceData)
-                        ? (intl.get('change-carts-ok'))
+                        ? (intl.get('shop-for-ok'))
                         : (`${intl.get('continue-with')} ${selectedCartName}`)
                       }
                     </button>
