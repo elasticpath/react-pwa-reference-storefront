@@ -16,7 +16,7 @@
         height: 25px;
         width: 25px;
         background: url('@{imgComponentUrl}/icons/fullscreen.svg') no-repeat 9px center;
-        
+
         &:hover {
             background: url('@{imgComponentUrl}/icons/fullscreen_hover.svg') no-repeat 9px center;
         }
@@ -50,7 +50,7 @@
     right: 10px;
     cursor: pointer;
     background: url('@{imgComponentUrl}/icons/exit_vr.svg') no-repeat 9px center;
-    
+
     &:hover {
         background: url('@{imgComponentUrl}/icons/exit_vr_hover.svg') no-repeat 9px center;
     }
@@ -68,7 +68,7 @@
     margin-top: 10px;
     margin-bottom: 5px;
     font-size: 14px;
-    
+
     &:hover {
         background: url('@{imgComponentUrl}/icons/360_info_hover.svg') no-repeat 0px center;
         .info-btn-text {
@@ -89,7 +89,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    
+
     .info-contents {
         background-color: rgba(0,0,0,0.5);
         width: 100%;
@@ -108,7 +108,7 @@
             font-size: 12px;
         }
     }
-    
+
     #pointer {
         border: solid 10px transparent;
         border-bottom-color:#000;
@@ -142,3 +142,44 @@
 .a-loader-title {
     color: black;
   }
+
+.vr-banner {
+    width: ~'calc(100% - 20px)';
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    position: absolute;
+    left: 10px;
+    bottom: 25px;
+    background-color: #e8e7e8;
+    border-radius: 12px;
+    z-index: 1;
+
+    .product-title {
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 0;
+        color: @mainColor;
+    }
+
+    .btn-addtocart {
+        min-height: 30px;
+        padding: 0 8px;
+        margin: 0;
+        text-transform: none;
+        background-color: transparent;
+        border: none;
+        color: #007afe;
+
+        &:hover {
+            background-color: transparent;
+            text-decoration: underline;
+            color: #007afe;
+        }
+
+        &:focus {
+            outline: 0 auto transparent;
+        }
+    }
+}

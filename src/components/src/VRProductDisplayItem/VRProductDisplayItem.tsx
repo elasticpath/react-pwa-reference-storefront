@@ -33,10 +33,19 @@ interface IVRComponentProps {
   backgroundUri?: any,
   /** Called when Vr window is closed. */
   handleCloseVR: any,
+  /** product name */
+  productName?: string,
+  /** on add to cart */
+  onAddToCart?: (...args: any[]) => any,
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
+  static defaultProps = {
+    productName: '',
+    onAddToCart: () => {},
+  }
+
   static isSafari() {
     const { userAgent } = navigator;
     return (/Safari/i).test(userAgent) && !(/Chrome/i).test(userAgent);
@@ -57,7 +66,9 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
   }
 
   public render() {
-    const { backgroundUri, handleCloseVR } = this.props;
+    const {
+      backgroundUri, handleCloseVR, productName, onAddToCart,
+    } = this.props;
     const { showInfo } = this.state;
 
     return (
@@ -82,6 +93,13 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
                 )
               }
             </a-assets>
+
+            <div className="vr-banner">
+              <h3 className="product-title">{productName}</h3>
+              <button type="button" className="ep-btn btn-addtocart" onClick={(e) => { onAddToCart(e); }}>
+                {intl.get('add-to-cart')}
+              </button>
+            </div>
 
             <Entity primitive="a-sky" radius="30" src="#background" />
           </Scene>
