@@ -24,6 +24,7 @@ import AddPromotionContainer from './AddPromotionContainer/add.promotion.contain
 import AddressContainer from './AddressContainer/address.container';
 import AppFooterMain from './AppFooterMain/appfooter.main';
 import AddressFormMain from './AddressForm/addressform.main';
+import AlertContainer from './AlertContainer/alert.container';
 import AppHeaderMain from './AppHeader/appheader.main';
 import AppHeaderLocaleMain from './AppHeaderLocale/appheaderlocale.main';
 import AppHeaderLoginMain from './AppHeaderLogin/appheaderlogin.main';
@@ -103,6 +104,7 @@ export {
   AddPromotionContainer,
   AddressContainer,
   AddressFormMain,
+  AlertContainer,
   AppFooterMain,
   AppHeaderMain,
   AppHeaderLocaleMain,
