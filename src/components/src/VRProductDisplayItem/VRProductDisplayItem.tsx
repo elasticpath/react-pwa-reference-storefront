@@ -29,6 +29,7 @@ import intl from 'react-intl-universal';
 interface IVRComponentState {
   showInfo: boolean,
   isMobile: boolean,
+  showVrProductInfo: boolean,
 }
 
 interface IVRComponentProps {
@@ -63,15 +64,16 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     this.state = {
       showInfo: false,
       isMobile: false,
+      showVrProductInfo: false,
     };
     this.handleInfoPanel = this.handleInfoPanel.bind(this);
     this.handleCollide = this.handleCollide.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleMoreInfoClicked = this.handleMoreInfoClicked.bind(this);
   }
 
   handleInfoPanel() {
     const { showInfo } = this.state;
-
     this.setState({ showInfo: !showInfo });
   }
 
@@ -87,9 +89,19 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     console.log('able to handle a click');
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  handleMoreInfoClicked() {
+    const { showVrProductInfo } = this.state;
+    // eslint-disable-next-line no-console
+    console.log('Handle more info clicked.');
+    this.setState({
+      showVrProductInfo: !showVrProductInfo,
+    });
+  }
+
   public render() {
     const { backgroundUri, handleCloseVR, meshUri } = this.props;
-    const { showInfo, isMobile } = this.state;
+    const { showInfo, isMobile, showVrProductInfo } = this.state;
 
     return (
       <div>
@@ -101,7 +113,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
           {/* eslint-disable-next-line react/style-prop-object */}
           <div className="outer-html-texture">
             <div id="boxHTML" className="inner-html-texture">
-              <p className="html-text-texture">CHEESECAKE FOR YOU</p>
+              <p className="html-text-texture">Place holder html</p>
             </div>
           </div>
 
@@ -123,7 +135,39 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a-assets>
             <Entity primitive="a-sky" radius="30" src="#background" />
 
-            <Entity geometry="primitive: plane" material="shader: html; target: #boxHTML" position="3 2 -3" rotation="" scale="2 2 2" visible="" look-at="#camera" />
+
+            <a-assets>
+              <img alt="" id="hsIcon" src="https://d1vlj71acq3rf7.cloudfront.net/assets/XR-Hotspot.png" crossOrigin="anonymous" />
+              <img alt="" id="hsIconExit" src="https://d1vlj71acq3rf7.cloudfront.net/assets/close.png" crossOrigin="anonymous" />
+            </a-assets>
+
+            { showVrProductInfo ? (
+              <Entity id="rstHotspot2" class="clickable sceneHotspotIcon" position="3 3 -1" look-at="#camera" geometry="primitive: circle" material="src: #hsIconExit; shader: flat; side: double" scale="0.25 0.25 0.25" rotation="0 100 0" visible="">
+                <Entity
+                  id="rstHotspotBtn2"
+                  geometry=""
+                  scale="2 2 2"
+                  material="opacity: 0; transparent: true; depthTest: false"
+                  events={{
+                    click: this.handleMoreInfoClicked,
+                  }}
+                />
+                <Entity geometry="primitive: plane" material="shader: html; target: #boxHTML" position="-5.5 -5.5 -1" rotation="" scale="12 12 12" visible="" look-at="#camera" />
+              </Entity>
+            ) : (
+              <Entity id="rstHotspot1" class="clickable sceneHotspotIcon" position="1.3 1.3 -3" look-at="#camera" geometry="primitive: circle" material="src: #hsIcon; shader: flat; side: double" scale="0.25 0.25 0.25" rotation="0 100 0" visible="">
+                <Entity
+                  id="rstHotspotBtn1"
+                  geometry=""
+                  scale="4 4 4"
+                  material="opacity: 0; transparent: true; depthTest: false"
+                  events={{
+                    click: this.handleMoreInfoClicked,
+                  }}
+                />
+              </Entity>
+            )
+            }
 
             <Entity
               gltf-model="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb"
@@ -132,7 +176,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               position="0 1 -3"
               cursor-listener
               events={{
-                click: this.handleClick, collided: [this.handleCollide], mouseenter: this.handleClick,
+                click: this.handleClick, collided: [this.handleCollide],
               }}
               animation__rotate={{
                 property: 'rotation', dur: 20000, loop: true, to: '0 720',
