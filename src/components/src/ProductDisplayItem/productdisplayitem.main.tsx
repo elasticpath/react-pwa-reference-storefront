@@ -618,11 +618,13 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       detailsProductData,
     } = this.state;
 
-    const productDescription = detailsProductData ? detailsProductData[0]['display-value'].split('. ', 1)[0] : '';
+    const productDescription = detailsProductData ? detailsProductData.filter(el => el.name === 'DESCRIPTION')[0]['display-value'].split('. ', 1)[0] : productData._definition[0]['display-name'];
 
     const { listPrice, itemPrice } = this.extractPrice(productData);
 
     const price = listPrice !== itemPrice ? listPrice : itemPrice;
+
+    const { availability } = this.extractAvailabilityParams(productData);
 
     const settings = {
       customPaging(i) {
@@ -640,11 +642,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       slidesToScroll: 1,
     };
 
-    const skuArImagesUrl = Config.arKit.skuArImagesUrl
-      .replace('%sku%', productData._code[0].code)
-      .replace('%title%', productData._definition[0]['display-name'])
-      .replace('%price%', price)
-      .replace('%description%', productDescription);
+    const skuArImagesUrl = availability && productData._addtocartform
+      ? `${Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)}#callToAction=${intl.get('add-to-cart')}&checkoutTitle=${productData._definition[0]['display-name']}&checkoutSubtitle=${productDescription}&price=${price}&customHeight=large`
+      : Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code);
 
     return (
       <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
