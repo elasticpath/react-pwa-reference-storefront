@@ -24,7 +24,6 @@ import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import imgMissingHorizontal from '../../../images/img_missing_horizontal@2x.png';
 import transparentImg from '../../../images/icons/transparent.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
@@ -218,6 +217,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.initVR = this.initVR.bind(this);
     this.closeVR = this.closeVR.bind(this);
     this.getVRBackgroundImg = this.getVRBackgroundImg.bind(this);
+    this.handleArLinkClick = this.handleArLinkClick.bind(this);
   }
 
   componentDidMount() {
@@ -502,6 +502,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.setState({ detailsProductData });
   }
 
+  handleArLinkClick(e) {
+    e.currentTarget.addEventListener('message', (event) => {
+      if (event.data === '_apple_ar_quicklook_button_tapped') {
+        this.addToCart(event);
+      }
+    }, false);
+  }
+
   renderAttributes() {
     const { detailsProductData } = this.state;
     if (detailsProductData) {
@@ -607,7 +615,16 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       vrMode,
       vrFileExists,
       multiImages,
+      detailsProductData,
     } = this.state;
+
+    const productDescription = detailsProductData ? detailsProductData.filter(el => el.name === 'DESCRIPTION')[0]['display-value'].split('. ', 1)[0] : productData._definition[0]['display-name'];
+
+    const { listPrice, itemPrice } = this.extractPrice(productData);
+
+    const price = listPrice !== itemPrice ? listPrice : itemPrice;
+
+    const { availability } = this.extractAvailabilityParams(productData);
 
     const settings = {
       customPaging(i) {
@@ -625,6 +642,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       slidesToScroll: 1,
     };
 
+    const skuArImagesUrl = availability && productData._addtocartform
+      ? `${Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)}#callToAction=${intl.get('add-to-cart')}&checkoutTitle=${productData._definition[0]['display-name']}&checkoutSubtitle=${productDescription}&price=${price}&customHeight=large`
+      : Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code);
+
     return (
       <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
         <div className="product-image-carousel">
@@ -635,7 +656,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           }
           {
             arFileExists && (
-              <a href={Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)} rel="ar" className="anchor-ar-container">
+              <a href={skuArImagesUrl} rel="ar" className="anchor-ar-container" id="ar-link" onClick={e => this.handleArLinkClick(e)}>
                 <img
                   src={transparentImg}
                   alt=""
