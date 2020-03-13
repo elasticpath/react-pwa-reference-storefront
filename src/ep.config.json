@@ -54,7 +54,7 @@
   "gaTrackingId": "",
   "arKit": {
     "enable": true,
-    "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz"
+    "skuArImagesUrl": "https://s3.amazonaws.com/referenceexp/ar/%sku%.usdz#callToAction=Add%20to%20cart&checkoutTitle=%title%&checkoutSubtitle=%description%&price=%price%"
   },
   "vr": {
     "enable": true,
