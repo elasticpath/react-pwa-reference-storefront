@@ -618,7 +618,19 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       detailsProductData,
     } = this.state;
 
-    const productDescription = detailsProductData ? detailsProductData.filter(el => el.name === 'DESCRIPTION')[0]['display-value'].split('. ', 1)[0] : productData._definition[0]['display-name'];
+    const productDescription = detailsProductData ? detailsProductData.filter(el => el.name === 'DESCRIPTION') : [];
+
+    const productSummary = detailsProductData ? detailsProductData.filter(el => el.name === 'summary') : [];
+
+    let description = '';
+
+    if (productDescription.length > 0) {
+      description = String(productDescription[0]['display-value'].split('. ', 1)[0]);
+    } else if (productSummary.length > 0) {
+      description = String(productSummary[0]['display-value'].split('. ', 1)[0]);
+    } else {
+      description = productData._definition[0]['display-name'];
+    }
 
     const { listPrice, itemPrice } = this.extractPrice(productData);
 
@@ -643,7 +655,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     };
 
     const skuArImagesUrl = availability && productData._addtocartform
-      ? `${Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)}#callToAction=${intl.get('add-to-cart')}&checkoutTitle=${productData._definition[0]['display-name']}&checkoutSubtitle=${productDescription}&price=${price}&customHeight=large`
+      ? `${Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)}#callToAction=${intl.get('add-to-cart')}&checkoutTitle=${productData._definition[0]['display-name']}&checkoutSubtitle=${description}&price=${price}`
       : Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code);
 
     return (
