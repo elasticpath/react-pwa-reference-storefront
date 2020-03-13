@@ -158,7 +158,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               position="0 1 -3"
               cursor-listener
               animation__rotate={{
-                property: 'rotation', dur: 20000, loop: true, to: '0 720',
+                property: 'rotation', dur: 20500, loop: true, to: '0 720',
               }}
             />
 
