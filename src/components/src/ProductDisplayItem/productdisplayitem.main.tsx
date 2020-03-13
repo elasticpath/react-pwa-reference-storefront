@@ -655,7 +655,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     };
 
     const skuArImagesUrl = availability && productData._addtocartform
-      ? `${Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)}#callToAction=${intl.get('add-to-cart')}&checkoutTitle=${productData._definition[0]['display-name']}&checkoutSubtitle=${description}&price=${price}&customHeight=large`
+      ? `${Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code)}#callToAction=${intl.get('add-to-cart')}&checkoutTitle=${productData._definition[0]['display-name']}&checkoutSubtitle=${description}&price=${price}`
       : Config.arKit.skuArImagesUrl.replace('%sku%', productData._code[0].code);
 
     return (
