@@ -57,9 +57,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
   }
 
   public render() {
-    const {
-      backgroundUri, handleCloseVR,
-    } = this.props;
+    const { backgroundUri, handleCloseVR } = this.props;
     const { showInfo } = this.state;
 
     return (
