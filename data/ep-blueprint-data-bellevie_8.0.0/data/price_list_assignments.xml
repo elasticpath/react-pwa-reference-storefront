@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<price_list_assignments>
+<price_list_assignment>
+    <guid>081b5a0e-7fa9-4a58-b163-ed2ac3dc250c</guid>
+    <name>testPricePL</name>
+    <priority>2</priority>
+    <catalog_guid>BelleVieUSCatalog</catalog_guid>
+    <price_list_guid>c5004e43-8eb8-4557-bc2d-df4d13485d75</price_list_guid>
+    <selling_context>
+        <guid>71a37c6a-7ea9-498e-b2a8-a302cd0e20af</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>16669873-5b96-4847-b9b3-090c7bfcd9b7</guid>
+    <name>Cooks Base Pricing</name>
+    <description></description>
+    <priority>10</priority>
+    <catalog_guid>Cooks</catalog_guid>
+    <price_list_guid>d9a8863c-4195-4d4c-a830-9a627efc82d8</price_list_guid>
+    <selling_context>
+        <guid>afeb0d3a-b223-4dea-a7f2-5bf387c5c9ae</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>686039f4-0eb3-4eca-9d69-32f2f83f1c0a</guid>
+                <name>30168790802363</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieDE' }  { SELLING_CHANNEL.equalTo 'BelleVieCA' }  { SELLING_CHANNEL.equalTo 'BelleVieUS' }  { SELLING_CHANNEL.equalTo 'sageCH' }  { SELLING_CHANNEL.equalTo 'sageUK' }  { SELLING_CHANNEL.equalTo 'BelleVieNZ' }  { SELLING_CHANNEL.equalTo 'sageEU' }  { SELLING_CHANNEL.equalTo 'sageDE' }  { SELLING_CHANNEL.equalTo 'BelleVieAT' }  { SELLING_CHANNEL.equalTo 'BelleVieAU' }  { SELLING_CHANNEL.equalTo 'cooks' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>16e38652-5604-4ce0-b797-2207b91d9578</guid>
+    <name>testassignment</name>
+    <priority>9</priority>
+    <catalog_guid>BelleVieCACatalog</catalog_guid>
+    <price_list_guid>e09c251e-af8f-4bb4-9a43-5f390c2f4bff</price_list_guid>
+    <selling_context>
+        <guid>5d0de620-16e6-4f02-a3fd-bca5bbf8aea1</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>15a78442-1672-4dd0-af80-ce52a8bc0233</guid>
+                <name>42673584568024304</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieCA' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+            <condition>
+                <guid>f1ff8669-2ef4-4841-8ca1-9dfe5b7c32f6</guid>
+                <name>42697844741385600</name>
+                <condition_string> { AND { SHOPPING_START_TIME.greaterThan (1564142580000L) }  { SHOPPING_START_TIME.lessThan (1564401840000L) }  } </condition_string>
+                <dictionary_guid>TIME</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>21eff70a-76e4-4604-807a-f6c1aa6c6aa9</guid>
+    <name>VIP Prices</name>
+    <description></description>
+    <priority>2</priority>
+    <catalog_guid>BelleVieUKCatalog</catalog_guid>
+    <price_list_guid>c5004e43-8eb8-4557-bc2d-df4d13485d75</price_list_guid>
+    <selling_context>
+        <guid>6d48cfba-2562-49fd-a8ae-573a3063883c</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>21916b9e-7ace-4c05-aa71-eed4b7bc3758</guid>
+                <name>33370315053628</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageUK' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+            <condition>
+                <guid>51dd8a07-f57e-4eaa-9a6c-5841af2e9a99</guid>
+                <name>33311471335098</name>
+                <condition_string> { AND { AND { CUSTOMER_SEGMENT.includes 'VIP1' }  }  } </condition_string>
+                <dictionary_guid>PLA_SHOPPER</dictionary_guid>
+            </condition>
+            <condition>
+                <guid>f7cb8238-6494-46e0-8d83-7665fa1d4eff</guid>
+                <name>33355245270212</name>
+                <condition_string> { AND { SHOPPING_START_TIME.greaterThan (1580591880000L) }  { SHOPPING_START_TIME.lessThan (1585689480000L) }  } </condition_string>
+                <dictionary_guid>TIME</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>2b43340b-0234-4027-8c25-b93d21778df1</guid>
+    <name>Test</name>
+    <priority>1</priority>
+    <catalog_guid>BelleVieUSCatalog</catalog_guid>
+    <price_list_guid>c5004e43-8eb8-4557-bc2d-df4d13485d75</price_list_guid>
+    <selling_context>
+        <guid>01e07d70-2d64-4235-ae85-0bed5f4cee61</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>86e756c9-2916-4719-ab21-a47d91d989ad</guid>
+                <name>43549522660486600</name>
+                <condition_string> { AND { SHOPPING_START_TIME.greaterThan (1564821480000L) }  { SHOPPING_START_TIME.lessThan (1565599080000L) }  } </condition_string>
+                <dictionary_guid>TIME</dictionary_guid>
+            </condition>
+            <condition>
+                <guid>b1c45a33-f214-493f-8b6a-5ea30261c33b</guid>
+                <name>43549548452047200</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieUS' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>42d3eca2-4142-4c2b-8927-2f241d79802f</guid>
+    <name>UK Gold Pricing Assignment</name>
+    <description></description>
+    <priority>3</priority>
+    <catalog_guid>BelleVieUKCatalog</catalog_guid>
+    <price_list_guid>61868992-751d-4161-b940-d8adad7e275a</price_list_guid>
+    <selling_context>
+        <guid>d5d4c54a-e6d5-48e3-8108-5b5881b20590</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>7dab0026-a7ce-48a6-87f2-3bb6871e429b</guid>
+                <name>43073782952742</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieDE' }  { SELLING_CHANNEL.equalTo 'BelleVieCA' }  { SELLING_CHANNEL.equalTo 'BelleVieUS' }  { SELLING_CHANNEL.equalTo 'sageCH' }  { SELLING_CHANNEL.equalTo 'sageUK' }  { SELLING_CHANNEL.equalTo 'BelleVieNZ' }  { SELLING_CHANNEL.equalTo 'sageEU' }  { SELLING_CHANNEL.equalTo 'sageDE' }  { SELLING_CHANNEL.equalTo 'BelleVieAT' }  { SELLING_CHANNEL.equalTo 'BelleVieAU' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+            <condition>
+                <guid>980c8bb0-558e-4d3b-a788-addfdc554ef5</guid>
+                <name>43064759888468</name>
+                <condition_string> { AND { AND { CUSTOMER_SEGMENT.includes 'GOLD' }  }  } </condition_string>
+                <dictionary_guid>PLA_SHOPPER</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>4d7b7e9a-1b59-4299-a7c5-fa8bda16c86a</guid>
+    <name>PricelistAssignment_NZ</name>
+    <description>Price list assignment NZ</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieNZCatalog</catalog_guid>
+    <price_list_guid>d945b218-ac96-4aaf-9c71-0d02a60a0823</price_list_guid>
+    <selling_context>
+        <guid>23bc3a79-f651-47bf-b5fb-362ab7931af3</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>a06c1f93-e9a7-4fdb-a6ec-7f629c182dba</guid>
+                <name>237838820729563</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieNZ' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>72a2919a-87cc-43d9-bcce-394faad2dcd0</guid>
+    <name>PricelistAssignment_Coffee_Supplies_UK</name>
+    <description>Price list assignment for Coffee Supplies Inc.</description>
+    <priority>9</priority>
+    <catalog_guid>BelleVieUKCatalog</catalog_guid>
+    <price_list_guid>229c8d17-5d82-43c4-b449-42121e36086b</price_list_guid>
+    <selling_context>
+        <guid>41746e47-3f81-4c9c-95cc-49065347b8fb</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>5f22eb1a-20d2-4e1c-af42-352e6d50e2f0</guid>
+                <name>46660232173004</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieDE' }  { SELLING_CHANNEL.equalTo 'BelleVieCA' }  { SELLING_CHANNEL.equalTo 'BelleVieUS' }  { SELLING_CHANNEL.equalTo 'sageCH' }  { SELLING_CHANNEL.equalTo 'sageUK' }  { SELLING_CHANNEL.equalTo 'BelleVieNZ' }  { SELLING_CHANNEL.equalTo 'sageEU' }  { SELLING_CHANNEL.equalTo 'sageDE' }  { SELLING_CHANNEL.equalTo 'BelleVieAT' }  { SELLING_CHANNEL.equalTo 'BelleVieAU' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+            <condition>
+                <guid>cc0f72f9-0f39-464a-aef7-97d57a7d9588</guid>
+                <name>46634205840622</name>
+                <condition_string> { AND { AND { CUSTOMER_SEGMENT.includes 'coffee_supplies' }  }  } </condition_string>
+                <dictionary_guid>PLA_SHOPPER</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>8837cbdb-c535-4a0d-bf01-eda26f49c126</guid>
+    <name>PricelistAssignment_CA</name>
+    <description>Price list assignment CA</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieCACatalog</catalog_guid>
+    <price_list_guid>e1e79c21-5c7d-4180-a71d-736f7bf9e56e</price_list_guid>
+    <selling_context>
+        <guid>23d2fe70-6e39-4448-931f-be78281b491c</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>b339ba2a-951e-4985-b89b-32c6ea362f21</guid>
+                <name>978377495097282</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieCA' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>9a0ca2fe-6224-4e36-b7a1-62b18c1964ed</guid>
+    <name>PricelistAssignment_USA</name>
+    <description>Price list assignment USA</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieUSCatalog</catalog_guid>
+    <price_list_guid>a1e863d2-7095-4b44-8c16-a2cc6269e491</price_list_guid>
+    <selling_context>
+        <guid>88384f51-3362-465d-8556-70e131e0710b</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>0d510cb6-fe6d-4e0c-b08a-68ddbf9eacef</guid>
+                <name>975138220719244</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieUS' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>a444ffdb-8d6a-4410-966d-52765c73648f</guid>
+    <name>PricelistAssignment_UK</name>
+    <description>Price list assignment UK</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieUKCatalog</catalog_guid>
+    <price_list_guid>40aec4fc-028a-49d8-815c-000a9995385b</price_list_guid>
+    <selling_context>
+        <guid>449a46fc-1df5-4685-bfb9-3fbff081d9b3</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>7e317c37-211b-418e-8236-76c21c1a1382</guid>
+                <name>134138520819332</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageUK' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>b5af5359-5f78-4a13-84cc-479a9c74930c</guid>
+    <name>PricelistAssignment_CH</name>
+    <description>Price list assignment CH</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieCHCatalog</catalog_guid>
+    <price_list_guid>2bf838f6-b9f4-4dbc-ae60-2be4c05c5015</price_list_guid>
+    <selling_context>
+        <guid>ef369b17-9383-448a-99b6-82b564c7e1f2</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>22845f53-76d5-40db-a3bb-96165eb6406c</guid>
+                <name>692807633358392</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageCH' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>b9c73a39-507b-4acb-9880-ace6427f73cf</guid>
+    <name>PricelistAssignment_AU</name>
+    <description>Price list assignment AU</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieAUCatalog</catalog_guid>
+    <price_list_guid>154070ed-0959-40de-a9c5-48c4226b8c44</price_list_guid>
+    <selling_context>
+        <guid>da9618a6-1e23-4925-bd2d-717d9e25f872</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>d8ba0b60-3363-44d0-aa19-37ccce877d75</guid>
+                <name>738027381234448</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieAU' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>decd7c47-967b-4968-bbd9-89fd6adaa77a</guid>
+    <name>PricelistAssignment_EU</name>
+    <description>Price list assignment EU</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieEUCatalog</catalog_guid>
+    <price_list_guid>cc1e3fdf-3bd7-4adc-a158-02872f0d370a</price_list_guid>
+    <selling_context>
+        <guid>40eca2d1-5669-4dc2-ab38-c15cf8627ca0</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>2f9853e4-30d8-43d7-b6f6-12606b0037f0</guid>
+                <name>955349949143679</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageEU' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>e93ef535-1e13-4612-8dc2-4ebb82d29753</guid>
+    <name>PricelistAssignment_AT</name>
+    <description>Price list assignment AT</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieATCatalog</catalog_guid>
+    <price_list_guid>490e8643-e5c6-4a46-bb68-bb06517d0540</price_list_guid>
+    <selling_context>
+        <guid>b831be5f-fea5-4d89-a45d-12e85c2988ac</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>5d510cb6-fe6d-4e0c-b08a-68ddbf9eacef</guid>
+                <name>975138220719245</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'BelleVieAT' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>fa0a681c-c8c6-4bd5-bfa9-714d8ca6bab8</guid>
+    <name>TestAug</name>
+    <priority>10</priority>
+    <catalog_guid>BelleVieUSCatalog</catalog_guid>
+    <price_list_guid>a1e863d2-7095-4b44-8c16-a2cc6269e491</price_list_guid>
+    <selling_context>
+        <guid>46053697-3764-4c1e-8acc-99dd38d831e6</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>c563fd4f-b3ed-47c4-a440-2678c3c7b48c</guid>
+                <name>43033412653915504</name>
+                <condition_string> { AND { AND { GEOIP_GMT_TIME_ZONE.greaterThanOrEqualTo (5.5F) }  }  } </condition_string>
+                <dictionary_guid>PLA_SHOPPER</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+
+<price_list_assignment>
+    <guid>fd84c33c-5e0b-4aac-b83e-8d90f3e506b8</guid>
+    <name>PricelistAssignment_DE</name>
+    <description>Price list assignment DE</description>
+    <priority>10</priority>
+    <catalog_guid>BelleVieDECatalog</catalog_guid>
+    <price_list_guid>3cb3233b-fe57-4a9a-a738-0e613796ce4c</price_list_guid>
+    <selling_context>
+        <guid>9fafdf5e-8af1-4860-b90b-fb7d5f93ab2b</guid>
+        <name>SELLING_CONTEXT_NAME_null</name>
+        <description>SELLING_CONTEXT_DESCR_null</description>
+        <priority>0</priority>
+        <conditions>
+            <condition>
+                <guid>cd18a129-cea8-4f45-9012-0b19ce3987e5</guid>
+                <name>344214111081898</name>
+                <condition_string> { OR { SELLING_CHANNEL.equalTo 'sageDE' }  } </condition_string>
+                <dictionary_guid>STORES</dictionary_guid>
+            </condition>
+        </conditions>
+    </selling_context>
+</price_list_assignment>
+</price_list_assignments>

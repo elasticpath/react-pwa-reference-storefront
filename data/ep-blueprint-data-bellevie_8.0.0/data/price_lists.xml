@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<price_lists>
+<price_list>
+    <guid>14a33839-0ed6-441b-8361-ea1e0e993e89</guid>
+    <description>Price list for Friends and Family</description>
+    <currency_code>GBP</currency_code>
+    <name>BelleVie Friends &amp; Family</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>154070ed-0959-40de-a9c5-48c4226b8c44</guid>
+    <description>BelleVie AU Master Price List</description>
+    <currency_code>AUD</currency_code>
+    <name>BelleVie_AU_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>229c8d17-5d82-43c4-b449-42121e36086b</guid>
+    <description>Discounted prices for Coffee Supplies Inc.</description>
+    <currency_code>GBP</currency_code>
+    <name>BelleVie_UK_Coffee_Supplies_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>2bf838f6-b9f4-4dbc-ae60-2be4c05c5015</guid>
+    <description>BelleVie CH Master Price List</description>
+    <currency_code>CHF</currency_code>
+    <name>BelleVie_CH_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>3cb3233b-fe57-4a9a-a738-0e613796ce4c</guid>
+    <description>BelleVie DE Master Price List</description>
+    <currency_code>EUR</currency_code>
+    <name>BelleVie_DE_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>40aec4fc-028a-49d8-815c-000a9995385b</guid>
+    <description>BelleVie UK Master Price List</description>
+    <currency_code>GBP</currency_code>
+    <name>BelleVie_UK_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>490e8643-e5c6-4a46-bb68-bb06517d0540</guid>
+    <description>BelleVie AT Master Price List</description>
+    <currency_code>EUR</currency_code>
+    <name>BelleVie_AT_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>55b550e4-fe60-480d-b0a6-2bbd32ecfa79</guid>
+    <description>sfsd</description>
+    <currency_code>USD</currency_code>
+    <name>test</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>61868992-751d-4161-b940-d8adad7e275a</guid>
+    <description>BelleVie Gold Member Price List</description>
+    <currency_code>GBP</currency_code>
+    <name>BelleVie_UK_Gold_Pricing</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>6312d105-360d-453f-8034-ac040bdda2e5</guid>
+    <description>sds</description>
+    <currency_code>USD</currency_code>
+    <name>testPriceForAug</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>a1e863d2-7095-4b44-8c16-a2cc6269e491</guid>
+    <description>BelleVie USA Master Price List</description>
+    <currency_code>USD</currency_code>
+    <name>BelleVie_USA_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>c5004e43-8eb8-4557-bc2d-df4d13485d75</guid>
+    <description>sads</description>
+    <currency_code>USD</currency_code>
+    <name>testPricePL</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>c5bf5972-96b0-467e-b2ed-e9c0f0b6fad7</guid>
+    <description>Spring Fling Sale prices</description>
+    <currency_code>EUR</currency_code>
+    <name>BelleVie_EUR_Spring_Fling</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>cac7081d-237a-4fa2-af72-f382753d9d30</guid>
+    <description>BelleVie Summer Sale Price List</description>
+    <currency_code>GBP</currency_code>
+    <name>BelleVie Summer Sale</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>cc1e3fdf-3bd7-4adc-a158-02872f0d370a</guid>
+    <description>BelleVie EU Master Price List</description>
+    <currency_code>EUR</currency_code>
+    <name>BelleVie_EU_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>d7893e74-5383-4613-88cd-7c707292aa4d</guid>
+    <description>BelleVie CA New Arrivals</description>
+    <currency_code>CAD</currency_code>
+    <name>BelleVie_CA_New_Arrivals</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>d945b218-ac96-4aaf-9c71-0d02a60a0823</guid>
+    <description>BelleVie NZ Master Price List</description>
+    <currency_code>NZD</currency_code>
+    <name>BelleVie_NZ_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>d9a8863c-4195-4d4c-a830-9a627efc82d8</guid>
+    <description></description>
+    <currency_code>GBP</currency_code>
+    <name>Cooks Base Pricing</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>e09c251e-af8f-4bb4-9a43-5f390c2f4bff</guid>
+    <description>testing</description>
+    <currency_code>USD</currency_code>
+    <name>summer</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>e1e79c21-5c7d-4180-a71d-736f7bf9e56e</guid>
+    <description>BelleVie CA Master Price List</description>
+    <currency_code>CAD</currency_code>
+    <name>BelleVie_CA_Master_Pricelist</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>f689bf5f-378b-4cd7-9356-c7d6b7e2e739</guid>
+    <description>BelleVie Pop Up Pricing</description>
+    <currency_code>USD</currency_code>
+    <name>BelleVie Pop Up Pricing</name>
+    <hidden>false</hidden>
+</price_list>
+</price_lists>

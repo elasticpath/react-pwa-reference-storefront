@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<warehouses>
+<warehouse code="BelleVieAT">
+    <name>BelleVie Austria</name>
+    <pick_delay>0</pick_delay>
+    <street1></street1>
+    <street2></street2>
+    <city>Vienna</city>
+    <sub_country></sub_country>
+    <zip_postal_code>1010</zip_postal_code>
+    <country>AT</country>
+</warehouse>
+
+<warehouse code="BelleVieAU">
+    <name>BelleVie Australia</name>
+    <pick_delay>0</pick_delay>
+    <street1>2000 Botany NSW</street1>
+    <street2></street2>
+    <city>Sydney</city>
+    <sub_country></sub_country>
+    <zip_postal_code>1455</zip_postal_code>
+    <country>AU</country>
+</warehouse>
+
+<warehouse code="BelleVieCA">
+    <name>BelleVie Canada</name>
+    <pick_delay>0</pick_delay>
+    <street1>3595 Boulevard de la Côte-Vertu</street1>
+    <street2></street2>
+    <city>Saint-Laurent</city>
+    <sub_country>QC</sub_country>
+    <zip_postal_code>H4R 1R2</zip_postal_code>
+    <country>CA</country>
+</warehouse>
+
+<warehouse code="BelleVieCH">
+    <name>BelleVie CH</name>
+    <pick_delay>0</pick_delay>
+    <street1></street1>
+    <street2></street2>
+    <city>Berlin</city>
+    <sub_country></sub_country>
+    <zip_postal_code>10115</zip_postal_code>
+    <country>DE</country>
+</warehouse>
+
+<warehouse code="BelleVieDE">
+    <name>BelleVie Germany</name>
+    <pick_delay>0</pick_delay>
+    <street1></street1>
+    <street2></street2>
+    <city>Berlin</city>
+    <sub_country></sub_country>
+    <zip_postal_code>10115</zip_postal_code>
+    <country>DE</country>
+</warehouse>
+
+<warehouse code="BelleVieEU">
+    <name>BelleVie Europe</name>
+    <pick_delay>0</pick_delay>
+    <street1></street1>
+    <street2></street2>
+    <city>Berlin</city>
+    <sub_country></sub_country>
+    <zip_postal_code>10115</zip_postal_code>
+    <country>DE</country>
+</warehouse>
+
+<warehouse code="BelleVieNZ">
+    <name>BelleVie New Zealand</name>
+    <pick_delay>0</pick_delay>
+    <street1> 94411 Manukau</street1>
+    <street2></street2>
+    <city>Auckland</city>
+    <sub_country></sub_country>
+    <zip_postal_code>2163</zip_postal_code>
+    <country>NZ</country>
+</warehouse>
+
+<warehouse code="BelleVieUK">
+    <name>BelleVie UK</name>
+    <pick_delay>0</pick_delay>
+    <street1>114 Power Road</street1>
+    <street2></street2>
+    <city>London</city>
+    <sub_country></sub_country>
+    <zip_postal_code>W4 5PY</zip_postal_code>
+    <country>GB</country>
+</warehouse>
+
+<warehouse code="BelleVieUSA">
+    <name>BelleVie USA</name>
+    <pick_delay>0</pick_delay>
+    <street1>19400 S Western Ave</street1>
+    <street2></street2>
+    <city>Torrance</city>
+    <sub_country>CA</sub_country>
+    <zip_postal_code>90501</zip_postal_code>
+    <country>US</country>
+</warehouse>
+</warehouses>

@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customerprofile_attributes>
+<attribute>
+    <key>CP_ANONYMOUS_CUST</key>
+    <name>
+        <value language="en">Anonymous Customer</value>
+        <value language="en_AU">Anonymous Customer</value>
+        <value language="en_CA">Anonymous Customer</value>
+        <value language="en_GB">Anonymous Customer</value>
+        <value language="en_IE">Anonymous Customer</value>
+        <value language="en_IN">Anonymous Customer</value>
+        <value language="en_MT">Anonymous Customer</value>
+        <value language="en_NZ">Anonymous Customer</value>
+        <value language="en_PH">Anonymous Customer</value>
+        <value language="en_SG">Anonymous Customer</value>
+        <value language="en_US">Anonymous Customer</value>
+        <value language="en_ZA">Anonymous Customer</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>Boolean</type>
+    <multilanguage>false</multilanguage>
+    <required>true</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_BE_NOTIFIED</key>
+    <name>
+        <value language="en">Be notified of News</value>
+        <value language="en_AU">Be notified of News</value>
+        <value language="en_CA">Be notified of News</value>
+        <value language="en_GB">Be notified of News</value>
+        <value language="en_IE">Be notified of News</value>
+        <value language="en_IN">Be notified of News</value>
+        <value language="en_MT">Be notified of News</value>
+        <value language="en_NZ">Be notified of News</value>
+        <value language="en_PH">Be notified of News</value>
+        <value language="en_SG">Be notified of News</value>
+        <value language="en_US">Be notified of News</value>
+        <value language="en_ZA">Be notified of News</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>Boolean</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_BUSINESS_NUMBER</key>
+    <name>
+        <value language="en">Business Number</value>
+        <value language="en_AU">Business Number</value>
+        <value language="en_CA">Business Number</value>
+        <value language="en_GB">Business Number</value>
+        <value language="en_IE">Business Number</value>
+        <value language="en_IN">Business Number</value>
+        <value language="en_MT">Business Number</value>
+        <value language="en_NZ">Business Number</value>
+        <value language="en_PH">Business Number</value>
+        <value language="en_SG">Business Number</value>
+        <value language="en_US">Business Number</value>
+        <value language="en_ZA">Business Number</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_COMPANY</key>
+    <name>
+        <value language="en">Company</value>
+        <value language="en_AU">Company</value>
+        <value language="en_CA">Company</value>
+        <value language="en_GB">Company</value>
+        <value language="en_IE">Company</value>
+        <value language="en_IN">Company</value>
+        <value language="en_MT">Company</value>
+        <value language="en_NZ">Company</value>
+        <value language="en_PH">Company</value>
+        <value language="en_SG">Company</value>
+        <value language="en_US">Company</value>
+        <value language="en_ZA">Company</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_DOB</key>
+    <name>
+        <value language="en">Date of Birth</value>
+        <value language="en_AU">Date of Birth</value>
+        <value language="en_CA">Date of Birth</value>
+        <value language="en_GB">Date of Birth</value>
+        <value language="en_IE">Date of Birth</value>
+        <value language="en_IN">Date of Birth</value>
+        <value language="en_MT">Date of Birth</value>
+        <value language="en_NZ">Date of Birth</value>
+        <value language="en_PH">Date of Birth</value>
+        <value language="en_SG">Date of Birth</value>
+        <value language="en_US">Date of Birth</value>
+        <value language="en_ZA">Date of Birth</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>Date</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_EMAIL</key>
+    <name>
+        <value language="en">Email</value>
+        <value language="en_AU">Email</value>
+        <value language="en_CA">Email</value>
+        <value language="en_GB">Email</value>
+        <value language="en_IE">Email</value>
+        <value language="en_IN">Email</value>
+        <value language="en_MT">Email</value>
+        <value language="en_NZ">Email</value>
+        <value language="en_PH">Email</value>
+        <value language="en_SG">Email</value>
+        <value language="en_US">Email</value>
+        <value language="en_ZA">Email</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_FAX</key>
+    <name>
+        <value language="en">Fax Number</value>
+        <value language="en_AU">Fax Number</value>
+        <value language="en_CA">Fax Number</value>
+        <value language="en_GB">Fax Number</value>
+        <value language="en_IE">Fax Number</value>
+        <value language="en_IN">Fax Number</value>
+        <value language="en_MT">Fax Number</value>
+        <value language="en_NZ">Fax Number</value>
+        <value language="en_PH">Fax Number</value>
+        <value language="en_SG">Fax Number</value>
+        <value language="en_US">Fax Number</value>
+        <value language="en_ZA">Fax Number</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_FIRST_NAME</key>
+    <name>
+        <value language="en">First Name</value>
+        <value language="en_AU">First Name</value>
+        <value language="en_CA">First Name</value>
+        <value language="en_GB">First Name</value>
+        <value language="en_IE">First Name</value>
+        <value language="en_IN">First Name</value>
+        <value language="en_MT">First Name</value>
+        <value language="en_NZ">First Name</value>
+        <value language="en_PH">First Name</value>
+        <value language="en_SG">First Name</value>
+        <value language="en_US">First Name</value>
+        <value language="en_ZA">First Name</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>true</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_GENDER</key>
+    <name>
+        <value language="en">Gender</value>
+        <value language="en_AU">Gender</value>
+        <value language="en_CA">Gender</value>
+        <value language="en_GB">Gender</value>
+        <value language="en_IE">Gender</value>
+        <value language="en_IN">Gender</value>
+        <value language="en_MT">Gender</value>
+        <value language="en_NZ">Gender</value>
+        <value language="en_PH">Gender</value>
+        <value language="en_SG">Gender</value>
+        <value language="en_US">Gender</value>
+        <value language="en_ZA">Gender</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_HTML_EMAIL</key>
+    <name>
+        <value language="en">HTML emails</value>
+        <value language="en_AU">HTML emails</value>
+        <value language="en_CA">HTML emails</value>
+        <value language="en_GB">HTML emails</value>
+        <value language="en_IE">HTML emails</value>
+        <value language="en_IN">HTML emails</value>
+        <value language="en_MT">HTML emails</value>
+        <value language="en_NZ">HTML emails</value>
+        <value language="en_PH">HTML emails</value>
+        <value language="en_SG">HTML emails</value>
+        <value language="en_US">HTML emails</value>
+        <value language="en_ZA">HTML emails</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>Boolean</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_LAST_NAME</key>
+    <name>
+        <value language="en">Last Name</value>
+        <value language="en_AU">Last Name</value>
+        <value language="en_CA">Last Name</value>
+        <value language="en_GB">Last Name</value>
+        <value language="en_IE">Last Name</value>
+        <value language="en_IN">Last Name</value>
+        <value language="en_MT">Last Name</value>
+        <value language="en_NZ">Last Name</value>
+        <value language="en_PH">Last Name</value>
+        <value language="en_SG">Last Name</value>
+        <value language="en_US">Last Name</value>
+        <value language="en_ZA">Last Name</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>true</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_PHONE</key>
+    <name>
+        <value language="en">Phone Number</value>
+        <value language="en_AU">Phone Number</value>
+        <value language="en_CA">Phone Number</value>
+        <value language="en_GB">Phone Number</value>
+        <value language="en_IE">Phone Number</value>
+        <value language="en_IN">Phone Number</value>
+        <value language="en_MT">Phone Number</value>
+        <value language="en_NZ">Phone Number</value>
+        <value language="en_PH">Phone Number</value>
+        <value language="en_SG">Phone Number</value>
+        <value language="en_US">Phone Number</value>
+        <value language="en_ZA">Phone Number</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_PREF_CURR</key>
+    <name>
+        <value language="en">Preferred Currency</value>
+        <value language="en_AU">Preferred Currency</value>
+        <value language="en_CA">Preferred Currency</value>
+        <value language="en_GB">Preferred Currency</value>
+        <value language="en_IE">Preferred Currency</value>
+        <value language="en_IN">Preferred Currency</value>
+        <value language="en_MT">Preferred Currency</value>
+        <value language="en_NZ">Preferred Currency</value>
+        <value language="en_PH">Preferred Currency</value>
+        <value language="en_SG">Preferred Currency</value>
+        <value language="en_US">Preferred Currency</value>
+        <value language="en_ZA">Preferred Currency</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_PREF_LOCALE</key>
+    <name>
+        <value language="en">Preferred Locale</value>
+        <value language="en_AU">Preferred Locale</value>
+        <value language="en_CA">Preferred Locale</value>
+        <value language="en_GB">Preferred Locale</value>
+        <value language="en_IE">Preferred Locale</value>
+        <value language="en_IN">Preferred Locale</value>
+        <value language="en_MT">Preferred Locale</value>
+        <value language="en_NZ">Preferred Locale</value>
+        <value language="en_PH">Preferred Locale</value>
+        <value language="en_SG">Preferred Locale</value>
+        <value language="en_US">Preferred Locale</value>
+        <value language="en_ZA">Preferred Locale</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_TAX_EXEMPTION_ID</key>
+    <name>
+        <value language="en">Tax Exemption ID</value>
+        <value language="en_AU">Tax Exemption ID</value>
+        <value language="en_CA">Tax Exemption ID</value>
+        <value language="en_GB">Tax Exemption ID</value>
+        <value language="en_IE">Tax Exemption ID</value>
+        <value language="en_IN">Tax Exemption ID</value>
+        <value language="en_MT">Tax Exemption ID</value>
+        <value language="en_NZ">Tax Exemption ID</value>
+        <value language="en_PH">Tax Exemption ID</value>
+        <value language="en_SG">Tax Exemption ID</value>
+        <value language="en_US">Tax Exemption ID</value>
+        <value language="en_ZA">Tax Exemption ID</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>cust_Attribute1</key>
+    <name>
+        <value language="en">cust_Attribute1</value>
+        <value language="en_AU">cust_Attribute1</value>
+        <value language="en_CA">cust_Attribute1</value>
+        <value language="en_GB">cust_Attribute1</value>
+        <value language="en_IE">cust_Attribute1</value>
+        <value language="en_IN">cust_Attribute1</value>
+        <value language="en_MT">cust_Attribute1</value>
+        <value language="en_NZ">cust_Attribute1</value>
+        <value language="en_PH">cust_Attribute1</value>
+        <value language="en_SG">cust_Attribute1</value>
+        <value language="en_US">cust_Attribute1</value>
+        <value language="en_ZA">cust_Attribute1</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>Integer</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>cust_Attribute2</key>
+    <name>
+        <value language="en">cust_Attribute2</value>
+        <value language="en_AU">cust_Attribute2</value>
+        <value language="en_CA">cust_Attribute2</value>
+        <value language="en_GB">cust_Attribute2</value>
+        <value language="en_IE">cust_Attribute2</value>
+        <value language="en_IN">cust_Attribute2</value>
+        <value language="en_MT">cust_Attribute2</value>
+        <value language="en_NZ">cust_Attribute2</value>
+        <value language="en_PH">cust_Attribute2</value>
+        <value language="en_SG">cust_Attribute2</value>
+        <value language="en_US">cust_Attribute2</value>
+        <value language="en_ZA">cust_Attribute2</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>Preferred_Drink</key>
+    <name>
+        <value language="en_US">Preferred Drink</value>
+    </name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+</customerprofile_attributes>
