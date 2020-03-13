@@ -618,9 +618,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       detailsProductData,
     } = this.state;
 
-    const productDescription = detailsProductData.filter(el => el.name === 'DESCRIPTION');
+    const productDescription = detailsProductData ? detailsProductData.filter(el => el.name === 'DESCRIPTION') : [];
 
-    const productSummary = detailsProductData.filter(el => el.name === 'summary');
+    const productSummary = detailsProductData ? detailsProductData.filter(el => el.name === 'summary') : [];
 
     let description = '';
 
