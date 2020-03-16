@@ -32,6 +32,7 @@ import './b2c.home.page.less';
 import heroImagePourCoffee from '../../../images/site-images/hero_image_pour_coffee.png';
 import heroImageBlender from '../../../images/site-images/hero_image_blender.png';
 import iceCreamImage from '../../../images/site-images/ice_cream.png';
+import heroImageShipping from '../../../images/site-images/hero_image_shipping.png';
 import heroBanner from '../../../images/site-images/hero_image_coffee.png';
 
 let Config: IEpConfig | any = {};
@@ -41,6 +42,7 @@ const heroBannerFileName = 'hero_image_coffee.png';
 const heroImagePourCoffeeFileName = 'hero_image_pour_coffee.png';
 const heroImageBlenderFileName = 'hero_image_blender.png';
 const iceCreamImageFileName = 'ice_cream.png';
+const shippingImageFileName = '/hero_image_shipping.png';
 
 const B2CHomePage: React.FunctionComponent = () => {
   const epConfig = getConfig();
@@ -75,43 +77,55 @@ const B2CHomePage: React.FunctionComponent = () => {
         <div className="main-goods">
           <ul className="main-goods__grid">
             <li className="main-goods__cell">
-              <ImageContainer className="main-goods-image banner-1" fileName={heroImagePourCoffeeFileName} imgUrl={heroImagePourCoffee} />
-              <h5 className="goods-title-small">{intl.get('products')}</h5>
-              <h3 className="goods-title">{intl.get('product1-heading')}</h3>
-              <p className="goods-description">{intl.get('product1-description')}</p>
+              <div className="main-goods-wrap">
+                <div className="goods-info">
+                  <h5 className="goods-title-small">Espresso Machines</h5>
+                  <h3 className="goods-title">Be your own Barista with your very own Espresso machine</h3>
+                  <div className="btn-wrap">
+                    <button type="button" className="ep-btn primary learn-more-btn">{intl.get('learn-more')}</button>
+                  </div>
+                </div>
+                <ImageContainer className="main-goods-image banner-1" fileName={heroImagePourCoffeeFileName} imgUrl={heroImagePourCoffee} />
+              </div>
             </li>
             <li className="main-goods__cell">
-              <ImageContainer className="main-goods-image banner-2" fileName={heroImageBlenderFileName} imgUrl={heroImageBlender} />
-              <h5 className="goods-title-small">{intl.get('products')}</h5>
-              <h3 className="goods-title">{intl.get('product2-heading')}</h3>
-              <p className="goods-description">{intl.get('product2-description')}</p>
+              <div className="main-goods-wrap">
+                <div className="goods-info">
+                  <h5 className="goods-title-small">Healthy</h5>
+                  <h3 className="goods-title">More flavours, more variety, more fun.</h3>
+                  <p className="goods-description">Make the most of your fresh ingredients with the 3X Bluicer Pro. This high performance blender juicer features our Kinetix®</p>
+                  <button type="button" className="ep-btn primary learn-more-btn">{intl.get('add-to-cart-2')}</button>
+                </div>
+                <ImageContainer className="main-goods-image banner-2" fileName={heroImageBlenderFileName} imgUrl={heroImageBlender} />
+              </div>
             </li>
             <li className="main-goods__cell">
-              <ImageContainer className="main-goods-image banner-3" fileName={iceCreamImageFileName} imgUrl={iceCreamImage} />
-              <h5 className="goods-title-small">{intl.get('products')}</h5>
-              <h3 className="goods-title">{intl.get('product3-heading')}</h3>
-              <p className="goods-description">
-                {intl.get('product3-description')}
-              </p>
+              <div className="main-goods-wrap">
+                <div className="goods-info">
+                  <h5 className="goods-title-small">Ice cream makers</h5>
+                  <h3 className="goods-title">Frozen treats with fresh ingredients.</h3>
+                  <p className="goods-description">
+                    The Smart Scoop™ transforms the kitchen into your favorite scoop shop. The first ice cream maker to automatically sense the hardness of the mixture based on your selection.
+                  </p>
+                  <button type="button" className="ep-btn primary learn-more-btn">Ice cream makers</button>
+                </div>
+                <ImageContainer className="main-goods-image banner-3" fileName={iceCreamImageFileName} imgUrl={iceCreamImage} />
+              </div>
             </li>
-            <li>Test</li>
+            <li className="main-goods__cell">
+              <div className="main-goods-wrap">
+                <div className="goods-info">
+                  <h5 className="goods-title-small">Serving you</h5>
+                  <h3 className="goods-title">Free Shipping</h3>
+                  <p className="goods-description">
+                    Free shipping on all orders of $50!
+                  </p>
+                </div>
+                <ImageContainer className="main-goods-image banner-3" fileName={shippingImageFileName} imgUrl={heroImageShipping} />
+              </div>
+            </li>
             <li>Test</li>
           </ul>
-
-          <div className="main-goods__cell main-goods__block">
-            <h5 className="goods-title-small">{intl.get('services')}</h5>
-            <h3 className="goods-title">{intl.get('service-heading')}</h3>
-            <p className="goods-description">
-              {intl.get('service-description')}
-            </p>
-          </div>
-
-          <div className="main-goods__cell main-goods__block bottom-block">
-            <h2 className="goods-heading">{intl.get('about-brand-heading')}</h2>
-            <p className="goods-description">
-              {intl.get('about-brand-description')}
-            </p>
-          </div>
         </div>
       </div>
     </div>
