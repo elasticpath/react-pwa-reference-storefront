@@ -58,6 +58,7 @@ import PaymentFormMain from './PaymentForm/paymentform.main';
 import PaymentMethodContainer from './PaymentMethodContainer/paymentmethod.container';
 import PowerReviewMain from './PowerReview/powerreview.main';
 import ProductDisplayItemMain from './ProductDisplayItem/productdisplayitem.main';
+import ProductDisplayItemDetails from './ProductDisplayItem/productdisplayitem.details';
 import ProductListMain from './ProductList/productlist.main';
 import ProductListItemMain from './ProductListItem/productlistitem.main';
 import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
@@ -139,6 +140,7 @@ export {
   PaymentMethodContainer,
   PowerReviewMain,
   ProductDisplayItemMain,
+  ProductDisplayItemDetails,
   ProductListMain,
   ProductListItemMain,
   ProductListLoadmore,

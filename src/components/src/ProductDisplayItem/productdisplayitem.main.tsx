@@ -22,7 +22,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
-import { login } from '../utils/AuthService';
+import { login, isLoggedIn } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import transparentImg from '../../../images/icons/transparent.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
@@ -33,7 +33,7 @@ import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
-
+import ProductDisplayItemDetails from './productdisplayitem.details';
 import './productdisplayitem.main.less';
 import PowerReview from '../PowerReview/powerreview.main';
 import ImageContainer from '../ImageContainer/image.container';
@@ -150,10 +150,6 @@ interface ProductDisplayItemMainState {
 }
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
-  static isLoggedIn(config) {
-    return (localStorage.getItem(`${config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
-  }
-
   static async urlExists(url) {
     const res = await fetch(url, {
       method: 'HEAD',
@@ -331,6 +327,38 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     }
   }
 
+  addToWishList(event) {
+    const { productData, itemQuantity, itemConfiguration } = this.state;
+    const { onAddToWishList } = this.props;
+    login().then(() => {
+      const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
+      const body:any = {};
+      body.quantity = itemQuantity;
+      if (itemConfiguration) {
+        body.configuration = itemConfiguration;
+      }
+      cortexFetch(addToWishListLink.uri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(body),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            onAddToWishList();
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+    event.preventDefault();
+  }
+
   handleQuantityDecrement() {
     const { itemQuantity } = this.state;
     if (itemQuantity > 1) {
@@ -403,38 +431,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             onAddToCart();
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-    event.preventDefault();
-  }
-
-  addToWishList(event) {
-    const { productData, itemQuantity, itemConfiguration } = this.state;
-    const { onAddToWishList } = this.props;
-    login().then(() => {
-      const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
-      const body:any = {};
-      body.quantity = itemQuantity;
-      if (itemConfiguration) {
-        body.configuration = itemConfiguration;
-      }
-      cortexFetch(addToWishListLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onAddToWishList();
           }
         })
         .catch((error) => {
@@ -523,24 +519,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             {attribute['display-value']}
           </div>
         </li>
-      ));
-    }
-    return null;
-  }
-
-  renderConfiguration() {
-    const { productData, isLoading } = this.state;
-    if (productData._addtocartform && productData._addtocartform[0].configuration) {
-      const keys = Object.keys(productData._addtocartform[0].configuration);
-      return keys.map(key => (
-        <div key={key} className="form-group">
-          <label htmlFor={`product_display_item_configuration_${key}_label`} className="control-label">
-            {key}
-          </label>
-          <div className="form-content">
-            <input className="form-control form-control-text" disabled={isLoading} onChange={e => this.handleConfiguration(key, e)} id={`product_display_item_configuration_${key}_label`} value={productData._addtocartform[0].configuration.key} />
-          </div>
-        </div>
       ));
     }
     return null;
@@ -809,7 +787,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading, vrMode,
     } = this.state;
     const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
-    const { featuredProductAttribute, itemDetailLink } = this.props;
+    const {
+      featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart,
+    } = this.props;
 
     if (productData) {
       const { listPrice, itemPrice } = this.extractPrice(productData);
@@ -871,183 +851,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 </div>
               </div>
             </div>
-
-            <div className="itemdetail-details">
-              <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
-                <div>
-                  <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
-                    {productData._definition[0]['display-name']}
-                    {requisitionListData && ProductDisplayItemMain.isLoggedIn(Config) && (
-                      <button type="button" className="add-to-wish-list-link" onClick={this.addToWishList} disabled={!availability || !productData._addtowishlistform}>
-                        +
-                        {' '}
-                        {intl.get('add-to-wish-list')}
-                      </button>
-                    )}
-                  </h1>
-                  {(Config.b2b.enable) && (
-                    <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
-                      {productData._code[0].code}
-                    </h4>
-                  )}
-                </div>
-              </div>
-              <div className="itemdetail-price-container itemdetail-price-wrap" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
-                <div>
-                  <div data-region="itemPriceRegion" style={{ display: 'block' }}>
-                    <ul className="itemdetail-price-container">
-                      {
-                        listPrice !== itemPrice
-                          ? (
-                            <li className="itemdetail-purchase-price">
-                              <h1 className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
-                                {itemPrice}
-                              </h1>
-                              <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
-                                {listPrice}
-                              </span>
-                            </li>
-                          )
-                          : (
-                            <li className="itemdetail-purchase-price">
-                              <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                                {itemPrice}
-                              </h1>
-                            </li>
-                          )
-                      }
-                    </ul>
-                  </div>
-                  <div data-region="itemRateRegion" />
-                </div>
-              </div>
-              <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
-                <ul className="itemdetail-availability-container">
-                  <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                    <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
-                      {(availability) ? (
-                        <div>
-                          <span className="icon" />
-                          {availabilityString}
-                        </div>
-                      ) : (
-                        <div>
-                          {availabilityString}
-                        </div>
-                      )}
-                    </label>
-                  </li>
-                  <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                    <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
-                      {intl.get('expected-release-date')}
-                      :&nbsp;
-                    </label>
-                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
-                      {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
-                <div>
-                  <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { this.addToCart(event); } }}>
-                    {this.renderConfiguration()}
-                    {this.renderSkuSelection()}
-                    <div className="form-group quantity-picker-group">
-                      <label htmlFor="product_display_item_quantity_label" className="control-label">
-                        {intl.get('quantity')}
-                      </label>
-                      <div className="input-group-btn">
-                        <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                          <span>–</span>
-                        </button>
-                        <div className="quantity-col form-content form-content-quantity">
-                          <input id="product_display_quantity_field" className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
-                        </div>
-                        <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                          <span>+</span>
-                        </button>
-                      </div>
-                      {
-                        (isLoading) ? (<div className="miniLoader" />) : ''
-                      }
-                    </div>
-                    <div className="form-group-submit">
-                      {isMultiCartEnabled ? (
-                        <SelectCartButton />
-                      ) : (
-                        <div className="form-content form-content-submit col-sm-offset-4">
-                          <button
-                            className="ep-btn primary wide btn-itemdetail-addtocart"
-                            disabled={!availability || !productData._addtocartform}
-                            id="product_display_item_add_to_cart_button"
-                            type="submit"
-                          >
-                            <span>
-                              {intl.get('add-to-cart')}
-                            </span>
-                          </button>
-                        </div>
-                      )}
-                    </div>
-
-                  </form>
-                  {(ProductDisplayItemMain.isLoggedIn(Config) && productData._addtocartform) ? (
-                    <form className="itemdetail-addtowishlist-form form-horizontal">
-                      <div className="form-group-submit">
-                        {requisitionListData ? (
-                          <SelectRequisitionListButton />
-                        ) : (
-                          <div className="form-content form-content-submit col-sm-offset-4">
-                            <button
-                              onClick={this.addToWishList}
-                              className="ep-btn btn-itemdetail-addtowishlist"
-                              disabled={!availability || !productData._addtowishlistform}
-                              id="product_display_item_add_to_wish_list_button"
-                              type="submit"
-                            >
-                              {intl.get('add-to-wish-list')}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    </form>
-                  ) : ('')
-                  }
-                </div>
-                <div className="social-network-sharing">
-                  <InlineShareButtons
-                    config={{
-                      alignment: 'center', // alignment of buttons (left, center, right)
-                      color: 'social', // set the color of buttons (social, white)
-                      enabled: true, // show/hide buttons (true, false)
-                      font_size: 16, // font size for the buttons
-                      labels: 'cta', // button labels (cta, counts, null)
-                      language: 'en', // which language to use (see LANGUAGES)
-                      networks: [ // which networks to include (see SHARING NETWORKS)
-                        'facebook',
-                        'twitter',
-                        'pinterest',
-                        'email',
-                      ],
-                      padding: 12, // padding within buttons (INTEGER)
-                      radius: 4, // the corner radius on each button (INTEGER)
-                      size: 40, // the size of each button (INTEGER)
-
-                      // OPTIONAL PARAMETERS
-                      url: productLink, // (defaults to current url)
-                      image: productImage, // (defaults to og:image or twitter:image)
-                      description: productDescriptionValue, // (defaults to og:description or twitter:description)
-                      title: productTitle, // (defaults to og:title or twitter:title)
-                      message: 'custom email text', // (only for email sharing)
-                      subject: 'custom email subject', // (only for email sharing)
-                      username: 'custom twitter handle', // (only for twitter sharing)
-                    }}
-                  />
-                </div>
-              </div>
-              <PowerReview productData={productData} />
-            </div>
+            <ProductDisplayItemDetails productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} />
           </div>
           <div className="itemdetail-tabs-wrap">
             {(Config.PowerReviews.enable) ? (

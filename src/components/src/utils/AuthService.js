@@ -302,3 +302,7 @@ export function getAccessToken(token) {
       });
   }));
 }
+
+export function isLoggedIn(config) {
+  return (localStorage.getItem(`${config.cortexApi.scope}_oAuthRole`) === 'REGISTERED');
+}
