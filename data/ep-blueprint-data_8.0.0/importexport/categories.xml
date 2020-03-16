@@ -1,0 +1,1507 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<categories>
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>045f3d30-9e37-44c1-aa44-8457b478b5ad</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_MODEL_S</code>
+    <name>
+        <value language="en_US">M-Class</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>3</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T18:59:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>7391d132-0874-45db-9ffb-a948571bf9c7</guid>
+            <order>3</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>31dba5e1-eebd-49a7-913c-9d8d8ca8bc1b</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_ROADSTER</code>
+    <name>
+        <value language="en_US">X-Class</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>5</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:09:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>69f67c0e-3a14-4efe-b740-59244a51c968</guid>
+            <order>5</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>4efb46a0-a3e8-47ec-8b8a-ed52104ed186</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_APPAREL</code>
+    <name>
+        <value language="en_US">Apparel</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>APPAREL_VESTRI</type>
+    <order>1</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T18:44:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="vestri_spain">
+            <guid>26dc23d5-52b2-41d0-90f5-f27c2c918ee8</guid>
+            <order>1</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>c0196449-b2f7-4cb1-a2aa-efacf0566822</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_SERVICES</code>
+    <name>
+        <value language="en_US">Service</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>11</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:25:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>0727e1bb-21de-4ca7-9814-602c28999413</guid>
+            <order>11</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>f7b9e8ed-42af-4a94-a076-fad96fb4ef08</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_MODEL_X</code>
+    <name>
+        <value language="en_US">CR-550</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>4</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:05:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>95cf1f84-59bf-4ce5-9d26-ed5b7b8daa3f</guid>
+            <order>4</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>4ceda286-30fb-41a5-9e34-00552902c05a</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_SERVICE_PARTS</code>
+    <name>
+        <value language="en_US">Vehicle Service Parts</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>13</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2018-05-17T11:44:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>ee4281e9-c1b0-4bf5-aebb-3ecd4e03afe4</guid>
+            <order>13</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>69cf77b3-dbb8-4cbc-a372-b3cad7a0d541</guid>
+    <parentcategory>VESTRI_SERVICES</parentcategory>
+    <code>VESTRI_ANNUAL_INSPECTIONS</code>
+    <name>
+        <value language="en_US">Annual Inspections</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>2</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:26:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>3efbfa36-23bb-4871-81cb-289b69eb1d47</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>c086ab94-12ee-42da-82c5-ac1266f668b2</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_InCarAddons</code>
+    <name>
+        <value language="en_US">Addons</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>VEHICLES_VESTRI</type>
+    <order>12</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:29:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="Vestri_Auto">
+            <guid>456bf62f-bdaa-4e03-83ed-a33db59557a2</guid>
+            <order>12</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>79d464b2-a924-4804-9c35-c67c0fe51616</guid>
+            <order>12</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>75cd54df-3ecd-4665-bb23-dd4157c140c7</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_CHARGING_AND_ADAPTERS</code>
+    <name>
+        <value language="en_US">Charging and Adapters</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>6</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:20:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>fe32dd14-d833-476e-95b2-5a0ae839a0f6</guid>
+    <parentcategory>VESTRI_SERVICE_PARTS</parentcategory>
+    <code>VESTRI_MAINTENANCE_PRODUCTS</code>
+    <name>
+        <value language="en_US">Maintenance Products</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>1</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2018-05-17T11:45:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>9b05b822-188f-4ed3-83b2-62c3b820bda2</guid>
+            <order>1</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>51b99b13-93e2-485d-964e-b0593e5da896</guid>
+    <parentcategory>VESTRI_ROADSTER</parentcategory>
+    <code>VESTRI_ROADSTER_CHARGING</code>
+    <name>
+        <value language="en_US">Charging</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>2</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:14:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>ec87ba9f-8808-4ba8-ae21-19503e65a444</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>df624c16-f274-4686-a616-06b676d5847d</guid>
+    <parentcategory>VESTRI_ROADSTER</parentcategory>
+    <code>VESTRI_ROADSTER_ALL_PRODUCTS</code>
+    <name>
+        <value language="en_US">All Products</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>1</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:12:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>6bedbb50-1ec5-4a58-9fa0-06665f6622b5</guid>
+            <order>1</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>3cb00971-c4df-4fbc-bc12-ee4caf8e7d78</guid>
+    <parentcategory>VESTRI_APPAREL</parentcategory>
+    <code>VESTRI_MENS_APPAREL</code>
+    <name>
+        <value language="en_US">Mens</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>APPAREL_VESTRI</type>
+    <order>2</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T18:46:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>e56cd7d3-dbaa-45d2-b2bd-d61af3856c5a</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+        <linkedcategory virtualcatalog="Vestri_Shop_CA">
+            <guid>d76bcc2b-342e-4bc3-b236-d202c2aba793</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+        <linkedcategory virtualcatalog="vestri_spain">
+            <guid>9d4392bf-23cc-40da-9835-f5040accfeb6</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>46141450-94b0-48ca-b49c-dab38468cce4</guid>
+    <parentcategory>VESTRI_MODEL_X</parentcategory>
+    <code>VESTRI_MODEL_X_CHARGING</code>
+    <name>
+        <value language="en_US">Charging and Adapters</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>2</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:07:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>05dd1dbd-e460-42fd-8aa1-a4b5273a1e05</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>5b0d8b95-959e-46d7-bdf4-6bc4ed0b1ea1</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_VEHICLE_INTERIOR</code>
+    <name>
+        <value language="en_US">Vehicle Interior Parts</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>10</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:24:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>699a7cef-6280-405e-81b9-60b9774dad0e</guid>
+    <parentcategory>VESTRI_MODEL_S</parentcategory>
+    <code>VESTRI_MODEL_S_CHARGING</code>
+    <name>
+        <value language="en_US">Charging and Adapters</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>2</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:02:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>528faba5-3d05-46bd-8407-b08667dcc02b</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>0e2e424a-19af-41c3-b95c-58b7dc584817</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_PLANNED_MAINTENANCE_KITS</code>
+    <name>
+        <value language="en_US">Planned Maintenance Kits</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>14</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2018-05-17T11:47:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>8f3b0fc6-e2ec-4846-8647-fd15520d637a</guid>
+            <order>14</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>dae25e22-4703-454a-a4d4-51438b11fea4</guid>
+    <parentcategory>VESTRI_SERVICES</parentcategory>
+    <code>VESTRI_CHARGING_SESSIONS</code>
+    <name>
+        <value language="en_US">Charging Sessions</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>ACCESSORY_VESTRI</type>
+    <order>4</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:28:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="Vestri_Auto">
+            <guid>13369e5e-9bc8-4566-bbc3-8feccedafbc4</guid>
+            <order>4</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>f94e475f-9eeb-48b4-bad8-bf844a2216f5</guid>
+            <order>4</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>fa2838fd-f303-4b5a-86f7-3bd4ae8a40ba</guid>
+    <parentcategory>VESTRI_APPAREL</parentcategory>
+    <code>VESTRI_KIDS_APPAREL</code>
+    <name>
+        <value language="en_US">Kids</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>APPAREL_VESTRI</type>
+    <order>4</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T18:48:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>cb3ad409-166c-4e1f-82c9-235c69f0399c</guid>
+            <order>4</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+        <linkedcategory virtualcatalog="vestri_spain">
+            <guid>4b0ad000-898e-4c38-bfa0-6da02164e08a</guid>
+            <order>4</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>a04a0009-ee7e-4723-9e49-58f7c69e9f16</guid>
+    <parentcategory>VESTRI_SERVICES</parentcategory>
+    <code>VESTRI_PREPAID_SERVICE</code>
+    <name>
+        <value language="en_US">Prepaid Service</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>1</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:26:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>641d363c-a304-4ac4-a052-81409ca4f6f5</guid>
+            <order>1</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>dbab3f08-f525-4029-a9a1-12fd8f8ec2fa</guid>
+    <parentcategory>VESTRI_MODEL_S</parentcategory>
+    <code>VESTRI_MODEL_S_ALL_PRODUCTS</code>
+    <name>
+        <value language="en_US">All Products</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>1</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:00:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>4c642363-ca29-4f99-8c16-8c2cb4a5df7b</guid>
+            <order>1</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>051261f8-923e-41e9-a707-f29758c8b8f5</guid>
+    <parentcategory>VESTRI_MODEL_X</parentcategory>
+    <code>VESTRI_MODEL_X_WHEELS</code>
+    <name>
+        <value language="en_US">Wheels, Tires, and Tire Covers</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>3</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:08:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>ae7a2064-c0eb-45e0-a13a-51ca4fbd1d34</guid>
+            <order>3</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>b5fe3390-22fc-459a-9e75-8420a2bcd73a</guid>
+    <parentcategory>VESTRI_MODEL_X</parentcategory>
+    <code>VESTRI_MODEL_X_ALL_PRODUCTS</code>
+    <name>
+        <value language="en_US">All Products</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>1</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:06:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>47f54943-fe17-4f24-889c-717f1d3156a7</guid>
+            <order>1</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>92c406be-2a2f-4f0c-9f2d-88e3d918a914</guid>
+    <parentcategory>VESTRI_ROADSTER</parentcategory>
+    <code>VESTRI_ROADSTER_FUNCTIONAL</code>
+    <name>
+        <value language="en_US">Functional</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>3</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:15:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>5d9c6afa-bb2c-4476-a95a-a38550620b8a</guid>
+            <order>3</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>ff12b8e1-60a4-4edf-95b2-de442395f0d7</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_ACCESSORIES</code>
+    <name>
+        <value language="en_US">Accessories</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>ACCESSORY_VESTRI</type>
+    <order>2</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T18:58:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>a08fb63b-50a6-4328-a92d-2044477d43d5</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_AU_VIRTUAL">
+    <guid>6119a669-dd63-4e01-b817-0c9a91cb54d2</guid>
+    <parentcategory></parentcategory>
+    <code>PowerSystems</code>
+    <name>
+        <value language="en_US">Power System</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>1</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2018-01-03T02:30:00-05:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>43b06d0e-2f4d-4438-8bf8-7ca3566c1f04</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_WHEELS_AND_TIRES</code>
+    <name>
+        <value language="en_US">Wheels and Tires</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>7</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:21:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>806f3d74-81bd-483b-89ff-1ceb883f1bcc</guid>
+    <parentcategory>VESTRI_APPAREL</parentcategory>
+    <code>VESTRI_ALL_APPAREL</code>
+    <name>
+        <value language="en_US">All Apparel</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>APPAREL_VESTRI</type>
+    <order>1</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T18:45:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="vestri_spain">
+            <guid>e93686d3-c855-43fe-97cb-c61ebd074d19</guid>
+            <order>1</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>0ffb263d-cb43-41f4-98c9-ab448a2f6ddc</guid>
+    <parentcategory>VESTRI_MODEL_S</parentcategory>
+    <code>VESTRI_MODEL_S_WHEELS_AND_TIRES</code>
+    <name>
+        <value language="en_US">Wheels, Tires, and Tire Covers</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>3</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:04:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>be2ef92d-ed44-4e46-8e8d-c7a461ef5f3e</guid>
+            <order>3</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>0764b794-3a21-4057-a147-991c876ea77a</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_VEHICLE_SUSPENSION</code>
+    <name>
+        <value language="en_US">Vehicle Suspension</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>9</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:23:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>48ff01cb-d622-4b97-8a1b-2548016b8d8f</guid>
+    <parentcategory>VESTRI_ROADSTER</parentcategory>
+    <code>VESTRI_ROADSTER_VISUAL</code>
+    <name>
+        <value language="en_US">Visual</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>5</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:17:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>8b48fd9f-0e7b-4a38-a1f0-7f4242082c11</guid>
+            <order>5</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>996ec7aa-d68c-4700-84f1-680b75c90b6e</guid>
+    <parentcategory>VESTRI_ROADSTER</parentcategory>
+    <code>VESTRI_ROADSTER_PERFORMANCE</code>
+    <name>
+        <value language="en_US">Performance</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>4</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:16:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>44ccb52c-4770-4050-82f5-625cc3b04e33</guid>
+            <order>4</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>4b88217e-2f40-44d0-9ec4-8c0a531b2307</guid>
+    <parentcategory>VESTRI_APPAREL</parentcategory>
+    <code>VESTRI_LADIES_APPAREL</code>
+    <name>
+        <value language="en_US">Womens</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>APPAREL_VESTRI</type>
+    <order>3</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T18:47:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>6ab6fa01-4cc7-4162-8539-8fc6c619cdc5</guid>
+            <order>3</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+        <linkedcategory virtualcatalog="Vestri_Shop_CA">
+            <guid>efbca5c2-4d0e-462f-8044-368a58eb7930</guid>
+            <order>3</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+        <linkedcategory virtualcatalog="vestri_spain">
+            <guid>6c64a7c2-b9ce-4e87-9340-7f26a4541570</guid>
+            <order>3</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>fe09ab14-409f-4ac1-b164-11904d57b8b3</guid>
+    <parentcategory></parentcategory>
+    <code>VESTRI_BODY_PARTS</code>
+    <name>
+        <value language="en_US">Vehicle Body Parts</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>8</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:22:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>122bd9e0-ba71-4211-9fe7-7b4e264d6301</guid>
+    <parentcategory>VESTRI_SERVICE_PARTS</parentcategory>
+    <code>VESTRI_REPLACEMENT_PARTS</code>
+    <name>
+        <value language="en_US">Replacement Parts</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>2</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2018-05-17T11:46:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>a92458fa-fb5a-4cd9-87a2-b21096179eac</guid>
+            <order>2</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+
+<category mastercatalog="VESTRI_MOTORS">
+    <guid>1b6417e7-a937-406c-9e01-6c1faddfc6bd</guid>
+    <parentcategory>VESTRI_SERVICES</parentcategory>
+    <code>VESTRI_ALL_SERVICES</code>
+    <name>
+        <value language="en_US">All Services</value>
+        <value language="es_ES"></value>
+    </name>
+    <type>AUTOMOTIVE_PARTS_VESTRI</type>
+    <order>3</order>
+    <availability>
+        <storevisible>true</storevisible>
+        <enabledate>2017-10-21T19:27:00-04:00</enabledate>
+    </availability>
+    <attributes/>
+    <seo>
+        <url>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </url>
+        <title>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </title>
+        <keywords>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </keywords>
+        <description>
+            <value language="es_ES"></value>
+            <value language="en_US"></value>
+        </description>
+    </seo>
+    <linkedcategories>
+        <linkedcategory virtualcatalog="VESTRI_VIRTUAL">
+            <guid>8e40dc12-d001-4e55-bd22-c0e00767d9d0</guid>
+            <order>3</order>
+            <excluded>false</excluded>
+        </linkedcategory>
+    </linkedcategories>
+</category>
+</categories>

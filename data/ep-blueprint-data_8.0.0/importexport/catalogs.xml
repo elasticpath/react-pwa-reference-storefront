@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogs>
+<catalog>
+    <code>VESTRI_AU_VIRTUAL</code>
+    <type>virtual</type>
+    <name>Vestri Shop AU</name>
+    <defaultlanguage>en_US</defaultlanguage>
+</catalog>
+
+<catalog>
+    <code>VESTRI_MOTORS</code>
+    <type>master</type>
+    <name>Vestri Motors - Master Calog</name>
+    <languages>
+        <language>en_US</language>
+        <language>es_ES</language>
+    </languages>
+    <defaultlanguage>en_US</defaultlanguage>
+
+    <attributes>
+        <attribute>
+            <key>FaultCode</key>
+			<name>
+				<value language="en_US">Fault Code</value>
+				<value language="es_ES">Código de fallo</value>
+			</name>
+            <usage>Product</usage>
+            <type>ShortText</type>
+            <multilanguage>false</multilanguage>
+            <required>false</required>
+            <multivalue>rfc4180</multivalue>
+            <global>false</global>
+        </attribute>
+        <attribute>
+            <key>features</key>
+			<name>
+				<value language="en_US">Features</value>
+				<value language="es_ES">Caracteristicas</value>
+			</name>
+            <usage>Product</usage>
+            <type>LongText</type>
+            <multilanguage>false</multilanguage>
+            <required>false</required>
+            <multivalue>false</multivalue>
+            <global>true</global>
+        </attribute>
+        <attribute>
+            <key>localized_summary</key>
+			<name>
+				<value language="en_US">LSummary</value>
+				<value language="es_ES">resumen localizado</value>
+			</name>
+            <usage>Product</usage>
+            <type>LongText</type>
+            <multilanguage>true</multilanguage>
+            <required>false</required>
+            <multivalue>false</multivalue>
+            <global>false</global>
+        </attribute>
+        <attribute>
+            <key>summary</key>
+			<name>
+				<value language="en_US">Description</value>
+				<value language="es_ES">Descripción</value>
+			</name>
+            <usage>Product</usage>
+            <type>LongText</type>
+            <multilanguage>false</multilanguage>
+            <required>false</required>
+            <multivalue>false</multivalue>
+            <global>true</global>
+        </attribute>
+        <attribute>
+            <key>tag</key>
+			<name>
+				<value language="en_US">Tag</value>
+				<value language="es_ES">Etiqueta</value>
+			</name>
+            <usage>Product</usage>
+            <type>ShortText</type>
+            <multilanguage>false</multilanguage>
+            <required>false</required>
+            <multivalue>rfc4180</multivalue>
+            <global>true</global>
+        </attribute>
+        <attribute>
+            <key>VESTRI_INSTALLATION</key>
+			<name>
+				<value language="en_US">Requires Installation</value>
+				<value language="es_ES">Fault Code</value>
+			</name>
+            <usage>Product</usage>
+            <type>Boolean</type>
+            <multilanguage>false</multilanguage>
+            <required>true</required>
+            <multivalue>false</multivalue>
+            <global>false</global>
+        </attribute>
+    </attributes>
+    <categorytypes>
+        <categorytype>
+            <guid>296e6134-69c9-4cc2-b10f-7632f36b5d9a</guid>
+            <name>AUTOMOTIVE_PARTS_VESTRI</name>
+            <assignedattributes/>
+        </categorytype>
+        <categorytype>
+            <guid>65d4bd1d-dc5a-4ddf-b0e8-1b030c54dd32</guid>
+            <name>ACCESSORY_VESTRI</name>
+            <assignedattributes/>
+        </categorytype>
+        <categorytype>
+            <guid>af11761a-22a6-459c-8737-bd8bcd9cf1ac</guid>
+            <name>APPAREL_VESTRI</name>
+            <assignedattributes/>
+        </categorytype>
+        <categorytype>
+            <guid>c738cd18-8f35-4317-9d5b-f8037f3d86f2</guid>
+            <name>VEHICLES_VESTRI</name>
+            <assignedattributes/>
+        </categorytype>
+    </categorytypes>
+    <producttypes>
+        <producttype>
+            <guid>2159167e-49fd-4894-97cd-487aff92ccda</guid>
+            <name>Parts Vestri</name>
+            <assignedattributes>
+                <attributekey>FaultCode</attributekey>
+                <attributekey>features</attributekey>
+                <attributekey>summary</attributekey>
+                <attributekey>tag</attributekey>
+            </assignedattributes>
+            <defaulttaxcode>NONE</defaulttaxcode>
+            <nodiscount>false</nodiscount>
+            <assignedcartitemmodifiergroups>
+                <code>VESTRI_Equipment_Data</code>
+            </assignedcartitemmodifiergroups>
+        </producttype>
+        <producttype>
+            <guid>3bd570cb-701d-4533-87c9-76a7f3343a8f</guid>
+            <name>Car Addon Vestri</name>
+            <assignedattributes>
+                <attributekey>tag</attributekey>
+            </assignedattributes>
+            <defaulttaxcode>NONE</defaulttaxcode>
+            <multisku>
+                <assignedskuoptions>
+                    <skuoption>CHARGING_SESSION</skuoption>
+                </assignedskuoptions>
+                <assignedattributes/>
+            </multisku>
+            <nodiscount>false</nodiscount>
+        </producttype>
+        <producttype>
+            <guid>40f5b20b-2fd7-47f7-a56a-40e49b14c149</guid>
+            <name>Single SKU Vestri</name>
+            <assignedattributes>
+                <attributekey>tag</attributekey>
+            </assignedattributes>
+            <defaulttaxcode>NONE</defaulttaxcode>
+            <nodiscount>false</nodiscount>
+        </producttype>
+        <producttype>
+            <guid>66a6cda1-466c-4d13-bf3c-a09fde53e316</guid>
+            <name>Ladies Apparel Vestri</name>
+            <assignedattributes>
+                <attributekey>summary</attributekey>
+                <attributekey>tag</attributekey>
+            </assignedattributes>
+            <defaulttaxcode>NONE</defaulttaxcode>
+            <multisku>
+                <assignedskuoptions>
+                    <skuoption>APPAREL_COLOR_VESTRI</skuoption>
+                    <skuoption>APPAREL_SIZES_VESTRI</skuoption>
+                </assignedskuoptions>
+                <assignedattributes/>
+            </multisku>
+            <nodiscount>false</nodiscount>
+        </producttype>
+        <producttype>
+            <guid>6aca79a1-415e-44d5-9234-bcee4178192b</guid>
+            <name>Accessory Vestri</name>
+            <assignedattributes>
+                <attributekey>summary</attributekey>
+                <attributekey>tag</attributekey>
+            </assignedattributes>
+            <defaulttaxcode>GOODS</defaulttaxcode>
+            <nodiscount>false</nodiscount>
+        </producttype>
+        <producttype>
+            <guid>a09ef539-f4bb-41db-86ad-d1e2cb934734</guid>
+            <name>Auto Part Vestri</name>
+            <assignedattributes>
+                <attributekey>VESTRI_INSTALLATION</attributekey>
+                <attributekey>summary</attributekey>
+                <attributekey>tag</attributekey>
+            </assignedattributes>
+            <defaulttaxcode>GOODS</defaulttaxcode>
+            <nodiscount>false</nodiscount>
+        </producttype>
+        <producttype>
+            <guid>e2f0d216-bcb3-492f-8eb0-eea9a56f53ea</guid>
+            <name>Kid's Apparel Vestri</name>
+            <assignedattributes>
+                <attributekey>summary</attributekey>
+                <attributekey>tag</attributekey>
+            </assignedattributes>
+            <defaulttaxcode>GOODS</defaulttaxcode>
+            <multisku>
+                <assignedskuoptions>
+                    <skuoption>APPAREL_COLOR_VESTRI</skuoption>
+                    <skuoption>APPAREL_SIZES_VESTRI</skuoption>
+                </assignedskuoptions>
+                <assignedattributes/>
+            </multisku>
+            <nodiscount>false</nodiscount>
+        </producttype>
+        <producttype>
+            <guid>f1544b6e-25e1-4d8b-8026-983859281997</guid>
+            <name>Men's Apparel vestri</name>
+            <assignedattributes>
+                <attributekey>localized_summary</attributekey>
+                <attributekey>summary</attributekey>
+                <attributekey>tag</attributekey>
+            </assignedattributes>
+            <defaulttaxcode>NONE</defaulttaxcode>
+            <multisku>
+                <assignedskuoptions>
+                    <skuoption>APPAREL_COLOR_VESTRI</skuoption>
+                    <skuoption>APPAREL_SIZES_VESTRI</skuoption>
+                </assignedskuoptions>
+                <assignedattributes/>
+            </multisku>
+            <nodiscount>false</nodiscount>
+        </producttype>
+    </producttypes>
+    <skuoptions>
+        <skuoption>
+            <code>APPAREL_COLOR_VESTRI</code>
+            <name>
+                <value language="en_US">Color</value>
+                <value language="es_ES"/>
+            </name>
+            <skuoptionvalues>
+                <skuoptionvalue>
+                    <code>BLACK_VESTRI</code>
+                    <name>
+                        <value language="en_US">Black</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>10</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>WHITE_VESTRI</code>
+                    <name>
+                        <value language="en_US">White</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>20</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>GRAY_VESTRI</code>
+                    <name>
+                        <value language="en_US">Gray</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>30</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>RED_VESTRI</code>
+                    <name>
+                        <value language="en_US">Red</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>40</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>SILVER_VESTRI</code>
+                    <name>
+                        <value language="en_US">Silver</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>50</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>CHARCOAL_VESTRI</code>
+                    <name>
+                        <value language="en_US">Charcoal</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>60</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>HEATHER_GRAY_VESTRI</code>
+                    <name>
+                        <value language="en_US">Heather Gray</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>70</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>PRINT_VESTRI</code>
+                    <name>
+                        <value language="en_US">Print</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>80</ordering>
+                </skuoptionvalue>
+            </skuoptionvalues>
+        </skuoption>
+        <skuoption>
+            <code>APPAREL_SIZES_VESTRI</code>
+            <name>
+                <value language="en_US">Size</value>
+                <value language="es_ES"/>
+            </name>
+            <skuoptionvalues>
+                <skuoptionvalue>
+                    <code>XSMALL_VESTRI</code>
+                    <name>
+                        <value language="en_US">X-Small</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>10</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>SMALL_VESTRI</code>
+                    <name>
+                        <value language="en_US">Small</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>20</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>MEDIUM_VESTRI</code>
+                    <name>
+                        <value language="en_US">Medium</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>30</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>LARGE_VESTRI</code>
+                    <name>
+                        <value language="en_US">Large</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>40</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>XLARGE_VESTRI</code>
+                    <name>
+                        <value language="en_US">X-Large</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>50</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>2T_VESTRI</code>
+                    <name>
+                        <value language="en_US">2T</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>60</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>4T_VESTRI</code>
+                    <name>
+                        <value language="en_US">4T</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>70</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>SIX_VESTRI</code>
+                    <name>
+                        <value language="en_US">6</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>80</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>FITS_ALL_VESTRI</code>
+                    <name>
+                        <value language="en_US">Fits All</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>90</ordering>
+                </skuoptionvalue>
+            </skuoptionvalues>
+        </skuoption>
+        <skuoption>
+            <code>CHARGING_SESSION</code>
+            <name>
+                <value language="en_US">Charging Session</value>
+                <value language="es_ES"/>
+            </name>
+            <skuoptionvalues>
+                <skuoptionvalue>
+                    <code>charging_full</code>
+                    <name>
+                        <value language="en_US">Full Charge</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>10</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>charging_half</code>
+                    <name>
+                        <value language="en_US">Half Charge</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>20</ordering>
+                </skuoptionvalue>
+                <skuoptionvalue>
+                    <code>charging_quick</code>
+                    <name>
+                        <value language="en_US">Quick Charge</value>
+                        <value language="es_ES"/>
+                    </name>
+                    <ordering>30</ordering>
+                </skuoptionvalue>
+            </skuoptionvalues>
+        </skuoption>
+    </skuoptions>
+    <brands>
+        <brand>
+            <code>sabora</code>
+            <name>
+                <value language="en_US">Sabora</value>
+                <value language="es_ES"/>
+            </name>
+        </brand>
+        <brand>
+            <code>VESTRI</code>
+            <name>
+                <value language="en_US">Vestri Motors</value>
+                <value language="es_ES"/>
+            </name>
+        </brand>
+    </brands>
+</catalog>
+
+<catalog>
+    <code>VESTRI_VIRTUAL</code>
+    <type>virtual</type>
+    <name>Vestri Shop US</name>
+    <defaultlanguage>en_US</defaultlanguage>
+</catalog>
+
+<catalog>
+    <code>Vestri_Auto</code>
+    <type>virtual</type>
+    <name>Vestri Shop - US - Addons</name>
+    <defaultlanguage>en_US</defaultlanguage>
+</catalog>
+
+<catalog>
+    <code>Vestri_Shop_CA</code>
+    <type>virtual</type>
+    <name>Vestri Shop CA</name>
+    <defaultlanguage>en_US</defaultlanguage>
+</catalog>
+
+<catalog>
+    <code>vestri_spain</code>
+    <type>virtual</type>
+    <name>Vestri Shop SP</name>
+    <defaultlanguage>es_ES</defaultlanguage>
+</catalog>
+</catalogs>

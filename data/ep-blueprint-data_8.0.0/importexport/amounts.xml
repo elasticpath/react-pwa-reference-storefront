@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<amounts>
+<base_amount>
+    <guid>02EEB26A-89E1-466A-4B1D-FA185D8A9DFE</guid>
+    <object_guid>VESTRI_RACE_CUT_JERSEY_MENS</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>39.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>038978B3-CD88-EB5D-784C-63E5EBB1A70F</guid>
+    <object_guid>VESTRI_ENABLE_SUPERCHARGING</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2600.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>0B5FB265-004C-C5FD-3D51-CDA4B943C1A6</guid>
+    <object_guid>AU_POWER_ADAPTER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>89.99</list_price>
+    <price_list_guid>059fdcf2-b68e-4fea-a31f-bc4a643399f4</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>0BB64B42-B348-259D-3205-FCF5CA1A6C6C</guid>
+    <object_guid>VESTRI_21_TURBINE_WHEEL_PACKAGE_SILVER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>6000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>0CDBBD5C-A9DB-E9FC-B33E-1C6F4F487B1D</guid>
+    <object_guid>VESTRI_WALL_CONNECTOR_8.5_CABLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>500.00</list_price>
+    <sale_price>450.00</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>0E6FC29D-8D7F-BC66-EB41-8763DE2268CF</guid>
+    <object_guid>VESTRI_STRUCTURED_HAT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>24.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>0F0CED59-4ED7-A5E5-576D-6A14C37E68DA</guid>
+    <object_guid>VESTRI_TRANSPONDER_407_6_MONTH</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>59.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>11EB57FA-93EF-7548-9C14-CF0821A7E8C6</guid>
+    <object_guid>VESTRI_DUAL_CHARGER_W_INSTALLATION</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1850.00</list_price>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>14C695A8-AC21-87A2-8FA1-24151168C0D5</guid>
+    <object_guid>VESTRI_19_SLIPSTREAM_WINTER_PACKAGE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2535.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>15FC0684-8F34-26B0-FC0A-82619DA89708</guid>
+    <object_guid>VESTRI_GOLF_BAG</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>174.99</list_price>
+    <sale_price>135.99</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>19620916-1BB9-1040-864B-672F5A17212B</guid>
+    <object_guid>VESTRI_MENS_GRILLE_TSHIRT_SM_BK</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>4.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>1CC502EC-F1DF-5DCC-E788-724E7177B045</guid>
+    <object_guid>VESTRI_TRANSPONDER_407_1_MONTH</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>19.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>1E714DEB-3438-1C33-07DB-81418FB24582</guid>
+    <object_guid>VESTRI_MENS_SS_HANLEY</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>35.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>21CC6741-A193-2EDB-3686-C66A734087CB</guid>
+    <object_guid>VESTRI_ROADSTER_CARBON_FIBER_CENTER_CONSOLE_TRIM</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1200.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>27526942-4870-C6B9-D68F-35287BAB75FB</guid>
+    <object_guid>VESTRI_CORDED_MOBILE_CONNECTOR</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>490.00</list_price>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>27F9FE46-A53E-4972-F070-29C7B3986CA9</guid>
+    <object_guid>VESTRI_20_HELIX_WHEEL_WINTER_PACKAGE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>5300.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>282C4F92-6FC6-D647-C9AA-5E157AFD4E8B</guid>
+    <object_guid>VESTRI_Y2_ANNUAL_INSPECTION</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>750.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>28A17925-A7E1-0253-9B13-4AA932DD21FB</guid>
+    <object_guid>VESTRI_WOMENS_ATHLETIC_TANK</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>35.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>2C6CBE9D-3FF6-5D5E-59CB-D9BA33A6A085</guid>
+    <object_guid>J929-YL</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>14.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>2FBB71C0-E409-E4AF-0A6E-F9A704872281</guid>
+    <object_guid>VESTRI_MENS_GRILLE_TSHIRT_MD_BK</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>9.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>31D770E0-E655-E718-2D09-FB9FA51C915A</guid>
+    <object_guid>VERSTRI_CHARGING_SESSION_QUICK</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>4.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>327FE4F9-8BAA-0EC8-2881-895591AEB82D</guid>
+    <object_guid>5P-0960</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>9.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>35DD4811-57AA-FB60-6C18-3F04520E1459</guid>
+    <object_guid>VESTRI_ROADSTER_CARBON_FIBER_SPOILER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1700.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>3B11B31D-A511-83D7-334C-C1FFA9E5E18D</guid>
+    <object_guid>VERSTRI_CHARGING_SESSION_HALF</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>9.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>3C36C7CD-B844-E8D9-AB55-8AE351B39A9F</guid>
+    <object_guid>VERSTRI_CHARGING_SESSION_QUICK</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>4.99</list_price>
+    <price_list_guid>d6169089-04d0-47bd-9987-50e6fa809489</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>3EB4715B-FE2D-054B-3D36-5DDB79E79282</guid>
+    <object_guid>VESTRI_WOMENS_MODEL_X_TEE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>32.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>40462A68-DDC5-445C-6CFA-67E4E5082CF1</guid>
+    <object_guid>VESTRI_MENS_MODEL_X_POLO</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>54.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>40F8D003-2915-BD3E-AEBA-2DB67D0EE279</guid>
+    <object_guid>VESTRI_MENS_GRILLE_TSHIRT_LG_BK</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>14.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>480C5AE7-76A2-7626-783C-F076C8B52446</guid>
+    <object_guid>VESTRI_MENS_ATHLETIC_TSHIRT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>24.99</list_price>
+    <sale_price>19.99</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>48B9A28C-238C-0F3E-4C4E-7F04B3C37457</guid>
+    <object_guid>VESTRI_CABLE_ORGANIZER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>25.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>4965E6E8-19A1-8EE1-029E-CFD59382A03F</guid>
+    <object_guid>VESTRI_WOMENS_MODENA_LEATHER_JACKET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>400.00</list_price>
+    <sale_price>299.00</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>4A7A8968-9674-AA5B-9D08-8A44D5468B78</guid>
+    <object_guid>VESTRI_WHEEL_LOCK_SET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>50.00</list_price>
+    <price_list_guid>7e414af0-e4de-48ac-83b0-19ed1cffd4ce</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>4AC72C31-559D-00DA-C933-62C93FBB2827</guid>
+    <object_guid>VESTRI_MENS_GRILLE_TSHIRT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>4.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>4CE677B5-67AF-CD52-2ABB-FAB1D6420372</guid>
+    <object_guid>VESTRI_MENS_TOUCH_SCREEN_GLOVES</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>100.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>53767CCE-9790-7EE0-9361-1C9D95B084D4</guid>
+    <object_guid>VESTRI_SAE_J1772</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>95.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>586AFADD-9B1D-A523-CD57-B0FFA4663155</guid>
+    <object_guid>VESTRI_CHARGING_BOOKING</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>9.99</list_price>
+    <price_list_guid>d6169089-04d0-47bd-9987-50e6fa809489</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>5945C87B-3C7C-10FF-DFC8-19CBDE3AA4DA</guid>
+    <object_guid>VESTRI_WALL_CONNECTOR_24_CABLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>550.00</list_price>
+    <sale_price>490.00</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>5A71B49D-E822-BA38-DF42-80C92B59FC39</guid>
+    <object_guid>VESTRI_Y4_ANNUAL_INSPECTION</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>950.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>5A8AC8BC-5EE4-A8B7-6826-FBACBCCFB6D6</guid>
+    <object_guid>VERSTRI_CHARGING_SESSION_HALF</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>9.99</list_price>
+    <price_list_guid>d6169089-04d0-47bd-9987-50e6fa809489</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>617FC580-6FFA-B5B8-F8FC-23B37FB6549A</guid>
+    <object_guid>VESTRI_AUTO_DRIVE_12_MONTH</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>299.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>62491D75-9EA0-E776-C7A2-77047AE207C3</guid>
+    <object_guid>VESTRI_CHADEMO_ADAPTER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>450.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>6434DFD6-40C7-D61E-E4EF-88903013F7C4</guid>
+    <object_guid>VESTRI_CHARGING_SESSION_FULL</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>14.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>68762C70-0297-966B-E752-E6274B1572B3</guid>
+    <object_guid>VESTRI_MODEL_X_FOR_KIDS</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>499.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>6BA5E201-8DD6-753E-EEED-E3533845085C</guid>
+    <object_guid>VESTRI_MODEL_S_SNOWCHAIN_TRAK_SPORT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>400.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>6D54A82A-25FE-3C26-B4D9-BBA0143AB4A1</guid>
+    <object_guid>VESTRI_ROADSTER_SPARE_CABLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>600.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>6FCC9DD6-853F-84CA-ED5A-26F4F9D1C3D5</guid>
+    <object_guid>VESTRI_ROADSTER_HIGH_POWER_WALL_CONNECTOR</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1590.00</list_price>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>6FD88AAD-9449-E819-68D2-43F7552AB083</guid>
+    <object_guid>VESTRI_WORDMARK_FITTED_HAT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>24.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>70FD9096-7422-F5A7-0B42-FB35F69433E8</guid>
+    <object_guid>VESTRI_ROADSTER_3.0_BATTERY_UPGRADE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>5000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>71A617AA-3FA6-E9B9-5F22-8FF89CB21370</guid>
+    <object_guid>VESTRI_ROADSTER_CAST_ALUMINUM_WHEEL_SET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>72624C8C-7A7F-E1F4-3E32-FC624464E204</guid>
+    <object_guid>VESTRI_WOMENS_VESTRI_LOGO_POLO</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>29.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>77207CFB-5DBF-4463-9ED0-67E899A801C4</guid>
+    <object_guid>VESTRI_ROADSTER_EXTERIOR_CARBON_FIBER_KIT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>9000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>790B7B2C-157F-49D2-0E0C-49A065F4A1A8</guid>
+    <object_guid>VESTRI_KIDS_SS_HANLEY</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>28.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>7B490466-453F-F1E3-F3A5-6B6635160A0B</guid>
+    <object_guid>VESTRI_ROADSTER_UNIVERSAL_ADAPTERS</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>100.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>7B8CBD79-0B8E-3AF1-96FD-B3DB8BF4B5E5</guid>
+    <object_guid>vestri_coffee_latte</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2.99</list_price>
+    <price_list_guid>d6169089-04d0-47bd-9987-50e6fa809489</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>813E221E-EC05-3810-5CCC-CBF78AA4DA39</guid>
+    <object_guid>VESTRI_LOGO_FITTED_HAT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>24.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>818D05CA-9698-A016-C1CD-ADDDD57F2E84</guid>
+    <object_guid>VESTRI_21_TURBINE_WHEEL_PACKAGE_GRAY</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>6000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>8238F31B-FCA9-2B9E-D1A2-53952538CEE8</guid>
+    <object_guid>77E0862</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>59.99</list_price>
+    <sale_price>49.99</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>83958C65-2055-EF7C-D088-BC36D0D2DE67</guid>
+    <object_guid>VESTRI_MENS_TECH_VEST</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>85.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>83ECC420-378A-37F8-3202-E2B54E6BEF51</guid>
+    <object_guid>VESTRI_STAINLESS_STEEL_WATER_BOTTLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>30.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>861FAAD0-0053-926A-E911-6A6A8DFE1002</guid>
+    <object_guid>VESTRI_1-18_SCALE_DIECAST_P85_MODEL</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>210.00</list_price>
+    <sale_price>180.00</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>865CF415-7C63-0449-9515-9815682EA7E4</guid>
+    <object_guid>VESTRI_19_CYCLONE_WHEEL_WINTER_PACKAGE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2700.00</list_price>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>895FC216-B202-6550-3654-C678DBE21820</guid>
+    <object_guid>VESTRI_ROADSTER_UNIVERSAL_MOBILE_CONNECTOR</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1500.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>8E22F1C2-1E91-C70B-45D4-E7F95C0A24FB</guid>
+    <object_guid>VESTRI_WOMENS_MODEL_X_POLO</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>54.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>8EDF70F8-B1B6-FE36-262A-B6DE8A96A193</guid>
+    <object_guid>VESTRI_XM_RADIO_ADDON</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>15.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>9100C896-57B6-753D-9700-7CA07A2B291C</guid>
+    <object_guid>VESTRI_ROADSTER_ADJUSTABLE_SUSPENSION_KIT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>6000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>92F355CF-1AD5-9042-8D30-1E2FD5906797</guid>
+    <object_guid>VESTRI_ROADSTER_CARBON_FIBER_HARDTOP</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>5000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>949A2DBB-4CD3-750D-44A2-5DC30C9D3E8F</guid>
+    <object_guid>VESTRI_MODEL_X_HAT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>24.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>95CFD9DD-8046-F9FC-55DF-FE389C09DB2F</guid>
+    <object_guid>VESTRI_WALL_CONNECTOR_24_CABLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>510.00</list_price>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>95E0D585-8BB7-1335-BBE6-1696AF8DAF53</guid>
+    <object_guid>VESTRI_MOBILE_CONNECTOR_BUNDLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>550.00</list_price>
+    <sale_price>490.00</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>96EE79DF-40AF-EFBD-8F08-4AD13BACD00C</guid>
+    <object_guid>VESTRI_Y3_ANNUAL_INSPECTION</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>450.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>9A01C845-27D3-8AAC-86E2-6D281AF50AD0</guid>
+    <object_guid>vestri_coffee_latte</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>3.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>9B90719E-482E-AD4A-38B9-B118A7F594BC</guid>
+    <object_guid>VESTRI_AUTO_DRIVE_1_MONTH</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>29.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>9B9673EA-FCE5-4BDD-8DF6-FE98526024B5</guid>
+    <object_guid>VESTRI_MODEL_X_SNOW_CHAIN_TRAK_4X4</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>500.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>A4E9F46D-FA7A-A2F4-A73F-31648F8C023D</guid>
+    <object_guid>VESTRI_KIDS_CHECKERED_TEE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>24.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>A4F27C13-C2F4-D4E8-8559-3F057A2AE06F</guid>
+    <object_guid>VESTRI_MENS_LONG_SLEEVE_HANLEY</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>44.00</list_price>
+    <sale_price>39.99</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>A62316F5-C2A7-77E9-FF1D-18DDDEE77EBB</guid>
+    <object_guid>VESTRI_LIQUID_METAL_VISOR</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>24.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>A7AFE372-24BC-8087-B487-DC17E3230569</guid>
+    <object_guid>VESTRI_19_CYCLONE_WHEEL_WINTER_PACKAGE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2950.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>ACD01AF3-3D16-BA35-39DD-159A10AC1729</guid>
+    <object_guid>VESTRI_3_YR_PREPAID_SERVICE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1450.00</list_price>
+    <sale_price>1290.00</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>ADE33A26-46B3-C76A-85D7-20DE9228C23B</guid>
+    <object_guid>VESTRI_Y1_ANNUAL_INSPECTION</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>450.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>AE986ACA-AFC9-54AC-AA40-B267AC2ABD7F</guid>
+    <object_guid>250HR_PMKIT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>79.99</list_price>
+    <sale_price>69.99</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>B631CAAB-D60F-6C65-7EE1-E2CC2FBA65DB</guid>
+    <object_guid>VESTRI_ROADSTER_CARBON_FIBER_UPPER_DOOR_SILLS</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1600.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>B6C1647C-3C48-324C-BA96-6ABC52355A0F</guid>
+    <object_guid>VESTRI_MODEL_S_RED_BRAKE_CALIPER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2300.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>B86B4472-C62C-3EA6-D8DE-55C3812F0B89</guid>
+    <object_guid>VESTRI_MODEL_X_RED_BRAKE_CALIPER_SET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2300.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>BB27BB87-9944-4841-98BD-7CE449DFB5AD</guid>
+    <object_guid>J930-PK</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>14.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>BB6145FE-D0B5-05F3-BE90-8232B536963D</guid>
+    <object_guid>VESTRI_ROADSTER_CARBON_FIBER_INSTRUMENT_BINNACLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>600.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>BBDB43C9-881D-53AB-A635-E02D492268B3</guid>
+    <object_guid>VESTRI_GOLF_BALLS</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>175.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>BF97EAE3-1985-B6B4-0C54-A2BCB94DC1B0</guid>
+    <object_guid>VESTRI_MENS_SOFT_SHELL_JACKET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>179.00</list_price>
+    <sale_price>159.99</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>C29D97AA-6B72-D17A-39F1-E6D3EDF96A9A</guid>
+    <object_guid>VESTRI_ROADSTER_CARBON_FIBER_AIR_DIFUSER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1600.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>C4B49339-1199-30F2-7810-B82C5AD02041</guid>
+    <object_guid>VESTRI_19_PIRELLI_WINTER_SOTTOZERO_240</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>320.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>C76C5D5C-9EFE-880D-E344-E9EB932518C8</guid>
+    <object_guid>VESTRI_MENS_ATHLETIC_SHORT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>45.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>CAF169CB-D4CE-2509-2346-425405F62C32</guid>
+    <object_guid>VESTRI_WHEEL_LOCK_SET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>60.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>CDAF1B21-B5ED-732B-4BDC-A1F5E132FF3E</guid>
+    <object_guid>VESTRI_21_TURBINE_WHEEL_PACKAGE_WINTER_SILVER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>6000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>CF3414FB-3EDF-FE40-44C6-D346FFF14272</guid>
+    <object_guid>VESTRI_TIRE_REPAIR_KIT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>50.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>D07DA174-DA7A-9919-B3E9-EE60A20EFD5F</guid>
+    <object_guid>VESTRI_CHARGING_SESSION_FULL</object_guid>
+    <object_type>SKU</object_type>
+    <quantity>1.00</quantity>
+    <list_price>14.99</list_price>
+    <price_list_guid>d6169089-04d0-47bd-9987-50e6fa809489</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>D12508A7-46A2-1D9F-03D8-A6589393D661</guid>
+    <object_guid>396-6500</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>14.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>D19D88FF-5F03-CD7D-822A-E106625586D0</guid>
+    <object_guid>VESTRI_RACE_CUT_JERSEY_LADIES</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>35.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>D3EA557F-CEAC-8B8B-A2B5-2934B68A8AE5</guid>
+    <object_guid>VESTRI_TIRE_REPAIR_KIT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>45.00</list_price>
+    <price_list_guid>7e414af0-e4de-48ac-83b0-19ed1cffd4ce</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>D44EBF26-F038-7824-F6C4-8AE0CBADC6B5</guid>
+    <object_guid>VESTRI_ROADSTER_CARBON_FIBER_DOOR_SILLS</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1400.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>D7AD9B2A-D73A-6A3C-8DE7-FD71D6CBA529</guid>
+    <object_guid>VESTRI_8_YR_PREPAID_SERVICE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>4325.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>D8E21731-3F50-32F2-A34C-CBA10FE77292</guid>
+    <object_guid>VESTRI_21_CONTINENTAL_SPORT_CONTACT_5</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>375.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>DAD40731-0111-409E-EA1D-FD7EBE9FCBF7</guid>
+    <object_guid>VESTRI_4_YR_PREPAID_SERVICE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2275.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>DD5AF96C-B74E-B0A3-443F-6B328B43C662</guid>
+    <object_guid>1R-0716</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>29.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>DD6B7005-6884-1DBB-5BA3-A73E91EBB7B1</guid>
+    <object_guid>VESTRI_CHADEMO_ADAPTER</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>450.00</list_price>
+    <sale_price>395.00</sale_price>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>DD7F11A3-06E0-CFFE-DEB0-F64824A73093</guid>
+    <object_guid>VESTRI_ROADSTER_UNIVERSAL_ADAPTERS</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>85.00</list_price>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>DF229A09-1B8A-CC2A-D274-3B97B78A376A</guid>
+    <object_guid>VESTRI_MENS_VESTRI_POLO_LOGO</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>34.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>DF92E720-7110-35E8-2431-0F875CF31746</guid>
+    <object_guid>VESTRI_WOMENS_WHIT_CORP_JACKET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>109.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>E10A20EA-8D95-CD86-4905-3442EBADEA4E</guid>
+    <object_guid>VESTRI_ROADSTER_CARBON_FIBER_HOOD_PANELS</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>4000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>E51A9A3E-90EA-6F3B-0641-6E5583837E47</guid>
+    <object_guid>VESTRI_CORDED_MOBILE_CONNECTOR</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>520.00</list_price>
+    <sale_price>495.99</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>E814CD98-4C82-9DE7-0415-B2502BEF676C</guid>
+    <object_guid>VESTRI_WALL_CONNECTOR_8.5_CABLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>530.00</list_price>
+    <price_list_guid>059fdcf2-b68e-4fea-a31f-bc4a643399f4</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>E8873151-6BED-738C-1042-66707F01E4D9</guid>
+    <object_guid>VESTRI_20_SLIPSTREAM_WHEEL_WINTER_PACKAGE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>3300.00</list_price>
+    <sale_price>3100.00</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>EA850142-9929-5E01-7320-0849A4244456</guid>
+    <object_guid>VESTRI_DUAL_CHARGER_W_INSTALLATION</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>2000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>EB406AEF-8F65-8AB9-BE0C-4EB83D783F30</guid>
+    <object_guid>VESTRI_WALL_CONNECTOR_8.5_CABLE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>475.00</list_price>
+    <price_list_guid>8563d895-4d91-438f-b6c6-b411679720a9</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>EB510A9B-0776-30F0-752C-5BDEDF8FD655</guid>
+    <object_guid>Y773-GY</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>14.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>EC218614-AE19-050E-79E1-EF497AACC46A</guid>
+    <object_guid>VESTRI_CORDED_MOBILE_CONNECTOR</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>550.00</list_price>
+    <price_list_guid>059fdcf2-b68e-4fea-a31f-bc4a643399f4</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>F0A5106D-8A82-B880-134A-C1D2D880D5A5</guid>
+    <object_guid>VESTRI_ROADSTER_HIGH_POWER_WALL_CONNECTOR</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>1950.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>F0C18316-6015-D30C-435D-5CE0E834D7B5</guid>
+    <object_guid>VESTRI_CORSICANA_TOTE</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>300.00</list_price>
+    <sale_price>289.99</sale_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>F1AC0A94-5572-8A5A-12C2-FDD047B164D3</guid>
+    <object_guid>VESTRI_MENS_VESTRI_BIB_SHORT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>19.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>F2F10595-AB68-3A69-BDDC-BEBAA984E158</guid>
+    <object_guid>VESTRI_ROADSTER_INTERIOR_CARBON_FIBER_KIT</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>4000.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>F398E987-7D40-D4CA-2867-600AD63BB69E</guid>
+    <object_guid>VESTRI_BIB_SHORT_LADIES</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>24.99</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>F7F75B2E-2C3B-35AD-F73F-4F7D56E1877A</guid>
+    <object_guid>VESTRI_KIDS_PUFFER_JACKET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>79.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>FADB8545-26EF-8702-4989-0810244FF3C0</guid>
+    <object_guid>VESTRI_ROADSTER_BLACK_FORGED_WHEEL_SET</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>3200.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>FAF406A8-FB1E-8828-CE9B-FC377A0D4121</guid>
+    <object_guid>VESTRI_NEMA_14-30</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>45.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>FCEDD974-398F-82D0-7EE8-B76A6E7AA641</guid>
+    <object_guid>VESTRI_NEMA_14-50</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>45.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+
+<base_amount>
+    <guid>FDDA2C65-51B4-4D0C-FA02-5E1D1A6AFEE8</guid>
+    <object_guid>VESTRI_21_PIRELLI_WINTER_SOTTOZERO_3</object_guid>
+    <object_type>PRODUCT</object_type>
+    <quantity>1.00</quantity>
+    <list_price>500.00</list_price>
+    <price_list_guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</price_list_guid>
+</base_amount>
+</amounts>

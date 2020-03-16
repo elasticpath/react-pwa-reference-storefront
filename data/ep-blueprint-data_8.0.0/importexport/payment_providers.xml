@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Copyright (c) Elastic Path Software Inc., 2019
+  -->
+
+<payment_providers>
+	<payment_provider_configuration guid="happy-path-payment-provider-config" status="ACTIVE">
+		<name>Happy Path Config</name>
+		<payment_provider_id>happyPathPaymentProviderPlugin</payment_provider_id>
+		<properties>
+			<property key="Config B">Value of Config B</property>
+			<property key="Config A">Value of Config A</property>
+		</properties>
+		<default_display_name>default happy path display name</default_display_name>
+		<localized_names>
+			<value language="fr_CA">happy path display name - fr_CA</value>
+			<value language="fr">happy path display name - fr</value>
+		</localized_names>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="happy-path-payment-provider-another-config" status="ACTIVE">
+		<name>Happy Path Another Config</name>
+		<payment_provider_id>happyPathPaymentProviderPlugin</payment_provider_id>
+		<properties>
+			<property key="Config B">Another value of Config B</property>
+			<property key="Config A">Another value of Config A</property>
+		</properties>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="address-required-happy-path-payment-provider-config" status="ACTIVE">
+		<name>Address Required Happy Path Config</name>
+		<payment_provider_id>addressRequiredHappyPathPaymentProviderPlugin</payment_provider_id>
+		<properties>
+			<property key="Config B">Value of Config B</property>
+			<property key="Config A">Value of Config A</property>
+		</properties>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="big-amount-fields-happy-path-payment-provider-config" status="ACTIVE">
+		<name>Big Amount Fields Happy Path Config</name>
+		<payment_provider_id>bigAmountFieldsHappyPathPaymentProviderPlugin</payment_provider_id>
+		<properties>
+			<property key="Config B">Value of Config B for big amount fields happy path payment provider config with big value</property>
+			<property key="Config A">Value of Config A for big amount fields happy path payment provider config with big value</property>
+		</properties>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="angry-path-payment-provider-config" status="ACTIVE">
+		<name>Angry Path Config</name>
+		<payment_provider_id>angryPathPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="no-capabilities-payment-provider-config" status="ACTIVE">
+		<name>No Capabilities Config</name>
+		<payment_provider_id>noCapabilitiesPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="smart-path-payment-provider-config" status="ACTIVE">
+		<name>Smart Path Config</name>
+		<payment_provider_id>smartPathPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="cancel-unsupported-config" status="ACTIVE">
+		<name>Cancel Unsupported Config</name>
+		<payment_provider_id>smartPathCancelUnsupportedPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="credit-unsupported-config" status="ACTIVE">
+		<name>Credit Unsupported Config</name>
+		<payment_provider_id>smartPathCreditUnsupportedPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="reverse-unsupported-config" status="ACTIVE">
+		<name>Reverse Unsupported Config</name>
+		<payment_provider_id>smartPathReverseUnsupportedPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="modify-unsupported-config" status="ACTIVE">
+		<name>Modify Unsupported Config</name>
+		<payment_provider_id>smartPathModifyUnsupportedPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="reserve-unsupported-config" status="ACTIVE">
+		<name>Reserve Unsupported Config</name>
+		<payment_provider_id>smartPathReserveUnsupportedPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="modify-and-cancel-unsupported-config" status="ACTIVE">
+		<name>Modify And Cancel Unsupported Config</name>
+		<payment_provider_id>smartPathModifyAndCancelUnsupportedPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="cancel-reserve-fail-config" status="ACTIVE">
+		<name>Cancel Fails Config</name>
+		<payment_provider_id>smartPathPaymentProviderPlugin</payment_provider_id>
+		<properties>
+			<property key="CANCEL_RESERVE">FAILS</property>
+		</properties>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="email-required-payment-provider-config" status="ACTIVE">
+		<name>Email Required Config</name>
+		<payment_provider_id>emailRequiredPaymentProviderPlugin</payment_provider_id>
+		<properties/>
+	</payment_provider_configuration>
+
+	<payment_provider_configuration guid="single-use-happy-path-payment-provider-config" status="ACTIVE">
+		<name>Single Use Happy Path Config</name>
+		<payment_provider_id>singleUseHappyPathPaymentProviderPlugin</payment_provider_id>
+		<properties>
+			<property key="Config A">Value of Config A</property>
+			<property key="Config B">Value of Config B</property>
+		</properties>
+	</payment_provider_configuration>
+
+</payment_providers>

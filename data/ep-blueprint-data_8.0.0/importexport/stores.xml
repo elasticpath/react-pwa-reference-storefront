@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<stores>
+<store code="VESTRI" enabled="true">
+    <globalization timeZone="Europe/London" country="US" sub_country="CA" content_encoding="UTF-8" default_locale="en_US" default_currency="USD"/>
+    <url>http://vestri.epdemos.com</url>
+    <name>Vestri US Web Store</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description>Vestri Web Store</description>
+    <catalog>VESTRI_VIRTUAL</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>admin@shop.vestri.com</email_sender_name>
+    <email_sender_address>admin@shop.vestri.com</email_sender_address>
+    <store_admin_email>admin@shop.vestri.com</store_admin_email>
+    <credit_card_cvv2_enabled>false</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en_US</locale>
+    </locales>
+    <currencies>
+        <currency>USD</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>VESTRI_MOTORS</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>501</guid>
+        <guid>502</guid>
+        <guid>504</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>USTaxJurisdiction</jurisdiction>
+    </tax_jurisdictions>
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>5364a6ef-5f8e-4ea0-ac40-54e6fff10ec1</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="vestri_au" enabled="true">
+    <globalization timeZone="Europe/London" country="AU" sub_country="" content_encoding="UTF-8" default_locale="en_US" default_currency="AUD"/>
+    <url>http://au.epdemo.com</url>
+    <name>AU Web</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>VESTRI_AU_VIRTUAL</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>admin@ep.com</email_sender_name>
+    <email_sender_address>admin@ep.com</email_sender_address>
+    <store_admin_email>admin@ep.com</store_admin_email>
+    <credit_card_cvv2_enabled>false</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en_US</locale>
+    </locales>
+    <currencies>
+        <currency>AUD</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>VESTRI_MOTORS</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>501</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions/>
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>5364a6ef-5f8e-4ea0-ac40-54e6fff10ec2</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="VESTRICA" enabled="true">
+    <globalization timeZone="Europe/London" country="CA" sub_country="BC" content_encoding="UTF-8" default_locale="en_US" default_currency="CAD"/>
+    <url>http://vestrica.epdemos.com</url>
+    <name>Vestri Canada Web Store</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>Vestri_Shop_CA</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>Store Admin</email_sender_name>
+    <email_sender_address>store@epdemos.com</email_sender_address>
+    <store_admin_email>store@epdemos.com</store_admin_email>
+    <credit_card_cvv2_enabled>false</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en_US</locale>
+    </locales>
+    <currencies>
+        <currency>CAD</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>VESTRI_MOTORS</warehouse>
+    </warehouses>
+    <tax_codes/>
+    <tax_jurisdictions>
+        <jurisdiction>CATaxJurisdiction</jurisdiction>
+    </tax_jurisdictions>
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>5364a6ef-5f8e-4ea0-ac40-54e6fff10ec3</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+</stores>

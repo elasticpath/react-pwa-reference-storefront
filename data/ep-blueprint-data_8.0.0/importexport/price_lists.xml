@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<price_lists>
+<price_list>
+    <guid>059fdcf2-b68e-4fea-a31f-bc4a643399f4</guid>
+    <description>Base Pricing for Austrailia</description>
+    <currency_code>AUD</currency_code>
+    <name>VESTRI BASE AUSTRALIA</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>3d5b9c1f-21f4-486b-b890-6e4623404c4b</guid>
+    <description>Base Pricing Canada</description>
+    <currency_code>CAD</currency_code>
+    <name>VESTRI BASE CANADA</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>6c8176ab-78a5-4e47-9274-3aa7bb62db81</guid>
+    <description>Vestri Base Pricelist USD</description>
+    <currency_code>USD</currency_code>
+    <name>VESTRI BASE PRICING</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>7e414af0-e4de-48ac-83b0-19ed1cffd4ce</guid>
+    <description>Vestri Special Pricing for AAA Members</description>
+    <currency_code>USD</currency_code>
+    <name>VESTRI AAA PRICING</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>8563d895-4d91-438f-b6c6-b411679720a9</guid>
+    <description>Vestri Pricing for Owners</description>
+    <currency_code>USD</currency_code>
+    <name>VESTRI OWNERS PRICING</name>
+    <hidden>false</hidden>
+</price_list>
+
+<price_list>
+    <guid>d6169089-04d0-47bd-9987-50e6fa809489</guid>
+    <description>Vestri Auto Addons USD</description>
+    <currency_code>USD</currency_code>
+    <name>Vestri Auto Addons</name>
+    <hidden>false</hidden>
+</price_list>
+</price_lists>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bundles>
+<bundle code="250HR_PMKIT">
+    <constituents>
+        <constituent>
+            <guid>2f26183d-3902-4763-a6ed-59a4da85582b</guid>
+            <code type="product">1R-0716</code>
+            <quantity>1</quantity>
+            <ordering>0</ordering>
+            <price_adjustments/>
+        </constituent>
+        <constituent>
+            <guid>b7e0ba24-54d1-4b9a-b420-186a39c1dbcb</guid>
+            <code type="product">5P-0960</code>
+            <quantity>1</quantity>
+            <ordering>1</ordering>
+            <price_adjustments/>
+        </constituent>
+        <constituent>
+            <guid>472068a2-2515-4c10-8def-c696582fcdf2</guid>
+            <code type="product">77E0862</code>
+            <quantity>1</quantity>
+            <ordering>2</ordering>
+            <price_adjustments/>
+        </constituent>
+    </constituents>
+</bundle>
+</bundles>

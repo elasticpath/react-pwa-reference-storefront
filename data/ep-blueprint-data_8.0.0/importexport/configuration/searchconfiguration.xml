@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<searchconfiguration>
+    <epql>FIND Product</epql>
+    <query for="Product">FIND Product</query>
+    <query for="Configuration">FIND Configuration</query>
+    <query for="Promotion">FIND Promotion</query>
+    <query for="PriceList">FIND PriceList</query>
+    <query for="Promotion">FIND Promotion</query>
+    <query for="PriceListAssignment">FIND PriceListAssignment</query>
+    <query for="ContentSpace">FIND ContentSpace</query>
+    <query for="DynamicContent">FIND DynamicContent</query>
+    <query for="DynamicContentDelivery">FIND DynamicContentDelivery</query>
+    <query for="TaxJurisdiction">FIND TaxJurisdiction</query>
+    <query for="TaxCode">FIND TaxCode</query>
+    <query for="Warehouse">FIND Warehouse</query>
+    <query for="Store">FIND Store</query>
+    <query for="Customer">FIND Customer</query>
+    <query for="CustomerProfileAttribute">FIND CustomerProfileAttribute</query>
+    <query for="CmUser">FIND CmUser</query>
+    <query for="UserRole">FIND UserRole</query>
+    <query for="Catalog">FIND Catalog</query>
+    <query for="GiftCertificate">FIND GiftCertificate</query>
+    <query for="ShippingRegion">FIND ShippingRegion</query>
+    <query for="ShippingServiceLevel">FIND ShippingServiceLevel</query>
+    <query for="SavedCondition">FIND SavedCondition</query>
+    <query for="CmImportJob">FIND CmImportJob</query>
+</searchconfiguration>

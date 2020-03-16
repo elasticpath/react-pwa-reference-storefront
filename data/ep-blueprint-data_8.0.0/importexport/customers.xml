@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customers>
+<customer guid="c3d6c407-d6d9-451a-8cbf-a3cbf6ba2b0d" user_id="brian@ep.com" store_code="VESTRI">
+    <status>1</status>
+    <creationDate>2018-03-28T03:54:00-07:00</creationDate>
+    <last_edited>2018-05-16T20:06:04-07:00</last_edited>
+    <password>d858f14152a0fd886b233b70c0429ccd4d33ce8090eed1447c846f30b89fa80c</password>
+    <salt>fc8f55414ba1f54516283088b05047c5e0d31bad4fa5bf12e65eb9a3673bd9f0</salt>
+    <first_time_buyer>false</first_time_buyer>
+    <addresses>
+        <address guid="9f1614f9-d4f0-41e8-a874-e665b84443d1">
+            <last_name>Jones</last_name>
+            <first_name>Brian</first_name>
+            <phone_number>12345678900</phone_number>
+            <street1>123 Fake st</street1>
+            <street2>CA</street2>
+            <city>123 Fake st</city>
+            <subCountry>CA</subCountry>
+            <zip_postal_code>90001</zip_postal_code>
+            <country>US</country>
+            <commercial>false</commercial>
+            <organization>Brian &amp; co</organization>
+        </address>
+    </addresses>
+    <groups>
+        <group>400</group>
+    </groups>
+    <preferred_shipping_address>9f1614f9-d4f0-41e8-a874-e665b84443d1</preferred_shipping_address>
+    <preferred_billing_address>9f1614f9-d4f0-41e8-a874-e665b84443d1</preferred_billing_address>
+    <customer_profile>
+        <profile_value key="CP_ANONYMOUS_CUST" type="AttributeType_Boolean">false</profile_value>
+        <profile_value key="CP_EMAIL" type="AttributeType_ShortText">brian@ep.com</profile_value>
+        <profile_value key="CP_FIRST_NAME" type="AttributeType_ShortText">Brian</profile_value>
+        <profile_value key="CP_LAST_NAME" type="AttributeType_ShortText">Jones</profile_value>
+    </customer_profile>
+</customer>
+
+<customer guid="b775b137-0657-4496-b9b8-e22084330f39" user_id="jane@ep.com" store_code="VESTRI">
+    <status>1</status>
+    <creationDate>2018-03-28T04:23:42-07:00</creationDate>
+    <last_edited>2018-05-16T20:06:04-07:00</last_edited>
+    <password>e942a15b7861f922210adea7e3127c77519153ec12f5d914d689d44a21328aa3</password>
+    <salt>dfa6e81a8562cbac337ead64f134430dfd585bf375e58827eeb2bebaa0f2dc35</salt>
+    <first_time_buyer>false</first_time_buyer>
+    <addresses>
+        <address guid="1a75e72a-ea2f-43d4-b854-0aa8d2b8298d">
+            <last_name>Thompson</last_name>
+            <first_name>Jane</first_name>
+            <phone_number>123242</phone_number>
+            <street1>1239 New Street</street1>
+            <street2></street2>
+            <city>New York</city>
+            <subCountry>NY</subCountry>
+            <zip_postal_code>123lkf</zip_postal_code>
+            <country>US</country>
+            <commercial>false</commercial>
+            <organization></organization>
+        </address>
+    </addresses>
+    <groups>
+        <group>400</group>
+    </groups>
+    <preferred_shipping_address>1a75e72a-ea2f-43d4-b854-0aa8d2b8298d</preferred_shipping_address>
+    <preferred_billing_address>1a75e72a-ea2f-43d4-b854-0aa8d2b8298d</preferred_billing_address>
+    <customer_profile>
+        <profile_value key="CP_LAST_NAME" type="AttributeType_ShortText">Thompson</profile_value>
+        <profile_value key="CP_ANONYMOUS_CUST" type="AttributeType_Boolean">false</profile_value>
+        <profile_value key="CP_EMAIL" type="AttributeType_ShortText">jane@ep.com</profile_value>
+        <profile_value key="CP_FIRST_NAME" type="AttributeType_ShortText">Jane</profile_value>
+    </customer_profile>
+</customer>
+
+<customer guid="80b94944-bc94-4d91-976d-6a5789cb7cdb" user_id="mark@ep.com" store_code="VESTRI">
+    <status>1</status>
+    <creationDate>2018-03-28T04:25:32-07:00</creationDate>
+    <last_edited>2018-05-16T20:06:04-07:00</last_edited>
+    <password>fddb3c2e6622ac5c1cdb4325ef8146314d268d0779d7ae33b5ca951ddd99e990</password>
+    <salt>934845a7389c06bf302c973ecd5bf903c5ba3795e75deb49c9287bacf042f654</salt>
+    <first_time_buyer>false</first_time_buyer>
+    <addresses>
+        <address guid="612e54bb-d47b-4ca1-8e2c-7f2b6cb38d1c">
+            <last_name>Dawson</last_name>
+            <first_name>Mark</first_name>
+            <phone_number>123123</phone_number>
+            <street1>1232 Cobain Street</street1>
+            <street2></street2>
+            <city>Seattle</city>
+            <subCountry>WA</subCountry>
+            <zip_postal_code>v22fdl</zip_postal_code>
+            <country>US</country>
+            <commercial>false</commercial>
+            <organization></organization>
+        </address>
+    </addresses>
+    <groups>
+        <group>400</group>
+    </groups>
+    <preferred_shipping_address>612e54bb-d47b-4ca1-8e2c-7f2b6cb38d1c</preferred_shipping_address>
+    <preferred_billing_address>612e54bb-d47b-4ca1-8e2c-7f2b6cb38d1c</preferred_billing_address>
+    <customer_profile>
+        <profile_value key="CP_EMAIL" type="AttributeType_ShortText">mark@ep.com</profile_value>
+        <profile_value key="CP_ANONYMOUS_CUST" type="AttributeType_Boolean">false</profile_value>
+        <profile_value key="CP_LAST_NAME" type="AttributeType_ShortText">Dawson</profile_value>
+        <profile_value key="CP_FIRST_NAME" type="AttributeType_ShortText">Mark</profile_value>
+    </customer_profile>
+</customer>
+
+<customer guid="81ba2fde-47b2-438c-b64f-45c5e01557d9" user_id="john@ep.com" store_code="VESTRI">
+    <status>1</status>
+    <creationDate>2018-03-28T04:27:25-07:00</creationDate>
+    <last_edited>2018-05-16T20:06:04-07:00</last_edited>
+    <password>53b28d4e73f30fc362118e2ef8bc28c817559763d7484666ce0abcba91143bf1</password>
+    <salt>0155314c52958355090677083ad446751e2743ff6d2926ecb28ae587c7ca1297</salt>
+    <first_time_buyer>false</first_time_buyer>
+    <addresses>
+        <address guid="84367565-d880-49e9-9ced-36063b1d00e9">
+            <last_name>Smith</last_name>
+            <first_name>John</first_name>
+            <phone_number>1220320</phone_number>
+            <street1>1232 New Street</street1>
+            <street2></street2>
+            <city>New York</city>
+            <subCountry>NY</subCountry>
+            <zip_postal_code>12302</zip_postal_code>
+            <country>US</country>
+            <commercial>false</commercial>
+            <organization></organization>
+        </address>
+    </addresses>
+    <groups>
+        <group>400</group>
+    </groups>
+    <preferred_shipping_address>84367565-d880-49e9-9ced-36063b1d00e9</preferred_shipping_address>
+    <preferred_billing_address>84367565-d880-49e9-9ced-36063b1d00e9</preferred_billing_address>
+    <customer_profile>
+        <profile_value key="CP_FIRST_NAME" type="AttributeType_ShortText">John</profile_value>
+        <profile_value key="CP_ANONYMOUS_CUST" type="AttributeType_Boolean">false</profile_value>
+        <profile_value key="CP_EMAIL" type="AttributeType_ShortText">john@ep.com</profile_value>
+        <profile_value key="CP_LAST_NAME" type="AttributeType_ShortText">Smith</profile_value>
+    </customer_profile>
+</customer>
+</customers>

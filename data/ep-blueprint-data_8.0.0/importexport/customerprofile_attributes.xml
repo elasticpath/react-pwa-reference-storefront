@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customerprofile_attributes>
+<attribute>
+    <key>CP_ANONYMOUS_CUST</key>
+    <name>Anonymous Customer</name>
+    <usage>CustomerProfile</usage>
+    <type>Boolean</type>
+    <multilanguage>false</multilanguage>
+    <required>true</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_BE_NOTIFIED</key>
+    <name>Be notified of News</name>
+    <usage>CustomerProfile</usage>
+    <type>Boolean</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_BUSINESS_NUMBER</key>
+    <name>Business Number</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_COMPANY</key>
+    <name>Company</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_DOB</key>
+    <name>Date of Birth</name>
+    <usage>CustomerProfile</usage>
+    <type>Date</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_EMAIL</key>
+    <name>Email</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_FAX</key>
+    <name>Fax Number</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_FIRST_NAME</key>
+    <name>First Name</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>true</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_GENDER</key>
+    <name>Gender</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_HTML_EMAIL</key>
+    <name>HTML emails</name>
+    <usage>CustomerProfile</usage>
+    <type>Boolean</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_LAST_NAME</key>
+    <name>Last Name</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>true</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_PHONE</key>
+    <name>Phone Number</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_PREF_CURR</key>
+    <name>Preferred Currency</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_PREF_LOCALE</key>
+    <name>Preferred Locale</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>CP_TAX_EXEMPTION_ID</key>
+    <name>Tax Exemption ID</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>cust_Attribute1</key>
+    <name>cust_Attribute1</name>
+    <usage>CustomerProfile</usage>
+    <type>Integer</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+
+<attribute>
+    <key>cust_Attribute2</key>
+    <name>cust_Attribute2</name>
+    <usage>CustomerProfile</usage>
+    <type>ShortText</type>
+    <multilanguage>false</multilanguage>
+    <required>false</required>
+    <multivalue>false</multivalue>
+    <global>false</global>
+</attribute>
+</customerprofile_attributes>

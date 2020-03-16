@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<exportconfiguration>
+    <exporters>
+        <exporter type="PRODUCT">
+            <include type="PRODUCTASSOCIATION">
+                <option key="DIRECT_ONLY" value="true"/>
+            </include>
+            <include type="INVENTORY"/>
+            <include type="PRICING"/>
+        </exporter>
+        <exporter type="CONTENTSPACE"/>
+        <exporter type="DYNAMICCONTENT"/>
+        <exporter type="DYNAMICCONTENTDELIVERY"/>
+        <exporter type="PROMOTION">
+            <include type="CONDITIONRULE"/>
+            <include type="COUPONSET"/>
+        </exporter>
+        <exporter type="SYSTEMCONFIGURATION"/>
+        <exporter type="PRICELISTDESCRIPTOR">
+            <include type="BASEAMOUNT"/>
+        </exporter>
+        <exporter type="PRICELISTASSIGNMENT"/>
+        <exporter type="TAXJURISDICTION"/>
+        <exporter type="WAREHOUSE"/>
+        <exporter type="CUSTOMER">
+            <option key="CARD_NUMBER_FILTER" value="EMPTY"/>
+        </exporter>
+        <exporter type="CUSTOMERPROFILE_ATTRIBUTE"/>
+        <exporter type="STORE"/>
+        <exporter type="STORE_ASSOCIATION"/>
+        <exporter type="CMUSER"/>
+        <exporter type="USER_ROLE"/>
+        <exporter type="GIFT_CERTIFICATE"/>
+        <exporter type="SHIPPING_REGION"/>
+        <exporter type="SHIPPING_SERVICE_LEVEL"/>
+        <exporter type="SAVED_CONDITION"/>
+        <exporter type="CM_IMPORT_JOB"/>
+    </exporters>
+    <packager type="NONE"/>
+    <delivery>
+        <method>FILE</method>
+        <target>target/exported/vestri2</target>
+    </delivery>
+</exportconfiguration>
