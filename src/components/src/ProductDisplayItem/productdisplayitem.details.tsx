@@ -98,7 +98,6 @@ interface ProductDisplayDetailsProps {
 }
 
 interface ProductDisplayItemMainState {
-    productData: any,
     requisitionListData: any,
     itemQuantity: number,
     isLoading: boolean,
@@ -119,7 +118,6 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     Config = epConfig.config;
     ({ intl } = epConfig);
     this.state = {
-      productData: undefined,
       itemQuantity: 1,
       isLoading: false,
       itemConfiguration: {},
@@ -136,6 +134,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.renderConfiguration = this.renderConfiguration.bind(this);
+    this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
 
   private funcName: any;
