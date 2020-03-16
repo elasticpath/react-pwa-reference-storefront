@@ -133,6 +133,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     this.handleConfiguration = this.handleConfiguration.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.addToSelectedCart = this.addToSelectedCart.bind(this);
     this.renderConfiguration = this.renderConfiguration.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
