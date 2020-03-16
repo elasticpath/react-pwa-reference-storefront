@@ -29,20 +29,18 @@ import ImageContainer from '../ImageContainer/image.container';
 
 import './b2c.home.page.less';
 
-import homeEspot2 from '../../../images/site-images/home-block-image-3.jpg';
-import homeEspot3 from '../../../images/site-images/home-block-image-2.jpg';
-import homeEspot4 from '../../../images/site-images/home-block-image-1.jpg';
-import homeEspotParallax2 from '../../../images/site-images/parallax-banner-2.jpg';
-import homeEspotParallax1 from '../../../images/site-images/parallax-banner-1.jpg';
+import heroImagePourCoffee from '../../../images/site-images/hero_image_pour_coffee.png';
+import heroImageBlender from '../../../images/site-images/hero_image_blender.png';
+import iceCreamImage from '../../../images/site-images/ice_cream.png';
+import heroBanner from '../../../images/site-images/hero_image_coffee.png';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
+const heroBannerFileName = 'hero_image_coffee.png';
 
-const homeEspot2FileName = 'home-block-image-3.jpg';
-const homeEspot3FileName = 'home-block-image-2.jpg';
-const homeEspot4FileName = 'home-block-image-1.jpg';
-const homeEspotParallax1FileName = 'parallax-banner-1.jpg';
-const homeEspotParallax2FileName = 'parallax-banner-2.jpg';
+const heroImagePourCoffeeFileName = 'hero_image_pour_coffee.png';
+const heroImageBlenderFileName = 'hero_image_blender.png';
+const iceCreamImageFileName = 'ice_cream.png';
 
 const B2CHomePage: React.FunctionComponent = () => {
   const epConfig = getConfig();
@@ -55,87 +53,68 @@ const B2CHomePage: React.FunctionComponent = () => {
   Config.indi.brandAmbassador.submit_button_text = intl.get('indi-brand-ambassador-submit-button-text');
 
   return (
-    <ParallaxProvider>
-      <div className="home-page-component" data-region="viewPortRegion">
-        <Carousel />
-        <IndiRecommendationsDisplayMain render={['carousel', 'brand']} configuration={Config.indi} />
-        {/* eslint-disable-next-line no-return-assign */}
-        <div className="section section-3 container">
-          <div className="sub-section">
-            <ImageContainer className="small-image" fileName={homeEspot2FileName} imgUrl={homeEspot2} />
-            <div className="text-block">
-              <span className="line line-1">
-                {intl.get('home-sub-espot-container2-first-line')}
-              </span>
-              <span className="line line-2">
-                {intl.get('home-sub-espot-container2-second-line')}
-              </span>
+    <div className="home-page-b2c">
+      <section className="main-banner">
+        <ImageContainer className="main-banner-image" fileName={heroBannerFileName} imgUrl={heroBanner} />
+        <div className="main-banner-title-wrap">
+          <div className="container">
+            <h2 className="goods-heading">{intl.get('main-banner-heading')}</h2>
+            <div className="main-banner-txt">
+              <p className="goods-description">
+                {intl.get('main-banner-txt')}
+              </p>
+              <div className="btn-wrap">
+                <button type="button" className="ep-btn primary learn-more-btn">{intl.get('learn-more')}</button>
+              </div>
             </div>
           </div>
         </div>
-        <div className="section-parallax section-parallax-1 container" data-region="homeMainContentRegion">
-          <Parallax y={[-50, 10]} tagOuter="figure">
-            <div className="parallax-image-container">
-              <ImageContainer className="parallax-image" fileName={homeEspotParallax1FileName} imgUrl={homeEspotParallax1} />
-            </div>
-          </Parallax>
-          <div className="sub-section">
-            <div className="text-block">
-              <span className="line line-white">
-                {intl.get('home-sub-espot-container2-second-line')}
-              </span>
-              <span className="line line-link">
-                {intl.get('learn-more')}
-              </span>
-            </div>
+      </section>
+
+      <div className="container">
+        <div className="main-goods">
+          <ul className="main-goods__grid">
+            <li className="main-goods__cell">
+              <ImageContainer className="main-goods-image banner-1" fileName={heroImagePourCoffeeFileName} imgUrl={heroImagePourCoffee} />
+              <h5 className="goods-title-small">{intl.get('products')}</h5>
+              <h3 className="goods-title">{intl.get('product1-heading')}</h3>
+              <p className="goods-description">{intl.get('product1-description')}</p>
+            </li>
+            <li className="main-goods__cell">
+              <ImageContainer className="main-goods-image banner-2" fileName={heroImageBlenderFileName} imgUrl={heroImageBlender} />
+              <h5 className="goods-title-small">{intl.get('products')}</h5>
+              <h3 className="goods-title">{intl.get('product2-heading')}</h3>
+              <p className="goods-description">{intl.get('product2-description')}</p>
+            </li>
+            <li className="main-goods__cell">
+              <ImageContainer className="main-goods-image banner-3" fileName={iceCreamImageFileName} imgUrl={iceCreamImage} />
+              <h5 className="goods-title-small">{intl.get('products')}</h5>
+              <h3 className="goods-title">{intl.get('product3-heading')}</h3>
+              <p className="goods-description">
+                {intl.get('product3-description')}
+              </p>
+            </li>
+            <li>Test</li>
+            <li>Test</li>
+          </ul>
+
+          <div className="main-goods__cell main-goods__block">
+            <h5 className="goods-title-small">{intl.get('services')}</h5>
+            <h3 className="goods-title">{intl.get('service-heading')}</h3>
+            <p className="goods-description">
+              {intl.get('service-description')}
+            </p>
           </div>
-        </div>
-        <div className="section section-4 container">
-          <div className="sub-section">
-            <ImageContainer className="small-image image-1" fileName={homeEspot3FileName} imgUrl={homeEspot3} />
-            <div className="text-block">
-              <span className="line line-1">
-                {intl.get('home-sub-espot-container3-first-line')}
-              </span>
-              <span className="line line-2">
-                {intl.get('home-sub-espot-container3-second-line')}
-              </span>
-            </div>
-            <ImageContainer className="small-image image-2" fileName={homeEspot3FileName} imgUrl={homeEspot3} />
-          </div>
-        </div>
-        <div className="section section-5 container">
-          <div className="sub-section">
-            <ImageContainer className="small-image" fileName={homeEspot4FileName} imgUrl={homeEspot4} />
-            <div className="text-block">
-              <span className="line line-1">
-                {intl.get('home-sub-espot-container4-first-line')}
-              </span>
-              <span className="line line-2">
-                {intl.get('home-sub-espot-container4-second-line')}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="section-parallax section-parallax-2 container" data-region="homeMainContentRegion">
-          <Parallax y={[10, -30]} tagOuter="figure">
-            <div className="parallax-image-container">
-              <ImageContainer className="parallax-image" fileName={homeEspotParallax2FileName} imgUrl={homeEspotParallax2} />
-            </div>
-          </Parallax>
-          <div className="sub-section">
-            <div className="text-block">
-              <span className="line line-white">
-                {intl.get('home-sub-espot-container2-second-line')}
-              </span>
-              <span className="line line-link">
-                {intl.get('learn-more')}
-              </span>
-            </div>
+
+          <div className="main-goods__cell main-goods__block bottom-block">
+            <h2 className="goods-heading">{intl.get('about-brand-heading')}</h2>
+            <p className="goods-description">
+              {intl.get('about-brand-description')}
+            </p>
           </div>
         </div>
       </div>
-    </ParallaxProvider>
+    </div>
   );
 };
 
