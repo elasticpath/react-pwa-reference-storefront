@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<stores>
+<store code="BelleVieAU" enabled="true">
+    <globalization timeZone="Australia/Sydney" country="AU" sub_country="" content_encoding="UTF-8" default_locale="en_AU" default_currency="AUD"/>
+    <url>http://bellevieau.localhost.com</url>
+    <name>BelleVie Australia</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieAUCatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>BelleVie Australia</email_sender_name>
+    <email_sender_address>admin@BelleVie.au</email_sender_address>
+    <store_admin_email>admin@BelleVie.au</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en</locale>
+        <locale>en_AU</locale>
+    </locales>
+    <currencies>
+        <currency>AUD</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieAU</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>1f418605-e8d0-4e17-9810-58a35fddef7c</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>BELLEVIE_AU_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="BelleVieDE" enabled="true">
+    <globalization timeZone="Europe/London" country="DE" sub_country="" content_encoding="UTF-8" default_locale="de_DE" default_currency="EUR"/>
+    <url>http://belleviede.localhost.com</url>
+    <name>BelleVie Germany</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieDECatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>BelleVie DE</email_sender_name>
+    <email_sender_address>admin@BelleVie.co.de</email_sender_address>
+    <store_admin_email>admin@BelleVie.co.de</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>de_DE</locale>
+    </locales>
+    <currencies>
+        <currency>EUR</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieDE</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>06f06016-3c16-40e6-b465-f2bcd7f12138</jurisdiction>
+        <jurisdiction>153872a0-ec13-42fe-8cfa-6a8693675f72</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>BELLEVIE_DE_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="sageCH" enabled="true">
+    <globalization timeZone="Europe/London" country="CH" sub_country="" content_encoding="UTF-8" default_locale="de_CH" default_currency="CHF"/>
+    <url>http://sagech.localhost.com</url>
+    <name>sage CH</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieCHCatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>Sage CH</email_sender_name>
+    <email_sender_address>admin@BelleVie.co.ch</email_sender_address>
+    <store_admin_email>admin@BelleVie.co.ch</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>de_CH</locale>
+        <locale>fr_CH</locale>
+        <locale>it_CH</locale>
+    </locales>
+    <currencies>
+        <currency>CHF</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieCH</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>153872a0-ec13-42fe-8cfa-6a8693675f72</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>BELLEVIE_CH_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="BelleVieAT" enabled="true">
+    <globalization timeZone="Europe/London" country="AT" sub_country="" content_encoding="UTF-8" default_locale="de_AT" default_currency="EUR"/>
+    <url>http://bellevieat.localhost.com</url>
+    <name>BelleVie Austria</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieATCatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>BelleVie AT</email_sender_name>
+    <email_sender_address>admin@BelleVie.co.at</email_sender_address>
+    <store_admin_email>admin@BelleVie.co.at</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>de_AT</locale>
+    </locales>
+    <currencies>
+        <currency>EUR</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieAT</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>06f06016-3c16-40e6-b465-f2bcd7f12138</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>BELLEVIE_AT_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="sageUK" enabled="true">
+    <globalization timeZone="Europe/London" country="GB" sub_country="" content_encoding="UTF-8" default_locale="en_GB" default_currency="GBP"/>
+    <url>http://sageuk.localhost.com</url>
+    <name>BelleVie UK</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieUKCatalog</catalog>
+    <display_out_of_stock>false</display_out_of_stock>
+    <email_sender_name>Sage UK</email_sender_name>
+    <email_sender_address>admin@sage.uk</email_sender_address>
+    <store_admin_email>admin@sage.uk</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en</locale>
+        <locale>en_GB</locale>
+    </locales>
+    <currencies>
+        <currency>GBP</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieUK</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>4a44d297-fa05-4f2f-9cfc-f7ff83ad269e</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>SAGE_UK_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="sageEU" enabled="true">
+    <globalization timeZone="Europe/London" country="DE" sub_country="" content_encoding="UTF-8" default_locale="de_DE" default_currency="EUR"/>
+    <url>http://sageeu.localhost.com</url>
+    <name>BelleVie Europe</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieEUCatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>BelleVie EU</email_sender_name>
+    <email_sender_address>admin@BelleVie.co.de</email_sender_address>
+    <store_admin_email>admin@BelleVie.co.de</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>de</locale>
+        <locale>de_AT</locale>
+        <locale>de_BE</locale>
+        <locale>de_DE</locale>
+        <locale>de_LU</locale>
+        <locale>en</locale>
+        <locale>en_NL</locale>
+        <locale>es</locale>
+        <locale>es_ES</locale>
+        <locale>fr</locale>
+        <locale>fr_BE</locale>
+        <locale>fr_LU</locale>
+        <locale>it</locale>
+        <locale>it_IT</locale>
+        <locale>nl</locale>
+        <locale>nl_BE</locale>
+        <locale>nl_NL</locale>
+        <locale>pt</locale>
+        <locale>pt_PT</locale>
+    </locales>
+    <currencies>
+        <currency>EUR</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieEU</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>06f06016-3c16-40e6-b465-f2bcd7f12138</jurisdiction>
+        <jurisdiction>153872a0-ec13-42fe-8cfa-6a8693675f72</jurisdiction>
+        <jurisdiction>1cdc6013-aad4-445f-a5ae-126a1e6b26f5</jurisdiction>
+        <jurisdiction>81f483fa-4986-4f7b-8cef-a6c8f1be8745</jurisdiction>
+        <jurisdiction>90d07bf5-bca0-4a8c-9130-ec1f56bdcb03</jurisdiction>
+        <jurisdiction>bd5ec1d9-d18e-441b-b439-b90380b2a94a</jurisdiction>
+        <jurisdiction>c775000e-dd8b-4a4f-b9ee-490c80969003</jurisdiction>
+        <jurisdiction>c9ee0da5-3bd6-43c2-a004-4094ce40701f</jurisdiction>
+        <jurisdiction>cbf5b994-642a-4688-809f-7d4781344e47</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>SAGE_EU_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="BelleVieNZ" enabled="true">
+    <globalization timeZone="Pacific/Auckland" country="NZ" sub_country="" content_encoding="UTF-8" default_locale="en_NZ" default_currency="NZD"/>
+    <url>http://bellevienz.localhost.com</url>
+    <name>BelleVie New Zealand</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieNZCatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>BelleVie NZ</email_sender_name>
+    <email_sender_address>admin@BelleVie.co.nz</email_sender_address>
+    <store_admin_email>admin@BelleVie.co.nz</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en</locale>
+        <locale>en_NZ</locale>
+    </locales>
+    <currencies>
+        <currency>NZD</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieNZ</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>be8f35fa-c04d-42a8-b638-fb1ae4fd2807</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>BELLEVIE_NZ_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="sageDE" enabled="true">
+    <globalization timeZone="Europe/London" country="DE" sub_country="" content_encoding="UTF-8" default_locale="de_DE" default_currency="EUR"/>
+    <url>http://sagede.localhost.com</url>
+    <name>BelleVie Germany</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieDECatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>BelleVie DE</email_sender_name>
+    <email_sender_address>admin@BelleVie.co.de</email_sender_address>
+    <store_admin_email>admin@BelleVie.co.de</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>de_DE</locale>
+    </locales>
+    <currencies>
+        <currency>EUR</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieDE</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>06f06016-3c16-40e6-b465-f2bcd7f12138</jurisdiction>
+        <jurisdiction>153872a0-ec13-42fe-8cfa-6a8693675f72</jurisdiction>
+        <jurisdiction>90d07bf5-bca0-4a8c-9130-ec1f56bdcb03</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>SAGE_DE_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="BelleVieCA" enabled="true">
+    <globalization timeZone="America/New_York" country="CA" sub_country="QC" content_encoding="UTF-8" default_locale="en_CA" default_currency="CAD"/>
+    <url>http://belleviecanada.localhost.com</url>
+    <name>BelleVie Canada</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieCACatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>BelleVie Canada</email_sender_name>
+    <email_sender_address>admin@BelleVie.ca</email_sender_address>
+    <store_admin_email>admin@BelleVie.ca</store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en</locale>
+        <locale>en_CA</locale>
+        <locale>fr</locale>
+        <locale>fr_CA</locale>
+    </locales>
+    <currencies>
+        <currency>CAD</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieCA</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>8f60f4be-5949-4a05-87db-2f73cc1bc4d2</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>BELLEVIE_CA_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="BelleVieUS" enabled="true">
+    <globalization timeZone="America/Vancouver" country="US" sub_country="CA" content_encoding="UTF-8" default_locale="en_US" default_currency="USD"/>
+    <url>http://bellevieus.localhost.com</url>
+    <name>BelleVie USA</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description></description>
+    <catalog>BelleVieUSCatalog</catalog>
+    <display_out_of_stock>true</display_out_of_stock>
+    <email_sender_name>BelleVie US</email_sender_name>
+    <email_sender_address>store@BelleVieus.com</email_sender_address>
+    <store_admin_email>store_admin@BelleVieus.com&#13;
+        </store_admin_email>
+    <credit_card_cvv2_enabled>true</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en</locale>
+        <locale>en_US</locale>
+    </locales>
+    <currencies>
+        <currency>USD</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieUSA</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>4f06ff86-13c5-4eb7-b372-3e102f21ff42</jurisdiction>
+    </tax_jurisdictions>
+
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types>
+        <cart_type>
+            <name>default</name>
+            <guid>BELLEVIE_US_DEFAULT_CART</guid>
+            <modifiergroups>
+                <code>multicart</code>
+            </modifiergroups>
+        </cart_type>
+    </cart_types>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+
+<store code="cooks" enabled="true">
+    <globalization timeZone="Europe/London" country="GB" sub_country="" content_encoding="UTF-8" default_locale="en_GB" default_currency="GBP"/>
+    <url>https://cooks.epdemos.com</url>
+    <name>Cooks UK</name>
+    <state>200</state>
+    <type>B2B</type>
+    <description>Cooks UK</description>
+    <catalog>Cooks</catalog>
+    <display_out_of_stock>false</display_out_of_stock>
+    <email_sender_name>admin@ep.com</email_sender_name>
+    <email_sender_address>admin@ep.com</email_sender_address>
+    <store_admin_email>admin@ep.com</store_admin_email>
+    <credit_card_cvv2_enabled>false</credit_card_cvv2_enabled>
+    <store_full_credit_cards>false</store_full_credit_cards>
+    <locales>
+        <locale>en_GB</locale>
+    </locales>
+    <currencies>
+        <currency>GBP</currency>
+    </currencies>
+    <warehouses>
+        <warehouse>BelleVieUK</warehouse>
+    </warehouses>
+    <tax_codes>
+        <guid>500</guid>
+        <guid>502</guid>
+        <guid>504</guid>
+    </tax_codes>
+    <tax_jurisdictions>
+        <jurisdiction>GBTaxJurisdiction</jurisdiction>
+    </tax_jurisdictions>
+    <credit_card_types>
+        <type>American Express</type>
+        <type>MasterCard</type>
+        <type>Visa</type>
+    </credit_card_types>
+    <cart_types/>
+    <payment_provider_configurations>
+        <payment_provider_configuration_guid>no-capabilities-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>smart-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>angry-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>big-amount-fields-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>address-required-happy-path-payment-provider-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>credit-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reverse-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>modify-and-cancel-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>reserve-unsupported-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>cancel-reserve-fail-config</payment_provider_configuration_guid>
+        <payment_provider_configuration_guid>email-required-payment-provider-config</payment_provider_configuration_guid>
+    </payment_provider_configurations>
+</store>
+</stores>
