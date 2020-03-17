@@ -123,6 +123,7 @@
 
     &-image {
       width: 100%;
+      max-height: 100%;
       object-fit: cover;
 
       @media (max-width: 991px) {
@@ -160,6 +161,10 @@
         display: flex;
       }
 
+      @media (min-width: 991px) {
+        min-height: 1px;
+      }
+
       .goods-info {
         width: 100%;
         padding: 20px 30px;
@@ -188,7 +193,7 @@
       @media (min-width: 992px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-rows: 400px 400px 400px;
         grid-gap: 35px;
       }
     }
