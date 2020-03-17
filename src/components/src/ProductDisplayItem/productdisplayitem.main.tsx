@@ -136,14 +136,9 @@ interface ProductDisplayItemMainState {
   productId: any,
   productData: any,
   requisitionListData: any,
-  itemQuantity: number,
-  isLoading: boolean,
   arFileExists: boolean,
   vrFileExists: boolean,
   itemConfiguration: { [key: string]: any },
-  selectionValue: string,
-  addToCartLoading: boolean,
-  addToRequisitionListLoading: boolean,
   detailsProductData: any,
   vrMode: boolean;
   multiImages: any,
@@ -175,8 +170,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     featuredProductAttribute: false,
   };
 
-  private funcName: any;
-
   constructor(props) {
     super(props);
     const epConfig = getConfig();
@@ -185,30 +178,16 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.state = {
       productId: '',
       productData: undefined,
-      itemQuantity: 1,
-      isLoading: false,
+      requisitionListData: undefined,
       arFileExists: false,
       vrFileExists: false,
       itemConfiguration: {},
-      selectionValue: '',
-      addToCartLoading: false,
-      addToRequisitionListLoading: false,
       detailsProductData: [],
-      requisitionListData: undefined,
       vrMode: false,
       multiImages: [],
     };
 
-    this.handleQuantityChange = this.handleQuantityChange.bind(this);
-    this.handleSkuSelection = this.handleSkuSelection.bind(this);
-    this.handleConfiguration = this.handleConfiguration.bind(this);
-    this.addToCart = this.addToCart.bind(this);
-    this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
-    this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
-    this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
-    this.handleSelectionChange = this.handleSelectionChange.bind(this);
-    this.addToSelectedCart = this.addToSelectedCart.bind(this);
     this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
     this.initVR = this.initVR.bind(this);
     this.closeVR = this.closeVR.bind(this);
@@ -318,180 +297,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     });
   }
 
-
-  handleQuantityChange(event) {
-    if (event.target.value === '') {
-      this.setState({ itemQuantity: 1 });
-    } else {
-      this.setState({ itemQuantity: parseInt(event.target.value, 10) });
-    }
-  }
-
-  addToWishList(event) {
-    const { productData, itemQuantity, itemConfiguration } = this.state;
-    const { onAddToWishList } = this.props;
-    login().then(() => {
-      const addToWishListLink = productData._addtowishlistform[0].links.find(link => link.rel === 'addtodefaultwishlistaction');
-      const body:any = {};
-      body.quantity = itemQuantity;
-      if (itemConfiguration) {
-        body.configuration = itemConfiguration;
-      }
-      cortexFetch(addToWishListLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onAddToWishList();
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-    event.preventDefault();
-  }
-
-  handleQuantityDecrement() {
-    const { itemQuantity } = this.state;
-    if (itemQuantity > 1) {
-      const newItemQuantity = itemQuantity - 1;
-      this.setState({ itemQuantity: newItemQuantity });
-    }
-  }
-
-  handleQuantityIncrement() {
-    const { itemQuantity } = this.state;
-    const newItemQuantity = itemQuantity + 1;
-    this.setState({ itemQuantity: newItemQuantity });
-  }
-
-  handleConfiguration(configuration, event) {
-    const { itemConfiguration } = this.state;
-    itemConfiguration[configuration] = event.target.value;
-    this.setState({ itemConfiguration });
-  }
-
-  handleSkuSelection(event) {
-    const { onChangeProductFeature } = this.props;
-    const selfUri = event.target.value;
-    this.setState({
-      isLoading: true,
-    });
-    login().then(() => {
-      cortexFetch(`${selfUri}?followlocation=true&zoom=${zoomArray.sort().join()}`,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({}),
-        })
-        .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            isLoading: false,
-          });
-          onChangeProductFeature(res._code[0].code);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-  }
-
-  addToCart(event) {
-    const { productData, itemQuantity, itemConfiguration } = this.state;
-    const { onAddToCart } = this.props;
-    login().then(() => {
-      const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      const body:any = {};
-      body.quantity = itemQuantity;
-      if (itemConfiguration) {
-        body.configuration = itemConfiguration;
-      }
-      cortexFetch(addToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onAddToCart();
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-    event.preventDefault();
-  }
-
-  handleSelectionChange(event) {
-    this.setState({ selectionValue: event.target.value });
-  }
-
-  extractPrice(productData) {
-    this.funcName = 'extractPrice';
-    let listPrice = 'n/a';
-    if (productData._price) {
-      listPrice = productData._price[0]['list-price'][0].display;
-    }
-    let itemPrice = 'n/a';
-    if (productData._price) {
-      itemPrice = productData._price[0]['purchase-price'][0].display;
-    }
-    return { listPrice, itemPrice };
-  }
-
-  extractProductDetails(productData) {
-    this.funcName = 'extractProductDetails';
-    const productTitle = productData._definition[0]['display-name'];
-    const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
-    const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
-    const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
-    return {
-      productImage, productDescriptionValue, productTitle,
-    };
-  }
-
-  extractAvailabilityParams(productData) {
-    this.funcName = 'extractAvailabilityParams';
-    let availability = (productData._addtocartform && productData._addtocartform[0].links.length > 0);
-    let availabilityString = '';
-    let productLink = '';
-    if (productData._availability.length >= 0) {
-      if (productData._code) {
-        productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
-      }
-      if (productData._availability[0].state === 'AVAILABLE') {
-        availabilityString = intl.get('in-stock');
-      } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
-        availabilityString = intl.get('pre-order');
-      } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
-        availability = true;
-        availabilityString = intl.get('back-order');
-      } else {
-        availabilityString = intl.get('out-of-stock');
-      }
-    }
-    return { availability, availabilityString, productLink };
-  }
-
   handleDetailAttribute(index) {
     const { detailsProductData } = this.state;
     detailsProductData[index].isOpened = !detailsProductData[index].isOpened;
@@ -499,9 +304,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   handleArLinkClick(e) {
+    const { itemConfiguration, productData } = this.state;
+    const { onAddToCart } = this.props;
+
     e.currentTarget.addEventListener('message', (event) => {
       if (event.data === '_apple_ar_quicklook_button_tapped') {
-        this.addToCart(event);
+        ProductDisplayItemDetails.addToCart(event, 1, itemConfiguration, productData, onAddToCart);
       }
     }, false);
   }
@@ -520,68 +328,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           </div>
         </li>
       ));
-    }
-    return null;
-  }
-
-  renderSkuSelection() {
-    const { productData, selectionValue } = this.state;
-    const productKindsSelection = [];
-    if (productData._definition[0]._options) {
-      productData._definition[0]._options[0]._element.map((ChoiceElement, index) => {
-        const arraySelectors = [];
-        const selectorTitle = ChoiceElement['display-name'];
-        const selectorWrap = ChoiceElement._selector[0]._choice;
-        const chosenItem = ChoiceElement._selector[0]._chosen[0];
-        if (selectorWrap) {
-          selectorWrap.map(skuChoice => (
-            arraySelectors.push(skuChoice)
-          ));
-        }
-        arraySelectors.unshift(chosenItem);
-        arraySelectors.sort((a, b) => {
-          if (a._description[0]['display-name'] < b._description[0]['display-name']) {
-            return -1;
-          }
-          if (a._description[0]['display-name'] > b._description[0]['display-name']) {
-            return 1;
-          }
-          return 0;
-        });
-        productKindsSelection.push(arraySelectors);
-        productKindsSelection[index].displayName = selectorTitle;
-        productKindsSelection[index].defaultChousen = chosenItem._description[0]['display-name'];
-        return productKindsSelection;
-      });
-      return (productKindsSelection.map(ComponentEl => (
-        <fieldset onChange={this.handleSelectionChange} key={Math.random().toString(36).substr(2, 9)}>
-          <span className="selector-title">
-            {ComponentEl.displayName}
-            :&nbsp;
-            {(ComponentEl.displayName.includes('Color')) ? (
-              <span>{ComponentEl.defaultChousen}</span>
-            ) : ''}
-          </span>
-          <div className="guide" id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
-            {ComponentEl.map(Element => (
-              <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName.includes('Color')) ? 'color-wrap' : ''}`}>
-                <input
-                  key={Element._description[0].name}
-                  type="radio"
-                  name={ComponentEl.displayName}
-                  id={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`}
-                  value={(Element._selectaction) ? Element._selectaction[0].self.uri : ''}
-                  defaultChecked={Element._description[0]['display-name'] === ComponentEl.defaultChousen || Element._selectaction[0].self.uri === selectionValue}
-                />
-                <label htmlFor={`selectorWeight_${Element._description[0]['display-name'].toLowerCase().replace(/ /g, '_')}${productData._code[0].code}`} style={{ background: Element._description[0]['display-name'] }}>
-                  {Element._description[0]['display-name']}
-                </label>
-              </div>
-            ))}
-          </div>
-        </fieldset>
-      ))
-      );
     }
     return null;
   }
@@ -610,17 +356,17 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       description = productData._definition[0]['display-name'];
     }
 
-    const { listPrice, itemPrice } = this.extractPrice(productData);
+    const { listPrice, itemPrice } = ProductDisplayItemDetails.extractPrice(productData);
 
     const price = listPrice !== itemPrice ? listPrice : itemPrice;
 
-    const { availability } = this.extractAvailabilityParams(productData);
+    const { availability } = ProductDisplayItemDetails.extractAvailabilityParams(productData);
 
     const settings = {
       customPaging(i) {
         return (
           <div className="slick-thumb-item">
-            <img src={multiImages[i]} alt="img" />
+            <img src={multiImages[i]} alt="" />
           </div>
         );
       },
@@ -673,102 +419,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     );
   }
 
-  addToSelectedCart(cart, onCountChange) {
-    const { itemQuantity, itemConfiguration } = this.state;
-    this.setState({ addToCartLoading: true });
-
-    const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
-    const cartUrl = cart._addtocartaction[0].self.uri;
-
-    login()
-      .then(() => cortexFetch(cartUrl,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify({
-            quantity: itemQuantity,
-            configuration: itemConfiguration,
-          }),
-        }))
-      .then((res) => {
-        if (res.status === 200 || res.status === 201) {
-          onCountChange(cartName, itemQuantity);
-        }
-        this.setState({ addToCartLoading: false });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        this.setState({ addToCartLoading: false });
-      });
-  }
-
-  addToRequisitionListData(list, onCountChange) {
-    const listUrl = list._additemstoitemlistform[0].self.uri;
-    const { itemQuantity, productData } = this.state;
-    const { name } = list;
-
-    this.setState({ addToRequisitionListLoading: true });
-    login().then(() => {
-      const body: { [key: string]: any } = {};
-      body.items = { code: productData._code[0].code, quantity: itemQuantity };
-      cortexFetch(listUrl,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            this.setState({ addToRequisitionListLoading: false });
-            onCountChange(name, itemQuantity);
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-          this.setState({ addToRequisitionListLoading: false });
-        });
-    });
-  }
-
-  dropdownRequisitionListSelection() {
-    const dispatch = useRequisitionListCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-    const { requisitionListData } = this.state;
-    if (requisitionListData) {
-      return (
-        <ul className="cart-selection-list">
-          {requisitionListData.map(list => (
-            // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-menu-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
-              {list.name ? list.name : intl.get('default')}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    return null;
-  }
-
   initVR() {
     this.setState({ vrMode: true });
   }
@@ -784,52 +434,18 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   render() {
     const {
-      productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading, vrMode,
+      productData, requisitionListData, vrMode,
     } = this.state;
-    const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
+
     const {
       featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart,
     } = this.props;
 
     if (productData) {
-      const { listPrice, itemPrice } = this.extractPrice(productData);
-
-      const { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
-      const isMultiCartEnabled = (productData._addtocartforms || []).flatMap(forms => forms._element).length > 0;
-
-      const {
-        productImage, productDescriptionValue, productTitle,
-      } = this.extractProductDetails(productData);
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');
       Config.indi.productReview.description = intl.get('indi-product-review-description');
       Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
-
-      const SelectRequisitionListButton = () => (
-        <div className="form-content form-content-submit dropdown cart-selection-dropdown">
-          <button
-            className="ep-btn btn-itemdetail-addtowishlist dropdown-toggle"
-            data-toggle="dropdown"
-            disabled={!availability || !productData._addtowishlistform}
-            type="submit"
-          >
-            {addToRequisitionListLoading ? (
-              <span className="miniLoader" />
-            ) : (
-              <span>
-                {intl.get('add-to-requisition-list')}
-              </span>
-            )}
-          </button>
-          <div className="dropdown-menu cart-selection-menu cart-selection-list">
-            {this.dropdownRequisitionListSelection()}
-          </div>
-        </div>
-      );
-
-      const SelectCartButton = () => (
-        <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
-      );
 
       return (
         <div className="itemdetail-component container-3">

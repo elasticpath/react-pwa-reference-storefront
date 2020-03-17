@@ -73,7 +73,7 @@ function ImageContainer(props: ImageContainerProps) {
   return (
     <img
       className={className}
-      alt="img"
+      alt=""
       src={imageSource}
       onError={e => handleError(e, imgUrl)}
       onLoad={onLoadData}

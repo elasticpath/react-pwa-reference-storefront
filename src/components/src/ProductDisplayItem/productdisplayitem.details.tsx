@@ -132,13 +132,84 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.handleConfiguration = this.handleConfiguration.bind(this);
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
-    this.addToCart = this.addToCart.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
     this.renderConfiguration = this.renderConfiguration.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
 
-  private funcName: any;
+  static extractProductDetails(productData) {
+    const productTitle = productData._definition[0]['display-name'];
+    const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
+    const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
+    const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
+    return {
+      productImage, productDescriptionValue, productTitle,
+    };
+  }
+
+  static extractPrice(productData) {
+    let listPrice = 'n/a';
+    if (productData._price) {
+      listPrice = productData._price[0]['list-price'][0].display;
+    }
+    let itemPrice = 'n/a';
+    if (productData._price) {
+      itemPrice = productData._price[0]['purchase-price'][0].display;
+    }
+    return { listPrice, itemPrice };
+  }
+
+  static extractAvailabilityParams(productData) {
+    let availability = (productData._addtocartform && productData._addtocartform[0].links.length > 0);
+    let availabilityString = '';
+    let productLink = '';
+    if (productData._availability.length >= 0) {
+      if (productData._code) {
+        productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
+      }
+      if (productData._availability[0].state === 'AVAILABLE') {
+        availabilityString = intl.get('in-stock');
+      } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
+        availabilityString = intl.get('pre-order');
+      } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
+        availability = true;
+        availabilityString = intl.get('back-order');
+      } else {
+        availabilityString = intl.get('out-of-stock');
+      }
+    }
+    return { availability, availabilityString, productLink };
+  }
+
+  static addToCart(event, itemQuantity, itemConfiguration, productData, onAddToCart) {
+    login().then(() => {
+      const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
+      const body:any = {};
+      body.quantity = itemQuantity;
+      if (itemConfiguration) {
+        body.configuration = itemConfiguration;
+      }
+      cortexFetch(addToCartLink.uri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify(body),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            onAddToCart();
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
+    });
+    event.preventDefault();
+  }
 
   addToWishList(event) {
     const { itemQuantity, itemConfiguration } = this.state;
@@ -254,42 +325,6 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
         console.error(error.message);
         this.setState({ addToCartLoading: false });
       });
-  }
-
-  extractAvailabilityParams(productData) {
-    this.funcName = 'extractAvailabilityParams';
-    let availability = (productData._addtocartform && productData._addtocartform[0].links.length > 0);
-    let availabilityString = '';
-    let productLink = '';
-    if (productData._availability.length >= 0) {
-      if (productData._code) {
-        productLink = `${window.location.origin}/itemdetail/${productData._code[0].code}`;
-      }
-      if (productData._availability[0].state === 'AVAILABLE') {
-        availabilityString = intl.get('in-stock');
-      } else if (productData._availability[0].state === 'AVAILABLE_FOR_PRE_ORDER') {
-        availabilityString = intl.get('pre-order');
-      } else if (productData._availability[0].state === 'AVAILABLE_FOR_BACK_ORDER') {
-        availability = true;
-        availabilityString = intl.get('back-order');
-      } else {
-        availabilityString = intl.get('out-of-stock');
-      }
-    }
-    return { availability, availabilityString, productLink };
-  }
-
-  extractPrice(productData) {
-    this.funcName = 'extractPrice';
-    let listPrice = 'n/a';
-    if (productData._price) {
-      listPrice = productData._price[0]['list-price'][0].display;
-    }
-    let itemPrice = 'n/a';
-    if (productData._price) {
-      itemPrice = productData._price[0]['purchase-price'][0].display;
-    }
-    return { listPrice, itemPrice };
   }
 
   renderConfiguration() {
@@ -410,17 +445,6 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     return null;
   }
 
-  extractProductDetails(productData) {
-    this.funcName = 'extractProductDetails';
-    const productTitle = productData._definition[0]['display-name'];
-    const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
-    const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
-    const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
-    return {
-      productImage, productDescriptionValue, productTitle,
-    };
-  }
-
   addToRequisitionListData(list, onCountChange) {
     const listUrl = list._additemstoitemlistform[0].self.uri;
     const { itemQuantity } = this.state;
@@ -454,38 +478,6 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     });
   }
 
-  addToCart(event) {
-    const { itemQuantity, itemConfiguration } = this.state;
-    const { onAddToCart, productData } = this.props;
-    login().then(() => {
-      const addToCartLink = productData._addtocartform[0].links.find(link => link.rel === 'addtodefaultcartaction');
-      const body:any = {};
-      body.quantity = itemQuantity;
-      if (itemConfiguration) {
-        body.configuration = itemConfiguration;
-      }
-      cortexFetch(addToCartLink.uri,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            onAddToCart();
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-        });
-    });
-    event.preventDefault();
-  }
-
   handleQuantityChange(event) {
     if (event.target.value === '') {
       this.setState({ itemQuantity: 1 });
@@ -500,10 +492,11 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       isLoading,
       addToRequisitionListLoading,
       itemQuantity,
+      itemConfiguration,
     } = this.state;
-    const { productData, requisitionListData } = this.props;
-    const { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
-    const { listPrice, itemPrice } = this.extractPrice(productData);
+    const { productData, requisitionListData, onAddToCart } = this.props;
+    const { availability, availabilityString, productLink } = ProductDisplayItemDetails.extractAvailabilityParams(productData);
+    const { listPrice, itemPrice } = ProductDisplayItemDetails.extractPrice(productData);
     const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
     const SelectCartButton = () => (
       <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
@@ -511,7 +504,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     const isMultiCartEnabled = (productData._addtocartforms || []).flatMap(forms => forms._element).length > 0;
     const {
       productImage, productDescriptionValue, productTitle,
-    } = this.extractProductDetails(productData);
+    } = ProductDisplayItemDetails.extractProductDetails(productData);
     const SelectRequisitionListButton = () => (
       <div className="form-content form-content-submit dropdown cart-selection-dropdown">
         <button
@@ -614,7 +607,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
           </div>
           <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
             <div>
-              <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { this.addToCart(event); } }}>
+              <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { ProductDisplayItemDetails.addToCart(event, itemQuantity, itemConfiguration, productData, onAddToCart); } }}>
                 {this.renderConfiguration()}
                 {this.renderSkuSelection()}
                 <div className="form-group quantity-picker-group">
