@@ -1,0 +1,29 @@
+@import './../../../theme/common.less';
+
+.itemdetail-price-container {
+  font-weight: 600;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .itemdetail-purchase-price-value{
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0;
+    color: @firstComplimentTextColor;
+  }
+
+  .price-sale {
+    color: @firstComplimentTextColor;
+  }
+
+  .itemdetail-list-price-value{
+    color: gray;
+    text-decoration: line-through;
+    vertical-align: middle;
+    margin-left: 10px;
+    font-weight: normal;
+  }
+}

@@ -110,6 +110,15 @@
         " *",
         " "
       ]
-    ]
-  }
+    ],
+    "max-lines-per-function": ["error"]
+  },
+  "overrides": [
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "max-lines-per-function": ["warn", 120]
+      }
+    }
+  ]
 }

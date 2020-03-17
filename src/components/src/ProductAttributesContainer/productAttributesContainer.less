@@ -1,0 +1,37 @@
+@import './../../../theme/common.less';
+
+.itemdetail-tabs {
+  &-wrap {
+    margin-top: 30px;
+  }
+  .nav-item {
+    margin-bottom: 0;
+  }
+  .nav-item {
+    .nav-link {
+      padding: 5px 15px;
+      font-size: 14px;
+      color: @secondComplimentTextColor;
+      &:hover {
+        border-color: transparent;
+        color: @mainTextColor;
+      }
+      &.active {
+        color: @mainTextColor;
+        font-weight: bold;
+        border-color: transparent;
+        border-bottom-color: @mainTextColor;
+      }
+      &.disabled {
+        cursor: default;
+        color: @secondComplimentTextColor;
+      }
+    }
+  }
+}
+
+@media (max-width: @mobileWidth) {
+  .itemdetail-tabs .nav-item .nav-link {
+    padding: 5px;
+  }
+}

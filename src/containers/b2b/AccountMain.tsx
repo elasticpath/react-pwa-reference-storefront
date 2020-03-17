@@ -317,12 +317,123 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
     this.setState({ isDeleteAssociateOpen: false });
   }
 
+  renderAccoutHeader() {
+    const { accountName } = this.state;
+    return (
+      <div key="account-header" className="account-header">
+        <Link className="back-link" to="/b2b">
+          <div className="back-arrow">
+            <AngleLeftIcon />
+          </div>
+          {intl.get('back')}
+        </Link>
+        <div className="name-container">
+          <Link className="back-link-mobile" to="/b2b">
+            <div className="back-arrow">
+              <AngleLeftIcon />
+            </div>
+            {intl.get('back')}
+          </Link>
+          <div className="name">
+            {accountName}
+          </div>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+          <div className="settings" onClick={this.handleAccountSettingsClicked}>
+            <div className="setting-icons">
+              <GearIcon />
+            </div>
+            <span className="settings-title">{intl.get('account-settings')}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderAsociateTabe() {
+    const { associates } = this.state;
+
+    return (
+      <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
+        <thead>
+          <tr className="associates-header">
+            <th className="name-email">{intl.get('name-and-email')}</th>
+            <th className="name">{intl.get('name')}</th>
+            <th className="email">{intl.get('email')}</th>
+            <th className="roles">{intl.get('roles')}</th>
+            <th className="action">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          {associates.length === 0 && (
+          <tr><td>{intl.get('account-no-associates')}</td></tr>
+          )}
+          {associates.map((associate) => {
+            const associateEmail = associate.associate._primaryemail[0].email;
+            return (
+              <tr key={associateEmail} className="associates-table-row">
+                <td className="name">
+                  <div className="name-part">{associate.associate.name}</div>
+                </td>
+                <td className="email">
+                  <div className="email-part">{associateEmail}</div>
+                </td>
+                <td className="name-email">
+                  <div className="name-part">{associate.associate.name}</div>
+                  <div className="email-part">{associateEmail}</div>
+                </td>
+                <td className="roles">
+                  {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
+                </td>
+                <td className="action">
+                  <button type="button" className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)}>
+                    <EditIcon />
+                  </button>
+                  <button type="button" className="delete-associate" onClick={() => this.handleDeleteModalOpen(associate.self.uri)}>
+                    <TrashIcon />
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  }
+
+  renderDeleteAssociateDialog() {
+    const { isLoading, isDeleteAssociateOpen, associateUri } = this.state;
+    return (
+      <Modal
+        open={isDeleteAssociateOpen}
+        onClose={this.handleDeleteModalClose}
+        classNames={{ modal: 'b2b-delete-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
+      >
+        <div className="dialog-header">{intl.get('remove-associate')}</div>
+        <div className="dialog-content">
+          <p>
+            {intl.get('confirm-delete-associate')}
+          </p>
+        </div>
+        <div className="dialog-footer">
+          <button className="cancel" type="button" onClick={this.handleDeleteModalClose}>{intl.get('no')}</button>
+          <button className="upload" type="button" onClick={() => this.handleDeleteAssociateClicked(associateUri)}>
+            {intl.get('yes')}
+          </button>
+        </div>
+        {isLoading ? (
+          <div className="loader-wrapper">
+            <div className="miniLoader" />
+          </div>
+        ) : ''}
+      </Modal>
+    );
+  }
+
   render() {
     const {
       isLoading,
       accountName,
       status,
-      associates,
       isSettingsDialogOpen,
       isAddSubAccountOpen,
       isEditAssociateOpen,
@@ -342,8 +453,6 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
       registrationNumber,
       selfSignUpCode,
       uri,
-      isDeleteAssociateOpen,
-      associateUri,
     } = this.state;
 
     const editAccountData = {
@@ -366,32 +475,7 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
           <div className="loader" />
         ) : (
           <div>
-            <div key="account-header" className="account-header">
-              <Link className="back-link" to="/b2b">
-                <div className="back-arrow">
-                  <AngleLeftIcon />
-                </div>
-                {intl.get('back')}
-              </Link>
-              <div className="name-container">
-                <Link className="back-link-mobile" to="/b2b">
-                  <div className="back-arrow">
-                    <AngleLeftIcon />
-                  </div>
-                  {intl.get('back')}
-                </Link>
-                <div className="name">
-                  {accountName}
-                </div>
-                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-                <div className="settings" onClick={this.handleAccountSettingsClicked}>
-                  <div className="setting-icons">
-                    <GearIcon />
-                  </div>
-                  <span className="settings-title">{intl.get('account-settings')}</span>
-                </div>
-              </div>
-            </div>
+            {this.renderAccoutHeader()}
             <div className="account-component">
               <B2bAccountList
                 getAccountData={this.getAccountData}
@@ -409,76 +493,9 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
                   </button>
                 </div>
                 <h3 className="title-associate-table">{intl.get('associates')}</h3>
-                <table className={`associates-table ${associates.length === 0 ? 'empty-table' : ''}`}>
-                  <thead>
-                    <tr className="associates-header">
-                      <th className="name-email">{intl.get('name-and-email')}</th>
-                      <th className="name">{intl.get('name')}</th>
-                      <th className="email">{intl.get('email')}</th>
-                      <th className="roles">{intl.get('roles')}</th>
-                      <th className="action">&nbsp;</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {associates.length === 0 && (
-                    <tr><td>{intl.get('account-no-associates')}</td></tr>
-                    )}
-                    {associates.map((associate) => {
-                      const associateEmail = associate.associate._primaryemail[0].email;
-                      return (
-                        <tr key={associateEmail} className="associates-table-row">
-                          <td className="name">
-                            <div className="name-part">{associate.associate.name}</div>
-                          </td>
-                          <td className="email">
-                            <div className="email-part">{associateEmail}</div>
-                          </td>
-                          <td className="name-email">
-                            <div className="name-part">{associate.associate.name}</div>
-                            <div className="email-part">{associateEmail}</div>
-                          </td>
-                          <td className="roles">
-                            {associate.roles._roles.length && associate.roles._roles[0]._element ? associate.roles._roles[0]._element.map(r => intl.get(r.name.toLowerCase()) || r.name).join(', ') : intl.get('none')}
-                          </td>
-                          <td className="action">
-                            <button type="button" className="edit-associate" onClick={() => this.handleEditAssociateClicked(associate.roles._selector[0], associateEmail)}>
-                              <EditIcon />
-                            </button>
-                            <button type="button" className="delete-associate" onClick={() => this.handleDeleteModalOpen(associate.self.uri)}>
-                              <TrashIcon />
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                {this.renderAsociateTabe()}
               </div>
-
-              <Modal
-                open={isDeleteAssociateOpen}
-                onClose={this.handleDeleteModalClose}
-                classNames={{ modal: 'b2b-delete-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
-              >
-                <div className="dialog-header">{intl.get('remove-associate')}</div>
-                <div className="dialog-content">
-                  <p>
-                    {intl.get('confirm-delete-associate')}
-                  </p>
-                </div>
-                <div className="dialog-footer">
-                  <button className="cancel" type="button" onClick={this.handleDeleteModalClose}>{intl.get('no')}</button>
-                  <button className="upload" type="button" onClick={() => this.handleDeleteAssociateClicked(associateUri)}>
-                    {intl.get('yes')}
-                  </button>
-                </div>
-                {isLoading ? (
-                  <div className="loader-wrapper">
-                    <div className="miniLoader" />
-                  </div>
-                ) : ''}
-              </Modal>
-
+              {this.renderDeleteAssociateDialog()}
               <B2bEditAccount
                 handleClose={this.handleAccountSettingsClose}
                 handleUpdate={this.handleAccountSettingsUpdate}

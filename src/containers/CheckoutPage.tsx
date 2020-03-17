@@ -610,6 +610,18 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     );
   }
 
+  static renderTitle() {
+    return (
+      <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
+        <div>
+          <h1 className="view-title">
+            {intl.get('checkout-summary')}
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const {
       orderData, isLoading, profileData, showGiftCard, certificates,
@@ -623,13 +635,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">
-            <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
-              <div>
-                <h1 className="view-title">
-                  {intl.get('checkout-summary')}
-                </h1>
-              </div>
-            </div>
+            {CheckoutPage.renderTitle()}
             <div className="checkout-main-container-wrap">
               <div className="checkout-main-container">
                 { profileData ? (
@@ -722,13 +728,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     return (
       <div className="checkout-container container">
         <div className="checkout-container-inner">
-          <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
-            <div>
-              <h1 className="view-title">
-                Checkout Summary
-              </h1>
-            </div>
-          </div>
+          {CheckoutPage.renderTitle()}
           <div className="checkout-main-container">
             <div className="loader" />
           </div>

@@ -21,7 +21,6 @@
 
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import transparentImg from '../../../images/icons/transparent.png';
@@ -31,12 +30,16 @@ import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstitue
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
-
-import './productdisplayitem.main.less';
+import ProductPriceContainer from '../ProductPriceContainer/productPriceContainer';
 import PowerReview from '../PowerReview/powerreview.main';
 import ImageContainer from '../ImageContainer/image.container';
+import ProductSocialNetworkSharing from '../ProductSocialNetworkSharing/productSocialNetworkSharing';
+import ProductAttributesContainer from '../ProductAttributesContainer/productAttributesContainer';
+import ProductRequisitionListButton from '../ProductRequisitionListButton/productRequisitionListButton';
+import ProductQuantityPicker from '../ProductQuantityPicker/productQuantityPicker';
+
+import './productdisplayitem.main.less';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
@@ -143,7 +146,6 @@ interface ProductDisplayItemMainState {
   itemConfiguration: { [key: string]: any },
   selectionValue: string,
   addToCartLoading: boolean,
-  addToRequisitionListLoading: boolean,
   detailsProductData: any,
   vrMode: boolean;
   multiImages: any,
@@ -196,7 +198,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       itemConfiguration: {},
       selectionValue: '',
       addToCartLoading: false,
-      addToRequisitionListLoading: false,
       detailsProductData: [],
       requisitionListData: undefined,
       vrMode: false,
@@ -207,13 +208,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.handleSkuSelection = this.handleSkuSelection.bind(this);
     this.handleConfiguration = this.handleConfiguration.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
-    this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.addToWishList = this.addToWishList.bind(this);
     this.renderProductImage = this.renderProductImage.bind(this);
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
     this.addToSelectedCart = this.addToSelectedCart.bind(this);
-    this.handleDetailAttribute = this.handleDetailAttribute.bind(this);
     this.initVR = this.initVR.bind(this);
     this.closeVR = this.closeVR.bind(this);
     this.getVRBackgroundImg = this.getVRBackgroundImg.bind(this);
@@ -223,6 +221,11 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   componentDidMount() {
     this.fetchProductData();
     this.fetchRequisitionListsData();
+
+    // Set the language-specific configuration for indi integration
+    Config.indi.productReview.title = intl.get('indi-product-review-title');
+    Config.indi.productReview.description = intl.get('indi-product-review-description');
+    Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
   }
 
   static async getDerivedStateFromProps(nextProps, prevState) {
@@ -322,27 +325,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     });
   }
 
-
-  handleQuantityChange(event) {
-    if (event.target.value === '') {
-      this.setState({ itemQuantity: 1 });
-    } else {
-      this.setState({ itemQuantity: parseInt(event.target.value, 10) });
-    }
-  }
-
-  handleQuantityDecrement() {
-    const { itemQuantity } = this.state;
-    if (itemQuantity > 1) {
-      const newItemQuantity = itemQuantity - 1;
-      this.setState({ itemQuantity: newItemQuantity });
-    }
-  }
-
-  handleQuantityIncrement() {
-    const { itemQuantity } = this.state;
-    const newItemQuantity = itemQuantity + 1;
-    this.setState({ itemQuantity: newItemQuantity });
+  handleQuantityChange(value) {
+    this.setState({ itemQuantity: value });
   }
 
   handleConfiguration(configuration, event) {
@@ -462,17 +446,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return { listPrice, itemPrice };
   }
 
-  extractProductDetails(productData) {
-    this.funcName = 'extractProductDetails';
-    const productTitle = productData._definition[0]['display-name'];
-    const productDescription = productData._definition[0].details ? (productData._definition[0].details.find(detail => detail['display-name'] === 'Summary' || detail['display-name'] === 'Description')) : '';
-    const productDescriptionValue = productDescription !== undefined ? productDescription['display-value'] : '';
-    const productImage = Config.skuImagesUrl.replace('%sku%', productData._code[0].code);
-    return {
-      productImage, productDescriptionValue, productTitle,
-    };
-  }
-
   extractAvailabilityParams(productData) {
     this.funcName = 'extractAvailabilityParams';
     let availability = (productData._addtocartform && productData._addtocartform[0].links.length > 0);
@@ -496,36 +469,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     return { availability, availabilityString, productLink };
   }
 
-  handleDetailAttribute(index) {
-    const { detailsProductData } = this.state;
-    detailsProductData[index].isOpened = !detailsProductData[index].isOpened;
-    this.setState({ detailsProductData });
-  }
-
   handleArLinkClick(e) {
     e.currentTarget.addEventListener('message', (event) => {
       if (event.data === '_apple_ar_quicklook_button_tapped') {
         this.addToCart(event);
       }
     }, false);
-  }
-
-  renderAttributes() {
-    const { detailsProductData } = this.state;
-    if (detailsProductData) {
-      return detailsProductData.map((attribute, index) => (
-        <li key={attribute.name} className="detail-list-item">
-          <div className="item-detail-attribute-label-col">
-            {attribute['display-name']}
-            <span className={`item-arrow-btn ${attribute.isOpened ? 'up' : ''}`} role="presentation" onClick={() => this.handleDetailAttribute(index)} />
-          </div>
-          <div className={`item-detail-attribute-value-col ${attribute.isOpened ? '' : 'hide'}`}>
-            {attribute['display-value']}
-          </div>
-        </li>
-      ));
-    }
-    return null;
   }
 
   renderConfiguration() {
@@ -728,69 +677,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       });
   }
 
-  addToRequisitionListData(list, onCountChange) {
-    const listUrl = list._additemstoitemlistform[0].self.uri;
-    const { itemQuantity, productData } = this.state;
-    const { name } = list;
-
-    this.setState({ addToRequisitionListLoading: true });
-    login().then(() => {
-      const body: { [key: string]: any } = {};
-      body.items = { code: productData._code[0].code, quantity: itemQuantity };
-      cortexFetch(listUrl,
-        {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-          },
-          body: JSON.stringify(body),
-        })
-        .then((res) => {
-          if (res.status === 200 || res.status === 201) {
-            this.setState({ addToRequisitionListLoading: false });
-            onCountChange(name, itemQuantity);
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
-          this.setState({ addToRequisitionListLoading: false });
-        });
-    });
-  }
-
-  dropdownRequisitionListSelection() {
-    const dispatch = useRequisitionListCountDispatch();
-    const onCountChange = (name, count) => {
-      const data = {
-        type: 'COUNT_SHOW',
-        payload: {
-          count,
-          name,
-        },
-      };
-      dispatch(data);
-      setTimeout(() => {
-        dispatch({ type: 'COUNT_HIDE' });
-      }, 3200);
-    };
-    const { requisitionListData } = this.state;
-    if (requisitionListData) {
-      return (
-        <ul className="cart-selection-list">
-          {requisitionListData.map(list => (
-            // eslint-disable-next-line
-            <li className="dropdown-item cart-selection-menu-item" key={list.name ? list.name : intl.get('default')} onClick={() => this.addToRequisitionListData(list, onCountChange)}>
-              {list.name ? list.name : intl.get('default')}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    return null;
-  }
-
   initVR() {
     this.setState({ vrMode: true });
   }
@@ -806,50 +692,14 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   render() {
     const {
-      productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, addToRequisitionListLoading, vrMode,
+      productData, isLoading, itemQuantity, addToCartLoading, requisitionListData, vrMode, detailsProductData,
     } = this.state;
     const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
     const { featuredProductAttribute, itemDetailLink } = this.props;
 
     if (productData) {
-      const { listPrice, itemPrice } = this.extractPrice(productData);
-
-      const { availability, availabilityString, productLink } = this.extractAvailabilityParams(productData);
+      const { availability } = this.extractAvailabilityParams(productData);
       const isMultiCartEnabled = (productData._addtocartforms || []).flatMap(forms => forms._element).length > 0;
-
-      const {
-        productImage, productDescriptionValue, productTitle,
-      } = this.extractProductDetails(productData);
-      // Set the language-specific configuration for indi integration
-      Config.indi.productReview.title = intl.get('indi-product-review-title');
-      Config.indi.productReview.description = intl.get('indi-product-review-description');
-      Config.indi.productReview.submit_button_text = intl.get('indi-product-review-submit-button-text');
-
-      const SelectRequisitionListButton = () => (
-        <div className="form-content form-content-submit dropdown cart-selection-dropdown">
-          <button
-            className="ep-btn btn-itemdetail-addtowishlist dropdown-toggle"
-            data-toggle="dropdown"
-            disabled={!availability || !productData._addtowishlistform}
-            type="submit"
-          >
-            {addToRequisitionListLoading ? (
-              <span className="miniLoader" />
-            ) : (
-              <span>
-                {intl.get('add-to-requisition-list')}
-              </span>
-            )}
-          </button>
-          <div className="dropdown-menu cart-selection-menu cart-selection-list">
-            {this.dropdownRequisitionListSelection()}
-          </div>
-        </div>
-      );
-
-      const SelectCartButton = () => (
-        <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
-      );
 
       return (
         <div className="itemdetail-component container-3">
@@ -892,89 +742,16 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   )}
                 </div>
               </div>
-              <div className="itemdetail-price-container itemdetail-price-wrap" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
-                <div>
-                  <div data-region="itemPriceRegion" style={{ display: 'block' }}>
-                    <ul className="itemdetail-price-container">
-                      {
-                        listPrice !== itemPrice
-                          ? (
-                            <li className="itemdetail-purchase-price">
-                              <h1 className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
-                                {itemPrice}
-                              </h1>
-                              <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
-                                {listPrice}
-                              </span>
-                            </li>
-                          )
-                          : (
-                            <li className="itemdetail-purchase-price">
-                              <h1 className="itemdetail-purchase-price-value" id={`category_item_price_${productData._code[0].code}`}>
-                                {itemPrice}
-                              </h1>
-                            </li>
-                          )
-                      }
-                    </ul>
-                  </div>
-                  <div data-region="itemRateRegion" />
-                </div>
-              </div>
-              <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
-                <ul className="itemdetail-availability-container">
-                  <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
-                    <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
-                      {(availability) ? (
-                        <div>
-                          <span className="icon" />
-                          {availabilityString}
-                        </div>
-                      ) : (
-                        <div>
-                          {availabilityString}
-                        </div>
-                      )}
-                    </label>
-                  </li>
-                  <li className={`itemdetail-release-date${productData._availability[0]['release-date'] ? '' : ' is-hidden'}`} data-region="itemAvailabilityDescriptionRegion">
-                    <label htmlFor={`category_item_release_date_${productData._code[0].code}_label`} className="itemdetail-release-date-label">
-                      {intl.get('expected-release-date')}
-                      :&nbsp;
-                    </label>
-                    <span className="itemdetail-release-date-value" id={`category_item_release_date_${productData._code[0].code}`}>
-                      {productData._availability[0]['release-date'] ? productData._availability[0]['release-date']['display-value'] : ''}
-                    </span>
-                  </li>
-                </ul>
-              </div>
+              <ProductPriceContainer productData={productData} />
               <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
                 <div>
                   <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}
                     {this.renderSkuSelection()}
-                    <div className="form-group quantity-picker-group">
-                      <label htmlFor="product_display_item_quantity_label" className="control-label">
-                        {intl.get('quantity')}
-                      </label>
-                      <div className="input-group-btn">
-                        <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                          <span>–</span>
-                        </button>
-                        <div className="quantity-col form-content form-content-quantity">
-                          <input id="product_display_quantity_field" className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
-                        </div>
-                        <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                          <span>+</span>
-                        </button>
-                      </div>
-                      {
-                        (isLoading) ? (<div className="miniLoader" />) : ''
-                      }
-                    </div>
+                    <ProductQuantityPicker loading={isLoading} value={itemQuantity} onChange={this.handleQuantityChange} />
                     <div className="form-group-submit">
                       {isMultiCartEnabled ? (
-                        <SelectCartButton />
+                        <DropdownCartSelection multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
                       ) : (
                         <div className="form-content form-content-submit col-sm-offset-4">
                           <button
@@ -996,7 +773,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     <form className="itemdetail-addtowishlist-form form-horizontal">
                       <div className="form-group-submit">
                         {requisitionListData ? (
-                          <SelectRequisitionListButton />
+                          <ProductRequisitionListButton productData={productData} requisitionListData={requisitionListData} itemQuantity={itemQuantity} />
                         ) : (
                           <div className="form-content form-content-submit col-sm-offset-4">
                             <button
@@ -1015,75 +792,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   ) : ('')
                   }
                 </div>
-                <div className="social-network-sharing">
-                  <InlineShareButtons
-                    config={{
-                      alignment: 'center', // alignment of buttons (left, center, right)
-                      color: 'social', // set the color of buttons (social, white)
-                      enabled: true, // show/hide buttons (true, false)
-                      font_size: 16, // font size for the buttons
-                      labels: 'cta', // button labels (cta, counts, null)
-                      language: 'en', // which language to use (see LANGUAGES)
-                      networks: [ // which networks to include (see SHARING NETWORKS)
-                        'facebook',
-                        'twitter',
-                        'pinterest',
-                        'email',
-                      ],
-                      padding: 12, // padding within buttons (INTEGER)
-                      radius: 4, // the corner radius on each button (INTEGER)
-                      size: 40, // the size of each button (INTEGER)
-
-                      // OPTIONAL PARAMETERS
-                      url: productLink, // (defaults to current url)
-                      image: productImage, // (defaults to og:image or twitter:image)
-                      description: productDescriptionValue, // (defaults to og:description or twitter:description)
-                      title: productTitle, // (defaults to og:title or twitter:title)
-                      message: 'custom email text', // (only for email sharing)
-                      subject: 'custom email subject', // (only for email sharing)
-                      username: 'custom twitter handle', // (only for twitter sharing)
-                    }}
-                  />
-                </div>
+                <ProductSocialNetworkSharing productData={productData} />
               </div>
               <PowerReview productData={productData} />
             </div>
           </div>
-          <div className="itemdetail-tabs-wrap">
-            {(Config.PowerReviews.enable) ? (
-              <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
-                <li className="nav-item">
-                  <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
-                    {intl.get('summary')}
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
-                    {intl.get('reviews')}
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
-                    {intl.get('questions')}
-                  </a>
-                </li>
-              </ul>
-            ) : ('')
-            }
-            <div className="tab-content">
-              <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-                <ul className="item-detail-attributes" data-region="itemDetailAttributeRegion">
-                  {this.renderAttributes()}
-                </ul>
-              </div>
-              <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                <div id="pr-reviewdisplay" />
-              </div>
-              <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
-                <div id="pr-questiondisplay" />
-              </div>
-            </div>
-          </div>
+          <ProductAttributesContainer detailsProductData={detailsProductData} />
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <IndiRecommendationsDisplayMain render={['carousel', 'product']} configuration={Config.indi} keywords={productData._code[0].code} />

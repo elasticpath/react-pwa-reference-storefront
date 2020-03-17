@@ -26,16 +26,6 @@
   padding-top: 30px;
   text-align: center;
 
-  .social-network-sharing {
-    margin-top: 15px;
-    .st-btn {
-      min-width: 50px !important;
-      >span {
-        display: none !important;
-      }
-    }
-  }
-
   .itemdetail-assets {
     margin-top: 30px;
     width: 50%;
@@ -132,8 +122,7 @@
       margin-top: 10px;
     }
 
-    .itemdetail-title,
-    .itemdetail-price-container {
+    .itemdetail-title {
       font-weight: 600;
       line-height: 1.25;
       display: flex;
@@ -157,25 +146,7 @@
         }
       }
 
-      .itemdetail-purchase-price-value{
-        font-weight: bold;
-        display: inline-block;
-        vertical-align: middle;
-        margin-bottom: 0;
-        color: @firstComplimentTextColor;
-      }
 
-      .price-sale {
-        color: @firstComplimentTextColor;
-      }
-
-      .itemdetail-list-price-value{
-        color: gray;
-        text-decoration: line-through;
-        vertical-align: middle;
-        margin-left: 10px;
-        font-weight: normal;
-      }
     }
 
     .itemdetail-addtocart {
@@ -323,35 +294,6 @@
   }
 }
 
-.itemdetail-tabs {
-  &-wrap {
-    margin-top: 30px;
-  }
-  .nav-item {
-    margin-bottom: 0;
-  }
-  .nav-item {
-    .nav-link {
-      padding: 5px 15px;
-      font-size: 14px;
-      color: @secondComplimentTextColor;
-      &:hover {
-        border-color: transparent;
-        color: @mainTextColor;
-      }
-      &.active {
-        color: @mainTextColor;
-        font-weight: bold;
-        border-color: transparent;
-        border-bottom-color: @mainTextColor;
-      }
-      &.disabled {
-        cursor: default;
-        color: @secondComplimentTextColor;
-      }
-    }
-  }
-}
 
 .anchor-ar-container {
   position: absolute;
@@ -655,10 +597,4 @@
 
 .item-detail-attributes {
   border-top: 1px solid @mainBorderColor;
-}
-
-@media (max-width: @mobileWidth) {
-  .itemdetail-tabs .nav-item .nav-link {
-    padding: 5px;
-  }
 }
