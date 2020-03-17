@@ -30,7 +30,7 @@ import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstitue
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
-import ProductDisplayItemDetails from './productdisplayitem.details';
+import ProductDisplayItemDetails from '../ProductDisplayItemDetails/productdisplayitem.details';
 import './productdisplayitem.main.less';
 import { ProductDisplayItemMainProps, ProductDisplayItemMainState, REQUISITION_LISTS_ZOOM } from './productdisplayitem.main.d';
 import ImageContainer from '../ImageContainer/image.container';
