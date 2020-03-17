@@ -43,6 +43,7 @@
     "eslint-plugin-react-hooks": "^2.2.0",
     "fetch-mock": "^8.2.0-beta.2",
     "file-loader": "4.0.0",
+    "formik": "^2.1.4",
     "fs-extra": "8.0.1",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "4.0.0-beta.5",
