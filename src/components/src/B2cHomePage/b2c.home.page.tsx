@@ -34,6 +34,7 @@ import heroImageBlender from '../../../images/site-images/hero_image_blender.png
 import iceCreamImage from '../../../images/site-images/ice_cream.png';
 import heroImageShipping from '../../../images/site-images/hero_image_shipping.png';
 import heroBanner from '../../../images/site-images/hero_image_coffee.png';
+import ARImage from '../../../images/site-images/hero_image_AR.png';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -42,7 +43,8 @@ const heroBannerFileName = 'hero_image_coffee.png';
 const heroImagePourCoffeeFileName = 'hero_image_pour_coffee.png';
 const heroImageBlenderFileName = 'hero_image_blender.png';
 const iceCreamImageFileName = 'ice_cream.png';
-const shippingImageFileName = '/hero_image_shipping.png';
+const shippingImageFileName = 'hero_image_shipping.png';
+const ARImageFileName = 'hero_image_AR.png';
 
 const B2CHomePage: React.FunctionComponent = () => {
   const epConfig = getConfig();
@@ -90,7 +92,7 @@ const B2CHomePage: React.FunctionComponent = () => {
             </li>
             <li className="main-goods__cell">
               <div className="main-goods-wrap">
-                <div className="goods-info">
+                <div className="goods-info-right">
                   <h5 className="goods-title-small">Healthy</h5>
                   <h3 className="goods-title">More flavours, more variety, more fun.</h3>
                   <p className="goods-description">Make the most of your fresh ingredients with the 3X Bluicer Pro. This high performance blender juicer features our Kinetix®</p>
@@ -122,6 +124,14 @@ const B2CHomePage: React.FunctionComponent = () => {
                   </p>
                 </div>
                 <ImageContainer className="main-goods-image banner-3" fileName={shippingImageFileName} imgUrl={heroImageShipping} />
+              </div>
+            </li>
+            <li className="main-goods__cell">
+              <div className="main-goods-wrap">
+                <h3 className="goods-title goods-title-4">
+                  View Our Products in 360
+                </h3>
+                <ImageContainer className="main-goods-image banner-4" fileName={ARImageFileName} imgUrl={ARImage} />
               </div>
             </li>
             <li>Test</li>
