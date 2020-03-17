@@ -171,6 +171,7 @@
         color: @firstComplimentColor;
         background-color: @mainBackgroundColor;
         margin: 0;
+        font-weight: normal;
 
         .add-to-cart-icon {
           fill: @firstComplimentColor;
@@ -202,7 +203,7 @@
         &:disabled {
           background-color: @fifthComplimentTextColor;
           color: @firstComplimentTextColor;
-          border: none;
+          border-color: transparent;
           cursor: initial;
         }
 
@@ -324,6 +325,7 @@
 
     .input-group-btn {
       display: flex;
+      float: right;
     }
 
     .checkbox-col {
@@ -492,9 +494,15 @@
       }
     }
 
+    .selected-element-counter {
+      display: inline-block;
+      min-width: 20px;
+      text-align: right;
+    }
+
     .delete-btn {
       min-height: 32px;
-      min-width: 125px;
+      min-width: 20px;
       font-size: 14px;
       margin-top: 0;
       margin-right: 0;
@@ -502,14 +510,49 @@
       font-weight: normal;
       vertical-align: middle;
 
-      @media screen and (min-width: 481px) {
-        min-width: 100px;
+      &:disabled {
+        background-color: @fifthComplimentTextColor;
+        color: @firstComplimentTextColor;
+        border-color: @fifthComplimentTextColor;
+      }
+
+      @media (min-width: @mobileWidth) {
+        min-width: 125px;
         margin-top: 5px;
         margin-right: 10px;
+
+        .recycle-bin-icon {
+          display: none;
+        }
       }
 
       @media (min-width: @tabletWidth) {
         margin-left: 30px;
+      }
+
+      @media (max-width: @mobileWidth - 1px) {
+        position: absolute;
+        top: 0;
+        right: 75px;
+        background-color: transparent;
+        margin-bottom: 0;
+
+        &:disabled {
+          background-color: transparent;
+          border-color: transparent;
+
+          .recycle-bin-icon {
+            fill: #BAD7DE;
+          }
+        }
+
+        .recycle-bin-icon {
+          fill: @mainBackgroundColor;
+        }
+
+        .btn-txt {
+          display: none;
+        }
       }
     }
   }
@@ -857,7 +900,7 @@
         display: block;
         padding: 0;
         position: absolute;
-        top: 34px;
+        top: 32px;
         right: -18px;
         border: none;
         background: none;
@@ -902,47 +945,16 @@
       }
 
       .btn-number {
-        border: none;
-        box-shadow: none;
-
-        &:hover {
-          background-color: transparent;
-        }
-
         span {
           height: 20px;
           width: 20px;
-          opacity: 0;
+          font-size: 24px;
+          line-height: 22px;
         }
       }
 
-      .quantity-left-minus {
-        &:before {
-          content: "";
-          border-top: 2px solid @mainColor;
-          border-right: 2px solid @mainColor;
-          height: 9px;
-          width: 9px;
-          position: absolute;
-          transform: translate(2px, 1px) rotate(315deg);
-          top: 6px;
-          left: 3px;
-        }
-      }
       .quantity-right-plus {
         margin-top: -10px;
-
-        &:before {
-          content: "";
-          border-top: 2px solid @mainColor;
-          border-right: 2px solid @mainColor;
-          height: 9px;
-          width: 9px;
-          position: absolute;
-          transform: translate(2px, 1px) rotate(135deg);
-          top: 3px;
-          left: 3px;
-        }
       }
     }
 

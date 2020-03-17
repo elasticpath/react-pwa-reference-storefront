@@ -49,6 +49,7 @@ const zoomArray = [
   'defaultcart:additemstocartform',
   'carts',
   'carts:element',
+  'carts:element:additemstocartform',
 ];
 
 const headerLogoFileName = 'Company-Logo-v3.svg';
@@ -209,6 +210,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             }
           } else {
             this.setState({
+              multiCartData: res._carts[0],
               isLoading: false,
             });
           }
@@ -259,7 +261,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
       appHeaderTopLinks,
       appModalLoginLinks,
     } = this.props;
-    const availability = Boolean(cartData);
+    const availability = Boolean(cartData || multiCartData);
     const impersonating = localStorage.getItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
     const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
 

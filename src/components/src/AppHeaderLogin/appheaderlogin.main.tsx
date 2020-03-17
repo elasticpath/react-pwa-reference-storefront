@@ -411,10 +411,13 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     )}
                   </li>
                   {(localStorage.getItem(`${Config.b2b.enable && Config.cortexApi.scope}_b2bCart`)) ? (
-                    <li className="dropdown-item change-carts">
-                      <div className="using-cart-link">
+                    <li className="dropdown-item shop-for">
+                      <div className="shopping-as-link">
                         <span>
-                          {`${intl.get('using-cart')} ${(localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`))}`}
+                          {intl.get('shopping-as')}
+                        </span>
+                        <span>
+                          {localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}
                         </span>
                       </div>
                     </li>
@@ -422,7 +425,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                   {(Config.b2b.enable) ? (
                     <li>
                       <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>
-                        <span className="cart-select-btn">{intl.get('change-carts')}</span>
+                        <span className="cart-select-btn">{intl.get('shop-for')}</span>
                       </button>
                       <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} onContinueCart={onContinueCart} />
                     </li>

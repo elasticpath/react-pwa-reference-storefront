@@ -152,7 +152,7 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
                 </span>
               </td>
             </tr>
-            {options && (options[0]._element.map(option => (
+            {options && options[0]._element && (options[0]._element.map(option => (
               <tr key={option.name}>
                 <td>
                   <label htmlFor="option">
@@ -161,7 +161,7 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
                 </td>
                 <td>
                   <span id="option">
-                    {option._value[0]['display-name']}
+                    {option._value && option._value[0]['display-name']}
                   </span>
                 </td>
               </tr>
