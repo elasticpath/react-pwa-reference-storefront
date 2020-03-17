@@ -21,128 +21,22 @@
 
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import { InlineShareButtons } from 'sharethis-reactjs';
-import { login, isLoggedIn } from '../utils/AuthService';
+import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import transparentImg from '../../../images/icons/transparent.png';
 import ProductRecommendationsDisplayMain from '../ProductRecommendations/productrecommendations.main';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
-import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
 import ProductDisplayItemDetails from './productdisplayitem.details';
 import './productdisplayitem.main.less';
-import PowerReview from '../PowerReview/powerreview.main';
+import { ProductDisplayItemMainProps, ProductDisplayItemMainState, REQUISITION_LISTS_ZOOM } from './productdisplayitem.main.d';
 import ImageContainer from '../ImageContainer/image.container';
-
-// Array of zoom parameters to pass to Cortex
-const zoomArray = [
-  'availability',
-  'addtocartform',
-  'addtocartforms:element:addtocartaction',
-  'addtocartforms:element:target:descriptor',
-  'addtowishlistform',
-  'price',
-  'rate',
-  'definition',
-  'definition:assets:element',
-  'definition:options:element',
-  'definition:options:element:value',
-  'definition:options:element:selector:choice',
-  'definition:options:element:selector:chosen',
-  'definition:options:element:selector:choice:description',
-  'definition:options:element:selector:chosen:description',
-  'definition:options:element:selector:choice:selector',
-  'definition:options:element:selector:chosen:selector',
-  'definition:options:element:selector:choice:selectaction',
-  'definition:options:element:selector:chosen:selectaction',
-  'definition:components',
-  'definition:components:element',
-  'definition:components:element:code',
-  'definition:components:element:standaloneitem',
-  'definition:components:element:standaloneitem:code',
-  'definition:components:element:standaloneitem:definition',
-  'definition:components:element:standaloneitem:availability',
-  'recommendations',
-  'recommendations:crosssell',
-  'recommendations:recommendation',
-  'recommendations:replacement',
-  'recommendations:upsell',
-  'recommendations:warranty',
-  'recommendations:crosssell:element:code',
-  'recommendations:recommendation:element:code',
-  'recommendations:replacement:element:code',
-  'recommendations:upsell:element:code',
-  'recommendations:warranty:element:code',
-  'recommendations:crosssell:element:definition',
-  'recommendations:recommendation:element:definition',
-  'recommendations:replacement:element:definition',
-  'recommendations:upsell:element:definition',
-  'recommendations:warranty:element:definition',
-  'recommendations:crosssell:element:price',
-  'recommendations:recommendation:element:price',
-  'recommendations:replacement:element:price',
-  'recommendations:upsell:element:price',
-  'recommendations:warranty:element:price',
-  'recommendations:crosssell:element:availability',
-  'recommendations:recommendation:element:availability',
-  'recommendations:replacement:element:availability',
-  'recommendations:upsell:element:availability',
-  'recommendations:warranty:element:availability',
-  'code',
-];
-
-const requisitionListsZoomArray = [
-  'itemlistinfo',
-  'itemlistinfo:allitemlists',
-  'itemlistinfo:allitemlists:element',
-  'itemlistinfo:allitemlists:element:additemstoitemlistform',
-];
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
-
-interface ProductDisplayItemMainProps {
-  /** product id */
-  productId: string,
-  /** image url */
-  imageUrl?: string,
-  /** data set */
-  dataSet?: { cartBtnOverride?: string },
-  /** handle add to cart */
-  onAddToCart?: (...args: any[]) => any,
-  /** handle add to wishlist */
-  onAddToWishList?: (...args: any[]) => any,
-  /** handle add to requisition list */
-  onRequisitionPage?: (...args: any[]) => any,
-  /** handle change product feature */
-  onChangeProductFeature?: (...args: any[]) => any,
-  /** handle reload page */
-  onReloadPage?: (...args: any[]) => any,
-  /** product link */
-  productLink?: string,
-  /** is in standalone mode */
-  isInStandaloneMode?: boolean,
-  /** item detail link */
-  itemDetailLink?: string,
-  /** featured product attribute */
-  featuredProductAttribute?: boolean,
-}
-
-interface ProductDisplayItemMainState {
-  productId: any,
-  productData: any,
-  requisitionListData: any,
-  arFileExists: boolean,
-  vrFileExists: boolean,
-  itemConfiguration: { [key: string]: any },
-  detailsProductData: any,
-  vrMode: boolean;
-  multiImages: any,
-}
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
   static async urlExists(url) {
@@ -276,7 +170,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   fetchRequisitionListsData() {
     login().then(() => {
-      cortexFetch(`?zoom=${requisitionListsZoomArray.sort().join()}`, {
+      cortexFetch(`?zoom=${REQUISITION_LISTS_ZOOM.sort().join()}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
