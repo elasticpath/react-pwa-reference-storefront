@@ -855,7 +855,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         <div className="itemdetail-component container-3">
           <div className="product-item-container">
             <div className="itemdetail-assets">
-              <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
+              <div data-region="itemDetailAssetRegion">
                 <div className="itemdetail-asset-container">
                   {(featuredProductAttribute)
                     ? (
@@ -873,7 +873,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
             </div>
 
             <div className="itemdetail-details">
-              <div data-region="itemDetailTitleRegion" style={{ display: 'block' }}>
+              <div data-region="itemDetailTitleRegion">
                 <div>
                   <h1 className="itemdetail-title" id={`category_item_title_${productData._code[0].code}`}>
                     {productData._definition[0]['display-name']}
@@ -892,9 +892,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   )}
                 </div>
               </div>
-              <div className="itemdetail-price-container itemdetail-price-wrap" data-region="itemDetailPriceRegion" style={{ display: 'block' }}>
+              <div className="itemdetail-price-container itemdetail-price-wrap" data-region="itemDetailPriceRegion">
                 <div>
-                  <div data-region="itemPriceRegion" style={{ display: 'block' }}>
+                  <div data-region="itemPriceRegion">
                     <ul className="itemdetail-price-container">
                       {
                         listPrice !== itemPrice
@@ -921,7 +921,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   <div data-region="itemRateRegion" />
                 </div>
               </div>
-              <div data-region="itemDetailAvailabilityRegion" style={{ display: 'block' }}>
+              <div data-region="itemDetailAvailabilityRegion">
                 <ul className="itemdetail-availability-container">
                   <li className="itemdetail-availability itemdetail-availability-state" data-i18n="AVAILABLE">
                     <label htmlFor={`category_item_availability_${productData._code[0].code}`}>
@@ -948,7 +948,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   </li>
                 </ul>
               </div>
-              <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion" style={{ display: 'block' }}>
+              <div className="itemdetail-addtocart" data-region="itemDetailAddToCartRegion">
                 <div>
                   <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { this.addToCart(event); } }}>
                     {this.renderConfiguration()}

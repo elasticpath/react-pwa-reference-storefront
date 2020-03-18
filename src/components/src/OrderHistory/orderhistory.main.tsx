@@ -52,7 +52,7 @@ class OrderHistoryMain extends Component<OrderHistoryMainProps, OrderHistoryMain
     } = this.state;
     if (purchases.links && purchases._element) {
       return (
-        <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
+        <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion">
           <div className="table-responsive">
             <h2>
               {intl.get('purchase-history')}
@@ -85,7 +85,7 @@ class OrderHistoryMain extends Component<OrderHistoryMainProps, OrderHistoryMain
       );
     }
     return (
-      <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion" style={{ display: 'block' }}>
+      <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion">
         <div className="table-responsive">
           <h3>
             {intl.get('purchase-history')}

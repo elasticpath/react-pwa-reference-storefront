@@ -90,7 +90,7 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
     if (purchaseData) {
       return (
         <div>
-          <div className="app-main" style={{ display: 'block' }}>
+          <div className="app-main">
             <div className="container">
               <h2 className="view-title">
                 {intl.get('purchase-details')}

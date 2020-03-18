@@ -217,7 +217,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
       paymentMethodElems.map(paymentElement => (
         <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
           <li className="profile-payment-method-container">
-            <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container" style={{ display: 'block' }}>
+            <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
               <span data-el-value="payment.token" className="payment-method-container">
                 {paymentElement['display-name']}
               </span>
@@ -247,7 +247,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
         <div className="payment-ctrl-cell" data-region="paymentSelector">
           <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectaction, event)} />
           <label htmlFor="paymentMethod">
-            <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
+            <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion">
               <PaymentMethodContainer displayName={payment} />
             </div>
           </label>
@@ -337,7 +337,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     return (
       <div>
         <div className={`payments-container ${this.isSelected() ? 'selected' : 'unselected'}`}>
-          <div className={`paymentMethodsRegions ${isLoading ? 'loading' : ''}`} data-region="paymentMethodsRegion" style={{ display: 'block' }}>
+          <div className={`paymentMethodsRegions ${isLoading ? 'loading' : ''}`} data-region="paymentMethodsRegion">
             <div>
               <h2 className="credit-card-header">
                 {intl.get('credit-cards')}

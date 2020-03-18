@@ -126,7 +126,7 @@ function OrderTableLineItem(props: OrderTableLineItemProps) {
         </span>
       </td>
       <td className="total-price-col" style={{ display: 'inline-block' }}>
-        <div style={{ display: 'block' }}>
+        <div>
           <span className="purchase-price">
             {totalPrice}
           </span>

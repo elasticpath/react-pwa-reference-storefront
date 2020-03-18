@@ -116,7 +116,7 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
     }
     return (
       (!wishListData || isLoading) && (
-        <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
+        <div data-region="mainWishListRegion" className="wish-list-main-container">
           <div className="loader" />
         </div>
       )
@@ -144,7 +144,7 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
     return (
       <div className="wish-list-container container">
         <div className="wish-list-container-inner">
-          <div data-region="wishListTitleRegion" className="wish-list-title-container" style={{ display: 'block' }}>
+          <div data-region="wishListTitleRegion" className="wish-list-title-container">
             <div>
               {wishListData && !isLoading && (
                 <h1 className="view-title">
@@ -159,7 +159,7 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
             </div>
           </div>
           {wishListData && !isLoading && (
-            <div data-region="mainWishListRegion" className="wish-list-main-container" style={{ display: 'block' }}>
+            <div data-region="mainWishListRegion" className="wish-list-main-container">
               <WishListMain
                 empty={!wishListData._lineitems[0]._element}
                 wishListData={wishListData}

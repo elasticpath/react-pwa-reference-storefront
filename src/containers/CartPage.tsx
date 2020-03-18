@@ -286,7 +286,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
           <AlertContainer messageData={alertMessageData} />
         ) : ''}
         <div className="cart-container-inner">
-          <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
+          <div data-region="cartTitleRegion" className="cart-title-container">
             <div className="cart-title-wrap">
               {cartData && !isLoading && (
                 <h1 className="view-title">
@@ -303,7 +303,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             </div>
           </div>
           {cartData && !isLoading && (
-            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+            <div data-region="mainCartRegion" className="cart-main-container">
               <CartMain
                 empty={!cartData['total-quantity'] || cartData._lineitems === undefined}
                 cartData={cartData}
@@ -317,7 +317,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             </div>
           )}
           {(cartData && !isLoading) && (
-            <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
+            <div className="cart-sidebar" data-region="cartCheckoutMasterRegion">
               <div>
                 <div className="cart-sidebar-inner">
                   <h2 className="cart-sidebar-title">
@@ -333,7 +333,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                       {cartData._total[0].cost[0].display}
                     </h2>
                   </div>
-                  <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
+                  <div data-region="cartCheckoutActionRegion" className="cart-checkout-container">
                     <div>
                       <button className="ep-btn primary btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
                         {intl.get('proceed-to-checkout')}
