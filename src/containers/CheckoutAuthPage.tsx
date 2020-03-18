@@ -132,13 +132,13 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
     const { failedLogin, badEmail } = this.state;
     return (
       <div>
-        <div className="app-main" data-region="appMain" style={{ display: 'block' }}>
+        <div className="app-main" data-region="appMain">
           <div className="container">
             <h3 className="view-title">
               {intl.get('sign-in-to-proceed')}
             </h3>
             <div className="checkout-auth-option-list equalize">
-              <div className="checkoutAutRegisterOptionRegion" data-region="checkoutAutRegisterOptionRegion" style={{ display: 'block' }}>
+              <div className="checkoutAutRegisterOptionRegion" data-region="checkoutAutRegisterOptionRegion">
                 <div className="checkout-auth-option-container">
                   <h2>
                     {intl.get('create-an-account')}
@@ -151,7 +151,7 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
                   </button>
                 </div>
               </div>
-              <div className="checkoutAuthLoginOptionRegion" data-region="checkoutAuthLoginOptionRegion" style={{ display: 'block' }}>
+              <div className="checkoutAuthLoginOptionRegion" data-region="checkoutAuthLoginOptionRegion">
                 <div className="checkout-auth-option-container">
                   <h2>
                     {intl.get('i-have-an-account')}
@@ -191,7 +191,7 @@ class CheckoutAuthPage extends React.Component<RouteComponentProps, CheckoutAuth
                   </form>
                 </div>
               </div>
-              <div className="checkoutAuthAnonymousOptionRegion" data-region="checkoutAuthAnonymousOptionRegion" style={{ display: 'block' }}>
+              <div className="checkoutAuthAnonymousOptionRegion" data-region="checkoutAuthAnonymousOptionRegion">
                 <div className="checkout-auth-option-container">
                   <h2>
                     {intl.get('continue-without-account')}

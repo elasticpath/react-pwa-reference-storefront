@@ -355,35 +355,35 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
 
     return (
       <div>
-        <div className="app-main" style={{ display: 'block' }}>
+        <div className="app-main">
           <div className="order-container container">
             <div className="order-container-inner">
-              <div className="order-title-container" style={{ display: 'block' }}>
+              <div className="order-title-container">
                 <h1 className="view-title">
                   {intl.get('review-your-order')}
                 </h1>
               </div>
               {orderData && (
-                <div className="order-main-container" style={{ display: 'block' }}>
-                  <div className="order-options-container" style={{ display: 'block' }}>
+                <div className="order-main-container">
+                  <div className="order-options-container">
                     {(orderData._order[0]._deliveries) && this.renderShippingOption()}
                     {(orderData._order[0]._deliveries) && this.renderShippingAddress()}
                     {(orderData._order[0]._billingaddressinfo) && this.renderBillingAddress()}
                     {(orderData._order[0]._paymentmethodinfo) && this.renderPaymentMethod()}
                   </div>
-                  <div className="order-items-container" style={{ display: 'block' }}>
+                  <div className="order-items-container">
                     <OrderTableMain data={orderData} itemDetailLink={itemDetailLink} />
                   </div>
                 </div>
               )}
               {orderData && (
-                <div className="checkout-sidebar" style={{ display: 'block' }}>
+                <div className="checkout-sidebar">
                   <div>
                     <div className="checkout-sidebar-inner">
                       <div className="checkout-summary-container" style={{ display: 'inline-block' }}>
                         <CheckoutSummaryList data={orderData} giftCards={giftCertificateEntity} onChange={() => { this.fetchOrderData(); }} />
                       </div>
-                      <div className="checkout-submit-container" style={{ display: 'block' }}>
+                      <div className="checkout-submit-container">
                         <button className="ep-btn primary wide btn-cmd-submit-order" disabled={!isValid} type="button" onClick={() => { this.completeOrder(); }}>
                           {intl.get('complete-purchase')}
                         </button>
@@ -400,7 +400,7 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
                 </div>
               )}
               {!orderData && (
-                <div className="order-main-container" style={{ display: 'block' }}>
+                <div className="order-main-container">
                   <div className="loader" />
                 </div>
               )}

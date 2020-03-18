@@ -116,12 +116,12 @@ class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, Profilee
     const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
     if (emailInEditMode) {
       return (
-        <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
+        <div className="personal-information-container" data-region="profilePersonalInfoRegion">
           <h2>
             {intl.get('personal-information')}
           </h2>
           <form className="form-horizontal" onSubmit={this.submitEmailChange}>
-            <div data-region="componentAddressFormRegion" style={{ display: 'block' }}>
+            <div data-region="componentAddressFormRegion">
               <span>{failedSubmit ? intl.get('failed-to-save-email') : ''}</span>
               <div className="form-group">
                 <label htmlFor="email" data-el-label="addressForm.email" className="control-label address-form-label profile-info-email-form-label">
@@ -158,7 +158,7 @@ class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, Profilee
     }
     if (profileInfo && profileInfo._emails) {
       return (
-        <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
+        <div className="personal-information-container" data-region="profilePersonalInfoRegion">
           <span className="feedback-label">{email === '' && intl.get('email-validation')}</span>
           <h2>
             {intl.get('personal-information')}

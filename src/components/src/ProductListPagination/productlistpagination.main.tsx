@@ -120,7 +120,7 @@ class ProductListPagination extends Component<ProductListPaginationProps, Produc
     if (paginationData.pagination) {
       const urlPrefix = searchUrl ? productSearch : productCategory;
       return (
-        <div className="product-list-pagination-component" data-region="categoryPaginationRegion" style={{ display: 'block' }}>
+        <div className="product-list-pagination-component" data-region="categoryPaginationRegion">
           {
             isTop ? (
               <div className="total-results">

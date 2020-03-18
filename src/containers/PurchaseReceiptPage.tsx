@@ -37,7 +37,7 @@ const PurchaseReceiptPage = (props: RouteComponentProps<{}, {}, any>) => {
 
   return (
     <div>
-      <div className="app-main" style={{ display: 'block' }}>
+      <div className="app-main">
         <div className="container purchase-receipt-container">
           <h2>
             {intl.get('order-processed-message')}

@@ -189,7 +189,7 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
 
     if (isBuyItAgain) {
       return (
-        <div style={{ display: 'block' }}>
+        <div>
           <div className="buy-it-again-btn-wrap">
             <button className="ep-btn small buy-it-again-btn" type="button" onClick={() => this.handleModalOpen()}>
               {intl.get('buy-it-again')}
@@ -206,7 +206,7 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
       );
     }
     return (
-      <div className="quick-order-container" style={{ display: 'block' }}>
+      <div className="quick-order-container">
         <div>
           <h2 className="quick-order-title">
             {intl.get('quick-order-title')}

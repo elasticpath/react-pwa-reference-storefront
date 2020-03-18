@@ -102,12 +102,12 @@ class ProfileComplianceMain extends Component<ProfileComplianceMainProps, Profil
       dataPolicies._element.map(element => (
         <ul key={`${element['policy-name']}-${element['policy-reference-key']}`} className="profile-data-policy-listing">
           <li className="profile-data-policy-container">
-            <div className="profile-data-policy-label-container" style={{ display: 'block' }}>
+            <div className="profile-data-policy-label-container">
               <span className="data-policy-container">
                 {element['policy-name']}
               </span>
             </div>
-            <div className="profile-data-policy-label-container" style={{ display: 'block' }}>
+            <div className="profile-data-policy-label-container">
               <span className="data-policy-container">
                 {`${intl.get('data-policy-reference-key')}: ${element['policy-reference-key']}`}
               </span>

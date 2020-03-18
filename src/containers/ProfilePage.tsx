@@ -246,7 +246,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     return (
       <div>
         <div className="container profile-container">
-          <div data-region="profileTitleRegion" style={{ display: 'block' }}>
+          <div data-region="profileTitleRegion">
             <h1 className="view-title">
               {intl.get('profile')}
             </h1>
