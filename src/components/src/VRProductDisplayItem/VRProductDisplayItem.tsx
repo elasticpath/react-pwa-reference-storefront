@@ -54,8 +54,8 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     this.handleInfoPanel = this.handleInfoPanel.bind(this);
     this.handleMoreInfoClicked = this.handleMoreInfoClicked.bind(this);
     this.background = this.background.bind(this);
-    this.gltfMesh = this.gltfMesh.bind(this);
-    this.gltfMeshDetails = this.gltfMeshDetails.bind(this);
+    this.mesh = this.mesh.bind(this);
+    this.meshDetails = this.meshDetails.bind(this);
     this.camera = this.camera.bind(this);
   }
 
@@ -71,7 +71,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     });
   }
 
-  gltfMesh() {
+  mesh() {
     const { meshUri } = this.props;
     if (meshUri) {
       return (
@@ -90,7 +90,7 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     return null;
   }
 
-  gltfMeshDetails() {
+  meshDetails() {
     const { meshUri } = this.props;
     const { showVrProductInfo } = this.state;
 
@@ -207,8 +207,8 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </a>
 
             {this.background()}
-            {this.gltfMesh()}
-            {this.gltfMeshDetails()}
+            {this.mesh()}
+            {this.meshDetails()}
             {this.camera()}
           </Scene>
         </div>
