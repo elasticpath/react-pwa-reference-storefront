@@ -39,12 +39,13 @@ storiesOf('Components|VRProductDisplayItem', module)
   .add('VRComponent | Panorama image', () => {
     const handleCloseVRFuncText = text('handleCloseVR', '() => {alert("onFacetSelection invoked")}');
     return (
-      <VRProductDisplayItem meshUri="" handleCloseVR={() => { textToFunc(handleCloseVRFuncText); }} backgroundUri={text('backgroundUri', 'https://s3.amazonaws.com/referenceexp/vr/10484.jpg')} />
+      <VRProductDisplayItem meshUri={text('meshUri', '')} handleCloseVR={() => { textToFunc(handleCloseVRFuncText); }} backgroundUri={text('backgroundUri', 'https://s3.amazonaws.com/referenceexp/vr/10484.jpg')} />
     );
   })
   .add('VRComponent | 3D Mesh', () => {
     const handleCloseVRFuncText = text('handleCloseVR', '() => {alert("onFacetSelection invoked")}');
+
     return (
-      <VRProductDisplayItem meshUri="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb" handleCloseVR={() => { textToFunc(handleCloseVRFuncText); }} backgroundUri={text('backgroundUri', '')} />
+      <VRProductDisplayItem meshUri={text('meshUri', 'https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb')} handleCloseVR={() => { textToFunc(handleCloseVRFuncText); }} backgroundUri={text('backgroundUri', '')} />
     );
   });
