@@ -36,9 +36,9 @@ interface IVRComponentProps {
   /** the url to place a background image in the scene. */
   backgroundUri?: any,
   /** Called when Vr window is closed. */
-  handleCloseVR: any,
+  handleCloseVR?: any,
   /** The 3D Mesh uri */
-  meshUri: any
+  meshUri?: any
 }
 
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
@@ -67,6 +67,10 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     };
     this.handleInfoPanel = this.handleInfoPanel.bind(this);
     this.handleMoreInfoClicked = this.handleMoreInfoClicked.bind(this);
+    this.background = this.background.bind(this);
+    this.gltfMesh = this.gltfMesh.bind(this);
+    this.gltfMeshDetails = this.gltfMeshDetails.bind(this);
+    this.camera = this.camera.bind(this);
   }
 
   handleInfoPanel() {
@@ -81,9 +85,115 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
     });
   }
 
+  gltfMesh() {
+    const { meshUri } = this.props;
+    if (meshUri) {
+      return (
+        <Entity
+          gltf-model={meshUri}
+          modify-materials
+          scale="1 1 1"
+          position="0 1 -3"
+          cursor-listener
+          animation__rotate={{
+            property: 'rotation', dur: 20500, loop: true, to: '0 720',
+          }}
+        />);
+    }
+
+    return null;
+  }
+
+  gltfMeshDetails() {
+    const { meshUri } = this.props;
+    const { showVrProductInfo } = this.state;
+
+    const renderReturn = [
+      <a-assets>
+        <img alt="" id="hsIcon" src="/vr_details_hotspot.png" />
+        <img alt="" id="hsIconExit" src="/vr_close.png" />
+      </a-assets>,
+    ];
+
+    if (meshUri) {
+      if (showVrProductInfo) {
+        renderReturn.push(
+          <Entity id="rstHotspot2" class="clickable sceneHotspotIcon" position="3 3 -1" look-at="#camera" geometry="primitive: circle" material="src: #hsIconExit; shader: flat; side: double" scale="0.25 0.25 0.25" rotation="0 100 0" visible="">
+            <Entity
+              id="rstHotspotBtn2"
+              geometry=""
+              scale="2 2 2"
+              material="opacity: 0; transparent: true; depthTest: false"
+              events={{
+                click: this.handleMoreInfoClicked,
+              }}
+            />
+            <Entity geometry="primitive: plane" material="shader: html; target: #boxHTML" position="-5.5 -5.5 -1" rotation="" scale="12 12 12" visible="" look-at="#camera" />
+          </Entity>,
+        );
+      } else {
+        renderReturn.push(
+          <a-assets>
+            <img alt="" id="hsIcon" src="/vr_details_hotspot.png" />
+            <img alt="" id="hsIconExit" src="/vr_close.png" />
+          </a-assets>,
+          <Entity id="rstHotspot1" class="clickable sceneHotspotIcon" position="1.3 1.3 -3" look-at="#camera" geometry="primitive: circle" material="src: #hsIcon; shader: flat; side: double" scale="0.25 0.25 0.25" rotation="0 100 0" visible="">
+            <Entity
+              id="rstHotspotBtn1"
+              geometry=""
+              scale="4 4 4"
+              material="opacity: 0; transparent: true; depthTest: false"
+              events={{
+                click: this.handleMoreInfoClicked,
+              }}
+            />
+          </Entity>,
+        );
+      }
+      return renderReturn;
+    }
+    return null;
+  }
+
+  background() {
+    const { backgroundUri } = this.props;
+
+    return [
+      <a-assets>
+        {
+        VRProductDisplayItem.isSafari() ? (
+          <img alt="" id="background" src={backgroundUri} />
+        ) : (
+          <img alt="" id="background" src={backgroundUri} crossOrigin="anonymous" />
+        )
+      }
+      </a-assets>,
+      <Entity primitive="a-sky" radius="30" src="#background" />,
+    ];
+  }
+
+  camera() {
+    const { isMobile } = this.state;
+    if (isMobile) {
+      return (
+        <Entity id="camera" primitive="a-camera">
+          <Entity
+            primitive="a-cursor"
+            animation__click={{
+              property: 'scale', startEvents: 'click', from: '0.1 0.1 0.1', to: '1 1 1', dur: 150,
+            }}
+          />
+        </Entity>
+      );
+    }
+    return (
+      <Entity id="camera" primitive="a-camera" cursor="rayOrigin: mouse" />
+    );
+  }
+
   public render() {
-    const { backgroundUri, handleCloseVR, meshUri } = this.props;
-    const { showInfo, isMobile, showVrProductInfo } = this.state;
+    const { handleCloseVR } = this.props;
+    const { showInfo } = this.state;
 
     return (
       <div>
@@ -92,7 +202,8 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
           <button type="button" className="exit-btn" onClick={() => handleCloseVR()} />
 
           <div className="cover-html-texture" />
-          {/* eslint-disable-next-line react/style-prop-object */}
+
+          {/** The place holder html for description panel.  Replace this div to adjust what is shown! */}
           <div className="outer-html-texture">
             <div id="boxHTML" className="inner-html-texture">
               <p className="html-text-texture">Place holder html</p>
@@ -106,76 +217,10 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               <div role="button" tabIndex={0} className="vr-fullscreen" />
             </a>
 
-            {/** Depending on the browser we need to fetch the background image differently.  Known issue with the a-frame. */}
-            <a-assets>
-              {
-                VRProductDisplayItem.isSafari() ? (
-                  <img alt="" id="background" src={backgroundUri} />
-                ) : (
-                  <img alt="" id="background" src={backgroundUri} crossOrigin="anonymous" />
-                )
-              }
-            </a-assets>
-            <Entity primitive="a-sky" radius="30" src="#background" />
-
-
-            <a-assets>
-              <img alt="" id="hsIcon" src="/vr_details_hotspot.png" />
-              <img alt="" id="hsIconExit" src="/vr_close.png" />
-            </a-assets>
-
-            { showVrProductInfo ? (
-              <Entity id="rstHotspot2" class="clickable sceneHotspotIcon" position="3 3 -1" look-at="#camera" geometry="primitive: circle" material="src: #hsIconExit; shader: flat; side: double" scale="0.25 0.25 0.25" rotation="0 100 0" visible="">
-                <Entity
-                  id="rstHotspotBtn2"
-                  geometry=""
-                  scale="2 2 2"
-                  material="opacity: 0; transparent: true; depthTest: false"
-                  events={{
-                    click: this.handleMoreInfoClicked,
-                  }}
-                />
-                <Entity geometry="primitive: plane" material="shader: html; target: #boxHTML" position="-5.5 -5.5 -1" rotation="" scale="12 12 12" visible="" look-at="#camera" />
-              </Entity>
-            ) : (
-              <Entity id="rstHotspot1" class="clickable sceneHotspotIcon" position="1.3 1.3 -3" look-at="#camera" geometry="primitive: circle" material="src: #hsIcon; shader: flat; side: double" scale="0.25 0.25 0.25" rotation="0 100 0" visible="">
-                <Entity
-                  id="rstHotspotBtn1"
-                  geometry=""
-                  scale="4 4 4"
-                  material="opacity: 0; transparent: true; depthTest: false"
-                  events={{
-                    click: this.handleMoreInfoClicked,
-                  }}
-                />
-              </Entity>
-            )
-            }
-
-            <Entity
-              gltf-model="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb"
-              modify-materials
-              scale="1 1 1"
-              position="0 1 -3"
-              cursor-listener
-              animation__rotate={{
-                property: 'rotation', dur: 20500, loop: true, to: '0 720',
-              }}
-            />
-
-            {isMobile ? (
-              <Entity id="camera" primitive="a-camera">
-                <Entity
-                  primitive="a-cursor"
-                  animation__click={{
-                    property: 'scale', startEvents: 'click', from: '0.1 0.1 0.1', to: '1 1 1', dur: 150,
-                  }}
-                />
-              </Entity>
-            ) : (
-              <Entity id="camera" primitive="a-camera" cursor="rayOrigin: mouse" />
-            )
-            }
+            {this.background()}
+            {this.gltfMesh()}
+            {this.gltfMeshDetails()}
+            {this.camera()}
           </Scene>
         </div>
 
