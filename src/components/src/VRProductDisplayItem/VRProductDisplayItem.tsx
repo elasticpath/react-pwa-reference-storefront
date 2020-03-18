@@ -25,9 +25,6 @@ import 'aframe-look-at-component';
 import 'aframe-html-shader';
 import './VRProductDisplayItem.less';
 import intl from 'react-intl-universal';
-import vrClose from '../../images/icons/vr_close.png';
-import vrDetailsHotspot from '../../images/icons/vr_details_hotspot.png';
-import headerLogo from '../../../images/site-images/Company-Logo-v1.png';
 
 interface IVRComponentState {
   showInfo: boolean,
@@ -109,7 +106,8 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
               <div role="button" tabIndex={0} className="vr-fullscreen" />
             </a>
 
-            {/* <a-assets>
+            {/** Depending on the browser we need to fetch the background image differently.  Known issue with the a-frame. */}
+            <a-assets>
               {
                 VRProductDisplayItem.isSafari() ? (
                   <img alt="" id="background" src={backgroundUri} />
@@ -118,13 +116,12 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
                 )
               }
             </a-assets>
-            <Entity primitive="a-sky" radius="30" src="#background" /> */}
+            <Entity primitive="a-sky" radius="30" src="#background" />
 
 
             <a-assets>
               <img alt="" id="hsIcon" src="/vr_details_hotspot.png" />
               <img alt="" id="hsIconExit" src="/vr_close.png" />
-              {/* <vrClose id="hsIconExit" /> */}
             </a-assets>
 
             { showVrProductInfo ? (
