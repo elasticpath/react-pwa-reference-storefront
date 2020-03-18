@@ -300,7 +300,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                 <input type="radio" name="shipping" id="shippingOption" className="checkout-address-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 {/* eslint-disable jsx-a11y/label-has-associated-control */}
                 <label htmlFor="shippingOption">
-                  <div data-region="checkoutAddressRegion" style={{ display: 'block' }}>
+                  <div data-region="checkoutAddressRegion">
                     <AddressContainer name={name} address={address} />
                   </div>
                 </label>
@@ -359,7 +359,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     const needShipmentDetails = messages.find(message => message.id === 'need.shipping.address');
     if (needShipmentDetails || deliveries) {
       return (
-        <div data-region="shippingAddressesRegion" style={{ display: 'block' }}>
+        <div data-region="shippingAddressesRegion">
           <div>
             <h2>
               {intl.get('shipping-address')}
@@ -404,7 +404,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
             {/* eslint-disable-next-line max-len */}
             <input type="radio" name="shippingOption" id="shippingOption" className="shipping-option-radio" defaultChecked={option.checked} onChange={() => this.handleChange(option.selectaction)} />
             <label htmlFor="shippingOption">
-              <div className="shipping-option-region" style={{ display: 'block' }}>
+              <div className="shipping-option-region">
                 <ShippingOptionContainer option={option} />
               </div>
             </label>
@@ -471,7 +471,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                 {/* eslint-disable-next-line max-len */}
                 <input type="radio" name="billing" id="billingOption" className="checkout-address-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 <label htmlFor="billingOption">
-                  <div data-region="checkoutAddressRegion" style={{ display: 'block' }}>
+                  <div data-region="checkoutAddressRegion">
                     <AddressContainer name={name} address={address} />
                   </div>
                 </label>
@@ -528,7 +528,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         <div className="payment-ctrl-cell" data-region="paymentSelector">
           <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
           <label htmlFor="paymentMethod">
-            <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion" style={{ display: 'block' }}>
+            <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion">
               <PaymentMethodContainer displayName={payment} />
             </div>
           </label>
@@ -623,7 +623,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
       return (
         <div className="checkout-container container">
           <div className="checkout-container-inner">
-            <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
+            <div data-region="checkoutTitleRegion" className="checkout-title-container">
               <div>
                 <h1 className="view-title">
                   {intl.get('checkout-summary')}
@@ -653,7 +653,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                   </h3>
                   <div className="profile-info-col">
                     <div className="profile-info-block">
-                      <div data-region="billingAddressesRegion" style={{ display: 'block' }}>
+                      <div data-region="billingAddressesRegion">
                         {this.renderBillingAddressSelector()}
                         {this.renderNewAddressModal()}
                       </div>
@@ -697,7 +697,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                   </div>
                 </div>
               </div>
-              <div className="checkout-sidebar" data-region="checkoutOrderRegion" style={{ display: 'block' }}>
+              <div className="checkout-sidebar" data-region="checkoutOrderRegion">
                 <div>
                   <h2>
                     {intl.get('order-summary')}
@@ -706,7 +706,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                     <div data-region="checkoutSummaryRegion" className="checkout-summary-container" style={{ display: 'inline-block' }}>
                       <CheckoutSummaryList data={orderData} giftCards={certificates} onChange={() => { this.fetchOrderData(); }} />
                     </div>
-                    <div data-region="checkoutActionRegion" className="checkout-submit-container" style={{ display: 'block' }}>
+                    <div data-region="checkoutActionRegion" className="checkout-submit-container">
                       <button className="ep-btn primary btn-cmd-submit-order" type="button" disabled={messages[0]} onClick={() => { this.reviewOrder(); }}>
                         {intl.get('complete-order')}
                       </button>
@@ -722,7 +722,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     return (
       <div className="checkout-container container">
         <div className="checkout-container-inner">
-          <div data-region="checkoutTitleRegion" className="checkout-title-container" style={{ display: 'block' }}>
+          <div data-region="checkoutTitleRegion" className="checkout-title-container">
             <div>
               <h1 className="view-title">
                 Checkout Summary

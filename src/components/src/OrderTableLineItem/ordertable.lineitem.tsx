@@ -85,7 +85,7 @@ function OrderTableLineItem(props: OrderTableLineItemProps) {
   };
 
   const renderOptions = () => {
-    if (options) {
+    if (options && options[0]._element) {
       return (
         options[0]._element.map(option => (
           <li className="order-lineitem-option" key={option['display-name']}>
@@ -126,7 +126,7 @@ function OrderTableLineItem(props: OrderTableLineItemProps) {
         </span>
       </td>
       <td className="total-price-col" style={{ display: 'inline-block' }}>
-        <div style={{ display: 'block' }}>
+        <div>
           <span className="purchase-price">
             {totalPrice}
           </span>

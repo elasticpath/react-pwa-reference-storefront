@@ -1,0 +1,1312 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<system_configuration>
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ASSETS/assetLocation</name_space>
+    <description>DEPRECATED (Use -Dep.asset.location system property) The path to the directory that contains assets required by the application, including images, theme files, and digital goods.</description>
+    <default_value type="String">C:/Dev/ep/ep-commerce/extensions/assets/ext-assets/src/main/assets</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/storeLanguage</name_space>
+    <description>asdasdas</description>
+    <default_value type="String">en_GB</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ASSETS/importAssetsSubfolder</name_space>
+    <description>The name of the subfolder within the assets directory that contains imported CSV files.</description>
+    <default_value type="String">import</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/SEARCH/searchHost</name_space>
+    <description>DEPRECATED (Use -Dep.search.default.url and -Dep.search.master.url system properties) The search server's URL. If this is not set correctly, searching and browsing in the storefront and in Commerce Manager will not work. For a search server cluster, this setting must contain two values. The default value must be set to the load balancer URL. A defined value with the context set to 'master' must be set to the master search server URL.</description>
+    <default_value type="url">http://localhost:8082/searchserver</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/theme</name_space>
+    <description>The theme associated with the store. (The name of the subfolder under the themes directory that contains the theme's templates, CSS files, and other resources.)</description>
+    <default_value type="String">electronics</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">electronics</value>
+        <value context="sageuk">electronics</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_2</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/CATALOG/catalogViewPagination</name_space>
+    <description>The maximum number of items to display per page when browsing the catalog in the storefront.</description>
+    <default_value type="Integer">20</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">20</value>
+        <value context="sageuk">20</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_3</value>
+        <value key="availableToMarketing">true</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CATALOG/catalogTopSellerCount</name_space>
+    <description>The number of top seller products to display when browsing categories in the storefront. (The top seller job must also be enabled.)</description>
+    <default_value type="Integer">2</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_3</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/ftpPassword</name_space>
+    <description>asdasd</description>
+    <default_value type="String">G6bs75Ed</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/SHIPPING/carriers</name_space>
+    <description>The comma-delimited list of supported shipping carriers.</description>
+    <default_value type="String">Fed Ex, UPS, Canada Post, Royal Mail</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/UNITS/weight</name_space>
+    <description>The unit of measurement applying to all product weights. For example, KG or LB.</description>
+    <default_value type="String">KG</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/UNITS/length</name_space>
+    <description>The unit of measurement applying to all product lengths. For example, CM or FT.</description>
+    <default_value type="String">CM</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/encryptionKey</name_space>
+    <description>The encryption key used to encrypt credit card numbers. The key must be at least 25 characters long.</description>
+    <default_value type="String">this must be changed in production</default_value>
+    <max_overrides>1</max_overrides>
+    <defined_values>
+        <value>123456789012345678901234</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/emailTextTemplateEnabled</name_space>
+    <description>Determines whether to use the plain text template for sending store emails. Set to true to use the plain text template or false to use the HTML template.</description>
+    <default_value type="Boolean">false</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/emailAuthenticationUsername</name_space>
+    <description>DEPRECATED (Use -Dep.smtp.username property) The username used to authenticate with the EmailService.</description>
+    <default_value type="String"></default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/emailAuthenticationPassword</name_space>
+    <description>DEPRECATED (Use -Dep.smtp.password system property) The password used to authenticate with the EmailService.</description>
+    <default_value type="String"></default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/emailGlobalSenderAddress</name_space>
+    <description>The email address used to send out global, non store specific emails.</description>
+    <default_value type="String">customerService@SomeDomain.com</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/emailGlobalSenderName</name_space>
+    <description>The sender name used in global, non store specific emails.</description>
+    <default_value type="String">Customer Service</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/SEARCH/searchCategoriesFirst</name_space>
+    <description>When set to true, searches in the storefront will search categories before searching products, and if a category match is found, the first matching category page is displayed instead of the search results page.</description>
+    <default_value type="Boolean">true</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">true</value>
+        <value context="sageuk">true</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="availableToMarketing">true</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/PRODUCTRECOMMENDATIONS/numberOrderHistoryDays</name_space>
+    <description>The number of days of historical order data to use when calculating product recommendations. For example, if the value is 3, product recommendations are calculated based on all orders created during the past three days.</description>
+    <default_value type="Integer">3</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">3</value>
+        <value context="sageuk">3</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_3</value>
+        <value key="availableToMarketing">true</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/PRODUCTRECOMMENDATIONS/numberMaxRecommendations</name_space>
+    <description>The maximum number of product recommendations to display.</description>
+    <default_value type="Integer">3</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">3</value>
+        <value context="sageuk">3</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="availableToMarketing">true</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/datafileEncoding</name_space>
+    <description>The character encoding used to import CSV data files and to export data files and reports.</description>
+    <default_value type="String">UTF-8</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_3</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/localeDateFormat</name_space>
+    <description>The format of date strings in import files.</description>
+    <default_value type="String">EEE MMM dd HH:mm:ss yyyy</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/CATALOG/featuredProductCountToDisplay</name_space>
+    <description>The number of featured products to display when browsing a catalog with either no filters or only one filter applied.</description>
+    <default_value type="Integer">2</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">2</value>
+        <value context="sageuk">2</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_3</value>
+        <value key="availableToMarketing">true</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/CATALOG/catalogSitemapPagination</name_space>
+    <description>The maximum number of products listed on a page in the sitemap.</description>
+    <default_value type="Integer">90</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">90</value>
+        <value context="sageuk">90</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="availableToMarketing">true</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/FILTEREDNAVIGATION/filteredNavigationConfiguration</name_space>
+    <description>The configuration XML for filtered (faceted) navigation.</description>
+    <default_value type="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!-- Configuration file for filtered navigation --&gt;&lt;!-- For range values, lower bounds are inclusive, upper values are exclusive. --&gt;&lt;IntelligentBrowsing&gt;&lt;/IntelligentBrowsing&gt;</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;!-- Configuration file for filtered navigation --&amp;gt;&amp;lt;!-- For range values, lower bounds are inclusive, upper values are exclusive. --&amp;gt;&amp;lt;IntelligentBrowsing&amp;gt;&amp;lt;/IntelligentBrowsing&amp;gt;</value>
+        <value context="sageuk">&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;!-- Configuration file for filtered navigation --&amp;gt;&amp;lt;!-- For range values, lower bounds are inclusive, upper values are exclusive. --&amp;gt;&amp;lt;IntelligentBrowsing&amp;gt;&amp;lt;/IntelligentBrowsing&amp;gt;</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_2</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/FILTEREDNAVIGATION/attributeFilterEnabled</name_space>
+    <description>True if attribute filtering is enabled for filtered navigation, false if not.</description>
+    <default_value type="Boolean">true</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_3</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/mailHost</name_space>
+    <description>DEPRECATED (Use -Dep.smtp.host system property) The host name of the email server.</description>
+    <default_value type="String">dev-smtp.elasticpath.net</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/mailPort</name_space>
+    <description>DEPRECATED (Use -Dep.smtp.port system property) The listener port of the email server.</description>
+    <default_value type="Integer">25</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/storefrontUrl</name_space>
+    <description>The secure (HTTPS) storefront URL. This URL is used by the Commerce Manager client application for CSR login on behalf of customers. Certain customer service activities, such as editing orders, require the CSR to log in as the customer. The Commerce Manager client application uses this URL to perform the login. If the specified URL does not begin with {{https://}}, the login request will fail and the CSR will not be able to perform the action.</description>
+    <default_value type="String">https://localhost:8443/storefront</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="SLRWORLD">https://slrworld.elasticpath.com:8443/storefront</value>
+        <value context="SNAPITUP">https://demo.elasticpath.com:8443/storefront</value>
+        <value context="SNAPITUPUK">https://snapitupuk.elasticpath.com:8443/storefront</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/APPSPECIFIC/RCP/minimumPasswordLength</name_space>
+    <description> The minimum user password length. Note that the default value complies with PCI DSS security guidelines. Before changing this setting, make sure the change is compatible with your organization's PCI compliance policy.</description>
+    <default_value type="Integer">8</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/APPSPECIFIC/RCP/maximumPasswordAge</name_space>
+    <description>The number of days after first logon before the user password expires. Note that the default value complies with PCI DSS security guidelines. Before changing this setting, make sure the change is compatible with your organization's PCI compliance policy.</description>
+    <default_value type="Integer">9000</default_value>
+    <max_overrides>1</max_overrides>
+    <defined_values>
+        <value context="default">0</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/APPSPECIFIC/RCP/passwordHistoryLength</name_space>
+    <description>Number of passwords without repetition including current CM user password</description>
+    <default_value type="Integer">4</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/APPSPECIFIC/RCP/accountLockoutThreshold</name_space>
+    <description>The minimum number of unique passwords, including current CM user password, before the user can re-use a previous password. Note that the default value complies with PCI DSS security guidelines. Before changing this setting, make sure the change is compatible with your organization's PCI compliance policy.</description>
+    <default_value type="Integer">6</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/APPSPECIFIC/RCP/idleTimeForLock</name_space>
+    <description>Number of minutes of inactivity before the Commerce Manager client is locked and the user is required to re-enter their password. Set to 0 to disable. Note that the default value complies with PCI DSS security guidelines. Before changing this setting, make sure the change is compatible with your organization's PCI compliance policy.</description>
+    <default_value type="Integer">15</default_value>
+    <max_overrides>1</max_overrides>
+    <defined_values>
+        <value>999999999</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ASSETS/cmAssetsSubfolder</name_space>
+    <description>The name of the subfolder within the assets directory that contains non store specific resources, such as email message templates.</description>
+    <default_value type="String">cmassets</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/digitalAssetEncryptionKey</name_space>
+    <description>The encryption key used to encrypt the URLs of digital assets. The key must be at least 25 characters long.</description>
+    <default_value type="String">digital asset encryption key must be changed in production</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/Cache/Cache_1</name_space>
+    <description>For each setting that is mapped to this cache, specifies the period of time (in milliseconds) during which the setting value is cached. At the end of the interval, the cached value is invalidated and the next time it is requested, the value is retrieved directly from the database and the cache is updated. The name of this setting can be used when specifying the refresh strategy for another setting. To assign a setting to this cache, set the value of that setting's refresh strategy metadata setting to interval:timeout=COMMERCE/Cache/Cache_1. For more information, see the Configuration section of the Commerce Manager User Guide.</description>
+    <default_value type="Integer">300000</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/Cache/Cache_2</name_space>
+    <description>For each setting that is mapped to this cache, specifies the period of time (in milliseconds) during which the setting value is cached. At the end of the interval, the cached value is invalidated and the next time it is requested, the value is retrieved directly from the database and the cache is updated. The name of this setting can be used when specifying the refresh strategy for another setting. To assign a setting to this cache, set the value of that setting's refresh strategy metadata setting to interval:timeout=COMMERCE/Cache/Cache_2. For more information, see the Configuration section of the Commerce Manager User Guide.</description>
+    <default_value type="Integer">60000</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/Cache/Cache_3</name_space>
+    <description>For each setting that is mapped to this cache, specifies the period of time (in milliseconds) during which the setting value is cached. At the end of the interval, the cached value is invalidated and the next time it is requested, the value is retrieved directly from the database and the cache is updated. The name of this setting can be used when specifying the refresh strategy for another setting. To assign a setting to this cache, set the value of that setting's refresh strategy metadata setting to interval:timeout=COMMERCE/Cache/Cache_3. For more information, see the Configuration section of the Commerce Manager User Guide.</description>
+    <default_value type="Integer">100000</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/maxReturnNumber</name_space>
+    <description>The maximum number of matching items to include in search results. The default is 0, which specifies no limit.</description>
+    <default_value type="Integer">0</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/currency</name_space>
+    <description>asd</description>
+    <default_value type="String">GBP</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/minimumSimilarity</name_space>
+    <description>Used for fuzzy searching. This specifies how similar a term must be in order to match the query term. It must be set to a value between 0 and 1, not inclusive. (1 means it must be an exact match and 0 means the terms do not need to match at all.)</description>
+    <default_value type="BigDecimal">0.75</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/prefixLength</name_space>
+    <description>Used for fuzzy searching. Specifies the number of characters at the start of the search term that must be the same in potential matches.</description>
+    <default_value type="Integer">0</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/minimumResultsThreshold</name_space>
+    <description>Used by the spell checker. Results that are below or equal to this number will trigger a spelling suggestion lookup.</description>
+    <default_value type="Integer">10</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/maximumResultsThreshold</name_space>
+    <description>Used by the spell checker. Results that are above or equal to this number will trigger a spelling suggestion lookup.</description>
+    <default_value type="Integer">10000</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/maximumSuggestionsPerWord</name_space>
+    <description>Used by the spell checker. The maximum number of spelling suggestions to return.</description>
+    <default_value type="Integer">3</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/IMPERSONATION/publicCustomerImpersonationUrl</name_space>
+    <description>Specifies the URL to use when starting the impersonation process for a public customer. Can accept the following placeholder values: %IMPERSONATION_TOKEN%, %CM_USER_NAME%</description>
+    <default_value type="url">http://localhost/store/impersonation?token=%IMPERSONATION_TOKEN%&amp;role=PUBLIC</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="mobee">http://localhost/mobee/impersonation?token=%IMPERSONATION_TOKEN%&amp;amp;role=PUBLIC</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/accuracy</name_space>
+    <description>Sets the accuracy of spelling suggestions. This value works the same as COMMERCE/SEARCH/minimumSimilarity.</description>
+    <default_value type="BigDecimal">0.75</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/IMPERSONATION/registeredCustomerImpersonationUrl</name_space>
+    <description>Specifies the URL to use when starting the impersonation process for a registered customer. Can accept the following placeholder values: %IMPERSONATION_TOKEN%, %CM_USER_NAME%, %CUSTOMER_USER_ID%</description>
+    <default_value type="url">http://localhost/store/impersonation?token=%IMPERSONATION_TOKEN%&amp;userId=%CUSTOMER_USER_ID%&amp;role=REGISTERED</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="mobee">http://localhost/mobee/impersonation?token=%IMPERSONATION_TOKEN%&amp;amp;userId=%CUSTOMER_USER_ID%&amp;amp;role=REGISTERED</value>
+        <value context="sageUK">https://zsv-spa.epdemos.com?token=%IMPERSONATION_TOKEN%&amp;amp;userId=%CUSTOMER_USER_ID%&amp;amp;role=REGISTERED</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/boosts</name_space>
+    <description>A comma-separated list of field name/value pairs that attribute greater importance to values matched in specific fields. For example: "categoryCode=0.5,productCode=0.5,categoryName_en=2.0,description_en=0.2". By default, all fields have a boost value of 1.0.</description>
+    <default_value type="Map"></default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/IMPERSONATION/expiryInMinutes</name_space>
+    <description>Specifies how long an impersonation token is valid after creation, in minutes.</description>
+    <default_value type="Integer">60</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/excludeAttributes</name_space>
+    <description>Specifies a comma-separated list of attribute keys that should be not be included when searching all fields. For example: "A00981,A01012"</description>
+    <default_value type="Collection"></default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ASSETS/themesSubfolder</name_space>
+    <description>The name of the subfolder within the assets directory that contains store themes.</description>
+    <default_value type="String">themes</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/emailEnabled</name_space>
+    <description>Specifies whether email is enabled. If set to false, the system does not send any email (order confirmations, password changes, etc.) If it is set to true, the system will attempt to send email as required. Make sure all other email related settings are set correctly when this setting is true, otherwise an error will occur when attempting to send email.</description>
+    <default_value type="Boolean">true</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ASSETS/contentWrappersLocation</name_space>
+    <description>The name of the subfolder within the assets directory that contains the Content Wrapper XML and CWT files.</description>
+    <default_value type="String">content-wrappers</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CONTENTWRAPPERS/reloadInterval</name_space>
+    <description>Specifies how often the content wrapper XML files and templates (*.cwt) are reloaded (in seconds).</description>
+    <default_value type="Integer">600</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CHANGESETS/enable</name_space>
+    <description>Determines whether change sets are enabled. When set to true, CM users can add objects to a change set to prevent others from editing them. Setting this to false will disable the feature.</description>
+    <default_value type="Boolean">false</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="adminRefreshStrategy">application</value>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/IMPORT/importJobMaxAge</name_space>
+    <description>The maximum age (in seconds) a completed import job will remain in the database before it is deleted by the import job clean-up processor.</description>
+    <default_value type="Integer">172800</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SEARCH/indexOptimizationInterval</name_space>
+    <description>Specifies how often (in minutes) the index specified in the context is optimized. Optimization is only required after an index is updated, so if the index is updated frequently, you may want to optimize more frequently by specifying a lower value. Note that the repeatInterval property of the optimizeSearchIndicesTrigger bean determines the smallest interval between index optimizations. If indexOptimizationInterval is less than repeatInterval, then the effective interval will be the repeatInterval. For more information, see the topic on Scheduled Jobs in the Deployment Guide.</description>
+    <default_value type="Integer">720</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/IMPORT/staleImportJobTimeout</name_space>
+    <description>The period of time (in minutes) before an import job is considered stale.</description>
+    <default_value type="Integer">5</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/SEARCH/showBundlesFirst</name_space>
+    <description>Set to true to display product bundles before other products in storefront search results.</description>
+    <default_value type="Boolean">true</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">true</value>
+        <value context="sageuk">true</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="availableToMarketing">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/APPSPECIFIC/RCP/PRICING/maximumBaseAmounts</name_space>
+    <description>The maximum number of base amount rows to display in the pricing editor.</description>
+    <default_value type="Integer">1000</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/SESSIONCLEANUP/maxHistory</name_space>
+    <description>The number of days of customer session history to maintain. At the end of this period, all sessions with empty shopping carts are removed by the cleanupSessionsJob Quartz job.</description>
+    <default_value type="Integer">60</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/SESSIONCLEANUP/batchSize</name_space>
+    <description>The maximum number of customer sessions to clean up in one transaction.</description>
+    <default_value type="Integer">1000</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ORDERLOCK/minsBeforeCleanUp</name_space>
+    <description>The number of minutes to maintain order locks. At the end of this period, all order locks will be deleted by the cleanupOrderLocksJob Quartz job.</description>
+    <default_value type="Integer">120</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ORDERLOCK/batchSize</name_space>
+    <description>The maximum number of order locks to clean up in one transaction.</description>
+    <default_value type="Integer">200</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/ADVANCEDSEARCH/advancedSearchConfiguration</name_space>
+    <description>This xml file is used to control the configuration of the storefront advanced search on a per store basis. By providing the appropriate configuration search fields and values can be specified.</description>
+    <default_value type="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!-- Configuration file for advanced search --&gt;&lt;!-- For range values, lower bounds are inclusive, upper values are exclusive. --&gt;&lt;IntelligentBrowsing&gt;&lt;/IntelligentBrowsing&gt;</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;!-- Configuration file for advanced search --&amp;gt;&amp;lt;!-- For range values, lower bounds are inclusive, upper values are exclusive. --&amp;gt;&amp;lt;IntelligentBrowsing&amp;gt;&amp;lt;/IntelligentBrowsing&amp;gt;</value>
+        <value context="sageuk">&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;lt;!-- Configuration file for advanced search --&amp;gt;&amp;lt;!-- For range values, lower bounds are inclusive, upper values are exclusive. --&amp;gt;&amp;lt;IntelligentBrowsing&amp;gt;&amp;lt;/IntelligentBrowsing&amp;gt;</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_2</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/INVENTORY/inventoryStrategy</name_space>
+    <description>Determines the strategy or approach the system uses for inventory behavior. The only valid value is 'allocatedjournaling' (no quotes). Warning: changing this value on a production system can have serious consequences. Please refer to Elastic Path documentation for guidance.</description>
+    <default_value type="String">allocatedjournaling</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ABANDONEDCARTCLEANUP/maxHistory</name_space>
+    <description>This setting controls the number of days of cart history to keep before a Quartz job clears it.</description>
+    <default_value type="Integer">60</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/outputFileName</name_space>
+    <description>asdasdasdas</description>
+    <default_value type="String">bloomreach-forrester</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ABANDONEDCARTCLEANUP/batchSize</name_space>
+    <description>The maximum number of carts to cleanup in one transaction.</description>
+    <default_value type="Integer">1000</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/FAILEDORDERCLEANUP/maxHistory</name_space>
+    <description>This setting controls the number of days orders with state failed will be kept before a Quartz job removes them from the system.</description>
+    <default_value type="Integer">60</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/FAILEDORDERCLEANUP/batchSize</name_space>
+    <description>This setting controls the maximum number of failed orders to clean up in one transaction.</description>
+    <default_value type="Integer">1000</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PAYMENTGATEWAY/certificatesDirectory</name_space>
+    <description>This setting defines the base directory where the payment gateway certificates can be found. The certificate path of the payment gateway will be appended to this prefix. It should end with a file separator, e.g a /. If it is a relative path, it will be relative to the current working directory of the application server. Therefore, using an absolute path is recommended.</description>
+    <default_value type="String">./</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/FILTEREDNAVIGATION/separatorInToken</name_space>
+    <description>This setting defines the field separator that is used in the filtered navigation.</description>
+    <default_value type="String">_</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_2</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/listPagination</name_space>
+    <description>The maximum number of list elements per page that the API resource will return for paginated objects.</description>
+    <default_value type="Integer">20</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_3</value>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/PRODUCTS/maxQuantityAttribute</name_space>
+    <description>The key of the attribute that determines the maximum quantity of a lineitem in the cart at one time.</description>
+    <default_value type="String">allowedQty</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ANONYMOUSCUSTOMERCLEANUP/maxHistory</name_space>
+    <description>This setting controls the number of days of anonymous customer history to keep before a Quartz job clears it.</description>
+    <default_value type="Integer">60</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/ANONYMOUSCUSTOMERCLEANUP/batchSize</name_space>
+    <description>The maximum number of anonymous customers to cleanup in one transaction.</description>
+    <default_value type="Integer">1000</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/ORDERS/channelUri</name_space>
+    <description>The URI of the channel on which Order Event messages are sent and received.  Please note that changes will not take effect until the application(s) using this setting have been restarted.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.orders</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="giftCertificateCreatedMessageProducer">jms:queue:Consumer.giftCertificateCreatedMessageProducer.VirtualTopic.ep.orders</value>
+        <value context="orderConfirmationEmailHandler">jms:queue:Consumer.orderConfirmationEmailHandler.VirtualTopic.ep.orders</value>
+        <value context="orderShipmentCreatedMessageProducer">jms:queue:Consumer.orderShipmentCreatedMessageProducer.VirtualTopic.ep.orders</value>
+        <value context="orderShipmentReleaseFailedEmailHandler">jms:queue:Consumer.orderShipmentReleaseFailedEmailHandler.VirtualTopic.ep.orders</value>
+        <value context="orderShipmentShippedEmailHandler">jms:queue:Consumer.orderShipmentShippedEmailHandler.VirtualTopic.ep.orders</value>
+        <value context="returnExchangeEmailHandler">jms:queue:Consumer.returnExchangeEmailHandler.VirtualTopic.ep.orders</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/CHANGESETS/channelUri</name_space>
+    <description>The URI of the channel on which Changeset Event messages are sent and received.  Please note that changes will not take effect until the application(s) using this setting have been restarted.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.changesets</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="ChangeSetPublisher">jms:queue:Consumer.ChangeSetPublisher.VirtualTopic.ep.changesets</value>
+        <value context="datasyncSplitter">jms:queue:Consumer.DataSyncSplitter.VirtualTopic.ep.changesets</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">true</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/ftpUsername</name_space>
+    <description>a</description>
+    <default_value type="String">demo2_elasticpath</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CHANGESETS/enablePublishWorkflow</name_space>
+    <description>Enable the publish workflow for changesets.</description>
+    <default_value type="Boolean">true</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/PRODUCT/timeToLive</name_space>
+    <description>The max number of seconds a product should live in cache before it is evicted.</description>
+    <default_value type="Integer">3600</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/PRODUCT/timeToIdle</name_space>
+    <description>The max number of seconds a product should live in cache without being touched before it is evicted.</description>
+    <default_value type="Integer">3600</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/PRODUCT/maxEntriesLocalHeap</name_space>
+    <description>The max number of entries to store in the local heap (0 = no limit).</description>
+    <default_value type="Integer">5000</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/PRODUCTSKU/timeToLive</name_space>
+    <description>The max number of seconds a product sku should live in cache before it is evicted.</description>
+    <default_value type="Integer">3600</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/PRODUCTSKU/timeToIdle</name_space>
+    <description>The max number of seconds a product sku should live in cache without being touched before it is evicted.</description>
+    <default_value type="Integer">3600</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/PRODUCTSKU/maxEntriesLocalHeap</name_space>
+    <description>The max number of product sku entries to store in the local heap (0 = no limit).</description>
+    <default_value type="Integer">10000</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/CATEGORY/timeToLive</name_space>
+    <description>The max number of seconds a category should live in cache before it is evicted.</description>
+    <default_value type="Integer">3600</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/CATEGORY/timeToIdle</name_space>
+    <description>The max number of seconds a category should live in cache without being touched before it is evicted.</description>
+    <default_value type="Integer">3600</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/CATEGORY/maxEntriesLocalHeap</name_space>
+    <description>The max number of category entries to store in the local heap (0 = no limit).</description>
+    <default_value type="Integer">0</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/smtpScheme</name_space>
+    <description>DEPRECATED (Use -Dep.smtp.scheme system property) The protocol scheme of the SMTP server used to send emails.  Expected values are 'smtp' and 'smtps'.</description>
+    <default_value type="String">smtp</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/channelUri</name_space>
+    <description>The URI of the channel on which Email messages are sent and received.  Please note that changes will not take effect until the application(s) using this setting have been restarted.</description>
+    <default_value type="String">jms:ep.emails</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/EMAIL/deadLetterChannelUri</name_space>
+    <description>The URI of the channel on which Email messages are stored if email submission is unsuccessful</description>
+    <default_value type="String">jms:ep.emails.dlq</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/GIFTCERTIFICATES/channelUri</name_space>
+    <description>The URI of the channel on which Gift Certificate Event messages are sent and received.  Please note that changes will not take effect until the application(s) using this setting are restarted.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.giftcertificates</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="giftCertificateCreatedEmailHandler">jms:queue:Consumer.giftCertificateCreatedEmailHandler.VirtualTopic.ep.giftcertificates</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/CUSTOMERS/channelUri</name_space>
+    <description>The URI of the channel on which Customer Event messages are sent and received.  Please note that changes will not take effect until the application(s) using this setting have been restarted.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.customers</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="anonymousCustomerRegisteredEmailHandler">jms:queue:Consumer.anonymousCustomerRegisteredEmailHandler.VirtualTopic.ep.customers</value>
+        <value context="customerRegistrationEmailHandler">jms:queue:Consumer.customerRegistrationEmailHandler.VirtualTopic.ep.customers</value>
+        <value context="passwordChangedEmailHandler">jms:queue:Consumer.passwordChangedEmailHandler.VirtualTopic.ep.customers</value>
+        <value context="passwordForgottenEmailHandler">jms:queue:Consumer.passwordForgottenEmailHandler.VirtualTopic.ep.customers</value>
+        <value context="wishListSharedEmailHandler">jms:queue:Consumer.wishListSharedEmailHandler.VirtualTopic.ep.customers</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/CMUSERS/channelUri</name_space>
+    <description>The URI of the channel on which CM User Event messages are sent and received</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.cmusers</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cmUserCreatedEmailHandler">jms:queue:Consumer.cmUserCreatedEmailHandler.VirtualTopic.ep.cmusers</value>
+        <value context="cmUserPasswordChangedEmailHandler">jms:queue:Consumer.cmUserPasswordChangedEmailHandler.VirtualTopic.ep.cmusers</value>
+        <value context="cmUserPasswordResetEmailHandler">jms:queue:Consumer.cmUserPasswordResetEmailHandler.VirtualTopic.ep.cmusers</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/DATAIMPORT/channelUri</name_space>
+    <description>The URI of the channel on which Data Import Event messages are sent and received</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.dataimport</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="importJobCompletedEmailHandler">jms:queue:Consumer.importJobCompletedEmailHandler.VirtualTopic.ep.dataimport</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/STORE/enableDataPolicies</name_space>
+    <description>Set to true if data policies are enabled for the store.</description>
+    <default_value type="Boolean">false</default_value>
+    <max_overrides>-1</max_overrides>
+    <defined_values>
+        <value context="cooks">false</value>
+        <value context="sageuk">false</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/outputDirectoryCamelOptions</name_space>
+    <description>asdasdas</description>
+    <default_value type="String">delete=false&amp;moveFailed=.error</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/SHIPPING_RESULT/timeToLive</name_space>
+    <description>The max number of seconds a shipping result should live in cache before it is evicted.</description>
+    <default_value type="Integer">600</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/SHIPPING_RESULT/timeToIdle</name_space>
+    <description>The max number of seconds a shipping result should live in cache without being touched before it is evicted.</description>
+    <default_value type="Integer">600</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/CACHING/SHIPPING_RESULT/maxElementsInMemory</name_space>
+    <description>The max number of shipping result elements to store in memory (0 = no limit).</description>
+    <default_value type="Integer">10000</default_value>
+    <max_overrides>-1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/API/enableTrustedTraits</name_space>
+    <description>This setting controls whether certain traits (such as SHOPPING_CONTEXT_DATE_OVERRIDE) are enabled that assume that the client is trusted. This should not be enabled if Cortex is exposed on the public Internet.</description>
+    <default_value type="Boolean">false</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/DOMAIN/channelUri</name_space>
+    <description>The URI of the channel on which Domain Event messages are sent and received.  Please note that changes will not take effect until the application(s) using this setting have been restarted.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.domain</default_value>
+    <max_overrides>1</max_overrides>
+    <defined_values>
+        <value context="domainProjectionBuilderHandler">jms:queue:Consumer.domainProjectionBuilderHandler.VirtualTopic.ep.domain</value>
+    </defined_values>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/DOMAIN/deadLetterChannelUri</name_space>
+    <description>The URI of the channel on which process Exceptions created by Catalog Event messages processors.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.domain.dlq</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/CATALOG/channelUri</name_space>
+    <description>The URI of the channel on which Catalog Event messages are sent and received.  Please note that changes will not take effect until the application(s) using this setting have been restarted.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.catalog</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/DOMAIN/BULK/channelUri</name_space>
+    <description>The URI of the channel on which Domain Bulk Event messages are sent and received.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.domain.bulk</default_value>
+    <max_overrides>1</max_overrides>
+    <defined_values>
+        <value context="projectionBulkChangeHandler">jms:queue:Consumer.projectionBulkChangeHandler.VirtualTopic.ep.domain.bulk</value>
+    </defined_values>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/DOMAIN/BULK/deadLetterChannelUri</name_space>
+    <description>The URI of the channel on which process Exceptions created by Catalog Bulk Event messages processors.</description>
+    <default_value type="String">jms:topic:VirtualTopic.ep.domain.bulk.dlq</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/storeCode</name_space>
+    <description>asdasdasda</description>
+    <default_value type="String">sageUK</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/DATASYNC/ERROREMAIL/address</name_space>
+    <description>The email address to receive the result of the automated sync tool in case of error.</description>
+    <default_value type="String">no-reply@elasticpath.com</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/MESSAGING/DATASYNC/channelUri</name_space>
+    <description>The URI of the channel on which DST Event messages are sent and received.  Please note that changes will not take effect until the application(s) using this setting have been restarted.</description>
+    <default_value type="String">jms:queue:ep.dst</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">application</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/INTEGRATION/PIM/ERROR/channelUri</name_space>
+    <description>Channel URI for errors from pim requests</description>
+    <default_value type="String">jms:queue:ep.pimerror</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/INTEGRATION/PIM/RESPONSE/channelUri</name_space>
+    <description>Channel URI for responses to pim updates</description>
+    <default_value type="String">jms:queue:ep.pimresponse</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/INTEGRATION/PIM/REQUEST/channelUri</name_space>
+    <description>Channel URI for request from a pim</description>
+    <default_value type="String">jms:queue:ep.pimrequest</default_value>
+    <max_overrides>1</max_overrides>
+    <setting_metadata>
+        <value key="apiRefreshStrategy">interval:timeout=COMMERCE/Cache/Cache_1</value>
+        <value key="environmentSpecific">false</value>
+    </setting_metadata>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/ftpCamelOptions</name_space>
+    <description>asdsa</description>
+    <default_value type="String">autoCreate=false&amp;disconnect=true&amp;passiveMode=true</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/outputDirectory</name_space>
+    <description>asdasdas</description>
+    <default_value type="String">C:\\ws\\br</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+
+<configuration_setting>
+    <name_space>COMMERCE/SYSTEM/PLUGIN/BLOOMREACH/ftpHost</name_space>
+    <description>asd</description>
+    <default_value type="String">ftp.bloomreach.com</default_value>
+    <max_overrides>0</max_overrides>
+    <setting_metadata/>
+</configuration_setting>
+</system_configuration>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<modifiergroups>
+    <modifiergroup>
+		<code>multicart</code>
+		<displayname>
+			<value language="en">Multi Cart Modifier Group.</value>
+		</displayname>
+		<modifierfields>
+			<modifierfield>
+				<code>name</code>
+				<type>ShortText</type>
+				<required>true</required>
+				<maxSize>255</maxSize>
+				<ordering>1</ordering>
+				<displayname>
+					<value language="en">Name</value>
+				</displayname>
+				<options/>
+			</modifierfield>
+		</modifierfields>
+	</modifiergroup>
+</modifiergroups>

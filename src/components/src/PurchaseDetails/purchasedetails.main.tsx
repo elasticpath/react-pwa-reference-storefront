@@ -152,7 +152,7 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
                 </span>
               </td>
             </tr>
-            {options && (options[0]._element.map(option => (
+            {options && options[0]._element && (options[0]._element.map(option => (
               <tr key={option.name}>
                 <td>
                   <label htmlFor="option">
@@ -161,7 +161,7 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
                 </td>
                 <td>
                   <span id="option">
-                    {option._value[0]['display-name']}
+                    {option._value && option._value[0]['display-name']}
                   </span>
                 </td>
               </tr>
@@ -261,9 +261,9 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
   };
 
   return (
-    <div data-region="purchaseInformationRegion" style={{ display: 'block' }}>
+    <div data-region="purchaseInformationRegion">
       <div className="purchase-information-container container">
-        <div data-region="purchaseSummaryRegion" style={{ display: 'block' }}>
+        <div data-region="purchaseSummaryRegion">
           <div>
             <h3 className="purchase-summary-title">
               {intl.get('summary')}
@@ -342,7 +342,7 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
         <h3>
           {intl.get('items')}
         </h3>
-        <div data-region="purchaseLineItemsRegion" className="purchase-items-container" style={{ display: 'block' }}>
+        <div data-region="purchaseLineItemsRegion" className="purchase-items-container">
           <ul className="purchase-items-list">
             {data._lineitems[0]._element.map(renderItem)}
           </ul>

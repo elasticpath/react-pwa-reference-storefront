@@ -397,6 +397,26 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     </Link>
                   </li>
                   )}
+                  {(localStorage.getItem(`${Config.b2b.enable && Config.cortexApi.scope}_b2bCart`)) ? (
+                    <li className="dropdown-item shop-for">
+                      <div className="shopping-as-link">
+                        <span>
+                          {intl.get('shopping-as')}
+                        </span>
+                        <span>
+                          {localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}
+                        </span>
+                      </div>
+                    </li>
+                  ) : ('')}
+                  {(Config.b2b.enable) ? (
+                    <li>
+                      <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>
+                        <span className="cart-select-btn">{intl.get('shop-for')}</span>
+                      </button>
+                      <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} onContinueCart={onContinueCart} />
+                    </li>
+                  ) : ('')}
                   <li className="dropdown-item">
                     {(Config.b2b.enable) ? (
                       <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => logoutAccountManagementUser()}>
@@ -410,23 +430,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                       </button>
                     )}
                   </li>
-                  {(localStorage.getItem(`${Config.b2b.enable && Config.cortexApi.scope}_b2bCart`)) ? (
-                    <li className="dropdown-item change-carts">
-                      <div className="using-cart-link">
-                        <span>
-                          {`${intl.get('using-cart')} ${(localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`))}`}
-                        </span>
-                      </div>
-                    </li>
-                  ) : ('')}
-                  {(Config.b2b.enable) ? (
-                    <li>
-                      <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>
-                        <span className="cart-select-btn">{intl.get('change-carts')}</span>
-                      </button>
-                      <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} onContinueCart={onContinueCart} />
-                    </li>
-                  ) : ('')}
                 </ul>
               </div>
             </div>

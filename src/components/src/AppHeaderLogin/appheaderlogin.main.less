@@ -25,7 +25,7 @@
   position: relative;
 
   .auth-profile-menu-list {
-    margin-bottom: 0;
+    margin-bottom: 6px;
   }
 
   .login-btn {
@@ -66,7 +66,7 @@
 
     .logout-link,
     .profile-link,
-    .using-cart-link,
+    .shopping-as-link,
     .dashboard-link,
     .cart-select-btn,
     .wishlist-link {
@@ -82,8 +82,12 @@
       text-decoration: none;
     }
 
+    .logout-link {
+      color: @firstComplimentColor;
+    }
+
     .profile-link,
-    .using-cart-link,
+    .shopping-as-link,
     .dashboard-link,
     .wishlist-link {
       div {
@@ -115,6 +119,14 @@
         }
       }
 
+      .shop-for {
+        height: 55px;
+
+        span:nth-child(2) {
+          float: left;
+        }
+      }
+
       .dropdown-login-cart {
         border-radius: 0 0 10px 10px;
         height: 100%;
@@ -134,10 +146,10 @@
           }
         }
 
-        .change-carts{
+        .shop-for{
           height: 24px;
           margin-top:6px;
-          .using-cart {
+          .shopping-as {
             display: inline;
             font-weight: bold;
           }
@@ -206,7 +218,7 @@
           }
 
           .profile-link,
-          .using-cart-link,
+          .shopping-as-link,
           .dashboard-link,
           .wishlist-link {
             display: block;
@@ -217,7 +229,7 @@
           }
 
           .profile-link,
-          .using-cart-link,
+          .shopping-as-link,
           .wishlist-link,
           .dashboard-link,
           .logout-link {
@@ -230,7 +242,7 @@
           }
 
           .profile-link,
-          .using-cart-link,
+          .shopping-as-link,
           .dashboard-link,
           .wishlist-link {
             div {

@@ -91,7 +91,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
     await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
 
     await page.waitForSelector(CART_LINK_CSS);
@@ -171,7 +174,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
     await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
@@ -238,7 +244,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
 
     await addProductToCart(page, 'Mens', '', 'Men\'s Soft Shell Jacket');
 
@@ -303,6 +312,7 @@ describe('Purchase feature', () => {
     await page.waitForSelector(COMPLETE_ORDER_BUTTON_CSS);
     await page.click(COMPLETE_ORDER_BUTTON_CSS);
 
+    await page.waitFor(5000);
     await page.waitForSelector(PURCHASE_NUMBER_ORDER_CSS);
     const element = await page.$(PURCHASE_NUMBER_ORDER_CSS);
     const purchaseNumber = await page.evaluate(el => el.textContent, element);
@@ -334,7 +344,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
 
     const userInfo = {
       firstName: 'John',
@@ -414,7 +427,7 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 50000);
+  }, 120000);
 
   test('Purchase physical and digital items as existing shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
@@ -425,7 +438,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
 
     const userInfo = {
       firstName: 'John',
@@ -517,7 +533,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
 
     const products = [
       {
@@ -608,7 +627,10 @@ describe('Purchase feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
 
     await addProductToCart(page, 'Mens', '', 'Men\'s Soft Shell Jacket');
 

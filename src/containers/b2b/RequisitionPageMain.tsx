@@ -27,13 +27,12 @@ import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
 
 
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
-import { ReactComponent as CartIcon } from '../../images/icons/ic_add_to_cart.svg';
+import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 import { ReactComponent as AddToListIcon } from '../../images/icons/ic_add_list.svg';
 import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
 import * as Config from '../../ep.config.json';
-import { useCountDispatch } from '../../components/src/cart-count-context';
 
 import './RequisitionPageMain.less';
 import Pagination from '../../components/src/Pagination/pagination';
@@ -47,6 +46,7 @@ const listsZoomArray = [
   'additemlisttocartforms:element:target:additemstocartform',
   'additemlisttocartforms:element:additemlisttocartaction',
   'additemstoitemlistform',
+  'removelineitemsform',
   'itemlists',
   'paginatedlineitems',
   'paginatedlineitems:element',
@@ -69,6 +69,7 @@ const listsZoomArray = [
   'paginatedlineitems:element:item:wishlistmemberships',
   'paginatedlineitems:next',
   'paginatedlineitems:previous',
+  'paginatedlineitems:paginator',
 ];
 
 const elementZoomArray = [
@@ -108,6 +109,8 @@ interface RequisitionPageMainState {
   multiCartData: any,
   selectedProducts: any,
   addItemsToItemListUri: string,
+  removeLineItemsUri: string,
+  paginatorUri: string,
   showCreateListLoader: boolean,
   addToCartLoader: boolean,
   listItemCount: number,
@@ -131,6 +134,8 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
       productsData: undefined,
       selectedProducts: [],
       addItemsToItemListUri: '',
+      removeLineItemsUri: '',
+      paginatorUri: '',
       showCreateListLoader: false,
       addToCartLoader: false,
       listItemCount: 0,
@@ -195,9 +200,11 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 listName: res.name,
                 listItemCount: res['item-count'],
                 addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
+                removeLineItemsUri: res._removelineitemsform[0].self.uri,
                 multiCartData: res._additemlisttocartforms[0]._element,
                 currentlyListName: res.name,
                 productsData: res._paginatedlineitems[0],
+                paginatorUri: res._paginatedlineitems[0]._paginator[0].self.uri,
               });
               this.handleUpdateSelectedItem();
             }
@@ -242,7 +249,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
     }
     this.setState({ selectedProducts: products });
 
-    if (!isChecked && (productsData._next || productsData._previous)) {
+    if (!isChecked && (productsData._next || productsData._previous) && products.length !== productsData.pagination.results) {
       this.setState({ showSelectAllPopup: true });
     } else {
       this.setState({ showSelectAllPopup: false });
@@ -274,30 +281,35 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   handleBulkDelete() {
-    const { selectedProducts } = this.state;
-    this.setState({ isLoading: true });
-    const promises = selectedProducts.map(product => cortexFetch(product.self.uri, {
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    }));
-    Promise.all(promises)
-      .then(() => {
-        this.setState({
-          multiSelectMode: false,
-          selectedProducts: [],
-          isLoading: false,
+    const { selectedProducts, removeLineItemsUri } = this.state;
+    const lineitems = selectedProducts.map(el => ({ guid: el.guid }));
+    this.setState({ isTableLoading: true });
+
+    login().then(() => {
+      cortexFetch(`${removeLineItemsUri}?followlocation`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({ lineitems }),
+        })
+        .then((res) => {
+          this.setState({
+            multiSelectMode: false,
+            selectedProducts: [],
+            isTableLoading: false,
+            showSelectAllPopup: false,
+          });
+          this.loadRequisitionListData(true);
+        })
+        .catch((error) => {
+          this.setState({ isTableLoading: false });
+          // eslint-disable-next-line no-console
+          console.error('error.message:', error.message);
         });
-        this.loadRequisitionListData();
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-        this.setState({ isLoading: false });
-        this.loadRequisitionListData();
-      });
+    });
   }
 
   handleEditListNameModalOpen() {
@@ -418,7 +430,12 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
         })
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
-            this.setState({ selectedProducts: [], multiSelectMode: false, addToCartLoader: false });
+            this.setState({
+              selectedProducts: [],
+              multiSelectMode: false,
+              addToCartLoader: false,
+              showSelectAllPopup: false,
+            });
             onCountChange(cartName, itemQuantity);
           } else {
             this.setState({ addToCartLoader: false });
@@ -433,31 +450,34 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
   }
 
   handleSelectAllItems() {
-    const { productsData } = this.state;
-
-    const { match } = this.props;
-    const listUri = match.params.uri;
-    const scope = localStorage.getItem(`${Config.cortexApi.scope}_oAuthScope`);
-
-    const { pages } = productsData.pagination;
-    const pagesArr = Array.from(new Array(pages), (val, index) => index + 1);
-
+    const { productsData, paginatorUri } = this.state;
+    const size = productsData.pagination.results;
     this.setState({ selectAllLoader: true });
-    const promises = pagesArr.map(pageIndex => cortexFetch(`/itemlists/${scope}/${listUri}/lineitems/pages/${pageIndex}?zoom=${elementZoomArray.sort().join()}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-      },
-    }).then(res => res.json()));
-    Promise.all(promises)
-      .then((res:any) => {
-        const products = res.filter(el => el._element).map(el => el._element).flat();
-        this.setState({ selectedProducts: products, selectAllLoader: false, showSelectAllPopup: false });
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error.message);
-      });
+
+    login().then(() => {
+      cortexFetch(`${paginatorUri}?zoom=${elementZoomArray.sort().join()}&followlocation`,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({ size }),
+        })
+        .then(res => res.json())
+        .then((res) => {
+          this.setState({
+            showSelectAllPopup: false,
+            selectedProducts: res._element,
+            selectAllLoader: false,
+          });
+        })
+        .catch((error) => {
+          this.setState({ selectAllLoader: false });
+          // eslint-disable-next-line no-console
+          console.error('error.message:', error.message);
+        });
+    });
   }
 
   handleCloseSelectAllPopup() {
@@ -507,22 +527,22 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
 
     return (
       <div className="requisition-component">
-        {/* {showSelectAllPopup && (
-         <div className="select-all-items-block">
-         <div className={`select-all-items ${selectAllLoader ? 'loading' : ''}`}>
+        {showSelectAllPopup && (
+        <div className="select-all-items-block">
+          <div className={`select-all-items ${selectAllLoader ? 'loading' : ''}`}>
             {selectAllLoader ? (<span className="miniLoader" />) : ''}
-             <p>
+            <p>
               {msg.map((str) => {
-                 const i = Object.keys(obj).indexOf(str);
+                const i = Object.keys(obj).indexOf(str);
                 return i === -1 ? str : obj[str];
-               })}
-             </p>
-             <button type="button" className="ep-btn small close-btn" onClick={this.handleCloseSelectAllPopup}>
-               {intl.get('close')}
-             </button>
-            </div>
+              })}
+            </p>
+            <button type="button" className="ep-btn small close-btn" onClick={this.handleCloseSelectAllPopup}>
+              {intl.get('close')}
+            </button>
           </div>
-         )} */}
+        </div>
+        )}
         {isLoading ? (
           <div className="loader" />
         ) : (
@@ -538,8 +558,8 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 <h2 className="name">
                   {currentlyListName}
                 </h2>
-                <button type="button" className="edit-name" onClick={this.handleEditListNameModalOpen}>
-                  {intl.get('edit')}
+                <button type="button" className="rename-name" onClick={this.handleEditListNameModalOpen}>
+                  {intl.get('rename')}
                 </button>
               </div>
             </div>
@@ -565,12 +585,19 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                             {intl.get('select-all')}
                           </label>
                           <p className="selected-element">
-                            {selectedProducts.length}
+                            <span className="selected-element-counter">
+                              {selectedProducts.length}
+                            </span>
                             {' '}
                             {intl.get('item-selected')}
                           </p>
                         </div>
-                        {/* <button type="button" className="ep-btn small delete-btn" onClick={this.handleBulkDelete}>{intl.get('delete')}</button> */}
+                        <button type="button" className="ep-btn small delete-btn" disabled={!(selectedProducts && selectedProducts.length)} onClick={this.handleBulkDelete}>
+                          <RecycleBinIcon className="recycle-bin-icon" />
+                          <span className="btn-txt">
+                            {intl.get('delete')}
+                          </span>
+                        </button>
                         <CartDropdown isDisabled={!(selectedProducts && selectedProducts.length)} />
                         <button type="button" className="close-btn" onClick={this.handleCloseMultiSelectMode}>
                           <CloseIcon />

@@ -156,7 +156,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
           {failedRegistration ? (registrationErrors) : ('')}
         </div>
 
-        <div data-region="registrationFormRegion" style={{ display: 'block' }}>
+        <div data-region="registrationFormRegion">
           <div className="container">
             <form className="form-horizontal">
               <div className="form-group">

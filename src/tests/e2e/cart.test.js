@@ -48,7 +48,11 @@ describe('Cart feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
 
     const PARENT_CATEGORY_CSS = '.app-header-navigation-component li[data-name="Mens"]';
     const PRODUCT_CSS = '#category_item_title_link_VESTRI_MENS_SOFT_SHELL_JACKET_RD_LG';
@@ -103,7 +107,7 @@ describe('Cart feature', () => {
     await browser.close();
 
     expect(price).toEqual(productPrice * PRODUCT_QUANTITY);
-  }, 50000);
+  }, 120000);
 
   test('Remove cart line item', async () => {
     const product = {
@@ -124,7 +128,10 @@ describe('Cart feature', () => {
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
-    await page.goto(APP);
+    await page.goto(APP, {
+      timeout: 30000,
+      waitUntil: 'domcontentloaded'
+    });
 
     await page.waitForSelector(PARENT_CATEGORY_CSS);
     await page.click(PARENT_CATEGORY_CSS);
@@ -153,5 +160,5 @@ describe('Cart feature', () => {
     await browser.close();
 
     expect(element).not.toEqual(null)
-  }, 25000);
+  }, 120000);
 });

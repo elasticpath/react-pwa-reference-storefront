@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data_policies>
+<data_policy guid="FF528121-8B14-4D76-9450-93E51BE80CF8">
+    <policy_name>Required Registration Personal Details</policy_name>
+    <retention_period_in_days>365</retention_period_in_days>
+    <retention_type>FROM_LAST_UPDATE</retention_type>
+    <segments>
+        <segment>EU_Data_Policy</segment>
+        <segment>Global_Data_Policy</segment>
+    </segments>
+    <data_points>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CE">
+            <name>Customer first name</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_FIRST_NAME</data_key>
+            <description_key>Cust First Name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CF">
+            <name>Customer last name</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_LAST_NAME</data_key>
+            <description_key>Cust Last Name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CG">
+            <name>Customer email</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_EMAIL</data_key>
+            <description_key>Cust email</description_key>
+            <removable>false</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F1">
+            <name>Customer Billing Address First Name</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>FIRST_NAME</data_key>
+            <description_key>CBA first name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F2">
+            <name>Customer Billing Address Last Name</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>LAST_NAME</data_key>
+            <description_key>CBA last name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F3">
+            <name>Customer Billing Address Phone Number</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>PHONE_NUMBER</data_key>
+            <description_key>CBA phone number</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F6">
+            <name>Customer Billing Address Street1</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>CBA street 1</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F7">
+            <name>Customer Billing Address Street2</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_2</data_key>
+            <description_key>CBA street 2</description_key>
+            <removable>true</removable>
+        </data_point>
+    </data_points>
+    <start_date>2018-01-01T18:41:00-05:00</start_date>
+    <end_date>2019-12-31T18:41:00-05:00</end_date>
+    <state>DRAFT</state>
+    <reference_key>DP12345</reference_key>
+    <description>Minimum information required for account identification and fraud prevention.</description>
+    <activities>
+        <activity>personalization</activity>
+        <activity>activity</activity>
+    </activities>
+</data_policy>
+
+<data_policy guid="52301DD9-CF90-4A4C-B710-1C97C1C4125F">
+    <policy_name>Marketing Contact Information</policy_name>
+    <retention_period_in_days>365</retention_period_in_days>
+    <retention_type>FROM_LAST_UPDATE</retention_type>
+    <segments>
+        <segment>EU_Data_Policy</segment>
+        <segment>Global_Data_Policy</segment>
+    </segments>
+    <data_points>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F6">
+            <name>Customer Billing Address Street1</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>CBA street 1</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BCB2B170-72B4-452C-AA15-3932823C94F7">
+            <name>Customer Shipping Address Street1</name>
+            <data_location>CUSTOMER_SHIPPING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>CSA street 1</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="675C9221-40A0-40DB-8125-E67ED450119C">
+            <name>Order Gift Certificate recipient email</name>
+            <data_location>ORDER_GIFT_CERTIFICATE</data_location>
+            <data_key>giftCertificate.recipientEmail</data_key>
+            <description_key>Order GC recipient email</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="285533E0-CA31-4F85-B500-2C3C7E97D989">
+            <name>Order Billing Address Last Name</name>
+            <data_location>ORDER_BILLING_ADDRESS</data_location>
+            <data_key>LAST_NAME</data_key>
+            <description_key>Order BA LN</description_key>
+            <removable>true</removable>
+        </data_point>
+    </data_points>
+    <start_date>2018-01-01T18:41:00-05:00</start_date>
+    <end_date>2019-12-31T18:41:00-05:00</end_date>
+    <state>ACTIVE</state>
+    <reference_key>DP12346</reference_key>
+    <description>Profile contact and address information used for internal marketing purposes.</description>
+    <activities/>
+</data_policy>
+
+<data_policy guid="712DCF0E-4E24-4F64-A822-5F6B8FEF5071">
+    <policy_name>Saved Addresses</policy_name>
+    <retention_period_in_days>365</retention_period_in_days>
+    <retention_type>FROM_CREATION_DATE</retention_type>
+    <segments>
+        <segment>EU_Data_Policy</segment>
+    </segments>
+    <data_points>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F6">
+            <name>Customer Billing Address Street1</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>CBA street 1</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BCB2B170-72B4-452C-AA15-3932823C94F7">
+            <name>Customer Shipping Address Street1</name>
+            <data_location>CUSTOMER_SHIPPING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>CSA street 1</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="285533E0-CA31-4F85-B500-2C3C7E97D989">
+            <name>Order Billing Address Last Name</name>
+            <data_location>ORDER_BILLING_ADDRESS</data_location>
+            <data_key>LAST_NAME</data_key>
+            <description_key>Order BA LN</description_key>
+            <removable>true</removable>
+        </data_point>
+    </data_points>
+    <start_date>2018-01-01T18:41:00-05:00</start_date>
+    <end_date>2019-12-31T18:41:00-05:00</end_date>
+    <state>ACTIVE</state>
+    <reference_key>DP12347</reference_key>
+    <description>Addresses saved in the profile for convenience and expedited checkout.</description>
+    <activities/>
+</data_policy>
+
+<data_policy guid="EC40625C-5DED-4ED9-A9C7-5DE496C4012C">
+    <policy_name>Order Information</policy_name>
+    <retention_period_in_days>1826</retention_period_in_days>
+    <retention_type>FROM_CREATION_DATE</retention_type>
+    <segments>
+        <segment>EU_Data_Policy</segment>
+    </segments>
+    <data_points>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F1">
+            <name>Customer Billing Address First Name</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>FIRST_NAME</data_key>
+            <description_key>CBA first name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F2">
+            <name>Customer Billing Address Last Name</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>LAST_NAME</data_key>
+            <description_key>CBA last name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F3">
+            <name>Customer Billing Address Phone Number</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>PHONE_NUMBER</data_key>
+            <description_key>CBA phone number</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F6">
+            <name>Customer Billing Address Street1</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>CBA street 1</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F7">
+            <name>Customer Billing Address Street2</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_2</data_key>
+            <description_key>CBA street 2</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BCB2B170-72B4-452C-AA15-3932823C94F7">
+            <name>Customer Shipping Address Street1</name>
+            <data_location>CUSTOMER_SHIPPING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>CSA street 1</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="675C9221-40A0-40DB-8125-E67ED450119C">
+            <name>Order Gift Certificate recipient email</name>
+            <data_location>ORDER_GIFT_CERTIFICATE</data_location>
+            <data_key>giftCertificate.recipientEmail</data_key>
+            <description_key>Order GC recipient email</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="285533E0-CA31-4F85-B500-2C3C7E97D989">
+            <name>Order Billing Address Last Name</name>
+            <data_location>ORDER_BILLING_ADDRESS</data_location>
+            <data_key>LAST_NAME</data_key>
+            <description_key>Order BA LN</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BCB2B170-72B4-452C-AA15-3932823C94F4">
+            <name>Customer Shipping Address First Name</name>
+            <data_location>CUSTOMER_SHIPPING_ADDRESS</data_location>
+            <data_key>FIRST_NAME</data_key>
+            <description_key>CSA first name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BCB2B170-72B4-452C-AA15-3932823C94F5">
+            <name>Customer Shipping Address Last Name</name>
+            <data_location>CUSTOMER_SHIPPING_ADDRESS</data_location>
+            <data_key>LAST_NAME</data_key>
+            <description_key>CSA last name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BCB2B170-72B4-452C-AA15-3932823C94F6">
+            <name>Customer Shipping Address Phone</name>
+            <data_location>CUSTOMER_SHIPPING_ADDRESS</data_location>
+            <data_key>PHONE_NUMBER</data_key>
+            <description_key>CSA phone</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BCB2B170-72B4-452C-AA15-3932823C94F8">
+            <name>Customer Shipping Address Street2</name>
+            <data_location>CUSTOMER_SHIPPING_ADDRESS</data_location>
+            <data_key>STREET_2</data_key>
+            <description_key>CSA street 2</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="285533E0-CA31-4F85-B500-2C3C7E97D988">
+            <name>Order Billing Address First Name</name>
+            <data_location>ORDER_BILLING_ADDRESS</data_location>
+            <data_key>FIRST_NAME</data_key>
+            <description_key>Order BA FN</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="285533E0-CA31-4F85-B500-2C3C7E97D990">
+            <name>Order Billing Address Phone Number</name>
+            <data_location>ORDER_BILLING_ADDRESS</data_location>
+            <data_key>PHONE_NUMBER</data_key>
+            <description_key>Order BA Phone</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="285533E0-CA31-4F85-B500-2C3C7E97D991">
+            <name>Order Billing Address Street1</name>
+            <data_location>ORDER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>Order BA Street1</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="285533E0-CA31-4F85-B500-2C3C7E97D992">
+            <name>Order Billing Address Street2</name>
+            <data_location>ORDER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_2</data_key>
+            <description_key>Order BA Street2</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BBC6880C-BBDB-457C-B585-8D4C952A0446">
+            <name>Cart Gift Certificate Sender Name</name>
+            <data_location>CART_GIFT_CERTIFICATE</data_location>
+            <data_key>giftCertificate.senderName</data_key>
+            <description_key>Cart GC sender name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BDE3DFF1-09EA-48EB-A8B0-9FE40B8E7A89">
+            <name>Order Gift Certificate Message</name>
+            <data_location>ORDER_GIFT_CERTIFICATE</data_location>
+            <data_key>giftCertificate.message</data_key>
+            <description_key>Order GC message</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="BDE3DFF1-09EA-48EB-A8B0-9FE40B8E7A88">
+            <name>Order Gift Certificate Sender Name</name>
+            <data_location>ORDER_GIFT_CERTIFICATE</data_location>
+            <data_key>giftCertificate.senderName</data_key>
+            <description_key>Order GC sender name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="675C9221-40A0-40DB-8125-E67ED450119D">
+            <name>Order Gift Certificate recipient name</name>
+            <data_location>ORDER_GIFT_CERTIFICATE</data_location>
+            <data_key>giftCertificate.recipientName</data_key>
+            <description_key>Order GC recipient name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="ABC3DFF1-09EA-48EB-A8B0-9FE40B8E7A88">
+            <name>Order Payment Gift Certificate Sender Name</name>
+            <data_location>ORDER_PAYMENT_GIFT_CERTIFICATE</data_location>
+            <data_key>SENDER_NAME</data_key>
+            <description_key>Order Payment GC sender name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="QWEC9221-40A0-40DB-8125-E67ED450119E">
+            <name>Order Payment Gift Certificate recipient name</name>
+            <data_location>ORDER_PAYMENT_GIFT_CERTIFICATE</data_location>
+            <data_key>RECIPIENT_NAME</data_key>
+            <description_key>Order Payment GC recipient name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="QWEC9221-40A0-40DB-8125-E67ED450119C">
+            <name>Order Payment Gift Certificate recipient email</name>
+            <data_location>ORDER_PAYMENT_GIFT_CERTIFICATE</data_location>
+            <data_key>RECIPIENT_EMAIL</data_key>
+            <description_key>Order Payment GC recipient email</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="F8629964-F45B-414E-BA79-5EC1B2CA6F47">
+            <name>Order IP Address</name>
+            <data_location>ORDER_IP_ADDRESS</data_location>
+            <data_key>ORDER_IP_ADDRESS</data_key>
+            <description_key>Order IP address</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="A2855440-F7BD-443E-969B-7C198AB10085">
+            <name>Order data KEY1</name>
+            <data_location>ORDER_DATA</data_location>
+            <data_key>ODATA_KEY1</data_key>
+            <description_key>Order Payment card holder</description_key>
+            <removable>false</removable>
+        </data_point>
+    </data_points>
+    <start_date>2018-01-01T18:41:00-05:00</start_date>
+    <end_date>2019-12-31T18:41:00-05:00</end_date>
+    <state>ACTIVE</state>
+    <reference_key>DP12347</reference_key>
+    <description>Addresses and contact information required to process orders and for legal auditing purposes.</description>
+    <activities/>
+</data_policy>
+
+<data_policy guid="d4bb9cf2-22b6-48c6-849e-fe91383bed4e">
+    <policy_name>Automation Active Policy 1</policy_name>
+    <retention_period_in_days>10</retention_period_in_days>
+    <retention_type>FROM_CREATION_DATE</retention_type>
+    <segments>
+        <segment>automation</segment>
+    </segments>
+    <data_points>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CE">
+            <name>Customer first name</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_FIRST_NAME</data_key>
+            <description_key>Cust First Name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CF">
+            <name>Customer last name</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_LAST_NAME</data_key>
+            <description_key>Cust Last Name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CG">
+            <name>Customer email</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_EMAIL</data_key>
+            <description_key>Cust email</description_key>
+            <removable>false</removable>
+        </data_point>
+    </data_points>
+    <start_date>2018-05-02T05:34:00-04:00</start_date>
+    <state>ACTIVE</state>
+    <reference_key>Automation Active Policy 1</reference_key>
+    <description></description>
+    <activities/>
+</data_policy>
+
+<data_policy guid="19f2ed39-d973-4cc7-a313-8e349df9b7bd">
+    <policy_name>Automation Active Policy 2</policy_name>
+    <retention_period_in_days>10</retention_period_in_days>
+    <retention_type>FROM_CREATION_DATE</retention_type>
+    <segments>
+        <segment>automation</segment>
+    </segments>
+    <data_points>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CE">
+            <name>Customer first name</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_FIRST_NAME</data_key>
+            <description_key>Cust First Name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CF">
+            <name>Customer last name</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_LAST_NAME</data_key>
+            <description_key>Cust Last Name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CG">
+            <name>Customer email</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_EMAIL</data_key>
+            <description_key>Cust email</description_key>
+            <removable>false</removable>
+        </data_point>
+        <data_point guid="114BBD94-C8A3-4F84-B9E6-687FA1CC60F6">
+            <name>Customer Billing Address Street1</name>
+            <data_location>CUSTOMER_BILLING_ADDRESS</data_location>
+            <data_key>STREET_1</data_key>
+            <description_key>CBA street 1</description_key>
+            <removable>true</removable>
+        </data_point>
+    </data_points>
+    <start_date>2018-05-02T05:40:00-04:00</start_date>
+    <state>ACTIVE</state>
+    <reference_key>Automation Active Policy 2</reference_key>
+    <description></description>
+    <activities/>
+</data_policy>
+
+<data_policy guid="3c25b2ce-b713-420e-b203-a6442bbc1d87">
+    <policy_name>Automation Disabled Policy</policy_name>
+    <retention_period_in_days>10</retention_period_in_days>
+    <retention_type>FROM_CREATION_DATE</retention_type>
+    <segments>
+        <segment>disable_policy</segment>
+    </segments>
+    <data_points>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CE">
+            <name>Customer first name</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_FIRST_NAME</data_key>
+            <description_key>Cust First Name</description_key>
+            <removable>true</removable>
+        </data_point>
+        <data_point guid="8DDD7943-9876-4811-8387-709C85CA39CF">
+            <name>Customer last name</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_LAST_NAME</data_key>
+            <description_key>Cust Last Name</description_key>
+            <removable>true</removable>
+        </data_point>
+    </data_points>
+    <start_date>2018-05-02T05:57:00-04:00</start_date>
+    <end_date>2018-05-25T05:58:30-04:00</end_date>
+    <state>DISABLED</state>
+    <reference_key>Automation Disabled Policy</reference_key>
+    <description></description>
+    <activities/>
+</data_policy>
+
+<data_policy guid="BD5617E4-0DEC-4CE8-B694-24A388904CF2">
+    <policy_name>Profile Fields</policy_name>
+    <retention_period_in_days>365</retention_period_in_days>
+    <retention_type>FROM_LAST_UPDATE</retention_type>
+    <segments>
+        <segment>profile_fields_test</segment>
+    </segments>
+    <data_points>
+        <data_point guid="3093D1CB-FF62-4155-9A7A-9DE389D3831E">
+            <name>Customer Date Of Birth</name>
+            <data_location>CUSTOMER_PROFILE</data_location>
+            <data_key>CP_DOB</data_key>
+            <description_key>Cust dob</description_key>
+            <removable>false</removable>
+        </data_point>
+    </data_points>
+    <start_date>2018-01-01T18:41:00-05:00</start_date>
+    <state>ACTIVE</state>
+    <reference_key>Profile Fields</reference_key>
+    <description></description>
+    <activities/>
+</data_policy>
+</data_policies>

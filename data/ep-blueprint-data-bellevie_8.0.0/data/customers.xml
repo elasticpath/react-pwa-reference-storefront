@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customers>
+    <customer guid="72c0feae-14c0-4c9c-89e8-4d5d9cf64ff7" user_id="frank@ep.com" store_code="sageUK">
+        <status>1</status>
+        <creationDate>2020-01-31T17:14:19-05:00</creationDate>
+        <last_edited>2020-02-03T22:30:20-05:00</last_edited>
+        <password>7e969e424c9773d8dba45307015d73f8decfe3c797d35a6e42c82688098fd6e3</password>
+        <salt>9c4d8a60190a13e0ef1c9f63d55cf8566987369204d72a501d2b4fa8b752c310</salt>
+        <first_time_buyer>false</first_time_buyer>
+        <addresses>
+            <address guid="bbfdf535-94d5-48f9-80ab-91242b731b5e">
+                <creation_date>2020-02-03T19:20:30-05:00</creation_date>
+                <last_modified_date>2020-02-03T19:20:30-05:00</last_modified_date>
+                <last_name>Stallone</last_name>
+                <first_name>Frank</first_name>
+                <street1>123 4th St.</street1>
+                <street2></street2>
+                <city>London</city>
+                <subCountry></subCountry>
+                <zip_postal_code>12345</zip_postal_code>
+                <country>GB</country>
+                <commercial>false</commercial>
+            </address>
+        </addresses>
+        <groups>
+            <group>400</group>
+        </groups>
+        <preferred_shipping_address>bbfdf535-94d5-48f9-80ab-91242b731b5e</preferred_shipping_address>
+        <preferred_billing_address>bbfdf535-94d5-48f9-80ab-91242b731b5e</preferred_billing_address>
+        <customer_profile>
+            <profile_value key="CP_HTML_EMAIL" type="AttributeType_Boolean" creation_date="2020-02-03T22:29:45-05:00">false</profile_value>
+            <profile_value key="CP_FIRST_NAME" type="AttributeType_ShortText" creation_date="2020-02-03T18:46:24-05:00">Frank</profile_value>
+            <profile_value key="CP_LAST_NAME" type="AttributeType_ShortText" creation_date="2020-02-03T18:46:24-05:00">Stallone</profile_value>
+            <profile_value key="CP_ANONYMOUS_CUST" type="AttributeType_Boolean" creation_date="2020-01-31T17:14:19-05:00">false</profile_value>
+            <profile_value key="CP_DOB" type="AttributeType_Date" creation_date="2020-02-03T22:29:45-05:00">null</profile_value>
+            <profile_value key="CP_EMAIL" type="AttributeType_ShortText" creation_date="2020-02-03T18:46:24-05:00">frank@ep.com</profile_value>
+            <profile_value key="CP_BE_NOTIFIED" type="AttributeType_Boolean" creation_date="2020-02-03T22:29:45-05:00">false</profile_value>
+            <profile_value key="CP_GENDER" type="AttributeType_ShortText" creation_date="2020-02-03T22:29:45-05:00">-</profile_value>
+        </customer_profile>
+    </customer>
+</customers>

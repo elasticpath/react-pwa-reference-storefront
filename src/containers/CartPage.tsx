@@ -28,6 +28,7 @@ import {
   AddPromotionContainer,
   CartCreate,
   CartClear,
+  AlertContainer,
 } from '../components/src/index';
 import Config from '../ep.config.json';
 import { login } from '../utils/AuthService';
@@ -97,6 +98,8 @@ interface CartPageState {
   openModal: boolean,
   selectedCartNumber: number,
   updateCartModal: boolean,
+  isShowAlert: boolean,
+  alertMessageData: { message: string, isSuccess: boolean},
 }
 
 class CartPage extends React.Component<RouteComponentProps, CartPageState> {
@@ -111,6 +114,8 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
       openModal: false,
       selectedCartNumber: -1,
       updateCartModal: false,
+      isShowAlert: false,
+      alertMessageData: { message: '', isSuccess: false },
     };
     this.handleItemConfiguratorAddToCart = this.handleItemConfiguratorAddToCart.bind(this);
     this.handleItemMoveToCart = this.handleItemMoveToCart.bind(this);
@@ -120,6 +125,8 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.handleCartSelect = this.handleCartSelect.bind(this);
     this.handleCartElementSelect = this.handleCartElementSelect.bind(this);
     this.handleCartModalUpdate = this.handleCartModalUpdate.bind(this);
+    this.handleShowAlert = this.handleShowAlert.bind(this);
+    this.handleHideAlert = this.handleHideAlert.bind(this);
   }
 
   componentDidMount() {
@@ -164,6 +171,15 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     this.setState({ isLoading: true });
     this.fetchCartData();
     history.push(window.location.pathname);
+  }
+
+  handleHideAlert() {
+    this.setState({ isShowAlert: false });
+  }
+
+  handleShowAlert(message, isSuccess) {
+    this.setState({ isShowAlert: true, alertMessageData: { message, isSuccess } });
+    setTimeout(this.handleHideAlert, 3200);
   }
 
   checkout() {
@@ -260,14 +276,17 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
 
   render() {
     const {
-      cartData, cartsData, isLoading, openModal, multiCartsAvailable, updateCartModal,
+      cartData, cartsData, isLoading, openModal, multiCartsAvailable, updateCartModal, isShowAlert, alertMessageData,
     } = this.state;
     const itemDetailLink = '/itemdetail';
     const cartName = cartData && cartData._descriptor && cartData._descriptor[0].default !== 'true' ? cartData._descriptor[0].name : intl.get('default');
     return (
       <div className="cart-container container">
+        {isShowAlert ? (
+          <AlertContainer messageData={alertMessageData} />
+        ) : ''}
         <div className="cart-container-inner">
-          <div data-region="cartTitleRegion" className="cart-title-container" style={{ display: 'block' }}>
+          <div data-region="cartTitleRegion" className="cart-title-container">
             <div className="cart-title-wrap">
               {cartData && !isLoading && (
                 <h1 className="view-title">
@@ -284,7 +303,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
             </div>
           </div>
           {cartData && !isLoading && (
-            <div data-region="mainCartRegion" className="cart-main-container" style={{ display: 'block' }}>
+            <div data-region="mainCartRegion" className="cart-main-container">
               <CartMain
                 empty={!cartData['total-quantity'] || cartData._lineitems === undefined}
                 cartData={cartData}
@@ -292,12 +311,13 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                 onItemConfiguratorAddToCart={this.handleItemConfiguratorAddToCart}
                 onItemMoveToCart={this.handleItemMoveToCart}
                 onItemRemove={this.handleItemRemove}
+                onShowAlert={(message, isSuccess) => { this.handleShowAlert(message, isSuccess); }}
                 itemDetailLink={itemDetailLink}
               />
             </div>
           )}
           {(cartData && !isLoading) && (
-            <div className="cart-sidebar" data-region="cartCheckoutMasterRegion" style={{ display: 'block' }}>
+            <div className="cart-sidebar" data-region="cartCheckoutMasterRegion">
               <div>
                 <div className="cart-sidebar-inner">
                   <h2 className="cart-sidebar-title">
@@ -313,7 +333,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                       {cartData._total[0].cost[0].display}
                     </h2>
                   </div>
-                  <div data-region="cartCheckoutActionRegion" className="cart-checkout-container" style={{ display: 'block' }}>
+                  <div data-region="cartCheckoutActionRegion" className="cart-checkout-container">
                     <div>
                       <button className="ep-btn primary btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
                         {intl.get('proceed-to-checkout')}

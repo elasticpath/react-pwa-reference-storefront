@@ -152,10 +152,10 @@ class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainSta
     } = this.props;
     if (inEditMode) {
       return (
-        <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
+        <div className="personal-information-container" data-region="profilePersonalInfoRegion">
           <div>
             <form className="form-horizontal" onSubmit={this.submitPersonalInfoChange}>
-              <div data-region="componentAddressFormRegion" style={{ display: 'block' }}>
+              <div data-region="componentAddressFormRegion">
                 <div className="address-form-container profile-info-edit-container">
                   <div className="feedback-label address-form-feedback-container" data-region="componentAddressFeedbackRegion">
                     {failedSubmit ? intl.get('failed-to-save-message') : ''}
@@ -203,7 +203,7 @@ class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainSta
     }
     if (profileInfo) {
       return (
-        <div className="personal-information-container" data-region="profilePersonalInfoRegion" style={{ display: 'block' }}>
+        <div className="personal-information-container" data-region="profilePersonalInfoRegion">
           <div>
             <div className="personal-info-container container">
               <div className="personal-info-firstName">

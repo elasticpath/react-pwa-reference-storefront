@@ -412,7 +412,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
               <input id="City" name="City" className="form-control" type="text" value={city} onChange={this.setCity} />
             </div>
           </div>
-          <div data-region="addressCountryRegion" className="form-group" style={{ display: 'block' }}>
+          <div data-region="addressCountryRegion" className="form-group">
             <label htmlFor="Country" data-el-label="addressForm.country" className="control-label">
               <span className="required-label">
               *
