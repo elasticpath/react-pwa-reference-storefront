@@ -25,21 +25,7 @@ import 'aframe-look-at-component';
 import 'aframe-html-shader';
 import './VRProductDisplayItem.less';
 import intl from 'react-intl-universal';
-
-interface IVRComponentState {
-  showInfo: boolean,
-  isMobile: boolean,
-  showVrProductInfo: boolean,
-}
-
-interface IVRComponentProps {
-  /** the url to place a background image in the scene. */
-  backgroundUri?: any,
-  /** Called when Vr window is closed. */
-  handleCloseVR?: any,
-  /** The 3D Mesh uri */
-  meshUri?: any
-}
+import { IVRComponentProps, IVRComponentState } from './VRProductDisplayItem.d';
 
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
   static isSafari() {
