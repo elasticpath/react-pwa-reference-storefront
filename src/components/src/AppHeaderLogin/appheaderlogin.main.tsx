@@ -401,7 +401,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     <li className="dropdown-item shop-for">
                       <div className="shopping-as-link">
                         <span>
-                          {intl.get('organization')}
+                          {intl.get('shopping-as')}
                         </span>
                         <span>
                           {localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}
