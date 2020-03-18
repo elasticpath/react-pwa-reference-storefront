@@ -65,15 +65,14 @@
     }
 
     .vr-icon-container {
-      z-index: 20;
       height: 30px;
       width: 55px;
       border: none;
       background: url('@{imgComponentUrl}/icons/vr_icon.svg') no-repeat 0px center;
       border: none;
-      position: absolute;
       left: 15px;
       top: 15px;
+      z-index: 3;
       &:hover {
         background: url('@{imgComponentUrl}/icons/vr_icon_hover.svg') no-repeat 0px center;
       }
@@ -408,6 +407,8 @@
           border-bottom: 2px solid @firstAccentColor;
           border-right: 2px solid @firstAccentColor;
           margin-right: 6px;
+          position: relative;
+          z-index: 2;
         }
       }
     }
@@ -464,6 +465,9 @@
 }
 
 .product-item-container {
+  position: relative;
+  z-index: 0;
+  
   @media (min-width: @tabletWidth) {
     display: flex;
 

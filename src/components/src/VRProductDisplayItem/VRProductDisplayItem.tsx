@@ -25,6 +25,9 @@ import 'aframe-look-at-component';
 import 'aframe-html-shader';
 import './VRProductDisplayItem.less';
 import intl from 'react-intl-universal';
+import vrClose from '../../images/icons/vr_close.png';
+import vrDetailsHotspot from '../../images/icons/vr_details_hotspot.png';
+import headerLogo from '../../../images/site-images/Company-Logo-v1.png';
 
 interface IVRComponentState {
   showInfo: boolean,
@@ -99,14 +102,14 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
             </div>
           </div>
 
-          <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;" loading-screen="backgroundColor: #000000; dotsColor: white">
+          <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;" background="color: grey" loading-screen="backgroundColor: #000000; dotsColor: white">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a id="myEnterVRButton" href="#">
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <div role="button" tabIndex={0} className="vr-fullscreen" />
             </a>
 
-            <a-assets>
+            {/* <a-assets>
               {
                 VRProductDisplayItem.isSafari() ? (
                   <img alt="" id="background" src={backgroundUri} />
@@ -115,12 +118,13 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
                 )
               }
             </a-assets>
-            <Entity primitive="a-sky" radius="30" src="#background" />
+            <Entity primitive="a-sky" radius="30" src="#background" /> */}
 
 
             <a-assets>
-              <img alt="" id="hsIcon" src="https://d1vlj71acq3rf7.cloudfront.net/assets/XR-Hotspot.png" crossOrigin="anonymous" />
-              <img alt="" id="hsIconExit" src="https://d1vlj71acq3rf7.cloudfront.net/assets/close.png" crossOrigin="anonymous" />
+              <img alt="" id="hsIcon" src="/vr_details_hotspot.png" />
+              <img alt="" id="hsIconExit" src="/vr_close.png" />
+              {/* <vrClose id="hsIconExit" /> */}
             </a-assets>
 
             { showVrProductInfo ? (
