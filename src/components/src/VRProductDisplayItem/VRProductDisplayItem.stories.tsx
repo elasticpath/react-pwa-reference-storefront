@@ -36,9 +36,15 @@ storiesOf('Components|VRProductDisplayItem', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
-  .add('VRComponent', () => {
+  .add('VRComponent | Panorama image', () => {
     const handleCloseVRFuncText = text('handleCloseVR', '() => {alert("onFacetSelection invoked")}');
     return (
       <VRProductDisplayItem meshUri="" handleCloseVR={() => { textToFunc(handleCloseVRFuncText); }} backgroundUri={text('backgroundUri', 'https://s3.amazonaws.com/referenceexp/vr/10484.jpg')} />
+    );
+  })
+  .add('VRComponent | 3D Mesh', () => {
+    const handleCloseVRFuncText = text('handleCloseVR', '() => {alert("onFacetSelection invoked")}');
+    return (
+      <VRProductDisplayItem meshUri="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb" handleCloseVR={() => { textToFunc(handleCloseVRFuncText); }} backgroundUri={text('backgroundUri', '')} />
     );
   });

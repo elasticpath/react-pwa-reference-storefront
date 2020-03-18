@@ -143,19 +143,22 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
 
   background() {
     const { backgroundUri } = this.props;
+    if (backgroundUri) {
+      return [
+        <a-assets>
+          {
+          VRProductDisplayItem.isSafari() ? (
+            <img alt="" id="background" src={backgroundUri} />
+          ) : (
+            <img alt="" id="background" src={backgroundUri} crossOrigin="anonymous" />
+          )
+        }
+        </a-assets>,
+        <Entity primitive="a-sky" radius="30" src="#background" />,
+      ];
+    }
 
-    return [
-      <a-assets>
-        {
-        VRProductDisplayItem.isSafari() ? (
-          <img alt="" id="background" src={backgroundUri} />
-        ) : (
-          <img alt="" id="background" src={backgroundUri} crossOrigin="anonymous" />
-        )
-      }
-      </a-assets>,
-      <Entity primitive="a-sky" radius="30" src="#background" />,
-    ];
+    return null;
   }
 
   camera() {
