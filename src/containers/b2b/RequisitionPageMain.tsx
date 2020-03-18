@@ -558,8 +558,8 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                 <h2 className="name">
                   {currentlyListName}
                 </h2>
-                <button type="button" className="edit-name" onClick={this.handleEditListNameModalOpen}>
-                  {intl.get('edit')}
+                <button type="button" className="rename-name" onClick={this.handleEditListNameModalOpen}>
+                  {intl.get('rename')}
                 </button>
               </div>
             </div>
