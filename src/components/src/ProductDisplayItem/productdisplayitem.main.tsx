@@ -833,7 +833,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     : ('')
                   }
 
-                  {vrMode ? (<VRProductDisplayItem meshUri="https://referenceexp.s3.amazonaws.com/vr/meshes/scene.glb" handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />) : this.renderProductImage()}
+                  {vrMode ? (<VRProductDisplayItem handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />) : this.renderProductImage()}
 
                 </div>
               </div>
