@@ -96,7 +96,7 @@ describe('Wishlist', () => {
   test('Remove wishlist item', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 120,
+      slowMo: 30,
     });
     const page = await browser.newPage();
 
@@ -125,7 +125,7 @@ describe('Wishlist', () => {
     // When I remove the wishlist item
     await page.waitForSelector(REMOVE_FROM_WISHLIST_BUTTON);
     await page.click(REMOVE_FROM_WISHLIST_BUTTON);
-    await page.waitForNavigation({ waitUntil: 'networkidle0' });
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
       // Then Lineitem is no longer in the wishlist
     await page.waitForSelector(LOGGED_IN_BUTTON);

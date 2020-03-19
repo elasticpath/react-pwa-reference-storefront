@@ -87,7 +87,7 @@ describe('Purchase feature', () => {
 
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-web-security'],
-      slowMo: 10,
+      slowMo: 30,
     });
     const page = await browser.newPage();
     await page.setViewport(desktopViewport);
