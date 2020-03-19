@@ -24,13 +24,13 @@
 .home-page-b2c {
   .main-banner {
     overflow: hidden;
-    min-height: 480px;
+    height: 480px;
     margin-bottom: 45px;
     position: relative;
 
     .main-banner-image {
       width: 100%;
-      min-height: 480px;
+      height: 100%;
       max-width: 100%;
       object-fit: cover;
     }
@@ -84,6 +84,12 @@
       white-space: nowrap;
       margin: 0;
       text-transform: none;
+    }
+
+    &.bottom-block {
+      .main-banner-image {
+        border: 1px solid @secondBorderColor;
+      }
     }
   }
 

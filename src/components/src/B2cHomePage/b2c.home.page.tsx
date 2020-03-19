@@ -142,7 +142,7 @@ const B2CHomePage: React.FunctionComponent = () => {
         </div>
       </div>
 
-      <section className="main-banner">
+      <section className="main-banner bottom-block">
         <ImageContainer className="main-banner-image" fileName={bannerFileName2} imgUrl={bannerImage2} />
         <div className="main-banner-title-wrap">
           <div className="container">
