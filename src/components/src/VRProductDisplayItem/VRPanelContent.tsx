@@ -18,39 +18,19 @@
  *
  *
  */
+import React from 'react';
+import './VRPanelContent.less';
 
-@import './../../../theme/common.less';
+interface VRPanelContentMainProps {}
 
-.product-recomentations-component {
-  position: relative;
-  padding: 20px;
-
-  .control-label {
-    font-size: 18px;
-    font-weight: 600;
-    padding: 20px 0px;
-  }
-
-  .card-deck {
-    width: 100%;
-    flex-flow: row wrap;
-
-    .card {
-      max-width: 160px;
-      min-width: 160px;
-    }
-
-    .category-item-price-container {
-      font-weight: 300;
-    }
-
-    @media (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
-      // width: 33%;
-    }
-  }
-
-  @media (max-width: @mobileWidth - 100px) {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+function VRPanelContent(props: VRPanelContentMainProps) {
+  return (
+    <div className="outer-html-texture">
+      <div id="boxHTML" className="inner-html-texture">
+        <p className="html-text-texture">Place holder html</p>
+      </div>
+    </div>
+  );
 }
+
+export default VRPanelContent;

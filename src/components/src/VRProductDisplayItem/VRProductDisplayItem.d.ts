@@ -18,39 +18,17 @@
  *
  *
  */
-
-@import './../../../theme/common.less';
-
-.product-recomentations-component {
-  position: relative;
-  padding: 20px;
-
-  .control-label {
-    font-size: 18px;
-    font-weight: 600;
-    padding: 20px 0px;
+export interface IVRComponentState {
+    showInfo: boolean,
+    isMobile: boolean,
+    showVrProductInfo: boolean,
   }
 
-  .card-deck {
-    width: 100%;
-    flex-flow: row wrap;
-
-    .card {
-      max-width: 160px;
-      min-width: 160px;
-    }
-
-    .category-item-price-container {
-      font-weight: 300;
-    }
-
-    @media (min-width: @mobileWidth) and (max-width: @tabletWidth - 1px) {
-      // width: 33%;
-    }
+export interface IVRComponentProps {
+    /** The url to place a background image in the scene. */
+    backgroundUri?: any,
+    /** Called when Vr window is closed. */
+    handleCloseVR?: any,
+    /** The 3D Mesh uri */
+    meshUri?: any
   }
-
-  @media (max-width: @mobileWidth - 100px) {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-}
