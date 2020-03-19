@@ -97,8 +97,8 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
 
     const renderReturn = [
       <a-assets>
-        <img alt="" id="hsIcon" src="/vr_details_hotspot.png" />
-        <img alt="" id="hsIconExit" src="/vr_close.png" />
+        <img alt="" id="hsIcon" src="/vr_details_hotspot.svg" />
+        <img alt="" id="hsIconExit" src="/vr_close.svg" />
       </a-assets>,
     ];
 
