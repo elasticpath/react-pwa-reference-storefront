@@ -27,6 +27,7 @@ import PowerReview from '../PowerReview/powerreview.main';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 import { ProductDisplayDetailsProps, ProductDisplayItemMainState } from './productdisplayitem.details.d';
+import { ZOOM } from './productdisplayitem.details.constants';
 
 let intl = { get: str => str };
 
