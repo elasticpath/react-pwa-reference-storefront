@@ -147,7 +147,7 @@ class CheckoutSummaryList extends Component<CheckoutSummaryListProps> {
       const shippingOption = (data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption) ? (data._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption[0].cost[0].display) : ('');
       return (
         <li className="checkout-shipping">
-          <div data-region="checkoutShippingTotalRegion" style={{ display: 'block' }}>
+          <div data-region="checkoutShippingTotalRegion">
             <div className="checkout-shipping-total">
               <label className="cart-summary-label-col" htmlFor="checkout-shipping-total">
                 {intl.get('todays-shipping-cost')}
@@ -169,7 +169,7 @@ class CheckoutSummaryList extends Component<CheckoutSummaryListProps> {
     if (data._order && data._order[0]._tax && data._order[0]._tax[0].cost.length) {
       return (
         <li className="checkout-tax">
-          <div data-region="checkoutTaxTotalRegion" style={{ display: 'block' }}>
+          <div data-region="checkoutTaxTotalRegion">
             <div className="checkout-tax-total">
               <label className="cart-summary-label-col" htmlFor="checkout-tax-total">
                 {intl.get('todays-taxes')}
@@ -180,7 +180,7 @@ class CheckoutSummaryList extends Component<CheckoutSummaryListProps> {
               </span>
             </div>
           </div>
-          <div data-region="checkoutTaxBreakDownRegion" style={{ display: 'block' }}>
+          <div data-region="checkoutTaxBreakDownRegion">
             <ul className="checkout-tax-list">
               {data._order[0]._tax[0].cost.map(tax => (
                 <li className="checkout-tax" key={tax.title}>

@@ -20,13 +20,13 @@
  */
 import React, { Component } from 'react';
 import { InlineShareButtons } from 'sharethis-reactjs';
-import { ProductDisplayDetailsProps, ProductDisplayItemMainState, ZOOM } from './productdisplayitem.details.d';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login, isLoggedIn } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import PowerReview from '../PowerReview/powerreview.main';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
+import { ProductDisplayDetailsProps, ProductDisplayItemMainState } from './productdisplayitem.details.d';
 
 let intl = { get: str => str };
 

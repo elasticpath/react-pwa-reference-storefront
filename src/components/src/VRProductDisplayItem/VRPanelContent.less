@@ -1,0 +1,38 @@
+@import './../../../theme/common.less';
+
+.outer-html-texture {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0; 
+    top: 0; 
+    overflow: hidden;
+    z-index: -2;
+}
+
+.inner-html-texture {
+    color: white; 
+    width: 500px; 
+    height: 500px; 
+    font-size: 64px; 
+    font-family: monospace; 
+    text-align: center
+}
+
+.html-text-texture {
+    background: rgb(30, 30, 30);
+    position: absolute; 
+    top: 25px; 
+    width: 500px;
+}
+
+.cover-html-texture {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0; 
+    top: 0; 
+    background-color: @mainBackgroundColor;
+    overflow: hidden;
+    z-index: -1;
+}

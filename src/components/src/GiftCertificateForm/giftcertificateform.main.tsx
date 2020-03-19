@@ -216,7 +216,7 @@ class GiftcertificateFormMain extends Component<GiftcertificateFormMainProps, Gi
     const { giftCertificateEntity } = this.state;
     return giftCertificateEntity.map((el, index) => (
       <li className="profile-gift-card-container" key={`gift_card_${el.code.slice(-4)}`}>
-        <div data-region="giftCardComponentRegion" className="profile-gift-card-label-container" style={{ display: 'block' }}>
+        <div data-region="giftCardComponentRegion" className="profile-gift-card-label-container">
           <div className="gift-card-container">
             <span className="gift-card-number">
               ****-******-
@@ -266,7 +266,7 @@ class GiftcertificateFormMain extends Component<GiftcertificateFormMainProps, Gi
     } = this.state;
 
     return (
-      <div className="giftCertificateRegions" data-region="giftCertificateRegions" style={{ display: 'block' }}>
+      <div className="giftCertificateRegions" data-region="giftCertificateRegions">
         <div>
           <h2>
             {intl.get('gift-certificates')}

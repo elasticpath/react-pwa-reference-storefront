@@ -39,12 +39,11 @@
   .itemdetail-assets {
     margin-top: 30px;
     width: 50%;
-    position: sticky;
+    position: relative;
     top: 0;
     padding: 0 10px;
     vertical-align: top;
     display: inline-block;
-    z-index: 2;
 
     .itemdetail-asset-container {
       position: relative;
@@ -66,17 +65,17 @@
     }
 
     .vr-icon-container {
-      z-index: 20;
       height: 30px;
       width: 55px;
       border: none;
-      background: url('@{imgComponentUrl}/icons/360_info.svg') no-repeat 0px center;
+      background: url('@{imgComponentUrl}/icons/vr_icon.svg') no-repeat 0px center;
       border: none;
+      left: 11px;
+      top: 7px;
       position: absolute;
-      left: 15px;
-      top: 15px;
+      z-index: 3;
       &:hover {
-        background: url('@{imgComponentUrl}/icons/360_info_hover.svg') no-repeat 0px center;
+        background: url('@{imgComponentUrl}/icons/vr_icon_hover.svg') no-repeat 0px center;
       }
       &:focus {
         outline: 0;
@@ -317,6 +316,8 @@
           border-bottom: 2px solid @firstAccentColor;
           border-right: 2px solid @firstAccentColor;
           margin-right: 6px;
+          position: relative;
+          z-index: 2;
         }
       }
     }
@@ -358,21 +359,24 @@
   right: 7px;
   top: 7px;
   border: none;
-  width: 60px;
-  height: 50px;
+  width: 36px;
+  height: 26px;
   outline: 0;
   z-index: 20;
 }
 
 .ar-img {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 26px;
+  height: 36px;
   background: url('@{imgComponentUrl}/icons/ar_icon.svg') no-repeat 9px center;
   border: 0px;
 }
 
 .product-item-container {
+  position: relative;
+  z-index: 0;
+  
   @media (min-width: @tabletWidth) {
     display: flex;
 

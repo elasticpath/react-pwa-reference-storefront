@@ -397,19 +397,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     </Link>
                   </li>
                   )}
-                  <li className="dropdown-item">
-                    {(Config.b2b.enable) ? (
-                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => logoutAccountManagementUser()}>
-                        <span className="icon" />
-                        {intl.get('logout')}
-                      </button>
-                    ) : (
-                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
-                        <span className="icon" />
-                        {intl.get('logout')}
-                      </button>
-                    )}
-                  </li>
                   {(localStorage.getItem(`${Config.b2b.enable && Config.cortexApi.scope}_b2bCart`)) ? (
                     <li className="dropdown-item shop-for">
                       <div className="shopping-as-link">
@@ -430,6 +417,19 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                       <AppModalCartSelectMain key="app-modal-cart-selection-main" handleModalClose={this.handleModalClose} openModal={openCartModal} onContinueCart={onContinueCart} />
                     </li>
                   ) : ('')}
+                  <li className="dropdown-item">
+                    {(Config.b2b.enable) ? (
+                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => logoutAccountManagementUser()}>
+                        <span className="icon" />
+                        {intl.get('logout')}
+                      </button>
+                    ) : (
+                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
+                        <span className="icon" />
+                        {intl.get('logout')}
+                      </button>
+                    )}
+                  </li>
                 </ul>
               </div>
             </div>

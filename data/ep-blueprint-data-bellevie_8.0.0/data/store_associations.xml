@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<store_associations>
+<store_association store_code="BelleVieAT">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="BelleVieAU">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="BelleVieCA">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="BelleVieDE">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="BelleVieNZ">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="BelleVieUS">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="cooks">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="sageCH">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="sageDE">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="sageEU">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageUK</associated_store_code>
+    </associated_store_codes>
+</store_association>
+
+<store_association store_code="sageUK">
+    <associated_store_codes>
+        <associated_store_code>BelleVieAT</associated_store_code>
+        <associated_store_code>BelleVieAU</associated_store_code>
+        <associated_store_code>BelleVieCA</associated_store_code>
+        <associated_store_code>BelleVieDE</associated_store_code>
+        <associated_store_code>BelleVieNZ</associated_store_code>
+        <associated_store_code>BelleVieUS</associated_store_code>
+        <associated_store_code>cooks</associated_store_code>
+        <associated_store_code>sageCH</associated_store_code>
+        <associated_store_code>sageDE</associated_store_code>
+        <associated_store_code>sageEU</associated_store_code>
+    </associated_store_codes>
+</store_association>
+</store_associations>

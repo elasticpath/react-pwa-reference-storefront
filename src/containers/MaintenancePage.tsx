@@ -31,13 +31,13 @@ const dogeFileName = 'maintenance-banner.png';
 
 function MaintenancePage() {
   return (
-    <div className="viewport ui-container static-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
+    <div className="viewport ui-container static-ui-container" data-region="viewPortRegion">
       <div>
-        <div className="app-main static-contant-container" data-region="appMain" style={{ display: 'block' }}>
+        <div className="app-main static-contant-container" data-region="appMain">
           <div>
             <div className="static-container container">
               <div className="static-container-inner">
-                <div className="static-title-container" style={{ display: 'block' }}>
+                <div className="static-title-container">
                   <div>
                     <h1 className="view-title-maintenance view-title">
                       {intl.get('something-went-wrong-message')}
@@ -54,8 +54,8 @@ function MaintenancePage() {
                     </h3>
                   </div>
                 </div>
-                <div className="static-container dog-container" style={{ display: 'block' }}>
-                  <div className="container" style={{ display: 'block' }}>
+                <div className="static-container dog-container">
+                  <div className="container">
                     <ImageContainer fileName={dogeFileName} imgUrl={doge} />
                   </div>
                   <h2 className="static-dog-name">

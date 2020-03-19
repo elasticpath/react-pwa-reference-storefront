@@ -79,7 +79,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
           return (
             <ul key={`profile_address_${Math.random().toString(36).substr(2, 9)}`} className="profile-addresses-listing" data-el-container="profile.addresses">
               <li className="profile-address-container">
-                <div data-region="profileAddressComponentRegion" style={{ display: 'block' }}>
+                <div data-region="profileAddressComponentRegion">
                   <ul className="address-container">
                     <li className="address-name" data-el-value="address.name">
                       {`${name['given-name']} ${name['family-name']}`}
@@ -137,7 +137,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
     const isDisabled = !addresses._addressform;
     if (addresses) {
       return (
-        <div className="profile-addresses-container" data-region="profileAddressesRegion" style={{ display: 'block' }}>
+        <div className="profile-addresses-container" data-region="profileAddressesRegion">
           <div>
             <h2>
               {intl.get('addresses')}

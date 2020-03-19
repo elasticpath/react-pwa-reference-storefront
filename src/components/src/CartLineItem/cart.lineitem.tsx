@@ -589,14 +589,14 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           <div className="unit-total-price-col">
             <div className="unit-price-col" data-region="cartLineitemUnitPriceRegion">
               <div>
-                <div data-region="itemUnitPriceRegion" style={{ display: 'block' }}>
+                <div data-region="itemUnitPriceRegion">
                   {this.renderUnitPrice()}
                 </div>
               </div>
             </div>
             <div className="total-price-col" data-region="cartLineitemTotalPriceRegion">
               <div>
-                <div data-region="itemTotalPriceRegion" style={{ display: 'block' }}>
+                <div data-region="itemTotalPriceRegion">
                   {this.renderTotalPrice()}
                 </div>
                 <div data-region="itemTotalRateRegion" />

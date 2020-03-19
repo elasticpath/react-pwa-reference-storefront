@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tax_codes>
+<code guid="3dc5e93f-4f12-4db8-8c6a-59793b2222f9" code="Tax2"/>
+
+<code guid="500" code="SHIPPING"/>
+
+<code guid="501" code="NONE"/>
+
+<code guid="502" code="GOODS"/>
+
+<code guid="503" code="DIGITAL"/>
+
+<code guid="504" code="SERVICE"/>
+
+<code guid="5e0e3b7f-9f87-4c5b-a9fe-011882f778d3" code="noTax"/>
+
+<code guid="cab4204c-4b4c-40df-831e-3279edaf6afd" code="Tax1"/>
+</tax_codes>

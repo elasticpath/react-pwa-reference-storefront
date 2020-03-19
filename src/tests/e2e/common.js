@@ -223,7 +223,7 @@ module.exports = {
     await page.click(LOGGED_IN_BUTTON);
 
     await page.waitFor(3000);
-    await page.hover(LOGIN_USERNAME_INPUT);
+    await page.waitForSelector(LOGIN_USERNAME_INPUT);
     await page.waitForSelector(LOGIN_USERNAME_INPUT);
     await page.type(LOGIN_USERNAME_INPUT, user.email);
 

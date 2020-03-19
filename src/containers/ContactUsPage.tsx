@@ -24,20 +24,20 @@ import intl from 'react-intl-universal';
 
 function ContactUsPage() {
   return (
-    <div className="viewport ui-container static-ui-container" data-region="viewPortRegion" style={{ display: 'block' }}>
+    <div className="viewport ui-container static-ui-container" data-region="viewPortRegion">
       <div>
-        <div className="app-main static-contant-container" data-region="appMain" style={{ display: 'block' }}>
+        <div className="app-main static-contant-container" data-region="appMain">
           <div>
             <div className="static-container container">
               <div className="static-container-inner">
-                <div className="static-title-container" style={{ display: 'block' }}>
+                <div className="static-title-container">
                   <div>
                     <h1 className="view-title">
                       {intl.get('contact-us')}
                     </h1>
                   </div>
                 </div>
-                <div className="static-main-container" style={{ display: 'block' }}>
+                <div className="static-main-container">
                   <div className="static-container">
                     <span className="static-message">
                       {/* eslint-disable-next-line max-len */}

@@ -32,8 +32,8 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
 import ProductDisplayItemDetails from '../ProductDisplayItemDetails/productdisplayitem.details';
 import './productdisplayitem.main.less';
-import { ProductDisplayItemMainProps, ProductDisplayItemMainState, REQUISITION_LISTS_ZOOM } from './productdisplayitem.main.d';
 import ImageContainer from '../ImageContainer/image.container';
+import { ProductDisplayItemMainProps, ProductDisplayItemMainState, REQUISITION_LISTS_ZOOM } from './productdisplayitem.main.d';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -74,7 +74,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       productData: undefined,
       requisitionListData: undefined,
       arFileExists: false,
-      vrFileExists: false,
+      backgroundVRImageExists: false,
+      meshVRImageExists: false,
       itemConfiguration: {},
       detailsProductData: [],
       vrMode: false,
@@ -87,6 +88,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     this.closeVR = this.closeVR.bind(this);
     this.getVRBackgroundImg = this.getVRBackgroundImg.bind(this);
     this.handleArLinkClick = this.handleArLinkClick.bind(this);
+    this.getVRMesh = this.getVRMesh.bind(this);
   }
 
   componentDidMount() {
@@ -102,10 +104,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         const itemLookupRes = await itemLookup(nextProps.productId);
 
         let arFileExists = false;
-        let vrFileExists = false;
+        let backgroundVRImageExists = false;
+        let meshVRImageExists = false;
 
         if (Config.vr.enable) {
-          vrFileExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+          backgroundVRImageExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+          meshVRImageExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrMeshesUrl.replace('%sku%', itemLookupRes._code[0].code));
         }
 
         if (Config.arKit.enable) {
@@ -117,7 +121,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           productData: itemLookupRes,
           detailsProductData: itemLookupRes._definition[0].details,
           arFileExists,
-          vrFileExists,
+          backgroundVRImageExists,
+          meshVRImageExists,
         };
       } catch (err) {
         // eslint-disable-next-line no-console
@@ -145,10 +150,12 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
       const itemLookupRes = await itemLookup(productId, false);
       let arFileExists = false;
-      let vrFileExists = false;
+      let backgroundVRImageExists = false;
+      let meshVRImageExists = false;
 
       if (Config.vr.enable) {
-        vrFileExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+        backgroundVRImageExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrImagesUrl.replace('%sku%', itemLookupRes._code[0].code));
+        meshVRImageExists = await ProductDisplayItemMain.urlExists(Config.vr.skuVrMeshesUrl.replace('%sku%', itemLookupRes._code[0].code));
       }
 
       if (Config.arKit.enable && document.createElement('a').relList.supports('ar')) {
@@ -160,7 +167,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         detailsProductData: itemLookupRes._definition[0].details,
         multiImages: validImg,
         arFileExists,
-        vrFileExists,
+        backgroundVRImageExists,
+        meshVRImageExists,
       });
     } catch (err) {
       // eslint-disable-next-line no-console
@@ -231,7 +239,8 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       productData,
       arFileExists,
       vrMode,
-      vrFileExists,
+      backgroundVRImageExists,
+      meshVRImageExists,
       multiImages,
       detailsProductData,
     } = this.state;
@@ -280,7 +289,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       <div className={`product-image-carousel-wrap ${multiImages.length > 0 ? '' : 'single-image-slider'}`}>
         <div className="product-image-carousel">
           {
-            !vrMode && vrFileExists && (
+            !vrMode && (backgroundVRImageExists || meshVRImageExists) && (
               <button type="button" className="vr-icon-container" onClick={() => this.initVR()} />
             )
           }
@@ -322,8 +331,25 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
   }
 
   getVRBackgroundImg() {
-    const { productData } = this.state;
-    return Config.vr.skuVrImagesUrl.replace('%sku%', `${productData._code[0].code}`);
+    const { productData, backgroundVRImageExists } = this.state;
+    const backgroundUrl = Config.vr.skuVrImagesUrl.replace('%sku%', productData._code[0].code);
+
+    if (backgroundVRImageExists) {
+      return backgroundUrl;
+    }
+
+    return '';
+  }
+
+  getVRMesh() {
+    const { productData, meshVRImageExists } = this.state;
+    const meshUrl = Config.vr.skuVrMeshesUrl.replace('%sku%', productData._code[0].code);
+
+    if (meshVRImageExists) {
+      return meshUrl;
+    }
+
+    return '';
   }
 
   render() {
@@ -345,7 +371,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         <div className="itemdetail-component container-3">
           <div className="product-item-container">
             <div className="itemdetail-assets">
-              <div data-region="itemDetailAssetRegion" style={{ display: 'block' }}>
+              <div data-region="itemDetailAssetRegion">
                 <div className="itemdetail-asset-container">
                   {(featuredProductAttribute)
                     ? (
@@ -356,7 +382,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     : ('')
                   }
 
-                  {vrMode ? (<VRProductDisplayItem handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />) : this.renderProductImage()}
+                  {vrMode ? (<VRProductDisplayItem meshUri={this.getVRMesh()} handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />) : this.renderProductImage()}
 
                 </div>
               </div>

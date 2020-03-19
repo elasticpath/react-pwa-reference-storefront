@@ -50,11 +50,12 @@ export interface ProductDisplayItemMainState {
     productData: any,
     requisitionListData: any,
     arFileExists: boolean,
-    vrFileExists: boolean,
     itemConfiguration: { [key: string]: any },
     detailsProductData: any,
     vrMode: boolean;
     multiImages: any,
+    meshVRImageExists: boolean,
+    backgroundVRImageExists: boolean,
   }
 
 export const REQUISITION_LISTS_ZOOM : [] = [

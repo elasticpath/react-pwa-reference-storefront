@@ -58,7 +58,8 @@
   },
   "vr": {
     "enable": true,
-    "skuVrImagesUrl": "https://s3.amazonaws.com/referenceexp/vr/%sku%.jpg"
+    "skuVrImagesUrl": "https://s3.amazonaws.com/referenceexp/vr/%sku%.jpg",
+    "skuVrMeshesUrl": "https://s3.amazonaws.com/referenceexp/vr/meshes/%sku%.glb"
   },
   "indi": {
     "enable": false,

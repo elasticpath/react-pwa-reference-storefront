@@ -1,0 +1,2882 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<productassociations>
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:27-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES830</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-03-26T07:13:59-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES990</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:05-04:00</enabledate>
+    <sourceproductcode>BBM400</sourceproductcode>
+    <targetproductcode>SP0000550</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:06-04:00</enabledate>
+    <sourceproductcode>BCG450</sourceproductcode>
+    <targetproductcode>SP0000621</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:18-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES250</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-10-11T17:00:44-04:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>BDC450</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:29-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000022</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T02:56:14-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieDECatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-08-29T03:15:38-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007384</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-14T21:42:34-04:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BCG820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:01-04:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000393</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-07-22T01:51:47-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007387</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-07-10T03:47:21-04:00</enabledate>
+    <sourceproductcode>AQP-LSAN</sourceproductcode>
+    <targetproductcode>AQP24S</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000505</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:14:36-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0014470</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-12-17T03:58:46-05:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQP24C</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T08:23:06-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000265</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:39-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000034</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:26-04:00</enabledate>
+    <sourceproductcode>AQP-LSAN</sourceproductcode>
+    <targetproductcode>AQPFBO</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:41-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>SP0000663</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:15:12-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0020008</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:14:22-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000257</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:26-04:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQPFBO</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:06-04:00</enabledate>
+    <sourceproductcode>BCG450</sourceproductcode>
+    <targetproductcode>SP0000621</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000506</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-09-18T04:32:33-04:00</enabledate>
+    <sourceproductcode>ATKCQ20</sourceproductcode>
+    <targetproductcode>CS10001</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T03:10:05-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000021</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:16-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES200</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-11T00:45:53-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>SP0000655</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:29-04:00</enabledate>
+    <sourceproductcode>AQP-FCR3</sourceproductcode>
+    <targetproductcode>AQPQJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-08-19T20:48:36-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000027</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T08:11:25-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0020006</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:04-04:00</enabledate>
+    <sourceproductcode>BBM400</sourceproductcode>
+    <targetproductcode>SP0000538</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:14:33-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0005830</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000503</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T03:18:42-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>SP0000656</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-10-15T02:04:13-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BGR820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T02:56:14-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES810</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-27T07:52:38-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000031</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>SP0000592</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>SP0000591</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-14T21:42:34-04:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BCG820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:25-04:00</enabledate>
+    <sourceproductcode>AQP-FCR-C2</sourceproductcode>
+    <targetproductcode>AQPCJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T02:56:19-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES980</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:26-04:00</enabledate>
+    <sourceproductcode>AQP-LSAN</sourceproductcode>
+    <targetproductcode>AQPFBO</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:58-05:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007385</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieDECatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-08-29T03:15:39-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007385</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-11T00:05:28-04:00</enabledate>
+    <sourceproductcode>BBA600XL</sourceproductcode>
+    <targetproductcode>BPR650</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:39-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000034</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-11-28T19:27:04-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0001800</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-09-21T03:08:36-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>BES810BSS</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:15:11-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0020005</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-05-02T03:40:07-04:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BES980</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000502</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-13T05:40:44-04:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0001570</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:40-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>SP0000656</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:51-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007387</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-01-01T23:56:45-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000022</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:49-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES990</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000507</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-01-02T02:04:05-05:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000395</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:29-04:00</enabledate>
+    <sourceproductcode>AQP-FCR1</sourceproductcode>
+    <targetproductcode>AQPQJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieDECatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-08-10T01:25:51-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SES100NEU0NEU1</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:01-04:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000383</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:29-04:00</enabledate>
+    <sourceproductcode>AQP-FCR1</sourceproductcode>
+    <targetproductcode>AQPQJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-04-26T00:57:18-04:00</enabledate>
+    <sourceproductcode>BBL600</sourceproductcode>
+    <targetproductcode>SP0011042</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T03:34:22-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>SP0000662</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000506</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T23:02:27-04:00</enabledate>
+    <sourceproductcode>BBL001</sourceproductcode>
+    <targetproductcode>BBL915</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-07-04T17:07:14-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0000034</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-07-22T01:51:45-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007384</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-07-01T20:04:25-04:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>800CP</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:29-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000026</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-03-08T23:19:03-05:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>BES500</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:49-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES990</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-04T02:42:48-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000021</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-17T22:09:21-04:00</enabledate>
+    <sourceproductcode>BBL620</sourceproductcode>
+    <targetproductcode>BGR200</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-01-15T22:08:11-05:00</enabledate>
+    <sourceproductcode>BCG600</sourceproductcode>
+    <targetproductcode>SP0008604</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:50:50-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000264</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieDECatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-08-10T01:25:51-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SCB100BAL0NEU1</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>Recommendation</type>
+    <enabledate>2020-01-05T16:12:07-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>BSM600</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>SP0000590</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-11T00:05:30-04:00</enabledate>
+    <sourceproductcode>BBA600XL</sourceproductcode>
+    <targetproductcode>BRC600</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-25T07:42:37-04:00</enabledate>
+    <sourceproductcode>BBL620</sourceproductcode>
+    <targetproductcode>BOV820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-07-23T23:30:53-04:00</enabledate>
+    <sourceproductcode>AQP-LSAN</sourceproductcode>
+    <targetproductcode>AQPFBO</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-09-24T19:59:06-04:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQP-FCR1</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-07-10T03:37:52-04:00</enabledate>
+    <sourceproductcode>AQP-OT-RF2</sourceproductcode>
+    <targetproductcode>AQPOT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>SP0000569</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:25-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-07-06T04:13:39-04:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BES900</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-23T00:01:58-04:00</enabledate>
+    <sourceproductcode>BBL910</sourceproductcode>
+    <targetproductcode>SP0000504</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:15:11-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0020006</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-04-26T00:57:23-04:00</enabledate>
+    <sourceproductcode>BBL910</sourceproductcode>
+    <targetproductcode>SP0009091</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-23T02:49:09-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000033</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:23-04:00</enabledate>
+    <sourceproductcode>AQP-LSAN</sourceproductcode>
+    <targetproductcode>AQP24S</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-04T21:53:43-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>800ES</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-04-26T00:57:23-04:00</enabledate>
+    <sourceproductcode>BBL910</sourceproductcode>
+    <targetproductcode>SP0009091</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:35-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES860</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:33-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES840</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-01-02T02:09:25-05:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BES990</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:03-04:00</enabledate>
+    <sourceproductcode>BBL600</sourceproductcode>
+    <targetproductcode>SP0000441</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T08:23:06-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000265</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:50-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007384</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T08:11:25-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0020008</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000507</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:01-04:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000381</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:25-04:00</enabledate>
+    <sourceproductcode>AQP-FCR1</sourceproductcode>
+    <targetproductcode>AQPCJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:38-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000022</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000505</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T08:23:05-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000264</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>SP0000591</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-21T09:57:07-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000021</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:51-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007385</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T03:18:39-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000022</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-23T00:01:58-04:00</enabledate>
+    <sourceproductcode>BBL910</sourceproductcode>
+    <targetproductcode>SP0000504</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-24T02:15:09-04:00</enabledate>
+    <sourceproductcode>BBL002</sourceproductcode>
+    <targetproductcode>BNE500</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:27-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES830</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-22T23:41:26-04:00</enabledate>
+    <sourceproductcode>BCG800</sourceproductcode>
+    <targetproductcode>SP0000631</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T23:02:27-04:00</enabledate>
+    <sourceproductcode>BBL001</sourceproductcode>
+    <targetproductcode>BBL915</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:13:59-04:00</enabledate>
+    <sourceproductcode>800ES</sourceproductcode>
+    <targetproductcode>SP0000166</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:41-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES870</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:43-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES880</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-27T21:57:01-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000026</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T03:34:22-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>SP0000663</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-23T04:45:18-04:00</enabledate>
+    <sourceproductcode>BCG111</sourceproductcode>
+    <targetproductcode>SP0000033</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:15:00-05:00</enabledate>
+    <sourceproductcode>BCG600</sourceproductcode>
+    <targetproductcode>SP0008603</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:47-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES980</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-01-01T23:54:58-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000024</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-11T00:05:30-04:00</enabledate>
+    <sourceproductcode>BBA600XL</sourceproductcode>
+    <targetproductcode>BRC600</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-12T23:04:13-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES920</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-06-25T00:12:05-04:00</enabledate>
+    <sourceproductcode>BCG007</sourceproductcode>
+    <targetproductcode>BOV820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:23-04:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQP24S</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:03-04:00</enabledate>
+    <sourceproductcode>BBL600</sourceproductcode>
+    <targetproductcode>SP0000441</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-09-23T14:00:30-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000011</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:25-04:00</enabledate>
+    <sourceproductcode>AQP-FCR3</sourceproductcode>
+    <targetproductcode>AQPCJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:01-04:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000383</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:43-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES880</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-11T00:05:28-04:00</enabledate>
+    <sourceproductcode>BBA600XL</sourceproductcode>
+    <targetproductcode>BPR650</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:29-04:00</enabledate>
+    <sourceproductcode>AQP-FCR3</sourceproductcode>
+    <targetproductcode>AQPQJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>Recommendation</type>
+    <enabledate>2020-01-05T15:04:06-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>BKE395</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T23:18:47-04:00</enabledate>
+    <sourceproductcode>BCI100</sourceproductcode>
+    <targetproductcode>BCI600</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T08:23:06-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000277</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-07-30T21:56:18-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000026</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:58-05:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007384</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:02-04:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000394</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-01-02T02:04:05-05:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000395</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:18-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES250</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:51-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007386</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:02-04:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000394</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:29-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000024</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-04-26T00:57:18-04:00</enabledate>
+    <sourceproductcode>BBL600</sourceproductcode>
+    <targetproductcode>SP0011042</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-10-01T00:53:10-04:00</enabledate>
+    <sourceproductcode>AQP-FCR1</sourceproductcode>
+    <targetproductcode>AQP-FCR-Q</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:25-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-13T05:24:01-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0001570</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:03-04:00</enabledate>
+    <sourceproductcode>BBL800</sourceproductcode>
+    <targetproductcode>SP0000490</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-22T23:38:14-04:00</enabledate>
+    <sourceproductcode>800ES</sourceproductcode>
+    <targetproductcode>SP0000123</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-07-23T23:30:53-04:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQPFBO</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:15:11-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0020007</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T08:23:05-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000264</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-20T19:44:50-04:00</enabledate>
+    <sourceproductcode>BCG111</sourceproductcode>
+    <targetproductcode>SP0000021</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-17T21:30:21-04:00</enabledate>
+    <sourceproductcode>BBL620</sourceproductcode>
+    <targetproductcode>BES500</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-26T23:20:36-04:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>SEC250NEU0NEU1</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:23-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES810</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-27T07:00:22-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000027</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:32:12-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0020137</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:50:51-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000277</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-08-05T22:17:17-04:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>SP0016051</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-10-16T17:24:07-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>BDC650</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:35-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES860</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-26T01:29:20-04:00</enabledate>
+    <sourceproductcode>BBL300</sourceproductcode>
+    <targetproductcode>SP0007349</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:26-04:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQPFBO</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:14:36-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0014471</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-26T23:20:36-04:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>BES0080NXX1</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-07-05T11:17:14-04:00</enabledate>
+    <sourceproductcode>BBL910</sourceproductcode>
+    <targetproductcode>JE98XL</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-01-02T02:09:25-05:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BES990</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:23-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES810</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieDECatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-08-10T01:25:51-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SWF100NEU0NEU1</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:40-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>SP0000662</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:01-04:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000381</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:41-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES870</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-15T00:44:00-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0001789</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-27T21:50:29-04:00</enabledate>
+    <sourceproductcode>BCG007</sourceproductcode>
+    <targetproductcode>SP0000011</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-07-15T07:40:11-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007386</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-12-17T03:58:48-05:00</enabledate>
+    <sourceproductcode>AQP-FCR-C2</sourceproductcode>
+    <targetproductcode>AQPCJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T08:11:24-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0020005</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-07-14T14:36:21-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000024</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-21T03:52:54-04:00</enabledate>
+    <sourceproductcode>ATKCQ20</sourceproductcode>
+    <targetproductcode>CS20001</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-12-17T03:58:46-05:00</enabledate>
+    <sourceproductcode>AQP-LSAN</sourceproductcode>
+    <targetproductcode>AQP24S</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T02:09:12-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>800ES</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-22T20:45:44-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BTM800</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:58-05:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007385</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:21-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES800</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T02:56:16-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES860</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:03-04:00</enabledate>
+    <sourceproductcode>BBL550</sourceproductcode>
+    <targetproductcode>SP0000441</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T04:41:53-05:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000266</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T04:41:51-05:00</enabledate>
+    <sourceproductcode>800ES</sourceproductcode>
+    <targetproductcode>SP0000084</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-23T02:49:09-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000033</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-08-19T20:48:37-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000027</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T08:11:25-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0020007</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:33-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES840</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieDECatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-08-29T03:24:45-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007387</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>Recommendation</type>
+    <enabledate>2020-01-05T16:12:07-05:00</enabledate>
+    <sourceproductcode>BCI600</sourceproductcode>
+    <targetproductcode>BPB550</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T04:27:19-05:00</enabledate>
+    <sourceproductcode>BCG600</sourceproductcode>
+    <targetproductcode>SP0008603</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-12-17T03:58:46-05:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQP24S</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>SP0000569</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-07-06T04:13:39-04:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BES900</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:47-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES980</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:59-05:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007387</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T04:41:53-05:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000266</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T02:56:17-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES900</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:44-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES900</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:30-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000034</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:46-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>SP0001801</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>SP0000590</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:05-04:00</enabledate>
+    <sourceproductcode>BBM400</sourceproductcode>
+    <targetproductcode>SP0000551</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-09-18T04:32:34-04:00</enabledate>
+    <sourceproductcode>ATKCQ20</sourceproductcode>
+    <targetproductcode>CS20001</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-13T05:24:01-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0001570</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-15T00:44:00-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0001789</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:30-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000031</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-08-19T20:48:35-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000022</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:38-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000021</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T06:40:52-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000257</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:14:58-05:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007386</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-24T04:42:02-04:00</enabledate>
+    <sourceproductcode>BCG007</sourceproductcode>
+    <targetproductcode>SP0000022</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T23:18:47-04:00</enabledate>
+    <sourceproductcode>BCI100</sourceproductcode>
+    <targetproductcode>BCI600</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-27T21:57:00-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000024</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:14:36-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0014470</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-25T07:42:37-04:00</enabledate>
+    <sourceproductcode>BBL620</sourceproductcode>
+    <targetproductcode>BFS800</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-12-17T03:58:46-05:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQP24S</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000504</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-07-14T14:36:21-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000024</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-07-30T21:56:18-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000026</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-13T04:47:51-04:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BCG820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:44-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES900</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:16-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES200</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-21T03:26:22-04:00</enabledate>
+    <sourceproductcode>ATKCQ20</sourceproductcode>
+    <targetproductcode>CS10001</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:03-04:00</enabledate>
+    <sourceproductcode>BBL800</sourceproductcode>
+    <targetproductcode>SP0000490</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:32:12-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0020137</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-02-01T01:15:01-05:00</enabledate>
+    <sourceproductcode>BCG600</sourceproductcode>
+    <targetproductcode>SP0008604</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieNZCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:22-04:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQP24C</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T04:14:47-04:00</enabledate>
+    <sourceproductcode>BBL280WHT</sourceproductcode>
+    <targetproductcode>SP0007744</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000503</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-09-25T00:48:36-04:00</enabledate>
+    <sourceproductcode>BBL605</sourceproductcode>
+    <targetproductcode>BES840</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-08-19T20:48:37-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000027</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-01-02T01:59:36-05:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BES990</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-04T21:54:36-04:00</enabledate>
+    <sourceproductcode>BBA600XL</sourceproductcode>
+    <targetproductcode>BEM800</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-07-10T03:37:52-04:00</enabledate>
+    <sourceproductcode>AQP-OT-RF2</sourceproductcode>
+    <targetproductcode>AQPOT</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000504</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-13T05:00:21-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BCG820</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-23T02:49:09-04:00</enabledate>
+    <sourceproductcode>BCG115</sourceproductcode>
+    <targetproductcode>SP0000033</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-27T07:52:38-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000031</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-11T21:06:21-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES800</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-23T03:46:16-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000277</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-23T03:46:16-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000277</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-10-16T17:24:07-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>BES840</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-06-27T23:50:25-04:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000011</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:14:36-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0014471</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-17T22:09:21-04:00</enabledate>
+    <sourceproductcode>BBL620</sourceproductcode>
+    <targetproductcode>JE95</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieDECatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-08-29T03:15:39-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007386</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-01-02T00:08:25-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000021</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-05-02T03:40:07-04:00</enabledate>
+    <sourceproductcode>BCB100BSS</sourceproductcode>
+    <targetproductcode>BES980</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T04:14:33-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0005830</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-12-17T03:58:46-05:00</enabledate>
+    <sourceproductcode>AQP-FCR-Q</sourceproductcode>
+    <targetproductcode>AQP24C</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:25-04:00</enabledate>
+    <sourceproductcode>AQP-FCR1</sourceproductcode>
+    <targetproductcode>AQPCJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Recommendation</type>
+    <enabledate>2018-12-17T03:16:23-05:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>BES880</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-23T23:44:08-04:00</enabledate>
+    <sourceproductcode>800ES</sourceproductcode>
+    <targetproductcode>SP0000165</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-04T21:53:43-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>800ES</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-10-15T02:04:13-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>CS20001</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-22T23:41:22-04:00</enabledate>
+    <sourceproductcode>800ES</sourceproductcode>
+    <targetproductcode>SP0000129</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:32-04:00</enabledate>
+    <sourceproductcode>BBM800</sourceproductcode>
+    <targetproductcode>SP0000592</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-03-11T18:04:36-04:00</enabledate>
+    <sourceproductcode>BCG600</sourceproductcode>
+    <targetproductcode>SP0000024</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2019-08-12T23:04:13-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES920</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-04-26T00:57:16-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000261</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieEUCatalog">
+    <type>Recommendation</type>
+    <enabledate>2019-09-24T15:28:10-04:00</enabledate>
+    <sourceproductcode>BCG820</sourceproductcode>
+    <targetproductcode>BFP800</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>0</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieMasterCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-09-03T03:45:25-04:00</enabledate>
+    <sourceproductcode>AQP-FCR3</sourceproductcode>
+    <targetproductcode>AQPCJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-13T05:24:02-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0001789</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>DependentItem</type>
+    <enabledate>2019-04-26T00:57:16-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000261</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-12-17T03:58:48-05:00</enabledate>
+    <sourceproductcode>AQP-FCR-C2</sourceproductcode>
+    <targetproductcode>AQPCJU</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCHCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T03:18:41-05:00</enabledate>
+    <sourceproductcode>800CP</sourceproductcode>
+    <targetproductcode>SP0000034</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-12-17T04:41:53-05:00</enabledate>
+    <sourceproductcode>BBL100</sourceproductcode>
+    <targetproductcode>SP0000359</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-22T23:41:24-04:00</enabledate>
+    <sourceproductcode>BBL300</sourceproductcode>
+    <targetproductcode>SP0000366</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-07-11T03:14:01-04:00</enabledate>
+    <sourceproductcode>BBL420</sourceproductcode>
+    <targetproductcode>SP0000393</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>Accessory</type>
+    <enabledate>2018-10-04T21:54:36-04:00</enabledate>
+    <sourceproductcode>BBA600XL</sourceproductcode>
+    <targetproductcode>BEM800</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUKCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-09T00:31:31-04:00</enabledate>
+    <sourceproductcode>BBL915</sourceproductcode>
+    <targetproductcode>SP0000502</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieAUCatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-23T01:22:27-04:00</enabledate>
+    <sourceproductcode>BBL605</sourceproductcode>
+    <targetproductcode>SP0000474</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-06-05T06:40:52-04:00</enabledate>
+    <sourceproductcode>800JE</sourceproductcode>
+    <targetproductcode>SP0000257</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieUSCatalog">
+    <type>Accessory</type>
+    <enabledate>2018-06-05T02:56:14-04:00</enabledate>
+    <sourceproductcode>BCB100</sourceproductcode>
+    <targetproductcode>BES830</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+
+<productassociation catalog="BelleVieCACatalog">
+    <type>DependentItem</type>
+    <enabledate>2018-10-13T03:53:04-04:00</enabledate>
+    <sourceproductcode>BBL405</sourceproductcode>
+    <targetproductcode>SP0007384</targetproductcode>
+    <defaultquantity>1</defaultquantity>
+    <sourceproductdependent>false</sourceproductdependent>
+    <ordering>1</ordering>
+</productassociation>
+</productassociations>
