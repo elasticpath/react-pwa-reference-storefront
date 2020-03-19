@@ -25,6 +25,7 @@ import 'aframe-look-at-component';
 import 'aframe-html-shader';
 import './VRProductDisplayItem.less';
 import intl from 'react-intl-universal';
+import VRPanelContent from './VRPanelContent';
 import { IVRComponentProps, IVRComponentState } from './VRProductDisplayItem.d';
 
 class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentState> {
@@ -192,17 +193,18 @@ class VRProductDisplayItem extends Component<IVRComponentProps, IVRComponentStat
 
           <div className="cover-html-texture" />
 
-          {/** The place holder html for description panel.  Replace this div to adjust what is shown! */}
-          <div className="outer-html-texture">
-            <div id="boxHTML" className="inner-html-texture">
-              <p className="html-text-texture">Place holder html</p>
-            </div>
-          </div>
+          <VRPanelContent />
 
-          <Scene className="vr-container" embedded vr-mode-ui="enterVRButton: #myEnterVRButton;" background="color: grey" loading-screen="backgroundColor: #000000; dotsColor: white">
+          <Scene
+            className="vr-container"
+            embedded
+            vr-mode-ui="enterVRButton: #myEnterVRButton;"
+            background="color: grey"
+            loading-screen="backgroundColor: #000000; dotsColor: white"
+          >
+
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a id="myEnterVRButton" href="#">
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
               <div role="button" tabIndex={0} className="vr-fullscreen" />
             </a>
 
