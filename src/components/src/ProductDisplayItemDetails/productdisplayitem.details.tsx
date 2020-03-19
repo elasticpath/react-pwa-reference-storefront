@@ -28,6 +28,7 @@ import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.select
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 import { ProductDisplayDetailsProps, ProductDisplayItemMainState } from './productdisplayitem.details.d';
 import { ZOOM } from './productdisplayitem.details.constants';
+import './productdisplayitem.details.less';
 
 let intl = { get: str => str };
 
