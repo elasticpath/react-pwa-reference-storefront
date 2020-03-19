@@ -68,11 +68,13 @@
     }
 
     .goods-description {
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 14px;
+      line-height: 22px;
       margin-bottom: 10px;
 
       @media (min-width: 481px) {
+        font-size: 16px;
+        line-height: 24px;
         margin: 0 20px 0 0;
       }
     }
@@ -104,9 +106,13 @@
 
   .goods-heading {
     color: @mainColor;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 600;
     margin-bottom: 15px;
+
+    @media (min-width: 481px) {
+      font-size: 36px;
+    }
   }
 
   .goods-description {
@@ -298,6 +304,12 @@
         @media (min-width: 481px) {
           .main-goods-image {
             width: 50%;
+          }
+        }
+
+        @media (min-width: 992px) {
+          .goods-title {
+            max-width: 185px;
           }
         }
       }
