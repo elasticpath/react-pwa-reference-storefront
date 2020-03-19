@@ -136,7 +136,7 @@ describe('Profile', () => {
   test('Update Personal Info', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 20,
+      slowMo: 120,
     });
     const page = await browser.newPage();
 
