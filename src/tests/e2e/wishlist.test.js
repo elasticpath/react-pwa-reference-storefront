@@ -54,7 +54,7 @@ describe('Wishlist', () => {
   test('Move wishlist item to cart', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 20,
+      slowMo: 120,
     });
     const page = await browser.newPage();
 
@@ -96,7 +96,7 @@ describe('Wishlist', () => {
   test('Remove wishlist item', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 20,
+      slowMo: 120,
     });
     const page = await browser.newPage();
 
