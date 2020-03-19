@@ -33,7 +33,8 @@ import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
 import ProductDisplayItemDetails from '../ProductDisplayItemDetails/productdisplayitem.details';
 import './productdisplayitem.main.less';
 import ImageContainer from '../ImageContainer/image.container';
-import { ProductDisplayItemMainProps, ProductDisplayItemMainState, REQUISITION_LISTS_ZOOM } from './productdisplayitem.main.d';
+import { ProductDisplayItemMainProps, ProductDisplayItemMainState } from './productdisplayitem.main.d';
+import { REQUISITION_LISTS_ZOOM } from './productdisplayitem.main.constants';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };

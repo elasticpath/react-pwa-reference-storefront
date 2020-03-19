@@ -57,10 +57,3 @@ export interface ProductDisplayItemMainState {
     meshVRImageExists: boolean,
     backgroundVRImageExists: boolean,
   }
-
-export const REQUISITION_LISTS_ZOOM : [] = [
-  'itemlistinfo',
-  'itemlistinfo:allitemlists',
-  'itemlistinfo:allitemlists:element',
-  'itemlistinfo:allitemlists:element:additemstoitemlistform',
-];
