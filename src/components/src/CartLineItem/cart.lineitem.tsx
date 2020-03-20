@@ -241,7 +241,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
     const {
       item, handleQuantityChange, onRemove,
     } = this.props;
-    handleQuantityChange();
     login().then(() => {
       cortexFetch(item.self.uri,
         {

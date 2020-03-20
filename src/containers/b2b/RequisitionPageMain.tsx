@@ -639,7 +639,6 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
                             item={product}
                             hideAvailabilityLabel
                             isTableView
-                            onRemove={() => this.loadRequisitionListData(true)}
                             key={product._item[0]._code[0].code}
                             onCheck={() => { this.handleCheck(product); }}
                             isChosen={isProductChecked(product)}
