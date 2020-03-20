@@ -22,7 +22,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Readme from './README.md';
 import ImageContainer from './image.container';
-import homeEspotParallax1 from '../../../images/site-images/parallax-banner-1.jpg';
+import homeEspotParallax1 from '../../../images/site-images/hero-banner-0.jpg';
 
 storiesOf('Components|ImageContainer', module)
   .addParameters({
@@ -32,7 +32,7 @@ storiesOf('Components|ImageContainer', module)
     },
   })
   .add('ImageContainer', () => {
-    const homeEspotParallax1FileName = 'parallax-banner-1.jpg';
+    const homeEspotParallax1FileName = 'hero-banner-0.jpg';
 
     return (<ImageContainer className="parallax-image" fileName={homeEspotParallax1FileName} imgUrl={homeEspotParallax1} />);
   });
