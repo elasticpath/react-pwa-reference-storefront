@@ -96,7 +96,7 @@ describe('Wishlist', () => {
   test('Remove wishlist item', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
-      slowMo: 30,
+      slowMo: 120,
     });
     const page = await browser.newPage();
 

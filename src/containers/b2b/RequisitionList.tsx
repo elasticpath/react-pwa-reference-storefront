@@ -46,10 +46,7 @@ const listsZoomArray = [
   'itemlistinfo:allitemlists:element:additemlisttocartforms:element',
   'itemlistinfo:allitemlists:element:additemlisttocartforms:element:target',
   'itemlistinfo:allitemlists:element:additemlisttocartforms:element:target:descriptor',
-  'itemlistinfo:allitemlists:element:additemlisttocartforms:element:additemlisttocartaction',
-  'itemlistinfo:allitemlists:element:itemlists',
-  'itemlistinfo:allitemlists:element:lineitems',
-  'itemlistinfo:allitemlists:element:itemlisttype',
+  'itemlistinfo:allitemlists:element:paginatedlineitems',
   'itemlistinfo:allitemlists:next',
   'itemlistinfo:allitemlists:previous',
 ];
@@ -263,7 +260,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
 
   // eslint-disable-next-line class-methods-use-this
   addToSelectedCart(cart, list, onCountChange) {
-    if (list['item-count'] > 0) {
+    if (list._paginatedlineitems[0].pagination.results > 0) {
       cortexFetch(cart.self.uri, {
         method: 'post',
         headers: {
@@ -275,7 +272,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
         .then((res) => {
           if (res.status === 200 || res.status === 201) {
             const cartName = cart._target[0]._descriptor[0].name ? cart._target[0]._descriptor[0].name : intl.get('default');
-            onCountChange(cartName, list['item-count']);
+            onCountChange(cartName, list._paginatedlineitems[0].pagination.results);
           }
         })
         .catch((error) => {
