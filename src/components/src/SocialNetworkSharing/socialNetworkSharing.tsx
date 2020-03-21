@@ -21,6 +21,7 @@
 
 import React from 'react';
 import { InlineShareButtons } from 'sharethis-reactjs';
+import './socialNetworkSharing.less';
 
 interface PurchaseDetailsMainProps {
   /** the product link to populate message with */
