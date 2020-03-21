@@ -1,19 +1,19 @@
-# ProductDisplayItemMain
+# ProductDisplayItemDetails
 
 #### Description
 
-Displays product item information for product display page with interactable elements.
+The component Displays product item information such as name, price, availability.  The component also provides the ability to add an item to cart with specified quantity.  Multi cart functionality is also supported with this component.
 
 #### Usage
 
 ```js
-import { ProductDisplayItemMain } from '@elasticpath/store-components';
+import { ProductDisplayItemDetails } from '@elasticpath/store-components';
 ```
 
 #### Example
 
 ```js
-<ProductDisplayItemMain productId={decodeURIComponent(props.match.params.url)} onChangeProductFeature={handleChangeProductFeature} onAddToCart={handleAddToCart} onAddToWishList={handleAddToWishList} productLink={handleProductLink} isInStandaloneMode={isInStandaloneMode} itemDetailLink="/itemdetail" onReloadPage={onReloadPage} />
+<ProductDisplayItemDetails productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} />
 ```
 
 #### Properties

@@ -25,7 +25,7 @@ import { MemoryRouter } from 'react-router';
 import '../../../theme/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../theme/style.less';
-import { text } from '@storybook/addon-knobs/react';
+import { text, object } from '@storybook/addon-knobs/react';
 import Readme from './README.md';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
 import productData from './MockHttpResponses/productData_prop.json';
@@ -43,7 +43,7 @@ function processProductDisplayItemKnobCallbacks() {
   onChangeProductFeatureFuncText = text('onChangeProductFeature', '() => {alert("onChangeProductFeature invoked")}');
 }
 
-storiesOf('Components|ProductDisplayItemMain', module)
+storiesOf('Components|ProductDisplayItemDetails', module)
   .addParameters({
     readme: {
       // Show readme at the addons panel
@@ -59,8 +59,8 @@ storiesOf('Components|ProductDisplayItemMain', module)
     const onAddToCart = text('onAddToCart', '() => {alert("onAddToCart invoked")}');
 
     return <ProductDisplayItemDetails
-      productData={productData}
-      requisitionListData={{}}
+      productData={object('productData', productData)}
+      requisitionListData={object('recquisitionListData', productData)}
       onAddToWishList={() => { textToFunc(onAddToWishList); }}
       onChangeProductFeature={() => { textToFunc(onChangeProductFeature); }}
       onAddToCart={() => { textToFunc(onAddToCart); }}
