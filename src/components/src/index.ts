@@ -99,6 +99,7 @@ import B2BHomePage from './B2bHomePage/b2b.home.page';
 import B2CHomePage from './B2cHomePage/b2c.home.page';
 import ImageContainer from './ImageContainer/image.container';
 import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
+import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
 
 export {
   init,
@@ -181,4 +182,5 @@ export {
   VRProductDisplayItem,
   ImageContainer,
   DropdownCartSelection,
+  SocialNetworkSharing,
 };

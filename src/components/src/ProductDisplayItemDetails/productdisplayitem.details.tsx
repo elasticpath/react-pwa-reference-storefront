@@ -27,6 +27,7 @@ import PowerReview from '../PowerReview/powerreview.main';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 import { ProductDisplayDetailsProps, ProductDisplayItemMainState } from './productdisplayitem.details.d';
+import SocialNetworkSharing from '../SocialNetworkSharing/socialNetworkSharing';
 import { ZOOM } from './productdisplayitem.details.constants';
 import './productdisplayitem.details.less';
 
@@ -595,36 +596,12 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
               ) : ('')
                 }
             </div>
-            <div className="social-network-sharing">
-              <InlineShareButtons
-                config={{
-                  alignment: 'center', // alignment of buttons (left, center, right)
-                  color: 'social', // set the color of buttons (social, white)
-                  enabled: true, // show/hide buttons (true, false)
-                  font_size: 16, // font size for the buttons
-                  labels: 'cta', // button labels (cta, counts, null)
-                  language: 'en', // which language to use (see LANGUAGES)
-                  networks: [ // which networks to include (see SHARING NETWORKS)
-                    'facebook',
-                    'twitter',
-                    'pinterest',
-                    'email',
-                  ],
-                  padding: 12, // padding within buttons (INTEGER)
-                  radius: 4, // the corner radius on each button (INTEGER)
-                  size: 40, // the size of each button (INTEGER)
-
-                  // OPTIONAL PARAMETERS
-                  url: productLink, // (defaults to current url)
-                  image: productImage, // (defaults to og:image or twitter:image)
-                  description: productDescriptionValue, // (defaults to og:description or twitter:description)
-                  title: productTitle, // (defaults to og:title or twitter:title)
-                  message: 'custom email text', // (only for email sharing)
-                  subject: 'custom email subject', // (only for email sharing)
-                  username: 'custom twitter handle', // (only for twitter sharing)
-                }}
-              />
-            </div>
+            <SocialNetworkSharing
+              productLink={productLink}
+              productImage={productImage}
+              productDescriptionValue={productDescriptionValue}
+              productTitle={productTitle}
+            />
           </div>
           <PowerReview productData={productData} />
         </div>
