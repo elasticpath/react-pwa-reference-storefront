@@ -19,7 +19,6 @@
  *
  */
 import React, { Component } from 'react';
-import { InlineShareButtons } from 'sharethis-reactjs';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login, isLoggedIn } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -28,6 +27,7 @@ import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.select
 import { useRequisitionListCountDispatch } from '../requisition-list-count-context';
 import { ProductDisplayDetailsProps, ProductDisplayItemMainState } from './productdisplayitem.details.d';
 import SocialNetworkSharing from '../SocialNetworkSharing/socialNetworkSharing';
+import QuantitySelector from '../QuantitySelector/quantitySelector';
 import { ZOOM } from './productdisplayitem.details.constants';
 import './productdisplayitem.details.less';
 
@@ -534,25 +534,13 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
               <form className="itemdetail-addtocart-form form-horizontal" onSubmit={(event) => { if (isMultiCartEnabled) { event.preventDefault(); } else { ProductDisplayItemDetails.addToCart(event, itemQuantity, itemConfiguration, productData, onAddToCart); } }}>
                 {this.renderConfiguration()}
                 {this.renderSkuSelection()}
-                <div className="form-group quantity-picker-group">
-                  <label htmlFor="product_display_item_quantity_label" className="control-label">
-                    {intl.get('quantity')}
-                  </label>
-                  <div className="input-group-btn">
-                    <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                      <span>–</span>
-                    </button>
-                    <div className="quantity-col form-content form-content-quantity">
-                      <input id="product_display_quantity_field" className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" max="9999" value={itemQuantity} onChange={this.handleQuantityChange} />
-                    </div>
-                    <button type="button" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                      <span>+</span>
-                    </button>
-                  </div>
-                  {
-                    (isLoading) ? (<div className="miniLoader" />) : ''
-                    }
-                </div>
+                <QuantitySelector
+                  handleQuantityDecrement={this.handleQuantityDecrement}
+                  handleQuantityIncrement={this.handleQuantityIncrement}
+                  handleQuantityChange={this.handleQuantityChange}
+                  isLoading={isLoading}
+                  itemQuantity={itemQuantity}
+                />
                 <div className="form-group-submit">
                   {isMultiCartEnabled ? (
                     <SelectCartButton />
