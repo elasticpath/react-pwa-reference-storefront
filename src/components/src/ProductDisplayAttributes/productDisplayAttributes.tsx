@@ -19,15 +19,10 @@
  *
  */
 
-import React, { Component } from 'react';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import { ProductDisplayItemMainProps, ProductDisplayItemMainState } from './productdisplayitem.main.d';
-
-const Config: IEpConfig | any = {};
-const intl = { get: str => str };
+import React from 'react';
 
 interface ProductDisplayAttributes {
-    /** callback for when handle attribute is clicked. */
+    /** callback for when fold arrow is clicked.  Should be used to mutate detailsProductData state to re-render open or closed state. */
     handleDetailAttribute: any,
     /** data structure that component renders */
     detailsProductData: any,

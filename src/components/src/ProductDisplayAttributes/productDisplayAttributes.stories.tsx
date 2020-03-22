@@ -25,17 +25,19 @@ import { MemoryRouter } from 'react-router';
 import '../../../theme/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../theme/style.less';
-import { text, object } from '@storybook/addon-knobs/react';
+import { text } from '@storybook/addon-knobs/react';
 import Readme from './README.md';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
-import productData from './MockHttpResponses/productData_prop.json';
-
 // Import custom required scripts
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-import ProductDisplayItemDetails from './productdisplayitem.details';
+import detailsProductDataClosed from './MockHttpResponses/detailsProductData_closed.json';
+import detailsProductDataOpened from './MockHttpResponses/detailsProductData_opened.json';
 
-storiesOf('Components|ProductDisplayItemDetails', module)
+import ProductDisplayAttributes from './productDisplayAttributes';
+
+
+storiesOf('Components|ProductDisplayAttributes', module)
   .addParameters({
     readme: {
       // Show readme at the addons panel
@@ -45,16 +47,19 @@ storiesOf('Components|ProductDisplayItemDetails', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/itemdetail']}>{story()}</MemoryRouter>
   ))
-  .add('ProductDisplayItemMain Plain', () => {
-    const onChangeProductFeature = text('onChangeProductFeature', '() => {alert("onChangeProductFeature invoked")}');
-    const onAddToWishList = text('onAddToWishList', '() => {alert("onAddToWishList invoked")}');
-    const onAddToCart = text('onAddToCart', '() => {alert("onAddToCart invoked")}');
+  .add('ProductDisplayAttribute Closed', () => {
+    const handleDataAttribute = text('handleDataAttribute', '() => {alert("handleDataAttribute invoked")}');
 
-    return <ProductDisplayItemDetails
-      productData={object('productData', productData)}
-      requisitionListData={object('recquisitionListData', productData)}
-      onAddToWishList={() => { textToFunc(onAddToWishList); }}
-      onChangeProductFeature={() => { textToFunc(onChangeProductFeature); }}
-      onAddToCart={() => { textToFunc(onAddToCart); }}
+    return <ProductDisplayAttributes
+      handleDetailAttribute={() => { textToFunc(handleDataAttribute); }}
+      detailsProductData={detailsProductDataClosed}
+    />;
+  })
+  .add('ProductDisplayAttribute Open', () => {
+    const handleDataAttribute = text('handleDataAttribute', '() => {alert("handleDataAttribute invoked")}');
+
+    return <ProductDisplayAttributes
+      handleDetailAttribute={() => { textToFunc(handleDataAttribute); }}
+      detailsProductData={detailsProductDataOpened}
     />;
   });

@@ -62,6 +62,8 @@ import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdispla
 import ProductListMain from './ProductList/productlist.main';
 import ProductListItemMain from './ProductListItem/productlistitem.main';
 import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
+import ProductDisplayAttributes from './ProductDisplayAttributes/productDisplayAttributes';
+import QuantitySelector from './QuantitySelector/quantitySelector';
 import ProductListPaginationMain from './ProductListPagination/productlistpagination.main';
 import ProductRecommendationsMain from './ProductRecommendations/productrecommendations.main';
 import ProfileComplianceMain from './ProfileCompliance/profilecompliance.main';
@@ -183,4 +185,6 @@ export {
   ImageContainer,
   DropdownCartSelection,
   SocialNetworkSharing,
+  QuantitySelector,
+  ProductDisplayAttributes,
 };
