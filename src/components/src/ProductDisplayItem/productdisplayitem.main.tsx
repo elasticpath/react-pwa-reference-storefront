@@ -35,6 +35,7 @@ import './productdisplayitem.main.less';
 import ImageContainer from '../ImageContainer/image.container';
 import { ProductDisplayItemMainProps, ProductDisplayItemMainState } from './productdisplayitem.main.d';
 import { REQUISITION_LISTS_ZOOM } from './productdisplayitem.main.constants';
+import ProductDisplayAttributes from '../ProductDisplayAttributes/productDisplayAttributes';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
@@ -217,24 +218,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     }, false);
   }
 
-  renderAttributes() {
-    const { detailsProductData } = this.state;
-    if (detailsProductData) {
-      return detailsProductData.map((attribute, index) => (
-        <li key={attribute.name} className="detail-list-item">
-          <div className="item-detail-attribute-label-col">
-            {attribute['display-name']}
-            <span className={`item-arrow-btn ${attribute.isOpened ? 'up' : ''}`} role="presentation" onClick={() => this.handleDetailAttribute(index)} />
-          </div>
-          <div className={`item-detail-attribute-value-col ${attribute.isOpened ? '' : 'hide'}`}>
-            {attribute['display-value']}
-          </div>
-        </li>
-      ));
-    }
-    return null;
-  }
-
   renderProductImage() {
     const {
       productData,
@@ -355,7 +338,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   render() {
     const {
-      productData, requisitionListData, vrMode,
+      productData, requisitionListData, vrMode, detailsProductData,
     } = this.state;
 
     const {
@@ -411,19 +394,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               </ul>
             ) : ('')
             }
-            <div className="tab-content">
-              <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
-                <ul className="item-detail-attributes" data-region="itemDetailAttributeRegion">
-                  {this.renderAttributes()}
-                </ul>
-              </div>
-              <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                <div id="pr-reviewdisplay" />
-              </div>
-              <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
-                <div id="pr-questiondisplay" />
-              </div>
-            </div>
+            <ProductDisplayAttributes handleDetailAttribute={this.handleDetailAttribute} detailsProductData={detailsProductData} />
           </div>
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
