@@ -54,11 +54,11 @@ function QuantitySelector(props: PurchaseDetailsMainProps) {
       <label htmlFor="product_display_item_quantity_label" className="control-label">
         {intl.get('quantity')}
       </label>
-      <div className="input-group-btn">
+      <div className="quantity-selector-container input-group-btn">
         <button type="button" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={handleQuantityDecrement}>
           <span>–</span>
         </button>
-        <div className="quantity-col form-content form-content-quantity">
+        <div className="quantity-col form-content-quantity">
           <input
             id="product_display_quantity_field"
             className="product-display-item-quantity-select form-control form-control-quantity"

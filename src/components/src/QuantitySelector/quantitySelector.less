@@ -10,6 +10,34 @@
       text-transform: uppercase;
     }
 
+    .quantity-selector-container {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        .form-control-quantity {
+          display: block;
+          width: 82px;
+          height: 32px;
+          font-size: 14px;
+          border: 1px solid @fifthComplimentTextColor;
+          border-radius: 4px;
+          text-align: center;
+          margin: 0 auto;
+        }
+    
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+    
+        input[type=number] {
+          -moz-appearance:textfield;
+        }
+      }
+
     .form-content {
       float: right;
 
@@ -32,34 +60,6 @@
       .form-control-text {
         background: @mainBackgroundColor;
       }
-    }
-  }
-
-  .input-group-btn {
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .form-control-quantity {
-      display: block;
-      width: 82px;
-      height: 32px;
-      font-size: 14px;
-      border: 1px solid @fifthComplimentTextColor;
-      border-radius: 4px;
-      text-align: center;
-      margin: 0 auto;
-    }
-
-    input[type=number]::-webkit-outer-spin-button,
-    input[type=number]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    input[type=number] {
-      -moz-appearance:textfield;
     }
   }
 
