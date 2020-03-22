@@ -25,7 +25,7 @@ import { MemoryRouter } from 'react-router';
 import '../../../theme/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../theme/style.less';
-import { text } from '@storybook/addon-knobs/react';
+import { text, object } from '@storybook/addon-knobs/react';
 import Readme from './README.md';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
 // Import custom required scripts
@@ -52,7 +52,7 @@ storiesOf('Components|ProductDisplayAttributes', module)
 
     return <ProductDisplayAttributes
       handleDetailAttribute={() => { textToFunc(handleDataAttribute); }}
-      detailsProductData={detailsProductDataClosed}
+      detailsProductData={object('detailsProductData', detailsProductDataClosed)}
     />;
   })
   .add('ProductDisplayAttribute Open', () => {
@@ -60,6 +60,6 @@ storiesOf('Components|ProductDisplayAttributes', module)
 
     return <ProductDisplayAttributes
       handleDetailAttribute={() => { textToFunc(handleDataAttribute); }}
-      detailsProductData={detailsProductDataOpened}
+      detailsProductData={object('detailsProductData', detailsProductDataOpened)}
     />;
   });

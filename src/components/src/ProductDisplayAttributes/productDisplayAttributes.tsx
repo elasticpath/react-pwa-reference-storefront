@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import './productDisplayAttributes.less';
 
 interface ProductDisplayAttributes {
     /** callback for when fold arrow is clicked.  Should be used to mutate detailsProductData state to re-render open or closed state. */
