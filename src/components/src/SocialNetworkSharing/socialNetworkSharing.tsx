@@ -23,7 +23,7 @@ import React from 'react';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import './socialNetworkSharing.less';
 
-interface PurchaseDetailsMainProps {
+interface SocialNetworkSharingProps {
   /** the product link to populate message with */
   productLink: any,
   /** the product image to populate message with */
@@ -34,7 +34,7 @@ interface PurchaseDetailsMainProps {
   productTitle: any,
 }
 
-function SocialNetworkSharing(props: PurchaseDetailsMainProps) {
+function SocialNetworkSharing(props: SocialNetworkSharingProps) {
   const {
     productLink,
     productImage,

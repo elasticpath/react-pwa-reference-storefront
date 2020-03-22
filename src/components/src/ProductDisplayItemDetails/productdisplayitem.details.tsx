@@ -547,7 +547,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                   ) : (
                     <div className="form-content form-content-submit col-sm-offset-4">
                       <button
-                        className="ep-btn primary wide btn-itemdetail-addtocart"
+                        className="ep-btn primary btn-itemdetail-addtocart"
                         disabled={!availability || !productData._addtocartform}
                         id="product_display_item_add_to_cart_button"
                         type="submit"
