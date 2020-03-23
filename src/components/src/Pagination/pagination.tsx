@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import { ReactComponent as ArrowLeft } from '../../../images/icons/arrow_left.svg';
 import './pagination.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -55,8 +56,6 @@ interface PaginationProps {
 }
 
 function Pagination(props: PaginationProps) {
-  const epConfig = getConfig();
-  const { intl } = epConfig;
   const {
     pagination, next, previous, onPageChange, showItemsCount, zoom,
   } = props;

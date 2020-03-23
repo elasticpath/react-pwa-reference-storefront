@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -27,7 +28,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './profileInfo.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface ProfileInfoMainProps {
   /** profile info */
@@ -54,16 +54,18 @@ class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainSta
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
     const { profileInfo } = this.props;
+
     this.state = {
       inEditMode: false,
       failedSubmit: false,
       firstName: profileInfo['given-name'],
       lastName: profileInfo['family-name'],
     };
+
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
     this.submitPersonalInfoChange = this.submitPersonalInfoChange.bind(this);

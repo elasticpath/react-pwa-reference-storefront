@@ -21,6 +21,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -28,29 +29,28 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './b2b.editassociate.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, ...args: any[]) => str };
 
 interface B2bEditAssociateProps {
   /** is open */
-    isOpen: boolean,
+  isOpen: boolean,
   /** handle close */
-    handleClose: () => void,
+  handleClose: () => void,
   /** handle update */
-    handleUpdate: () => void,
+  handleUpdate: () => void,
   /** associate email */
-    associateEmail: string,
+  associateEmail: string,
   /** account name */
-    accountName: string,
+  accountName: string,
   /** sub account name */
-    subAccountName: string,
+  subAccountName: string,
   /** uri for add associate */
-    addAssociateUri: string,
+  addAssociateUri: string,
   /** roles selector */
-    rolesSelector: any,
+  rolesSelector: any,
   /** is self */
-    isSelf: boolean,
+  isSelf: boolean,
   /** is add associate open */
-    isAddAssociateOpen: boolean,
+  isAddAssociateOpen: boolean,
 }
 
 interface B2bEditAssociateState {
@@ -64,9 +64,10 @@ interface B2bEditAssociateState {
 class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociateState> {
   constructor(props: any) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       changedRoles: [],
       isLoading: false,

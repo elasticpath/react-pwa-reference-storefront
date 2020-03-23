@@ -19,12 +19,10 @@
  *
  */
 import React, { Component } from 'react';
-import { getConfig } from '../utils/ConfigProvider';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 
 import './productlistloadmore.less';
-
-let intl = { get: str => str };
 
 interface ProductListLoadMoreProps{
   /** product data */
@@ -36,15 +34,18 @@ interface ProductListLoadMoreProps{
   /** handle load more */
   onLoadMore: any,
 }
+
 interface ProductListLoadMoreState {
   canLoadMore: boolean,
   isLoading: boolean,
 }
+
 class ProductListLoadMore extends Component<ProductListLoadMoreProps, ProductListLoadMoreState> {
   constructor(props) {
     super(props);
-    ({ intl } = getConfig());
+
     const nextLink = props.dataProps._next && props.dataProps._next[0];
+
     this.state = {
       canLoadMore: Boolean(nextLink),
       isLoading: false,

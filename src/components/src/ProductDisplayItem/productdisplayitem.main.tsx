@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Slider from 'react-slick';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { login } from '../utils/AuthService';
@@ -103,7 +104,6 @@ const requisitionListsZoomArray = [
 ];
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface ProductDisplayItemMainProps {
   /** product id */
@@ -184,9 +184,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       productId: '',
       productData: undefined,

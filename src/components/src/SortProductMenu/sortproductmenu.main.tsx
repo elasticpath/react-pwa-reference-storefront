@@ -20,11 +20,9 @@
  */
 
 import React, { Component } from 'react';
-import { getConfig } from '../utils/ConfigProvider';
+import intl from 'react-intl-universal';
 
 import './sortproductmenu.main.less';
-
-let intl = { get: str => str };
 
 interface SortProductMenuProps {
   /** handle sort selection */
@@ -38,7 +36,6 @@ interface SortProductMenuProps {
 class SortProductMenu extends Component<SortProductMenuProps, {}> {
   constructor(props) {
     super(props);
-    ({ intl } = getConfig());
     this.handleSortSelection = this.handleSortSelection.bind(this);
   }
 

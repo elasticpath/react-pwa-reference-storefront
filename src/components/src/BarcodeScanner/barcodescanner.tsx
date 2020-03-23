@@ -20,12 +20,10 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Quagga from 'quagga/dist/quagga.js';
 import Modal from 'react-responsive-modal';
-import { getConfig } from '../utils/ConfigProvider';
 import './barcodescanner.less';
-
-let intl = { get: str => str };
 
 interface BarcodeScannerProps {
   /** handle modal close */
@@ -44,11 +42,11 @@ class BarcodeScanner extends Component<BarcodeScannerProps, BarcodeScannerState>
 
   constructor(props) {
     super(props);
+
     this.state = {
       barcodes: [],
     };
-    const epConfig = getConfig();
-    ({ intl } = epConfig);
+
     this.onDetected = this.onDetected.bind(this);
     this.onModalClose = this.onModalClose.bind(this);
     this.initScanner = this.initScanner.bind(this);

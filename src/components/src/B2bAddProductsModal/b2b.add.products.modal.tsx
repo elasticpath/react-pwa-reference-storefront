@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
@@ -30,7 +31,6 @@ import './b2b.add.products.modal.less';
 import Modal from 'react-responsive-modal';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, ...args: any[]) => str };
 
 interface AddProductsModalProps {
   /** cart data */
@@ -72,12 +72,14 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = getConfig());
+
     const defaultItem = {
       code: '', quantity: 1, product: {}, isValidField: false, isDuplicated: false,
     };
+
     const defaultItemsCount = 5;
 
     this.state = {
@@ -91,6 +93,7 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
       bulkOrderDuplicatedErrorMessage: '',
       isFormTab: true,
     };
+
     this.addAllToList = this.addAllToList.bind(this);
     this.handleBulkTab = this.handleBulkTab.bind(this);
     this.handleFormTab = this.handleFormTab.bind(this);

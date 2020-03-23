@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
@@ -29,12 +30,12 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './compliancesupport.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, ...args: any[]) => str };
 
 interface ComplianceSupportModalProps {
   /** handle accept data policy */
   onAcceptDataPolicy?: (...args: any[]) => any,
 }
+
 interface ComplianceSupportModalState {
   open: boolean,
   checked: boolean,
@@ -47,13 +48,15 @@ class ComplianceSupportModal extends Component<ComplianceSupportModalProps, Comp
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       open: true,
       checked: false,
     };
+
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCheck = this.handleCheck.bind(this);

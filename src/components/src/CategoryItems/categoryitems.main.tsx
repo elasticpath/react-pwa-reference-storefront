@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
@@ -34,7 +35,6 @@ import './categoryitems.main.less';
 import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 const zoomArray = [
   'chosen',
@@ -71,18 +71,20 @@ const zoomArray = [
   'offersearchresult:sortattributes:chosen:description',
   'offersearchresult:sortattributes:chosen:selectaction',
 ];
+
 interface CategoryItemsMainProps {
   /** category props */
-    categoryProps: {
-        [key: string]: any
-    },
+  categoryProps: {
+    [key: string]: any
+  },
   /** handle product facet selection */
-    onProductFacetSelection?: (...args: any[]) => any,
+  onProductFacetSelection?: (...args: any[]) => any,
   /** product links */
-    productLinks?: {
-        [key: string]: any
-    },
+  productLinks?: {
+    [key: string]: any
+  },
 }
+
 interface CategoryItemsMainState {
     isLoading: boolean,
     categoryModel: any,
@@ -91,6 +93,7 @@ interface CategoryItemsMainState {
     categoryModelParentDisplayName: any,
     categoryModelId: any,
 }
+
 class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsMainState> {
   static defaultProps = {
     onProductFacetSelection: () => {},
@@ -104,9 +107,10 @@ class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsM
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       isLoading: true,
       categoryModel: { links: [] },

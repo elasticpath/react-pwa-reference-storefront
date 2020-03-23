@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -30,7 +31,6 @@ import PaymentMethodContainer from '../PaymentMethodContainer/paymentmethod.cont
 import './paymentselector.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface PaymentSelectorMainProps {
   /** handle payment method change */
@@ -54,20 +54,22 @@ interface PaymentSelectorMainProps {
 }
 
 interface PaymentSelectorMainState {
-    openNewPaymentModal: boolean,
-    isLoading: boolean,
+  openNewPaymentModal: boolean,
+  isLoading: boolean,
 }
 
 class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSelectorMainState> {
   constructor(props) {
     super(props);
+
     this.state = {
       openNewPaymentModal: false,
       isLoading: false,
     };
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
     this.handlePaymentInstrumentSelection = this.handlePaymentInstrumentSelection.bind(this);
     this.renderProfilePaymentMethods = this.renderProfilePaymentMethods.bind(this);

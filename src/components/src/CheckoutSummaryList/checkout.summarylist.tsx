@@ -20,24 +20,25 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import './checkout.summarylist.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface CheckoutSummaryListProps {
   /** cart data */
-    data: {
-        [key: string]: any
-    },
+  data: {
+    [key: string]: any
+  },
   /** gift cards */
-    giftCards?: any[],
+  giftCards?: any[],
   /** handle change */
-    onChange?: (...args: any[]) => any,
+  onChange?: (...args: any[]) => any,
 }
+
 class CheckoutSummaryList extends Component<CheckoutSummaryListProps> {
   static defaultProps = {
     giftCards: [],
@@ -46,9 +47,9 @@ class CheckoutSummaryList extends Component<CheckoutSummaryListProps> {
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
   }
 
   deletePromotionCode(link) {

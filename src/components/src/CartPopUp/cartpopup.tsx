@@ -20,12 +20,12 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import './cartpopup.less';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, prop?) => str };
 
 interface CartPopUpProps {
   /** links for app header */
@@ -46,9 +46,9 @@ class CartPopUp extends Component<CartPopUpProps, CartPopUpState> {
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
   }
 
   componentDidMount() {}

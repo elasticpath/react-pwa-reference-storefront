@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 /* eslint-disable-next-line import/no-cycle */
@@ -53,25 +54,24 @@ const zoomArray = [
 ];
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface AppModalBundleConfigurationMainProps {
   /** bundle configuration items */
-    bundleConfigurationItems: {
-        [key: string]: any
-    },
+  bundleConfigurationItems: {
+    [key: string]: any
+  },
   /** handle modal close */
-    handleModalClose: (...args: any[]) => any,
+  handleModalClose: (...args: any[]) => any,
   /** is open modal */
-    openModal: boolean,
+  openModal: boolean,
   /** handle item configurator add to cart */
-    onItemConfiguratorAddToCart?: (...args: any[]) => any,
+  onItemConfiguratorAddToCart?: (...args: any[]) => any,
   /** handle item move to cart */
-    onItemMoveToCart?: (...args: any[]) => any,
+  onItemMoveToCart?: (...args: any[]) => any,
   /** handle item remove */
-    onItemRemove?: (...args: any[]) => any,
+  onItemRemove?: (...args: any[]) => any,
   /** item detail link */
-    itemDetailLink?: string,
+  itemDetailLink?: string,
 }
 interface AppModalBundleConfigurationMainState {
     dependantItemData: any,
@@ -89,14 +89,16 @@ class AppModalBundleConfigurationMain extends Component<AppModalBundleConfigurat
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       dependantItemData: undefined,
       isLoading: false,
       registrationErrors: '',
     };
+
     this.handleErrorMessage = this.handleErrorMessage.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleConfiguratorAddToCart = this.handleConfiguratorAddToCart.bind(this);

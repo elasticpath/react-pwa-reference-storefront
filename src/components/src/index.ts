@@ -19,7 +19,6 @@
  *
  */
 
-import { init } from './utils/ConfigProvider';
 import AddPromotionContainer from './AddPromotionContainer/add.promotion.container';
 import AddressContainer from './AddressContainer/address.container';
 import AppFooterMain from './AppFooterMain/appfooter.main';
@@ -100,7 +99,6 @@ import ImageContainer from './ImageContainer/image.container';
 import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
 
 export {
-  init,
   AddPromotionContainer,
   AddressContainer,
   AddressFormMain,

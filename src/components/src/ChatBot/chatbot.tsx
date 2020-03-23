@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import { Interactions } from 'aws-amplify';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
@@ -34,7 +35,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './chatbot.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 const theme = {
   background: styles['@chatBackground'],
@@ -63,13 +63,15 @@ async function AuthenticateModel() {
 class ChatComponent extends React.Component<{}, ChatComponentState> {
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       opened: false,
       triggerId: 'userMessage',
     };
+
     this.toggleFloating = this.toggleFloating.bind(this);
   }
 

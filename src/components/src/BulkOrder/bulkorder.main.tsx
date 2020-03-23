@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import BarcodeScanner from '../BarcodeScanner/barcodescanner';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup, searchLookup } from '../utils/CortexLookup';
@@ -32,7 +33,6 @@ import { useCountDispatch } from '../cart-count-context';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, ...args: any[]) => str };
 
 const multiCartZoomArray = [
   'carts',
@@ -82,10 +82,11 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     super(props);
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = getConfig());
+
     const defaultItem = {
       code: '', quantity: 1, product: {}, isValidField: false, isDuplicated: false,
     };
+
     const defaultItemsCount = 10;
 
     this.state = {
@@ -102,6 +103,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
       barcodeScannerError: '',
       multiCartData: undefined,
     };
+
     this.addAllToCart = this.addAllToCart.bind(this);
     this.quickFormSubmit = this.quickFormSubmit.bind(this);
     this.handleBarcodeClick = this.handleBarcodeClick.bind(this);

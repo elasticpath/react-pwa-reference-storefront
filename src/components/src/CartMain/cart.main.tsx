@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -28,7 +29,6 @@ import { cortexFetch } from '../../../utils/Cortex';
 import { login } from '../../../utils/AuthService';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface CartMainProps {
   /** is empty */
@@ -91,9 +91,10 @@ class CartMain extends Component<CartMainProps, CartMainState> {
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = getConfig());
+
     this.state = {
       openModal: false,
       requisitionListData: undefined,

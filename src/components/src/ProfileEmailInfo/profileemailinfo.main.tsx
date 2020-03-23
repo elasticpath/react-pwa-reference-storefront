@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -27,7 +28,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './profileemailinfo.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 type ProfileemailinfoMainProps = {
   /** user email */
@@ -37,6 +37,7 @@ type ProfileemailinfoMainProps = {
   /** handle email change */
   onChange: (...args: any[]) => any
 };
+
 type ProfileemailinfoMainState = {
   failedSubmit: boolean,
   emailInEditMode: boolean,
@@ -46,16 +47,18 @@ type ProfileemailinfoMainState = {
 class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, ProfileemailinfoMainState> {
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
     const { profileInfo } = this.props;
     const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
+
     this.state = {
       failedSubmit: false,
       emailInEditMode: false,
       email,
     };
+
     this.setEmail = this.setEmail.bind(this);
     this.submitEmailChange = this.submitEmailChange.bind(this);
   }

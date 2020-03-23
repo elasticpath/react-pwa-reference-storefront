@@ -20,13 +20,11 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Slider from 'react-slick';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
-import { getConfig } from '../utils/ConfigProvider';
 
 import './featuredproducts.main.less';
-
-let intl = { get: str => str };
 
 interface FeaturedProductsProps {
   /** product data */
@@ -45,7 +43,7 @@ class FeaturedProducts extends Component<FeaturedProductsProps, FeaturedProducts
 
   constructor(props) {
     super(props);
-    ({ intl } = getConfig());
+
     const { productData } = this.props;
     this.state = {
       categoryModel: productData,

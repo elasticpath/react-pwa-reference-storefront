@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import {
   login, loginRegistered, registerUser, getRegistrationForm,
@@ -27,7 +28,6 @@ import {
 import './registrationform.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface RegistrationFormMainProps {
   /** handle register success */
@@ -52,9 +52,10 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       firstname: '',
       lastname: '',
@@ -65,6 +66,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
       passwordConfirm: '',
       isLoading: false,
     };
+
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
     this.setUsername = this.setUsername.bind(this);

@@ -22,7 +22,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import intl from 'react-intl-universal';
-import { init } from './components/src/index';
 import App from './App';
 import './theme/index.less';
 import epConfig from './ep.config.json';
@@ -48,22 +47,16 @@ intl.init({
   locales,
 })
   .then(() => {
-    // EP Configs init
-    init({
-      config: epConfig,
-      intl,
-    })
-      .then((componentsData) => {
-        ReactDOM.render(
-          <App componentsData={componentsData} />,
-          document.getElementById('root'),
-        );
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
-            // eslint-disable-next-line no-console
-            .then(() => console.log('Service Worker registered successfully.'))
-            // eslint-disable-next-line no-console
-            .catch(error => console.log('Service Worker registration failed:', error));
-        }
-      });
+    ReactDOM.render(
+      <App />,
+      document.getElementById('root'),
+    );
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+        // eslint-disable-next-line no-console
+        .then(() => console.log('Service Worker registered successfully.'))
+        // eslint-disable-next-line no-console
+        .catch(error => console.log('Service Worker registration failed:', error));
+    }
   });

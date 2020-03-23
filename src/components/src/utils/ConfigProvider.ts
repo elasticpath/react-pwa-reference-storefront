@@ -19,7 +19,9 @@
  *
  */
 
+import intl from 'react-intl-universal';
 import packageJson from '../../package.json';
+import Config from '../../../ep.config.json';
 
 export interface IEpConfig {
   cortexApi: {
@@ -110,21 +112,10 @@ export interface IEpConfig {
 
 interface IConfig {
   config: IEpConfig | any,
-  intl: any
-}
-
-let config: IConfig = {
-  config: {},
-  intl: { get: str => str },
-};
-
-export function init(_config: IConfig) {
-  return new Promise((resolve) => {
-    config = Object.freeze(_config);
-    resolve({ version: packageJson.version });
-  });
 }
 
 export function getConfig(): IConfig {
-  return config;
+  return {
+    config: Config,
+  };
 }

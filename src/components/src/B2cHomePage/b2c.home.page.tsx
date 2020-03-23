@@ -20,6 +20,7 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import ImageContainer from '../ImageContainer/image.container';
@@ -38,7 +39,6 @@ import productImage6 from '../../../images/site-images/b2c-product-6.png';
 import productImage7 from '../../../images/site-images/b2c-product-7.png';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 const bannerFileName1 = 'b2c-banner-1.png';
 const bannerFileName2 = 'b2c-banner-2.png';
@@ -54,7 +54,6 @@ const productFileName7 = 'b2c-product-7.png';
 const B2CHomePage: React.FunctionComponent = () => {
   const epConfig = getConfig();
   Config = epConfig.config;
-  ({ intl } = epConfig);
 
   // Set the language-specific configuration for indi integration
   Config.indi.brandAmbassador.title = intl.get('indi-brand-ambassador-title');

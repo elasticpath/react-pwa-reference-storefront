@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import { getConfig } from '../utils/ConfigProvider';
+import intl from 'react-intl-universal';
 import { useCountDispatch } from '../cart-count-context';
 
 import './dropdown.cart.selection.main.less';
@@ -44,11 +44,7 @@ interface DropdownCartSelectionProps {
   showCartIcon?: boolean,
 }
 
-let intl = { get: str => str };
-
 function DropdownCartSelection(props:DropdownCartSelectionProps) {
-  ({ intl } = getConfig());
-
   const {
     multiCartData, addToSelectedCart, showDropdownHeader, isDisabled, showLoader, btnTxt, showCartIcon,
   } = props;

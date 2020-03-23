@@ -20,13 +20,13 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import './appmodalcartselect.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 const zoomArray = [
   'authorizationcontexts',
@@ -56,14 +56,16 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = getConfig());
+
     this.state = {
       orgAuthServiceData: undefined,
       selectedCart: '0',
       selectedCartName: '',
     };
+
     this.continueCart = this.continueCart.bind(this);
     this.fetchOrganizationData = this.fetchOrganizationData.bind(this);
     this.handleCartChange = this.handleCartChange.bind(this);

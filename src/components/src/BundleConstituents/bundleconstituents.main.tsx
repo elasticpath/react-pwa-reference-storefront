@@ -20,12 +20,10 @@
  */
 
 import React, { Component } from 'react';
-import { getConfig } from '../utils/ConfigProvider';
+import intl from 'react-intl-universal';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
 import './bundleconstituents.main.less';
-
-let intl = { get: str => str };
 
 interface BundleConstituentsDisplayMainProps {
   /** product data */
@@ -41,7 +39,6 @@ class BundleConstituentsDisplayMain extends Component<BundleConstituentsDisplayM
 
   constructor(props) {
     super(props);
-    ({ intl } = getConfig());
     this.renderProductAssocitationView = this.renderProductAssocitationView.bind(this);
   }
 

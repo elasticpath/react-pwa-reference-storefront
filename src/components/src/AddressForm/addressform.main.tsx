@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -27,18 +28,18 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './addressform.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface AddressFormMainProps {
   /** An array of addresses for the shopper, where `string` is a URL to the address data. */
-    addressData?: {
-        [key: string]: any
-    },
+  addressData?: {
+    [key: string]: any
+  },
   /** Closes the address form. */
-    onCloseModal?: (...args: any[]) => any,
+  onCloseModal?: (...args: any[]) => any,
   /** Retrieves the saved address. */
-    fetchData?: (...args: any[]) => any,
+  fetchData?: (...args: any[]) => any,
 }
+
 interface AddressFormMainState {
     geoData: any,
     firstName: string,
@@ -72,9 +73,10 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = getConfig());
+
     this.state = {
       geoData: undefined,
       firstName: '',
@@ -88,6 +90,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
       failedSubmit: false,
       addressForm: undefined,
     };
+
     this.setFirstName = this.setFirstName.bind(this);
     this.setLastName = this.setLastName.bind(this);
     this.setAddress = this.setAddress.bind(this);

@@ -20,12 +20,10 @@
  */
 
 import React, { Component } from 'react';
-import { getConfig } from '../utils/ConfigProvider';
+import intl from 'react-intl-universal';
 import OrderLine from '../OrderLine/orderline.main';
 
 import './orderhistory.main.less';
-
-let intl = { get: str => str };
 
 interface OrderHistoryMainProps {
   /** purchase history */
@@ -38,9 +36,9 @@ interface OrderHistoryMainState {
 class OrderHistoryMain extends Component<OrderHistoryMainProps, OrderHistoryMainState> {
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
-    ({ intl } = epConfig);
+
     const { purchaseHistory } = this.props;
+
     this.state = {
       purchases: purchaseHistory,
     };

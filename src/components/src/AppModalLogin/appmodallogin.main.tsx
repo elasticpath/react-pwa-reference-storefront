@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
@@ -28,33 +29,32 @@ import './appmodallogin.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface AppModalLoginMainProps {
   /** handle modal close */
-    handleModalClose: (...args: any[]) => any,
+  handleModalClose: (...args: any[]) => any,
   /** handle open modal */
-    openModal: boolean,
+  openModal: boolean,
   /** handle login */
-    onLogin?: (...args: any[]) => any,
+  onLogin?: (...args: any[]) => any,
   /** handle reset password */
-    onResetPassword?: (...args: any[]) => any,
+  onResetPassword?: (...args: any[]) => any,
   /** location search data */
-    locationSearchData?: string,
+  locationSearchData?: string,
   /** location path name */
-    locationPathName?: string,
+  locationPathName?: string,
   /** links for app modal login */
-    appModalLoginLinks: {
-        [key: string]: any
-    },
+  appModalLoginLinks: {
+    [key: string]: any
+  },
   /** show forgot password link */
-    showForgotPasswordLink: boolean,
+  showForgotPasswordLink: boolean,
   /** disable login */
-    disableLogin?: boolean,
+  disableLogin?: boolean,
   /** Open Id Connect Parameters */
-    oidcParameters?: {
-      [key: string]: any
-    },
+  oidcParameters?: {
+    [key: string]: any
+  },
 }
 interface AppModalLoginMainState {
     username: string,
@@ -73,15 +73,17 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = getConfig());
+
     this.state = {
       username: '',
       password: '',
       failedLogin: false,
       isLoading: false,
     };
+
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.loginRegisteredUser = this.loginRegisteredUser.bind(this);

@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import uuidv4 from 'uuid/v4';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
@@ -39,41 +40,40 @@ import './appheaderlogin.main.less';
 const oidcDiscoveryEndpoint = '/.well-known/openid-configuration';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface AppHeaderLoginMainProps {
   /** is mobile view */
-    isMobileView?: boolean,
+  isMobileView?: boolean,
   /** permission */
-    permission: boolean,
+  permission: boolean,
   /** handle logout */
-    onLogout?: (...args: any[]) => any,
+  onLogout?: (...args: any[]) => any,
   /** handle login */
-    onLogin?: (...args: any[]) => any,
+  onLogin?: (...args: any[]) => any,
   /** handle continue cart */
-    onContinueCart?: (...args: any[]) => any,
+  onContinueCart?: (...args: any[]) => any,
   /** handle reset password */
-    onResetPassword?: (...args: any[]) => any,
+  onResetPassword?: (...args: any[]) => any,
   /** data search location */
-    locationSearchData?: string,
+  locationSearchData?: string,
   /** location path name */
   locationPathName?: string,
   /** links in app header */
   appHeaderLinks: {
-      [key: string]: any
+    [key: string]: any
   },
   /** links in app header login  */
-    appHeaderLoginLinks: {
-        [key: string]: any
-    },
+  appHeaderLoginLinks: {
+    [key: string]: any
+  },
   /** links in app modal login */
-    appModalLoginLinks: {
-        [key: string]: any
-    },
+  appModalLoginLinks: {
+    [key: string]: any
+  },
   /** is logged in */
-    isLoggedIn: boolean,
+  isLoggedIn: boolean,
   /** disable login */
-    disableLogin?: boolean,
+  disableLogin?: boolean,
 }
 interface AppHeaderLoginMainState {
   openModal: boolean,
@@ -111,10 +111,11 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
     }
 
     constructor(props) {
+      super(props);
+
       const epConfig = getConfig();
       Config = epConfig.config;
-      ({ intl } = epConfig);
-      super(props);
+
       this.state = {
         openModal: false,
         openCartModal: false,
@@ -124,6 +125,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         loginUrlAddress: '',
         showRequisitionListsLink: false,
       };
+
       this.handleModalClose = this.handleModalClose.bind(this);
     }
 

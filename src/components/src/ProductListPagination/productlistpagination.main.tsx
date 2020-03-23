@@ -21,15 +21,14 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import { getConfig } from '../utils/ConfigProvider';
 
 import './productlistpagination.less';
 
 let paginationPreviousLinkVar = '';
 let paginationNextLinkVar = '';
 let searchUrlVar = true;
-let intl = { get: str => str };
 
 interface ProductListPaginationProps {
   /** pagination data */
@@ -60,8 +59,9 @@ class ProductListPagination extends Component<ProductListPaginationProps, Produc
 
   constructor(props) {
     super(props);
+
     const { paginationDataProps } = this.props;
-    ({ intl } = getConfig());
+
     this.state = {
       paginationData: paginationDataProps,
       paginationPreviousLink: '',

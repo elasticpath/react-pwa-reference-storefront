@@ -20,14 +20,12 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { getConfig } from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import './quickorder.main.less';
-
-let intl = { get: str => str };
 
 interface QuickOrderMainProps {
   /** buy it again */
@@ -71,8 +69,9 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
 
   constructor(props) {
     super(props);
-    ({ intl } = getConfig());
+
     const { productData } = this.props;
+
     this.state = {
       failedSubmit: false,
       productId: '',
