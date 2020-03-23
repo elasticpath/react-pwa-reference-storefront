@@ -198,7 +198,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             if (res && res._additemlisttocartforms) {
               this.setState({
                 listName: res.name,
-                listItemCount: res['item-count'],
+                listItemCount: res._paginatedlineitems[0].pagination.results,
                 addItemsToItemListUri: res._additemstoitemlistform[0].self.uri,
                 removeLineItemsUri: res._removelineitemsform[0].self.uri,
                 multiCartData: res._additemlisttocartforms[0]._element,
