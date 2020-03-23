@@ -108,6 +108,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     };
 
     this.addToWishList = this.addToWishList.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);
     this.handleConfiguration = this.handleConfiguration.bind(this);
@@ -459,6 +460,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
   }
 
   handleQuantityChange(event) {
+    const { itemQuantity } = this.state;
     if (event.target.value === '') {
       this.setState({ itemQuantity: 1 });
     } else {

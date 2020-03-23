@@ -233,7 +233,7 @@ describe('Purchase feature', () => {
     await browser.close();
 
     expect(text).toEqual(SUCCESS_ORDER_STATUS);
-  }, 60000);
+  }, 80000);
 
   test('Purchase physical item as an existing registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
@@ -616,7 +616,7 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 80000);
+  }, 120000);
 
   test('Purchase multi-sku item as a registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
