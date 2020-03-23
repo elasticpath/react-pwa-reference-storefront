@@ -19,8 +19,6 @@
  *
  */
 
-import intl from 'react-intl-universal';
-import packageJson from '../../package.json';
 import Config from '../../../ep.config.json';
 
 export interface IEpConfig {
@@ -116,6 +114,6 @@ interface IConfig {
 
 export function getConfig(): IConfig {
   return {
-    config: Config,
+    config: Object.freeze(Config),
   };
 }

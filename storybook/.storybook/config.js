@@ -1,5 +1,4 @@
 import { configure } from '@storybook/react';
-import { init } from '../../src/components/src/index';
 import epConfig from '../../src/ep.config';
 import intl from 'react-intl-universal';
 import { addParameters } from '@storybook/react';
@@ -30,14 +29,10 @@ const comps = require.context('../../src/components/src', true, /.stories.(j|t)s
 intl.init({
   currentLocale: 'en-CA',
   locales,
-}).then(() => {
-  init({
-    config: epConfig,
-    intl
-  }).then(() => {
+})
+  .then(() => {
     configure(() => {
       guides.keys().forEach(filename => guides(filename));
       comps.keys().forEach(filename => comps(filename));
     }, module);
   });
-});
