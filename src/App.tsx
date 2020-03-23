@@ -170,7 +170,7 @@ const Root = (props) => {
       appHeaderTopLinks={appHeaderTopLinks}
       appModalLoginLinks={appModalLoginLinks}
     />,
-    <Messagecontainer message={error} />,
+    <Messagecontainer key="message-container" message={error} />,
     <div key="app-content" className="app-content">
       <Switch>
         {routes.map(route => (

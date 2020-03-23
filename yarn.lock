@@ -3514,6 +3514,16 @@ aframe-animation-component@^5.1.2:
   dependencies:
     animejs "2.2.0"
 
+aframe-html-shader@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/aframe-html-shader/-/aframe-html-shader-0.2.0.tgz#fb4c76c6978287a3ee687dcb9d3dd84df46c4599"
+  integrity sha1-+0x2xpeCh6PuaH3LnT3YTfRsRZk=
+
+aframe-look-at-component@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/aframe-look-at-component/-/aframe-look-at-component-0.8.0.tgz#668ec0a1f16a66bfda96d2c39aa143effbc0db73"
+  integrity sha512-eU+PbFNmRFOj27DJzWyMeYIHvLxTvPs1AyfT4hqP/upk85YKgjzgRik2ImzCXYDZNRqozjdHq2HsrstvQFE6Zw==
+
 aframe-particle-system-component@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/aframe-particle-system-component/-/aframe-particle-system-component-1.1.3.tgz#9d05732fab223e8c4392d20ae47bb29fa97067e9"
