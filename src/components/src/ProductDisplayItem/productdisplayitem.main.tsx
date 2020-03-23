@@ -34,11 +34,17 @@ import ProductDisplayItemDetails from '../ProductDisplayItemDetails/productdispl
 import './productdisplayitem.main.less';
 import ImageContainer from '../ImageContainer/image.container';
 import { ProductDisplayItemMainProps, ProductDisplayItemMainState } from './productdisplayitem.main.d';
-import { REQUISITION_LISTS_ZOOM } from './productdisplayitem.main.constants';
 import ProductDisplayAttributes from '../ProductDisplayAttributes/productDisplayAttributes';
 
 let Config: IEpConfig | any = {};
 let intl = { get: str => str };
+
+const REQUISITION_LISTS_ZOOM : string[] = [
+  'itemlistinfo',
+  'itemlistinfo:allitemlists',
+  'itemlistinfo:allitemlists:element',
+  'itemlistinfo:allitemlists:element:additemstoitemlistform',
+];
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
   static async urlExists(url) {
