@@ -25,7 +25,7 @@ import './quantitySelector.less';
 
 let intl = { get: str => str };
 
-interface PurchaseDetailsMainProps {
+interface QuantityDetailsMainProps {
   /** Callback for when the + icon is clicked */
   handleQuantityIncrement: any,
   /** Callback for when the - icon is clicked */
@@ -38,7 +38,7 @@ interface PurchaseDetailsMainProps {
   itemQuantity: any,
 }
 
-function QuantitySelector(props: PurchaseDetailsMainProps) {
+function QuantitySelector(props: QuantityDetailsMainProps) {
   const {
     handleQuantityIncrement,
     handleQuantityDecrement,
