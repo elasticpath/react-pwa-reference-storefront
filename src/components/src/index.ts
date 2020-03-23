@@ -58,9 +58,12 @@ import PaymentFormMain from './PaymentForm/paymentform.main';
 import PaymentMethodContainer from './PaymentMethodContainer/paymentmethod.container';
 import PowerReviewMain from './PowerReview/powerreview.main';
 import ProductDisplayItemMain from './ProductDisplayItem/productdisplayitem.main';
+import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 import ProductListMain from './ProductList/productlist.main';
 import ProductListItemMain from './ProductListItem/productlistitem.main';
 import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
+import ProductDisplayAttributes from './ProductDisplayAttributes/productDisplayAttributes';
+import QuantitySelector from './QuantitySelector/quantitySelector';
 import ProductListPaginationMain from './ProductListPagination/productlistpagination.main';
 import ProductRecommendationsMain from './ProductRecommendations/productrecommendations.main';
 import ProfileComplianceMain from './ProfileCompliance/profilecompliance.main';
@@ -98,6 +101,7 @@ import B2BHomePage from './B2bHomePage/b2b.home.page';
 import B2CHomePage from './B2cHomePage/b2c.home.page';
 import ImageContainer from './ImageContainer/image.container';
 import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
+import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
 
 export {
   init,
@@ -139,6 +143,7 @@ export {
   PaymentMethodContainer,
   PowerReviewMain,
   ProductDisplayItemMain,
+  ProductDisplayItemDetails,
   ProductListMain,
   ProductListItemMain,
   ProductListLoadmore,
@@ -179,4 +184,7 @@ export {
   VRProductDisplayItem,
   ImageContainer,
   DropdownCartSelection,
+  SocialNetworkSharing,
+  QuantitySelector,
+  ProductDisplayAttributes,
 };

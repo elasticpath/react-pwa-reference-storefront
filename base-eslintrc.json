@@ -83,7 +83,6 @@
       }
     ],
     "camelcase": ["warn"],
-    "node/no-extraneous-import": "",
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "header/header": [
