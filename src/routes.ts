@@ -41,7 +41,7 @@ import ProductsComparePage from './containers/ProductsComparePage';
 import WriteReview from './containers/WriteReviewPage';
 import ChangePasswordForm from './containers/ChangePasswordPage';
 import ResetPasswordForm from './containers/ResetPasswordPage';
-import B2BMain from './containers/b2b/B2BMain';
+import MyAccountMain from './containers/MyAccountMain';
 import Accounts from './containers/b2b/Accounts';
 import AccountMain from './containers/b2b/AccountMain';
 import RequisitionList from './containers/b2b/RequisitionList';
@@ -52,6 +52,7 @@ import IndustriesPage from './containers/IndustriesPage';
 import ServicesPage from './containers/ServicesPage';
 import SupportPage from './containers/SupportPage';
 import PrivacyPoliciesPage from './containers/PrivacyPoliciesPage';
+import PurchaseHistoryPage from './containers/b2b/PurchaseHistoryPage';
 
 const router = [{
   path: '/',
@@ -85,9 +86,6 @@ const router = [{
 }, {
   path: '/order/:cart?',
   component: OrderReviewPage,
-}, {
-  path: '/profile',
-  component: ProfilePage,
 }, {
   path: '/orderDetails/:url',
   component: OrderHistoryPage,
@@ -168,37 +166,45 @@ const router = [{
   exact: true,
   component: RequisitionPageMain,
 }, {
-  path: '/b2b',
-  component: B2BMain,
+  path: '/account',
+  component: MyAccountMain,
   routes: [
     {
-      path: '/b2b',
+      path: '/account',
       exact: true,
+      component: ProfilePage,
+    },
+    {
+      path: '/account/purchase-history',
+      component: PurchaseHistoryPage,
+    },
+    {
+      path: '/account/accounts',
       component: Accounts,
     },
     {
-      path: '/b2b/address-book',
+      path: '/account/address-book',
       render: () => 'Address Book',
     },
     {
-      path: '/b2b/orders',
+      path: '/account/orders',
       render: () => 'Orders',
     },
     {
-      path: '/b2b/approvals',
+      path: '/account/approvals',
       render: () => 'Approvals',
     },
     {
-      path: '/b2b/invitations',
+      path: '/account/invitations',
       render: () => 'Invitations',
     },
     {
-      path: '/b2b/requisition-lists',
+      path: '/account/requisition-lists',
       exact: true,
       component: RequisitionList,
     },
     {
-      path: '/b2b/quotes',
+      path: '/account/quotes',
       render: () => 'Quotes',
     },
   ],

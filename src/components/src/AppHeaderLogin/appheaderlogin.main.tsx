@@ -337,6 +337,8 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
           </div>);
       };
 
+      const accontLinkName = Config.b2b.enable && accountData ? 'my-account' : 'profile';
+
       if (isLoggedIn) {
         return (
           <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
@@ -361,31 +363,11 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     <Link to={appHeaderLoginLinks.profile} className="profile-link">
                       <div>
                         <span id="header_navbar_login_menu_profile_link">
-                          {intl.get('my-profile')}
+                          {intl.get(accontLinkName)}
                         </span>
                       </div>
                     </Link>
                   </li>
-                  {(Config.b2b.enable && accountData && accountData._accounts) ? (
-                    <li className="dropdown-item">
-                      <Link className="dashboard-link" to="/b2b">
-                        <div>
-                          <span className="dashboard-nav">
-                            {intl.get('accounts')}
-                          </span>
-                        </div>
-                      </Link>
-                    </li>) : ('')}
-                  {(showRequisitionListsLink) ? (
-                    <li className="dropdown-item">
-                      <Link to="/b2b/requisition-lists" className="dashboard-link link-item">
-                        <div>
-                          <span className="dashboard-nav">
-                            {intl.get('requisition-lists')}
-                          </span>
-                        </div>
-                      </Link>
-                    </li>) : ('')}
                   {permission && (
                   <li className="dropdown-item">
                     <Link to={appHeaderLoginLinks.wishlists} className="wishlist-link">

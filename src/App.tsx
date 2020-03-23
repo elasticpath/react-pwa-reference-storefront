@@ -112,7 +112,7 @@ const appHeaderLinks = {
   requisitionLists: '/b2b/requisition-lists',
 };
 const appHeaderLoginLinks = {
-  profile: '/profile',
+  profile: '/account',
   wishlists: '/wishlists',
 };
 const appHeaderNavigationLinks = {
