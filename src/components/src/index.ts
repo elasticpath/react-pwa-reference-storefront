@@ -40,9 +40,11 @@ import B2bAccountList from './B2bAccountList/b2b.accountlist';
 import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
 import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
 import B2bSubaccountlistitem from './B2bSubAccountListItem/b2b.subaccountlistitem';
+import BloomreachHeaderSearchMain from './Bloomreach/bloomreach.appheadersearch.main';
 import Carousel from './Carousel/carousel.homepage';
 import CartLineItem from './CartLineItem/cart.lineitem';
 import CartMain from './CartMain/cart.main';
+import CartPopUp from './CartPopUp/cartpopup';
 import CategoryItemsMain from './CategoryItems/categoryitems.main';
 import CheckoutSummaryList from './CheckoutSummaryList/checkout.summarylist';
 import FacebookChat from './FacebookChat/facebookchat.main';
@@ -54,6 +56,7 @@ import OrderHistoryMain from './OrderHistory/orderhistory.main';
 import OrderLineMain from './OrderLine/orderline.main';
 import OrderTableMain from './OrderTable/ordertable.main';
 import OrderTableLineItem from './OrderTableLineItem/ordertable.lineitem';
+import Pagination from './Pagination/pagination';
 import PaymentFormMain from './PaymentForm/paymentform.main';
 import PaymentMethodContainer from './PaymentMethodContainer/paymentmethod.container';
 import PowerReviewMain from './PowerReview/powerreview.main';
@@ -125,9 +128,11 @@ export {
   B2bAddProductsModal,
   B2bSubAccountList,
   B2bSubaccountlistitem,
+  BloomreachHeaderSearchMain,
   Carousel,
   CartLineItem,
   CartMain,
+  CartPopUp,
   CategoryItemsMain,
   CheckoutSummaryList,
   FacebookChat,
@@ -139,6 +144,7 @@ export {
   OrderLineMain,
   OrderTableMain,
   OrderTableLineItem,
+  Pagination,
   PaymentFormMain,
   PaymentMethodContainer,
   PowerReviewMain,
