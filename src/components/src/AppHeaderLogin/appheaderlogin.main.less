@@ -25,7 +25,7 @@
   position: relative;
 
   .auth-profile-menu-list {
-    margin-bottom: 6px;
+    margin-bottom: 25px;
   }
 
   .login-btn {
@@ -57,33 +57,35 @@
       .account-icon {
         display: inline-block;
         content: " ";
-        display: inline-block;
         width: 25px;
         height: 21px;
         background-size: cover;
       }
     }
 
-    .logout-link,
     .profile-link,
     .shopping-as-link,
     .dashboard-link,
     .cart-select-btn,
     .wishlist-link {
-      padding: 5px 0px;
+      padding: 5px 0;
       text-align: left;
       border: none;
       width: 100%;
       background-color: transparent;
-      color: @mainTextColor;
-      font-size: 14px;
+      color: @thirdComplimentColor;
+      font-size: 13px;
       font-weight: 900;
       line-height: 19px;
       text-decoration: none;
     }
 
     .logout-link {
-      color: @firstComplimentColor;
+      color: @mainNavigationColor;
+      margin: 0;
+      width: 100%;
+      font-size: 13px;
+      text-transform: capitalize;
     }
 
     .profile-link,
@@ -96,7 +98,9 @@
     }
 
     .dropdown-item:hover {
-      background-color: #e2e2e2;
+      text-decoration: underline;
+      text-decoration-color: @thirdComplimentColor;
+      background: none;
     }
 
     .dropdown-item:active {
@@ -107,12 +111,13 @@
     .dropdown-menu {
       overflow: hidden;
       min-width: 145px;
-      border-radius: 8px;
+      border-color: @secondComplimentColor;
       padding-bottom: 0;
 
       .dropdown-item {
-        height: 35px;
+        height: 32px;
         vertical-align: middle;
+        padding-bottom: 2px;
 
         .dropdown-header {
           border-bottom: 1px solid @fifthComplimentTextColor;
@@ -120,51 +125,27 @@
       }
 
       .shop-for {
-        height: 55px;
+        text-decoration: none;
+        height: 62px;
+        border-bottom: 1px solid @fifthComplimentTextColor;
 
         span:nth-child(2) {
           float: left;
         }
-      }
-
-      .dropdown-login-cart {
-        border-radius: 0 0 10px 10px;
-        height: 100%;
-        background-color: @firstComplimentBackground;
-        border-top: 1px solid @mainBorderColor;
-
-        .login-cart-list{
-          margin-top: 10px;
-
-          .cart-select-btn {
-            width: 100%;
-            border: 0;
-            color: #007bff;
-            text-decoration: none;
-            background-color: transparent;
-            cursor: pointer;
-          }
+        .user-name {
+          font-weight: bold;
         }
 
-        .shop-for{
-          height: 24px;
-          margin-top:6px;
-          .shopping-as {
-            display: inline;
-            font-weight: bold;
-          }
+        .shopping-small {
+
         }
-        i {
-          border: solid #007bff;
-          border-width: 0 2px 2px 0;
-          display: inline-block;
-          padding: 3.5px;
-          margin-left: 8px;
-          margin-bottom: 2px;
-        }
-        .down {
-          transform: rotate(45deg);
-          -webkit-transform: rotate(45deg);
+        .email-title {
+          font-weight: bold;
+          font-size: 12px;
+          font-style: italic;
+          color: @firstComplimentTextColor;
+          margin-bottom: 0;
+          text-transform: capitalize;
         }
       }
     }
@@ -209,9 +190,6 @@
 
         .dropdown-item {
           cursor: pointer;
-          &:hover {
-            background-color: #e2e2e2;
-          }
 
           .dropdown-header {
             font-size: 17px !important;
@@ -231,8 +209,7 @@
           .profile-link,
           .shopping-as-link,
           .wishlist-link,
-          .dashboard-link,
-          .logout-link {
+          .dashboard-link {
             padding: 5px 0px;
             text-align: center;
             border: none;

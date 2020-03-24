@@ -238,7 +238,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       if (Config.b2b.enable) {
         try {
           await login();
-          const account = await adminFetch('/?zoom=accounts', {
+          const account = await adminFetch('/?zoom=myprofile,myprofile:primaryemail', {
             headers: {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
@@ -319,7 +319,8 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
-
+      const b2bUserName = accountData && accountData._myprofile && accountData._myprofile[0].name;
+      const email = accountData && accountData._myprofile && accountData._myprofile[0]._primaryemail[0].email;
       const RequisitionListsLink = () => {
         const { count, name }: any = useRequisitionListCountState();
         const countData = {
@@ -352,6 +353,18 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
               </button>
               <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
                 <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
+                  {(localStorage.getItem(`${Config.b2b.enable && Config.cortexApi.scope}_b2bCart`)) ? (
+                    <li className="dropdown-item shop-for">
+                      <span className="user-name">{b2bUserName}</span>
+                      <div className="shopping-small">
+                        <span>
+                          {localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}
+                        </span>
+                      </div>
+                      <span className="email-title">{email}</span>
+                    </li>
+                  ) : ('')}
+
                   {userName !== 'undefined' ? (
                     <li className="dropdown-header">
                       {userName}
@@ -397,18 +410,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     </Link>
                   </li>
                   )}
-                  {(localStorage.getItem(`${Config.b2b.enable && Config.cortexApi.scope}_b2bCart`)) ? (
-                    <li className="dropdown-item shop-for">
-                      <div className="shopping-as-link">
-                        <span>
-                          {intl.get('shopping-as')}
-                        </span>
-                        <span>
-                          {localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}
-                        </span>
-                      </div>
-                    </li>
-                  ) : ('')}
                   {(Config.b2b.enable) ? (
                     <li>
                       <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>
@@ -419,12 +420,12 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                   ) : ('')}
                   <li className="dropdown-item">
                     {(Config.b2b.enable) ? (
-                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => logoutAccountManagementUser()}>
+                      <button className="ep-btn primary logout-link" type="button" data-el-label="auth.logout" onClick={() => logoutAccountManagementUser()}>
                         <span className="icon" />
                         {intl.get('logout')}
                       </button>
                     ) : (
-                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
+                      <button className="ep-btn primary logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                         <span className="icon" />
                         {intl.get('logout')}
                       </button>
