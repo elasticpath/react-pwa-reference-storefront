@@ -22,6 +22,7 @@
  @import './../theme/common.less';
 
 .profile-container {
+  font-size: 14px;
   h1 {
     display: inline-block;
     position: relative;
@@ -66,7 +67,28 @@
   }
 
   .profile-payment-method-label-container {
+    position: relative;
+    padding-left: 35px;
     margin-bottom: 5px;
+    &:before {
+      content: "";
+      height: 15px;
+      width: 24px;
+      border-radius: 3px;
+      background-color: @firstComplimentTextColor;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    &:after {
+      content: "";
+      height: 3px;
+      width: 24px;
+      background-color: @mainBackgroundColor;
+      position: absolute;
+      top: 3px;
+      left: 0;
+    }
   }
 
   .profile-info-save-btn {
@@ -114,8 +136,8 @@
     .ep-btn {
       height: auto;
       width: auto;
-      font-weight: 600;
       min-height: 0;
+      font-size: 13px;
       line-height: 20px;
       padding: 0;
       min-width: 0;
@@ -131,8 +153,8 @@
   .profile-personal-info-edit-btn.ep-btn {
     height: auto;
     width: auto;
-    font-weight: 600;
     min-height: 0;
+    font-size: 13px;
     line-height: 20px;
     padding: 0;
     min-width: 0;
@@ -161,15 +183,36 @@
       margin-top: 10px;
     }
   }
+
+  @media (min-width: @mobileWidth) {
+    .payment-methods-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .profile-payment-methods-listing {
+      width: 50%;
+      padding-right: 10px;
+    }
+
+    .profile-addresses {
+      &-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      &-listing {
+        width: 50%;
+        padding-right: 10px;
+      }
+    }
+  }
 }
 
 .profile-info {
   &-container {
-    margin-left: -10px;
-    margin-right: -10px;
     margin-top: 20px;
     &-title {
-      padding: 0 10px;
       font-size: 12px;
       color: @mainTextColor;
       text-transform: uppercase;
@@ -191,7 +234,6 @@
   &-col {
     width: 50%;
     float: left;
-    padding: 0 10px;
     @media (max-width: 991px) {
       width: 100%;
       +.profile-info-col {

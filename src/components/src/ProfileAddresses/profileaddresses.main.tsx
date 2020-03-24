@@ -142,7 +142,9 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
             <h2>
               {intl.get('addresses')}
             </h2>
-            {this.renderAddresses()}
+            <div className="profile-addresses-wrapper">
+              {this.renderAddresses()}
+            </div>
             <button className="ep-btn primary wide profile-new-address-btn" type="button" disabled={isDisabled} onClick={onAddNewAddress}>
               {intl.get('add-new-address')}
             </button>

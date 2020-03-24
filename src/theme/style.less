@@ -329,6 +329,33 @@
    }
  }
 
+  .style-radio {
+    display: none;
+    +label {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 0;
+      border-radius: 50%;
+      border: 1px solid @firstBorderColor;
+      margin-right: 10px;
+      float: left;
+
+      +label {
+        display: block;
+        overflow: hidden;
+      }
+    }
+
+    &:checked {
+      +label {
+        border: 6px solid @firstComplimentColor;
+      }
+    }
+  }
+
  .styles_modal__gNwvD {
    margin: auto;
  }

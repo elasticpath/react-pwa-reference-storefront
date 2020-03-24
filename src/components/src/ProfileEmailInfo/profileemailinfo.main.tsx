@@ -157,7 +157,7 @@ class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, Profilee
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion">
           <span className="feedback-label">{email === '' && intl.get('email-validation')}</span>
-          <div className="personal-info-container container">
+          <div className="personal-info-container">
             <div className="personal-info-email">
               <span className="info-label" data-el-label="profile.email">
                 {intl.get('email')}

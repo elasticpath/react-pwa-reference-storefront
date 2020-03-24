@@ -205,7 +205,7 @@ class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainSta
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion">
           <div>
-            <div className="personal-info-container container">
+            <div className="personal-info-container">
               <div className="personal-info-firstName">
                 <span className="info-label" data-el-label="profile.firstName">
                   {intl.get('first-name')}

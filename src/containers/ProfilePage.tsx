@@ -277,22 +277,18 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 <h3 className="profile-info-container-title">
                   {intl.get('shipping')}
                 </h3>
-                <div className="profile-info-col">
-                  <div className="profile-info-block">
-                    {(profileData._addresses) ? (
-                      <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
-                    ) : ('')}
-                    {this.renderNewAddressModal()}
-                  </div>
+                <div className="profile-info-block">
+                  {(profileData._addresses) ? (
+                    <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
+                  ) : ('')}
+                  {this.renderNewAddressModal()}
                 </div>
               </div>
               <div className="profile-info-container">
                 <h3 className="profile-info-container-title">
                   {intl.get('payment')}
                 </h3>
-                <div className="profile-info-col">
-                  {this.renderPayments()}
-                </div>
+                {this.renderPayments()}
               </div>
               {(Config.Compliance.enable) ? (
                 <div className="profile-info-container">
