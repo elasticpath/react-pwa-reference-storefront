@@ -297,10 +297,10 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
             <div key={`shippingAddress_${Math.random().toString(36).substr(2, 9)}`}>
               <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
                 {/* eslint-disable-next-line max-len */}
-                <input type="radio" name="shipping" id={`shippingOption-${index}`} className="checkout-address-radio style-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+                <input type="radio" name="shipping" id={`shippingAddress-${index}`} className="checkout-address-radio style-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 {/* eslint-disable jsx-a11y/label-has-associated-control */}
-                <label htmlFor={`shippingOption-${index}`} />
-                <label htmlFor={`shippingOption-${index}`}>
+                <label htmlFor={`shippingAddress-${index}`} />
+                <label htmlFor={`shippingAddress-${index}`}>
                   <div data-region="checkoutAddressRegion">
                     <AddressContainer name={name} address={address} />
                   </div>
