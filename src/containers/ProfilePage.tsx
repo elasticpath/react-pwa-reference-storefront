@@ -249,7 +249,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
         <div className="container profile-container">
           <div className="b2b-header" data-region="profileTitleRegion">
             <div className="page-title">
-              {intl.get(isB2B ? 'my-account' : 'profile')}
+              {intl.get('my-profile')}
             </div>
           </div>
           {profileData ? (

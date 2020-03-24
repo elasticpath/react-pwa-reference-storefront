@@ -116,10 +116,9 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
       // { to: '/b2b/requisition-lists', children: 'requisition-lists' },
       // { to: '/b2b/quotes', children: 'quotes' },
     ];
-    const profileName = Config.b2b.enable ? 'my-account' : 'profile';
     sideMenuItems.push(
-      { to: '/account', children: profileName },
-      { to: '/account/purchase-history', children: 'purchase-history' },
+      { to: '/account', children: 'my-profile' },
+      { to: '/account/purchase-history', children: 'purchase-history', id: 'purchase_history_item' },
     );
 
     if (associatesFormUrl) {
