@@ -46,7 +46,7 @@ class ProductsComparePage extends React.Component<ProductsComparePageProps> {
 
   handleAddToWishList() {
     const { history } = this.props;
-    history.push('/wishlists');
+    history.push('/account/wishlists');
   }
 
   handleChangeProductFeature(path) {

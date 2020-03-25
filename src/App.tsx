@@ -113,7 +113,10 @@ const appHeaderLinks = {
 };
 const appHeaderLoginLinks = {
   profile: '/account',
-  wishlists: '/wishlists',
+  wishlists: '/account/wishlists',
+  purchaseHistory: '/account/purchase-history',
+  accounts: '/account/accounts',
+  requisitionLists: '/account/requisition-lists',
 };
 const appHeaderNavigationLinks = {
   categories: '/category/',

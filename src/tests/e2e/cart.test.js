@@ -55,13 +55,13 @@ describe('Cart feature', () => {
     });
 
     const PARENT_CATEGORY_CSS = '.app-header-navigation-component li[data-name="Mens"]';
-    const PRODUCT_CSS = '#category_item_title_link_VESTRI_MENS_SOFT_SHELL_JACKET_RD_LG';
+    const PRODUCT_CSS = '#category_item_title_link_VESTRI_MENS_VESTRI_POLO_LOGO_HG_MD';
     const SKU_OPTION_SELECT_CSS = 'div[id="product_display_item_sku_guide"] > div > label[for*="selectorWeight_black"]';
     const SKU_BUTTON_SELECT_CSS = 'div[id="product_display_item_size_guide"] > div > label[for*="selectorWeight_small"]';
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
     const QUANTITY_SELECT_CSS = 'input[id="product_display_quantity_field"]';
     const PRODUCT_DETAIL_CSS = 'div[class="itemdetail-details"]';
-    const PRODUCT_PRICE_CSS = "#category_item_price_VESTRI_MENS_SOFT_SHELL_JACKET_RD_LG";
+    const PRODUCT_PRICE_CSS = "#category_item_price_VESTRI_MENS_VESTRI_POLO_LOGO_HG_MD";
     const CART_LINE_ITEM_PRICE_CSS = "div[data-region='itemTotalPriceRegion'] .cart-total-purchase-price";
 
     const PRODUCT_QUANTITY = 2;
@@ -70,7 +70,7 @@ describe('Cart feature', () => {
     await page.waitForSelector(PARENT_CATEGORY_CSS);
     page.click(PARENT_CATEGORY_CSS);
 
-    // And I select product Men's Soft Shell Jacket
+    // And I select product Men's Vestri Polo Logo
     await page.waitForSelector(PRODUCT_CSS);
     page.click(PRODUCT_CSS);
 

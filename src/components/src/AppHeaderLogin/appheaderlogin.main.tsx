@@ -367,6 +367,8 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
           </div>);
       };
 
+      const accontLinkName = Config.b2b.enable && accountData ? 'my-account' : 'my-profile';
+
       if (isLoggedIn) {
         return (
           <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
@@ -404,14 +406,23 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     <Link to={appHeaderLoginLinks.profile} className="profile-link">
                       <div>
                         <span id="header_navbar_login_menu_profile_link">
-                          {intl.get('my-profile')}
+                          {intl.get(accontLinkName)}
+                        </span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link to={appHeaderLoginLinks.purchaseHistory} className="purchase-history-link">
+                      <div>
+                        <span id="header_navbar_login_menu_purchase_history_link">
+                          {intl.get('purchase-history')}
                         </span>
                       </div>
                     </Link>
                   </li>
                   {(Config.b2b.enable && accountData && accountData._accounts) ? (
                     <li className="dropdown-item">
-                      <Link className="dashboard-link" to="/account/accounts">
+                      <Link to={appHeaderLoginLinks.accounts} className="dashboard-link">
                         <div>
                           <span className="dashboard-nav">
                             {intl.get('accounts')}
@@ -421,7 +432,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     </li>) : ('')}
                   {(showRequisitionListsLink) ? (
                     <li className="dropdown-item">
-                      <Link to="/account/requisition-lists" className="dashboard-link link-item">
+                      <Link to={appHeaderLoginLinks.requisitionLists} className="dashboard-link link-item">
                         <div>
                           <span className="dashboard-nav">
                             {intl.get('requisition-lists')}

@@ -109,16 +109,13 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
       isLocationLoading,
     } = this.state;
 
-    const sideMenuItems = [
-      // { to: '/b2b/orders', children: 'orders' },
-      // { to: '/b2b/approvals', children: 'approvals' },
-      // { to: '/b2b/invitations', children: 'invitations' },
-      // { to: '/b2b/requisition-lists', children: 'requisition-lists' },
-      // { to: '/b2b/quotes', children: 'quotes' },
-    ];
+    const sideMenuItems = [];
+    const profileName = Config.b2b.enable ? 'my-account' : 'my-profile';
+
     sideMenuItems.push(
-      { to: '/account', children: 'my-profile' },
-      { to: '/account/purchase-history', children: 'purchase-history', id: 'purchase_history_item' },
+      { to: '/account', children: profileName },
+      { to: '/account/purchase-history', children: 'purchase-history' },
+      { to: '/account/wishlists', children: 'wishlists' },
     );
 
     if (associatesFormUrl) {

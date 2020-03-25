@@ -142,20 +142,11 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
     const { wishListData, isLoading } = this.state;
     const itemDetailLink = '/itemdetail';
     return (
-      <div className="wish-list-container container">
+      <div className="wish-list-container">
         <div className="wish-list-container-inner">
-          <div data-region="wishListTitleRegion" className="wish-list-title-container">
-            <div>
-              {wishListData && !isLoading && (
-                <h1 className="view-title">
-                  {intl.get('wishlists')}
-                </h1>
-              )}
-              {(!wishListData || isLoading) && (
-                <h1 className="view-title">
-                  {intl.get('wishlists')}
-                </h1>
-              )}
+          <div data-region="wishListTitleRegion" className="b2b-header">
+            <div className="page-title">
+              {intl.get('wishlists')}
             </div>
           </div>
           {wishListData && !isLoading && (

@@ -138,9 +138,6 @@ const router = [{
   path: '/support',
   component: SupportPage,
 }, {
-  path: '/wishlists',
-  component: WishListsPage,
-}, {
   path: '/shippingreturns',
   component: ShippingReturnsPage,
 }, {
@@ -181,6 +178,10 @@ const router = [{
     {
       path: '/account/accounts',
       component: Accounts,
+    },
+    {
+      path: '/account/wishlists',
+      component: WishListsPage,
     },
     {
       path: '/account/address-book',
