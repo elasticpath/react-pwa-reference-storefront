@@ -242,7 +242,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       if (Config.b2b.enable) {
         try {
           await login();
-          const account = await adminFetch('/?zoom=myprofile,myprofile:primaryemail', {
+          const account = await adminFetch('/?zoom=accounts,myprofile,myprofile:primaryemail', {
             headers: {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
@@ -367,7 +367,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
           </div>);
       };
 
-      const accontLinkName = Config.b2b.enable && accountData ? 'my-account' : 'my-profile';
+      const accountLinkName = Config.b2b.enable && accountData ? 'my-account' : 'my-profile';
 
       if (isLoggedIn) {
         return (
@@ -406,7 +406,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     <Link to={appHeaderLoginLinks.profile} className="profile-link">
                       <div>
                         <span id="header_navbar_login_menu_profile_link">
-                          {intl.get(accontLinkName)}
+                          {intl.get(accountLinkName)}
                         </span>
                       </div>
                     </Link>
@@ -420,6 +420,17 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                       </div>
                     </Link>
                   </li>
+                  {permission && (
+                    <li className="dropdown-item">
+                      <Link to={appHeaderLoginLinks.wishlists} className="wishlist-link">
+                        <div>
+                          <span id="header_navbar_login_menu_wishlist_link">
+                            {intl.get('wishlists')}
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                  )}
                   {(Config.b2b.enable && accountData && accountData._accounts) ? (
                     <li className="dropdown-item">
                       <Link to={appHeaderLoginLinks.accounts} className="dashboard-link">
@@ -440,17 +451,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                         </div>
                       </Link>
                     </li>) : ('')}
-                  {permission && (
-                  <li className="dropdown-item">
-                    <Link to={appHeaderLoginLinks.wishlists} className="wishlist-link">
-                      <div>
-                        <span id="header_navbar_login_menu_wishlist_link">
-                          {intl.get('wishlists')}
-                        </span>
-                      </div>
-                    </Link>
-                  </li>
-                  )}
                   {(Config.b2b.enable) ? (
                     <li>
                       <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>
