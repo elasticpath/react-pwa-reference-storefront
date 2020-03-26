@@ -156,10 +156,10 @@ const router = [{
   path: '/newpaymentform/paymentdata',
   component: AddPaymentMethod,
 }, {
-  path: '/b2b/account/:uri',
+  path: '/account/account-item/:uri',
   component: AccountMain,
 }, {
-  path: '/b2b/requisition-list-item/:uri',
+  path: '/account/requisition-list-item/:uri',
   exact: true,
   component: RequisitionPageMain,
 }, {

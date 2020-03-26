@@ -549,7 +549,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
           <div className={`requisition-component-wrap ${multiSelectMode ? 'multi-select-mode' : ''}`}>
             <div className="requisition-header">
               <div className="back-link-wrap">
-                <Link className="back-link" to="/b2b/requisition-lists">
+                <Link className="back-link" to="/account/requisition-lists">
                   <AngleLeftIcon />
                   {intl.get('back-to-lists')}
                 </Link>
