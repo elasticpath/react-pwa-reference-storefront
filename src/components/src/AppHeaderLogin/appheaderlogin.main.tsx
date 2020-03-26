@@ -346,7 +346,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
-      const b2cUserName = profileData ? `${profileData['family-name']} ${profileData['given-name']}` : '';
+      const b2cUserName = profileData ? `${profileData['given-name']} ${profileData['family-name']}` : '';
       const b2bUserName = accountData ? accountData._myprofile && accountData._myprofile[0].name : '';
       const email = accountData && accountData._myprofile && accountData._myprofile[0]._primaryemail[0].email;
 
