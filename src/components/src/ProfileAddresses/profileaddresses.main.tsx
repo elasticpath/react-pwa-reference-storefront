@@ -78,7 +78,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
           } = addressElement;
           return (
             <ul key={`profile_address_${Math.random().toString(36).substr(2, 9)}`} className="profile-addresses-listing" data-el-container="profile.addresses">
-              <li className="profile-address-container">
+              <li className="profile-address-container" data-region="profileAddressContainer">
                 <div data-region="profileAddressComponentRegion">
                   <ul className="address-container">
                     <li className="address-name" data-el-value="address.name">
@@ -142,8 +142,10 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
             <h2>
               {intl.get('addresses')}
             </h2>
-            {this.renderAddresses()}
-            <button className="ep-btn primary wide profile-new-address-btn" type="button" disabled={isDisabled} onClick={onAddNewAddress}>
+            <div className="profile-addresses-wrapper">
+              {this.renderAddresses()}
+            </div>
+            <button className="ep-btn primary wide profile-new-address-btn" type="button" disabled={isDisabled} onClick={onAddNewAddress} data-region="billingAddressButtonRegion">
               {intl.get('add-new-address')}
             </button>
           </div>

@@ -117,9 +117,6 @@ class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, Profilee
     if (emailInEditMode) {
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion">
-          <h2>
-            {intl.get('personal-information')}
-          </h2>
           <form className="form-horizontal" onSubmit={this.submitEmailChange}>
             <div data-region="componentAddressFormRegion">
               <span>{failedSubmit ? intl.get('failed-to-save-email') : ''}</span>
@@ -160,10 +157,7 @@ class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, Profilee
       return (
         <div className="personal-information-container" data-region="profilePersonalInfoRegion">
           <span className="feedback-label">{email === '' && intl.get('email-validation')}</span>
-          <h2>
-            {intl.get('personal-information')}
-          </h2>
-          <div className="personal-info-container container">
+          <div className="personal-info-container">
             <div className="personal-info-email">
               <span className="info-label" data-el-label="profile.email">
                 {intl.get('email')}

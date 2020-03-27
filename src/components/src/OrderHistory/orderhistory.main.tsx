@@ -19,7 +19,7 @@
  *
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { getConfig } from '../utils/ConfigProvider';
 import OrderLine from '../OrderLine/orderline.main';
 
@@ -31,74 +31,54 @@ interface OrderHistoryMainProps {
   /** purchase history */
   purchaseHistory: { [key: string]: any },
 }
-interface OrderHistoryMainState {
-  purchases: { [key: string]: any },
-}
 
-class OrderHistoryMain extends Component<OrderHistoryMainProps, OrderHistoryMainState> {
-  constructor(props) {
-    super(props);
-    const epConfig = getConfig();
-    ({ intl } = epConfig);
-    const { purchaseHistory } = this.props;
-    this.state = {
-      purchases: purchaseHistory,
-    };
-  }
+function OrderHistoryMain(props: OrderHistoryMainProps) {
+  const { purchaseHistory } = props;
+  const epConfig = getConfig();
+  ({ intl } = epConfig);
 
-  render() {
-    const {
-      purchases,
-    } = this.state;
-    if (purchases.links && purchases._element) {
-      return (
-        <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion">
-          <div className="table-responsive">
-            <h2>
-              {intl.get('purchase-history')}
-            </h2>
-            <table className="table table-condensed striped-table">
-              <thead>
-                <tr>
-                  <th>
-                    {intl.get('purchase-number')}
-                  </th>
-                  <th>
-                    {intl.get('date')}
-                  </th>
-                  <th>
-                    {intl.get('total')}
-                  </th>
-                  <th>
-                    {intl.get('status')}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {purchases._element.map(orderLine => (
-                  <OrderLine key={orderLine['purchase-number']} orderLine={orderLine} />
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      );
-    }
+  if (purchaseHistory.links && purchaseHistory._element) {
     return (
       <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion">
         <div className="table-responsive">
-          <h3>
-            {intl.get('purchase-history')}
-          </h3>
-          <div>
-            <p>
-              {intl.get('no-previous-purchase-message')}
-            </p>
-          </div>
+          <table className="table table-condensed striped-table">
+            <thead>
+              <tr>
+                <th>
+                  {intl.get('purchase-number')}
+                </th>
+                <th>
+                  {intl.get('date')}
+                </th>
+                <th>
+                  {intl.get('total')}
+                </th>
+                <th>
+                  {intl.get('status')}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {purchaseHistory._element.map(orderLine => (
+                <OrderLine key={orderLine['purchase-number']} orderLine={orderLine} />
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     );
   }
+  return (
+    <div className="profile-purchase-history-container" data-region="profilePurchaseHistoryRegion">
+      <div className="table-responsive">
+        <div>
+          <p className="purchase-empty">
+            {intl.get('no-previous-purchase-message')}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default OrderHistoryMain;

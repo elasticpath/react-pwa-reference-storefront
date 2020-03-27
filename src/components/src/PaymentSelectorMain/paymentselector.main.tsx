@@ -176,7 +176,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
 
       if (sortedPaymentInstrumentSelectors) {
         return (
-          sortedPaymentInstrumentSelectors.map((paymentInstrument) => {
+          sortedPaymentInstrumentSelectors.map((paymentInstrument, index) => {
             const displayName = paymentInstrument._description[0].name;
             const checked = paymentInstrument.chosen !== undefined;
             const selectAction = PaymentSelectorMain.findSelectActionFromLinks(paymentInstrument.links);
@@ -187,7 +187,8 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
                 <ul key={`profile_payment_${Math.random().toString(36).substr(2, 9)}`} className="profile-payment-methods-listing">
                   <li className="profile-payment-method-container">
                     <div data-region="paymentMethodComponentRegion" className="profile-payment-method-label-container">
-                      <input type="radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectAction, event)} />
+                      <input type="radio" defaultChecked={checked} id={`payment-method-${index}`} onClick={event => this.handlePaymentInstrumentSelection(selectAction, event)} className="style-radio" />
+                      <label htmlFor={`payment-method-${index}`} />
                       <span data-el-value="payment.token" className="payment-instrument-name-container">
                         {displayName}
                       </span>
@@ -237,7 +238,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     );
   }
 
-  renderPaymentChoice(payment) {
+  renderPaymentChoice(payment, index) {
     const {
       checked, deletable, selectaction,
     } = payment;
@@ -245,8 +246,9 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     return (
       <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
         <div className="payment-ctrl-cell" data-region="paymentSelector">
-          <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectaction, event)} />
-          <label htmlFor="paymentMethod">
+          <input type="radio" name="paymentMethod" id={`paymentMethod-${index}`} className="payment-option-radio style-radio" defaultChecked={checked} onClick={event => this.handlePaymentInstrumentSelection(selectaction, event)} />
+          <label htmlFor={`paymentMethod-${index}`} />
+          <label htmlFor={`paymentMethod-${index}`}>
             <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion">
               <PaymentMethodContainer displayName={payment} />
             </div>
@@ -290,7 +292,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
     }
 
     return (
-      paymentMethods.map(payment => this.renderPaymentChoice(payment))
+      paymentMethods.map((payment, index) => this.renderPaymentChoice(payment, index))
     );
   }
 
@@ -343,7 +345,7 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
                 {intl.get('credit-cards')}
               </h2>
               { isLoading && <div className="miniLoader" /> }
-              <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container">
+              <div data-region="paymentMethodSelectorsRegion" className="checkout-region-inner-container payment-methods-wrapper">
                 {this.renderPayments()}
               </div>
               <button className="ep-btn primary wide new-payment-btn" type="button" disabled={disableAddPayment} onClick={() => { this.newPayment(); }}>

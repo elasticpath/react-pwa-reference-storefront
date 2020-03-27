@@ -27,7 +27,7 @@ import {
   ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, PaymentSelectorMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
 } from '../components/src/index';
 import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { adminFetch, cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
 import './ProfilePage.less';
@@ -94,12 +94,13 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
     this.renderPayments = this.renderPayments.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchProfileData();
+  async componentDidMount() {
+    await this.fetchProfileData();
   }
 
-  fetchProfileData() {
-    login().then(() => {
+  async fetchProfileData() {
+    try {
+      await login();
       const options = {
         headers: {
           'Content-Type': 'application/json',
@@ -109,28 +110,25 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
       if (Config.Compliance.enable) {
         options.headers['X-Ep-Data-Policy-Segments'] = `${Config.Compliance.dataPolicySegments}`;
       }
-      cortexFetch(`/?zoom=${zoomArray.join()}`, options)
-        .then(res => res.json())
-        .then((res) => {
-          if (res && res._defaultprofile) {
-            this.setState({
-              profileData: res._defaultprofile[0],
-              dataPolicyData: res['_data-policies'] ? res['_data-policies'][0] : null,
-            });
-          } else {
-            this.setState({
-              invalidPermission: true,
-            });
-          }
-          if (res && res._passwordresetform) {
-            this.setState({ showResetPasswordButton: true });
-          }
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error.message);
+      const res = await cortexFetch(`/?zoom=${zoomArray.join()}`, options);
+      const profileData = await res.json();
+      if (profileData && profileData._defaultprofile) {
+        this.setState({
+          profileData: profileData._defaultprofile[0],
+          dataPolicyData: profileData['_data-policies'] ? profileData['_data-policies'][0] : null,
         });
-    });
+      } else {
+        this.setState({
+          invalidPermission: true,
+        });
+      }
+      if (profileData && profileData._passwordresetform) {
+        this.setState({ showResetPasswordButton: true });
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error.message);
+    }
   }
 
   checkPermissions() {
@@ -241,15 +239,18 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
   }
 
   render() {
-    const { profileData, showResetPasswordButton, dataPolicyData } = this.state;
-
+    const {
+      profileData, showResetPasswordButton, dataPolicyData,
+    } = this.state;
+    const isB2B = Config.b2b.enable;
+    const emailTitle = isB2B ? intl.get('account-information') : intl.get('personal-information');
     return (
       <div>
         <div className="container profile-container">
-          <div data-region="profileTitleRegion">
-            <h1 className="view-title">
-              {intl.get('profile')}
-            </h1>
+          <div className="b2b-header" data-region="profileTitleRegion">
+            <div className="page-title">
+              {intl.get(isB2B ? 'my-account' : 'my-profile')}
+            </div>
           </div>
           {profileData ? (
             <div className="profile-data">
@@ -259,6 +260,9 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 </h3>
                 <div className="profile-info-col">
                   <div className="profile-info-block">
+                    <h2>
+                      {emailTitle}
+                    </h2>
                     <ProfileemailinfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
                     <ProfileInfoMain profileInfo={profileData} onChange={this.fetchProfileData} />
                     {showResetPasswordButton && (
@@ -269,29 +273,22 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                   </div>
                 </div>
               </div>
-              {(profileData._purchases) ? (
-                <OrderHistoryMain purchaseHistory={profileData._purchases[0]} />
-              ) : ('')}
               <div className="profile-info-container">
                 <h3 className="profile-info-container-title">
                   {intl.get('shipping')}
                 </h3>
-                <div className="profile-info-col">
-                  <div className="profile-info-block">
-                    {(profileData._addresses) ? (
-                      <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
-                    ) : ('')}
-                    {this.renderNewAddressModal()}
-                  </div>
+                <div className="profile-info-block">
+                  {(profileData._addresses) ? (
+                    <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
+                  ) : ('')}
+                  {this.renderNewAddressModal()}
                 </div>
               </div>
               <div className="profile-info-container">
                 <h3 className="profile-info-container-title">
                   {intl.get('payment')}
                 </h3>
-                <div className="profile-info-col">
-                  {this.renderPayments()}
-                </div>
+                {this.renderPayments()}
               </div>
               {(Config.Compliance.enable) ? (
                 <div className="profile-info-container">

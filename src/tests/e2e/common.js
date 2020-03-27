@@ -34,6 +34,7 @@ module.exports = {
     const FORM_CONFIRM_PASSWORD_CSS = '#registration_form_passwordConfirm';
     const FORM_SUBMIT_BUTTON_CSS = '#registration_form_register_button';
 
+    await page.waitFor(3000);
     await page.waitForSelector(LOGIN_USERNAME_INPUT_CSS);
     await page.type(LOGIN_USERNAME_INPUT_CSS, user.email);
 
@@ -75,9 +76,11 @@ module.exports = {
     const PRODUCT_CSS = '.product-list-container .category-items-listing';
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
     const CART_SELECTION_DROPDOWN_CSS = 'button[id="product_display_item_add_to_cart_button-dropdown"]';
-    const CART_SELECTION_DROPDOWN_ITEM_CSS = 'form.itemdetail-addtocart-form.form-horizontal > div.form-group-submit > div > div > ul > li:nth-child(1)';
+    const CART_SELECTION_DROPDOWN_SHOW_CSS = 'button[id="product_display_item_add_to_cart_button-dropdown"][aria-expanded="true"]';
+    const CART_SELECTION_DROPDOWN_ITEM_CSS = 'form.itemdetail-addtocart-form.form-horizontal > div.form-group-submit > div > div > div > button:nth-child(1)';
     const CART_LIST_CSS = 'div[data-region="mainCartRegion"]';
     const CART_LINK_CSS = '.cart-link';
+    const CART_SUCCESS_POPUP = 'div[data-region="cart_success_popup"].show';
 
     page.setDefaultNavigationTimeout(0);
     await page.waitForSelector(PARENT_CATEGORY_CSS);
@@ -108,15 +111,15 @@ module.exports = {
       throw new Error('Product not found');
     }
     await page.waitFor(5000);
-    await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
     if (await page.$(CART_SELECTION_DROPDOWN_CSS) !== null) {
-      await Promise.all([
-        await page.click(CART_SELECTION_DROPDOWN_CSS),
-        await page.waitForSelector(CART_SELECTION_DROPDOWN_ITEM_CSS),
-        await page.click(CART_SELECTION_DROPDOWN_ITEM_CSS),
-        await page.waitForSelector(CART_LINK_CSS),
-        await page.click(CART_LINK_CSS),
-      ]);
+      await page.click(CART_SELECTION_DROPDOWN_CSS);
+      await page.waitForSelector(CART_SELECTION_DROPDOWN_SHOW_CSS);
+      await page.waitFor(1000);
+      await page.waitForSelector(CART_SELECTION_DROPDOWN_ITEM_CSS);
+      await page.click(CART_SELECTION_DROPDOWN_ITEM_CSS);
+      await page.waitFor(CART_SUCCESS_POPUP);
+      await page.waitForSelector(CART_LINK_CSS);
+      await page.click(CART_LINK_CSS);
     } else {
       await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
       await page.click(ADD_TO_CART_BUTTON_CSS);
@@ -219,10 +222,10 @@ module.exports = {
     const FORM_CONFIRM_PASSWORD = '#registration_form_passwordConfirm';
     const FORM_SUBMIT_BUTTON = '#registration_form_register_button';
 
+    await page.waitFor(3000);
     await page.waitForSelector(LOGGED_IN_BUTTON);
     await page.click(LOGGED_IN_BUTTON);
 
-    await page.waitFor(3000);
     await page.waitForSelector(LOGIN_USERNAME_INPUT);
     await page.waitForSelector(LOGIN_USERNAME_INPUT);
     await page.type(LOGIN_USERNAME_INPUT, user.email);

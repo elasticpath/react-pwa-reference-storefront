@@ -83,6 +83,7 @@ interface AppHeaderLoginMainState {
   loginUrlAddress: string,
   oidcParameters: any,
   showRequisitionListsLink: boolean,
+  profileData: any,
 }
 
 interface OidcParameters {
@@ -123,14 +124,17 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         oidcParameters: {},
         loginUrlAddress: '',
         showRequisitionListsLink: false,
+        profileData: undefined,
       };
       this.handleModalClose = this.handleModalClose.bind(this);
+      this.fetchProfileData = this.fetchProfileData.bind(this);
     }
 
     componentDidMount() {
       const { locationSearchData } = this.props;
       const url = locationSearchData;
       const params = queryString.parse(url);
+      this.fetchProfileData();
       if (params.userId && params.role && params.token) {
         this.impersonate(params);
       } else if (params.role && params.token) {
@@ -238,7 +242,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
       if (Config.b2b.enable) {
         try {
           await login();
-          const account = await adminFetch('/?zoom=accounts', {
+          const account = await adminFetch('/?zoom=accounts,myprofile,myprofile:primaryemail', {
             headers: {
               'Content-Type': 'application/json',
               Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
@@ -251,6 +255,29 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
           console.error(error.message);
         }
       }
+    }
+
+    fetchProfileData() {
+      login().then(() => {
+        cortexFetch('/?zoom=defaultprofile', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+          .then(res => res.json())
+          .then((res) => {
+            if (res && res._defaultprofile) {
+              this.setState({
+                profileData: res._defaultprofile[0],
+              });
+            }
+          })
+          .catch((error) => {
+          // eslint-disable-next-line no-console
+            console.error(error.message);
+          });
+      });
     }
 
     impersonate(params) {
@@ -309,16 +336,19 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
 
     render() {
       const {
-        isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin, appHeaderLinks, locationPathName,
+        isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin, locationPathName,
       } = this.props;
       const {
-        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters, showRequisitionListsLink,
+        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters, showRequisitionListsLink, profileData,
       } = this.state;
       let keycloakLoginRedirectUrl = '';
       if (Config.b2b.enable && Config.b2b.openId && !Config.b2b.openId.enable) {
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
+      const b2cUserName = profileData ? `${profileData['given-name']} ${profileData['family-name']}` : '';
+      const b2bUserName = accountData ? accountData._myprofile && accountData._myprofile[0].name : '';
+      const email = accountData && accountData._myprofile && accountData._myprofile[0]._primaryemail[0].email;
 
       const RequisitionListsLink = () => {
         const { count, name }: any = useRequisitionListCountState();
@@ -337,6 +367,8 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
           </div>);
       };
 
+      const accountLinkName = Config.b2b.enable && accountData ? 'my-account' : 'my-profile';
+
       if (isLoggedIn) {
         return (
           <div className={`app-login-component ${isMobileView ? 'mobile-view' : ''}`}>
@@ -352,23 +384,56 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
               </button>
               <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
                 <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
-                  {userName !== 'undefined' ? (
-                    <li className="dropdown-header">
-                      {userName}
+                  {Config.b2b.enable ? (
+                    <li className="dropdown-item shop-for">
+                      <div className="user-name">{b2bUserName}</div>
+                      <div className="email-title">{email}</div>
+                      <div className="shopping-small">
+                        <span>
+                          {localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}
+                        </span>
+                      </div>
                     </li>
-                  ) : ('')}
+                  ) : (
+                    <li className="dropdown-item shop-for b2c">
+                      <span className="user-name">{b2cUserName}</span>
+                      {userName !== 'undefined' ? (
+                        <span className="email-title">{userName}</span>
+                      ) : ('')}
+                    </li>
+                  )}
                   <li className="dropdown-item">
                     <Link to={appHeaderLoginLinks.profile} className="profile-link">
                       <div>
                         <span id="header_navbar_login_menu_profile_link">
-                          {intl.get('my-profile')}
+                          {intl.get(accountLinkName)}
                         </span>
                       </div>
                     </Link>
                   </li>
+                  <li className="dropdown-item">
+                    <Link to={appHeaderLoginLinks.purchaseHistory} className="purchase-history-link">
+                      <div>
+                        <span id="header_navbar_login_menu_purchase_history_link">
+                          {intl.get('purchase-history')}
+                        </span>
+                      </div>
+                    </Link>
+                  </li>
+                  {permission && (
+                    <li className="dropdown-item">
+                      <Link to={appHeaderLoginLinks.wishlists} className="wishlist-link">
+                        <div>
+                          <span id="header_navbar_login_menu_wishlist_link">
+                            {intl.get('wishlists')}
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                  )}
                   {(Config.b2b.enable && accountData && accountData._accounts) ? (
                     <li className="dropdown-item">
-                      <Link className="dashboard-link" to="/b2b">
+                      <Link to={appHeaderLoginLinks.accounts} className="dashboard-link">
                         <div>
                           <span className="dashboard-nav">
                             {intl.get('accounts')}
@@ -378,7 +443,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     </li>) : ('')}
                   {(showRequisitionListsLink) ? (
                     <li className="dropdown-item">
-                      <Link to="/b2b/requisition-lists" className="dashboard-link link-item">
+                      <Link to={appHeaderLoginLinks.requisitionLists} className="dashboard-link link-item">
                         <div>
                           <span className="dashboard-nav">
                             {intl.get('requisition-lists')}
@@ -386,29 +451,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                         </div>
                       </Link>
                     </li>) : ('')}
-                  {permission && (
-                  <li className="dropdown-item">
-                    <Link to={appHeaderLoginLinks.wishlists} className="wishlist-link">
-                      <div>
-                        <span id="header_navbar_login_menu_wishlist_link">
-                          {intl.get('wishlists')}
-                        </span>
-                      </div>
-                    </Link>
-                  </li>
-                  )}
-                  {(localStorage.getItem(`${Config.b2b.enable && Config.cortexApi.scope}_b2bCart`)) ? (
-                    <li className="dropdown-item shop-for">
-                      <div className="shopping-as-link">
-                        <span>
-                          {intl.get('shopping-as')}
-                        </span>
-                        <span>
-                          {localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}
-                        </span>
-                      </div>
-                    </li>
-                  ) : ('')}
                   {(Config.b2b.enable) ? (
                     <li>
                       <button className="dropdown-item" type="button" onClick={() => this.handleCartModalOpen()}>
@@ -419,12 +461,12 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                   ) : ('')}
                   <li className="dropdown-item">
                     {(Config.b2b.enable) ? (
-                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => logoutAccountManagementUser()}>
+                      <button className="ep-btn primary logout-link" type="button" data-el-label="auth.logout" onClick={() => logoutAccountManagementUser()}>
                         <span className="icon" />
                         {intl.get('logout')}
                       </button>
                     ) : (
-                      <button className="logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
+                      <button className="ep-btn primary logout-link" type="button" data-el-label="auth.logout" onClick={() => this.logoutRegisteredUser()}>
                         <span className="icon" />
                         {intl.get('logout')}
                       </button>
