@@ -386,13 +386,13 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                 <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
                   {Config.b2b.enable ? (
                     <li className="dropdown-item shop-for">
-                      <span className="user-name">{b2bUserName}</span>
+                      <div className="user-name">{b2bUserName}</div>
+                      <div className="email-title">{email}</div>
                       <div className="shopping-small">
                         <span>
                           {localStorage.getItem(`${Config.cortexApi.scope}_b2bCart`)}
                         </span>
                       </div>
-                      <span className="email-title">{email}</span>
                     </li>
                   ) : (
                     <li className="dropdown-item shop-for b2c">
