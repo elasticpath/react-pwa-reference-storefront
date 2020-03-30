@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -27,7 +28,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './profilecompliance.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface ProfileComplianceMainProps {
   /** data policies */
@@ -37,15 +37,17 @@ interface ProfileComplianceMainProps {
   /** handle data policies change */
   onChange: (...args: any[]) => any,
 }
+
 interface ProfileComplianceMainState {
     openNewPaymentModal: boolean
 }
+
 class ProfileComplianceMain extends Component<ProfileComplianceMainProps, ProfileComplianceMainState> {
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
   }
 
   handleOnClick(link, consented) {

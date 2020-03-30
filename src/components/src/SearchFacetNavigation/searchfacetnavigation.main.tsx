@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -28,7 +29,6 @@ import { ReactComponent as FilterIcon } from '../../../images/header-icons/basel
 import './searchfacetnavigation.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface SearchFacetNavigationMainProps {
   /** product data */
@@ -51,14 +51,15 @@ class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps
 
   constructor(props) {
     super(props);
+
     const { productData } = this.props;
-    const epConfig = getConfig();
     Config = getConfig().config;
-    ({ intl } = epConfig);
+
     this.state = {
       facetModel: productData,
       showFilterMobileMenu: false,
     };
+
     this.handleFacetSelection = this.handleFacetSelection.bind(this);
     this.handleOpenFilterMenu = this.handleOpenFilterMenu.bind(this);
     this.handleCloseFilterMenu = this.handleCloseFilterMenu.bind(this);

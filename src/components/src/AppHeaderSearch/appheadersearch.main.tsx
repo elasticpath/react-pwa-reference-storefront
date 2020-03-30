@@ -20,23 +20,21 @@
  */
 
 import React, { Component } from 'react';
-
+import intl from 'react-intl-universal';
 import './appheadersearch.main.less';
-import { getConfig } from '../utils/ConfigProvider';
 import { ReactComponent as SearchIcon } from '../../../images/header-icons/magnifying-glass.svg';
-
-let intl = { get: str => str };
 
 interface AppHeaderSearchMainProps {
   /** isMobileView */
-    isMobileView: boolean,
+  isMobileView: boolean,
   /** is focused */
-    isFocused?: boolean,
+  isFocused?: boolean,
   /** handle search page */
-    onSearchPage?: (...args: any[]) => any,
+  onSearchPage?: (...args: any[]) => any,
 }
+
 interface AppHeaderSearchMainState{
-    keywords: string,
+  keywords: string,
 }
 
 class AppHeaderSearchMain extends Component<AppHeaderSearchMainProps, AppHeaderSearchMainState> {
@@ -49,10 +47,11 @@ class AppHeaderSearchMain extends Component<AppHeaderSearchMainProps, AppHeaderS
 
   constructor(props) {
     super(props);
-    ({ intl } = getConfig());
+
     this.state = {
       keywords: '',
     };
+
     this.searchInput = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);

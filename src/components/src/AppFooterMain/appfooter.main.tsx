@@ -20,24 +20,22 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
 import './appfooter.main.less';
-import { getConfig } from '../utils/ConfigProvider';
 
 interface AppFooterMainProps {
   /** footer links */
   appFooterLinks?: {
-      [key: string]: any
+    [key: string]: any
   }
 }
-
-let intl = { get: str => str };
 
 function AppFooterMain(props: AppFooterMainProps) {
   const { appFooterLinks } = props;
   const linkTo = appFooterLinks;
-  ({ intl } = getConfig());
+
   return (
     <footer className="app-footer">
       <div className="first-row">

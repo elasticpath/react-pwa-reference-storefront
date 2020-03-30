@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
@@ -36,7 +37,6 @@ import { ReactComponent as RecycleBinIcon } from '../../../images/icons/ic_trash
 import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface CartLineItemProps {
   /** item */
@@ -104,14 +104,16 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
     const { item } = this.props;
+
     this.state = {
       quantity: item.quantity,
       openModal: false,
     };
+
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleQuantityDecrement = this.handleQuantityDecrement.bind(this);
     this.handleQuantityIncrement = this.handleQuantityIncrement.bind(this);

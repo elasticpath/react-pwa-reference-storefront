@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Slider from 'react-slick';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
@@ -37,7 +38,6 @@ import { ProductDisplayItemMainProps, ProductDisplayItemMainState } from './prod
 import ProductDisplayAttributes from '../ProductDisplayAttributes/productDisplayAttributes';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 const REQUISITION_LISTS_ZOOM : string[] = [
   'itemlistinfo',
@@ -74,9 +74,10 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       productId: '',
       productData: undefined,

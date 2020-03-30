@@ -21,7 +21,7 @@
 
 
 import React, { Component } from 'react';
-
+import intl from 'react-intl-universal';
 import './quickorderform.less';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
@@ -29,7 +29,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, ...args: any[]) => str };
 
 interface QuickOrderFormProps {
   /** item */
@@ -57,9 +56,10 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = getConfig());
+
     this.state = {
       code: '',
       quantity: 1,

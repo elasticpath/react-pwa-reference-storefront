@@ -20,15 +20,14 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import { getConfig } from '../utils/ConfigProvider';
-
-let intl = { get: str => str };
 
 interface OrderLineProps {
   /** order line */
   orderLine: { [key: string]: any },
 }
+
 interface OrderLineState {
   purchase: { [key: string]: any },
 }
@@ -36,9 +35,9 @@ interface OrderLineState {
 class OrderLine extends Component<OrderLineProps, OrderLineState> {
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
-    ({ intl } = epConfig);
+
     const { orderLine } = this.props;
+
     this.state = {
       purchase: orderLine,
     };

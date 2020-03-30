@@ -20,10 +20,8 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import './b2b.addassociatesmenu.less';
-import { getConfig } from '../utils/ConfigProvider';
-
-let intl = { get: str => str };
 
 interface B2bAddAssociatesMenuProps {
   /** handle spreeadsheet clicked */
@@ -31,6 +29,7 @@ interface B2bAddAssociatesMenuProps {
   /** handle template clicked */
   onTemplateClicked?: (...args: any[]) => any;
 }
+
 interface B2bAddAssociatesMenuState {
     isOpen: boolean,
 }
@@ -42,8 +41,7 @@ class B2bAddAssociatesMenu extends Component<B2bAddAssociatesMenuProps, B2bAddAs
 
     constructor(props) {
       super(props);
-      const epConfig = getConfig();
-      ({ intl } = epConfig);
+
       this.state = {
         isOpen: false,
       };

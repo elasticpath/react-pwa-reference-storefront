@@ -20,14 +20,15 @@
  */
 
 import React, { Component } from 'react';
-import './cartclear.less';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+
 import { ReactComponent as EllipsisIcon } from '../../../images/icons/more_horiz-24px.svg';
+import './cartclear.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, ...args: any[]) => str };
 
 interface CartClearProps {
   /** cart data */
@@ -48,9 +49,9 @@ class CartClear extends Component<CartClearProps, CartClearState> {
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
 
     this.state = {
       showConfirmationMsg: false,

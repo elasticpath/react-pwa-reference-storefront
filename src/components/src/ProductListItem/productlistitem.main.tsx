@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
@@ -29,7 +30,6 @@ import './productlistitem.main.less';
 import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface ProductListItemMainProps {
   /** product id */
@@ -47,6 +47,7 @@ interface ProductListItemMainProps {
   /** item detail link */
   itemDetailLink?: string,
 }
+
 interface ProductListItemMainState {
   productData: any,
   imageStatus: string,
@@ -63,9 +64,10 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       productData: undefined,
       imageStatus: 'loading',

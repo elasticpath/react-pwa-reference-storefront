@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -28,12 +29,12 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './giftcertificateform.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface GiftcertificateFormMainProps {
   /** handle update certificate data */
   updateCertificate: (...args: any[]) => any,
 }
+
 interface GiftcertificateFormMainState {
   open: boolean,
   giftCertificatesCode: string,
@@ -47,9 +48,10 @@ interface GiftcertificateFormMainState {
 class GiftcertificateFormMain extends Component<GiftcertificateFormMainProps, GiftcertificateFormMainState> {
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       open: false,
       giftCertificatesCode: '',
@@ -59,6 +61,7 @@ class GiftcertificateFormMain extends Component<GiftcertificateFormMainProps, Gi
       showErrorMsg: false,
       showLoader: false,
     };
+
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCheck = this.handleCheck.bind(this);

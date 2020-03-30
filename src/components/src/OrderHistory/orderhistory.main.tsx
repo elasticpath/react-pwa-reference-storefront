@@ -20,12 +20,10 @@
  */
 
 import React from 'react';
-import { getConfig } from '../utils/ConfigProvider';
+import intl from 'react-intl-universal';
 import OrderLine from '../OrderLine/orderline.main';
 
 import './orderhistory.main.less';
-
-let intl = { get: str => str };
 
 interface OrderHistoryMainProps {
   /** purchase history */
@@ -34,8 +32,6 @@ interface OrderHistoryMainProps {
 
 function OrderHistoryMain(props: OrderHistoryMainProps) {
   const { purchaseHistory } = props;
-  const epConfig = getConfig();
-  ({ intl } = epConfig);
 
   if (purchaseHistory.links && purchaseHistory._element) {
     return (

@@ -20,15 +20,13 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import QuickOrderMain from '../QuickOrder/quickorder.main';
 import ReorderMain from '../Reorder/reorder.main';
-import { getConfig } from '../utils/ConfigProvider';
 import PaymentMethodContainer from '../PaymentMethodContainer/paymentmethod.container';
 import ShippingOptionContainer from '../ShippingOption/shippingoption.container';
 import AddressContainer from '../AddressContainer/address.container';
 import './purchasedetails.main.less';
-
-let intl = { get: str => str };
 
 interface PurchaseDetailsMainProps {
   /** purchase data */
@@ -50,7 +48,6 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
     data, itemDetailLink, onMoveToCart, onConfiguratorAddToCart,
   } = props;
   const { status } = data;
-  ({ intl } = getConfig());
   let statusString;
   switch (status) {
     case 'CANCELLED':

@@ -18,7 +18,9 @@
  *
  *
  */
+
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 
@@ -26,7 +28,6 @@ import './appheadertop.main.less';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface AppHeaderTopProps {
   /** is mobile view */
@@ -50,7 +51,7 @@ class AppHeaderTop extends Component<AppHeaderTopProps> {
 
   constructor(props) {
     super(props);
-    ({ intl } = getConfig());
+
     const epConfig = getConfig();
     Config = epConfig.config;
   }

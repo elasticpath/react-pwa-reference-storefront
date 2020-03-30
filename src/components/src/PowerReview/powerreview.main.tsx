@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import scriptjs from 'scriptjs';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './powerreview.less';
@@ -28,7 +29,6 @@ import * as UserPrefs from '../utils/UserPrefs';
 const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface PowerReviewProps {
   /** product data */
@@ -44,9 +44,9 @@ class PowerReview extends Component<PowerReviewProps> {
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
   }
 
   componentDidMount() {

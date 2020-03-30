@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -27,7 +28,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './profileaddresses.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface ProfileAddressesMainProps {
   /** addresses */
@@ -45,9 +45,9 @@ interface ProfileAddressesMainProps {
 class ProfileAddressesMain extends Component<ProfileAddressesMainProps, {}> {
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
   }
 
   handleDelete(link) {

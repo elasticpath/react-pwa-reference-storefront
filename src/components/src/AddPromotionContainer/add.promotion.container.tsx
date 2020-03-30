@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -27,12 +28,11 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './add.promotion.container.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface AddPromotionContainerProps {
   /** An array of orders for the shopper, where `string` is the URL to the cart data for an order. */
   data: {
-      [key: string]: any
+    [key: string]: any
   },
   /** Verifies the coupon code and applies a valid coupon to the order. */
   onSubmittedPromotion: (...args: any[]) => any,
@@ -50,7 +50,6 @@ class AddPromotionContainer extends Component<AddPromotionContainerProps, AddPro
     super(props);
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = getConfig());
     this.state = {
       isPromotionFormOpen: false,
       failedPromotion: false,

@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -38,7 +39,6 @@ const zoomArray = [
 ];
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface CartCreateProps {
   /** handle modal close */
@@ -52,6 +52,7 @@ interface CartCreateProps {
   /** update cart modal */
   updateCartModal: boolean,
 }
+
 interface CartCreateState {
   cartElements: any,
   cartName: string,
@@ -72,9 +73,10 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       cartElements: [],
       cartName: '',
@@ -85,6 +87,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
       indexDefaultCart: 0,
       cartsData: [],
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleAddNewCart = this.handleAddNewCart.bind(this);
     this.clearCartNameField = this.clearCartNameField.bind(this);

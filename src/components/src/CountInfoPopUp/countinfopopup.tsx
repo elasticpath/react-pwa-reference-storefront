@@ -20,12 +20,12 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import './countinfopopup.less';
 import { Link } from 'react-router-dom';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, prop?) => str };
 
 interface CountInfoPopUpProps {
   /** count data */
@@ -46,9 +46,9 @@ class CountInfoPopUp extends Component<CountInfoPopUpProps, CountInfoPopUpState>
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
   }
 
   componentDidMount() {}

@@ -21,6 +21,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
@@ -29,19 +30,18 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import '../B2bEditAccount/b2b.editaccount.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface B2bAddSubAccountProps {
   /** is open */
-    isOpen: boolean,
+  isOpen: boolean,
   /** handle close */
-    handleClose: () => void,
+  handleClose: () => void,
   /** handle update */
-    handleUpdate: () => void,
+  handleUpdate: () => void,
   /** uri for adding sub-account */
-    addSubAccountUri: string,
+  addSubAccountUri: string,
   /** adding sub account seller admin */
-    addSubAccountSellerAdmin: boolean,
+  addSubAccountSellerAdmin: boolean,
 }
 
 interface B2bAddSubAccountState {
@@ -55,9 +55,10 @@ interface B2bAddSubAccountState {
 class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B2bAddSubAccountState> {
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       name: '',
       legalName: '',

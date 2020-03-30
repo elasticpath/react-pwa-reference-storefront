@@ -20,10 +20,9 @@
  */
 
 import React from 'react';
+import intl from 'react-intl-universal';
 import { getConfig } from '../utils/ConfigProvider';
 import './quantitySelector.less';
-
-let intl = { get: str => str };
 
 interface QuantityDetailsMainProps {
   /** Callback for when the + icon is clicked */
@@ -46,8 +45,6 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
     isLoading,
     itemQuantity,
   } = props;
-
-  ({ intl } = getConfig());
 
   return (
     <div className="form-group quantity-picker-group">

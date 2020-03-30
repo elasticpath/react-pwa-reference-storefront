@@ -20,12 +20,10 @@
  */
 
 import React, { Component } from 'react';
-import { getConfig } from '../utils/ConfigProvider';
+import intl from 'react-intl-universal';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
 import './productrecommendations.main.less';
-
-let intl = { get: str => str };
 
 interface ProductRecommendationsDisplayMainProps {
   /** product data */
@@ -47,10 +45,11 @@ class ProductRecommendationsDisplayMain extends Component<ProductRecommendations
 
   constructor(props) {
     super(props);
-    ({ intl } = getConfig());
+
     this.state = {
       maxItemsInView: 4,
     };
+
     this.renderProductAssociationView = this.renderProductAssociationView.bind(this);
   }
 

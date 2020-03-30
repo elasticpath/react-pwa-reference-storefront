@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from '../AppHeaderSearch/appheadersearch.main';
 import BloomreachAppHeaderSearchMain from '../Bloomreach/bloomreach.appheadersearch.main';
@@ -42,7 +43,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ImageContainer from '../ImageContainer/image.container';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 const zoomArray = [
   'defaultcart',
@@ -132,9 +132,10 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       totalQuantity: 0,
       cartData: undefined,

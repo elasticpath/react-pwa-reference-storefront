@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import * as UserPrefs from '../utils/UserPrefs';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import currencyLogoCad from '../../../images/header-icons/ca.svg';
@@ -29,19 +30,19 @@ import headerLogo from '../../../images/site-images/Company-Logo-v1.png';
 import './appheaderlocale.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 interface AppHeaderLocaleMainProps {
   /** is mobile view  */
-    isMobileView?: boolean,
+  isMobileView?: boolean,
   /** handle currency change */
-    onCurrencyChange?: (...args: any[]) => any,
+  onCurrencyChange?: (...args: any[]) => any,
   /** handle location change */
-    onLocaleChange?: (...args: any[]) => any,
+  onLocaleChange?: (...args: any[]) => any,
 }
+
 interface AppHeaderLocaleMainState {
-    selectedLocaleValue: any,
-    selectedCurrencyValue: any,
+  selectedLocaleValue: any,
+  selectedCurrencyValue: any,
 }
 
 class AppHeaderLocaleMain extends Component<AppHeaderLocaleMainProps, AppHeaderLocaleMainState> {
@@ -52,10 +53,11 @@ class AppHeaderLocaleMain extends Component<AppHeaderLocaleMainProps, AppHeaderL
   }
 
   constructor(props) {
+    super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
-    super(props);
+
     this.state = {
       selectedLocaleValue: UserPrefs.getSelectedLocaleValue(),
       selectedCurrencyValue: UserPrefs.getSelectedCurrencyValue(),

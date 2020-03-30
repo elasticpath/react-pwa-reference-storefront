@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { searchLookup } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
@@ -33,7 +34,6 @@ import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
 import './searchresultsitems.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: (str, ...args: any[]) => str };
 
 const zoomArray = [
   'chosen',
@@ -122,10 +122,11 @@ class SearchResultsItemsMain extends Component<SearchResultsItemsMainProps, Sear
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
     const { searchKeywordsProps } = this.props;
+
     this.state = {
       isLoading: true,
       searchResultsModel: { links: [] },

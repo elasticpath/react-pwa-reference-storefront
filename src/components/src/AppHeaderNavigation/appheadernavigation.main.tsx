@@ -20,6 +20,7 @@
  */
 
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { login } from '../utils/AuthService';
@@ -29,7 +30,6 @@ import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import './appheadernavigation.main.less';
 
 let Config: IEpConfig | any = {};
-let intl = { get: str => str };
 
 const zoomArray = [
   'navigations:element',
@@ -77,9 +77,10 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
 
   constructor(props) {
     super(props);
+
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       navigations: {},
       /* eslint-disable react/no-unused-state */

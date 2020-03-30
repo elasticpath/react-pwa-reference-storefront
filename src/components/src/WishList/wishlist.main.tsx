@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import { getConfig } from '../utils/ConfigProvider';
+import intl from 'react-intl-universal';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import './wishlist.main.less';
 
@@ -60,8 +60,6 @@ function WishListMain(props: WishListMainProps) {
     const { onItemRemove } = props;
     onItemRemove();
   }
-
-  const { intl } = getConfig();
 
   const {
     empty, wishListData, handleQuantityChange,
