@@ -134,17 +134,22 @@ const isComplianceDeclined = localStorage.getItem(`${Config.cortexApi.scope}_Com
 
 const complianceSupportModal = showCompliance && !isComplianceAccepted && !isComplianceDeclined ? <ComplianceSupportModal onAcceptDataPolicy={handleAcceptDataPolicy} /> : '';
 
-const VersionContainer = ({ appVersion }) => (
-  <div className="version" style={{ display: 'none' }}>
-    <span>{ `${intl.get('app-version')}: ${appVersion}` }</span>
-  </div>
-);
+const VersionContainer = (props) => {
+  const { appVersion, componentsVersion } = props;
+  return (
+    <div className="version" style={{ display: 'none' }}>
+      <span>{ `${intl.get('app-version')}: ${appVersion}` }</span>
+      <span>{ `${intl.get('components-version')}: ${componentsVersion}` }</span>
+    </div>
+  );
+};
 
 const Root = (props) => {
+  const { componentsData } = props;
   const { error } = React.useContext(ErrorContext);
   const locationPathName = window.location.origin;
   return [
-    <VersionContainer key="version-container" appVersion={packageJson.version} />,
+    <VersionContainer key="version-container" componentsVersion={componentsData.version} appVersion={packageJson.version} />,
     <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
     <AppHeaderMain
       key="app-header"
@@ -195,19 +200,22 @@ const withTracker = (WrappedComponent) => {
 };
 
 const App = withRouter(withAnalytics(withTracker(Root)));
-const AppWithRouter = () => (
-  <Router>
-    <ErrorDisplayBoundary>
-      <CountProvider>
-        <RequisitionListCountProvider>
-          <Switch>
-            <Route path="/loggedin" exact component={LoginRedirectPage} />
-            <Route path="/" exact={false} component={App} />
-          </Switch>
-        </RequisitionListCountProvider>
-      </CountProvider>
-    </ErrorDisplayBoundary>
-  </Router>
-);
+const AppWithRouter = (props) => {
+  const { componentsData } = props;
+  return (
+    <Router>
+      <ErrorDisplayBoundary>
+        <CountProvider>
+          <RequisitionListCountProvider>
+            <Switch>
+              <Route path="/loggedin" exact component={LoginRedirectPage} />
+              <Route path="/" exact={false} render={passedProps => <App {...passedProps} componentsData={componentsData} />} />
+            </Switch>
+          </RequisitionListCountProvider>
+        </CountProvider>
+      </ErrorDisplayBoundary>
+    </Router>
+  );
+};
 
 export default AppWithRouter;

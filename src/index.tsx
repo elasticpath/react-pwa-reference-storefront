@@ -25,6 +25,7 @@ import intl from 'react-intl-universal';
 import App from './App';
 import './theme/index.less';
 import epConfig from './ep.config.json';
+import componentsPackageJson from './components/package.json';
 import * as UserPrefs from './utils/UserPrefs';
 
 import './theme/reset.less';
@@ -48,7 +49,7 @@ intl.init({
 })
   .then(() => {
     ReactDOM.render(
-      <App />,
+      <App componentsData={componentsPackageJson} />,
       document.getElementById('root'),
     );
 
