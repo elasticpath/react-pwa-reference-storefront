@@ -19,6 +19,7 @@
  *
  */
 import React, { Component } from 'react';
+import intl from 'react-intl-universal';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login, isLoggedIn } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
@@ -29,8 +30,6 @@ import { ProductDisplayDetailsProps, ProductDisplayItemMainState } from './produ
 import SocialNetworkSharing from '../SocialNetworkSharing/socialNetworkSharing';
 import QuantitySelector from '../QuantitySelector/quantitySelector';
 import './productdisplayitem.details.less';
-
-let intl = { get: str => str };
 
 let Config: IEpConfig | any = {};
 
@@ -96,7 +95,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
     super(props);
     const epConfig = getConfig();
     Config = epConfig.config;
-    ({ intl } = epConfig);
+
     this.state = {
       itemQuantity: 1,
       isLoading: false,
