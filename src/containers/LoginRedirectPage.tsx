@@ -47,19 +47,21 @@ export class LoginRedirectPage extends React.Component<LoginRedirectPageProps, L
     const locationData = window.location.search;
     const url = locationData;
     const params = queryString.parse(url);
-    if (Config.b2b.openId && Config.b2b.openId.enable && params.code && params.session_state) {
+    const b2bEnabled = Config.b2b.openId && Config.b2b.openId.enable;
+
+    if (b2bEnabled && params.code && params.session_state) {
       localStorage.setItem(`${Config.cortexApi.scope}_openIdcCode`, params.code);
       localStorage.setItem(`${Config.cortexApi.scope}_openIdcSessionState`, params.session_state);
       localStorage.removeItem('OidcSecret');
     }
 
     const oidcParameters: OidcParameters = await LoginRedirectPage.discoverOIDCParameters();
-    const redirectUri = encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? `${window.location.origin}/loggedin` : Config.b2b.keycloak.callbackUrl));
-    const clientId = encodeURIComponent(((Config.b2b.openId && Config.b2b.openId.enable) ? oidcParameters.clientId : Config.b2b.keycloak.client_id));
+    const redirectUri = encodeURIComponent((b2bEnabled ? `${window.location.origin}/loggedin` : Config.b2b.keycloak.callbackUrl));
+    const clientId = encodeURIComponent((b2bEnabled ? oidcParameters.clientId : Config.b2b.keycloak.client_id));
 
-    loginRegisteredAuthService(params.code, redirectUri, clientId).then(() => {
-      window.location.href = '/';
-    });
+    await loginRegisteredAuthService(params.code, redirectUri, clientId);
+
+    window.location.href = '/';
   }
 
   static async discoverOIDCParameters() {
@@ -69,7 +71,9 @@ export class LoginRedirectPage extends React.Component<LoginRedirectPageProps, L
         Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
       },
     });
+
     const res = await data.json();
+
     return {
       clientId: res.account_management_client_id,
       scopes: res.account_management_required_scopes,
