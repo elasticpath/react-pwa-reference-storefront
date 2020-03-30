@@ -26,16 +26,6 @@
   padding-top: 30px;
   text-align: center;
 
-  .social-network-sharing {
-    margin-top: 15px;
-    .st-btn {
-      min-width: 50px !important;
-      >span {
-        display: none !important;
-      }
-    }
-  }
-
   .itemdetail-assets {
     margin-top: 30px;
     width: 50%;
@@ -194,7 +184,7 @@
       .cart-selection-menu {
         box-shadow: fade(@firstComplimentColor, 40%) 0 2px 8px;
         max-height: 235px;
-        overflow: scroll;
+        overflow-y: scroll;
       }
 
       .form-group {
@@ -283,44 +273,6 @@
       padding-left: 0;
       padding-right: 0;
     }
-
-    .itemdetail-details {
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
-
-  .itemdetail-availability-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid @secondBorderColor;
-
-    .itemdetail-availability-state {
-      label {
-        background-color: @mainBackgroundColor;
-        border-radius: 12px;
-        border: 1px solid @firstBorderColor;
-        color: @firstComplimentTextColor;
-        padding: 4px 10px;
-        font-size: 10px;
-        text-transform: uppercase;
-
-        .icon {
-          display: inline-block;
-          transform: rotate(45deg);
-          height: 10px;
-          width: 6px;
-          border-bottom: 2px solid @firstAccentColor;
-          border-right: 2px solid @firstAccentColor;
-          margin-right: 6px;
-          position: relative;
-          z-index: 2;
-        }
-      }
-    }
   }
 }
 
@@ -376,7 +328,7 @@
 .product-item-container {
   position: relative;
   z-index: 0;
-  
+
   @media (min-width: @tabletWidth) {
     display: flex;
 
@@ -538,127 +490,6 @@
       }
     }
   }
-}
-.guide {
-  margin:8px 0 20px;
-
-  .select-wrap {
-    display: inline-block;
-    margin-right: 10px;
-
-    label {
-      cursor: pointer;
-    }
-  }
-  .color-wrap{
-    input[type="radio"] {
-      + label {
-        border-radius: 50%;
-        width: 9px;
-        padding: 0 9px;
-        text-indent: -9999px;
-        border: 1px solid @mainBorderColor;
-      }
-      &:checked {
-        +label {
-          border: 2px solid @mainBackgroundColor;
-          box-shadow: 0 0 0 1px @buttonActiveColor;
-        }
-      }
-    }
-  }
-
-  input[type="radio"] {
-    display: none;
-
-    +label {
-      color: @mainTextColor;
-      padding: 10px 15px;
-      box-sizing: border-box;
-      position: relative;
-      display: inline-block;
-      border: solid 1px @mainBorderColor;
-      background-color: @mainBackgroundColor;
-      font-size: 14px;
-      font-weight: 500;
-      text-align: center;
-      transition: border-color .15s ease-out, color .25s ease-out, background-color .15s ease-out, box-shadow .15s ease-out;
-    }
-    &:checked {
-      +label {
-        color: @firstComplimentColor;
-        border-color: @firstComplimentColor;
-        background-color: @mainBackgroundColor;
-        font-weight: bold;
-        z-index: 1;
-      }
-    }
-  }
-}
-
-.detail-list-item {
-  border-bottom: solid 1px @mainBorderColor;
-  text-align: right;
-  padding: 0 20px;
-}
-
-.item-detail-attribute-label-col {
-  font-size: 14px;
-  font-weight: 600;
-  padding: 10px 0;
-  min-height: 46px;
-  text-align: left;
-  color: @firstComplimentColor;
-  text-transform: uppercase;
-  position: relative;
-
-  .item-arrow-btn {
-    right: 20px;
-    transform: translateY(-50%);
-    display: inline-block;
-    float: right;
-    position: absolute;
-    margin-top: 12px;
-    height: 20px;
-    width: 16px;
-    border: none;
-    background: transparent;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:before {
-      content: "";
-      border-top: 3px solid @firstComplimentColor;
-      border-right: 3px solid @firstComplimentColor;
-      height: 12px;
-      width: 12px;
-      position: absolute;
-      transform: translate(2px, 1px) rotate(135deg);
-      top: 2px;
-      right: 3px;
-    }
-
-    &.up {
-      transform: translate(2px, -7px) rotate(-180deg);
-    }
-  }
-}
-
-.item-detail-attribute-value-col {
-  line-height: 1.5;
-  color: @mainTextColor;
-  text-align: left;
-  padding-bottom: 10px;
-
-  &.hide {
-    display: none;
-  }
-}
-
-.item-detail-attributes {
-  border-top: 1px solid @mainBorderColor;
 }
 
 @media (max-width: @mobileWidth) {

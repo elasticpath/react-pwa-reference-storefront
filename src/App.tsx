@@ -112,8 +112,11 @@ const appHeaderLinks = {
   requisitionLists: '/b2b/requisition-lists',
 };
 const appHeaderLoginLinks = {
-  profile: '/profile',
-  wishlists: '/wishlists',
+  profile: '/account',
+  wishlists: '/account/wishlists',
+  purchaseHistory: '/account/purchase-history',
+  accounts: '/account/accounts',
+  requisitionLists: '/account/requisition-lists',
 };
 const appHeaderNavigationLinks = {
   categories: '/category/',

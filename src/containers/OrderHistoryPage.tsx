@@ -27,6 +27,7 @@ import { login } from '../utils/AuthService';
 import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
+import { ReactComponent as AngleLeftIcon } from '../images/icons/outline-chevron_left-24px.svg';
 
 import './OrderHistoryPage.less';
 
@@ -86,12 +87,19 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
 
   render() {
     const { purchaseData } = this.state;
+    const { history } = this.props;
     const itemDetailLink = '/itemdetail';
     if (purchaseData) {
       return (
         <div>
           <div className="app-main">
             <div className="container">
+              <div className="back-link-wrap">
+                <button className="back-link" type="button" onClick={history.goBack}>
+                  <AngleLeftIcon />
+                  {intl.get('back')}
+                </button>
+              </div>
               <h2 className="view-title">
                 {intl.get('purchase-details')}
               </h2>

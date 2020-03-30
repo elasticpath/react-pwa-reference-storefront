@@ -279,7 +279,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
 
   handleAccountClicked(account: any) {
     const { history } = this.props;
-    history.push(`/b2b/account/${account.uri}`);
+    history.push(`/account/account-item/${account.uri}`);
   }
 
   handleSpreeadsheetClicked() {

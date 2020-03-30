@@ -367,14 +367,14 @@ export default class AccountMain extends React.Component<RouteComponentProps<Acc
         ) : (
           <div>
             <div key="account-header" className="account-header">
-              <Link className="back-link" to="/b2b">
+              <Link className="back-link" to="/account/accounts">
                 <div className="back-arrow">
                   <AngleLeftIcon />
                 </div>
                 {intl.get('back')}
               </Link>
               <div className="name-container">
-                <Link className="back-link-mobile" to="/b2b">
+                <Link className="back-link-mobile" to="/account/accounts">
                   <div className="back-arrow">
                     <AngleLeftIcon />
                   </div>

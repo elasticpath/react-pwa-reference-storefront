@@ -39,7 +39,7 @@ function ProductDetailPage(props: RouteComponentProps<ProductDetailRouterProps>)
   }
 
   function handleAddToWishList() {
-    history.push('/wishlists');
+    history.push('/account/wishlists');
   }
 
   function handleAddToRequisitionList() {

@@ -39,9 +39,11 @@ import B2bAccountList from './B2bAccountList/b2b.accountlist';
 import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
 import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
 import B2bSubaccountlistitem from './B2bSubAccountListItem/b2b.subaccountlistitem';
+import BloomreachHeaderSearchMain from './Bloomreach/bloomreach.appheadersearch.main';
 import Carousel from './Carousel/carousel.homepage';
 import CartLineItem from './CartLineItem/cart.lineitem';
 import CartMain from './CartMain/cart.main';
+import CartPopUp from './CartPopUp/cartpopup';
 import CategoryItemsMain from './CategoryItems/categoryitems.main';
 import CheckoutSummaryList from './CheckoutSummaryList/checkout.summarylist';
 import FacebookChat from './FacebookChat/facebookchat.main';
@@ -53,13 +55,17 @@ import OrderHistoryMain from './OrderHistory/orderhistory.main';
 import OrderLineMain from './OrderLine/orderline.main';
 import OrderTableMain from './OrderTable/ordertable.main';
 import OrderTableLineItem from './OrderTableLineItem/ordertable.lineitem';
+import Pagination from './Pagination/pagination';
 import PaymentFormMain from './PaymentForm/paymentform.main';
 import PaymentMethodContainer from './PaymentMethodContainer/paymentmethod.container';
 import PowerReviewMain from './PowerReview/powerreview.main';
 import ProductDisplayItemMain from './ProductDisplayItem/productdisplayitem.main';
+import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 import ProductListMain from './ProductList/productlist.main';
 import ProductListItemMain from './ProductListItem/productlistitem.main';
 import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
+import ProductDisplayAttributes from './ProductDisplayAttributes/productDisplayAttributes';
+import QuantitySelector from './QuantitySelector/quantitySelector';
 import ProductListPaginationMain from './ProductListPagination/productlistpagination.main';
 import ProductRecommendationsMain from './ProductRecommendations/productrecommendations.main';
 import ProfileComplianceMain from './ProfileCompliance/profilecompliance.main';
@@ -97,6 +103,7 @@ import B2BHomePage from './B2bHomePage/b2b.home.page';
 import B2CHomePage from './B2cHomePage/b2c.home.page';
 import ImageContainer from './ImageContainer/image.container';
 import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
+import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
 
 export {
   AddPromotionContainer,
@@ -119,9 +126,11 @@ export {
   B2bAddProductsModal,
   B2bSubAccountList,
   B2bSubaccountlistitem,
+  BloomreachHeaderSearchMain,
   Carousel,
   CartLineItem,
   CartMain,
+  CartPopUp,
   CategoryItemsMain,
   CheckoutSummaryList,
   FacebookChat,
@@ -133,10 +142,12 @@ export {
   OrderLineMain,
   OrderTableMain,
   OrderTableLineItem,
+  Pagination,
   PaymentFormMain,
   PaymentMethodContainer,
   PowerReviewMain,
   ProductDisplayItemMain,
+  ProductDisplayItemDetails,
   ProductListMain,
   ProductListItemMain,
   ProductListLoadmore,
@@ -177,4 +188,7 @@ export {
   VRProductDisplayItem,
   ImageContainer,
   DropdownCartSelection,
+  SocialNetworkSharing,
+  QuantitySelector,
+  ProductDisplayAttributes,
 };

@@ -19,15 +19,15 @@
  *
  */
 import React from 'react';
-import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 // Import custom required styles
 import '../../../theme/reset.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../theme/style.less';
-import { text } from "@storybook/addon-knobs/react";
-import { textToFunc } from "../../../../storybook/utils/storybookUtils";
+import { text } from '@storybook/addon-knobs/react';
+import Readme from './README.md';
+import { textToFunc } from '../../../../storybook/utils/storybookUtils';
 
 import {
   mockProductDisplayItemMainPlain,
@@ -62,20 +62,20 @@ storiesOf('Components|ProductDisplayItemMain', module)
   .add('ProductDisplayItemMain Plain', () => {
     processProductDisplayItemKnobCallbacks();
     mockProductDisplayItemMainPlain();
-    return <ProductDisplayItemMain productId={text('productId', '83992')} onAddToCart={()=>{textToFunc(handleAddToCartFuncText)}} />;
+    return <ProductDisplayItemMain productId={text('productId', '83992')} onAddToCart={() => { textToFunc(handleAddToCartFuncText); }} />;
   })
   .add('ProductDisplayItemMain Color/size', () => {
     processProductDisplayItemKnobCallbacks();
     mockProductDisplayItemMainColorAndSize();
-    return <ProductDisplayItemMain productId={text('productId', 'VESTRI_WORDMARK_FITTED_HAT_RD')} onChangeProductFeature={()=>{textToFunc(onChangeProductFeatureFuncText)}} onAddToCart={()=>{textToFunc(handleAddToCartFuncText)}} />;
+    return <ProductDisplayItemMain productId={text('productId', 'VESTRI_WORDMARK_FITTED_HAT_RD')} onChangeProductFeature={() => { textToFunc(onChangeProductFeatureFuncText); }} onAddToCart={() => { textToFunc(handleAddToCartFuncText); }} />;
   })
   .add('ProductDisplayItemMain Input', () => {
     processProductDisplayItemKnobCallbacks();
     mockProductDisplayItemMainInput();
-    return <ProductDisplayItemMain productId={text('productId', '250HR_PMKIT')} onAddToCart={()=>{textToFunc(handleAddToCartFuncText)}} />;
+    return <ProductDisplayItemMain productId={text('productId', '250HR_PMKIT')} onAddToCart={() => { textToFunc(handleAddToCartFuncText); }} />;
   })
   .add('ProductDisplayItemMain Multi-cart', () => {
     processProductDisplayItemKnobCallbacks();
     mockProductDisplayItemMainMultiCart();
-    return <ProductDisplayItemMain productId={text('productId', '83992')} onAddToCart={()=>{textToFunc(handleAddToCartFuncText)}} />;
+    return <ProductDisplayItemMain productId={text('productId', '83992')} onAddToCart={() => { textToFunc(handleAddToCartFuncText); }} />;
   });

@@ -3,6 +3,7 @@ import epConfig from '../../src/ep.config';
 import intl from 'react-intl-universal';
 import { addParameters } from '@storybook/react';
 import { addDecorator } from '@storybook/react';
+import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
 import { addReadme } from 'storybook-readme';
 import elasticpath from './elasticpath';
@@ -15,6 +16,10 @@ addParameters({
   options: {
     theme: elasticpath,
   },
+});
+
+addons.setConfig({
+  theme: themes.light,
 });
 
 const locales = {};

@@ -169,14 +169,6 @@
       margin-right: 16px;
     }
 
-    .payment-option-radio {
-      float: left;
-      +label {
-        display: block;
-        overflow: hidden;
-      }
-    }
-
     [data-region="billingAddressesRegion"],
     [data-region="shippingAddressesRegion"],
     [data-region="shippingOptionsRegion"],
@@ -221,7 +213,6 @@
     .payment-btn-cell,
     .profile-gift-card-container {
       .ep-btn {
-        font-weight: 600;
         min-height: 0;
         line-height: 20px;
         padding: 0;
@@ -264,10 +255,6 @@
         min-height: 1px;
         padding-left: 0;
         padding-right: 0;
-
-        label {
-          width: 90%;
-        }
 
         @media (min-width: @tabletWidth) {
           float: left;
@@ -408,16 +395,28 @@
       }
     }
     .profile-info-col {
+      padding-right: 10px;
+
+      +.profile-info-col {
+        padding: 0 0 0 10px;
+      }
+
       @media (max-width: 991px) {
         width: 100%;
+        padding: 0;
+
         +.profile-info-col {
           margin-top: 15px;
+          padding: 0;
         }
       }
     }
   }
   .checkout-summary-container {
     display: block !important;
+  }
+  .profile-info-block {
+    padding-top: 15px;
   }
 }
 

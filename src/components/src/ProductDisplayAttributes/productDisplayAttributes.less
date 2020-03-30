@@ -1,0 +1,86 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+ @import './../../../theme/common.less';
+
+.detail-list-item {
+    border-bottom: solid 1px @mainBorderColor;
+    text-align: right;
+    padding: 0 20px;
+  }
+
+  .item-detail-attribute-label-col {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 0;
+    min-height: 46px;
+    text-align: left;
+    color: @firstComplimentColor;
+    text-transform: uppercase;
+    position: relative;
+  
+    .item-arrow-btn {
+      right: 20px;
+      transform: translateY(-50%);
+      display: inline-block;
+      float: right;
+      position: absolute;
+      margin-top: 12px;
+      height: 20px;
+      width: 16px;
+      border: none;
+      background: transparent;
+  
+      &:hover {
+        cursor: pointer;
+      }
+  
+      &:before {
+        content: "";
+        border-top: 3px solid @firstComplimentColor;
+        border-right: 3px solid @firstComplimentColor;
+        height: 12px;
+        width: 12px;
+        position: absolute;
+        transform: translate(2px, 1px) rotate(135deg);
+        top: 2px;
+        right: 3px;
+      }
+  
+      &.up {
+        transform: translate(2px, -7px) rotate(-180deg);
+      }
+    }
+  }
+
+  .item-detail-attribute-value-col {
+    line-height: 1.5;
+    color: @mainTextColor;
+    text-align: left;
+    padding-bottom: 10px;
+  
+    &.hide {
+      display: none;
+    }
+  }
+  
+  .item-detail-attributes {
+    border-top: 1px solid @mainBorderColor;
+  }

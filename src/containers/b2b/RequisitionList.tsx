@@ -287,13 +287,15 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
 
     return requisitionElements.map((el, index) => (
       <li className={`requisition-list-item ${el.deleteMode ? 'edit-mode-state' : ''}`} key={`requisitionItem_${el.name ? el.name.trim() : 'default'}`} role="presentation">
-        <Link className="requisition-info requisition-list-name" to={`/b2b/requisition-list-item/${el.self.uri.split('/').pop()}`}>{el.name}</Link>
+        <Link className="requisition-info requisition-list-name" to={`/account/requisition-list-item/${el.self.uri.split('/').pop()}`}>{el.name}</Link>
         <p className="requisition-info product-count">
-          {el['item-count']}
+          {el._paginatedlineitems[0].pagination.results}
         </p>
         <div className="requisition-info action-btn">
           <div className="requisition-editing-btn">
-            <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addToSelectedCart(cart, el, onchange)} multiCartData={el._additemlisttocartforms[0]._element} showDropdownHeader showCartIcon />
+            {el._additemlisttocartforms
+              ? <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addToSelectedCart(cart, el, onchange)} multiCartData={el._additemlisttocartforms[0]._element} showDropdownHeader showCartIcon />
+              : ''}
             <button className="ep-btn delete-btn" type="button" onClick={event => this.handleEditRequisition(event, index)}>
               <RecycleBinIcon className="delete-icon" />
             </button>

@@ -20,17 +20,14 @@
  */
 
 import React from 'react';
-import intl from 'react-intl-universal';
-import Modal from 'react-responsive-modal';
-import fileDownload from 'js-file-download';
-import { B2bAddAssociatesMenu, B2bSideMenu } from '../../components/src/index';
-import RouteWithSubRoutes from '../../RouteWithSubRoutes';
-import { adminFetch, cortexFetch } from '../../utils/Cortex';
-import * as Config from '../../ep.config.json';
+import { B2bSideMenu } from '../components/src';
+import RouteWithSubRoutes from '../RouteWithSubRoutes';
+import { adminFetch, cortexFetch } from '../utils/Cortex';
+import * as Config from '../ep.config.json';
 
-import './B2BMain.less';
+import './MyAccountMain.less';
 
-interface B2BMainProps {
+interface MyAccountMainProps {
   routes: {
     [key: string]: any
   },
@@ -39,13 +36,13 @@ interface B2BMainProps {
   },
 }
 
-interface B2BMainState {
+interface MyAccountMainState {
   associatesFormUrl?: string;
   showRequisitionListsLink: boolean;
   isLocationLoading: boolean;
 }
 
-export default class B2BMain extends React.Component<B2BMainProps, B2BMainState> {
+export default class MyAccountMain extends React.Component<MyAccountMainProps, MyAccountMainState> {
   constructor(props) {
     super(props);
 
@@ -60,7 +57,7 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
     this.setState({ isLocationLoading: true });
     try {
       await this.fetchRequisitionListsData();
-      const result = await adminFetch('/?zoom=accounts,accounts:addassociatesform', {
+      const result = await adminFetch('/?zoom=accounts,accounts:addassociatesform,', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
@@ -78,6 +75,7 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
         const associatesFormUrl = `${Config.b2b.authServiceAPI.path}${result._accounts[0]._addassociatesform[0].self.uri}`;
         this.setState({ associatesFormUrl });
       }
+
       this.setState({ isLocationLoading: false });
     } catch (e) {
       this.setState({ isLocationLoading: false });
@@ -111,21 +109,21 @@ export default class B2BMain extends React.Component<B2BMainProps, B2BMainState>
       isLocationLoading,
     } = this.state;
 
-    const sideMenuItems = [
-      // { to: '/b2b/address-book', children: 'address-book' },
-      // { to: '/b2b/orders', children: 'orders' },
-      // { to: '/b2b/approvals', children: 'approvals' },
-      // { to: '/b2b/invitations', children: 'invitations' },
-      // { to: '/b2b/requisition-lists', children: 'requisition-lists' },
-      // { to: '/b2b/quotes', children: 'quotes' },
-    ];
+    const sideMenuItems = [];
+    const profileName = Config.b2b.enable ? 'my-account' : 'my-profile';
+
+    sideMenuItems.push(
+      { to: '/account', children: profileName },
+      { to: '/account/purchase-history', children: 'purchase-history' },
+      { to: '/account/wishlists', children: 'wishlists' },
+    );
 
     if (associatesFormUrl) {
-      sideMenuItems.push({ to: '/b2b', children: 'accounts' });
+      sideMenuItems.push({ to: '/account/accounts', children: 'accounts' });
     }
 
     if (showRequisitionListsLink) {
-      sideMenuItems.push({ to: '/b2b/requisition-lists', children: 'requisition-lists', title: intl.get('requisition-lists') });
+      sideMenuItems.push({ to: '/account/requisition-lists', children: 'requisition-lists' });
     }
 
     return (

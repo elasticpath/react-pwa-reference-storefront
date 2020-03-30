@@ -280,7 +280,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             <CartIcon className="cart-icon" />
             {intl.get('shopping-cart-nav')}
           </Link>
-          <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${count ? 'show' : ''}`}>
+          <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${count ? 'show' : ''}`} data-region="cart_success_popup">
             <CountInfoPopUp countData={countData} />
           </div>
         </div>);

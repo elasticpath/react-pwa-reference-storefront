@@ -1,0 +1,40 @@
+@import '../../theme/common.less';
+.purchase-history-page {
+  .profile-purchase-history-container {
+    padding: 0;
+    .table {
+      thead {
+        background-color: @secondComplimentBackground;
+
+        th {
+          color: @firstComplimentTextColor;
+        }
+      }
+
+      th, td {
+        border: none;
+        height: 50px;
+        font-size: 13px;
+        vertical-align: middle;
+      }
+
+      td:first-child {
+        font-weight: bold;
+      }
+
+      tbody > tr {
+        border-bottom: 1px solid @fifthComplimentTextColor;
+      }
+
+      a:hover {
+        color: @firstComplimentColor;
+      }
+
+      @media (min-width: @mobileWidth) {
+        th, td {
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+}

@@ -289,7 +289,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         });
       }
       return (
-        shippingAddresses.map((shippingAddress) => {
+        shippingAddresses.map((shippingAddress, index) => {
           const {
             name, address, selectaction, checked,
           } = shippingAddress;
@@ -297,9 +297,10 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
             <div key={`shippingAddress_${Math.random().toString(36).substr(2, 9)}`}>
               <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
                 {/* eslint-disable-next-line max-len */}
-                <input type="radio" name="shipping" id="shippingOption" className="checkout-address-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+                <input type="radio" name="shipping" id={`shippingAddress-${index}`} className="checkout-address-radio style-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
                 {/* eslint-disable jsx-a11y/label-has-associated-control */}
-                <label htmlFor="shippingOption">
+                <label htmlFor={`shippingAddress-${index}`} />
+                <label htmlFor={`shippingAddress-${index}`}>
                   <div data-region="checkoutAddressRegion">
                     <AddressContainer name={name} address={address} />
                   </div>
@@ -399,11 +400,12 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         });
       }
       return (
-        shippingOptions.map(option => (
+        shippingOptions.map((option, index) => (
           <div key={`shippingOption_${Math.random().toString(36).substr(2, 9)}`}>
             {/* eslint-disable-next-line max-len */}
-            <input type="radio" name="shippingOption" id="shippingOption" className="shipping-option-radio" defaultChecked={option.checked} onChange={() => this.handleChange(option.selectaction)} />
-            <label htmlFor="shippingOption">
+            <input type="radio" name="shippingOption" id={`shippingOption-${index}`} className="shipping-option-radio style-radio" defaultChecked={option.checked} onChange={() => this.handleChange(option.selectaction)} />
+            <label htmlFor={`shippingOption-${index}`} />
+            <label htmlFor={`shippingOption-${index}`}>
               <div className="shipping-option-region">
                 <ShippingOptionContainer option={option} />
               </div>
@@ -461,7 +463,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
         });
       }
       return (
-        billingAddresses.map((billingAddr) => {
+        billingAddresses.map((billingAddr, index) => {
           const {
             name, address, selectaction, checked,
           } = billingAddr;
@@ -469,8 +471,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
             <div key={`billingAddress_${Math.random().toString(36).substr(2, 9)}`}>
               <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
                 {/* eslint-disable-next-line max-len */}
-                <input type="radio" name="billing" id="billingOption" className="checkout-address-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
-                <label htmlFor="billingOption">
+                <input type="radio" name="billing" id={`billingOption-${index}`} className="checkout-address-radio style-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+                <label htmlFor={`billingOption-${index}`} />
+                <label htmlFor={`billingOption-${index}`}>
                   <div data-region="checkoutAddressRegion">
                     <AddressContainer name={name} address={address} />
                   </div>
@@ -526,7 +529,8 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     return (
       <div key={`paymentMethod_${Math.random().toString(36).substr(2, 9)}`}>
         <div className="payment-ctrl-cell" data-region="paymentSelector">
-          <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+          <input type="radio" name="paymentMethod" id="paymentMethod" className="payment-option-radio style-radio" defaultChecked={checked} onChange={() => this.handleChange(selectaction)} />
+          <label htmlFor="paymentMethod" />
           <label htmlFor="paymentMethod">
             <div className="paymentMethodComponentRegion" data-region="paymentMethodComponentRegion">
               <PaymentMethodContainer displayName={payment} />

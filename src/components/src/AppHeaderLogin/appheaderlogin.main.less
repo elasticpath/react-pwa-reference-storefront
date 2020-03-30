@@ -25,7 +25,7 @@
   position: relative;
 
   .auth-profile-menu-list {
-    margin-bottom: 6px;
+    margin-bottom: 25px;
   }
 
   .login-btn {
@@ -36,9 +36,37 @@
   }
 
   .dropdown {
-    .dropdown-toggle::after {
-      display:none;
+    .dropdown-toggle {
+      &:after {
+        display: inline-block;
+        content: ' ';
+        width: 8px;
+        height: 8px;
+        border: none;
+        border-left: 1.5px solid @mainColor;
+        border-bottom: 1.5px solid @mainColor;
+        transform-origin: center;
+        transform: rotate(-45deg);
+        vertical-align: middle;
+      }
+      &:focus {
+        outline: none;
+      }
     }
+
+    &.show {
+      .dropdown-toggle::after {
+        transform: rotate(135deg);
+        border-left-color: @thirdComplimentColor;
+        border-bottom-color: @thirdComplimentColor;
+        margin-top: 5px;
+      }
+
+      svg {
+        fill: @thirdComplimentColor;
+      }
+    }
+
     .btn-auth-menu {
       font-size: 14px;
       color: @mainBackgroundColor;
@@ -57,46 +85,43 @@
       .account-icon {
         display: inline-block;
         content: " ";
-        display: inline-block;
         width: 25px;
         height: 21px;
         background-size: cover;
       }
     }
 
-    .logout-link,
     .profile-link,
     .shopping-as-link,
     .dashboard-link,
     .cart-select-btn,
-    .wishlist-link {
-      padding: 5px 0px;
+    .wishlist-link,
+    .purchase-history-link {
+      padding: .25rem 1.5rem;
       text-align: left;
+      display: block;
       border: none;
-      width: 100%;
+      height: 100%;
       background-color: transparent;
-      color: @mainTextColor;
-      font-size: 14px;
-      font-weight: 900;
+      color: @thirdComplimentColor;
+      font-size: 13px;
       line-height: 19px;
       text-decoration: none;
+      margin: 0 -1.5rem;
     }
 
     .logout-link {
-      color: @firstComplimentColor;
-    }
-
-    .profile-link,
-    .shopping-as-link,
-    .dashboard-link,
-    .wishlist-link {
-      div {
-        padding: 5px 0px;
-      }
+      color: @mainNavigationColor;
+      margin: 0;
+      width: 100%;
+      font-size: 13px;
+      text-transform: capitalize;
     }
 
     .dropdown-item:hover {
-      background-color: #e2e2e2;
+      text-decoration: underline;
+      text-decoration-color: @thirdComplimentColor;
+      background: none;
     }
 
     .dropdown-item:active {
@@ -107,12 +132,15 @@
     .dropdown-menu {
       overflow: hidden;
       min-width: 145px;
-      border-radius: 8px;
+      border-color: @secondComplimentColor;
       padding-bottom: 0;
 
       .dropdown-item {
-        height: 35px;
+        height: 32px;
+
         vertical-align: middle;
+        padding-top: 0;
+        padding-bottom: 0;
 
         .dropdown-header {
           border-bottom: 1px solid @fifthComplimentTextColor;
@@ -120,51 +148,33 @@
       }
 
       .shop-for {
-        height: 55px;
+        text-decoration: none;
+        height: fit-content;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid @fifthComplimentTextColor;
 
+        &.b2c {
+          height: 50px;
+        }
         span:nth-child(2) {
           float: left;
         }
-      }
-
-      .dropdown-login-cart {
-        border-radius: 0 0 10px 10px;
-        height: 100%;
-        background-color: @firstComplimentBackground;
-        border-top: 1px solid @mainBorderColor;
-
-        .login-cart-list{
-          margin-top: 10px;
-
-          .cart-select-btn {
-            width: 100%;
-            border: 0;
-            color: #007bff;
-            text-decoration: none;
-            background-color: transparent;
-            cursor: pointer;
-          }
+        .user-name {
+          font-weight: bold;
         }
 
-        .shop-for{
-          height: 24px;
-          margin-top:6px;
-          .shopping-as {
-            display: inline;
-            font-weight: bold;
-          }
+        .shopping-small {
+
         }
-        i {
-          border: solid #007bff;
-          border-width: 0 2px 2px 0;
-          display: inline-block;
-          padding: 3.5px;
-          margin-left: 8px;
-          margin-bottom: 2px;
-        }
-        .down {
-          transform: rotate(45deg);
-          -webkit-transform: rotate(45deg);
+        .email-title {
+          font-weight: bold;
+          font-size: 12px;
+          font-style: italic;
+          color: @firstComplimentTextColor;
+          margin-bottom: 0;
+          text-transform: capitalize;
         }
       }
     }
@@ -209,9 +219,6 @@
 
         .dropdown-item {
           cursor: pointer;
-          &:hover {
-            background-color: #e2e2e2;
-          }
 
           .dropdown-header {
             font-size: 17px !important;
@@ -219,35 +226,17 @@
 
           .profile-link,
           .shopping-as-link,
-          .dashboard-link,
-          .wishlist-link {
-            display: block;
-            padding: 5px 0px;
-            color: @mainColor;
-            text-transform: uppercase;
-            text-decoration: none;
-          }
-
-          .profile-link,
-          .shopping-as-link,
           .wishlist-link,
           .dashboard-link,
-          .logout-link {
-            padding: 5px 0px;
+          .purchase-history-link {
+            padding: 5px 0;
             text-align: center;
             border: none;
             background-color: transparent;
             color: @mainColor;
             text-transform: uppercase;
-          }
-
-          .profile-link,
-          .shopping-as-link,
-          .dashboard-link,
-          .wishlist-link {
-            div {
-              padding: 0px;
-            }
+            display: block;
+            text-decoration: none;
           }
         }
       }
