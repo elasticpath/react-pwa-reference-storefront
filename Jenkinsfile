@@ -1,3 +1,5 @@
+currentBuild.description = "Image Tag: ${DOCKER_IMAGE_TAG}"
+
 pipeline {
 	agent {
 		label 'node-small'
@@ -81,8 +83,6 @@ pipeline {
             docker-compose up -d
           \"\"\"
         """
-
-        currentBuild.description = "Image Tag: ${DOCKER_IMAGE_TAG}"
       }
     }
     stage('TEST') {
