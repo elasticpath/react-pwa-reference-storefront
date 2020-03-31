@@ -125,7 +125,7 @@ describe('Wishlist', () => {
     // When I remove the wishlist item
     await page.waitForSelector(REMOVE_FROM_WISHLIST_BUTTON);
     await page.click(REMOVE_FROM_WISHLIST_BUTTON);
-    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    await page.waitForSelector(WISHLIST_CONTAINER);
 
       // Then Lineitem is no longer in the wishlist
     await page.waitForSelector(LOGGED_IN_BUTTON);

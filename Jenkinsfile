@@ -1,9 +1,13 @@
-#!groovy
+currentBuild.description = "Image Tag: ${DOCKER_IMAGE_TAG}"
 
-timestamps {
-  ansiColor('xterm') {
-    node('node-small') {
-      stage('SETUP') {
+pipeline {
+	agent {
+		label 'node-small'
+	}
+
+  stages {
+    stage('SETUP') {
+      steps {
         deleteDir()
         dir('scm'){
           checkout scm
@@ -12,7 +16,9 @@ timestamps {
           git branch: SOLR_HOME_BRANCH, url: SOLR_HOME_GIT_URL
         }
       }
-      stage('BUILD') {
+    }
+    stage('BUILD') {
+      steps {
         dir('scm') {
           // Build the docker image, push to aws
           sh """
@@ -26,7 +32,9 @@ timestamps {
           """
         }
       }
-      stage('UNDEPLOY_EXISTING') {
+    }
+    stage('UNDEPLOY_EXISTING') {
+      steps {
         // Remove if exists: working directory, docker containers, and images
         sh """
           ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} \"\"\"
@@ -43,7 +51,9 @@ timestamps {
           \"\"\"
         """
       }
-      stage('DEPLOY') {
+    }
+    stage('DEPLOY') {
+      steps {
         // Create the working directory
         sh """
           ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST} "mkdir -p ref-store-service"
@@ -73,17 +83,17 @@ timestamps {
             docker-compose up -d
           \"\"\"
         """
-
-        currentBuild.description = "Image Tag: ${DOCKER_IMAGE_TAG}"
       }
-      stage('TEST') {
+    }
+    stage('TEST') {
+      steps {
         // Run unit & Puppeteer tests
         timeout(time: 10, unit: 'MINUTES') {
-           sh """
-             ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST}  \"\"\"
-               sleep 35 && docker exec -t store sh -c 'export TEST_HOST=http://${EC2_INSTANCE_HOST}:8080 && CI=true npm test'
+          sh """
+            ssh -i ${EC2_INSTANCE_SSH_KEY} ${EC2_INSTANCE_USER}@${EC2_INSTANCE_HOST}  \"\"\"
+              sleep 35 && docker exec -t store sh -c 'export TEST_HOST=http://${EC2_INSTANCE_HOST}:8080 && CI=true npm test'
               \"\"\"
-           """
+          """
         }
       }
     }
