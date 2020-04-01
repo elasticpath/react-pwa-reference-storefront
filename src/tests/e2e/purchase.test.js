@@ -31,9 +31,12 @@ const {
 } = require('./common');
 const puppeteer = require('puppeteer');
 
+const scopeDir = process.env.SCOPE_DIR;
+const testData = require(scopeDir);
+const { products } = testData.purchase;
+
 const host = process.env.TEST_HOST;
 const APP = host || 'http://localhost:8080/';
-
 const desktopViewport = {
   width: 1500,
   height: 700,
@@ -93,7 +96,7 @@ const purchaseTestUser = {
 };
 
 describe('Purchase feature', () => {
-    test('Create user for purchase feature tests', async () => {
+  test('Create user for purchase feature tests', async () => {
       const browser = await puppeteer.launch({
         args: ['--no-sandbox', '--disable-web-security'],
         slowMo: 30,
@@ -157,7 +160,7 @@ describe('Purchase feature', () => {
       expect(lastDigits).toEqual('1111');
     }, 60000);
     
-    test('Purchase physical item as a new shopper', async () => {
+  test('Purchase physical item as a new shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
@@ -170,7 +173,7 @@ describe('Purchase feature', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
-    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
+    await addProductToCart(page, products[1]);
 
     await page.waitForSelector(CART_LINK_CSS);
     await page.click(CART_LINK_CSS);
@@ -253,7 +256,7 @@ describe('Purchase feature', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
-    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
+    await addProductToCart(page, products[1]);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
@@ -324,7 +327,7 @@ describe('Purchase feature', () => {
       waitUntil: 'domcontentloaded'
     });
 
-    await addProductToCart(page, 'Mens', '', 'Men\'s S/S Hanley');
+    await addProductToCart(page, products[0]);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
@@ -420,7 +423,7 @@ describe('Purchase feature', () => {
 
     await loginUser(page, purchaseTestUser);
 
-    await addProductToCart(page, 'Mens', '', 'Men\'s S/S Hanley');
+    await addProductToCart(page, products[0]);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
@@ -507,8 +510,8 @@ describe('Purchase feature', () => {
 
     await loginUser(page, purchaseTestUser);
 
-    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
-    await addProductToCart(page, 'Mens', '', 'Men\'s S/S Hanley');
+    await addProductToCart(page, products[1]);
+    await addProductToCart(page, products[0]);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
@@ -593,28 +596,16 @@ describe('Purchase feature', () => {
       waitUntil: 'domcontentloaded'
     });
 
-    const products = [
-      {
-        productCategory: 'Mens',
-        productSubCategory: '',
-        productName: 'Wordmark Fitted Hat'
-      },
-      {
-        productCategory: 'Womens',
-        productSubCategory: '',
-        productName: 'Structured Hat'
-      },
-      {
-        productCategory: 'X-Class',
-        productSubCategory: 'Visual',
-        productName: 'Carbon Fiber Center Console Trim'
-      }
+    const productsData = [
+      products[1],
+      products[2],
+      products[3],
     ];
-    for (let item of products) {
-      await addProductToCart(page, item.productCategory, item.productSubCategory, item.productName);
+    for (let item of productsData) {
+      await addProductToCart(page, item);
     }
 
-    const expectedChartItems = products.map(product => product.productName);
+    const expectedChartItems = productsData.map(product => product.name);
     expect(await getChartItems(page)).toEqual(expectedChartItems);
 
     await loginUser(page, purchaseTestUser);
@@ -623,14 +614,9 @@ describe('Purchase feature', () => {
     await page.click(CART_LINK_CSS);
 
     expect(await getChartItems(page)).toEqual(expectedChartItems);
-
-    const additionalProduct = {
-      productCategory: 'Mens',
-      productSubCategory: '',
-      productName: 'Men\'s Tech Vest'
-    };
-    await addProductToCart(page, additionalProduct.productCategory, additionalProduct.productSubCategory, additionalProduct.productName);
-    expectedChartItems.push(additionalProduct.productName);
+    
+    await addProductToCart(page, products[4]);
+    expectedChartItems.push(products[4].name);
 
     expect(await getChartItems(page)).toEqual(expectedChartItems);
 
@@ -680,7 +666,7 @@ describe('Purchase feature', () => {
       waitUntil: 'domcontentloaded'
     });
 
-    await addProductToCart(page, 'Mens', '', 'Men\'s S/S Hanley');
+    await addProductToCart(page, products[0]);
 
     await page.waitForSelector(CART_LINK_CSS);
     await page.click(CART_LINK_CSS);

@@ -20,8 +20,11 @@
  */
 
 /* eslint-disable */
-const { loginUser } = require('./common');
+const { loginUser, navigateToProduct } = require('./common');
 const puppeteer = require('puppeteer');
+
+const scopeDir = process.env.SCOPE_DIR;
+const testData = require(scopeDir);
 
 const host = process.env.TEST_HOST;
 const APP = host || 'http://localhost:8080/';
@@ -54,6 +57,7 @@ describe('Wishlist', () => {
   test('Move wishlist item to cart', async () => {
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
+      headless: false,
       slowMo: 120,
     });
     const page = await browser.newPage();
@@ -71,12 +75,7 @@ describe('Wishlist', () => {
     await loginUser(page, userData);
 
     // When I add following items to my wishlist
-    await page.waitForSelector(PARENT_CATEGORY);
-    page.click(PARENT_CATEGORY);
-    await page.waitForSelector(PARENT_SUB_CATEGORY);
-    page.click(PARENT_SUB_CATEGORY);
-    await page.waitForSelector(PRODUCT_CATEGORY_ITEM);
-    page.click(PRODUCT_CATEGORY_ITEM);
+    await navigateToProduct(page, testData.wishlist.defaultProduct);
     await page.waitForSelector(ADD_TO_WISHLIST_BUTTON);
     await page.click(ADD_TO_WISHLIST_BUTTON);
 

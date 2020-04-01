@@ -1,0 +1,41 @@
+{
+  "purchase": {
+    "products": [{
+      "category": "Mens",
+      "subCategory" :"",
+      "name": "Men's S/S Hanley"
+    }, {
+      "category": "Mens",
+      "subCategory": "",
+      "name": "Wordmark Fitted Hat"
+    }, {
+      "category": "Womens",
+      "subCategory": "",
+      "name": "Structured Hat"
+    }, {
+      "category": "X-Class",
+      "subCategory": "Visual",
+      "name": "Carbon Fiber Center Console Trim"
+    }, {
+      "category": "Mens",
+      "subCategory": "",
+      "name": "Men's Tech Vest"
+    }]
+  },
+  "wishlist": {
+    "defaultProduct": {
+      "category": "M-Class",
+      "subCategory" : "Wheels, Tires, and Tire Covers",
+      "name": "M Class Snowchain Trak Sport"
+    }
+  },
+  "cart": {
+    "defaultProduct": {
+      "category": "Mens",
+      "subCategory": "",
+      "name": "Men's Vestri Polo Logo",
+      "colorSelector": "div[id=\"product_display_item_sku_guide\"] > div > label[for*=\"selectorWeight_black\"]",
+      "modifierSelector": "div[id=\"product_display_item_size_guide\"] > div > label[for*=\"selectorWeight_small\"]"
+    }
+  }
+}
