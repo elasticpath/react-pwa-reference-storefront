@@ -143,33 +143,35 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
                   </div>
                 ) : ''}
                 <div data-region="profileAddressComponentRegion">
-                  <ul className="address-container">
-                    <li className="address-name" data-el-value="address.name">
-                      {`${name['given-name']} ${name['family-name']}`}
-                    </li>
-                    <li className="address-street-address" data-el-value="address.streetAddress">
-                      {address['street-address']}
-                    </li>
-                    <li className="address-extended-address" data-el-value="address.extendedAddress" />
-                    <li>
-                      <span className="address-city" data-el-value="address.city">
-                        {`${address.locality}, `}
-                      </span>
-                      <span className="address-region" data-el-value="address.region">
-                        {(address.region)
-                          ? (
-                            `${address.region}, `
-                          ) : ('')
-                      }
-                      </span>
-                      <span className="address-country" data-el-value="address.country">
-                        {`${address['country-name']}, `}
-                      </span>
-                      <div className="address-postal-code" data-el-value="address.postalCode">
-                        {address['postal-code']}
-                      </div>
-                    </li>
-                  </ul>
+                  <label htmlFor={`profile-address-${index}`}>
+                    <ul className="address-container">
+                      <li className="address-name" data-el-value="address.name">
+                        {`${name['given-name']} ${name['family-name']}`}
+                      </li>
+                      <li className="address-street-address" data-el-value="address.streetAddress">
+                        {address['street-address']}
+                      </li>
+                      <li className="address-extended-address" data-el-value="address.extendedAddress" />
+                      <li>
+                        <span className="address-city" data-el-value="address.city">
+                          {`${address.locality}, `}
+                        </span>
+                        <span className="address-region" data-el-value="address.region">
+                          {(address.region)
+                            ? (
+                              `${address.region}, `
+                            ) : ('')
+                        }
+                        </span>
+                        <span className="address-country" data-el-value="address.country">
+                          {`${address['country-name']}, `}
+                        </span>
+                        <div className="address-postal-code" data-el-value="address.postalCode">
+                          {address['postal-code']}
+                        </div>
+                      </li>
+                    </ul>
+                  </label>
                 </div>
                 <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDeleteModalOpen(addressElement.self.uri); }} data-actionlink="">
                   {intl.get('delete')}
