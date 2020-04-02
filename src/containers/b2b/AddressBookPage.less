@@ -29,8 +29,9 @@
   margin-bottom: 32px;
 }
 
-.address-container {
+.address-book-container {
   font-size: 14px;
+  margin-bottom: 35px;
 
   h2 {
     font-size: 16px;
@@ -40,8 +41,7 @@
     color: @mainTextColor;
     line-height: 19px;
   }
-  .address-book-container {
-    height: 174px;
+  .address-book-content {
     position: relative;
 
     .ep-btn {
@@ -75,40 +75,72 @@
       top: 50%;
     }
   }
+  .address-info-inner-container {
+    display: flex;
+
+    .address-container {
+      margin-bottom: 5px;
+      padding-left: 0;
+    }
+
+    .address-info-block {
+      border: none;
+    }
+
+    .delete-address-btn {
+      position: relative;
+      margin-left: 10px;
+
+      &:before {
+        content: '';
+        height: 14px;
+        width: 2px;
+        border-left: 1px solid #167A92;
+        position: absolute;
+        top: 2px;
+        left: -10px;
+      }
+    }
+
+    @media (max-width: @mobileWidth) {
+      display: block;
+    }
+  }
 
   .address-info-container {
     margin-top: 0;
     .ship-info-col {
       width: 50%;
-      float: left;
-      padding-right: 20px;
       box-sizing: border-box;
+      margin-right: 20px;
     }
 
     .bill-info-col {
       width: 50%;
-      float: right;
-      padding-left: 20px;
+      margin-left: 20px;
     }
 
-    .address-info-block {
+    .ship-info-col,
+    .bill-info-col {
+      border: 1px solid @secondBorderColor;
+      outline: 1px solid transparent;
+
       &.selected {
         background-color: #e8f1f4;
-        border: 1px solid transparent;
-        outline: 2px solid #187c93;
+        border-color: #187c93;
+        outline-color: #187c93;
       }
     }
 
     @media (max-width: @mobileWidth) {
       .ship-info-col {
         width: 100%;
-        padding: 0;
+        margin: 0;
       }
 
       .bill-info-col {
-        margin-top: 15px;
+        margin: 15px 0 0;
         width: 100%;
-        padding: 0;
       }
     }
   }
@@ -172,7 +204,7 @@
     padding: 0 15px 35px 15px;
     border: 1px solid @secondBorderColor;
     @media (min-width: @mobileWidth) {
-      padding: 0 10px 35px 20px;
+      padding: 0 10px 25px 20px;
     }
   }
 }

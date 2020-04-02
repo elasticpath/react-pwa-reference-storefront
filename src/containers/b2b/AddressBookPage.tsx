@@ -318,7 +318,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     const { profileData, isBillingEdit, isBillingLoader } = this.state;
     const chosenAddress = profileData && profileData._billingaddresses[0]._selector[0]._chosen && profileData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
     return (
-      <div className="address-book-container">
+      <div className="address-book-content">
         <h2>
           {intl.get('bill-to')}
         </h2>
@@ -388,16 +388,16 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
             {intl.get('account-defaults')}
           </h3>
           {(profileData._addressform) ? (
-            <div className="address-info-container">
-              <div className="ship-info-col">
-                <div className={`address-info-block ${isShippingEdit ? 'selected' : ''}`}>
+            <div className="address-info-inner-container">
+              <div className={`ship-info-col ${isShippingEdit ? 'selected' : ''}`}>
+                <div className="address-info-block">
                   <div className="checkout-shipping-container">
                     {this.renderShippingAddressSelector()}
                   </div>
                 </div>
               </div>
-              <div className="bill-info-col">
-                <div className={`address-info-block ${isBillingEdit ? 'selected' : ''}`}>
+              <div className={`bill-info-col ${isBillingEdit ? 'selected' : ''}`}>
+                <div className="address-info-block">
                   <div data-region="billingAddressesRegion">
                     {this.renderBillingAddressSelector()}
                   </div>
@@ -415,7 +415,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     const chosenAddress = profileData && profileData._shippingaddresses[0]._selector[0]._chosen && profileData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
 
     return (
-      <div className="address-book-container">
+      <div className="address-book-content">
         <h2>
           {intl.get('ship-to')}
         </h2>
@@ -487,7 +487,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
 
     return (
       <div className="address-book-page">
-        <div className="address-container container">
+        <div className="address-book-container">
           {isShowAlert ? (
             <AlertContainer messageData={alertMessageData} />
           ) : ''}
