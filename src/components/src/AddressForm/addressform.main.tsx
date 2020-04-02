@@ -71,6 +71,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     onCloseModal: () => {},
     fetchData: () => {},
     addressData: undefined,
+    onShowAlert: () => {},
   };
 
   constructor(props) {

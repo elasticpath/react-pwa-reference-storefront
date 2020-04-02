@@ -21,6 +21,7 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
+import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import { getConfig, IEpConfig } from '../utils/ConfigProvider';
@@ -48,11 +49,15 @@ interface ProfileAddressesMainProps {
   selectedAddressUri?: string,
   /** on select address */
   onSelectAddress?: (address: string) => void,
+  /** handle Change address */
   handleChange?: (address: string) => void,
 }
 
 interface ProfileAddressesMainState {
-  checkedAddressUri: string
+  checkedAddressUri: string,
+  isDeleteAddressOpen: boolean,
+  selectedUri: boolean,
+  isLoading: boolean,
 }
 
 class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileAddressesMainState> {
@@ -70,21 +75,28 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     Config = epConfig.config;
     this.state = {
       checkedAddressUri: '',
+      isDeleteAddressOpen: false,
+      selectedUri: false,
+      isLoading: false,
     };
+    this.handleDeleteModalOpen = this.handleDeleteModalOpen.bind(this);
+    this.handleDeleteModalClose = this.handleDeleteModalClose.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  // handleChange(uri) {
-  //   const { onSelectAddress, selectedAddressUri } = this.props;
-  //   console.log('uri', uri, selectedAddressUri);
-  //   this.setState({
-  //     checkedAddressUri: uri,
-  //   });
-  //   onSelectAddress(uri);
-  // }
+  handleDeleteModalOpen(selectedUri) {
+    this.setState({ isDeleteAddressOpen: true, selectedUri });
+  }
 
-  handleDelete(link) {
+  handleDeleteModalClose() {
+    this.setState({ isDeleteAddressOpen: false });
+  }
+
+  handleDelete() {
+    const { selectedUri } = this.state;
+    this.setState({ isLoading: true });
     login().then(() => {
-      cortexFetch(link, {
+      cortexFetch(selectedUri, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',
@@ -93,6 +105,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
       }).then(() => {
         const { onChange } = this.props;
         onChange();
+        this.setState({ isLoading: false, isDeleteAddressOpen: false });
       }).catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error.message);
@@ -158,7 +171,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
                     </li>
                   </ul>
                 </div>
-                <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
+                <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDeleteModalOpen(addressElement.self.uri); }} data-actionlink="">
                   {intl.get('delete')}
                 </button>
                 <button className="ep-btn small edit-address-btn" type="button" onClick={() => { onEditAddress(addressElement.self.uri); }}>
@@ -182,8 +195,9 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
 
   render() {
     const {
-      addresses, onAddNewAddress,
+      addresses, onAddNewAddress, isAddressBook,
     } = this.props;
+    const { isDeleteAddressOpen, isLoading } = this.state;
     const isDisabled = !addresses._addressform;
     if (addresses) {
       return (
@@ -192,12 +206,40 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
             <h2>
               {intl.get('addresses')}
             </h2>
+            {isAddressBook ? (
+              <p className="select-address-title">
+              Select you default shipping address below
+              </p>
+            ) : ''}
             <div className="profile-addresses-wrapper">
               {this.renderAddresses()}
             </div>
             <button className="ep-btn primary wide profile-new-address-btn" type="button" disabled={isDisabled} onClick={onAddNewAddress} data-region="billingAddressButtonRegion">
               {intl.get('add-new-address')}
             </button>
+            <Modal
+              open={isDeleteAddressOpen}
+              onClose={this.handleDeleteModalClose}
+              classNames={{ modal: 'delete-address-dialog' }}
+            >
+              <div className="dialog-header">{intl.get('delete-address')}</div>
+              <div className="dialog-content">
+                <p>
+                  {intl.get('confirm-delete-address')}
+                </p>
+              </div>
+              <div className="dialog-footer">
+                <button className="cancel" type="button" onClick={this.handleDeleteModalClose}>{intl.get('cancel')}</button>
+                <button className="upload" type="button" onClick={this.handleDelete}>
+                  {intl.get('delete')}
+                </button>
+              </div>
+              {isLoading ? (
+                <div className="loader-wrapper">
+                  <div className="miniLoader" />
+                </div>
+              ) : ''}
+            </Modal>
           </div>
         </div>
       );

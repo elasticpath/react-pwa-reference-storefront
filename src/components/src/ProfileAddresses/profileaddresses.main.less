@@ -23,6 +23,7 @@
 
 .profile-addresses-listing {
   position: relative;
+  margin-bottom: 25px;
 }
 .profile-addresses-container {
   margin-bottom: 20px;
@@ -70,5 +71,41 @@
 .profile-addresses-wrapper {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
+.select-address-title {
+  margin-bottom: 25px;
+}
+
+.delete-address-dialog {
+  padding: 15px 30px;
+
+  @media (min-width: @mobileWidth) {
+    min-width: 500px;
+  }
+
+  .dialog-content {
+    padding: 25px 0 50px;
+  }
+
+  .cancel {
+    outline: 0 auto transparent;
+  }
+
+ .dialog-footer {
+   .upload {
+     background-color: @buttonActiveColor;
+
+     &:hover {
+       background-color: @fourthComplimentTextColor;
+     }
+   }
+ }
+
+  @media screen and (max-width: 480px) {
+    .dialog-footer button {
+      width: 100px;
+    }
+  }
+}

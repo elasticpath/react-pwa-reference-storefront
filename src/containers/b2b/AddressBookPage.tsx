@@ -47,7 +47,6 @@ const zoomArray = [
   'defaultprofile:addresses:billingaddresses:selector:chosen:description',
   'defaultprofile:addresses:billingaddresses:selector:chosen:selectaction',
   'defaultprofile:addresses:shippingaddresses',
-  'defaultprofile:addresses:shippingaddresses:element',
   'defaultprofile:addresses:shippingaddresses:default',
   'defaultprofile:addresses:shippingaddresses:selector',
   'defaultprofile:addresses:shippingaddresses:selector:choice',
@@ -323,9 +322,11 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
         <h2>
           {intl.get('bill-to')}
         </h2>
-        <p>
-          {intl.get('your-account-billing-default')}
-        </p>
+        {chosenAddress ? (
+          <p>
+            {intl.get('your-account-billing-default')}
+          </p>
+        ) : ''}
         {!isBillingLoader ? (
           <div className="selected-address-container">
             <div data-region="billingAddressSelectorsRegion" className="checkout-region-inner-container">
@@ -384,7 +385,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
       <div className="address-data">
         <div className="address-info-container">
           <h3 className="address-info-container-title">
-            {intl.get('addresses')}
+            {intl.get('account-defaults')}
           </h3>
           {(profileData._addressform) ? (
             <div className="address-info-container">
@@ -418,9 +419,11 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
         <h2>
           {intl.get('ship-to')}
         </h2>
-        <p>
-          {intl.get('your-account-shipping-default')}
-        </p>
+        {chosenAddress ? (
+          <p>
+            {intl.get('your-account-shipping-default')}
+          </p>
+        ) : ''}
         {!isShippingLoader ? (
           <div className="selected-address-container">
             <div data-region="shippingAddressSelectorsRegion" className="checkout-region-inner-container">
@@ -483,7 +486,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     const isShowCheckBox = isShippingEdit || isBillingEdit;
 
     return (
-      <div>
+      <div className="address-book-page">
         <div className="address-container container">
           {isShowAlert ? (
             <AlertContainer messageData={alertMessageData} />
@@ -496,6 +499,9 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
           {profileData ? (
             <div>
               {this.addressesContainer()}
+              <h3 className="address-info-container-title">
+                {intl.get('accounts')}
+              </h3>
               <div className="address-info-block">
                 {(profileData) ? (
                   <ProfileAddressesMain handleChange={el => this.handleChange(el)} isAddressBook={isAddressBook} selectedAddressUri={selectedAddressUri} showCheckBox={isShowCheckBox} addresses={profileData} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
