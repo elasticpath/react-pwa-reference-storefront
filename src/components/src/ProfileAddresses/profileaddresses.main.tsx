@@ -120,7 +120,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     const { checkedAddressUri } = this.state;
     if (addresses._element) {
       return (
-        addresses._element.map((addressElement) => {
+        addresses._element.map((addressElement, index) => {
           const {
             name, address,
           } = addressElement;
@@ -134,12 +134,12 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
                       key={name['given-name']}
                       type="radio"
                       name={name['given-name']}
-                      id={`address-${name['given-name']}`}
+                      id={`profile-address-${index}`}
                       value={(addressElement._selectaction) ? addressElement._selectaction[0].self.uri : ''}
                       checked={selectedAddressUri ? addressElement.self.uri === selectedAddressUri : addressElement.self.uri === checkedAddressUri}
                       onChange={() => handleChange(addressElement.self.uri)}
                     />
-                    <label htmlFor={`address-${name['given-name']}`} />
+                    <label htmlFor={`profile-address-${index}`} />
                   </div>
                 ) : ''}
                 <div data-region="profileAddressComponentRegion">
