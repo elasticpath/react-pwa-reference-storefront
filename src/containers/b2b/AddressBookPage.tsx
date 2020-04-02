@@ -30,7 +30,7 @@ import Config from '../../ep.config.json';
 import './AddressBookPage.less';
 import AddressFormMain from '../../components/src/AddressForm/addressform.main';
 import ProfileAddressesMain from '../../components/src/ProfileAddresses/profileaddresses.main';
-import { AddressContainer } from '../../components/src';
+import { AddressContainer, AlertContainer } from '../../components/src';
 
 const zoomArray = [
   'defaultprofile',
@@ -42,16 +42,20 @@ const zoomArray = [
   'defaultprofile:addresses:billingaddresses:selector',
   'defaultprofile:addresses:billingaddresses:selector:choice',
   'defaultprofile:addresses:billingaddresses:selector:choice:description',
+  'defaultprofile:addresses:billingaddresses:selector:choice:selectaction',
   'defaultprofile:addresses:billingaddresses:selector:chosen',
   'defaultprofile:addresses:billingaddresses:selector:chosen:description',
+  'defaultprofile:addresses:billingaddresses:selector:chosen:selectaction',
   'defaultprofile:addresses:shippingaddresses',
   'defaultprofile:addresses:shippingaddresses:element',
   'defaultprofile:addresses:shippingaddresses:default',
   'defaultprofile:addresses:shippingaddresses:selector',
   'defaultprofile:addresses:shippingaddresses:selector:choice',
   'defaultprofile:addresses:shippingaddresses:selector:choice:description',
+  'defaultprofile:addresses:shippingaddresses:selector:choice:selectaction',
   'defaultprofile:addresses:shippingaddresses:selector:chosen',
   'defaultprofile:addresses:shippingaddresses:selector:chosen:description',
+  'defaultprofile:addresses:shippingaddresses:selector:chosen:selectaction',
 ];
 
 interface AddressBookPageProps extends React.Component<RouteComponentProps> {}
@@ -63,7 +67,13 @@ interface AddressBookPageState {
   isShippingEdit: boolean,
   isBillingEdit: boolean,
   isAddressBook: boolean,
+  isShippingLoader: boolean,
+  isBillingLoader: boolean,
   selectedAddressUri: string,
+  previousShippingAddress : string,
+  previousBillingAddress : string,
+  isShowAlert: boolean,
+  alertMessageData: { message: string, isSuccess: boolean},
 }
 
 class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookPageState> {
@@ -77,14 +87,23 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
       isShippingEdit: false,
       isBillingEdit: false,
       isAddressBook: true,
+      isShippingLoader: false,
+      isBillingLoader: false,
       selectedAddressUri: '',
+      previousShippingAddress: '',
+      previousBillingAddress: '',
+      isShowAlert: false,
+      alertMessageData: { message: '', isSuccess: false },
     };
     this.fetchProfileData = this.fetchProfileData.bind(this);
     this.handleNewAddress = this.handleNewAddress.bind(this);
     this.handleEditAddress = this.handleEditAddress.bind(this);
     this.handleShippingEdit = this.handleShippingEdit.bind(this);
     this.handleBillingEdit = this.handleBillingEdit.bind(this);
+    this.handleSelectAddress = this.handleSelectAddress.bind(this);
     this.handleCloseAddressModal = this.handleCloseAddressModal.bind(this);
+    this.handleShowAlert = this.handleShowAlert.bind(this);
+    this.handleHideAlert = this.handleHideAlert.bind(this);
   }
 
   async componentDidMount() {
@@ -108,6 +127,8 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
       if (profileData && profileData._defaultprofile) {
         this.setState({
           profileData: profileData._defaultprofile[0]._addresses[0],
+          isShippingLoader: false,
+          isBillingLoader: false,
         });
       } else {
         this.setState({
@@ -117,6 +138,44 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error.message);
+    }
+  }
+
+  handleSelectAddress(addressUri) {
+    const { profileData, isBillingEdit, isShippingEdit } = this.state;
+    let selectactionUri;
+    if (isBillingEdit) {
+      this.setState({
+        isBillingLoader: true,
+      });
+      const selectedBillingAddress = profileData._billingaddresses[0]._selector[0]._choice.find(el => addressUri === el._description[0].self.uri);
+      selectactionUri = selectedBillingAddress._selectaction[0].self.uri;
+    } else if (isShippingEdit) {
+      this.setState({
+        isShippingLoader: true,
+      });
+      const selectedShippingAddress = profileData._shippingaddresses[0]._selector[0]._choice.find(el => addressUri === el._description[0].self.uri);
+      selectactionUri = selectedShippingAddress._selectaction && selectedShippingAddress._selectaction[0].self.uri;
+    }
+    if (selectactionUri) {
+      cortexFetch(selectactionUri,
+        {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+          body: JSON.stringify({}),
+        })
+        .then((res) => {
+          if (res.status === 200 || res.status === 201) {
+            this.fetchProfileData();
+          }
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error.message);
+        });
     }
   }
 
@@ -134,6 +193,13 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     );
   }
 
+  handleChange(uri) {
+    this.setState({
+      selectedAddressUri: uri,
+    });
+    this.handleSelectAddress(uri);
+  }
+
   handleNewAddress() {
     this.setState({
       openAddressModal: true,
@@ -141,22 +207,68 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     });
   }
 
+  cancelShippingEdit(chosenAddress) {
+    const { previousShippingAddress } = this.state;
+    if (chosenAddress && previousShippingAddress) {
+      if (previousShippingAddress === chosenAddress) {
+        this.setState({
+          isShippingEdit: false,
+        });
+      } else {
+        this.setState({
+          previousShippingAddress: chosenAddress,
+          isShippingEdit: false,
+        });
+        this.handleSelectAddress(previousShippingAddress);
+      }
+    } else {
+      this.setState({
+        isShippingEdit: false,
+      });
+    }
+  }
+
+  cancelBillingEdit(chosenAddress) {
+    const { previousBillingAddress } = this.state;
+    if (chosenAddress && previousBillingAddress) {
+      if (previousBillingAddress === chosenAddress) {
+        this.setState({
+          isBillingEdit: false,
+        });
+      } else {
+        this.setState({
+          previousBillingAddress: chosenAddress,
+          isBillingEdit: false,
+        });
+        this.handleSelectAddress(previousBillingAddress);
+      }
+    } else {
+      this.setState({
+        isBillingEdit: false,
+      });
+    }
+  }
+
   handleShippingEdit(addressLink) {
-    const { isShippingEdit } = this.state;
-    if (addressLink) {
+    const { isShippingEdit, isBillingEdit, profileData } = this.state;
+    const selectors = profileData && profileData._shippingaddresses && profileData._shippingaddresses[0]._selector;
+    if (selectors[0]._choice && !isBillingEdit) {
       this.setState({
         isShippingEdit: !isShippingEdit,
         selectedAddressUri: addressLink,
+        previousShippingAddress: addressLink,
       });
     }
   }
 
   handleBillingEdit(addressLink) {
-    const { isBillingEdit } = this.state;
-    if (addressLink) {
+    const { isBillingEdit, isShippingEdit, profileData } = this.state;
+    const selectors = profileData && profileData._billingaddresses && profileData._billingaddresses[0]._selector;
+    if (selectors[0]._choice && !isShippingEdit) {
       this.setState({
         isBillingEdit: !isBillingEdit,
         selectedAddressUri: addressLink,
+        previousBillingAddress: addressLink,
       });
     }
   }
@@ -172,18 +284,24 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     this.setState({ openAddressModal: false });
   }
 
+  handleHideAlert() {
+    this.setState({ isShowAlert: false });
+  }
+
+  handleShowAlert(message, isSuccess) {
+    this.setState({ isShowAlert: true, alertMessageData: { message, isSuccess } });
+    setTimeout(this.handleHideAlert, 3200);
+  }
+
   renderBillingAddress() {
     const { profileData } = this.state;
     if (profileData && profileData._billingaddresses && profileData._billingaddresses[0]._selector[0]._chosen) {
       const selectedAddress = profileData._billingaddresses[0]._selector[0]._chosen[0]._description[0].address;
       const selectedAddressName = profileData._billingaddresses[0]._selector[0]._chosen[0]._description[0].name;
       return (
-        <div key={`billingAddress_${Math.random().toString(36).substr(2, 9)}`}>
-          <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
-            {/* eslint-disable-next-line max-len */}
-            <div data-region="checkoutAddressRegion">
-              <AddressContainer name={selectedAddressName} address={selectedAddress} />
-            </div>
+        <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
+          <div data-region="checkoutAddressRegion">
+            <AddressContainer name={selectedAddressName} address={selectedAddress} />
           </div>
         </div>
       );
@@ -198,26 +316,39 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
   }
 
   renderBillingAddressSelector() {
-    const { profileData, isBillingEdit } = this.state;
-    const selectedAddress = profileData && profileData._billingaddresses[0]._selector[0]._chosen && profileData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
+    const { profileData, isBillingEdit, isBillingLoader } = this.state;
+    const chosenAddress = profileData && profileData._billingaddresses[0]._selector[0]._chosen && profileData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
     return (
       <div className="address-book-container">
         <h2>
           {intl.get('bill-to')}
         </h2>
-        <div data-region="billingAddressSelectorsRegion" className="checkout-region-inner-container">
-          {this.renderBillingAddress()}
-        </div>
-        <div className="address-btn-cell">
-          <button className="ep-btn edit-address-btn" type="button" onClick={() => this.handleBillingEdit(selectedAddress)}>
-            {intl.get(isBillingEdit ? 'cancel' : 'edit')}
-          </button>
-          {isBillingEdit ? (
-            <button className="ep-btn delete-address-btn" type="button" data-actionlink="">
-              {intl.get('update')}
-            </button>
-          ) : ''}
-        </div>
+        <p>
+          {intl.get('your-account-billing-default')}
+        </p>
+        {!isBillingLoader ? (
+          <div className="selected-address-container">
+            <div data-region="billingAddressSelectorsRegion" className="checkout-region-inner-container">
+              {this.renderBillingAddress()}
+            </div>
+            <div className="address-btn-cell">
+              {isBillingEdit ? (
+                <button className="ep-btn edit-address-btn" type="button" onClick={() => this.cancelBillingEdit(chosenAddress)}>
+                  {intl.get('cancel')}
+                </button>
+              ) : (
+                <button className="ep-btn edit-address-btn" type="button" onClick={() => this.handleBillingEdit(chosenAddress)}>
+                  {intl.get('edit')}
+                </button>
+              )}
+              {isBillingEdit ? (
+                <button className="ep-btn delete-address-btn" type="button" onClick={() => this.handleBillingEdit(chosenAddress)}>
+                  {intl.get('update')}
+                </button>
+              ) : ''}
+            </div>
+          </div>
+        ) : <div className="miniLoader" />}
       </div>
     );
   }
@@ -229,12 +360,9 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
       const selectedAddress = profileData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].address;
       const selectedAddressName = profileData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].name;
       return (
-        <div key={`billingAddress_${Math.random().toString(36).substr(2, 9)}`}>
-          <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
-            {/* eslint-disable-next-line max-len */}
-            <div data-region="checkoutAddressRegion">
-              <AddressContainer name={selectedAddressName} address={selectedAddress} />
-            </div>
+        <div className="address-ctrl-cell" data-region="checkoutAddressSelector">
+          <div data-region="checkoutAddressRegion">
+            <AddressContainer name={selectedAddressName} address={selectedAddress} />
           </div>
         </div>
       );
@@ -248,31 +376,74 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
     );
   }
 
+  addressesContainer() {
+    const {
+      profileData, isShippingEdit, isBillingEdit,
+    } = this.state;
+    return (
+      <div className="address-data">
+        <div className="address-info-container">
+          <h3 className="address-info-container-title">
+            {intl.get('addresses')}
+          </h3>
+          {(profileData._addressform) ? (
+            <div className="address-info-container">
+              <div className="ship-info-col">
+                <div className={`address-info-block ${isShippingEdit ? 'selected' : ''}`}>
+                  <div className="checkout-shipping-container">
+                    {this.renderShippingAddressSelector()}
+                  </div>
+                </div>
+              </div>
+              <div className="bill-info-col">
+                <div className={`address-info-block ${isBillingEdit ? 'selected' : ''}`}>
+                  <div data-region="billingAddressesRegion">
+                    {this.renderBillingAddressSelector()}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : ('')}
+        </div>
+      </div>
+    );
+  }
+
   renderShippingAddressSelector() {
-    const { profileData, isShippingEdit } = this.state;
-    const selectedAddress = profileData && profileData._billingaddresses[0]._selector[0]._chosen && profileData._billingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
+    const { profileData, isShippingEdit, isShippingLoader } = this.state;
+    const chosenAddress = profileData && profileData._shippingaddresses[0]._selector[0]._chosen && profileData._shippingaddresses[0]._selector[0]._chosen[0]._description[0].self.uri;
 
     return (
       <div className="address-book-container">
         <h2>
           {intl.get('ship-to')}
         </h2>
-        <div data-region="billingAddressSelectorsRegion" className="checkout-region-inner-container">
-          {this.renderShippingAddress()}
-        </div>
-        <div className="address-btn-cell">
-          <button className="ep-btn edit-address-btn" type="button" onClick={() => this.handleShippingEdit(selectedAddress)}>
-            {intl.get(isShippingEdit ? 'cancel' : 'edit')}
-          </button>
-          {isShippingEdit ? (
-            <button className="ep-btn delete-address-btn" type="button" data-actionlink="">
-              {intl.get('update')}
-            </button>
-          ) : ''}
-        </div>
-        {/* <button className="ep-btn primary wide checkout-new-address-btn" data-region="billingAddressButtonRegion" disabled={false} type="button" onClick={this.handleNewAddress}> */}
-        {/*  {intl.get('add-new-address')} */}
-        {/* </button> */}
+        <p>
+          {intl.get('your-account-shipping-default')}
+        </p>
+        {!isShippingLoader ? (
+          <div className="selected-address-container">
+            <div data-region="shippingAddressSelectorsRegion" className="checkout-region-inner-container">
+              {this.renderShippingAddress()}
+            </div>
+            <div className="address-btn-cell">
+              {isShippingEdit ? (
+                <button className="ep-btn edit-address-btn" type="button" onClick={() => this.cancelShippingEdit(chosenAddress)}>
+                  {intl.get('cancel')}
+                </button>
+              ) : (
+                <button className="ep-btn edit-address-btn" type="button" onClick={() => this.handleShippingEdit(chosenAddress)}>
+                  {intl.get('edit')}
+                </button>
+              )}
+              {isShippingEdit ? (
+                <button className="ep-btn delete-address-btn" type="button" onClick={() => this.handleShippingEdit(chosenAddress)}>
+                  {intl.get('update')}
+                </button>
+              ) : ''}
+            </div>
+          </div>
+        ) : <div className="miniLoader" />}
       </div>
     );
   }
@@ -292,7 +463,12 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
               </h2>
             </div>
             <div className="modal-body">
-              <AddressFormMain onCloseModal={this.handleCloseAddressModal} fetchData={this.fetchProfileData} addressData={addressUrl} />
+              <AddressFormMain
+                onShowAlert={(message, isSuccess) => { this.handleShowAlert(message, isSuccess); }}
+                onCloseModal={this.handleCloseAddressModal}
+                fetchData={this.fetchProfileData}
+                addressData={addressUrl}
+              />
             </div>
           </div>
         </div>
@@ -302,47 +478,27 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
 
   render() {
     const {
-      profileData, isShippingEdit, selectedAddressUri, isAddressBook, isBillingEdit,
+      profileData, isShippingEdit, isAddressBook, isBillingEdit, selectedAddressUri, alertMessageData, isShowAlert,
     } = this.state;
+    const isShowCheckBox = isShippingEdit || isBillingEdit;
 
     return (
       <div>
-        <div className="container profile-container">
-          <div className="b2b-header" data-region="profileTitleRegion">
+        <div className="address-container container">
+          {isShowAlert ? (
+            <AlertContainer messageData={alertMessageData} />
+          ) : ''}
+          <div className="b2b-header">
             <div className="page-title">
               {intl.get('address-book')}
             </div>
           </div>
           {profileData ? (
             <div>
-              <div className="profile-data">
-                <div className="profile-info-container">
-                  <h3 className="profile-info-container-title">
-                    {intl.get('addresses')}
-                  </h3>
-                  {(profileData._addressform) ? (
-                    <div className="address-info-container">
-                      <div className="ship-info-col">
-                        <div className={`profile-info-block ${isShippingEdit ? 'selected' : ''}`}>
-                          <div className="checkout-shipping-container">
-                            {this.renderShippingAddressSelector()}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="bill-info-col">
-                        <div className={`profile-info-block ${isBillingEdit ? 'selected' : ''}`}>
-                          <div data-region="billingAddressesRegion">
-                            {this.renderBillingAddressSelector()}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ) : ('')}
-                </div>
-              </div>
-              <div className="profile-info-block">
+              {this.addressesContainer()}
+              <div className="address-info-block">
                 {(profileData) ? (
-                  <ProfileAddressesMain isAddressBook={isAddressBook} selectedAddressUri={selectedAddressUri} showCheckBox={isShippingEdit} addresses={profileData} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
+                  <ProfileAddressesMain handleChange={el => this.handleChange(el)} isAddressBook={isAddressBook} selectedAddressUri={selectedAddressUri} showCheckBox={isShowCheckBox} addresses={profileData} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
                 ) : ('')}
                 {this.renderNewAddressModal()}
               </div>

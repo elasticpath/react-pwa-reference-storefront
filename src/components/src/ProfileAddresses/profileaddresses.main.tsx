@@ -46,6 +46,9 @@ interface ProfileAddressesMainProps {
   isAddressBook?: boolean,
   /** Uri of selected address */
   selectedAddressUri?: string,
+  /** on select address */
+  onSelectAddress?: (address: string) => void,
+  handleChange?: (address: string) => void,
 }
 
 interface ProfileAddressesMainState {
@@ -57,6 +60,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     showCheckBox: false,
     isAddressBook: false,
     selectedAddressUri: '',
+    handleChange: () => {},
   };
 
   constructor(props) {
@@ -67,16 +71,16 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
     this.state = {
       checkedAddressUri: '',
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(uri) {
-    const { showCheckBox } = this.props;
-    console.log('uri', uri);
-    this.setState({
-      checkedAddressUri: uri,
-    });
-  }
+  // handleChange(uri) {
+  //   const { onSelectAddress, selectedAddressUri } = this.props;
+  //   console.log('uri', uri, selectedAddressUri);
+  //   this.setState({
+  //     checkedAddressUri: uri,
+  //   });
+  //   onSelectAddress(uri);
+  // }
 
   handleDelete(link) {
     login().then(() => {
@@ -98,7 +102,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
 
   renderAddresses() {
     const {
-      addresses, onEditAddress, showCheckBox, selectedAddressUri, isAddressBook,
+      addresses, onEditAddress, showCheckBox, selectedAddressUri, isAddressBook, handleChange,
     } = this.props;
     const { checkedAddressUri } = this.state;
     if (addresses._element) {
@@ -110,55 +114,56 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
           return (
             <ul key={`profile_address_${Math.random().toString(36).substr(2, 9)}`} className="profile-addresses-listing" data-el-container="profile.addresses">
               <li className={`profile-address-container ${isAddressBook ? 'left-padding' : ''}`} data-region="profileAddressContainer">
-                <label htmlFor={`shippingAddress-${name['given-name']}`}>
-                  {showCheckBox ? (
+                {showCheckBox ? (
+                  <div>
                     <input
-                      className="radio-button"
+                      className="style-radio"
                       key={name['given-name']}
                       type="radio"
                       name={name['given-name']}
-                      id={`shippingAddress-${name['given-name']}`}
+                      id={`address-${name['given-name']}`}
                       value={(addressElement._selectaction) ? addressElement._selectaction[0].self.uri : ''}
-                      checked={!checkedAddressUri.length ? addressElement.self.uri === selectedAddressUri : addressElement.self.uri === checkedAddressUri}
-                      onChange={() => this.handleChange(addressElement.self.uri)}
+                      checked={selectedAddressUri ? addressElement.self.uri === selectedAddressUri : addressElement.self.uri === checkedAddressUri}
+                      onChange={() => handleChange(addressElement.self.uri)}
                     />
-                  ) : ''}
-                  <div data-region="profileAddressComponentRegion">
-                    <ul className="address-container">
-                      <li className="address-name" data-el-value="address.name">
-                        {`${name['given-name']} ${name['family-name']}`}
-                      </li>
-                      <li className="address-street-address" data-el-value="address.streetAddress">
-                        {address['street-address']}
-                      </li>
-                      <li className="address-extended-address" data-el-value="address.extendedAddress" />
-                      <li>
-                        <span className="address-city" data-el-value="address.city">
-                          {`${address.locality}, `}
-                        </span>
-                        <span className="address-region" data-el-value="address.region">
-                          {(address.region)
-                            ? (
-                              `${address.region}, `
-                            ) : ('')
-                        }
-                        </span>
-                        <span className="address-country" data-el-value="address.country">
-                          {`${address['country-name']}, `}
-                        </span>
-                        <span className="address-postal-code" data-el-value="address.postalCode">
-                          {address['postal-code']}
-                        </span>
-                      </li>
-                    </ul>
+                    <label htmlFor={`address-${name['given-name']}`} />
                   </div>
-                  <button className="ep-btn small edit-address-btn" type="button" onClick={() => { onEditAddress(addressElement.self.uri); }}>
-                    {intl.get('edit')}
-                  </button>
-                  <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
-                    {intl.get('delete')}
-                  </button>
-                </label>
+                ) : ''}
+                <div data-region="profileAddressComponentRegion">
+                  <ul className="address-container">
+                    <li className="address-name" data-el-value="address.name">
+                      {`${name['given-name']} ${name['family-name']}`}
+                    </li>
+                    <li className="address-street-address" data-el-value="address.streetAddress">
+                      {address['street-address']}
+                    </li>
+                    <li className="address-extended-address" data-el-value="address.extendedAddress" />
+                    <li>
+                      <span className="address-city" data-el-value="address.city">
+                        {`${address.locality}, `}
+                      </span>
+                      <span className="address-region" data-el-value="address.region">
+                        {(address.region)
+                          ? (
+                            `${address.region}, `
+                          ) : ('')
+                      }
+                      </span>
+                      <span className="address-country" data-el-value="address.country">
+                        {`${address['country-name']}, `}
+                      </span>
+                      <div className="address-postal-code" data-el-value="address.postalCode">
+                        {address['postal-code']}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <button className="ep-btn small delete-address-btn" type="button" onClick={() => { this.handleDelete(addressElement.self.uri); }} data-actionlink="">
+                  {intl.get('delete')}
+                </button>
+                <button className="ep-btn small edit-address-btn" type="button" onClick={() => { onEditAddress(addressElement.self.uri); }}>
+                  {intl.get('edit')}
+                </button>
               </li>
             </ul>
           );

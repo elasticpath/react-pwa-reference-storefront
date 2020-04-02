@@ -33,9 +33,42 @@
     margin-left: 20px;
   }
 
-  .radio-button {
+  .style-radio + label  {
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 2px;
+    left: 0;
+  }
+
+  .delete-address-btn {
+    text-transform: capitalize;
+
+    + .edit-address-btn {
+      text-transform: capitalize;
+      position: relative;
+      margin-left: 10px;
+
+      &:before {
+        content: '';
+        height: 14px;
+        width: 2px;
+        border-left: 1px solid @thirdComplimentColor;
+        position: absolute;
+        top: 2px;
+        left: -10px;
+      }
+    }
+  }
+
+}
+@media (min-width: @mobileWidth) {
+  .profile-addresses-listing {
+    width: 50%;
+    padding-right: 10px;
   }
 }
+
+.profile-addresses-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
