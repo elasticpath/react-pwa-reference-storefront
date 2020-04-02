@@ -251,7 +251,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
   handleShippingEdit(addressLink) {
     const { isShippingEdit, isBillingEdit, profileData } = this.state;
     const selectors = profileData && profileData._shippingaddresses && profileData._shippingaddresses[0]._selector;
-    if (selectors[0]._choice && !isBillingEdit) {
+    if ((selectors[0]._choice || selectors[0]._chosen) && !isBillingEdit) {
       this.setState({
         isShippingEdit: !isShippingEdit,
         selectedAddressUri: addressLink,
@@ -263,7 +263,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
   handleBillingEdit(addressLink) {
     const { isBillingEdit, isShippingEdit, profileData } = this.state;
     const selectors = profileData && profileData._billingaddresses && profileData._billingaddresses[0]._selector;
-    if (selectors[0]._choice && !isShippingEdit) {
+    if ((selectors[0]._choice || selectors[0]._chosen) && !isShippingEdit) {
       this.setState({
         isBillingEdit: !isBillingEdit,
         selectedAddressUri: addressLink,
@@ -500,7 +500,7 @@ class AddressBookPage extends React.Component<AddressBookPageProps, AddressBookP
             <div>
               {this.addressesContainer()}
               <h3 className="address-info-container-title">
-                {intl.get('accounts')}
+                {intl.get('addresses')}
               </h3>
               <div className="address-info-block">
                 {(profileData) ? (

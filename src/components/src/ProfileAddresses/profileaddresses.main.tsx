@@ -206,7 +206,7 @@ class ProfileAddressesMain extends Component<ProfileAddressesMainProps, ProfileA
             <h2>
               {intl.get('addresses')}
             </h2>
-            {isAddressBook ? (
+            {(isAddressBook && addresses._element) ? (
               <p className="select-address-title">
               Select you default shipping address below
               </p>
