@@ -33,7 +33,7 @@ const puppeteer = require('puppeteer');
 
 const scopeDir = process.env.SCOPE_DIR;
 const testData = require(scopeDir);
-const { products } = testData.purchase;
+const { products, address } = testData.purchase;
 
 const host = process.env.TEST_HOST;
 const APP = host || 'http://localhost:8080/';
@@ -79,7 +79,7 @@ const CHECKOUT_ADDRESS_SELECTOR_CSS = 'div[data-region="checkoutAddressSelector"
 const BILLING_ADDRESS_SELECTORS_REGION_CSS = 'div[data-region="billingAddressSelectorsRegion"]';
 const PAYMENT_SELECTOR_CSS = 'div[data-region="paymentSelector"]';
 const PAYMENT_METHOD_REGION_CSS = 'div[data-region="paymentMethodSelectorsRegion"]';
-const CREATED_PAYMENT_METHOD = ".paymentMethodComponentRegion";
+const CREATED_PAYMENT_METHOD = 'div[data-region="paymentMethodComponentRegion"]';
 const CREATED_ADDRESS_METHOD = ".address-ctrl-cell";
 const PURCHASE_HISTORY_ITEM = "#header_navbar_login_menu_purchase_history_link";
 const LOGIN_MODAL_ITEM = 'button[data-target="#login-modal"';
@@ -127,13 +127,7 @@ describe('Purchase feature', () => {
   
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
-  
-      const address = {
-        postalCode: '12345',
-        province: 'Washington',
-        city: 'Seattle',
-        country: 'United States',
-      } ;
+
       await addAddress(page, address);
       await page.waitForSelector(PROFILE_ADDRESS_ITEM);
       await page.waitFor(3000);
@@ -194,21 +188,12 @@ describe('Purchase feature', () => {
     await page.waitFor(2000);
 
     await page.waitForSelector(CART_LINK_CSS);
-    await page.waitFor(2000);
     await page.click(CART_LINK_CSS);
 
-    await page.waitForSelector(CHECKOUT_BUTTON_CSS);
-    await page.click(CHECKOUT_BUTTON_CSS);
-
+    await page.waitFor(3000);
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
     await page.click(ADD_NEW_ADDRESS_CSS);
 
-    const address = {
-      postalCode: '12345',
-      province: 'Washington',
-      city: 'Seattle',
-      country: 'United States',
-    } ;
     await addAddress(page, address);
     await page.waitForSelector(CREATED_ADDRESS_METHOD);
     await page.waitFor(3000);
@@ -271,13 +256,7 @@ describe('Purchase feature', () => {
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
     await page.waitFor(2000);
     await page.click(ADD_NEW_ADDRESS_CSS);
-
-    const address = {
-      postalCode: '12345',
-      province: 'Washington',
-      city: 'Seattle',
-      country: 'United States',
-    } ;
+    
     await addAddress(page, address);
     await page.waitForSelector(CREATED_ADDRESS_METHOD);
     await page.waitFor(3000);
@@ -341,16 +320,10 @@ describe('Purchase feature', () => {
     await page.click(CHECKOUT_BUTTON_CSS);
 
     await page.waitForSelector(BILLING_ADDRESS_SELECTORS_REGION_CSS);
-    const address = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
-    if (!address) {
+    const checkoutAddress = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
+    if (!checkoutAddress) {
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
-      const address = {
-        postalCode: '12345',
-        province: 'Washington',
-        city: 'Seattle',
-        country: 'United States',
-      } ;
       await addAddress(page, address);
       await page.waitForSelector(CREATED_ADDRESS_METHOD);
       await page.waitFor(3000);
@@ -429,17 +402,11 @@ describe('Purchase feature', () => {
     await page.click(CHECKOUT_BUTTON_CSS);
 
     await page.waitForSelector(BILLING_ADDRESS_SELECTORS_REGION_CSS);
-    const address = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
-    if (!address) {
+    const checkoutAddress = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
+    if (!checkoutAddress) {
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
 
-      const address = {
-        postalCode: '12345',
-        province: 'Washington',
-        city: 'Seattle',
-        country: 'United States',
-      } ;
       await addAddress(page, address);
       await page.waitForSelector(CREATED_ADDRESS_METHOD);
       await page.waitFor(3000);
@@ -517,17 +484,11 @@ describe('Purchase feature', () => {
     await page.click(CHECKOUT_BUTTON_CSS);
 
     await page.waitForSelector(BILLING_ADDRESS_SELECTORS_REGION_CSS);
-    const address = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
-    if (!address) {
+    const checkoutAddress = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
+    if (!checkoutAddress) {
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
 
-      const address = {
-        postalCode: '12345',
-        province: 'Washington',
-        city: 'Seattle',
-        country: 'United States',
-      } ;
       await addAddress(page, address);
       await page.waitForSelector(CREATED_ADDRESS_METHOD);
       await page.waitFor(3000);
@@ -580,7 +541,7 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 60000);
+  }, 110000);
 
   test('Cart merge from anonymous shopper to registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
@@ -689,12 +650,6 @@ describe('Purchase feature', () => {
     await page.waitFor(2000);
     await page.click(ADD_NEW_ADDRESS_CSS);
 
-    const address = {
-      postalCode: '12345',
-      province: 'Washington',
-      city: 'Seattle',
-      country: 'United States',
-    } ;
     await addAddress(page, address);
     await page.waitForSelector(CREATED_ADDRESS_METHOD);
     await page.waitFor(3000);
@@ -741,5 +696,5 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 60000);
+  }, 80000);
 });

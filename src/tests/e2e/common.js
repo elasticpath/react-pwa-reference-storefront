@@ -152,7 +152,7 @@ async function registerUser(page, userInfo) {
   await page.click(FORM_SUBMIT_BUTTON);
 }
 
-async function addPaymentMethodToOrder(page, paymentMethod) {
+async function  addPaymentMethodToOrder(page, paymentMethod) {
   const CARD_TYPE = '#CardType';
   const CARD_HOLDER_NAME = '#CardHolderName';
   const CARD_NUMBER = '#CardNumber';
@@ -205,10 +205,12 @@ async function addAddress(page, address) {
   await page.waitForSelector(FIRST_NAME);
   await page.type(FIRST_NAME, 'Test');
   await page.type(LAST_NAME, 'User');
-  await page.type(STREET_ADDRESS, '555 Main Street');
+  await page.type(STREET_ADDRESS, address.street);
   await page.type(CITY, address.city);
   await page.type(COUNTRY, address.country);
-  await page.type(PROVINCE, address.province);
+  if (address.province) {
+    await page.type(PROVINCE, address.province);
+  }
   await page.type(POSTAL_CODE, address.postalCode);
 
   await page.click(SAVE_BUTTON);

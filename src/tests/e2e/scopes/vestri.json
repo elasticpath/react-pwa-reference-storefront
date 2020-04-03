@@ -20,7 +20,14 @@
       "category": "Mens",
       "subCategory": "",
       "name": "Men's Tech Vest"
-    }]
+    }],
+    "address": {
+      "postalCode": "12345",
+      "province": "Washington",
+      "street": "555 Main Street",
+      "city": "Seattle",
+      "country": "United States"
+    }
   },
   "wishlist": {
     "defaultProduct": {
@@ -36,6 +43,12 @@
       "name": "Men's Vestri Polo Logo",
       "colorSelector": "div[id=\"product_display_item_sku_guide\"] > div > label[for*=\"selectorWeight_black\"]",
       "modifierSelector": "div[id=\"product_display_item_size_guide\"] > div > label[for*=\"selectorWeight_small\"]"
+    }
+  },
+  "search": {
+    "dataSearch":{
+      "searchValidKeyword": "hat",
+      "searchInvalidKeyword": "abc"
     }
   }
 }

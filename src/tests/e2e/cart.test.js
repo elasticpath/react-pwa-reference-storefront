@@ -77,6 +77,7 @@ describe('Cart feature', () => {
     if(defaultProduct.colorSelector) {
       await page.waitForSelector(defaultProduct.colorSelector);
       await page.click(defaultProduct.colorSelector);
+      await page.waitFor(2000);
     }
   
     // And I choose sku size option
@@ -86,12 +87,14 @@ describe('Cart feature', () => {
         page.click(defaultProduct.modifierSelector),
         page.waitForNavigation()
       ]);
+      await page.waitFor(2000);
     }
 
     // And I update cart quantity to 2
     await page.waitForSelector(QUANTITY_SELECT_CSS);
     page.$eval(QUANTITY_SELECT_CSS, el => el.value = '');
     await page.type(QUANTITY_SELECT_CSS, PRODUCT_QUANTITY.toString());
+    await page.waitFor(2000);
 
     // And I add product to my cart
     await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
