@@ -52,6 +52,10 @@
   .modal-content {
     background-color: @mainBackgroundColor;
     border: none;
+    
+    &.loading {
+      opacity: 0.5;
+    }
   }
 
   #simplemodal-container {
@@ -96,6 +100,21 @@
       text-decoration: underline;
     }
   }
+}
+
+.loginModalMiniLoader {
+    border: 10px solid #F3F3F3;
+    border-top: 10px solid #228197;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    animation: spin 0.5s linear infinite;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
 }
 
 @media (max-width: @mobileWidth - 1) {
