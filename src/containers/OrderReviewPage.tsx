@@ -385,15 +385,18 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
                       </div>
                       <div className="checkout-submit-container">
                         <button className="ep-btn primary wide btn-cmd-submit-order" disabled={!isValid} type="button" onClick={() => { this.completeOrder(); }}>
-                          {intl.get('complete-purchase')}
+                          {isLoading ? (
+                            <span className="checkoutMiniLoader" />
+                          ) : (
+                            <span className="btn-txt">
+                              {intl.get('complete-purchase')}
+                            </span>
+                          )}
                         </button>
                         <br />
                         <button className="ep-btn primary wide btn-cmd-edit-order" type="button" onClick={() => { this.goToCheckOut(); }}>
                           {intl.get('edit')}
                         </button>
-                        {isLoading && (
-                          <div className="miniLoader" />
-                        )}
                       </div>
                     </div>
                   </div>
