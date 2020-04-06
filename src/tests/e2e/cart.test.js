@@ -22,6 +22,10 @@
 /* eslint-disable */
 
 const puppeteer = require('puppeteer');
+const { navigateToProduct, addProductToCart } = require('./common');
+
+const scopeDir = process.env.SCOPE_DIR;
+const testData = require(scopeDir);
 
 const host = process.env.TEST_HOST;
 const APP = host || 'http://localhost:8080/';
@@ -43,6 +47,7 @@ async function getPrice(page, selector) {
 describe('Cart feature', () => {
 
   test('Change cart line item quantity', async () => {
+    const { defaultProduct } = testData.cart;
     const browser = await puppeteer.launch({
       args: ['--no-sandbox'],
     });
@@ -53,48 +58,43 @@ describe('Cart feature', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
-
-    const PARENT_CATEGORY_CSS = '.app-header-navigation-component li[data-name="Mens"]';
-    const PRODUCT_CSS = '#category_item_title_link_VESTRI_MENS_VESTRI_POLO_LOGO_HG_MD';
-    const SKU_OPTION_SELECT_CSS = 'div[id="product_display_item_sku_guide"] > div > label[for*="selectorWeight_black"]';
-    const SKU_BUTTON_SELECT_CSS = 'div[id="product_display_item_size_guide"] > div > label[for*="selectorWeight_small"]';
+    
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
     const QUANTITY_SELECT_CSS = 'input[id="product_display_quantity_field"]';
     const PRODUCT_DETAIL_CSS = 'div[class="itemdetail-details"]';
-    const PRODUCT_PRICE_CSS = "#category_item_price_VESTRI_MENS_VESTRI_POLO_LOGO_HG_MD";
+    const PRODUCT_PRICE_CSS = "h1.itemdetail-purchase-price-value";
     const CART_LINE_ITEM_PRICE_CSS = "div[data-region='itemTotalPriceRegion'] .cart-total-purchase-price";
 
     const PRODUCT_QUANTITY = 2;
 
-    // When I select category Mans
-    await page.waitForSelector(PARENT_CATEGORY_CSS);
-    page.click(PARENT_CATEGORY_CSS);
-
-    // And I select product Men's Vestri Polo Logo
-    await page.waitForSelector(PRODUCT_CSS);
-    page.click(PRODUCT_CSS);
-
+    // When I select category Mans and I select product Men's Vestri Polo Logo
+    await navigateToProduct(page, defaultProduct);
+  
     await page.waitForSelector(PRODUCT_DETAIL_CSS);
     const productPrice = await getPrice(page, PRODUCT_PRICE_CSS);
-
-    // And I choose sku color option Black
-    await page.waitForSelector(SKU_OPTION_SELECT_CSS);
-    await Promise.all([
-      page.click(SKU_OPTION_SELECT_CSS),
-      // page.waitForNavigation()
-    ]);
-
-    // And I choose sku size option Small
-    await page.waitForSelector(SKU_BUTTON_SELECT_CSS);
-    await Promise.all([
-      page.click(SKU_BUTTON_SELECT_CSS),
-      page.waitForNavigation()
-    ]);
+  
+    // And I choose sku color option
+    if(defaultProduct.colorSelector) {
+      await page.waitForSelector(defaultProduct.colorSelector);
+      await page.click(defaultProduct.colorSelector);
+      await page.waitFor(2000);
+    }
+  
+    // And I choose sku size option
+    if(defaultProduct.modifierSelector) {
+      await page.waitForSelector(defaultProduct.modifierSelector);
+      await Promise.all([
+        page.click(defaultProduct.modifierSelector),
+        page.waitForNavigation()
+      ]);
+      await page.waitFor(2000);
+    }
 
     // And I update cart quantity to 2
     await page.waitForSelector(QUANTITY_SELECT_CSS);
     page.$eval(QUANTITY_SELECT_CSS, el => el.value = '');
     await page.type(QUANTITY_SELECT_CSS, PRODUCT_QUANTITY.toString());
+    await page.waitFor(2000);
 
     // And I add product to my cart
     await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
@@ -110,16 +110,8 @@ describe('Cart feature', () => {
   }, 120000);
 
   test('Remove cart line item', async () => {
-    const product = {
-      category: 'M-Class',
-      subCategory: 'Wheels, Tires, and Tire Covers',
-      name: 'M Class Snowchain Trak Sport'
-    };
-
-    const PARENT_CATEGORY_CSS = `.app-header-navigation-component li[data-name="${product.category}"]`;
-    const SUB_CATEGORY_CSS = `${PARENT_CATEGORY_CSS} > .dropdown-menu > li > a[title="${product.subCategory}"]`;
-    const PRODUCT_CSS = '.product-list-container .category-items-listing .category-item-container';
-    const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
+    const { defaultProduct } = testData.cart;
+    
     const CART_LINE_ITEM_REMOVE_BTN_CSS = 'button[class="ep-btn small btn-cart-removelineitem"]';
     const CART_EMPTY_CONTAINER_CSS = 'div[class="cart-empty-container"]';
 
@@ -132,24 +124,8 @@ describe('Cart feature', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
-
-    await page.waitForSelector(PARENT_CATEGORY_CSS);
-    await page.click(PARENT_CATEGORY_CSS);
-
-    await page.waitForSelector(SUB_CATEGORY_CSS);
-    await page.click(SUB_CATEGORY_CSS);
-
-    await page.waitForSelector(PRODUCT_CSS);
-    const productLink = await page.$x(`//a[contains(text(), "${product.name}")]`);
-
-    if (productLink.length > 0) {
-      await productLink[0].click();
-    } else {
-      throw new Error('Product not found');
-    }
-
-    await page.waitForSelector(ADD_TO_CART_BUTTON_CSS);
-    await page.click(ADD_TO_CART_BUTTON_CSS);
+    
+    await addProductToCart(page, defaultProduct);
 
     await page.waitForSelector(CART_LINE_ITEM_REMOVE_BTN_CSS);
     await page.click(CART_LINE_ITEM_REMOVE_BTN_CSS);

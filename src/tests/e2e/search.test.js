@@ -23,10 +23,10 @@
 
 const puppeteer = require('puppeteer');
 
-const dataSearch = {
-  searchHat: 'hat',
-  searchInvalidKeyword: 'abc'
-};
+const scopeDir = process.env.SCOPE_DIR;
+const testData = require(scopeDir);
+const { dataSearch } = testData.search;
+
 const host = process.env.TEST_HOST;
 const APP = host || 'http://localhost:8080/';
 const desktopViewport = {
@@ -58,7 +58,7 @@ describe('Search feature', () => {
     // When I search for keyword 'hat'
     await page.waitForSelector(SEARCH_INPUT_CSS);
     await page.click(SEARCH_INPUT_CSS);
-    await page.type(SEARCH_INPUT_CSS, dataSearch.searchHat);
+    await page.type(SEARCH_INPUT_CSS, dataSearch.searchValidKeyword);
     await page.keyboard.press( 'Enter' );
 
     // Then I can see my search results for keyword 'hat'

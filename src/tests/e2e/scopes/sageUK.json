@@ -1,0 +1,54 @@
+{
+  "purchase": {
+    "products": [{
+      "category": "Products",
+      "subCategory" : "Blenders",
+      "name": "the Vac Q"
+    }, {
+      "category": "Products",
+      "subCategory": "Coffee Grinders",
+      "name": "The Dose Control Pro"
+    }, {
+      "category": "Products",
+      "subCategory": "Coffee Machines",
+      "name": "the Oracle Touch"
+    }, {
+      "category": "Products",
+      "subCategory": "Coffee Machines",
+      "name": "The Sage® Precision Brewer™ Thermal"
+    }, {
+      "category": "Products",
+      "subCategory": "Espresso Machines",
+      "name": "The Oracle"
+    }],
+    "address": {
+      "postalCode": "PH6 3NU",
+      "province": "",
+      "street": "104  London Road",
+      "city": "COMRIE",
+      "country": "Great Britain (UK)"
+    }
+  },
+  "wishlist": {
+    "defaultProduct": {
+      "category": "Products",
+      "subCategory" : "Blenders",
+      "name": "the Vac Q"
+    }
+  },
+  "cart": {
+    "defaultProduct": {
+      "category": "Products",
+      "subCategory": "Coffee Machines",
+      "name": "the Oracle Touch",
+      "colorSelector": "label[for=\"selectorWeight_shwarzSCG111BAL2QEU1\"]",
+      "modifierSelector": ""
+    }
+  },
+  "search": {
+    "dataSearch":{
+      "searchValidKeyword": "coffee",
+      "searchInvalidKeyword": "abc"
+     }
+  }
+}

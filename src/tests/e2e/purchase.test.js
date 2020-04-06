@@ -31,9 +31,12 @@ const {
 } = require('./common');
 const puppeteer = require('puppeteer');
 
+const scopeDir = process.env.SCOPE_DIR;
+const testData = require(scopeDir);
+const { products, address } = testData.purchase;
+
 const host = process.env.TEST_HOST;
 const APP = host || 'http://localhost:8080/';
-
 const desktopViewport = {
   width: 1500,
   height: 700,
@@ -76,7 +79,7 @@ const CHECKOUT_ADDRESS_SELECTOR_CSS = 'div[data-region="checkoutAddressSelector"
 const BILLING_ADDRESS_SELECTORS_REGION_CSS = 'div[data-region="billingAddressSelectorsRegion"]';
 const PAYMENT_SELECTOR_CSS = 'div[data-region="paymentSelector"]';
 const PAYMENT_METHOD_REGION_CSS = 'div[data-region="paymentMethodSelectorsRegion"]';
-const CREATED_PAYMENT_METHOD = ".paymentMethodComponentRegion";
+const CREATED_PAYMENT_METHOD = 'div[data-region="paymentMethodComponentRegion"]';
 const CREATED_ADDRESS_METHOD = ".address-ctrl-cell";
 const PURCHASE_HISTORY_ITEM = "#header_navbar_login_menu_purchase_history_link";
 const LOGIN_MODAL_ITEM = 'button[data-target="#login-modal"';
@@ -93,7 +96,7 @@ const purchaseTestUser = {
 };
 
 describe('Purchase feature', () => {
-    test('Create user for purchase feature tests', async () => {
+  test('Create user for purchase feature tests', async () => {
       const browser = await puppeteer.launch({
         args: ['--no-sandbox', '--disable-web-security'],
         slowMo: 30,
@@ -124,13 +127,7 @@ describe('Purchase feature', () => {
   
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
-  
-      const address = {
-        postalCode: '12345',
-        province: 'Washington',
-        city: 'Seattle',
-        country: 'United States',
-      } ;
+
       await addAddress(page, address);
       await page.waitForSelector(PROFILE_ADDRESS_ITEM);
       await page.waitFor(3000);
@@ -157,7 +154,7 @@ describe('Purchase feature', () => {
       expect(lastDigits).toEqual('1111');
     }, 60000);
     
-    test('Purchase physical item as a new shopper', async () => {
+  test('Purchase physical item as a new shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
 
     const browser = await puppeteer.launch({
@@ -170,7 +167,7 @@ describe('Purchase feature', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
-    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
+    await addProductToCart(page, products[1]);
 
     await page.waitForSelector(CART_LINK_CSS);
     await page.click(CART_LINK_CSS);
@@ -191,21 +188,12 @@ describe('Purchase feature', () => {
     await page.waitFor(2000);
 
     await page.waitForSelector(CART_LINK_CSS);
-    await page.waitFor(2000);
     await page.click(CART_LINK_CSS);
 
-    await page.waitForSelector(CHECKOUT_BUTTON_CSS);
-    await page.click(CHECKOUT_BUTTON_CSS);
-
+    await page.waitFor(3000);
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
     await page.click(ADD_NEW_ADDRESS_CSS);
 
-    const address = {
-      postalCode: '12345',
-      province: 'Washington',
-      city: 'Seattle',
-      country: 'United States',
-    } ;
     await addAddress(page, address);
     await page.waitForSelector(CREATED_ADDRESS_METHOD);
     await page.waitFor(3000);
@@ -253,7 +241,7 @@ describe('Purchase feature', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
-    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
+    await addProductToCart(page, products[1]);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
@@ -268,13 +256,7 @@ describe('Purchase feature', () => {
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
     await page.waitFor(2000);
     await page.click(ADD_NEW_ADDRESS_CSS);
-
-    const address = {
-      postalCode: '12345',
-      province: 'Washington',
-      city: 'Seattle',
-      country: 'United States',
-    } ;
+    
     await addAddress(page, address);
     await page.waitForSelector(CREATED_ADDRESS_METHOD);
     await page.waitFor(3000);
@@ -324,7 +306,7 @@ describe('Purchase feature', () => {
       waitUntil: 'domcontentloaded'
     });
 
-    await addProductToCart(page, 'Mens', '', 'Men\'s S/S Hanley');
+    await addProductToCart(page, products[0]);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
@@ -338,16 +320,10 @@ describe('Purchase feature', () => {
     await page.click(CHECKOUT_BUTTON_CSS);
 
     await page.waitForSelector(BILLING_ADDRESS_SELECTORS_REGION_CSS);
-    const address = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
-    if (!address) {
+    const checkoutAddress = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
+    if (!checkoutAddress) {
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
-      const address = {
-        postalCode: '12345',
-        province: 'Washington',
-        city: 'Seattle',
-        country: 'United States',
-      } ;
       await addAddress(page, address);
       await page.waitForSelector(CREATED_ADDRESS_METHOD);
       await page.waitFor(3000);
@@ -420,23 +396,17 @@ describe('Purchase feature', () => {
 
     await loginUser(page, purchaseTestUser);
 
-    await addProductToCart(page, 'Mens', '', 'Men\'s S/S Hanley');
+    await addProductToCart(page, products[0]);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
 
     await page.waitForSelector(BILLING_ADDRESS_SELECTORS_REGION_CSS);
-    const address = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
-    if (!address) {
+    const checkoutAddress = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
+    if (!checkoutAddress) {
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
 
-      const address = {
-        postalCode: '12345',
-        province: 'Washington',
-        city: 'Seattle',
-        country: 'United States',
-      } ;
       await addAddress(page, address);
       await page.waitForSelector(CREATED_ADDRESS_METHOD);
       await page.waitFor(3000);
@@ -507,24 +477,18 @@ describe('Purchase feature', () => {
 
     await loginUser(page, purchaseTestUser);
 
-    await addProductToCart(page, 'Mens', '', 'Wordmark Fitted Hat');
-    await addProductToCart(page, 'Mens', '', 'Men\'s S/S Hanley');
+    await addProductToCart(page, products[1]);
+    await addProductToCart(page, products[0]);
 
     await page.waitForSelector(CHECKOUT_BUTTON_CSS);
     await page.click(CHECKOUT_BUTTON_CSS);
 
     await page.waitForSelector(BILLING_ADDRESS_SELECTORS_REGION_CSS);
-    const address = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
-    if (!address) {
+    const checkoutAddress = await page.$(CHECKOUT_ADDRESS_SELECTOR_CSS);
+    if (!checkoutAddress) {
       await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
       await page.click(ADD_NEW_ADDRESS_CSS);
 
-      const address = {
-        postalCode: '12345',
-        province: 'Washington',
-        city: 'Seattle',
-        country: 'United States',
-      } ;
       await addAddress(page, address);
       await page.waitForSelector(CREATED_ADDRESS_METHOD);
       await page.waitFor(3000);
@@ -577,7 +541,7 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 60000);
+  }, 110000);
 
   test('Cart merge from anonymous shopper to registered shopper', async () => {
     const SUCCESS_ORDER_STATUS = 'In Progress';
@@ -593,28 +557,16 @@ describe('Purchase feature', () => {
       waitUntil: 'domcontentloaded'
     });
 
-    const products = [
-      {
-        productCategory: 'Mens',
-        productSubCategory: '',
-        productName: 'Wordmark Fitted Hat'
-      },
-      {
-        productCategory: 'Womens',
-        productSubCategory: '',
-        productName: 'Structured Hat'
-      },
-      {
-        productCategory: 'X-Class',
-        productSubCategory: 'Visual',
-        productName: 'Carbon Fiber Center Console Trim'
-      }
+    const productsData = [
+      products[1],
+      products[2],
+      products[3],
     ];
-    for (let item of products) {
-      await addProductToCart(page, item.productCategory, item.productSubCategory, item.productName);
+    for (let item of productsData) {
+      await addProductToCart(page, item);
     }
 
-    const expectedChartItems = products.map(product => product.productName);
+    const expectedChartItems = productsData.map(product => product.name);
     expect(await getChartItems(page)).toEqual(expectedChartItems);
 
     await loginUser(page, purchaseTestUser);
@@ -623,14 +575,9 @@ describe('Purchase feature', () => {
     await page.click(CART_LINK_CSS);
 
     expect(await getChartItems(page)).toEqual(expectedChartItems);
-
-    const additionalProduct = {
-      productCategory: 'Mens',
-      productSubCategory: '',
-      productName: 'Men\'s Tech Vest'
-    };
-    await addProductToCart(page, additionalProduct.productCategory, additionalProduct.productSubCategory, additionalProduct.productName);
-    expectedChartItems.push(additionalProduct.productName);
+    
+    await addProductToCart(page, products[4]);
+    expectedChartItems.push(products[4].name);
 
     expect(await getChartItems(page)).toEqual(expectedChartItems);
 
@@ -680,7 +627,7 @@ describe('Purchase feature', () => {
       waitUntil: 'domcontentloaded'
     });
 
-    await addProductToCart(page, 'Mens', '', 'Men\'s S/S Hanley');
+    await addProductToCart(page, products[0]);
 
     await page.waitForSelector(CART_LINK_CSS);
     await page.click(CART_LINK_CSS);
@@ -703,12 +650,6 @@ describe('Purchase feature', () => {
     await page.waitFor(2000);
     await page.click(ADD_NEW_ADDRESS_CSS);
 
-    const address = {
-      postalCode: '12345',
-      province: 'Washington',
-      city: 'Seattle',
-      country: 'United States',
-    } ;
     await addAddress(page, address);
     await page.waitForSelector(CREATED_ADDRESS_METHOD);
     await page.waitFor(3000);
@@ -755,5 +696,5 @@ describe('Purchase feature', () => {
 
     expect(key).toEqual(purchaseNumber);
     expect(status).toEqual(SUCCESS_ORDER_STATUS);
-  }, 60000);
+  }, 80000);
 });

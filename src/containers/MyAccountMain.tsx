@@ -57,23 +57,25 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
     this.setState({ isLocationLoading: true });
     try {
       await this.fetchRequisitionListsData();
-      const result = await adminFetch('/?zoom=accounts,accounts:addassociatesform,', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
-        },
-      })
-        .then(r => r.json());
+      if (Config.b2b.enable) {
+        const result = await adminFetch('/?zoom=accounts,accounts:addassociatesform,', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+          },
+        })
+          .then(r => r.json());
 
-      if (result
-      && result._accounts instanceof Array
-      && result._accounts.length > 0
-      && result._accounts[0]._addassociatesform instanceof Array
-      && result._accounts[0]._addassociatesform[0]
-      && result._accounts[0]._addassociatesform[0].self
-      ) {
-        const associatesFormUrl = `${Config.b2b.authServiceAPI.path}${result._accounts[0]._addassociatesform[0].self.uri}`;
-        this.setState({ associatesFormUrl });
+        if (result
+          && result._accounts instanceof Array
+          && result._accounts.length > 0
+          && result._accounts[0]._addassociatesform instanceof Array
+          && result._accounts[0]._addassociatesform[0]
+          && result._accounts[0]._addassociatesform[0].self
+        ) {
+          const associatesFormUrl = `${Config.b2b.authServiceAPI.path}${result._accounts[0]._addassociatesform[0].self.uri}`;
+          this.setState({ associatesFormUrl });
+        }
       }
 
       this.setState({ isLocationLoading: false });
@@ -102,7 +104,7 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
   }
 
   render() {
-    const { routes, location } = this.props;
+    const { routes } = this.props;
     const {
       associatesFormUrl,
       showRequisitionListsLink,

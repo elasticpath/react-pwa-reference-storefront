@@ -110,6 +110,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       try {
         await login();
 
+        await cortexFetchItemLookupForm();
         const itemLookupRes = await itemLookup(nextProps.productId);
 
         let arFileExists = false;
