@@ -188,7 +188,11 @@ describe('Purchase feature', () => {
     await page.waitFor(2000);
 
     await page.waitForSelector(CART_LINK_CSS);
+    await page.waitFor(2000);
     await page.click(CART_LINK_CSS);
+
+    await page.waitForSelector(CHECKOUT_BUTTON_CSS);
+    await page.click(CHECKOUT_BUTTON_CSS);
 
     await page.waitFor(3000);
     await page.waitForSelector(ADD_NEW_ADDRESS_CSS);
