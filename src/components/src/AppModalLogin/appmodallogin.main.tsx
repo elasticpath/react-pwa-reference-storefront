@@ -195,9 +195,11 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
 
     return (
       <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'login-modal-content' }}>
+        {
+          (isLoading) ? <div className="loginModalMiniLoader" /> : ('')
+        }
         <div id="login-modal">
-          <div className="modal-content" id="simplemodal-container">
-
+          <div className={`modal-content ${isLoading ? 'loading' : ''}`} id="simplemodal-container">
             <div className="modal-header">
               <h2 className="modal-title">
                 {intl.get('login')}
@@ -225,9 +227,6 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
                   <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} onKeyDown={this.handleEnterKeyPress} />
                 </div>
                 <div className="form-group action-row">
-                  {
-                    (isLoading) ? <div className="miniLoader" /> : ('')
-                  }
                   {showForgotPasswordLink && <button type="button" className="label-link" onClick={this.resetPassword}>{intl.get('forgot-password')}</button>}
                   <div className="form-input btn-container">
                     <button className="ep-btn primary btn-auth-login" id="login_modal_login_button" data-cmd="login" data-toggle="collapse" data-target=".navbar-collapse" type="submit">
