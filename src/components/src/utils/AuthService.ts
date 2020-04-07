@@ -18,13 +18,25 @@
  *
  *
  */
-
+import Cookies from 'js-cookie';
 import { cortexFetch, adminFetch } from './Cortex';
-import { getConfig } from './ConfigProvider';
+
+import * as Config from '../../../ep.config.json';
 
 let userFormBody = [];
 let userFormBodyString = '';
 let newaccountform = '';
+
+interface PublicUserDetailsInterface {
+  username?: string,
+  password?: string,
+  'grant_type'?: string,
+  role?: string,
+  scope?: string,
+  code?: string,
+  'redirect_uri'?: string,
+  'client_id'?: string,
+}
 
 function generateFormBody(userDetails) {
   Object.keys(userDetails).forEach((encodedKey) => {
@@ -34,14 +46,18 @@ function generateFormBody(userDetails) {
   userFormBodyString = userFormBody.join('&');
 }
 
-export function login() {
-  const Config = getConfig().config;
-  return new Promise(((resolve, reject) => {
-    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
-      userFormBodyString = '';
-      userFormBody = [];
-      let publicUserDetails = {};
-      publicUserDetails = {
+export async function login() {
+  return new Promise((async (resolve, reject) => {
+    if (Cookies.get('Authorization')) {
+      console.log('this login is gettting ');
+      console.log(`Bearer ${Cookies.get('Authorization')}`);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${Cookies.get('Authorization')}`);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, 'PO2GO');
+      resolve();
+    } else if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
+      const publicUserDetails: PublicUserDetailsInterface = {
         username: '',
         password: '',
         grant_type: 'password',
@@ -78,7 +94,6 @@ export function login() {
 }
 
 export function loginRegistered(username, password) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) != null) {
       userFormBodyString = '';
@@ -130,12 +145,11 @@ export function loginRegistered(username, password) {
 }
 
 export function loginRegisteredAuthService(code, redirectUri, clientId) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
       userFormBodyString = '';
       userFormBody = [];
-      const registeredUserDetails = {
+      const registeredUserDetails: PublicUserDetailsInterface = {
         grant_type: 'authorization_code',
         code,
         redirect_uri: redirectUri,
@@ -176,7 +190,6 @@ export function loginRegisteredAuthService(code, redirectUri, clientId) {
 }
 
 export function logout() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch('/oauth2/tokens', {
       method: 'delete',
@@ -191,9 +204,6 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
       localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
       localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_cartItemsCount`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserId`);
-      localStorage.removeItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console
@@ -204,18 +214,17 @@ export function logout() {
 }
 
 export function logoutAccountManagementUser() {
-  const Config = getConfig().config;
-
-  if (Config.b2b.openId && Config.b2b.openId.enable) {
+  const config: any = Config.b2b;
+  if (config.openId && config.openId.enable) {
     return new Promise(((resolve, reject) => {
       adminFetch('/oauth2/tokens', {
         method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
-        },
+        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
       })
-        .then(res => logout().then(() => resolve(res)))
+        .then((res) => {
+          logout();
+          resolve(res);
+        })
         .then(() => {
           window.location.href = '/';
         })
@@ -233,7 +242,6 @@ export function logoutAccountManagementUser() {
 }
 
 export function getRegistrationForm() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch('/?zoom=newaccountform',
       {
@@ -257,7 +265,6 @@ export function getRegistrationForm() {
 }
 
 export function registerUser(lastname, firstname, username, password) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch(newaccountform, {
       method: 'post',
@@ -279,7 +286,6 @@ export function registerUser(lastname, firstname, username, password) {
 }
 
 export function getAccessToken(token) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch(`/impersonation/${Config.cortexApi.scope}/form?followlocation`, {
       method: 'post',

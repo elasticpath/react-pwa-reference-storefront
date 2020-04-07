@@ -19,6 +19,7 @@
  *
  */
 
+import Cookies from 'js-cookie';
 import { cortexFetch, adminFetch } from './Cortex';
 
 import * as Config from '../ep.config.json';
@@ -46,11 +47,17 @@ function generateFormBody(userDetails) {
   userFormBodyString = userFormBody.join('&');
 }
 
-export function login() {
-  return new Promise(((resolve, reject) => {
-    if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
-      userFormBodyString = '';
-      userFormBody = [];
+export async function login() {
+  return new Promise((async (resolve, reject) => {
+    if (Cookies.get('Authorization')) {
+      console.log('this login is gettting ');
+      console.log(`Bearer ${Cookies.get('Authorization')}`);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthToken`, `Bearer ${Cookies.get('Authorization')}`);
+      localStorage.setItem(`${Config.cortexApi.scope}_oAuthUserName`, 'PO2GO');
+      resolve();
+    } else if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       const publicUserDetails: PublicUserDetailsInterface = {
         username: '',
         password: '',
