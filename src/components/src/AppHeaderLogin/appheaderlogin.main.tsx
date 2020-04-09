@@ -130,6 +130,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
 
       this.handleModalClose = this.handleModalClose.bind(this);
       this.fetchProfileData = this.fetchProfileData.bind(this);
+      this.getB2cUserName = this.getB2cUserName.bind(this);
     }
 
     componentDidMount() {
@@ -336,19 +337,32 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
         });
     }
 
+    getB2cUserName() {
+      const { profileData } = this.state;
+      let b2cUserName = null;
+
+      if (profileData && profileData['given-name'] && profileData['family-name']) {
+        b2cUserName = profileData ? `${profileData['given-name']} ${profileData['family-name']}` : '';
+      }
+
+      return b2cUserName;
+    }
+
     render() {
       const {
         isMobileView, permission, onLogin, onResetPassword, onContinueCart, locationSearchData, appHeaderLoginLinks, appModalLoginLinks, isLoggedIn, disableLogin, locationPathName,
       } = this.props;
       const {
-        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters, showRequisitionListsLink, profileData,
+        openModal, openCartModal, showForgotPasswordLink, accountData, loginUrlAddress, oidcParameters, showRequisitionListsLink,
       } = this.state;
       let keycloakLoginRedirectUrl = '';
       if (Config.b2b.enable && Config.b2b.openId && !Config.b2b.openId.enable) {
         keycloakLoginRedirectUrl = `${Config.b2b.keycloak.loginRedirectUrl}?client_id=${Config.b2b.keycloak.client_id}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(Config.b2b.keycloak.callbackUrl)}`;
       }
       const userName = localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserName`) || localStorage.getItem(`${Config.cortexApi.scope}_oAuthUserId`);
-      const b2cUserName = profileData ? `${profileData['given-name']} ${profileData['family-name']}` : '';
+
+      const b2cUserName = this.getB2cUserName();
+
       const b2bUserName = accountData ? accountData._myprofile && accountData._myprofile[0].name : '';
       const email = accountData && accountData._myprofile && accountData._myprofile[0]._primaryemail[0].email;
 
@@ -398,7 +412,9 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     </li>
                   ) : (
                     <li className="dropdown-item shop-for b2c">
-                      <span className="user-name">{b2cUserName}</span>
+                      {b2cUserName !== 'undefined' ? (
+                        <span className="user-name">{b2cUserName}</span>
+                      ) : ('')}
                       {userName !== 'undefined' ? (
                         <span className="email-title">{userName}</span>
                       ) : ('')}
