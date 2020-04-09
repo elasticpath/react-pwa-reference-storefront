@@ -46,8 +46,8 @@ function generateFormBody(userDetails) {
   userFormBodyString = userFormBody.join('&');
 }
 
-export async function login() {
-  return new Promise((async (resolve, reject) => {
+export function login() {
+  return new Promise((resolve, reject) => {
     if (Cookies.get('Authorization')) {
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthRole`, 'REGISTERED');
       localStorage.setItem(`${Config.cortexApi.scope}_oAuthScope`, Config.cortexApi.scope);
@@ -88,7 +88,7 @@ export async function login() {
     } else {
       resolve(userFormBodyString);
     }
-  }));
+  });
 }
 
 export function loginRegistered(username, password) {
