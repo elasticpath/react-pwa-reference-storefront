@@ -1,0 +1,120 @@
+{
+	"self": {
+		"type": "carts.cart",
+		"uri": "/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=",
+		"href": "https://reference.epdemos.com/cortex/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu="
+	},
+	"messages": [],
+	"links": [{
+		"rel": "lineitems",
+		"rev": "cart",
+		"type": "carts.line-items",
+		"uri": "/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/lineitems",
+		"href": "https://reference.epdemos.com/cortex/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/lineitems"
+	}, {
+		"rel": "additemstocartform",
+		"type": "carts.add-items-to-cart-form",
+		"uri": "/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/form",
+		"href": "https://reference.epdemos.com/cortex/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/form"
+	}, {
+		"rel": "descriptor",
+		"type": "carts.cart-descriptor",
+		"uri": "/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/descriptor",
+		"href": "https://reference.epdemos.com/cortex/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/descriptor"
+	}, {
+		"rel": "discount",
+		"rev": "cart",
+		"type": "discounts.discount-for-cart",
+		"uri": "/discounts/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=",
+		"href": "https://reference.epdemos.com/cortex/discounts/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu="
+	}, {
+		"rel": "order",
+		"rev": "cart",
+		"type": "orders.order",
+		"uri": "/orders/vestri/gm4tenjzmvrtmljuga4tkljuguytollbmvqwcljqgiydsnjwmvrdeojrmi=",
+		"href": "https://reference.epdemos.com/cortex/orders/vestri/gm4tenjzmvrtmljuga4tkljuguytollbmvqwcljqgiydsnjwmvrdeojrmi="
+	}, {
+		"rel": "appliedpromotions",
+		"rev": "cart",
+		"type": "promotions.applied-promotions-for-cart",
+		"uri": "/promotions/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/applied",
+		"href": "https://reference.epdemos.com/cortex/promotions/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/applied"
+	}, {
+		"rel": "total",
+		"rev": "cart",
+		"type": "totals.cart-total",
+		"uri": "/totals/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=",
+		"href": "https://reference.epdemos.com/cortex/totals/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu="
+	}],
+	"_descriptor": [{
+		"self": {
+			"type": "carts.cart-descriptor",
+			"uri": "/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/descriptor",
+			"href": "https://reference.epdemos.com/cortex/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=/descriptor"
+		},
+		"P2G-cart-transfer-url": "https://connect.procurement.com/gateway/link/return/id/AH5e39b48e23f3d",
+		"messages": [],
+		"links": [],
+		"default": "true"
+	}],
+	"_discount": [{
+		"self": {
+			"type": "discounts.discount-for-cart",
+			"uri": "/discounts/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=",
+			"href": "https://reference.epdemos.com/cortex/discounts/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "cart",
+			"rev": "discount",
+			"type": "carts.cart",
+			"uri": "/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=",
+			"href": "https://reference.epdemos.com/cortex/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu="
+		}],
+		"discount": [{
+			"amount": 0,
+			"currency": "USD",
+			"display": "$0.00"
+		}]
+	}],
+	"_order": [{
+		"_couponinfo": [{
+			"_couponform": [{
+				"self": {
+					"type": "coupons.apply-coupon-to-order-form",
+					"uri": "/coupons/orders/vestri/gm4tenjzmvrtmljuga4tkljuguytollbmvqwcljqgiydsnjwmvrdeojrmi=/form",
+					"href": "https://reference.epdemos.com/cortex/coupons/orders/vestri/gm4tenjzmvrtmljuga4tkljuguytollbmvqwcljqgiydsnjwmvrdeojrmi=/form"
+				},
+				"messages": [],
+				"links": [{
+					"rel": "applycouponaction",
+					"type": "coupons.apply-coupon-to-order-form",
+					"uri": "/coupons/orders/vestri/gm4tenjzmvrtmljuga4tkljuguytollbmvqwcljqgiydsnjwmvrdeojrmi=/form",
+					"href": "https://reference.epdemos.com/cortex/coupons/orders/vestri/gm4tenjzmvrtmljuga4tkljuguytollbmvqwcljqgiydsnjwmvrdeojrmi=/form"
+				}],
+				"code": ""
+			}]
+		}]
+	}],
+	"_total": [{
+		"self": {
+			"type": "totals.cart-total",
+			"uri": "/totals/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=",
+			"href": "https://reference.epdemos.com/cortex/totals/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu="
+		},
+		"messages": [],
+		"links": [{
+			"rel": "cart",
+			"rev": "total",
+			"type": "carts.cart",
+			"uri": "/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu=",
+			"href": "https://reference.epdemos.com/cortex/carts/vestri/mrstazjqgbrwcllcg5staljuha3doljzgzqtkllfha2gmnjwgu4genjsmu="
+		}],
+		"cost": [{
+			"amount": 0,
+			"currency": "USD",
+			"display": "$0.00"
+		}]
+	}],
+	"total-quantity": 0
+}

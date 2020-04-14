@@ -104,6 +104,7 @@ import B2CHomePage from './B2cHomePage/b2c.home.page';
 import ImageContainer from './ImageContainer/image.container';
 import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
 import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
+import CartCheckoutButton from './CartCheckoutButton/cart.checkout.btn';
 
 export {
   AddPromotionContainer,
@@ -129,6 +130,7 @@ export {
   BloomreachHeaderSearchMain,
   Carousel,
   CartLineItem,
+  CartCheckoutButton,
   CartMain,
   CartPopUp,
   CategoryItemsMain,

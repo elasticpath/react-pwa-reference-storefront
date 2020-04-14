@@ -29,6 +29,7 @@ import {
   CartCreate,
   CartClear,
   AlertContainer,
+  CartCheckoutButton,
 } from '../components/src/index';
 import Config from '../ep.config.json';
 import { login } from '../utils/AuthService';
@@ -40,6 +41,7 @@ const zoomArray = [
   'defaultcart',
   'defaultcart:total',
   'defaultcart:discount',
+  'defaultcart:descriptor',
   'defaultcart:appliedpromotions:element',
   'defaultcart:order:couponinfo:coupon',
   'defaultcart:order:couponinfo:couponform',
@@ -279,6 +281,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
     const {
       cartData, cartsData, isLoading, openModal, multiCartsAvailable, updateCartModal, isShowAlert, alertMessageData,
     } = this.state;
+
     const itemDetailLink = '/itemdetail';
     const cartName = cartData && cartData._descriptor && cartData._descriptor[0].default !== 'true' ? cartData._descriptor[0].name : intl.get('default');
     return (
@@ -335,11 +338,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                     </h2>
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container">
-                    <div>
-                      <button className="ep-btn primary btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { this.checkout(); }}>
-                        {intl.get('proceed-to-checkout')}
-                      </button>
-                    </div>
+                    <CartCheckoutButton cartData={cartData} checkout={this.checkout} />
                   </div>
                 </div>
               </div>
