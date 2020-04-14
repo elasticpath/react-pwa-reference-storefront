@@ -7,7 +7,7 @@ Displays the total cost for a purchase and breaks down how the cost was calculat
 #### Usage
 
 ```js
-import { CheckoutSummaryList } from '@elasticpath/store-components';
+import { CheckoutSummaryList } from './CheckoutSummaryList/checkout.summarylist';
 ```
 
 #### Example

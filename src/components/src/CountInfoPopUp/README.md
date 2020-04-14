@@ -7,7 +7,7 @@ Count notification component.
 #### Usage
 
 ```js
-import { CountInfoPopUp } from '@elasticpath/store-components';
+import { CountInfoPopUp } from './CountInfoPopUp/countinfopopup';
 ```
 
 #### Example

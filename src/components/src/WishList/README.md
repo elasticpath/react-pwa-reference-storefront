@@ -11,7 +11,7 @@ When the wish list is empty, a message is displayed.
 #### Usage
 
 ```js
-import { WishListMain } from '@elasticpath/store-components';
+import { WishListMain } from './WishList/wishlist.main';
 ```
 
 #### Example

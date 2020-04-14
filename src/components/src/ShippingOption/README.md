@@ -7,7 +7,7 @@ Displays the shipping options that are available to the shopper.
 #### Usage
 
 ```js
-import { ShippingOptionContainer } from '@elasticpath/store-components';
+import { ShippingOptionContainer } from './ShippingOption/shippingoption.container';
 ```
 
 #### Example

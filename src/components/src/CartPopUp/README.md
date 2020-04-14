@@ -7,7 +7,7 @@ Displays a confirmation message after a shopper adds items to a cart.
 #### Usage
 
 ```js
-import { CartPopUp } from '@elasticpath/store-components';
+import { CartPopUp } from './CartPopUp/cartpopup';
 ```
 
 #### Example

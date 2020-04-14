@@ -34,7 +34,7 @@ import AppModalBundleConfigurationMain from './AppModalBundleConfiguration/appmo
 import AppModalCartSelectMain from './AppModalCartSelect/appmodalcartselect.main';
 import AppModalLoginMain from './AppModalLogin/appmodallogin.main';
 import BulkOrderMain from './BulkOrder/bulkorder.main';
-import BundleConstituentsMain from './BundleConstituents/bundleconstituents.main';
+import BundleConstituentsDisplayMain from './BundleConstituents/bundleconstituents.main';
 import B2bAccountList from './B2bAccountList/b2b.accountlist';
 import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
 import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
@@ -67,7 +67,7 @@ import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
 import ProductDisplayAttributes from './ProductDisplayAttributes/productDisplayAttributes';
 import QuantitySelector from './QuantitySelector/quantitySelector';
 import ProductListPaginationMain from './ProductListPagination/productlistpagination.main';
-import ProductRecommendationsMain from './ProductRecommendations/productrecommendations.main';
+import ProductRecommendationsDisplayMain from './ProductRecommendations/productrecommendations.main';
 import ProfileComplianceMain from './ProfileCompliance/profilecompliance.main';
 import ProfileAddressesMain from './ProfileAddresses/profileaddresses.main';
 import ProfileemailinfoMain from './ProfileEmailInfo/profileemailinfo.main';
@@ -84,7 +84,7 @@ import ReorderMain from './Reorder/reorder.main';
 import SearchFacetNavigationMain from './SearchFacetNavigation/searchfacetnavigation.main';
 import SearchResultsItemsMain from './SearchResultsItems/searchresultsitems.main';
 import ShippingOptionContainer from './ShippingOption/shippingoption.container';
-import SortProductMenuMain from './SortProductMenu/sortproductmenu.main';
+import SortProductMenu from './SortProductMenu/sortproductmenu.main';
 import WishListMain from './WishList/wishlist.main';
 import ChatComponent from './ChatBot/chatbot';
 import BarcodeScanner from './BarcodeScanner/barcodescanner';
@@ -121,7 +121,7 @@ export {
   AppModalCartSelectMain,
   AppModalLoginMain,
   BulkOrderMain,
-  BundleConstituentsMain,
+  BundleConstituentsDisplayMain,
   B2bAccountList,
   B2bAddProductsModal,
   B2bSubAccountList,
@@ -152,7 +152,7 @@ export {
   ProductListItemMain,
   ProductListLoadmore,
   ProductListPaginationMain,
-  ProductRecommendationsMain,
+  ProductRecommendationsDisplayMain,
   ProfileComplianceMain,
   ProfileAddressesMain,
   ProfileemailinfoMain,
@@ -169,7 +169,7 @@ export {
   SearchFacetNavigationMain,
   SearchResultsItemsMain,
   ShippingOptionContainer,
-  SortProductMenuMain,
+  SortProductMenu,
   WishListMain,
   ChatComponent,
   BarcodeScanner,

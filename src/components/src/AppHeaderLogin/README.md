@@ -7,7 +7,7 @@ Adds a **Login** link in the header. When selected, the link opens the `AppModal
 #### Usage
 
 ```js
-import { AppHeaderLoginMain } from '@elasticpath/store-components';
+import { AppHeaderLoginMain } from './AppHeaderLogin/appheaderlogin.main';
 ```
 
 #### Example

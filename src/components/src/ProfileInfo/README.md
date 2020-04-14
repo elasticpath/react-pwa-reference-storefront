@@ -9,7 +9,7 @@ Displays the name for a specified profile. The profile owner can edit the name.
 #### Usage
 
 ```js
-import { ProfileInfoMain } from '@elasticpath/store-components';
+import { ProfileInfoMain } from './ProfileInfo/profileInfo.main';
 ```
 
 #### Example

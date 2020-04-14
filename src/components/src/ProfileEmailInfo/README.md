@@ -9,7 +9,7 @@ Displays the email addresses for a specified profile. The profile owner can edit
 #### Usage
 
 ```js
-import { ProfileemailinfoMain } from '@elasticpath/store-components';
+import { ProfileemailinfoMain } from './ProfileEmailInfo/profileemailinfo.main';
 ```
 
 #### Example

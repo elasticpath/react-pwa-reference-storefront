@@ -9,7 +9,7 @@ Use this component with the Accounts view.
 #### Usage
 
 ```js
-import { B2bSubAccountListItem } from '@elasticpath/store-components';
+import { B2bSubAccountListItem } from './B2bSubAccountListItem/b2b.subaccountlistitem';
 ```
 
 #### Example

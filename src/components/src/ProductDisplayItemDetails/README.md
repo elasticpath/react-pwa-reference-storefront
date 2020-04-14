@@ -7,7 +7,7 @@ The component Displays product item information such as name, price, availabilit
 #### Usage
 
 ```js
-import { ProductDisplayItemDetails } from '@elasticpath/store-components';
+import { ProductDisplayItemDetails } from './ProductDisplayItemDetails/productdisplayitem.details';
 ```
 
 #### Example

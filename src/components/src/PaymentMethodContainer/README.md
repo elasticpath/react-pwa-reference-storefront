@@ -7,7 +7,7 @@ Displays payment information.
 #### Usage
 
 ```js
-import { PaymentMethodContainer } from '@elasticpath/store-components';
+import { PaymentMethodContainer } from './PaymentMethodContainer/paymentmethod.container';
 ```
 
 #### Example

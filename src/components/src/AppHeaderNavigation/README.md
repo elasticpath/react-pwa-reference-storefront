@@ -7,7 +7,7 @@ Adds catalog navigation links in the header. Some navigation items open a submen
 #### Usage
 
 ```js
-import { AppHeaderNavigationMain } from '@elasticpath/store-components';
+import { AppHeaderNavigationMain } from './AppHeaderNavigation/appheadernavigation.main';
 ```
 
 #### Example

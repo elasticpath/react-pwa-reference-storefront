@@ -11,7 +11,7 @@ For an example of how to configure this component, see the [React PWA Storefront
 #### Usage
 
 ```js
-import { IndiRecommendationsDisplayMain } from '@elasticpath/store-components';
+import { IndiRecommendationsDisplayMain } from './IndiRecommendations/indirecommendations.main';
 ```
 
 #### Example

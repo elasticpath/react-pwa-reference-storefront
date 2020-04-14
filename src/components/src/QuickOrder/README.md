@@ -7,7 +7,7 @@ Displays a **Buy it again** button, which adds the items from the last quick ord
 #### Usage
 
 ```js
-import { QuickOrderMain } from '@elasticpath/store-components';
+import { QuickOrderMain } from './QuickOrder/quickorder.main';
 ```
 
 #### Example

@@ -11,13 +11,13 @@ For an example of how to configure this component, see the [React PWA Storefront
 #### Usage
 
 ```js
-import { PowerReview } from '@elasticpath/store-components';
+import { PowerReviewMain } from './PowerReview/powerreview.main';
 ```
 
 #### Example
 
 ```js
-<PowerReview productData={productData} />
+<PowerReviewMain productData={productData} />
 ```
 
 #### Properties

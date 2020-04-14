@@ -9,7 +9,7 @@ Integrates a chatbot with your store. This component supports an integration wit
 #### Usage
 
 ```js
-import { FacebookChat } from '@elasticpath/store-components';
+import { FacebookChat } from './FacebookChat/facebookchat.main';
 ```
 
 #### Example

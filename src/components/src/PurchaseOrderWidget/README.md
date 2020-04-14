@@ -19,7 +19,7 @@ Take a look at stories, its mock data, and component integration in `CheckoutPag
 #### Usage
 
 ```js
-import { PurchaseOrderWidget } from '@elasticpath/store-components';
+import { PurchaseOrderWidget } from './PurchaseOrderWidget/purchase.order.widget';
 ```
 
 #### Example

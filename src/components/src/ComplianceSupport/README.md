@@ -9,7 +9,7 @@ For example, you might want to use this component for compliance with the Genera
 #### Usage
 
 ```js
-import { ComplianceSupportModal } from '@elasticpath/store-components';
+import { ComplianceSupportModal } from './ComplianceSupport/compliancesupport.main';
 ```
 
 #### Example

@@ -9,7 +9,7 @@ Displays the data policies and the consent status for a specified profile. The p
 #### Usage
 
 ```js
-import { ProfileComplianceMain } from '@elasticpath/store-components';
+import { ProfileComplianceMain } from './ProfileCompliance/profilecompliance.main';
 ```
 
 #### Example

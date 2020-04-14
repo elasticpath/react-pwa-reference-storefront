@@ -2,7 +2,7 @@
 
 #### Description
 
-Displays a **Reorder** button in the Purchase Details view. 
+Displays a **Reorder** button in the Purchase Details view.
 
 Use this component with the `PurchaseDetailsMain` component.
 
@@ -11,7 +11,7 @@ When selected, a **Buy It Again** modal window opens with the list of items from
 #### Usage
 
 ```js
-import { ReorderMain } from '@elasticpath/store-components';
+import { ReorderMain } from './Reorder/reorder.main';
 ```
 
 #### Example

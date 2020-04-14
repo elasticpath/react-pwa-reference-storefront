@@ -9,7 +9,7 @@ Displays a search header and search box. When shoppers search by using this comp
 #### Usage
 
 ```js
-import { BloomreachHeaderSearchMain } from '@elasticpath/store-components';
+import { BloomreachHeaderSearchMain } from './Bloomreach/bloomreach.appheadersearch.main';
 ```
 
 #### Properties

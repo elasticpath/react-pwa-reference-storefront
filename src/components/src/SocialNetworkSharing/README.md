@@ -9,7 +9,7 @@ All props provide options to prepopulate social media message
 #### Usage
 
 ```js
-import { SocialNetworkSharing } from '@elasticpath/store-components';
+import { SocialNetworkSharing } from './SocialNetworkSharing/socialNetworkSharing';
 ```
 
 #### Example

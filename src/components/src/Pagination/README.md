@@ -7,7 +7,7 @@ Displays pagination buttons and page items count
 #### Usage
 
 ```js
-import { Pagination } from '@elasticpath/store-components';
+import { Pagination } from './Pagination/pagination';
 ```
 
 #### Example

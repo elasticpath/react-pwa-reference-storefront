@@ -9,7 +9,7 @@ A shopper can select an item to see more details in the `ProductDisplayItemMain`
 #### Usage
 
 ```js
-import { ProductRecommendationsDisplayMain } from '@elasticpath/store-components';
+import { ProductRecommendationsDisplayMain } from './ProductRecommendations/productrecommendations.main';
 ```
 
 #### Example

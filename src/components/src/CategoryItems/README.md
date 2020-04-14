@@ -12,7 +12,7 @@ This component can include the following components:
 #### Usage
 
 ```js
-import { CategoryItemsMain } from '@elasticpath/store-components';
+import { CategoryItemsMain } from './CategoryItems/categoryitems.main';
 ```
 
 #### Example

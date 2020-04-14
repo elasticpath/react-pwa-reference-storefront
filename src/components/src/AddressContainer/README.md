@@ -7,7 +7,7 @@ Displays a read-only address.
 #### Usage
 
 ```js
-import { AddressContainer } from '@elasticpath/store-components';
+import { AddressContainer } from './AddressContainer/address.container';
 ```
 
 #### Example

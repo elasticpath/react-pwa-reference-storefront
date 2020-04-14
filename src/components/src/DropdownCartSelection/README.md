@@ -10,7 +10,7 @@ Displays all user's carts.
 #### Usage
 
 ```js
-import { DropdownCartSelection } from '@elasticpath/store-components';
+import { DropdownCartSelection } from './DropdownCartSelection/dropdown.cart.selection.main';
 ```
 
 #### Example

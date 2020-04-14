@@ -12,7 +12,7 @@ This component adds an **Add Promotion** button to a store page. When selected, 
 #### Usage
 
 ```js
-import { AddPromotionContainer } from '@elasticpath/store-components';
+import { AddPromotionContainer } from './AddPromotionContainer/add.promotion.container';
 ```
 
 #### Example

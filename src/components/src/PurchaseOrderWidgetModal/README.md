@@ -16,7 +16,7 @@ onViewClicked is a callback invoked once the `View` button in the top right is c
 #### Usage
 
 ```js
-import { PurchaseOrderWidgetModal } from '@elasticpath/store-components';
+import { PurchaseOrderWidgetModal } from './PurchaseOrderWidgetModal/purchase.order.widget.modal';
 ```
 
 #### Example

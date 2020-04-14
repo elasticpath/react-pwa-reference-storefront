@@ -9,7 +9,7 @@ When an item is selected, the item details appear in the `ProductDisplayItemMain
 #### Usage
 
 ```js
-import { BundleConstituentsDisplayMain } from '@elasticpath/store-components';
+import { BundleConstituentsDisplayMain } from './BundleConstituents/bundleconstituents.main';
 ```
 
 #### Example

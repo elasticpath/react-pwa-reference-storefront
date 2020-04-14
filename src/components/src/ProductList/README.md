@@ -9,7 +9,7 @@ This component uses the `ProductListItemMain` component to display the item deta
 #### Usage
 
 ```js
-import { ProductListMain } from '@elasticpath/store-components';
+import { ProductListMain } from './ProductList/productlist.main';
 ```
 
 #### Example

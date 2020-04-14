@@ -17,7 +17,7 @@ Since this is a template component it is hardcoded to take the first **paymentin
 #### Usage
 
 ```js
-import { PaymentFormMain } from '@elasticpath/store-components';
+import { PaymentFormMain } from './PaymentForm/paymentform.main';
 ```
 
 #### Example

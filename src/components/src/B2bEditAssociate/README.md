@@ -9,7 +9,7 @@ Use this component with the Accounts view.
 #### Usage
 
 ```js
-import { B2bEditAssociate } from '@elasticpath/store-components';
+import { B2bEditAssociate } from './B2bEditAssociate/b2b.editassociate';
 ```
 
 #### Example

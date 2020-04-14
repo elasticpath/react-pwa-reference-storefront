@@ -7,7 +7,7 @@ Displays items that match a given search keyword. The items are displayed as til
 #### Usage
 
 ```js
-import { SearchResultsItemsMain } from '@elasticpath/store-components';
+import { SearchResultsItemsMain } from './SearchResultsItems/searchresultsitems.main';
 ```
 
 #### Example

@@ -9,7 +9,7 @@ The items in the bundle are displayed with item details such as name, image, and
 #### Usage
 
 ```js
-import { AppModalBundleConfigurationMain } from '@elasticpath/store-components';
+import { AppModalBundleConfigurationMain } from './AppModalBundleConfiguration/appmodalbundleconfiguration.main';
 ```
 
 #### Example

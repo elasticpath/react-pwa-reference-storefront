@@ -7,7 +7,7 @@ Displays product item information for product display page with interactable ele
 #### Usage
 
 ```js
-import { ProductDisplayItemMain } from '@elasticpath/store-components';
+import { ProductDisplayItemMain } from './ProductListItem/productlistitem.main';
 ```
 
 #### Example

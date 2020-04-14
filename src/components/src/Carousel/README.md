@@ -9,7 +9,7 @@ To specify the images to use in the carousel, open the `carousel.homepage.tsx` f
 #### Usage
 
 ```js
-import { Carousel } from '@elasticpath/store-components';
+import { Carousel } from from './Carousel/carousel.homepage';
 ```
 
 #### Example

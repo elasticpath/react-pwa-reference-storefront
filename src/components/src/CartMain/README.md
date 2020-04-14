@@ -7,7 +7,7 @@ A container for cart items. The `CartMain` component contains a `CartLineItem` c
 #### Usage
 
 ```js
-import { CartMain } from '@elasticpath/store-components';
+import { CartMain } from './CartMain/cart.main';
 ```
 
 #### Example

@@ -6,7 +6,7 @@ Displays the messages about the success or failure of the request. The message, 
 #### Usage
 
 ```js
-import { AlertContainer } from '@elasticpath/store-components';
+import { AlertContainer } from './AlertContainer/alert.container';
 ```
 
 #### Example

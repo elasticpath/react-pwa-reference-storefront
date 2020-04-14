@@ -9,7 +9,7 @@ Functional Quantity Selector component that can be repurposed for a situation th
 #### Usage
 
 ```js
-import { QuantitySelector } from '@elasticpath/store-components';
+import { QuantitySelector } from './QuantitySelector/quantitySelector';
 ```
 
 #### Example
