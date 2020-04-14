@@ -7,7 +7,7 @@ Displays a footer at the bottom of each page in the storefront.
 #### Usage
 
 ```js
-import { AppFooterMain } from '@elasticpath/store-components';
+import { AppFooterMain } from './AppFooterMain/appfooter.main';
 ```
 
 #### Example

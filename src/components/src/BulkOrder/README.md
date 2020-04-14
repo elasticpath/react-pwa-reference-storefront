@@ -9,7 +9,7 @@ The **Quick Order** pane includes a set of `QuickOrderForm` components. Optional
 #### Usage
 
 ```js
-import { BulkOrder } from '@elasticpath/store-components';
+import { BulkOrderMain } from './BulkOrder/bulkorder.main';
 ```
 
 #### Example

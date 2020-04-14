@@ -7,7 +7,7 @@ Adds a top-level header to the `AppHeaderMain` component. The `AppHeaderTop` com
 #### Usage
 
 ```js
-import { AppHeaderTop } from '@elasticpath/store-components';
+import { AppHeaderTop } from './AppHeaderTop/appheadertop.main';
 ```
 
 #### Example

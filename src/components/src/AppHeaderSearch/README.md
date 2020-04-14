@@ -7,7 +7,7 @@ Adds a search icon in the header. When selected, a search box opens beside the i
 #### Usage
 
 ```js
-import { AppHeaderSearchMain } from '@elasticpath/store-components';
+import { AppHeaderSearchMain } from './AppHeaderSearch/appheadersearch.main';
 ```
 
 #### Example

@@ -7,7 +7,7 @@ Displays facets to narrow the search results further. The facets are retrieved f
 #### Usage
 
 ```js
-import { SearchFacetNavigationMain } from '@elasticpath/store-components';
+import { SearchFacetNavigationMain } from './SearchFacetNavigation/searchfacetnavigation.main';
 ```
 
 #### Example

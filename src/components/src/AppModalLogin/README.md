@@ -11,7 +11,7 @@ Displays a **Login** dialog box where shoppers can either register for an accoun
 #### Usage
 
 ```js
-import { AppModalLoginMain } from '@elasticpath/store-components';
+import { AppModalLoginMain } from './AppModalLogin/appmodallogin.main';
 ```
 
 #### Example

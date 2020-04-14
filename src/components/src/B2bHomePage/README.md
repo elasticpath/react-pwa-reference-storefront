@@ -7,7 +7,7 @@ Main static marketing content on home page.
 #### Usage
 
 ```js
-import { B2BHomePage } from '@elasticpath/store-components';
+import { B2BHomePage } from './B2bHomePage/b2b.home.page';
 ```
 
 #### Example

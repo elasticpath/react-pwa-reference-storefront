@@ -2,14 +2,14 @@
 
 #### Description
 
-Displays a history of purchases in a table format. The component retrieves the purchases from the shopper profile data. 
+Displays a history of purchases in a table format. The component retrieves the purchases from the shopper profile data.
 
 The component uses the `OrderLine` component to populate the table rows.
 
 #### Usage
 
 ```js
-import { OrderHistoryMain } from '@elasticpath/store-components';
+import { OrderHistoryMain } from './OrderHistory/orderhistory.main';
 ```
 
 #### Example

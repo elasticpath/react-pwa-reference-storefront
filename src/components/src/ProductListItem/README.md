@@ -9,7 +9,7 @@ This component is used by the `ProductListMain` component.
 #### Usage
 
 ```js
-import { ProductListItemMain } from '@elasticpath/store-components';
+import { ProductListItemMain } from './ProductListItem/productlistitem.main';
 ```
 
 #### Example

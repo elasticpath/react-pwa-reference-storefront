@@ -9,7 +9,7 @@ Shoppers can add a new gift certificate by selecting a button and entering the g
 #### Usage
 
 ```js
-import { GiftcertificateFormMain } from '@elasticpath/store-components';
+import { GiftcertificateFormMain } from './GiftCertificateForm/giftcertificateform.main';
 ```
 
 #### Example

@@ -7,7 +7,7 @@ Displays a registration form for creating a new account. A shopper fills in the 
 #### Usage
 
 ```js
-import { RegistrationFormMain } from '@elasticpath/store-components';
+import { RegistrationFormMain } from './RegistrationForm/registrationform.main';
 ```
 
 #### Example

@@ -9,7 +9,7 @@ Displays the addresses for a specified profile. The profile owner can add, edit,
 #### Usage
 
 ```js
-import { ProfileAddressesMain } from '@elasticpath/store-components';
+import { ProfileAddressesMain } from './ProfileAddresses/profileaddresses.main';
 ```
 
 #### Example

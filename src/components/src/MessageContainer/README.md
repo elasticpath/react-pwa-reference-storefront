@@ -7,7 +7,7 @@ Displays the messages returned by Cortex. The message icon and color are based o
 #### Usage
 
 ```js
-import { Messagecontainer } from '@elasticpath/store-components';
+import { Messagecontainer } from './MessageContainer/messagecontainer';
 ```
 
 #### Example

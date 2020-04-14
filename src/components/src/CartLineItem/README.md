@@ -13,7 +13,7 @@ When a shopper selects an item, the item details open in the `ProductDisplayItem
 #### Usage
 
 ```js
-import { CartLineItem } from '@elasticpath/store-components';
+import { CartLineItem } from './CartLineItem/cart.lineitem';
 ```
 
 #### Example

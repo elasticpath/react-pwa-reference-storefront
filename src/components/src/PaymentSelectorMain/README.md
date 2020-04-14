@@ -39,7 +39,7 @@ defaultprofile:paymentinstruments:defaultinstrumentselector:choice:description,
 #### Usage
 
 ```js
-import { PaymentSelectorMain } from '@elasticpath/store-components';
+import { PaymentSelectorMain } from './PaymentSelectorMain/paymentselector.main';
 ```
 #### Example
 
@@ -85,7 +85,7 @@ For information on the other parameters take a look at previous section `How to 
 #### Usage
 
 ```js
-import { PaymentSelectorMain } from '@elasticpath/store-components';
+import { PaymentSelectorMain } from './PaymentSelectorMain/paymentselector.main';
 ```
 #### Example
 

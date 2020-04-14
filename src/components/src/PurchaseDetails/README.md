@@ -9,7 +9,7 @@ Optionally, this component can include the `ReorderMain` component, which adds a
 #### Usage
 
 ```js
-import { PurchaseDetailsMain } from '@elasticpath/store-components';
+import { PurchaseDetailsMain } from './PurchaseDetails/purchasedetails.main';
 ```
 
 #### Example

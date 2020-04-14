@@ -7,7 +7,7 @@ Displays a **Sort By** drop-down menu. A shopper can rearrange a product list ba
 #### Usage
 
 ```js
-import { SortProductMenu } from '@elasticpath/store-components';
+import { SortProductMenu } from './SortProductMenu/sortproductmenu.main';
 ```
 
 #### Example

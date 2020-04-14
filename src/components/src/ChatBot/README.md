@@ -9,7 +9,7 @@ Integrates a chatbot with your store. This component supports an integration wit
 #### Usage
 
 ```js
-import { ChatComponent } from '@elasticpath/store-components';
+import { ChatComponent } from './ChatBot/chatbot';
 ```
 
 #### Example

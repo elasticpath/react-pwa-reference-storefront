@@ -7,7 +7,7 @@ Displays product attribute information with the ability of folding. The componen
 #### Usage
 
 ```js
-import { ProductDisplayAttributes } from '@elasticpath/store-components';
+import { ProductDisplayAttributes } from './ProductDisplayAttributes/productDisplayAttributes';
 ```
 
 #### Example

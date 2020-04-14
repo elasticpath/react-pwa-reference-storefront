@@ -10,7 +10,7 @@ Adds a **Remove all cart items** icon beside each of the carts in a list of cart
 #### Usage
 
 ```js
-import { CartClear } from '@elasticpath/store-components';
+import { CartClear } from './CartClear/cartclear';
 ```
 
 #### Example

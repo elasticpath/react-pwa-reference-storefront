@@ -7,7 +7,7 @@ Displays a header at the top of each page in the storefront. The `AppHeaderMain`
 #### Usage
 
 ```js
-import { AppHeaderMain } from '@elasticpath/store-components';
+import { AppHeaderMain } from './AppHeader/appheader.main';
 ```
 
 #### Example

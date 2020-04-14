@@ -9,7 +9,7 @@ Use this component with the Accounts view.
 #### Usage
 
 ```js
-import { B2bAddSubAccount } from '@elasticpath/store-components';
+import { B2bAddSubAccount } from './B2bAddSubAccount/b2b.addsubaccount';
 ```
 
 #### Example

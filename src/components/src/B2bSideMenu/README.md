@@ -9,7 +9,7 @@ Use this component with the Accounts view.
 #### Usage
 
 ```js
-import { B2bSideMenu } from '@elasticpath/store-components';
+import { B2bSideMenu } from './B2bSideMenu/b2b.sidemenu';
 ```
 
 #### Example

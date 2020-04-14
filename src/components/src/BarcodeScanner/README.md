@@ -9,7 +9,7 @@ When a shopper holds a barcode in front of the camera, the component attempts to
 #### Usage
 
 ```js
-import { BarcodeScanner } from '@elasticpath/store-components';
+import { BarcodeScanner } from './BarcodeScanner/barcodescanner';
 ```
 
 #### Example

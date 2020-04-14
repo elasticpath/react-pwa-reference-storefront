@@ -9,7 +9,7 @@ This component uses the `OrderTableLineItem` component to display item details.
 #### Usage
 
 ```js
-import { OrderTableMain } from '@elasticpath/store-components';
+import { OrderTableMain } from './OrderTable/ordertable.main';
 ```
 
 #### Example

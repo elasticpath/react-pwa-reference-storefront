@@ -9,7 +9,7 @@ The **Quick Order** pane includes a set of `QuickOrderForm` components.
 #### Usage
 
 ```js
-import { B2bAddProductsModal } from '@elasticpath/store-components';
+import { B2bAddProductsModal } from './B2bAddProductsModal/b2b.add.products.modal';
 ```
 
 #### Example

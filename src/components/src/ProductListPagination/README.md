@@ -9,7 +9,7 @@ This component is used with the `ProductList` component.
 #### Usage
 
 ```js
-import { ProductListPagination } from '@elasticpath/store-components';
+import { ProductListPagination } from './ProductListPagination/productlistpagination.main';
 ```
 
 #### Example

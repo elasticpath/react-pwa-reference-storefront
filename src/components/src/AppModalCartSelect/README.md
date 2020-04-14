@@ -7,7 +7,7 @@ Displays a modal window that contains a list of accounts that the logged in shop
 #### Usage
 
 ```js
-import { AppModalCartSelectMain } from '@elasticpath/store-components';
+import { AppModalCartSelectMain } from './AppModalCartSelect/appmodalcartselect.main';
 ```
 
 #### Example

@@ -9,7 +9,7 @@ If an address exists for the shopper, the component retrieves the address and di
 #### Usage
 
 ```js
-import { AddressFormMain } from '@elasticpath/store-components';
+import { AddressFormMain } from './AddressForm/addressform.main';
 ```
 
 #### Example

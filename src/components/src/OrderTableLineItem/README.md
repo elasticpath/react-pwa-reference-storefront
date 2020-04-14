@@ -2,14 +2,14 @@
 
 #### Description
 
-Displays item details for an item from a previous order. Details include the item name, image, description, and price. The component retrieves the data for a specified item with a specified order code. 
+Displays item details for an item from a previous order. Details include the item name, image, description, and price. The component retrieves the data for a specified item with a specified order code.
 
 This component is used by the `OrderTableMain` component to display items in the table.
 
 #### Usage
 
 ```js
-import { OrderTableLineItem } from '@elasticpath/store-components';
+import { OrderTableLineItem } from './OrderTableLineItem/ordertable.lineitem';
 ```
 
 #### Example

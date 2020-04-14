@@ -7,7 +7,7 @@ Adds the selected currency and language to the header. A shopper can click the h
 #### Usage
 
 ```js
-import { AppHeaderLocaleMain } from '@elasticpath/store-components';
+import { AppHeaderLocaleMain } from './AppHeaderLocale/appheaderlocale.main';
 ```
 
 #### Example
