@@ -30,12 +30,6 @@ RUN rm ./src/ep.config.json.tmp
 
 RUN yarn build
 
-RUN yarn build-components
-
-# Publish components to npm
-RUN npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
-RUN npm publish src/components/ || echo "Components publish failed"
-
 FROM nginx:1.15.1
 COPY --from=builder /project/build/ /usr/share/nginx/www
 COPY ./docker/prod/nginx.conf /etc/nginx/conf.d/default.conf.template
