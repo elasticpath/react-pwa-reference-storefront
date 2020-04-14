@@ -45,7 +45,7 @@ storiesOf('Components|CartCheckoutButton', module)
 
     return (
       <CartCheckoutButton
-        checkout={() => { textToFunc(checkoutCallback); }}
+        checkoutCallback={() => { textToFunc(checkoutCallback); }}
         cartData={object('CartData', mockCartDataProc)}
       />
     );
@@ -55,7 +55,7 @@ storiesOf('Components|CartCheckoutButton', module)
 
     return (
       <CartCheckoutButton
-        checkout={() => { textToFunc(checkoutCallback); }}
+        checkoutCallback={() => { textToFunc(checkoutCallback); }}
         cartData={object('CartData', mockCartData)}
       />
     );
@@ -65,7 +65,7 @@ storiesOf('Components|CartCheckoutButton', module)
 
     return (
       <CartCheckoutButton
-        checkout={() => { textToFunc(checkoutCallback); }}
+        checkoutCallback={() => { textToFunc(checkoutCallback); }}
         cartData={object('CartData', mockCartDataQuantity1)}
       />
     );

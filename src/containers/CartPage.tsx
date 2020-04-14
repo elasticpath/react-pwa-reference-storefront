@@ -338,7 +338,7 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                     </h2>
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container">
-                    <CartCheckoutButton cartData={cartData} checkout={() => { this.checkout(); }} />
+                    <CartCheckoutButton cartData={cartData} checkoutCallback={() => { this.checkout(); }} />
                   </div>
                 </div>
               </div>

@@ -25,14 +25,14 @@ import './cartcheckoutbutton.less';
 
 interface CartCheckoutButtonProps {
   /** The checkout */
-  checkout: any,
+  checkoutCallback: any,
   /** Cart Data */
   cartData: any,
 }
 
 function CartCheckoutButton(props: CartCheckoutButtonProps) {
   const {
-    checkout,
+    checkoutCallback,
     cartData,
   } = props;
 
@@ -40,9 +40,17 @@ function CartCheckoutButton(props: CartCheckoutButtonProps) {
     return cartData._descriptor[0]['P2G-cart-transfer-url'];
   }
 
+  function checkout() {
+    if (getDescriptorUri()) {
+      window.location.href = cartData._descriptor[0]['P2G-cart-transfer-url'];
+    } else {
+      checkoutCallback();
+    }
+  }
+
   return (
     <div>
-      <button className="ep-btn primary btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { checkout(); }}>
+      <button className="ep-btn primary btn-cmd-checkout" disabled={!cartData['total-quantity']} type="button" onClick={() => { checkoutCallback(); }}>
         {
           getDescriptorUri() ? intl.get('proceed-to-procurement') : intl.get('proceed-to-checkout')
         }
@@ -52,7 +60,7 @@ function CartCheckoutButton(props: CartCheckoutButtonProps) {
 }
 
 CartCheckoutButton.defaultProps = {
-  checkout: () => {},
+  checkoutCallback: () => {},
   cartData: {},
 };
 
