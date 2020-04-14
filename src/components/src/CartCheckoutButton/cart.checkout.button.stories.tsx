@@ -24,11 +24,13 @@ import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 import { text, object } from '@storybook/addon-knobs/react';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
-import mockCartDataProc from './cartData_procurement_response.json';
+import mockCartDataProc from './MockHttpResponses/cartData_procurement_response.json';
+import mockCartDataQuantity1 from './MockHttpResponses/cartData_quantity_1_response.json';
+import mockCartData from './MockHttpResponses/cartData_response.json';
 import CartCheckoutButton from './cart.checkout.btn';
 import Readme from './README.md';
 
-storiesOf('Components|CartCreate', module)
+storiesOf('Components|CartCheckoutButton', module)
   .addParameters({
     readme: {
       // Show readme at the addons panel
@@ -47,21 +49,24 @@ storiesOf('Components|CartCreate', module)
         cartData={object('CartData', mockCartDataProc)}
       />
     );
-  });
-//   .add('CartCheckoutButton OOTB', () => {
-//     // mockFetchMultiCart();
-//     // const handleModalCloseFuncText = text('handleModalClose','() => {alert("handleModalClose invoked")}');
-//     // const handleCartsUpdateFuncText = text('handleCartsUpdate','() => {alert("handleCartsUpdate invoked")}');
-//     // const handleCartElementSelectFuncText = text('handleCartElementSelect','() => {alert("handleCartElementSelect invoked")}');
+  })
+  .add('CartCheckoutButton OOTB', () => {
+    const checkoutCallback = text('checkoutCallback', '() => {alert("checkoutCallback invoked")}');
 
-//     // return (
-//     //   <CartCreate
-//     //     handleModalClose={() => { textToFunc(handleModalCloseFuncText)}}
-//     //     openModal={boolean('openModal', true)}
-//     //     handleCartsUpdate={() => { textToFunc(handleCartsUpdateFuncText)}}
-//     //     handleCartElementSelect={() => { textToFunc(handleCartElementSelectFuncText)}}
-//     //     updateCartModal={boolean('updateCartModal', true)}
-//     //   />
-//     // );
-//     return null;
-//   });
+    return (
+      <CartCheckoutButton
+        checkout={() => { textToFunc(checkoutCallback); }}
+        cartData={object('CartData', mockCartData)}
+      />
+    );
+  })
+  .add('CartCheckoutButton OOTB Enabled', () => {
+    const checkoutCallback = text('checkoutCallback', '() => {alert("checkoutCallback invoked")}');
+
+    return (
+      <CartCheckoutButton
+        checkout={() => { textToFunc(checkoutCallback); }}
+        cartData={object('CartData', mockCartDataQuantity1)}
+      />
+    );
+  });
