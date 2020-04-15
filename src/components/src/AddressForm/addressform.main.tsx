@@ -23,11 +23,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './addressform.main.less';
 
-let Config: IEpConfig | any = {};
 
 interface AddressFormMainProps {
   /** An array of addresses for the shopper, where `string` is a URL to the address data. */
@@ -73,9 +72,6 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       geoData: undefined,

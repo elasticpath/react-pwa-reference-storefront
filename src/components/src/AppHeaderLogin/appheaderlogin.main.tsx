@@ -24,7 +24,6 @@ import intl from 'react-intl-universal';
 import uuidv4 from 'uuid/v4';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import AppModalLoginMain from '../AppModalLogin/appmodallogin.main';
 import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
 import AppModalCartSelectMain from '../AppModalCartSelect/appmodalcartselect.main';
@@ -34,12 +33,12 @@ import {
 } from '../utils/AuthService';
 import { cortexFetch, adminFetch } from '../utils/Cortex';
 import { ReactComponent as AccountIcon } from '../../../images/header-icons/account-icon.svg';
+import Config from '../../../ep.config.json';
 
 import './appheaderlogin.main.less';
 
-const oidcDiscoveryEndpoint = '/.well-known/openid-configuration';
 
-let Config: IEpConfig | any = {};
+const oidcDiscoveryEndpoint = '/.well-known/openid-configuration';
 
 interface AppHeaderLoginMainProps {
   /** is mobile view */
@@ -75,6 +74,7 @@ interface AppHeaderLoginMainProps {
   /** disable login */
   disableLogin?: boolean,
 }
+
 interface AppHeaderLoginMainState {
   openModal: boolean,
   openCartModal: boolean,
@@ -113,9 +113,6 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
 
     constructor(props) {
       super(props);
-
-      const epConfig = getConfig();
-      Config = epConfig.config;
 
       this.state = {
         openModal: false,

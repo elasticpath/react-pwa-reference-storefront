@@ -23,10 +23,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
-import './appmodalcartselect.main.less';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
-let Config: IEpConfig | any = {};
+import './appmodalcartselect.main.less';
+
 
 const zoomArray = [
   'authorizationcontexts',
@@ -43,6 +43,7 @@ interface AppModalCartSelectMainProps {
   /** handle continue cart */
   onContinueCart?: (...args: any[]) => any,
 }
+
 interface AppModalCartSelectMainState {
   orgAuthServiceData: any,
   selectedCart: string,
@@ -56,9 +57,6 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       orgAuthServiceData: undefined,

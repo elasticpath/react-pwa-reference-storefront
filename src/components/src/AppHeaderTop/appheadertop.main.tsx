@@ -23,11 +23,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
+import Config from '../../../ep.config.json';
 
 import './appheadertop.main.less';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-let Config: IEpConfig | any = {};
 
 interface AppHeaderTopProps {
   /** is mobile view */
@@ -48,13 +47,6 @@ class AppHeaderTop extends Component<AppHeaderTopProps> {
     onLocaleChange: () => { },
     onCurrencyChange: () => { },
   };
-
-  constructor(props) {
-    super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
-  }
 
   render() {
     const {

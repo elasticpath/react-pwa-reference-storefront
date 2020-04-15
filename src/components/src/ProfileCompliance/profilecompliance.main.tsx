@@ -23,11 +23,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './profilecompliance.main.less';
 
-let Config: IEpConfig | any = {};
 
 interface ProfileComplianceMainProps {
   /** data policies */
@@ -43,13 +42,6 @@ interface ProfileComplianceMainState {
 }
 
 class ProfileComplianceMain extends Component<ProfileComplianceMainProps, ProfileComplianceMainState> {
-  constructor(props) {
-    super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
-  }
-
   handleOnClick(link, consented) {
     if (consented === 'true') {
       this.handleRevokeConsent(link);

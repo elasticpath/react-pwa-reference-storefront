@@ -20,10 +20,10 @@
  */
 
 import React from 'react';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
+
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 
-let Config: IEpConfig | any = {};
 
 interface ImageContainerProps {
   /** name of file */
@@ -39,8 +39,6 @@ interface ImageContainerProps {
 }
 
 function ImageContainer(props: ImageContainerProps) {
-  const epConfig = getConfig();
-  Config = epConfig.config;
   const {
     fileName, imgUrl, className, isSkuImage, onLoadData,
   } = props;

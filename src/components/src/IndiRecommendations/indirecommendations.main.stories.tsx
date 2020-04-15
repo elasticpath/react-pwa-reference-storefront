@@ -22,16 +22,12 @@ import React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import { getConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 import productData from './MockHttpResponses/bundle_constituents_response.json';
 
 import { object } from "@storybook/addon-knobs/react";
 
 import IndiRecommendationsDisplayMain from './indirecommendations.main';
-
-let Config:any = {};
-const epConfig = getConfig();
-Config = epConfig.config;
 
 storiesOf('Components|IndiRecommendationsDisplayMain', module)
   .addParameters({

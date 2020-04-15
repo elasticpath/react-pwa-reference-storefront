@@ -22,12 +22,14 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 /* eslint-disable-next-line import/no-cycle */
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
+
 import './appmodalbundleconfiguration.main.less';
+
 
 const zoomArray = [
   'dependentoptions',
@@ -52,8 +54,6 @@ const zoomArray = [
   'dependentlineitems:element:dependentlineitems',
   'dependentlineitems:element:dependentlineitems:element:item:definition',
 ];
-
-let Config: IEpConfig | any = {};
 
 interface AppModalBundleConfigurationMainProps {
   /** bundle configuration items */
@@ -89,9 +89,6 @@ class AppModalBundleConfigurationMain extends Component<AppModalBundleConfigurat
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       dependantItemData: undefined,

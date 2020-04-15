@@ -25,16 +25,14 @@ import { Interactions } from 'aws-amplify';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import Review from './chatbot.review';
+import Config from '../../../ep.config.json';
+
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved,import/no-duplicates
 import * as styles from '!!../utils/less-var-loader!./chatbot.less';
-
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-
 // eslint-disable-next-line import/no-duplicates
 import './chatbot.less';
 
-let Config: IEpConfig | any = {};
 
 const theme = {
   background: styles['@chatBackground'],
@@ -63,9 +61,6 @@ async function AuthenticateModel() {
 class ChatComponent extends React.Component<{}, ChatComponentState> {
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       opened: false,

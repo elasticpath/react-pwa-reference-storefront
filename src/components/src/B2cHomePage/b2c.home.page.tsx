@@ -21,9 +21,9 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import ImageContainer from '../ImageContainer/image.container';
+import Config from '../../../ep.config.json';
 
 import './b2c.home.page.less';
 
@@ -38,7 +38,6 @@ import productImage5 from '../../../images/site-images/b2c-product-5.png';
 import productImage6 from '../../../images/site-images/b2c-product-6.png';
 import productImage7 from '../../../images/site-images/b2c-product-7.png';
 
-let Config: IEpConfig | any = {};
 
 const bannerFileName1 = 'b2c-banner-1.png';
 const bannerFileName2 = 'b2c-banner-2.png';
@@ -52,9 +51,6 @@ const productFileName6 = 'b2c-product-6.png';
 const productFileName7 = 'b2c-product-7.png';
 
 const B2CHomePage: React.FunctionComponent = () => {
-  const epConfig = getConfig();
-  Config = epConfig.config;
-
   // Set the language-specific configuration for indi integration
   Config.indi.brandAmbassador.title = intl.get('indi-brand-ambassador-title');
   Config.indi.brandAmbassador.description = intl.get('indi-brand-ambassador-description');

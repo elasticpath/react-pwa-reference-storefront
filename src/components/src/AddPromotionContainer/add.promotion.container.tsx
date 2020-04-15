@@ -23,11 +23,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './add.promotion.container.less';
 
-let Config: IEpConfig | any = {};
 
 interface AddPromotionContainerProps {
   /** An array of orders for the shopper, where `string` is the URL to the cart data for an order. */
@@ -48,14 +47,14 @@ interface AddPromotionContainerState {
 class AddPromotionContainer extends Component<AddPromotionContainerProps, AddPromotionContainerState> {
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
-    Config = epConfig.config;
+
     this.state = {
       isPromotionFormOpen: false,
       failedPromotion: false,
       promotionCode: '',
       couponFormLink: '',
     };
+
     this.setPromotionCode = this.setPromotionCode.bind(this);
     this.submitPromotionCode = this.submitPromotionCode.bind(this);
   }

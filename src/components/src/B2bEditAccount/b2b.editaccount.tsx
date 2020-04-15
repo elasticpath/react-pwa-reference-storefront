@@ -24,14 +24,14 @@ import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import copy from 'copy-to-clipboard';
 import { login } from '../utils/AuthService';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { adminFetch } from '../utils/Cortex';
-import clipboardIcon from '../../../images/icons/copy.svg';
-import copiedIcon from '../../../images/icons/check-circle-filled.svg';
+import Config from '../../../ep.config.json';
 
 import './b2b.editaccount.less';
 
-let Config: IEpConfig | any = {};
+import clipboardIcon from '../../../images/icons/copy.svg';
+import copiedIcon from '../../../images/icons/check-circle-filled.svg';
+
 
 const COPIED_TIMEOUT_LENGTH = 4000;
 
@@ -72,9 +72,6 @@ class B2bEditAccount extends Component<B2bEditAccountProps, B2bEditAccountState>
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       name: '',

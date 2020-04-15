@@ -19,10 +19,11 @@
  *
  */
 
-import { getConfig } from './ConfigProvider';
+// @ts-check
+
+import Config from '../../../ep.config.json';
 
 export function getSelectedLocaleValue() {
-  const Config = getConfig().config;
   const storedLocaleValue = localStorage.getItem(`${Config.cortexApi.scope}_locale`);
 
   return (Config.supportedLocales.filter(l => l.value === storedLocaleValue).length > 0)
@@ -31,7 +32,6 @@ export function getSelectedLocaleValue() {
 }
 
 export function setSelectedLocaleValue(newLocale) {
-  const Config = getConfig().config;
   if (Config.supportedLocales.filter(l => l.value === newLocale).length === 0) {
     throw new Error(`Locale ${newLocale} is not in the list of supported locales.`);
   }
@@ -40,7 +40,6 @@ export function setSelectedLocaleValue(newLocale) {
 }
 
 export function getSelectedCurrencyValue() {
-  const Config = getConfig().config;
   const storedCurrencyValue = localStorage.getItem(`${Config.cortexApi.scope}_currency`);
 
   return (Config.supportedCurrencies.filter(c => c.value === storedCurrencyValue).length > 0)
@@ -49,7 +48,6 @@ export function getSelectedCurrencyValue() {
 }
 
 export function setSelectedCurrencyValue(newCurrency) {
-  const Config = getConfig().config;
   if (Config.supportedCurrencies.filter(c => c.value === newCurrency).length === 0) {
     throw new Error(`Currency ${newCurrency} is not in the list of supported currencies.`);
   }

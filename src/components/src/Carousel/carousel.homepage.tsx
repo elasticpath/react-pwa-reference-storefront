@@ -22,19 +22,17 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import Slider from 'react-slick';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ImageContainer from '../ImageContainer/image.container';
+
+import './carousel.homepage.less';
 
 import carouselBaner1 from '../../../images/carousel-images/baner_1.jpg';
 import carouselBaner2 from '../../../images/carousel-images/baner_2.jpg';
 import carouselBaner3 from '../../../images/carousel-images/baner_3.jpg';
 import carouselBaner4 from '../../../images/carousel-images/baner_4.jpg';
 
-import './carousel.homepage.less';
 
 const carouselBanerArray = [carouselBaner1, carouselBaner2, carouselBaner3, carouselBaner4];
-
-let Config: IEpConfig | any = {};
 
 const carouselBaner1FileName = 'baner_1.jpg';
 const carouselBaner2FileName = 'baner_2.jpg';
@@ -44,9 +42,6 @@ const carouselBaner4FileName = 'baner_4.jpg';
 const carouselBanerNameArray = [carouselBaner1FileName, carouselBaner2FileName, carouselBaner3FileName, carouselBaner4FileName];
 
 const Carousel: React.FunctionComponent = () => {
-  const epConfig = getConfig();
-  Config = epConfig.config;
-
   const settings = {
     customPaging(i) {
       return (
@@ -63,6 +58,7 @@ const Carousel: React.FunctionComponent = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   return (
     <div className="carousel">
       <div className="carousel-txt">

@@ -20,7 +20,7 @@
  */
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 import { login, isLoggedIn } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import PowerReview from '../PowerReview/powerreview.main';
@@ -29,9 +29,9 @@ import { useRequisitionListCountDispatch } from '../requisition-list-count-conte
 import { ProductDisplayDetailsProps, ProductDisplayItemMainState } from './productdisplayitem.details.d';
 import SocialNetworkSharing from '../SocialNetworkSharing/socialNetworkSharing';
 import QuantitySelector from '../QuantitySelector/quantitySelector';
+
 import './productdisplayitem.details.less';
 
-let Config: IEpConfig | any = {};
 
 export const ZOOM : string[] = [
   'availability',
@@ -93,8 +93,6 @@ export const ZOOM : string[] = [
 class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, ProductDisplayItemMainState> {
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       itemQuantity: 1,

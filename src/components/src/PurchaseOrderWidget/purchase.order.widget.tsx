@@ -21,11 +21,10 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import './purchase.order.widget.less';
 import PurchaseOrderWidgetModal from '../PurchaseOrderWidgetModal/purchase.order.widget.modal';
 
-let Config: IEpConfig | any = {};
+import './purchase.order.widget.less';
+
 
 interface PurchaseOrderWidgetState {
   poModalOpen: boolean,
@@ -42,12 +41,12 @@ interface PurchaseOrderWidgetProps {
 class PurchaseOrderWidget extends React.Component<PurchaseOrderWidgetProps, PurchaseOrderWidgetState> {
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
-    Config = epConfig.config;
+
     this.state = {
       isChosen: false,
       poModalOpen: false,
     };
+
     this.renderPONumber = this.renderPONumber.bind(this);
     this.doesPayWithPOMethodExist = this.doesPayWithPOMethodExist.bind(this);
     this.getPOPaymentMethodUri = this.getPOPaymentMethodUri.bind(this);

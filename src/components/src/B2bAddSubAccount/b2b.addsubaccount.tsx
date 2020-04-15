@@ -25,11 +25,10 @@ import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import '../B2bEditAccount/b2b.editaccount.less';
 
-let Config: IEpConfig | any = {};
 
 interface B2bAddSubAccountProps {
   /** is open */
@@ -56,9 +55,6 @@ class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B2bAddSubAccount
   constructor(props) {
     super(props);
 
-    const epConfig = getConfig();
-    Config = epConfig.config;
-
     this.state = {
       name: '',
       legalName: '',
@@ -69,9 +65,6 @@ class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B2bAddSubAccount
 
     this.addSubAccount = this.addSubAccount.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
-  }
-
-  componentWillReceiveProps() {
   }
 
   addSubAccount(event) {

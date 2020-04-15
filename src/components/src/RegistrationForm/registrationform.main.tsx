@@ -21,13 +21,13 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import {
   login, loginRegistered, registerUser, getRegistrationForm,
 } from '../utils/AuthService';
+import Config from '../../../ep.config.json';
+
 import './registrationform.main.less';
 
-let Config: IEpConfig | any = {};
 
 interface RegistrationFormMainProps {
   /** handle register success */
@@ -52,9 +52,6 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       firstname: '',

@@ -24,16 +24,15 @@ import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { searchLookup } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ProductListMain from '../ProductList/productlist.main';
 import ProductListPagination from '../ProductListPagination/productlistpagination.main';
 import SearchFacetNavigationMain from '../SearchFacetNavigation/searchfacetnavigation.main';
 import ProductListLoadMore from '../ProductListLoadmore/productlistloadmore';
 import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
+import Config from '../../../ep.config.json';
 
 import './searchresultsitems.main.less';
 
-let Config: IEpConfig | any = {};
 
 const zoomArray = [
   'chosen',
@@ -123,8 +122,6 @@ class SearchResultsItemsMain extends Component<SearchResultsItemsMainProps, Sear
   constructor(props) {
     super(props);
 
-    const epConfig = getConfig();
-    Config = epConfig.config;
     const { searchKeywordsProps } = this.props;
 
     this.state = {

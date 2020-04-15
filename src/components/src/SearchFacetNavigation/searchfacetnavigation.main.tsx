@@ -21,14 +21,14 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { ReactComponent as FilterIcon } from '../../../images/header-icons/baseline-filter_list-24px.svg';
+import Config from '../../../ep.config.json';
 
 import './searchfacetnavigation.main.less';
 
-let Config: IEpConfig | any = {};
+import { ReactComponent as FilterIcon } from '../../../images/header-icons/baseline-filter_list-24px.svg';
+
 
 interface SearchFacetNavigationMainProps {
   /** product data */
@@ -53,7 +53,6 @@ class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps
     super(props);
 
     const { productData } = this.props;
-    Config = getConfig().config;
 
     this.state = {
       facetModel: productData,

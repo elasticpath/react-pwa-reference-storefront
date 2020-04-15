@@ -24,13 +24,12 @@ import Amplify, { Interactions } from 'aws-amplify';
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
 import awsmobile from '../../../aws-exports';
+import Config from '../../../ep.config.json';
+
 import './chatbot.review.less';
 
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
 Amplify.configure(awsmobile);
-
-let Config: IEpConfig | any = {};
 
 interface ReviewProps {
   /** steps */
@@ -63,8 +62,7 @@ const handleCompleteIntent = (err, confirmation) => {
 class Review extends Component<ReviewProps, ReviewState> {
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
-    Config = epConfig.config;
+
     this.state = {
       userMessage: '',
       productImageUrl: '',

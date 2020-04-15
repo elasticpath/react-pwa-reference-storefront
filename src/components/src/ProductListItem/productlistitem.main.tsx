@@ -22,14 +22,13 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
+import ImageContainer from '../ImageContainer/image.container';
+import Config from '../../../ep.config.json';
 
 import './productlistitem.main.less';
-import ImageContainer from '../ImageContainer/image.container';
 
-let Config: IEpConfig | any = {};
 
 interface ProductListItemMainProps {
   /** product id */
@@ -65,13 +64,11 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
   constructor(props) {
     super(props);
 
-    const epConfig = getConfig();
-    Config = epConfig.config;
-
     this.state = {
       productData: undefined,
       imageStatus: 'loading',
     };
+
     this.handleImageLoaded = this.handleImageLoaded.bind(this);
   }
 

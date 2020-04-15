@@ -21,12 +21,12 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
+import Config from '../../../ep.config.json';
+
 import './checkout.summarylist.less';
 
-let Config: IEpConfig | any = {};
 
 interface CheckoutSummaryListProps {
   /** cart data */
@@ -43,13 +43,6 @@ class CheckoutSummaryList extends Component<CheckoutSummaryListProps> {
   static defaultProps = {
     giftCards: [],
     onChange: () => {},
-  }
-
-  constructor(props) {
-    super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
   }
 
   deletePromotionCode(link) {

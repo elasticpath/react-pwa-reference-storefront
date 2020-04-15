@@ -22,13 +22,13 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import scriptjs from 'scriptjs';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import './powerreview.less';
 import * as UserPrefs from '../utils/UserPrefs';
+import Config from '../../../ep.config.json';
+
+import './powerreview.less';
+
 
 const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
-
-let Config: IEpConfig | any = {};
 
 interface PowerReviewProps {
   /** product data */
@@ -41,13 +41,6 @@ class PowerReview extends Component<PowerReviewProps> {
   private POWERREVIEWS: any;
 
   private funcName: any;
-
-  constructor(props) {
-    super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
-  }
 
   componentDidMount() {
     if (Config.PowerReviews.enable) {

@@ -25,11 +25,10 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './appheadernavigation.main.less';
 
-let Config: IEpConfig | any = {};
 
 const zoomArray = [
   'navigations:element',
@@ -77,9 +76,6 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       navigations: {},

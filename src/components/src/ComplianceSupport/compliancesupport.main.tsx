@@ -25,11 +25,10 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './compliancesupport.main.less';
 
-let Config: IEpConfig | any = {};
 
 interface ComplianceSupportModalProps {
   /** handle accept data policy */
@@ -48,9 +47,6 @@ class ComplianceSupportModal extends Component<ComplianceSupportModalProps, Comp
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       open: true,

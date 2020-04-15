@@ -21,8 +21,9 @@
 
 import React from 'react';
 import intl from 'react-intl-universal';
-import { getConfig } from '../utils/ConfigProvider';
+
 import './quantitySelector.less';
+
 
 interface QuantityDetailsMainProps {
   /** Callback for when the + icon is clicked */

@@ -19,8 +19,10 @@
  *
  */
 
+// @ts-check
+
 import { cortexFetch, adminFetch } from './Cortex';
-import { getConfig } from './ConfigProvider';
+import Config from '../../../ep.config.json';
 
 let userFormBody = [];
 let userFormBodyString = '';
@@ -35,7 +37,6 @@ function generateFormBody(userDetails) {
 }
 
 export function login() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       userFormBodyString = '';
@@ -78,7 +79,6 @@ export function login() {
 }
 
 export function loginRegistered(username, password) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) != null) {
       userFormBodyString = '';
@@ -130,7 +130,6 @@ export function loginRegistered(username, password) {
 }
 
 export function loginRegisteredAuthService(code, redirectUri, clientId) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
       userFormBodyString = '';
@@ -176,7 +175,6 @@ export function loginRegisteredAuthService(code, redirectUri, clientId) {
 }
 
 export function logout() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch('/oauth2/tokens', {
       method: 'delete',
@@ -204,7 +202,6 @@ export function logout() {
 }
 
 export function logoutAccountManagementUser() {
-  const Config = getConfig().config;
 
   if (Config.b2b.openId && Config.b2b.openId.enable) {
     return new Promise(((resolve, reject) => {
@@ -233,7 +230,6 @@ export function logoutAccountManagementUser() {
 }
 
 export function getRegistrationForm() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch('/?zoom=newaccountform',
       {
@@ -257,7 +253,6 @@ export function getRegistrationForm() {
 }
 
 export function registerUser(lastname, firstname, username, password) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch(newaccountform, {
       method: 'post',
@@ -279,7 +274,6 @@ export function registerUser(lastname, firstname, username, password) {
 }
 
 export function getAccessToken(token) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch(`/impersonation/${Config.cortexApi.scope}/form?followlocation`, {
       method: 'post',

@@ -24,11 +24,10 @@ import intl from 'react-intl-universal';
 import _ from 'lodash';
 import Modal from 'react-responsive-modal';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import './purchase.order.widget.modal.less';
-import MessageContainer from '../MessageContainer/messagecontainer';
+import Config from '../../../ep.config.json';
 
-let Config: IEpConfig | any = {};
+import './purchase.order.widget.modal.less';
+
 
 interface PurchaseOrderWidgetModalState {
   isLoading: boolean,
@@ -47,13 +46,13 @@ interface PurchaseOrderWidgetModalProps {
 class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalProps, PurchaseOrderWidgetModalState> {
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
+
     this.state = {
       // eslint-disable-next-line react/no-unused-state
       isLoading: false,
       inputTextValue: '',
     };
-    Config = epConfig.config;
+
     this.createPOPaymentInstrument = this.createPOPaymentInstrument.bind(this);
     this.updateInputState = this.updateInputState.bind(this);
   }
@@ -88,7 +87,6 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
   // eslint-disable-next-line class-methods-use-this
   async createPOPaymentInstrument() {
     const { createPaymentInstrumentActionUri, handleCloseModal } = this.props;
-    const { inputTextValue } = this.state;
 
     const postResult = await cortexFetch(
       `${createPaymentInstrumentActionUri}/?followlocation=true`,
@@ -101,8 +99,6 @@ class PurchaseOrderWidgetModal extends React.Component<PurchaseOrderWidgetModalP
         body: JSON.stringify(this.generatePOPaymentPostBody()),
       },
     );
-
-    const postResultJson = await postResult.json();
 
     if (postResult.status === 200 || postResult.status === 201) {
       handleCloseModal();

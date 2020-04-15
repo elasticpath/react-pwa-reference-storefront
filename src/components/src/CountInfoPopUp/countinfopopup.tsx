@@ -19,13 +19,12 @@
  *
  */
 
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 import intl from 'react-intl-universal';
-import './countinfopopup.less';
 import { Link } from 'react-router-dom';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 
-let Config: IEpConfig | any = {};
+import './countinfopopup.less';
+
 
 interface CountInfoPopUpProps {
   /** count data */
@@ -37,54 +36,38 @@ interface CountInfoPopUpProps {
   },
 }
 
-interface CountInfoPopUpState {
-  cartData: any,
-}
+const CountInfoPopUp: FC<CountInfoPopUpProps> = (props) => {
+  const { countData } = props;
 
-class CountInfoPopUp extends Component<CountInfoPopUpProps, CountInfoPopUpState> {
-  static defaultProps = {};
+  const {
+    count, name, link, entity,
+  } = countData;
 
-  constructor(props) {
-    super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
-  }
-
-  componentDidMount() {}
-
-  render() {
-    const { countData } = this.props;
-    const {
-      count, name, link, entity,
-    } = countData;
-
-    const message = (
-      <div className="multi-cart-message">
-        <b>{count}</b>
-        {' '}
-        {intl.get('item-was-added-to-your')}
-        {' '}
-        <b>{name}</b>
-        {' '}
-        {entity}
+  const message = (
+    <div className="multi-cart-message">
+      <b>{count}</b>
+      {' '}
+      {intl.get('item-was-added-to-your')}
+      {' '}
+      <b>{name}</b>
+      {' '}
+      {entity}
+    </div>
+  );
+  return (
+    <div className="cart-nav-container">
+      <div className="multi-cart-menu">
+        {message}
       </div>
-    );
-    return (
-      <div className="cart-nav-container">
-        <div className="multi-cart-menu">
-          {message}
-        </div>
-        <div className="checkout-btn-container">
+      <div className="checkout-btn-container">
 
-          <Link className="ep-btn primary checkout-btn link-to-cart" to={link}>
-            {`${intl.get('view-your')} ${entity}`}
-          </Link>
+        <Link className="ep-btn primary checkout-btn link-to-cart" to={link}>
+          {`${intl.get('view-your')} ${entity}`}
+        </Link>
 
-        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default CountInfoPopUp;

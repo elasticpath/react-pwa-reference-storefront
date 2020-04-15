@@ -23,10 +23,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import './paymentform.main.less';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
-let Config: IEpConfig | any = {};
+import './paymentform.main.less';
+
 
 const today = new Date();
 
@@ -72,9 +72,6 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       showLoader: false,
