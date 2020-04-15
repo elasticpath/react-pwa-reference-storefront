@@ -22,11 +22,11 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { ReactComponent as ArrowLeft } from '../../../images/icons/arrow_left.svg';
-import './pagination.less';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { cortexFetch } from '../../../utils/Cortex';
+import Config from '../../../ep.config.json';
 
-let Config: IEpConfig | any = {};
+import './pagination.less';
+
 
 interface SelfUri {
   self: {
@@ -59,7 +59,7 @@ function Pagination(props: PaginationProps) {
   const {
     pagination, next, previous, onPageChange, showItemsCount, zoom,
   } = props;
-  Config = getConfig().config;
+
   const pageStart = pagination['page-size'] * (pagination.current - 1);
 
   const handlePagination = (page) => {

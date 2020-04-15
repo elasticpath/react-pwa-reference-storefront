@@ -26,13 +26,11 @@ import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup, searchLookup } from '../utils/CortexLookup';
 import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './bulkorder.main.less';
 import { useCountDispatch } from '../cart-count-context';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
-
-let Config: IEpConfig | any = {};
 
 const multiCartZoomArray = [
   'carts',
@@ -80,8 +78,6 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
 
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     const defaultItem = {
       code: '', quantity: 1, product: {}, isValidField: false, isDuplicated: false,

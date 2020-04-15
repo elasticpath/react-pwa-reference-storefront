@@ -22,14 +22,13 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import * as UserPrefs from '../utils/UserPrefs';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import currencyLogoCad from '../../../images/header-icons/ca.svg';
 import currencyLogoEur from '../../../images/header-icons/eu.svg';
 import headerLogo from '../../../images/site-images/Company-Logo-v1.png';
+import Config from '../../../ep.config.json';
 
 import './appheaderlocale.main.less';
 
-let Config: IEpConfig | any = {};
 
 interface AppHeaderLocaleMainProps {
   /** is mobile view  */
@@ -54,9 +53,6 @@ class AppHeaderLocaleMain extends Component<AppHeaderLocaleMainProps, AppHeaderL
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       selectedLocaleValue: UserPrefs.getSelectedLocaleValue(),

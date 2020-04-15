@@ -23,7 +23,8 @@ import intl from 'react-intl-universal';
 import { ErrorInlet } from './MessageContext';
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
-import { getConfig } from './ConfigProvider';
+import Config from '../../../ep.config.json';
+
 
 export function timeout(ms, promise) {
   return new Promise((resolve, reject) => {
@@ -35,7 +36,6 @@ export function timeout(ms, promise) {
 }
 
 export function cortexFetch(input, init) {
-  const Config = getConfig().config;
   const requestInit = init;
 
   if (requestInit && requestInit.headers) {
@@ -156,7 +156,6 @@ export function cortexFetch(input, init) {
 }
 
 export function adminFetch(input, init) {
-  const Config = getConfig().config;
   const requestInit = init;
 
   if (requestInit && requestInit.headers) {

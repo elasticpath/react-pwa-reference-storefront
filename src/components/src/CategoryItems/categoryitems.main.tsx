@@ -24,17 +24,16 @@ import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { navigationLookup, cortexFetchNavigationLookupForm } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import ProductListMain from '../ProductList/productlist.main';
 import SearchFacetNavigationMain from '../SearchFacetNavigation/searchfacetnavigation.main';
 import FeaturedProducts from '../FeaturedProducts/featuredproducts.main';
 import ProductListPagination from '../ProductListPagination/productlistpagination.main';
 import ProductListLoadMore from '../ProductListLoadmore/productlistloadmore';
+import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
+import Config from '../../../ep.config.json';
 
 import './categoryitems.main.less';
-import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
 
-let Config: IEpConfig | any = {};
 
 const zoomArray = [
   'chosen',
@@ -107,9 +106,6 @@ class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsM
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       isLoading: true,

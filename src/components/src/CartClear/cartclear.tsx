@@ -23,12 +23,12 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
-import { ReactComponent as EllipsisIcon } from '../../../images/icons/more_horiz-24px.svg';
 import './cartclear.less';
 
-let Config: IEpConfig | any = {};
+import { ReactComponent as EllipsisIcon } from '../../../images/icons/more_horiz-24px.svg';
+
 
 interface CartClearProps {
   /** cart data */
@@ -50,13 +50,11 @@ class CartClear extends Component<CartClearProps, CartClearState> {
   constructor(props) {
     super(props);
 
-    const epConfig = getConfig();
-    Config = epConfig.config;
-
     this.state = {
       showConfirmationMsg: false,
       showLoader: false,
     };
+
     this.handleClearCart = this.handleClearCart.bind(this);
     this.handleOpenConfirmationMsg = this.handleOpenConfirmationMsg.bind(this);
     this.handleCloseConfirmationMsg = this.handleCloseConfirmationMsg.bind(this);

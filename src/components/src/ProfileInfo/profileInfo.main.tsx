@@ -23,11 +23,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './profileInfo.main.less';
 
-let Config: IEpConfig | any = {};
 
 interface ProfileInfoMainProps {
   /** profile info */
@@ -55,8 +54,6 @@ class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainSta
   constructor(props) {
     super(props);
 
-    const epConfig = getConfig();
-    Config = epConfig.config;
     const { profileInfo } = this.props;
 
     this.state = {

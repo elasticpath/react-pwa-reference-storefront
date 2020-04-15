@@ -23,11 +23,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './profileemailinfo.main.less';
 
-let Config: IEpConfig | any = {};
 
 type ProfileemailinfoMainProps = {
   /** user email */
@@ -48,8 +47,6 @@ class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, Profilee
   constructor(props) {
     super(props);
 
-    const epConfig = getConfig();
-    Config = epConfig.config;
     const { profileInfo } = this.props;
     const email = profileInfo && profileInfo._emails && profileInfo._emails[0]._element ? profileInfo._emails[0]._element[0].email : '';
 

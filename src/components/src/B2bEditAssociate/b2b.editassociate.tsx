@@ -24,11 +24,10 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './b2b.editassociate.less';
 
-let Config: IEpConfig | any = {};
 
 interface B2bEditAssociateProps {
   /** is open */
@@ -65,9 +64,6 @@ class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociate
   constructor(props: any) {
     super(props);
 
-    const epConfig = getConfig();
-    Config = epConfig.config;
-
     this.state = {
       changedRoles: [],
       isLoading: false,
@@ -75,6 +71,7 @@ class B2bEditAssociate extends Component<B2bEditAssociateProps, B2bEditAssociate
       emailErrorMessage: '',
       validEmail: true,
     };
+
     this.renderRoleSelection = this.renderRoleSelection.bind(this);
     this.handleRoleChange = this.handleRoleChange.bind(this);
     this.handleSaveClicked = this.handleSaveClicked.bind(this);

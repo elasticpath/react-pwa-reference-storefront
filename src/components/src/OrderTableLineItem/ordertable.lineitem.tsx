@@ -21,11 +21,11 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import './ordertable.lineitem.less';
+import Config from '../../../ep.config.json';
 import ImageContainer from '../ImageContainer/image.container';
 
-let Config: IEpConfig | any = {};
+import './ordertable.lineitem.less';
+
 
 interface OrderTableLineItemProps {
   /** item */
@@ -43,7 +43,6 @@ function OrderTableLineItem(props: OrderTableLineItemProps) {
   const options = item._item[0]._definition[0]._options;
   const { quantity } = item;
   const totalPrice = item._total[0].cost[0].display;
-  Config = getConfig().config;
 
   const renderBundleConfiguration = () => {
     let bundleConfigs = null;

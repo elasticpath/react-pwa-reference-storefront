@@ -22,21 +22,20 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 /* eslint-disable-next-line import/no-cycle */
 import AppModalBundleConfigurationMain from '../AppModalBundleConfiguration/appmodalbundleconfiguration.main';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
-import { ReactComponent as AddToListIcon } from '../../../images/icons/ic_add_list.svg';
+import ImageContainer from '../ImageContainer/image.container';
+import Config from '../../../ep.config.json';
 
 import './cart.lineitem.less';
 
+import { ReactComponent as AddToListIcon } from '../../../images/icons/ic_add_list.svg';
 import { ReactComponent as UpdateQuantityIcon } from '../../../images/icons/ic_update.svg';
 import { ReactComponent as RecycleBinIcon } from '../../../images/icons/ic_trash.svg';
-import ImageContainer from '../ImageContainer/image.container';
 
-let Config: IEpConfig | any = {};
 
 interface CartLineItemProps {
   /** item */
@@ -105,8 +104,6 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
   constructor(props) {
     super(props);
 
-    const epConfig = getConfig();
-    Config = epConfig.config;
     const { item } = this.props;
 
     this.state = {
@@ -606,24 +603,25 @@ class CartLineItem extends Component<CartLineItemProps, CartLineItemState> {
           </div>
         )}
         <form className="quantity-col form-content" onSubmit={this.handleQuantityChange}>
-          {(quantity !== undefined) ? [
-            <span className="input-group-btn" key="quantity-buttons">
-              <button type="button" key="quantity-button-minus" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
-                <span>–</span>
+          {(quantity !== undefined) && (
+            <>
+              <span className="input-group-btn" key="quantity-buttons">
+                <button type="button" key="quantity-button-minus" className="quantity-left-minus btn btn-number" data-type="minus" data-field="" onClick={this.handleQuantityDecrement}>
+                  <span>–</span>
+                </button>
+                <div className="quantity-col form-content form-content-quantity">
+                  <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
+                </div>
+                <button type="button" key="quantity-button-plus" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
+                  <span>+</span>
+                </button>
+              </span>
+              <button type="submit" className={`item-quantity-update-icon ${isActiveQuantityUpdate ? 'active-icon' : ''}`}>
+                <UpdateQuantityIcon />
               </button>
-              <div className="quantity-col form-content form-content-quantity">
-                <input className="product-display-item-quantity-select form-control form-control-quantity" type="number" step="1" min="1" value={quantity} onChange={e => this.setState({ quantity: e.target.value })} />
-              </div>
-              <button type="button" key="quantity-button-plus" className="quantity-right-plus btn btn-number" data-type="plus" data-field="" onClick={this.handleQuantityIncrement}>
-                <span>+</span>
-              </button>
-            </span>,
-            <button type="submit" className={`item-quantity-update-icon ${isActiveQuantityUpdate ? 'active-icon' : ''}`}>
-              <UpdateQuantityIcon />
-            </button>,
-            <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value={intl.get('update-quantity')} />,
-          ] : ('')
-          }
+              <input key="product-display-item-quantity-update-button" className="product-display-item-quantity-update-button" type="submit" value={intl.get('update-quantity')} />
+            </>
+          )}
         </form>
         {(Config.b2b.enable && isAvailableReqList) ? (
           <div className="icon-container">

@@ -20,11 +20,9 @@
  */
 
 import bloomreachFetch from './Bloomreach';
-import { searchLookup } from './CortexLookup';
+import Config from '../../../ep.config.json';
 
-import { getConfig } from './ConfigProvider';
-
-function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch.config.baseUri) {
+function generateBaseBloomreachUrl(baseUri = Config.bloomreachSearch.config.baseUri) {
   const {
     accountId,
     authKey,
@@ -33,7 +31,7 @@ function generateBaseBloomreachUrl(baseUri = getConfig().config.bloomreachSearch
     brUID2,
     url,
     refurl,
-  } = getConfig().config.bloomreachSearch.config;
+  } = Config.bloomreachSearch.config;
   return `${baseUri}${accountId}&${authKey}&${domainKey}&${requestId}&${brUID2}&${url}&${refurl}`;
 }
 
@@ -42,7 +40,7 @@ export function bloomreachSuggestionSearch<T>(keyword): Promise<T> {
   const {
     baseUri,
     requestType,
-  } = getConfig().config.bloomreachSearch.config.suggestionConfig;
+  } = Config.bloomreachSearch.config.suggestionConfig;
 
   const baseUrl = generateBaseBloomreachUrl(baseUri);
   const q = `q=${keyword}`;

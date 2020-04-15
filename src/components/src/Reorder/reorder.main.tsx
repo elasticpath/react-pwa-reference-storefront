@@ -22,13 +22,13 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
+import Config from '../../../ep.config.json';
+
 import './reorder.main.less';
 
-let Config: IEpConfig | any = {};
 
 interface ReorderMainProps {
   /** product data */
@@ -56,9 +56,6 @@ class ReorderMain extends Component<ReorderMainProps, ReorderMainState> {
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       openModal: false,

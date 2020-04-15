@@ -27,22 +27,20 @@ import BloomreachAppHeaderSearchMain from '../Bloomreach/bloomreach.appheadersea
 import AppHeaderLoginMain from '../AppHeaderLogin/appheaderlogin.main';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
-import AppHeaderTop from '../AppHeaderTop/appheadertop.main';
 import BulkOrderMain from '../BulkOrder/bulkorder.main';
 import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
-import headerLogo from '../../../images/site-images/Company-Logo-v3.svg';
-import { ReactComponent as CartIcon } from '../../../images/header-icons/cart-icon.svg';
-import { ReactComponent as BulkCart } from '../../../images/header-icons/bulk-cart.svg';
 import { useCountState } from '../cart-count-context';
-
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
+import ImageContainer from '../ImageContainer/image.container';
+import Config from '../../../ep.config.json';
 
 import './appheader.main.less';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import ImageContainer from '../ImageContainer/image.container';
 
-let Config: IEpConfig | any = {};
+import { ReactComponent as CartIcon } from '../../../images/header-icons/cart-icon.svg';
+import { ReactComponent as BulkCart } from '../../../images/header-icons/bulk-cart.svg';
+import headerLogo from '../../../images/site-images/Company-Logo-v3.svg';
+
 
 const zoomArray = [
   'defaultcart',
@@ -132,9 +130,6 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       totalQuantity: 0,

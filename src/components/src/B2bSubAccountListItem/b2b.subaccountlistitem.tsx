@@ -22,16 +22,17 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
-import '../B2bSubAccountList/b2b.subaccountlist.less';
 // eslint-disable-next-line import/no-cycle
 import SubAccountList from '../B2bSubAccountList/b2b.subaccountlist';
 import { login } from '../utils/AuthService';
 import { adminFetch } from '../utils/Cortex';
+import Config from '../../../ep.config.json';
+
+import '../B2bSubAccountList/b2b.subaccountlist.less';
+
 import { ReactComponent as EnabledStatusIcon } from '../../../images/icons/check-circle.svg';
 import { ReactComponent as DisabledStatusIcon } from '../../../images/icons/remove-circle.svg';
 
-let Config: IEpConfig | any = {};
 
 interface B2bSubAccountListItemProps {
   /** account data */
@@ -103,8 +104,7 @@ const zoom = [
 class B2bSubAccountListItem extends Component<B2bSubAccountListItemProps, B2bSubAccountListItemState> {
   constructor(props) {
     super(props);
-    const epConfig = getConfig();
-    Config = epConfig.config;
+
     this.state = {
       subAccounts: [],
       subAccountData: {},

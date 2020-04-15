@@ -92,7 +92,10 @@
       "return_url": "",
       "show_submit_thumbnail": true,
       "submit_prompt_title": "",
-      "submit_prompt_desc": ""
+      "submit_prompt_desc": "",
+      "title": "",
+      "description": "",
+      "submit_button_text": ""
     },
     "brandAmbassador": {
       "title": "",

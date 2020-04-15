@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './cart.create.less';
 
@@ -37,8 +37,6 @@ const zoomArray = [
   'carts:element:additemstocartform',
   'carts:createcartform',
 ];
-
-let Config: IEpConfig | any = {};
 
 interface CartCreateProps {
   /** handle modal close */
@@ -73,9 +71,6 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       cartElements: [],

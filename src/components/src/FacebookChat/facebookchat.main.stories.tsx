@@ -24,11 +24,7 @@ import { storiesOf } from '@storybook/react';
 
 import { object } from "@storybook/addon-knobs/react";
 import FacebookChat from './facebookchat.main';
-import { getConfig } from '../utils/ConfigProvider';
-
-let Config:any = {};
-const epConfig = getConfig();
-Config = epConfig.config;
+import Config from '../../../ep.config.json';
 
 storiesOf('Components|FacebookChat', module)
   .addParameters({

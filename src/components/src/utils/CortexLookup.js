@@ -19,8 +19,10 @@
  *
  */
 
+// @ts-check
+
 import { cortexFetch } from './Cortex';
-import { getConfig } from './ConfigProvider';
+import Config from '../../../ep.config.json';
 
 // Array of zoom parameters to pass to Cortex for navigationForm
 const navigationFormZoomArray = [
@@ -307,7 +309,6 @@ const batchFormZoomArray = [
 ];
 
 export function cortexFetchNavigationLookupForm() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_navigationLookupForm`) === null) {
       cortexFetch('/?zoom=lookups:navigationlookupform', {
@@ -334,7 +335,6 @@ export function cortexFetchNavigationLookupForm() {
 }
 
 export function cortexFetchItemLookupForm() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`) === null) {
       cortexFetch('/?zoom=lookups:itemlookupform', {
@@ -361,7 +361,6 @@ export function cortexFetchItemLookupForm() {
 }
 
 export function cortexFetchBatchItemLookupForm() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_batchLookupForm`) === null) {
       cortexFetch('/?zoom=lookups:batchitemslookupform,lookups:batchofferslookupform', {
@@ -393,7 +392,6 @@ export function cortexFetchBatchItemLookupForm() {
 }
 
 export function cortexFetchPurchaseLookupForm() {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (localStorage.getItem(`${Config.cortexApi.scope}_purchaseLookupForm`) === null) {
       cortexFetch('/?zoom=lookups:purchaselookupform', {
@@ -420,7 +418,6 @@ export function cortexFetchPurchaseLookupForm() {
 }
 
 export function navigationLookup(navigationLookupCode) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (navigationLookupCode.includes('/') && navigationLookupCode.includes(Config.cortexApi.scope.toLowerCase())) {
       cortexFetch(`/${navigationLookupCode}?zoom=${navigationFormZoomArray.join()}`,
@@ -471,7 +468,6 @@ export function navigationLookup(navigationLookupCode) {
 }
 
 export function itemLookup(itemLookupCode, reload = true) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     // eslint-disable-next-line no-template-curly-in-string
     cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_itemLookupForm`)}?zoom=${itemFormZoomArray.join()}&followlocation=true`,
@@ -505,7 +501,6 @@ export function itemLookup(itemLookupCode, reload = true) {
 }
 
 export function purchaseLookup(purchaseLookupCode) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_purchaseLookupForm`)}?zoom=${purchaseFormZoomArray.join()}&followlocation=true`,
       {
@@ -537,7 +532,6 @@ export function purchaseLookup(purchaseLookupCode) {
 }
 
 export function searchLookup(searchKeyword) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     if (searchKeyword.includes('/') && searchKeyword.includes(Config.cortexApi.scope.toLowerCase())) {
       cortexFetch(`/${searchKeyword}?zoom=${searchFormZoomArray.join()}`,
@@ -614,7 +608,6 @@ export function searchLookup(searchKeyword) {
 }
 
 export function batchLookup(batchLookupCodes) {
-  const Config = getConfig().config;
   return new Promise(((resolve, reject) => {
     cortexFetch(`${localStorage.getItem(`${Config.cortexApi.scope}_batchLookupForm`)}?zoom=${batchFormZoomArray.join()}&followlocation=true`,
       {

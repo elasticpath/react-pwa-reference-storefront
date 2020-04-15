@@ -29,15 +29,14 @@ import ProductRecommendationsDisplayMain from '../ProductRecommendations/product
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
 import ProductDisplayItemDetails from '../ProductDisplayItemDetails/productdisplayitem.details';
-import './productdisplayitem.main.less';
 import ImageContainer from '../ImageContainer/image.container';
-import { ProductDisplayItemMainProps, ProductDisplayItemMainState } from './productdisplayitem.main.d';
 import ProductDisplayAttributes from '../ProductDisplayAttributes/productDisplayAttributes';
+import Config from '../../../ep.config.json';
 
-let Config: IEpConfig | any = {};
+import './productdisplayitem.main.less';
+
 
 const REQUISITION_LISTS_ZOOM : string[] = [
   'itemlistinfo',
@@ -45,6 +44,46 @@ const REQUISITION_LISTS_ZOOM : string[] = [
   'itemlistinfo:allitemlists:element',
   'itemlistinfo:allitemlists:element:additemstoitemlistform',
 ];
+
+export interface ProductDisplayItemMainProps {
+  /** product id */
+  productId: string,
+  /** image url */
+  imageUrl?: string,
+  /** data set */
+  dataSet?: { cartBtnOverride?: string },
+  /** handle add to cart */
+  onAddToCart?: (...args: any[]) => any,
+  /** handle add to wishlist */
+  onAddToWishList?: (...args: any[]) => any,
+  /** handle add to requisition list */
+  onRequisitionPage?: (...args: any[]) => any,
+  /** handle change product feature */
+  onChangeProductFeature?: (...args: any[]) => any,
+  /** handle reload page */
+  onReloadPage?: (...args: any[]) => any,
+  /** product link */
+  productLink?: string,
+  /** is in standalone mode */
+  isInStandaloneMode?: boolean,
+  /** item detail link */
+  itemDetailLink?: string,
+  /** featured product attribute */
+  featuredProductAttribute?: boolean,
+}
+
+export interface ProductDisplayItemMainState {
+  productId: any,
+  productData: any,
+  requisitionListData: any,
+  arFileExists: boolean,
+  itemConfiguration: { [key: string]: any },
+  detailsProductData: any,
+  vrMode: boolean;
+  multiImages: any,
+  meshVRImageExists: boolean,
+  backgroundVRImageExists: boolean,
+}
 
 class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, ProductDisplayItemMainState> {
   static async urlExists(url) {
@@ -74,9 +113,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       productId: '',

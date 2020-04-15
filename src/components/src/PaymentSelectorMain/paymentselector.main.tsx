@@ -24,13 +24,12 @@ import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
 import PaymentFormMain from '../PaymentForm/paymentform.main';
 import PaymentMethodContainer from '../PaymentMethodContainer/paymentmethod.container';
+import Config from '../../../ep.config.json';
 
 import './paymentselector.main.less';
 
-let Config: IEpConfig | any = {};
 
 interface PaymentSelectorMainProps {
   /** handle payment method change */
@@ -66,9 +65,6 @@ class PaymentSelectorMain extends Component<PaymentSelectorMainProps, PaymentSel
       openNewPaymentModal: false,
       isLoading: false,
     };
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.handleCloseNewPaymentModal = this.handleCloseNewPaymentModal.bind(this);
     this.handlePaymentInstrumentSelection = this.handlePaymentInstrumentSelection.bind(this);

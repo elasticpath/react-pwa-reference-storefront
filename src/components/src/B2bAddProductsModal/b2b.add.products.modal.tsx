@@ -21,16 +21,14 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
+import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
 import './b2b.add.products.modal.less';
-// eslint-disable-next-line import/order
-import Modal from 'react-responsive-modal';
 
-let Config: IEpConfig | any = {};
 
 interface AddProductsModalProps {
   /** cart data */
@@ -72,9 +70,6 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     const defaultItem = {
       code: '', quantity: 1, product: {}, isValidField: false, isDuplicated: false,

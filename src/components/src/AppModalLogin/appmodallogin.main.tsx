@@ -25,10 +25,10 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
 import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
-import './appmodallogin.main.less';
-import { getConfig, IEpConfig } from '../utils/ConfigProvider';
+import Config from '../../../ep.config.json';
 
-let Config: IEpConfig | any = {};
+import './appmodallogin.main.less';
+
 
 interface AppModalLoginMainProps {
   /** handle modal close */
@@ -56,12 +56,14 @@ interface AppModalLoginMainProps {
     [key: string]: any
   },
 }
+
 interface AppModalLoginMainState {
     username: string,
     password: string,
     failedLogin: boolean,
     isLoading: boolean,
 }
+
 class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginMainState> {
   static defaultProps = {
     onLogin: () => {},
@@ -73,9 +75,6 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
 
   constructor(props) {
     super(props);
-
-    const epConfig = getConfig();
-    Config = epConfig.config;
 
     this.state = {
       username: '',
