@@ -53,6 +53,7 @@ import ServicesPage from './containers/ServicesPage';
 import SupportPage from './containers/SupportPage';
 import PrivacyPoliciesPage from './containers/PrivacyPoliciesPage';
 import PurchaseHistoryPage from './containers/b2b/PurchaseHistoryPage';
+import AddressBookPage from './containers/b2b/AddressBookPage';
 
 const router = [{
   path: '/',
@@ -185,7 +186,7 @@ const router = [{
     },
     {
       path: '/account/address-book',
-      render: () => 'Address Book',
+      component: AddressBookPage,
     },
     {
       path: '/account/orders',

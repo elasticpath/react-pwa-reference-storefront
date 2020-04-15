@@ -1,0 +1,210 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../theme/common.less';
+
+.address-book-page {
+  margin-bottom: 200px;
+}
+
+.address-data {
+  margin-bottom: 32px;
+}
+
+.address-book-container {
+  font-size: 14px;
+  margin-bottom: 35px;
+
+  h2 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: @mainTextColor;
+    line-height: 19px;
+  }
+  .address-book-content {
+    position: relative;
+
+    .ep-btn {
+      height: auto;
+      width: auto;
+      min-height: 0;
+      line-height: 20px;
+      padding: 0;
+      min-width: 0;
+      border: none;
+      font-size: 14px;
+      background-color: unset;
+
+      &:focus {
+        outline: 0 auto transparent;
+      }
+
+      &:hover {
+        color: @firstComplimentColor;
+        text-decoration: underline;
+        background-color: transparent;
+      }
+    }
+
+    .miniLoader {
+      border-width: 3px;
+      width: 34px;
+      height: 34px !important;
+      position: absolute;
+      left: 42%;
+      top: 70px;
+    }
+  }
+  .address-info-inner-container {
+    display: flex;
+
+    .address-container {
+      margin-bottom: 5px;
+      padding-left: 0;
+    }
+
+    .address-info-block {
+      border: none;
+    }
+
+    .delete-address-btn {
+      position: relative;
+      margin-left: 10px;
+
+      &:before {
+        content: '';
+        height: 14px;
+        width: 2px;
+        border-left: 1px solid @thirdComplimentColor;
+        position: absolute;
+        top: 2px;
+        left: -10px;
+      }
+    }
+
+    @media (max-width: @mobileWidth) {
+      display: block;
+    }
+  }
+
+  .address-info-container {
+    margin-top: 0;
+    .ship-info-col {
+      width: 50%;
+      box-sizing: border-box;
+      margin-right: 20px;
+    }
+
+    .bill-info-col {
+      width: 50%;
+      margin-left: 20px;
+    }
+
+    .ship-info-col,
+    .bill-info-col {
+      border: 1px solid @secondBorderColor;
+      outline: 1px solid transparent;
+
+      &.selected {
+        background-color: #e8f1f4;
+        border-color: @firstComplimentColor;
+        outline-color: @firstComplimentColor;
+      }
+    }
+
+    @media (max-width: @mobileWidth) {
+      .ship-info-col {
+        width: 100%;
+        margin: 0;
+      }
+
+      .bill-info-col {
+        margin: 15px 0 0;
+        width: 100%;
+      }
+    }
+  }
+
+  .address-info-block {
+    .profile-address-container {
+      .ep-btn {
+        height: auto;
+        width: auto;
+        min-height: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        padding: 0;
+        min-width: 0;
+        border: none;
+        &:hover {
+          color: @firstComplimentColor;
+          text-decoration: underline;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+.address-info {
+  &-container {
+    margin-top: 20px;
+    &-title {
+      font-size: 12px;
+      color: @mainTextColor;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    &:after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+    .address-addresses-container {
+      margin-bottom: 0;
+    }
+    .ep-btn {
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+  }
+  &-col {
+    width: 50%;
+    float: left;
+    @media (max-width: 991px) {
+      width: 100%;
+      +.address-info-col {
+        margin-top: 15px;
+      }
+    }
+  }
+  &-block {
+    padding: 0 15px 35px 15px;
+    border: 1px solid @secondBorderColor;
+    @media (min-width: @mobileWidth) {
+      padding: 0 10px 25px 20px;
+    }
+  }
+}

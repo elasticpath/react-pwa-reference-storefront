@@ -38,6 +38,8 @@ interface AddressFormMainProps {
   onCloseModal?: (...args: any[]) => any,
   /** Retrieves the saved address. */
   fetchData?: (...args: any[]) => any,
+  /** show alert */
+  onShowAlert?: (...args: any[]) => any,
 }
 
 interface AddressFormMainState {
@@ -69,6 +71,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
     onCloseModal: () => {},
     fetchData: () => {},
     addressData: undefined,
+    onShowAlert: () => {},
   };
 
   constructor(props) {
@@ -147,7 +150,9 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
 
   submitAddress(event) {
     event.preventDefault();
-    const { addressData, fetchData, onCloseModal } = this.props;
+    const {
+      addressData, fetchData, onCloseModal, onShowAlert,
+    } = this.props;
     const {
       addressForm, firstName, lastName, address, extendedAddress, city, country, subCountry, postalCode,
     } = this.state;
@@ -188,6 +193,8 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
           this.setState({ failedSubmit: false }, () => {
             fetchData();
             onCloseModal();
+            const isSuccess = true;
+            onShowAlert(intl.get('added-new-address-message'), isSuccess);
           });
         }
       }).catch((error) => {

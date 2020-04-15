@@ -59,7 +59,6 @@
     border-radius: 0;
     box-shadow: none;
     white-space: nowrap;
-    height: auto;
     display: inline-block;
     width: 90px;
     height: 30px;
@@ -111,25 +110,6 @@
     margin-top: 10px;
   }
 
-  .profile-address-container {
-
-    .edit-address-btn {
-      + .delete-address-btn {
-        position: relative;
-        margin-left: 10px;
-        &:before {
-          content: '';
-          height: 14px;
-          width: 2px;
-          border-left: 2px solid @secondBorderColor;
-          position: absolute;
-          top: 2px;
-          left: -10px;
-        }
-      }
-    }
-  }
-
   .personal-info-email,
   .profile-address-container,
   .profile-payment-method-container {
@@ -137,7 +117,8 @@
       height: auto;
       width: auto;
       min-height: 0;
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 500;
       line-height: 20px;
       padding: 0;
       min-width: 0;

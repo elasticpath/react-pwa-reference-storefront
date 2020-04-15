@@ -117,6 +117,7 @@ export default class MyAccountMain extends React.Component<MyAccountMainProps, M
     sideMenuItems.push(
       { to: '/account', children: profileName },
       { to: '/account/purchase-history', children: 'purchase-history' },
+      { to: '/account/address-book', children: 'address-book', id: 'address-book_item' },
       { to: '/account/wishlists', children: 'wishlists' },
     );
 
