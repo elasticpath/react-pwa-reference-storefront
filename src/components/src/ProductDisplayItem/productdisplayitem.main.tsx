@@ -19,7 +19,7 @@
  *
  */
 
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import intl from 'react-intl-universal';
 import Slider from 'react-slick';
 import { login } from '../utils/AuthService';
@@ -410,7 +410,11 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     : ('')
                   }
 
-                  {vrMode ? (<VRProductDisplayItem meshUri={this.getVRMesh()} handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />) : this.renderProductImage()}
+                  {vrMode ? (
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <VRProductDisplayItem meshUri={this.getVRMesh()} handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />
+                    </Suspense>
+                  ) : this.renderProductImage()}
 
                 </div>
               </div>

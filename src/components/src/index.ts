@@ -19,6 +19,7 @@
  *
  */
 
+import React from 'react';
 import AddPromotionContainer from './AddPromotionContainer/add.promotion.container';
 import AddressContainer from './AddressContainer/address.container';
 import AppFooterMain from './AppFooterMain/appfooter.main';
@@ -60,7 +61,6 @@ import PaymentFormMain from './PaymentForm/paymentform.main';
 import PaymentMethodContainer from './PaymentMethodContainer/paymentmethod.container';
 import PowerReviewMain from './PowerReview/powerreview.main';
 import ProductDisplayItemMain from './ProductDisplayItem/productdisplayitem.main';
-import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 import ProductListMain from './ProductList/productlist.main';
 import ProductListItemMain from './ProductListItem/productlistitem.main';
 import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
@@ -95,15 +95,19 @@ import B2bEditAccount from './B2bEditAccount/b2b.editaccount';
 import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
-import VRProductDisplayItem from './VRProductDisplayItem/VRProductDisplayItem';
 import CartClear from './CartClear/cartclear';
-import { CountProvider } from './cart-count-context';
 import { RequisitionListCountProvider } from './requisition-list-count-context';
-import B2BHomePage from './B2bHomePage/b2b.home.page';
-import B2CHomePage from './B2cHomePage/b2c.home.page';
+import { CountProvider } from './cart-count-context';
 import ImageContainer from './ImageContainer/image.container';
 import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
 import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
+
+const VRProductDisplayItem = React.lazy(() => import('./VRProductDisplayItem/VRProductDisplayItem'));
+const ProductDisplayItemDetails = React.lazy(() => import('./ProductDisplayItemDetails/productdisplayitem.details'));
+const B2BHomePage = React.lazy(() => import('./B2bHomePage/b2b.home.page'));
+const B2CHomePage = React.lazy(() => import('./B2cHomePage/b2c.home.page'));
+
+// All these exports should just be React.lazy's which just return promises that the components can then load...
 
 export {
   AddPromotionContainer,

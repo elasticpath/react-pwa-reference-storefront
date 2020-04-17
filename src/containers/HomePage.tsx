@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { withRouter } from 'react-router';
 import {
   B2BHomePage,
@@ -32,12 +32,16 @@ import './HomePage.less';
 const HomePage: React.FunctionComponent = () => {
   if (!Config.b2b.enable) {
     return (
-      <B2CHomePage />
+      <Suspense fallback={<div>Loading...</div>}>
+        <B2CHomePage />
+      </Suspense>
     );
   }
 
   return (
-    <B2BHomePage />
+    <Suspense fallback={<div>Loading...</div>}>
+      <B2BHomePage />
+    </Suspense>
   );
 };
 

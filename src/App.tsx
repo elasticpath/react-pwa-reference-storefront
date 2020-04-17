@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
@@ -175,11 +175,13 @@ const Root = () => {
     />,
     <Messagecontainer key="message-container" message={error} />,
     <div key="app-content" className="app-content">
-      <Switch>
-        {routes.map(route => (
-          <RouteWithSubRoutes key={route.path} {...route} />
-        ))}
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          {routes.map(route => (
+            <RouteWithSubRoutes key={route.path} {...route} />
+          ))}
+        </Switch>
+      </Suspense>
     </div>,
     <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,
     <ChatComponent key="chat-component" />,

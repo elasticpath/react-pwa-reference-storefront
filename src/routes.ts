@@ -18,12 +18,10 @@
  *
  *
  */
+import React, { Suspense, lazy } from 'react';
 
-import HomePage from './containers/HomePage';
-import CartPage from './containers/CartPage';
 import CategoryPage from './containers/CategoryPage';
 import CheckoutPage from './containers/CheckoutPage';
-import ProductDetailPage from './containers/ProductDetailPage';
 import ProfilePage from './containers/ProfilePage';
 import OrderHistoryPage from './containers/OrderHistoryPage';
 import PurchaseReceiptPage from './containers/PurchaseReceiptPage';
@@ -52,7 +50,11 @@ import IndustriesPage from './containers/IndustriesPage';
 import ServicesPage from './containers/ServicesPage';
 import SupportPage from './containers/SupportPage';
 import PrivacyPoliciesPage from './containers/PrivacyPoliciesPage';
-import PurchaseHistoryPage from './containers/b2b/PurchaseHistoryPage';
+
+const HomePage = lazy(() => import('./containers/HomePage'));
+const CartPage = lazy(() => import('./containers/CartPage'));
+const ProductDetailPage = lazy(() => import('./containers/ProductDetailPage'));
+const PurchaseHistoryPage = lazy(() => import('./containers/b2b/PurchaseHistoryPage'));
 
 const router = [{
   path: '/',
