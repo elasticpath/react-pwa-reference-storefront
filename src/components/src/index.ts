@@ -101,13 +101,11 @@ import { CountProvider } from './cart-count-context';
 import ImageContainer from './ImageContainer/image.container';
 import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
 import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
+import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
+import VRProductDisplayItem from './VRProductDisplayItem/VRProductDisplayItem';
 
-const VRProductDisplayItem = React.lazy(() => import('./VRProductDisplayItem/VRProductDisplayItem'));
-const ProductDisplayItemDetails = React.lazy(() => import('./ProductDisplayItemDetails/productdisplayitem.details'));
-const B2BHomePage = React.lazy(() => import('./B2bHomePage/b2b.home.page'));
-const B2CHomePage = React.lazy(() => import('./B2cHomePage/b2c.home.page'));
-
-// All these exports should just be React.lazy's which just return promises that the components can then load...
+const B2BHomePage = React.lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
+const B2CHomePage = React.lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
 
 export {
   AddPromotionContainer,
