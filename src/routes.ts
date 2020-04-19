@@ -18,43 +18,42 @@
  *
  *
  */
-import React, { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 
-import CategoryPage from './containers/CategoryPage';
-import CheckoutPage from './containers/CheckoutPage';
-import ProfilePage from './containers/ProfilePage';
-import OrderHistoryPage from './containers/OrderHistoryPage';
-import PurchaseReceiptPage from './containers/PurchaseReceiptPage';
-import RegistrationPage from './containers/RegistrationPage';
-import CheckoutAuthPage from './containers/CheckoutAuthPage';
-import SearchResultsPage from './containers/SearchResultsPage';
-import MaintenancePage from './containers/MaintenancePage';
-import AboutUsPage from './containers/AboutUsPage';
-import ContactUsPage from './containers/ContactUsPage';
-import TermsAndConditionsPage from './containers/TermsAndConditionsPage';
-import OrderReviewPage from './containers/OrderReviewPage';
-import WishListsPage from './containers/WishListsPage';
-import ShippingReturnsPage from './containers/ShippingReturns';
-import ProductsComparePage from './containers/ProductsComparePage';
-import WriteReview from './containers/WriteReviewPage';
-import ChangePasswordForm from './containers/ChangePasswordPage';
-import ResetPasswordForm from './containers/ResetPasswordPage';
-import MyAccountMain from './containers/MyAccountMain';
-import Accounts from './containers/b2b/Accounts';
-import AccountMain from './containers/b2b/AccountMain';
-import RequisitionList from './containers/b2b/RequisitionList';
-import RequisitionPageMain from './containers/b2b/RequisitionPageMain';
-import AddPaymentMethod from './containers/AddPaymentMethod';
-import CompanyPage from './containers/CompanyPage';
-import IndustriesPage from './containers/IndustriesPage';
-import ServicesPage from './containers/ServicesPage';
-import SupportPage from './containers/SupportPage';
-import PrivacyPoliciesPage from './containers/PrivacyPoliciesPage';
-
-const HomePage = lazy(() => import('./containers/HomePage'));
-const CartPage = lazy(() => import('./containers/CartPage'));
-const ProductDetailPage = lazy(() => import('./containers/ProductDetailPage'));
-const PurchaseHistoryPage = lazy(() => import('./containers/b2b/PurchaseHistoryPage'));
+const CategoryPage = lazy(() => import(/* webpackChunkName: "CategoryPage" */ './containers/CategoryPage'));
+const CheckoutPage = lazy(() => import(/* webpackChunkName: "CheckoutPage" */ './containers/CheckoutPage'));
+const ProfilePage = lazy(() => import(/* webpackChunkName: "ProfilePage" */ './containers/ProfilePage'));
+const OrderHistoryPage = lazy(() => import(/* webpackChunkName: "OrderHistoryPage" */ './containers/OrderHistoryPage'));
+const PurchaseReceiptPage = lazy(() => import(/* webpackChunkName: "PurchaseReceiptPage" */ './containers/PurchaseReceiptPage'));
+const RegistrationPage = lazy(() => import(/* webpackChunkName: "RegistrationPage" */ './containers/RegistrationPage'));
+const CheckoutAuthPage = lazy(() => import(/* webpackChunkName: "SearchResultsPage" */ './containers/CheckoutAuthPage'));
+const SearchResultsPage = lazy(() => import(/* webpackChunkName: "SearchResultsPage" */ './containers/SearchResultsPage'));
+const MaintenancePage = lazy(() => import(/* webpackChunkName: "MaintenancePage" */ './containers/MaintenancePage'));
+const AboutUsPage = lazy(() => import(/* webpackChunkName: "ContactUsPage" */ './containers/AboutUsPage'));
+const ContactUsPage = lazy(() => import(/* webpackChunkName: "ContactUsPage" */ './containers/ContactUsPage'));
+const TermsAndConditionsPage = lazy(() => import(/* webpackChunkName: "TermsAndConditionsPage" */ './containers/TermsAndConditionsPage'));
+const OrderReviewPage = lazy(() => import(/* webpackChunkName: "OrderReviewPage" */ './containers/OrderReviewPage'));
+const WishListsPage = lazy(() => import(/* webpackChunkName: "WishListsPage" */ './containers/WishListsPage'));
+const ShippingReturnsPage = lazy(() => import(/* webpackChunkName: "ShippingReturnsPage" */ './containers/ProductsComparePage'));
+const ProductsComparePage = lazy(() => import(/* webpackChunkName: "ProductsComparePage" */ './containers/ProductsComparePage'));
+const WriteReview = lazy(() => import(/* webpackChunkName: "WriteReview" */ './containers/WriteReviewPage'));
+const ChangePasswordForm = lazy(() => import(/* webpackChunkName: "ChangePasswordForm" */ './containers/ChangePasswordPage'));
+const ResetPasswordForm = lazy(() => import(/* webpackChunkName: "ResetPasswordForm" */ './containers/ResetPasswordPage'));
+const MyAccountMain = lazy(() => import(/* webpackChunkName: "MyAccountMain" */ './containers/MyAccountMain'));
+const Accounts = lazy(() => import(/* webpackChunkName: "Accounts" */ './containers/b2b/Accounts'));
+const AccountMain = lazy(() => import(/* webpackChunkName: "AccountMain" */ './containers/b2b/AccountMain'));
+const RequisitionList = lazy(() => import(/* webpackChunkName: "RequisitionList" */ './containers/b2b/RequisitionList'));
+const RequisitionPageMain = lazy(() => import(/* webpackChunkName: "RequisitionPageMain" */ './containers/b2b/RequisitionPageMain'));
+const AddPaymentMethod = lazy(() => import(/* webpackChunkName: "AddPaymentMethod" */ './containers/AddPaymentMethod'));
+const CompanyPage = lazy(() => import(/* webpackChunkName: "CompanyPage" */ './containers/CompanyPage'));
+const IndustriesPage = lazy(() => import(/* webpackChunkName: "IndustriesPage" */ './containers/IndustriesPage'));
+const ServicesPage = lazy(() => import(/* webpackChunkName: "ServicesPage" */ './containers/ServicesPage'));
+const SupportPage = lazy(() => import(/* webpackChunkName: "SupportPage" */ './containers/SupportPage'));
+const PrivacyPoliciesPage = lazy(() => import(/* webpackChunkName: "PrivacyPoliciesPage" */ './containers/PrivacyPoliciesPage'));
+const HomePage = lazy(() => import(/* webpackChunkName: "HomePage" */ './containers/HomePage'));
+const CartPage = lazy(() => import(/* webpackChunkName: "CartPage" */ './containers/CartPage'));
+const ProductDetailPage = lazy(() => import(/* webpackChunkName: "ProductDetailPage" */ './containers/ProductDetailPage'));
+const PurchaseHistoryPage = lazy(() => import(/* webpackChunkName: "PurchaseHistoryPage" */ './containers/b2b/PurchaseHistoryPage'));
 
 const router = [{
   path: '/',
