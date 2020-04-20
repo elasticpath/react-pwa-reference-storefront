@@ -19,7 +19,7 @@
  *
  */
 
-import React, { Component, Suspense } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import intl from 'react-intl-universal';
 import Slider from 'react-slick';
 import { login } from '../utils/AuthService';
@@ -29,13 +29,14 @@ import ProductRecommendationsDisplayMain from '../ProductRecommendations/product
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
-import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
+
 import ProductDisplayItemDetails from '../ProductDisplayItemDetails/productdisplayitem.details';
 import ImageContainer from '../ImageContainer/image.container';
 import ProductDisplayAttributes from '../ProductDisplayAttributes/productDisplayAttributes';
 import Config from '../../../ep.config.json';
-
 import './productdisplayitem.main.less';
+
+const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ '../VRProductDisplayItem/VRProductDisplayItem'));
 
 
 const REQUISITION_LISTS_ZOOM : string[] = [
