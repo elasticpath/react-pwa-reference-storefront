@@ -18,7 +18,7 @@
  *
  *
  */
-
+// TESTING RS772 lazyload
 import AddPromotionContainer from './AddPromotionContainer/add.promotion.container';
 import AddressContainer from './AddressContainer/address.container';
 import AppFooterMain from './AppFooterMain/appfooter.main';
