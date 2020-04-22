@@ -48,10 +48,8 @@ declare var FB: any;
 let routes: any [];
 
 if (Config.b2b.enable) {
-  console.log('b2b routes');
   routes = b2bRoutes();
 } else {
-  console.log('b2c routes');
   routes = b2cRoutes();
 }
 

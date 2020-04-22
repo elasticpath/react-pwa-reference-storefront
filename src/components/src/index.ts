@@ -94,17 +94,16 @@ import B2bAddSubAccount from './B2bAddSubAccount/b2b.addsubaccount';
 import B2bEditAccount from './B2bEditAccount/b2b.editaccount';
 import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
-
 import { RequisitionListCountProvider } from './requisition-list-count-context';
 import { CountProvider } from './cart-count-context';
+import ImageContainer from './ImageContainer/image.container';
+import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
+import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
+import CartClear from './CartClear/cartclear';
+import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 
-const B2bSideMenu = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './B2bSideMenu/b2b.sidemenu'));
-const CartClear = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './CartClear/cartclear'));
-const ImageContainer = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './ImageContainer/image.container'));
-const DropdownCartSelection = lazy(() => import(/* webpackChunkName: "DropdownCartSelection" */ './DropdownCartSelection/dropdown.cart.selection.main'));
-const SocialNetworkSharing = lazy(() => import(/* webpackChunkName: "SocialNetworkSharing" */ './SocialNetworkSharing/socialNetworkSharing'));
-const ProductDisplayItemDetails = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './ProductDisplayItemDetails/productdisplayitem.details'));
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
+const B2bSideMenu = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './B2bSideMenu/b2b.sidemenu'));
 const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
 const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
 
