@@ -19,9 +19,11 @@
  *
  */
 
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect, useLayoutEffect } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
+import { useWindowWidth } from '@react-hook/window-size/throttled';
+import { useLocalStorage } from '@rehooks/local-storage';
 import AppHeaderSearchMain from '../AppHeaderSearch/appheadersearch.main';
 import BloomreachAppHeaderSearchMain from '../Bloomreach/bloomreach.appheadersearch.main';
 import AppHeaderLoginMain from '../AppHeaderLogin/appheaderlogin.main';
@@ -108,26 +110,316 @@ interface AppHeaderMainState {
   totalQuantity: number,
 }
 
-class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
-  static defaultProps = {
-    checkedLocation: false,
-    isInStandaloneMode: false,
-    locationSearchData: '',
-    locationPathName: '',
-    onSearchPage: () => { },
-    redirectToMainPage: () => { },
-    handleResetPassword: () => { },
-    onLocaleChange: () => { },
-    onCurrencyChange: () => { },
-    onContinueCart: () => { },
-    onGoBack: () => { },
-    appHeaderLinks: {},
-    appHeaderLoginLinks: {},
-    appHeaderNavigationLinks: {},
-    appHeaderTopLinks: {},
-    appModalLoginLinks: {},
+function useCartData() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [cartError, setError] = useState(undefined);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [cartData, setCartData] = useState(undefined);
+  const [multiCartData, setMultiCartData] = useState(undefined);
+
+  useEffect(() => {
+    const fetchCartData = () => {
+      login().then(() => {
+        cortexFetch(`/?zoom=${zoomArray.sort().join()}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+          },
+        })
+          .then(res => res.json())
+          .then((res) => {
+            setIsLoading(false);
+
+            if (res) {
+              if (res._defaultcart && res._defaultcart.length > 0) {
+                setCartData(res._defaultcart[0]);
+                setTotalQuantity(res._defaultcart[0]['total-quantity']);
+              }
+
+              if (res._carts && res._carts.length > 0) {
+                setMultiCartData(res._carts[0]);
+              }
+            } else {
+              setError('Error during fetching: no response');
+            }
+          })
+          .catch((err) => {
+            setError(`Error during fetching: ${err.message}`);
+          });
+      });
+    }
+
+    fetchCartData();
+  });
+
+  return { isLoading, cartError, totalQuantity, cartData, multiCartData };
+}
+
+const Cart: React.FC<{ myCartLink: string }> = (props) => {
+  const { count, name }: any = useCountState();
+
+  const countData = {
+    count,
+    name,
+    link: props.myCartLink,
+    entity: intl.get('cart'),
   };
 
+  return (
+    <div className={`cart-link-container multi-cart-dropdown dropdown ${count ? 'show' : ''}`}>
+      <Link className={`cart-link ${count ? 'modal-arrow' : ''}`} to={props.myCartLink}>
+        <CartIcon className="cart-icon" />
+        {intl.get('shopping-cart-nav')}
+      </Link>
+      <div className={`multi-cart-container dropdown-menu dropdown-menu-right ${count ? 'show' : ''}`}>
+        <CountInfoPopUp countData={countData} />
+      </div>
+    </div>
+  );
+};
+
+const AppHeaderMain: React.FC<AppHeaderMainProps> = (props) => {
+  const [cortexScope, setCortexScope] = useState<string | undefined>(undefined);
+
+  const { isLoading, cartError, totalQuantity, cartData, multiCartData } = useCartData();
+  const windowWidth = useWindowWidth();
+  const isDesktop = windowWidth > 1092;
+  const availability = Boolean(cartData || multiCartData);
+  const [impersonating] = useLocalStorage(`${cortexScope}_oAuthImpersonationToken`, null);
+  const [localOAuthUserName] = useLocalStorage(`${cortexScope}_oAuthUserName`, null);
+  const [localOAuthUserId] = useLocalStorage(`${cortexScope}_oAuthUserId`, null);
+  const userName = localOAuthUserName || localOAuthUserId;
+  const [localOAuthRole] = useLocalStorage(`${cortexScope}_oAuthRole`);
+  const isLoggedIn = localOAuthRole === 'REGISTERED';
+  const [isBulkModalOpened, setIsBulkModalOpened] = useState(false);
+  const [isLoggedInUser, setIsLoggedInUser] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
+
+  const {
+    checkedLocation,
+    handleResetPassword,
+    onCurrencyChange,
+    onLocaleChange,
+    onContinueCart,
+    locationSearchData,
+    locationPathName,
+    isInStandaloneMode,
+    onSearchPage,
+    redirectToMainPage,
+    appHeaderLinks,
+    appHeaderLoginLinks,
+    appHeaderNavigationLinks,
+    appHeaderTopLinks,
+    appModalLoginLinks,
+  } = props;
+
+  const handleIsOffline = (isOfflineValue) => {
+    setIsOffline(isOfflineValue);
+  };
+
+  const handleBulkModalClose = () => {
+    setIsBulkModalOpened(false);
+  }
+
+  const goBack = () => {
+    const { onGoBack } = props;
+    onGoBack();
+  }
+
+  const openModal = () => {
+    setIsBulkModalOpened(!isBulkModalOpened);
+  }
+
+  return (
+    <header key="app-header" className="app-header">
+      {impersonating && (
+        <div className="impersonation-notification">
+          {intl.get('shopper-impersonation-message')}
+          {userName}
+        </div>
+      )}
+      <div className={`main-container ${isInStandaloneMode ? 'in-standalone' : ''}`}>
+
+        <div className="main-container-col">
+          <div className="logo-container">
+            <Link to={appHeaderLinks.mainPage} className="logo">
+              <ImageContainer className="logo-image" fileName={headerLogoFileName} imgUrl={headerLogo} />
+            </Link>
+          </div>
+
+          <div className="search-container">
+            {Config.bloomreachSearch.enable ? (
+              <BloomreachAppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
+            ) : (
+              <AppHeaderSearchMain isMobileView={false} onSearchPage={onSearchPage} />
+            )}
+          </div>
+
+        </div>
+
+        <div className="main-container-col">
+
+          <div className="icons-header-container">
+            <div className="search-toggle-btn-container">
+              <button
+                className="search-toggle-btn"
+                type="button"
+                data-toggle="collapse"
+                data-target=".collapsable-container"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <div className="search-icon" />
+              </button>
+            </div>
+            <div>
+              {(multiCartData || cartData) ? (
+                <div>
+                  {!multiCartData ? (
+                    <div className="cart-link-container">
+                      <Link className="cart-link" to={appHeaderLinks.myCart}>
+                        <CartIcon className="cart-icon" />
+                        {cartData && cartData['total-quantity'] !== 0 && !isLoading && (
+                        <span className="cart-link-counter">
+                          {cartData['total-quantity']}
+                        </span>
+                        )}
+                        {intl.get('shopping-cart-nav')}
+                      </Link>
+                    </div>
+                  ) : (
+                    <Cart myCartLink={appHeaderLinks.myCart} />
+                  )}
+                </div>
+              ) : ''}
+            </div>
+            {(Config.b2b.enable && availability) && (cartData && cartData._additemstocartform) && (
+              <div className="bulk-container">
+                <BulkCart className="bulk-button" onClick={() => openModal()} />
+              </div>
+            )}
+          </div>
+
+          <div className="login-container">
+            <AppHeaderLoginMain
+              isMobileView={false}
+              permission={availability}
+              onLogout={redirectToMainPage}
+              onLogin={redirectToMainPage}
+              onResetPassword={handleResetPassword}
+              onContinueCart={onContinueCart}
+              locationSearchData={locationSearchData}
+              locationPathName={locationPathName}
+              appHeaderLoginLinks={appHeaderLoginLinks}
+              appModalLoginLinks={appModalLoginLinks}
+              isLoggedIn={isLoggedInUser}
+            />
+          </div>
+
+          <div className="toggle-btn-container">
+            {isInStandaloneMode && (
+              <button className="back-btn" aria-label="back button" type="button" onClick={() => goBack()}>
+                <span className="icon glyphicon glyphicon-chevron-left" />
+              </button>
+            )}
+            <button
+              className="toggle-btn"
+              type="button"
+              data-toggle="collapse"
+              data-target=".collapsable-container"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="icon glyphicon glyphicon-align-justify" />
+            </button>
+          </div>
+          <div className="locale-container">
+            <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
+          </div>
+          {Config.b2b.enable && (
+            <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={handleBulkModalClose} cartData={cartData} />
+          )}
+        </div>
+      </div>
+
+      <div className="central-container">
+        <div className="horizontal-menu">
+          {isDesktop && (!isOffline && !isLoading) ? (
+            <AppHeaderNavigationMain
+              isOfflineCheck={handleIsOffline}
+              isOffline={isOffline}
+              isMobileView={false}
+              onFetchNavigationError={redirectToMainPage}
+              checkedLocation={checkedLocation}
+              appHeaderNavigationLinks={appHeaderNavigationLinks}
+            />
+          ) : ('')}
+        </div>
+      </div>
+
+      <div className="collapsable-container collapse collapsed">
+        <div className="search-container">
+          {Config.bloomreachSearch.enable ? (
+            <BloomreachAppHeaderSearchMain isMobileView isFocused={false} onSearchPage={onSearchPage} />
+          ) : (
+            <AppHeaderSearchMain isMobileView isFocused={false} onSearchPage={onSearchPage} />
+          )}
+        </div>
+        <div className="mobile-locale-container">
+          <AppHeaderLocaleMain isMobileView onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
+        </div>
+
+        {(!Config.b2b.enable || (Config.b2b.enable && availability)) && (
+          <div className="mobile-cart-link-container">
+            <Link
+              className="cart-link"
+              to={appHeaderLinks.myCart}
+            >
+              <div data-toggle="collapse" data-target=".collapsable-container">
+                {intl.get('shopping-cart-nav')}
+                <div className="cart-link-counter-container">
+                  {cartData && totalQuantity !== 0 && !isLoading && !multiCartData && (
+                    <span className="cart-link-counter">
+                      {totalQuantity}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </Link>
+          </div>
+        )}
+
+        <hr className="mobile-navigation-separator" />
+
+        <div className="mobile-navigation-container">
+          {!isDesktop && (!isOffline && !isLoading) ? (
+            <AppHeaderNavigationMain
+              isOfflineCheck={handleIsOffline}
+              isMobileView
+              onFetchNavigationError={redirectToMainPage}
+              checkedLocation={checkedLocation}
+              appHeaderNavigationLinks={appHeaderNavigationLinks}
+            />
+          ) : ('')}
+        </div>
+        {/* <hr className="mobile-navigation-separator" />
+        <div className="mobile-login-container">
+          <AppHeaderLoginMain isMobileView />
+        </div> */}
+      </div>
+
+      {(isOffline) ? (
+        <div className="network-offline alert alert-primary fade in">
+          <strong className="text-center">
+            {intl.get('network-offline')}
+          </strong>
+        </div>
+      ) : ''}
+    </header>
+  );
+}
+
+class AppHeaderMain_333 extends Component<AppHeaderMainProps, AppHeaderMainState> {
   constructor(props) {
     super(props);
 
