@@ -412,7 +412,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                   }
 
                   {vrMode ? (
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<div />}>
                       <VRProductDisplayItem meshUri={this.getVRMesh()} handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />
                     </Suspense>
                   ) : this.renderProductImage()}

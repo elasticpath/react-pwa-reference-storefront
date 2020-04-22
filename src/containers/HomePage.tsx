@@ -32,14 +32,14 @@ import './HomePage.less';
 const HomePage: React.FunctionComponent = () => {
   if (!Config.b2b.enable) {
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div />}>
         <B2CHomePage />
       </Suspense>
     );
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div />}>
       <B2BHomePage />
     </Suspense>
   );

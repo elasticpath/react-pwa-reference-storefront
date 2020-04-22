@@ -184,7 +184,7 @@ const Root = () => {
     />,
     <Messagecontainer key="message-container" message={error} />,
     <div key="app-content" className="app-content">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div />}>
         <Switch>
           {routes.map(route => (
             <RouteWithSubRoutes key={route.path} {...route} />
