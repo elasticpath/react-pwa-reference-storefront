@@ -129,6 +129,8 @@
     "@storybook/react": "^5.3.14",
     "@storybook/theming": "^5.3.14",
     "@types/react-router-dom": "^4.3.5",
+    "@types/resolve": "^1.14.0",
+    "@types/webpack": "^4.41.12",
     "@typescript-eslint/eslint-plugin": "^1.12.0",
     "@typescript-eslint/parser": "^1.12.0",
     "awesome-typescript-loader": "^5.2.1",

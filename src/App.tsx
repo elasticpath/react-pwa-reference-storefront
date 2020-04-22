@@ -29,11 +29,12 @@ import {
 } from './components/src/index';
 import packageJson from '../package.json';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
-import routes from './routes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
+import b2bRoutes from './b2bRoutes';
+import b2cRoutes from './b2cRoutes';
 
 import './App.less';
 
@@ -43,6 +44,16 @@ declare global {
 
 // eslint-disable-next-line
 declare var FB: any;
+
+let routes: any [];
+
+if (Config.b2b.enable) {
+  console.log('b2b routes');
+  routes = b2bRoutes();
+} else {
+  console.log('b2c routes');
+  routes = b2cRoutes();
+}
 
 function redirectToProfilePage(keywords) {
   window.location.href = `/search/${keywords}`;

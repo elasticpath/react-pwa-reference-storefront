@@ -94,11 +94,12 @@ import B2bAddSubAccount from './B2bAddSubAccount/b2b.addsubaccount';
 import B2bEditAccount from './B2bEditAccount/b2b.editaccount';
 import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
-import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
-import CartClear from './CartClear/cartclear';
+
 import { RequisitionListCountProvider } from './requisition-list-count-context';
 import { CountProvider } from './cart-count-context';
 
+const B2bSideMenu = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './B2bSideMenu/b2b.sidemenu'));
+const CartClear = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './CartClear/cartclear'));
 const ImageContainer = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './ImageContainer/image.container'));
 const DropdownCartSelection = lazy(() => import(/* webpackChunkName: "DropdownCartSelection" */ './DropdownCartSelection/dropdown.cart.selection.main'));
 const SocialNetworkSharing = lazy(() => import(/* webpackChunkName: "SocialNetworkSharing" */ './SocialNetworkSharing/socialNetworkSharing'));
