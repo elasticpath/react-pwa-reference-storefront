@@ -53,7 +53,8 @@ const PrivacyPoliciesPage = lazy(() => import(/* webpackChunkName: "PrivacyPolic
 const HomePage = lazy(() => import(/* webpackChunkName: "HomePage" */ './containers/HomePage'));
 const CartPage = lazy(() => import(/* webpackChunkName: "CartPage" */ './containers/CartPage'));
 const ProductDetailPage = lazy(() => import(/* webpackChunkName: "ProductDetailPage" */ './containers/ProductDetailPage'));
-const PurchaseHistoryPage = lazy(() => import(/* webpackChunkName: "PurchaseHistoryPage" */ './containers/b2b/PurchaseHistoryPage'));
+
+const PurchaseHistoryPage = import(/* webpackChunkName: "PurchaseHistoryPage" */ './containers/b2b/PurchaseHistoryPage');
 
 const router = [{
   path: '/',
@@ -174,7 +175,7 @@ const router = [{
     },
     {
       path: '/account/purchase-history',
-      component: PurchaseHistoryPage,
+      component: lazy(() => PurchaseHistoryPage),
     },
     {
       path: '/account/accounts',

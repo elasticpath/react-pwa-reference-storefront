@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { lazy } from 'react';
 import AddPromotionContainer from './AddPromotionContainer/add.promotion.container';
 import AddressContainer from './AddressContainer/address.container';
 import AppFooterMain from './AppFooterMain/appfooter.main';
@@ -98,15 +98,14 @@ import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
 import CartClear from './CartClear/cartclear';
 import { RequisitionListCountProvider } from './requisition-list-count-context';
 import { CountProvider } from './cart-count-context';
-import ImageContainer from './ImageContainer/image.container';
-import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
-import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
-import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 
-
-const VRProductDisplayItem = React.lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
-const B2BHomePage = React.lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
-const B2CHomePage = React.lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
+const ImageContainer = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './ImageContainer/image.container'));
+const DropdownCartSelection = lazy(() => import(/* webpackChunkName: "DropdownCartSelection" */ './DropdownCartSelection/dropdown.cart.selection.main'));
+const SocialNetworkSharing = lazy(() => import(/* webpackChunkName: "SocialNetworkSharing" */ './SocialNetworkSharing/socialNetworkSharing'));
+const ProductDisplayItemDetails = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './ProductDisplayItemDetails/productdisplayitem.details'));
+const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
+const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
+const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
 
 export {
   AddPromotionContainer,
