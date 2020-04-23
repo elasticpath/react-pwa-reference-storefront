@@ -26,11 +26,15 @@ export default function b2bRoutes() {
   const AccountMain = import(/* webpackChunkName: "AccountMain" */ './containers/b2b/AccountMain');
   const RequisitionList = import(/* webpackChunkName: "RequisitionList" */ './containers/b2b/RequisitionList');
   const RequisitionPageMain = import(/* webpackChunkName: "RequisitionPageMain" */ './containers/b2b/RequisitionPageMain');
+
   /** All B2C routes */
-  const PurchaseHistoryPage = import(/* webpackChunkName: "PurchaseHistoryPage" */ './containers/b2b/PurchaseHistoryPage');
+  /** Place more likely first visit pages at the top to be loaded first! */
+  const HomePage = import(/* webpackChunkName: "HomePage" */ './containers/HomePage');
+  const CartPage = import(/* webpackChunkName: "CartPage" */ './containers/CartPage');
+  const ProductDetailPage = import(/* webpackChunkName: "ProductDetailPage" */ './containers/ProductDetailPage');
+  const ProfilePage = import(/* webpackChunkName: "ProfilePage" */ './containers/ProfilePage');
   const CategoryPage = import(/* webpackChunkName: "CategoryPage" */ './containers/CategoryPage');
   const CheckoutPage = import(/* webpackChunkName: "CheckoutPage" */ './containers/CheckoutPage');
-  const ProfilePage = import(/* webpackChunkName: "ProfilePage" */ './containers/ProfilePage');
   const OrderHistoryPage = import(/* webpackChunkName: "OrderHistoryPage" */ './containers/OrderHistoryPage');
   const PurchaseReceiptPage = import(/* webpackChunkName: "PurchaseReceiptPage" */ './containers/PurchaseReceiptPage');
   const RegistrationPage = import(/* webpackChunkName: "RegistrationPage" */ './containers/RegistrationPage');
@@ -54,9 +58,7 @@ export default function b2bRoutes() {
   const ServicesPage = import(/* webpackChunkName: "ServicesPage" */ './containers/ServicesPage');
   const SupportPage = import(/* webpackChunkName: "SupportPage" */ './containers/SupportPage');
   const PrivacyPoliciesPage = import(/* webpackChunkName: "PrivacyPoliciesPage" */ './containers/PrivacyPoliciesPage');
-  const HomePage = import(/* webpackChunkName: "HomePage" */ './containers/HomePage');
-  const CartPage = import(/* webpackChunkName: "CartPage" */ './containers/CartPage');
-  const ProductDetailPage = import(/* webpackChunkName: "ProductDetailPage" */ './containers/ProductDetailPage');
+  const PurchaseHistoryPage = import(/* webpackChunkName: "PurchaseHistoryPage" */ './containers/b2b/PurchaseHistoryPage');
 
   return [{
     path: '/',
