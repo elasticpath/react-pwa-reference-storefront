@@ -28,7 +28,7 @@ export default function b2bRoutes() {
   const RequisitionPageMain = import(/* webpackChunkName: "RequisitionPageMain" */ './containers/b2b/RequisitionPageMain');
 
   /** All B2C routes */
-  /** Place more likely first visit pages at the top to be loaded first! */
+  /** Place the most likely first-visit-pages to be fetched first! */
   const HomePage = import(/* webpackChunkName: "HomePage" */ './containers/HomePage');
   const CartPage = import(/* webpackChunkName: "CartPage" */ './containers/CartPage');
   const ProductDetailPage = import(/* webpackChunkName: "ProductDetailPage" */ './containers/ProductDetailPage');

@@ -22,7 +22,7 @@ import { lazy } from 'react';
 
 export default function b2cRoutes() {
   /** All B2C routes */
-  /** Place more likely first visit pages at the top to be loaded first! */
+  /** Place the most likely first-visit-pages to be fetched first! */
   const HomePage = import(/* webpackChunkName: "HomePage" */ './containers/HomePage');
   const CartPage = import(/* webpackChunkName: "CartPage" */ './containers/CartPage');
   const ProductDetailPage = import(/* webpackChunkName: "ProductDetailPage" */ './containers/ProductDetailPage');
