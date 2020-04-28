@@ -22,29 +22,29 @@ import HomePage from '../HomePage';
 import ProductDetailPage from '../ProductDetailPage';
 import CategoryPage from '../CategoryPage';
 
-export default function b2cRoutes() {
-  return [{
-    path: '/',
-    exact: true,
-    component: HomePage,
-  }, {
-    path: '/itemdetail',
-    exact: true,
-    component: ProductDetailPage,
-  }, {
-    path: '/itemdetail/:url',
-    component: ProductDetailPage,
-  }, {
-    path: '/category',
-    exact: true,
-    component: CategoryPage,
-  }, {
-    path: '/category/:id',
-    exact: true,
-    component: CategoryPage,
-  }, {
-    path: '/category/:id/*',
-    exact: true,
-    component: CategoryPage,
-  }];
-}
+const baseRouter = [{
+  path: '/',
+  exact: true,
+  component: HomePage,
+}, {
+  path: '/itemdetail',
+  exact: true,
+  component: ProductDetailPage,
+}, {
+  path: '/itemdetail/:url',
+  component: ProductDetailPage,
+}, {
+  path: '/category',
+  exact: true,
+  component: CategoryPage,
+}, {
+  path: '/category/:id',
+  exact: true,
+  component: CategoryPage,
+}, {
+  path: '/category/:id/*',
+  exact: true,
+  component: CategoryPage,
+}];
+
+export default baseRouter;

@@ -43,7 +43,7 @@ declare global {
 // eslint-disable-next-line
 declare var FB: any;
 
-const routes: any [] = baseRoutes();
+const routes: any [] = baseRoutes;
 let AdditionalRoutes: any;
 
 if (Config.b2b.enable) {
