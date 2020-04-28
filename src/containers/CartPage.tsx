@@ -33,7 +33,7 @@ import {
 import Config from '../ep.config.json';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import './CartPage.less';
+import './CartPage.scss';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [

@@ -25,7 +25,7 @@ import Modal from 'react-responsive-modal';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
-import './quickorder.main.less';
+import './quickorder.main.scss';
 
 interface QuickOrderMainProps {
   /** buy it again */

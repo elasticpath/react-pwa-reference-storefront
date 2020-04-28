@@ -34,7 +34,7 @@ import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
 import baseRoutes from './containers/RouteContainers/baseRouter';
-import './App.less';
+import './App.scss';
 
 declare global {
   interface Window { fbAsyncInit: any; }

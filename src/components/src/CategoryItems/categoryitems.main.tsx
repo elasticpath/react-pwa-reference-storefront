@@ -32,7 +32,7 @@ import ProductListLoadMore from '../ProductListLoadmore/productlistloadmore';
 import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
 import Config from '../../../ep.config.json';
 
-import './categoryitems.main.less';
+import './categoryitems.main.scss';
 
 
 const zoomArray = [

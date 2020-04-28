@@ -24,7 +24,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
-import './productlistpagination.less';
+import './productlistpagination.scss';
 
 let paginationPreviousLinkVar = '';
 let paginationNextLinkVar = '';

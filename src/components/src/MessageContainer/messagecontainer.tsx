@@ -26,7 +26,7 @@ import { ReactComponent as WarningIcon } from '../../../images/icons/warning-ico
 import { ReactComponent as InfoIcon } from '../../../images/icons/info-icon.svg';
 import { ErrorRemove } from '../utils/MessageContext';
 
-import './messagecontainer.less';
+import './messagecontainer.scss';
 
 interface MessageContainerProps {
   /** message */

@@ -1,0 +1,103 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../theme/common.scss';
+
+.wish-list-container {
+  min-height: 100%;
+
+  .wish-list-total-quantity {
+    display: none;
+  }
+
+  .wish-list-main-container {
+    float: left;
+    width: 100%;
+    position: relative;
+    min-height: 1px;
+    margin-bottom: 100px;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .wish-list-empty-container {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      text-align: center;
+    }
+  }
+
+  .wish-list-container-inner {
+    .wish-list-title-container {
+      margin-bottom: 15px;
+      border-bottom: 1px solid $mainBorderColor;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: $mainBackgroundColor;
+
+      .view-title {
+        border: none;
+      }
+
+      h1 {
+        display: inline-block;
+        position: relative;
+        width: 70%;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 5px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: gray;
+      }
+    }
+
+    .wish-list-sidebar {
+      display: block;
+      width: 100%;
+      min-height: 1px;
+      margin-bottom: 20px;
+
+      .wish-list-sidebar-inner {
+        display: inline-block;
+        padding: 32px;
+        border-top: 1px solid $mainBorderColor;
+        border-radius: 0;
+        background-color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
+        background: $mainBackgroundColor;
+        font-weight: bold;
+        width: 100%;
+
+        h3 {
+          margin: 0 0 32px 0;
+        }
+      }
+    }
+  }
+}

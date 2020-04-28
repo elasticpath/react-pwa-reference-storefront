@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import Slider from 'react-slick';
 import ImageContainer from '../ImageContainer/image.container';
 
-import './carousel.homepage.less';
+import './carousel.homepage.scss';
 
 import carouselBaner1 from '../../../images/carousel-images/baner_1.jpg';
 import carouselBaner2 from '../../../images/carousel-images/baner_2.jpg';

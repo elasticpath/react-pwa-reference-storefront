@@ -26,7 +26,7 @@ import { login, loginRegistered } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
-import './CheckoutAuthPage.less';
+import './CheckoutAuthPage.scss';
 
 interface CheckoutAuthPageState{
     username: string,

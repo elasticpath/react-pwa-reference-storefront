@@ -26,7 +26,7 @@ import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './b2b.editassociate.less';
+import './b2b.editassociate.scss';
 
 
 interface B2bEditAssociateProps {

@@ -33,7 +33,7 @@ import { cortexFetch } from '../../utils/Cortex';
 import { DropdownCartSelection } from '../../components/src';
 import Pagination from '../../components/src/Pagination/pagination';
 
-import './RequisitionList.less';
+import './RequisitionList.scss';
 
 const listsZoomArray = [
   'itemlistinfo',

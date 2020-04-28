@@ -26,7 +26,7 @@ import Modal from 'react-responsive-modal';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './purchase.order.widget.modal.less';
+import './purchase.order.widget.modal.scss';
 
 
 interface PurchaseOrderWidgetModalState {

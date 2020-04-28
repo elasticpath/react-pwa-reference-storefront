@@ -34,7 +34,7 @@ import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
 import * as Config from '../../ep.config.json';
 
-import './RequisitionPageMain.less';
+import './RequisitionPageMain.scss';
 import Pagination from '../../components/src/Pagination/pagination';
 import DropdownCartSelection from '../../components/src/DropdownCartSelection/dropdown.cart.selection.main';
 

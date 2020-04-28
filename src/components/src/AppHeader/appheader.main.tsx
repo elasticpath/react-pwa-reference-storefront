@@ -35,7 +35,7 @@ import { login } from '../utils/AuthService';
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';
 
-import './appheader.main.less';
+import './appheader.main.scss';
 
 import { ReactComponent as CartIcon } from '../../../images/header-icons/cart-icon.svg';
 import { ReactComponent as BulkCart } from '../../../images/header-icons/bulk-cart.svg';

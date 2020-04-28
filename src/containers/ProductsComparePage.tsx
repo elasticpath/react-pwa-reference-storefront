@@ -22,7 +22,7 @@
 import React from 'react';
 import { ProductDisplayItemMain } from '../components/src/index';
 
-import './ProductsComparePage.less';
+import './ProductsComparePage.scss';
 
 interface ProductsComparePageProps {
   history: any,

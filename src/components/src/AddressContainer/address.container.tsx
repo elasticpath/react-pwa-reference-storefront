@@ -21,7 +21,7 @@
 
 import React from 'react';
 
-import './address.container.less';
+import './address.container.scss';
 
 interface AddressContainerProps {
   /** name data */

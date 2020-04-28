@@ -27,7 +27,7 @@ import { cortexFetch } from '../../../utils/Cortex';
 import { login } from '../../../utils/AuthService';
 import Config from '../../../ep.config.json';
 
-import './cart.main.less';
+import './cart.main.scss';
 
 
 interface CartMainProps {

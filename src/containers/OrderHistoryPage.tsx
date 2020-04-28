@@ -29,7 +29,7 @@ import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 import { ReactComponent as AngleLeftIcon } from '../images/icons/outline-chevron_left-24px.svg';
 
-import './OrderHistoryPage.less';
+import './OrderHistoryPage.scss';
 
 const zoomArray = [
   'defaultcart:additemstocartform',

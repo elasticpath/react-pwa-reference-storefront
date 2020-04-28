@@ -25,7 +25,7 @@ import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommend
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';
 
-import './b2c.home.page.less';
+import './b2c.home.page.scss';
 
 import bannerImage1 from '../../../images/site-images/b2c-banner-1.png';
 import bannerImage2 from '../../../images/site-images/b2c-banner-2.png';

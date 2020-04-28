@@ -34,7 +34,7 @@ import { ReactComponent as TrashIcon } from '../../images/icons/baseline-delete-
 import { ReactComponent as EditIcon } from '../../images/icons/baseline-edit-24px.svg';
 import { ReactComponent as GearIcon } from '../../images/icons/round-settings-20px.svg';
 
-import './AccountMain.less';
+import './AccountMain.scss';
 import { ReactComponent as AddCircleIcon } from '../../images/icons/outline-add_circle_outline-14px.svg';
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 

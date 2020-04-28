@@ -23,7 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { useCountDispatch } from '../cart-count-context';
 
-import './dropdown.cart.selection.main.less';
+import './dropdown.cart.selection.main.scss';
 
 import { ReactComponent as AddToCartIcon } from '../../../images/icons/ic_add_to_cart.svg';
 

@@ -25,7 +25,7 @@ import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './appmodalcartselect.main.less';
+import './appmodalcartselect.main.scss';
 
 
 const zoomArray = [

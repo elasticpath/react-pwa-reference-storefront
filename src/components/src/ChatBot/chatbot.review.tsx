@@ -26,7 +26,7 @@ import Amplify, { Interactions } from 'aws-amplify';
 import awsmobile from '../../../aws-exports';
 import Config from '../../../ep.config.json';
 
-import './chatbot.review.less';
+import './chatbot.review.scss';
 
 
 Amplify.configure(awsmobile);

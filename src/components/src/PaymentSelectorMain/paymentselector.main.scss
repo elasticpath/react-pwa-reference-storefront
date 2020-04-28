@@ -1,0 +1,91 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.scss';
+
+.payments-container {
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-right: 20px;
+
+  &.unselected {
+    border: 1px solid $mainBorderColor;
+  }
+
+  &.selected {
+    border: 1px solid $firstComplimentColor;
+  }
+
+  .credit-card-header {
+    padding-bottom: 10px;
+  }
+
+  .paymentMethodsRegions {
+    margin-bottom: 20px;
+    position: relative;
+
+    &.loading {
+      opacity: 0.5
+    }
+
+    .miniLoader {
+      position: absolute;
+      top: 30%;
+      right: 50%;
+      border: 10px solid $firstComplimentBackground;
+      border-top: 10px solid $secondComplimentColor;
+      width: 30px;
+      height: 30px !important;
+      border-radius: 50%;
+      animation: spin 0.5s linear infinite;
+      margin: 0 auto;
+      margin-top: 10px;
+    }
+
+    .payment-instrument-name-container {
+      margin: 10px;
+    }
+
+    .payment-delete-btn {
+      height: auto;
+      width: auto;
+      margin: 5px 0;
+      min-height: 0;
+      line-height: 20px;
+      padding: 0;
+      min-width: 0;
+      border: none;
+      color: $secondComplimentColor;
+
+      &:hover {
+        color: $firstComplimentColor;
+        text-decoration: underline;
+        background-color: transparent;
+      }
+    }
+
+    .no-saved-payment-container {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+}

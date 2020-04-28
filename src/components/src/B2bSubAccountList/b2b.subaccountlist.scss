@@ -1,0 +1,118 @@
+@import '../../../theme/common.scss';
+
+.sub-account {
+  border-bottom: 1px solid $firstBorderColor;
+  padding: 8px 35px 8px 20px;
+  position:relative;
+
+  &:hover {
+    background-color: $firstComplimentBackground;
+    cursor: pointer;
+  }
+
+  &.highlighted {
+    background-color: $accountTreeActive;
+    .arrow-btn {
+      background-color: $accountTreeActive;
+    }
+  }
+
+  .sub-account {
+    border: none;
+  }
+
+  +.margin-left .sub-account {
+    padding-left: 30px;
+    +.margin-left .sub-account {
+      padding-left: 40px;
+      +.margin-left .sub-account {
+        padding-left: 50px;
+        +.margin-left .sub-account {
+          padding-left: 60px;
+          +.margin-left .sub-account {
+            padding-left: 70px;
+          }
+        }
+      }
+    }
+  }
+
+  .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: $mainTextColor;
+
+  }
+
+  .loader-container {
+    width: 20px;
+    display: inline-block;
+    height: 20px;
+    top: 50%;
+    right: 20px;
+    position: absolute;
+    transform: translateY(-50%);
+    .loader {
+      width: 20px;
+      height: 20px !important;
+      border-width: 5px;
+      margin: 0;
+    }
+  }
+  .status {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    color: $mainTextColor;
+  }
+}
+
+.icons-status {
+  $size: 12px;
+  display: inline-block;
+  width: $size;
+  height: $size;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: sub;
+  margin: 0 6px 1px 0;
+}
+
+.margin-left {
+  &.hide-sub-account {
+    display: none;
+  }
+}
+
+.arrow-btn {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  position: absolute;
+  display: inline-block;
+  float: right;
+  height: 20px;
+  width: 16px;
+  border: none;
+  background: transparent;
+  &:hover {
+    cursor: pointer;
+    background-color: $firstComplimentBackground;
+  }
+  &:before {
+    content: "";
+    border-top: 2px solid $mainColor;
+    border-right: 2px solid $mainColor;
+    height: 9px;
+    width: 9px;
+    position: absolute;
+    transform: translate(2px, 1px) rotate(135deg);
+    top: 3px;
+    right: 5px;
+  }
+  &.up {
+    transform: translate(2px, -7px) rotate(-180deg);
+  }
+}

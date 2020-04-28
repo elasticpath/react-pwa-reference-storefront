@@ -22,7 +22,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { login } from '../utils/AuthService';
 
-import './productlistloadmore.less';
+import './productlistloadmore.scss';
 
 interface ProductListLoadMoreProps{
   /** product data */

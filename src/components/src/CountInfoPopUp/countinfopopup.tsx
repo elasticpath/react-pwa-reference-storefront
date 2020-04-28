@@ -23,7 +23,7 @@ import React, { FC } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
-import './countinfopopup.less';
+import './countinfopopup.scss';
 
 
 interface CountInfoPopUpProps {

@@ -23,7 +23,7 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 
-import '../../../containers/b2b/AccountMain.less';
+import '../../../containers/b2b/AccountMain.scss';
 import { ReactComponent as AddCircleIcon } from '../../../images/icons/outline-add_circle_outline-14px.svg';
 import { ReactComponent as EnabledStatusIcon } from '../../../images/icons/check-circle.svg';
 import { ReactComponent as DisabledStatusIcon } from '../../../images/icons/remove-circle.svg';
