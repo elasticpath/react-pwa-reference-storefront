@@ -22,7 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import './MaintenancePage.less';
+import './MaintenancePage.scss';
 
 import doge from '../images/site-images/maintenance-banner.png';
 import ImageContainer from '../components/src/ImageContainer/image.container';

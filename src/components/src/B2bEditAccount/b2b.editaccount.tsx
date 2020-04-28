@@ -27,7 +27,7 @@ import { login } from '../utils/AuthService';
 import { adminFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './b2b.editaccount.less';
+import './b2b.editaccount.scss';
 
 import clipboardIcon from '../../../images/icons/copy.svg';
 import copiedIcon from '../../../images/icons/check-circle-filled.svg';

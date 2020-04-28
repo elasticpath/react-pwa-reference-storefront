@@ -27,7 +27,7 @@ import queryString from 'query-string';
 import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
 import Config from '../../../ep.config.json';
 
-import './appmodallogin.main.less';
+import './appmodallogin.main.scss';
 
 
 interface AppModalLoginMainProps {

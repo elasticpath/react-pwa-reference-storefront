@@ -21,7 +21,7 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import './appheadersearch.main.less';
+import './appheadersearch.main.scss';
 import { ReactComponent as SearchIcon } from '../../../images/header-icons/magnifying-glass.svg';
 
 interface AppHeaderSearchMainProps {

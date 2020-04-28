@@ -35,7 +35,7 @@ import { cortexFetch, adminFetch } from '../utils/Cortex';
 import { ReactComponent as AccountIcon } from '../../../images/header-icons/account-icon.svg';
 import Config from '../../../ep.config.json';
 
-import './appheaderlogin.main.less';
+import './appheaderlogin.main.scss';
 
 
 const oidcDiscoveryEndpoint = '/.well-known/openid-configuration';

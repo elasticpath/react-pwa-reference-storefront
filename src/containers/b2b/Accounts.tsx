@@ -31,7 +31,7 @@ import { ReactComponent as AccountIcon } from '../../images/header-icons/account
 import { B2bAddAssociatesMenu } from '../../components/src';
 import Config from '../../ep.config.json';
 
-import './Accounts.less';
+import './Accounts.scss';
 
 enum MessageType {
   success = 'success',

@@ -27,7 +27,7 @@ import currencyLogoEur from '../../../images/header-icons/eu.svg';
 import headerLogo from '../../../images/site-images/Company-Logo-v1.png';
 import Config from '../../../ep.config.json';
 
-import './appheaderlocale.main.less';
+import './appheaderlocale.main.scss';
 
 
 interface AppHeaderLocaleMainProps {

@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import scriptjs from 'scriptjs';
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
-import * as styles from '!!../utils/less-var-loader!../../../theme/common.less';
+import * as styles from '!!../utils/less-var-loader!../../../theme/common.scss';
 
 interface FacebookChatProps {
   /** config */

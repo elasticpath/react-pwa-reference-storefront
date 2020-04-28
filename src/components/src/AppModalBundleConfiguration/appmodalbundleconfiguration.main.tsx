@@ -28,7 +28,7 @@ import CartLineItem from '../CartLineItem/cart.lineitem';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 
-import './appmodalbundleconfiguration.main.less';
+import './appmodalbundleconfiguration.main.scss';
 
 
 const zoomArray = [

@@ -26,7 +26,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import * as UserPrefs from '../utils/UserPrefs';
 import Config from '../ep.config.json';
 
-import './WriteReviewPage.less';
+import './WriteReviewPage.scss';
 
 const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';
 

@@ -21,7 +21,7 @@
 
 import React from 'react';
 import OrderTableLineItem from '../OrderTableLineItem/ordertable.lineitem';
-import './ordertable.main.less';
+import './ordertable.main.scss';
 
 interface OrderTableMainProps {
   /** data */

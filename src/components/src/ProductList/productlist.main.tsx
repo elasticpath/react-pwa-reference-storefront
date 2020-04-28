@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
-import './productlist.main.less';
+import './productlist.main.scss';
 
 interface ProductListMainProps {
   /** product data */

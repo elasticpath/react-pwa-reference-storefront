@@ -23,7 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import OrderLine from '../OrderLine/orderline.main';
 
-import './orderhistory.main.less';
+import './orderhistory.main.scss';
 
 interface OrderHistoryMainProps {
   /** purchase history */

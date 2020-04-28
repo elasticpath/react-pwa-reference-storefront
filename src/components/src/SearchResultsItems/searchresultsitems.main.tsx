@@ -31,7 +31,7 @@ import ProductListLoadMore from '../ProductListLoadmore/productlistloadmore';
 import SortProductMenu from '../SortProductMenu/sortproductmenu.main';
 import Config from '../../../ep.config.json';
 
-import './searchresultsitems.main.less';
+import './searchresultsitems.main.scss';
 
 
 const zoomArray = [

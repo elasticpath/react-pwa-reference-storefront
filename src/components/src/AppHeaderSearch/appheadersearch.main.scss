@@ -1,0 +1,97 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.scss';
+
+.main-search-container {
+  width: 400px;
+  text-align: right;
+
+  .search-form {
+    position: relative;
+
+    .input-search {
+      height: 30px;
+      background: transparent;
+      padding: 2px 5px 2px 35px;
+      width: 100%;
+      transition: width 0.5s ease,
+                  border-color 0.5s,
+                  padding 0.5s ease-in;
+      color: $mainTextColor;
+      cursor: pointer;
+      outline: 0;
+      border-radius: 4px;
+      border: 1px solid $firstBorderColor;
+      font-weight: 300;
+
+      &::placeholder {
+        opacity: 0.3;
+        color: $firstComplimentTextColor;
+      }
+    }
+
+    .search-icon {
+      fill: $firstComplimentTextColor;
+      position: absolute;
+      left: 0px;
+      top: 3px;
+      width: 35px;
+      height: 24px;
+      pointer-events: none;
+    }
+  }
+
+  &.mobile-view {
+    width: 100%;
+    border-bottom: solid 1px #dedede;
+
+    .search-form {
+      display: block;
+
+      .input-search {
+        color: $mainTextColor;
+        background-color: $mainBackgroundColor;
+        width: 100%;
+        transition: none;
+        font-size: 18px;
+        padding: 10px 45px 10px 20px;
+        border-bottom: 0;
+
+        &::placeholder {
+          opacity: 0.3;
+          color: $mainColor;
+        }
+
+        &:focus {
+          border-bottom: 0;
+        }
+      }
+
+      .search-icon {
+        filter: invert(100%);
+        opacity: 0.5;
+        left: auto;
+        right: 10px;
+      }
+    }
+  }
+}

@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import { PurchaseDetailsMain } from '../components/src/index';
 
-import './PurchaseReceiptPage.less';
+import './PurchaseReceiptPage.scss';
 
 const PurchaseReceiptPage = (props: RouteComponentProps<{}, {}, any>) => {
   const { location, history } = props;

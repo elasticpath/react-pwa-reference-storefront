@@ -30,7 +30,7 @@ import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.select
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';
 
-import './cart.lineitem.less';
+import './cart.lineitem.scss';
 
 import { ReactComponent as AddToListIcon } from '../../../images/icons/ic_add_list.svg';
 import { ReactComponent as UpdateQuantityIcon } from '../../../images/icons/ic_update.svg';

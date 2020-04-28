@@ -25,7 +25,7 @@ import scriptjs from 'scriptjs';
 import * as UserPrefs from '../utils/UserPrefs';
 import Config from '../../../ep.config.json';
 
-import './powerreview.less';
+import './powerreview.scss';
 
 
 const powerReviewsRemoteScriptUrl = 'http://ui.powerreviews.com/stable/4.0/ui.js';

@@ -27,7 +27,7 @@ import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './b2b.add.products.modal.less';
+import './b2b.add.products.modal.scss';
 
 
 interface AddProductsModalProps {

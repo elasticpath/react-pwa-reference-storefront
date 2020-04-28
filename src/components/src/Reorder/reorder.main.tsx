@@ -27,7 +27,7 @@ import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 import Config from '../../../ep.config.json';
 
-import './reorder.main.less';
+import './reorder.main.scss';
 
 
 interface ReorderMainProps {

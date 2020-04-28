@@ -23,7 +23,7 @@ import { Entity, Scene } from 'aframe-react';
 import React, { Component } from 'react';
 import 'aframe-look-at-component';
 import 'aframe-html-shader';
-import './VRProductDisplayItem.less';
+import './VRProductDisplayItem.scss';
 import intl from 'react-intl-universal';
 import VRPanelContent from './VRPanelContent';
 import { IVRComponentProps, IVRComponentState } from './VRProductDisplayItem.d';

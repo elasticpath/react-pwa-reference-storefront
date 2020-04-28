@@ -24,7 +24,7 @@ import intl from 'react-intl-universal';
 import Slider from 'react-slick';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
-import './featuredproducts.main.less';
+import './featuredproducts.main.scss';
 
 interface FeaturedProductsProps {
   /** product data */

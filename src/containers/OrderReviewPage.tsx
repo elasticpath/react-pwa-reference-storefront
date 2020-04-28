@@ -32,7 +32,7 @@ import {
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
-import './OrderReviewPage.less';
+import './OrderReviewPage.scss';
 
 const zoomArray = [
   // zooms for checkout summary

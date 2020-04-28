@@ -25,7 +25,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './addressform.main.less';
+import './addressform.main.scss';
 
 
 interface AddressFormMainProps {

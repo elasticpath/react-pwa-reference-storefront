@@ -27,7 +27,7 @@ import { cortexFetchItemLookupForm, itemLookup } from '../utils/CortexLookup';
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';
 
-import './quickorderform.less';
+import './quickorderform.scss';
 
 
 interface QuickOrderFormProps {

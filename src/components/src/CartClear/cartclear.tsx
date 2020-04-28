@@ -25,7 +25,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './cartclear.less';
+import './cartclear.scss';
 
 import { ReactComponent as EllipsisIcon } from '../../../images/icons/more_horiz-24px.svg';
 

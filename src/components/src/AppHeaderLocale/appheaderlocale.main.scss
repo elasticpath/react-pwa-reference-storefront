@@ -1,0 +1,88 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.scss';
+
+.main-locale-container {
+  position: relative;
+  display: inline-block;
+
+  .currency-logo{
+    display: inline;
+    width:15px;
+    height: 15px;
+    margin-right: 5px;
+  }
+
+  .dropdown-toggle::after {
+    display:none;
+  }
+
+  .dropdown-toggle {
+    font-size: 13px;
+    border: 0;
+    background-color: transparent;
+    color: $mainTextColor;
+    cursor: pointer;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .dropdown-menu {
+    border-radius: 8px;
+
+    .dropdown-item {
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: $tabletWidth - 1px) {
+    top: 0;
+
+    .locale-dropdown {
+      .dropdown-toggle {
+        background-color: #f7f7f7;
+        color: $mainColor;
+        font-size: 14px;
+        margin-top: 0px;
+        float: right;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+      }
+    }
+  }
+
+  &.mobile-view {
+    .dropdown-toggle {
+      font-size: 14px;
+      color: $mainColor;
+      border: 1px solid transparent;
+
+      &:focus {
+        border: 1px solid $mainColor;
+      }
+    }
+  }
+}

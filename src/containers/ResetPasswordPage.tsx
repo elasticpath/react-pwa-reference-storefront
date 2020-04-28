@@ -26,7 +26,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
-import './ResetPasswordPage.less';
+import './ResetPasswordPage.scss';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [

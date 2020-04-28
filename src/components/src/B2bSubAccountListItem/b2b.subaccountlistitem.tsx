@@ -28,7 +28,7 @@ import { login } from '../utils/AuthService';
 import { adminFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import '../B2bSubAccountList/b2b.subaccountlist.less';
+import '../B2bSubAccountList/b2b.subaccountlist.scss';
 
 import { ReactComponent as EnabledStatusIcon } from '../../../images/icons/check-circle.svg';
 import { ReactComponent as DisabledStatusIcon } from '../../../images/icons/remove-circle.svg';

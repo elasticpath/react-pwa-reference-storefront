@@ -27,7 +27,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './appheadernavigation.main.less';
+import './appheadernavigation.main.scss';
 
 
 const zoomArray = [

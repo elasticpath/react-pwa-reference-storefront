@@ -21,7 +21,7 @@
 
 import React, { FormEvent, SyntheticEvent, Component } from 'react';
 import { bloomreachSuggestionSearch } from '../utils/BloomreachSearchService';
-import './bloomreach.headersearch.main.less';
+import './bloomreach.headersearch.main.scss';
 import { ReactComponent as SearchIcon } from '../../../images/header-icons/magnifying-glass.svg';
 
 const intl = { get: str => str };

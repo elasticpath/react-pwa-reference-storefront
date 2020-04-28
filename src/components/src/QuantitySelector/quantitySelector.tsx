@@ -22,7 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 
-import './quantitySelector.less';
+import './quantitySelector.scss';
 
 
 interface QuantityDetailsMainProps {

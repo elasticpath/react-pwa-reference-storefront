@@ -21,7 +21,7 @@
 
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
-import './b2b.addassociatesmenu.less';
+import './b2b.addassociatesmenu.scss';
 
 interface B2bAddAssociatesMenuProps {
   /** handle spreeadsheet clicked */

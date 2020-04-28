@@ -24,7 +24,7 @@ import { Link } from 'react-router-dom';
 import Config from '../../../ep.config.json';
 import ImageContainer from '../ImageContainer/image.container';
 
-import './ordertable.lineitem.less';
+import './ordertable.lineitem.scss';
 
 
 interface OrderTableLineItemProps {

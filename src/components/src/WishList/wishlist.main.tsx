@@ -22,7 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import CartLineItem from '../CartLineItem/cart.lineitem';
-import './wishlist.main.less';
+import './wishlist.main.scss';
 
 interface WishListMainProps {
   /** is empty */

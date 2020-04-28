@@ -27,7 +27,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './compliancesupport.main.less';
+import './compliancesupport.main.scss';
 
 
 interface ComplianceSupportModalProps {

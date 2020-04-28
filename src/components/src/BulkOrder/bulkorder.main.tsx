@@ -28,7 +28,7 @@ import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './bulkorder.main.less';
+import './bulkorder.main.scss';
 import { useCountDispatch } from '../cart-count-context';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
 

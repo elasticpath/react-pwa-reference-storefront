@@ -22,7 +22,7 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 
-import './sortproductmenu.main.less';
+import './sortproductmenu.main.scss';
 
 interface SortProductMenuProps {
   /** handle sort selection */
