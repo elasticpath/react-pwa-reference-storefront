@@ -26,7 +26,7 @@ import ReorderMain from '../Reorder/reorder.main';
 import PaymentMethodContainer from '../PaymentMethodContainer/paymentmethod.container';
 import ShippingOptionContainer from '../ShippingOption/shippingoption.container';
 import AddressContainer from '../AddressContainer/address.container';
-import './purchasedetails.main.less';
+import './purchasedetails.main.scss';
 
 interface PurchaseDetailsMainProps {
   /** purchase data */

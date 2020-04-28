@@ -23,7 +23,7 @@ import React from 'react';
 import { ReactComponent as CheckCircleIcon } from '../../../images/icons/check-circle-filled.svg';
 import { ReactComponent as ErrorIcon } from '../../../images/icons/error-icon.svg';
 
-import './alert.container.less';
+import './alert.container.scss';
 
 interface AlertContainerProps {
   /** displayed message */

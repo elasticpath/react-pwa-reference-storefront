@@ -29,9 +29,9 @@ import Config from '../../../ep.config.json';
 
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved,import/no-duplicates
-import * as styles from '!!../utils/less-var-loader!./chatbot.less';
+import * as styles from '!!../utils/less-var-loader!./chatbot.scss';
 // eslint-disable-next-line import/no-duplicates
-import './chatbot.less';
+import './chatbot.scss';
 
 
 const theme = {

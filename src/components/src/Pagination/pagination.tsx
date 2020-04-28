@@ -25,7 +25,7 @@ import { ReactComponent as ArrowLeft } from '../../../images/icons/arrow_left.sv
 import { cortexFetch } from '../../../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './pagination.less';
+import './pagination.scss';
 
 
 interface SelfUri {

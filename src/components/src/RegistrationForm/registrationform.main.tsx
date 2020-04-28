@@ -26,7 +26,7 @@ import {
 } from '../utils/AuthService';
 import Config from '../../../ep.config.json';
 
-import './registrationform.main.less';
+import './registrationform.main.scss';
 
 
 interface RegistrationFormMainProps {

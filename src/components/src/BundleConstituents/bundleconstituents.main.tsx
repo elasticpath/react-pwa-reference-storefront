@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
-import './bundleconstituents.main.less';
+import './bundleconstituents.main.scss';
 
 interface BundleConstituentsDisplayMainProps {
   /** product data */

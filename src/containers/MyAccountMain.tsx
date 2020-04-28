@@ -25,7 +25,7 @@ import RouteWithSubRoutes from '../RouteWithSubRoutes';
 import { adminFetch, cortexFetch } from '../utils/Cortex';
 import * as Config from '../ep.config.json';
 
-import './MyAccountMain.less';
+import './MyAccountMain.scss';
 
 interface MyAccountMainProps {
   routes: {

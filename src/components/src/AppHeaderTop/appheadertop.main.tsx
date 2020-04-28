@@ -25,7 +25,7 @@ import { Link } from 'react-router-dom';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import Config from '../../../ep.config.json';
 
-import './appheadertop.main.less';
+import './appheadertop.main.scss';
 
 
 interface AppHeaderTopProps {

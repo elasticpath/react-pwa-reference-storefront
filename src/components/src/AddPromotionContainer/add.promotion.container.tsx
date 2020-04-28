@@ -25,7 +25,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './add.promotion.container.less';
+import './add.promotion.container.scss';
 
 
 interface AddPromotionContainerProps {

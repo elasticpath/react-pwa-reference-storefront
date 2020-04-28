@@ -22,7 +22,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import ImageContainer from '../ImageContainer/image.container';
 
-import './b2b.home.page.less';
+import './b2b.home.page.scss';
 import heroBanner from '../../../images/site-images/hero-banner-0.jpg';
 
 const heroBannerFileName = 'hero-banner-0.jpg';

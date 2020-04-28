@@ -22,7 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 
-import './PrivacyPoliciesPage.less';
+import './PrivacyPoliciesPage.scss';
 
 function PrivacyPoliciesPage() {
   return (

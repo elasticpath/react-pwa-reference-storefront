@@ -30,7 +30,7 @@ import { ProductDisplayDetailsProps, ProductDisplayItemMainState } from './produ
 import SocialNetworkSharing from '../SocialNetworkSharing/socialNetworkSharing';
 import QuantitySelector from '../QuantitySelector/quantitySelector';
 
-import './productdisplayitem.details.less';
+import './productdisplayitem.details.scss';
 
 
 export const ZOOM : string[] = [

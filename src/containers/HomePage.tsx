@@ -27,7 +27,7 @@ import {
 } from '../components/src/index';
 import Config from '../ep.config.json';
 
-import './HomePage.less';
+import './HomePage.scss';
 
 const HomePage: React.FunctionComponent = () => {
   if (!Config.b2b.enable) {

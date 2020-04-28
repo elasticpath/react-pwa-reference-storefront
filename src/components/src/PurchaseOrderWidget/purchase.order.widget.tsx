@@ -23,7 +23,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import PurchaseOrderWidgetModal from '../PurchaseOrderWidgetModal/purchase.order.widget.modal';
 
-import './purchase.order.widget.less';
+import './purchase.order.widget.scss';
 
 
 interface PurchaseOrderWidgetState {

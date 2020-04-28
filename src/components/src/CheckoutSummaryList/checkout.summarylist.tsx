@@ -25,7 +25,7 @@ import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
-import './checkout.summarylist.less';
+import './checkout.summarylist.scss';
 
 
 interface CheckoutSummaryListProps {

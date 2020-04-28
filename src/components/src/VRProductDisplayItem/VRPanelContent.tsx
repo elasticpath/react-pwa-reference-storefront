@@ -19,7 +19,7 @@
  *
  */
 import React from 'react';
-import './VRPanelContent.less';
+import './VRPanelContent.scss';
 
 interface VRPanelContentMainProps {}
 

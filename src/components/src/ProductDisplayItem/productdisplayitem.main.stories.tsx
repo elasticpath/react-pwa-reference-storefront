@@ -22,9 +22,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 // Import custom required styles
-import '../../../theme/reset.less';
+import '../../../theme/reset.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../theme/style.less';
+import '../../../theme/style.scss';
 import { text } from '@storybook/addon-knobs/react';
 import Readme from './README.md';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';

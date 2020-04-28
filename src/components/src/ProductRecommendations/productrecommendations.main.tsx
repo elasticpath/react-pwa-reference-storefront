@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import ProductListItemMain from '../ProductListItem/productlistitem.main';
 
-import './productrecommendations.main.less';
+import './productrecommendations.main.scss';
 
 interface ProductRecommendationsDisplayMainProps {
   /** product data */

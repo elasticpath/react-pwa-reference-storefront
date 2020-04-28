@@ -27,7 +27,7 @@ import { adminFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 import Config from '../../../ep.config.json';
 
-import '../B2bEditAccount/b2b.editaccount.less';
+import '../B2bEditAccount/b2b.editaccount.scss';
 
 
 interface B2bAddSubAccountProps {

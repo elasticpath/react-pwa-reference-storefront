@@ -28,7 +28,7 @@ import PaymentFormMain from '../PaymentForm/paymentform.main';
 import PaymentMethodContainer from '../PaymentMethodContainer/paymentmethod.container';
 import Config from '../../../ep.config.json';
 
-import './paymentselector.main.less';
+import './paymentselector.main.scss';
 
 
 interface PaymentSelectorMainProps {

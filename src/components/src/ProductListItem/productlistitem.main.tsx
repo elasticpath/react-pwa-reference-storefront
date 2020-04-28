@@ -27,7 +27,7 @@ import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';
 
-import './productlistitem.main.less';
+import './productlistitem.main.scss';
 
 
 interface ProductListItemMainProps {

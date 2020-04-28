@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Quagga from 'quagga/dist/quagga.js';
 import Modal from 'react-responsive-modal';
-import './barcodescanner.less';
+import './barcodescanner.scss';
 
 interface BarcodeScannerProps {
   /** handle modal close */

@@ -22,7 +22,7 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import intl from 'react-intl-universal';
-import './b2b.sidemenu.less';
+import './b2b.sidemenu.scss';
 
 interface B2bSideMenuProps {
   /** side menu items */
