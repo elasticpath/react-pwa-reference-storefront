@@ -19,7 +19,7 @@
  *
  */
 
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
@@ -33,9 +33,8 @@ import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
-import b2bRoutes from './b2bRoutes';
-import b2cRoutes from './b2cRoutes';
-
+// import b2bRoutes from './b2bRoutes';
+import b2cRoutes from './baseRoutes';
 import './App.less';
 
 declare global {
@@ -45,12 +44,15 @@ declare global {
 // eslint-disable-next-line
 declare var FB: any;
 
-let routes: any [];
+const routes: any [] = b2cRoutes();
+let AdditionalRoutes: any;
 
 if (Config.b2b.enable) {
-  routes = b2bRoutes();
+  const AdditionalB2bRoutesImport = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/container_exports/AdditionalB2bRoutes');
+  AdditionalRoutes = lazy(() => AdditionalB2bRoutesImport);
 } else {
-  routes = b2cRoutes();
+  const AdditionalB2cRoutesImport = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/container_exports/AdditionalB2cRoutes');
+  AdditionalRoutes = lazy(() => AdditionalB2cRoutesImport);
 }
 
 function redirectToProfilePage(keywords) {
@@ -184,13 +186,14 @@ const Root = () => {
     />,
     <Messagecontainer key="message-container" message={error} />,
     <div key="app-content" className="app-content">
-      <Suspense fallback={<div />}>
-        <Switch>
-          {routes.map(route => (
-            <RouteWithSubRoutes key={route.path} {...route} />
-          ))}
-        </Switch>
-      </Suspense>
+      <Switch>
+        {routes.map(route => (
+          <RouteWithSubRoutes key={route.path} {...route} />
+        ))}
+        <Suspense fallback={<div />}>
+          <AdditionalRoutes />
+        </Suspense>
+      </Switch>
     </div>,
     <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,
     <ChatComponent key="chat-component" />,
