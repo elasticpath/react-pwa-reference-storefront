@@ -101,9 +101,9 @@ import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selecti
 import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
 import CartClear from './CartClear/cartclear';
 import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
+import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
 
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
-const B2bSideMenu = lazy(() => import(/* webpackChunkName: "ProductDisplayItemDetails" */ './B2bSideMenu/b2b.sidemenu'));
 const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
 const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
 
