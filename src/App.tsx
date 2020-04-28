@@ -33,7 +33,7 @@ import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
-import b2cRoutes from './baseRoutes';
+import baseRoutes from './baseRoutes';
 import './App.less';
 
 declare global {
@@ -43,7 +43,7 @@ declare global {
 // eslint-disable-next-line
 declare var FB: any;
 
-const routes: any [] = b2cRoutes();
+const routes: any [] = baseRoutes();
 let AdditionalRoutes: any;
 
 if (Config.b2b.enable) {
