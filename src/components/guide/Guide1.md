@@ -26,6 +26,6 @@ If you are viewing the [public instance of the Storybook](https://ui-components.
 
 If you are viewing a local instance of the Storybook, you can also:
 
-- Change the component styling in the `.less` source file and see the style change in Storybook.
+- Change the component styling in the `.scss` source file and see the style change in Storybook.
 - Add your own components and view them in Storybook.
 - Experiment with values in the Knobs tab.
