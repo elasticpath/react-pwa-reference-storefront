@@ -74,7 +74,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.less'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.less', '.scss'],
     mainFields: ['main'],
   },
   externals: {
