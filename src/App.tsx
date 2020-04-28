@@ -47,10 +47,10 @@ const routes: any [] = baseRoutes();
 let AdditionalRoutes: any;
 
 if (Config.b2b.enable) {
-  const additionalB2bRoutesImport = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/container_exports/additionalB2bRoutes');
+  const additionalB2bRoutesImport = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/container_exports/AdditionalB2bRoutes');
   AdditionalRoutes = lazy(() => additionalB2bRoutesImport);
 } else {
-  const additionalB2cRoutesImport = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/container_exports/additionalB2cRoutes');
+  const additionalB2cRoutesImport = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/container_exports/AdditionalB2cRoutes');
   AdditionalRoutes = lazy(() => additionalB2cRoutesImport);
 }
 
