@@ -29,20 +29,13 @@ import Config from '../ep.config.json';
 
 import './HomePage.scss';
 
-const HomePage: React.FunctionComponent = () => {
-  if (!Config.b2b.enable) {
-    return (
-      <Suspense fallback={<div />}>
-        <B2CHomePage />
-      </Suspense>
-    );
-  }
-
-  return (
-    <Suspense fallback={<div />}>
-      <B2BHomePage />
-    </Suspense>
-  );
-};
+const HomePage: React.FunctionComponent = () => (
+  <Suspense fallback={<div />}>
+    {Config.b2b.enable
+      ? <B2BHomePage />
+      : <B2CHomePage />
+    }
+  </Suspense>
+);
 
 export default withRouter(HomePage);
