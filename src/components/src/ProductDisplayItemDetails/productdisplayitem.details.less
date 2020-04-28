@@ -111,7 +111,7 @@
       .cart-selection-menu {
         box-shadow: fade(@firstComplimentColor, 40%) 0 2px 8px;
         max-height: 235px;
-        overflow: hidden;
+        overflow-y: auto;
       }
 
       .form-group {
@@ -194,11 +194,11 @@
 
   .guide {
     margin:8px 0 20px;
-  
+
     .select-wrap {
       display: inline-block;
       margin-right: 10px;
-  
+
       label {
         cursor: pointer;
       }
@@ -220,10 +220,10 @@
         }
       }
     }
-  
+
     input[type="radio"] {
       display: none;
-  
+
       +label {
         color: @mainTextColor;
         padding: 10px 15px;
