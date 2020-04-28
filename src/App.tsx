@@ -28,12 +28,12 @@ import {
   AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider, RequisitionListCountProvider, ComplianceSupportModal,
 } from './components/src/index';
 import packageJson from '../package.json';
-import RouteWithSubRoutes from './RouteWithSubRoutes';
+import RouteWithSubRoutes from './containers/RouteContainers/RouteWithSubRoutes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
-import baseRoutes from './baseRoutes';
+import baseRoutes from './containers/RouteContainers/baseRouter';
 import './App.less';
 
 declare global {
@@ -47,10 +47,10 @@ const routes: any [] = baseRoutes();
 let AdditionalRoutes: any;
 
 if (Config.b2b.enable) {
-  const additionalB2bRoutesContainer = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/container_exports/AdditionalB2bRoutesContainer');
+  const additionalB2bRoutesContainer = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/RouteContainers/AdditionalB2bRoutesContainer');
   AdditionalRoutes = lazy(() => additionalB2bRoutesContainer);
 } else {
-  const additionalB2cRoutesContainer = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/container_exports/AdditionalB2cRoutesContainer');
+  const additionalB2cRoutesContainer = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/RouteContainers/AdditionalB2cRoutesContainer');
   AdditionalRoutes = lazy(() => additionalB2cRoutesContainer);
 }
 
