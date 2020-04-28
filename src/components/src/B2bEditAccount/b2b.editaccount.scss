@@ -101,7 +101,7 @@
           color: lighten($thirdComplimentColor, 3%);
         }
         &:active {
-          color: lighten($thirdComplimentColor, -3%);
+          color: darken($thirdComplimentColor, 3%);
         }
       }
       &.save {
@@ -111,7 +111,7 @@
           background-color: lighten($firstComplimentColor, 3%);
         }
         &:active {
-          background-color: lighten($firstComplimentColor, -5%);
+          background-color: darken($firstComplimentColor, 5%);
         }
         &:disabled {
           background-color: darken($firstComplimentColor, 40%);

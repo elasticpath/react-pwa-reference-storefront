@@ -21,21 +21,9 @@
 
 @import './../../../theme/common.scss';
 
+
 .app-header {
   z-index: 5;
-
-  .triangle {
-      content: '';
-      position: absolute;
-      top: 26px;
-      right: 7px;
-      width: 0;
-      height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 10px solid $mainBackgroundColor;
-      z-index: 10;
-  }
 
   .cart-icon {
     fill: $mainTextColor;
@@ -205,7 +193,16 @@
 
    .multi-cart-dropdown.show {
      .cart-link:before {
-       @mixin triangle(),
+        content: '';
+        position: absolute;
+        top: 26px;
+        right: 7px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid $mainBackgroundColor;
+        z-index: 10;
      }
    }
 

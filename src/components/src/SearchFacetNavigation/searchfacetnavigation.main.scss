@@ -252,7 +252,7 @@
   }
 }
 
-$-webkit-keyframes appear-up-long {
+@keyframes appear-up-long {
   0% {
     top: 100%;
     -webkit-transform: translate(0,4rem);
