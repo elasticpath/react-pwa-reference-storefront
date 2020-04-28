@@ -18,24 +18,33 @@
  *
  *
  */
+import HomePage from '../HomePage';
+import ProductDetailPage from '../ProductDetailPage';
+import CategoryPage from '../CategoryPage';
 
-import React, { Suspense } from 'react';
-import { withRouter } from 'react-router';
-import {
-  B2BHomePage,
-  B2CHomePage,
-} from '../components/src/index';
-import Config from '../ep.config.json';
+const baseRouter = [{
+  path: '/',
+  exact: true,
+  component: HomePage,
+}, {
+  path: '/itemdetail',
+  exact: true,
+  component: ProductDetailPage,
+}, {
+  path: '/itemdetail/:url',
+  component: ProductDetailPage,
+}, {
+  path: '/category',
+  exact: true,
+  component: CategoryPage,
+}, {
+  path: '/category/:id',
+  exact: true,
+  component: CategoryPage,
+}, {
+  path: '/category/:id/*',
+  exact: true,
+  component: CategoryPage,
+}];
 
-import './HomePage.scss';
-
-const HomePage: React.FunctionComponent = () => (
-  <Suspense fallback={<div />}>
-    {Config.b2b.enable
-      ? <B2BHomePage />
-      : <B2CHomePage />
-    }
-  </Suspense>
-);
-
-export default withRouter(HomePage);
+export default baseRouter;

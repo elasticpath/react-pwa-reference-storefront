@@ -18,71 +18,37 @@
  *
  *
  */
-
-import HomePage from './containers/HomePage';
-import CartPage from './containers/CartPage';
-import CategoryPage from './containers/CategoryPage';
-import CheckoutPage from './containers/CheckoutPage';
-import ProductDetailPage from './containers/ProductDetailPage';
-import ProfilePage from './containers/ProfilePage';
-import OrderHistoryPage from './containers/OrderHistoryPage';
-import PurchaseReceiptPage from './containers/PurchaseReceiptPage';
-import RegistrationPage from './containers/RegistrationPage';
-import CheckoutAuthPage from './containers/CheckoutAuthPage';
-import SearchResultsPage from './containers/SearchResultsPage';
-import MaintenancePage from './containers/MaintenancePage';
-import AboutUsPage from './containers/AboutUsPage';
-import ContactUsPage from './containers/ContactUsPage';
-import TermsAndConditionsPage from './containers/TermsAndConditionsPage';
-import OrderReviewPage from './containers/OrderReviewPage';
-import WishListsPage from './containers/WishListsPage';
-import ShippingReturnsPage from './containers/ShippingReturns';
-import ProductsComparePage from './containers/ProductsComparePage';
-import WriteReview from './containers/WriteReviewPage';
-import ChangePasswordForm from './containers/ChangePasswordPage';
-import ResetPasswordForm from './containers/ResetPasswordPage';
-import MyAccountMain from './containers/MyAccountMain';
-import Accounts from './containers/b2b/Accounts';
-import AccountMain from './containers/b2b/AccountMain';
-import RequisitionList from './containers/b2b/RequisitionList';
-import RequisitionPageMain from './containers/b2b/RequisitionPageMain';
-import AddPaymentMethod from './containers/AddPaymentMethod';
-import CompanyPage from './containers/CompanyPage';
-import IndustriesPage from './containers/IndustriesPage';
-import ServicesPage from './containers/ServicesPage';
-import SupportPage from './containers/SupportPage';
-import PrivacyPoliciesPage from './containers/PrivacyPoliciesPage';
-import PurchaseHistoryPage from './containers/b2b/PurchaseHistoryPage';
+import CartPage from '../CartPage';
+import CheckoutPage from '../CheckoutPage';
+import ProfilePage from '../ProfilePage';
+import OrderHistoryPage from '../OrderHistoryPage';
+import PurchaseReceiptPage from '../PurchaseReceiptPage';
+import RegistrationPage from '../RegistrationPage';
+import CheckoutAuthPage from '../CheckoutAuthPage';
+import SearchResultsPage from '../SearchResultsPage';
+import MaintenancePage from '../MaintenancePage';
+import AboutUsPage from '../AboutUsPage';
+import ContactUsPage from '../ContactUsPage';
+import TermsAndConditionsPage from '../TermsAndConditionsPage';
+import OrderReviewPage from '../OrderReviewPage';
+import WishListsPage from '../WishListsPage';
+import ShippingReturnsPage from '../ShippingReturns';
+import ProductsComparePage from '../ProductsComparePage';
+import WriteReview from '../WriteReviewPage';
+import ChangePasswordForm from '../ChangePasswordPage';
+import ResetPasswordForm from '../ResetPasswordPage';
+import MyAccountMain from '../MyAccountMain';
+import AddPaymentMethod from '../AddPaymentMethod';
+import CompanyPage from '../CompanyPage';
+import IndustriesPage from '../IndustriesPage';
+import ServicesPage from '../ServicesPage';
+import SupportPage from '../SupportPage';
+import PrivacyPoliciesPage from '../PrivacyPoliciesPage';
+import PurchaseHistoryPage from '../b2b/PurchaseHistoryPage';
 
 const router = [{
-  path: '/',
-  exact: true,
-  component: HomePage,
-}, {
   path: '/mycart',
   component: CartPage,
-}, {
-  path: '/category',
-  exact: true,
-  component: CategoryPage,
-}, {
-  path: '/category/:id',
-  exact: true,
-  component: CategoryPage,
-}, {
-  path: '/category/:id/*',
-  exact: true,
-  component: CategoryPage,
-}, {
-  path: '/checkout/:cart?',
-  component: CheckoutPage,
-}, {
-  path: '/itemdetail',
-  exact: true,
-  component: ProductDetailPage,
-}, {
-  path: '/itemdetail/:url',
-  component: ProductDetailPage,
 }, {
   path: '/order/:cart?',
   component: OrderReviewPage,
@@ -102,6 +68,9 @@ const router = [{
   path: '/search',
   exact: true,
   component: SearchResultsPage,
+}, {
+  path: '/checkout/:cart?',
+  component: CheckoutPage,
 }, {
   path: '/search/:keywords',
   exact: true,
@@ -156,13 +125,6 @@ const router = [{
   path: '/newpaymentform/paymentdata',
   component: AddPaymentMethod,
 }, {
-  path: '/account/account-item/:uri',
-  component: AccountMain,
-}, {
-  path: '/account/requisition-list-item/:uri',
-  exact: true,
-  component: RequisitionPageMain,
-}, {
   path: '/account',
   component: MyAccountMain,
   routes: [
@@ -174,10 +136,6 @@ const router = [{
     {
       path: '/account/purchase-history',
       component: PurchaseHistoryPage,
-    },
-    {
-      path: '/account/accounts',
-      component: Accounts,
     },
     {
       path: '/account/wishlists',
@@ -198,11 +156,6 @@ const router = [{
     {
       path: '/account/invitations',
       render: () => 'Invitations',
-    },
-    {
-      path: '/account/requisition-lists',
-      exact: true,
-      component: RequisitionList,
     },
     {
       path: '/account/quotes',

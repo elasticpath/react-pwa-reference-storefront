@@ -19,7 +19,7 @@
  *
  */
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
@@ -28,13 +28,12 @@ import {
   AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider, RequisitionListCountProvider, ComplianceSupportModal,
 } from './components/src/index';
 import packageJson from '../package.json';
-import RouteWithSubRoutes from './RouteWithSubRoutes';
-import routes from './routes';
+import RouteWithSubRoutes from './containers/RouteContainers/RouteWithSubRoutes';
 import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
-
+import baseRoutes from './containers/RouteContainers/baseRouter';
 import './App.scss';
 
 declare global {
@@ -43,6 +42,17 @@ declare global {
 
 // eslint-disable-next-line
 declare var FB: any;
+
+const routes: any [] = baseRoutes;
+let AdditionalRoutes: any;
+
+if (Config.b2b.enable) {
+  const additionalB2bRoutesContainer = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/RouteContainers/AdditionalB2bRoutesContainer');
+  AdditionalRoutes = lazy(() => additionalB2bRoutesContainer);
+} else {
+  const additionalB2cRoutesContainer = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/RouteContainers/AdditionalB2cRoutesContainer');
+  AdditionalRoutes = lazy(() => additionalB2cRoutesContainer);
+}
 
 function redirectToProfilePage(keywords) {
   window.location.href = `/search/${keywords}`;
@@ -179,6 +189,9 @@ const Root = () => {
         {routes.map(route => (
           <RouteWithSubRoutes key={route.path} {...route} />
         ))}
+        <Suspense fallback={<div />}>
+          <AdditionalRoutes />
+        </Suspense>
       </Switch>
     </div>,
     <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,

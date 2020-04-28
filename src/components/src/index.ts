@@ -19,6 +19,7 @@
  *
  */
 
+import { lazy } from 'react';
 import AddPromotionContainer from './AddPromotionContainer/add.promotion.container';
 import AddressContainer from './AddressContainer/address.container';
 import AppFooterMain from './AppFooterMain/appfooter.main';
@@ -60,7 +61,6 @@ import PaymentFormMain from './PaymentForm/paymentform.main';
 import PaymentMethodContainer from './PaymentMethodContainer/paymentmethod.container';
 import PowerReviewMain from './PowerReview/powerreview.main';
 import ProductDisplayItemMain from './ProductDisplayItem/productdisplayitem.main';
-import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 import ProductListMain from './ProductList/productlist.main';
 import ProductListItemMain from './ProductListItem/productlistitem.main';
 import ProductListLoadmore from './ProductListLoadmore/productlistloadmore';
@@ -94,16 +94,18 @@ import B2bAddSubAccount from './B2bAddSubAccount/b2b.addsubaccount';
 import B2bEditAccount from './B2bEditAccount/b2b.editaccount';
 import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
-import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
-import VRProductDisplayItem from './VRProductDisplayItem/VRProductDisplayItem';
-import CartClear from './CartClear/cartclear';
-import { CountProvider } from './cart-count-context';
 import { RequisitionListCountProvider } from './requisition-list-count-context';
-import B2BHomePage from './B2bHomePage/b2b.home.page';
-import B2CHomePage from './B2cHomePage/b2c.home.page';
+import { CountProvider } from './cart-count-context';
 import ImageContainer from './ImageContainer/image.container';
 import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selection.main';
 import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
+import CartClear from './CartClear/cartclear';
+import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
+import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
+
+const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
+const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
+const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
 
 export {
   AddPromotionContainer,

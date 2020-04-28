@@ -19,7 +19,7 @@
  *
  */
 
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import intl from 'react-intl-universal';
 import Slider from 'react-slick';
 import { login } from '../utils/AuthService';
@@ -29,13 +29,15 @@ import ProductRecommendationsDisplayMain from '../ProductRecommendations/product
 import IndiRecommendationsDisplayMain from '../IndiRecommendations/indirecommendations.main';
 import BundleConstituentsDisplayMain from '../BundleConstituents/bundleconstituents.main';
 import { cortexFetch } from '../utils/Cortex';
-import VRProductDisplayItem from '../VRProductDisplayItem/VRProductDisplayItem';
+
 import ProductDisplayItemDetails from '../ProductDisplayItemDetails/productdisplayitem.details';
 import ImageContainer from '../ImageContainer/image.container';
 import ProductDisplayAttributes from '../ProductDisplayAttributes/productDisplayAttributes';
 import Config from '../../../ep.config.json';
-
 import './productdisplayitem.main.scss';
+
+
+const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ '../VRProductDisplayItem/VRProductDisplayItem'));
 
 
 const REQUISITION_LISTS_ZOOM : string[] = [
@@ -410,7 +412,11 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                     : ('')
                   }
 
-                  {vrMode ? (<VRProductDisplayItem meshUri={this.getVRMesh()} handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />) : this.renderProductImage()}
+                  {vrMode ? (
+                    <Suspense fallback={<div />}>
+                      <VRProductDisplayItem meshUri={this.getVRMesh()} handleCloseVR={() => { this.closeVR(); }} backgroundUri={this.getVRBackgroundImg()} />
+                    </Suspense>
+                  ) : this.renderProductImage()}
 
                 </div>
               </div>

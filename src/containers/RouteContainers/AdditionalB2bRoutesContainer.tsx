@@ -1,6 +1,5 @@
-"use strict";
 /**
- * Copyright © 2018 Elastic Path Software Inc. All rights reserved.
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +18,16 @@
  *
  *
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var react_router_dom_1 = require("react-router-dom");
-function RouteWithSubRoutes(route) {
-    return (<react_router_dom_1.Route path={route.path} exact={route.exact} render={route.render || (function (props) { return <route.component {...props} routes={route.routes}/>; })}/>);
-}
-exports.default = RouteWithSubRoutes;
+import React from 'react';
+import routes from './additionalB2bRouter';
+import RouteWithSubRoutes from './RouteWithSubRoutes';
+
+const AdditionalB2bRoutesContainer = () => (
+  <div>
+    {routes.map(route => (
+      <RouteWithSubRoutes key={route.path} {...route} />
+    ))}
+  </div>
+);
+
+export default AdditionalB2bRoutesContainer;

@@ -18,24 +18,16 @@
  *
  *
  */
+import React from 'react';
+import routes from './additionalB2cRouter';
+import RouteWithSubRoutes from './RouteWithSubRoutes';
 
-import React, { Suspense } from 'react';
-import { withRouter } from 'react-router';
-import {
-  B2BHomePage,
-  B2CHomePage,
-} from '../components/src/index';
-import Config from '../ep.config.json';
-
-import './HomePage.scss';
-
-const HomePage: React.FunctionComponent = () => (
-  <Suspense fallback={<div />}>
-    {Config.b2b.enable
-      ? <B2BHomePage />
-      : <B2CHomePage />
-    }
-  </Suspense>
+const AdditionalB2cRoutesContainer = () => (
+  <div>
+    {routes.map(route => (
+      <RouteWithSubRoutes key={route.path} {...route} />
+    ))}
+  </div>
 );
 
-export default withRouter(HomePage);
+export default AdditionalB2cRoutesContainer;
