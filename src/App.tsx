@@ -33,7 +33,6 @@ import withAnalytics from './utils/Analytics';
 import Config from './ep.config.json';
 import { ErrorContext, ErrorDisplayBoundary, ErrorRemoveAll } from './components/src/utils/MessageContext';
 import { LoginRedirectPage } from './containers/LoginRedirectPage';
-// import b2bRoutes from './b2bRoutes';
 import b2cRoutes from './baseRoutes';
 import './App.less';
 
@@ -48,11 +47,11 @@ const routes: any [] = b2cRoutes();
 let AdditionalRoutes: any;
 
 if (Config.b2b.enable) {
-  const AdditionalB2bRoutesImport = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/container_exports/AdditionalB2bRoutes');
-  AdditionalRoutes = lazy(() => AdditionalB2bRoutesImport);
+  const additionalB2bRoutesImport = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/container_exports/additionalB2bRoutes');
+  AdditionalRoutes = lazy(() => additionalB2bRoutesImport);
 } else {
-  const AdditionalB2cRoutesImport = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/container_exports/AdditionalB2cRoutes');
-  AdditionalRoutes = lazy(() => AdditionalB2cRoutesImport);
+  const additionalB2cRoutesImport = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/container_exports/additionalB2cRoutes');
+  AdditionalRoutes = lazy(() => additionalB2cRoutesImport);
 }
 
 function redirectToProfilePage(keywords) {
