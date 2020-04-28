@@ -1,0 +1,90 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import './../../../theme/common.scss';
+
+.compliance-support-modal {
+  max-width: 600px;
+
+  .modal-content {
+    border: none;
+    font-size: 13px;
+    color: $mainTextColor;
+
+    .first-label {
+      line-height: 20px;
+      padding: 10px 0;
+    }
+
+    .checkbox-label {
+      padding: 10px 0 20px;
+    }
+  }
+  input[type="checkbox"] {
+    display: none;
+    ~ .helping-el {
+      position: relative;
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      border: 1px solid $mainColor;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    ~ .label-text {
+      line-height: 22px;
+      vertical-align: middle;
+      @media screen and (max-width: $mobileWidth - 1px) {
+        font-size: 12px;
+      }
+    }
+    &:checked {
+      ~ .helping-el {
+        &:before {
+          content: '';
+          position: absolute;
+          left: 5px;
+          top: 0;
+          width: 9px;
+          height: 15px;
+          border: solid $firstComplimentColor;
+          border-width: 0 4px 4px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+  .action-row {
+    float: right;
+    margin-top: 30px;
+    padding-top: 10px;
+    text-align: center;
+
+    .ep-btn {
+      border: none;
+      text-transform: capitalize;
+      width: 133px;
+      height: 44px;
+    }
+  }
+}

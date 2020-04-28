@@ -1,0 +1,124 @@
+@import '../../../theme/common.scss';
+
+.b2b-edit-account-dialog {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px;
+
+  @media (max-width: 575px) {
+    width: 100%;
+    min-height: 100%;
+    padding: 15px 20px;
+  }
+  .b2b-dialog-close-btn {
+    right: 20px;
+    opacity: 0.5;
+  }
+  .dialog-header {
+    flex: 0 0 auto;
+    font-size: 20px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $firstBorderColor;
+    margin-bottom: 20px;
+  }
+  .b2b-dark-text {
+    font-weight: 700;
+    color: $firstComplimentTextColor;
+    margin-bottom: 6px;
+  }
+  .dialog-content {
+    padding-bottom: 40px;
+
+    @media (max-width: 575px) {
+      padding: 15px 0;
+    }
+
+    .b2b-form-col {
+      display: inline-block;
+      flex: 1 0;
+      padding-right: 20px;
+      width: 50%;
+      margin-bottom: 30px;
+
+      @media (max-width: 575px) {
+        width: 100%;
+        padding: 0;
+      }
+      &:last-child:not(:only-child) {
+        padding-right: 0;
+        padding-left: 20px;
+
+        @media (max-width: 575px) {
+          padding: 0;
+        }
+      }
+      .b2b-input {
+        width: 100%;
+        height: 32px;
+        padding: 4px 11px;
+        color: $mainTextColor;
+        border: 1px solid $mainBorderColor;
+        border-radius: 4px;
+      }
+    }
+
+    .b2b-copy {
+      cursor: pointer;
+      img {
+        margin-right: 6px;
+      }
+    }
+  }
+  .dialog-footer {
+    flex: 0 0 auto;
+    text-align: right;
+    padding-bottom: 10px;
+    button {
+      border: 0;
+      font-size: 14px;
+      font-weight: bold;
+      width: 120px;
+      height: 44px;
+      cursor: pointer;
+      outline: 0;
+
+      @media (min-width: 576px) {
+        width: 133px;
+      }
+
+      @media (max-width: 575px) {
+        width: 100%;
+      }
+      &.cancel {
+        color: $firstComplimentColor;
+        margin: 0 0 20px;
+        @media (min-width: 576px) {
+          margin: 0 20px 0 0;
+        }
+        &:hover {
+          color: lighten($thirdComplimentColor, 3%);
+        }
+        &:active {
+          color: lighten($thirdComplimentColor, -3%);
+        }
+      }
+      &.save {
+        background-color: $firstComplimentColor;
+        color: $mainBackgroundColor;
+        &:hover {
+          background-color: lighten($firstComplimentColor, 3%);
+        }
+        &:active {
+          background-color: lighten($firstComplimentColor, -5%);
+        }
+        &:disabled {
+          background-color: darken($firstComplimentColor, 40%);
+          opacity: .4;
+          cursor: unset;
+        }
+      }
+    }
+  }
+}

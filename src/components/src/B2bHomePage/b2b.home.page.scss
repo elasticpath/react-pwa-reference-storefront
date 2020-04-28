@@ -1,0 +1,146 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+@import '../../../theme/common.scss';
+
+.home-page-b2b {
+  .main-banner {
+    overflow: hidden;
+    min-height: 480px;
+    margin-bottom: 45px;
+    position: relative;
+
+    .main-banner-image {
+      width: 100%;
+      min-height: 480px;
+      max-width: 100%;
+      margin-left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate( -50%, -50%);
+      object-fit: cover;
+    }
+
+    &-title-wrap {
+      width: 100%;
+      padding: 15px 0 30px;
+      background-color: rgba(0,0,0,0.5);
+      color: $mainBackgroundColor;
+      position: absolute;
+      bottom: 0px;
+
+      .goods-heading {
+        color: inherit;
+      }
+    }
+
+    .goods-heading {
+      margin-bottom: 10px;
+
+      @media (min-width: 992px) {
+        padding: 0 22px;
+      }
+    }
+
+    &-txt {
+
+      @media (min-width: 481px) {
+        display: flex;
+        align-items: center;
+      }
+
+      @media (min-width: 992px) {
+        padding: 0 22px;
+      }
+    }
+
+    .goods-description {
+      margin-bottom: 10px;
+
+      @media (min-width: 481px) {
+        margin: 0 20px 0 0;
+      }
+    }
+
+    .learn-more-btn {
+      min-width: 120px;
+      white-space: nowrap;
+      margin: 0;
+    }
+  }
+
+  .goods-title-small {
+    font-size: 12px;
+    font-style: italic;
+    color: #9B9B9B;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+  }
+
+  .goods-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: $mainColor;
+    margin-bottom: 10px;
+  }
+
+  .goods-heading {
+    color: $mainColor;
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .goods-description {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 0;
+  }
+
+  .main-goods {
+    &__grid {
+      @media (min-width: 992px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 60px;
+      }
+    }
+
+    &__cell {
+      padding: 22px;
+      margin-bottom: 30px;
+      border: 1px solid $fifthComplimentTextColor;
+    }
+
+    &__block {
+
+      @media (min-width: 992px) {
+        padding-right: 100px;
+        margin-bottom: 60px;
+      }
+    }
+  }
+
+  .bottom-block {
+    border: none;
+  }
+}

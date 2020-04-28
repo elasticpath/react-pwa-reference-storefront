@@ -1,0 +1,256 @@
+/**
+ * Copyright © 2019 Elastic Path Software Inc. All rights reserved.
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this license. If not, see
+ *
+ *     https://www.gnu.org/licenses/
+ *
+ *
+ */
+
+ @import './../theme/common.scss';
+
+.profile-container {
+  font-size: 14px;
+  h1 {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: gray;
+    border-bottom: 1px solid $mainBorderColor;
+  }
+
+  h2 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: $mainTextColor;
+    line-height: 19px;
+  }
+
+  .btn,
+  .profile-personal-info-edit-btn,
+  .edit-address-btn,
+  .delete-address-btn,
+  .profile-delete-payment-btn
+  {
+    text-shadow: none;
+    color: $secondComplimentColor;
+    background-color: $mainBackgroundColor;
+    border: solid 1px $secondComplimentColor;
+    border-radius: 0;
+    box-shadow: none;
+    white-space: nowrap;
+    height: auto;
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  .profile-payment-method-label-container {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 5px;
+    &:before {
+      content: "";
+      height: 15px;
+      width: 24px;
+      border-radius: 3px;
+      background-color: $firstComplimentTextColor;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    &:after {
+      content: "";
+      height: 3px;
+      width: 24px;
+      background-color: $mainBackgroundColor;
+      position: absolute;
+      top: 3px;
+      left: 0;
+    }
+  }
+
+  .profile-info-save-btn {
+    background-color: $firstComplimentColor;
+    font-weight: bold;
+    color: $mainBackgroundColor;
+    border: 0;
+    height: 30px;
+    border-radius: 0;
+    text-transform: uppercase;
+    max-width: 280px;
+  }
+
+  .feedback-label {
+    color: $mainErrorColor;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .change-password-btn {
+    margin-top: 10px;
+  }
+
+  .profile-address-container {
+
+    .edit-address-btn {
+      + .delete-address-btn {
+        position: relative;
+        margin-left: 10px;
+        &:before {
+          content: '';
+          height: 14px;
+          width: 2px;
+          border-left: 2px solid $secondBorderColor;
+          position: absolute;
+          top: 2px;
+          left: -10px;
+        }
+      }
+    }
+  }
+
+  .personal-info-email,
+  .profile-address-container,
+  .profile-payment-method-container {
+    .ep-btn {
+      height: auto;
+      width: auto;
+      min-height: 0;
+      font-size: 13px;
+      line-height: 20px;
+      padding: 0;
+      min-width: 0;
+      border: none;
+      &:hover {
+        color: $firstComplimentColor;
+        text-decoration: underline;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .profile-personal-info-edit-btn.ep-btn {
+    height: auto;
+    width: auto;
+    min-height: 0;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 0;
+    min-width: 0;
+    border: none;
+    &:hover {
+      color: $firstComplimentColor;
+      text-decoration: underline;
+      background-color: transparent;
+    }
+  }
+
+  .address-container {
+    margin-bottom: 0;
+  }
+
+  .payment-btn-cell {
+    position: relative;
+    top: -5px;
+    .ep-btn {
+      margin-top: 0;
+    }
+  }
+
+  .personal-info-email {
+    .ep-btn {
+      margin-top: 10px;
+    }
+  }
+
+  @media (min-width: $mobileWidth) {
+    .payment-methods-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .profile-payment-methods-listing {
+      width: 50%;
+      padding-right: 10px;
+    }
+
+    .profile-addresses {
+      &-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      &-listing {
+        width: 50%;
+        padding-right: 10px;
+      }
+    }
+  }
+}
+
+.profile-info {
+  &-container {
+    margin-top: 20px;
+    &-title {
+      font-size: 12px;
+      color: $mainTextColor;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    &:after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+    .profile-addresses-container {
+      margin-bottom: 0;
+    }
+    .ep-btn {
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+  }
+  &-col {
+    width: 50%;
+    float: left;
+    @media (max-width: 991px) {
+      width: 100%;
+      +.profile-info-col {
+        margin-top: 15px;
+      }
+    }
+  }
+  &-block {
+    padding: 0 15px 15px 15px;
+    border: 1px solid $secondBorderColor;
+    @media (min-width: $mobileWidth) {
+      padding: 0 10px 15px 20px;
+    }
+  }
+}
+
+.profile-data {
+  margin-bottom: 32px;
+}

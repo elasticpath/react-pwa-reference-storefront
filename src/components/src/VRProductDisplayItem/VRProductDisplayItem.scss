@@ -1,0 +1,147 @@
+@import './../../../theme/common.scss';
+
+.vr-container {
+    width: 100%;
+    height: 380px;
+    padding-left: 10px;
+    position:relative;
+    z-index: 5;
+}
+
+#myEnterVRButton {
+    position: absolute;
+    z-index: 12;
+    bottom: 4px;
+    right: 10px;
+
+    .vr-fullscreen {
+        height: 25px;
+        width: 25px;
+        background: url('#{$imgComponentUrl}/icons/fullscreen.svg') no-repeat 9px center;
+
+        &:hover {
+            background: url('#{$imgComponentUrl}/icons/fullscreen_hover.svg') no-repeat 9px center;
+        }
+        &:focus {
+            outline: 0;
+        }
+    }
+}
+
+.a-canvas {
+    // on IOS, aframe injects inline canvas styles and distorts sizing.  Must use !important.
+    width: 100%!important;
+    height: 100%!important;
+}
+
+.a-fullscreen .app-header {
+    z-index: 0;
+}
+
+.a-fullscreen .exit-btn {
+    display: none;
+}
+
+.exit-btn {
+    height: 25px;
+    border: none;
+    width: 25px;
+    position: absolute;
+    z-index: 6;
+    top: 4px;
+    right: 10px;
+    cursor: pointer;
+
+    background: url('#{$imgComponentUrl}/icons/exit_vr.svg') no-repeat 9px center;
+
+    &:hover {
+        background: url('#{$imgComponentUrl}/icons/exit_vr_hover.svg') no-repeat 9px center;
+    }
+    &:focus {
+        outline: 0;
+    }
+}
+
+.info-btn {
+    height: 30px;
+    border: none;
+    width: 320px;
+    background: url('#{$imgComponentUrl}/icons/vr_icon.svg') no-repeat 0px center;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+
+    &:hover {
+        background: url('#{$imgComponentUrl}/icons/vr_icon_hover.svg') no-repeat 0px center;
+        .info-btn-text {
+            color: #197C93;
+        }
+    }
+    &:focus {
+        outline: 0;
+    }
+
+    .info-btn-text {
+        font-style: bold;
+    }
+}
+
+.info-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .info-contents {
+        background-color: rgba(0,0,0,0.5);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .info-text {
+            color:white;
+            font-weight: bold;
+            padding: 10px;
+            width: 100%;
+            max-height: 280px;
+            text-align: left;
+            font-size: 12px;
+        }
+    }
+
+    #pointer {
+        border: solid 10px transparent;
+        border-bottom-color:#000;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 20px;
+        margin-right: auto;
+        opacity: 0.5;
+        display: flex;
+    }
+}
+
+.info-top-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-description {
+    margin-top: 15px;
+    width: 250px;
+    color: #197C93;
+    font-size: 13px;
+    font-style: bold;
+    border: none;
+    background: none;
+    &:focus {
+        outline: 0;
+    }
+}
+
+.a-loader-title {
+    color: black;
+  }
