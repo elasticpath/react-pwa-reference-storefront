@@ -22,7 +22,7 @@ import React from 'react';
 import routes from './additionalB2bRouter';
 import RouteWithSubRoutes from '../../RouteWithSubRoutes';
 
-const AdditionalB2bRoutes = () => (
+const AdditionalB2bRoutesContainer = () => (
   <div>
     {routes.map(route => (
       <RouteWithSubRoutes key={route.path} {...route} />
@@ -30,4 +30,4 @@ const AdditionalB2bRoutes = () => (
   </div>
 );
 
-export default AdditionalB2bRoutes;
+export default AdditionalB2bRoutesContainer;

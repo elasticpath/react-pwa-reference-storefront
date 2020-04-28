@@ -47,11 +47,11 @@ const routes: any [] = baseRoutes();
 let AdditionalRoutes: any;
 
 if (Config.b2b.enable) {
-  const additionalB2bRoutesImport = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/container_exports/AdditionalB2bRoutes');
-  AdditionalRoutes = lazy(() => additionalB2bRoutesImport);
+  const additionalB2bRoutesContainer = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/container_exports/AdditionalB2bRoutesContainer');
+  AdditionalRoutes = lazy(() => additionalB2bRoutesContainer);
 } else {
-  const additionalB2cRoutesImport = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/container_exports/AdditionalB2cRoutes');
-  AdditionalRoutes = lazy(() => additionalB2cRoutesImport);
+  const additionalB2cRoutesContainer = import(/* webpackChunkName: "AdditionalB2cRoutes" */ './containers/container_exports/AdditionalB2cRoutesContainer');
+  AdditionalRoutes = lazy(() => additionalB2cRoutesContainer);
 }
 
 function redirectToProfilePage(keywords) {
