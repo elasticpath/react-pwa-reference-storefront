@@ -218,7 +218,7 @@
 }
 
 .new-payment-modal {
-  width: 'calc(100vw - 4.8rem)';
+  width: calc(100vw - 4.8rem);
 
   @media screen and (min-width: 681px) {
     width: 580px;

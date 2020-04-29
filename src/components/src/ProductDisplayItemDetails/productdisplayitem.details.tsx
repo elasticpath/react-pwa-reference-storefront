@@ -493,7 +493,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
           type="submit"
         >
           {addToRequisitionListLoading ? (
-            <span className="miniLoader" />
+            <span className="circularLoader" />
           ) : (
             <span>
               {intl.get('add-to-requisition-list')}

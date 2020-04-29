@@ -530,7 +530,7 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
         {showSelectAllPopup && (
         <div className="select-all-items-block">
           <div className={`select-all-items ${selectAllLoader ? 'loading' : ''}`}>
-            {selectAllLoader ? (<span className="miniLoader" />) : ''}
+            {selectAllLoader ? (<span className="circularLoader" />) : ''}
             <p>
               {msg.map((str) => {
                 const i = Object.keys(obj).indexOf(str);

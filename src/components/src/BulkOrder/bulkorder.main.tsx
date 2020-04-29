@@ -386,7 +386,9 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     const quickOrderDisabledButton = (!Config.b2b.enable || (isValid || !isEmpty || duplicatedFields));
     const bulkOrderDisabledButton = !Config.b2b.enable || (!csvText || bulkOrderDuplicatedErrorMessage !== '' || bulkOrderErrorMessage !== '');
     const AddToCart = (props: any) => {
-      const { disabled, itemsData, isQuickOrder } = props;
+      const {
+        disabled, itemsData, isQuickOrder, showLoader,
+      } = props;
       const dispatch = useCountDispatch();
       const onCountChange = (name, count) => {
         const data = {
@@ -411,13 +413,23 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
             type="submit"
             onClick={() => { this.addAllToCart(itemsData, isQuickOrder, onCountChange); }}
           >
-            {intl.get('add-all-to-cart')}
+            {showLoader ? (
+              <span className="circularLoader" />
+            ) : (
+              intl.get('add-all-to-cart')
+            )}
           </button>
         </span>
       );
     };
     const SelectCartButton = ({ isQuickOrder }) => (
-      <DropdownCartSelection addToSelectedCart={(cart, onchange) => this.addAllToSelectedCart(cart, isQuickOrder, onchange)} multiCartData={multiCartData._carts[0]._element} isDisabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton} btnTxt={intl.get('add-all-to-cart')} />
+      <DropdownCartSelection
+        addToSelectedCart={(cart, onchange) => this.addAllToSelectedCart(cart, isQuickOrder, onchange)}
+        multiCartData={multiCartData._carts[0]._element}
+        isDisabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton}
+        btnTxt={intl.get('add-all-to-cart')}
+        showLoader={isLoading}
+      />
     );
     return (
       <div className={`bulk-order-component ${(!isBulkModalOpened) ? 'hideModal' : ''}`}>
@@ -444,7 +456,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                 {multiCartData && multiCartData._carts ? (
                   <SelectCartButton isQuickOrder />
                 ) : (
-                  <AddToCart isDisabled={quickOrderDisabledButton} itemsData={items} isQuickOrder />
+                  <AddToCart isDisabled={quickOrderDisabledButton} itemsData={items} isQuickOrder showLoader={isLoading} />
                 )}
                 {
                   BarcodeScanner.checkAvailability()
@@ -457,7 +469,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                     >
                       {
                         (isBarcodeScannerLoading)
-                          ? <span className="miniLoader" />
+                          ? <span className="circularLoader" />
                           : (
                             <div>
                               <span className="scan-barcode-title">{intl.get('scan-barcode')}</span>
@@ -469,9 +481,6 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                   )
                 }
                 {barcodeScannerError && <div className="bulk-order-error-message">{barcodeScannerError}</div>}
-                {
-                  (isLoading) ? (<div className="miniLoader" />) : ''
-                }
               </div>
               <div className="quickOrderRegion" data-region="quickOrderRegion">
                 {items.map((item, i) => (
@@ -484,11 +493,8 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                 {multiCartData && multiCartData._carts ? (
                   <SelectCartButton isQuickOrder={false} />
                 ) : (
-                  <AddToCart isDisabled={bulkOrderDisabledButton} itemsData={bulkOrderItems} />
+                  <AddToCart isDisabled={bulkOrderDisabledButton} itemsData={bulkOrderItems} showLoader={isLoading} />
                 )}
-                {
-                  (isLoading) ? (<div className="miniLoader" />) : ''
-                }
               </div>
               {
                 (bulkOrderDuplicatedErrorMessage !== '') ? (<div className="bulk-order-error-message"><p>{bulkOrderDuplicatedErrorMessage}</p></div>) : ''

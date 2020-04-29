@@ -348,7 +348,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
           <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, 0)}>{intl.get('cancel')}</button>
           <button type="button" className="ep-btn ok-btn" onClick={event => this.handleDeleteCart(element, index)}>
             {element.removeCartLoading ? (
-              <div className="miniLoader" />
+              <div className="circularLoader" />
             ) : (
               <span>
                 {intl.get('ok')}

@@ -71,28 +71,9 @@
       padding-top:10px;
 
       .tab-pane{
-        max-height: 'calc(100vh - 255px)';
+        max-height: calc(100vh - 255px);
         overflow-y: auto;
         padding-right: 20px;
-
-        .miniLoader {
-          border: 2px solid $firstComplimentBackground;
-          border-top: 2px solid $secondComplimentColor;
-          width: 20px;
-          height: 20px !important;
-          margin-left: 65px;
-        }
-
-        .barcode-scanner {
-          .miniLoader {
-            margin: 0;
-            display: inline-block;
-            width: 15px;
-            height: 15px !important;
-            vertical-align: sub;
-          }
-        }
-
         p{
           font-size: small;
         }
@@ -163,12 +144,14 @@
   }
 
   .btn-itemdetail-addtocart {
+    min-width: 160px;
     min-height: 30px;
     padding: 2px 25px;
     text-transform: none;
     font-size: 14px;
     font-weight: 500;
     margin: 0;
+    vertical-align: middle;
 
     &.primary:focus {
       outline: 0 auto transparent;
@@ -193,7 +176,7 @@
 @media (max-width: $tabletWidth - 1px) {
   .bulk-order-component {
     .bulk-modal .tab-content .tab-pane {
-      max-height: 'calc(100vh - 160px)';
+      max-height: calc(100vh - 160px);
     }
 
     .bulk-modal .tab-content .tab-pane .bulk-csv {
@@ -212,7 +195,7 @@
     height: 100vh;
 
     .bulk-modal .tab-content .tab-pane {
-      max-height: 'calc(100vh - 120px)';
+      max-height: calc(100vh - 120px);
       padding-right: 20px;
 
       .bulk-csv {
