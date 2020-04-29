@@ -514,7 +514,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                 <div className="section-header-right">
                   <div className="accounts-search">
                     <input type="text" placeholder={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
-                    {showSearchLoader && <div className="miniLoader" />}
+                    {showSearchLoader && <div className="circularLoader" />}
                   </div>
                 </div>
               </div>

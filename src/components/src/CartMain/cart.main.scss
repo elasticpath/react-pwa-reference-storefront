@@ -193,7 +193,7 @@
 
 .add-to-list-modal {
   padding: 10px 20px;
-  width: 'calc(100vw - 4.8rem)';
+  width: calc(100vw - 4.8rem);
 
   .dialog-content {
     padding: 25px 0 30px;
@@ -201,14 +201,6 @@
 
   @media screen and (min-width: 681px) {
     width: 570px;
-  }
-
-  .miniLoader {
-    border: 2px solid $firstComplimentBackground;
-    border-top: 2px solid $secondComplimentColor;
-    width: 20px;
-    height: 20px !important;
-    margin: 0 auto;
   }
 
   .create-list-form {

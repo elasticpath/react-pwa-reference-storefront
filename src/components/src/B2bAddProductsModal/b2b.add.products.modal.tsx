@@ -300,7 +300,7 @@ class AddProductsModal extends Component<AddProductsModalProps, AddProductsModal
             <button className="cancel" type="button" onClick={handleClose}>{intl.get('cancel')}</button>
             <button className="save-btn" type="submit" disabled={isFormTab ? quickOrderDisabledButton : bulkOrderDisabledButton} onClick={this.addAllToList}>
               {isLoading ? (
-                <div className="miniLoader" />
+                <div className="circularLoader" />
               ) : (
                 <span>
                   {intl.get('add-products-to-list')}

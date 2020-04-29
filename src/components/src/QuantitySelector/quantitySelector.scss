@@ -15,7 +15,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-    
+
         .form-control-quantity {
           display: block;
           width: 82px;
@@ -26,13 +26,13 @@
           text-align: center;
           margin: 0 auto;
         }
-    
+
         input[type=number]::-webkit-outer-spin-button,
         input[type=number]::-webkit-inner-spin-button {
           -webkit-appearance: none;
           margin: 0;
         }
-    
+
         input[type=number] {
           -moz-appearance:textfield;
         }
@@ -62,14 +62,3 @@
       }
     }
   }
-
-  .miniLoader {
-    width: 20px;
-    height: 20px !important;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0;
-    border-width: 2px;
-    border-top-width: 2px;
-  }
-  

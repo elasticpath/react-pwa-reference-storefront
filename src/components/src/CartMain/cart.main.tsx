@@ -290,7 +290,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
       <div className="create-list-form">
         {showReqListLoader && (
           <div className="loader-wrapper">
-            <div className="miniLoader" />
+            <div className="circularLoader" />
           </div>
         )}
         <div className="edit-mode">
@@ -387,7 +387,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
               <button className="ep-btn cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
               <button className="ep-btn primary" type="button" onClick={this.handleAddToList} disabled={!requisitionListData}>
                 {addToRequisitionListLoading ? (
-                  <div className="miniLoader" />
+                  <div className="circularLoader" />
                 ) : (
                   <span>
                     {intl.get('add-to-list')}

@@ -191,7 +191,7 @@
       left: 0;
 
       @media (min-width: 576px) {
-        width: 'calc(100% - 30px)';
+        width: calc(100% - 30px);
         left: 15px;
       }
 
