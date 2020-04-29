@@ -25,8 +25,9 @@ import {
 } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import {
-  AppHeaderMain, FacebookChat, AppFooterMain, ChatComponent, Messagecontainer, CountProvider, RequisitionListCountProvider, ComplianceSupportModal,
+  AppHeaderMain, AppFooterMain, Messagecontainer, CountProvider, RequisitionListCountProvider, ComplianceSupportModal,
 } from './components/src/index';
+
 import packageJson from '../package.json';
 import RouteWithSubRoutes from './containers/RouteContainers/RouteWithSubRoutes';
 import withAnalytics from './utils/Analytics';
@@ -45,6 +46,18 @@ declare var FB: any;
 
 const routes: any [] = baseRoutes;
 let AdditionalRoutes: any;
+
+let ChatComponent;
+if (Config.chatbot.enable) {
+  const ChatComponentImport = import(/* webpackChunkName: "chatbot" */ './components/src/ChatBot/chatbot');
+  ChatComponent = lazy(() => ChatComponentImport);
+}
+
+let FacebookChat;
+if (Config.facebook.enable) {
+  const FacebookChatImport = import(/* webpackChunkName: "facebookchat" */ './components/src/FacebookChat/facebookchat.main');
+  FacebookChat = lazy(() => FacebookChatImport);
+}
 
 if (Config.b2b.enable) {
   const additionalB2bRoutesContainer = import(/* webpackChunkName: "AdditionalB2bRoutes" */ './containers/RouteContainers/AdditionalB2bRoutesContainer');
@@ -160,10 +173,13 @@ const VersionContainer = (props) => {
 const Root = () => {
   const { error } = React.useContext(ErrorContext);
   const locationPathName = window.location.origin;
-
   return [
     <VersionContainer key="version-container" appVersion={packageJson.version} />,
-    <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />,
+    <div>
+      {
+        Config.facebook.enable && <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />
+      }
+    </div>,
     <AppHeaderMain
       key="app-header"
       onSearchPage={keywords => redirectToProfilePage(keywords)}
@@ -195,7 +211,9 @@ const Root = () => {
       </Switch>
     </div>,
     <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,
-    <ChatComponent key="chat-component" />,
+    <Suspense fallback={<div />}>
+      <div>{Config.chatbot.enable && <ChatComponent key="chat-component" />}</div>
+    </Suspense>,
     complianceSupportModal,
   ];
 };
