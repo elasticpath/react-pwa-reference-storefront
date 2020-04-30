@@ -27,7 +27,6 @@ import intl from 'react-intl-universal';
 import {
   AppHeaderMain, AppFooterMain, Messagecontainer, CountProvider, RequisitionListCountProvider, ComplianceSupportModal,
 } from './components/src/index';
-
 import packageJson from '../package.json';
 import RouteWithSubRoutes from './containers/RouteContainers/RouteWithSubRoutes';
 import withAnalytics from './utils/Analytics';
@@ -173,6 +172,7 @@ const VersionContainer = (props) => {
 const Root = () => {
   const { error } = React.useContext(ErrorContext);
   const locationPathName = window.location.origin;
+
   return [
     <VersionContainer key="version-container" appVersion={packageJson.version} />,
     <Suspense fallback={<div />}>
