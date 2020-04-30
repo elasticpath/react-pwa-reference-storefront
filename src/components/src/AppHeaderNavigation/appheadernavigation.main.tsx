@@ -22,7 +22,7 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
+import { set, get } from 'lodash';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
@@ -192,11 +192,11 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
         const loPathsToChange = AppHeaderNavigationMain.getListOfPathsToAlterShow(path);
 
         loPathsToChange.forEach((pathToChange) => {
-          _.set(returnNav, `${pathToChange}.show`, true);
+          set(returnNav, `${pathToChange}.show`, true);
         });
 
-        const lowestCategoryInPathVal = !_.get(navigations, `${path}.show`, '');
-        _.set(returnNav, `${path}.show`, lowestCategoryInPathVal);
+        const lowestCategoryInPathVal = !get(navigations, `${path}.show`, '');
+        set(returnNav, `${path}.show`, lowestCategoryInPathVal);
 
         return { navigations: returnNav };
       });
@@ -210,7 +210,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       <li className={isLeftDropDownStyling ? 'left-drop-down' : 'right-drop-down'} key={`${path}`}>
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <Link className={`dropdown-item dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
+        <Link className={`dropdown-item dropdown-toggle ${get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id="navbarDropdownMenuLink" onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
         </Link>
         <ul className={`dropdown-menu sub-category-dropdown-menu ${nestedChildObj.show ? 'show' : ''} nestedCategory${currentCategoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
@@ -237,7 +237,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
 
   renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel) {
     const { navigations } = this.state;
-    const childObj = _.get(navigations, path, '');
+    const childObj = get(navigations, path, '');
     const subCategoryChildArray = Object.keys(childObj);
 
     return subCategoryChildArray.map((subcategoryChildKeyName) => {
@@ -272,10 +272,10 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       <li className="nav-item" key={`${path}`} data-name={category} data-el-container="category-nav-item-container">
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <Link className={`nav-link dropdown-toggle ${_.get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <Link className={`nav-link dropdown-toggle ${get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {category}
         </Link>
-        <ul className={`dropdown-menu sub-category-dropdown-menu ${_.get(navigations, `${path}.show`, '') ? 'show' : ''} nestedCategory${categoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
+        <ul className={`dropdown-menu sub-category-dropdown-menu ${get(navigations, `${path}.show`, '') ? 'show' : ''} nestedCategory${categoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
           {this.renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel)}
         </ul>
       </li>

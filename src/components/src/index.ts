@@ -47,7 +47,6 @@ import CartMain from './CartMain/cart.main';
 import CartPopUp from './CartPopUp/cartpopup';
 import CategoryItemsMain from './CategoryItems/categoryitems.main';
 import CheckoutSummaryList from './CheckoutSummaryList/checkout.summarylist';
-import FacebookChat from './FacebookChat/facebookchat.main';
 import FeaturedProductsMain from './FeaturedProducts/featuredproducts.main';
 import ComplianceSupportModal from './ComplianceSupport/compliancesupport.main';
 import GiftcertificateFormMain from './GiftCertificateForm/giftcertificateform.main';
@@ -86,7 +85,6 @@ import SearchResultsItemsMain from './SearchResultsItems/searchresultsitems.main
 import ShippingOptionContainer from './ShippingOption/shippingoption.container';
 import SortProductMenu from './SortProductMenu/sortproductmenu.main';
 import WishListMain from './WishList/wishlist.main';
-import ChatComponent from './ChatBot/chatbot';
 import BarcodeScanner from './BarcodeScanner/barcodescanner';
 import CartCreate from './CartCreate/cart.create';
 import CountInfoPopUp from './CountInfoPopUp/countinfopopup';
@@ -103,6 +101,8 @@ import CartClear from './CartClear/cartclear';
 import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
 
+const FacebookChat = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './FacebookChat/facebookchat.main'));
+const ChatComponent = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './ChatBot/chatbot'));
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
 const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
 const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
