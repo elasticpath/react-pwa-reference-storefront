@@ -176,11 +176,7 @@ const Root = () => {
   return [
     <VersionContainer key="version-container" appVersion={packageJson.version} />,
     <Suspense fallback={<div />}>
-      <div>
-        {
-          Config.facebook.enable && <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />
-        }
-      </div>
+      {Config.facebook.enable && <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />}
     </Suspense>,
     <AppHeaderMain
       key="app-header"
@@ -214,7 +210,7 @@ const Root = () => {
     </div>,
     <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,
     <Suspense fallback={<div />}>
-      <div>{Config.chatbot.enable && <ChatComponent key="chat-component" />}</div>
+      {Config.chatbot.enable && <ChatComponent key="chat-component" />}
     </Suspense>,
     complianceSupportModal,
   ];
