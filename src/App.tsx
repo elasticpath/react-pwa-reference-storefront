@@ -175,11 +175,13 @@ const Root = () => {
   const locationPathName = window.location.origin;
   return [
     <VersionContainer key="version-container" appVersion={packageJson.version} />,
-    <div>
-      {
-        Config.facebook.enable && <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />
-      }
-    </div>,
+    <Suspense fallback={<div />}>
+      <div>
+        {
+          Config.facebook.enable && <FacebookChat key="facebook-chat" config={Config.facebook} handleFbAsyncInit={handleFbAsyncInit} />
+        }
+      </div>
+    </Suspense>,
     <AppHeaderMain
       key="app-header"
       onSearchPage={keywords => redirectToProfilePage(keywords)}
