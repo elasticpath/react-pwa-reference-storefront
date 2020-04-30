@@ -86,7 +86,6 @@ import SearchResultsItemsMain from './SearchResultsItems/searchresultsitems.main
 import ShippingOptionContainer from './ShippingOption/shippingoption.container';
 import SortProductMenu from './SortProductMenu/sortproductmenu.main';
 import WishListMain from './WishList/wishlist.main';
-
 import CartCreate from './CartCreate/cart.create';
 import CountInfoPopUp from './CountInfoPopUp/countinfopopup';
 import B2bAddSubAccount from './B2bAddSubAccount/b2b.addsubaccount';
@@ -101,8 +100,8 @@ import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
 import CartClear from './CartClear/cartclear';
 import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
-// import ChatComponent from './ChatBot/chatbot';
-const BarcodeScanner = lazy(() => import(/* webpackChunkName: "BarcodeScanner" */ './BarcodeScanner/barcodescanner'));
+import BarcodeScanner from './BarcodeScanner/barcodescanner';
+
 const ChatComponent = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './ChatBot/chatbot'));
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
 const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
