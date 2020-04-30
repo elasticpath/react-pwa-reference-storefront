@@ -117,6 +117,18 @@
    margin-top: 10px;
  }
 
+ .circularLoader {
+   border: 2px solid $firstComplimentBackground;
+   border-top: 2px solid $secondComplimentColor;
+   width: 20px;
+   height: 20px;
+   display: inline-block;
+   border-radius: 50%;
+   animation: spin 0.5s linear infinite;
+   margin: 0 auto;
+   vertical-align: middle;
+ }
+
   .textLoader {
     width: fit-content;
     position: absolute;

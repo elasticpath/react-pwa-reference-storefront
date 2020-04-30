@@ -245,12 +245,9 @@
         width: 150px;
       }
     }
-    .miniLoader {
-      width: 20px;
-      height: 20px !important;
-      border-width: 5px;
+    .circularLoader {
       position: absolute;
-      top: -5px;
+      top: 5px;
       right: 5px;
     }
   }

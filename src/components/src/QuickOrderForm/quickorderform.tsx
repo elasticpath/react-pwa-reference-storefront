@@ -299,7 +299,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
           </div>
         ) : ('')}
         {
-          (isLoading) ? (<div className="miniLoader" />) : ''
+          (isLoading) ? (<div className="circularLoader" />) : ''
         }
         {
           (skuErrorMessage !== '') ? (<div className="container-error-message"><p className="content-error-message">{skuErrorMessage}</p></div>) : ''

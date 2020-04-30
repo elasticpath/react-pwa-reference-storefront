@@ -21,12 +21,9 @@
 
 @import './../../../theme/common.scss';
 .bulk-item-wrap{
-  .miniLoader {
-    border: 3px solid $firstComplimentBackground;
-    border-top: 3px solid $secondComplimentColor;
-    width: 30px;
-    height: 30px !important;
-    margin-left: 86px;
+  .circularLoader {
+    margin-top: 10px;
+    margin-left: 90px;
   }
 
   .container-error-message{
@@ -308,16 +305,6 @@
 }
 
 @media (max-width: $mobileWidth - 1px) {
-  .bulk-item-wrap{
-    .miniLoader {
-      border: 2px solid $firstComplimentBackground;
-      border-top: 2px solid $secondComplimentColor;
-      width: 20px;
-      height: 20px !important;
-      margin-left: 76px;
-    }
-  }
-
   .bulk-item {
     position: relative;
     display: block;

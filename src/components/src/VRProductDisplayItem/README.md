@@ -15,7 +15,7 @@ For an example of how to integrate this component into your own project checkout
 The component gives the user the ability to rotate in the vr-scene with mobile devices, dedicated vr devices and on desktop.  The aframe website linked above will have a more exhaustive list of compatible devices.  The component also allows the user to set a panorama image, a 3D mesh, and an html markup that populates a 3D plane.
 
 To change what 3D Mesh the component should show input a url into the property `meshUri` (Can be either .gltf or .glb format).  Likewise to change the panorama image in the scene input a url into `backgroundUri`.  Note that the html markup that populates the plane in the 3d scene
-is hidden outside of aframes `Scene` tag.  To make changes to the html markup that populates the 3D plane, adjust `VRPanelContent.tsx` and `VRPanelContent.less`.
+is hidden outside of aframes `Scene` tag.  To make changes to the html markup that populates the 3D plane, adjust `VRPanelContent.tsx` and `VRPanelContent.scss`.
 
 #### Usage
 

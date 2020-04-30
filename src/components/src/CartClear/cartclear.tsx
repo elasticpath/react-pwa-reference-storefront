@@ -119,7 +119,7 @@ class CartClear extends Component<CartClearProps, CartClearState> {
               <div className="btn-wrap">
                 <button className="ep-btn cancel-btn" type="button" onClick={this.handleCloseConfirmationMsg}>{intl.get('cancel')}</button>
                 <button className="ep-btn ok-btn" type="button" onClick={this.handleClearCart}>
-                  {showLoader ? (<span className="miniLoader" />) : intl.get('ok')}
+                  {showLoader ? (<span className="circularLoader" />) : intl.get('ok')}
                 </button>
               </div>
             </div>

@@ -22,7 +22,7 @@
 @import './../../../theme/common.scss';
 
 .cart-create-modal {
-  min-width: 'calc(100vw - 4.8rem)';
+  min-width: calc(100vw - 4.8rem);
 
   @media (min-width: $mobileWidth) {
     min-width: 700px;
@@ -213,7 +213,7 @@
       transform: translateY(-50%);
       background: $mainBackgroundColor;
       z-index: 1;
-      width: 'calc(100vw - 6.8rem)';
+      width: calc(100vw - 6.8rem);
 
       &.delete-mode {
         min-height: 115px;
@@ -261,14 +261,7 @@
             background-color: $mainBackgroundColor;
           }
 
-          .miniLoader {
-            width: 20px;
-            height: 20px !important;
-            display: inline-block;
-            vertical-align: middle;
-            margin: 0;
-            border-width: 2px;
-            border-top-width: 2px;
+          .circularLoader {
             border-top-color: $mainColor;
           }
         }
@@ -280,7 +273,7 @@
       }
 
       @media (min-width: $mobileWidth) {
-        width: 'calc(700px - 2rem - 30px)';
+        width: calc(700px - 2rem - 30px);
       }
     }
 

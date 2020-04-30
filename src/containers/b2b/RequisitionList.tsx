@@ -246,7 +246,7 @@ class RequisitionList extends Component<CartCreateProps, CartCreateState> {
           <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditRequisition(index)}>{intl.get('cancel')}</button>
           <button type="button" className="ep-btn ok-btn" disabled={element.removeCartLoading} onClick={() => this.handleDeleteRequisition(element)}>
             {element.removeCartLoading ? (
-              <div className="miniLoader" />
+              <div className="circularLoader" />
             ) : (
               <span>
                 {intl.get('ok')}

@@ -213,7 +213,7 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 1;
-      width: 'calc(100vw - 30px)';
+      width: calc(100vw - 30px);
 
       &.delete-mode {
         min-height: 115px;
@@ -268,13 +268,6 @@
           }
 
           .miniLoader {
-            width: 20px;
-            height: 20px !important;
-            display: inline-block;
-            vertical-align: middle;
-            margin: 0;
-            border-width: 2px;
-            border-top-width: 2px;
             border-top-color: $mainColor;
           }
         }

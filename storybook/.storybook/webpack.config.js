@@ -1,13 +1,13 @@
 
 module.exports = ({ config }) => {
   config.module.rules.push({
-    test: /\.less$/,
+    test: /\.scss$/,
     use: [{
       loader: 'style-loader'
     }, {
       loader: 'css-loader'
     }, {
-      loader: 'less-loader',
+      loader: 'sass-loader',
       options: {
         javascriptEnabled: true
       }

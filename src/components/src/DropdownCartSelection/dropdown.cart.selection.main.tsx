@@ -73,7 +73,7 @@ function DropdownCartSelection(props:DropdownCartSelectionProps) {
         type="button"
       >
         {showLoader ? (
-          <span className="miniLoader" />
+          <span className="circularLoader" />
         ) : (
           <span className="btn-txt">
             {btnTxt}
@@ -89,7 +89,7 @@ function DropdownCartSelection(props:DropdownCartSelectionProps) {
         )}
         <div className="cart-selection-menu-wrap">
           {multiCartData.map((cart) => {
-            const name = (cart._target && cart._target[0]._descriptor[0].name) || (cart._descriptor ? cart._descriptor[0].name : intl.get('default'));
+            const name = (cart._target && cart._target[0]._descriptor[0].name) || (cart._descriptor && cart._descriptor[0].name ? cart._descriptor[0].name : intl.get('default'));
             return (
               <button type="button" className="dropdown-item cart-selection-menu-item" key={cart.self ? cart.self.uri : cart._target[0]._descriptor[0].name || 'default'} onClick={() => addToSelectedCart(cart, onCountChange)}>
                 {name}

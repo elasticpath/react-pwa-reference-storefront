@@ -134,15 +134,8 @@
     position: relative;
     margin-right: 0;
 
-    .miniLoader {
-      position: absolute;
-      top: 6px;
-      margin: 0 0 0 -10px;
-      display: inline-block;
-      border: 2px solid $firstComplimentBackground;
-      border-top: 2px solid $mainTextColor;
-      width: 20px;
-      height: 20px !important;
+    .circularLoader {
+      border-top-color: $mainTextColor;
     }
 
     @media (min-width: 481px) {
