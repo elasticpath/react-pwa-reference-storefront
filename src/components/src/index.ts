@@ -34,7 +34,6 @@ import AppHeaderTopMain from './AppHeaderTop/appheadertop.main';
 import AppModalBundleConfigurationMain from './AppModalBundleConfiguration/appmodalbundleconfiguration.main';
 import AppModalCartSelectMain from './AppModalCartSelect/appmodalcartselect.main';
 import AppModalLoginMain from './AppModalLogin/appmodallogin.main';
-import BulkOrderMain from './BulkOrder/bulkorder.main';
 import BundleConstituentsDisplayMain from './BundleConstituents/bundleconstituents.main';
 import B2bAccountList from './B2bAccountList/b2b.accountlist';
 import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
@@ -85,7 +84,6 @@ import SearchResultsItemsMain from './SearchResultsItems/searchresultsitems.main
 import ShippingOptionContainer from './ShippingOption/shippingoption.container';
 import SortProductMenu from './SortProductMenu/sortproductmenu.main';
 import WishListMain from './WishList/wishlist.main';
-import BarcodeScanner from './BarcodeScanner/barcodescanner';
 import CartCreate from './CartCreate/cart.create';
 import CountInfoPopUp from './CountInfoPopUp/countinfopopup';
 import B2bAddSubAccount from './B2bAddSubAccount/b2b.addsubaccount';
@@ -101,8 +99,10 @@ import CartClear from './CartClear/cartclear';
 import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
 
-const FacebookChat = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './FacebookChat/facebookchat.main'));
-const ChatComponent = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './ChatBot/chatbot'));
+const BulkOrderMain = lazy(() => import(/* webpackChunkName: "bulkorder" */ './BulkOrder/bulkorder.main'));
+const BarcodeScanner = lazy(() => import(/* webpackChunkName: "barcodescanner" */ './BarcodeScanner/barcodescanner'));
+const FacebookChat = lazy(() => import(/* webpackChunkName: "facebookchat" */ './FacebookChat/facebookchat.main'));
+const ChatComponent = lazy(() => import(/* webpackChunkName: "chatbot" */ './ChatBot/chatbot'));
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
 const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
 const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));

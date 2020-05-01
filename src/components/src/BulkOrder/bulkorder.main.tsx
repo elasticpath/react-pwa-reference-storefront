@@ -19,15 +19,13 @@
  *
  */
 
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import intl from 'react-intl-universal';
-import BarcodeScanner from '../BarcodeScanner/barcodescanner';
 import { login } from '../utils/AuthService';
 import { cortexFetchItemLookupForm, itemLookup, searchLookup } from '../utils/CortexLookup';
 import QuickOrderForm from '../QuickOrderForm/quickorderform';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
-
 import './bulkorder.main.scss';
 import { useCountDispatch } from '../cart-count-context';
 import DropdownCartSelection from '../DropdownCartSelection/dropdown.cart.selection.main';
@@ -71,6 +69,8 @@ interface BulkOrderState {
   multiCartData: { [key: string]: any },
 }
 
+let BarcodeScanner = null;
+
 class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
   static defaultProps = {
     cartData: undefined,
@@ -106,10 +106,25 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     this.handleBarcodeModalClose = this.handleBarcodeModalClose.bind(this);
     this.handleBarcodeScanned = this.handleBarcodeScanned.bind(this);
     this.addAllToSelectedCart = this.addAllToSelectedCart.bind(this);
+    this.loadBarcodeScanner = this.loadBarcodeScanner.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.loadBarcodeScanner();
+  }
+
+  loadBarcodeScanner() {
+    const { isBulkModalOpened } = this.props;
+
+    if (isBulkModalOpened && BarcodeScanner === null) {
+      const BarcodeScannerImport = import(/* webpackChunkName: "barcodescanner" */ '../BarcodeScanner/barcodescanner');
+      BarcodeScanner = lazy(() => BarcodeScannerImport);
+    }
   }
 
   componentDidMount() {
     this.fetchMultiCartData();
+    this.loadBarcodeScanner();
   }
 
   addAllToCart(orderItems, isQuickOrder, onCountChange: any = () => {}) {
@@ -459,7 +474,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                   <AddToCart isDisabled={quickOrderDisabledButton} itemsData={items} isQuickOrder showLoader={isLoading} />
                 )}
                 {
-                  BarcodeScanner.checkAvailability()
+                  (navigator && navigator.mediaDevices)
                   && (
                     <button
                       className="ep-btn primary small btn-itemdetail-addtocart barcode-scanner"
@@ -509,7 +524,13 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
             </div>
           </div>
         </div>
-        {isBarcodeScannerOpen && <BarcodeScanner isModalOpen={isBarcodeScannerOpen} handleModalClose={this.handleBarcodeModalClose} handleCodeFound={this.handleBarcodeScanned} />}
+        {isBarcodeScannerOpen
+          && (
+            <Suspense fallback={<div />}>
+              <BarcodeScanner isModalOpen={isBarcodeScannerOpen} handleModalClose={this.handleBarcodeModalClose} handleCodeFound={this.handleBarcodeScanned} />
+            </Suspense>
+          )
+        }
       </div>
     );
   }
