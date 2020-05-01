@@ -1,2 +1,2 @@
-/cortex/*   http://34.220.87.171:8080/cortex/:splat          200
+/cortex/*   https://dev1-cortex-gw.ep-dev.aws.punchout2go-test.com/cortex/:splat          200
 /*          /index.html                                      200
