@@ -19,7 +19,7 @@
  *
  */
 
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 import AppHeaderSearchMain from '../AppHeaderSearch/appheadersearch.main';
@@ -27,7 +27,6 @@ import BloomreachAppHeaderSearchMain from '../Bloomreach/bloomreach.appheadersea
 import AppHeaderLoginMain from '../AppHeaderLogin/appheaderlogin.main';
 import AppHeaderLocaleMain from '../AppHeaderLocale/appheaderlocale.main';
 import AppHeaderNavigationMain from '../AppHeaderNavigation/appheadernavigation.main';
-import BulkOrderMain from '../BulkOrder/bulkorder.main';
 import CountInfoPopUp from '../CountInfoPopUp/countinfopopup';
 import { useCountState } from '../cart-count-context';
 import { cortexFetch } from '../utils/Cortex';
@@ -107,6 +106,9 @@ interface AppHeaderMainState {
   isLoggedInUser: boolean,
   totalQuantity: number,
 }
+
+const BulkOrderImport = Config.b2b.enable ? import(/* webpackChunkName: "bulkorder" */ '../BulkOrder/bulkorder.main') : null;
+const BulkOrderMain = lazy(() => BulkOrderImport);
 
 class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
   static defaultProps = {
@@ -391,7 +393,11 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
             <div className="locale-container">
               <AppHeaderLocaleMain onCurrencyChange={onCurrencyChange} onLocaleChange={onLocaleChange} />
             </div>
-            {Config.b2b.enable && <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} />}
+            {Config.b2b.enable && (
+              <Suspense fallback={<div />}>
+                <BulkOrderMain isBulkModalOpened={isBulkModalOpened} handleClose={this.handleBulkModalClose} cartData={cartData} />
+              </Suspense>)
+            }
           </div>
         </div>
 

@@ -62,10 +62,6 @@ class BarcodeScanner extends Component<BarcodeScannerProps, BarcodeScannerState>
     this.stopScanning();
   }
 
-  static checkAvailability(): boolean {
-    return Boolean(navigator && navigator.mediaDevices);
-  }
-
   initScanner() {
     const scannerContainer = this.scannerContainer.current;
     Quagga.init({
