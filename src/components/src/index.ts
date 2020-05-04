@@ -91,11 +91,8 @@ import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdispla
 
 // B2B components
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
-import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
-import B2bSubaccountlistitem from './B2bSubAccountListItem/b2b.subaccountlistitem';
 
 const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
-
 const BulkOrderMain = lazy(() => import(/* webpackChunkName: "bulkorder" */ './BulkOrder/bulkorder.main'));
 const BarcodeScanner = lazy(() => import(/* webpackChunkName: "barcodescanner" */ './BarcodeScanner/barcodescanner'));
 const FacebookChat = lazy(() => import(/* webpackChunkName: "facebookchat" */ './FacebookChat/facebookchat.main'));
@@ -121,12 +118,8 @@ export {
   AppModalLoginMain,
   BulkOrderMain,
   BundleConstituentsDisplayMain,
-  B2bAddProductsModal,
-  B2bSubAccountList,
-  B2bSubaccountlistitem,
   BloomreachHeaderSearchMain,
   Carousel,
-  
   CartMain,
   CartPopUp,
   CategoryItemsMain,
