@@ -89,9 +89,6 @@ import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
 import CartClear from './CartClear/cartclear';
 import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 
-// B2B components
-import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
-
 const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
 const BulkOrderMain = lazy(() => import(/* webpackChunkName: "bulkorder" */ './BulkOrder/bulkorder.main'));
 const BarcodeScanner = lazy(() => import(/* webpackChunkName: "barcodescanner" */ './BarcodeScanner/barcodescanner'));
@@ -166,7 +163,6 @@ export {
   BarcodeScanner,
   CartCreate,
   CountInfoPopUp,
-  B2bSideMenu,
   CartClear,
   CountProvider,
   RequisitionListCountProvider,

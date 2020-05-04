@@ -20,7 +20,7 @@
  */
 
 import React from 'react';
-import { B2bSideMenu } from '../components/src';
+import B2bSideMenu from '../components/src/B2bSideMenu/b2b.sidemenu';
 import RouteWithSubRoutes from './RouteContainers/RouteWithSubRoutes';
 import { adminFetch, cortexFetch } from '../utils/Cortex';
 import * as Config from '../ep.config.json';
