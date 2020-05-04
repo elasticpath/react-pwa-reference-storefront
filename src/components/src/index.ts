@@ -35,10 +35,6 @@ import AppModalBundleConfigurationMain from './AppModalBundleConfiguration/appmo
 import AppModalCartSelectMain from './AppModalCartSelect/appmodalcartselect.main';
 import AppModalLoginMain from './AppModalLogin/appmodallogin.main';
 import BundleConstituentsDisplayMain from './BundleConstituents/bundleconstituents.main';
-import B2bAccountList from './B2bAccountList/b2b.accountlist';
-import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
-import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
-import B2bSubaccountlistitem from './B2bSubAccountListItem/b2b.subaccountlistitem';
 import BloomreachHeaderSearchMain from './Bloomreach/bloomreach.appheadersearch.main';
 import Carousel from './Carousel/carousel.homepage';
 import CartLineItem from './CartLineItem/cart.lineitem';
@@ -86,10 +82,6 @@ import SortProductMenu from './SortProductMenu/sortproductmenu.main';
 import WishListMain from './WishList/wishlist.main';
 import CartCreate from './CartCreate/cart.create';
 import CountInfoPopUp from './CountInfoPopUp/countinfopopup';
-import B2bAddSubAccount from './B2bAddSubAccount/b2b.addsubaccount';
-import B2bEditAccount from './B2bEditAccount/b2b.editaccount';
-import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
-import B2bEditAssociate from './B2bEditAssociate/b2b.editassociate';
 import { RequisitionListCountProvider } from './requisition-list-count-context';
 import { CountProvider } from './cart-count-context';
 import ImageContainer from './ImageContainer/image.container';
@@ -97,14 +89,22 @@ import DropdownCartSelection from './DropdownCartSelection/dropdown.cart.selecti
 import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
 import CartClear from './CartClear/cartclear';
 import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
+
+// B2B components
+import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
+import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
+import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
+import B2bSubaccountlistitem from './B2bSubAccountListItem/b2b.subaccountlistitem';
+
+const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
 
 const BulkOrderMain = lazy(() => import(/* webpackChunkName: "bulkorder" */ './BulkOrder/bulkorder.main'));
 const BarcodeScanner = lazy(() => import(/* webpackChunkName: "barcodescanner" */ './BarcodeScanner/barcodescanner'));
 const FacebookChat = lazy(() => import(/* webpackChunkName: "facebookchat" */ './FacebookChat/facebookchat.main'));
 const ChatComponent = lazy(() => import(/* webpackChunkName: "chatbot" */ './ChatBot/chatbot'));
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
-const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
+
 const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
 
 export {
@@ -124,7 +124,6 @@ export {
   AppModalLoginMain,
   BulkOrderMain,
   BundleConstituentsDisplayMain,
-  B2bAccountList,
   B2bAddProductsModal,
   B2bSubAccountList,
   B2bSubaccountlistitem,
@@ -177,10 +176,7 @@ export {
   BarcodeScanner,
   CartCreate,
   CountInfoPopUp,
-  B2bAddSubAccount,
-  B2bEditAccount,
   B2bAddAssociatesMenu,
-  B2bEditAssociate,
   B2bSideMenu,
   CartClear,
   CountProvider,
