@@ -95,9 +95,6 @@ const FacebookChat = lazy(() => import(/* webpackChunkName: "facebookchat" */ '.
 const ChatComponent = lazy(() => import(/* webpackChunkName: "chatbot" */ './ChatBot/chatbot'));
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
 
-const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
-const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
-
 export {
   AddPromotionContainer,
   AddressContainer,

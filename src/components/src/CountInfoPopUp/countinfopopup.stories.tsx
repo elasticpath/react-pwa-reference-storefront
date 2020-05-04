@@ -22,9 +22,9 @@ import * as React from 'react';
 import Readme from './README.md';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import { CountProvider } from '../index';
 import { object } from "@storybook/addon-knobs/react";
 import CountInfoPopUpProps from './countinfopopup';
+import { CountProvider } from '../cart-count-context';
 
 const countData = {
   name: 'Default',

@@ -21,7 +21,7 @@
 
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { RegistrationFormMain } from '../components/src/index';
+import RegistrationFormMain from '../components/src/RegistrationForm/registrationform.main';
 
 function RegistrationPage(props: RouteComponentProps<{}, {}, {returnPage: string}>) {
   function handleRegisterSuccess() {

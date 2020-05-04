@@ -22,9 +22,13 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
-import {
-  OrderTableMain, PaymentMethodContainer, ShippingOptionContainer, CheckoutSummaryList, AddressContainer,
-} from '../components/src/index';
+
+import OrderTableMain from '../components/src/OrderTable/ordertable.main';
+import PaymentMethodContainer from '../components/src/PaymentMethodContainer/paymentmethod.container';
+import ShippingOptionContainer from '../components/src/ShippingOption/shippingoption.container';
+import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.summarylist';
+import AddressContainer from '../components/src/AddressContainer/address.container';
+
 import { login } from '../utils/AuthService';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddTransactionAnalytics, sendAnalytics,

@@ -21,7 +21,7 @@
 
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { ProductDisplayItemMain } from '../components/src/index';
+import ProductDisplayItemMain from '../components/src/ProductDisplayItem/productdisplayitem.main';
 
 interface ProductDetailRouterProps {
   url: string;
