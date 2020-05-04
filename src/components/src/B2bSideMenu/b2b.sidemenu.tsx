@@ -66,7 +66,7 @@ class B2bSideMenu extends Component<B2bSideMenuProps, B2bSideMenuState> {
     const currentSideMenuItems = sideMenuItems.filter(el => el.to === location.pathname);
 
     return (
-      <div className="side-menu-component">
+      <div className="side-menu-component" role="navigation">
         <button
           className="side-menu-component-title"
           onClick={e => this.handleSwitcherClicked(e)}

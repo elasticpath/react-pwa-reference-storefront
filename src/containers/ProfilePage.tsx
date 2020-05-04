@@ -253,7 +253,7 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
             </div>
           </div>
           {profileData ? (
-            <div className="profile-data">
+            <div className="profile-data" role="region">
               <div className="profile-info-container">
                 <h3 className="profile-info-container-title">
                   {intl.get('general')}

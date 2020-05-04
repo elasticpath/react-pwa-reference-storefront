@@ -121,7 +121,7 @@ class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, Profilee
             <div data-region="componentAddressFormRegion">
               <span>{failedSubmit ? intl.get('failed-to-save-email') : ''}</span>
               <div className="form-group">
-                <label htmlFor="email" data-el-label="addressForm.email" className="control-label address-form-label profile-info-email-form-label">
+                <label htmlFor="registration_form_email" data-el-label="addressForm.email" className="control-label address-form-label profile-info-email-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -171,7 +171,7 @@ class ProfileemailinfoMain extends Component<ProfileemailinfoMainProps, Profilee
                 <button
                   className="ep-btn small profile-email-edit-btn"
                   type="button"
-                  id="profile_personal_info_edit_button"
+                  id="profile_email_edit_button"
                   onClick={() => {
                     this.editEmail();
                   }}

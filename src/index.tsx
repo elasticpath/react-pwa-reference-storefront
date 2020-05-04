@@ -21,6 +21,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axe from 'react-axe';
 import intl from 'react-intl-universal';
 import App from './App';
 import './theme/index.scss';
@@ -41,6 +42,10 @@ epConfig.supportedLocales.forEach((locale) => {
   locales[locale.value] = { ...localeMessages, ...debugMessages };
 });
 
+if (process.env.NODE_ENV !== 'production') {
+  // const axe = require('react-axe');
+  axe(React, ReactDOM, 1000);
+}
 // localisation init
 intl.init({
   currentLocale: UserPrefs.getSelectedLocaleValue(),

@@ -160,7 +160,7 @@ class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainSta
                     {failedSubmit ? intl.get('failed-to-save-message') : ''}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="FirstName" data-el-label="addressForm.firstName" className="control-label address-form-label profile-info-firstname-form-label">
+                    <label htmlFor="registration_form_firstName" data-el-label="addressForm.firstName" className="control-label address-form-label profile-info-firstname-form-label">
                       <span className="required-label">
                         *
                       </span>
@@ -173,7 +173,7 @@ class ProfileInfoMain extends Component<ProfileInfoMainProps, ProfileInfoMainSta
                     </div>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="LastName" data-el-label="addressForm.lastName" className="control-label address-form-label profile-info-lastname-form-label">
+                    <label htmlFor="registration_form_lastName" data-el-label="addressForm.lastName" className="control-label address-form-label profile-info-lastname-form-label">
                       <span className="required-label">
                         *
                       </span>
