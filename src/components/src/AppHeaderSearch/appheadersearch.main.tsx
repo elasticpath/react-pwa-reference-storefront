@@ -88,7 +88,8 @@ class AppHeaderSearchMain extends Component<AppHeaderSearchMainProps, AppHeaderS
     return (
       <div className={`main-search-container ${isMobileView ? 'mobile-view' : ''}`}>
         <form className="search-form" onSubmit={this.search}>
-          <input className="input-search" type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} />
+          <label htmlFor={`input-search${isMobileView ? '-mobile' : ''}`} />
+          <input className="input-search" id={`input-search${isMobileView ? '-mobile' : ''}`} type="search" onChange={this.handleChange} placeholder={intl.get('search')} ref={this.searchInput} aria-label="search" />
           <SearchIcon className="search-icon" />
         </form>
       </div>

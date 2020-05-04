@@ -62,7 +62,7 @@ const B2CHomePage: React.FunctionComponent = () => {
         <ImageContainer className="main-banner-image" fileName={bannerFileName1} imgUrl={bannerImage1} />
         <div className="main-banner-title-wrap">
           <div className="container">
-            <h2 className="goods-heading">{intl.get('b2c-main-banner-heading')}</h2>
+            <h1 className="goods-heading">{intl.get('b2c-main-banner-heading')}</h1>
             <div className="main-banner-txt">
               <p className="goods-description">
                 {intl.get('b2c-main-banner-txt')}
@@ -84,8 +84,8 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('b2c-product1-label')}</h5>
-                    <h3 className="goods-title">{intl.get('b2c-product1-heading')}</h3>
+                    <p className="goods-title-small">{intl.get('b2c-product1-label')}</p>
+                    <p className="goods-title">{intl.get('b2c-product1-heading')}</p>
                     <div className="btn-wrap">
                       <button type="button" className="ep-btn primary learn-more-btn">{intl.get('learn-more')}</button>
                     </div>
@@ -96,8 +96,8 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('b2c-product2-label')}</h5>
-                    <h3 className="goods-title">{intl.get('b2c-product2-heading')}</h3>
+                    <p className="goods-title-small">{intl.get('b2c-product2-label')}</p>
+                    <p className="goods-title">{intl.get('b2c-product2-heading')}</p>
                     <p className="goods-description">{intl.get('b2c-product2-description')}</p>
                     <button type="button" className="ep-btn primary learn-more-btn">{intl.get('add-to-cart-2')}</button>
                   </div>
@@ -107,8 +107,8 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('b2c-product3-label')}</h5>
-                    <h3 className="goods-title">{intl.get('b2c-product3-heading')}</h3>
+                    <p className="goods-title-small">{intl.get('b2c-product3-label')}</p>
+                    <p className="goods-title">{intl.get('b2c-product3-heading')}</p>
                     <p className="goods-description">
                       {intl.get('b2c-product3-description')}
                     </p>
@@ -120,8 +120,8 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('b2c-product4-label')}</h5>
-                    <h3 className="goods-title">{intl.get('b2c-product4-heading')}</h3>
+                    <p className="goods-title-small">{intl.get('b2c-product4-label')}</p>
+                    <p className="goods-title">{intl.get('b2c-product4-heading')}</p>
                     <p className="goods-description">
                       {intl.get('b2c-product4-description')}
                     </p>
@@ -132,10 +132,10 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('b2c-product5-label')}</h5>
-                    <h3 className="goods-title">
+                    <p className="goods-title-small">{intl.get('b2c-product5-label')}</p>
+                    <p className="goods-title">
                       {intl.get('b2c-product5-heading')}
-                    </h3>
+                    </p>
                   </div>
                   <ImageContainer className="main-goods-image" fileName={productFileName5} imgUrl={productImage5} />
                 </div>
@@ -149,7 +149,7 @@ const B2CHomePage: React.FunctionComponent = () => {
         <ImageContainer className="main-banner-image" fileName={bannerFileName2} imgUrl={bannerImage2} />
         <div className="main-banner-title-wrap">
           <div className="container">
-            <h2 className="goods-heading">{intl.get('b2c-main-banner-heading2')}</h2>
+            <p className="goods-heading">{intl.get('b2c-main-banner-heading2')}</p>
             <div className="main-banner-txt">
               <p className="goods-description">
                 {intl.get('b2c-main-banner-txt2')}
@@ -170,8 +170,8 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('b2c-product6-label')}</h5>
-                    <h3 className="goods-title">{intl.get('b2c-product6-heading')}</h3>
+                    <p className="goods-title-small">{intl.get('b2c-product6-label')}</p>
+                    <p className="goods-title">{intl.get('b2c-product6-heading')}</p>
                     <p className="goods-description">{intl.get('b2c-product6-description')}</p>
                   </div>
                   <ImageContainer className="main-goods-image" fileName={productFileName6} imgUrl={productImage6} />
@@ -180,8 +180,8 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('b2c-product7-label')}</h5>
-                    <h3 className="goods-title">{intl.get('b2c-product7-heading')}</h3>
+                    <p className="goods-title-small">{intl.get('b2c-product7-label')}</p>
+                    <p className="goods-title">{intl.get('b2c-product7-heading')}</p>
                     <p className="goods-description">{intl.get('b2c-product7-description')}</p>
                   </div>
                   <ImageContainer className="main-goods-image" fileName={productFileName7} imgUrl={productImage7} />
@@ -196,7 +196,7 @@ const B2CHomePage: React.FunctionComponent = () => {
         <ImageContainer className="main-banner-image" fileName={bannerFileName3} imgUrl={bannerImage3} />
         <div className="main-banner-title-wrap">
           <div className="container">
-            <h2 className="goods-heading">{intl.get('b2c-main-banner-heading3')}</h2>
+            <p className="goods-heading">{intl.get('b2c-main-banner-heading3')}</p>
             <div className="main-banner-txt">
               <p className="goods-description">
                 {intl.get('b2c-main-banner-txt3')}
@@ -213,8 +213,8 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('customers')}</h5>
-                    <h3 className="goods-title">{intl.get('company-commitment')}</h3>
+                    <p className="goods-title-small">{intl.get('customers')}</p>
+                    <p className="goods-title">{intl.get('company-commitment')}</p>
                     <p className="goods-description">{intl.get('customers-benefits1')}</p>
                     <p className="goods-description">{intl.get('customers-benefits2')}</p>
                     <div className="btn-wrap">
@@ -226,8 +226,8 @@ const B2CHomePage: React.FunctionComponent = () => {
               <li className="main-goods__cell">
                 <div className="main-goods-wrap">
                   <div className="goods-info">
-                    <h5 className="goods-title-small">{intl.get('company')}</h5>
-                    <h3 className="goods-title">{intl.get('company-name')}</h3>
+                    <p className="goods-title-small">{intl.get('company')}</p>
+                    <p className="goods-title">{intl.get('company-name')}</p>
                     <p className="goods-description">{intl.get('company-description1')}</p>
                     <p className="goods-description">{intl.get('company-description2')}</p>
                     <div className="btn-wrap">

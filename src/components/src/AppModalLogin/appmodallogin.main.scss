@@ -26,8 +26,7 @@
   min-width: 500px;
 
   #login_modal_form {
-    span {
-      display: inline-block;
+    label {
       margin-bottom: 5px;
       font-weight: bold;
     }
@@ -52,7 +51,7 @@
   .modal-content {
     background-color: $mainBackgroundColor;
     border: none;
-    
+
     &.loading {
       opacity: 0.5;
     }
