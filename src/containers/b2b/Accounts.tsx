@@ -28,7 +28,7 @@ import Modal from 'react-responsive-modal';
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
-import { B2bAddAssociatesMenu } from '../../components/src';
+import B2bAddAssociatesMenu from '../../components/src/B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import Config from '../../ep.config.json';
 
 import './Accounts.scss';

@@ -37,7 +37,6 @@ import AppModalLoginMain from './AppModalLogin/appmodallogin.main';
 import BundleConstituentsDisplayMain from './BundleConstituents/bundleconstituents.main';
 import BloomreachHeaderSearchMain from './Bloomreach/bloomreach.appheadersearch.main';
 import Carousel from './Carousel/carousel.homepage';
-import CartLineItem from './CartLineItem/cart.lineitem';
 import CartMain from './CartMain/cart.main';
 import CartPopUp from './CartPopUp/cartpopup';
 import CategoryItemsMain from './CategoryItems/categoryitems.main';
@@ -91,9 +90,7 @@ import CartClear from './CartClear/cartclear';
 import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 
 // B2B components
-import B2bAddAssociatesMenu from './B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import B2bSideMenu from './B2bSideMenu/b2b.sidemenu';
-import B2bAddProductsModal from './B2bAddProductsModal/b2b.add.products.modal';
 import B2bSubAccountList from './B2bSubAccountList/b2b.subaccountlist';
 import B2bSubaccountlistitem from './B2bSubAccountListItem/b2b.subaccountlistitem';
 
@@ -129,7 +126,7 @@ export {
   B2bSubaccountlistitem,
   BloomreachHeaderSearchMain,
   Carousel,
-  CartLineItem,
+  
   CartMain,
   CartPopUp,
   CategoryItemsMain,
@@ -176,7 +173,6 @@ export {
   BarcodeScanner,
   CartCreate,
   CountInfoPopUp,
-  B2bAddAssociatesMenu,
   B2bSideMenu,
   CartClear,
   CountProvider,

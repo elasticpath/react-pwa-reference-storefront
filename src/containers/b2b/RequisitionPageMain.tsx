@@ -23,9 +23,8 @@ import React, { Component } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
-
-
+import CartLineItem from '../../components/src/CartLineItem/cart.lineitem';
+import B2bAddProductsModal from '../../components/src/B2bAddProductsModal/b2b.add.products.modal';
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 import { ReactComponent as AddToListIcon } from '../../images/icons/ic_add_list.svg';
