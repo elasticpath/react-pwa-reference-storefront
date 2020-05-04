@@ -21,7 +21,7 @@
 
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { CategoryItemsMain } from '../components/src/index';
+import CategoryItemsMain from '../components/src/CategoryItems/categoryitems.main';
 
 function CategoryPage(props: RouteComponentProps) {
   function handleProductFacetSelection(offerSearch, title) {

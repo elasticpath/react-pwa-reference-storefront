@@ -89,13 +89,13 @@ import SocialNetworkSharing from './SocialNetworkSharing/socialNetworkSharing';
 import CartClear from './CartClear/cartclear';
 import ProductDisplayItemDetails from './ProductDisplayItemDetails/productdisplayitem.details';
 
-const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
 const BulkOrderMain = lazy(() => import(/* webpackChunkName: "bulkorder" */ './BulkOrder/bulkorder.main'));
 const BarcodeScanner = lazy(() => import(/* webpackChunkName: "barcodescanner" */ './BarcodeScanner/barcodescanner'));
 const FacebookChat = lazy(() => import(/* webpackChunkName: "facebookchat" */ './FacebookChat/facebookchat.main'));
 const ChatComponent = lazy(() => import(/* webpackChunkName: "chatbot" */ './ChatBot/chatbot'));
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ './VRProductDisplayItem/VRProductDisplayItem'));
 
+const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ './B2bHomePage/b2b.home.page'));
 const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ './B2cHomePage/b2c.home.page'));
 
 export {
