@@ -49,7 +49,7 @@ function QuantitySelector(props: QuantityDetailsMainProps) {
 
   return (
     <div className="form-group quantity-picker-group">
-      <label htmlFor="product_display_item_quantity_label" className="control-label">
+      <label htmlFor="product_display_quantity_field" className="control-label">
         {intl.get('quantity')}
       </label>
       <div className="quantity-selector-container input-group-btn">

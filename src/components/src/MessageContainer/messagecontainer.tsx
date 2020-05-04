@@ -84,7 +84,7 @@ class MessageContainer extends Component<MessageContainerProps, MessageContainer
                   <p>
                     {el.debugMessages}
                   </p>
-                  <button type="button" className="close-btn" onClick={() => this.handleCloseMessageContainer(index)}>
+                  <button type="button" className="close-btn" aria-label="close" onClick={() => this.handleCloseMessageContainer(index)}>
                     <CloseIcon />
                   </button>
                 </div>

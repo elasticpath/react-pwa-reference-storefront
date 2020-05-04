@@ -137,14 +137,14 @@ class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps
         return (
           <div className="card" key={facet['display-name']} id={`${facetDisplayNameId}_facet`}>
             <div className="card-header">
-              <h4 className="card-title">
+              <p className="card-title">
                 <a className="facet" data-toggle="collapse" href={`#${facetDisplayNameId}_facet_values`}>
                   <span className="glyphicon">
                     <FilterIcon />
                   </span>
                   {facet['display-name']}
                 </a>
-              </h4>
+              </p>
             </div>
             <div id={`${facetDisplayNameId}_facet_values`} className="collapse navbar-collapse in">
               <ul className="list-group list-group-flush">
@@ -184,10 +184,10 @@ class SearchFacetNavigationMain extends Component<SearchFacetNavigationMainProps
             </div>
             <div className={`${showFilterMobileMenu ? 'show-filter-mobile-menu' : ''} card-stack`} id="accordion">
               <div className="close-filter-mobile-menu-wrap">
-                <h2>
+                <p>
                   {intl.get('filter')}
-                </h2>
-                <button type="button" className="close-filter-mobile-menu" onClick={this.handleCloseFilterMenu} />
+                </p>
+                <button type="button" className="close-filter-mobile-menu" onClick={this.handleCloseFilterMenu} aria-label="close" />
               </div>
               <div className="facets-container">
                 {this.renderFacets()}

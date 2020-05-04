@@ -197,8 +197,8 @@ const Root = () => {
       appHeaderTopLinks={appHeaderTopLinks}
       appModalLoginLinks={appModalLoginLinks}
     />,
-    <Messagecontainer key="message-container" message={error} />,
     <main key="app-content" className="app-content" role="main">
+      <Messagecontainer key="message-container" message={error} />
       <Switch>
         {routes.map(route => (
           <RouteWithSubRoutes key={route.path} {...route} />
@@ -207,12 +207,12 @@ const Root = () => {
           <AdditionalRoutes />
         </Suspense>
       </Switch>
+      {complianceSupportModal}
     </main>,
     <AppFooterMain key="app-footer" appFooterLinks={appFooterLinks} />,
     <Suspense fallback={<div />}>
       {Config.chatbot.enable && <ChatComponent key="chat-component" />}
     </Suspense>,
-    complianceSupportModal,
   ];
 };
 

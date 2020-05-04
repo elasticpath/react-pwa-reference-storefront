@@ -536,9 +536,9 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                     listPrice !== itemPrice
                       ? (
                         <li className="itemdetail-purchase-price">
-                          <h1 className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
+                          <p className="itemdetail-purchase-price-value price-sale" id={`category_item_price_${productData._code[0].code}`}>
                             {itemPrice}
-                          </h1>
+                          </p>
                           <span className="itemdetail-list-price-value" data-region="itemListPriceRegion" id={`category_item_list_price_${productData._code[0].code}`}>
                             {listPrice}
                           </span>

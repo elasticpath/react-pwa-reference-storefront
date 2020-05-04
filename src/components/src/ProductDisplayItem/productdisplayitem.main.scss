@@ -135,6 +135,7 @@
       }
 
       .itemdetail-purchase-price-value{
+        font-size: 2.5rem;
         font-weight: bold;
         display: inline-block;
         vertical-align: middle;
@@ -144,14 +145,6 @@
 
       .price-sale {
         color: $firstComplimentTextColor;
-      }
-
-      .itemdetail-list-price-value{
-        color: gray;
-        text-decoration: line-through;
-        vertical-align: middle;
-        margin-left: 10px;
-        font-weight: normal;
       }
     }
 

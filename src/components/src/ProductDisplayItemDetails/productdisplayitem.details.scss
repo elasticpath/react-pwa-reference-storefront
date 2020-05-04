@@ -72,11 +72,11 @@
       }
 
       .price-sale {
-        color: $firstComplimentTextColor;
+        color: gray;
       }
 
       .itemdetail-list-price-value{
-        color: gray;
+        color: $firstComplimentTextColor;
         text-decoration: line-through;
         vertical-align: middle;
         margin-left: 10px;
