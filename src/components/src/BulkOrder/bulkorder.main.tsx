@@ -423,7 +423,6 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
         <span className="form-content-submit">
           <button
             className="ep-btn primary small btn-itemdetail-addtocart"
-            id="add_to_cart_quick_order_button"
             disabled={disabled}
             type="submit"
             onClick={() => { this.addAllToCart(itemsData, isQuickOrder, onCountChange); }}
@@ -453,18 +452,14 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
         </div>
         <div className="bulk-modal">
           <p className="view-title">{intl.get('order-form')}</p>
-          <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
-            <li className="nav-item">
-              <a className="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quick-order" role="tab" aria-selected="true">
-                {intl.get('quick-order-title')}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" id="bulk-order-tab" data-toggle="tab" href="#bulk-order" role="tab" aria-selected="false">
-                {intl.get('bulk-order-title')}
-              </a>
-            </li>
-          </ul>
+          <div className="nav nav-tabs itemdetail-tabs" role="tablist">
+            <a className="nav-link active" id="quick-order-tab" data-toggle="tab" href="#quick-order" aria-controls="quick-order" role="tab" aria-selected="true">
+              {intl.get('quick-order-title')}
+            </a>
+            <a className="nav-link" id="bulk-order-tab" data-toggle="tab" href="#bulk-order" aria-controls="bulk-order" role="tab" aria-selected="false">
+              {intl.get('bulk-order-title')}
+            </a>
+          </div>
           <div className="tab-content">
             <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick-order-tab">
               <div className="form-content form-content-submit col-sm-offset-4">
