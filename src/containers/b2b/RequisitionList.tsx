@@ -25,12 +25,11 @@ import Modal from 'react-responsive-modal';
 import intl from 'react-intl-universal';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as AddToCartIcon } from '../../images/icons/ic_add_to_cart.svg';
 import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 import * as Config from '../../ep.config.json';
 import { login } from '../../utils/AuthService';
 import { cortexFetch } from '../../utils/Cortex';
-import { DropdownCartSelection } from '../../components/src';
+import DropdownCartSelection from '../../components/src/DropdownCartSelection/dropdown.cart.selection.main';
 import Pagination from '../../components/src/Pagination/pagination';
 
 import './RequisitionList.scss';

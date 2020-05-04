@@ -24,9 +24,14 @@ import {
   BrowserRouter as Router, Switch, withRouter, Route,
 } from 'react-router-dom';
 import intl from 'react-intl-universal';
-import {
-  AppHeaderMain, AppFooterMain, Messagecontainer, CountProvider, RequisitionListCountProvider, ComplianceSupportModal,
-} from './components/src/index';
+
+import AppHeaderMain from './components/src/AppHeader/appheader.main';
+import AppFooterMain from './components/src/AppFooterMain/appfooter.main';
+import Messagecontainer from './components/src/MessageContainer/messagecontainer';
+import { CountProvider } from './components/src/cart-count-context';
+import { RequisitionListCountProvider } from './components/src/requisition-list-count-context';
+import ComplianceSupportModal from './components/src/ComplianceSupport/compliancesupport.main';
+
 import packageJson from '../package.json';
 import RouteWithSubRoutes from './containers/RouteContainers/RouteWithSubRoutes';
 import withAnalytics from './utils/Analytics';
