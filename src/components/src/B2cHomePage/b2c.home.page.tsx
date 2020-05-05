@@ -28,15 +28,15 @@ import Config from '../../../ep.config.json';
 import './b2c.home.page.scss';
 
 import bannerImage1 from '../../../images/site-images/optimized/b2c-banner-1.jpg';
-import bannerImage2 from '../../../images/site-images/b2c-banner-2.png';
-import bannerImage3 from '../../../images/site-images/b2c-banner-3.png';
-import productImage1 from '../../../images/site-images/b2c-product-1.png';
-import productImage2 from '../../../images/site-images/b2c-product-2.png';
-import productImage3 from '../../../images/site-images/b2c-product-3.png';
-import productImage4 from '../../../images/site-images/b2c-product-4.png';
-import productImage5 from '../../../images/site-images/b2c-product-5.png';
-import productImage6 from '../../../images/site-images/b2c-product-6.png';
-import productImage7 from '../../../images/site-images/b2c-product-7.png';
+import bannerImage2 from '../../../images/site-images/optimized/b2c-banner-2.jpg';
+import bannerImage3 from '../../../images/site-images/optimized/b2c-banner-3.jpg';
+import productImage1 from '../../../images/site-images/optimized/b2c-product-1.jpg';
+import productImage2 from '../../../images/site-images/optimized/b2c-product-2.jpg';
+import productImage3 from '../../../images/site-images/optimized/b2c-product-3.jpg';
+import productImage4 from '../../../images/site-images/optimized/b2c-product-4.jpg';
+import productImage5 from '../../../images/site-images/optimized/b2c-product-5.jpg';
+import productImage6 from '../../../images/site-images/optimized/b2c-product-6.jpg';
+import productImage7 from '../../../images/site-images/optimized/b2c-product-7.jpg';
 
 
 const bannerFileName1 = 'b2c-banner-1.jpg';
