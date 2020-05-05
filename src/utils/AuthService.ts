@@ -19,7 +19,7 @@
  *
  */
 
-import { cortexFetch, adminFetch } from './Cortex';
+import { cortexFetch, adminFetch } from '../components/src/utils/Cortex';
 
 import * as Config from '../ep.config.json';
 

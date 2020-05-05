@@ -33,7 +33,7 @@ import { login } from '../utils/AuthService';
 import {
   isAnalyticsConfigured, trackAddItemAnalytics, trackAddTransactionAnalytics, sendAnalytics,
 } from '../utils/Analytics';
-import { cortexFetch } from '../utils/Cortex';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 
 import './OrderReviewPage.scss';

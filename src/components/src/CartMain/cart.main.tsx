@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import CartLineItem from '../CartLineItem/cart.lineitem';
-import { cortexFetch } from '../../../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import { login } from '../../../utils/AuthService';
 import Config from '../../../ep.config.json';
 

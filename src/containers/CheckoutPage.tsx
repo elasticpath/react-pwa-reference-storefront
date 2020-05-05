@@ -35,7 +35,7 @@ import AddressContainer from '../components/src/AddressContainer/address.contain
 import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.summarylist';
 
 import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 
 import './CheckoutPage.scss';

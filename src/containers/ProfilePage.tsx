@@ -32,7 +32,7 @@ import AddressFormMain from '../components/src/AddressForm/addressform.main';
 import ProfileComplianceMain from '../components/src/ProfileCompliance/profilecompliance.main';
 
 import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 
 import './ProfilePage.scss';

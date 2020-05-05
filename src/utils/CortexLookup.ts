@@ -19,7 +19,7 @@
  *
  */
 
-import { cortexFetch } from './Cortex';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import * as Config from '../ep.config.json';
 
 // Array of zoom parameters to pass to Cortex for navigationForm

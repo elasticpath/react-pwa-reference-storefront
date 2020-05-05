@@ -30,7 +30,7 @@ import B2bEditAccount from '../../components/src/B2bEditAccount/b2b.editaccount'
 import B2bEditAssociate from '../../components/src/B2bEditAssociate/b2b.editassociate';
 import B2bAccountList from '../../components/src/B2bAccountList/b2b.accountlist';
 
-import { adminFetch } from '../../utils/Cortex';
+import { adminFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../utils/AuthService';
 import * as Config from '../../ep.config.json';
 import { ReactComponent as TrashIcon } from '../../images/icons/baseline-delete-24px.svg';

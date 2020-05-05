@@ -22,7 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { ReactComponent as ArrowLeft } from '../../../images/icons/arrow_left.svg';
-import { cortexFetch } from '../../../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
 import './pagination.scss';

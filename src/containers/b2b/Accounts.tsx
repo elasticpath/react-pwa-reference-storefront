@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import fileDownload from 'js-file-download';
 import Modal from 'react-responsive-modal';
-import { adminFetch } from '../../utils/Cortex';
+import { adminFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../utils/AuthService';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
 import B2bAddAssociatesMenu from '../../components/src/B2bAddAssociatesMenu/b2b.addassociatesmenu';
