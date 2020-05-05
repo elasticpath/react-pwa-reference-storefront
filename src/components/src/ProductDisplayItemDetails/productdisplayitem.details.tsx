@@ -493,7 +493,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
           type="submit"
         >
           {addToRequisitionListLoading ? (
-            <span className="circularLoader" />
+            <span className="circularLoader" aria-label="Loading" />
           ) : (
             <span>
               {intl.get('add-to-requisition-list')}

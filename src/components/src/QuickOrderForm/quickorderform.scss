@@ -47,7 +47,7 @@
     height: 15px;
     width: 100%;
     margin: 22px 0 0;
-    color: $mainTextColor;
+    color: $firstComplimentTextColor;
     font-size: 12px;
     text-transform: uppercase;
     font-weight: bold;
@@ -119,7 +119,7 @@
       border: 1px solid $fifthComplimentTextColor;
       border-radius: 4px;
       background-color: $mainBackgroundColor;
-      color: $mainTextColor;
+      color: $firstComplimentTextColor;
       text-align: center;
       box-shadow: inset 0 1px 0 1px rgba(255,255,255,0.06), 0 1px 0 0 rgba(22,29,37,0.1);
     }

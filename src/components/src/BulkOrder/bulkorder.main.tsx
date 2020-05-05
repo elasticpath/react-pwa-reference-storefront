@@ -428,7 +428,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
             onClick={() => { this.addAllToCart(itemsData, isQuickOrder, onCountChange); }}
           >
             {showLoader ? (
-              <span className="circularLoader" />
+              <span className="circularLoader" aria-label="Loading" />
             ) : (
               intl.get('add-all-to-cart')
             )}
@@ -479,7 +479,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                     >
                       {
                         (isBarcodeScannerLoading)
-                          ? <span className="circularLoader" />
+                          ? <span className="circularLoader" aria-label="Loading" />
                           : (
                             <div>
                               <span className="scan-barcode-title">{intl.get('scan-barcode')}</span>

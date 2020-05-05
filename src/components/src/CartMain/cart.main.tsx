@@ -387,7 +387,7 @@ class CartMain extends Component<CartMainProps, CartMainState> {
               <button className="ep-btn cancel" type="button" onClick={this.handleModalClose}>{intl.get('cancel')}</button>
               <button className="ep-btn primary" type="button" onClick={this.handleAddToList} disabled={!requisitionListData}>
                 {addToRequisitionListLoading ? (
-                  <div className="circularLoader" />
+                  <div className="circularLoader" aria-label="Loading" />
                 ) : (
                   <span>
                     {intl.get('add-to-list')}

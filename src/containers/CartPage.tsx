@@ -329,10 +329,10 @@ class CartPage extends React.Component<RouteComponentProps, CartPageState> {
                     <AddPromotionContainer data={cartData} onSubmittedPromotion={() => { this.fetchCartData(); }} />
                   </div>
                   <div className="estimated-total">
-                    <h2 className="cart-sidebar-title">{intl.get('estimated-total')}</h2>
-                    <h2 className="cart-sidebar-title">
+                    <p className="cart-sidebar-title">{intl.get('estimated-total')}</p>
+                    <p className="cart-sidebar-title">
                       {cartData._total[0].cost[0].display}
-                    </h2>
+                    </p>
                   </div>
                   <div data-region="cartCheckoutActionRegion" className="cart-checkout-container">
                     <div>

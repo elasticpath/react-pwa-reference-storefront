@@ -99,7 +99,7 @@ class CartClear extends Component<CartClearProps, CartClearState> {
     return (
       <div className="cart-clear-wrapper">
         <div className="dropdown cart-clear-dropdown">
-          <button className="btn-ellipsis" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button className="btn-ellipsis" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="remove all cart items">
             <EllipsisIcon />
           </button>
           <div className="dropdown-menu dropdown-menu-right">
@@ -119,7 +119,7 @@ class CartClear extends Component<CartClearProps, CartClearState> {
               <div className="btn-wrap">
                 <button className="ep-btn cancel-btn" type="button" onClick={this.handleCloseConfirmationMsg}>{intl.get('cancel')}</button>
                 <button className="ep-btn ok-btn" type="button" onClick={this.handleClearCart}>
-                  {showLoader ? (<span className="circularLoader" />) : intl.get('ok')}
+                  {showLoader ? (<span className="circularLoader" aria-label="Loading" />) : intl.get('ok')}
                 </button>
               </div>
             </div>
