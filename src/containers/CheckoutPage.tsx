@@ -23,9 +23,17 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import {
-  GiftcertificateFormMain, AddressContainer, CheckoutSummaryList, ShippingOptionContainer, PaymentMethodContainer, ProfileemailinfoMain, AddressFormMain, PaymentSelectorMain, PurchaseOrderWidget,
-} from '../components/src/index';
+
+import PurchaseOrderWidget from '../components/src/PurchaseOrderWidget/purchase.order.widget';
+import PaymentSelectorMain from '../components/src/PaymentSelectorMain/paymentselector.main';
+import AddressFormMain from '../components/src/AddressForm/addressform.main';
+import ProfileemailinfoMain from '../components/src/ProfileEmailInfo/profileemailinfo.main';
+import PaymentMethodContainer from '../components/src/PaymentMethodContainer/paymentmethod.container';
+import ShippingOptionContainer from '../components/src/ShippingOption/shippingoption.container';
+import GiftcertificateFormMain from '../components/src/GiftCertificateForm/giftcertificateform.main';
+import AddressContainer from '../components/src/AddressContainer/address.container';
+import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.summarylist';
+
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';

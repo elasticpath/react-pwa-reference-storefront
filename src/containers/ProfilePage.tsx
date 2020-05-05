@@ -23,11 +23,16 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import {
-  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, PaymentSelectorMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
-} from '../components/src/index';
+
+import ProfileInfoMain from '../components/src/ProfileInfo/profileInfo.main';
+import ProfileemailinfoMain from '../components/src/ProfileEmailInfo/profileemailinfo.main';
+import ProfileAddressesMain from '../components/src/ProfileAddresses/profileaddresses.main';
+import PaymentSelectorMain from '../components/src/PaymentSelectorMain/paymentselector.main';
+import AddressFormMain from '../components/src/AddressForm/addressform.main';
+import ProfileComplianceMain from '../components/src/ProfileCompliance/profilecompliance.main';
+
 import { login } from '../utils/AuthService';
-import { adminFetch, cortexFetch } from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
 import './ProfilePage.scss';

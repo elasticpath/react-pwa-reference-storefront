@@ -24,7 +24,7 @@ import { MemoryRouter } from 'react-router';
 import { text } from '@storybook/addon-knobs/react';
 import Readme from './README.md';
 import { textToFunc } from '../../../../storybook/utils/storybookUtils';
-import { B2bAddProductsModal } from '../index';
+import B2bAddProductsModal from './b2b.add.products.modal';
 
 storiesOf('Components|B2bAddProductsModal', module)
   .addParameters({

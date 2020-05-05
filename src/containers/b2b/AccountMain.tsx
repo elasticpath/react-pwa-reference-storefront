@@ -24,9 +24,12 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import {
-  B2bEditAccount, B2bAddSubAccount, B2bEditAssociate, B2bAccountList,
-} from '../../components/src/index';
+
+import B2bAddSubAccount from '../../components/src/B2bAddSubAccount/b2b.addsubaccount';
+import B2bEditAccount from '../../components/src/B2bEditAccount/b2b.editaccount';
+import B2bEditAssociate from '../../components/src/B2bEditAssociate/b2b.editassociate';
+import B2bAccountList from '../../components/src/B2bAccountList/b2b.accountlist';
+
 import { adminFetch } from '../../utils/Cortex';
 import { login } from '../../utils/AuthService';
 import * as Config from '../../ep.config.json';

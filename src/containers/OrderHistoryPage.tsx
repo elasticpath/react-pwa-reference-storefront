@@ -22,7 +22,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { PurchaseDetailsMain } from '../components/src/index';
+import PurchaseDetailsMain from '../components/src/PurchaseDetails/purchasedetails.main';
 import { login } from '../utils/AuthService';
 import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
 import { cortexFetch } from '../utils/Cortex';
