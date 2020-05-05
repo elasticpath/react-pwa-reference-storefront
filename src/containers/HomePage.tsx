@@ -21,11 +21,8 @@
 
 import React, { Suspense, lazy } from 'react';
 import { withRouter } from 'react-router';
-
-import Config from '../ep.config.json';
-
 import './HomePage.scss';
-
+import Config from '../ep.config.json';
 
 let B2BHomePage = null;
 let B2CHomePage = null;
