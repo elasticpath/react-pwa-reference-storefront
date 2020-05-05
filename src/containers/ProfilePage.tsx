@@ -31,7 +31,7 @@ import PaymentSelectorMain from '../components/src/PaymentSelectorMain/paymentse
 import AddressFormMain from '../components/src/AddressForm/addressform.main';
 import ProfileComplianceMain from '../components/src/ProfileCompliance/profilecompliance.main';
 
-import { login } from '../utils/AuthService';
+import { login } from '../components/src/utils/AuthService';
 import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 

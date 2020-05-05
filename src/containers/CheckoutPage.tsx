@@ -34,7 +34,7 @@ import GiftcertificateFormMain from '../components/src/GiftCertificateForm/giftc
 import AddressContainer from '../components/src/AddressContainer/address.container';
 import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.summarylist';
 
-import { login } from '../utils/AuthService';
+import { login } from '../components/src/utils/AuthService';
 import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 
