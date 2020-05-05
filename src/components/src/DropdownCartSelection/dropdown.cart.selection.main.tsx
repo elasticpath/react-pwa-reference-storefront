@@ -73,7 +73,7 @@ function DropdownCartSelection(props:DropdownCartSelectionProps) {
         type="button"
       >
         {showLoader ? (
-          <span className="circularLoader" />
+          <span className="circularLoader" aria-label="Loading" />
         ) : (
           <span className="btn-txt">
             {btnTxt}

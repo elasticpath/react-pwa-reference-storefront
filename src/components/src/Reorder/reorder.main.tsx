@@ -26,6 +26,7 @@ import CartLineItem from '../CartLineItem/cart.lineitem';
 import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './reorder.main.scss';
 
@@ -147,13 +148,16 @@ class ReorderMain extends Component<ReorderMainProps, ReorderMainState> {
         <button className="ep-btn reorder-btn" type="button" onClick={this.handleModalOpen}>
           {intl.get('reorder')}
         </button>
-        <Modal open={openModal} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
+        <Modal open={openModal} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }} showCloseIcon={false}>
           <div id="buy-it-again-modal">
             <div className="modal-content" id="simplemodal-container">
               <div className="modal-header">
                 <h2 className="modal-title">
                   {intl.get('buy-it-again')}
                 </h2>
+                <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleModalClose}>
+                  <CloseIcon />
+                </button>
               </div>
               {productsData._lineitems[0]._element.map((item) => {
                 const { quantity, _code } = item._item[0];

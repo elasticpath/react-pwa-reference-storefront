@@ -149,38 +149,38 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
                 </span>
               </td>
             </tr>
-            {options && options[0]._element && (options[0]._element.map(option => (
+            {options && options[0]._element && (options[0]._element.map((option, index) => (
               <tr key={option.name}>
                 <td>
-                  <label htmlFor="option">
+                  <label htmlFor={`option_${index}`}>
                     {option['display-name']}
                   </label>
                 </td>
                 <td>
-                  <span id="option">
+                  <span id={`option_${index}`}>
                     {option._value && option._value[0]['display-name']}
                   </span>
                 </td>
               </tr>
             )))}
-            {configuration && (configuration[0]._element.map(config => (
+            {configuration && (configuration[0]._element.map((config, index) => (
               <tr key={config.name}>
                 <td>
-                  <label htmlFor="option">
+                  <label htmlFor={`option_${index}`}>
                     {config['display-name']}
                   </label>
                 </td>
                 <td>
-                  <span id="option">
+                  <span id={`option_${index}`}>
                     {config._value[0]['display-name']}
                   </span>
                 </td>
               </tr>
             )))}
-            {bundleConfiguration && (bundleConfiguration[0]._element.map(config => (
+            {bundleConfiguration && (bundleConfiguration[0]._element.map((config, index) => (
               <tr key={config.name}>
                 <td>
-                  <span id="option">
+                  <span id={`option_${index}`}>
                     {config.name}
                   </span>
                 </td>
@@ -262,9 +262,9 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
       <div className="purchase-information-container container">
         <div data-region="purchaseSummaryRegion">
           <div>
-            <h3 className="purchase-summary-title">
+            <h2 className="purchase-summary-title">
               {intl.get('summary')}
-            </h3>
+            </h2>
             {(canReorder(data)) ? (
               <div className="purchase-reorder">
                 <ReorderMain productsData={data} onReorderAll={handleReorderAll} itemDetailLink={itemDetailLink} />

@@ -213,7 +213,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
         <Link className={`dropdown-item dropdown-toggle ${get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${nestedChildObj.name}`} id={`navbarDropdownMenuLink&${subcategoryChildKeyName}`} onClick={() => this.toggleShowForCategory(subcategoryChildKeyName, `${path}`)} aria-haspopup="true" aria-expanded="false">
           {subcategoryChildKeyName}
         </Link>
-        <ul className={`dropdown-menu sub-category-dropdown-menu ${nestedChildObj.show ? 'show' : ''} nestedCategory${currentCategoryLevel}`} aria-labelledby={`navbarDropdownMenuLink&${subcategoryChildKeyName}`}>
+        <ul className={`dropdown-menu sub-category-dropdown-menu ${nestedChildObj.show ? 'show' : ''} nestedCategory${currentCategoryLevel}`} aria-labelledby="navbar dropdown menu">
           {this.renderSubCategories(subcategoryChildKeyName, path, !isLeftDropDownStyling, currentCategoryLevel)}
         </ul>
       </li>
@@ -227,7 +227,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       return (
         <li key={`${path}`}>
           <Link className={`dropdown-item ${nestedChildObj.show ? 'show' : ''}`} id={`header_navbar_sub_category_button_${nestedChildObj.name}`} title={subcategoryChildKeyName} to={appHeaderNavigationLinks.categories + nestedChildObj.name} onClick={this.handleCloseB2bMenu}>
-            <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{subcategoryChildKeyName}</div>
+            <div>{subcategoryChildKeyName}</div>
           </Link>
         </li>
       );
@@ -256,14 +256,16 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
   renderCategoriesWithNoChildren(categoryKey, path) {
     const { navigations } = this.state;
     const { appHeaderNavigationLinks } = this.props;
-
-    return (
-      <li className="nav-item" key={`${path}`} data-name={categoryKey} data-el-container="category-nav-item-container">
-        <Link className="nav-link" to={appHeaderNavigationLinks.categories + navigations[categoryKey].name} id={`navbarMenuLink${categoryKey}`} aria-haspopup="true" aria-expanded="false" data-target="#" onClick={this.handleCloseB2bMenu}>
-          <div data-toggle="collapse" data-target=".collapsable-container" className="" aria-expanded="true">{categoryKey}</div>
-        </Link>
-      </li>
-    );
+    if (categoryKey) {
+      return (
+        <li className="nav-item" key={`${path}`} data-name={categoryKey} data-el-container="category-nav-item-container">
+          <Link className="nav-link" to={appHeaderNavigationLinks.categories + navigations[categoryKey].name} id={`navbarMenuLink${categoryKey}`} onClick={this.handleCloseB2bMenu}>
+            <div>{categoryKey}</div>
+          </Link>
+        </li>
+      );
+    }
+    return null;
   }
 
   renderCategoriesWithChildren(category, path, isLeftDropDownStyling, categoryLevel) {
@@ -272,10 +274,10 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
       <li className="nav-item" key={`${path}`} data-name={category} data-el-container="category-nav-item-container">
         {/* eslint-disable jsx-a11y/no-static-element-interactions */}
         {/* eslint-disable jsx-a11y/click-events-have-key-events */}
-        <Link className={`nav-link dropdown-toggle ${get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id={`navbarDropdownMenuLink${category}`} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <Link className={`nav-link dropdown-toggle ${get(navigations, `${path}.show`, '') ? 'rotateCaret' : ''}`} to={`/category/${navigations[category].name}`} onClick={() => this.toggleShowForCategory(category, path)} id={`navbarDropdownMenuLink${category}`} title={category} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {category}
         </Link>
-        <ul className={`dropdown-menu sub-category-dropdown-menu ${get(navigations, `${path}.show`, '') ? 'show' : ''} nestedCategory${categoryLevel}`} aria-labelledby="navbarDropdownMenuLink">
+        <ul className={`dropdown-menu sub-category-dropdown-menu ${get(navigations, `${path}.show`, '') ? 'show' : ''} nestedCategory${categoryLevel}`} aria-labelledby="navbar dropdown menu">
           {this.renderSubCategories(category, path, isLeftDropDownStyling, categoryLevel)}
         </ul>
       </li>
@@ -339,7 +341,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
           </div>
         ) : (
           <div className="nav-item" data-name={item.name} data-el-container="category-nav-item-container">
-            <Link className="nav-link" to={item.uri}>
+            <Link className="nav-link" to={item.uri} title={intl.get(item.name)}>
               <div data-toggle="collapse" data-target=".collapsable-container">{intl.get(item.name)}</div>
             </Link>
           </div>
@@ -358,7 +360,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
 
     return (
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <nav className="navbar navbar-expand hover-menu" role="navigation" aria-label="left-navigation">
+        <nav className="navbar navbar-expand hover-menu" role="navigation" aria-label="left navigation">
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             {Config.b2b.enable ? (
               <ul className="navbar-nav">

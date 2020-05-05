@@ -149,7 +149,7 @@ const B2CHomePage: React.FunctionComponent = () => {
         <ImageContainer className="main-banner-image" fileName={bannerFileName2} imgUrl={bannerImage2} />
         <div className="main-banner-title-wrap">
           <div className="container">
-            <p className="goods-heading">{intl.get('b2c-main-banner-heading2')}</p>
+            <h2 className="goods-heading">{intl.get('b2c-main-banner-heading2')}</h2>
             <div className="main-banner-txt">
               <p className="goods-description">
                 {intl.get('b2c-main-banner-txt2')}
@@ -196,7 +196,7 @@ const B2CHomePage: React.FunctionComponent = () => {
         <ImageContainer className="main-banner-image" fileName={bannerFileName3} imgUrl={bannerImage3} />
         <div className="main-banner-title-wrap">
           <div className="container">
-            <p className="goods-heading">{intl.get('b2c-main-banner-heading3')}</p>
+            <h2 className="goods-heading">{intl.get('b2c-main-banner-heading3')}</h2>
             <div className="main-banner-txt">
               <p className="goods-description">
                 {intl.get('b2c-main-banner-txt3')}

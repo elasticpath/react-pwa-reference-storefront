@@ -26,6 +26,7 @@ import CartLineItem from '../CartLineItem/cart.lineitem';
 import { login } from '../utils/AuthService';
 import { itemLookup, cortexFetchItemLookupForm } from '../utils/CortexLookup';
 import './quickorder.main.scss';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 interface QuickOrderMainProps {
   /** buy it again */
@@ -163,13 +164,16 @@ class QuickOrderMain extends Component<QuickOrderMainProps, QuickOrderMainState>
       isBuyItAgain, itemDetailLink, onMoveToCart, onConfiguratorAddToCart,
     } = this.props;
     const orderModal = data => (
-      <Modal open={openModal || false} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }}>
+      <Modal open={openModal || false} onClose={this.handleModalClose} classNames={{ modal: 'buy-it-again-modal-content' }} showCloseIcon={false}>
         <div id="buy-it-again-modal">
           <div className="modal-content" id="simplemodal-container">
             <div className="modal-header">
               <h2 className="modal-title">
                 {intl.get('buy-it-again')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleModalClose}>
+                <CloseIcon />
+              </button>
             </div>
             <CartLineItem
               key={Math.floor(Math.random() * 1000000001)}

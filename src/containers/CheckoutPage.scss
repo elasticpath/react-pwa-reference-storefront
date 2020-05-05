@@ -45,6 +45,22 @@
     margin-bottom: 10px;
   }
 
+  h2 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: $mainTextColor;
+    line-height: 19px;
+  }
+
+  .profile-info-container-title {
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
   .checkout-container-inner {
     position: relative;
     .view-title {

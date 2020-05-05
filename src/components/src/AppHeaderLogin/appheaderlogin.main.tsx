@@ -381,7 +381,7 @@ class AppHeaderLoginMain extends Component<AppHeaderLoginMainProps, AppHeaderLog
                     <AccountIcon className="account-icon" />
                   )}
               </button>
-              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header_navbar_login_button ">
+              <div data-region="authMainRegion" className="auth-nav-container dropdown-menu dropdown-menu-right" aria-label="header navbar login button ">
                 <ul data-el-container="global.profileMenu" className="auth-profile-menu-list">
                   {Config.b2b.enable ? (
                     <li className="dropdown-item shop-for">
