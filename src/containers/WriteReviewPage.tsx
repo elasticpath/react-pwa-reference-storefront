@@ -23,7 +23,7 @@ import React from 'react';
 import queryString from 'query-string';
 import scriptjs from 'scriptjs';
 import { RouteComponentProps } from 'react-router-dom';
-import * as UserPrefs from '../utils/UserPrefs';
+import * as UserPrefs from '../components/src/utils/UserPrefs';
 import Config from '../ep.config.json';
 
 import './WriteReviewPage.scss';
