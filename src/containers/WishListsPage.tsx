@@ -24,9 +24,9 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
-import Config from '../ep.config.json';
 import WishListMain from '../components/src/WishList/wishlist.main';
 import './WishListsPage.scss';
+import Config from '../ep.config.json';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArray = [
