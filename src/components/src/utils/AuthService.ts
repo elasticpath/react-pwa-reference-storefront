@@ -28,6 +28,16 @@ let userFormBody = [];
 let userFormBodyString = '';
 let newaccountform = '';
 
+interface PublicUserDetailsInterface {
+  username?: string,
+  password?: string,
+  'grant_type'?: string,
+  role?: string,
+  scope?: string,
+  code?: string,
+  'redirect_uri'?: string,
+  'client_id'?: string,
+}
 function generateFormBody(userDetails) {
   Object.keys(userDetails).forEach((encodedKey) => {
     const encodedValue = userDetails[encodedKey];
@@ -41,7 +51,7 @@ export function login() {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       userFormBodyString = '';
       userFormBody = [];
-      let publicUserDetails = {};
+      let publicUserDetails:PublicUserDetailsInterface = {};
       publicUserDetails = {
         username: '',
         password: '',
@@ -134,7 +144,7 @@ export function loginRegisteredAuthService(code, redirectUri, clientId) {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
       userFormBodyString = '';
       userFormBody = [];
-      const registeredUserDetails = {
+      const registeredUserDetails: any = {
         grant_type: 'authorization_code',
         code,
         redirect_uri: redirectUri,
@@ -202,7 +212,6 @@ export function logout() {
 }
 
 export function logoutAccountManagementUser() {
-
   if (Config.b2b.openId && Config.b2b.openId.enable) {
     return new Promise(((resolve, reject) => {
       adminFetch('/oauth2/tokens', {
