@@ -23,19 +23,6 @@
 
 .profile-container {
   font-size: 14px;
-  h1 {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 5px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 24px;
-    color: gray;
-    border-bottom: 1px solid $mainBorderColor;
-  }
 
   h2 {
     font-size: 16px;
@@ -59,7 +46,6 @@
     border-radius: 0;
     box-shadow: none;
     white-space: nowrap;
-    height: auto;
     display: inline-block;
     width: 90px;
     height: 30px;
@@ -253,4 +239,9 @@
 
 .profile-data {
   margin-bottom: 32px;
+
+  .profile-info-container-title {
+    font-weight: 500;
+    font-size: 12px;
+  }
 }

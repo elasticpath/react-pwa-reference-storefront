@@ -145,9 +145,9 @@ class WishListsPage extends React.Component<RouteComponentProps, WishListsPageSt
       <div className="wish-list-container">
         <div className="wish-list-container-inner">
           <div data-region="wishListTitleRegion" className="b2b-header">
-            <div className="page-title">
+            <h1 className="page-title">
               {intl.get('wishlists')}
-            </div>
+            </h1>
           </div>
           {wishListData && !isLoading && (
             <div data-region="mainWishListRegion" className="wish-list-main-container">

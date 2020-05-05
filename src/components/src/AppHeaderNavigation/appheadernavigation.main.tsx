@@ -358,7 +358,7 @@ class AppHeaderNavigationMain extends Component<AppHeaderNavigationMainProps, Ap
 
     return (
       <div className={`app-header-navigation-component ${isMobileView ? 'mobile-view' : ''}`}>
-        <nav className="navbar navbar-expand hover-menu" role="navigation">
+        <nav className="navbar navbar-expand hover-menu" role="navigation" aria-label="left-navigation">
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             {Config.b2b.enable ? (
               <ul className="navbar-nav">

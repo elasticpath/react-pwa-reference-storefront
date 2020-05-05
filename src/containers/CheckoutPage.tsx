@@ -31,6 +31,7 @@ import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
 import './CheckoutPage.scss';
+import { ReactComponent as CloseIcon } from '../images/icons/ic_close.svg';
 
 // Array of zoom parameters to pass to Cortex
 const zoomArrayProfile = [
@@ -334,7 +335,7 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
     const { openAddressModal, addressUrl } = this.state;
     const newOrEdit = (addressUrl && addressUrl.address) ? intl.get('edit') : intl.get('new');
     return (
-      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal}>
+      <Modal open={openAddressModal} onClose={this.handleCloseAddressModal} showCloseIcon={false}>
         <div className="modal-lg new-address-modal">
           <div className="modal-content">
             <div className="modal-header">
@@ -343,6 +344,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                 {' '}
                 {intl.get('address')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleCloseAddressModal}>
+                <CloseIcon />
+              </button>
             </div>
             <div className="modal-body">
               <AddressFormMain onCloseModal={this.handleCloseAddressModal} fetchData={this.fetchOrderData} addressData={addressUrl} />
@@ -638,9 +642,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
               <div className="checkout-main-container">
                 { profileData ? (
                   <div className="profile-info-container">
-                    <h3 className="profile-info-container-title">
+                    <h2 className="profile-info-container-title">
                       {intl.get('general')}
-                    </h3>
+                    </h2>
                     <div className="profile-info-col">
                       <div className="profile-info-block">
                         <div className="profile-email-info">

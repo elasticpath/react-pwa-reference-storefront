@@ -28,7 +28,7 @@ import {
   ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, PaymentSelectorMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
 } from '../components/src/index';
 import { login } from '../utils/AuthService';
-import { adminFetch, cortexFetch } from '../utils/Cortex';
+import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
 import './ProfilePage.scss';
@@ -252,16 +252,16 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
       <div>
         <div className="container profile-container">
           <div className="b2b-header" data-region="profileTitleRegion">
-            <div className="page-title">
+            <h1 className="page-title">
               {intl.get(isB2B ? 'my-account' : 'my-profile')}
-            </div>
+            </h1>
           </div>
           {profileData ? (
             <div className="profile-data" role="region">
               <div className="profile-info-container">
-                <h3 className="profile-info-container-title">
+                <h2 className="profile-info-container-title">
                   {intl.get('general')}
-                </h3>
+                </h2>
                 <div className="profile-info-col">
                   <div className="profile-info-block">
                     <h2>
@@ -278,9 +278,9 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 </div>
               </div>
               <div className="profile-info-container">
-                <h3 className="profile-info-container-title">
+                <h2 className="profile-info-container-title">
                   {intl.get('shipping')}
-                </h3>
+                </h2>
                 <div className="profile-info-block">
                   {(profileData._addresses) ? (
                     <ProfileAddressesMain addresses={profileData._addresses[0]} onChange={this.fetchProfileData} onAddNewAddress={this.handleNewAddress} onEditAddress={this.handleEditAddress} />
@@ -289,16 +289,16 @@ class ProfilePage extends React.Component<RouteComponentProps, ProfilePageState>
                 </div>
               </div>
               <div className="profile-info-container">
-                <h3 className="profile-info-container-title">
+                <h2 className="profile-info-container-title">
                   {intl.get('payment')}
-                </h3>
+                </h2>
                 {this.renderPayments()}
               </div>
               {(Config.Compliance.enable) ? (
                 <div className="profile-info-container">
-                  <h3 className="profile-info-container-title">
+                  <h2 className="profile-info-container-title">
                     {intl.get('compliance')}
-                  </h3>
+                  </h2>
                   <div className="profile-info-col">
                     <div className="profile-info-block">
                       {(dataPolicyData && dataPolicyData._element) ? (
