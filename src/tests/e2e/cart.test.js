@@ -58,28 +58,28 @@ describe('Cart feature', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
-    
+
     const ADD_TO_CART_BUTTON_CSS = 'button[id="product_display_item_add_to_cart_button"]';
     const QUANTITY_SELECT_CSS = 'input[id="product_display_quantity_field"]';
     const PRODUCT_DETAIL_CSS = 'div[class="itemdetail-details"]';
-    const PRODUCT_PRICE_CSS = "h1.itemdetail-purchase-price-value";
+    const PRODUCT_PRICE_CSS = "p.itemdetail-purchase-price-value";
     const CART_LINE_ITEM_PRICE_CSS = "div[data-region='itemTotalPriceRegion'] .cart-total-purchase-price";
 
     const PRODUCT_QUANTITY = 2;
 
     // When I select category Mans and I select product Men's Vestri Polo Logo
     await navigateToProduct(page, defaultProduct);
-  
+
     await page.waitForSelector(PRODUCT_DETAIL_CSS);
     const productPrice = await getPrice(page, PRODUCT_PRICE_CSS);
-  
+
     // And I choose sku color option
     if(defaultProduct.colorSelector) {
       await page.waitForSelector(defaultProduct.colorSelector);
       await page.click(defaultProduct.colorSelector);
       await page.waitFor(2000);
     }
-  
+
     // And I choose sku size option
     if(defaultProduct.modifierSelector) {
       await page.waitForSelector(defaultProduct.modifierSelector);
@@ -111,7 +111,7 @@ describe('Cart feature', () => {
 
   test('Remove cart line item', async () => {
     const { defaultProduct } = testData.cart;
-    
+
     const CART_LINE_ITEM_REMOVE_BTN_CSS = 'button[class="ep-btn small btn-cart-removelineitem"]';
     const CART_EMPTY_CONTAINER_CSS = 'div[class="cart-empty-container"]';
 
@@ -124,7 +124,7 @@ describe('Cart feature', () => {
       timeout: 30000,
       waitUntil: 'domcontentloaded'
     });
-    
+
     await addProductToCart(page, defaultProduct);
 
     await page.waitForSelector(CART_LINE_ITEM_REMOVE_BTN_CSS);

@@ -27,11 +27,13 @@ interface ProductDisplayAttributes {
     handleDetailAttribute: any,
     /** data structure that component renders */
     detailsProductData: any,
+    /** product compare index */
+    productCompareIndex?: number,
   }
 
 function ProductDisplayAttributes(props: ProductDisplayAttributes) {
   const {
-    handleDetailAttribute, detailsProductData,
+    handleDetailAttribute, detailsProductData, productCompareIndex,
   } = props;
 
   const renderAttributes = () => {
@@ -53,19 +55,23 @@ function ProductDisplayAttributes(props: ProductDisplayAttributes) {
 
   return (
     <div className="tab-content">
-      <div className="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary tab">
+      <div className="tab-pane fade show active" id={`summary${productCompareIndex || ''}`} role="tabpanel" aria-labelledby="summary tab">
         <ul className="item-detail-attributes" data-region="itemDetailAttributeRegion">
           {renderAttributes()}
         </ul>
       </div>
-      <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews tab">
-        <div id="pr-reviewdisplay" />
+      <div className="tab-pane fade" id={`reviews${productCompareIndex || ''}`} role="tabpanel" aria-labelledby="reviews tab">
+        <div id={`pr-reviewdisplay${productCompareIndex || ''}`} />
       </div>
-      <div className="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions tab">
-        <div id="pr-questiondisplay" />
+      <div className="tab-pane fade" id={`questions${productCompareIndex || ''}`} role="tabpanel" aria-labelledby="questions tab">
+        <div id={`pr-questiondisplay${productCompareIndex || ''}`} />
       </div>
     </div>
   );
 }
+
+ProductDisplayAttributes.defaultProps = {
+  productCompareIndex: 0,
+};
 
 export default ProductDisplayAttributes;

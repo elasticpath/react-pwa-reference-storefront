@@ -72,6 +72,8 @@ export interface ProductDisplayItemMainProps {
   itemDetailLink?: string,
   /** featured product attribute */
   featuredProductAttribute?: boolean,
+  /** is product compare page */
+  productCompareIndex?: number,
 }
 
 export interface ProductDisplayItemMainState {
@@ -111,6 +113,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     isInStandaloneMode: false,
     itemDetailLink: '',
     featuredProductAttribute: false,
+    productCompareIndex: 0,
   };
 
   constructor(props) {
@@ -388,9 +391,9 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     } = this.state;
 
     const {
-      featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart,
+      featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart, productCompareIndex,
     } = this.props;
-
+    console.log('productCompareIndex', productCompareIndex);
     if (productData) {
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');
@@ -421,7 +424,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 </div>
               </div>
             </div>
-            <ProductDisplayItemDetails productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} />
+            <ProductDisplayItemDetails productCompareIndex={productCompareIndex} productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} />
           </div>
           <div className="itemdetail-tabs-wrap">
             {(Config.PowerReviews.enable) ? (
@@ -444,7 +447,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               </ul>
             ) : ('')
             }
-            <ProductDisplayAttributes handleDetailAttribute={this.handleDetailAttribute} detailsProductData={detailsProductData} />
+            <ProductDisplayAttributes productCompareIndex={productCompareIndex} handleDetailAttribute={this.handleDetailAttribute} detailsProductData={detailsProductData} />
           </div>
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />

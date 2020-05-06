@@ -62,9 +62,9 @@ class ProductsComparePage extends React.Component<ProductsComparePageProps> {
     return (
       <div className="main-compare container-3">
         {
-          productCodes.map(code => (
+          productCodes.map((code, index) => (
             <div key={code} className="compare-product">
-              <ProductDisplayItemMain productId={code} onChangeProductFeature={this.handleChangeProductFeature} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList} itemDetailLink={itemDetailLink} />
+              <ProductDisplayItemMain productId={code} productCompareIndex={index + 1} onChangeProductFeature={this.handleChangeProductFeature} onAddToCart={this.handleAddToCart} onAddToWishList={this.handleAddToWishList} itemDetailLink={itemDetailLink} />
             </div>
           ))
         }

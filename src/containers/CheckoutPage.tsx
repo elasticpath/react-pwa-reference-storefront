@@ -642,9 +642,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
               <div className="checkout-main-container">
                 { profileData ? (
                   <div className="profile-info-container">
-                    <h2 className="profile-info-container-title">
+                    <p className="profile-info-container-title">
                       {intl.get('general')}
-                    </h2>
+                    </p>
                     <div className="profile-info-col">
                       <div className="profile-info-block">
                         <div className="profile-email-info">
@@ -656,9 +656,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                   </div>
                 ) : (<div />)}
                 <div className="profile-info-container">
-                  <h2 className="profile-info-container-title">
+                  <p className="profile-info-container-title">
                     {intl.get('shipping')}
-                  </h2>
+                  </p>
                   <div className="profile-info-col">
                     <div className="profile-info-block">
                       <div data-region="billingAddressesRegion">
@@ -681,9 +681,9 @@ class CheckoutPage extends React.Component<CheckoutPageProps, CheckoutPageState>
                   )}
                 </div>
                 <div className="profile-info-container">
-                  <h2 className="profile-info-container-title">
+                  <p className="profile-info-container-title">
                     {intl.get('payment')}
-                  </h2>
+                  </p>
                   {showGiftCard && (
                   <div className="profile-info-col">
                     <div className="profile-info-block">
