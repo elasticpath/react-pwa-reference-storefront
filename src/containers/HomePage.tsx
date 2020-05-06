@@ -21,23 +21,17 @@
 
 import React, { Suspense, lazy } from 'react';
 import { withRouter } from 'react-router';
-import './HomePage.scss';
+
 import Config from '../ep.config.json';
 
-let B2BHomePage = null;
-let B2CHomePage = null;
+import './HomePage.scss';
 
-if (Config.b2b.enable) {
-  const B2BHomePageImport = import(/* webpackChunkName: "b2b.home.page" */ '../components/src/B2bHomePage/b2b.home.page');
-  B2BHomePage = lazy(() => B2BHomePageImport);
-} else {
-  const B2CHomePageImport = import(/* webpackChunkName: "b2c.home.page" */ '../components/src/B2cHomePage/b2c.home.page');
-  B2CHomePage = lazy(() => B2CHomePageImport);
-}
+const B2BHomePage = lazy(() => import(/* webpackChunkName: "b2b.home.page" */ '../components/src/B2bHomePage/b2b.home.page'));
+const B2CHomePage = lazy(() => import(/* webpackChunkName: "b2c.home.page" */ '../components/src/B2cHomePage/b2c.home.page'));
 
 const HomePage: React.FunctionComponent = () => (
   <Suspense fallback={<div />}>
-    {B2BHomePage
+    {Config.b2b.enable
       ? <B2BHomePage />
       : <B2CHomePage />
     }

@@ -31,8 +31,8 @@ import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.
 import CartMain from '../components/src/CartMain/cart.main';
 
 import Config from '../ep.config.json';
-import { login } from '../components/src/utils/AuthService';
-import { cortexFetch } from '../components/src/utils/Cortex';
+import { login } from '../utils/AuthService';
+import { cortexFetch } from '../utils/Cortex';
 import './CartPage.scss';
 
 // Array of zoom parameters to pass to Cortex

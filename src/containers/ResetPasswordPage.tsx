@@ -22,8 +22,8 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { login } from '../components/src/utils/AuthService';
-import { cortexFetch } from '../components/src/utils/Cortex';
+import { login } from '../utils/AuthService';
+import { cortexFetch } from '../utils/Cortex';
 import Config from '../ep.config.json';
 
 import './ResetPasswordPage.scss';

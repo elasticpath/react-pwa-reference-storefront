@@ -22,8 +22,8 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import intl from 'react-intl-universal';
-import { cortexFetch } from '../components/src/utils/Cortex';
-import { login } from '../components/src/utils/AuthService';
+import { cortexFetch } from '../utils/Cortex';
+import { login } from '../utils/AuthService';
 
 import * as Config from '../ep.config.json';
 

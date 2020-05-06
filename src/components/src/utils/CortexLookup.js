@@ -161,8 +161,6 @@ const itemFormZoomArray = [
 // Array of zoom parameters to pass to Cortex for purchaseDetails
 const purchaseFormZoomArray = [
   'paymentmeans:element',
-  'postedpayments:element',
-  'paymentinstruments:element',
   'shipments:element:destination',
   'shipments:element:shippingoption',
   'billingaddress',

@@ -144,7 +144,7 @@ class CategoryItemsMain extends Component<CategoryItemsMainProps, CategoryItemsM
     login().then(() => {
       cortexFetchNavigationLookupForm()
         .then(() => navigationLookup(categoryId)
-          .then((res:any) => {
+          .then((res) => {
             this.setState({
               categoryModel: res,
               categoryModelDisplayName: res['display-name'],

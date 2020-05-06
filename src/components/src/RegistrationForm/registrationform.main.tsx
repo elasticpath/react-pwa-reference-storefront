@@ -118,7 +118,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
     this.setState({ isLoading: true });
     const { onRegisterSuccess } = this.props;
     login().then(() => {
-      registerUser(lastname, firstname, username, password).then((res:any) => {
+      registerUser(lastname, firstname, username, password).then((res) => {
         this.setState({ isLoading: false });
         if (res.status === 201) {
           if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthRole`) === 'PUBLIC') {

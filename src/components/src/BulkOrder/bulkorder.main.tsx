@@ -276,7 +276,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
     this.setState({ isBarcodeScannerLoading: true, barcodeScannerError: '' });
     login().then(() => {
       searchLookup(barcode)
-        .then((res:any) => {
+        .then((res) => {
           const foundItem = res._element[0];
           const { code } = foundItem._items[0]._element[0]._code[0];
           cortexFetchItemLookupForm()
