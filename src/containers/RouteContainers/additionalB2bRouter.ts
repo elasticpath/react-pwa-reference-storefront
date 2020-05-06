@@ -129,7 +129,7 @@ const router = [{
   path: '/newpaymentform/paymentdata',
   component: AddPaymentMethod,
 }, {
-  path: '/account/account-item/:uri',
+  path: '/account-item/:uri',
   component: AccountMain,
 }, {
   path: '/account/requisition-list-item/:uri',

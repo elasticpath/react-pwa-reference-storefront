@@ -192,7 +192,8 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
 
             <div className="modal-body">
               <div id="cart_selection_modal_form">
-                <div className="carts-selection-region" role="presentation">
+                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+                <div className="carts-selection-region" role="presentation" tabIndex={0}>
                   {this.renderCartOption()}
                 </div>
                 <div className="action-row">

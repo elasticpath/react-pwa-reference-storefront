@@ -31,6 +31,7 @@ import './b2b.editaccount.scss';
 
 import clipboardIcon from '../../../images/icons/copy.svg';
 import copiedIcon from '../../../images/icons/check-circle-filled.svg';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 
 const COPIED_TIMEOUT_LENGTH = 4000;
@@ -183,9 +184,17 @@ class B2bEditAccount extends Component<B2bEditAccountProps, B2bEditAccountState>
       <Modal
         open={isOpen}
         onClose={handleClose}
-        classNames={{ modal: 'b2b-edit-account-dialog', closeButton: 'b2b-dialog-close-btn' }}
+        classNames={{ modal: 'b2b-edit-account-dialog' }}
+        showCloseIcon={false}
       >
-        <div className="dialog-header">{intl.get('edit-account')}</div>
+        <div className="modal-header">
+          <h2 className="modal-title">
+            {intl.get('edit-account')}
+          </h2>
+          <button type="button" aria-label="close" className="close-modal-btn b2b-dialog-close-btn" onClick={handleClose}>
+            <CloseIcon />
+          </button>
+        </div>
         <div className="dialog-content">
           <form onSubmit={this.editAccount} id="editAccount">
             <div className="b2b-form-row">

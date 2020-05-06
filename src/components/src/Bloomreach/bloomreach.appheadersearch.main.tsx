@@ -219,7 +219,7 @@ class BloomreachHeaderSearchMain extends Component<BloomreachHeaderSearchMainPro
             tabIndex={0}
             className="input-search-br"
             type="search"
-            aria-label="search"
+            aria-label={intl.get('search')}
             onChange={
               this.handleChange
             }
