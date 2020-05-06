@@ -393,7 +393,6 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     const {
       featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart, productCompareIndex,
     } = this.props;
-    console.log('productCompareIndex', productCompareIndex);
     if (productData) {
       // Set the language-specific configuration for indi integration
       Config.indi.productReview.title = intl.get('indi-product-review-title');

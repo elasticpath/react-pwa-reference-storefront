@@ -325,7 +325,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
   }
 
   renderSkuSelection() {
-    const { productData } = this.props;
+    const { productData, productCompareIndex } = this.props;
     const { selectionValue } = this.state;
     const productKindsSelection = [];
 
@@ -364,7 +364,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
               <span>{ComponentEl.defaultChousen}</span>
             ) : ''}
           </span>
-          <div className="guide" id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}`} onChange={this.handleSkuSelection}>
+          <div className="guide" id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}${productCompareIndex || ''}`} onChange={this.handleSkuSelection}>
             {ComponentEl.map(Element => (
               <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName.includes('Color')) ? 'color-wrap' : ''}`}>
                 <input
