@@ -33,6 +33,7 @@ import { cortexFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 import ImageContainer from '../ImageContainer/image.container';
 import Config from '../../../ep.config.json';
+import { AppHeaderNavigationMainFC } from '../AppHeaderNavigation/appheadernavigation-fc';
 
 import './appheader.main.scss';
 
@@ -403,20 +404,13 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
         <div className="central-container">
           <div className="horizontal-menu">
-            {isDesktop && (!isOffline && !isLoading) ? (
-              <AppHeaderNavigationMain
-                isOfflineCheck={this.handleIsOffline}
-                isOffline={isOffline}
-                isMobileView={false}
-                onFetchNavigationError={redirectToMainPage}
-                checkedLocation={checkedLocation}
-                appHeaderNavigationLinks={appHeaderNavigationLinks}
-              />
-            ) : ('')}
+            {(isDesktop && !isOffline && !isLoading) && (
+              <AppHeaderNavigationMainFC isMobileView={false} />
+            )}
           </div>
         </div>
 
-        <div className="collapsable-container collapse collapsed">
+        <div className="collapsable-container collapse collapsed" style={{ border: '3px solid #f00;' }}>
           <div className="search-container">
             {Config.bloomreachSearch.enable ? (
               <BloomreachAppHeaderSearchMain isMobileView isFocused={isSearchFocused} onSearchPage={onSearchPage} />
