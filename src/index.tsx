@@ -52,6 +52,8 @@ intl.init({
   locales,
 })
   .then(() => {
+    const newLocale = UserPrefs.getSelectedLocaleValue().split('-')[0];
+    document.documentElement.lang = newLocale;
     ReactDOM.render(
       <App />,
       document.getElementById('root'),

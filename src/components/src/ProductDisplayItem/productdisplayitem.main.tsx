@@ -428,17 +428,17 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
           <div className="itemdetail-tabs-wrap">
             {(Config.PowerReviews.enable) ? (
               <ul className="nav nav-tabs itemdetail-tabs" role="tablist">
-                <li className="nav-item">
+                <li className="nav-item" role="tab">
                   <a className="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-selected="true">
                     {intl.get('summary')}
                   </a>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" role="tab">
                   <a className="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">
                     {intl.get('reviews')}
                   </a>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" role="tab">
                   <a className="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab" aria-selected="false">
                     {intl.get('questions')}
                   </a>
