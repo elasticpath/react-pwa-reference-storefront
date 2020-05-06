@@ -35,7 +35,7 @@ import ImageContainer from '../ImageContainer/image.container';
 import ProductDisplayAttributes from '../ProductDisplayAttributes/productDisplayAttributes';
 import Config from '../../../ep.config.json';
 import './productdisplayitem.main.scss';
-
+import './carousel.scss';
 
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ '../VRProductDisplayItem/VRProductDisplayItem'));
 
