@@ -27,8 +27,8 @@ import { Link } from 'react-router-dom';
 
 import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 import * as Config from '../../ep.config.json';
-import { login } from '../../utils/AuthService';
-import { cortexFetch } from '../../utils/Cortex';
+import { login } from '../../components/src/utils/AuthService';
+import { cortexFetch } from '../../components/src/utils/Cortex';
 import DropdownCartSelection from '../../components/src/DropdownCartSelection/dropdown.cart.selection.main';
 import Pagination from '../../components/src/Pagination/pagination';
 

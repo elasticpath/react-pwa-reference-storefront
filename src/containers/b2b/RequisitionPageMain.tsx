@@ -29,8 +29,8 @@ import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chev
 import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 import { ReactComponent as AddToListIcon } from '../../images/icons/ic_add_list.svg';
 import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
-import { login } from '../../utils/AuthService';
-import { cortexFetch } from '../../utils/Cortex';
+import { login } from '../../components/src/utils/AuthService';
+import { cortexFetch } from '../../components/src/utils/Cortex';
 import * as Config from '../../ep.config.json';
 
 import './RequisitionPageMain.scss';

@@ -22,8 +22,8 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import queryString from 'query-string';
-import { loginRegisteredAuthService } from '../utils/AuthService';
-import { adminFetch } from '../utils/Cortex';
+import { loginRegisteredAuthService } from '../components/src/utils/AuthService';
+import { adminFetch } from '../components/src/utils/Cortex';
 
 import Config from '../ep.config.json';
 

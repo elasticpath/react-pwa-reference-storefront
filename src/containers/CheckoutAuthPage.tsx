@@ -22,8 +22,8 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import { login, loginRegistered } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { login, loginRegistered } from '../components/src/utils/AuthService';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 
 import './CheckoutAuthPage.scss';

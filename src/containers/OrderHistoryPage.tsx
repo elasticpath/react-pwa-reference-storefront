@@ -23,9 +23,9 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import PurchaseDetailsMain from '../components/src/PurchaseDetails/purchasedetails.main';
-import { login } from '../utils/AuthService';
-import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../utils/CortexLookup';
-import { cortexFetch } from '../utils/Cortex';
+import { login } from '../components/src/utils/AuthService';
+import { purchaseLookup, cortexFetchPurchaseLookupForm } from '../components/src/utils/CortexLookup';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 import { ReactComponent as AngleLeftIcon } from '../images/icons/outline-chevron_left-24px.svg';
 
