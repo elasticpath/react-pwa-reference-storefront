@@ -35,7 +35,7 @@ import ImageContainer from '../ImageContainer/image.container';
 import ProductDisplayAttributes from '../ProductDisplayAttributes/productDisplayAttributes';
 import Config from '../../../ep.config.json';
 import './productdisplayitem.main.scss';
-
+import './carousel.scss';
 
 const VRProductDisplayItem = lazy(() => import(/* webpackChunkName: "VRProductDisplayItem" */ '../VRProductDisplayItem/VRProductDisplayItem'));
 
@@ -152,7 +152,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
         await login();
 
         await cortexFetchItemLookupForm();
-        const itemLookupRes = await itemLookup(nextProps.productId);
+        const itemLookupRes:any = await itemLookup(nextProps.productId);
 
         let arFileExists = false;
         let backgroundVRImageExists = false;
@@ -199,7 +199,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
       const result = await Promise.all(promises);
       const validImg = result.filter(el => (el.statusText === 'OK')).map(el => (el.url));
 
-      const itemLookupRes = await itemLookup(productId, false);
+      const itemLookupRes:any = await itemLookup(productId, false);
       let arFileExists = false;
       let backgroundVRImageExists = false;
       let meshVRImageExists = false;

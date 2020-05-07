@@ -22,17 +22,17 @@
 import React from 'react';
 import * as intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
-import {
-  CartMain,
-  CheckoutSummaryList,
-  AddPromotionContainer,
-  CartCreate,
-  CartClear,
-  AlertContainer,
-} from '../components/src/index';
+
+import AlertContainer from '../components/src/AlertContainer/alert.container';
+import CartClear from '../components/src/CartClear/cartclear';
+import CartCreate from '../components/src/CartCreate/cart.create';
+import AddPromotionContainer from '../components/src/AddPromotionContainer/add.promotion.container';
+import CheckoutSummaryList from '../components/src/CheckoutSummaryList/checkout.summarylist';
+import CartMain from '../components/src/CartMain/cart.main';
+
 import Config from '../ep.config.json';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+import { login } from '../components/src/utils/AuthService';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import './CartPage.scss';
 
 // Array of zoom parameters to pass to Cortex

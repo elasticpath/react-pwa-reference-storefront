@@ -22,9 +22,9 @@
 import intl from 'react-intl-universal';
 import * as UserPrefs from './UserPrefs';
 import mockFetch from './Mock';
-import { ErrorInlet } from '../components/src/utils/MessageContext';
+import { ErrorInlet } from './MessageContext';
 
-import * as Config from '../ep.config.json';
+import Config from '../../../ep.config.json';
 
 export function timeout(ms, promise) {
   return new Promise((resolve, reject) => {

@@ -20,8 +20,7 @@
  */
 
 import React from 'react';
-import { ProductDisplayItemMain } from '../components/src/index';
-
+import ProductDisplayItemMain from '../components/src/ProductDisplayItem/productdisplayitem.main';
 import './ProductsComparePage.scss';
 
 interface ProductsComparePageProps {

@@ -21,7 +21,7 @@
 
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { SearchResultsItemsMain } from '../components/src/index';
+import SearchResultsItemsMain from '../components/src/SearchResultsItems/searchresultsitems.main';
 
 function SearchResultsPage(props: RouteComponentProps) {
   function handleProductFacetSelection(offerSearch, title) {

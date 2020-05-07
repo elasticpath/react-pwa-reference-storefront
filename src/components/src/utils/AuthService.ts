@@ -19,9 +19,10 @@
  *
  */
 
-import { cortexFetch, adminFetch } from './Cortex';
+// @ts-check
 
-import * as Config from '../ep.config.json';
+import { cortexFetch, adminFetch } from './Cortex';
+import Config from '../../../ep.config.json';
 
 let userFormBody = [];
 let userFormBodyString = '';
@@ -37,7 +38,6 @@ interface PublicUserDetailsInterface {
   'redirect_uri'?: string,
   'client_id'?: string,
 }
-
 function generateFormBody(userDetails) {
   Object.keys(userDetails).forEach((encodedKey) => {
     const encodedValue = userDetails[encodedKey];
@@ -51,7 +51,8 @@ export function login() {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`) === null) {
       userFormBodyString = '';
       userFormBody = [];
-      const publicUserDetails: PublicUserDetailsInterface = {
+      let publicUserDetails:PublicUserDetailsInterface = {};
+      publicUserDetails = {
         username: '',
         password: '',
         grant_type: 'password',
@@ -143,7 +144,7 @@ export function loginRegisteredAuthService(code, redirectUri, clientId) {
     if (localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`) === null) {
       userFormBodyString = '';
       userFormBody = [];
-      const registeredUserDetails: PublicUserDetailsInterface = {
+      const registeredUserDetails: any = {
         grant_type: 'authorization_code',
         code,
         redirect_uri: redirectUri,
@@ -198,6 +199,9 @@ export function logout() {
       localStorage.removeItem(`${Config.cortexApi.scope}_openIdcCode`);
       localStorage.removeItem(`${Config.cortexApi.scope}_keycloakSessionState`);
       localStorage.removeItem(`${Config.cortexApi.scope}_keycloakCode`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_cartItemsCount`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_oAuthUserId`);
+      localStorage.removeItem(`${Config.cortexApi.scope}_oAuthImpersonationToken`);
       resolve(res);
     }).catch((error) => {
       // eslint-disable-next-line no-console
@@ -208,17 +212,16 @@ export function logout() {
 }
 
 export function logoutAccountManagementUser() {
-  const config: any = Config.b2b;
-  if (config.openId && config.openId.enable) {
+  if (Config.b2b.openId && Config.b2b.openId.enable) {
     return new Promise(((resolve, reject) => {
       adminFetch('/oauth2/tokens', {
         method: 'delete',
-        Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthTokenAuthService`),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: localStorage.getItem(`${Config.cortexApi.scope}_oAuthToken`),
+        },
       })
-        .then((res) => {
-          logout();
-          resolve(res);
-        })
+        .then(res => logout().then(() => resolve(res)))
         .then(() => {
           window.location.href = '/';
         })

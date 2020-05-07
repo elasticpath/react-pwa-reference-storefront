@@ -25,11 +25,11 @@ import intl from 'react-intl-universal';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import fileDownload from 'js-file-download';
 import Modal from 'react-responsive-modal';
-import { adminFetch } from '../../utils/Cortex';
-import { login } from '../../utils/AuthService';
+import { adminFetch } from '../../components/src/utils/Cortex';
+import { login } from '../../components/src/utils/AuthService';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
 import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
-import { B2bAddAssociatesMenu } from '../../components/src';
+import B2bAddAssociatesMenu from '../../components/src/B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import Config from '../../ep.config.json';
 
 import './Accounts.scss';

@@ -118,7 +118,7 @@ class QuickOrderForm extends Component<QuickOrderFormProps, QuickOrderFormState>
     return login().then(() => {
       cortexFetchItemLookupForm()
         .then(() => itemLookup(productId, false)
-          .then((res) => {
+          .then((res:any) => {
             if (res._availability[0].state !== 'AVAILABLE' && res._availability[0].state !== 'AVAILABLE_FOR_PRE_ORDER') {
               this.setState({
                 product: res,

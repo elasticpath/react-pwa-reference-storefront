@@ -23,15 +23,14 @@ import React, { Component } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
-import { B2bAddProductsModal, CartLineItem } from '../../components/src/index';
-
-
+import CartLineItem from '../../components/src/CartLineItem/cart.lineitem';
+import B2bAddProductsModal from '../../components/src/B2bAddProductsModal/b2b.add.products.modal';
 import { ReactComponent as AngleLeftIcon } from '../../images/icons/outline-chevron_left-24px.svg';
 import { ReactComponent as RecycleBinIcon } from '../../images/icons/ic_trash.svg';
 import { ReactComponent as AddToListIcon } from '../../images/icons/ic_add_list.svg';
 import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
-import { login } from '../../utils/AuthService';
-import { cortexFetch } from '../../utils/Cortex';
+import { login } from '../../components/src/utils/AuthService';
+import { cortexFetch } from '../../components/src/utils/Cortex';
 import * as Config from '../../ep.config.json';
 
 import './RequisitionPageMain.scss';

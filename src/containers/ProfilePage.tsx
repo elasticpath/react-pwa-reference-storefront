@@ -24,11 +24,16 @@ import intl from 'react-intl-universal';
 import { RouteComponentProps } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import { ReactComponent as CloseIcon } from '../images/icons/ic_close.svg';
-import {
-  ProfileInfoMain, ProfileemailinfoMain, ProfileAddressesMain, PaymentSelectorMain, OrderHistoryMain, AddressFormMain, ProfileComplianceMain,
-} from '../components/src/index';
-import { login } from '../utils/AuthService';
-import { cortexFetch } from '../utils/Cortex';
+
+import ProfileInfoMain from '../components/src/ProfileInfo/profileInfo.main';
+import ProfileemailinfoMain from '../components/src/ProfileEmailInfo/profileemailinfo.main';
+import ProfileAddressesMain from '../components/src/ProfileAddresses/profileaddresses.main';
+import PaymentSelectorMain from '../components/src/PaymentSelectorMain/paymentselector.main';
+import AddressFormMain from '../components/src/AddressForm/addressform.main';
+import ProfileComplianceMain from '../components/src/ProfileCompliance/profilecompliance.main';
+
+import { login } from '../components/src/utils/AuthService';
+import { cortexFetch } from '../components/src/utils/Cortex';
 import Config from '../ep.config.json';
 
 import './ProfilePage.scss';

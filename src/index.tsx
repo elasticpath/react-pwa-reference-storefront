@@ -25,7 +25,7 @@ import intl from 'react-intl-universal';
 import App from './App';
 import './theme/index.scss';
 import epConfig from './ep.config.json';
-import * as UserPrefs from './utils/UserPrefs';
+import * as UserPrefs from './components/src/utils/UserPrefs';
 
 import './theme/reset.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
