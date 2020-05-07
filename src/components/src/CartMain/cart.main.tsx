@@ -26,6 +26,7 @@ import CartLineItem from '../CartLineItem/cart.lineitem';
 import { cortexFetch } from '../../../utils/Cortex';
 import { login } from '../../../utils/AuthService';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './cart.main.scss';
 
@@ -345,12 +346,15 @@ class CartMain extends Component<CartMainProps, CartMainState> {
             isAvailableReqList={isAvailableReqList}
           />
         ))}
-        <Modal open={openModal} onClose={this.handleModalClose}>
+        <Modal open={openModal} onClose={this.handleModalClose} showCloseIcon={false}>
           <div className="modal-lg add-to-list-modal">
-            <div className="dialog-header">
+            <div className="modal-header">
               <h2 className="modal-title">
                 {intl.get('add-to-requisition-list')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleModalClose}>
+                <CloseIcon />
+              </button>
             </div>
             <div className="dialog-content">
               { showReqListForm ? (

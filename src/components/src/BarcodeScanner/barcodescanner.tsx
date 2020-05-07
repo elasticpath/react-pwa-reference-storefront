@@ -23,6 +23,7 @@ import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Quagga from 'quagga/dist/quagga.js';
 import Modal from 'react-responsive-modal';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 import './barcodescanner.scss';
 
 interface BarcodeScannerProps {
@@ -156,13 +157,16 @@ class BarcodeScanner extends Component<BarcodeScannerProps, BarcodeScannerState>
     const { isModalOpen } = this.props;
 
     return (
-      <Modal open={isModalOpen} onClose={this.onModalClose} classNames={{ modal: 'login-modal-content' }}>
+      <Modal open={isModalOpen} onClose={this.onModalClose} classNames={{ modal: 'login-modal-content' }} showCloseIcon={false}>
         <div className="modal-dialog">
           <div className="modal-content" id="simplemodal-container">
             <div className="modal-header">
               <h2 className="modal-title">
                 {intl.get('barcode-scanner')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.onModalClose}>
+                <CloseIcon />
+              </button>
             </div>
             <div className="viewport-container">
               <div ref={this.scannerContainer} className="viewport" />

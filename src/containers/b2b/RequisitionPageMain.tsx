@@ -666,17 +666,20 @@ class RequisitionPageMain extends Component<RouteComponentProps<RequisitionPageM
             onAddItem={this.handleAddProductsModalUpdate}
           />
         ) : ''}
-        <Modal open={editListNameModalOpened} onClose={this.handleModalClose}>
+        <Modal open={editListNameModalOpened} onClose={this.handleModalClose} showCloseIcon={false}>
           <div className="modal-lg create-list-modal">
             {showCreateListLoader && (
               <div className="loader-wrapper">
                 <div className="miniLoader" />
               </div>
             )}
-            <div className="dialog-header">
+            <div className="modal-header">
               <h2 className="modal-title">
                 {intl.get('edit-list')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleModalClose}>
+                <CloseIcon />
+              </button>
             </div>
             <div className="dialog-content">
               <div className="create-list-form">

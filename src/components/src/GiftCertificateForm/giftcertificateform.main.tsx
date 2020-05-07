@@ -25,6 +25,7 @@ import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './giftcertificateform.main.scss';
 
@@ -276,13 +277,16 @@ class GiftcertificateFormMain extends Component<GiftcertificateFormMainProps, Gi
           </button>
         </div>
 
-        <Modal open={open} onClose={this.handleCloseModal}>
+        <Modal open={open} onClose={this.handleCloseModal} showCloseIcon={false}>
           <div className="modal-lg gift-card-modal">
             <div className="modal-content">
               <div className="modal-header">
                 <h2 className="modal-title">
                   {intl.get('gift-card')}
                 </h2>
+                <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleCloseModal}>
+                  <CloseIcon />
+                </button>
               </div>
               <div className="modal-body">
                 <form className="form-horizontal">
