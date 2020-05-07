@@ -24,6 +24,11 @@ import Config from '../../../ep.config.json';
 
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 
+const IMG_SIZING_SUFFIX = [
+  'desktop',
+  'tablet',
+  'mobile',
+];
 
 interface ImageContainerProps {
   /** name of file */
@@ -43,7 +48,10 @@ function ImageContainer(props: ImageContainerProps) {
     fileName, imgUrl, className, isSkuImage, onLoadData,
   } = props;
 
-  const imageSource = isSkuImage ? Config.skuImagesUrl.replace('%sku%', fileName) : Config.siteImagesUrl.replace('%fileName%', fileName);
+  const getSrcSet: () => string = ():string => IMG_SIZING_SUFFIX.reduce((acc:string, sizingSuffix:string) => {
+    const fullImageUrl = Config.siteImagesUrl.replace('%fileName%', fileName);
+    return `${acc}, ${fullImageUrl}-${sizingSuffix}.png`;
+  }, '');
 
   const handleError = (e, defaultImgUrl) => {
     const { src } = e.target;
@@ -68,11 +76,16 @@ function ImageContainer(props: ImageContainerProps) {
     }
   };
 
+  const srcSet = !isSkuImage ? getSrcSet() : null;
+  const src = isSkuImage ? Config.skuImagesUrl : srcSet[0];
+
   return (
     <img
       className={className}
+      srcSet={srcSet}
       alt=""
-      src={imageSource}
+      sizes="100vw"
+      src={src}
       onError={e => handleError(e, imgUrl)}
       onLoad={onLoadData}
     />

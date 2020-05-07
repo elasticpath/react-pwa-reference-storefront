@@ -39,16 +39,16 @@ import productImage6 from '../../../images/site-images/b2c-product-6.png';
 import productImage7 from '../../../images/site-images/b2c-product-7.png';
 
 
-const bannerFileName1 = 'b2c-banner-1.png';
-const bannerFileName2 = 'b2c-banner-2.png';
-const bannerFileName3 = 'b2c-banner-3.png';
-const productFileName1 = 'b2c-product-1.png';
-const productFileName2 = 'b2c-product-2.png';
-const productFileName3 = 'b2c-product-3.png';
-const productFileName4 = 'b2c-product-4.png';
-const productFileName5 = 'b2c-product-5.png';
-const productFileName6 = 'b2c-product-6.png';
-const productFileName7 = 'b2c-product-7.png';
+const bannerFileName1 = 'b2c-banner-1';
+const bannerFileName2 = 'b2c-banner-2';
+const bannerFileName3 = 'b2c-banner-3';
+const productFileName1 = 'b2c-product-1';
+const productFileName2 = 'b2c-product-2';
+const productFileName3 = 'b2c-product-3';
+const productFileName4 = 'b2c-product-4';
+const productFileName5 = 'b2c-product-5';
+const productFileName6 = 'b2c-product-6';
+const productFileName7 = 'b2c-product-7';
 
 const B2CHomePage: React.FunctionComponent = () => {
   // Set the language-specific configuration for indi integration
