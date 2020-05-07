@@ -243,7 +243,7 @@ function PurchaseDetailsMain(props: PurchaseDetailsMainProps) {
           </tbody>
         </table>
         {(purchaseItem._item) ? (
-          <QuickOrderMain isBuyItAgain productData={purchaseItem._item[0]} itemDetailLink={itemDetailLink} onMoveToCart={onMoveToCart} onConfiguratorAddToCart={onConfiguratorAddToCart} />
+          <QuickOrderMain itemName={name} isBuyItAgain productData={purchaseItem._item[0]} itemDetailLink={itemDetailLink} onMoveToCart={onMoveToCart} onConfiguratorAddToCart={onConfiguratorAddToCart} />
         ) : ('')
         }
       </li>
