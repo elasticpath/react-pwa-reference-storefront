@@ -42,13 +42,13 @@ interface DropdownCartSelectionProps {
   btnTxt?: string,
   /** show cart icon */
   showCartIcon?: boolean,
-  /** product compare index */
-  productCompareIndex?: number,
+  /** index of item */
+  itemIndex?: number,
 }
 
 function DropdownCartSelection(props:DropdownCartSelectionProps) {
   const {
-    multiCartData, addToSelectedCart, showDropdownHeader, isDisabled, showLoader, btnTxt, showCartIcon, productCompareIndex,
+    multiCartData, addToSelectedCart, showDropdownHeader, isDisabled, showLoader, btnTxt, showCartIcon, itemIndex,
   } = props;
   const dispatch = useCountDispatch();
   const onCountChange = (name, count) => {
@@ -71,7 +71,7 @@ function DropdownCartSelection(props:DropdownCartSelectionProps) {
         className="ep-btn primary btn-itemdetail-addtocart dropdown-toggle"
         data-toggle="dropdown"
         disabled={isDisabled}
-        id={`product_display_item_add_to_cart_button-dropdown${productCompareIndex || ''}`}
+        id={`product_display_item_add_to_cart_button-dropdown${itemIndex || ''}`}
         type="button"
       >
         {showLoader ? (
@@ -112,7 +112,7 @@ DropdownCartSelection.defaultProps = {
   showLoader: false,
   btnTxt: '',
   showCartIcon: false,
-  productCompareIndex: 0,
+  itemIndex: 0,
 };
 
 export default DropdownCartSelection;

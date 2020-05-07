@@ -73,7 +73,7 @@ export interface ProductDisplayItemMainProps {
   /** featured product attribute */
   featuredProductAttribute?: boolean,
   /** is product compare page */
-  productCompareIndex?: number,
+  itemIndex?: number,
 }
 
 export interface ProductDisplayItemMainState {
@@ -113,7 +113,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     isInStandaloneMode: false,
     itemDetailLink: '',
     featuredProductAttribute: false,
-    productCompareIndex: 0,
+    itemIndex: 0,
   };
 
   constructor(props) {
@@ -391,7 +391,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
     } = this.state;
 
     const {
-      featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart, productCompareIndex,
+      featuredProductAttribute, itemDetailLink, onAddToWishList, onChangeProductFeature, onAddToCart, itemIndex,
     } = this.props;
     if (productData) {
       // Set the language-specific configuration for indi integration
@@ -423,7 +423,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
                 </div>
               </div>
             </div>
-            <ProductDisplayItemDetails productCompareIndex={productCompareIndex} productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} />
+            <ProductDisplayItemDetails itemIndex={itemIndex} productData={productData} requisitionListData={requisitionListData} onAddToWishList={onAddToWishList} onChangeProductFeature={onChangeProductFeature} onAddToCart={onAddToCart} />
           </div>
           <div className="itemdetail-tabs-wrap">
             {(Config.PowerReviews.enable) ? (
@@ -446,7 +446,7 @@ class ProductDisplayItemMain extends Component<ProductDisplayItemMainProps, Prod
               </ul>
             ) : ('')
             }
-            <ProductDisplayAttributes productCompareIndex={productCompareIndex} handleDetailAttribute={this.handleDetailAttribute} detailsProductData={detailsProductData} />
+            <ProductDisplayAttributes itemIndex={itemIndex} handleDetailAttribute={this.handleDetailAttribute} detailsProductData={detailsProductData} />
           </div>
           <BundleConstituentsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />
           <ProductRecommendationsDisplayMain productData={productData} itemDetailLink={itemDetailLink} />

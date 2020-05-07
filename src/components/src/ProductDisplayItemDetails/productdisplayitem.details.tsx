@@ -325,7 +325,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
   }
 
   renderSkuSelection() {
-    const { productData, productCompareIndex } = this.props;
+    const { productData, itemIndex } = this.props;
     const { selectionValue } = this.state;
     const productKindsSelection = [];
 
@@ -364,7 +364,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
               <span>{ComponentEl.defaultChousen}</span>
             ) : ''}
           </span>
-          <div className="guide" id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}${productCompareIndex || ''}`} onChange={this.handleSkuSelection}>
+          <div className="guide" id={`${(ComponentEl.displayName.includes('Color')) ? 'product_display_item_sku_guide' : 'product_display_item_size_guide'}${itemIndex || ''}`} onChange={this.handleSkuSelection}>
             {ComponentEl.map(Element => (
               <div key={Element._description[0]['display-name']} className={`select-wrap ${(ComponentEl.displayName.includes('Color')) ? 'color-wrap' : ''}`}>
                 <input
@@ -477,13 +477,13 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
       productData,
       requisitionListData,
       onAddToCart,
-      productCompareIndex,
+      itemIndex,
     } = this.props;
     const { availability, availabilityString, productLink } = ProductDisplayItemDetails.extractAvailabilityParams(productData);
     const { listPrice, itemPrice } = ProductDisplayItemDetails.extractPrice(productData);
     const multiCartData = ((productData && productData._addtocartforms) || []).flatMap(addtocartforms => addtocartforms._element);
     const SelectCartButton = () => (
-      <DropdownCartSelection productCompareIndex={productCompareIndex} multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
+      <DropdownCartSelection itemIndex={itemIndex} multiCartData={multiCartData} addToSelectedCart={this.addToSelectedCart} isDisabled={!availability || !productData._addtocartform} showLoader={addToCartLoading} btnTxt={intl.get('add-to-cart')} />
     );
     const isMultiCartEnabled = (productData._addtocartforms || []).flatMap(forms => forms._element).length > 0;
     const {
@@ -600,7 +600,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                   handleQuantityChange={this.handleQuantityChange}
                   isLoading={isLoading}
                   itemQuantity={itemQuantity}
-                  productCompareIndex={productCompareIndex}
+                  itemIndex={itemIndex}
                 />
                 <div className="form-group-submit">
                   {isMultiCartEnabled ? (
@@ -610,7 +610,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                       <button
                         className="ep-btn primary btn-itemdetail-addtocart"
                         disabled={!availability || !productData._addtocartform}
-                        id={`product_display_item_add_to_cart_button${productCompareIndex || ''}`}
+                        id={`product_display_item_add_to_cart_button${itemIndex || ''}`}
                         type="submit"
                       >
                         <span>
@@ -633,7 +633,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                           onClick={this.addToWishList}
                           className="ep-btn btn-itemdetail-addtowishlist"
                           disabled={!availability || !productData._addtowishlistform}
-                          id={`product_display_item_add_to_wish_list_button${productCompareIndex || ''}`}
+                          id={`product_display_item_add_to_wish_list_button${itemIndex || ''}`}
                           type="submit"
                         >
                           {intl.get('add-to-wish-list')}
@@ -652,7 +652,7 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
               productTitle={productTitle}
             />
           </div>
-          <PowerReview productData={productData} productCompareIndex={productCompareIndex} />
+          <PowerReview productData={productData} itemIndex={itemIndex} />
         </div>
       );
     }

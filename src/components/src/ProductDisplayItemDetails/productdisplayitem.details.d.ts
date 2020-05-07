@@ -30,8 +30,8 @@ export interface ProductDisplayDetailsProps {
     onChangeProductFeature?: (...args: any[]) => any,
     /** handle add to cart */
     onAddToCart?: (...args: any[]) => any,
-    /** product compare index */
-    productCompareIndex?: number,
+    /** index of item */
+    itemIndex?: number,
 }
 
 export interface ProductDisplayItemMainState {

@@ -42,7 +42,7 @@ function MaintenancePage() {
                     <h1 className="view-title-maintenance view-title">
                       {intl.get('something-went-wrong-message')}
                     </h1>
-                    <h3 className="dog-view-title-message">
+                    <p className="dog-view-title-message">
                       {intl.get('try-again-message')}
                       &nbsp;
                       <span className="dog-view-title-message-redirect">
@@ -51,7 +51,7 @@ function MaintenancePage() {
                           .
                         </Link>
                       </span>
-                    </h3>
+                    </p>
                   </div>
                 </div>
                 <div className="static-container dog-container">

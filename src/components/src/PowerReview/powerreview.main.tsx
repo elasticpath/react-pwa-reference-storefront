@@ -35,15 +35,15 @@ interface PowerReviewProps {
   productData: {
     [key: string]: any
   },
-  /** product compare index */
-  productCompareIndex?: number,
+  /** index of item */
+  itemIndex?: number,
 }
 
 class PowerReview extends Component<PowerReviewProps> {
   private POWERREVIEWS: any;
 
   static defaultProps = {
-    productCompareIndex: 0,
+    itemIndex: 0,
   };
 
   private funcName: any;
@@ -146,8 +146,8 @@ class PowerReview extends Component<PowerReviewProps> {
   }
 
   render() {
-    const { productCompareIndex } = this.props;
-    return (<div id={`pr-reviewsnippet${productCompareIndex || ''}`} />);
+    const { itemIndex } = this.props;
+    return (<div id={`pr-reviewsnippet${itemIndex || ''}`} />);
   }
 }
 

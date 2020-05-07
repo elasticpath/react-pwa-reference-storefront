@@ -443,7 +443,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
         isDisabled={isQuickOrder ? quickOrderDisabledButton : bulkOrderDisabledButton}
         btnTxt={intl.get('add-all-to-cart')}
         showLoader={isLoading}
-        productCompareIndex={isQuickOrder ? 1 : 2}
+        itemIndex={isQuickOrder ? 1 : 2}
       />
     );
     return (
