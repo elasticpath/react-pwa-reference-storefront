@@ -25,9 +25,9 @@ import Config from '../../../ep.config.json';
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 
 const IMG_SIZING_SUFFIX = [
-  'desktop',
-  'tablet',
-  'mobile',
+  ['desktop', '3x'],
+  ['tablet', '2x'],
+  ['mobile', '1x'],
 ];
 
 interface ImageContainerProps {
@@ -52,15 +52,15 @@ function ImageContainer(props: ImageContainerProps) {
 
   const getSrcSet: () => string = ():string => {
     if (srcSetDimensions) {
-      return srcSetDimensions.reduce((acc:string, sizing:number, idx:number) => {
+      return IMG_SIZING_SUFFIX.reduce((acc:string, sizing, idx:number) => {
         if (idx > 3) {
           return acc;
         }
         const fullImageUrl = Config.siteImagesUrl.replace('%fileName%', fileName);
         if (acc === '') {
-          return `${fullImageUrl}-${IMG_SIZING_SUFFIX[idx]}.png ${idx}x`;
+          return `${fullImageUrl}-${sizing[0]}.png ${sizing[1]}`;
         }
-        return `${acc}, ${fullImageUrl}-${IMG_SIZING_SUFFIX[idx]}.png ${idx}x`;
+        return `${acc}, ${fullImageUrl}-${sizing[0]}.png ${sizing[1]}`;
       }, '');
     }
 
