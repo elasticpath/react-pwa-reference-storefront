@@ -284,7 +284,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
     };
 
     return [
-      <header key="app-header" className="app-header">
+      <header key="app-header" className="app-header" role="banner">
         {
           impersonating ? (
             <div className="impersonation-notification">
@@ -297,7 +297,7 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
           <div className="main-container-col">
             <div className="logo-container">
-              <Link to={appHeaderLinks.mainPage} className="logo">
+              <Link to={appHeaderLinks.mainPage} className="logo" aria-label="logo image">
                 <ImageContainer className="logo-image" fileName={headerLogoFileName} imgUrl={headerLogo} />
               </Link>
             </div>

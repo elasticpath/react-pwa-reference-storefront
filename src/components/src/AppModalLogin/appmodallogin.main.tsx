@@ -26,6 +26,7 @@ import Modal from 'react-responsive-modal';
 import queryString from 'query-string';
 import { loginRegistered, loginRegisteredAuthService } from '../utils/AuthService';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './appmodallogin.main.scss';
 
@@ -193,7 +194,7 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
     } = this.props;
 
     return (
-      <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'login-modal-content' }}>
+      <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'login-modal-content' }} showCloseIcon={false}>
         {
           (isLoading) ? <div className="loginModalMiniLoader" /> : ('')
         }
@@ -203,6 +204,9 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
               <h2 className="modal-title">
                 {intl.get('login')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={handleModalClose}>
+                <CloseIcon />
+              </button>
             </div>
 
             <div className="feedback-label auth-feedback-container" id="login_modal_auth_feedback_container" data-region="authLoginFormFeedbackRegion" data-i18n="">
@@ -212,17 +216,17 @@ class AppModalLoginMain extends Component<AppModalLoginMainProps, AppModalLoginM
             <div className="modal-body">
               <form id="login_modal_form" onSubmit={this.loginRegisteredUser}>
                 <div className="form-group">
-                  <span>
+                  <label htmlFor="login_modal_username_input">
                     {intl.get('username')}
                     :
-                  </span>
+                  </label>
                   <input className="form-control" id="login_modal_username_input" type="text" onChange={this.setUsername} onKeyDown={this.handleEnterKeyPress} />
                 </div>
                 <div className="form-group">
-                  <span>
+                  <label htmlFor="login_modal_password_input">
                     {intl.get('password')}
                     :
-                  </span>
+                  </label>
                   <input className="form-control" id="login_modal_password_input" type="password" onChange={this.setPassword} onKeyDown={this.handleEnterKeyPress} />
                 </div>
                 <div className="form-group action-row">

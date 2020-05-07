@@ -27,6 +27,7 @@ import Config from '../../../ep.config.json';
 import CartLineItem from '../CartLineItem/cart.lineitem';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './appmodalbundleconfiguration.main.scss';
 
@@ -175,13 +176,16 @@ class AppModalBundleConfigurationMain extends Component<AppModalBundleConfigurat
     const { handleModalClose, openModal, itemDetailLink } = this.props;
     if (dependantItemData && dependantItemData._dependentoptions && dependantItemData._dependentlineitems && (dependantItemData._dependentoptions[0]._element || dependantItemData._dependentlineitems[0]._element)) {
       return (
-        <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'bundle-configurator-modal-content' }}>
+        <Modal open={openModal} onClose={handleModalClose} classNames={{ modal: 'bundle-configurator-modal-content' }} showCloseIcon={false}>
           <div className="modal-dialog">
             <div className="modal-content" id="simplemodal-container">
               <div className="modal-header">
                 <h2 className="modal-title">
                   {intl.get('configure-bundle-configurator')}
                 </h2>
+                <button type="button" aria-label="close" className="close-modal-btn" onClick={handleModalClose}>
+                  <CloseIcon />
+                </button>
               </div>
 
               {(dependantItemData._dependentlineitems[0] && dependantItemData._dependentlineitems[0]._element) ? (

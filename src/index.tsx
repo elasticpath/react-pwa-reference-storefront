@@ -41,12 +41,19 @@ epConfig.supportedLocales.forEach((locale) => {
   locales[locale.value] = { ...localeMessages, ...debugMessages };
 });
 
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line global-require
+  const axe = require('react-axe');
+  axe(React, ReactDOM, 1000);
+}
 // localisation init
 intl.init({
   currentLocale: UserPrefs.getSelectedLocaleValue(),
   locales,
 })
   .then(() => {
+    const newLocale = UserPrefs.getSelectedLocaleValue().split('-')[0];
+    document.documentElement.lang = newLocale;
     ReactDOM.render(
       <App />,
       document.getElementById('root'),

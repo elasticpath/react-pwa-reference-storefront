@@ -25,6 +25,7 @@ import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './cart.create.scss';
 
@@ -348,7 +349,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
           <button type="button" className="ep-btn cancel-btn" onClick={() => this.handleCancelEditCart(index, 0)}>{intl.get('cancel')}</button>
           <button type="button" className="ep-btn ok-btn" onClick={event => this.handleDeleteCart(element, index)}>
             {element.removeCartLoading ? (
-              <div className="circularLoader" />
+              <div className="circularLoader" aria-label="Loading" />
             ) : (
               <span>
                 {intl.get('ok')}
@@ -440,13 +441,16 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
     const { openModal } = this.props;
 
     return (
-      <Modal open={openModal} onClose={this.handleCloseModal}>
+      <Modal open={openModal} onClose={this.handleCloseModal} showCloseIcon={false}>
         <div className="modal-lg cart-create-modal">
           <div className="modal-content">
             <div className="modal-header">
               <h2 className="modal-title">
                 {intl.get('manage-carts')}
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleCloseModal}>
+                <CloseIcon />
+              </button>
             </div>
             <div className="modal-body">
               {createCartForm.length > 0 && (
@@ -465,7 +469,7 @@ class CartCreate extends Component<CartCreateProps, CartCreateState> {
                   {cartElements.length}
                   )
                 </h3>
-                <ul className="carts-list">
+                <ul className="carts-list" role="group">
                   {this.renderCartItems()}
                 </ul>
               </div>

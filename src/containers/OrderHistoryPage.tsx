@@ -100,9 +100,9 @@ class OrderHistoryPage extends React.Component<OrderHistoryPageProps, OrderHisto
                   {intl.get('back')}
                 </button>
               </div>
-              <h2 className="view-title">
+              <h1 className="view-title">
                 {intl.get('purchase-details')}
-              </h2>
+              </h1>
               <PurchaseDetailsMain data={purchaseData} itemDetailLink={itemDetailLink} onMoveToCart={this.moveToCart} onConfiguratorAddToCart={this.moveToCart} onReorderAllProducts={this.moveToCart} />
             </div>
           </div>

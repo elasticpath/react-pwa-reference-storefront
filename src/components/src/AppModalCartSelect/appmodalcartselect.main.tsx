@@ -22,6 +22,7 @@
 import React, { Component } from 'react';
 import intl from 'react-intl-universal';
 import Modal from 'react-responsive-modal';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 import { adminFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
 
@@ -174,7 +175,7 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
     const selectedCartName = orgAuthServiceData && orgAuthServiceData._element ? orgAuthServiceData._element[selectedCart].name : '';
 
     return (
-      <Modal open={openModal} onClose={this.onModalClose} classNames={{ modal: 'cart-selection-modal-content' }}>
+      <Modal open={openModal} onClose={this.onModalClose} classNames={{ modal: 'cart-selection-modal-content' }} showCloseIcon={false}>
         <div className="modal-lg">
           <div className="modal-content" id="simplemodal-container">
             <div className="modal-header">
@@ -184,11 +185,15 @@ class AppModalCartSelectMain extends Component<AppModalCartSelectMainProps, AppM
                   : (intl.get('shop-for'))
                 }
               </h2>
+              <button type="button" aria-label="close" className="close-modal-btn" onClick={this.onModalClose}>
+                <CloseIcon />
+              </button>
             </div>
 
             <div className="modal-body">
               <div id="cart_selection_modal_form">
-                <div className="carts-selection-region">
+                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+                <div className="carts-selection-region" role="presentation" tabIndex={0}>
                   {this.renderCartOption()}
                 </div>
                 <div className="action-row">

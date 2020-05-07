@@ -26,6 +26,7 @@ import Modal from 'react-responsive-modal';
 import { adminFetch } from '../utils/Cortex';
 import { login } from '../utils/AuthService';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import '../B2bEditAccount/b2b.editaccount.scss';
 
@@ -120,9 +121,17 @@ class B2bAddSubAccount extends Component<B2bAddSubAccountProps, B2bAddSubAccount
       <Modal
         open={isOpen}
         onClose={handleClose}
-        classNames={{ modal: 'b2b-edit-account-dialog', closeButton: 'b2b-dialog-close-btn' }}
+        classNames={{ modal: 'b2b-edit-account-dialog' }}
+        showCloseIcon={false}
       >
-        <div className="dialog-header">{intl.get('add-sub-account')}</div>
+        <div className="modal-header">
+          <h2 className="modal-title">
+            {intl.get('add-sub-account')}
+          </h2>
+          <button type="button" aria-label="close" className="close-modal-btn" onClick={handleClose}>
+            <CloseIcon />
+          </button>
+        </div>
         <div className="dialog-content">
           <form onSubmit={this.addSubAccount} id="subAccountsForm">
             <div className="b2b-form-row">

@@ -1,12 +1,5 @@
 @import '../../../theme/common.scss';
 
-.dialog-header {
-  flex: 0 0 auto;
-  font-size: 20px;
-  padding-right: 25px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid $firstBorderColor;
-}
 .dialog-content {
   padding: 50px 0;
   flex: 1 0 auto;

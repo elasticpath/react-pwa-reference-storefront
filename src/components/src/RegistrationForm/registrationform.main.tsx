@@ -147,9 +147,9 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
     } = this.state;
     return (
       <div className="registration-container container">
-        <h3>
+        <h1>
           {intl.get('register-new-account')}
-        </h3>
+        </h1>
 
         <div className="feedback-label registration-form-feedback-container feedback-display-linebreak" id="registration_form_feedback_container" data-region="registrationFeedbackMsgRegion">
           {failedRegistration ? (registrationErrors) : ('')}
@@ -159,7 +159,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
           <div className="container">
             <form className="form-horizontal">
               <div className="form-group">
-                <label htmlFor="registration_form_firstName_label" data-el-label="registrationForm.firstName" className="control-label registration-form-label">
+                <label htmlFor="registration_form_firstName" data-el-label="registrationForm.firstName" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -171,7 +171,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="registration_form_lastName_label" data-el-label="registrationForm.lastName" className="control-label registration-form-label">
+                <label htmlFor="registration_form_lastName" data-el-label="registrationForm.lastName" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -183,7 +183,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="registration_form_emailUsername_label" data-el-label="registrationForm.emailUsername" className="control-label registration-form-label">
+                <label htmlFor="registration_form_emailUsername" data-el-label="registrationForm.emailUsername" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -195,7 +195,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="registration_form_password_label" data-el-label="registrationForm.password" className="control-label registration-form-label">
+                <label htmlFor="registration_form_password" data-el-label="registrationForm.password" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>
@@ -207,7 +207,7 @@ class RegistrationFormMain extends Component<RegistrationFormMainProps, Registra
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="registration_form_passwordConfirm_label" data-el-label="registrationForm.passwordConfirm" className="control-label registration-form-label">
+                <label htmlFor="registration_form_passwordConfirm" data-el-label="registrationForm.passwordConfirm" className="control-label registration-form-label">
                   <span className="required-label">
                     *
                   </span>

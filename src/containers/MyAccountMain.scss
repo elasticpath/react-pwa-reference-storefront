@@ -175,6 +175,8 @@
       font-weight: bold;
       @media screen and (min-width: 992px) {
         display: block;
+        border: none;
+        color: $mainTextColor;
       }
     }
   }
@@ -224,14 +226,6 @@
   .b2b-dialog-close-btn {
     right: 20px;
     opacity: 0.5;
-  }
-
-  .dialog-header {
-    flex: 0 0 auto;
-    font-size: 20px;
-    padding-right: 25px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid $firstBorderColor;
   }
 
   .dialog-content {

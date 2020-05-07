@@ -26,6 +26,7 @@ import Modal from 'react-responsive-modal';
 import { login } from '../utils/AuthService';
 import { cortexFetch } from '../utils/Cortex';
 import Config from '../../../ep.config.json';
+import { ReactComponent as CloseIcon } from '../../../images/icons/ic_close.svg';
 
 import './compliancesupport.main.scss';
 
@@ -131,24 +132,27 @@ class ComplianceSupportModal extends Component<ComplianceSupportModalProps, Comp
   render() {
     const { open, checked } = this.state;
     const privacyAndPolicy = (
-      <Link to="/privacypolicies" onClick={this.handleCloseModal}>
+      <Link to="/privacypolicies" title={intl.get('privacy-policy')} onClick={this.handleCloseModal}>
         {intl.get('privacy-policy')}
       </Link>);
     const termsConditions = (
-      <Link to="/termsandconditions" onClick={this.handleCloseModal}>
+      <Link to="/termsandconditions" title={intl.get('terms-conditions')} onClick={this.handleCloseModal}>
         {intl.get('terms-conditions')}
       </Link>);
     const msg = intl.get('compliance-label').split(/[{}]/g);
     const obj = { privacyAndPolicy, termsConditions };
     return (
       <div>
-        <Modal open={open} onClose={this.handleCloseModal}>
+        <Modal open={open} onClose={this.handleCloseModal} showCloseIcon={false}>
           <div className="compliance-support-modal">
             <div className="modal-content">
               <div className="modal-header">
                 <h2 className="modal-title">
                   {intl.get('your-compliance-notice')}
                 </h2>
+                <button type="button" aria-label="close" className="close-modal-btn" onClick={this.handleCloseModal}>
+                  <CloseIcon />
+                </button>
               </div>
               <div className="modal-body">
                 <div className="compliance-checkbox-wrap">

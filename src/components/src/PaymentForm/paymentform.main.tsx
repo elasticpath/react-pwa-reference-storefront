@@ -606,7 +606,9 @@ class PaymentFormMain extends Component<PaymentFormMainProps, PaymentFormMainSta
                   12
                 </option>
               </select>
-              &nbsp;/&nbsp;
+              <label htmlFor="ExpiryYear">
+                &nbsp;/&nbsp;
+              </label>
               <select id="ExpiryYear" name="ExpiryYear" className="form-control expiry-date" value={expiryYear} onChange={this.setExpiryYear}>
                 {PaymentFormMain.renderYears()}
               </select>

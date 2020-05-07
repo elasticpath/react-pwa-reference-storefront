@@ -297,9 +297,9 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
       const [option] = orderData._order[0]._deliveries[0]._element[0]._shippingoptioninfo[0]._shippingoption;
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
-          <h3>
+          <h2 className="order-info-title">
             {intl.get('shipping-option')}
-          </h3>
+          </h2>
           <ShippingOptionContainer option={option} />
         </div>
       );
@@ -315,9 +315,9 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
       const { name, address } = shippingAddress;
       return (
         <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
-          <h3>
+          <h2 className="order-info-title">
             {intl.get('shipping-address')}
-          </h3>
+          </h2>
           <AddressContainer name={name} address={address} />
         </div>
       );
@@ -331,9 +331,9 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
     const { name, address } = billingAddress;
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px' }}>
-        <h3>
+        <h2 className="order-info-title">
           {intl.get('billing-address')}
-        </h3>
+        </h2>
         <AddressContainer name={name} address={address} />
       </div>
     );
@@ -344,9 +344,9 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
     const displayName = orderData._order[0]._paymentmethodinfo[0]._paymentmethod[0];
     return (
       <div style={{ display: 'inline-block', paddingLeft: '20px', verticalAlign: 'top' }}>
-        <h3>
+        <h2 className="order-info-title">
           {intl.get('payment-method')}
-        </h3>
+        </h2>
         <PaymentMethodContainer displayName={displayName} />
       </div>
     );
@@ -390,7 +390,7 @@ class OrderReviewPage extends React.Component<OrderReviewPageProps, OrderReviewP
                       <div className="checkout-submit-container">
                         <button className="ep-btn primary wide btn-cmd-submit-order" disabled={!isValid} type="button" onClick={() => { this.completeOrder(); }}>
                           {isLoading ? (
-                            <span className="checkoutMiniLoader" />
+                            <span className="checkoutMiniLoader" aria-label="Loading" />
                           ) : (
                             <span className="btn-txt">
                               {intl.get('complete-purchase')}

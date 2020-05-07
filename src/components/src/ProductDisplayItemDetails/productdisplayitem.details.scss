@@ -34,6 +34,10 @@
     line-height: normal;
     text-align: left;
 
+    .itemdetail-title-sku {
+      font-size: 14px;
+    }
+
     .itemdetail-price-wrap{
       margin-top: 10px;
     }
@@ -72,11 +76,11 @@
       }
 
       .price-sale {
-        color: $firstComplimentTextColor;
+        color: gray;
       }
 
       .itemdetail-list-price-value{
-        color: gray;
+        color: $firstComplimentTextColor;
         text-decoration: line-through;
         vertical-align: middle;
         margin-left: 10px;

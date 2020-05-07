@@ -88,6 +88,8 @@
       .category-item-title-sku {
         font-size: 13px;
         padding-bottom: 5px;
+        margin: 0;
+        line-height: 1.4
       }
     }
 
@@ -98,7 +100,7 @@
 
       .category-item-list-price-value {
         text-decoration: line-through;
-        color: #888;
+        color: $firstComplimentTextColor;
         margin-right: 9px;
       }
 

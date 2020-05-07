@@ -37,7 +37,7 @@ function AppFooterMain(props: AppFooterMainProps) {
   const linkTo = appFooterLinks;
 
   return (
-    <footer className="app-footer">
+    <footer className="app-footer" role="contentinfo">
       <div className="first-row">
         <div className="footer-column">
           <div className="title">

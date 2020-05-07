@@ -28,6 +28,7 @@ import Modal from 'react-responsive-modal';
 import { adminFetch } from '../../components/src/utils/Cortex';
 import { login } from '../../components/src/utils/AuthService';
 import { ReactComponent as AccountIcon } from '../../images/header-icons/account-icon.svg';
+import { ReactComponent as CloseIcon } from '../../images/icons/ic_close.svg';
 import B2bAddAssociatesMenu from '../../components/src/B2bAddAssociatesMenu/b2b.addassociatesmenu';
 import Config from '../../ep.config.json';
 
@@ -279,7 +280,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
 
   handleAccountClicked(account: any) {
     const { history } = this.props;
-    history.push(`/account/account-item/${account.uri}`);
+    history.push(`/account-item/${account.uri}`);
   }
 
   handleSpreeadsheetClicked() {
@@ -389,7 +390,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
           ))}
         </div>
         <div className="b2b-header">
-          <div className="page-title">{intl.get('business-account')}</div>
+          <h1 className="page-title">{intl.get('business-account')}</h1>
           {associatesFormUrl && (
             <div className="quick-menu">
               <B2bAddAssociatesMenu
@@ -513,7 +514,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                 <div className="section-title">{intl.get('accounts')}</div>
                 <div className="section-header-right">
                   <div className="accounts-search">
-                    <input type="text" placeholder={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
+                    <input type="text" placeholder={intl.get('search')} aria-label={intl.get('search')} value={searchAccounts} onKeyDown={this.handleEnterKeyPress} onChange={this.setSearchAccounts} />
                     {showSearchLoader && <div className="circularLoader" />}
                   </div>
                 </div>
@@ -549,7 +550,7 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
                             {intl.get(account.status)}
                           </td>
                           <td className="arrow">
-                            <Link to={`/b2b/account/${account.uri}`} className="arrow-btn" />
+                            <Link to={`/b2b/account/${account.uri}`} title={account.name} className="arrow-btn" />
                           </td>
                         </tr>
                       ))}
@@ -561,9 +562,17 @@ export default class Accounts extends React.Component<RouteComponentProps, Accou
             <Modal
               open={isImportDialogOpen}
               onClose={() => this.handleImportDialogClose()}
-              classNames={{ modal: 'b2b-import-associate-dialog', closeButton: 'b2b-dialog-close-btn' }}
+              classNames={{ modal: 'b2b-import-associate-dialog' }}
+              showCloseIcon={false}
             >
-              <div className="dialog-header">{intl.get('select-your-file')}</div>
+              <div className="modal-header">
+                <h2 className="modal-title">
+                  {intl.get('select-your-file')}
+                </h2>
+                <button type="button" aria-label="close" className="close-modal-btn b2b-dialog-close-btn" onClick={() => this.handleImportDialogClose()}>
+                  <CloseIcon />
+                </button>
+              </div>
               <div className="dialog-content">
                 <div className="upload-title">{intl.get('upload-associatess-csv')}</div>
                 <div className="chose-btn-container">

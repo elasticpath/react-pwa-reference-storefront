@@ -136,7 +136,7 @@ class AddPromotionContainer extends Component<AddPromotionContainerProps, AddPro
               </div>
               <div className="form-group">
                 <div>
-                  <input id="promotion_form_code" name="PromotionCode" className="form-control" type="text" defaultValue="" onChange={this.setPromotionCode} />
+                  <input id="promotion_form_code" aria-label="promotion code" name="PromotionCode" className="form-control" type="text" defaultValue="" onChange={this.setPromotionCode} />
                 </div>
               </div>
             </div>
