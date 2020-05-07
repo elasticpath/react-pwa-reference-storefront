@@ -465,7 +465,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                 </a>
               </div>
               <div className="tab-content">
-                <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick-order-tab">
+                <div className="tab-pane fade show active" id="quick-order" role="tabpanel" aria-labelledby="quick order tab">
                   <div className="form-content form-content-submit col-sm-offset-4">
                     {multiCartData && multiCartData._carts ? (
                       <SelectCartButton isQuickOrder />
@@ -502,7 +502,7 @@ class BulkOrder extends Component<BulkOrderProps, BulkOrderState> {
                     ))}
                   </div>
                 </div>
-                <div className="tab-pane fade" id="bulk-order" role="tabpanel" aria-labelledby="bulk-order-tab">
+                <div className="tab-pane fade" id="bulk-order" role="tabpanel" aria-labelledby="bulk order tab">
                   <div className="form-content form-content-submit col-sm-offset-4">
                     {multiCartData && multiCartData._carts ? (
                       <SelectCartButton isQuickOrder={false} />
