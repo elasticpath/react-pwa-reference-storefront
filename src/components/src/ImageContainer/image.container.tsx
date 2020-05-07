@@ -58,9 +58,9 @@ function ImageContainer(props: ImageContainerProps) {
         }
         const fullImageUrl = Config.siteImagesUrl.replace('%fileName%', fileName);
         if (acc === '') {
-          return `${fullImageUrl}-${IMG_SIZING_SUFFIX[idx]}.png ${sizing}w`;
+          return `${fullImageUrl}-${IMG_SIZING_SUFFIX[idx]}.png ${idx}x`;
         }
-        return `${acc}, ${fullImageUrl}-${IMG_SIZING_SUFFIX[idx]}.png ${sizing}w`;
+        return `${acc}, ${fullImageUrl}-${IMG_SIZING_SUFFIX[idx]}.png ${idx}x`;
       }, '');
     }
 
