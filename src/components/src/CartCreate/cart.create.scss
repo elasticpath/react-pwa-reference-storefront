@@ -42,7 +42,7 @@
 
   .create-cart-btn {
     min-height: 44px;
-    background: $thirdComplimentBackground;
+    background: $mainBackgroundColor;
 
     @media screen and (min-width: 681px) {
       min-width: 315px;
@@ -306,6 +306,7 @@
         line-height: 20px;
         padding: 0;
         min-width: 0;
+        color: $thirdComplimentColor;
         border: none;
         background: transparent;
 
