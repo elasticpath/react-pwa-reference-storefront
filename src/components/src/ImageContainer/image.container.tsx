@@ -41,17 +41,31 @@ interface ImageContainerProps {
   isSkuImage?: boolean;
   /** loading data */
   onLoadData?: (...args: any[]) => any;
+  /** srcSet dimensions - Every element represents the three src attributes for different screen sizings. */
+  srcSetDimensions?: any;
 }
 
 function ImageContainer(props: ImageContainerProps) {
   const {
-    fileName, imgUrl, className, isSkuImage, onLoadData,
+    fileName, imgUrl, className, isSkuImage, onLoadData, srcSetDimensions,
   } = props;
 
-  const getSrcSet: () => string = ():string => IMG_SIZING_SUFFIX.reduce((acc:string, sizingSuffix:string) => {
-    const fullImageUrl = Config.siteImagesUrl.replace('%fileName%', fileName);
-    return `${acc}, ${fullImageUrl}-${sizingSuffix}.png`;
-  }, '');
+  const getSrcSet: () => string = ():string => {
+    if (srcSetDimensions) {
+      return srcSetDimensions.reduce((acc:string, sizing:number, idx:number) => {
+        if (idx > 3) {
+          return acc;
+        }
+        const fullImageUrl = Config.siteImagesUrl.replace('%fileName%', fileName);
+        if (acc === '') {
+          return `${fullImageUrl}-${IMG_SIZING_SUFFIX[idx]}.png ${sizing}w`;
+        }
+        return `${acc}, ${fullImageUrl}-${IMG_SIZING_SUFFIX[idx]}.png ${sizing}w`;
+      }, '');
+    }
+
+    return null;
+  };
 
   const handleError = (e, defaultImgUrl) => {
     const { src } = e.target;
@@ -77,7 +91,7 @@ function ImageContainer(props: ImageContainerProps) {
   };
 
   const srcSet = !isSkuImage ? getSrcSet() : null;
-  const src = isSkuImage ? Config.skuImagesUrl : srcSet[0];
+  const src = isSkuImage ? Config.skuImagesUrl : null;
 
   return (
     <img
