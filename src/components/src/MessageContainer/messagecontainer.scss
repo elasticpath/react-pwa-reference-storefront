@@ -19,8 +19,9 @@
     margin: 0;
     font-weight: 600;
     color: $mainErrorColor;
+    border: 1px solid $mainErrorColor;
     border-radius: 4px;
-    background: #FBE8E8;
+    background: $mainBackgroundColor;
     background-size: 22px 22px;
     white-space: pre-line;
   }
@@ -66,13 +67,14 @@
     }
 
     p {
-      color: #946c01;
-      background: #fdefcc;
+      color: #946C01;
+      border-color: #946C01;
+      background: $mainBackgroundColor;
     }
 
     .close-btn {
       svg {
-        fill: #946c01;
+        fill: #946C01;
       }
     }
   }
@@ -90,7 +92,7 @@
 
     p {
       color: $mainTextColor;
-      background: #e0efff;
+      border-color: $firstComplimentColor;
     }
 
     .close-btn {
