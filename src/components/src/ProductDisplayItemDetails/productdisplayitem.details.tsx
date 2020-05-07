@@ -527,9 +527,9 @@ class ProductDisplayItemDetails extends Component<ProductDisplayDetailsProps, Pr
                 )}
               </h1>
               {(Config.b2b.enable) && (
-              <h4 className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
+              <p className="itemdetail-title-sku" id={`category_item_sku_${productData._code[0].code}`}>
                 {productData._code[0].code}
-              </h4>
+              </p>
               )}
             </div>
           </div>

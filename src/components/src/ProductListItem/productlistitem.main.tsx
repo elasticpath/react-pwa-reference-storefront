@@ -158,9 +158,9 @@ class ProductListItemMain extends Component<ProductListItemMainProps, ProductLis
               </Link>
             </div>
             {(Config.b2b.enable) && (
-              <h4 className="category-item-title-sku" id={`category_item_title_sku_${productData._code[0].code}`}>
+              <p className="category-item-title-sku" id={`category_item_title_sku_${productData._code[0].code}`}>
                 {productData._code[0].code}
-              </h4>
+              </p>
             )}
           </div>
           {(featuredProductAttribute)
