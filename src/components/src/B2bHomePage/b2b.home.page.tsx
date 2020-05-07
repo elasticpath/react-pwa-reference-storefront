@@ -20,17 +20,25 @@
  */
 import React from 'react';
 import intl from 'react-intl-universal';
-import ImageContainer from '../ImageContainer/image.container';
 
 import './b2b.home.page.scss';
-import heroBanner from '../../../images/site-images/hero-banner-0.jpg';
 
-const heroBannerFileName = 'hero-banner-0.jpg';
+import hero_banner_0_650x217 from '../../../images/site-images/optimized/hero-banner-0@650x217.jpg';
+import hero_banner_0_1300x434 from '../../../images/site-images/optimized/hero-banner-0@1300x434.jpg';
+
 
 const B2BHomePage: React.FunctionComponent = () => (
   <div className="home-page-b2b">
     <section className="main-banner">
-      <ImageContainer className="main-banner-image" fileName={heroBannerFileName} imgUrl={heroBanner} />
+      <img
+        className="main-banner-image"
+        src={hero_banner_0_1300x434}
+        srcSet={`
+          ${hero_banner_0_650x217} 650w,
+          ${hero_banner_0_1300x434} 1300w
+        `}
+        alt=""
+      />
       <div className="main-banner-title-wrap">
         <div className="container">
           <h2 className="goods-heading">{intl.get('main-banner-heading')}</h2>
