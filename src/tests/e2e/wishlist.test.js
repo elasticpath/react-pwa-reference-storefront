@@ -79,7 +79,8 @@ describe('Wishlist', () => {
     // Then cart should contain following items
     await page.waitForSelector(PRODUCT_CART_TITLE);
     const element = await page.$(PRODUCT_CART_TITLE);
-    const text = await page.evaluate(el => el.title, element);
+    await page.waitFor(3000);
+    const text = await page.evaluate(el => el.textContent, element);
     expect(text).toEqual(defaultProduct.name);
 
     await browser.close();
