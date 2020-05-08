@@ -39,6 +39,7 @@ const userData = {
   password: 'password'
 };
 
+const CART_LINK_CSS = '.cart-link-container .cart-link';
 const LOGGED_IN_BUTTON = '#header_navbar_loggedIn_button';
 const PRODUCT_CART_TITLE = 'div.title-options-col > div.title-col > a';
 const ADD_TO_WISHLIST_BUTTON = '#product_display_item_add_to_wish_list_button';
@@ -76,10 +77,13 @@ describe('Wishlist', () => {
     await page.waitForSelector(ADD_TO_CART_BUTTON);
     page.click(ADD_TO_CART_BUTTON);
 
+    await page.waitForSelector(CART_LINK_CSS);
+    await page.click(CART_LINK_CSS);
+
     // Then cart should contain following items
+    await page.waitFor(3000);
     await page.waitForSelector(PRODUCT_CART_TITLE);
     const element = await page.$(PRODUCT_CART_TITLE);
-    await page.waitFor(3000);
     const text = await page.evaluate(el => el.textContent, element);
     expect(text).toEqual(defaultProduct.name);
 
