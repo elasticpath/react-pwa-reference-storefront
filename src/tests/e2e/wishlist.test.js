@@ -77,10 +77,9 @@ describe('Wishlist', () => {
     page.click(ADD_TO_CART_BUTTON);
 
     // Then cart should contain following items
-    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
     await page.waitForSelector(PRODUCT_CART_TITLE);
     const element = await page.$(PRODUCT_CART_TITLE);
-    const text = await page.evaluate(el => el.textContent, element);
+    const text = await page.evaluate(el => el.title, element);
     expect(text).toEqual(defaultProduct.name);
 
     await browser.close();
