@@ -24,77 +24,51 @@ import Config from '../../../ep.config.json';
 
 import imgPlaceholder from '../../../images/img_missing_horizontal@2x.png';
 
-const IMG_SIZING_SUFFIX = [
-  ['desktop', '3x'],
-  ['tablet', '2x'],
-  ['mobile', '1x'],
-];
-
 interface ImageContainerProps {
   /** name of file */
-  fileName: string;
-  /** image URL */
-  imgUrl: string;
+  fileName?: string;
+  /** image URL that exists in the project */
+  fallbackImgUrl?: string;
   /** class name */
-  className?: string;
+  pictureClassName?: string;
+  /** img Classname */
+  imgClassName?: string;
   /** is a sku image */
   isSkuImage?: boolean;
   /** loading data */
-  onLoadData?: (...args: any[]) => any;
+  imageFileTypes?: string[];
+  /** sizes of the files. */
+  sizes?: string[];
 }
 
 function ImageContainer(props: ImageContainerProps) {
   const {
-    fileName, imgUrl, className, isSkuImage, onLoadData,
+    fallbackImgUrl, pictureClassName, imgClassName, isSkuImage, imageFileTypes, sizes, fileName,
   } = props;
 
-  const getSrcSet: () => string = ():string => IMG_SIZING_SUFFIX.reduce((acc:string, sizing, idx:number) => {
-    if (idx > 3) {
-      return acc;
-    }
-    const fullImageUrl = Config.siteImagesUrl.replace('%fileName%', fileName);
+  const imageSizes = sizes === undefined ? Config.imageFileTypes.sizes : sizes;
+
+  let imgPrefix = '';
+  if (isSkuImage) {
+    imgPrefix = Config.skuImagesUrl;
+  } else {
+    imgPrefix = Config.siteImagesUrl;
+  }
+
+  const generateSrcSet = type => imageSizes.reduce((acc, imageSize) => {
+    console.log('inside the img prefix');
+    console.log(imgPrefix);
     if (acc === '') {
-      return `${fullImageUrl}-${sizing[0]}.png ${sizing[1]}`;
+      return `${acc}${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
     }
-    return `${acc}, ${fullImageUrl}-${sizing[0]}.png ${sizing[1]}`;
+    return `${acc}, ${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
   }, '');
 
-  const handleError = (e, defaultImgUrl) => {
-    const { src } = e.target;
-    if (Config.imageFileTypes && Config.imageFileTypes.enable && e.target['data-source'] !== 'default') {
-      const fallbackTypes = Config.imageFileTypes.types;
-      const initType = imgUrl.replace(/.*(?=\.)/g, '');
-      const types = (fallbackTypes && fallbackTypes.length > 0) ? [
-        initType,
-        ...fallbackTypes.filter(fileType => fileType !== initType),
-      ] : [];
-      const currentType = src.replace(/.*(?=\.)/g, '');
-      const i = types.indexOf(currentType);
-      if (types[i + 1]) {
-        e.target.src = src.replace(currentType, types[i + 1]);
-      } else {
-        e.target.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
-        e.target['data-source'] = 'default';
-      }
-    } else if (e.target['data-source'] !== 'default') {
-      e.target.src = isSkuImage ? imgPlaceholder : defaultImgUrl;
-      e.target['data-source'] = 'default';
-    }
-  };
-
-  const srcSet = !isSkuImage ? getSrcSet() : null;
-  const src = isSkuImage ? Config.skuImagesUrl : null;
-
   return (
-    <img
-      className={className}
-      srcSet={srcSet}
-      alt=""
-      sizes="100vw"
-      src={src}
-      onError={e => handleError(e, imgUrl)}
-      onLoad={onLoadData}
-    />
+    <picture className={pictureClassName}>
+      {imageFileTypes.map(type => <source srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
+      <img className={imgClassName} alt="animage" src={fallbackImgUrl} />
+    </picture>
   );
 }
 

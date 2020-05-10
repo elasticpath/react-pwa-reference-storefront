@@ -146,6 +146,18 @@
       width: 100%;
       max-height: 100%;
       object-fit: cover;
+      display:flex;
+
+      @media (max-width: 991px) {
+        max-height: 400px;
+      }
+    }
+
+    &-picture {
+      width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      display:flex;
 
       @media (max-width: 991px) {
         max-height: 400px;
@@ -248,7 +260,8 @@
 
       &__cell {
         &:first-child {
-          grid-row: "1 / 3";
+          grid-row-start: 1;
+          grid-row-end: 3;
 
           .goods-info {
             width: 100%;
@@ -286,10 +299,6 @@
           }
 
           @media (min-width: 481px) {
-            .goods-info {
-              width: 50%;
-            }
-
             .goods-title {
               margin-bottom: 30px;
             }
@@ -329,12 +338,6 @@
           .learn-more-btn {
             background-color: $mainBackgroundColor;
             color: $firstComplimentColor;
-          }
-
-          @media (min-width: 481px) {
-            .main-goods-image {
-              width: 50%;
-            }
           }
 
           @media (min-width: 992px) {
