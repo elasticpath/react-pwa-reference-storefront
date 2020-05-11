@@ -403,16 +403,9 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
 
         <div className="central-container">
           <div className="horizontal-menu">
-            {isDesktop && (!isOffline && !isLoading) ? (
-              <AppHeaderNavigationMain
-                isOfflineCheck={this.handleIsOffline}
-                isOffline={isOffline}
-                isMobileView={false}
-                onFetchNavigationError={redirectToMainPage}
-                checkedLocation={checkedLocation}
-                appHeaderNavigationLinks={appHeaderNavigationLinks}
-              />
-            ) : ('')}
+            {isDesktop && !isOffline && !isLoading && (
+              <AppHeaderNavigationMain isMobileView={false} />
+            )}
           </div>
         </div>
 
@@ -451,15 +444,9 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
           <hr className="mobile-navigation-separator" />
 
           <div className="mobile-navigation-container">
-            {!isDesktop && (!isOffline && !isLoading) ? (
-              <AppHeaderNavigationMain
-                isOfflineCheck={this.handleIsOffline}
-                isMobileView
-                onFetchNavigationError={redirectToMainPage}
-                checkedLocation={checkedLocation}
-                appHeaderNavigationLinks={appHeaderNavigationLinks}
-              />
-            ) : ('')}
+            {!isDesktop && !isOffline && !isLoading && (
+              <AppHeaderNavigationMain isMobileView />
+            )}
           </div>
           {/* <hr className="mobile-navigation-separator" />
           <div className="mobile-login-container">
