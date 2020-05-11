@@ -130,7 +130,7 @@ class AddressFormMain extends Component<AddressFormMainProps, AddressFormMainSta
   }
 
   setCountry(event) {
-    this.setState({ country: event.target.value });
+    this.setState({ country: event.target.value, subCountry: '' });
   }
 
   setSubCountry(event) {
