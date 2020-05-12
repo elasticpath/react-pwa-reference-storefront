@@ -1,7 +1,7 @@
 {
   "cortexApi": {
-    "path": "https://reference.epdemos.com/cortex",
-    "scope": "vestri_reference"
+    "path": "https://reference.elasticpath.com/cortex",
+    "scope": "sageUK"
   },
   "supportedLocales": [
     {
@@ -25,12 +25,13 @@
     }
   ],
   "defaultCurrencyValue": "CAD",
-  "skuImagesUrl": "https://elasticpath-demo-images.s3-us-west-2.amazonaws.com/VESTRI_VIRTUAL_V1/%sku%.png",
+  "skuImagesUrl": "https://vestrijpgs.s3-us-west-2.amazonaws.com/productImages/%fileName%",
   "siteImagesUrl": "https://vestrijpgs.s3-us-west-2.amazonaws.com/testSrcSet/%fileName%",
   "enableOfflineMode": false,
   "imageFileTypes": {
     "enable": true,
-    "types": [".png" ,".jpg", ".svg"]
+    "types": [".png" ,".jpg", ".svg"],
+    "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
     "enable": false,
