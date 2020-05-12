@@ -29,7 +29,7 @@
   "siteImagesUrl": "https://refstoreimgs.s3-us-west-2.amazonaws.com/siteImages/%fileName%",
   "enableOfflineMode": false,
   "imageFileTypes": {
-    "enable": true,
+    "types": ["webp", "jp2", "jpg"],
     "sizes": ["768", "1092", "2800"]
   },
   "b2b": {
