@@ -14,12 +14,11 @@
 
       &__item {
         display: inline-block;
-        padding: 0 15px;
       }
 
       &__item-link {
         display: inline-block;
-        padding: 15px 7px;
+        padding: 15px 20px;
         color: #fff;
         font-weight: bold;
         font-size: 13px;
@@ -61,6 +60,10 @@
 
       &__item-link--level-1, &__item-link--level-2, &__item-link--level-3 {
         color: $mainTextColor;
+
+        &:hover {
+          background-color: #f2f2f2;
+        }
 
         &.has-children {
           &:after {
