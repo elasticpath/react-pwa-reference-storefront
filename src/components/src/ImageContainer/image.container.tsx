@@ -29,16 +29,16 @@ interface ImageContainerProps {
   /** prefix name of the file in s3 with this form ${fileName}-${size}.${type} */
   fileName?: string;
   /** image URL that will be used as a fallback if no types are supported or sent into the parameter */
-  imgUrl?: string;
+  imgUrl: string;
   /** picture element class name */
   pictureClassName?: string;
   /** img element class name */
   imgClassName?: string;
-  /** is a sku image */
+  /** is a sku image, determines whether to use `skuImagesUrl` or `siteImagesUrl` in ep.config.json as url prefix in srcSet */
   isSkuImage?: boolean;
   /** Types to use for srcSet */
   imageFileTypes?: string[];
-  /** different width values to serve different images */
+  /** width breakpoints to serve different images */
   sizes?: string[];
   /** alt to be passed to img element */
   alt: string,
