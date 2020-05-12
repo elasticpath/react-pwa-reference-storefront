@@ -19,25 +19,8 @@
  *
  */
 
-
-$chatBackground: #f5f8fb;
-$chatFontFamily: Helvetica Neue;
-$chatHeaderBgColor: #040060;
-$chatHeaderFontColor: #fff;
-$chatHeaderFontSize: 15px;
-$chatBotBubbleColor: #040060;
-$chatBotFontColor: #fff;
-$chatUserBubbleColor: #fff;
-$chatUserFontColor: #4a4a4a;
+@import './../../../theme/common.scss';
 
 :export {
-  chatBackground: $chatBackground;
-  chatFontFamily: $chatFontFamily;
-  chatHeaderBgColor: $chatHeaderBgColor;
-  chatHeaderFontColor: $chatHeaderFontColor;
-  chatHeaderFontSize: $chatHeaderFontSize;
-  chatBotBubbleColor: $chatBotBubbleColor;
-  chatBotFontColor: $chatBotFontColor;
-  chatUserBubbleColor: $chatUserBubbleColor;
-  chatUserFontColor: $chatUserFontColor;
+  themeColor: $mainColor
 }

@@ -22,8 +22,7 @@
 import React, { Component } from 'react';
 import scriptjs from 'scriptjs';
 // @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax,import/no-unresolved
-import * as styles from '!!../utils/less-var-loader!../../../theme/common.scss';
+import * as styles from './facebookchat.main.scss';
 
 interface FacebookChatProps {
   /** config */
@@ -69,7 +68,7 @@ class FacebookChat extends Component<FacebookChatProps, {}> {
     const { config } = this.props;
     const props = {
       page_id: config.pageId,
-      theme_color: styles['@mainColor'],
+      theme_color: styles.themeColor,
     };
     return (<div className="fb-customerchat" {...props} />);
   }
