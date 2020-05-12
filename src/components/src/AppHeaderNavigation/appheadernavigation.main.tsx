@@ -48,7 +48,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
   const selectedCategory = props.categories.filter(category => category.name === props.selectedKeys[level])[0];
 
   const renderSubMenu = () => selectedCategory.children && (
-    <div className={`$nav__submenu-container nav__submenu-container--level-${level}`}>
+    <div className={`nav__submenu-container nav__submenu-container--level-${level}`}>
       <SubMenu {...props} categories={selectedCategory.children} prefix={[...prefix, selectedCategory.name]} level={level + 1} />
     </div>
   );
