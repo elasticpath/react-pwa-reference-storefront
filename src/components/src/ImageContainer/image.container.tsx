@@ -37,7 +37,7 @@ interface ImageContainerProps {
   /** is a sku image, determines whether to use `skuImagesUrl` or `siteImagesUrl` in ep.config.json as url prefix in srcSet */
   isSkuImage?: boolean;
   /** Types to use for srcSet */
-  imageFileTypes?: string[];
+  types?: string[];
   /** width breakpoints to serve different images */
   sizes?: string[];
   /** alt to be passed to img element */
@@ -48,11 +48,11 @@ interface ImageContainerProps {
 
 function ImageContainer(props: ImageContainerProps) {
   const {
-    imgUrl, pictureClassName, imgClassName, isSkuImage, imageFileTypes, sizes, fileName, alt, onLoadData,
+    imgUrl, pictureClassName, imgClassName, isSkuImage, types, sizes, fileName, alt, onLoadData,
   } = props;
 
   const imageSizes = sizes === undefined ? Config.imageFileTypes.sizes : sizes;
-
+  const imageTypes = types === undefined ? Config.imageFileTypes.types : types;
   let imgPrefix = '';
   const imgAlt = alt != null ? alt : '';
 
@@ -76,10 +76,10 @@ function ImageContainer(props: ImageContainerProps) {
     return `${acc}, ${imgPrefix.replace('%fileName%', `${type}/${fileName}-${imageSize}w.${type} ${imageSize}w`)}`;
   }, '');
 
-  if (imageFileTypes.length > 0 && !error) {
+  if (!error) {
     return (
       <picture className={pictureClassName} key={fileName}>
-        {imageFileTypes.map(type => <source onError={e => handleError(e, imgUrl)} key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
+        {imageTypes.map(type => <source onError={e => handleError(e, imgUrl)} key={`fileName${type}`} srcSet={generateSrcSet(type)} type={`image/${type}`} />)}
         <img className={imgClassName} alt={imgAlt} src={imgUrl} key={fileName} onLoad={onLoadData} onError={e => handleError(e, imgUrl)} />
       </picture>
     );

@@ -37,12 +37,16 @@
   }
 
   .thumbnail-col {
+    width:100%;
     grid-row: 1 / last-line;
     position: relative;
     display: inline-block;
     vertical-align: top;
     img {
       border: 1px solid $firstBorderColor;
+      width: 100%;
+    }
+    picture {
       width: 100%;
     }
   }
