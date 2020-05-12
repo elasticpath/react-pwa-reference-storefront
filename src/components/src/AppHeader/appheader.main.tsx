@@ -157,18 +157,18 @@ class AppHeaderMain extends Component<AppHeaderMainProps, AppHeaderMainState> {
   }
 
   componentWillReceiveProps() {
+    const { isOffline } = this.state;
+    if (!navigator.onLine && !isOffline) {
+      this.setState({ isOffline: true });
+    } else if (navigator.onLine && isOffline) {
+      this.setState({ isOffline: false });
+    }
     this.fetchCartData();
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updatePredicate);
   }
-
-  handleIsOffline = (isOfflineValue) => {
-    this.setState({
-      isOffline: isOfflineValue,
-    });
-  };
 
   handleInputFocus = () => {
     this.setState({
