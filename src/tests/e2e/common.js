@@ -72,7 +72,7 @@ async function loginUserRegister(page, user) {
 async function navigateToProduct(page, product) {
   const { category, subCategory, name } = product;
   const PARENT_CATEGORY_CSS = `.app-header-navigation-component a[title="${category}"]`;
-  const SUB_CATEGORY_CSS = `${PARENT_CATEGORY_CSS} > ul > li > a[title="${subCategory}"]`;
+  const SUB_CATEGORY_CSS = `.nav__submenu-container > div > ul > li > a[title="${subCategory}"]`;
   const PRODUCT_CSS = '.product-list-container .category-items-listing';
 
   page.setDefaultNavigationTimeout(0);
